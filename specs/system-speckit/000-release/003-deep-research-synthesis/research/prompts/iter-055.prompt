@@ -1,0 +1,1130 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/032-deep-alignment-mode"
+# PACKET: specs/system-deep-loop/032-deep-alignment-mode (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: deep-alignment — conformance-audit mode for docs, code, design, and git history against named parent-skill authorities"
+description: "Phase parent for deep-alignment, a new system-deep-loop mode-packet that asks a structured scoping question, resolves N alignment lanes (authority x artifact-class x scope), and reuses the deep-review runtime engine to audit artifacts against a named parent skill's own templates and creation standards via a pluggable per-authority adapter."
+status: in_progress
+trigger_phrases:
+  - "deep-alignment mode"
+  - "alignment lanes"
+  - "conformance audit deep-loop"
+  - "verify-first drift detection"
+  - "sk-doc sk-git sk-design sk-code standards check"
+importance_tier: "important"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode"
+    last_updated_at: "2026-07-13T13:00:00Z"
+    last_updated_by: "claude"
+    recent_action: "Added child 014-skill-doc-template-conformance; children now 000-014"
+    next_safe_action: "Finish the in-progress phases (001/003/004/006/008)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
+      - ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs"
+      - ".opencode/skills/system-deep-loop/mode-registry.json"
+      - ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-032-deep-alignment-mode"
+      parent_session_id: null
+    completion_pct: 50
+    open_questions: []
+    answered_questions:
+      - "New mode-packet, not a deep-review mode (locked, see 002)"
+      - "Adapter contract is discover/standardSource/check (locked, see 002)"
+      - "Authorities v1 sequenced sk-doc, sk-git, sk-design, sk-code (locked, see 002)"
+      - "sk-code automatability limits: HYBRID, deterministic surface-detection + reasoning-based pattern-conformance (ADR-008, locked)"
+      - "sk-design live-render scope: new peer phase 010-adapter-sk-design-live-render (ADR-009, locked)"
+      - "deep-review runtime reuse boundary: reduce-state.cjs promoted to shared runtime/scripts/ (ADR-010, locked)"
+      - "non-interactive lane-arg schema: --lane-config <file.json> only (ADR-011, locked)"
+      - "new-authority adapter registration governance: short adapter decision-record required (ADR-012, locked)"
+
+## 000-deep-loop-runtime-refinement/implementation-summary.md
+---
+title: "Implementation Summary: system-deep-loop Runtime Remediation (from dogfood findings)"
+description: "Triaged 62 real dogfood findings into a prioritized candidate list, then applied and test-gated the Tier 1+2 fixes. Runtime suite 721/721 green; Tier 3 deferred to a follow-up pass."
+trigger_phrases:
+  - "system-deep-loop remediation implementation summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/000-deep-loop-runtime-refinement"
+    last_updated_at: "2026-07-11T21:43:06Z"
+    last_updated_by: "claude"
+    recent_action: "Tier 1+2 remediation applied and test-gated; runtime suite 721/721 green"
+    next_safe_action: "Track Tier 3 items in a follow-up pass"
+    blockers: []
+    key_files:
+      - "spec.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Operator confirmed Tier 1+2 fixes 2026-07-11; Tier 3 deferred to a follow-up pass"
+---
+# Implementation Summary: system-deep-loop Runtime Remediation (from dogfood findings)
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 000-deep-loop-runtime-refinement |
+| **Completed** | Tier 1+2 remediation applied and test-gated 2026-07-11; Tier 3 deferred to a follow-up pass |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Two phases against the same 62-finding corpus. First a triage: read both source documents from packet `052-deep-loop-unification/008-divergent-mode-dogfood` in full (research's 47-finding, 17-section `research.md`; review's 15-open-P1 findings registry), cross-referenced which findings both loops corroborated independently, and independently spot-verified every Tier-1/Tier-2 candidate's cited file:line before including it — none taken purely on the source loop's word. The result is the 7-item prioritized candidate list in `spec.md` §5. Then, after operator confirmation, the Tier 1+2 candidates were fixed and test-gated; Tier 3 was deferred with documented reasons.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+1. Read `research.md` end to end (all 17 sections) and `deep-review-findings-registry.json` for review's real findings.
+2. Identified two findings independently corroborated by BOTH loops using different methods — the strongest confidence signal available: the canonical-agent contract-drift class, and the reduce-state content-extraction bug class.
+3. Spot-verified every remaining Tier-2 candidate's cited file:line directly rather than trusting the source document's claim.
+4. Applied the Tier 1+2 fixes after operator confirmation (2026-07-11), each test-gated against the existing suites — commits `0803969e41` and `3e9892a9c0` (Tier 1+2 core), `a8b3f0af01` (a further 32 dogfood findings). Example: `deep-research/scripts/reduce-state.cjs:1556` now matches `###` (H3) headings, fixing the `keyFindings`-stuck-at-0 bug.
+5. Deferred Tier 3 (loop-lock nonce ownership, the deep-improvement `minReplayCount:3` repeatability gate, and the ~50 lower-tier P2 items) to a follow-up pass rather than inflating this packet's scope.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+## 001-research-and-context/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1 research-and-context"
+description: "Four research passes (deep-review engine shape, prior-art 052/055/051, sk-doc/sk-git/sk-design/sk-code standards surfaces, 130/131 reference pattern) reconciled into one context map, cross-checked against all 12 Accepted ADRs. Zero contradictions found."
+trigger_phrases:
+  - "deep-alignment research summary"
+  - "phase 001 implementation summary"
+  - "research gate reconciled"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/001-research-and-context"
+    last_updated_at: "2026-07-11T16:00:00Z"
+    last_updated_by: "claude"
+    recent_action: "Reconciled research passes; zero ADR contradictions found"
+    next_safe_action: "Await operator review, then phase 002 re-confirmation gate"
+    blockers:
+      - "Operator review required before phase 002 begins"
+    key_files:
+      - "spec.md"
+      - "tasks.md"
+      - "plan.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-059-001-research-and-context"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions:
+      - "reduce-state.cjs confirmed mode-local, matches ADR-010's context, promotion still unexecuted"
+      - "Zero contradictions between the four research passes and the 12 Accepted ADRs"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research-and-context |
+| **Completed** | 2026-07-11 (research executed and reconciled; operator review pending before phase 002) |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase confirms the factual ground phase 002's architecture freeze stands on. Four research passes covering deep-review's real runtime shape, three prior-art packets, four parent skills' standards surfaces, and the 130/131 reference pattern this whole mode-packet productizes are now reconciled into one context map in `spec.md` §8. Every reconciled finding was cross-checked against all 12 Accepted ADRs in `002-architecture-decision/decision-record.md`. The verdict: zero contradictions.
+
+### Runtime-Engine Confirmation
+
+`reduce-state.cjs` is confirmed mode-local at `deep-review/scripts/reduce-state.cjs`, not yet promoted to shared `runtime/scripts/`. This was independently re-checked by direct `find`/`ls` in this pass, not just carried over from the supplied research. It matches ADR-010's own stated context exactly, so the ADR's promote-to-shared decision needs no amendment.
+
+## 002-architecture-decision/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2 architecture-decision"
+description: "Phase 002 is complete: all 12 ADRs Accepted, operator approved 2026-07-11, phase 003 has since built the real scaffold against this architecture."
+trigger_phrases:
+  - "deep-alignment architecture decision summary"
+  - "phase 002 implementation summary"
+  - "architecture gate not yet approved"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/002-architecture-decision"
+    last_updated_at: "2026-07-11T13:16:04Z"
+    last_updated_by: "claude"
+    recent_action: "Scaffolded planned-status stub"
+    next_safe_action: "Route decision-record.md for operator approval"
+    blockers:
+    key_files:
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-059-002-architecture-decision"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-architecture-decision |
+| **Completed** | 2026-07-11 — operator approved after phase 001 confirmed zero ADR contradictions |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The 12 ADRs in `decision-record.md` are authored and all Status: Accepted — the seven originally locked in the frozen design brief, plus the five that were Open pending an operator decision (resolved 2026-07-11: sk-code adapter hybrid, sk-design live-render as a new peer phase, reduce-state.cjs promoted to shared runtime, non-interactive lanes via config-file only, adapter-registration governance). The human-approval walkthrough happened 2026-07-11.
+
+Phase 003 has since used this frozen architecture to build the real `deep-alignment` skill skeleton, `mode-registry.json` entry, and `hub-router.json` touchpoints.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 003-scaffold-mode-packet/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3 scaffold-mode-packet"
+description: "Scaffold built and independently re-verified by a fresh agent that did not do the build. SKILL.md, mode-registry.json entry, hub-router.json touchpoints, directory skeleton, and changelog all confirmed real and shape-correct. One confirmed gap: the advisor routing-registry drift guard fails 5/7 because deep-alignment is not wired into aliases.ts / skill_advisor.py."
+trigger_phrases:
+  - "deep-alignment scaffold summary"
+  - "phase 003 re-verification"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/003-scaffold-mode-packet"
+    last_updated_at: "2026-07-11T12:57:42Z"
+    last_updated_by: "claude"
+    recent_action: "Re-verified scaffold build; drift-guard test fails 5/7 subtests"
+    next_safe_action: "Update advisor projection maps, rerun drift guard"
+    blockers:
+      - "routing-registry-drift-guard.vitest.ts fails 5/7 -- see Verification table below for full evidence"
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md"
+      - ".opencode/skills/system-deep-loop/mode-registry.json"
+      - ".opencode/skills/system-deep-loop/hub-router.json"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-003-scaffold-mode-packet"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions:
+      - "Whether wiring the advisor's TS/Python projection maps is this phase's own T011 responsibility or phase 009's advisor-cutover scope"
+    answered_questions:
+      - "SKILL.md / mode-registry.json / hub-router.json / directory skeleton / changelog all confirmed built and shape-correct by independent re-verification (2026-07-11)"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-scaffold-mode-packet |
+| **Status** | In Progress |
+| **Completed** | Scaffold build complete and independently re-verified (2026-07-11); one gap open (T011 drift guard) |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `deep-alignment` mode-packet skeleton. Independent re-verification (a fresh agent that did not do the build, 2026-07-11) directly confirmed every listed artifact exists on disk and matches the shape `plan.md` §3 specified:
+
+- `.opencode/skills/system-deep-loop/deep-alignment/SKILL.md` -- thin mode contract with the same frontmatter field set as `deep-review/SKILL.md` (`name`, `description`, `allowed-tools`, `argument-hint`, `version`), a "WHEN TO USE" / "FORBIDDEN INVOCATION PATTERNS" section pair, a boundary statement against `deep-review` and `parent-skill-check.cjs`, the `INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT -> optional REMEDIATE` state machine, and the four alignment invariants.
+
+## 004-scoping-and-discovery/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4 scoping-and-discovery"
+description: "The scoping decision tree, lane resolution, --lane-config parsing, and discover(scope)->artifacts contract, built and manually verified: 3 reference docs plus scripts/scoping.cjs, with real interactive/non-interactive lane-tuple parity evidence."
+trigger_phrases:
+  - "deep-alignment scoping summary"
+  - "phase 004 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/004-scoping-and-discovery"
+    last_updated_at: "2026-07-11T14:19:08Z"
+    last_updated_by: "claude"
+    recent_action: "Independently re-ran the full verification matrix; found phase 005 undisclosed here"
+    next_safe_action: "Verify phase 005's complete claim, then begin phase 006"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/scoping_protocol.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/lane_config_schema.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-004-scoping-and-discovery"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-scoping-and-discovery |
+| **Status** | In Progress — see Known Limitations for the one deferred follow-up |
+| **Completed** | 2026-07-11 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase built the SCOPE-state engine for `deep-alignment`: the three-axis scoping decision tree, lane resolution (both the interactive path and the non-interactive `--lane-config` path), and the `discover(scope)->artifacts` contract every future authority adapter (phases 005-007) implements identically.
+
+### Scoping Protocol (`references/scoping_protocol.md`)
+
+Documents the ARTIFACT-CLASS x AUTHORITY x SCOPE decision tree: the four artifact classes (`docs`, `code`, `designs`, `git-history`), the four v1 authorities (`sk-doc`, `sk-git`, `sk-design`, `sk-code`) with their per-authority artifact-class validity, the three scope shapes (`paths`, `globs`, `branchRange`), the lane-resolution algorithm (one tree walk expands to one lane per selected authority), the canonical internal lane-tuple representation both paths share, and the ADR-011 fallback rule between the interactive and non-interactive paths.
+
+### Discover Contract (`references/discover_contract.md`)
+
+## 005-adapter-sk-doc/implementation-summary.md
+---
+title: "Implementation Summary: Phase 5 adapter-sk-doc"
+description: "The real sk-doc reference adapter is built: standardSource wiring, verify-first check(), the known-deviation suppression list, and discover(). Reconciled in-flight against phase 004's real contract once it landed concurrently, and surfaced a live, currently-blocking bug in validate_document.py itself."
+trigger_phrases:
+  - "sk-doc adapter summary"
+  - "phase 005 build complete"
+  - "sk-doc adapter verification evidence"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/005-adapter-sk-doc"
+    last_updated_at: "2026-07-11T14:16:14Z"
+    last_updated_by: "claude"
+    recent_action: "Built and verified the sk-doc adapter; found a live validate_document.py bug"
+    next_safe_action: "Phase complete; 006 can start; operator should triage the validate_document.py bug separately"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
+      - ".opencode/skills/sk-doc/scripts/validate_document.py"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-adapter-sk-doc"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Suppression list format: a structured reference doc whose embedded fenced json block IS the queryable rules file, one source of truth."
+      - "discover() scope/output shape: reconciled against the real, live discover_contract.md (scope is {type,values|from/to}, output is {artifacts,nodes}), not the plan-derived assumption."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-adapter-sk-doc |
+| **Status** | Complete |
+| **Completed** | 2026-07-11 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The real, working sk-doc reference adapter: three files under `.opencode/skills/system-deep-loop/deep-alignment/` implementing the ADR-003 three-method contract (`discover(scope)`, `standardSource(authority)`, `check(artifact, rules)`) for the `sk-doc` authority, plus a corrected understanding of phase 004's own contract once it landed mid-build, plus one genuine, newly-discovered defect in the tool this adapter wraps.
+
+### sk_doc_adapter.md
+
+## 006-adapter-sk-git-and-sk-design/implementation-summary.md
+---
+title: "Implementation Summary: Phase 6: adapter-sk-git-and-sk-design"
+description: "Built the sk-git deterministic conformance adapter and the sk-design v1 static audit-rubric adapter for deep-alignment, both implementing the phase-005 discover/standardSource/check contract, dry-verified against live repo state with two real bugs found and fixed during construction."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "phase 006"
+  - "sk-git adapter built"
+  - "sk-design adapter built"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design"
+    last_updated_at: "2026-07-11T14:51:52Z"
+    last_updated_by: "claude"
+    recent_action: "Built both adapters, fixed 2 real bugs found via dry-run"
+    next_safe_action: "Hand off to phase 007 sk-code adapter build"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-git.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_git_adapter.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_adapter.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-059-006"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "sk-git discover() scope grammar: branchRange for commits (bounded git log), unconditional git branch --list for branch names"
+      - "sk-design known-deviation list storage format: Markdown + fenced json, matching phase 005"
+      - "sk-git hook-parity approach: line-cited port, not a shell-out, because the hook's body-required rule reads the live staging index which is meaningless for a historical commit"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-adapter-sk-git-and-sk-design |
+| **Completed** | 2026-07-11 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Both authority adapters this phase's gate-flipped scope named: a 100%-deterministic sk-git adapter checking conventional-commit grammar and `wt/{NNNN}-{name}` branch naming against live git state, and a hybrid (deterministic structural + reasoning-agent audit-rubric) sk-design adapter checking `DESIGN.md`/`tokens.json` static conformance. Both implement the phase-005 `{discover(scope), standardSource(authority), check(artifact, rules)}` contract exactly, copying `sk-doc.cjs`'s module/CLI shape.
+
+
+## 007-adapter-sk-code/implementation-summary.md
+---
+title: "Implementation Summary: Phase 7: adapter-sk-code"
+description: "The sk-code deep-alignment adapter is built: discover()/standardSource()/check() implemented and CLI-verified against real repo files, with an honest, evidence-cited automatability-limits statement (ADR-008)."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "phase 007"
+  - "sk-code adapter built"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/007-adapter-sk-code"
+    last_updated_at: "2026-07-11T14:56:54Z"
+    last_updated_by: "claude"
+    recent_action: "Built and CLI-verified the sk-code adapter (3 files)"
+    next_safe_action: "Wire adapter into phase 008 ITERATE/CONVERGE loop"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_code_adapter.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_code_known_deviations.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-059-007"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "MOTION_DEV overlay lane routing -- phase 008 REPORT-state question, not this adapter's"
+    answered_questions:
+      - "ADR-008 HYBRID split: deterministic layer = 12 OPENCODE rule types + WEBFLOW scripts gated on a project root (none exist in this repo); reasoning layer = everything else, dispatch-packet only, never self-judged"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-adapter-sk-code |
+| **Completed** | 2026-07-11 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sk-code authority adapter for `deep-alignment`, implementing ADR-003's three-method contract (`discover(scope)`, `standardSource(authority)`, `check(artifact, rules, options)`) as ADR-008 locks it: a HYBRID two-layer `check()` — a real, working deterministic layer wrapping `verify_alignment_drift.py` (OPENCODE) and the read-only Webflow verification scripts (WEBFLOW), plus a reasoning-agent layer that never judges anything itself, only prepares a structured dispatch packet and accepts pre-verified results back. File shape (imports → constants → classifier → discover → suppression → standardSource → subprocess wrappers → check → CLI → exports) matches the phase-005 reference adapter (`sk-doc.cjs`) exactly, per this phase's own brief.
+
+This phase's scope gate was flipped from "plan only" to "build for real" by operator approval on 2026-07-11 (spec.md's Out of Scope first bullet); the adapter shipped in the same pass as its own plan reconciliation, not a separate future execution.
+
+### Files Changed
+
+## 008-iterate-converge-report/implementation-summary.md
+---
+title: "Implementation Summary: Phase 8: iterate-converge-report"
+description: "The deep-alignment loop's runtime wiring: reduce-state.cjs relocated (ADR-010, regression-proven behavior-preserving), the alignment-report reducer and verify-iteration.cjs entries confirmed complete, and the CONVERGE/ITERATE/REMEDIATE single-shot scripts built and tested."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "phase 008"
+  - "convergence wiring"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/008-iterate-converge-report"
+    last_updated_at: "2026-07-11T16:32:30Z"
+    last_updated_by: "claude"
+    recent_action: "Independently re-verified by a second pass; see checklist.md"
+    next_safe_action: "Phase 009 builds the command YAML and LEAF agent"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+      - ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/state_machine_wiring.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-059-008"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-iterate-converge-report |
+| **Completed** | 2026-07-11 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-alignment loop's runtime wiring for the INIT-through-REMEDIATE state machine. Three of the five build steps (the ADR-010 relocation, the alignment-report reducer, and the `verify-iteration.cjs` entries) were found already complete in this working tree at the start of this pass — likely from an earlier session's uncommitted work on this same phase — and were independently verified rather than re-built or trusted blindly. The remaining two steps (the loopType decision and the CONVERGE/ITERATE/REMEDIATE single-shot scripts) were built fresh this pass.
+
+### Files Changed
+
+
+## 009-command-agent-advisor-cutover/implementation-summary.md
+---
+title: "Implementation Summary: Phase 9: command-agent-advisor-cutover"
+description: "The /deep:alignment command and assets, the @deep-alignment leaf agent (both runtimes), the advisor projection-map wiring, and the behavior-benchmark extension are built and verified; both cutover gates run green."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "phase 009"
+  - "cutover complete"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/009-command-agent-advisor-cutover"
+    last_updated_at: "2026-07-11T17:12:19Z"
+    last_updated_by: "claude"
+    recent_action: "Built and verified all phase-009 artifacts; both gates green"
+    next_safe_action: "None required"
+    blockers: []
+    key_files:
+      - ".opencode/commands/deep/alignment.md"
+      - ".claude/agents/deep-alignment.md"
+      - ".opencode/agents/deep-alignment.md"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-059-009"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-command-agent-advisor-cutover |
+| **Status** | Implemented |
+| **Completed** | 2026-07-11 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The terminal phase of the 059 packet: the command, the leaf agent, the advisor routing wiring, and the behavior benchmark that make `deep-alignment` reachable, plus both cutover gates run for real.
+
+### Files Changed
+
+
+## 010-adapter-sk-design-live-render/implementation-summary.md
+---
+title: "Implementation Summary: Phase 10: adapter-sk-design-live-render"
+description: "The sk-design live-render deep-alignment adapter, built as a pure-function dispatch wrapper: discover()/standardSource()/check() implemented and live-verified via 7 CLI dry-runs, zero direct chrome-devtools call sites confirmed by grep. A real, disclosed integration gap remains: design-mcp-open-design's live MCP tool surface has no tool that renders an arbitrary external URL or route, so check() consumes caller-supplied render evidence rather than rendering anything itself."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "phase 010"
+  - "sk-design live-render adapter built"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/010-adapter-sk-design-live-render"
+    last_updated_at: "2026-07-13T07:10:51Z"
+    last_updated_by: "claude"
+    recent_action: "Built+dry-ran adapter; documented real design-mcp-open-design tool-surface gap"
+    next_safe_action: "Phase 008 resolves module-selection + lane-key gaps (Known Limitations #2/#3)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_live_render_adapter.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-059-010"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Phase 008: module-selection (which adapter file a sk-design lane require()s) and lane-key (merge into 006's vs peer key) resolution"
+    answered_questions:
+      - "design_dispatch_boundary.md is a child-agent/small-model routing-proof envelope, not a callable render interface -- check() cannot invoke a function it does not expose"
+      - "design-mcp-open-design's real ~18-tool MCP surface has no tool that renders an arbitrary external URL/route -- confirmed by full enumeration against tool_surface.md"
+      - "check() is a pure function over caller-supplied options.renderResult; it never renders anything itself, by necessity not by choice"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-adapter-sk-design-live-render |
+| **Status** | Complete |
+| **Completed** | 2026-07-11 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Two files implementing the ADR-003 three-method adapter contract (`discover(scope)`, `standardSource(authority)`, `check(artifact, rules, options)`) for `sk-design`'s live-render dimension, per ADR-009's LOCKED phase-010 decision. `spec.md` and `plan.md` name a chrome-devtools-driven audit dimension dispatched exclusively through `design-mcp-open-design`; this build implements that contract as a **pure-function dispatch wrapper** — `check()` never calls any transport itself. That is not a scope reduction; it is what the real, live `design-mcp-open-design` tool surface (fully enumerated and cross-checked against `tool_surface.md`) and the real MCP invocation model (agent tool-use loop only, never a spawned Node subprocess) actually make possible. See Known Limitations for the full, disclosed reasoning.
+
+### Files Changed
+
+## 011-skdoc-doc-conformance/implementation-summary.md
+---
+title: "Implementation Summary: Phase 11 skdoc-doc-conformance"
+description: "deep-alignment's own 83 shipped docs now pass the sk-doc conformance bar the mode holds other skills to: every deep-alignment-LOCAL P0/P1/P2 gap is fixed, category subfolders are renamed to the operator's snake_case convention, and 12 docs no longer describe already-built, already-registered artifacts as missing."
+trigger_phrases:
+  - "sk-doc conformance summary"
+  - "phase 011 doc remediation complete"
+  - "deep-alignment self-audit evidence"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/032-deep-alignment-mode/011-skdoc-doc-conformance"
+    last_updated_at: "2026-07-13T07:10:51Z"
+    last_updated_by: "claude"
+    recent_action: "Fixed sk-doc gaps, renamed folders to snake_case, reconciled build-state claims"
+    next_safe_action: "Review the three flagged items with operator"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/README.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/feature_catalog/"
+      - ".opencode/skills/system-deep-loop/deep-alignment/manual_testing_playbook/"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/"
+      - ".opencode/skills/system-deep-loop/mode-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-011-skdoc-doc-conformance"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Folder rename scope: category subfolders only under feature_catalog/ and manual_testing_playbook/, matching the operator's stated exception."
+      - "behavior_benchmark's shared missing-overview false positive stays out of scope, owned by a separate repo-wide task."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-skdoc-doc-conformance |
+| **Status** | Complete |
+| **Completed** | 2026-07-11 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A parallel sk-doc conformance audit of `deep-alignment`'s own 83 shipped docs returned MAJOR_GAPS: 4 P0, 13 P1, and 11 P2 findings against 25 clean files. Every deep-alignment-LOCAL finding is now fixed, the packet's category subfolders match the operator's snake_case convention, and 12 docs that still called already-shipped artifacts "not yet built" now describe the real state.
+
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/033-post-sync-verification-fixes"
+# PACKET: specs/system-deep-loop/033-post-sync-verification-fixes
+
+---
+title: "Implementation Summary: Fix test failures surfaced by post-sync verification"
+description: "5 test failures found while verifying a large sync commit, each root-caused and fixed individually."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "post-sync verification fixes"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/033-post-sync-verification-fixes"
+    last_updated_at: "2026-07-12T00:00:00.000Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Packet completed: 5 test failures root-caused and fixed"
+    next_safe_action: "None - packet complete"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts"
+      - ".opencode/skills/system-spec-kit/scripts/tests/reducer-backlog-remediation.vitest.ts"
+      - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "post-sync-verification-fixes/033"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 033-post-sync-verification-fixes |
+| **Status** | Complete |
+| **Completed** | 2026-07-12 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+While independently verifying a large operator-directed sync commit (3,801 files from concurrent sessions), a mechanical parse/syntax sweep came back 100% clean, but running the touched vitest suites surfaced 5 real assertion failures across 3 test files. Each was root-caused individually against real source/registry files (not guessed), producing 3 distinct, unrelated fixes: 2 stale test expectations corrected, 1 test fixture completed to match a real reducer contract, and 1 genuine input-validation gap closed in production code.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Modified | Dropped a dead `.opencode/agents/deep-review.toml` mirror-path expectation and fixed a hardcoded 3-entry (with a duplicate) runtime-ID list down to the real 2-entry list |
+| `.opencode/skills/system-spec-kit/scripts/tests/reducer-backlog-remediation.vitest.ts` | Modified | Added `gateClass: 'hard'`, `applicable: true` to the LG-0006 fixture's result objects |
+| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` | Modified | Added a `main()`-level guard rejecting `executor.model` values that collide with the shared `EXECUTOR_KINDS` list; later this same file gained the `execution_provenance`/`route_fields` wiring below |
+| `.opencode/skills/system-deep-loop/deep-ai-council/vitest.config.mjs` | Created | Wires the skill's `.vitest.ts` suite into a real, checked-in config (self-contained pattern matching `deep-improvement/scripts/vitest.config.mjs`) |
+| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` | Modified | `buildProgressRecord`/`persistSeatStepwise` now carry `execution_provenance` into the persisted `completed` record instead of silently dropping it |
+
+### Follow-up round: wiring deep-ai-council into a real vitest config surfaced 2 more pre-existing bugs
+
+The Known Limitations note below (deep-ai-council's 2 CLI test files never running in any checked-in config) was itself fixed: added `.opencode/skills/system-deep-loop/deep-ai-council/vitest.config.mjs` (same self-contained pattern as `deep-improvement/scripts/vitest.config.mjs`). That immediately expanded discovery from 2 known test files to the skill's full 10-file, 94-test suite - which had *never* run automatically before, ever. 2 more real, pre-existing failures surfaced:
+
+- **`persist-artifacts.vitest.ts`**: `dispatchSeat()` in `orchestrate-session.cjs` already computed a full `execution_provenance` object (`requested`/`effective` identity, including the anti-forgery guarantee that `effective` values are never parsed out of a seat's freeform output content) but never attached it to the `persistedSeat` object it handed to `persistSeatStepwise` - the field was silently dropped on the way to disk. Added `execution_provenance: executionProvenance` to `persistedSeat`, and taught `persist-artifacts.cjs`'s `buildProgressRecord`/`persistSeatStepwise` to actually carry it into the persisted `completed` record (previously had zero references to the field at all).
+- **`orchestrate-session.vitest.ts`**: the topic-level `route_fields` object (built by `withCouncilRouteConfig()` from the canonical `COUNCIL_ROUTE_FIELDS` constant) was flat-only, with no `requested`/`effective` identity split - even though the seat-level equivalent already existed in `dispatchSeat`. Added `requested: { mode, target_agent }` (mirrors the canonical route) and `effective: { primary_agent: null, model: null }` (correctly unobserved at route-resolution time, before any seat has run) to `route_fields`, additive alongside the existing flat fields so the already-passing sibling test (which checks the flat shape) stays unaffected.
+
+Both fixes are additive completions of wiring that clearly already existed in intent (the `requested`/`effective` shape and the anti-forgery pattern were already fully designed and implemented at the seat-dispatch level) - not new design decisions.
+<!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Each of the 5 failures was root-caused against real source/registry files before touching anything — no guessing, no blind pattern-matching against the failure messages. The `.toml` mirror and duplicate-runtime-ID expectations were traced via `git log --all --follow` (confirming the exact path never existed) and the canonical `runtime_capabilities.json` registry (confirming exactly 2 real runtimes). The `gatingFailures` mismatch was traced by reading `buildTraceabilityRollup`'s actual recomputation logic and cross-checking it against a sibling, already-passing test's fixture convention (`reduce-state-summary-fallback.test.cjs`), which settled test-fixture-bug vs. reducer-bug definitively. The CLI validation gap was closed by finding and reusing the repo's own existing `EXECUTOR_KINDS` constant rather than inventing a new list, following the exact dynamic-`import()`-from-`.cjs` pattern `fanout-run.cjs` already uses for the same file. All fixes applied, then each affected test file re-run individually, then the full previously-passing regression suites re-run to confirm zero side effects.
+<!-- /ANCHOR:how-delivered -->
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Deleted the `.toml` mirror expectation instead of creating `.opencode/agents/deep-review.toml` | `git log --all --follow` shows this exact path has **zero history anywhere** — it never existed. Changelog history *does* show a real, once-live Codex mirror, but at a different path (`.codex/agents/deep-review.toml`), and that directory doesn't exist in the repo today, nor does any current deep-review doc mention Codex. The canonical `runtime_capabilities.json` registry (source of truth for `listRuntimeCapabilityIds()`) declares exactly 2 runtimes. Recreating a 3rd-runtime mirror would be resurrecting a dropped feature, not fixing a test — out of scope for a bug-fix packet, flagged in Known Limitations below instead of silently decided either way |
+| Fixed the LG-0006 test fixture rather than changing `buildTraceabilityRollup`'s logic | A sibling passing test (`reduce-state-summary-fallback.test.cjs`) already stamps `gateClass: 'hard'`/`'soft'` directly onto its result objects — confirming the reducer's `result.gateClass === 'hard'` check is the intended, already-correct contract. The LG-0006 fixture was simply incomplete relative to that established convention |
+| Reused the existing `EXECUTOR_KINDS` constant from `executor-config.ts` instead of hardcoding a new list in `orchestrate-session.cjs` | Avoids a second source of truth for valid executor kinds; `fanout-run.cjs` already does the identical dynamic `import()` of the same `.ts` file from a `.cjs` context, so this follows an established, working pattern rather than inventing a new import mechanism |
+
+<!-- /ANCHOR:decisions -->
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Test Type | Status | Notes |
+|-----------|--------|-------|
+| `deep-review-contract-parity.vitest.ts` | Pass | Re-run individually after fix |
+| `reducer-backlog-remediation.vitest.ts` | Pass | Re-run individually after fix |
+| `orchestrate-session-cli.vitest.ts` | Pass | 12/12 tests, including the previously-failing 2 rejection cases |
+| `orchestrate-topic.vitest.ts` | Pass | Unaffected sibling, re-run as a sanity check |
+| Combined `system-spec-kit` 5-file batch | Pass | 35/35 tests |
+| `system-deep-loop/runtime` regression check | Pass | 161/161 tests, zero regressions from the `orchestrate-session.cjs` change |
+| `system-deep-loop/deep-improvement` regression check | Pass | 48/48 tests, zero regressions |
+| `deep-ai-council` full suite (post config-wiring) | Pass | 10/10 files, 94/94 tests - up from the 2 files/12 tests originally checked, since wiring a real config expanded discovery to the whole skill |
+| system-spec-kit combined batch, re-confirmed after the deep-ai-council round | Pass | 35/35 tests, unaffected by the deep-ai-council changes |
+
+<!-- /ANCHOR:verification -->
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Codex CLI runtime support for deep-review stays dropped**, not restored. If Codex support is actually still wanted, that's a real feature-restoration task (new registry entry + new `.codex/agents/deep-review.toml` mirror + doc updates), not something this packet did.
+2. **`deep-ai-council` has no `package.json` of its own** (matching `deep-improvement`'s existing convention) — its new `vitest.config.mjs` relies on `npx vitest` resolving the repo-root-cached binary. This works today but is worth revisiting if that convention ever changes.
+<!-- /ANCHOR:limitations -->
+
+---
+
+## Amendment (2026-07-20): deep-review state-append robustness
+
+While verifying an unrelated router cutover with `/deep:review`, the loop halted at `step_post_iteration_claim_adjudication`: the orchestrator fulfilled the `append_jsonl` directive with an edit/patch tool that had to context-match the multi-KB single-line iteration record, and the match failed (the file-protection gate then halted the run). Two independent runs halted at the identical step — a deterministic shared-workflow defect, distinct from this packet's original five test fixes but the same "real defect surfaced by verification" theme.
+
+**Fix:** `append-state-record.cjs` — a deterministic stdin→append helper that validates the record as JSON and appends a single line via `fs.appendFileSync` (no patch anchoring) — plus converting the three crash-path `append_jsonl` directives in `deep-review-auto.yaml` (the iteration-error record and the claim-adjudication pass/fail events) to heredoc `command:` invocations of the helper. The helper is unit-tested (it appends a small record after a 3944-char giant line and rejects invalid JSON); the YAML still parses; a full 10-iteration `/deep:review` re-run validates the end-to-end path.
+
+---
+
+## Amendment (2026-07-20b): deep-review reducer strategy-heading robustness
+
+Re-running `/deep:review` to confirm the router-hardening work, the loop advanced past the state-append crash (previous amendment) and then halted in the reducer with `Missing insertion heading "11. RULED OUT DIRECTIONS"`. The strategy file is agent-authored and had arrived in an un-numbered heading dialect (`## Ruled Out Directions`); the reducer's single non-anchor section upsert (`upsertHeadingSectionBefore`, which inserts the `10A. SATURATED …` section before `11. RULED OUT DIRECTIONS`) required the exact numbered heading and hard-threw, while every machine-owned anchor section beside it self-heals under `--create-missing-anchors`. The loop also never passed that documented bootstrap flag, so a missing-anchor seed fail-closed the whole review.
+
+**Fix (two parts):** (1) `upsertHeadingSectionBefore` now matches its heading and insertion point in either the numbered or un-numbered dialect, preserves the authored heading text verbatim, and append-bootstraps under create-missing instead of throwing — matching the fault-tolerance the anchor sections already had; it is exported and covered by a new 5-case vitest. (2) both `deep-review-auto.yaml` (3 reduce calls) and `deep-review-confirm.yaml` (4) now pass `--create-missing-anchors`, so an agent-authored strategy in any dialect self-heals rather than halting.
+
+**Verification:** the new `deep-review-strategy-heading.vitest.ts` passes 5/5; the deep-research reducer suite is unchanged at 14/14 (the export did not regress it); a fresh reduce over the real failed review state now completes (exit 0, strategy gains the 10A section + anchors) where it previously crashed; `node --check` clean; both YAMLs still parse. Fail-closed is preserved without the flag (the DRV-034 playbook path is unaffected).
+
+**Known behavior change:** the production deep-review loop now self-heals a malformed (missing-anchor or un-numbered) strategy file instead of fail-closing. The strategy file is a derived tracking doc (the findings registry stays authoritative and its separate JSONL-corruption gate is untouched), so this trades a hard halt for a bootstrapped-and-proceed on a cosmetic seed gap — the right posture for a long automated review.
+
+---
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/034-skill-benchmark-codex-executor"
+# PACKET: specs/system-deep-loop/034-skill-benchmark-codex-executor
+
+---
+title: "Implementation Summary: skill-benchmark codex transport"
+description: "A runtime-hosted codex dispatch helper and a thin skill-benchmark codex executor now let a GPT-5.6 model be benchmarked live over the codex transport, without a packet-local codex adapter."
+trigger_phrases:
+  - "codex transport implementation summary"
+  - "068 closeout"
+  - "skill-benchmark codex executor summary"
+  - "tier-2 luna routing benchmark analysis"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/034-skill-benchmark-codex-executor"
+    last_updated_at: "2026-07-17T13:33:12Z"
+    last_updated_by: "claude"
+    recent_action: "Tier-2 luna breadth + SOL-ULTRA deep-review landed; 12 recs reconciled"
+    next_safe_action: "Commit the Tier-2 extension (068 paths only)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/034-skill-benchmark-codex-executor"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Does the codex transport produce comparable measurements? Yes: luna-codex 85 vs luna-opencode 86, 7/9 scenarios identical."
+      - "Did the SKILL.md changes move deterministic routing? No: Mode-A now vs baseline is delta 0 on all 9 scenarios."
+      - "How far to scale the live benchmark breadth (Tier-2)? The operator ran 3 skills (mcp-tooling, sk-doc, sk-code) with gpt-5.6-luna xhigh/fast via cli-opencode; a fresh SOL-xhigh agent analyzed and a SOL-ULTRA 5-iteration deep-review reconciled 12 adjusted recommendations."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 034-skill-benchmark-codex-executor |
+| **Completed** | 2026-07-15 |
+| **Level** | 2 |
+| **Status** | Complete (adapter + Tier-1 comparison; Tier-2 luna breadth + SOL-ULTRA deep-review landed as an extension) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+You can now benchmark a GPT-5.6 model live over the codex transport, side by side with the existing opencode transport, by passing `--executor codex` to the Lane C skill-benchmark. The codex dispatch itself stays inside the deep-loop runtime, so the repository keeps exactly one place that spawns `codex exec` and the cli-codex single-adapter rule holds.
+
+### Runtime codex dispatch helper
+
+`runtime/scripts/codex-dispatch.cjs` is the runtime's single-shot codex adapter. It complements `fanout-run.cjs` (which owns multi-lineage loops) by handling one synchronous request and reply, which is what a measurement harness needs. It spawns `codex exec` with the model, reasoning effort, service tier, and a read-only sandbox, delivers the prompt on stdin, captures the last message with `-o`, enforces a timeout, and reaps only its own child tree by captured PID on a timeout. Model, effort, tier, sandbox, and timeout all come from env vars so nothing machine-specific is baked in.
+
+### Thin codex executor
+
+`skill-benchmark/codex-executor.cjs` reuses the opencode path's prompt builder and reply parsers, so both transports ask the identical routing question and parse it identically. It only swaps the dispatch channel: build the prompt, call the runtime helper, normalize the reply into the observed-result the scorer already consumes. On an xhigh timeout it retries once at a lower fallback effort and flags the fallback. Because codex emits no `tool_use` event stream, activation and observed file-reads are recorded as unmeasured (`activation: null`, the same convention the deterministic router mode uses) rather than as misses, so codex scores are not depressed on a channel it cannot report.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `runtime/scripts/codex-dispatch.cjs` | Created | Single-shot codex execution helper (the runtime's one-shot codex adapter). |
+| `skill-benchmark/codex-executor.cjs` | Created | Thin executor: prompt to runtime helper to parsed observed-result. |
+| `skill-benchmark/executor-dispatch.cjs` | Modified | Branch the live path on `executor === 'codex'`. |
+| `skill-benchmark/live-executor.cjs` | Modified | Export `hasRouteGold` so both transports single-source the route-gold predicate. |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The build reused the existing executor seam rather than forking the scorer. Confidence comes from a layered verification: `node --check` on all five files, an import-chain check that resolves the cross-directory require, a `parseCodexResult` unit that produces the scorer's exact observed-result shape, and a regression baseline that ran the whole skill-benchmark vitest gate with and without the two edits and got identical numbers (19 failed / 131 passed both ways, delta 0; the 19 failures are pre-existing sk-code and sk-design playbook and design-proof failures owned by a concurrent session). The final proof was a live dispatch of one deep-improvement scenario through the fully wired path on each transport: both returned PASS with `statedRoutingParsed: true`, and the codex reply showed `eventCount: 0` against opencode's `eventCount: 6`, confirming the documented fidelity gap.
+
+The work ran on the shared `skilled/v4.0.0.0` branch alongside a concurrent session. Benchmark run outputs write to the session scratchpad, not the skill tree, to keep the shared tree clean.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Put the codex spawn in the runtime, not the benchmark packet | cli-codex's `deep-loop-runtime-required` hard rule (severity error) forbids a packet-local codex adapter; the operator chose the compliant runtime-hosted helper over waiving the rule. |
+| Reuse the opencode path's prompt + parsers | Both transports must pose the identical routing question and parse identically, so a score gap reflects the model or transport, not a different harness. |
+| Record codex activation as `null`, not `false` | Codex emits no `tool_use` stream, so activation is unobservable; the scorer treats `null` as unmeasured (the router-mode convention), which keeps codex scores fair instead of penalizing an unreportable channel. |
+| Deliver the prompt on stdin with `-o` capture | Matches `fanout-run.cjs`'s proven codex invocation (avoids ARG_MAX and quoting) and gives a clean last message to parse instead of the full exec log. |
+| Exclude the `system-deep-loop` hub from live runs | Its playbook references feature files at hyphenated paths while the real dirs are underscored, yielding 0 readable scenarios; the mismatch is pre-existing and concurrent-owned, out of this packet's scope. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `node --check` (5 files) | PASS on codex-dispatch, codex-executor, live-executor, executor-dispatch, run-skill-benchmark |
+| Import chain across directories | PASS, codex-executor resolves `../../../runtime/scripts/codex-dispatch.cjs`; `hasRouteGold` exported |
+| `parseCodexResult` shape unit | PASS, emits mode/observedResources/observedSurface/observedIntents/observedWorkflowMode/routeDeclaration with `activation: null`, `transport: codex` |
+| Mode A router path | PASS, exit 0, deterministic path undisturbed |
+| Regression baseline (whole vitest gate, with vs without edits) | PASS, 19 failed / 131 passed identical both ways, delta 0 |
+| Live codex dispatch, full wired path (DI-R03) | PASS/100, `statedRoutingParsed: true`, 6 on-target resources, `eventCount: 0` |
+| Live opencode dispatch, same scenario (DI-R03) | PASS/100, `statedRoutingParsed: true`, `eventCount: 6`, `toolCalls: 1` |
+| Codex OAuth pre-flight | PASS, `codex login status` reports logged in |
+| Tier-1 both-transport batch (deep-improvement, 9 scenarios) | PASS both — opencode 86, codex 85; 9/9 parsed, 0 dispatch errors; 7/9 scenarios identical |
+| Change-attribution (Mode-A now vs frozen baseline) | PASS, delta 0 on all 9 scenarios (SKILL.md edits did not move deterministic routing) |
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:results -->
+## Tier-1 Results (deep-improvement, luna xhigh/fast)
+
+The full comparison lives in `transport-comparison.md`; the headline: the two transports agree within 1 aggregate point (opencode 86, codex 85), with 7 of 9 scenarios scoring identically. The entire gap is one scenario (DI-R03) where codex-luna recalled 5 of 6 expected resources against opencode's 6 of 6, at N=1 per cell. The dimensions that would expose a real routing difference, D3 (efficiency) and D5 (connectivity), are identical across transports (56 and 97). Codex's missing `tool_use` stream did not distort the comparison because activation is not among the scored dimensions for this skill. Separately, deterministic Mode-A now matches the frozen baseline exactly (delta 0 on every scenario), so this session's SKILL.md changes did not move deep-improvement's routing score.
+<!-- /ANCHOR:results -->
+
+---
+
+<!-- ANCHOR:tier2-extension -->
+## Tier-2 Extension: luna routing breadth + SOL deep-review
+
+After the adapter and Tier-1 comparison shipped, the operator scaled the live benchmark to a Tier-2 breadth sweep. Three runnable skills ran with gpt-5.6-luna at xhigh/fast over the cli-opencode transport. A fresh GPT-5.6-SOL xhigh/fast agent then analyzed the raw reports and drafted recommendations, and a GPT-5.6-SOL ULTRA/fast deep-review ran five iterations over those findings to reconcile the final adjusted recommendations.
+
+### What the sweep measured
+
+| Skill | Routing gold | luna result | Reading |
+|-------|--------------|-------------|---------|
+| `mcp-tooling` (hub) | none | PASS, 100/100 | No routing gold, so the aggregate collapses to a deterministic pass and measures nothing about luna's routing. |
+| `sk-doc` (hub) | present | FAIL, 20/100 (gold-only resource recall 19.4%) | luna recalls few of the expected resources on the doc hub's fitted suite. |
+| `sk-code` (hub) | present | CONDITIONAL, 65/100 (surface 18/18, gold-only resource recall 49.8%) | Strong hub-surface routing, weak leaf-resource recall (5 of 15 full, 6 of 15 zero). |
+
+Every gold-bearing suite carries `holdoutScore: null` with zero holdout scenarios, so all scores are fitted, not held-out generalization. mcp-tooling reports a four-plus-two fitted/holdout split but has no routing gold, so that split is a harness control, not routing evidence. Conclusions are scoped to "gpt-5.6-luna xhigh/fast under the tested cli-opencode executor configuration," not to luna in general.
+
+### Deep-review outcome
+
+The SOL-ULTRA review re-derived every headline figure against the raw reports and reproduced them exactly (verdict CONDITIONAL; P0=0, P1=2, P2=4). The defects it found were evidence-scoping and citation, not arithmetic: the draft over-generalized fitted-suite results as if they were held-out (P1), and left several claims uncited (P1). It reconciled to 12 adjusted recommendations, each now scoped to the fitted-suite / single-config caveat and cited to a specific report line.
+
+### Deliverables
+
+| Artifact | Path |
+|----------|------|
+| Analysis + 12 adjusted recommendations | `tier2-luna-routing-analysis.md` |
+| Raw benchmark reports (3 skills) | `artifacts/tier2-{mcp-tooling,sk-doc,sk-code}-luna-opencode.report.{json,md}` |
+| Deep-review packet (report + 5 iterations) | `review/` |
+<!-- /ANCHOR:tier2-extension -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Cross-transport scores compare on routing declaration, not tool evidence.** Codex emits no `tool_use` stream, so activation and observed file-reads are unmeasured on the codex transport. Compare opencode and codex on the stated-routing dimensions (surface, resources, intents, workflowMode); a gap on activation is a transport-fidelity artifact, not a model difference.
+2. **The `system-deep-loop` hub is not live-runnable.** Its playbook's feature-file paths use hyphens while the directories are underscored, so it loads 0 scenarios. Fixing that is a separate, concurrent-owned migration; deep-improvement is the runnable Tier-1 target.
+3. **The timeout to fallback path is code-verified, not runtime-triggered.** No dispatch timed out during verification, so the one-shot fallback to a lower effort is proven by code inspection, not by an observed timeout.
+4. **Tier-2 breadth is bounded by cost.** Each xhigh dispatch takes minutes; how many Tier-2 skills to sweep is an operator decision recorded as an open question.
+<!-- /ANCHOR:limitations -->
+
+---
+
+<!--
+CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
+Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+-->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

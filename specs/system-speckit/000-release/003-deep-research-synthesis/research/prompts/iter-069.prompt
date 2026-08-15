@@ -1,0 +1,1521 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-skill-advisor/z_archive/005-skill-advisor-scoring-engine"
+# PACKET: specs/system-skill-advisor/z_archive/005-skill-advisor-scoring-engine (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "006-skill-advisor/005-skill-advisor-scoring-engine Phase Parent: Scoring System"
+description: "Phase parent for skill advisor scoring optimization across 8 children: embed cache, cosine wiring, ablation/weight/corpus sweeps, and routing calibration to activate semantic similarity lanes."
+trigger_phrases:
+  - "006-skill-advisor/005-skill-advisor-scoring-engine"
+  - "scorer"
+  - "skill-advisor scoring"
+importance_tier: "important"
+contextType: "general"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-core | v1.0 -->
+# Phase Parent: 006-skill-advisor/005-skill-advisor-scoring-engine
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+## 1. ROOT PURPOSE
+
+Optimize the skill advisor's scoring system by activating semantic similarity lanes through embedding cache infrastructure, cosine wiring, and systematic weight tuning. The 8 children bind together thematically around a progressive evaluation pipeline: from shadow-only cosine lane deployment (014) through ablation sweeps (015), weight sweep harness development (016), corpus-seeded evaluation (017), harder-intent stress testing (020), to final routing calibration (023). This enables data-driven lane weight selection and damping configurations that lift recall on intent-described prompts without regressing today-correct baseline accuracy.
+
+---
+
+## 2. PHASE CHILDREN
+
+| ID | Slug | Summary |
+|----|------|---------|
+| 001 | skill-advisor-hook-improvements | Skill-Advisor Hook Improvements |
+| 002 | skill-advisor-semantic-lane | Phase parent for activating semantic lane with cosine similarity and weight rebalance gated behind ablation sweep |
+| 003 | embed-cache-and-cosine-wiring | Add per-skill embedding cache to skill-graph.sqlite, embed prompts at recommend-time, surface cosine score as shadow-only lane |
+| 004 | ablation-sweep-and-promote | Sweep candidate lane weight vectors via eval_run_ablation, pick best, promote cosine lane to live in lane-registry.ts |
+| 005 | weight-sweep-harness | Extend scoring core with laneWeightsOverride, add runLaneWeightSweep, author 20-30 prompt corpus split today-correct vs intent-described |
+| 006 | corpus-seeded-sweep | Seed cosine embeddings into lane-weight sweep test fixture, emit numbers-driven weight recommendation |
+| 007 | harder-intent-corpus-resweep | Author 15-25 lexical-mis-route prompts, extend sweep test, re-run to measure cosine lane lift on harder cases |
+| 008 | advisor-routing-calibration | Damp explicit/lexical lane contributions when evidence is weak, sweep damping configurations against corpora |
+
+---
+
+## 3. SUB-PHASE CONTROL FILE
+
+## 001-advisor-hook-brief-improvements/implementation-summary.md
+---
+title: "...026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/implementation-summary]"
+description: "Completed packet-02-derived implementation for packet 014: OpenCode threshold/render parity, Codex shared-brief normalization, public MCP workspace/threshold semantics, and durable prompt-safe telemetry with outcome capture."
+trigger_phrases:
+  - "014 skill-advisor hook improvements complete"
+  - "026/009/014 implementation"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
+    last_updated_at: "2026-04-24T10:44:39Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "rg-019-codex-verification-evidence-remediated"
+    next_safe_action: "continue-review-gap-remediation-packet"
+    blockers:
+      - "Global package build still fails in unrelated files outside this packet scope"
+    completion_pct: 100
+template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+# Implementation Summary: Skill-Advisor Hook Improvements
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+## Metadata
+<!-- ANCHOR:metadata -->
+
+| Field | Value |
+| --- | --- |
+| **Level** | 2 |
+| **Status** | Complete |
+| **Completed** | 2026-04-24T08:13:17Z |
+| **Source** | `spec.md`, `plan.md`, `tasks.md`, and `../../research/002-advisor-hook-followup-research/research.md` |
+<!-- /ANCHOR:metadata -->
+
+## What Was Built
+<!-- ANCHOR:what-built -->
+
+- OpenCode now uses one explicit threshold contract across plugin defaults, native bridge routing, fallback routing, and operator-facing bridge metadata.
+- OpenCode native bridge rendering now flows through the shared `renderAdvisorBrief(...)` invariants instead of a bespoke formatter.
+- Codex prompt submission and prompt-wrapper fallback now share the same builder, timeout, threshold, and durable-diagnostics contract.
+- `advisor_recommend` and `advisor_validate` now accept explicit `workspaceRoot`, and both public outputs expose the effective state they used.
+- `advisor_validate` now publishes aggregate-vs-runtime threshold semantics and a prompt-safe telemetry block, including accepted/corrected/ignored outcome totals.
+- Hook diagnostics now persist to bounded JSONL sinks under the temp metrics root, and validator analysis can read those sinks back across processes.
+### Files Changed
+
+| Path | Scope |
+| --- | --- |
+| `.opencode/plugins/spec-kit-skill-advisor.js` | OpenCode threshold default parity |
+| `.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs` | OpenCode threshold + render contract |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts` | OpenCode parity regression coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts` | Codex shared-builder normalization + durable diagnostics |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts` | Codex fallback parity + durable diagnostics |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts` | Shared threshold helpers |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts` | Shared render threshold options |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts` | Public workspace/threshold/telemetry schemas |
+
+## 002-semantic-routing-lane/implementation-summary.md
+---
+title: "Implementation Summary: Skill Advisor semantic lane (initial phase)"
+description: "All work shipped via sibling phases 014-023. This packet defines the strategy."
+trigger_phrases:
+  - "skill advisor semantic lane implementation summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/002-semantic-routing-lane"
+    last_updated_at: "2026-05-15T00:00:00Z"
+    last_updated_by: "opencode-deepseek"
+    recent_action: "Restructured: children promoted to 014-023, slot converted to initial leaf phase"
+    next_safe_action: "Resume at child 014"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Implementation Summary: Skill Advisor semantic lane (initial phase)
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Shipped — all work in siblings 014-023 |
+| **Created** | 2026-05-13 |
+| **Restructured** | 2026-05-15 (children promoted to 014-023) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet is the strategy/rationale root. Implementation was shipped in 10 sibling phases:
+- 003-embedding-cache-cosine-wiring — embedding cache + cosine lane shadow wiring
+- 004-ablation-sweep-and-weight-promotion — ablation sweep + lane promotion
+- 005-routing-weight-sweep-harness — weight sweep harness
+- 006-seeded-corpus-evaluation-sweep — corpus seeded sweep
+- 003-skill-metadata-embedding-quality-audit — metadata quality audit
+- 004-metadata-fixes-and-seeded-sweep-rerun — metadata fixes + resweep
+- 007-hard-intent-corpus-resweep — harder intent corpus resweep
+- 005-intent-signals-and-skill-relationships — intent signals + relationships
+- 006-system-skill-advisor-package-extraction — MCP extraction (phase parent)
+- 008-routing-confidence-calibration — routing calibration
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 003-embedding-cache-cosine-wiring/implementation-summary.md
+---
+title: "Implementation Summary: Skill embedding cache and cosine-similarity lane wiring"
+description: "Pending implementation; filled after cli-codex dispatch returns and main agent verifies."
+trigger_phrases:
+  - "skill embedding cache summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring"
+    last_updated_at: "2026-05-13T19:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Scaffolded implementation-summary template"
+    next_safe_action: "Dispatch cli-codex gpt-5.5 high"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Implementation Summary: Skill embedding cache and cosine-similarity lane wiring
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Implemented — verification complete with one pre-existing full-suite caveat |
+| **Created** | 2026-05-13 |
+| **Branch** | `001-embed-cache-and-cosine-wiring` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented a shadow-only cosine lane in the existing `semantic-shadow.ts` export. `skill-graph-db.ts` now adds idempotent `embedding`, `embedding_model_id`, and `embedding_content_hash` columns, refreshes description embeddings through the current `createEmbeddingsProvider()` API, skips rows when hash and model match, and exposes cached vectors through `loadSkillEmbeddings()`.
+
+`skill_graph_scan` now refreshes embeddings after metadata indexing. `advisor-recommend.ts` embeds each non-cached recommend prompt through `withSemanticShadowPromptEmbedding()` before scoring. The lane reads cached skill vectors, computes cosine similarity, emits `semantic_shadow` matches with `cosine:<value>` evidence above the documented threshold, and remains shadow-only because `lane-registry.ts` was not changed.
+
+Added Vitest coverage at `mcp_server/skill_advisor/lib/scorer/lanes/__tests__/semantic-shadow-cosine.vitest.ts` for schema idempotence, scan-time embed/skip, cosine fixtures, and the live-field shadow invariant.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Delivered in the existing TypeScript surfaces without changing scorer weights or the public recommendation shape. The active embedding factory API in this checkout is `createEmbeddingsProvider()` plus `embedDocument()` / `embedQuery()`, so the implementation uses that current provider contract rather than the stale prompt wording that described `resolveProvider()` as returning an embed-capable provider.
+
+`npx tsc --build` rebuilt `dist`; `dist/skill_advisor/lib/scorer/lanes/semantic-shadow.js` contains `cosineSimilarity`, `loadSkillEmbeddings`, and `cosine:` evidence generation.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+## 004-ablation-sweep-and-weight-promotion/implementation-summary.md
+---
+title: "Implementation Summary: Promote semantic lane to live"
+description: "Promoted the skill-advisor semantic cosine lane with a conservative 0.05 live weight."
+trigger_phrases:
+  - "ablation sweep summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion"
+    last_updated_at: "2026-05-13T20:20:00Z"
+    last_updated_by: "codex"
+    recent_action: "Promoted semantic lane"
+    next_safe_action: "Review known plugin-bridge baseline failure if desired"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "decision-record.md"
+      - "lane-registry.ts"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Implementation Summary: Promote semantic lane to live
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Complete — known Vitest baseline caveat |
+| **Created** | 2026-05-13 |
+| **Branch** | `002-ablation-sweep-and-promote` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Promoted `semantic_shadow` from a shadow-only cosine lane to a live scoring lane with a conservative `0.05` weight. The existing four live lanes were rebalanced so the live total is exactly `1.00`.
+
+| Lane | Previous Live Weight | New Live Weight | Status |
+|------|----------------------|-----------------|--------|
+| `explicit_author` | 0.45 | 0.42 | Live |
+| `lexical` | 0.30 | 0.28 | Live |
+| `graph_causal` | 0.15 | 0.13 | Live |
+| `derived_generated` | 0.15 | 0.12 | Live |
+| `semantic_shadow` | 0.00 | 0.05 | Live |
+| **Total** | **1.05** | **1.00** | - |
+
+Artifacts shipped:
+- Updated `skill_advisor/lib/scorer/lane-registry.ts`.
+- Updated hardcoded lane-weight expectations in advisor status, recommend, unavailable, daemon probe, native scorer, and cosine-lane tests.
+- Added `skill_advisor/tests/scorer/semantic-lane-promotion.vitest.ts` for live-weight normalization and routing baseline checks.
+- Added ADR-001 in `decision-record.md`.
+
+## 005-routing-weight-sweep-harness/implementation-summary.md
+---
+title: "Implementation Summary: Lane weight sweep harness and intent-prompt corpus"
+description: "Pending; filled by cli-codex with sweep results and recommendation."
+trigger_phrases:
+  - "weight sweep summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/005-routing-weight-sweep-harness"
+    last_updated_at: "2026-05-13T20:45:00Z"
+    last_updated_by: "claude"
+    recent_action: "Scaffolded packet"
+    next_safe_action: "Dispatch codex"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Implementation Summary: Lane weight sweep harness and intent-prompt corpus
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P2 |
+| **Status** | Planned |
+| **Created** | 2026-05-13 |
+| **Branch** | `003-weight-sweep-harness` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Built the 015/003 lane-weight sweep harness and recommendation artifact.
+
+| Artifact | Result |
+|----------|--------|
+| `AdvisorScoringOptions.laneWeightsOverride` | Added as a documented optional partial lane-weight vector. |
+| `scoreAdvisorPrompt` override merge | Added effective per-lane weight resolution that keeps defaults for omitted lanes, drops unknown runtime keys, and does not renormalize. |
+| `runLaneWeightSweep` | Added structured vector summaries, per-case results, category accuracy, and baseline flip counts. |
+| Intent prompt corpus | Added 24 prompts: 12 `today-correct`, 12 `intent-described`. |
+| Vitest sweep | Added a two-test file covering override behavior and the candidate-vector sweep. |
+| Research report | Emitted `research/sweep-results.md` with the sweep table and routing diffs. |
+
+Sweep summary:
+
+| vectorLabel | accuracyTotal | todayCorrect | intentDescribed | flippedFromBaseline |
+|---|---:|---:|---:|---:|
+| V0-baseline-015-002 | 0.7917 | 1.0000 | 0.5833 | 0 |
+| V1-pre-015-002 | 0.7917 | 1.0000 | 0.5833 | 0 |
+| V2-slightly-higher | 0.7917 | 1.0000 | 0.5833 | 0 |
+
+## 006-seeded-corpus-evaluation-sweep/implementation-summary.md
+---
+title: "Implementation Summary: Seed cosine embeddings into the sweep test"
+description: "Pending; filled by codex with seeded sweep results and recommendation."
+trigger_phrases:
+  - "corpus seeded sweep summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/006-seeded-corpus-evaluation-sweep"
+    last_updated_at: "2026-05-14T00:00:00Z"
+    last_updated_by: "claude"
+    recent_action: "Scaffolded packet"
+    next_safe_action: "Dispatch codex"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Implementation Summary: Seed cosine embeddings into the sweep test
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P2 |
+| **Status** | Implemented; seeded sweep skipped under default provider |
+| **Created** | 2026-05-14 |
+| **Branch** | `004-corpus-seeded-sweep` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added `tests/scorer/fixtures/seed-skill-embeddings.ts`, a cache-aware fixture helper that embeds projection skill descriptions through `createEmbeddingsProvider().embedDocument(...)` and stores vectors under `tests/scorer/fixtures/.embeddings-cache/` using the key `sha256(description).slice(0, 16) + ':' + providerModelId`.
+
+Updated `lane-weight-sweep.vitest.ts` so the 015/004 sweep setup:
+- builds a corpus-scoped fixture projection from the live advisor projection,
+- seeds skill description vectors,
+- skips the sweep when the configured provider cannot produce vectors,
+- spies `loadSkillEmbeddings(...)` so the cosine lane sees seeded vectors,
+- seeds prompt query embeddings before calling the unchanged `runLaneWeightSweep(...)`, and
+- writes `research/sweep-results.md` when the process can write to the packet path.
+
+Default-provider result:
+
+| vectorLabel | accuracyTotal | todayCorrect | intentDescribed | flippedFromBaseline |
+|---|---:|---:|---:|---:|
+| n/a | n/a | n/a | n/a | n/a |
+
+The default provider failed during embedding with `Failed to create context`, so the official seeded sweep skipped instead of failing. An explicit `EMBEDDINGS_PROVIDER=hf-local` exploratory run seeded vectors successfully but produced zero top-route variance; the test failed the variance assertion as designed.
+
+
+## 007-hard-intent-corpus-resweep/implementation-summary.md
+---
+title: "Implementation Summary: Harder intent-described corpus + sweep"
+description: "Pending; filled by codex with harder-set numbers and recommendation."
+trigger_phrases:
+  - "harder corpus summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep"
+    last_updated_at: "2026-05-14T01:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Scaffolded packet"
+    next_safe_action: "Dispatch codex"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "research/sweep-results-harder.md"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Implementation Summary: Harder intent-described corpus + sweep
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P2 |
+| **Status** | Complete |
+| **Created** | 2026-05-14 |
+| **Branch** | `007-hard-intent-corpus-resweep` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Authored `harder-intent-prompt-corpus.ts` with 22 lexical-mis-route prompts covering 11 distinct skill ids. Per-skill count: `cli-gemini` 2, `deep-ai-council` 2, `deep-research` 2, `deep-review` 2, `mcp-chrome-devtools` 2, `mcp-coco-index` 2, `mcp-code-mode` 2, `sk-doc` 2, `sk-git` 2, `sk-prompt` 2, `system-spec-kit` 2.
+
+Extended `lane-weight-sweep.vitest.ts` with a second seeded sweep over the harder corpus, fixture coverage assertions, skip-report handling, and a report writer for `research/sweep-results-harder.md`.
+
+| Vector | Harder accuracyTotal | Harder intentDescribed | Delta vs original-24 accuracyTotal | Delta vs original-24 intentDescribed | flippedFromBaseline |
+|---|---:|---:|---:|---:|---:|
+| V0-baseline-015-002 | 0.2273 | 0.2273 | -0.4394 | -0.1060 | 0 |
+| V1-pre-015-002 | 0.2273 | 0.2273 | -0.4394 | -0.1060 | 0 |
+| V2-slightly-higher | 0.2273 | 0.2273 | -0.4394 | -0.1060 | 0 |
+| V3-medium | 0.2273 | 0.2273 | -0.4394 | -0.1060 | 0 |
+| V4-aggressive | 0.2273 | 0.2273 | -0.4394 | -0.1060 | 0 |
+| V5-explicit-heavy | 0.2273 | 0.2273 | -0.4394 | -0.1060 | 0 |
+| V6-cosine-dominant | 0.2273 | 0.2273 | -0.4394 | -0.1060 | 0 |
+
+Recommendation: stay at `0.05`. The harder corpus confirmed the saturation hypothesis only partly: it is materially harder than the original 24, but semantic weights from 0.00 to 0.30 still produced no top-route variance and no accuracy lift.
+<!-- /ANCHOR:what-built -->
+
+
+## 008-routing-confidence-calibration/implementation-summary.md
+---
+title: "Implementation Summary: Lane evidence damping + sweep"
+description: "Pending; filled by codex with damping artifact list, sweep delta numbers, and chosen config recommendation."
+trigger_phrases:
+  - "lane damping summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/008-routing-confidence-calibration"
+    last_updated_at: "2026-05-14T07:06:20Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented damping sweep"
+    next_safe_action: "Resolve unrelated suite baseline drift before promotion"
+    blockers:
+      - "Full skill_advisor suite has 5 failures in this workspace, not the expected 1 plugin-bridge failure baseline"
+    key_files:
+      - "implementation-summary.md"
+      - "research/damping-sweep-results.md"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Implementation Summary: Lane evidence damping + sweep
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Implemented; blocked on suite baseline drift |
+| **Created** | 2026-05-14 |
+| **Branch** | `010-advisor-routing-calibration` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**Research output preserved; production code reverted.**
+
+Codex shipped a damping prototype (LaneDampingConfig types, fusion-time damping math, sweep harness extension, 6 damping configs, sweep test, unit tests) and ran the sweep across 84 (weight × damping × corpus) combinations producing `research/damping-sweep-results.md`. The empirical finding was unambiguous: **no damping configuration beat the V0/D0 baseline on either corpus, and one combo (V1+D5-aggressive) actively regressed** the harder corpus by -0.0455.
+
+Because the empirical result was zero benefit AND the implementation introduced a default-off invariant leak (4 vitest regressions in graph-health and parity tests when damping infrastructure was present), the main agent **reverted all production code** (`scorer/fusion.ts`, `scorer/ablation.ts`, `tests/scorer/lane-weight-sweep.vitest.ts`, `tests/scorer/lane-damping.vitest.ts`) back to HEAD.
+
+This packet ships:
+- `research/damping-sweep-results.md` — the 84-combination empirical record (preserved verbatim from codex's run)
+- This implementation-summary documenting the negative finding
+
+This packet does NOT ship:
+- Damping types (`LaneDampingConfig`, `dampingOverride`)
+- Damping math in `scorer/fusion.ts`
+- Sweep harness damping dimension
+- Lane registry `damping?` field
+- Unit tests for damping math
+
+FOLDER
+
+<<<FOLDER id="specs/system-skill-advisor/z_archive/006-skill-advisor-routing-engine"
+# PACKET: specs/system-skill-advisor/z_archive/006-skill-advisor-routing-engine (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "006-skill-advisor/006-skill-advisor-routing-engine Phase Parent: Intent Routing"
+description: "Phase parent for intent routing optimization across the skill advisor system. Coordinates 5 children covering search-and-routing tuning, phrase booster tailoring, smart router remediation, hook surface integration, and setup command infrastructure."
+trigger_phrases:
+  - "006-skill-advisor/006-skill-advisor-routing-engine"
+  - "router"
+  - "intent routing"
+importance_tier: "important"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-core | v1.0 -->
+# Phase Parent: 006-skill-advisor/006-skill-advisor-routing-engine
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+## 1. ROOT PURPOSE
+
+Optimize intent routing across the skill advisor system through coordinated improvements to search accuracy, phrase boosting, smart router behavior, hook surface integration, and setup command infrastructure. The 5 children bind together thematically around the goal of making skill advisor routing more precise, responsive, and maintainable.
+
+---
+
+## 2. PHASE CHILDREN
+
+| ID | Slug | Summary |
+|----|------|---------|
+| 001 | search-and-routing-tuning | Search and Routing Tuning Coordination Parent |
+| 002 | advisor-phrase-booster-tailoring | Advisor Phrase-Booster Tailoring |
+| 003 | smart-remediation-and-opencode-plugin | Smart-Router Remediation + OpenCode Plugin |
+| 004 | skill-advisor-hook-surface | Skill-Advisor Hook Surface |
+| 005 | skill-advisor-setup-command | Skill Advisor Setup Command |
+
+---
+
+## 3. SUB-PHASE CONTROL FILE
+
+- Active child: n/a - sub-phase children share equivalent priority
+- Last completed child: n/a
+- Resume entry: /spec_kit:resume honors graph-metadata.json derived.last_active_child_id; falls back to listing children.
+
+## 001-memory-search-routing-tuning/implementation-summary.md
+---
+title: "Implementation Summary: Search and Routing Tuning"
+description: "Coordination parent for three shipped sub-tracks: search-fusion tuning, content-routing accuracy, and graph-metadata validation."
+trigger_phrases:
+  - "search and routing tuning"
+  - "search fusion reranker tuning"
+  - "content routing accuracy"
+  - "graph metadata validation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/001-memory-search-routing-tuning"
+    last_updated_at: "2026-04-24T12:00:00Z"
+    last_updated_by: "flatten-restructure"
+    recent_action: "001/002/003 sub-phase folders deleted; detail merged into parent"
+    next_safe_action: "No action needed"
+status: complete
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+# Implementation Summary: Search and Routing Tuning
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-memory-search-routing-tuning |
+| **Completed** | `2026-04-21` |
+| **Level** | `2` |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Three parallel sub-tracks shipped addressing all aspects of search-pipeline and routing accuracy. The 19 leaf sub-phases across all tracks are complete. See Sub-phase summaries below for per-track detail.
+
+## Sub-phase summaries
+
+### 001-search-fusion-tuning
+
+**Status:** complete. Six sub-phases shipped (`001–006`). **Completed:** `2026-04-13`.
+
+Tuned the search-fusion pipeline end-to-end: neutralized the cross-encoder length penalty (returns `1.0`), added process-wide cache telemetry to `getRerankerStatus()`, introduced the internal `continuity` adaptive-fusion weight profile (`semantic 0.52 / keyword 0.18 / recency 0.07 / graph 0.23`), raised `MIN_RESULTS_FOR_RERANK` from 2 to 4, aligned all doc surfaces with the shipped 017 runtime, and added a judged 12-query continuity fixture that confirmed the baseline K=60 recommendation.
+
+**Key files:** `cross-encoder.ts`, `adaptive-fusion.ts`, `stage3-rerank.ts`, `content-router.ts`
+
+#### Sub-phase detail
+
+**001-remove-length-penalty** — complete. Commit: `2958485d9f`. Removed the live scoring effect of the cross-encoder length penalty. `calculateLengthPenalty()` now returns `1.0`; `applyLengthPenalty()` is a compatibility-preserving no-op. Post-review remediation removed the retired `lp` cache-key discriminator so compatibility-mode callers reuse the same reranker cache entry. Tests: 4 files, 126 tests, PASS.
+
+**002-add-reranker-telemetry** — complete. Commit: `2958485d9f`. Added process-wide cache telemetry (`hits`, `misses`, `staleHits`, `evictions`) to the shared reranker module. `getRerankerStatus()` now exposes a `cache` block with `entries`, `maxEntries`, and `ttlMs`. Tests: 2 files, 59 tests, PASS.
+
+**003-continuity-search-profile** — complete. Commit: `2958485d9f`. Added an internal `continuity` weight profile to adaptive fusion. The internal search path threads a separate `adaptiveFusionIntent` value so callers can request `'continuity'` for fusion without changing the externally reported `detectedIntent`. Post-review remediation added a dedicated continuity MMR lambda. Tests: 3 files, 58 tests, PASS.
+
+**004-raise-rerank-minimum** — complete. Commit: `2958485d9f`. Raised `MIN_RESULTS_FOR_RERANK` from `2` to `4`. Regression suite uses 4-row fixtures with explicit boundary assertions: 3-row candidate sets skip reranking; 4-row sets apply it. Tests: 2 files, 22 tests, PASS.
+
+
+## 002-advisor-phrase-booster-tuning/implementation-summary.md
+---
+title: "...raph-and-context-optimization/006-skill-advisor/002-advisor-phrase-booster-tuning/implementation-summary]"
+description: "Migrated 24 tokenizer-broken multi-word INTENT_BOOSTERS entries to PHRASE_INTENT_BOOSTERS, added 15 new phrase routes, fixed hyphenated-token bug. Regression held at 1.0 top-1 and p0. Headline uplift: 5-dimension agent scoring now routes to sk-improve-agent at 0.95 instead of misrouting to sk-improve-prompt at 0.77."
+trigger_phrases:
+  - "advisor phrase booster implementation"
+  - "intent phrase migration complete"
+importance_tier: "normal"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning"
+    last_updated_at: "2026-04-15T12:14:00Z"
+    last_updated_by: "memory-save-post-followup"
+    recent_action: "Same-session follow-up completed — 12 hyphenated INTENT keys migrated (10 to PHRASE, 2 duplicate-removes). Cumulative: 36 INTENT deleted, 33 PHRASE added. Final invariant: zero multi-char keys in INTENT_BOOSTERS. Regression held at 1.0 top1/p0 across all 3 checkpoints (pre-Phase-2, post-Phase-2, post-follow-up)."
+    next_safe_action: "Commit the 2-file Public-repo change set (skill_advisor.py + fixture JSONL). Optional follow-ups tracked as separate future specs: (a) Barter repo sync with equivalent migration pattern, (b) REQ-020 bench latency measurement if performance matters downstream."
+    blockers: []
+    key_files:
+      - ".opencode/skills/skill-advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl"
+      - ".opencode/specs/system-skill-advisor/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning/scratch/phrase-boost-delta.md"
+      - ".opencode/specs/system-skill-advisor/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning/research/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "memory-save-013-2026-04-15T12-14"
+      parent_session_id: "spec-kit-implement-013-2026-04-15"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Q-A: per-key audit + preserve weights unless justified → applied"
+      - "Q-B: sk-code-web/opencode/full-stack phrase entries added per iteration-003 candidates"
+      - "Q-C: Barter-specific phrases NOT added to Public fixtures → out of scope, held"
+      - "Q-D: MULTI_SKILL_BOOSTERS audited, zero multi-word keys found, no action needed"
+      - "code audit schema violation → resolved by keeping sk-code-review (Option A)"
+      - "Hyphenated INTENT keys (12) → migrated in same-session follow-up, no separate spec needed"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-advisor-phrase-booster-tuning |
+| **Completed** | 2026-04-15 |
+| **Level** | 2 |
+| **Primary Driver** | cli-copilot `gpt-5.4` (Phase 2 migration) |
+| **Orchestrator** | Claude Code (Phase 1 baseline + Phase 3 verification + synthesis) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 003-smart-remediation-opencode-plugin/implementation-summary.md
+---
+title: "...text-optimization/006-skill-advisor/006-smart-router-remediation-and-opencode-plugin/implementation-summary]"
+description: "Tracks Phase 023 delivery across router remediation, static validation, keyword tuning, CLI fallback safety, observe-only telemetry, and the OpenCode skill-advisor plugin."
+trigger_phrases:
+  - "023 smart router implementation summary"
+  - "spec-kit-skill-advisor plugin shipped"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin"
+    last_updated_at: "2026-04-19T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed Phase 023 implementation and verification"
+    next_safe_action: "Roll out OpenCode plugin and collect observe-only telemetry before considering enforcement"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh"
+      - ".opencode/plugins/spec-kit-skill-advisor.js"
+      - ".opencode/plugins/spec-kit-skill-advisor-bridge.mjs"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Phase 020 runtime code and skill_advisor.py are out of scope for modification."
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+# Implementation Summary: Smart-Router Remediation + OpenCode Plugin
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-smart-remediation-opencode-plugin |
+| **Completed** | 2026-04-19 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 023 shipped all six work areas from the 021 smart-router research packet and added the OpenCode `spec-kit-skill-advisor` plugin. The packet fixes stale route resources, adds static router validation, tunes conservative ON_DEMAND routing keywords, replaces silent CLI fallback with UNKNOWN disambiguation, creates observe-only telemetry, and delivers a bridge-backed OpenCode plugin that imports the Phase 020 advisor producer and renderer without modifying Phase 020 runtime code.
+
+### Area A: Stale Route Paths
+
+Fixed five stale references found by the Area A scan:
+
+- `mcp-code-mode`: changed `DEFAULT_RESOURCE` from a nonexistent quick-reference resource to existing `.opencode/skills/mcp-code-mode/references/workflows.md`; rationale: dedicated quick-reference file is not present and workflows is the operational first-touch reference.
+- `sk-improve-agent`: removed a nonexistent second-target evaluation resource from `TARGET_ONBOARDING`; rationale: no renamed replacement exists in the skill package, while `.opencode/skills/sk-improve-agent/references/target_onboarding.md` covers the live onboarding path.
+- `sk-deep-research`: changed the auto workflow prose from skill-local `assets/deep_start-research-loop_auto.yaml` to `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`; rationale: workflow YAML lives under command assets.
+- `sk-deep-review`: changed the auto workflow prose from skill-local `assets/deep_start-review-loop_auto.yaml` to `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`; rationale: workflow YAML lives under command assets.
+- `sk-doc`: changed the feature catalog template reference to `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`; rationale: template was moved under the documentation asset family.
+
+
+## 004-advisor-hook-surface-integration/implementation-summary.md
+---
+title: "...-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/implementation-summary]"
+description: "Phase 020 complete: cross-runtime advisor hook surface shipped across Claude/Gemini/Copilot/Codex with 4-runtime parity, 200/200 corpus parity, cache-hit p95 0.016ms, hit rate 66.7%, DQI 97 reference doc."
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+trigger_phrases:
+  - "026/009/001 implementation summary"
+  - "skill advisor hook summary"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration"
+    last_updated_at: "2026-04-28T19:30:00Z"
+    last_updated_by: "codex-gpt-5-hygiene-pass"
+    recent_action: "Hygiene pass - validator structure"
+    next_safe_action: "Keep validators green"
+    completion_pct: 100
+    dispatch_policy: "cli-codex gpt-5.4 high fast primary; cli-copilot gpt-5.4 high fallback"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+# Implementation Summary: Skill-Advisor Hook Surface
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+> **Release ready.** All 8 implementation children converged; T9 integration gauntlet PASS.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-advisor-hook-surface-integration |
+| **Completed** | 2026-04-19 |
+| **Level** | 3 |
+| **Child Layout** | `001-initial-research` (converged); `002-shared-payload-advisor-contract`; `003-advisor-freshness-and-source-cache`; `004-advisor-brief-producer-cache-policy`; `005-advisor-renderer-and-regression-harness` (HARD GATE); `006-claude-hook-wiring`; `007-gemini-copilot-hook-wiring`; `008-codex-integration-and-hook-policy`; `009-documentation-and-release-contract` |
+| **Predecessor** | 019-system-hardening (shipped 2026-04-19, incl. 019/004 routing-accuracy) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Cross-runtime proactive skill-advisor hook surface. Each `UserPromptSubmit` event in Claude, Gemini, Copilot, and Codex runtimes runs `buildSkillAdvisorBrief(prompt, {runtime})` which returns a typed `AdvisorHookResult` rendered to the model as `hookSpecificOutput.additionalContext` (JSON transport) or wrapper-preamble (fallback). Brief emits a sanitized skill recommendation with freshness/confidence/uncertainty fields; fail-open contract returns `{}` (no-op) on any error.
+
+Component stack (landed on main; commits listed in Dispatch Log):
+
+- **020/002 shared-payload advisor contract** — extends `lib/context/shared-payload.ts` with `advisor` producer + skill-inventory/skill-graph/advisor-runtime source kinds, `AdvisorEnvelopeMetadata` type, producer-gated metadata, privacy rejection for prompt-derived provenance (`kind:user-prompt`, unanchored `sha256:*`).
+- **020/003 freshness + source cache** — `lib/skill-advisor/freshness.ts` (`getAdvisorFreshness()`), `source-cache.ts` (15-min LRU), `generation.ts` (atomic counter + corrupt recovery). Per-skill fingerprints, generation-tagged snapshots, JSON-fallback always-stale.
+- **020/004 brief producer + cache + subprocess** — `prompt-policy.ts` (NFKC canonical fold, fire/skip rules), `prompt-cache.ts` (5-min HMAC exact cache), `subprocess.ts` (`python3 skill_advisor.py` runner with SQLITE_BUSY retry + SIGKILL timeout), `skill-advisor-brief.ts` orchestration.
+- **020/005 renderer + 200-prompt parity harness [HARD GATE]** — `render.ts` pure renderer with whitelist fields + canonical-fold sanitization + instruction-regex deny, `normalize-adapter-output.ts` cross-runtime comparator, `metrics.ts` observability contract (`speckit_advisor_hook_*`, `AdvisorHookDiagnosticRecord` JSONL, `advisor-hook-health` session section), 10 canonical fixtures + 5 test harnesses (renderer/observability/corpus-parity/timing/privacy).
+- **020/006 Claude hook** — `hooks/claude/user-prompt-submit.ts` via JSON `hookSpecificOutput.additionalContext`; registered in `.claude/settings.local.json`.
+- **020/007 Gemini + Copilot hooks** — `hooks/gemini/user-prompt-submit.ts` (JSON additionalContext), `hooks/copilot/user-prompt-submit.ts` (SDK `onUserPromptSubmitted` preferred, wrapper-fallback when SDK local-unavailable). Wrapper explicitly rejects notification-only `{}` as model-visible.
+- **020/008 Codex integration** — `lib/codex-hook-policy.ts` dynamic detector (500ms probes → live/partial/unavailable), `hooks/codex/user-prompt-submit.ts` (stdin-canonical, argv-fallback), `hooks/codex/pre-tool-use.ts` (Bash-only deny from `.codex/policy.json`; PostToolUse is audit-only), `hooks/codex/prompt-wrapper.ts` fallback. Parity test extended to 4 runtimes.
+- **020/009 documentation + release contract** — 650-line reference doc (skill-advisor-hook in `.opencode/skills/system-spec-kit/references/hooks/`, DQI 97/100) with capability matrix + failure-mode playbook + observability contract + performance budgets + migration notes + concurrency + disable flag + privacy contract + troubleshooting; validation playbook; CLAUDE.md §Gate 2 update; 4 runtime READMEs.
+
+
+## 005-advisor-setup-command/implementation-summary.md
+---
+title: "Implementation Summary: Skill Advisor Setup Command [system-skill-advisor/006-skill-advisor-routing-engine/005-advisor-setup-command/implementation-summary]"
+description: "Adds /doctor:skill-advisor slash command (auto + confirm YAML workflows), README update, and user-facing install guide. Lets users analyze skills, optimize advisor scoring tables, and re-index the skill graph without knowing internal scoring architecture."
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+trigger_phrases:
+  - "skill advisor setup command implementation"
+  - "/doctor:skill-advisor implementation"
+  - "005-advisor-setup-command implementation summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/005-advisor-setup-command"
+    last_updated_at: "2026-04-25T19:45:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Closed 25 P1 + 5 P2 deep-review findings via 12-step in-place remediation"
+    next_safe_action: "Refresh continuity via generate-context.js, optionally re-review with /deep:start-review-loop:auto"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "implementation-summary.md"
+      - "graph-metadata.json"
+      - "description.json"
+    session_dedup:
+      fingerprint: "sha256:01200000000000000000000000000000000000000000000000000000000000ff"
+      session_id: "012-skill-advisor-setup-impl"
+      parent_session_id: "026-phase-root-flatten-2026-04-21"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Should derived_generated lane weight change with skill count? — No, weights-config.ts is read-only for this command (out of scope per spec)"
+      - "Auto-detect missing CATEGORY_HINTS? — Yes, included in Phase 1 analysis"
+      - "Setup guide standalone or embedded? — Standalone at .opencode/install_guides/SET-UP - Skill Advisor.md"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-advisor-setup-command |
+| **Completed** | 2026-04-25 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 006-skill-advisor-affordance-evidence/implementation-summary.md
+---
+title: "Implementation Summary: Skill Advisor Affordance Evidence (012/004)"
+speckit_template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+description: "Implemented allowlisted Skill Advisor affordance evidence through existing derived_generated and graph_causal lanes, with privacy-preserving attribution and compiler support."
+trigger_phrases:
+  - "012/004 implementation summary"
+  - "skill advisor affordance implementation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence"
+    last_updated_at: "2026-04-25T14:03:00+02:00"
+    last_updated_by: "copilot-gpt-5.5"
+    recent_action: "Completed affordance evidence"
+    next_safe_action: "Review local commit"
+    completion_pct: 100
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+---
+# Implementation Summary: Skill Advisor Affordance Evidence (012/004)
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-skill-advisor-affordance-evidence |
+| **Completed** | 2026-04-25 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Skill Advisor can now use sanitized tool and resource affordance hints without expanding its graph vocabulary or leaking raw phrases. The change keeps affordance evidence narrow: all scoring flows through `derived_generated` and `graph_causal`.
+
+### Affordance Allowlist
+
+Allowed fields:
+
+| Field | Use |
+|-------|-----|
+| `skillId` / `skill_id` | Owning skill target for scoring |
+| `name` | Sanitized derived trigger |
+| `triggers[]` | Sanitized derived triggers |
+| `category` | Sanitized derived trigger |
+| `dependsOn[]` / `depends_on[]` | Existing `depends_on` graph-causal relation |
+
+FOLDER
+
+<<<FOLDER id="specs/system-skill-advisor/z_archive/007-skill-advisor-production-hardening"
+# PACKET: specs/system-skill-advisor/z_archive/007-skill-advisor-production-hardening (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "006-skill-advisor/007-skill-advisor-production-hardening Phase Parent: Plugin Hardening + Safety"
+description: "Phase parent for skill-advisor hardening and safety improvements across 4 child packets. Covers deferred remediation, telemetry measurement, plugin hardening, standards alignment, and CLI Devin integration hooks."
+trigger_phrases:
+  - "006-skill-advisor/007-skill-advisor-production-hardening"
+  - "hardening"
+  - "skill-advisor safety"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-core | v1.0 -->
+# Phase Parent: 006-skill-advisor/007-skill-advisor-production-hardening
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+## 1. ROOT PURPOSE
+
+Strengthen the skill-advisor system through deferred remediation, telemetry measurement, plugin hardening, and standards alignment. This phase parent coordinates four child packets that collectively improve skill-advisor safety, reliability, and integration with CLI Devin through userpromptsubmit hooks and post-extraction audits.
+
+---
+
+## 2. PHASE CHILDREN
+
+| ID | Slug | Summary |
+|----|------|---------|
+| 001 | deferred-remediation-and-telemetry-run | Deferred Remediation + Telemetry Measurement Run |
+| 002 | skill-advisor-plugin-hardening | Skill-Advisor Plugin Hardening |
+| 003 | skill-advisor-standards-alignment | Skill-Advisor Standards Alignment |
+| 004 | cli-devin-skill-advisor-hook | CLI Devin Skill Advisor UserPromptSubmit Hook + Plugin Rename + Post-Extraction Audit |
+
+---
+
+## 3. SUB-PHASE CONTROL FILE
+
+- Active child: n/a - sub-phase children share equivalent priority
+- Last completed child: n/a
+- Resume entry: /spec_kit:resume honors graph-metadata.json derived.last_active_child_id; falls back to listing children.
+
+
+## 001-deferred-remediation-telemetry-run/implementation-summary.md
+---
+title: "...nd-context-optimization/006-skill-advisor/007-deferred-remediation-and-telemetry-run/implementation-summary]"
+description: "Phase 024 shipped the static measurement harness, live-session wrapper, analyzer and reports while documenting the sandbox block on top-level Codex registration."
+trigger_phrases:
+  - "024 implementation summary"
+  - "deferred remediation shipped"
+  - "smart router measurement report"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run"
+    last_updated_at: "2026-04-19T18:10:00Z"
+    last_updated_by: "codex"
+    recent_action: "Tracks 2-4 shipped; strict validation passed; Track 1 blocked"
+    next_safe_action: "Codex config retry"
+    blockers:
+      - ".codex writes denied by sandbox with Operation not permitted"
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts"
+      - ".opencode/skills/system-spec-kit/scripts/observability/live-session-wrapper.ts"
+      - ".opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze.ts"
+    completion_pct: 90
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+# Implementation Summary: Deferred Remediation + Telemetry Measurement Run
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-deferred-remediation-telemetry-run |
+| **Completed** | 2026-04-19 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 024 now has the measurement machinery that Phases 020-023 deferred: a static 200-prompt harness, an observe-only live-session wrapper, and a JSONL analyzer. The static report remains deliberately honest, and the measurement path now keeps static telemetry separate from live-wrapper evidence so readiness stays blocked until actual reads are captured.
+
+### Static Measurement Harness
+
+`smart-router-measurement.ts` runs the 019/004 labeled corpus through `buildSkillAdvisorBrief`, predicts the selected skill's SMART ROUTING resource set, emits a markdown report, and writes per-prompt JSONL plus static `unknown_unparsed` compliance records to the dedicated static stream. The report now also inspects the live wrapper telemetry file and blocks routing-readiness claims until real wrapper records include observed reads. The full local run processed 200/200 prompts and measured 112/200 advisor top-1 matches against corpus labels.
+
+### Live-Session Wrapper
+
+`live-session-wrapper.ts` exposes `configureSmartRouterSession()` and `onToolCall()` so runtime-specific adapters can record `Read` calls against `.opencode/skills/*` resources. Those records now remain identifiable as live-wrapper evidence, which lets downstream measurement distinguish operational telemetry from predictive static runs without changing runtime behavior.
+
+### Telemetry Analyzer
+
+`smart-router-analyze.ts` reads `.opencode/skills/.smart-router-telemetry/compliance.jsonl`, skips invalid lines, handles empty files with a no-data report, and aggregates compliance distribution, over-load rate, under-load rate and ON_DEMAND trigger rate.
+
+## 002-advisor-plugin-hardening/implementation-summary.md
+---
+title: ".../026-graph-and-context-optimization/006-skill-advisor/002-advisor-plugin-hardening/implementation-summary]"
+description: "Completed packet 008: per-instance skill-advisor plugin state, in-flight bridge dedup, bounded prompt/brief payloads, cache LRU eviction, and focused Vitest coverage."
+trigger_phrases:
+  - "skill advisor hardening complete"
+  - "026/009/008 implementation"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/002-advisor-plugin-hardening"
+    last_updated_at: "2026-04-23T08:13:46Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented plugin hardening and verified focused tests/build"
+    next_safe_action: "Use parent docs to continue with the still-deferred Copilot hook wiring mismatch if needed"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All plugin runtime state is per-instance closure state."
+      - "Concurrent identical cache misses share one in-flight bridge promise."
+      - "Bridge stdin payload, advisor brief output, and cache entries are bounded with configurable caps."
+template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+# Implementation Summary: Skill-Advisor Plugin Hardening
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-advisor-plugin-hardening |
+| **Completed** | 2026-04-23T08:13:46Z |
+| **Level** | 2 |
+| **Outcome** | Complete: all 3 deferred P2 items implemented |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+- `.opencode/plugins/spec-kit-skill-advisor.js` now keeps all plugin runtime state inside the `SpecKitSkillAdvisorPlugin(ctx, opts)` closure: cache, in-flight map, readiness, last bridge/error/duration fields, bridge invocation count, cache counters, advisor lookup count, and disabled reason.
+- `getAdvisorContext()` now dedups concurrent identical cache misses through `state.inFlight`; five simultaneous identical prompts share one bridge spawn while all callers receive the same response.
+- Bridge stdin is capped with `DEFAULT_MAX_PROMPT_BYTES = 64 * 1024`, advisor briefs are capped with `DEFAULT_MAX_BRIEF_CHARS = 2 * 1024`, and cache entries are capped with `DEFAULT_MAX_CACHE_ENTRIES = 1000`.
+- Caps are overridable through plugin options: `maxPromptBytes`, `maxBriefChars`, and `maxCacheEntries`.
+- Cache insertion now routes through `insertWithEviction()`, evicting the oldest insertion-order entry when the configured cap is exceeded.
+- Focused Vitest coverage grew from 23 to 30 tests, including new cases for state isolation, in-flight dedup, prompt clamp, brief clamp, eviction, per-instance status invariants, and configurable caps.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+## 003-advisor-standards-alignment/implementation-summary.md
+---
+title: "...6-graph-and-context-optimization/007-hook-parity/009-skill-advisor-standards-alignment/implementation-summary]"
+description: "Completed Level 1 standards-alignment packet: added the OpenCode Plugin Exemption Tier, annotated the JavaScript CommonJS checklist item, and aligned the skill-advisor plugin header/JSDoc/section dividers without behavior changes."
+trigger_phrases:
+  - "skill advisor standards alignment complete"
+  - "026/009/009 implementation"
+  - "opencode plugin exemption tier complete"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/003-advisor-standards-alignment"
+    last_updated_at: "2026-04-23T10:52:00Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Completed documentation/cosmetic standards alignment"
+    next_safe_action: "Use /spec_kit:resume if continuing the parent remediation packet"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "OpenCode plugin entrypoints and helpers are exempt only from the CommonJS module.exports requirement."
+      - "All non-exempt standards still apply to .opencode/plugins and .opencode/plugin-helpers files."
+      - "spec-kit-skill-advisor.js changed only in comments, JSDoc, section dividers, and box header lines for packet 009."
+template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+# Implementation Summary: Skill-Advisor Standards Alignment
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-advisor-standards-alignment |
+| **Completed** | 2026-04-23 |
+| **Level** | 1 |
+| **Outcome** | Completed: standards exemption + plugin structural alignment |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+- Added the `opencode-plugin-exemption-tier` anchor with `## 10. OPENCODE PLUGIN EXEMPTION TIER` in the JavaScript quality standards reference.
+- Scoped the exemption to `.opencode/plugins/*.{js,mjs,ts}` and `.opencode/plugin-helpers/*.{js,mjs,ts}`, with only the `module.exports` requirement exempted because the OpenCode plugin loader requires ESM default export per `@opencode-ai/plugin/dist/index.d.ts`.
+- Renumbered Related Resources from §10 to §11.
+- Added the CommonJS P1 checklist exception note immediately after the existing correct `module.exports` example block.
+- Updated `.opencode/plugins/spec-kit-skill-advisor.js` with a `COMPONENT:`/`PURPOSE:` box header, 6 numbered ALL-CAPS section dividers, and 7 JSDoc blocks covering the default export plus required helpers.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+## 004-devin-advisor-hook-integration/implementation-summary.md
+---
+title: "Implementation Summary: CLI Devin Skill Advisor UserPromptSubmit Hook + Plugin Rename + Post-Extraction Audit"
+description: "Phase 0/A/B/C/D delivery record for the advisor Devin hook, mk-skill-advisor rename, bridge migration, and shim-pattern UserPromptSubmit registration."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "004-devin-advisor-hook-integration"
+  - "mk-skill-advisor"
+  - "devin hook"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/004-devin-advisor-hook-integration"
+    last_updated_at: "2026-05-15T16:25:00Z"
+    last_updated_by: "claude-opus-4-7-phase-e"
+    recent_action: "Phase D verification + Phase E reconciliation complete"
+    next_safe_action: "follow-on packet for advisor lib transitive-import fix (out of scope here)"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-skill-advisor.js"
+      - ".opencode/skills/system-skill-advisor/hooks/devin/user-prompt-submit.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/devin/user-prompt-submit.ts"
+      - ".devin/hooks.v1.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-05-15-claude-orchestrate-cli-devin-hooks"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Q1: Devin hookSpecificOutput.additionalContext contract — confirmed working via direct smoke test (advisor brief flows through)"
+      - "Q2: Devin variant source location — skill-owned at hooks/devin/ confirmed"
+      - "Q3: Compile target + registration shape — shim pattern adopted (system-spec-kit forwards to advisor dist)"
+      - "Q4: Plugin rename safety — 293 refs migrated; legacy env-var alias retained"
+      - "Q5: Bridge rename + duplicate audit — bridge moved to system-skill-advisor (no duplicate)"
+      - "Q6: Post-extraction surface — 20 refs categorized (most justified)"
+      - "Q7: Tool-ID stability test plan — extended runtime-parity vitest"
+      - "Q8: sk-code compliance gap matrix — gaps closed via Devin variant + tests"
+      - "Q9: sk-doc compliance gap matrix — stale plugin refs updated"
+      - "Q10: Final synthesis — Phase B docs authored, Phase C dispatched cleanly"
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-devin-advisor-hook-integration |
+| **Completed** | 2026-05-15 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+
+## 005-fail-open-fallback/implementation-summary.md
+---
+title: "Implementation Summary: Skill-Advisor Release Remediation"
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+description: "Completed the release remediation packet for the 008/008 skill-advisor deep review, closing 3 P1 blockers and 15 P2 advisories with runtime fixes, regression tests, documentation cleanup, and pattern consolidation."
+trigger_phrases:
+  - "001-fix-skill-advisor-fail-open-fallback implementation"
+  - "skill-advisor release remediation complete"
+  - "advisor unavailable fail-open summary"
+  - "008/008 remediation disposition"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/005-fail-open-fallback"
+    last_updated_at: "2026-04-28T16:13:26Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Remediation complete"
+    next_safe_action: "Keep focused regression suite, typecheck/build, and packet validators green before release."
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/response-envelope.ts"
+      - "specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/decision-record"
+    session_dedup:
+      fingerprint: "sha256:001-fix-skill-advisor-fail-open-fallback-2026-04-28"
+      session_id: "001-fix-skill-advisor-fail-open-fallback-remediation"
+      parent_session_id: "002-skill-graph-daemon-native-advisor-tools-review"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "REQ-002 uses a trusted-caller gate rather than removing skill_graph_scan from the MCP surface."
+      - "REQ-011 keeps runtime lane weight 0.15 and updates docs/catalogs to match."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-fail-open-fallback |
+| **Completed** | 2026-04-28 |
+| **Level** | 2 |
+| **Source Review** | `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/review/002-skill-graph-daemon-native-advisor-tools-pt-01/review-report` |
+| **Result** | 18/18 source findings closed |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 006-codex-native-startup-advisor-hooks/implementation-summary.md
+---
+title: "...t/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks/implementation-summary]"
+description: "Outcome A shipped: native Codex SessionStart and UserPromptSubmit hooks are implemented, registered beside Superset notify hooks, documented, built, tested, and smoke-tested on Codex CLI 0.122.0."
+trigger_phrases:
+  - "codex hook parity complete"
+  - "026/009/005 implementation"
+  - "codex startup advisor hooks"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/006-codex-native-startup-advisor-hooks"
+    last_updated_at: "2026-04-23T13:55:57Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Independent review and live re-verification — all claims hold"
+    next_safe_action: "Closed; downstream sk-improve-prompt routing tweak landed separately"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Codex SessionStart and UserPromptSubmit hooks inject developer context."
+      - "Live Codex config preserves Superset notify hooks."
+      - "Independent re-verification on 2026-04-22 reproduced every documented check."
+template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+# Implementation Summary: Codex CLI Hook Parity Remediation
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-codex-native-startup-advisor-hooks |
+| **Completed** | 2026-04-22 |
+| **Level** | 3 |
+| **Outcome** | A, full native hook parity shipped |
+| **Codex Version** | 0.122.0 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Codex now receives the same dynamic context surfaces that Claude already had. `SessionStart` injects startup repository context, and `UserPromptSubmit` injects the compact skill advisor brief through Codex-native `hookSpecificOutput.additionalContext`.
+
+### Runtime Hooks
+
+The Codex hook folder now contains a SessionStart adapter and the verified UserPromptSubmit adapter. The adapters parse Codex JSON stdin, emit Codex JSON stdout, and fail open with `{}`.
+
+### Live Wiring
+
+The live user config now appends Spec Kit Memory commands beside the existing Superset notification commands in `~/.codex/hooks.json`. `~/.codex/config.toml` now enables `codex_hooks = true`.
+
+
+## 007-skill-advisor-freshness-audit/implementation-summary.md
+---
+title: "Implementation Summary: Skill Advisor Freshness Audit"
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+description: "The audit packet records release-readiness findings for skill advisor freshness, including status/rebuild split, cache invalidation, scoring trust, Codex fallback markers, and Python shim parity limits."
+trigger_phrases:
+  - "045-003-skill-advisor-freshness-audit"
+  - "advisor freshness audit"
+  - "daemon freshness review"
+  - "advisor rebuild review"
+importance_tier: "important"
+contextType: "review"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/007-skill-advisor-freshness-audit"
+    last_updated_at: "2026-04-29T22:05:20+02:00"
+    last_updated_by: "codex"
+    recent_action: "Completed review-report.md and packet docs"
+    next_safe_action: "Open remediation for active P1/P2 findings"
+    blockers:
+      - "P1 advisor_rebuild workspaceRoot contract gap"
+    key_files:
+      - "review-report.md"
+      - "checklist.md"
+      - "description.json"
+      - "graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:045-003-skill-advisor-freshness-audit-summary"
+      session_id: "045-003-skill-advisor-freshness-audit"
+      parent_session_id: "003-release-readiness-deep-review-audits"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Status is diagnostic-only; rebuild performs full index when invoked against the intended workspace."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-skill-advisor-freshness-audit |
+| **Completed** | 2026-04-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The packet now has a complete release-readiness audit for skill advisor freshness. The report finds no P0 silent stale-context fallback or scoring corruption, but it does identify a P1 rebuild contract gap and two P2 traceability/maintenance drifts.
+
+### Review Report
+
+
+## 008-fix-skill-advisor-quality/implementation-summary.md
+---
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+title: "Implementation Summary: 003 Advisor Quality [template:level_2/implementation-summary.md]"
+description: "Eight surgical advisor-quality fixes close findings F-006-B1-01..03, F-012-C2-01..04, and F-013-C3-01. Codex timeout fallback now routes through the shared renderAdvisorBrief, the OpenCode bridge silently fails open in disabled mode, the dead alternate renderer is removed, graph-causal conflict signals survive lane emit, projection distinguishes derived triggers from derived keywords, fusion adds a token-stuffing dispersion guard, ambiguity is computed from ranking score across tied clusters, and review-plus-write prompts route to sk-code."
+trigger_phrases:
+  - "F-006-B1"
+  - "F-012-C2"
+  - "F-013-C3"
+  - "003 advisor quality summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/008-fix-skill-advisor-quality"
+    last_updated_at: "2026-04-30T00:00:00Z"
+    last_updated_by: "remediation-orchestrator"
+    recent_action: "Doc authored"
+    next_safe_action: "Apply fixes, then update with verification evidence"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "049-003-fix-skill-advisor-quality"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-fix-skill-advisor-quality |
+| **Completed** | 2026-04-30 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The advisor surface had eight orthogonal quality gaps that the deep-research loop flagged but never closed. The Codex hook timeout path emitted a bespoke fallback string instead of routing through the shared formatter. The OpenCode bridge surfaced a model-visible disabled-state message that no other runtime emits, and it carried a dead alternate renderer that could drift out of sync. Graph-causal conflict scores were filtered out at lane emit, so suppressive evidence never reached fusion. The SQLite projection assigned the same array to both `derivedTriggers` and `derivedKeywords`, double-counting derived signals. The fusion task-intent confidence floor short-circuited as soon as either direct score or normalized score crossed a threshold, letting token-stuffed prompts pass for many unrelated skills. Ambiguity computation looked only at the top two `confidence` values, ignoring the ranking score and any third-or-deeper tied candidates. And the regression fixture expected `sk-code-review` for `"review and update this"` despite the prompt carrying a clear write-verb signal. This packet lands eight surgical fixes that close those gaps without disturbing scorer module boundaries — sub-phase 006 owns the architecture cleanup; this packet stays surgical.
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

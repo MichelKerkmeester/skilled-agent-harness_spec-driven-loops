@@ -1,0 +1,903 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-design/012-sk-design-program"
+# PACKET: specs/sk-design/012-sk-design-program (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-design program (styles + interface commands + hallmark)"
+description: "Umbrella program packet for the whole sk-design body of work - the style database, the /interface:* creation commands, the hallmark design system, reviews/remediation, and mode consolidation - organized into six phases with all research, build, and review history preserved."
+trigger_phrases:
+  - "sk-design program"
+  - "style database and interface commands"
+  - "hallmark design system"
+  - "sk-design historic record"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program"
+    last_updated_at: "2026-07-23T07:04:12Z"
+
+    last_updated_by: "spec-author"
+    recent_action: "Author program-parent root over five themed phases"
+    next_safe_action: "Regenerate metadata; validate --recursive"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/styles/"
+      - ".opencode/commands/interface/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + sub-phase map only; no plan/tasks/checklist/decision/impl-summary here (those live in child phase folders). -->
+
+# Feature Specification: sk-design program (styles + interface commands + hallmark)
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+
+## 001-research/001-research-style-database/implementation-summary.md
+---
+title: "Implementation Summary: Deep research — style database architecture"
+description: "Converged recommendation for the sk-design style database, and handoff to phase 003-style-database."
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/001-research/001-research-style-database"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "deep-research-orchestrator"
+    recent_action: "Promoted 7-iter SOL style-DB synthesis"
+    next_safe_action: "Plan phase 003 from recommendation"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/styles/_engine/"
+      - ".opencode/skills/system-spec-kit/mcp-server/lib/search/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-research-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "DB technology: SQLite + FTS5 + vector (not a graph engine)"
+      - "Source of truth: flat style files stay authoritative; DB is a rebuildable, generation-stamped projection"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: Deep research — style database architecture
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 1 of 4 (research) |
+| **Status** | Complete |
+| **Executor** | GPT-5.6-SOL (high, fast) via cli-opencode — 7 iterations, `max-iterations` policy |
+| **Artifact** | `research/research.md` (single-lineage synthesis, promoted) |
+| **Completed** | 2026-07-19 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A converged, evidence-grounded architecture recommendation for turning the flat 1,290-style library into a real indexed database. **Recommendation: one published SQLite generation** containing normalized style state + FTS5 + indexed relationship edges, with **profile-addressed vectors as a rebuildable projection** — mirroring `system-spec-kit`'s sqlite+FTS5+vector *lifecycle* (not its domain tables) and explicitly **not** a dedicated graph engine.
+
+### Files Created / Changed
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `research/research.md` | Create | Progressive synthesis answering Q1–Q5 (tech, schema, sync, retrieval, migration) |
+| `research/lineages/sol/**` | Create | SOL lineage state, deltas, iterations (deep-research artifacts) |
+| `implementation-summary.md` | Create | This recommendation + phase-003 handoff |
+<!-- /ANCHOR:what-built -->
+
+---
+
+## 001-research/002-research-design-commands/implementation-summary.md
+---
+title: "Implementation Summary: Deep research — design command redesign"
+description: "Converged recommendation for the /interface:* creation commands, and handoff to phase 004-interface-commands."
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/001-research/002-research-design-commands"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "deep-research-orchestrator"
+    recent_action: "Promoted 20-iter SOL command-research synthesis"
+    next_safe_action: "Plan phase 004 after operator confirms naming"
+    blockers: []
+    key_files:
+      - ".opencode/commands/design/"
+      - ".opencode/skills/sk-design/mode-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-research-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "RESOLVED 2026-07-19: operator chose research-refined names (interface/design, /foundations, /motion, /audit, /design-reference)"
+    answered_questions:
+      - "5 canonical /interface:* commands with a shared 9-stage creation contract"
+      - "Commands own choreography; modes keep authority; additive /design:* aliases during migration"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: Deep research — design command redesign
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 2 of 4 (research) |
+| **Status** | Complete |
+| **Executor** | GPT-5.6-SOL (high, fast) via cli-opencode — 20 iterations, `max-iterations`. GLM-5.2 lineage failed (0 iters; secondary) |
+| **Artifact** | `research/research.md` (392-line SOL synthesis, promoted) |
+| **Completed** | 2026-07-19 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A converged, evidence-grounded recommendation to rebuild the five thin-router design commands into **creation templates** under an `/interface` namespace, keeping `sk-design` modes as the design authority. Core design: each command instantiates one **shared 9-stage creation contract** — Route Proof → Context Manifest → Progressive Brief → Grounding → Mode Plan → Creative/Diagnostic Work → Critique/Revision → Proof → Deliver/Handoff — with a typed context envelope, exemplar grounding (decision-changing, provenance-recorded, never a "style menu"), and an accepted `sk-code` handoff boundary.
+
+### Files Created / Changed
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `research/research.md` | Create | 17-section synthesis (external patterns, namespace, shared contract, 5 templates, proof, migration) |
+| `research/lineages/sol/**` | Create | SOL lineage (20 iterations) deep-research artifacts |
+| `implementation-summary.md` | Create | This recommendation + phase-004 handoff |
+<!-- /ANCHOR:what-built -->
+
+
+## 001-research/003-styles-database-rust-opportunities/implementation-summary.md
+---
+title: "Implementation Summary: Rust opportunities research"
+description: "Completed 20-iteration deep-research study on what Rust could add/improve for the sk-design styles database. Verdict: no Rust now."
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "spec-author"
+    recent_action: "Research complete (20/20); verdict = no Rust now, JS-first + measurement"
+    next_safe_action: "Adopt the roadmap via sk-design/012-sk-design-program/002-style-database"
+    blockers: []
+    key_files:
+      - ".opencode/specs/sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities/research/lineages/sol-codex/research.md"
+      - ".opencode/specs/sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities/research/lineages/sol-opencode/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Should the styles DB be rewritten in Rust? No — the hot path is already native; value is in new JS-first capabilities, Rust only if measured."
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: Rust opportunities research
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| **Spec Folder** | 003-styles-database-rust-opportunities |
+| **Level** | 2 |
+| **Status** | COMPLETE (research) |
+| **Follow-on** | sk-design/015-styles-database-evolution (the adoption plan) |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A completed deep-research study — two independent GPT-5.6-SOL lineages (cli-codex + cli-opencode), 10 iterations each, no early convergence — each producing a ranked opportunity matrix + phased path + eliminated-alternatives table.
+
+### Files Created / Changed
+
+- `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` — the packet record.
+- `research/lineages/{sol-codex,sol-opencode}/research.md` — the two syntheses (deliverable).
+- `research/**` — fanout state, deltas, prompts, dashboards.
+
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 001-research/004-hallmark-design-skill-research/implementation-summary.md
+---
+title: "Implementation Summary: Hallmark reuse research"
+description: "Completed 20-iteration study of the Hallmark design skill; produced a per-asset reuse/learning matrix and a licensing verdict feeding the 016 adoption plan."
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "spec-author"
+    recent_action: "Research complete (20/20); reuse matrix + MIT verdict recorded"
+    next_safe_action: "Execute the hallmark-design-system phases"
+    blockers: []
+    key_files:
+      - ".opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/research/lineages/sol-codex/research.md"
+      - ".opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/research/lineages/sol-opencode/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Can we reuse Hallmark for sk-design? Clean-room ADAPT of surgical heuristics into existing modes; MIT allows copy with notice; external assets excluded; no new modes/commands."
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: Hallmark reuse research
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| **Spec Folder** | 004-hallmark-design-skill-research |
+| **Level** | 2 |
+| **Status** | COMPLETE (research) |
+| **Follow-on** | sk-design/016-hallmark-adoption (the 4-phase adoption plan) |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A completed deep-research study — two independent GPT-5.6-SOL lineages (cli-codex + cli-opencode), 10 iterations each, no early convergence — each producing a per-asset reuse/learning matrix (COPY/ADAPT/LEARN/INSPIRE-NEW/SKIP), a licensing verdict, ranked adoptions, and an eliminated-alternatives table.
+
+### Files Created / Changed
+
+- `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` — the packet record.
+- `research/lineages/{sol-codex,sol-opencode}/research.md` — the two syntheses (deliverable).
+- `research/**` — fanout state, deltas, prompts.
+
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 002-style-database/001-style-database/implementation-summary.md
+---
+title: "Implementation Summary: sk-design style database"
+description: "Built and fixture-verified the SQLite+FTS5+vector style database per the 001 design; adapter defaults to legacy pending the full-corpus activation gate."
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/002-style-database/001-style-database"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "review-remediation"
+    recent_action: "Built + independently fixture-verified the style database; full-corpus SLO remains deferred"
+    next_safe_action: "Run the same-full-corpus persistent-enable go/no-go before changing the legacy default"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/styles/_db/"
+      - ".opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "db-build-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Vectors: profile-addressed JSON arrays + deterministic cosine (no external SQLite vector extension, per no-new-deps)"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: sk-design style database
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 3 of 4 (implementation) |
+| **Status** | Implementation complete; persistent activation pending full-corpus go/no-go |
+| **Executor** | GPT-5.6-SOL (high) via cli-opencode in isolated worktree `.worktrees/0078-sk-design-012-style-db-build` |
+| **Verification** | Independent: 24/24 db tests, 20/20 legacy (no regression), RRF rank-fusion confirmed |
+| **Completed** | 2026-07-19 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The published-SQLite-generation style database per 001, using Node `node:sqlite` (`DatabaseSync`) + FTS5, no new dependencies. Adapter defaults to `legacy`; the flat files stay authoritative.
+
+### Files Created / Changed
+
+| File Path | Change Type | Lines | Description |
+|-----------|-------------|-------|-------------|
+| `styles/_db/schema.mjs` | Create | 354 | Versioned schema: styles + normalized children, external-content FTS5 + triggers, vectors, relationships, `corpus_generations` + pointer, partial index |
+| `styles/_db/indexer.mjs` | Create | 1181 | DISCOVER→VERIFY→PARSE_VALIDATE→COMMIT→VECTOR_DRAIN→PUBLISH; hash-authoritative freshness; durable atomic generation publish (fsync + immutable orphan files); tombstone/quarantine |
+| `styles/_db/retrieval.mjs` | Create | 467 | Eligibility-first; structured/FTS5/vector lanes; weighted RRF over ranks + attribution; generation snapshot + keyset cursor; degradation ladder; fail-closed |
+| `styles/_db/vectors.mjs` | Create | 346 | Non-blocking rebuildable queue keyed by identity+retrieval-hash+profile; content-addressed embedding cache |
+| `styles/_db/README.md` | Create | — | Generation model, indexer lifecycle, adapter modes |
+| `styles/_db/__tests__/*.mjs` | Create | — | schema/indexer/retrieval/adapter tests + fixtures (24 tests) |
+| `styles/_engine/persistent-adapter.mjs` | Create | 358 | `legacy\|shadow\|persistent` switch (default legacy) + shadow parity compare |
+
+## 002-style-database/002-foundation/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Implementation summary for Phase 0 (Roadmap Evidence & Contract): the generation manifest, residency-honest stage telemetry, pinned differential oracle, replay fixtures, and honestly-labeled judgment seed are built and verified; 69/69 tests pass and the two P1 fixes (genuine non-zero unattributed telemetry bucket; full-matrix scaled oracle over the vector and cursor lanes) are confirmed. validate.sh --strict was green (Errors:0) on the pre-edit tree; this evidence update re-stales the generated fingerprint (CHK-014 parent-save)."
+trigger_phrases:
+  - "phase 0 foundation implementation summary"
+  - "styles database evidence contract summary"
+  - "generation manifest telemetry oracle verified"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/002-style-database/002-foundation"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "verify-stage"
+    recent_action: "Verified two P1 fixes: 69/69 tests pass; genuine unattributed telemetry; DTO byte-identical"
+    next_safe_action: "Parent save: generate-context.js to refresh graph metadata and close CHK-014"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/styles/lib/database/generation-manifest.mjs"
+      - ".opencode/skills/sk-design/styles/lib/database/stage-telemetry.mjs"
+      - ".opencode/skills/sk-design/styles/tests/oracle/differential-oracle.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 97
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-foundation |
+| **Completed** | 2026-07-20 — build + two P1 fixes verified (69/69 tests pass); `validate.sh --strict` was green (Errors:0) on the pre-edit tree, and this evidence update re-stales the generated fingerprint that the CHK-014 parent-save `generate-context.js` refresh recomputes |
+| **Level** | 2 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The measurement and contract foundation is built and verified under `.opencode/skills/sk-design/styles/_db/`. Five deliverables ship: a versioned multi-artifact generation manifest with atomic publish/rollback and N-generation retention; residency-honest stage telemetry across the indexer and query lanes; a pinned differential oracle over JS/ESM golden bytes with a shared canonicalizer; deterministic 1x/10x/100x replay fixtures; and an honestly-labeled relevance-judgment seed. Two P1 fixes were then applied and verified: the telemetry summary now reports a genuine non-zero unattributed bucket (wall time spent outside every span, reconciling native + js-resident + unattributed to measured elapsed) with honest native/js-resident labels across both the query and indexer lanes, and the scaled differential oracle now replays the full query matrix — including the vector and cursor lanes — byte-for-byte at 1x/10x/100x. The full `node --test` suite reports 69 passed / 0 failed. `validate.sh --strict` for this packet was green (Errors:0, Warnings:0) on the pre-edit tree; capturing this verification evidence into the docs re-stales the GENERATED_METADATA_INTEGRITY fingerprint that the parent-save `generate-context.js` refresh recomputes (CHK-014).
+
+### Roadmap Phase 0 — Evidence & Contract
+
+Phase 0 exists because no later phase (JS capabilities, measured-native experiments, or growth) can prove a claim or roll back safely without an atomic publish/rollback unit, residency-honest telemetry, and a frozen byte-for-byte parity reference. Each success criterion is exercised by real runs: SC-001 by the manifest suite (interrupted publish leaves the prior manifest fully readable; the pointer flip is atomic and leaves no temp file), SC-002 by the telemetry suite (every stage attributes to native or js-resident; an unknown residency cannot be recorded; native and js-resident buckets sum to the attributed total, and the summary reports the wall time spent outside every span as a genuine non-zero unattributed remainder rather than folding it into a residency bucket), and SC-003 by the oracle and fixtures suites (replay reproduces the committed golden bytes for every scenario, and 1x/10x/100x corpora reproduce their frozen corpus and full-matrix oracle bytes across the vector and cursor lanes).
+
+### Files Changed
+
+## 002-style-database/003-js-capabilities/implementation-summary.md
+---
+title: "JS Capability Features (Roadmap Phase 1)"
+description: "Level 2 implementation summary for Roadmap Phase 1 of the sk-design styles-database evolution: planning-only status, key decisions, and deferred verification pending Phase 0 and parent finalization."
+trigger_phrases:
+  - "js capability features implementation summary"
+  - "styles db phase 1 planned summary"
+  - "roadmap phase 1 key decisions deferred verification"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/002-style-database/003-js-capabilities"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "spec-author"
+    recent_action: "Author Level 2 spec-folder docs (spec/plan/tasks/checklist/implementation-summary) for"
+    next_safe_action: "Plan and build 001-foundation (Phase 0) first; 002-js-capabilities remains PLANNED until Phase"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/styles/_db/retrieval.mjs"
+      - ".opencode/skills/sk-design/styles/_db/vectors.mjs"
+      - ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary: JS Capability Features (Roadmap Phase 1)
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-js-capabilities |
+| **Completed** | N/A — PLANNED |
+| **Level** | 2 |
+| **Status** | PLANNED |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Nothing runtime shipped in this packet. This is a planning-only phase-child: the five Level 2 spec-folder documents listed below define Roadmap Phase 1 — JS Capability Features — ready to be built once Phase 0 (`001-foundation`) ships its manifest, telemetry, oracle, and fixtures.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 002-style-database/004-measured-native/implementation-summary.md
+---
+title: "Implementation Summary: Measured Native Experiments (Roadmap Phase 2)"
+description: "Planning-stage implementation summary for 003-measured-native — no runtime code shipped; documents the entry gate, candidate definitions, and promotion gate ahead of any conditional execution."
+trigger_phrases:
+  - "measured native experiments implementation summary"
+  - "planning packet no runtime code shipped"
+  - "roadmap phase 2 conditional native"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/002-style-database/004-measured-native"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "spec-author"
+    recent_action: "Authored Level 2 planning docs (spec/plan/tasks/checklist/implementation-summary) for phase"
+    next_safe_action: "Await parent orchestrator to finalize description.json/graph-metadata.json and run validate.sh"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/styles/_db/retrieval.mjs"
+      - ".opencode/skills/sk-design/styles/_db/vectors.mjs"
+      - ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Measured Native Experiments (Roadmap Phase 2)
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-measured-native |
+| **Completed** | N/A — PLANNED |
+| **Level** | 2 |
+| **Status** | PLANNED |
+| **Actual Effort** | 0 hours (planning only; conditional execution not yet triggered) |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Nothing runtime-shipped in this packet. Roadmap Phase 2 (Measured Native Experiments) is a CONDITIONAL, gated phase; this packet authors the planning documentation that defines the SLO-crossing entry gate, the three native-candidate evaluations (maintained sqlite-vec exact search, a supervised Rust `ort` isolation sidecar, and a bounded Rust parse core), and the promotion/rejection gate. No code changes, no dependency additions, and no native modules are introduced by this packet.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 002-style-database/005-growth/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Post-planning summary for Roadmap Phase 3 (Growth Architecture) of the sk-design styles-database evolution. Nothing ships in this packet; the phase's requirements, sequencing, and gates are now fully specified."
+trigger_phrases:
+  - "growth architecture styles database 10x 100x scale"
+  - "eligible-id sql parameter limit hnsw ann"
+  - "approximate search contract exact fallback rust"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/002-style-database/005-growth"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "spec-author"
+    recent_action: "Author 004-growth Level 2 spec-folder docs"
+    next_safe_action: "Await measured 10x-100x corpus-growth pressure before starting Phase A (SQL-parameter"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs"
+      - ".opencode/skills/sk-design/styles/lib/database/vectors.mjs"
+      - ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-growth |
+| **Completed** | N/A — PLANNED, not yet executed |
+| **Level** | 2 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet plans Roadmap Phase 3 (Growth Architecture) for the sk-design styles database. Nothing ships yet, but the phase's correctness-first sequencing, approximation contract, and shared-core gating are now fully specified and ready to build once measured 10x-100x corpus-growth pressure appears.
+
+### Growth Architecture Roadmap
+The plan sequences four gated steps: fix the eligible-ID SQL-parameter shape first (a correctness bug at ~25.4% eligibility against SQLite's 32,766-variable limit at 100x scale), then introduce a maintained HNSW/ANN under an explicit, separately-versioned approximation contract with exact re-score and exact fallback, reserve a custom Rust ANN for a proven capability gap only, and gate any shared cross-skill Rust core on spec-memory becoming a real second consumer. None of it triggers at the current ~1,290-bundle scale.
+
+### Files Changed
+
+
+## 002-style-database/006-library-restructure/implementation-summary.md
+---
+title: "Implementation Summary: sk-design styles library restructure + kebab rename"
+description: "Shipped the styles-library restructure: 17 modules + 1,290 bundles relocated into a shallow ownership tree across three green mixed states, byte-parity manifests, database/ git-ignored. Two restructure regressions caught + fixed. Checkpoint B deferred."
+trigger_phrases:
+  - "styles library restructure summary"
+  - "g1 g2 g3 shipped byte parity summary"
+  - "database git-ignored restructure summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/002-style-database/006-library-restructure"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "implementer"
+    recent_action: "Restructure complete: G1-G3 + fixed 2 md-generator consumers."
+    next_safe_action: "Checkpoint B (manifest v2) deferred; not needed for Packet A."
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/styles/lib/paths.mjs"
+      - ".opencode/skills/sk-design/styles/lib/engine/style-library.mjs"
+      - ".opencode/skills/sk-design/styles/lib/database/schema.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-design-015-restructure-impl-session"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: sk-design styles library restructure + kebab rename
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-library-restructure |
+| **Status** | COMPLETE (restructure G1-G3; Checkpoint B deferred) |
+| **Completed** | 2026-07-21 — commits `02481e1ec3`, `b8732ba436`, `cee62570e4`, `3cd7d67fb8` |
+| **Level** | 2 |
+| **Verification** | styles aggregators 89/89 + four mode suites 22/25/21/23 green; manifests byte-identical |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The flat, underscore-prefixed styles library was moved into a shallow ownership tree — `library/` (committed data), `lib/engine` + `lib/database` (source), `scripts/` (extractor), `tests/`, `docs/`, and the git-ignored `database/` — through three green mixed states with byte-identical retrieval throughout.
+
+- **G1 (MIXED A):** added `lib/paths.mjs` as the single path seam (roots + manifest paths/filenames + DATABASE_ROOT) and sourced the engine + indexer defaults from it.
+- **G2 (MIXED B):** `git mv` of the 17 modules (`_engine`→`lib/engine`, `_db` core→`lib/database`), tests/oracle→`tests/`, extractor→`scripts/`; rewired every cross-directory import including the four `design-*/corpus` consumers.
+- **G3:** `git mv` of the 1,290 bundles→`library/bundles/`, crawl manifest co-located, retrieval manifest→`library/manifests/`; kebab renames; `database/*` git-ignored; the default retrieval load decoupled to the manifest's own dir.
+
+### Files Changed
+
+## 002-style-database/007-persistent-db-activation/implementation-summary.md
+---
+title: "Implementation Summary: activate the persistent styles database (build, shadow, prove, flip)"
+description: "Built the persistent styles database: first full-corpus generation of 1,290 styles published to a git-ignored install-time/prewarm database, shadow parity 10/10, §9 perf gate measured at ~21x. Default stays legacy; the cutover is human-gated."
+trigger_phrases:
+  - "persistent styles db activation summary"
+  - "first generation shadow parity perf summary"
+  - "wire override built cutover human-gated"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/002-style-database/007-persistent-db-activation"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "implementer"
+    recent_action: "Built + published the first generation; shadow parity 10/10."
+    next_safe_action: "Wire install-time prewarm; operator decides the default flip."
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/styles/lib/database/schema.mjs"
+      - ".opencode/skills/sk-design/styles/lib/engine/persistent-adapter.mjs"
+      - ".opencode/skills/sk-design/styles/lib/database/operator.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-design-015-dbbuild-impl-session"
+      parent_session_id: null
+    completion_pct: 75
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: activate the persistent styles database (build, shadow, prove, flip)
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-persistent-db-activation |
+| **Status** | IMPLEMENTED — build + parity + perf proven; cutover human-gated |
+| **Shipped** | commit `c4bfba4359` on `skilled/v4.0.0.0` |
+| **Level** | 2 |
+| **Verification** | shadow parity 10/10, DB aggregator 69/69, §9 perf 95.3%/1097 ms MET |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The persistent styles database is now real and wired to the restructured tree — built over all 1,290 styles, published, queryable, parity-proven, and dramatically faster — with the default read path kept `legacy`.
+
+- **First full-corpus generation:** `buildStyleDatabase` over `library/bundles/` produced a **69.75 MB** SQLite generation (4.8 s build, 613 MB RSS), integrity/FK/generation-hash validated, published via the pointer into the git-ignored `database/`. Never committed (install-time/prewarm).
+- **Full lifecycle wired:** `operator.mjs {build,status,cutover,rollback}` (prewarm / monitor / flip / kill-switch) + `SK_DESIGN_STYLE_DB_MODE` (`legacy`/`shadow`/`persistent`, default `legacy`).
+- **One code fix:** `schema.mjs` `DEFAULT_STYLE_DATABASE_PATH` now resolves from `paths.mjs` `DATABASE_ROOT` (the restructure moved DB source to `lib/database/` but never re-homed the DB data default) — this is what made persistent lookups find the published generation.
+
+### Files Changed
+
+## 002-style-database/008-styles-folder-readmes/implementation-summary.md
+---
+title: "Implementation Summary: README for Every Folder in the sk-design Styles Library"
+description: "Authored a README.md in every non-data folder of the restructured styles library (11 new + 4 preserved = 15 folders), each stating purpose, key files, and architecture fit. Bundles documented once as data; no code or data changed."
+trigger_phrases:
+  - "styles folder readmes done"
+  - "sk-design styles documentation summary"
+  - "readme sweep styles complete"
+importance_tier: "standard"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/012-sk-design-program/002-style-database/008-styles-folder-readmes"
+    last_updated_at: "2026-07-22T16:57:27Z"
+
+    last_updated_by: "orchestrator"
+    recent_action: "Wrote 11 new folder READMEs; verified 15/15 folders covered."
+    next_safe_action: "Commit."
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/styles/lib/README.md"
+      - ".opencode/skills/sk-design/styles/library/bundles/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-design-015-007-styles-readmes-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Implementation Summary: README for Every Folder in the sk-design Styles Library
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-styles-folder-readmes |
+| **Level** | 1 |
+| **Status** | COMPLETE |
+| **Verification** | 15/15 non-data folders have a README; 4 pre-existing preserved; no code/data changed |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A `README.md` in every non-data folder of the styles library. Eleven new READMEs were authored; four
+pre-existing ones (`styles`, `database`, `scripts`, `lib/database`) were left untouched.
+
+- **New:** `docs/`, `lib/`, `lib/engine/`, `library/`, `library/bundles/`, `library/manifests/`, `tests/`,
+  `tests/database/`, `tests/engine/`, `tests/oracle/`, `tests/oracle/golden/`.
+- Each README states the folder's purpose, its real key files (sourced from a live `ls`), and how it fits
+  the styles architecture (code `lib/` vs data `library/` vs tests `tests/` vs the parity oracle).
+- `library/bundles/` is documented once as regenerated **data** (1,290 bundle folders), explicitly not
+  per-bundle.
+
+FOLDER
+
+<<<FOLDER id="specs/sk-design/012-style-database-and-interface-commands"
+# PACKET: specs/sk-design/012-style-database-and-interface-commands (no docs)
+FOLDER
+
+<<<FOLDER id="specs/sk-design/013-structure-naming-cleanup"
+# PACKET: specs/sk-design/013-structure-naming-cleanup
+
+---
+title: "Implementation Summary: sk-design Structure & Naming Cleanup"
+description: "What was cleaned up in sk-design and the verification evidence."
+importance_tier: "important"
+contextType: "general"
+---
+# Implementation Summary: sk-design Structure & Naming Cleanup
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | In Progress |
+| **Track** | sk-design |
+| **Completed** | 2026-07-23 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+1. **Removed** `sk-design/styles/docs/` — a stray README plus a misplaced `manual-testing-playbook.md` whose content the hub playbook already covers under `styles-library-utilization/`.
+2. **Renamed** the six dunder test/fixture folders to kebab-case (`__tests__`→`tests` ×5, `__fixtures__`→`fixtures` ×1) and repointed every live reference: the cross-mode fixture import in `transport-grounding.test.mjs`, corpus run-command READMEs, and feature-catalog / manual-testing-playbook doc paths. Frozen benchmark run-records and `node_modules` were left as-is.
+3. **Conformed** the ten `/interface` command workflow YAMLs to the create-command command-standard section vocabulary (expanded `operating_mode` + `confidence_framework`, `input_contract`, `checkpoint_options`, `workflow_enforcement`, `gate_logic`, `circuit_breaker`, `autonomous_execution`, `quality_standards`, `error_recovery`, `termination`, `rules`) — additively, keeping each command's lean creation-contract delegation.
+4. **Kept** the six per-mode `manual-testing-playbook/` dirs (doctrine-correct; every multi-mode hub keeps per-packet playbooks).
+
+<!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Deletes and renames first (Parts 1–3, one commit), then the interface YAML conformance (Part 4, one commit). The `interface-design` pair was authored as the verified gold pattern; a focused agent applied the identical scaffolding to the other four actions, and preservation of each file's original workflow/pipeline was independently confirmed by parsing current vs HEAD. A mid-task doctrine check reversed an initial "consolidate all playbooks" instruction after evidence showed per-mode playbooks are the codebase-wide norm.
+
+<!-- /ANCHOR:how-delivered -->
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+- **Per-mode playbooks kept, not consolidated.** Doctrine + precedent (mcp-tooling 7, cli-external 4, sk-prompt/sk-doc 2) show per-packet playbooks are correct; only the styles/docs stray was the real defect.
+- **Scaffolding match, not full inline.** The interface YAMLs got the create-* section vocabulary while keeping delegation to `creation-contract.md`, rather than inlining the contract into all ten files (which would undo packet 012's factoring).
+- **Benchmark run-records untouched.** Dunder references inside frozen benchmark transcripts are historical and were deliberately not rewritten.
+
+<!-- /ANCHOR:decisions -->
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+- **Renames:** corpus `node --test` suites green (design-motion 23, design-audit 21, design-interface 22, design-foundations 25, corpus-context 36); cross-mode `transport-grounding.test.mjs` 37/37; the renamed backend fixture import resolves; zero live dunder references remain.
+- **Interface YAMLs:** all 10 parse as valid YAML and carry the 10 scaffolding sections; each of the 8 agent-conformed files preserves `workflow`/`deliverable`/`status_contract`/`pipeline`/`task_projections`/`backend_boundary`/`role`/`purpose`/`action` value-identical to HEAD (only `operating_mode` expanded + scaffolding added).
+- **Pending:** `validate.sh --strict` on this packet.
+
+<!-- /ANCHOR:verification -->
+---
+
+## NFR Verification
+
+- **Reversibility:** every change is delete/rename/additive-asset, reversible by `git checkout`/`git revert`.
+- **Isolation:** confined to sk-design + the `/interface` command assets; no behavior change.
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. The interface YAML scaffolding is declarative guidance; the commands' runtime behavior is unchanged, so conformance is structural, not behavioral.
+2. The design-md-generator backend vitest could not run in the fresh worktree (no `node_modules`); the fixture import path was confirmed to resolve instead.
+
+<!-- /ANCHOR:limitations -->
+---
+
+## Deviations from Plan
+
+| Planned | Actual | Reason |
+|---------|--------|--------|
+| Consolidate all playbooks to the hub | Kept per-mode playbooks; removed only styles/docs | Evidence showed per-mode playbooks are doctrine-correct; operator confirmed the reversal. |
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

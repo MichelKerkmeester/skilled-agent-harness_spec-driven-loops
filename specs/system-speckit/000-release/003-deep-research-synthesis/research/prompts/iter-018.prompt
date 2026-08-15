@@ -1,0 +1,1137 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/hooks/010-hook-feature-flags-and-hub-index"
+# PACKET: specs/hooks/010-hook-feature-flags-and-hub-index
+
+---
+title: "Implementation Summary: Hook Feature Flags + Full Hub Index"
+description: "The cross-runtime hook layer now has verified master and per-concern disable controls, shell parity, preserved legacy aliases, and one canonical 20-concern index."
+status: "complete"
+completion_pct: 100
+trigger_phrases:
+  - "hook feature flags status"
+  - "hook-flags guard implementation"
+  - "packet 010 implementation summary"
+importance_tier: "high"
+contextType: "implementation"
+parent: "./spec.md"
+_memory:
+  continuity:
+    packet_pointer: "hooks/010-hook-feature-flags-and-hub-index"
+    last_updated_at: "2026-08-14T10:08:07.426Z"
+    last_updated_by: "opencode"
+    recent_action: "Recorded verified config-file increment"
+    next_safe_action: "Retain verification evidence for future review"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "4654af88-ba88-466a-bd14-2fa43ea87923"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Use one shared concern guard with master and per-concern flags"
+      - "Keep MK_SPEC_GATE_ENFORCE separate from generic disable controls"
+      - "Keep the hub README as the only canonical kill-switch index"
+      - "Let live environment values override personal config-file defaults"
+      - "Ignore the real config file and commit only the complete commented example"
+---
+# Implementation Summary: Hook Feature Flags + Full Hub Index
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-hook-feature-flags-and-hub-index |
+| **Verified** | 2026-08-14 |
+| **Level** | 3 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Every repo-authored hook concern now follows the same default-on operator contract across runtime, plugin, shell, install, cleanup, freshness, and git surfaces. Operators can silence the full layer with `MK_HOOKS_DISABLED` or isolate one of 20 concerns with its canonical flag while supported legacy aliases continue to work. They can also persist personal defaults in `.opencode/hooks/hook-flags.env` or an alternate `HOOK_FLAGS_CONFIG` path; live environment values take precedence, and missing or unreadable files fail open.
+
+### Runtime and Compiled Adapters
+
+Skill-advisor, spec-gate, completion, watchdog, permission, and directive adapters invoke the concern guard before existing work. Compiled hooks resolve the shared guard through `createRequire`, so rebuilding the distributions carries source changes into the runtime shims.
+
+### Shell and Git Consumers
+
+The POSIX helper mirrors the Node truthy and default semantics. Worktree, git-hook checks, cleanup, dist freshness, hook installation, and pre-commit consumers now use concern controls while retaining the documented legacy guard aliases. The pre-commit emergency-off is early, but normal operation retains the mass-deletion and comment-hygiene guards.
+
+### Canonical Documentation
+
+`.opencode/hooks/README.md` lists all 20 concerns and their canonical controls. The injection, coverage, and environment references point back to that index, and `SPECKIT_DIST_AUTO_REBUILD` remains documented as a rebuild control rather than a disable alias.
+
+### Personal Config File
+
+The canonical CJS resolver and POSIX mirror load `.opencode/hooks/hook-flags.env`, while the MJS and TypeScript facades inherit the CJS behavior. The real file is gitignored, and the committed `.opencode/hooks/hook-flags.env.example` provides a fully commented template for the master and all 20 concern flags.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Phases 5-10 wired the remaining runtime, spec-gate, adapter, shell, multiplexed, and documentation surfaces. Phase 11 exercised each concern through default-enabled, master-off, self-flag, and isolation states, then checked aliases, truthy/falsy parsing, shell parity, and the shared guard suite before this packet reconciliation.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:final-state -->
+## Final State
+
+All eight delivery phases shipped with their verified controls intact.
+
+| Phase | Shipped Result | Verification Evidence |
+|-------|----------------|-----------------------|
+| 5 | Skill-advisor master switch and compiled path | End-to-end hook returned `skipped` under the master switch |
+| 6 | Independent spec-gate control | 44/44 spec-gate tests passed |
+| 7 | Remaining Node adapters and rebuilt distributions | 34/34 adapter tests passed |
+| 8 | POSIX helper and git pre-commit integration | Helper semantics passed; normal pre-commit safety remained intact |
+| 9 | Multiplexed runtime path isolation | `node --check` passed |
+| 10 | Canonical resolver and hub index | Resolver suite passed 7/7 |
+| 11 | Cross-runtime negative controls and reconciliation | Concern matrix passed 20/20 |
+| 12 | Personal config-file defaults with environment precedence | Extended guard suite passed 13/13; shell isolation and override checks passed; committed `.example` lists all 21 flags |
+<!-- /ANCHOR:final-state -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Use a concern-generic default-on, fail-open guard | One contract prevents runtime-specific disable semantics from drifting |
+| Mirror behavior in POSIX shell | Shell and git consumers need parity without depending on Node startup |
+| Keep `MK_SPEC_GATE_ENFORCE` separate | Disabling the hook and scoping deny behavior solve different operator needs |
+| Edit canonical symlink targets | Ownership stays with the skill or global hook that implements the concern |
+| Keep one README index | A separate catalog would create another source of truth that can drift |
+| Let live environment values override config-file values | A session override must beat a persisted personal default |
+| Ignore the real config and commit an `.example` | Personal choices stay local while the complete flag shape remains documented |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Skill-advisor compiled negative control | PASS: master-off returned `{}` with status `skipped` |
+| Spec-gate suite | PASS: 44/44; master-off mutation evaluation returned allow |
+| Remaining adapter suites | PASS: 34/34 |
+| Concern matrix | PASS: 20/20 default, master, self-flag, and isolation |
+| Legacy aliases | PASS: 8/8 |
+| Truthy/falsy variants | PASS: `1/true/yes/on` and falsy variants behaved correctly |
+| POSIX shell parity | PASS: 6/6 shell concerns |
+| Shared guard suite | PASS: 7/7 |
+| Extended config-file guard suite | PASS: tests 13, pass 13, fail 0 |
+| POSIX config-file checks | PASS: isolated disable, environment re-enable, master-from-file, and missing-file fail-open |
+| Config-file template | PASS: committed `.example` lists the master and all 20 concern flags, all commented |
+| Node syntax check | PASS: `node --check` |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+None identified within the shipped hook feature-flag and hub-index scope.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/mcp-tooling/007-mcp-tooling-parent"
+# PACKET: specs/mcp-tooling/007-mcp-tooling-parent (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Bring mcp-chrome-devtools mcp-click-up and mcp-figma under one parent hub mcp-tooling with three modes: two workflow bridges and one figma transport; mcp-code-mode stays flat standalone infrastructure"
+description: "Phase parent for bringing mcp-chrome-devtools, mcp-click-up, and mcp-figma under one parent hub mcp-tooling with two workflow bridges and one figma transport; mcp-code-mode stays flat standalone infrastructure."
+trigger_phrases:
+  - "007-mcp-tooling-parent"
+  - "phase parent"
+  - "mcp-tooling parent hub"
+  - "mcp tool bridges hub"
+  - "figma transport axis"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/007-mcp-tooling-parent"
+    last_updated_at: "2026-07-16T14:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase map refreshed: 008/009/010 Complete; 007 stays Deferred"
+    next_safe_action: "Run the deferred 007 Lane-C routing benchmark, or close the program with 007 explicitly deferred"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "007-mcp-tooling-parent"
+      parent_session_id: null
+    completion_pct: 75
+    open_questions: []
+    answered_questions:
+      - "Three hub members: mcp-chrome-devtools, mcp-click-up, mcp-figma; mcp-code-mode excluded and flat"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+
+## 003-scaffold-hub/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3: scaffold-hub"
+description: "Additive-only scaffold of the mcp-tooling hub skeleton is executed and verified STRICT-clean."
+trigger_phrases:
+  - "mcp-tooling hub scaffold summary"
+  - "phase 003 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/003-scaffold-hub"
+    last_updated_at: "2026-07-16T16:55:00Z"
+    last_updated_by: "claude"
+    recent_action: "Documented the executed hub scaffold"
+    next_safe_action: "No further action required"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mode-registry.json"
+      - ".opencode/skills/mcp-tooling/hub-router.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-003-scaffold-hub"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Hub SKILL.md starts at 1.0.0.0; packets are scaffolded as empty directories with no content moved"
+---
+# Implementation Summary: Phase 3: scaffold-hub
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-scaffold-hub |
+| **Completed** | 2026-07-10 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `mcp-tooling` parent hub now has a real, STRICT-passing skeleton at `.opencode/skills/mcp-tooling/`. This is the routing layer the three bridge packets relocate into during phases 004-005: a thin dispatch `SKILL.md`, the mode registry, and the hub router.
+
+### Hub Skeleton
+
+The hub root carries a thin routing-only `SKILL.md` (`version: 1.0.0.0`, `family: mcp`), `mode-registry.json` declaring the three modes (`mcp-chrome-devtools` and `mcp-click-up` as `packetKind: "workflow"`, `mcp-figma` as `packetKind: "transport"` under the `transport-axis` extension), and `hub-router.json` with the base three outcomes and `defaultMode: "mcp-chrome-devtools"`. The hub also carries the canon-required support scaffolding — `changelog/v1.0.0.0.md`, `manual_testing_playbook/` (4 scenarios), and a `benchmark/` baseline directory — that `parent-skill-check.cjs` STRICT checks 7a/9a/9b require of any canon-clean hub.
+
+### Files Changed
+
+| File | Action | Purpose |
+
+## 004-onboard-chrome-devtools/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4: onboard-chrome-devtools"
+description: "The mcp-chrome-devtools workflow packet is relocated under the mcp-tooling hub with corrected internal self-paths."
+trigger_phrases:
+  - "chrome-devtools onboarding summary"
+  - "phase 004 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools"
+    last_updated_at: "2026-07-16T16:55:00Z"
+    last_updated_by: "claude"
+    recent_action: "Documented the executed chrome-devtools move"
+    next_safe_action: "No further action required"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-004-onboard-chrome-devtools"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "chrome-devtools moves as a workflow packet keeping its own version 1.0.8.0 and changelog"
+---
+# Implementation Summary: Phase 4: onboard-chrome-devtools
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-onboard-chrome-devtools |
+| **Completed** | 2026-07-10 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`mcp-chrome-devtools` now resolves as the hub's first workflow packet at `.opencode/skills/mcp-tooling/mcp-chrome-devtools/`, with every internal self-path corrected and its own packet identity untouched.
+
+### Chrome-Devtools Onboarding
+
+The full tree relocated with `git mv`, so git records renames rather than delete-plus-add pairs. Every internal absolute self-path reference to the old flat location was rewritten to the nested hub path; a repo-scoped grep for the old path inside the moved tree returns zero live hits. The packet kept its own `version: 1.0.8.0` and its full 5-entry changelog (v1.0.0.0 through v1.0.8.0).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/mcp-chrome-devtools/*` (40 tracked files) | Moved | `git mv` to `.opencode/skills/mcp-tooling/mcp-chrome-devtools/*` |
+
+## 005-foldin-clickup-and-figma/implementation-summary.md
+---
+title: "Implementation Summary: Phase 5: foldin-clickup-and-figma"
+description: "The mcp-click-up workflow packet and the mcp-figma transport packet are relocated under the mcp-tooling hub, transport posture preserved."
+trigger_phrases:
+  - "clickup figma fold-in summary"
+  - "phase 005 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma"
+    last_updated_at: "2026-07-16T16:55:00Z"
+    last_updated_by: "claude"
+    recent_action: "Documented the executed clickup and figma moves"
+    next_safe_action: "No further action required"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-foldin-clickup-and-figma"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "figma moves as the transport packet keeping its no-Write/Edit surface, version 1.0.0.0, and sk-design pairing"
+      - "click-up moves as a workflow packet keeping version 1.0.0.0 and its changelog"
+---
+# Implementation Summary: Phase 5: foldin-clickup-and-figma
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-foldin-clickup-and-figma |
+| **Completed** | 2026-07-10 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The hub now carries its second workflow packet and its transport packet: `mcp-click-up` and `mcp-figma` both resolve under `.opencode/skills/mcp-tooling/`, with figma's read-only transport posture and cross-hub `sk-design` pairing preserved byte-for-byte.
+
+### Click-Up and Figma Fold-In
+
+Both trees relocated with `git mv` — 153 rename entries for click-up, 39 for figma — so git recorded renames rather than delete-plus-add pairs. Every internal self-path was rewritten to the nested hub location, verified by a zero-hit grep sweep. Figma's `allowed-tools` still grant no `Write`/`Edit` and `mutatesWorkspace: false`; its mandatory `sk-design` cross-hub pairing survived in `mode-registry.json`'s `transport-axis` extension. Both packets kept their own `version: 1.0.0.0` and single-entry changelog. The pre-existing click-up OAuth-vs-`@clickup/mcp-server` config/doc drift was left untouched and stays tracked as a deferred follow-up, not fixed by this move.
+
+### Files Changed
+
+| File | Action | Purpose |
+
+## 006-advisor-and-integration/implementation-summary.md
+---
+title: "Implementation Summary: Phase 6: advisor-and-integration"
+description: "The hub graph identity is unified and the functional referrer sweep is complete; two operator-approved items stay deferred."
+trigger_phrases:
+  - "advisor integration summary"
+  - "phase 006 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration"
+    last_updated_at: "2026-07-16T16:55:00Z"
+    last_updated_by: "claude"
+    recent_action: "Documented the executed integration sweep and its 2 deferrals"
+    next_safe_action: "Rebuild advisor skill-graph DB when scheduled"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/graph-metadata.json"
+      - ".opencode/commands/doctor/assets/doctor_mcp_install.yaml"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-006-advisor-and-integration"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: []
+    answered_questions:
+      - "doctor_mcp_debug.yaml and mcp-doctor.sh carry no bridge skill_dir refs; only doctor_mcp_install.yaml does"
+      - "3 labeled-prompts rows target mcp-chrome-devtools and retarget to mcp-tooling; 0 rows for click-up or figma"
+---
+# Implementation Summary: Phase 6: advisor-and-integration
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-advisor-and-integration |
+| **Completed** | 2026-07-10 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`mcp-tooling` now has one advisor-facing graph identity instead of three, and every functional referrer this phase owns points at the hub. Two items stay explicitly, visibly deferred rather than silently dropped.
+
+### Hub Graph Union and Referrer Sweep
+
+`.opencode/skills/mcp-tooling/graph-metadata.json` unions the three bridges' intent signals, trigger phrases, and outward edges — figma's `depends_on sk-design@0.7` and a union `enhances sk-code@0.5` — and records `mcp-code-mode` as an external cross-skill dependency, not a hub member. The three children's own `graph-metadata.json` files are deleted. The inbound/reverse edges that pointed at those deleted identities are repointed: `mcp-code-mode/graph-metadata.json` and `sk-design/graph-metadata.json` both now carry `"target": "mcp-tooling"` edges. `doctor_mcp_install.yaml` repoints all three bridges to their nested paths and its previously-stale `mcp-open-design` entry now resolves to `sk-design/design-mcp-open-design`. The 3 `labeled-prompts.jsonl` rows that targeted `mcp-chrome-devtools` now target `mcp-tooling`. Both `.opencode/skills/README.md` and the root `README.md` catalog the hub. The sweep also caught referrers beyond this phase's original file list: 6 `sk-code`/`code-webflow` reference files, 2 `mcp-code-mode` playbook cross-refs, and outward-edge fixes inside `sk-design`.
+
+### What Stays Deferred
+
+Two items are operator-approved deferrals, not gaps that slipped through:
+
+## 007-routing-benchmark-and-review/implementation-summary.md
+---
+title: "Implementation Summary: Phase 7: routing-benchmark-and-review"
+description: "Executed the deferred Lane C benchmark (PASS 95, route-blind) and the independent deep-review (FAIL: 3 P0, 10 P1, 2 P2) over the six-mode hub; all findings deferred to a remediation planning packet per the frozen measurement-only scope."
+trigger_phrases:
+  - "hub routing benchmark results"
+  - "mcp-tooling deep review verdict"
+  - "routing remediation planning packet"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review"
+    last_updated_at: "2026-07-16T18:29:00Z"
+    last_updated_by: "claude"
+    recent_action: "Added dated six-mode amendment to spec/plan/tasks"
+    next_safe_action: "None; phase complete, amendment recorded"
+    blockers: []
+    key_files:
+      - ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md"
+      - ".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json"
+      - ".opencode/skills/mcp-tooling/hub-router.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-007-benchmark-review-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Fallback-vs-universal-default semantics for routerPolicy.defaultResource must be adjudicated before router data changes (review planSeed)"
+    answered_questions:
+      - "Figma-transport routing question: metadata routing kept; figma phrasing routes sk-design-first per pairing doctrine, but the committed positive scenario fails lexical replay (verified) — remediation planned, not silently patched"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 7: routing-benchmark-and-review
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Phase** | 7 of 10 |
+| **Predecessor** | ../006-advisor-and-integration/ |
+| **Successor** | ../008-cutover-and-rollout/ (closed); remediation continues in a new planning packet |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The phase's two deferred measurement artifacts, now executed against the SIX-mode hub (the phase was drafted for three):
+
+- **Lane C benchmark** — `benchmark/baseline/skill-benchmark-report.{json,md}`: verdict PASS, aggregate 95, 13/13 hub scenarios (Mode A router-replay). Frozen as the hub baseline with a README index.
+- **Independent deep-review** — `review-report.md` (4 iterations, gpt-5.6-sol xhigh, review loop runtime): verdict **FAIL, release-blocking — 3 P0, 10 P1, 2 P2** with an embedded remediation planning packet (4 workstreams, spec/plan seeds).
+
+## 008-cutover-and-rollout/implementation-summary.md
+---
+title: "Implementation Summary: Phase 8: cutover-and-rollout"
+description: "The core cutover gate passes STRICT and 0/0; the two rollout items carried over from phase 006 (advisor DB rebuild, CLAUDE.md/AGENTS.md prose) were closed on 2026-07-16."
+trigger_phrases:
+  - "cutover rollout summary"
+  - "phase 008 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout"
+    last_updated_at: "2026-07-16T14:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Closed both deferred rollout items; phase complete"
+    next_safe_action: "None; phase complete"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/SKILL.md"
+      - ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-008-cutover-and-rollout"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "mcp-tooling becomes the sixth canon-clean parent hub after sk-code, sk-design, system-deep-loop, sk-doc, sk-prompt"
+---
+# Implementation Summary: Phase 8: cutover-and-rollout
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-cutover-and-rollout |
+| **Completed** | 2026-07-10 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`mcp-tooling` passes the same structural canon gate the other five parent hubs pass, and the whole mcp-tooling track validates cleanly. Two rollout items — not part of this phase's own terminal gates, but carried over from phase 006 — stay visibly open rather than silently dropped.
+
+### Terminal Gates
+
+`parent-skill-check.cjs .opencode/skills/mcp-tooling` at STRICT reports all hard invariants passed with 0 warnings (checks 1a through 9b). `validate.sh --recursive --strict` across the whole 007-mcp-tooling-parent track reports 9/9 folders `PASSED` with 0 errors and 0 warnings. A repo-wide stale-reference grep sweep for the three old flat skill-folder paths returns only historical spec/changelog/playbook-fixture text outside this packet — no live functional referrer was missed. The known-deferred click-up OAuth-vs-`@clickup/mcp-server` config drift (from phase 005) is confirmed still-deferred, not silently dropped. The parent `graph-metadata.json` is rolled up: `derived.status` and `derived.last_active_child_id` reflect the program's current state.
+
+### What Stays Open
+
+Predecessor phase 007 did not formally complete — the Lane-C skill-benchmark was deferred — and this phase proceeded on the core structural gates regardless, per operator direction, rather than blocking on a formal 007 sign-off. Two items carried over from phase 006 remained open at the 2026-07-10 write-up and were re-confirmed then as still-deferred, not dropped: the advisor skill-graph DB rebuild and the CLAUDE.md/AGENTS.md figma-transport prose restatement. Both were closed on 2026-07-16 (see the dated section below).
+
+
+## 009-incumbent-inventory-parity/implementation-summary.md
+---
+title: "Implementation Summary: Phase 9: incumbent-inventory-parity"
+description: "The three incumbent mcp-tooling packets now expose the same inventory surface: chrome-devtools gained a 30-file feature catalog, a byte-true Code Mode manuals snapshot, and mcp-servers pointers; click-up gained its top-level install front door; figma gained worked example walkthroughs. All derived from existing packet docs, all gates green."
+trigger_phrases:
+  - "incumbent inventory parity summary"
+  - "implementation summary"
+  - "mcp tooling parity shipped"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/009-incumbent-inventory-parity"
+    last_updated_at: "2026-07-16T13:17:05Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase complete; gates green"
+    next_safe_action: "None; successor phase is 010-routing-corpus-and-holdouts"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-chrome-devtools/feature_catalog/feature_catalog.md"
+      - ".opencode/skills/mcp-tooling/mcp-chrome-devtools/assets/utcp_chrome_devtools_manuals.md"
+      - ".opencode/skills/mcp-tooling/mcp-click-up/INSTALL_GUIDE.md"
+      - ".opencode/skills/mcp-tooling/mcp-figma/examples/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "agent-009-incumbent-inventory-parity"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Phase 9: incumbent-inventory-parity
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-incumbent-inventory-parity |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Status** | Complete |
+| **Branch** | `skilled/v4.0.0.0` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The three incumbent mcp-tooling modes now expose the same inventory surface, closing the parity gaps left after onboarding (phase 004) and fold-in (phase 005). Every capability claim in the new files traces to each packet's own SKILL.md, references, playbook, examples, or the live `.utcp_config.json`; no new tool facts were invented.
+
+### mcp-chrome-devtools inventory (the largest gap)
+
+You can now browse the packet's entire capability surface from `feature_catalog/feature_catalog.md`: 29 per-feature files across 7 snake_case domains (cli_bdg_lifecycle, protocol_discovery, dom_and_screenshot, console_and_network, mcp_parallel_instances, automation_and_performance, recovery_and_troubleshooting), mirroring the mcp-click-up catalog's structure and frontmatter while taking its taxonomy from the packet's own manual-testing-playbook categories. `assets/utcp_chrome_devtools_manuals.md` snapshots BOTH `chrome_devtools_1` and `chrome_devtools_2` entries byte-true from `.utcp_config.json` (generated and verified programmatically with `jq`), carries the dual-manual-for-parallelism rationale from SKILL.md §3 and cdp_patterns §8, and is provenance-marked verify-not-re-add. `mcp-servers/bdg-cli/README.md` and `mcp-servers/chrome-devtools-mcp/README.md` add the sibling-standard pointer folders with nothing vendored.
+
+## 010-routing-corpus-and-holdouts/implementation-summary.md
+---
+title: "Implementation Summary: Phase 10: routing-corpus-and-holdouts"
+description: "The six-mode mcp-tooling hub now has blind-holdout coverage for every mode, an explicit chrome-vs-aside boundary contract, seven new labeled corpus rows, and a re-captured scorer baseline that also healed a pre-existing fixture-hash drift; the ratchet gate is green at 7/7."
+trigger_phrases:
+  - "routing corpus holdouts summary"
+  - "implementation summary"
+  - "six mode holdout coverage shipped"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/010-routing-corpus-and-holdouts"
+    last_updated_at: "2026-07-16T14:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase complete; gates green"
+    next_safe_action: "None; hub program tail is 007 Lane-C benchmark (still deferred)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_agentic_browser.md"
+      - ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_browser_inspect.md"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/labeled-prompts.jsonl"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/scorer-eval-baseline.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "agent-010-routing-corpus-and-holdouts"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Phase 10: routing-corpus-and-holdouts
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-routing-corpus-and-holdouts |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Status** | Complete |
+| **Branch** | `skilled/v4.0.0.0` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The six-mode mcp-tooling hub can now catch a routing regression in ANY mode blind: every mode has a holdout whose prompt avoids the target's router aliases, the hardest adjacency (chrome vs aside) is a written contract instead of tribal knowledge, and the advisor's labeled corpus finally exercises all six surfaces. The scorer baseline was re-captured against the grown corpus, which also fixed a gate that had been quietly red since July 10.
+
+### Blind holdouts for the four uncovered modes
+
+`hub_routing/` gains MT-H03 (`holdout_task_tracking.md`, natural-language tracker ops to `mcp-click-up`), MT-H04 (`holdout_agentic_browser.md`, autonomous sign-in-and-do to `mcp-aside-devtools`), MT-H05 (`holdout_web_design_reference.md`, shipped-web-product style research to `mcp-refero`), and MT-H06 (`holdout_mobile_pattern_research.md`, phone-app first-run patterns to `mcp-mobbin`). Together with the existing MT-H01 (chrome) and MT-H02 (figma), holdout coverage is 6-of-6 modes. Each new file mirrors the established contract (`stage: holdout`, `blindToRouterKeywords: true`) and its Expected Behavior section names which adjacent mode must NOT win; the refero/mobbin pair explicitly tolerates a defer between the two research transports as a secondary outcome.
+
+FOLDER
+
+<<<FOLDER id="specs/mcp-tooling/008-mcp-aside"
+# PACKET: specs/mcp-tooling/008-mcp-aside (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: mcp-aside-devtools nested mode: Aside browser automation bridge for the mcp-tooling hub"
+description: "Phase parent for adding mcp-aside-devtools — an Aside AI-automation-browser bridge (Aside CLI primary, Aside MCP through Code Mode fallback) — as a new nested workflow mode of the mcp-tooling parent hub, across four child phases: research, skill authoring, hub integration, and validation/handoff."
+trigger_phrases:
+  - "008-mcp-aside"
+  - "phase parent"
+  - "mcp-aside-devtools"
+  - "aside browser bridge"
+  - "aside cli mcp mode"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/008-mcp-aside"
+    last_updated_at: "2026-07-16T16:55:00Z"
+    last_updated_by: "claude"
+    recent_action: "Authored phase-parent spec and all four child phase packets"
+    next_safe_action: "Execute phase 001-research (/deep:research fan-out) when the packet is approved"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "008-mcp-aside"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Does Aside ship a real standalone CLI, or only the MCP server? (owned by phase 001)"
+      - "What is Aside's auth model (login/session/API key) and is it viable for unattended automation? (owned by phase 001)"
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+
+## 001-research/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1: research"
+description: "Completed /deep:research fan-out over the Aside browser developer surface: 10/10 iterations across three lineages, canonical synthesis and consolidated resource map compiled, one hard cross-lineage conflict preserved for operator decision."
+trigger_phrases:
+  - "aside research summary"
+  - "mcp-aside phase 001 summary"
+  - "aside fan-out results"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/008-mcp-aside/001-research"
+    last_updated_at: "2026-07-17T06:03:44Z"
+    last_updated_by: "claude"
+    recent_action: "Compiled canonical research.md + resource-map.md from 3 completed lineages"
+    next_safe_action: "Author mcp-aside-devtools packet in phase 002 from research/research.md"
+    blockers: []
+    key_files:
+      - ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/research.md"
+      - ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/resource-map.md"
+      - ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/deep-research-findings-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-001-research-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Dual aside UTCP manuals for parallelism (glm) vs single manual (sol elimination) — settle with a two-client isolation test before registering a second manual"
+    answered_questions:
+      - "Does Aside ship a standalone CLI? Yes — agentic `aside` CLI + deterministic REPL + `aside mcp` stdio server; backendKind cli-plus-mcp stands"
+      - "Aside MCP tool inventory? Live-probed: exactly one `repl` tool (protocol 2024-11-05, listChanged:true — rediscover at runtime)"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 1: research
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 1 |
+| **Phase** | 1 of 4 |
+| **Successor** | ../002-skill-authoring/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+A completed deep-research fan-out over the Aside browser developer surface — 10/10 iterations, forced depth (`--stop-policy=max-iterations`):
+
+- `research/research.md` — canonical 17-section synthesis with Cross-Lineage Reconciliation Ledger, Eliminated Alternatives (22 rows), Divergence Map, 13 open questions, Convergence Report appendix.
+- `research/resource-map.md` — consolidated from sol + luna lineage maps (glm emitted none).
+
+## 002-skill-authoring/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2: skill-authoring"
+description: "Authored the 41-file mcp-aside-devtools nested workflow packet from the phase-001 synthesis; package_skill.py PASS with zero errors and warnings; 12 research UNKNOWNs preserved in the docs."
+trigger_phrases:
+  - "aside skill authoring summary"
+  - "mcp-aside-devtools packet summary"
+  - "phase 002 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/008-mcp-aside/002-skill-authoring"
+    last_updated_at: "2026-07-17T06:03:44Z"
+    last_updated_by: "claude"
+    recent_action: "Verified packet gate and marked checklist with evidence"
+    next_safe_action: "Run phase 003 hub integration for mcp-aside-devtools"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/install-guide.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-002-aside-authoring-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Does the packet pass the create-skill gate? Yes — package_skill.py --check Result: PASS, 0 errors 0 warnings"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 2: skill-authoring
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Phase** | 2 of 4 |
+| **Predecessor** | ../001-research/ |
+| **Successor** | ../003-hub-integration/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+`.opencode/skills/mcp-tooling/mcp-aside-devtools/` — a complete 41-file nested workflow packet (`packetKind: workflow`, `backendKind: cli-plus-mcp`), grounded exclusively in the phase-001 synthesis:
+
+- `SKILL.md` (8 numbered sections, exemplar order; SMART ROUTING carries the benchmark-parseable `INTENT_SIGNALS` block: TASK/REPL/MCP/INSTALL/TROUBLESHOOT), `README.md`, `install-guide.md`.
+- `references/` (aside_cli_reference, mcp_wiring, session_management, troubleshooting), `examples/` (3 worked scripts), `scripts/` (install.sh, doctor.sh — read-only diagnostics incl. a watchdog-guarded MCP handshake probe), `changelog/v1.0.0.0.md`.
+- `manual-testing-playbook/` — 15 scenarios across 6 dirs, incl. `intra-routing-recall/` with 2 blind holdouts, `negative.md`, `troubleshoot.md`; the MCP scenario explicitly GATED until manual registration.
+
+## 003-hub-integration/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3: hub-integration"
+description: "Registered mcp-aside-devtools as the hub's fourth mode across every hub surface, registered the aside UTCP manual, recompiled the advisor skill graph, and verified additive-only diffs with a structured comparison against HEAD."
+trigger_phrases:
+  - "aside hub integration summary"
+  - "mcp-aside-devtools registration"
+  - "phase 003 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/008-mcp-aside/003-hub-integration"
+    last_updated_at: "2026-07-16T14:20:00Z"
+    last_updated_by: "claude"
+    recent_action: "Registered mcp-aside-devtools across all hub surfaces"
+    next_safe_action: "Run phase 004 gates; 009 hub window is open"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mode-registry.json"
+      - ".opencode/skills/mcp-tooling/hub-router.json"
+      - ".utcp_config.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-003-aside-hub-integration-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Live Code Mode discovery of the aside manual pends a Code Mode server config reload (operator-visible)"
+    answered_questions:
+      - "Is the hub valid with four modes? Yes — parent-skill-check passes every invariant except the sibling mcp-refero dir that 009 registers next"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 3: hub-integration
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Phase** | 3 of 4 |
+| **Predecessor** | ../002-skill-authoring/ |
+| **Successor** | ../004-validation-and-handoff/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+`mcp-aside-devtools` registered as the hub's third workflow mode (fourth mode overall):
+
+- `mode-registry.json` — fourth `modes[]` entry (workflow, cli-plus-mcp, folder==packetSkillName, metadata routing, 7 aliases); count-coupled prose de-coupled.
+- `hub-router.json` — signal (weight 4: `aside-devtools-aliases` + `agentic-browser` + `hub-identity`), mirrored vocabulary classes, tieBreak slot after `mcp-click-up`, before the figma transport.
+
+## 004-validation-and-handoff/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4: validation-and-handoff"
+description: "Program-wide final gates run green for mcp-aside-devtools: strict package check, six-mode hub structural gates, advisor routing probes, and recursive strict packet validation; handoff notes name the operator-only leftovers."
+trigger_phrases:
+  - "aside validation summary"
+  - "mcp-aside-devtools final gates"
+  - "008-mcp-aside phase 004 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/008-mcp-aside/004-validation-and-handoff"
+    last_updated_at: "2026-07-16T16:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Ran the program-wide final gates green"
+    next_safe_action: "Operator: reload Code Mode server config; authorize first live OAuth calls"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mode-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-004-aside-final-gates"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All gates green? Yes — package strict PASS, hub PASS x2, advisor probe routed mcp-aside-devtools phrasing to mcp-tooling top-1, recursive strict PASS"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 4: validation-and-handoff
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 1 |
+| **Phase** | 4 of 4 |
+| **Predecessor** | ../003-hub-integration/ |
+| **Successor** | None |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The packet's terminal verification record. Program-wide final-gate results as they apply to `mcp-aside-devtools`:
+
+- `package_skill.py --check --strict` on `.opencode/skills/mcp-tooling/mcp-aside-devtools` -> `Result: PASS`.
+- Hub structural gates with six modes: `package_skill.py --check` PASS + `parent-skill-check.cjs` PASS (exit 0 both).
+- Advisor probe: "use the aside browser to capture repl evidence" -> `mcp-tooling` top-1 (0.726); the compiled skill graph carries the mode's intent signals.
+- Phases 001-003 each independently `RESULT: PASSED` under `validate.sh --strict`; this phase completes the packet.
+
+## 005-inventory-parity-and-doc-truth/implementation-summary.md
+---
+title: "Implementation Summary: Phase 5: inventory-parity-and-doc-truth"
+description: "mcp-aside-devtools now tells the registered-state truth everywhere: 30 stale registration claims flipped, ASD-011 ungated, doctor errors on manual absence, and the packet gains the feature catalog and byte-true manual snapshot its siblings carry."
+trigger_phrases:
+  - "aside parity summary"
+  - "aside doc truth summary"
+  - "aside registered state"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/008-mcp-aside/005-inventory-parity-and-doc-truth"
+    last_updated_at: "2026-07-17T06:03:44Z"
+    last_updated_by: "claude-agent"
+    recent_action: "Completed phase; all gates green"
+    next_safe_action: "Phase 006 live discovery capture in a fresh Code Mode session"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "agent-005-inventory-parity"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-inventory-parity-and-doc-truth |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Branch** | `skilled/v4.0.0.0` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The `aside` UTCP manual landed in `.utcp_config.json`, and this phase makes the `mcp-aside-devtools` packet stop lying about it. Around 30 "not registered" and "later phase" claims across 9 files now state the registered truth, the gated Code Mode discovery scenario is runnable, and the packet reaches structural parity with `mcp-mobbin` through a new feature catalog and a byte-true manual snapshot.
+
+### Registered-state doc truth
+
+You can now trust any registration claim in the packet: SKILL.md, README, install-guide, `references/mcp-wiring.md`, both `mcp-servers/` READMEs, and the playbook all say the manual is registered (2026-07-16), that discovery pends a fresh Code Mode session, and that `aside.aside_repl` stays unconfirmed until `tool_info()` returns it. Playbook scenario ASD-011 lost its registration gate: its precondition is now a session with the code_mode MCP loaded, SKIP is valid only as "no Code Mode session available", and a missing manual is a FAIL (registration regressed). `scripts/doctor.sh` enforces the same posture: manual absence in an existing `.utcp_config.json` is an error with exit 1 instead of expected-absent info, while staying strictly read-only.
+
+### Feature catalog
+
+
+## 006-live-verification-capture/implementation-summary.md
+---
+title: "Implementation Summary: Phase 6: live-verification-capture (mcp-aside-devtools)"
+description: "The aside Code Mode callable is now an observed fact, not a prediction: live discovery on 2026-07-16 returned registry name aside.aside.repl and TS callable aside.aside_repl(args), and 12 packet files plus the doctor now cite the dated fixture."
+trigger_phrases:
+  - "aside discovery summary"
+  - "aside fixture summary"
+  - "aside callable confirmed summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/008-mcp-aside/006-live-verification-capture"
+    last_updated_at: "2026-07-17T06:03:44Z"
+    last_updated_by: "claude-agent"
+    recent_action: "Phase complete; gates green"
+    next_safe_action: "Operator handoff: authenticated smoke invocation and binding probe"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.1.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "agent-006-live-verification-capture-aside"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-live-verification-capture |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Branch** | `skilled/v4.0.0.0` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+Live Code Mode discovery finally ran against the registered `aside` manual, and the packet now tells the observed truth instead of a convention prediction. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) produced the dated fixture `references/discovery-fixture-2026-07-16.json`, and every discovery-pending claim in the packet flipped to cite it.
+
+### The captured facts
+
+You can now trust two precise, different name forms. Discovery returns the registry name `aside.aside.repl` (dot-separated `{manual}.{server}.{tool}`) - which means the packet's old registry prediction `aside.aside_repl` was wrong by one separator. Inside `call_tool_chain` TypeScript, the callable is `aside.aside_repl(args)` - exactly the fixture's `Access as:` line and the `{manual_name}.{manual_name}_{tool_name}` convention, so the prediction was right about the call surface. The one-`repl`-tool inventory is re-confirmed: `aside.aside.repl` is the only `aside.*` registry entry. The fixture also enumerates the REPL's full helper surface (tab attachment helpers, `snapshot`, `display`, screenshots/PDF, `fs`/`fetch`/`sleep` and friends), which now supersedes the older version-pinned description in both references.
+
+### The flip sweep
+
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

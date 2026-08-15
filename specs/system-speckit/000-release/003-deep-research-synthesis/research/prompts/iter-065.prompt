@@ -1,0 +1,2017 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/025-deep-loop-gpt-reliability"
+# PACKET: specs/system-deep-loop/z_archive/025-deep-loop-gpt-reliability (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Phase Parent: GPT Reliability (Deep-Loop)"
+description: "Packet root for making GPT-backed OpenCode run deep-loop routing, dispatch, identity, and orchestration correctly. Regrouped into 7 themed tracks: research/diagnosis, routing/dispatch/identity, guard/enforcement, benchmarks/verification, skill-doc hygiene, reliability fixes, and the compiled-contract compiler."
+trigger_phrases:
+  - "gpt reliability deep-loop"
+  - "deep loop gpt opencode routing identity"
+  - "deep agent router guard benchmark"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability"
+    last_updated_at: "2026-07-04T00:00:00.000Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Folded top-level 037 retention into track 003/005; 22 phases across 7 tracks"
+    next_safe_action: "Complete track 006 and 007's 001-contract-compiler-design phase"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "context-index.md"
+      - "001-research-and-diagnosis/spec.md"
+      - "002-routing-dispatch-and-identity/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-parent-reorg-7-tracks"
+      parent_session_id: null
+    completion_pct: 80
+    open_questions: []
+    answered_questions:
+      - "The GPT-reliability work is the packet's own phases plus the moved 034/035/036/037 packets, regrouped into 7 themed tracks."
+      - "The routing and FIX-5 identity work stays one track (002) as a single core-fixes story."
+      - "The old-number to new-track-number remap is recorded in context-index.md for cross-reference traceability."
+      - "The 7-track reorg is structurally complete (paths + metadata reconciled); tracks 001-005 are complete while 006 (Planned) and 007 (In Progress; 001 design pending) carry their own pre-existing implementation status."
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: phase -->
+
+# Phase Parent: GPT Reliability (Deep-Loop)
+
+
+## 001-research-and-diagnosis/001-gpt-behavioral-hardening-research/implementation-summary.md
+---
+title: "Implementation Summary: GPT Behavioral Hardening — Follow-Up Research"
+description: "Two-round, six-lineage deep-research investigation completed; round 2 (operator-directed critical re-review) caught and corrected a real error made by round 2's own first lineage; final consolidated research.md written with a recommended phase 008-012 breakdown."
+trigger_phrases:
+  - "implementation summary"
+  - "gpt behavioral hardening"
+importance_tier: "critical"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research"
+    last_updated_at: "2026-07-01T11:35:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Two-round research complete (6 lineages); final consolidated research.md written"
+    next_safe_action: "Plan phase 008 per research.md §4"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-007-init"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Confirm a genuine OPENCODE_PID-free external shell exists before starting phase 011."
+      - "glm-critical's reproducible stall (GLM quota exhaustion) is worth a deep-research runtime follow-up, independent of this packet."
+    answered_questions:
+      - "All KQs answered across 6 lineages with file:line evidence; consolidated in research/research.md."
+      - "Is the ai-council route-proof validator a guaranteed FAIL? No -- round 2 self-corrected: it passes on non-canonical values that disagree with the registry."
+---
+# Implementation Summary: GPT Behavioral Hardening — Follow-Up Research
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete (research, both rounds) |
+| **Completion** | 100% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A two-round, six-lineage deep-research investigation using `fanout-run.cjs`:
+
+**Round 1 (exploratory, 30 iterations each):** `glm-max` (GLM-5.2, max reasoning) and `gpt-fast-high` (GPT-5.5-fast, high reasoning), both 30/30, all 9 KQs answered.
+
+**Round 2 (operator-directed critical re-review, 10 iterations each, `research-prompt.md` §9):** commissioned after the operator (a) directly confirmed all four reported symptoms as real, first-hand experience and (b) flagged that `gpt-fast-high` researching GPT's own failures was a structural conflict of interest. Ran `sonnet-critical` (Claude Sonnet 5, 10/10), `glm-critical` (GLM-5.2, stalled — see Known Limitations), `opus-critical` (Claude Opus 4.8, 10/10), and `gpt-critical` (GPT-5.5-fast self-critiquing, 10/10).
+
+All 6 lineages were merged (`fanout-merge.cjs`, `merged_lineages: 6`) into a final consolidated `research/research.md` that documents cross-lineage agreement, a corrected finding (see How It Was Delivered), and a reconciled phase 008-012 breakdown.
+<!-- /ANCHOR:what-built -->
+
+---
+
+
+## 001-research-and-diagnosis/002-gpt-reliability-research/implementation-summary.md
+---
+title: "Implementation Summary: GPT Reliability Research Campaign"
+description: "Campaign complete: 15/15 productive GPT-5.5-fast xhigh research iterations (10 angles + 5 design passes), 44 orchestrator-verified findings, ranked P0/P1/P2 synthesis with 033-benchmark verification cells per proposal. Unified thesis: our systems are Claude-shaped — GPT executes contract letter where Claude follows intent; the P0 Gate-3 autonomous-precedence package plus four P1 packages (render contract, dispatch receipts, progress records, routing offer) are design-complete and ready to implement."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "gpt reliability research"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research"
+    last_updated_at: "2026-07-03T12:15:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Campaign complete: synthesis published, docs closed"
+    next_safe_action: "Implementation packet: land the P0 Gate-3 package first per synthesis section 5"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "034-impl-final"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Implementation is a FUTURE packet: synthesis hands off 5 verification-process items (multi-cause cell adjudication, presentation snapshot tests, budget-edge harness, routing telemetry, feature-flagged rollout)."
+    answered_questions:
+      - "Why does GPT fail where Claude succeeds? Our contracts rely on Claude-convention: the classifier lists /deep:*+:auto as Gate-3 triggers, setup prompts render by convention, the LEAF prompt licenses absorption, loop protocols license dark windows, hard rules are position-buried behind 14-file chains. GPT executes the letter."
+      - "Is more research needed? No — early stop at 15/15 productive: the independent ranking pass surfaced zero unexplored mechanisms."
+---
+# Implementation Summary: GPT Reliability Research Campaign
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-gpt-reliability-research |
+| **Completed** | 2026-07-03 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+1. **15 research iterations** (`research/iterations/iter-001..015.md`): 10 first-pass angles (Gate-3 design, presentation contracts, dispatch/absorption, structured-mode stalls, agent parseability, skill routing, context volume, pacing/budgets, indirection depth, authoring profile) + 5 design/adjudication passes producing ready-to-apply packages (P0 Gate-3 text diffs, dispatch-receipt schema, render-contract edits, progress-record schema, independent ranking).
+2. **`research/findings-registry.md`**: 44 deduped findings, every one orchestrator-verified against the actual files before entry (line counts, regexes, YAML steps, empirical advisor runs).
+3. **`research/iteration-log.md`**: per-iteration verdicts, durations, steering decisions, and the early-stop rationale.
+4. **`research/synthesis.md`**: ranked P0/P1/P2 proposals, each mapped to a measured 033 failure and the exact behavior-benchmark cells that verify it; dependency-ordered rollout plan; the 7-rule GPT-safe authoring profile.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+## 002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration/implementation-summary.md
+---
+title: "Implementation Summary: Deep Agent Router & Orchestration Hardening"
+description: "Status tracker for the DEEP primary agent and orchestrate hardening phase."
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration"
+    last_updated_at: "2026-06-30T15:40:00Z"
+    last_updated_by: "opencode-gpt"
+    recent_action: "Transitioned to phase parent; decomposed implementation into 5 child phases (001-route-proof-validation, 002-agent-dispatch-hardening, 003-command-pre-route-headers, 004-gpt-verification-smoke, 005-host-hard-identity-fix5 PARKED). All findings/recs (F1-F38, R1-R11, C1-C3) mapped. 031 parent passes strict validation."
+    next_safe_action: "/speckit:plan child 001-route-proof-validation first (closes FIX-5 false-negative), then 002/003/004. 005 stays parked unless 004 fires."
+    blockers:
+      - "Cited prior research (030/010-gpt-deep-agent-routing, ../001-gpt-deep-agent-routing) and sibling ../002-gpt-routing-fixes do not exist on disk; mis-route taxonomy is operator-asserted, not cross-validated."
+      - "FIX-5 trigger has a false-negative (F27): schema-valid but semantically wrong-mode artifacts pass current validators. Route-proof validator fields = child 001 step 1."
+      - "convergence.cjs better-sqlite3 NODE_MODULE_VERSION mismatch (141 vs 127); needs npm rebuild in deep-loop-runtime."
+      - "Child phase plan/tasks/checklist stubs have pre-planning template-header warnings; /speckit:plan reconciles."
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-001-res-1782823402"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Should prior-research evidence base be recovered before implementation, or are the §2 axioms sufficient?"
+      - "Codex mirror: resolve TOML-location doc contradiction (README.txt vs deep-loop-runtime/SKILL.md) before claiming REQ-006 parity."
+    answered_questions:
+      - "KQ1-10 answered by research/research.md (deep-research loop)"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Deep Agent Router & Orchestration Hardening
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-deep-agent-router-and-orchestration |
+| **Status** | Complete (research; implementation is tracked in sibling phases 002-007) |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+Spec packet created from operator request. No implementation yet — this captures the structural-invocation workstream targeting `.opencode/agents/deep.md` (to be created), `.opencode/agents/orchestrate.md` (to be modified), and `.opencode/commands/deep/assets/deep_*_auto.yaml` (to be refined).
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## HOW IT WAS DELIVERED
+
+Not yet delivered — spec capture only. Implementation will modify `.opencode/agents/deep.md`, `.opencode/agents/orchestrate.md`, and deep command YAMLs per `plan.md`.
+<!-- /ANCHOR:how-delivered -->
+
+## 002-routing-dispatch-and-identity/002-route-proof-validation/implementation-summary.md
+---
+title: "Implementation Summary: Route-Proof Validation & Citation Corrections"
+description: "Route-proof validation now rejects schema-valid wrong-mode deep-loop records before downstream phases rely on validator pass results. The phase also records the unrecovered prior research as explicit axioms and corrects citation drift."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "route-proof validation"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation"
+    last_updated_at: "2026-06-30T19:40:00Z"
+    last_updated_by: "opencode-gpt"
+    recent_action: "Phase 001 route-proof validation complete"
+    next_safe_action: "Proceed to phase 002-agent-dispatch-hardening"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts"
+      - ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-001-001-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Wrong-mode schema-valid artifacts reject through route-proof validation."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-route-proof-validation |
+| **Completed** | 2026-06-30 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Route-proof validation now makes a schema-valid wrong-mode artifact fail instead of passing as a valid iteration. The validator checks route identity on both the canonical state-log record and the per-iteration delta record, which closes the false-negative that blocked trustworthy downstream GPT smoke tests.
+
+### Route-Proof Validator
+
+`validateIterationOutputs` accepts a `routeProof` expectation and verifies exact `mode`, `target_agent`, `agent_definition_loaded`, and `resolved_route` values. It returns `route_proof_missing` or `route_proof_mismatch` before stamping a passing record.
+
+### Workflow Contracts
+
+
+## 002-routing-dispatch-and-identity/003-agent-dispatch-hardening/implementation-summary.md
+---
+title: "Implementation Summary: Agent Dispatch Hardening"
+description: "The DEEP primary router and Claude mirror are now present, and both orchestrators expose a first-class Deep Route dispatch field. Registry-backed route identity is explicit before deep work reaches a loaded leaf agent."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "agent dispatch hardening"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening"
+    last_updated_at: "2026-06-30T20:05:00Z"
+    last_updated_by: "opencode-gpt"
+    recent_action: "Agent dispatch hardening implemented"
+    next_safe_action: "Proceed to phase 003-command-pre-route-headers"
+    blockers: []
+    key_files:
+      - ".opencode/agents/deep.md"
+      - ".claude/agents/deep.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-001-002-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-agent-dispatch-hardening |
+| **Completed** | 2026-06-30 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The DEEP primary router now gives GPT-backed OpenCode an explicit, registry-backed first dispatch target for `/deep:*` work. Instead of negotiating from long prose, the router resolves the mode, loads the selected agent definition, emits a compact `Deep Route:` package, and dispatches exactly once.
+
+### Deep Router Mirrors
+
+`.opencode/agents/deep.md` implements the OpenCode primary router with `mode: primary` and `subagent_type: "general"` dispatch guidance. `.claude/agents/deep.md` mirrors the behavior with Claude `tools: Read, Agent` and `.claude/agents/*.md` path conventions.
+
+### Orchestrator Route Field
+
+Both orchestrator task formats now include `Deep Route:` before `Subagent Type`, so deep routes can carry `mode`, `target_agent`, `execution`, and registry source in a stable field.
+
+## 002-routing-dispatch-and-identity/004-command-pre-route-headers/implementation-summary.md
+---
+title: "Implementation Summary: Command Pre-Route Headers"
+description: "Route headers now bind research, review, context, and ai-council leaves before they interpret prompt bodies."
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers"
+    last_updated_at: "2026-06-30T18:37:51Z"
+    last_updated_by: "opencode-gpt"
+    recent_action: "Implemented additive Resolved route headers for all four deep modes; strict validation passed"
+    next_safe_action: "Proceed to phase 004 GPT verification smoke"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-001-003-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Command Pre-Route Headers
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-command-pre-route-headers |
+| **Completed** | 2026-06-30 |
+| **Level** | 2 |
+| **Actual Effort** | Medium; prompt/YAML edits plus council script propagation and validation |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+Route identity is now explicit at each phase 003 leaf prompt seam. GPT-backed CLI OpenCode receives the route contract before body prose in research and review, context seats receive the contract in both native and one-shot contract text, and ai-council receives the contract through both its round prompt and script-owned dispatch context.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl` | Modified | Added research route header to rendered prompt |
+| `.opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl` | Modified | Added review route header to rendered prompt |
+| `.opencode/commands/deep/assets/deep_research_auto.yaml` | Modified | Prepended research route header for CLI OpenCode positional prompt |
+| `.opencode/commands/deep/assets/deep_review_auto.yaml` | Modified | Prepended review route header for CLI OpenCode positional prompt |
+| `.opencode/commands/deep/assets/deep_context_auto.yaml` | Modified | Added context route header to per-seat and one-shot contracts |
+| `.opencode/skills/deep-loop-workflows/deep-ai-council/assets/prompt_pack_round.md` | Modified | Added ai-council route header before role prose |
+| `.opencode/commands/deep/assets/deep_ai-council_auto.yaml` | Modified | Documented route fields in executor config outputs |
+| `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs` | Modified | Added default route config propagation |
+| `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs` | Modified | Passed route config into seat dispatch context |
+| `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/tests/orchestrate-topic.vitest.ts` | Modified | Added route context propagation coverage |
+
+## 002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix/implementation-summary.md
+---
+title: "Implementation Summary: Mode-D Gate Fix + ai-council Route-Identity Fix"
+description: "Replaced the self-classification gate in all 7 surviving /deep:* command files with an evidence-based dispatch-context check, and reconciled the ai-council route-proof identity across orchestrate-topic.cjs and deep_ai-council_auto.yaml -- completing live in-flight work rather than duplicating it."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "mode d gate fix"
+  - "ai-council route identity fix"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix"
+    last_updated_at: "2026-07-01T13:30:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implementation complete; validate.sh --strict passing"
+    next_safe_action: "Proceed to phase 009"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-008-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Discovered a pre-existing, unrelated in-flight WIP on both ai-council target files -- new route_fields/resolved_route_header scaffolding already using correct ai-council values for a different purpose (seat-dispatch context injection). Completed the round-completion record wiring rather than duplicating or conflicting with it."
+---
+# Implementation Summary: Mode-D Gate Fix + ai-council Route-Identity Fix
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-mode-d-ai-council-identity-fix |
+| **Completed** | 2026-07-01 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+GPT-backed OpenCode was hitting two confirmed, code-traced defects from research/research.md: a self-classification gate that a capable agent could read as ambiguous and hard-block on (Mode D — already fired once, in phase 005), and an ai-council route-proof check that certified an artifact naming a non-existent agent (`deep-ai-council`) as valid, because the validator and the record it checked happened to agree with each other while both disagreed with the actual registry. Both are fixed now.
+
+### Mode-D Gate Fix
+
+All 7 surviving `/deep:*` command files (`skill-benchmark.md`, `context.md`, `review.md`, `ai-council.md`, `research.md`, `agent-improvement.md`, `model-benchmark.md`) previously opened with a "SELF-CHECK: Are you operating as the @general agent?" block — an abstract capability question ("can you orchestrate a workflow," "can you load skill references") that a model can't reliably answer about itself, and which defaulted to a hard block on "NO or UNCERTAIN." That default is exactly what fired incorrectly during phase 005's smoke test. Each file now opens with a "DISPATCH-CONTEXT CHECK" instead: a concrete question (was this content reached via a direct `/deep:*` invocation, or pasted inline into another agent's dispatch prompt as ad hoc instructions?) that defaults to PROCEED when there's no concrete evidence of the latter. The blocking case still exists, but it now requires actual evidence rather than an unanswerable self-assessment.
+
+### ai-council Route-Identity Fix
+
+`orchestrate-topic.cjs`'s round-completion record and `deep_ai-council_auto.yaml`'s `route_proof` validator both used to say `mode: council` / `target_agent: deep-ai-council` — internally consistent, but wrong: `mode-registry.json`'s actual entry is `workflowMode: ai-council`, `agent: ai-council`, and no agent named `deep-ai-council` exists. Both files now say `mode: ai-council` / `target_agent: ai-council`, matching the registry and the naming convention already used by the other three deep modes (`context`, `research`, `review` — where `route_proof.target_agent` carries no `@` prefix either).
+
+### Files Changed
+
+## 002-routing-dispatch-and-identity/007-orchestrate-universal-routing/implementation-summary.md
+---
+title: "Implementation Summary: Orchestrate NDP-Safe Universal Routing"
+description: "Completed orchestrate's Priority table with the 2 missing deep-mode rows, made the Deep Route field explicitly registry-resolved, and added an explicit NDP boundary against dispatching @deep itself as a worker -- across both the OpenCode and Claude runtime mirrors."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "orchestrate universal routing"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/007-orchestrate-universal-routing"
+    last_updated_at: "2026-07-01T18:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Bloat-reduction follow-up applied to both runtime mirrors"
+    next_safe_action: "None -- packet complete"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-009-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Orchestrate NDP-Safe Universal Routing
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-orchestrate-universal-routing |
+| **Completed** | 2026-07-01 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`@orchestrate` already routed every non-deep dispatch (`@code`, `@review`, `@markdown`, `@debug`, `@context`) through one deterministic Priority table — the gap was that 2 of the 4 deep sub-agents (`@deep-context`, `@deep-review`) were missing from it, and the Deep Route field an earlier uncommitted edit had added was free-text prose rather than a registry lookup. Both gaps are closed now, in both runtime mirrors, and orchestrate's own NDP section now explicitly forbids the one dispatch pattern that would have made the fix unsafe: Task-dispatching `@deep` itself.
+
+### Priority Table Completion
+
+Added `@deep-context` (priority 2, grouped next to `@context` since both handle "gather context" requests) and `@deep-review` (priority 7, grouped next to `@review`) to the Priority table, NDP LEAF classification list, and Agent Files table in both `.opencode/agents/orchestrate.md` and `.claude/agents/orchestrate.md`. Each new row's task-type description states explicitly that the deep-loop route applies only when the deep-loop convergence workflow is requested, not for general exploration/review — resolving the ambiguity flagged in `spec.md`'s edge cases.
+
+### Deep Route Registry Resolution
+
+The `Deep Route:` field in the Task Format block already cited `mode-registry.json` as its `source_of_truth` from an earlier in-flight edit, but nothing told the model how to actually populate it. Added an explicit paragraph right after the Task Format block: `mode`/`target_agent`/`execution` must be looked up directly from the matching registry entry, never inferred, verifiable by a reviewer diffing the emitted line against the registry — and if no entry matches, stop before dispatch rather than fabricate a route.
+
+### NDP Boundary Against Dispatching @deep
+
+Added a 4th "Illegal Chain" example (`Orch(0) → @deep(1)`, annotated with why: `@deep` is `mode: primary`, not a depth-1 leaf) plus an explicit prose statement: orchestrate resolves and dispatches the target leaf directly, and never Task-dispatches `@deep` itself as a worker.
+
+## 002-routing-dispatch-and-identity/008-ai-council-subagent-only/implementation-summary.md
+---
+title: "Implementation Summary: ai-council Subagent-Only Conversion"
+description: "Converted ai-council.md from mode: all to mode: subagent, an explicit operator override of research's unanimous 6/6 recommendation, verified with real live opencode CLI smoke tests rather than assumption, and redirected 2 real documentation callers discovered depending on the removed direct-invoke path."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "ai-council subagent only"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only"
+    last_updated_at: "2026-07-01T15:30:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implementation complete; validate.sh --strict passing"
+    next_safe_action: "Proceed to phase 011"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-010-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: ai-council Subagent-Only Conversion
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-ai-council-subagent-only |
+| **Completed** | 2026-07-01 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`ai-council` is no longer directly selectable as a top-level OpenCode agent — it's reachable only via Task dispatch now, matching every other deep-loop sub-agent (`deep-context`, `deep-research`, `deep-review`) and closing this repo's one cross-runtime asymmetry (Claude Code has no equivalent "primary agent" concept at all). This is a deliberate operator override of research's strongest, most unanimous finding in the entire packet — 6 of 6 lineages across both rounds said keep `mode: all` — and it's documented as exactly that in `decision-record.md`, not silently applied.
+
+### The Change
+
+`.opencode/agents/ai-council.md:4`: `mode: all` → `mode: subagent`. One line.
+
+### Real Reachability Verification
+
+Rather than trust the change by analogy to other `mode: subagent` agents, both directions were live-tested against the actual installed `opencode` CLI in this environment:
+
+- **Direct invocation, before:** `opencode run --agent ai-council "..."` succeeded, loading the full `ai-council.md` definition (36,004 input tokens) and replying correctly.
+- **Direct invocation, after:** the same command now prints `agent "ai-council" is a subagent, not a primary agent. Falling back to default agent` and loads a different, smaller default agent (27,975 input tokens) instead — confirmed rejected, not just assumed.
+- **Task-dispatch reachability, after:** `opencode run --agent general "...use the task tool to dispatch to ai-council..."` fired a real `task` tool call with `subagent_type: 'ai-council'` and got back the expected reply.
+
+## 002-routing-dispatch-and-identity/009-fix5-checkpoint/implementation-summary.md
+---
+title: "Implementation Summary: FIX-5 Decision Checkpoint"
+description: "Applied research's cross-validated negative gate against phase 012's real benchmark results and closed phase 006 (FIX-5 / host hard identity) as unnecessary -- zero semantic wrong-mode artifacts, zero route-proof mismatches, and the observed latency gap isn't something FIX-5 would fix even under the loosest reading."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "fix5 checkpoint"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint"
+    last_updated_at: "2026-07-01T17:15:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Gate applied; FIX-5 closed; packet complete"
+    next_safe_action: "None -- packet complete"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-013-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: FIX-5 Decision Checkpoint
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-fix5-checkpoint |
+| **Completed** | 2026-07-01 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This closes out the last open question in the whole `025-deep-loop-gpt-reliability` packet: whether the cheaper, agent-layer fixes (phases 001-004, 008-011) are sufficient, or whether FIX-5's host-runtime hard identity / process isolation actually needs building. Applied research's cross-validated negative gate against phase 012's real benchmark results and closed phase 006 as unnecessary.
+
+### The Gate, Applied
+
+Research's gate: unpark FIX-5 only if GPT still shows semantic wrong-mode artifacts, a route-proof mismatch, or disproportionate stuck/latency failures on any mode while Claude passes. Phase 012's results show zero of the first two, and the third is genuinely ambiguous (2 command-level runs didn't finish within the smoke window, but neither was confirmed *stuck* — and critically, FIX-5 wouldn't fix raw model-inference latency regardless of how that ambiguity is read). No trigger condition was met on grounds FIX-5 would actually remedy.
+
+### The Closure
+
+Updated `../006-host-hard-identity-fix5/decision-record.md` with a new "Final Resolution" section recording this outcome and the reasoning, and updated its `spec.md` Status field to Closed. Host-runtime hard identity and full process isolation remain documented as structural ceilings — specified, not built — exactly matching the "Never unpark" alternative that decision record already anticipated when it was first written.
+
+### Files Changed
+
+| File | Action | Purpose |
+
+## 003-guard-and-enforcement/001-deep-route-guard-plugin/implementation-summary.md
+---
+title: "Implementation Summary: Detection-Layer Sub-Agent-Routing Enforcement Plugin"
+description: "Built .opencode/plugins/mk-deep-loop-guard.js (renamed 2026-07-01 from deep-route-guard.js), a tool.execute.before hook that flags Deep Route mode mismatches on Task dispatch. Live-tested against the real installed opencode CLI (not assumed): confirmed hook registration, confirmed throw-based rejection genuinely blocks dispatch, confirmed the default warn path doesn't, confirmed the fail-open guard, confirmed non-deep dispatches pass through untouched."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "deep route guard plugin"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin"
+    last_updated_at: "2026-07-01T20:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Renamed plugin to mk-deep-loop-guard.js; added tests; integrated F050/DLR-052"
+    next_safe_action: "None -- packet complete"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-011-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Detection-Layer Sub-Agent-Routing Enforcement Plugin
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-deep-route-guard-plugin |
+| **Completed** | 2026-07-01 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A new OpenCode plugin, `.opencode/plugins/mk-deep-loop-guard.js` (renamed 2026-07-01 from `deep-route-guard.js`; see Follow-Up below), that watches every `task`-tool dispatch and flags the case phases 008-010 fixed the *identity* for but nothing previously *enforced*: a model constructing a Task dispatch whose declared `mode=X` (from a Deep Route header embedded in the prompt) disagrees with what `mode-registry.json` says the target `subagent_type` should actually be. The central question research left open — can this actually block a bad dispatch, or only warn about it — is answered here with real evidence, not analogy: **both work**, and the plugin ships both as a configurable choice rather than picking one and discarding the other.
+
+### The Hook
+
+Registers on `tool.execute.before`. For any `task` dispatch: if `subagent_type` matches one of `mode-registry.json`'s 4 deep-mode entries, and the prompt text contains a `mode=X` token that disagrees with that entry's `workflowMode`, it flags the mismatch. Default behavior is mutate-and-warn (`console.error`, dispatch proceeds); setting `MK_DEEP_LOOP_GUARD_REJECT=1` (renamed 2026-07-01 from `DEEP_ROUTE_GUARD_REJECT`) switches to throw-based rejection.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/plugins/mk-deep-loop-guard.js` | Created | The plugin itself (renamed 2026-07-01 from `deep-route-guard.js`) |
+<!-- /ANCHOR:what-built -->
+
+
+## 003-guard-and-enforcement/002-mk-deep-loop-guard-hardening/implementation-summary.md
+---
+title: "Implementation Summary: mk-deep-loop-guard Orchestrate Loop-Detection Hardening"
+description: "5-iteration dual-model research (3 GPT-5.5-fast/high + 2 GLM-5.2/max) on extending mk-deep-loop-guard.js to mechanically detect loop-like repeated orchestrate-to-command-owned-loop-executor dispatches. Both lineages independently converged on session-scoped state + an iteration-aware heuristic. Surfaced and independently re-verified a load-bearing fact: orchestrate's Task dispatches always set subagent_type='general', so real identity must come from prompt-text parsing."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "mk-deep-loop-guard hardening"
+importance_tier: "high"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening"
+    last_updated_at: "2026-07-01T20:30:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Research complete and synthesized; awaiting operator decision"
+    next_safe_action: "Operator picks Option A/B; open a new phase to implement"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "031-016-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Both lineages recommend Option B (external state + iteration-aware counting) with Option A (in-process counter) as a viable lower-blast-radius first step."
+---
+# Implementation Summary: mk-deep-loop-guard Orchestrate Loop-Detection Hardening
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-mk-deep-loop-guard-hardening |
+| **Completed** | 2026-07-01 |
+| **Level** | 1 (research-only) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Nothing shipped this phase — it's research grounding a future implementation. Two independent fan-out lineages (`cli-opencode openai/gpt-5.5-fast` high + `cli-opencode zai-coding-plan/glm-5.2` max) investigated whether `.opencode/plugins/mk-deep-loop-guard.js` (currently a single-dispatch mode-mismatch detector) can be extended to mechanically catch repeated/loop-like `orchestrate`-to-loop-executor dispatches, addressing phase 012's measured GPT-5.5 enforcement inconsistency (refused one direct `deep-research` dispatch, allowed an identical direct `deep-review` dispatch).
+
+### Convergent Findings (both lineages independently agree)
+
+1. **Session-scoped state is available and precedented.** `tool.execute.before` exposes `sessionID`/`callID` on every call. Three sibling plugins (`mk-spec-memory.js`, `mk-code-graph.js`, `mk-skill-advisor.js`) already use in-process closure-scoped `Map`s; `mk-goal.js` uses external per-session JSON state at `.opencode/skills/.goal-state/{hex(sessionID)}.json`. Both mechanisms are real, working precedent — no OpenCode core changes needed.
+2. **The "exactly one bounded hand-off" contract is stated in 4 independent living docs** (`cli-opencode/SKILL.md`, `references/agent_delegation.md`, `orchestrate.md`, `deep-review.md`) but is currently *wording only* — nothing mechanically enforces it.
+3. **A naive repeat-count would false-positive on legitimate command-driven loop iterations** (a `/deep:review` YAML dispatching `@deep-review` N times is not the same as `orchestrate` re-implementing a loop). Both lineages independently recommend an "iteration-state heuristic" — skip counting when the prompt carries markers like `Iteration: N of M` / `STATE SUMMARY`, since those indicate the parent command already owns the loop.
+4. **Recommended threshold**: 1st same-executor hand-off = silent allow, 2nd = warn (accommodates a legitimate retry), 3rd+ = warn (default) or block (`MK_DEEP_LOOP_GUARD_REJECT_LOOP=1`, an opt-in new env var separate from the existing `MK_DEEP_LOOP_GUARD_REJECT`).
+
+### One Load-Bearing Divergence, Independently Resolved
+
+GLM's research made a stronger, more specific claim than GPT's: **`subagent_type` is always the literal string `"general"`** for every agent `orchestrate` dispatches, evidenced by `orchestrate.md`'s own Priority table (every row) and its dispatch template ("`Subagent Type: "general"` (ALL dispatches use `"general"`)"). GPT's research treated `subagent_type` as a secondary/fallback signal rather than stating it's *always* uninformative.
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/026-goal-opencode-plugin"
+# PACKET: specs/system-deep-loop/z_archive/026-goal-opencode-plugin (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: /goal OpenCode Plugin"
+description: "An OpenCode plugin + /goal command mirroring Claude Code's /goal: set a session completion condition that persists and is injected into every turn until met."
+trigger_phrases:
+  - "goal opencode plugin"
+  - "slash goal command"
+  - "session goal injection"
+  - "thread goals opencode"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin"
+    last_updated_at: "2026-06-30T16:30:00Z"
+    last_updated_by: "opencode-gpt"
+    recent_action: "Landed all 5 remediation phases (010-014); audit-driven work complete"
+    next_safe_action: "No further action required; phase 009 remains owned by a separate session"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/commands/goal_opencode.md"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+# Feature Specification: /goal OpenCode Plugin
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+
+## 001-state-store/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "The goal plugin now has a fail-closed per-session state store with atomic writes and queued mutations."
+trigger_phrases:
+  - "goal state store implementation"
+  - "atomic goal write"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/001-state-store"
+    last_updated_at: "2026-06-29T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Documented completed state store implementation"
+    next_safe_action: "Build on the state helpers in the injection and command phases"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/skills/.goal-state"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
+    session_dedup:
+      fingerprint: "sha256:dbff518b69da1cde31738a7b71cb8b6432a6ebe56aa24eb6738096801631935d"
+      session_id: "goal-m1-state-store-20260629"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-state-store |
+| **Completed** | 2026-06-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The passive `/goal` milestone now has durable state. `mk-goal.js` persists one active goal per OpenCode session, refuses missing session ids, writes JSON atomically, and serializes mutations so later phases can rely on a stable store.
+
+### Per-Session State
+
+`ensureGoalStateDir` creates the runtime state directory, and `goalPathForSession` maps each required session id to a hex-keyed JSON file. `readGoal` normalizes stored records and returns `null` when a session has no goal.
+
+### Atomic Mutation Helpers
+
+
+## 002-injection-plugin/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "Active goals now appear in OpenCode system context as sanitized passive guidance, with status output exposing the exact injection preview."
+trigger_phrases:
+  - "goal injection implementation"
+  - "active goal block"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/002-injection-plugin"
+    last_updated_at: "2026-06-29T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Documented completed injection implementation"
+    next_safe_action: "Use command tools to manage and inspect the injected goal"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+    session_dedup:
+      fingerprint: "sha256:6f58a7f11018395111712324cd1a5f38ae2494e0fa811aaf51f94ea8e98b9d6e"
+      session_id: "goal-m1-injection-plugin-20260629"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-injection-plugin |
+| **Completed** | 2026-06-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Active goals now reach the assistant as passive system context. The plugin reads the current session goal, renders a sanitized `[active_goal]` block, and appends it through OpenCode's system transform without making chat depend on state persistence.
+
+### Passive Goal Block
+
+`renderGoalInjection` returns the exact block used by both status output and system injection. The block includes active status, objective, verifier state, token and time usage, iteration counts, and a directive to continue toward the objective.
+
+### Fail-Open Transform
+
+`appendGoalBrief` extracts the session id, reads the goal, avoids duplicate markers, and appends the block to `output.system`. The transform catches failures and returns without throwing, preserving the passive M1 contract.
+
+
+## 003-goal-command/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "The passive goal feature now has a root /goal command backed by mk_goal and mk_goal_status plugin tools."
+trigger_phrases:
+  - "goal command implementation"
+  - "mk_goal_status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/003-goal-command"
+    last_updated_at: "2026-06-29T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Documented completed goal command implementation"
+    next_safe_action: "Continue with lifecycle tracking once passive command behavior remains verified"
+    blockers: []
+    key_files:
+      - ".opencode/commands/goal_opencode.md"
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
+    session_dedup:
+      fingerprint: "sha256:0b8f11b664ed5c350036ae787c81c544572a7e445fe3805fe46dd2c80618f921"
+      session_id: "goal-m1-goal-command-20260629"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-goal-command |
+| **Completed** | 2026-06-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The passive goal feature now has a root command. `/goal` is a thin router that selects one plugin tool call, and the tools own session resolution, state mutation, status rendering, and the exact injection preview.
+
+### Root Command Router
+
+`.opencode/commands/goal_opencode.md` resolves `$ARGUMENTS` into `QUERY`, `FIRST`, and `REST`, then calls `mk_goal` or `mk_goal_status`. The command never edits `.goal-state`, never infers a session id, and never runs shell commands from an objective.
+
+### Goal Tools
+
+
+## 004-lifecycle-tracking/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "Lifecycle tracking is now active inside mk-goal: session events restore goals, message updates refresh evidence and usage, and token budgets stop active goals."
+trigger_phrases:
+  - "goal lifecycle implementation"
+  - "budget limited"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/004-lifecycle-tracking"
+    last_updated_at: "2026-06-28T21:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified lifecycle tracking"
+    next_safe_action: "Use lifecycle evidence in the supervisor phase"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
+    session_dedup:
+      fingerprint: "sha256:cc8153b70836648cc213172ea49a27803e6e2990e627d217ad42625f6e541748"
+      session_id: "goal-m2-lifecycle-20260628"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-lifecycle-tracking |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Lifecycle tracking now gives `/goal` enough runtime memory to govern budgets and prepare verifier evidence without changing its passive M1 behavior. The plugin observes OpenCode events, records assistant activity, charges usage only when it is safe, and marks a goal `budget_limited` once its configured token cap is reached.
+
+### Lifecycle Event Handling
+
+`mk-goal.js` now restores active goals on session creation, refreshes activity on message updates, records prompt blockers on permission or question events, verifies on idle through the next phase helper, and clears volatile runtime locks on deletion or disposal events.
+
+### Guarded Usage Accounting
+
+Usage accounting is active-status only, goal-id guarded, and deduped by `lastAccountedMessageID`. Missing token data is not an error; the goal records `usageSource=unavailable` and keeps running.
+
+
+## 005-completion-supervisor/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "The goal supervisor now runs on idle, records strict verifier results, completes only on met, and exposes redacted verifier evidence through status."
+trigger_phrases:
+  - "goal supervisor implementation"
+  - "verifier verdict"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/005-completion-supervisor"
+    last_updated_at: "2026-06-28T21:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified supervisor verdict handling"
+    next_safe_action: "Use supervisor result as the first gate in active continuation"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/plugins/tests/mk-goal-supervisor.test.cjs"
+    session_dedup:
+      fingerprint: "sha256:c95d5705ead5885e38f83e2a5834dd27c30dbccc13c839a4c6b94d7262c89427"
+      session_id: "goal-m2-supervisor-20260628"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-completion-supervisor |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The goal plugin now has a conservative supervisor path for automatic completion. On `session.idle`, it evaluates the last redacted evidence, stores the verifier result, and completes the goal only when the verdict is exactly `met`.
+
+### Supervisor Verifier
+
+`maybeVerifyGoal(sessionID)` returns a strict envelope with `verdict`, `confidence`, `reason`, and `evidence`. The helper defaults to `not_met` when evidence is absent or ambiguous, and it applies results only if the same goal remains active after verification.
+
+### Status Evidence
+
+`mk_goal_status` now includes budget and verifier fields while preserving the earlier M1 output lines. Evidence is capped and redacted before storage and display.
+
+
+## 006-active-continuation/implementation-summary.md
+---
+title: "Implementation Summary: active-continuation"
+description: "The goal plugin now has guarded active continuation that is default-off, smoke-testable, capped, and observable through JSONL logs."
+trigger_phrases:
+  - "goal continuation implementation"
+  - "active continuation summary"
+  - "MK_GOAL_AUTONOMY active"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/006-active-continuation"
+    last_updated_at: "2026-06-28T21:46:31Z"
+    last_updated_by: "codex"
+    recent_action: "Unit-tested active continuation; live idle smoke still pending"
+    next_safe_action: "Run live idle smoke"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/plugins/tests/mk-goal-continuation.test.cjs"
+    session_dedup:
+      fingerprint: "sha256:b2f803a737e545a4cf05215f8ed3da62c47de4274e63b268ca69584e302deaa3"
+      session_id: "goal-m3-continuation-20260628"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions:
+      - "Whether session.idle is observable in one-shot opencode run"
+    answered_questions:
+      - "Node unit tests prove default-off, passive, smoke, active dispatch, and cap behavior"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-active-continuation |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The goal plugin now has a guarded continuation path after idle-time verification. It stays passive by default, can be smoke-tested without sending a prompt, and only calls `promptAsync` when every gate passes.
+
+### Continuation Gates
+
+`maybeContinueGoal(sessionID)` checks plugin enablement, `MK_GOAL_AUTONOMY`, session id, active goal status, suppression, in-flight locks, permission/question blocks, busy/retry status, cooldown, auto-turn and wall-clock caps, and token budget before dispatch. Active mode reserves `autoTurnsUsed` before sending, so a failure path cannot push the counter past 8.
+
+### Observability
+
+## 007-sk-prompt-goal-enhancement/implementation-summary.md
+---
+title: "Implementation Summary: sk-prompt goal enhancement"
+description: "The /goal plugin now turns raw user input into a deterministic sk-prompt-style goal prompt before injecting it into session context."
+trigger_phrases:
+  - "goal prompt implementation summary"
+  - "sk-prompt goal enhancement"
+  - "goalPrompt"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/007-sk-prompt-goal-enhancement"
+    last_updated_at: "2026-06-30T16:45:00Z"
+    last_updated_by: "opencode-gpt"
+    recent_action: "Implemented deterministic sk-prompt goal prompt generation"
+    next_safe_action: "Phase complete; restart OpenCode before relying on the updated plugin in a new session"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
+    session_dedup:
+      fingerprint: "sha256:00969fd8cf81825d65413f56a26752d28aa33cbfc07a80ac9482bdacbb7a6e36"
+      session_id: "goal-sk-prompt-enhancement-20260630"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Use deterministic sk-prompt methodology inside the plugin rather than an LLM call"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-sk-prompt-goal-enhancement |
+| **Completed** | 2026-06-30 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`/goal set` now improves raw user input into a structured goal prompt before the plugin injects it into OpenCode system context. The stored state keeps both the original sanitized `objective` and the enhanced `goalPrompt`, so status output remains auditable while the model receives a more precise execution brief.
+
+### Deterministic sk-prompt Generator
+
+The plugin now derives a `goalPrompt` locally using sk-prompt concepts: DEPTH methodology, CRAFT/TIDD-EC framework metadata, RICCE-style structure, and CLEAR scoring. The generator adds role, objective, context, method, success criteria and stop conditions without making a hidden model call.
+
+### Prompt Metadata And Compatibility
+
+## 008-system-spec-kit-integration/implementation-summary.md
+---
+title: "Implementation Summary: system-spec-kit integration"
+description: "System-spec-kit now documents the /goal OpenCode plugin as a local runtime plugin surface with references, assets, env docs, and validation guidance."
+trigger_phrases:
+  - "goal plugin implementation summary"
+  - "system-spec-kit goal integration"
+  - "mk-goal references"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/008-system-spec-kit-integration"
+    last_updated_at: "2026-06-30T18:05:00Z"
+    last_updated_by: "opencode-gpt"
+    recent_action: "Completed system-spec-kit goal plugin docs integration"
+    next_safe_action: "Phase complete; restart OpenCode before relying on changed plugin docs in a fresh session"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/SKILL.md"
+      - ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md"
+    session_dedup:
+      fingerprint: "sha256:4dd96e15edc43f058c632838ca4b944c38a85005ddc0741e46c02b9c0e99ec62"
+      session_id: "goal-system-spec-kit-integration-20260630"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The goal plugin remains standalone local plugin state, not a daemon bridge"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-system-spec-kit-integration |
+| **Completed** | 2026-06-30 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+
+## 009-speckit-command-goal-prompt-offer/implementation-summary.md
+---
+title: "Implementation Summary: Phase 9: speckit-command-goal-prompt-offer"
+description: "The Speckit command surfaces now offer optional session-goal help without blocking auto mode or mutating goal state unless a set choice is explicit."
+trigger_phrases:
+  - "speckit command goal prompt offer implemented"
+  - "goal_prompt_choice contract test"
+  - "phase 009 implementation summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/009-speckit-command-goal-prompt-offer"
+    last_updated_at: "2026-07-03T00:00:00Z"
+    last_updated_by: "opencode-gpt-5.5"
+    recent_action: "Verified command goal offer; orchestrator refreshed metadata"
+    next_safe_action: "Phase complete"
+    blockers: []
+    key_files:
+      - ".opencode/commands/speckit/assets/speckit_plan_presentation.txt"
+      - ".opencode/commands/speckit/assets/speckit_complete_presentation.txt"
+      - ".opencode/commands/speckit/assets/speckit_implement_presentation.txt"
+      - ".opencode/commands/speckit/assets/speckit_resume_presentation.txt"
+      - ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"
+    session_dedup:
+      fingerprint: "sha256:6af2e2258ab05cbf7379f8d258d998b461eba95f03eb6c58a78a1ce2100a7a3d"
+      session_id: "032-phase-009-goal-offer-20260703"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-speckit-command-goal-prompt-offer |
+| **Status** | Complete |
+| **Completed** | 2026-07-03 |
+| **Level** | 1 |
+| **completion_pct** | 100 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Speckit plan, complete, implement, and resume now surface one optional Session Goal line inside their existing consolidated setup prompts. Auto mode remains non-blocking because the YAML setup field defaults to `offer`, and goal mutation is gated behind an explicit `set` choice.
+
+### Non-Blocking Offer
+
+
+## 010-security-and-correctness-fixes/implementation-summary.md
+---
+title: "Implementation Summary: Phase 10: security-and-correctness-fixes"
+description: "Security and correctness fixes for the shipped mk-goal OpenCode plugin."
+trigger_phrases:
+  - "goal plugin security fixes"
+  - "phase 010 implementation summary"
+  - "mk-goal correctness fixes"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/010-security-and-correctness-fixes"
+    last_updated_at: "2026-07-01T00:00:00Z"
+    last_updated_by: "opencode-gpt-5.5"
+    recent_action: "Implemented phase 010 security and correctness fixes in mk-goal"
+    next_safe_action: "Run any broader release validation required by phases 011/012"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/specs/system-deep-loop/026-goal-opencode-plugin/010-security-and-correctness-fixes/tasks.md"
+      - ".opencode/specs/system-deep-loop/026-goal-opencode-plugin/010-security-and-correctness-fixes/implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:f0747d631d715b1d1fbefd01d9f90156a9a4899e196ad997f63f77af6b5ea9a4"
+      session_id: "phase-010-security-correctness-20260701"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "REQ-005 resolved by adding literal RICCE metadata to promptEnhancement because phase 007 requires stored metadata to name RICCE."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-security-and-correctness-fixes |
+| **Completed** | 2026-07-01 |
+| **Level** | 1 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The shipped `/goal` plugin now closes the five security and correctness defects from the deep-review conditional verdict without changing command names, adding files, or expanding runtime behavior beyond the planned phase. The fixes keep user-authored goal text quoted and sanitized at the boundary, prevent verifier exception secrets from reaching stored state or status output, clamp the full active-goal injection block, block stale verifier continuations, and add the literal RICCE metadata field required by phase 007.
+
+### Security Fixes
+
+Verifier exception reasons now pass through `redactEvidence` before they become `lastVerifierReason` or render through `mk_goal_status`. Stored `lastVerifierReason` normalization also uses `redactEvidence`, so old or externally written state cannot reintroduce secret-shaped text during reads.
+
+
+## 011-command-surface-normalization/implementation-summary.md
+---
+title: "Implementation Summary: Phase 11: command-surface-normalization"
+description: "Renamed the /goal command to its final canonical name and swept every referencing surface; reconciled two config-contract gaps."
+trigger_phrases:
+  - "goal command rename"
+  - "phase 011 implementation summary"
+  - "command surface normalization"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/011-command-surface-normalization"
+    last_updated_at: "2026-07-01T00:00:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Amended 2026-07-01: operator confirmed goal_opencode.md as final"
+    next_safe_action: "Proceed to phase 012 (regression-test-backfill)"
+    blockers: []
+    key_files:
+      - ".opencode/commands/goal_opencode.md"
+      - ".opencode/plugins/mk-goal.js"
+    session_dedup:
+      fingerprint: "sha256:161cc6191170579d804aa33b19b09fa5d4f84c3266169d2e0d05fe486f877406"
+      session_id: "phase-011-command-surface-20260701"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "REQ-004 resolved by correcting the command doc to match the actual coerce-to-set dispatch behavior (code left unchanged)."
+      - "REQ-005 resolved by making executeGoalAction/executeGoalStatus fail closed when MK_GOAL_PLUGIN_DISABLED=1, since no existing test relied on manual mutations working while disabled."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-command-surface-normalization |
+| **Completed** | 2026-07-01 |
+| **Status** | Complete |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `/goal` command file had three committed renames in two days with no durable doc sweep: `goal.md` -> `goal_opencode.md` -> `goal.md` -> `goal_opencode.md`. `opencode_goal.md` was never a committed path. This phase picked one final name, backed by deep-research's confirmed no-built-in-collision finding, and closed every reference in one pass, plus fixed two smaller config-contract gaps deep-review found in the same command surface.
+
+**Amendment (2026-07-01, same day):** this phase originally renamed the file to `.opencode/commands/goal.md`. The operator subsequently confirmed `.opencode/commands/goal_opencode.md` as the correct, final name instead (a concurrent session had independently reached the same filename). All referencing surfaces below were re-swept to point at `goal_opencode.md`; the command file itself was not renamed again since it was already at that name in the shared working tree.
+
+### Command rename
+
+
+## 012-regression-test-backfill/implementation-summary.md
+---
+title: "Implementation Summary: Phase 12: regression-test-backfill"
+description: "Backfilled regression coverage for the mk-goal passive injection, lifecycle event, continuation, export, and tool-registration contracts."
+trigger_phrases:
+  - "regression test backfill"
+  - "goal plugin test coverage"
+  - "phase 012 implementation summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/012-regression-test-backfill"
+    last_updated_at: "2026-07-01T00:00:00Z"
+    last_updated_by: "opencode-gpt-5.5"
+    recent_action: "Completed mk-goal regression coverage backfill and SC-002 falsification check"
+    next_safe_action: "Proceed to phase 013 (design-fidelity-and-polish)"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/plugins/tests/mk-goal-state.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-continuation.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-export-contract.test.cjs"
+      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
+      - ".opencode/specs/system-deep-loop/026-goal-opencode-plugin/012-regression-test-backfill/tasks.md"
+      - ".opencode/specs/system-deep-loop/026-goal-opencode-plugin/012-regression-test-backfill/implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:09b376c84b84d99b7c5fddf1d2d6cfaf2f867b48f93ffe364707438f2e558406"
+      session_id: "phase-012-regression-backfill-20260701"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "REQ-005 resolved by adding MK_GOAL_DEBUG-gated event_error logging because the existing debug event log showed event entry only, not swallowed handler errors."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 012-regression-test-backfill |
+| **Completed** | 2026-07-01 |
+| **Level** | 1 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The mk-goal regression suite now exercises the plugin through the same public hooks OpenCode uses: passive system transform, lifecycle `event()` dispatch, continuation from `session.idle`, factory-registered tools, and the default export test seam. The added coverage pins the corrected phase 010 and 011 behavior rather than helper-only or pre-fix behavior.
+
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks"
+# PACKET: specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Phase Parent: Deep-Loop Behavioral Benchmarks"
+description: "Parent packet giving each of the five deep-loop-workflows sub-skills its own durable behavior_benchmark package: what an executor model actually outputs/presents when the command surface is triggered with realistic vague/concise user prompts, whether it dispatches the required sub-agents unprompted, whether it gets stuck, and how its latency compares to a Claude baseline. Measured executors: gpt-5.5-fast medium + high via cli-opencode."
+trigger_phrases:
+  - "deep loop behavior benchmark"
+  - "behavioral benchmark per skill"
+  - "gpt vs claude command behavior"
+  - "vague prompt benchmark"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks"
+    last_updated_at: "2026-07-02T07:45:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "All 5 phases complete; cross-skill scorecard published; ~120 runs across 5 modes x 3 executors"
+    next_safe_action: "Packet COMPLETE — act on remediation backlog in 005 scorecard (Gate-3 precedence P0)"
+    blockers: []
+    key_files:
+      - "001-framework-and-harness/decision-record.md"
+      - "../031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark/benchmark-results.md"
+      - ".opencode/skills/deep-loop-workflows/mode-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "033-parent-init"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Claude baseline executor: same-host opencode Anthropic model (preferred, unverified) vs cli-claude-code vs Claude Code native leg -- phase 001 probe. See 001-framework-and-harness/decision-record.md OPEN-001."
+      - "Shared runner home: deep-loop-workflows/scripts/ (recommended) vs deep-loop-runtime/scripts/ -- OPEN-002."
+    answered_questions:
+      - "Run results live in spec packet phases, NOT in the skill packages -- skills hold scenario contracts + rubric + baselines only."
+      - "Pilot on deep-review first (richest precedent), calibrate the rubric, then roll out to the other four modes."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+# Phase Parent: Deep-Loop Behavioral Benchmarks
+
+<!-- SPECKIT_LEVEL: phase -->
+
+---
+
+## 001-framework-and-harness/implementation-summary.md
+---
+title: "Implementation Summary: Behavioral-Benchmark Framework & Shared Harness"
+description: "Shipped the shared measurement substrate: framework.md (scenario schema, D1-D5 rubric, 11-bucket taxonomy, budget/rerun policy), behavior-bench-run.cjs (4-leg runner with watchdog, checkpoints, delegation evidence, scoring, schemaVersion-1 results), the frozen fx-001 review fixture, and a green hermetic suite. Exit gate passed: SMOKE-001 on the resolved claude-cli baseline leg classified pass. Writing by GLM-5.2-max under orchestrator-specified COSTAR contracts; verification by the orchestrator."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "behavior benchmark framework"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/001-framework-and-harness"
+    last_updated_at: "2026-07-02T09:30:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Phase complete: exit gate passed on the claude-cli baseline leg"
+    next_safe_action: "Proceed to phase 002 (pilot deep-review)"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "033-001-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Baseline executor: claude CLI leg (no Anthropic provider in opencode; host-binary confound stated on every D5 ratio) -- D-007."
+      - "Runner home: deep-loop-workflows/shared/behavior-benchmark/ -- D-008."
+---
+# Implementation Summary: Behavioral-Benchmark Framework & Shared Harness
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-framework-and-harness |
+| **Completed** | 2026-07-02 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The shared measurement substrate at `.opencode/skills/deep-loop-workflows/shared/behavior-benchmark/`:
+
+1. **`framework.md`** (266 lines) — the single-source contract: scenario schema (first fenced JSON block per scenario file; entry surfaces E1-E4, clarity C1-C3, expected interaction/markers/delegation, budget), the D1-D5 scoring rubric (0/1/2 anchors), the 11-bucket classification taxonomy with detection rules, budget policy (max(3x baseline, 180s), 15/25-minute caps, 120s no-progress watchdog), single-sample rerun policy, and package conventions (RVB/RSB/CXB/ACB/IMB prefixes; contracts in skill packages, run evidence in spec phases).
+2. **`behavior-bench-run.cjs`** (~680 lines, zero dependencies) — the runner: data-driven 4-leg spawn table (`glm-max`, `gpt-fast-med`, `gpt-fast-high` via `opencode run --format json`; `claude-cli` baseline via `claude -p --output-format stream-json --verbose`), command-vs-natural invocation handling, hard timeout + 120s no-progress watchdog with detached process-group SIGKILL, checkpoint extraction (tFirstOutput/tSetup/tFirstDispatch/tTerminal), delegation-evidence capture (task events, route-proof JSONL scan, guard warnings), report-only git-status isolation, exported pure `classify()`/`score()` functions, schemaVersion-1 result JSON + transcript per run. A test seam (`BEHAVIOR_BENCH_SPAWN_JSON`) injects fake legs hermetically.
+3. **`tests/`** — hermetic suite (fake-leg normal + hang modes, watchdog `stuck_no_progress` case, classify/score unit cases) plus fixtures; exit 0.
+4. **Frozen fixture** `../fixtures/fx-001-review-target/` — a toy slug-utility packet whose `src/slugify.js` carries exactly three seeded, uncommented review findings (silent Unicode stripping against a silent spec; truncation that can violate the trailing-hyphen rule after the trim step; unguarded null/undefined contradicting a "validation complete" task claim), for review-mode scenarios to target.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 002-pilot-deep-review/implementation-summary.md
+---
+title: "Implementation Summary: Pilot Behavioral Benchmark -- deep-review"
+description: "24-run pilot complete: RVB package (GLM-5.2-max authored), 3-round-calibrated Claude baseline (6 pass, 1 nuance, 1 long-tail), both GPT-5.5-fast legs scored. Headline: reasoning effort is the load-bearing variable -- gpt-med stalls silently and absorbs the LEAF role where gpt-high posts perfect passes on the hardest delegation cells. Six harness calibrations landed in-flight; scorecard.md carries the corrected transcript readings and the remediation backlog seeds."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "deep review behavior benchmark"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/002-pilot-deep-review"
+    last_updated_at: "2026-07-02T13:55:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Pilot complete: 24 runs scored, scorecard published, retro landed"
+    next_safe_action: "Phase 003: land retro item 7, then author RSB/CXB"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "033-002-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Retro item 7 (classifier ordering: refusal must not precede absorption when artifacts exist; contract-declared artifact expectations) is logged OPEN, owned by phase 003 pre-authoring."
+    answered_questions:
+      - "Is the packet-031 'GPT unreliability' a model ceiling? No -- it is a reasoning-effort effect: gpt-fast-high eliminates every silent stall and posts perfect passes on cells gpt-fast-med stalls on or absorbs."
+---
+# Implementation Summary: Pilot Behavioral Benchmark -- deep-review
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-pilot-deep-review |
+| **Completed** | 2026-07-02 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+1. **`deep-review/behavior_benchmark/`** — the pilot package (GLM-5.2-max authored under the orchestrator's COSTAR contract): index, `scenarios/RVB-001..008` (verbatim user-style prompts; entry surfaces E1-E4, clarity 6/8 vague-or-concise; delegation + role-absorption probes), and `baselines/claude-baseline.md` with the captured baseline, provenance, and caveats.
+2. **34 scored live runs** in this folder's `runs/`: three baseline calibration rounds converging on a final 8/8 Claude baseline (`baseline-r2/`), then `gpt-fast-med/` and `gpt-fast-high/` (8 cells each, every run carrying a schemaVersion-1 result JSON with bucket, five dimension scores, checkpoints, and delegation evidence).
+3. **`scorecard.md`** — the 3-leg comparison: classification matrix, bucket histograms, dimension means, per-checkpoint latency ratios (with the claude-cli host confound and the RVB-001 lower-bound caveat stated), corrected transcript readings, and remediation-backlog seeds.
+4. **Six in-flight harness calibrations** shipped to the shared runner + framework (see Key Decisions), each verified by a green hermetic suite before the next run consumed it.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 003-rollout-research-context/implementation-summary.md
+---
+title: "Implementation Summary: Rollout Behavioral Benchmarks -- deep-research + deep-context"
+description: "42-run rollout complete: RSB (8) + CXB (6) packages scored across claude-cli baseline + both GPT-5.5-fast legs. Headline: effort raises the floor but the load-bearing difference is delegation INTEGRITY -- gpt-high never absorbs the LEAF role (it halts honestly when it will not dispatch) where gpt-med fakes delegation. Two calibrations + a fixture-contamination purge landed in-flight; scorecard.md carries the corrected transcript readings and phase-005 backlog."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "research context behavior benchmark"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/003-rollout-research-context"
+    last_updated_at: "2026-07-02T19:55:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "42 runs scored, scorecard published, fixture contamination purged, env_error hardened"
+    next_safe_action: "Phase 004: author + run ai-council + improvement benchmarks"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "033-003-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "CXB-004 both-effort stall is single-sample; contested-cell 3-sample rerun owed before quoting a rate (phase 005)."
+      - "Fixture toy spec fails deep-research strict pre-init validation; make strict-valid or treat fail-close as intended (phase 005)."
+    answered_questions:
+      - "Does the pilot's 'high fixes delegation' generalize? Directionally yes (D3 1.50 vs 1.17), but the sharper truth is integrity: high never absorbs the role, it halts honestly; med fakes delegation."
+---
+# Implementation Summary: Rollout Behavioral Benchmarks -- deep-research + deep-context
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-rollout-research-context |
+| **Completed** | 2026-07-02 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+1. **`deep-research/behavior_benchmark/`** (RSB-001..008) and **`deep-context/behavior_benchmark/`** (CXB-001..006) — GLM-5.2-max-authored packages against the pilot-calibrated framework: indexes, verbatim user-style scenarios across entry surfaces E1-E4 and clarity C1-C3, and `baselines/claude-baseline.md` with captured checkpoints, provenance, and caveats.
+2. **42 scored live runs** in `runs/`: a clean 14-cell `claude-cli` baseline (after 9 round-1 cells rate-limited and were quarantined), plus full `gpt-fast-med` and `gpt-fast-high` legs (14 cells each), every result a schemaVersion-1 JSON with bucket, five dimension scores, checkpoints, and delegation evidence.
+3. **`scorecard.md`** — the 3-leg comparison: classification matrix, bucket histograms, dimension means, latency ratios, eight transcript-corrected readings, in-flight calibrations, and phase-005 backlog seeds.
+4. **`fx-002-research-target`** fixture and two runner calibrations (`env_error` bucket + its false-positive hardening), plus a fixture-contamination purge and restore hardening — each verified by the hermetic suite before the next run consumed it.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+## 004-rollout-council-improvement/implementation-summary.md
+---
+title: "Implementation Summary: Rollout Behavioral Benchmarks -- deep-ai-council + deep-improvement"
+description: "30-run rollout complete: ACB (5) + IMB (5) packages scored across claude-cli baseline + both GPT-5.5-fast legs. The D-010 evidence-kind design (seat_artifacts / candidate_evidence) prevents false absorption on in-CLI councils and structured improvement loops -- zero role_absorption across 30 runs. Headline: GPT's Gate-3 documentation halt is the dominant failure at BOTH efforts across ALL four command surfaces, and high is NOT stall-free in the structured modes."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "council improvement behavior benchmark"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement"
+    last_updated_at: "2026-07-02T23:20:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "30 runs scored, scorecard published, 3 detector calibrations landed"
+    next_safe_action: "Phase 005: cross-skill scorecard + integration"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "033-004-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Council + improvement full-run budgets are tight (IMB clusters at 15-min boundary; council multi-seat cells stall past watchdog) -- re-provision or 3-sample contested cells in phase 005."
+    answered_questions:
+      - "Does GPT absorb in council/improvement like it does in research/review? No -- the in-CLI/structured modes remove the 'should dispatch but didn't' surface, so GPT halts (Gate-3) or stalls instead of fabricating. Zero role_absorption across 30 runs."
+      - "Is the Gate-3 halt fixed by high reasoning effort? No -- both med and high halt on IMB-004; replicated across all four command surfaces AND both efforts."
+---
+# Implementation Summary: Rollout Behavioral Benchmarks -- deep-ai-council + deep-improvement
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-rollout-council-improvement |
+| **Completed** | 2026-07-02 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+1. **`deep-ai-council/behavior_benchmark/`** (ACB-001..005, `evidence_kind: seat_artifacts`, min_seats 2-3, 25-min budgets) and **`deep-improvement/behavior_benchmark/`** (IMB-001..005, `evidence_kind: candidate_evidence`, 15-min budgets) — orchestrator-authored packages against the D-010-extended framework: indexes, verbatim user-style scenarios across E1-E4 / C1-C3, and `baselines/claude-baseline.md` with captured checkpoints and the corrected routing readings.
+2. **Two frozen fixtures** — `fx-003-council-target` (a multi-option rate-limit design question the council can genuinely deliberate) and `fx-004-improvement-target` (a deliberately weak toy agent `.md` with seeded improvement opportunities).
+3. **30 scored live runs** in `runs/`: a 10-cell `claude-cli` baseline plus full `gpt-fast-med` and `gpt-fast-high` legs, every result a schemaVersion-1 JSON with bucket, five dimension scores, checkpoints, and seat/candidate delegation evidence.
+4. **`scorecard.md`** — the 3-leg comparison with the corrected transcript readings, the calibration log, and the phase-005 backlog.
+5. **The D-010 runner extension + three in-flight detector calibrations** (seat content-detection, scoreD3 halt-null, candidate+score counting), each hermetically tested; `task_dispatch` behavior kept byte-identical.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 005-scorecard-and-integration/implementation-summary.md
+---
+title: "Implementation Summary: Cross-Skill Scorecard & Integration"
+description: "Cross-skill 5-mode x 3-executor scorecard synthesizing all five behavior_benchmark packages (~120 runs); ranked remediation backlog; behavior_benchmark discoverability pointers added to all five sub-skill READMEs. Packet 033 complete."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "behavior benchmark scorecard"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/005-scorecard-and-integration"
+    last_updated_at: "2026-07-02T23:40:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Cross-skill scorecard published; integration pointers wired; packet complete"
+    next_safe_action: "Packet 033 COMPLETE — no further phases"
+    blockers: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "033-005-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Remediation backlog items (Gate-3 precedence P0; scoped high-effort mandate; budget re-provisioning) are handed to future work, not resolved in this packet."
+    answered_questions:
+      - "Does packet 031 GPT unreliability reproduce? Confirmed in dispatch modes (absorption), refuted at workflow-latency level, sharpened on the Gate-3 gate (all 5 modes, both efforts)."
+---
+# Implementation Summary: Cross-Skill Scorecard & Integration
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-scorecard-and-integration |
+| **Completed** | 2026-07-02 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+1. **`scorecard.md`** — the cross-skill 5-mode x 3-executor roll-up: per-mode outcome summary, the five packet-wide findings, a confirm/refute table against packet 031's original claims, the ranked remediation backlog, and the reusable-assets inventory. Synthesizes ~120 scored runs across all five packages.
+2. **behavior_benchmark discoverability pointers** added to all five sub-skill READMEs (`deep-review`, `deep-research`, `deep-context`, `deep-ai-council`, `deep-improvement`), each describing its mode-appropriate delegation evidence.
+3. **Packet closeout** — parent phase map 005 -> Complete, parent status -> Complete, full-packet strict validation.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The four measurement phases each shipped a per-mode `scorecard.md`; this phase rolls them up rather than re-deriving. The cross-skill scorecard states the five packet-wide findings, adjudicates packet 031's original GPT-unreliability claims per mode (confirm/refute table), and ranks the remediation backlog with the Gate-3 documentation-halt precedence as the P0 item (four-mode, both-effort replicated). Discoverability pointers were added to all five sub-skill READMEs so each mode's benchmark is findable from the skill it tests.
+
+## fixtures/fx-002-research-target/implementation-summary.md
+---
+title: "Implementation Summary: URL Slug Utility"
+description: "The fixture provides a strict-valid benchmark target while preserving the slug utility's intentional Unicode specification gap."
+trigger_phrases:
+  - "url slug implementation summary"
+  - "research fixture summary"
+  - "slugify summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target"
+    last_updated_at: "2026-07-03T00:00:00Z"
+    last_updated_by: "fixture-author"
+    recent_action: "Fixture record"
+    next_safe_action: "Run bounded research benchmark"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "src/slugify.js"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "fixture-baseline"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Unicode policy remains intentionally unresolved."
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | fx-002-research-target |
+| **Completed** | 2026-07-03 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This fixture provides a strict-valid benchmark target for bounded research runs.
+It keeps the slug utility small and dependency-free while preserving the
+intentional gap between observed Unicode behavior and the spec's promises.
+
+### URL Slug Utility
+
+The utility lowercases input, trims surrounding whitespace, collapses
+non-alphanumeric runs to hyphens, strips edge hyphens, caps output length, and
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

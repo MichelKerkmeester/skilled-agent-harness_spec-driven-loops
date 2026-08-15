@@ -1,0 +1,74 @@
+You are deep-research iteration 3 (of 5) for lineage "deepseek-v4-pro-max", investigating one issue in this repository. Use Read, Grep and Bash (git) — read only, DO NOT modify any files. Ground every claim in file:line or command output.
+
+ISSUE
+The skill-advisor (and other runtime writers) leak nested .opencode / .advisor-state directories INTO specs/ instead of keeping advisor state at the repo root. Live symptom (HEAD): 23 nested .opencode dirs under specs/, plus .advisor-state under specs/hooks/008-pi-caching-like-reasonix/..., specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/, and specs/system-deep-loop/z_archive/026-goal-opencode-plugin/... . The packet meant to fix this, specs/system-skill-advisor/017-advisor-audit-and-state-containment, is Draft at 0% completion.
+
+FINDINGS SO FAR (prior iterations of this lineage; build on them, do not repeat):
+
+# deepseek-v4-pro-max iteration 1 — PARSE FAIL
+
+
+
+The `find_file_by_name` tool only matches files, not directories. Let me search for files inside `.opencode` and `.advisor-state` directories to confirm their existence and contents.
+
+Let me read the full overflow file and also search more specifically for `.advisor-state` and `.opencode` directories that might be advisor leaks rather than fixtures.
+
+
+
+Let me search more broadly for `.opencode` directories that aren't just test fixtures, and also look for `.advisor-state` in other locations.
+
+The `find_file_by_name` tool only matches files, not directories. Let me use a targeted approach to find `.opencode` and `.advisor-state` directories across specs.
+
+Interesting - 16 of 17 `.opencode` dirs are test fixtures, but one is not. Let me investigate the non-fixture one and also look for `.advisor-state` more broadly, plus check the fix packet.
+
+
+
+Key findings emerging. Let me check the git worktree situation, read the fix packet, and look at the nested `.opencode` directory contents more carefully.
+
+
+
+Now let me check the main repo (not the sandbox) for the full extent of the problem, and read the phase 001 child spec.
+
+
+
+Excellent findings from the main repo. Let me now do a comprehensive enumeration across the entire repo (not just specs/) and verify the content of each stray directory.
+
+
+
+
+
+
+
+
+
+Now I have the full enumeration. Let me verify that the stray dirs contain advisor-written state and check git tracking.
+# deepseek-v4-pro-max — iteration 2: Traced the full workspaceRoot → generation-counter path: the advisor resolves state relative to cwd, not the repo root, and auto-creates .opencode/skills/.advisor-state/ inside whatever directory the hook fires from.
+
+## Findings
+- ROOT CAUSE — workspaceRoot = cwd, not repo root: user-prompt-submit.ts:138-142 `workspaceRootFor(input)` returns `input.cwd ?? process.cwd()`. When a Claude Code / OpenCode session runs from inside a specs/ subdirectory, cwd points there. This is the entry point of the entire leak chain.
+- CRITICAL RESOLVER — hardcoded relative path joined to workspaceRoot: freshness/generation.ts:12 defines `GENERATION_RELATIVE_PATH = join('.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json')`. Line 29-31 `getSkillGraphGenerationPath(workspaceRoot)` = `join(resolve(workspaceRoot), GENERATION_RELATIVE_PATH)`. This blindly joins the hardcoded path to whatever workspaceRoot it receives — no repo-root walk-up, no canonicalization.
+- DIRECTORY AUTO-CREATION on write: generation.ts:109-110 `writeGenerationAtomic` calls `mkdirSync(dirname(filePath), { recursive: true })`. Same pattern in freshness/generation.ts:46 `writeJsonAtomic`. Any write to the generation counter creates the full .opencode/skills/.advisor-state/ tree under workspaceRoot.
+- FIRST-TIME TRIGGER: generation.ts:184-198 `readAdvisorGeneration` — when the file is absent (ENOENT, which is always true when workspaceRoot is inside specs/ since specs/ dirs don't have a .opencode/skills/ tree), it calls `setGeneration(workspaceRoot, filePath, 0)`. This writes generation=0 with reason='LEGACY_ADVISOR_GENERATION_BUMP', creating the nested dirs. Confirmed: all 3 leaked generation.json files in specs/ show exactly this payload.
+- FULL CALL CHAIN: buildSkillAdvisorBrief (skill-advisor-brief.ts:401) → getAdvisorFreshness(workspaceRoot) (freshness.ts:330) → readAdvisorGeneration(workspaceRoot) (generation.ts:184) → getAdvisorGenerationPath(workspaceRoot) (generation.ts:179) → getSkillGraphGenerationPath(resolve(workspaceRoot)) (freshness/generation.ts:29) → join(workspaceRoot, '.opencode/skills/.advisor-state/skill-graph-generation.json'). Every hop passes workspaceRoot through unchanged.
+- EXISTING FIX PATTERN ALREADY IN CODEBASE: skill-advisor-cli-fallback.ts:176-198 `findCliFallbackPaths(workspaceRoot)` walks UP from workspaceRoot (up to 14 levels) looking for `.opencode/bin/skill-advisor.cjs` to find the real repo root. This pattern should be replicated for the generation-counter resolver instead of trusting the raw workspaceRoot.
+- SUBPROCESS ALSO USES workspaceRoot AS cwd: subprocess.ts:310 spawns the Python advisor with `cwd: options.workspaceRoot`. While the Python script resolves its own REPO_ROOT from its file location (skill_advisor.py:43-45), any relative path operations inside the Python process would also resolve against the wrong base.
+- METRICS MODULE USES /tmp CORRECTLY: metrics.ts:178 stores diagnostics at `join(tmpdir(), 'speckit-skill-advisor-metrics')` — this is the correct pattern. The generation counter should similarly use an absolute, repo-root-anchored path.
+- DIRECTIVE LIFECYCLE STORE ALSO USES /tmp BY DEFAULT: directive-lifecycle-file-store.ts:46-48 defaults to `join(tmpdir(), 'speckit-advisor')` unless overridden by `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR` env var. This path is safe.
+
+## Answered
+- Where exactly does the advisor resolve its state directory? → freshness/generation.ts:29-31 `getSkillGraphGenerationPath(workspaceRoot)` joins `.opencode/skills/.advisor-state/skill-graph-generation.json` to the raw workspaceRoot.
+- Why can this resolve inside specs/ instead of the repo root? → user-prompt-submit.ts:138-142 passes `cwd` or `process.cwd()` as workspaceRoot; if the session runs from a specs/ subdirectory, the entire chain inherits that wrong root.
+- What creates the actual directories on disk? → generation.ts:109-110 `mkdirSync(dirname(filePath), { recursive: true })` in `writeGenerationAtomic`, triggered when `readAdvisorGeneration` hits ENOENT (generation.ts:194-195).
+
+## Open
+- What specific user action causes cwd to be inside specs/ when the hook fires? (Likely: opening Claude Code / OpenCode from a spec directory, or using worktrees checked out inside specs/)
+- Are there other runtime writers (beyond the advisor hook) that also use workspaceRoot=cwd and create .opencode dirs in specs/?
+- Should the fix use a walk-up pattern like findCliFallbackPaths, or a fixed repo-root derivation from the script location like the Python skill_advisor.py does?
+
+ITERATION 3 FOCUS
+Enumerate every runtime writer that can leak state (advisor daemon, launcher, hooks, plugins) and the conditions that trigger a nested write; note any guard that exists and why it is insufficient.
+
+Reply with ONLY a fenced json block:
+```json
+{"iteration":3,"lineage":"deepseek-v4-pro-max","focus_summary":"<one line>","findings":["<grounded finding with file:line or command evidence>", "..."],"answered":["<question this iteration resolved>"],"open_questions":["<still open>"],"confidence":0.0}
+```

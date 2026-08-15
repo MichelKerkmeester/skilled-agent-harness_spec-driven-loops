@@ -1,0 +1,812 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/010-deep-context-gathering"
+# PACKET: specs/system-deep-loop/z_archive/010-deep-context-gathering (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "deep-context loop"
+description: "Phase-parent packet for the deep-context loop: foundational build (001), runtime-robustness parity (002), cross-skill runtime-feature utilization (003), and reference-architecture alignment with the mature deep loops (004)."
+trigger_phrases:
+  - "deep-context"
+  - "context gathering"
+  - "context loop"
+  - "reuse catalog"
+  - "deep loop"
+importance_tier: "high"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering"
+    last_updated_at: "2026-06-07T10:30:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "All 4 phases shipped + verified; 004 reference alignment closed (e73ffe6610)"
+    next_safe_action: "None; all phases complete. Maintenance only"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "001-context-loop-foundation/spec.md"
+      - "002-runtime-robustness-parity/spec.md"
+      - "003-runtime-feature-utilization/spec.md"
+      - "004-reference-architecture-alignment/spec.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "001 shipped the loop; 002 added runtime-robustness parity; 003 hardened cross-skill runtime-feature utilization; 004 aligned the skill's references to its mature siblings. All four phases complete."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+
+## 001-context-loop-foundation/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "deep-context ships as the 4th deep loop and 3rd deep-loop-runtime consumer: a heterogeneous-parallel, inward codebase-context loop with a loop_type='context' coverage-graph extension and cross-executor-agreement convergence that produces a reuse-first Context Report."
+trigger_phrases:
+  - "deep-context implementation"
+  - "context loop summary"
+  - "implementation"
+  - "summary"
+  - "impl summary core"
+importance_tier: "high"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering/001-context-loop-foundation"
+    last_updated_at: "2026-06-06T23:30:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Phase 5: skill-advisor registered + synced to Barter v3.5 mirror"
+    next_safe_action: "Operator: run a live /deep:start-context-loop on a real feature"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-context/SKILL.md"
+      - ".opencode/skills/deep-context/graph-metadata.json"
+      - ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts"
+      - ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs"
+    session_dedup:
+      fingerprint: "sha256:1aecb6c05c8afddbea2821d951fa97eec42d3241a133b2c0cd0c60677edc6667"
+      session_id: "dc-134-20260606"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Coverage-graph context layer + convergence implemented and tested"
+      - "deep-context skill, command, and agent shipped"
+      - "Phase 4 alignment, catalog/playbook, and Barter integration verified"
+      - "Phase 5: skill-advisor returns deep-context #1 in Public and Barter v3.5"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 134-deep-context-gathering |
+| **Status** | Complete |
+| **Completed** | 2026-06-06 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 002-runtime-robustness-parity/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "deep-context reaches runtime-robustness parity: five deep-loop-runtime durability and validation features are wired into the host-driven loop and gated to loop_type='context' — atomic-state, jsonl-repair, post-dispatch-validate, loop-lock, and the executor-audit recursion guard — reusing the runtime helpers in-process with inline fallbacks."
+trigger_phrases:
+  - "runtime parity implementation"
+  - "atomic state summary"
+  - "loop lock summary"
+  - "implementation"
+  - "summary"
+importance_tier: "high"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering/002-runtime-robustness-parity"
+    last_updated_at: "2026-06-06T23:55:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Wired 5 robustness features into the host-driven context loop; verified"
+    next_safe_action: "Operator: exercise the 5 robustness features in a live context loop run"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-context/scripts/reduce-state.cjs"
+      - ".opencode/skills/deep-context/scripts/loop-lock.cjs"
+      - ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml"
+    session_dedup:
+      fingerprint: "sha256:2b71f0c4a9d35ee2c6184f93a17d4cb5e820a6713fd9c2ee4407b51a9c6d3e72"
+      session_id: "dc-134-002-20260606"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All five robustness features wired, gated to loop_type='context', and verified"
+      - "bayesian-scorer and fanout-run excluded as non-gaps with rationale"
+      - "node --check green on both scripts; fixture smoke run + loop-lock cycle green"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-runtime-robustness-parity |
+| **Status** | Complete |
+| **Completed** | 2026-06-06 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+deep-context now carries the same durability and validation guarantees that `deep-research` and `deep-review` get from the shared `deep-loop-runtime`. Phase 001 shipped the loop as a host-driven consumer but skipped the runtime's robustness layer; this phase wires five of those features into the host-driven loop, every one gated to `loop_type='context'` so research and review behavior is untouched. Two further runtime features were evaluated and deliberately excluded as non-gaps.
+
+## 003-runtime-feature-utilization/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Cross-skill audit identified three runtime-feature gaps in the deep skill family; three targeted fixes closed them using existing runtime primitives; five deliberate non-fixes are recorded as ADRs after architect consult and two parallel confidence-gate audits."
+trigger_phrases:
+  - "deep-loop-runtime utilization summary"
+  - "runtime hardening implementation"
+  - "deep-improvement atomic state"
+  - "deep-review loop-lock implementation"
+  - "fanout-run executor-audit wiring"
+importance_tier: "high"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering/003-runtime-feature-utilization"
+    last_updated_at: "2026-06-07T07:30:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "10-round deep review + remediation: P0 resolver, reducer wiring, 6 P1s, 7 docs"
+    next_safe_action: "Done; see review/review-report.md CONDITIONAL-PASS; P2 backlog deferred"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-improvement/scripts/shared/reduce-state.cjs"
+      - ".opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs"
+      - ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-model-benchmark-loop_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
+      - ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+      - ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:21f084a2955d99a9dfb62e715e4564513164ec612ad6122518ce1ba3ac9e1663"
+      session_id: "dlr-135-20260606"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "fanout-run.cjs is the real CLI-seat spawn-env site; multi-seat-dispatch.cjs confirmed no-spawn primitive"
+      - "All three fixes implemented and verified; five non-fix ADRs documented"
+      - "Runtime 291/291; council 23/23; fixture smoke green; validate.sh PASSED"
+      - "GAP-2: deep-improvement loop-lock added to all four improvement/benchmark YAMLs (auto+confirm)"
+      - "GAP-3: readJournal corruption surfacing added; readJournalDetailed exported; node --check PASS"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-runtime-feature-utilization |
+| **Status** | Complete |
+| **Completed** | 2026-06-06 |
+| **Level** | 3 |
+
+## 004-reference-architecture-alignment/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "deep-context's reference layer was aligned to its mature siblings: the two flat references moved into convergence/ and protocol/ subfolders, eight new lean references mirror deep-research's layout, the smart-router was rewritten to the canonical pattern, and all old-flat-path citations were swept to the new paths, with zero loop-behavior change. Shipped and committed in e73ffe6610; validate.sh --strict passed on 134 / 003 / 004."
+trigger_phrases:
+  - "reference alignment implementation"
+  - "smart router rewrite summary"
+  - "reference subfolder move"
+  - "implementation"
+  - "summary"
+importance_tier: "high"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering/004-reference-architecture-alignment"
+    last_updated_at: "2026-06-07T10:30:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped reference reorg + canonical router + citation sweep (e73ffe6610)"
+    next_safe_action: "None; phase complete and all follow-ups resolved"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-context/SKILL.md"
+      - ".opencode/skills/deep-context/references/convergence/convergence.md"
+      - ".opencode/skills/deep-context/references/protocol/loop_protocol.md"
+      - ".opencode/skills/deep-context/references/guides/quick_reference.md"
+    session_dedup:
+      fingerprint: "sha256:db845e0d74e2f0decc7e374fefdc3ca128789fc7e931a977111fcaf95099955f"
+      session_id: "dc-134-004-20260607"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Reference work shipped: 2 flat refs moved, 8 new refs authored, router rewritten, citations swept"
+      - "MOVE the two flat files; mirror deep-research's 4-subfolder layout; lean + cross-linked references"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-reference-architecture-alignment |
+| **Status** | Complete |
+| **Completed** | 2026-06-07 (commit e73ffe6610) |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet aligned deep-context's reference layer and smart-router to its mature sibling `deep-research` so the skill is navigable, growable, and recognizably a peer loop, while changing zero loop behavior. The work shipped and is committed in `e73ffe6610`. The sections below describe what was delivered.
+
+
+## 005-runtime-mirror-parity/implementation-summary.md
+---
+title: "Implementation Summary: Deep-context native agent runtime mirror parity"
+description: "Deep-context's native seat now dispatches in all three runtimes: the two missing agent mirrors are created and the mirror convention is documented in two skills."
+trigger_phrases:
+  - "deep-context mirror summary"
+  - "runtime mirror parity done"
+  - "deep-context claude codex mirror"
+  - "deep-loop agent mirror convention"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering/005-runtime-mirror-parity"
+    last_updated_at: "2026-06-07T10:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Created Claude and Codex deep-context mirrors plus two skill notes"
+    next_safe_action: "Optional: add a CI three-way parity guard in a follow-up packet"
+    blockers: []
+    key_files:
+      - ".opencode/agents/deep-context.md"
+      - ".claude/agents/deep-context.md"
+      - ".codex/agents/deep-context.toml"
+      - ".opencode/skills/deep-context/SKILL.md"
+      - ".opencode/skills/deep-loop-runtime/SKILL.md"
+      - ".opencode/commands/deep/start-context-loop.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-134-005-runtime-mirror-parity"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Mirror the agent vs fork the command? -> mirror (commands are shared symlinks)."
+      - "Note location? -> deep-context SKILL.md + deep-loop-runtime SKILL.md."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-runtime-mirror-parity |
+| **Completed** | 2026-06-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Deep-context's native analyzer seat now runs no matter which runtime you start the loop from. Before this change, `@deep-context` existed only in `.opencode/agents/`, so launching `/deep:start-context-loop` from Claude Code or Codex quietly dropped the two native seats from the default pool and weakened the cross-executor agreement signal. It was the only one of 13 agents missing its runtime mirrors.
+
+
+## 006-native-default-executor-pool/implementation-summary.md
+---
+title: "Implementation Summary: Deep-context native-only default executor pool"
+description: "The deep-context loop now defaults to a native-only pool (2 @deep-context seats); the pool question is Native / Custom and no longer names specific models."
+trigger_phrases:
+  - "deep-context native default summary"
+  - "executor pool default done"
+  - "native only pool summary"
+  - "deep-context pool restructure done"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering/006-native-default-executor-pool"
+    last_updated_at: "2026-06-07T11:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Shipped native-only default and Native/Custom pool question"
+    next_safe_action: "Proceed to the deep-command Phase 0 + setup gating packet"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-context/assets/deep_context_config.json"
+      - ".opencode/commands/deep/start-context-loop.md"
+      - ".opencode/commands/deep/assets/deep_start-context-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-context-loop_confirm.yaml"
+      - ".opencode/skills/deep-context/SKILL.md"
+      - ".opencode/skills/deep-context/README.md"
+      - ".opencode/agents/deep-context.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-134-006-native-default-executor-pool"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Default pool? -> native-only (2 seats)."
+      - "Options? -> A) Native only (default), B) Custom."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-native-default-executor-pool |
+| **Completed** | 2026-06-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Running `/deep:start-context-loop` no longer spawns paid CLI executors by default. The default pool is now native-only (2 `@deep-context` seats), and the pool question stops enumerating a specific model list.
+
+## 007-deep-command-gate-hardening/implementation-summary.md
+---
+title: "Implementation Summary: Deep-command @general + setup hard-blocker gates"
+description: "Every deep command now opens with two un-skippable HARD-BLOCK gates: Phase 0 @general-agent verification, then the BLOCKED unified setup phase."
+trigger_phrases:
+  - "deep command gate summary"
+  - "phase 0 gate done"
+  - "unskippable setup done"
+  - "deep command hard blocker summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering/007-deep-command-gate-hardening"
+    last_updated_at: "2026-06-07T12:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Shipped Phase 0 + BLOCKED setup gates on all 7 deep commands"
+    next_safe_action: "Optional: a runtime hook for hard enforcement (deferred by user)"
+    blockers: []
+    key_files:
+      - ".opencode/commands/deep/start-context-loop.md"
+      - ".opencode/commands/deep/start-research-loop.md"
+      - ".opencode/commands/deep/start-review-loop.md"
+      - ".opencode/commands/deep/ask-ai-council.md"
+      - ".opencode/commands/deep/start-skill-benchmark-loop.md"
+      - ".opencode/commands/deep/start-model-benchmark-loop.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-007-deep-command-gate-hardening"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Enforcement? -> markdown hard-blocker (no hook)."
+      - "Gates? -> both (@general Phase 0 + un-skippable setup)."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-deep-command-gate-hardening |
+| **Completed** | 2026-06-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Every deep command now opens with the same two un-skippable gates, so an AI cannot start a deep loop without first confirming it is the orchestrator and completing setup. Before this, only two of the seven commands had the @general-agent check, and the setup-phase blocker varied in strength.
+
+
+## 008-deep-loop-folder-binding/implementation-summary.md
+---
+title: "Implementation Summary [template:level_2/implementation-summary.md]"
+description: "The /deep:* setup contract now binds a spec folder named inline in the scope and fails closed on standalone-while-identifiable, so a context run pointed at a folder lands inside it."
+trigger_phrases:
+  - "deep loop folder binding summary"
+  - "scope extract implementation"
+  - "standalone guard delivered"
+  - "deep context misroute fix"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering/008-deep-loop-folder-binding"
+    last_updated_at: "2026-06-07T10:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Applied family-wide fix; dry-run + validate green"
+    next_safe_action: "Commit via sk-git when ready"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md"
+      - ".opencode/commands/deep/start-context-loop.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "ctx-fix-008-deep-loop-folder-binding"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Fix scope = whole /deep:* family"
+      - "Agent ruled out as defect source"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-deep-loop-folder-binding |
+| **Completed** | 2026-06-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A `/deep:*` run can now point at a spec folder by naming its path inline in the scope, and the packet lands inside that folder. Before this change the setup contract only read `spec_folder` from a `--spec-folder` flag, a marker, or an interactive answer, so a folder named in the scope text was invisible. deep-context made it worse by allowing a standalone run dir to win with no guard, which is how a context run aimed at `026-graph-and-context-optimization` wrote to a standalone dir instead of `026/context/`.
+
+### Positional-scope spec-folder extraction (shared)
+`auto_mode_contract.md` §1 gains a Tier-1 resolution source: if the scope contains a path that canonicalizes to an existing folder under `specs/` or `.opencode/specs/`, the command binds `spec_folder` to it and strips the token from the scope. A folder named inline is now a confident resolution, not an ambiguity or an absence. An explicit flag or marker still wins.
+
+### Fail-closed standalone guard (shared + deep-context)
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/011-deep-context-workflow-adoption"
+# PACKET: specs/system-deep-loop/z_archive/011-deep-context-workflow-adoption
+
+---
+title: "Implementation Summary: deep-context workflow adoption (root-cause fix)"
+description: "Council-advised durable fix for the judgment failure that hand-rolled a manual gather instead of /deep:start-context-loop: a PLAN-WORKFLOW LOCK plus reinforcing secondaries and a constitutional rule."
+trigger_phrases:
+  - "deep-context workflow adoption shipped"
+  - "plan-workflow lock"
+importance_tier: "high"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/011-deep-context-workflow-adoption"
+    last_updated_at: "2026-06-07T20:05:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped PLAN-WORKFLOW LOCK + secondaries + constitutional rule"
+    next_safe_action: "Re-index the constitutional rule when mk-spec-memory MCP reconnects"
+    blockers: []
+    key_files:
+      - "AGENTS.md"
+      - ".opencode/skills/system-spec-kit/constitutional/deep-skill-workflow-required.md"
+      - ".opencode/skills/deep-context/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-context-adoption-137"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions:
+      - "Root cause (council-confirmed): epistemic (assumed Gate-3 friction, never read the command contract) -> behavioral (reflexive deep-research manual pattern over-generalized to the context loop) -> process (silent plan deviation x24). Tooling was fine. Fix is behavioral/governance, not a command change."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 137-deep-context-workflow-adoption |
+| **Completed** | 2026-06-07 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A durable, multi-surface fix for the judgment failure that hand-rolled a manual `cli-opencode` gather across packet 135 instead of the plan-specified `/deep:start-context-loop`. The AI Council confirmed the root cause is behavioral and governance, not tooling, so the fix lives in the instruction canon and the memory system, not in the command.
+
+### The fix (four reinforcing surfaces)
+
+1. **PRIMARY: PLAN-WORKFLOW LOCK** in `AGENTS.md` (a HARD BLOCKER beside the Four Laws). `CLAUDE.md` is a symlink to `AGENTS.md`, so one edit binds claude, codex and opencode. A plan-named workflow is frozen like scope: verify assumed friction by reading the contract, flag genuine blocks to the user, never silently hand-roll a substitute. Grep-verifiable.
+2. **SECONDARY-A: cross-runtime feedback memory** saved into this packet via `generate-context.js`, so the lesson surfaces at prompt boundaries in any runtime via the packet trigger phrases.
+3. **SECONDARY-B: anti-pattern NEVER item** in `.opencode/skills/deep-context/SKILL.md` (symlink-shared across runtimes).
+4. **CONSTITUTIONAL RULE** (operator-requested): `constitutional/deep-skill-workflow-required.md` generalizes the rule to all deep skills (deep-context, deep-research, deep-review, deep-ai-council, deep-improvement): use the actual command/agent/workflow, never hand-roll. The constitutional README was updated from 12 to 13 rule files.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `AGENTS.md` | Modify | PLAN-WORKFLOW LOCK hard blocker (CLAUDE.md symlinks to it) |
+| `.opencode/skills/deep-context/SKILL.md` | Modify | Anti-pattern NEVER item |
+| `.opencode/skills/system-spec-kit/constitutional/deep-skill-workflow-required.md` | Create | Constitutional rule for all deep skills |
+| `.opencode/skills/system-spec-kit/constitutional/README.md` | Modify | Count and lists updated to 13 |
+| `137-deep-context-workflow-adoption/ai-council/**` | Create | Council deliberation artifacts |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The `@ai-council` agent was dispatched at Depth 1 (using the proper workflow this time, not a manual approximation). It ran four diverse-lens seats (failure-analysis, behavioral-decision, tooling-design, process-governance), a critique round, and converged at 90% on the PLAN-WORKFLOW LOCK as the primary, with the feedback memory and the SKILL.md line as endorsed secondaries, explicitly rejecting more command-doc prose and a Bash-lint hook as over-correction. The orchestrator implemented all of it (the council writes only `ai-council/**`). The operator then asked for a constitutional rule, which was added and the constitutional README reconciled.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Fix the behavior and governance, not the command | The command's contract was correct and present (Gate-3-safe, cli-* executor seats); the failure was not reading it |
+| PLAN-WORKFLOW LOCK in AGENTS.md, not a 5th Law | "The Four Laws" is a referenced brand; a co-equal HARD BLOCKER avoids cross-doc drift |
+| Generalize the constitutional rule to all deep skills | The same hand-roll risk applies to research, review, council and improvement loops, not just context |
+| Keep the rule evergreen | No mutable packet number inside the constitutional rule; the incident reference stays generic |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| PLAN-WORKFLOW LOCK present in AGENTS.md and via the CLAUDE.md symlink | PASS (grep == 1 each) |
+| Anti-pattern NEVER item in deep-context SKILL.md | PASS (grep == 1) |
+| Constitutional rule file written; README at 13 files | PASS |
+| `validate.sh --strict` on the packet | PASS |
+| Constitutional rule LIVE-INDEXED | PENDING — mk-spec-memory MCP disconnected mid-scan; the file is constitutional by placement and auto-loads at the next daemon priming; retry `memory_index_scan` on /mcp reconnect |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Constitutional live-index pending.** A constitutional rule is a directive rule by design, exactly like the other 12 in the folder, which all index and surface. The live index is pending for a tooling reason, not a content reason: `memory_save` applies a session-memory sufficiency gate that a lean directive rule scores low against, so the correct path for a constitutional rule is the bulk `memory_index_scan` (the path the existing rules use) which then hit an mk-spec-memory MCP disconnect. The rule file is correct (`importanceTier: constitutional`, in the constitutional folder) and auto-loads at the next daemon priming. Re-run `memory_index_scan` after a `/mcp` reconnect to activate it immediately, and verify it lands. This is a runtime activation step, not a missing or malformed artifact.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/012-deep-loop-executor-config-dir"
+# PACKET: specs/system-deep-loop/z_archive/012-deep-loop-executor-config-dir
+
+---
+title: "Implementation Summary: Deep loop executor config-dir override"
+description: "Deep-loop fan-out can now route individual cli-claude-code seats through a caller-provided Claude config directory."
+trigger_phrases:
+  - "deep-loop configDir implementation"
+  - "Fable Claude account routing"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/012-deep-loop-executor-config-dir"
+    last_updated_at: "2026-06-10T16:50:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed per-executor Claude config-dir routing"
+    next_safe_action: "Use --config-dir for Fable Claude fan-out seats"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts"
+      - ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+      - ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-loop-executor-config-dir-20260610"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The override is implemented as CLAUDE_CONFIG_DIR in the spawned process env, not as a new Claude CLI arg."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `.opencode/specs/skilled-agent-orchestration/140-deep-loop-executor-config-dir` |
+| **Completed** | 2026-06-10 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Deep-loop fan-out can now route an individual `cli-claude-code` lineage through a caller-provided Claude config directory. This lets a Fable 5 seat use the account at `~/.claude-account2` without applying that account override to Codex, OpenCode, native seats, or the parent process.
+
+### Executor Config Field
+
+`executorConfigSchema` now includes `configDir` as an optional nullable string. It trims and rejects blank input, and per-kind support permits it only for `cli-claude-code`, so non-Claude executors cannot silently accept Claude account routing fields.
+
+### Fanout Environment Injection
+
+`fanout-run.cjs` now expands `~` and `~/...` with `os.homedir()` and merges `CLAUDE_CONFIG_DIR` into the per-lineage env only when the lineage kind is `cli-claude-code` and `configDir` is set. The merge happens after `buildExecutorDispatchEnv(lineage, process.env)`, so it composes with the existing `CLAUDE_` allowlist and with per-replica state-dir isolation.
+
+### Command Setup Plumbing
+
+`start-review-loop.md` and the shared `start-research-loop.md` setup contracts now document `--config-dir=PATH`, the `executor_config_dir` marker field, and repeatable fan-out group support. The review auto YAML also carries `configDir` through the single-executor binding and documents `CLAUDE_CONFIG_DIR` export for single auto Claude dispatches.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` | Modified | Added `configDir` schema field and `cli-claude-code` support. |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modified | Added home expansion and scoped `CLAUDE_CONFIG_DIR` injection. |
+| `.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts` | Modified | Added configDir validation coverage. |
+| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts` | Modified | Added set/absent env propagation coverage. |
+| `.opencode/skills/deep-loop-runtime/tests/unit/executor-audit.vitest.ts` | Modified | Aligned typed fixtures with parsed executor shape. |
+| `.opencode/skills/deep-loop-runtime/tests/unit/dispatch-failure.vitest.ts` | Modified | Aligned typed fixtures with parsed executor shape. |
+| `.opencode/commands/deep/start-review-loop.md` | Modified | Documented `--config-dir=PATH` mapping. |
+| `.opencode/commands/deep/start-research-loop.md` | Modified | Kept sibling setup contract aligned. |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Modified | Added `configDir` binding and single auto Claude env hint. |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The change stayed inside the deep-loop executor configuration and fanout spawn path. Verification used focused schema/unit tests plus a stubbed `claude` binary, so the exact spawned command and environment were proven without running a full Claude dispatch.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Use `CLAUDE_CONFIG_DIR` in the spawned env instead of a Claude CLI argument | The verified working command uses the environment variable, and `buildExecutorDispatchEnv` already allowlists `CLAUDE_` for this executor kind. |
+| Support `configDir` only for `cli-claude-code` | Other executors do not consume Claude account directories, so accepting the field there would hide user mistakes. |
+| Expand only `~` and `~/...` | This matches the requested account path without introducing user-home lookup or shell-specific expansion behavior. |
+| Keep real Claude dispatch out of verification | A stub proves argv and env propagation without consuming account quota or writing real lineage artifacts. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Requested `cd .opencode/skills/deep-loop-runtime && npx tsc --noEmit -p tsconfig.json` | FAIL: `error TS5058: The specified path does not exist: 'tsconfig.json'.` The skill has no local tsconfig. |
+| Focused TypeScript no-emit with temp config | PASS: `npx tsc --noEmit -p /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/deep-loop-tsconfig.json` completed with no output. `noImplicitAny` was disabled only to bypass existing transitive `better-sqlite3` declaration gaps outside the changed executor files. |
+| Requested bare Vitest command | FAIL: bare `npx vitest run tests/unit/executor-config.vitest.ts tests/unit/fanout-run.vitest.ts tests/unit/executor-audit.vitest.ts` reported `No test files found` because the local default include excludes `*.vitest.ts`. |
+| Focused Vitest with temp include config | PASS: 3 test files passed, 78 tests passed. |
+| Stub smoke with `configDir=~/.claude-account2` | PASS: captured `COMMAND=claude`, argv contains `--model claude-fable-5`, and env contains `CLAUDE_CONFIG_DIR=/Users/michelkerkmeester/.claude-account2`. |
+| Stub smoke without `configDir` | PASS: captured `CLAUDE_CONFIG_DIR=` and no account path. |
+| Comment hygiene | PASS: modified code/test files clean when run through the Python hygiene checker. |
+| Alignment drift: `.opencode/skills/deep-loop-runtime` | PASS: scanned 77 files, findings 0, errors 0, warnings 0, violations 0. |
+| Alignment drift: `.opencode/commands/deep` | PASS: scanned 0 files, findings 0, errors 0, warnings 0, violations 0. |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **No local deep-loop tsconfig exists.** The exact requested TypeScript command cannot run until the skill grows a local `tsconfig.json` or the root config includes deep-loop sources.
+2. **Bare Vitest does not discover `.vitest.ts` files in this directory.** A temporary Vitest config was required to run the requested focused files.
+3. **Confirm-mode YAML was not changed.** The requested writable YAML surface named the review auto YAML; fan-out behavior is covered because confirm/auto fan-out both route through `fanout-run.cjs` when given fanout JSON.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

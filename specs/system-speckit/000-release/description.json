@@ -1,0 +1,27 @@
+{
+  "level": "phase-parent",
+  "specFolder": "system-speckit/000-release",
+  "description": "Planning capture for the v4.0.0.0 release: gather all v3.6.0.0..HEAD changes (2,826 commits across ~54 packets) into public release notes and a refreshed root README, via deterministic git extraction plus cheap-model map-reduce and a seeded deep-research synthesis layer.",
+  "keywords": [
+    "release",
+    "release-notes",
+    "v4",
+    "changelog",
+    "readme",
+    "deep-research",
+    "deepseek-flash",
+    "glm-5.2",
+    "cli-devin",
+    "map-reduce",
+    "conventional-commits"
+  ],
+  "lastUpdated": "2026-08-14T00:00:00.000Z",
+  "specId": "000",
+  "folderSlug": "release",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "_note": "Hand-written lean stub (spec-memory MCP disconnected at authoring). Regenerate with generate-description.js before relying on memory search."
+}

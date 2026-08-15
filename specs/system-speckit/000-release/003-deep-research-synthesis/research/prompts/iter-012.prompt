@@ -1,0 +1,902 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/cli-external-orchestration/z_archive/017-cli-devin-effectiveness-improvements"
+# PACKET: specs/cli-external-orchestration/z_archive/017-cli-devin-effectiveness-improvements
+
+---
+title: "Implementation Summary: 105"
+description: "Filled post-implementation."
+trigger_phrases:
+  - "105 implementation"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/017-cli-devin-effectiveness-improvements"
+    last_updated_at: "2026-05-16T05:50:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Scaffolded stub"
+    next_safe_action: "Fill after agent dispatch completes"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:06ad6401d2df18c58bed3d9b583958f97419379f40c338bb93470af9a23c6bab"
+      session_id: "105-impl-summary"
+      parent_session_id: null
+    completion_pct: 5
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | cli-external-orchestration/017-cli-devin-effectiveness-improvements |
+| **Phase** | 105 |
+| **Completed** | TBD |
+| **Level** | 1 |
+| **Files in scope** | 9 modified (3 recipes + SKILL + 2 references + iter template + 2 YAML) + 1 created (retrospective.md) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+(Filled post-execution.) cli-devin v1.0.4.0 bundle touches these concrete artifacts:
+
+- `.opencode/skills/cli-devin/SKILL.md` (frontmatter `version: 1.0.4.0`; new ALWAYS rule #14 mandating sequential_thinking)
+- `.opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json` (`mcp_servers`, `system_instructions`, narrow Write scope)
+- `.opencode/skills/cli-devin/assets/agent-config-deep-review-iter.json` (same)
+- `.opencode/skills/cli-devin/assets/agent-config-synthesis.json` (`mcp_servers`, `system_instructions`)
+- `.opencode/skills/cli-devin/references/deep-loop-iter-contract.md` (sequential_thinking section + prompt invariants)
+- `.opencode/skills/cli-devin/references/agent-config-recipes.md` (schema reference + per-recipe rationale)
+- `.opencode/skills/cli-devin/assets/deep-loop-iter-template.md` (inline JSONL + ref_tag requirement)
+- `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` (`if_cli_devin` `gtimeout 900` + tool-rejection detection)
+- `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (same)
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+(Filled post-execution.) 3 parallel opus agents on disjoint file sets (Bucket A: recipes + MCP; Bucket B: SKILL + references + asset; Bucket C: YAML + dispatchers). Final integration smoke-test by main agent confirmed sequential_thinking invocation in a tiny iter. Final commit on main bundles all three.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+| Decision | Why |
+|----------|-----|
+| Mandate sequential_thinking via BOTH mcp_servers + system_instructions | Belt-and-suspenders: MCP registration ensures runtime availability; system_instructions ensures the model actually invokes it |
+| Narrow Write scope on iter recipes (not broader) | Defense-in-depth: only allow Write to the 2 paths the iter actually needs |
+| 3-bucket parallel agent dispatch | Disjoint file sets prevent race; opus models handle the architecturally-sensitive recipe + YAML edits better than sonnet |
+| v1.0.4.0 NOT applied to in-flight 999 run | 999 keeps v1.0.3.0; the v1.0.4.0 improvements affect FUTURE deep-loop runs |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Command | Result |
+|-------|---------|--------|
+| 105 packet strict-validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/cli-external-orchestration/017-cli-devin-effectiveness-improvements --strict` | TBD |
+| Recipe smoke (research-iter) | `devin -p --agent-config <substituted-recipe> --model swe-1.6 -- "say ok then stop"` | TBD |
+| Recipe smoke (review-iter) | same | TBD |
+| Recipe smoke (synthesis) | same | TBD |
+| MCP registration check | `devin mcp list \| grep sequential_thinking` | TBD |
+| Sequential_thinking tool-trace | dispatch tiny iter; inspect stderr for `mcp__sequential_thinking__sequentialthinking` | TBD |
+| sk-doc validate (SKILL.md) | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-devin/SKILL.md` | TBD |
+| sk-doc validate (references) | same per reference doc | TBD |
+| YAML safe_load (research) | `python3 -c "import yaml; yaml.safe_load(open('.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml'))"` | TBD |
+| YAML safe_load (review) | same for deep-review_auto.yaml | TBD |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+- Sequential_thinking adds ~10s per iter; net positive but not free
+- The system_instructions mandate relies on SWE-1.6 actually calling the tool — adversarial prompts could skip it
+- Tool-rejection detection in YAML is pattern-based (stderr regex); future Devin runtime may change the error string
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality"
+# PACKET: specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: cli-devin prompt-quality arc (SWE 1.6 optimization → file extraction → cross-CLI propagation → cross-model validation)"
+description: "Phase parent for the seven-phase arc that takes cli-devin's prompt scaffolding from anecdote-driven to data-driven defaults across SWE-1.6, deepseek-v4, kimi-k2.6 — and propagates the winning composition guidance cross-CLI to the four sibling CLI skills."
+trigger_phrases:
+  - "cli-devin prompt quality arc"
+  - "cli-devin optimization phases"
+  - "swe 1.6 cross-model validation"
+  - "cli-devin RCAF default"
+  - "bundle-gate-aversion cross-CLI"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality"
+    last_updated_at: "2026-05-17T20:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "merged-114-116-117-118-into-113-phased-arc"
+    next_safe_action: "monitor-v1-0-6-1-uplift-in-production"
+    blockers: []
+    key_files:
+      - "001-council-design/spec.md"
+      - "002-eval-rig/spec.md"
+      - "003-eval-loop/synthesis.md"
+      - "004-skill-uplift/implementation-summary.md"
+      - "005-extraction-rerun/implementation-summary.md"
+      - "006-cross-cli-rcaf-propagation/implementation-summary.md"
+      - "007-cross-model-validation/analysis.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000113"
+      session_id: "113-phase-parent-merge"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Phase parent vs flat: phase parent (7 children) — design / eval / extraction / propagation / cross-model validation separation"
+      - "Existing deep-flow fit: NO (deep-agent-improvement profile generator is agent-file-specific); built bespoke deep-loop"
+      - "Loop architecture: council-seeded hill-climbing with deterministic + grader scoring, 3-signal convergence"
+      - "RCAF cross-model: validated on SWE-1.6, deepseek-v4-pro, kimi-k2.6 — wins on all three"
+      - "Bundle-gate-aversion cross-model: holds on all three measured models"
+      - "Framework-dominates-anti-hallucination cross-model: holds on all three measured models"
+
+## 001-council-design/implementation-summary.md
+---
+title: "Implementation Summary: Council Design"
+description: "Placeholder — populated post-execution after council runs and council-report.md is ratified."
+trigger_phrases:
+  - "113/001 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/001-council-design"
+    last_updated_at: "2026-05-16T17:42:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Council ran; council-report.md ratified; consumed by 002 and 003"
+    next_safe_action: "None — council artifacts finalized in ai-council/"
+    blockers: []
+    key_files:
+      - "ai-council/council-report.md"
+      - "ai-council/critique.md"
+      - "ai-council/seat-proposals/pragmatist.md"
+      - "ai-council/seat-proposals/skeptic.md"
+      - "ai-council/seat-proposals/optimizer.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000113001"
+      session_id: "113-001-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 113-cli-devin-prompt-quality/001-council-design |
+| **Completed** | 2026-05-16 |
+| **Level** | 3 |
+| **Executor policy** | claude-only (operator constraint) |
+| **Seats** | pragmatist, skeptic, optimizer — all claude-opus-4-7 via Agent subagent |
+| **Wall-clock** | ~10 min (3 parallel seat dispatches + critique + convergence) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Three council seats converged on a binding design contract for 002+003+004: 5-dimension rubric (D1 Acceptance 0.25 / D2 Bundle 0.30 / D3 Path 0.20 / D4 Hallucination 0.15 / D5 Pre-plan 0.10), 7-fixture catalog with cluster coverage and 1 adversarial path-traversal test, single claude-sonnet-4.6 grader with confidence-threshold dual-grader recovery hook, 6/12 iter floor/cap, and 4 additive requirements bolted on (grader cache invalidation, iter-1 sanity-review gate, D2 hard-gate semantics, interaction-term tracking).
+
+### Council Outcome
+
+15 distinct decisions resolved across the 3 seats. 1 unanimous (Q1 flow choice — all 3 voted bespoke loop). 14 majority-converged via two-of-three voting. 0 escalations to operator. 3 decisions flagged for post-iter-3 monitoring (Acceptance weight, Hallucination weight, Min iters floor) — Skeptic and Optimizer surfaced concerns that lost the vote but have real evidence behind them.
+
+## 002-eval-rig/implementation-summary.md
+---
+title: "Implementation Summary: Eval Rig"
+description: "Placeholder — populated post-build after dry-run gate passes and operator signs off."
+trigger_phrases:
+  - "113/002 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/002-eval-rig"
+    last_updated_at: "2026-05-16T20:30:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Built rig; dry-run gate ALL PASS; handed off to 003 and powered downstream phases 005 and 007"
+    next_safe_action: "None — rig consumed by 003-eval-loop, 005-extraction-rerun, 007-cross-model-validation"
+    blockers: []
+    key_files:
+      - "lib/cache.cjs"
+      - "grader/harness.cjs"
+      - "grader/dispute.cjs"
+      - "scripts/dry-run.cjs"
+      - "scripts/iter1-sanity-gate.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000113002"
+      session_id: "113-002-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 113-cli-devin-prompt-quality/002-eval-rig |
+| **Completed** | 2026-05-16 |
+| **Level** | 3 |
+| **Dry-run gate** | ALL PASS (5/5 subtests) |
+| **Total files** | 22 (7 fixtures + 6 cjs/scripts + 2 grader + 2 prompts + 3 canned outputs + 1 .gitignore + 1 dry-run.cjs) |
+| **Operator constraint** | claude-only — no codex/gemini/devin dispatches in build |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Rig is operational. 22 files implement the eval pipeline: 7 council-ratified fixtures (one per failure cluster), a 4-script deterministic library catching bundle-gate / cwd / pre-plan / hallucination regressions, a sha256-keyed dual-cache (det + grader) with atomic temp+rename writes and mkdir-based 5-min-TTL advisory locking, a claude-sonnet grader harness with dispute-resolver recovery hook, an iter-1 manual sanity-review gate honoring the council's Skeptic-adopted REQ-NEW, and a dry-run orchestrator validating the whole pipeline against 3 canned outputs without burning a single SWE 1.6 dispatch. Every subtest passes; verify-no-swe16-dispatch grep confirms zero external CLI calls in the build itself.
+
+### Eval Rig Architecture
+
+- **Fixtures (`fixtures/fix-NNN-<slug>/task.json`)** declare task description, scope (CWD + allowed writes), acceptance criteria (typed: grep / grep_absent / deterministic command / git_diff_paths), grounded_in citation, and a per-fixture allowlist (cli_flags + symbols) that hallucination-flag.cjs uses as ground truth. Each fixture maps to a distinct failure cluster: hallucinated CLI flag (fix-001), wrong-cwd paths (fix-002), bundle-gate smoke-run (fix-003), multi-file scope-boundary (fix-004), acceptance-strict deepEqual (fix-005), adversarial path-traversal (fix-006), baseline pure-function diagnostic (fix-007).
+
+## 003-eval-loop/implementation-summary.md
+---
+title: "Implementation Summary: Eval Loop"
+description: "Placeholder — populated post-loop-run after synthesis.md is written and operator signs off."
+trigger_phrases:
+  - "113/003 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/003-eval-loop"
+    last_updated_at: "2026-05-16T23:11:42Z"
+    last_updated_by: "main_agent"
+    recent_action: "Shipped 6-iter loop; winner v-004-rcaf-medium"
+    next_safe_action: "None — synthesis.md consumed by 004 005 007"
+    blockers: []
+    key_files:
+      - "synthesis.md"
+      - "state/eval-loop-state.jsonl"
+      - "state/best-variant.json"
+      - "iterations/iteration-004.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000113003"
+      session_id: "113-003-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 113-cli-devin-prompt-quality/003-eval-loop |
+| **Completed** | 2026-05-16 |
+| **Level** | 3 |
+| **Outcome** | BUDGET EXHAUSTED at iter 6 (no early convergence; 5 seeded + 1 mutation explored) |
+| **Winner** | v-004-rcaf-medium (score 0.5796) |
+| **Total SWE 1.6 dispatches** | 42 |
+| **Wall-clock** | ~109 min (started 19:50, ended 21:11) |
+| **Operator constraint adjustment** | Operator lifted claude-only constraint for SWE 1.6 dispatches (model-under-test); grader stays claude-sonnet-4-5 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A bespoke deep-loop ran 6 iterations against Devin's free SWE 1.6, dispatching 42 real prompts across 7 fixtures × 5 council-seeded variants + 1 hill-climbing mutation. The loop converged on the **RCAF framework (Role/Context/Action/Format)** as the winning prompt scaffold for SWE 1.6 with a final score of 0.5796 — beating the STAR baseline (v-001, 0.4357) by **33%**. The optimization deliberately measured prompt-quality signal even when downstream acceptance checks couldn't execute (SWE 1.6 `--print` returns markdown text, not files-on-disk), so D3 path/cwd, D4 hallucination, and D5 pre-plan dominated the variant differentiation.
+
+### Loop Outcome
+
+
+## 004-skill-uplift/implementation-summary.md
+---
+title: "Implementation Summary: Skill Uplift"
+description: "Placeholder — populated post-uplift commit after smoke tests pass and operator signs off."
+trigger_phrases:
+  - "113/004 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/004-skill-uplift"
+    last_updated_at: "2026-05-17T00:30:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Shipped cli-devin v1-0-5-0 with RCAF defaults"
+    next_safe_action: "None — cli-devin shipped through v1-0-6-1 via 005 006 007"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-devin/SKILL.md"
+      - ".opencode/skills/cli-devin/assets/prompt_templates.md"
+      - ".opencode/skills/cli-devin/assets/prompt_quality_card.md"
+      - ".opencode/skills/cli-devin/changelog/v1.0.5.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000113004"
+      session_id: "113-004-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 113-cli-devin-prompt-quality/004-skill-uplift |
+| **Completed** | 2026-05-17 |
+| **Level** | 3 |
+| **Synthesis consumed** | `../003-eval-loop/synthesis.md` (winner v-004-rcaf-medium @ 0.5796) |
+| **cli-devin version** | 1.0.4.X → 1.0.5.0 |
+| **4-runtime mirror** | NOT required (skill, not agent per ADR-001) |
+| **Files modified** | 3 (SKILL.md, prompt_templates.md, prompt_quality_card.md) + 1 created (changelog/v1.0.5.0.md) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Applied the empirical winner from 003-eval-loop to cli-devin's prompt scaffolding. **RCAF (Role/Context/Action/Format) is now the default framework for SWE-1.6 dispatches** — it scored 33% higher than the STAR baseline in the 42-dispatch optimization run. The v1.0.2.0 contract structure (sk-prompt + CLEAR 5-check + pre-planning block) is preserved verbatim; what changed is the default framework recommendation. STAR remains valid for narrative-heavy tasks; BUILD remains valid for multi-file refactors but is explicitly NOT to be paired with strict bundle-gate wording (verbose constraints HURT scores by pushing SWE 1.6 toward defensive output).
+
+### Uplift Outcome
+
+3 files modified + 1 created. No invocation breaking changes. The default framework recommendation flipped from STAR to RCAF across SKILL.md, prompt_quality_card.md, and prompt_templates.md, with empirical scores cited inline (v-004-rcaf-medium 0.5796 vs v-001-baseline-star 0.4357). The §2 dispatch template was rewritten around RCAF with role/context/action/format anchors, medium-density pre-planning (3-4 steps, not 4+), and standard bundle-gate language. The new v1.0.5.0 changelog cites the 003 synthesis.md as the binding evidence source and documents the four key findings (RCAF wins, medium beats dense, standard beats strict, framework dominates anti-hallucination).
+
+## 005-extraction-rerun/implementation-summary.md
+---
+title: "Implementation Summary: cli-devin extraction rerun"
+description: "Placeholder — populated post-run."
+trigger_phrases:
+  - "113/005 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/005-extraction-rerun"
+    last_updated_at: "2026-05-17T10:25:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Shipped v3 mutation-depth-8 re-run"
+    next_safe_action: "Hold v1-0-6-0 uplift pending confirmation run"
+    blockers: []
+    key_files:
+      - "synthesis-v3.md"
+      - "synthesis-v2.md"
+      - "state/eval-loop-state-v3.jsonl"
+      - "state/eval-loop-state-v2.jsonl"
+      - "scripts/synthesize-v3.cjs"
+      - "scripts/extract-files-from-markdown.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000113005"
+      session_id: "113-005-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 113-cli-devin-prompt-quality/005-extraction-rerun |
+| **Completed** | 2026-05-17 |
+| **Level** | 3 |
+| **Re-run wall-clock** | ~57 min (vs 109 min in v1; faster because no mutation iter) |
+| **SWE 1.6 dispatches** | 35 (5 variants × 7 fixtures; no mutation in v2) |
+| **Files extracted** | 17 across 35 fixture-result rows |
+| **Blocks skipped** | 52 (output blocks where no path could be inferred) |
+| **Verdict** | Ranking stable — RCAF wins both runs |
+| **v1.0.6.0 uplift** | NOT needed |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**Verdict: ranking stable — RCAF wins both runs.** The 113/004 RCAF default is confirmed under full D1 scoring (extraction + live grader). No v1.0.6.0 uplift is needed.
+
+## 006-cross-cli-rcaf-propagation/implementation-summary.md
+---
+title: "Implementation Summary: cli-cross-rcaf-propagation"
+description: "Summarizes completed packet 113/006 work: medium pre-planning density guidance propagated across CLI prompt cards, with RCAF left as the already-present shared default."
+trigger_phrases:
+  - "113/006 implementation summary"
+  - "completed cli card propagation"
+  - "medium pre plan summary"
+  - "rcaf already present summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation"
+    last_updated_at: "2026-05-17T12:18:18Z"
+    last_updated_by: "cli-codex"
+    recent_action: "summarized-completed-propagation-work"
+    next_safe_action: "use-113-007-for-held-validation-findings"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md"
+      - ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md"
+      - ".opencode/skills/cli-codex/assets/prompt_quality_card.md"
+      - ".opencode/skills/cli-gemini/assets/prompt_quality_card.md"
+      - ".opencode/skills/cli-opencode/assets/prompt_quality_card.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-codex-113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Packet 113/006 implementation is complete"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: cli-cross-rcaf-propagation
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation |
+| **Completed** | 2026-05-17 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Packet 113/006 propagated one completed prompt-composition improvement: medium-density pre-planning is now the shared guidance across the sk-prompt master CLI card and four sibling CLI prompt quality cards. The work matters because the 113/003 eval-loop showed dense pre-planning underperformed medium pre-planning on SWE 1.6, while the principle itself is model-agnostic enough to share across orchestrators.
+
+### Medium Pre-Planning Density Guidance
+
+
+## 007-cross-model-validation/implementation-summary.md
+---
+title: "Implementation Summary: cross-model-validation"
+description: "Cross-model validation packet 113/007 complete: 70-dispatch run on deepseek-v4-pro + kimi-k2.6 confirmed both bundle-gate-aversion and framework-dominates-anti-hallucination findings hold cross-frontier-model. RCAF (v-004) wins on every measured model. Cross-CLI propagation shipped in sk-prompt + 4 sibling cards + cli-devin Operating Notes."
+trigger_phrases:
+  - "113/007 results"
+  - "cross model validation complete"
+  - "bundle gate cross model"
+  - "anti hallucination cross model"
+  - "RCAF cross model"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation"
+    last_updated_at: "2026-05-17T19:10:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "completed-70-dispatch-run-both-gates-hold-cross-CLI-propagation-shipped"
+    next_safe_action: "monitor-v1-0-6-0-uplift-in-production"
+    blockers: []
+    key_files:
+      - ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs"
+      - ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation/scripts/analyze-only.cjs"
+      - ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation/state/cross-model-results.jsonl"
+      - ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation/analysis.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "main-agent-113-cli-devin-prompt-quality/007-cross-model-validation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Both gates hold cross-frontier-model; cross-CLI propagation shipped"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: cross-model-validation
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 113-cli-devin-prompt-quality/007-cross-model-validation |
+| **Completed** | 2026-05-17 |
+| **Level** | 3 |
+| **Total dispatches** | 70 planned, 54 ok + 5 fails = 59 rows logged |
+| **Run wall-clock** | ~3 hours across two background sessions |
+| **Verdict** | Both decision gates HOLD cross-frontier-model |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A cross-model validation harness + supporting analyzer + cross-CLI propagation of the empirical findings.
+
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization"
+# PACKET: specs/cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-models"
+description: "Phase parent for MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-models"
+trigger_phrases:
+  - "120-cli-opencode-minimax-optimization"
+  - "phase parent"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/019-cli-opencode-minimax-optimization"
+    last_updated_at: "2026-05-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "All 3 phases complete (provider, research, benchmark)"
+    next_safe_action: "Close packet, or open a follow-on to apply 002 research deltas"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-models
+
+## 001-minimax-provider-integration/implementation-summary.md
+---
+title: "Implementation Summary: MiniMax 2.7 direct-API provider integration"
+description: "Added the minimax direct-API provider (model minimax-2.7) to cli-opencode docs + the shared small-model registry, surfaced via the sk-prompt-models sentinel."
+trigger_phrases:
+  - "minimax provider integration summary"
+  - "minimax-2.7 added cli-opencode"
+  - "minimax-api registry entry"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/019-cli-opencode-minimax-optimization/001-minimax-provider-integration"
+    last_updated_at: "2026-05-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Wired minimax provider across cli-opencode + registry + sentinel; strict validate PASSED"
+    next_safe_action: "Run phase 002 deep-research loop"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-opencode/references/cli_reference.md"
+      - ".opencode/skills/sk-prompt/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/001-minimax-provider-integration"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Register MiniMax as active vs optional-unverified? → active per user direction"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-minimax-provider-integration |
+| **Completed** | 2026-05-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+
+## 002-minimax-efficiency-deep-research/implementation-summary.md
+---
+title: "Implementation Summary: MiniMax 2.7 efficiency deep-research"
+description: "Ran a 10-iteration deep-research loop (cli-codex gpt-5.5 high/fast) on MiniMax 2.7 efficiency via cli-opencode; produced research.md + a prioritized P0/P1/P2 delta list."
+trigger_phrases:
+  - "minimax deep-research summary"
+  - "minimax efficiency research outcome"
+  - "minimax delta list"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research"
+    last_updated_at: "2026-05-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Synthesized research.md from 10 iterations"
+    next_safe_action: "Follow-on packet applies research.md P0/P1 deltas"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/resource-map.md"
+      - "research/deep-research-state.jsonl"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/002-minimax-efficiency-deep-research"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-minimax-efficiency-deep-research |
+| **Completed** | 2026-05-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+
+## 003-minimax-prompt-framework-benchmark/implementation-summary.md
+---
+title: "Implementation Summary: MiniMax 2.7 prompt-framework benchmark"
+description: "Benchmarked 5 prompt frameworks on real MiniMax M2.7 via the ported 113 rig; TIDD-EC + dense pre-planning won and was integrated into the cli-opencode dispatch path; MiniMax slug corrected."
+trigger_phrases:
+  - "minimax benchmark summary"
+  - "minimax tidd-ec winner"
+  - "minimax framework integration"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/019-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark"
+    last_updated_at: "2026-05-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Integrated TIDD-EC+dense winner; slug corrected"
+    next_safe_action: "Optional re-run for confidence or cross-model validation"
+    blockers: []
+    key_files:
+      - "eval-loop/synthesis.md"
+      - ".opencode/skills/cli-opencode/assets/prompt_templates.md"
+      - ".opencode/skills/cli-opencode/assets/prompt_quality_card.md"
+      - ".opencode/skills/sk-prompt/assets/model-profiles.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/003-minimax-prompt-framework-benchmark"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-minimax-prompt-framework-benchmark |
+| **Completed** | 2026-05-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+## 004-minimax-token-plan-provider/implementation-summary.md
+---
+title: "Implementation Summary: MiniMax Token Plan default provider [template:level_2/implementation-summary.md]"
+description: "Switched the default MiniMax dispatch path to the Token Plan provider minimax-coding-plan (MiniMax-M3-highspeed default, MiniMax-M2.7-highspeed fallback) and retained the pay-per-token Direct API provider minimax as a selectable alternative."
+trigger_phrases:
+  - "minimax token plan summary"
+  - "minimax coding plan default shipped"
+  - "implementation"
+  - "summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/019-cli-opencode-minimax-optimization/004-minimax-token-plan-provider"
+    last_updated_at: "2026-06-01T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Shipped Token Plan default; strict validate PASSED"
+    next_safe_action: "User reconfigures the opencode minimax-coding-plan provider in their env"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/assets/model-profiles.json"
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-opencode/references/cli_reference.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/004-minimax-token-plan-provider"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Replace API or both? → both, default Token Plan"
+      - "Provider names? → minimax-coding-plan (Token Plan) + minimax (Direct API), per live machine"
+      - "Default/fallback model? → MiniMax-M3-highspeed default, MiniMax-M2.7-highspeed fallback"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-minimax-token-plan-provider |
+| **Completed** | 2026-06-01 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The MiniMax Token Plan is now the default MiniMax path in cli-opencode. When you dispatch MiniMax through cli-opencode you get the subscription provider `minimax-coding-plan/MiniMax-M3-highspeed` (falling back to `MiniMax-M2.7-highspeed`) instead of the old pay-per-token `minimax/MiniMax-M2.7` id, which errors on the current opencode install. The pay-per-token Direct API stays available as the explicit `minimax` provider, so both billing modes coexist.
+
+### Token Plan as the default MiniMax provider
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

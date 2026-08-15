@@ -1,0 +1,1742 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-speckit/000-rust-backend-rewrite-research"
+# PACKET: specs/system-speckit/000-rust-backend-rewrite-research (spec only)
+
+---
+title: "Feature Specification: Rust Backend Rewrite Research Phase Parent"
+description: "Phase parent for a deep-research investigation into whether, where, and how the system-spec-kit code backend (mcp_server / scripts / shared, ~244K LOC TypeScript) would benefit from a Rust rewrite — grounded in the current native-primitive boundary (sqlite-vec, better-sqlite3, @huggingface/transformers, web-tree-sitter) and the pure-TS compute core (fusion, reranking, embeddings, indexing)."
+trigger_phrases:
+  - "030 rust backend rewrite"
+  - "rust rewrite spec kit"
+  - "speckit rust backend research"
+  - "rust vs typescript backend"
+  - "rust rewrite deep research"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/030-rust-backend-rewrite-research"
+    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Authored phase parent + 001-research charter for a 20-round Rust-rewrite deep-research pass"
+    next_safe_action: "Human review of the 20-round charter; then launch 001-research/research via /deep:research"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "001-research/spec.md"
+      - "001-research/plan.md"
+      - "001-research/research/deep-research-strategy.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-11-030-rust-backend-rewrite-research-parent"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Feature Specification: Rust Backend Rewrite Research Phase Parent
+
+## How to read this packet
+
+Use this root `spec.md` as the current phase map. The research subject is **our own** `system-spec-kit` backend — the authored TypeScript under `.opencode/skills/system-spec-kit/` (`mcp_server/`, `scripts/`, `shared/`) — evaluated against a hypothetical **Rust** reimplementation. The detailed 20-round deep-research charter and its predefined angles live in the phase child `001-research/`.
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 1 |
+| **Priority** | P2 |
+| **Status** | Not Started |
+| **Created** | 2026-07-11 |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `system-speckit` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The `system-spec-kit` backend is ~244K LOC of authored TypeScript across ~1,487 files (`mcp_server/`, `scripts/`, `shared/`), run as a long-lived MCP server over `StdioServerTransport` (`mcp_server/context-server.ts`). Its performance-critical primitives are *already native*: vector search via `sqlite-vec` on `better-sqlite3`, local embeddings via `@huggingface/transformers` (ONNX), and code parsing via `web-tree-sitter` (WASM). The genuinely CPU-bound TypeScript is a minority — fusion/ranking math (`shared/algorithms/rrf-fusion.ts`, `adaptive-fusion.ts`, `mmr-reranker.ts`, `shared/ranking/learned-combiner.ts`, `matrix-math.ts`) and extraction (`shared/trigger-extractor.ts`, `shared/chunking.ts`) — while the retrieval stack (`mcp_server/lib/search/`) is already extremely feature-rich.
+
+The question "should we rewrite the backend to Rust?" therefore has **no obvious answer from first principles**. A naive full rewrite spends enormous effort re-porting glue code that sits in front of already-native primitives; but a *targeted* native module (or a specific feature that TS makes impractical) may unlock real wins. We need cited, code-referenced evidence — not vibes — before anyone commits engineering time.
+
+### Purpose
+Provide the root purpose, child map, and cross-packet boundary for packet 030. This parent routes to the research child that runs a **pre-planned 20-round deep-research pass** with predefined angles, each tied to concrete files/features in the current backend, to answer three linked questions: (1) what *improvements* would Rust give and where, with references; (2) what *new features* become possible; and (3) what is genuinely *hard or impossible* in TypeScript that Rust unlocks — culminating in a ranked, decision-ready recommendation (full rewrite / targeted native module / do-not-rewrite).
+
+> **Phase-parent note:** This `spec.md` is the only authored document at this parent level. The substantive charter, the 20-round plan, and the predefined angles live in the phase child below.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- Root-level routing for packet 030 phase children.
+- Holding the current `system-spec-kit` backend (`mcp_server/`, `scripts/`, `shared/`) as the research subject.
+- A phase-documentation map pointing to the research child (and any later planning/PoC children).
+
+### Out of Scope
+- Writing any Rust, scaffolding a crate, or wiring a native module (research-only at this stage).
+- Editing the current TypeScript backend as part of this packet.
+- Committing to a rewrite decision before the research produces cited evidence.
+
+### Files to Change
+
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `spec.md` | Create | parent | Root purpose and child map |
+| `description.json` | Create | parent | Search metadata for the parent |
+| `graph-metadata.json` | Create | parent | Child identity and parent graph metadata |
+| `001-research/spec.md` | Create | 001 | Rust-rewrite research charter (predefined angles) |
+| `001-research/plan.md` | Create | 001 | 20-round loop plan + executor config + round→angle allocation |
+| `001-research/tasks.md` | Create | 001 | Research execution checklist |
+| `001-research/research/deep-research-strategy.md` | Create | 001 | Charter: key questions, non-goals, stop conditions |
+| `001-research/research/deep-research-fanout-config.json` | Create | 001 | Executor config (20 iterations) |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 001 | `001-research/` | 20-round deep-research pass (8 survey + 12 deep-validation rounds) over the current TS backend vs a Rust reimplementation: per-angle improvement/feature/impossibility analysis with file-cited evidence, an improvement matrix, a new-feature-feasibility matrix, a risk register, and a ranked rewrite recommendation | Not Started |
+
+### Phase Transition Rules
+
+- Child 001 is research-only: it reports findings and a recommendation; it writes no Rust and touches no backend source.
+- A later `002-*` phase (PoC / boundary spec / targeted native module) is opened **only if** 001's recommendation warrants it.
+- The current backend under `.opencode/skills/system-spec-kit/` is read-only research material for this packet.
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| root | 001-research | Research charter authored with predefined angles | `001-research/spec.md` §7 lists the 16 angles and the 20-round allocation |
+| 001-research | decision | Loop converged or hit 20 rounds | `001-research/research/research.md` exists with cited findings + ranked recommendation |
+<!-- /ANCHOR:phase-map -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+- None for parent wiring. The substantive questions and the 16 predefined research angles live in `001-research/spec.md`.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Research child**: `001-research/`
+- **Research subject**: `../../../skills/system-spec-kit/` (`mcp_server/`, `scripts/`, `shared/`)
+- **Sibling precedent**: `../029-headroom-utilization/` (same phase-parent + 20-iteration research pattern)
+- **Graph metadata**: `graph-metadata.json`
+FOLDER
+
+<<<FOLDER id="specs/system-speckit/026-graph-and-context-optimization"
+# PACKET: specs/system-speckit/026-graph-and-context-optimization (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Graph and Context Optimization [system-spec-kit/026-graph-and-context-optimization/spec]"
+description: "Root coordination packet for the graph, context, memory, and operator-tooling improvement program, decomposed into eight themed phase tracks."
+trigger_phrases:
+  - "026 graph and context optimization"
+  - "026 root packet"
+  - "graph context optimization program"
+  - "026 phase map"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization"
+    last_updated_at: "2026-06-05T13:12:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Reconciled program-context drift; marked 026 closed, 005 deferred"
+    next_safe_action: "026 closed; reopen a track only to address deferred 005"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "context-index.md"
+      - "timeline.md"
+      - "graph-metadata.json"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+# Feature Specification: Graph and Context Optimization
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+
+## 000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md
+---
+title: "Implementation Summary: Tier 2 Remediation"
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+description: "Closed Tier 2 D/E/F/G findings; H remains deferred for human license verification."
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings"
+    last_updated_at: "2026-04-28T19:30:00Z"
+    last_updated_by: "codex-gpt-5-hygiene-pass"
+    recent_action: "Hygiene pass - validator structure"
+    next_safe_action: "Keep validators green"
+    completion_pct: 100
+trigger_phrases:
+  - "002-fix-additional-release-readiness-findings"
+  - "validator hygiene"
+importance_tier: "normal"
+contextType: "implementation"
+---
+
+# Implementation Summary: Tier 2 Remediation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-fix-additional-release-readiness-findings |
+| **Completed** | 2026-04-28 |
+| **Level** | 2 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Complete for actionable D/E/F/G findings. Tier 2 H remains intentionally deferred in `__tier2-h-deferred.md` because it requires human verification of the actual gitignored `external/LICENSE`.
+
+### What Changed
+
+- **D / 008/007**: accepted and documented Copilot next-prompt semantics instead of unsupported same-current-turn parity; reconciled the parent checklist; verified existing `buildCopilotPromptArg` large-prompt `@path` coverage.
+- **E / 009/005**: corrected stale helper-location evidence to `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`; hardened the compact OpenCode plugin with output-array guards and stable object-sessionID cache keys.
+- **F / 009/002**: restored repo-local Copilot hook wrappers before Superset notification; added workspace-scoped custom-instructions retention plus lock/atomic replacement writes.
+- **G / 006/008**: normalized completed-loop state and `006` packet identity; added acceptance criteria and artifact contract; backfilled sibling 006/007 ledgers to match its implementation summary.
+
+<!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The remediation was delivered as four evidence-preserving source-review closures plus one human-action deferral note. The table below records each source finding disposition without changing the original verdicts.
+
+### Finding Disposition
+
+## 000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/001-workflow-correctness-audit/implementation-summary.md
+---
+title: "Implementation Summary: Workflow Correctness Release-Readiness Audit"
+template_source: "SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2"
+description: "Workflow correctness audit completed with a FAIL verdict because a destructive single-record memory delete can bypass the documented confirmation gate."
+trigger_phrases:
+  - "045-001-workflow-correctness-audit"
+  - "workflow correctness audit"
+  - "spec_kit memory commands review"
+  - "release-readiness workflow"
+importance_tier: "important"
+contextType: "review"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/001-workflow-correctness-audit"
+    last_updated_at: "2026-04-29T22:25:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Completed review report"
+    next_safe_action: "Fix P0/P1 findings"
+    blockers:
+      - "P0 memory_delete single-record path lacks tool-level confirmation"
+      - "P1 auto workflows can wait for user input"
+      - "P1 memory command YAML assets are absent"
+      - "P1 memory:save default contract conflicts with execution steps"
+    key_files:
+      - "review-report.md"
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:045-001-workflow-correctness-audit-summary"
+      session_id: "045-001-workflow-correctness-audit"
+      parent_session_id: "003-release-readiness-deep-review-audits"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Strict validator passed after packet docs were written."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-workflow-correctness-audit |
+| **Completed** | 2026-04-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/002-memory-data-integrity-audit/implementation-summary.md
+---
+title: "Implementation Summary: Memory Data Integrity Audit"
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+description: "The audit packet records release-readiness findings for memory subsystem data integrity, including health consistency reporting, retention race coverage, embedding-cache retention semantics, and derived BM25 drift."
+trigger_phrases:
+  - "045-002-memory-data-integrity-audit"
+  - "memory data integrity"
+  - "DB consistency audit"
+  - "retention sweep correctness"
+importance_tier: "important"
+contextType: "review"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/002-memory-data-integrity-audit"
+    last_updated_at: "2026-04-29T23:10:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Completed review-report.md and packet docs"
+    next_safe_action: "Open remediation packet for active P1/P2 findings"
+    blockers:
+      - "P1 memory_health consistency status drift"
+      - "P1 retention sweep race coverage gap"
+      - "P1 embedding cache retention contract drift"
+    key_files:
+      - "review-report.md"
+      - "checklist.md"
+      - "description.json"
+      - "graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:045-002-memory-data-integrity-audit-summary"
+      session_id: "045-002-memory-data-integrity-audit"
+      parent_session_id: "003-release-readiness-deep-review-audits"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "FTS/vector cleanup for retention deletion is implemented through the shared delete path."
+      - "Embedding cache retention semantics remain undefined for governed deletions."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-memory-data-integrity-audit |
+| **Completed** | 2026-04-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The packet now has a complete release-readiness audit for memory data integrity. The report found no P0 data-loss or direct primary-index corruption issue in the reviewed paths, but it records three P1 release-readiness gaps and one P2 derived-index cleanup gap.
+
+## 000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit/implementation-summary.md
+---
+title: "Implementation Summary: Cross-Runtime Hook Parity Audit"
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+description: "The audit packet now records release-readiness findings for cross-runtime hook parity and distinguishes direct hook smoke evidence from missing normal-shell live verdicts."
+trigger_phrases:
+  - "045-005-cross-runtime-hook-parity-audit"
+  - "hook parity audit"
+  - "5-runtime hook review"
+  - "cross-runtime feature parity"
+importance_tier: "important"
+contextType: "review"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit"
+    last_updated_at: "2026-04-29T22:30:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Completed review-report.md and packet docs"
+    next_safe_action: "Open remediation packet for active P0/P1 findings"
+    blockers:
+      - "P0 Copilot checked-in live wrapper bypasses Spec Kit context"
+      - "P1 normal-shell live verdict missing"
+    key_files:
+      - "review-report.md"
+      - "checklist.md"
+      - "description.json"
+      - "graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:045-005-cross-runtime-hook-parity-audit-summary"
+      session_id: "045-005-cross-runtime-hook-parity-audit"
+      parent_session_id: "003-release-readiness-deep-review-audits"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Direct smoke PASS does not equal normal-shell live CLI PASS."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-cross-runtime-hook-parity-audit |
+| **Completed** | 2026-04-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The packet now has a complete release-readiness audit for cross-runtime hook parity. The report identifies one P0 silent feature gap in the checked-in Copilot live hook path, three P1 contract/evidence gaps, and two P2 parity polish items.
+
+### Review Report
+
+## 000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/005-mcp-tool-schema-governance-audit/implementation-summary.md
+---
+title: "Implementation Summary: MCP Tool Schema Governance Release-Readiness Audit"
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+description: "Completed the release-readiness audit for MCP tool schema governance and produced a severity-classified review report."
+trigger_phrases:
+  - "045-006-mcp-tool-schema-governance-audit"
+  - "schema audit"
+  - "governance enforcement review"
+  - "tool count canonical"
+importance_tier: "important"
+contextType: "review"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/005-mcp-tool-schema-governance-audit"
+    last_updated_at: "2026-04-29T23:20:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Completed release-readiness MCP tool schema governance audit"
+    next_safe_action: "Plan remediation for P0-001 and active P1 schema/governance drift findings"
+    blockers:
+      - "P0-001 session_health skips schema validation"
+    key_files:
+      - "review-report.md"
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:045-006-mcp-tool-schema-governance-audit"
+      session_id: "045-006-mcp-tool-schema-governance-audit"
+      parent_session_id: "003-release-readiness-deep-review-audits"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Canonical public count remains 54 for spec_kit_memory and 63 total native MCP tools in README."
+      - "code_graph_verify is public but missing from TOOL_SCHEMAS and ALLOWED_PARAMETERS, so it fails closed before handler dispatch."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-mcp-tool-schema-governance-audit |
+| **Completed** | 2026-04-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Completed the read-only release-readiness audit for MCP tool schema governance. The final report finds one active P0: `session_health` has a schema and an empty allowed-parameter list, but its dispatcher path never validates the incoming arguments, so strict mode cannot reject hallucinated parameters for that public tool.
+
+## 000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/007-validator-spec-document-integrity-audit/implementation-summary.md
+---
+title: "Implementation Summary"
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+description: "Release-readiness audit completed for validator spec-doc integrity. The audit found detector parity is stable, but strict validation has release-blocking false-negative and false-positive behavior."
+trigger_phrases:
+  - "045-008-validator-spec-document-integrity-audit"
+  - "validator audit"
+  - "spec doc integrity review"
+importance_tier: "important"
+contextType: "review"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/007-validator-spec-document-integrity-audit"
+    last_updated_at: "2026-04-29T19:47:00Z"
+    last_updated_by: "codex"
+    recent_action: "Review report complete"
+    next_safe_action: "Remediate P0 findings"
+    blockers:
+      - "P0 validator false negative"
+      - "P0 validator false positives"
+    key_files:
+      - "review-report.md"
+      - "checklist.md"
+      - "graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:045008validatorspecdocintegrityimplsummary000000000000"
+      session_id: "045-008-validator-spec-document-integrity-audit"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-validator-spec-document-integrity-audit |
+| **Completed** | 2026-04-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet produces the release-readiness audit for validator and spec-doc integrity. The result is blunt: phase-parent detector parity is good, but strict validation is not release-ready because it can pass malformed fenced spec structure and fail valid phase-parent or documented custom-section content.
+
+### Review Report
+
+The nine-section `review-report.md` classifies active findings and answers the packet questions. It records two P0 classes: a false negative around fenced structural content, and false positives around phase-parent text references plus custom template headers under strict mode.
+
+## 000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/008-documentation-truth-audit/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+---
+title: "Implementation Summary: Documentation Truth Deep Review"
+description: "Completed a read-only release-readiness documentation truth audit and authored a severity-classified review report."
+trigger_phrases:
+  - "045-009-documentation-truth-audit"
+  - "docs truth audit"
+  - "stale claims review"
+  - "evergreen rule self-check"
+importance_tier: "important"
+contextType: "review"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-audits/009-documentation-truth-audit"
+    last_updated_at: "2026-04-29T22:34:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Completed review report and packet docs"
+    next_safe_action: "Plan doc-only remediation for active P1 findings"
+    blockers: []
+    key_files:
+      - "review-report.md"
+      - "checklist.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:045009documentationtruthsummary000000000000000000000000000"
+      session_id: "045-009-documentation-truth-audit"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "No target documentation was modified."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-documentation-truth-audit |
+| **Completed** | 2026-04-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet now contains a complete read-only documentation truth audit. The review report found no P0 blockers, but it identifies P1 drift in evergreen references, tool counts, catalog coverage, playbook coverage, advisor documentation, and local markdown links.
+
+### Review Report
+
+The report uses the 9-section deep-review shape and records a CONDITIONAL verdict with six P1 findings and one P2 cleanup item. Each active finding includes file:line evidence or command-derived absence evidence.
+
+## 000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/009-upgrade-safety-operability-audit/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+---
+title: "Implementation Summary: Upgrade Safety Operability Deep Review"
+description: "Completed a read-only release-readiness upgrade safety and operability audit and authored a severity-classified review report."
+trigger_phrases:
+  - "045-010-upgrade-safety-operability-audit"
+  - "upgrade safety audit"
+  - "operability review"
+  - "install guide review"
+  - "doctor mcp install review"
+importance_tier: "important"
+contextType: "review"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-audits/010-upgrade-safety-operability-audit"
+    last_updated_at: "2026-04-29T23:15:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Completed review report and packet docs"
+    next_safe_action: "Plan remediation for active P1/P2 findings"
+    blockers: []
+    key_files:
+      - "review-report.md"
+      - "checklist.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:045010upgradesafetyoperabilitysummary0000000000000000"
+      session_id: "045-010-upgrade-safety-operability-audit"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "No target runtime, docs, or config files were modified."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-upgrade-safety-operability-audit |
+| **Completed** | 2026-04-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet now contains a complete read-only upgrade safety and operability audit. The review report found no P0 blockers, but it identifies P1 release-readiness gaps in Node prereq drift, doctor VS Code diagnostics, and legacy strict-validation backwards compatibility, plus P2 drift in environment-default notes and permissive checked-in runtime config posture.
+
+### Review Report
+
+
+## 000-release-and-program-cleanup/001-release-readiness/003-fix-release-readiness-findings-synthesis/implementation-summary.md
+---
+title: "Implementation Summary: 046 Release Readiness Synthesis and Remediation"
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+description: "Aggregated packet 045 release-readiness findings and applied surgical P0 plus P1 quick-win remediations across MCP schemas, code graph readiness, hooks, deep-loop workflows, and validator rules."
+trigger_phrases:
+  - "004-fix-release-readiness-findings-synthesis"
+  - "release-readiness aggregate"
+  - "P0 fixes implementation"
+  - "release blocker remediation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-fix-release-readiness-findings-synthesis"
+    last_updated_at: "2026-04-29T22:45:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Logged remediation"
+    next_safe_action: "Run final build and validators"
+    blockers: []
+    key_files:
+      - "synthesis.md"
+      - "remediation-log.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "004-fix-release-readiness-findings-synthesis"
+      parent_session_id: null
+    completion_pct: 80
+    open_questions:
+      - "Normal-shell hook live verdicts require an operator run outside sandbox."
+    answered_questions:
+      - "Packet 045 aggregate counts are P0=8, P1=28, P2=15."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-fix-release-readiness-findings-synthesis |
+| **Completed** | 2026-04-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The packet now has one aggregate release verdict and a ranked remediation plan instead of ten separate review reports with no shared priority order. The code and workflow changes close the concrete P0 blockers that could cause data loss, stale graph reads, silent hook bypass, schema bypass, runaway loop dispatch, and strict-validator false positives or false negatives.
+
+### Aggregate Synthesis
+
+`synthesis.md` rolls up all ten packet 045 reports into 6 FAIL and 4 CONDITIONAL verdicts with P0=8, P1=28, and P2=15. It separates immediate release blockers from P1 quick wins, design-call P1s, and deferred P2 polish.
+
+## 000-release-and-program-cleanup/001-release-readiness/004-fix-remaining-priority-findings/implementation-summary.md
+---
+title: "Implementation Summary: 048 Remaining P1/P2 Remediation"
+description: "Summary of conservative remaining P1/P2 release-readiness remediation."
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+trigger_phrases:
+  - "005-fix-remaining-priority-findings"
+  - "P1 P2 backlog"
+  - "release polish"
+  - "conservative defaults pass"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-remaining-priority-findings"
+    last_updated_at: "2026-04-30T00:00:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Verified packet"
+    next_safe_action: "Orchestrator commit"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "remediation-log.md"
+      - "deferred-p2.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "005-fix-remaining-priority-findings"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-fix-remaining-priority-findings |
+| **Completed** | 2026-04-30 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet applies the remaining release-readiness backlog conservatively. The
+largest changes tighten MCP argument validation before pre-dispatch behavior,
+make memory health report consistency instead of connectivity alone, document
+the memory command and save-mode defaults, and add the missing Skill Graph and
+coverage graph docs.
+
+### Remediation Pass
+
+## 000-release-and-program-cleanup/001-release-readiness/005-fix-stress-test-coverage-gap/implementation-summary.md
+---
+title: "Implementation Summary: P1 + P2 Stress-Test Remediation"
+description: "Closed all remaining 36 P1+P2 stress gaps from packet 042; suite is now 56/56 files and 159/159 tests passing; coverage backlog is clear."
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+trigger_phrases:
+  - "006-fix-stress-test-coverage-gap summary"
+  - "P1 P2 remediation summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/005-fix-stress-test-coverage-gap"
+    last_updated_at: "2026-04-30T20:05:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Authored final docs"
+    next_safe_action: "Validate strict and commit"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "logs/stress-run-20260430-200010Z.log"
+      - "stress-test-synthesis.md"
+      - "../006-stress-coverage-audit-and-run/coverage-matrix.csv"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "044-summary-final"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions:
+      - "Did all 36 P1+P2 tests pass? Yes — full suite green at 56/56 files, 159/159 tests."
+      - "Is the stress-coverage backlog clear? Yes — every one of the 54 features now has gap_classification=none in 042's matrix."
+---
+
+# Implementation Summary: P1 + P2 Stress-Test Remediation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-fix-stress-test-coverage-gap |
+| **Completed** | 2026-04-30 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+After packets 042 (audit) and 043 (10 P0 closures), 36 P1+P2 stress gaps remained: 6 P1 features with thin direct coverage and 30 P2 features with bounded but uncovered runtime surface. Packet 044 closed every one of them. Eighteen new vitest stress files now exercise the full surface area documented in the catalogs; consolidation was applied where features share a natural test surface (e.g. CCC trio, hooks quartet, lifecycle quintet).
+
+Packet 042's coverage matrix now reads `gap_classification=none` for all 54 features. `npm run stress` grew from 38 files / 94 tests to 56 files / 159 tests, all passing in 46 seconds with exit code 0. The release-readiness stress backlog for `code_graph` and `skill_advisor` is empty.
+
+## 000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit/implementation-summary.md
+---
+title: "Implementation Summary: Global Security Sweep + Supply-Chain Audit — COMPROMISE-CONFIRMED at host (repo CLEAN)"
+description: "25-iteration deep-research security audit complete. Public repo CLEAN of TanStack Mini Shai-Hulud worm; host has COMPROMISE-CONFIRMED active credential exposure (Devin JWT world-readable since iter-012). 3 CRITICAL + 9 HIGH + 10 MEDIUM findings; 15-step remediation playbook in review-report.md."
+trigger_phrases:
+  - "015 implementation summary"
+  - "security sweep summary"
+  - "Mini Shai-Hulud audit summary"
+  - "global security audit complete"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit"
+    last_updated_at: "2026-05-15T20:00:00Z"
+    last_updated_by: "claude-opus-4-7-015-close"
+    recent_action: "remediation_applied_10_mcp_pins_3_memory_entries_packet_closed"
+    next_safe_action: "operator_pending_sudo_firewall_enable_and_fontbase_mitigation_if_desired"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "research/review-report.md"
+      - "research/iterations/iteration-001.md..iteration-025.md"
+      - "research/deep-research-state.jsonl"
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-05-15-015-synthesis"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Q1: Open packet 016 for remediation, or operator handles inline?"
+      - "Q2: Re-run iter-014 (Workspace Trust) standalone to close the campaign gap?"
+    answered_questions:
+      - "Mini Shai-Hulud worm present? NO (iter-001 + iter-021)"
+      - "Active campaign verdict? COMPROMISE-CONFIRMED (Devin JWT at mode 644)"
+      - "Repo codebase verdict? CLEAN (no TanStack, no malicious commits, no CI exfiltration)"
+      - "Verification phase executor? cli-opencode + deepseek-v4-pro --pure (switched from cli-codex per operator pivot)"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit` |
+| **Completed** | 2026-05-15 |
+| **Level** | 1 |
+| **Verdict** | **COMPROMISE-CONFIRMED** (host) / **CLEAN** (repo) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+
+FOLDER
+
+<<<FOLDER id="specs/system-speckit/027-xce-research-based-refinement"
+# PACKET: specs/system-speckit/027-xce-research-based-refinement (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: XCE-Derived Spec Kit Refinement [system-spec-kit/027-xce-research-based-refinement/spec]"
+description: "Phase-parent packet coordinating the XCE-derived Spec Kit refinement program across six themed tracks: release cleanup, research/doctrine adoption, memory store & search, skill-advisor & code-graph, shared infrastructure, and verification & remediation."
+trigger_phrases:
+  - "027 xce research based refinement"
+  - "027 root packet"
+  - "027 phase map"
+  - "xce refinement program"
+  - "027 memory store and search"
+  - "027 advisor and codegraph"
+  - "027 shared infrastructure"
+  - "027 verification and remediation"
+  - "memory semantic triggers"
+  - "feedback reducers"
+  - "causal graph tombstones"
+  - "peck teachings adoption"
+  - "gem-team agent io contract"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement"
+    last_updated_at: "2026-06-20T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Optimized 027 root for retrieval, lean root plus clean metadata and phase maps"
+    next_safe_action: "Resume an in-flight track child via /speckit:resume"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "context-index.md"
+      - "timeline.md"
+      - "graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-04-027-peck-phase-adoption"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions:
+      - "027 is the parent packet for the peck-derived planned work; the peck work lives under child phase 001-research-and-doctrine/001-peck-teachings-adoption."
+
+## 000-release-cleanup/000-spec-tree-consolidation/implementation-summary.md
+---
+title: "Implementation Summary: 027 Spec-Tree Six-Track Consolidation"
+description: "What was built for the 027 six-track consolidation and how it was verified."
+trigger_phrases:
+  - "027 consolidation summary"
+  - "027 six track summary"
+  - "spec tree regroup summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation"
+    last_updated_at: "2026-06-14T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Moved 30 phases into six themed tracks"
+    next_safe_action: "Realign root docs, validate recursively, commit"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-14-027-six-track"
+      parent_session_id: null
+    completion_pct: 70
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Updated** | 2026-06-14 |
+| **Branch** | `028-mcp-to-cli-tool-transition` |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+Six themed top-level tracks for `027`:
+- `000-release-cleanup` (kept; this consolidation lives at child `000`).
+- `001-research-and-doctrine` (peck, gem-team).
+- `002-memory-store-and-search` (write-safety, index/causal, triggers, reducers, memclaw, openltm, vector/bm25, provenance, idempotency — 14 children).
+- `003-advisor-and-codegraph` (causal-bfs, xce-feature-adoption, advisor-reconnect).
+- `004-shared-infrastructure` (cli-transition, command-presentation, adapter-ports, cli-ux, dep-patching, code-mode, ipc-cap).
+- `005-verification-and-remediation` (finding-remediation, tri-system-research, deep-research-remediation, residual-design-units).
+
+All 30 prior top-level phases were moved (history-preserving) and renumbered contiguously within their track.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+Deterministic scripts performed the `git mv` moves (with untracked-leftover relocation), a bare-prefix textual path rewrite, and a deterministic re-derivation of identity fields (`packet_id`/`parent_id`/`children_ids`, `specFolder`/`parentChain`/`specId`/`folderSlug`). The five parents were generated as lean trios. Root tracking docs were realigned and `timeline.md` regenerated.
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
+
+## 000-release-cleanup/001-public-root-readme/implementation-summary.md
+---
+title: "Implementation Summary: Public Root README"
+description: "Completed release-capstone rewrite of the repo-root README to current framework state."
+trigger_phrases:
+  - "public root readme implementation summary"
+  - "release cleanup readme complete"
+importance_tier: "important"
+contextType: "implementation"
+status: "completed"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme"
+    last_updated_at: "2026-06-10T16:40:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Rewrote the public root README to current framework state and reconciled phase evidence"
+    next_safe_action: "Monitor README drift"
+    blockers: []
+    key_files:
+      - "README.md"
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+      - "description.json"
+      - "graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:67a618d91957ff4c7a0fce33d104f4ebba1dd63cd494ef2d25547ab73c042d63"
+      session_id: "2026-06-10-001-public-root-readme-completed"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Operator pre-approved this release-cleanup phase and scope."
+---
+# Implementation Summary: Public Root README
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme |
+| **Completed** | 2026-06-10 |
+| **Level** | 1 |
+| **Status** | Completed |
+| **Completion** | 100% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Rewrote the public root `README.md` as the release capstone. The updated document now gives new readers a current, compact overview of the AI-assistant framework, Spec Kit workflow, memory system, MCP-to-CLI dual-stack, Code Graph, Skill Advisor, skills, commands, agents, install path, configuration files, and next-document pointers.
+
+
+## 000-release-cleanup/002-skill-docs-alignment/implementation-summary.md
+---
+title: "Implementation Summary: Skill Docs Alignment"
+description: "Aligned stale skill documentation and ENV_REFERENCE rows to shipped 027 reality while preserving sibling-lane ownership boundaries."
+trigger_phrases:
+  - "skill docs alignment implementation summary"
+  - "027 release cleanup skill docs aligned"
+importance_tier: "important"
+contextType: "implementation"
+status: "completed"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment"
+    last_updated_at: "2026-06-10T15:29:12Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Aligned stale skill documentation and ENV_REFERENCE to shipped 027 reality"
+    next_safe_action: "Review validation evidence and proceed with release-cleanup sibling lanes"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/SKILL.md"
+      - ".opencode/skills/system-spec-kit/README.md"
+      - ".opencode/skills/system-spec-kit/references/memory/memory_system.md"
+      - ".opencode/skills/system-spec-kit/references/config/environment_variables.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/bug-fixes-and-data-integrity/schema-version-history-v28-v30.md"
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-10-002-skill-docs-alignment-completed"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Operator pre-approved this phase folder and limited edits to .opencode/skills/** docs, ENV_REFERENCE.md, and this phase's spec docs."
+---
+# Implementation Summary: Skill Docs Alignment
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment |
+| **Completed** | 2026-06-10 |
+| **Level** | 1 |
+| **Status** | Completed |
+| **Completion** | 100% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 000-release-cleanup/003-skill-feature-catalog/implementation-summary.md
+---
+title: "Implementation Summary: Skill Feature Catalog"
+description: "Completed feature catalog release-cleanup: added missing shipped-feature entries, skipped existing spec-memory CLI entry, reconciled mutation count self-check, and verified source-file traceability."
+trigger_phrases:
+  - "skill feature catalog implementation summary"
+  - "release cleanup feature catalog complete"
+  - "feature catalog source traceability"
+importance_tier: "important"
+contextType: "implementation"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog"
+    last_updated_at: "2026-06-10T16:15:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed feature catalog release cleanup"
+    next_safe_action: "Report catalog additions and validation result"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-10-003-skill-feature-catalog-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Operator pre-approved feature_catalog and phase-doc scope."
+      - "No duplicate entry added for the existing spec-memory CLI feature."
+---
+# Implementation Summary: Skill Feature Catalog
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog |
+| **Completed** | 2026-06-10 |
+| **Level** | 1 |
+| **Status** | Complete |
+| **Completion** | 100% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added 15 missing current-state feature catalog entries for shipped release features and updated the root mutation count self-check from 12 to 13 so the documented count matches parsed root entries after additions.
+
+### Catalog Entries Added
+
+
+## 000-release-cleanup/004-skill-manual-playbook/implementation-summary.md
+---
+title: "Implementation Summary: Skill Manual Playbook"
+description: "Completed. Added release-hardening manual_testing_playbook scenarios and reconciled the drift-prone count self-check."
+trigger_phrases:
+  - "skill manual playbook implementation summary"
+  - "planned release cleanup scaffold"
+importance_tier: "important"
+contextType: "implementation"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook"
+    last_updated_at: "2026-06-10T16:12:00Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Added release-hardening manual testing scenarios and reconciled the playbook count guard"
+    next_safe_action: "Run the new manual scenarios in the later model-execution phase"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-10-004-skill-manual-playbook-planned"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Operator approved Planned release-cleanup scaffolds."
+      - "Operator approved manual playbook implementation scope and no-build constraint."
+---
+# Implementation Summary: Skill Manual Playbook
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook |
+| **Completed** | 2026-06-10 |
+| **Level** | 1 |
+| **Status** | Complete |
+| **Completion** | 100% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added ten executable manual-testing scenarios for release-hardening coverage and reconciled the root playbook's drift-prone scenario-file count guard.
+
+### Added Scenarios
+
+
+## 000-release-cleanup/005-mcp-cli-stress-tests/implementation-summary.md
+---
+title: "Implementation Summary: MCP CLI Stress Tests"
+description: "Completed additive MCP/CLI stress coverage for schema v37 migrations, gated feature paths, and the three daemon CLI front doors."
+trigger_phrases:
+  - "mcp cli stress tests implementation summary"
+  - "schema v37 stress coverage"
+  - "daemon cli front door stress coverage"
+importance_tier: "important"
+contextType: "implementation"
+status: "completed"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests"
+    last_updated_at: "2026-06-10T16:06:30Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Added stress coverage and verification evidence."
+    next_safe_action: "No follow-up required."
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/release-cleanup-new-surfaces-stress.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/enrichment-marker-backfill-stress.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs"
+    session_dedup:
+      fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      session_id: "2026-06-10-005-mcp-cli-stress-tests-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Operator approved implementation scope and sandbox/temp-socket isolation requirements."
+---
+# Implementation Summary: MCP CLI Stress Tests
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests |
+| **Completed** | 2026-06-10 |
+| **Level** | 1 |
+| **Status** | Completed |
+| **Completion** | 100% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added additive stress coverage for the new release-cleanup surfaces while keeping the existing stress harness isolation model intact.
+
+## 000-release-cleanup/006-command-alignment/implementation-summary.md
+---
+title: "Implementation Summary: Command Alignment"
+description: "Completed content-only command-doc alignment for shipped 027 schema, flags, memory behavior, validators, and CLI front-door reality."
+trigger_phrases:
+  - "command alignment implementation summary"
+  - "planned release cleanup scaffold"
+importance_tier: "important"
+contextType: "implementation"
+status: "completed"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment"
+    last_updated_at: "2026-06-10T15:29:29Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed content-only command-doc alignment to shipped 027 reality"
+    next_safe_action: "Let phase 027/011 perform the later router/presentation split using this accurate content"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-10-006-command-alignment-planned"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Operator approved Planned release-cleanup scaffolds."
+---
+# Implementation Summary: Command Alignment
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment |
+| **Completed** | 2026-06-10 |
+| **Level** | 1 |
+| **Status** | Completed |
+| **Completion** | 100% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Aligned command-doc prose to the shipped 027 memory/runtime reality without restructuring commands or changing command behavior.
+
+### Drift Inventory
+
+| Surface | Drift Found | Resolution |
+
+## 000-release-cleanup/007-agent-alignment/implementation-summary.md
+---
+title: "Implementation Summary: Agent Alignment"
+description: "Completed agent mirror alignment across .opencode, .claude, and .codex with shipped agent-io and verification-discipline doctrine."
+trigger_phrases:
+  - "agent alignment implementation summary"
+  - "planned release cleanup scaffold"
+importance_tier: "important"
+contextType: "implementation"
+status: "completed"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment"
+    last_updated_at: "2026-06-10T15:30:42Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Aligned agent runtime mirrors to shipped agent-io and verification doctrine"
+    next_safe_action: "No further action for this phase; restart runtimes to load changed agent definitions"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-10-007-agent-alignment-planned"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Operator approved Planned release-cleanup scaffolds."
+---
+# Implementation Summary: Agent Alignment
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment |
+| **Completed** | 2026-06-10 |
+| **Level** | 1 |
+| **Status** | Completed |
+| **Completion** | 100% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Aligned the three runtime agent mirrors to the shipped agent I/O and verification-discipline doctrine while preserving runtime wrappers, routing, permissions, and identities.
+
+### Agents Touched
+
+All 12 runtime triplets were normalized for body parity: orchestrate, code, review, context, debug, deep-research, deep-review, deep-context, markdown, prompt-improver, ai-council, and deep-improvement.
+
+## 000-release-cleanup/008-agents-md-alignment/implementation-summary.md
+---
+title: "Implementation Summary: AGENTS.md Alignment"
+description: "Completed AGENTS.md governance alignment while preserving Four Laws and Gates byte-for-byte."
+trigger_phrases:
+  - "agents.md alignment implementation summary"
+  - "planned release cleanup scaffold"
+importance_tier: "important"
+contextType: "implementation"
+status: "completed"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment"
+    last_updated_at: "2026-06-10T15:25:28Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Completed AGENTS.md alignment and verified immutable governance sections"
+    next_safe_action: "No follow-up required for this child phase"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-10-008-agents-md-alignment-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Operator approved Planned release-cleanup scaffolds."
+---
+# Implementation Summary: AGENTS.md Alignment
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment |
+| **Completed** | 2026-06-10 |
+| **Level** | 1 |
+| **Status** | Completed |
+| **Completion** | 100% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Root `AGENTS.md` was reconciled to the shipped governance reality without changing the Four Laws or any Gate text.
+
+### Delivered Scope
+
+- Added the current Spec Kit Memory schema v37 and default-off/opt-in rollout flag pointer near the existing startup/feature-flag governance.
+
+## 000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation/implementation-summary.md
+---
+title: "Implementation Summary: Frontmatter Benefit Investigation"
+description: "The detailed memory-style frontmatter on skill references/assets has no runtime consumer; it is an authoring-workflow artifact, and sk-doc's guidance contradicts itself about it three ways."
+trigger_phrases:
+  - "frontmatter investigation findings"
+  - "no consumer for reference trigger_phrases"
+  - "frontmatter contract decision"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation"
+    last_updated_at: "2026-06-11T06:10:00Z"
+    last_updated_by: "claude-fable"
+    recent_action: "Investigation complete; findings and recommendation recorded"
+    next_safe_action: "Build advisor doc-harvest consumer packet; pilot deep-loop-runtime"
+    blockers: []
+    key_files:
+      - "research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-11-frontmatter-benefit-investigation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "No runtime system consumes trigger_phrases/importance_tier/contextType on references/assets today."
+      - "Operator picked Option B with the skill advisor as sole consumer; spec memory never indexes skill docs."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-frontmatter-benefit-investigation |
+| **Completed** | 2026-06-11 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The question "should skill references/assets carry detailed frontmatter?" now has an evidence-based answer instead of a guess. The detailed block (`trigger_phrases`, `importance_tier`, `contextType`) found on 103 of 369 reference/asset docs is consumed by nothing at runtime: the memory index only admits spec documents and constitutional memories, the skill advisor compiles only each skill's `graph-metadata.json`, and the code graph excludes skill folders by default. The 21 per-skill alignment phases can now normalize frontmatter without fear of destroying live routing signal.
+
+### Frontmatter Inventory
+
+You can now see exactly where the practice diverged: per-skill counts in research.md §2 show the detailed block is near-universal in five skills (deep-ai-council, deep-loop-runtime, mcp-click-up, system-code-graph, system-skill-advisor), partial in six, and absent in ten. The split tracks authoring workflow — docs written inside spec-kit-flavored sessions inherited spec-doc frontmatter — not functional need.
+
+### Consumer Audit
+
+
+## 000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2: cli-claude-code Frontmatter Alignment"
+description: "All 6 cli-claude-code reference/asset docs now conform to the canonical contract; first net-new authoring phase of the campaign."
+trigger_phrases:
+  - "cli-claude-code frontmatter summary"
+  - "frontmatter authoring complete"
+  - "claude code doc contract evidence"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code"
+    last_updated_at: "2026-06-11T12:45:00Z"
+    last_updated_by: "claude-fable"
+    recent_action: "Phase complete: 6 docs conform and smoke passed"
+    next_safe_action: "Campaign continues in sibling phases"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-claude-code/references/cli_reference.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-11-009-002-cli-claude-code"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-cli-claude-code |
+| **Completed** | 2026-06-11 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+cli-claude-code's 6 reference/asset docs now carry exactly the canonical frontmatter contract, making them valid routing signal for the advisor doc harvest. Unlike the 008 pilot (pure normalization of an existing block), this was the campaign's first net-new authoring phase: every doc carried title+description only, so trigger_phrases, importance_tier, and contextType were authored fresh from each doc's actual body.
+
+### Contract authoring
+
+Each doc body was read first and 4-7 trigger phrases were derived from its real sections (flags, permission modes, agent catalog, orchestration patterns, prompt cards/templates). Phrases are executor-prefixed ("claude code ...") so the doc signal stays distinctive against sibling cli-* skills that share generic vocabulary like "prompt templates" and "cli reference". All 6 docs declare `contextType: implementation` (they document invocation mechanics, capabilities, delegation routing, and dispatch-prompt discipline). `cli_reference.md` moved to `important` tier as the formal flag/invocation contract for dispatching the binary; the other 5 descriptive docs stay `normal` so the per-skill doc signal stays dampened.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3: cli-codex Frontmatter Alignment"
+description: "All 7 cli-codex reference/asset docs now conform to the canonical contract; first mostly-net-new authoring phase after the pilot."
+trigger_phrases:
+  - "cli-codex frontmatter summary"
+  - "codex doc contract evidence"
+  - "codex frontmatter authoring complete"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex"
+    last_updated_at: "2026-06-11T09:37:05Z"
+    last_updated_by: "claude-fable"
+    recent_action: "Phase complete: 7 docs conform and smoke passed"
+    next_safe_action: "Campaign continues in sibling phases"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-codex/references/cli_reference.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-11-009-003-cli-codex"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-cli-codex |
+| **Completed** | 2026-06-11 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+cli-codex's 7 reference and asset docs now carry exactly the canonical frontmatter contract, so the advisor doc harvest can route codex-shaped requests to the right doc. This was the first mostly-net-new authoring phase after the pilot: 6 docs had title+description only, so phrases, tiers, and contextTypes were derived from each doc body rather than normalized from existing values.
+
+### Contract authoring
+
+Each doc body was read first and 4-6 trigger phrases were authored from its actual content, codex-prefixed to stay distinctive against the sibling cli-claude-code and cli-opencode skills (for example "codex sandbox modes", "codex generate review fix cycle", "codex prompt quality card"). `hook_contract.md` was the lone partial block; its 4 existing phrases were accurate and kept unchanged, gaining only the two missing enum fields. Two docs earned tier `important`: `cli_reference.md` (the binary's flag/invocation contract) and `hook_contract.md` (formal hook event/exit-semantics contract). `integration_patterns.md` is the lone `planning` contextType since it teaches cross-AI workflow patterns rather than invocation mechanics.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

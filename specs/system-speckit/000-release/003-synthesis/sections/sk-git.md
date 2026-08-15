@@ -1,0 +1,12 @@
+### Git (sk-git)
+- **Remote push permission policy:** only `main`, `skilled/v*` release branches, and your allowlisted patterns push to origin without asking; every other push needs a fresh confirmation, backstopped by a pre-push hook and a new `validate-remote-allowlist <branch>` command (local branch/worktree creation stays unrestricted).
+- **Live-branch autosync:** every commit from a wrapper-launched AI session auto-publishes to a shared live branch that your primary IDE checkout fast-forwards to — gated to those sessions only, never force-pushing, and behaving identically across Claude, Codex, and OpenCode.
+- **Owner-first worktree naming:** new worktrees get consistent `<skill>/{NNNN}-{slug}` names with the number auto-allocated by a locked, clone-wide counter (collision-safe under concurrency, failing cleanly at ≥9999), and branches are created only via `git worktree add`.
+- **Safer session and reaper tooling:** worktree sessions reject `..` and absolute paths so they can't escape the workspace, and the reaper verifies both daemon PID and the exact `work/<runtime>/<slug>` directory before signalling — only auto-deleting clean, merged, inactive sessions.
+- **Risky-command advisory hook:** a state-gated advisory (17 rules) fires the moment you type dangerous git like hard resets on a dirty tree, forced cleans, unmerged `branch -D`, or stash clears — across six runtimes, never blocking, and suppressible.
+- **Mass-deletion guard:** commits deleting over ~100 tracked files are blocked by default, tunable via `SPECKIT_MASS_DELETION_THRESHOLD`, authorizable per-operation with `SPECKIT_ALLOW_MASS_DELETION=1`, audited, and fail-open so a missing hook never locks you out.
+- **Hardened git refusals:** sk-git now refuses `git commit --no-verify` and amending published commits, on top of existing force-push and secrets protections.
+- **GitKraken MCP integration:** the GitKraken server (31 tools) is registered in Code Mode with a safety guide, and GitKraken-shaped requests route automatically to sk-git.
+- **Documentation and test coverage:** sk-git ships a feature catalog of all 11 capabilities, a 19-scenario manual-testing playbook (GIT-023–GIT-041), per-directory READMEs, and corrected `github.github_*` and `gh`-only CI/CD references.
+
+**Breaking:** the new remote push permission policy changes default behavior — pushes to any non-allowlisted remote branch are now blocked unless explicitly confirmed (with `SPECKIT_ALLOW_REMOTE_PUSH=1` or a one-time go-ahead).

@@ -1,0 +1,1454 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/cli-external-orchestration/028-cli-hub-rename"
+# PACKET: specs/cli-external-orchestration/028-cli-hub-rename (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: CLI External Hub Rename"
+description: "Coordinates the four workstreams that establish cli-external-orchestration as the canonical external CLI hub and verify the resulting routing contract."
+trigger_phrases:
+  - "135-cli-hub-rename"
+  - "cli-external-orchestration hub rename"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/028-cli-hub-rename"
+    last_updated_at: "2026-07-13T06:08:29Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Finalized canonical phased packet documentation"
+    next_safe_action: "Rebuild authorized dist outputs, then rerun blocked validation gates"
+    blockers:
+      - "validate.sh is blocked by stale compiled mcp-server dist; rebuilding is forbidden"
+      - "skill graph validation is blocked by unrelated missing graph key paths"
+    key_files:
+      - "spec.md"
+      - "004-verify-closeout/implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "135-cli-hub-rename-doc-finalization"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+
+## 001-hub-dir-rename/implementation-summary.md
+---
+title: "Implementation Summary: Hub Directory Rename"
+description: "The external CLI parent hub now uses the canonical cli-external-orchestration directory identity with history preserved."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/028-cli-hub-rename/001-hub-dir-rename"
+    last_updated_at: "2026-07-13T06:08:29Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Finalized phase 1 implementation evidence"
+    next_safe_action: "Use phase 2 evidence for advisor alignment"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "135-cli-hub-rename-doc-finalization"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-hub-dir-rename |
+| **Completed** | 2026-07-13 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+The existing external CLI hub was renamed through `git mv`, establishing `.opencode/skills/cli-external-orchestration/` as the single canonical parent path while preserving repository history.
+
+
+## 002-advisor-realign/implementation-summary.md
+---
+title: "Implementation Summary: Advisor Realignment"
+description: "Advisor routing now recognizes cli-external-orchestration as the hub and resolves cli-opencode as its nested executor."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/028-cli-hub-rename/002-advisor-realign"
+    last_updated_at: "2026-07-13T06:08:29Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Finalized phase 2 advisor evidence"
+    next_safe_action: "Use phase 3 for live references"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "135-cli-hub-rename-doc-finalization"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-advisor-realign |
+| **Completed** | 2026-07-13 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+Advisor and projection metadata now follow the canonical hub path while preserving `cli-opencode` as the concrete workflow packet.
+
+
+## 003-reference-sweep/implementation-summary.md
+---
+title: "Implementation Summary: Live Reference Sweep"
+description: "Active references now use the canonical hub identity and prompt-quality-card synchronization passes."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/028-cli-hub-rename/003-reference-sweep"
+    last_updated_at: "2026-07-13T06:08:29Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Finalized phase 3 reference evidence"
+    next_safe_action: "Use phase 4 for closeout"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "135-cli-hub-rename-doc-finalization"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-reference-sweep |
+| **Completed** | 2026-07-13 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+Live consumers were repointed to the canonical `cli-external-orchestration` hub while concrete executor references retained the `cli-opencode` name where semantically correct.
+
+
+## 004-verify-closeout/implementation-summary.md
+---
+title: "Implementation Summary: Verification Closeout"
+description: "Targeted rename checks pass, while stale-dist and unrelated graph prerequisites keep full closeout blocked."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/028-cli-hub-rename/004-verify-closeout"
+    last_updated_at: "2026-07-13T13:50:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Recorded create-skill conformance pass over the renamed hub and modes"
+    next_safe_action: "After authorized repairs, rerun blocked executor, graph, and strict validation gates"
+    blockers:
+      - "Executor-delegation import blocked by missing stale @spec-kit/shared dist"
+      - "Skill graph compiler/validate blocked by four unrelated missing graph key paths"
+      - "validate.sh blocked by stale compiled mcp-server dist; rebuild forbidden"
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "135-cli-hub-rename-doc-finalization"
+      parent_session_id: null
+    completion_pct: 70
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-verify-closeout |
+| **Completed** | Not complete; verification blocked |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/029-cli-devin-revival"
+# PACKET: specs/cli-external-orchestration/029-cli-devin-revival (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: cli-devin revival"
+description: "Coordinate the phased revival of cli-devin inside cli-external-orchestration, including executor support, skill packet, live hook adapters, model registry, playbook, MCP-host integration, feature catalog and current-state documentation reconciliation."
+trigger_phrases: ["cli-devin revival", "Devin CLI executor", "Devin hooks", "Devin agents", "cognition devin"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival"
+    last_updated_at: "2026-07-27T11:15:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Phase 015 superseded: all 13 roster agents mirrored into Devin."
+    next_safe_action: "Escalate the phase 013 devin finding."
+    blockers: []
+    key_files: ["hook-testing-results.md", "004-devin-hook-adapter-layer/implementation-summary.md", "008-devin-hook-parity/implementation-summary.md", "011-hook-truth-and-runtime-readmes/spec.md", "013-devin-permission-request-handler/spec.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
+    completion_pct: 60
+    open_questions: ["Provider-side revocation and rotation of the credentials removed from Zed remains operator-only.", "PostCompaction still not live-verified (needs a genuinely long session, not forced in a quick test).", "Does run_subagent produce the registered tool name and expected payload shape?"]
+    answered_questions: ["Phase 001 confirms Devin CLI is real and current (v3000.2.17), not a hypothetical revival target.", "With the documented top-level event schema, devin -p fires SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd.", "The earlier packet-wide dormancy conclusion was caused by an unsupported hooks.v1.json wrapper shape.", "PermissionRequest DOES fire live for write-class tools under auto mode; the explicit-empty registration silently rejected every such request.", "Phase 013's adapter logic is correct, but devin 3000.2.17 does not honor the hook's decision under any tested mode - upstream limitation."]
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT -->
+# Feature Specification: cli-devin revival
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+| Field | Value |
+|---|---|
+| **Level** | 3 phased packet |
+| **Priority** | P1 |
+| **Status** | Active - phases 001, 003, 004, 008, 011 and 012 complete; phases 002, 005, 006, 007, 009 and 010 planned |
+| **Created** | 2026-07-23 |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Packet** | `cli-external-orchestration/029-cli-devin-revival` |
+| **Predecessor** | `z_archive/022-cli-devin-deprecation` (reverses this decision; the removal itself is left in place as an immutable historical record) |
+| **Successor** | None |
+| **Handoff Criteria** | Every phase validates independently; `cli-devin` becomes a 5th deep-loop executor kind and a 4th `cli-external-orchestration` mode without breaking the 3 existing modes; unavailable `devin` binary never becomes routable (fail-closed, matching the `cli-codex` precedent). |
+<!-- /ANCHOR:metadata -->
+
+
+## 001-devin-contract-pin/implementation-summary.md
+---
+title: "Implementation Summary: Devin CLI contract pin"
+description: "Evidence base for the live Devin CLI contract used by phases 002-007 of the cli-devin revival."
+trigger_phrases: ["devin contract pin summary"]
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin"
+    last_updated_at: "2026-07-24T14:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Corrected permission-mode names to auto/accept-edits/smart/dangerous"
+    next_safe_action: "Consume corrected facts in 002-007, not the original names"
+    blockers: []
+    key_files: []
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Permission-mode names re-verified against live `devin --help`: auto/accept-edits/smart/dangerous, not normal/accept-edits/bypass/autonomous."]
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- ANCHOR:metadata -->
+## METADATA
+| Field | Value |
+|---|---|
+| **Spec Folder** | 001-devin-contract-pin |
+| **Completed** | 2026-07-23 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+Devin CLI is installed (`~/.local/bin/devin` → `~/.local/share/devin/cli/_versions/current/bin/devin`, symlink confirmed via `ls -la`), and its full current contract is pinned below with citations.
+
+### Install & Version
+- `curl -fsSL https://cli.devin.ai/install.sh | bash` → `Installed devin v3000.2.17 to ~/.local/bin/devin.` (installer also attempted an interactive OAuth login and failed with "Error: Login canceled" - expected in a non-interactive shell, not a failure of the install itself.)
+- `devin --version` → `devin 3000.2.17 (2c489dfc)`.
+- `~/.local/bin` is already on `$PATH`.
+
+### Auth
+- `devin auth status` → "Not logged in. Credentials path: `~/.local/share/devin/credentials.toml`. Run `devin auth login` to authenticate."
+- Interactive auth is `devin auth login` (OAuth browser flow, session token to OS Keychain/Credential Manager) - operator-only action, not completed here.
+- Headless/CI auth: `COGNITION_API_KEY="sk-cog-..."` env var, or a Service User API key (`cog_`-prefixed, RBAC-scoped, generated in Settings > Service users). Personal Access Tokens exist but are in closed beta. Legacy `apk_`-prefixed keys still work but are deprecated. (`docs.devin.ai/api-reference/authentication.md`)
+- Windsurf enterprise auth (`devin auth login` → enterprise Windsurf SSO option) is an **optional, legacy-Windsurf-enterprise-only** alternative auth path, storing a token in `credentials.toml` - not applicable to this individual install. (`docs.devin.ai/cli/enterprise/windsurf-auth.md`)
+
+### Command surface
+- Invocation: `devin [OPTIONS] [prompt]`; `devin -p "prompt"` for single-turn/non-interactive output.
+- Subcommands: `auth {login,logout,status}`, `mcp {add,list,get,remove,login,logout,enable,disable}`, `rules {list,show,paths}`, `skills {list,show,paths}`, `list`/`ls`, `version`, `acp` (Agent Client Protocol server for editor integration), `update`, `shell setup`, `sandbox setup`, `setup`, `uninstall`.
+- Global flags include `--model`, `--permission-mode`, `--continue`/`-c`, `--resume`/`-r`, `--print`/`-p`, `--config`, `--sandbox`, `--respect-workspace-trust`. (`docs.devin.ai/cli/essential-commands.md`, `docs.devin.ai/cli/reference/commands.md`)
+
+### Hooks
+Native project-level hook contract, 8 lifecycle events: `PreToolUse`, `PostToolUse`, `PermissionRequest`, `UserPromptSubmit`, `Stop`, `PostCompaction`, `SessionStart`, `SessionEnd`. Config discovered in `.devin/hooks.v1.json` (standalone, recommended) or under a `"hooks"` key in `.devin/config.json`/`.devin/config.local.json`, walking up to the repo root; user-level at `~/.config/devin/config.json`. Hook entry shape: `{type: "command"|"prompt", matcher?: regex, command|prompt, timeout?}`, receiving JSON on stdin (`tool_name`, `tool_input`, `session_id`, `prompt_id`). `PreToolUse` can rewrite tool input via `hookSpecificOutput.updatedInput`; `PermissionRequest`/`Stop` return a `{"decision": ...}` JSON object. This event-name set closely mirrors Claude Code's own hook contract - directly relevant to phase 004's adapter design. (`docs.devin.ai/cli/extensibility/hooks/{overview,lifecycle-hooks}.md`)
+
+### Config
+Three-tier JSON-with-comments config: user (`~/.config/devin/config.json`), project (`.devin/config.json`, committed), local override (`.devin/config.local.json`, gitignored). Precedence (highest to lowest): org/enterprise settings → session grants → project-local → project → user. Project-level configs support only `permissions`, `mcpServers`, and `read_config_from` keys - all other settings (model, theme, sandbox, etc.) are user-only. Notably, `read_config_from: {cursor, windsurf, claude}` booleans let Devin CLI natively import rules/config from a `.claude/` directory - a real alternative (or complement) to hand-built hook adapters, to be weighed explicitly in phase 004. (`docs.devin.ai/cli/extensibility/configuration.md`, `docs.devin.ai/cli/reference/configuration/config-file.md`)
+
+
+## 003-cli-devin-skill-packet/implementation-summary.md
+---
+title: "Implementation Summary: cli-devin skill packet"
+description: "The new cli-devin nested workflow mode dispatches Cognition's Devin CLI for multi-model coding, subagent delegation, cloud handoff, and cross-AI validation, failing closed when the binary is absent."
+trigger_phrases: ["cli-devin skill summary", "cli-devin packet implementation"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet"
+    last_updated_at: "2026-07-26T17:30:00Z"
+    last_updated_by: "devin-cli"
+    recent_action: "Built cli-devin packet, wired hub, validators 0/0"
+    next_safe_action: "Update parent phase map; select next phase"
+    blockers: []
+    key_files: ["implementation-summary.md", "tasks.md", "checklist.md", "decision-record.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-packet-build", parent_session_id: null }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Devin's active-session env-var signal is DEVIN_PROJECT_DIR (confirmed live against the installed v3000.2.17 binary's hooks overview), resolving the open question from the authoring pass.", "The packet is the 5th mode under the hub, not the 4th as the spec anticipated, because 030-cli-cursor-creation landed between authoring and implementation; the spec's 4th-mode prose is a benign scope-drift artifact documented here, not retrofitted into the frozen spec.md."]
+---
+# Implementation Summary
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|---|---|
+| **Spec Folder** | 003-cli-devin-skill-packet |
+| **Completed** | 2026-07-26 |
+| **Level** | 3 |
+| **Status** | Implemented; all validation gates passed |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `cli-devin` skill packet was built as a new workflow mode under `cli-external-orchestration`, mirroring the `cli-codex` revival precedent (027/003). The packet dispatches Cognition's Devin CLI for multi-model coding, subagent delegation, cloud handoff via `/handoff`, and cross-AI validation. It fails closed when the `devin` binary is absent and refuses self-invocation when the runtime is already Devin.
+
+### Files Created (11 packet files)
+
+| File | Purpose |
+|---|---|
+| `cli-devin/SKILL.md` | Packet skill definition: frontmatter with `hard_rules` triad, self-invocation guard, smart router, dispatch contract. |
+| `cli-devin/README.md` | 9-section user-facing overview (AT A GLANCE → RELATED DOCUMENTS). |
+| `cli-devin/references/cli-reference.md` | Complete CLI subcommands, flags, permission modes, models, config reference. |
+| `cli-devin/references/integration-patterns.md` | Cross-AI delegation patterns, generate-review-fix cycle, subagent fan-out. |
+| `cli-devin/references/agent-delegation.md` | `run_subagent` tool, built-in and custom profiles, foreground/background mode. |
+| `cli-devin/references/devin-tools.md` | Devin's tool surface, 4-tier permission model, MCP host integration. |
+| `cli-devin/references/cloud-handoff.md` | `/handoff` mechanics, use cases, state transfer. |
+| `cli-devin/assets/prompt-quality-card.md` | Thin delegator to `sk-prompt/prompt-models` with 3-tier precedence rule. |
+| `cli-devin/assets/prompt-templates.md` | Copy-paste prompt templates for common dispatch tasks. |
+| `cli-devin/changelog/v1.0.0.0.md` | Initial release entry. |
+| `cli-devin/manual-testing-playbook/.gitkeep` | Scaffold placeholder; content lands in phase 006. |
+
+### Files Modified (hub registries and docs)
+
+| File | Change |
+|---|---|
+| `mode-registry.json` | Added `cli-devin` `modes[]` entry (5th mode). |
+
+## 004-devin-hook-adapter-layer/implementation-summary.md
+---
+title: "Implementation Summary: Devin hook adapter layer"
+description: "SessionStart and UserPromptSubmit adapters built, typechecked, directly tested and observed live under devin -p after correcting hooks.v1.json to the documented top-level event schema."
+trigger_phrases: ["devin hook adapter summary", "devin hook live evidence"]
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
+    last_updated_at: "2026-07-25T10:09:43Z"
+    last_updated_by: "opencode"
+    recent_action: "Corrected phase status after documented-schema live verification"
+    next_safe_action: "Use hook-testing-results.md tests 10-14 as the current behavior authority"
+    blockers: []
+    key_files: [".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md", ".opencode/skills/system-spec-kit/runtime/hooks/devin/README.md", "decision-record.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
+    completion_pct: 100
+    open_questions: ["Do PermissionRequest and PostCompaction fire when those events occur?"]
+    answered_questions: ["SessionStart and UserPromptSubmit fire under devin -p with the documented schema.", "The earlier packet-wide dormancy inference came from an unsupported wrapper schema."]
+---
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- ANCHOR:metadata -->
+## METADATA
+| Field | Value |
+|---|---|
+| **Spec Folder** | 004-devin-hook-adapter-layer |
+| **Completed** | 2026-07-24 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+Devin hook adapters for the 2 events this phase scopes (`SessionStart`, `UserPromptSubmit`), mirroring the live `cli-codex` precedent: built, typechecked, compiled, directly tested and observed live under `devin -p` after correcting the registration schema.
+
+### `mcp-server/hooks/devin/` (TypeScript, compiled via the existing `mcp-server` build)
+- `shared.ts`: reads/validates a bounded Devin hook payload, delegates to the existing `../claude/*.js` implementations, emits Devin's `hookSpecificOutput` envelope (the same shape Codex uses -- Devin's hook contract closely mirrors Claude Code's own).
+- `session-start.ts`: `SessionStart` adapter, delegates to `session-prime.js`.
+- `user-prompt-submit.ts`: `UserPromptSubmit` adapter, delegates to `user-prompt-submit.js`.
+- `README.md`: current live wiring, payload evidence and unobserved-event caveats.
+
+### `runtime/hooks/devin/` (plain `.mjs`, no build step, matching the codex precedent)
+- `spec-gate-classify.mjs`: `UserPromptSubmit` hook, calls `classifyIntent()` against the shared `spec-gate-core.mjs`.
+- `README.md`: documents current live behavior and why `spec-gate-enforce.mjs` (`PreToolUse`) belongs to phase 008.
+
+### `.devin/hooks.v1.json` (project root)
+- Registers both adapters (`SessionStart` -> `session-start.js`, `UserPromptSubmit` -> `user-prompt-submit.js` plus `spec-gate-classify.mjs`). Phase 008 later extended the file, and phase 011 records the corrected nested schema that made the wiring live.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## HOW IT WAS DELIVERED
+1. Read the live `cli-codex` precedent in full (`shared.ts`, `session-start.ts`, `user-prompt-submit.ts`, `spec-gate-classify.mjs`, both READMEs) as the structural template.
+2. **Superseded experiment**: live-probed an unsupported wrapper-shaped `.devin/hooks.v1.json` and observed zero firings across the instrumented events.
+3. The no-error malformed-JSON control was originally misread as proof the file was unread. Corrected-schema tests later showed the invalid structure was silently discarded.
+4. Confirmed `.devin/hooks.v1.json` is the correct filename via `devin migrate hooks --help`'s own description ("Migrate Windsurf hooks... to Devin hooks (.devin/hooks.v1.json)"), ruling out a wrong-filename explanation.
+5. Tested the one remaining headless mechanism, `--agent-config <file>`: its own strict parser rejected a `hooks` field outright (`unknown field 'hooks', expected one of system_instructions, allowed_tools, permissions, mcp_servers, extensions`), definitively ruling out that path too.
+6. True interactive mode could not be tested, but corrected-schema `devin -p` behavior is now directly proven.
+
+## 006-devin-manual-testing-playbook/implementation-summary.md
+---
+title: "Implementation Summary: Devin manual-testing playbook"
+description: "Authored and executed the cli-devin manual-testing playbook package: 20 DV-NNN scenarios across nine categories, all run live against devin 3000.2.17 with 19 PASS and 1 by-design SKIP."
+trigger_phrases:
+  - "devin manual testing playbook summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook"
+    last_updated_at: "2026-07-27T15:34:33Z"
+    last_updated_by: "claude"
+    recent_action: "Authored and executed 20 DV-NNN scenarios: 19 PASS, 1 SKIP."
+    next_safe_action: "None; scenarios authored and executed."
+    blockers: []
+    key_files: ["manual-testing-playbook.md", "hooks/", "subagents/", "commands-and-skills/"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "devin-manual-testing-playbook"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "PreToolUse still fires under --permission-mode bypass, so guard coverage survives the mode this repo dispatches with; only PermissionRequest is skipped."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-devin-manual-testing-playbook |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `cli-devin` manual-testing playbook package, which until now was an empty directory holding only a `.gitkeep` despite this phase existing to author it. It follows the split-document pattern the sibling CLI playbooks use: a root index acting as operator directory and review protocol, plus one file per scenario inside category folders.
+
+20 scenarios (`DV-001`–`DV-020`) across nine categories:
+
+| Category | Scenarios | Focus |
+|---|---|---|
+| `cli-invocation/` | 4 | Default `devin -p` dispatch, availability probe, hallucination fixture, the `smart` permission-mode doc/runtime mismatch |
+| `subagents/` | 4 | Built-in profile dispatch, mirrored roster-agent dispatch, roster enumeration, missing-profile negative case |
+| `hooks/` | 3 | Confirmed-firing event matrix, `PermissionRequest` auto-vs-bypass, and `PreToolUse` still firing under bypass |
+| `commands-and-skills/` | 3 | `devin skills list` roster, mirrored-command invocation, the unquoted-colon YAML regression |
+| `permission-modes/` | 2 | Behavior across `auto` / `accept-edits` / `bypass` / `autonomous --sandbox` |
+| `rules/` | 1 | `devin rules list`/`paths` confirming Cursor + Claude + Standard rule inheritance |
+| `mcp-integration/` | 1 | `devin mcp` surface |
+
+## 008-devin-hook-parity/implementation-summary.md
+---
+title: "Implementation Summary: Devin hook parity"
+description: "10 Devin hook adapters built and directly tested, with full lifecycle registration corrected to the documented nested schema; six lifecycle events are observed live under devin -p."
+trigger_phrases: ["devin hook parity summary", "devin hooks.v1.json full coverage"]
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity"
+    last_updated_at: "2026-07-25T10:09:43Z"
+    last_updated_by: "opencode"
+    recent_action: "Corrected phase status after documented-schema live verification"
+    next_safe_action: "Use phase 011 evidence for current behavior"
+    blockers: []
+    key_files: [".devin/hooks.v1.json", "decision-record.md", "../004-devin-hook-adapter-layer/implementation-summary.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
+    completion_pct: 100
+    open_questions: ["Do PermissionRequest and PostCompaction fire when those events occur?", "Does run_subagent expose the expected live payload?", "Does a block-severity fixture exercise the deny branch end to end?"]
+    answered_questions: ["Six lifecycle events fire under devin -p with the documented schema.", "Original 9-file matrix missed spec-gate-enforce.mjs; added as a 10th file."]
+---
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- ANCHOR:metadata -->
+## METADATA
+| Field | Value |
+|---|---|
+| **Spec Folder** | 008-devin-hook-parity |
+| **Completed** | 2026-07-24 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+The remaining Devin hook adapters close the gap phase 004 deliberately left open: 10 new adapter files plus full `.devin/hooks.v1.json` lifecycle coverage. **Status correction (2026-07-25)**: the zero-firing pass used an unsupported wrapper schema. The corrected nested schema produced six lifecycle events under `devin -p`.
+
+### Guard-core adapters (direct-core-call pattern)
+- `cli-opencode/scripts/hooks/devin/dispatch-preflight-lint.mjs` -- `PreToolUse(^exec$)`, deny-capable, wraps `dispatch-rule-checks.mjs`.
+- `cli-opencode/scripts/hooks/devin/dispatch-audit-posttooluse.mjs` -- `PostToolUse(^exec$)`, observe-only, wraps `dispatch-audit.mjs`.
+- `sk-code/code-quality/scripts/hooks/devin/post-edit-quality.cjs` -- `PostToolUse(^edit$)`, wraps `post-edit-router.cjs`.
+- `system-code-graph/runtime/hooks/devin/code-graph-freshness.cjs` -- `PostToolUse(^edit$)`, wraps `freshness-core.cjs`.
+- `mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs` -- `PreToolUse(^mcp__.*$)`, warn-only, registered and directly tested. No external non-`mk_` MCP family is currently registered, so no applicable live event was observed.
+- `system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs` -- `PreToolUse(^run_subagent$)`, wraps `dispatch-guard.cjs`. Real adapter, deliberate divergence from Codex's fold-in (Devin's `run_subagent` is a genuine first-class dispatch tool).
+- `system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs` (10th file, gap fix) -- `PreToolUse(^exec$|^edit$)`, deny-capable, calls `spec-gate-core.mjs`'s `evaluateMutation()` directly. Already scoped in the research (§10, C-02/C-05/G-01) but dropped from the original file matrix; caught and closed here.
+
+### Lifecycle-completion adapters
+- `system-spec-kit/mcp-server/hooks/devin/completion-evidence-stop.cjs` -- `Stop`, advisory, wraps `completion-evidence-sentinel.cjs`, standalone no-build-step `.cjs`.
+- `system-spec-kit/mcp-server/hooks/devin/session-stop.ts` -- `Stop`, delegates to compiled `../claude/session-stop.js` via the shared `shared.ts` phase 004 built.
+- `system-spec-kit/mcp-server/hooks/devin/post-compaction.cjs` -- `PostCompaction`, bespoke (no Codex/Claude precedent). Devin fires *after* compaction with only `session_id` + a possibly-null `summary`, unlike Claude's before-compaction `PreCompact`. Implements the 5-step chain from the research: retain summary, rehydrate spec-folder continuity, bounded `memory_context(mode=resume)` fallback, provenance/length sanitization, emit `additionalContext` directly.
+
+### `.devin/hooks.v1.json` (project root, extended)
+Grew from phase 004's 2-event registration (3 command entries) to all 7 event categories Claude's `.claude/settings.json` covers: `SessionStart` (+4 wiring-only script registrations: `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh --all`, `install-codex-hooks.mjs --check`), `UserPromptSubmit` (unchanged), `PreToolUse` (5 matcher entries), `PostToolUse` (3 matcher entries), an explicit empty `PermissionRequest: []`, `Stop` (2 entries), `PostCompaction` (1 entry), `SessionEnd` (1 entry, `session-cleanup.sh` registered directly). The one genuine gap versus Claude is `PreCompact` -> `PostCompaction`, a documented semantic/naming divergence, not an omission.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## HOW IT WAS DELIVERED
+1. Read all 7 live Codex sibling adapters plus Claude's `task-dispatch-guard.cjs` template (Devin's `run_subagent` needed the Claude template, not Codex's fold-in) as the structural precedent for each new file.
+2. Built each of the 9 originally-planned adapters, mirroring the proven stdin-read / fail-open / translate / emit pattern; `post-compaction.cjs` built bespoke per the research's own 5-step design (no precedent to port).
+
+## 011-hook-truth-and-runtime-readmes/implementation-summary.md
+---
+title: "Implementation Summary: Devin hook truth and runtime README parity"
+description: "Phase 011 reconciles current Devin hook truth, aligns runtime discovery READMEs, restores the Cursor route-guard mirror and removes obsolete secret-bearing Zed MCP registrations."
+trigger_phrases:
+  - "Devin hook truth implementation"
+  - "runtime README parity summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes"
+    last_updated_at: "2026-07-26T19:05:13Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed phase 011 with recursive strict validation"
+    next_safe_action: "Rotate or revoke the removed credentials in the provider dashboards"
+    blockers: []
+    key_files: ["spec.md", "tasks.md", "checklist.md", "../hook-testing-results.md", "../handover.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-011-hook-truth"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: ["Provider-side credential rotation requires operator access."]
+    answered_questions: ["Current hook truth and runtime discovery surfaces are reconciled.", "Local secret-bearing Zed registrations are removed."]
+---
+# Implementation Summary: Devin Hook Truth and Runtime README Parity
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-hook-truth-and-runtime-readmes |
+| **Status** | Complete |
+| **Started** | 2026-07-25 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 011 establishes one current operational account of Devin hooks. The corrected top-level `.devin/hooks.v1.json` schema and tests 10-14 lead every current summary; tests 1-9 remain as explicitly superseded evidence explaining how the unsupported wrapper shape produced a false packet-wide dormancy conclusion.
+
+The delivery includes:
+
+- Current-state corrections in the parent packet and phases 004, 006, 008 and 010.
+- Seven event-specific Devin adapter READMEs and four runtime discovery READMEs aligned to current files and wiring.
+- A relative Cursor `mcp-route-guard.mjs` discovery symlink with `.cursor/hooks.json` unchanged.
+- Removal of the approved obsolete Zed MCP registrations and their local credential copies.
+- Correction of the Zed Code Mode entrypoint to `.opencode/skills/mcp-code-mode/mcp-server/dist/index.js`.
+- Updated handover and continuation guidance that retain all unobserved-event and branch caveats.
+<!-- /ANCHOR:what-built -->
+
+
+## 012-devin-hook-hardening/implementation-summary.md
+---
+title: "Implementation Summary: Devin hook hardening"
+description: "Unified workspace-root resolution across 10 Devin adapters, added cwd fallback to completion-evidence-stop, built a discriminating spec-gate test suite, and trimmed stale comment scar tissue."
+trigger_phrases:
+  - "devin hook hardening summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening"
+    last_updated_at: "2026-07-27T07:00:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Hardening pass complete: 10 adapters unified, test suite 10/10 green."
+    next_safe_action: "Run strict validation, then move to phase 006 and 003."
+    blockers: []
+    key_files: ["spec.md", ".opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs", ".opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "devin-hook-hardening"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 012-devin-hook-hardening |
+| **Completed** | 2026-07-26 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The 10 Devin hook adapters now resolve `projectDir` uniformly: a whitespace-only `payload.cwd` is treated as absent and falls back to `DEVIN_PROJECT_DIR` then `process.cwd()`. The completion-evidence-stop adapter, which previously hardcoded `process.cwd()`, now uses the same resolution as its 9 siblings. A 10-row process-level test suite exercises the spec-gate classify and enforce adapters across the full matrix (malformed input, missing identity, disabled, child, mutating prompt, non-mutating prompt, enforce deny, enforce advise, satisfied state, terminal-state preservation, whitespace cwd, missing cwd). Stale 8-line historical comment blocks were trimmed to a durable one-liner across all 9 adapters that carried them.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `spec-gate-classify.mjs` | Modified | Trim-and-fallback cwd; session-ID guard; trimmed comment. |
+| `spec-gate-enforce.mjs` | Modified | Trim-and-fallback cwd; session-ID guard; trimmed comment. |
+| `completion-evidence-stop.cjs` | Modified | Added payload?.cwd fallback; trimmed comment. |
+| `post-compaction.cjs` | Modified | Trim-and-fallback cwd; trimmed comment. |
+| `session-start.ts` | Modified | Trimmed comment. |
+| `session-stop.ts` | Modified | Trimmed comment. |
+| `user-prompt-submit.ts` | Modified | Trimmed comment. |
+| `shared.ts` | Modified | Trimmed comment. |
+
+## 013-devin-permission-request-handler/implementation-summary.md
+---
+title: "Implementation Summary: Devin PermissionRequest handler"
+description: "Implemented and registered a fail-closed Devin PermissionRequest adapter that composes the shared write-target and dispatch hard-rule cores, with process-level discrimination and documented live-probe limits."
+trigger_phrases:
+  - "devin permission request handler summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler"
+    last_updated_at: "2026-07-27T12:00:00Z"
+    last_updated_by: "claude"
+    recent_action: "Adapter inert under the bypass mode actually used; PreToolUse guards verified active."
+    next_safe_action: "None; scope resolved."
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "permission-request-policy.mjs", "permission-request-policy.test.mjs", ".devin/hooks.v1.json"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "devin-permission-request-handler"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions: ["The local policy matrix distinguishes five deny rows from a naive always-allow classifier.", "A live probe confirms the adapter itself computes the correct decision for real payloads.", "auto mode fires the hook but ignores its answer; dangerous mode never fires it; no tested mode honors the hook's decision."]
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 013-devin-permission-request-handler |
+| **Completed** | 2026-07-27 (local implementation; live verification pending) |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`permission-request-policy.mjs` now handles Devin `PermissionRequest` payloads with strict identity validation and a fail-closed policy. Write-class tools delegate target-path classification to `isExemptTargetPath(filePath, projectDir)`. Exec-class tools delegate hard-rule loading and evaluation to `readHardRules(skillMdPath)` and `evaluate(command, rules)`. Unknown tools, malformed JSON, missing identity, invalid tool shapes, and policy errors deny.
+
+The adapter emits the repository-standard nested `hookSpecificOutput` envelope for `PermissionRequest`, plus Devin's documented top-level `decision`/`reason` fields for runtime compatibility. `.devin/hooks.v1.json` registers the adapter for every PermissionRequest tool name with the established nested matcher schema.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `permission-request-policy.mjs` | Created | Fail-closed write/exec permission adapter over the two existing shared cores. |
+| `permission-request-policy.test.mjs` | Created | Process-level matrix and always-allow falsifier test. |
+| `.devin/hooks.v1.json` | Modified | Registers the adapter under `PermissionRequest`. |
+| `tasks.md` | Modified | Records task evidence and the unavailable live probe. |
+| `checklist.md` | Modified | Records verified checks; leaves live verification unchecked. |
+| `implementation-summary.md` | Created | Captures implementation decisions, evidence, and limitations. |
+
+## 014-hook-adapter-shared-boilerplate-and-claude-codex-fix/implementation-summary.md
+---
+title: "Implementation Summary: Hook adapter shared boilerplate and Claude/Codex fix"
+description: "Extracted the byte-identical readStdin/JSON-parse-fail-open boilerplate into a shared ESM/CJS helper pair, migrated nine adapters across four runtimes, and applied the firstNonBlankString alias-chain fix to Claude's and Codex's spec-gate-enforce.mjs."
+trigger_phrases:
+  - "hook adapter shared boilerplate summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix"
+    last_updated_at: "2026-07-27T10:45:00Z"
+    last_updated_by: "claude"
+    recent_action: "Implemented (GPT-5.6-LUNA xhigh); verified and finished."
+    next_safe_action: "None; phase complete."
+    blockers: []
+    key_files: ["hook-adapter-shared.mjs", "hook-adapter-shared.cjs", "spec-gate-claude.test.mjs", "spec-gate-codex.test.mjs"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "hook-adapter-shared-boilerplate-and-claude-codex-fix"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Claude and Codex had no existing spec-gate test files; new ones were created mirroring the Devin/Cursor precedent."]
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 014-hook-adapter-shared-boilerplate-and-claude-codex-fix |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Two shared helper files, `hook-adapter-shared.mjs` (ESM) and `hook-adapter-shared.cjs` (CommonJS), each exporting `readStdin()` and `parseJsonFailOpen(raw)`. Nine adapters across four runtimes migrated to import them instead of repeating the boilerplate inline: `spec-gate-enforce.mjs` for Claude, Codex, Devin, and Cursor; `task-dispatch-guard.cjs` for Claude and Devin; `mcp-route-guard.cjs` for Claude, Codex, and Devin.
+
+Separately, Claude's and Codex's `spec-gate-enforce.mjs` gained the `firstNonBlankString()` alias-chain fix already shipped for Devin and Cursor in an earlier phase, closing the masking bug (a `||` chain picks the first truthy VALUE, not the first valid string) in the two runtimes that had never received it. Codex's `apply_patch` heredoc path-parsing (`pathsFromPatch()`) was diff-verified untouched.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `system-spec-kit/runtime/lib/hook-adapter-shared.mjs` | Created | Shared `readStdin()`/`parseJsonFailOpen()` for ESM adapters. |
+| `system-spec-kit/runtime/lib/hook-adapter-shared.cjs` | Created | CommonJS twin for `.cjs` adapters. |
+| `system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs` | Modified | `firstNonBlankString()` alias fix; migrated to shared boilerplate. |
+| `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | Modified | `firstNonBlankString()` alias fix (`apply_patch` parsing untouched); migrated to shared boilerplate. |
+| `system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs` | Modified | Migrated to shared boilerplate (fix already present). |
+| `system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | Modified | Migrated to shared boilerplate (fix already present). |
+
+## 015-devin-agents-skills-rules-parity/implementation-summary.md
+---
+title: "Implementation Summary: Devin agents/skills/rules parity"
+description: "Built and live-verified a native Devin code-reviewer AGENT.md profile, corrected a stale docs claim about Claude-agent auto-import, and documented devin skills list/devin rules list/commands non-applicability."
+trigger_phrases:
+  - "devin agents skills rules parity summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity"
+    last_updated_at: "2026-07-27T11:15:00Z"
+    last_updated_by: "claude"
+    recent_action: "Implemented (GPT-5.6-LUNA); live probes completed by Claude."
+    next_safe_action: "None; phase complete."
+    blockers: []
+    key_files: [".devin/agents/<name>/AGENT.md", "cli-devin/SKILL.md", "tasks.md", "checklist.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "devin-agents-skills-rules-parity"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["The native AGENT.md schema is documented at https://docs.devin.ai/cli/subagents.", "The code-reviewer profile resolves and dispatches live, producing a real review with a valid P1 finding."]
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 015-devin-agents-skills-rules-parity |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+> **SUPERSEDED (same session).** This phase's one-profile proof-of-build has been extended: all 13 repo agents are now mirrored into `.devin/agents/` as symlinks to the canonical `.claude/agents/*.md`, and the bespoke `code-reviewer` profile described below was deleted (it was never a Devin built-in). The findings recorded here about the AGENT.md format and the failed Claude-format auto-import remain accurate and are what made the mirror approach possible.
+
+`.devin/agents/code-reviewer/AGENT.md`: a real, native Devin subagent profile using the live-confirmed frontmatter schema (`name`, `description`, `allowed-tools: [read, grep, glob, exec]`, `permissions.deny: [write, edit]`) plus a system-prompt body instructing it to review code for correctness, security, and repo-convention consistency, citing file/line and rating severity P0/P1/P2.
+
+`cli-devin/SKILL.md` gained a new section documenting: live `devin skills list` output (repo-local packets discovered), live `devin rules list` output (`CLAUDE.md`/`AGENTS.md` surfaced), the new `code-reviewer` profile and how to invoke it, a correction to Devin's own docs (the claimed `.claude/agents/*.md` auto-import does not work in the installed 3000.2.17), and an explicit note that Devin has no command-file-system concept.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.devin/agents/code-reviewer/AGENT.md` | Created | First real native Devin subagent profile in this repo. |
+| `cli-external-orchestration/cli-devin/SKILL.md` | Modified | Documents skills/rules discovery, the new profile, the auto-import correction, and the commands non-applicability decision. |
+| `tasks.md`, `checklist.md` | Modified | Evidence for every P0/P1 item, including the completed live-dispatch probe. |
+<!-- /ANCHOR:what-built -->
+
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/030-cli-cursor-creation"
+# PACKET: specs/cli-external-orchestration/030-cli-cursor-creation (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: cli-cursor creation"
+description: "Coordinate a first-time creation of a cli-cursor CLI-dispatch mode inside cli-external-orchestration, adding executor support, a skill packet, hook adapters, a Composer model profile, a manual-testing playbook, live hook wiring, Claude parity, discovery mirrors, a session-start Gate-3 prebind, and agents/skills/rules parity against the current (2026-07) Cursor CLI (cursor-agent). All 14 phases are complete."
+trigger_phrases: ["cli-cursor creation", "Cursor CLI executor", "cursor-agent mode", "delegate to cursor", "cursor cli hub mode"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation"
+    last_updated_at: "2026-07-27T11:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Phase 014 built: .cursor/rules populated, gaps documented."
+    next_safe_action: "None; all 14 phases complete."
+    blockers: []
+    key_files: ["013-cursor-spec-gate-prebind/spec.md", "014-cursor-agents-skills-rules-parity/spec.md", ".cursor/hooks.json", ".cursor/rules/", ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
+    completion_pct: 100
+    open_questions: ["Should a dispatched cursor-agent carry a --workspace/config-isolation flag so it does not inherit the operator's shared ~/.cursor/ hooks/mcp/rules?", "How should all Cursor hooks handle multi-root workspace_roots consistently?", "Does .cursor/hooks.json's UserPromptSubmit entry already inject skill-advisor-equivalent context (phase 014 open question)?"]
+    answered_questions: ["Phase 001 confirmed the live Cursor CLI contract.", "Phase 004 confirmed partial CLI hook-event delivery.", "Phase 018 resolves autonomous-child Gate-3 handling as a complete no-op.", "CORRECTED: Cursor DOES support custom subagents via .cursor/agents/*.md plus Claude-format auto-import; all 13 repo agents are mirrored in and confirmed dispatchable live. The earlier non-concept claim was inferred from a missing --help flag and was wrong."]
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT -->
+# Feature Specification: cli-cursor creation
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+| Field | Value |
+|---|---|
+| **Level** | 3 phased packet |
+| **Priority** | P1 |
+| **Status** | Complete — all 14 phases implemented, validated, and committed |
+| **Created** | 2026-07-24 |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
+| **Predecessor** | None (first-time creation; Cursor CLI has never existed in this repo) |
+| **Successor** | None |
+| **Handoff Criteria** | Every phase validates independently; `cli-cursor` becomes a new deep-loop executor kind and a 4th `cli-external-orchestration` mode without breaking the 3 existing modes; an unavailable `cursor-agent` binary never becomes routable (fail-closed, matching the `cli-codex` precedent). |
+<!-- /ANCHOR:metadata -->
+
+
+## 001-cursor-contract-pin/implementation-summary.md
+---
+title: "Implementation Summary: Cursor CLI contract pin"
+description: "Evidence base for the live Cursor CLI contract used by phases 002-007 of the cli-cursor creation."
+trigger_phrases: ["cursor cli contract pin summary"]
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/001-cursor-contract-pin"
+    last_updated_at: "2026-07-24T04:16:30Z"
+    last_updated_by: "claude-code"
+    recent_action: "Phase complete - all contract facts verified live"
+    next_safe_action: "Consume these facts in 002-007"
+    blockers: []
+    key_files: []
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- ANCHOR:metadata -->
+## METADATA
+| Field | Value |
+|---|---|
+| **Spec Folder** | 001-cursor-contract-pin |
+| **Completed** | 2026-07-24 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+Cursor CLI is installed (`~/.local/bin/cursor-agent` and `~/.local/bin/agent`, both symlinks into `~/.local/share/cursor-agent/versions/2026.07.23-e383d2b/cursor-agent`, confirmed via `ls -la`), and its full current contract is pinned below with citations.
+
+### Install & Version
+- `curl https://cursor.com/install -fsS | bash` → "Installation Complete!" downloading `agent-cli-package.tar.gz` for `darwin/arm64` from `downloads.cursor.com/lab/2026.07.23-e383d2b/...`. Windows install path (per docs): `irm 'https://cursor.com/install?win32=true' | iex`.
+- `cursor-agent --version` → `2026.07.23-e383d2b`.
+- **Binary name**: canonical is `cursor-agent`; `agent` is an alias symlink to the same binary (both resolve via `which`). `cursor.com/docs` prose uses `agent`; the installed on-PATH canonical name is `cursor-agent`. Later phases must probe `command -v cursor-agent`. (`cursor.com/docs/cli/overview`, live `which`/`ls -la`)
+- `~/.local/bin` is already on `$PATH`.
+
+### Auth
+- `cursor-agent about` → "User Email: Not logged in"; `cursor-agent models`/`--list-models`/`-p` all return `Error: Authentication required. Run 'agent login', pass --api-key/--auth-token, or set CURSOR_API_KEY/CURSOR_AUTH_TOKEN.` (`status` alone printed a misleading cached "Login successful", but `about` and every account-scoped call confirm this machine is not authenticated.)
+- Interactive auth is `cursor-agent login` (OAuth browser flow; `NO_OPEN_BROWSER` disables browser opening) - operator-only action, not completed here.
+- Headless/CI auth: `CURSOR_API_KEY` env var, `CURSOR_AUTH_TOKEN` env var, `--api-key <key>`, or `--auth-token`. Endpoint override via `--endpoint`/`CURSOR_API_ENDPOINT` (default `https://api2.cursor.sh`); custom headers via `-H/--header`. (`cursor-agent --help`)
+
+### Command surface
+- Invocation: `agent [options] [command] [prompt...]`; `cursor-agent -p "prompt"` for non-interactive/print output.
+- Subcommands: `login`, `logout`, `mcp` (`login`/`list`/`list-tools`/`enable`/`disable`), `plugin` (`marketplace`), `worker`, `status`/`whoami`, `models`, `about`, `install-shell-integration`, `uninstall-shell-integration`.
+- Global flags include `-p`/`--print`, `--output-format text|json|stream-json`, `--stream-partial-output`, `--mode plan|ask` (plus `--plan` shorthand), `--model`, `--list-models`, `-f`/`--force`, `--yolo`, `--auto-review`, `--sandbox enabled|disabled`, `--approve-mcps`, `--trust`, `--resume [chatId]`, `--continue`, `--workspace`, `--add-dir`, `--plugin-dir`, `-w`/`--worktree [name]`, `--worktree-base`, `--skip-worktree-setup`, `--api-key`, `--auth-token`, `-H`/`--header`, `-e`/`--endpoint`. (`cursor-agent --help`)
+
+### Non-interactive dispatch
+- `cursor-agent -p "<prompt>"` runs headless with access to all tools (write + shell). `--output-format` = `text` (default, final-answer-only), `json` (structured), or `stream-json` (message-level progress; pairs with `--stream-partial-output` for text deltas). Execution modes: default agent, `--mode plan` (read-only planning), `--mode ask` (read-only Q&A). (`cursor-agent --help`, `cursor.com/docs/cli/headless`)
+- **Fail-closed evidence**: `cursor-agent -p --output-format text "say hi"` without account auth returns `Error: Authentication required...` and does not reach a model. Note the process exited `0` on this auth error, so an executor guard must key on `command -v cursor-agent` + auth state, not exit code. (live)
+
+### Hooks
+Native Cursor 1.7+ hook system, **shared with the Cursor editor**. Config file: `hooks.json`. Schema:
+
+## 002-deep-loop-executor-support/implementation-summary.md
+---
+title: "Implementation Summary: Cursor deep-loop executor support"
+description: "cli-cursor added as a typed deep-loop executor kind across executor-config.ts, executor-audit.ts, fanout-run.cjs, dispatch-model.cjs, and profile-validator.cjs, with a fail-closed buildCursorLineageCommand adapter."
+trigger_phrases: ["cli-cursor deep-loop executor summary", "cli-cursor executor support implementation"]
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/002-deep-loop-executor-support"
+    last_updated_at: "2026-07-24T09:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implemented, tested, and validated phase 002 (cli-cursor executor wiring)"
+    next_safe_action: "Begin phase 003 (cli-cursor skill packet)"
+    blockers: []
+    key_files: ["../../../../.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts", "../../../../.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts", "../../../../.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-implementation", parent_session_id: null }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Cursor's session-id env var is CURSOR_CONVERSATION_ID (live-verified).", "The SandboxMode -> Cursor approval-flag mapping is read-only->ask (unflagged default), workspace-write->auto-review, danger-full-access->force.", "reasoningEffort-via-model-bracket does NOT work on the live CLI (rejected outright); reasoningEffort is unsupported for cli-cursor instead."]
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- ANCHOR:metadata -->
+## METADATA
+| Field | Value |
+|---|---|
+| **Spec Folder** | 002-deep-loop-executor-support |
+| **Completed** | 2026-07-24 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+`cli-cursor` is now a real, dispatchable deep-loop executor kind, widened across the 5 hand-synced files the parent packet named, plus 2 new exports in `executor-config.ts`. All three of phase 002's open unknowns were resolved with live evidence (not TBD) because `cursor-agent login` was completed by the operator mid-session.
+
+### executor-config.ts
+- `EXECUTOR_KINDS` grew from 4 to 5 members: `['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor']`.
+- `EXECUTOR_KIND_FLAG_SUPPORT['cli-cursor'] = ['model', 'sandboxMode', 'timeoutSeconds', 'liveTools']` — no `reasoningEffort` (see below), no `configDir` (no confirmed Cursor CLI flag isolates the shared `.cursor/` config dir), no `serviceTier` (no documented flag).
+- `EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX['cli-cursor'] = { inherit: true, disabled: false, cached: false, live: false }` — mirrors `cli-claude-code`'s flag-less shape; `cursor-agent --help` has no web-search flag (checked live).
+- New `CURSOR_SUPPORTED_MODELS = ['auto', 'composer-2.5', 'composer-2.5-fast']` + `CursorSupportedModel` type — all 3 ids confirmed live via `cursor-agent --list-models` (authenticated, account `mkerkmeester@proton.me`, Pro tier). Not exhaustive by design (the live roster has 150+ ids); this is a typo-checked reference to the router default and the Cursor-native model only.
+- New `CursorApprovalMode = 'ask' | 'auto-review' | 'force'` type + `resolveCursorApprovalMode()` function, mapping the generic `SandboxMode` to Cursor's real approval flags.
+
+### executor-audit.ts
+- `EXECUTOR_BINARY_BY_KIND['cli-cursor'] = 'cursor-agent'` (canonical, not the `agent` alias).
+- `EXECUTOR_SESSION_ENV_BY_KIND['cli-cursor'] = 'CURSOR_CONVERSATION_ID'` — **confirmed live**, not deferred: a scratch `cursor-agent -p --force` dispatch asked the agent to `env | grep -i cursor`, which surfaced `CURSOR_CONVERSATION_ID` (matching the `--output-format json` `session_id` field exactly), plus `CURSOR_AGENT=1`, `CURSOR_INVOKED_AS=cursor-agent`, `CURSOR_RIPGREP_PATH`.
+- `EXECUTOR_STATE_ENV_BY_KIND['cli-cursor'] = ['SPECKIT_CURSOR_STATE_DIR']` — repo-owned only; no `CURSOR_HOME`-style override exists in `cursor-agent --help` (checked live), so none was invented.
+- `EXECUTOR_DEFAULT_HOME_DIR_BY_KIND['cli-cursor'] = '.cursor'`.
+- `EXECUTOR_ENV_PREFIXES_BY_KIND['cli-cursor'] = ['CURSOR_']`.
+- These rows automatically extend the existing kind-generic `validateExecutorDispatchAllowed()` self-invocation recursion guard (ancestry/env/lockfile layers) to `cli-cursor` at no extra cost — this is the runtime-layer safety net, distinct from the packet-owned skill-level self-invocation guard design phase 003 still owns.
+
+### fanout-run.cjs
+- `SPECKIT_STATE_ENV_BY_KIND['cli-cursor'] = 'SPECKIT_CURSOR_STATE_DIR'`.
+- New `isCursorBinaryAvailable(env)` — `command -v cursor-agent` preflight, mirrors `isCodexBinaryAvailable` exactly.
+- New `buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options)`, registered in `LINEAGE_COMMAND_ADAPTERS`. Fails closed via `isCursorBinaryAvailable` before constructing any command. Builds `cursor-agent -p "<prompt>" --output-format text --model <id> [--force|--auto-review] --sandbox <enabled|disabled>` (no flags at all for the `read-only` case beyond `--sandbox enabled` — see approval mapping below). Prompt is a positional arg (`promptArgIndexes: [1]`, `input: undefined`), same convention as `buildClaudeLineageCommand`; the generic spawn layer already sets `stdio[0]: 'ignore'` when `input` is unset, which is the `</dev/null`-equivalent behavior REQ-006 asked to verify — confirmed live (a real `cursor-agent -p ... </dev/null` dispatch completed normally, no hang).
+- The approval-flag mapping is inlined in the adapter (not imported from `executor-config.ts`), intentionally mirroring `resolveCursorApprovalMode()` rather than calling it — consistent with how `buildCodexLineageCommand`/`buildOpencodeLineageCommand` already derive their own kind-specific flags directly from the `resolvedSandbox` parameter rather than calling a shared resolver. `resolveCursorApprovalMode()` stays independently exported and independently unit-tested per REQ-003.
+- Exported `isCursorBinaryAvailable` alongside `isCodexBinaryAvailable` in `module.exports`.
+
+
+## 003-cli-cursor-skill-packet/implementation-summary.md
+---
+title: "Implementation Summary: cli-cursor skill packet"
+description: "cli-cursor built as the 4th mode of cli-external-orchestration: 12 new packet files, 5 hub-root registry edits, leaf-manifest regeneration, and two real compiled-routing bugs found and fixed."
+trigger_phrases: ["cli-cursor skill packet summary", "cli-cursor 4th mode implementation"]
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/003-cli-cursor-skill-packet"
+    last_updated_at: "2026-07-24T10:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implemented, tested, and validated phase 003 (cli-cursor skill packet + hub wiring)"
+    next_safe_action: "Begin phase 004 (Cursor hook adapter layer)"
+    blockers: []
+    key_files: ["../../../../.opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md", "../../../../.opencode/skills/cli-external-orchestration/mode-registry.json", "../../../../.opencode/skills/cli-external-orchestration/hub-router.json"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-implementation", parent_session_id: null }
+    completion_pct: 100
+    open_questions: ["Whether a dispatched cursor-agent should carry an explicit --workspace/config-isolation flag is still open, deferred to the dispatch-command finalization (phases 002/004)."]
+    answered_questions: ["Cursor's session-signal env vars are CURSOR_AGENT=1 (unconditional) and CURSOR_CONVERSATION_ID (session id) - confirmed live, upgrading ADR-002's guard from best-effort to fully-confirmed for 2 of its 3 layers.", "A repo-wide alias-collision search found zero collisions between cli-cursor's aliases and any other hub's mode-registry.json."]
+---
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- ANCHOR:metadata -->
+## METADATA
+| Field | Value |
+|---|---|
+| **Spec Folder** | 003-cli-cursor-skill-packet |
+| **Completed** | 2026-07-24 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+`cli-cursor` is now the 4th mode of `cli-external-orchestration`, built to the exact structural precedent `cli-codex` established, with Cursor-specific facts throughout (never copy-pasted Codex facts).
+
+### New packet: `cli-external-orchestration/cli-cursor/`
+- `SKILL.md` (393 lines): frontmatter with the `cursor-availability-required`/`self-invocation-prohibited`/`deep-loop-runtime-required` `hard_rules` triad; a Section 2 self-invocation guard built from the now-confirmed `CURSOR_AGENT=1`/`CURSOR_CONVERSATION_ID` env signals plus process-ancestry matching `cursor-agent` (never the `agent` alias); a full smart router (intent signals, resource map, loading levels); default-dispatch/model-selection/agent-delegation sections grounded in phases 001/002's confirmed contract; the family's 16-item ALWAYS rule set adapted for Cursor's approval-flag model.
+- `README.md` (220 lines, 9 sections AT A GLANCE → RELATED DOCUMENTS).
+- `changelog/v1.0.0.0.md`.
+- `references/` (6 files, all ≥100 LOC): `cli-reference.md` (281 lines — full flag/auth/model/troubleshooting reference), `integration-patterns.md` (410 lines — generate-review-fix, JSON handling, background execution incl. the stdin-consumption trap, model/approval strategy, anti-patterns), `agent-delegation.md` (140 lines — the plan/ask/default execution-mode roster, since Cursor has no TOML-profile system like Codex), `cursor-tools.md` (124 lines — the Cursor-unique surfaces with no sibling analog: native worktree, cloud worker, plugin marketplace, MCP client), `hook-contract.md` (114 lines — Cursor's shared hooks.json contract, honestly flagging the unconfirmed CLI-vs-editor event-delivery gap for phase 004 to resolve), `shared-editor-config.md` (119 lines — Cursor's single biggest architectural difference from every sibling: it shares its entire config surface with the Cursor editor).
+- `assets/` (2 files): `prompt-quality-card.md` (63 lines, thin delegator per ADR-003) and `prompt-templates.md` (218 lines, 8 categories of copy-paste dispatch templates).
+- `manual-testing-playbook/manual-testing-playbook.md`: an honest scaffold stub explicitly stating content is authored in phase 006, not fabricated placeholder scenarios.
+
+### Hub wiring (5 files)
+- `mode-registry.json`: new `cli-cursor` `modes[]` entry (`packetKind: "workflow"`, `backendKind: "cli-dispatch"`, identical `toolSurface` to siblings, 5 aliases `["cursor","cursor cli","delegate to cursor","cursor agent","cli-cursor"]`, `routingClass: "metadata"`), version bumped `1.1.0.0` → `1.2.0.0`, discriminator/prose updated to "four modes".
+- `hub-router.json`: new `routerSignals.cli-cursor` (weight 4), `cli-cursor-aliases`/`cursor-dispatch` vocabulary-class pair, `tieBreak` extended to the 4-element permutation, version bumped `1.0.0.1` → `1.1.0.0`.
+- `description.json`: keywords/trigger_examples/prose extended to mention the 4th mode; no registry-owned keys duplicated.
+- `SKILL.md` (hub root): mode-table row, layout-tree row, "three"→"four workflow modes" throughout, executor-delegation prose extended.
+- `graph-metadata.json` (hub root): `intent_signals`, `derived.trigger_phrases`, `derived.key_topics`, `derived.intent_signals`, `derived.key_files`, `derived.entities`, `derived.causal_summary`, `derived.source_docs` all extended for `cli-cursor` — still exactly one `graph-metadata.json` at the hub root (no second identity).
+- `leaf-manifest.json`: regenerated via `generate-leaf-manifest.cjs --write`.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## HOW IT WAS DELIVERED
+1. Captured the baseline: `parent-skill-check.cjs` and `validate_skill_package.py` both PASS/exit 0 against the 3-mode hub, before any edit.
+2. Read `cli-codex/SKILL.md` and `cli-codex/README.md` in full as the direct structural precedent (392 and 235 lines respectively), plus `mode-registry.json`, `hub-router.json`, hub `SKILL.md`, `description.json`, `graph-metadata.json` to understand every field this phase would extend.
+3. Updated ADR-002 in `decision-record.md` BEFORE authoring the guard, to reflect the `CURSOR_AGENT=1`/`CURSOR_CONVERSATION_ID` signals confirmed live during phase 002's work — upgrading the guard design from "best-effort, env-var pending" to "2 of 3 layers fully confirmed."
+
+## 004-cursor-hook-adapter-layer/implementation-summary.md
+---
+title: "Implementation Summary: Cursor hook adapter layer"
+description: "Cursor hook adapters built and live-verified against a real cursor-agent CLI, overturning the phase's original event-mapping assumption; .cursor/hooks.json registration itself deferred by operator choice."
+trigger_phrases: ["cursor hook adapter summary", "cursor hook delivery findings"]
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer"
+    last_updated_at: "2026-07-24T11:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implemented and live-verified Cursor hook adapters; registration deferred"
+    next_safe_action: "Begin phase 005 (model registry and routing)"
+    blockers: []
+    key_files: ["../../../../.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/shared.ts", "../../../../.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs", "../../../../.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/README.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-implementation", parent_session_id: null }
+    completion_pct: 100
+    open_questions: ["Whether/when to register .cursor/hooks.json is an operator decision, deferred explicitly during this phase - not a technical blocker."]
+    answered_questions: ["Cursor CLI event delivery under cursor-agent -p is empirically confirmed: sessionStart/preToolUse/postToolUse/sessionEnd/beforeShellExecution/afterShellExecution/beforeReadFile/afterFileEdit/afterAgentThought all fire; beforeSubmitPrompt/stop confirmed to NEVER fire across 3 dispatches including a --continue turn.", "The {permission:deny}+exit-2 response contract was live-verified to actually block a real cursor-agent tool call."]
+---
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- ANCHOR:metadata -->
+## METADATA
+| Field | Value |
+|---|---|
+| **Spec Folder** | 004-cursor-hook-adapter-layer |
+| **Completed** | 2026-07-24 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+Cursor hook adapters mirroring the `cli-codex` precedent, but with the event mapping corrected against live CLI evidence rather than assumed from the sibling's event names.
+
+### `mcp-server/hooks/cursor/` (TypeScript, compiled via the existing `mcp-server` build)
+- `shared.ts`: reads/validates a bounded Cursor hook payload, translates it into the field shape the existing `../claude/*.js` implementations already accept, spawns them, and emits Cursor's native `{permission, user_message, agent_message}` response envelope (a materially different shape from Codex's `hookSpecificOutput` envelope).
+- `session-start.ts`: `sessionStart` adapter, delegates to `session-prime.js`. Live-tested directly against the compiled `dist/hooks/cursor/session-start.js` with a real payload shape — returned a valid envelope carrying the actual Spec Kit Memory startup brief.
+- `session-end.ts`: `sessionEnd` adapter, delegates to `session-stop.js`. **Not** named `session-stop.ts`/wired to `stop` — `stop` is confirmed to never fire under CLI dispatch (see below).
+- `README.md`: full event-delivery table with per-event confirmed/dormant/untested status.
+
+### `runtime/hooks/cursor/` (plain `.mjs`, no build step, matching the codex precedent)
+- `spec-gate-enforce.mjs`: `preToolUse` hook (not `beforeShellExecution` — see Key Decisions). Maps confirmed `Shell`→`bash`/`Write`→`write` tool names onto `evaluateMutation()`. Live-tested directly: allows unmapped tools (`Grep`), allows mapped tools when no gate is open, and fails open on malformed stdin.
+- `spec-gate-classify.mjs`: `beforeSubmitPrompt` hook, built to the same shape as the codex/claude siblings but explicitly marked **dormant** — the event it targets never fires under the CLI.
+- `README.md`: documents why `preToolUse` was chosen over `beforeShellExecution`, and the dormant status of the classify hook.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## HOW IT WAS DELIVERED
+1. Read the live `cli-codex` precedent in full (`shared.ts`, `session-start.ts`, `user-prompt-submit.ts`, `session-stop.ts`, `spec-gate-enforce.mjs`, `spec-gate-classify.mjs`, both READMEs) as the structural template.
+2. **Before writing any adapter code**, live-probed which Cursor events actually fire: created a temporary, uncommitted `.cursor/hooks.json` wiring every documented agent event to a logging probe script, then ran 3 separate `cursor-agent -p` dispatches (2 single-turn + 1 `--continue` second turn) exercising shell commands, file reads, and file writes.
+3. **Result inverted the phase's original assumption.** `sessionStart`/`beforeSubmitPrompt`/`stop` (mirroring Codex's `SessionStart`/`UserPromptSubmit`/`Stop`) was the phase's planned starting set. Empirically: `sessionStart` fires, but `beforeSubmitPrompt` and `stop` do NOT — confirmed across all 3 dispatches, including the `--continue` turn specifically testing whether `beforeSubmitPrompt` needed a second turn to trigger. Meanwhile `preToolUse` (not in the original plan) fires reliably before every tool call.
+4. Updated `decision-record.md` ADR-002 with the full delivery table and corrected event mapping BEFORE writing adapter code, so the code matches the evidence rather than the other way around.
+5. Live-verified the deny mechanism specifically: wired `preToolUse` to a probe that returns `{"permission":"deny",...}` + exit 2, dispatched a real session asking it to run a shell command, and confirmed the command never executed — direct proof the response contract works, not an assumption from documentation.
+6. Wrote the adapter code, typechecked it (`tsc --noEmit`, 0 errors), built it (`npm run build` in `mcp-server/`), and directly invoked the compiled outputs with realistic payloads (see Verification).
+7. Cleaned up all temporary test artifacts (`/tmp/cursor-hook-test/`, the temporary `.cursor/hooks.json`, scratch output files) before finishing — confirmed via `git status` that nothing stray remained.
+8. Per operator's explicit choice (asked directly, given the real blast radius of a committed `.cursor/hooks.json` on their live Cursor editor usage of this repo), the actual project-level `.cursor/hooks.json` registration was NOT committed this phase — only the adapters and the live-verification evidence.
+
+## 005-cursor-model-registry-and-routing/implementation-summary.md
+---
+title: "Implementation Summary: Cursor model registry and routing"
+description: "Composer-2.5 registered as a Cursor-native prompt-craft profile in sk-prompt/prompt-models, with cli-cursor wired into the check-prompt-quality-card-sync.sh CI gate."
+trigger_phrases: ["cli-cursor model registry summary", "composer profile implementation"]
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/005-cursor-model-registry-and-routing"
+    last_updated_at: "2026-07-24T10:30:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implemented and live-verified phase 005 (Composer registry + CI gate)"
+    next_safe_action: "Begin phase 006 (manual testing playbook)"
+    blockers: []
+    key_files: [".opencode/skills/sk-prompt/prompt-models/assets/model-profiles.json", ".opencode/skills/sk-prompt/prompt-models/references/models/composer-2.5.md", ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-implementation", parent_session_id: null }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Composer-only vs. executor rows on every hosted frontier model: Composer-only.", "Composer's exact version slug: composer-2.5 / composer-2.5-fast, live-confirmed."]
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- ANCHOR:metadata -->
+## METADATA
+| Field | Value |
+|---|---|
+| **Spec Folder** | 005-cursor-model-registry-and-routing |
+| **Completed** | 2026-07-24 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+Composer, Cursor's own native model, now has a full prompt-craft profile in `sk-prompt/prompt-models` — the registry's first entry driven by `cli-cursor` rather than `cli-opencode`. The `check-prompt-quality-card-sync.sh` CI gate learned about `cli-cursor` across all 3 of its coverage points, so the packet's `prompt-quality-card.md` is now gated identically to its siblings.
+
+### `references/models/composer-2.5.md` (new)
+Authored mirroring `deepseek-v4-pro.md`'s 8-section shape (Overview / Identity / Recommended Framework / Benchmark Evidence / Tuned Template Snippet / Dispatch Gotchas / See Also) — the unbenchmarked-model precedent, not the benchmark-heavy `glm-5.2.md`, since Composer has zero prior empirical dispatch data in this repo. `recommended_frameworks` set to RCAF primary / no fallback / medium pre-planning / `status: "default-unverified"`, matching the deepseek-v4-pro shape exactly. Named `composer-2.5.md` (not the originally-planned `composer.md`) because `check-prompt-quality-card-sync.sh` CHECK 3 requires the profile filename to exactly match the registry `id`.
+
+### `assets/model-profiles.json`
+New `composer-2.5` entry: executor `cli-cursor`, provider `cursor`, quota_pool `cursor-subscription`, `context_length: null` (unexposed by the CLI), `capability: {modalities: ["text"]}` (the minimal shape `deepseek-v4-pro` uses, not the rich opencode-specific `variant_flag`/`agent_policy` block the small-model-rotation entries carry — Cursor CLI has neither flag). Registry `version` bumped 1.5 → 1.6; top-level `description` extended to mention Composer/cli-cursor.
+
+### `references/models/_index.md`
+Added the `composer-2.5` row to the ACTIVE MODELS table; clarified the "frontier models are out of scope" line to explicitly name Cursor's hosted frontier ids (`gpt-5.6-sol-*`, `claude-opus-4-8-*`, `cursor-grok-4.5-*`) as included in that exclusion.
+
+### `check-prompt-quality-card-sync.sh`
+Added `cli-cursor` to all 3 coverage points identified by reading the script in full: the `cli_cards` array (CHECK 1), the `cli_skills` array (CHECK 2), and the `CLI_EXECUTOR_HUB_METADATA` Python dict (CHECK 4). Did not touch the pre-existing `cli-codex` gap in these same arrays — out of scope per Scope Lock. `FAMILY` dict (CHECK 4's family-token map) needed no edit: `composer-2.5`'s default fallback token (`mid.split("-")[0]` = `"composer"`) already matches what `cli-external-orchestration/graph-metadata.json` carries from phase 003.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## HOW IT WAS DELIVERED
+1. Read `references/models/glm-5.2.md` (217 lines, benchmark-heavy) then `references/models/deepseek-v4-pro.md` (187 lines) — chose the latter as the structural template since both Composer and DeepSeek-v4-pro share zero prior dispatch data in this repo.
+2. Read `references/models/_index.md` and `check-prompt-quality-card-sync.sh` in full to enumerate every place a new model/executor needs registering before writing any content.
+3. Confirmed the account was authenticated (`cursor-agent about` → Pro tier, `mkerkmeester@proton.me`) and live-enumerated the model roster via `cursor-agent --list-models` — confirmed `composer-2.5` and `composer-2.5-fast` exist exactly as phase 001/003 had already documented from the product page; no context-length or pricing metadata is exposed by the CLI even authenticated.
+4. Ran a live smoke dispatch (`cursor-agent -p "Reply with exactly: pong" --model composer-2.5 --mode ask --output-format text </dev/null`) — returned `pong`, confirming Composer is reachable end-to-end through `cli-cursor`, not just enumerable.
+5. Resolved the open "Composer-only vs. hosted-frontier executor rows" question: `model-profiles.json`'s own description scopes it to the small-model rotation, none of Cursor's hosted frontier ids were already present, and `_index.md` already excluded frontier models before this phase — Composer-only was the only consistent answer.
+6. Authored `composer-2.5.md`, wired the registry/index/CI-gate edits, then ran `check-prompt-quality-card-sync.sh` — first run failed CHECK 3 (filename `composer.md` didn't match registry id `composer-2.5`); renamed the file (it was still untracked, confirmed via `git status --porcelain` before `mv`) and fixed the two live cross-references (`_index.md`, `model-profiles.json` `profile_ref`).
+7. Re-ran the gate — `GUARD PASS` across all 4 checks.
+
+## 006-cursor-manual-testing-playbook/implementation-summary.md
+---
+title: "Implementation Summary: Cursor manual-testing playbook"
+description: "Replaced the cli-cursor manual-testing-playbook scaffold with a real 19-scenario, 9-category split-document catalog reframed against Cursor's live-verified CLI surface, cross-referenced from SKILL.md."
+trigger_phrases: ["cli-cursor playbook summary", "CU-NNN scenario implementation"]
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook"
+    last_updated_at: "2026-07-24T11:30:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Authored and verified the 19-scenario playbook; validate_document.py clean"
+    next_safe_action: "Begin phase 007 (docs/agents governance and closeout)"
+    blockers: []
+    key_files: [".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md", ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-implementation", parent_session_id: null }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Hallucination probe: fabricated --reasoning-effort / bracket-effort model id.", "Worktree-isolation: dry-run default, opt-in destructive variant.", "Cloud-worker: document-and-SKIP default."]
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- ANCHOR:metadata -->
+## METADATA
+| Field | Value |
+|---|---|
+| **Spec Folder** | 006-cursor-manual-testing-playbook |
+| **Completed** | 2026-07-24 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+The `cli-cursor` skill's manual-testing playbook, previously a documented scaffold stub, is now a real 19-scenario split-document catalog across 9 categories — the packet's PASS/FAIL/SKIP validation gate, mirroring the `cli-codex` precedent's structure but reframed against Cursor's actual live-verified surface rather than a blind port.
+
+### Root file
+`.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md` overwrites the scaffold. Carries the EXECUTION POLICY (PASS/FAIL/SKIP-only) and SELF-INVOCATION GUARD banners, Global Preconditions (including the auth-fail-exits-0 gotcha as a standing precondition-check warning, not a one-time note), Global Evidence Requirements, Deterministic Command Notation, Review Protocol, Wave Planning, one numbered section per category, an Automated Test Cross-Reference, and a Feature Catalog Cross-Reference Index.
+
+### 19 scenario files across 9 categories
+`cli-invocation` (CU-001..CU-003: default dispatch, the auth-fail-exits-0 safety gotcha, the hallucination-fixture probe), `execution-modes` (CU-004..CU-006: `--mode plan`, `--mode ask`, default agent), `approvals-and-sandbox` (CU-007..CU-008: `--auto-review`, `--force`/`--yolo` + `--sandbox`), `worktree-isolation` (CU-009..CU-010: dry-run inspection, opt-in destructive real-creation), `mcp-integration` (CU-011..CU-012: list/list-tools, config precedence), `hooks` (CU-013..CU-014: confirmed-fires smoke test, confirmed-non-delivery documentation), `session-continuity` (CU-015..CU-016: `--continue`, `--resume`), `cloud-worker` (CU-017: document-and-SKIP `--help` inspection), `prompt-templates` (CU-018..CU-019: CLEAR scoring, Composer RCAF dispatch).
+
+### SKILL.md cross-reference
+One line added under the References section: a link to the playbook, satisfying REQ-011.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## HOW IT WAS DELIVERED
+1. Read the packet's own `spec.md` (REQ-001..REQ-012), the existing scaffold stub, and the `cli-codex` root + per-scenario templates to establish the exact structural shape to mirror.
+2. Compiled confirmed facts from phases 001-005 of this packet (live CLI flags, model roster, hook delivery table, worktree/worker/MCP surfaces, approval-flag mapping) into a single grounding brief — the same facts recorded in this packet's own implementation summaries, not re-derived or guessed.
+3. Dispatched a single markdown-authoring agent with the full grounding brief, the two structural templates, the 9-category/19-scenario allocation, and explicit anti-fabrication instructions (never invent a flag/event not in the confirmed-facts list; mark genuinely-unconfirmed behavior honestly).
+4. Independently re-verified the agent's output rather than trusting its self-report: confirmed the file tree (9 directories, 19 files) and `CU-001..CU-019` gap-free sequence via `grep -rhoE "CU-[0-9]{3}"`, re-ran `validate_document.py` myself on the root file plus 2 sampled scenario files (not just accepting the agent's claimed run), read the `SKILL.md` diff directly, spot-read the hallucination-fixture and hooks-non-delivery scenarios in full to confirm accurate citation of the phase-004 delivery table and the live-confirmed flag-rejection evidence, and ran a security grep for embedded credentials across the whole playbook tree.
+5. Updated this phase's own spec docs (`tasks.md`/`checklist.md`/`spec.md`/`plan.md`) with verified evidence, resolving all 3 originally-open questions.
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
+## KEY DECISIONS
+- **Delegated the mechanical templated authoring, not the grounding.** With 9 categories and ~19 files needing perfect internal consistency (CU-NNN sequencing, cross-references, exact confirmed-fact citations), a single well-briefed agent produced coherent output faster than hand-authoring each file, while I retained the research/grounding work and did independent post-hoc verification rather than trusting the agent's self-report.
+
+## 007-docs-agents-governance-and-closeout/implementation-summary.md
+---
+title: "Implementation Summary: docs, agents, governance and closeout"
+description: "Added cli-cursor to every roster/governance/cross-skill surface where its 3 siblings appear, resolved the AGENTS.md-as-Cursor-rules question, fixed a stale compiled-routing bookkeeping hash, and closed out the whole 030-cli-cursor-creation packet at validate --recursive --strict 0/0."
+trigger_phrases: ["cli-cursor closeout summary", "030-cli-cursor-creation final phase"]
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/007-docs-agents-governance-and-closeout"
+    last_updated_at: "2026-07-24T13:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Closed out the whole packet; validate --recursive --strict 0/0"
+    next_safe_action: "Packet complete - no further phases"
+    blockers: []
+    key_files: ["README.md", ".opencode/skills/cli-external-orchestration/README.md", ".opencode/agents/deep-improvement.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-implementation", parent_session_id: null }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["AGENTS.md-as-Cursor-rules: stays executor-agnostic.", "Roster files enumerating siblings: only deep-improvement.md (+ .claude mirror)."]
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- ANCHOR:metadata -->
+## METADATA
+| Field | Value |
+|---|---|
+| **Spec Folder** | 007-docs-agents-governance-and-closeout |
+| **Completed** | 2026-07-24 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+`cli-cursor` is now a symmetric peer of its 3 siblings everywhere they were already mentioned outside the packet/skill/runtime work of phases 002-006, and the whole `030-cli-cursor-creation` packet closes out clean.
+
+### Fresh touch-list (not a replayed template)
+Ran `rg -l 'cli-codex|cli-claude-code|cli-opencode'` across the repo, then narrowed to *live* roster/governance/cross-skill surfaces — excluding the hundreds of historical spec-folder docs, changelogs, and research iterations the raw grep also matched (those are frozen historical record, out of scope per this phase's own Out-of-Scope). The narrowed touch-list came to exactly 2 live surfaces plus 1 hub doc that phase 003 had missed:
+
+1. **`.opencode/agents/deep-improvement.md`** + **`.claude/agents/deep-improvement.md`** (identical mirrors; no `.codex` mirror exists) — the model-benchmark lane's executor list ("dispatching MODELS ... across cli-opencode, claude-code, and codex") gained `, and cursor`.
+2. **Root `README.md`** (CROSS-AI CLI section) — the hub's 3-sibling advisor sentence, per-CLI bullet list, and the `prompt-models` description all gained `cli-cursor`/Composer-2.5 mentions, matching each sibling's existing phrasing exactly.
+3. **`cli-external-orchestration/README.md`** (the hub's own top-level README, distinct from its `SKILL.md`) — this was a genuine gap phase 003 missed: `SKILL.md` had 7 `cli-cursor` mentions from phase 003, but `README.md` had **zero**. Fixed comprehensively: frontmatter description/trigger_phrases/version, the "three workflow modes" tagline, the AT A GLANCE table (4 rows), the OVERVIEW section (parent-hub sentence, new `cli-cursor/` bullet, tieBreak sentence, "All three/four packets" sentence), and a new QUICK START dispatch example.
+
+### AGENTS.md-as-Cursor-rules question, resolved
+Grepped both `AGENTS.md` and `CLAUDE.md` for any existing per-CLI special-casing for the 3 prior siblings — found none (only one incidental "cli-opencode gpt-5.5 high" usage example, unrelated to rules content). Resolved: **stays executor-agnostic**. No bespoke Cursor note added, matching the established pattern.
+
+### Compiled-routing bookkeeping fix (unrelated to this phase's own edits)
+`validate_skill_package.py` against the hub failed "compiled routing readiness" with `causeCode: stale-manifest`. Traced it: `sourceInputs()` in the hub's bespoke compiler (`build-artifacts.cjs`) only reads `SKILL.md` files, not `README.md` — so this phase's own README edits did not cause the drift; it was pre-existing (likely from registry/SKILL.md content that changed since phase 003's earlier fix, or the auto-merge commit `898f8fcb6c` pulling in origin changes). Verified via `resolve.cjs` that the manifest's pinned `selectedPolicy.effectivePolicyHash` must match a live recompute for the compiled fast-path to actually activate (a mismatch silently falls back to legacy routing — safe, but means the compiled path silently stops being used). Hand-aligned the pinned hash to the current computed value, the same bookkeeping-only fix pattern established in phase 003.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## HOW IT WAS DELIVERED
+1. Ran the fresh-grep sweep required by REQ-001, then manually triaged the ~150 raw hits 
+[...truncated 45KB...]
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

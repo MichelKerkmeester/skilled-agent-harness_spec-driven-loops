@@ -1,0 +1,1718 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-design/014-template-conformance"
+# PACKET: specs/sk-design/014-template-conformance (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-design template conformance"
+description: "Program parent auditing every folder in every sk-design mode against the sk-doc create-skill templates and standards, fixing the deviations, honestly de-vendoring an Apache-2.0 dependency, and merging/retiring modes toward a leaner public surface, organized into twelve per-folder children."
+trigger_phrases:
+  - "sk-design template conformance"
+  - "create-skill template audit"
+  - "apache devendoring"
+  - "sk-design structural anomalies"
+importance_tier: "important"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance"
+    last_updated_at: "2026-07-27T14:00:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Extended phase map to 12 children; 009 Complete, 010 in progress"
+    next_safe_action: "Resume 010, then close 011 and 012 before validate --recursive"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/design-interface/"
+      - ".opencode/skills/sk-design/design-mcp-open-design/"
+      - ".opencode/skills/sk-doc/create-skill/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 33
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + sub-phase map only; no plan/tasks/checklist/decision/impl-summary here (those live in child phase folders). -->
+
+# Feature Specification: sk-design template conformance
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+
+## 001-apache-devendoring/implementation-summary.md
+---
+title: "Implementation Summary: De-vendor design-interface's Apache-2.0 dependency"
+description: "Shipped record of the ordered de-vendor-then-delete change: the interface design guidance was re-authored in original words and the Apache-2.0 licence and every citing site were removed, in that order, as commit 8fa4752968."
+trigger_phrases:
+  - "apache devendoring implementation summary"
+  - "design-interface license removal summary"
+  - "design principles rewrite summary"
+  - "vendored guidance de-vendor summary"
+importance_tier: "important"
+contextType: "continuity"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/001-apache-devendoring"
+    last_updated_at: "2026-07-27T19:00:00Z"
+    last_updated_by: "spec-reconciler"
+    recent_action: "Recorded the shipped de-vendor commit 8fa4752968 and its two deviations"
+    next_safe_action: "None; packet complete and verified against design-interface on disk"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/design-interface/references/design-process/design-principles.md"
+      - ".opencode/skills/sk-design/design-interface/SKILL.md"
+      - ".opencode/skills/sk-design/design-interface/README.md"
+      - ".opencode/skills/sk-design/design-interface/changelog/v1.1.0.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+# Implementation Summary: De-vendor design-interface's Apache-2.0 dependency
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-apache-devendoring |
+| **Completed** | 2026-07-27 (commit `8fa4752968`) |
+| **Level** | 2 |
+| **Status** | Complete |
+| **Completion Pct** | 100% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`design-interface` no longer carries an Apache-2.0 obligation, and it stopped carrying one the honest way: the borrowed wording was replaced before the licence that covered it was removed.
+
+The guidance in `references/design-process/design-principles.md` had been adapted verbatim from an upstream skill, and `LICENSE.txt` at the packet root existed to cover exactly that text. All six sections were re-authored in this skill's own words — ground the work in its subject, treat the hero as a thesis, make structure encode meaning rather than decorate it, earn deviation once instead of everywhere, budget boldness, and treat interface copy as design material. The substance is unchanged; only the expression is now first-party.
+
+With the borrowed text gone, the licence and every site citing it were removed in the same commit: the `license:` frontmatter key and two provenance citations in `SKILL.md`, the licensing Q&A and resource-table row in `README.md`, and the file's own attribution line. The manual-testing scenario whose PASS condition was "`LICENSE.txt` resolves on disk" was deleted along with its category directory, and the playbook's scenario counts were reconciled from 31 scenarios across 20 categories to 30 across 19.
+
+## 002-design-interface/001-packet-root/implementation-summary.md
+---
+title: "Implementation Summary [design-interface packet-root conformance]"
+description: "Not yet started — this child is Planned. The exhaustive audit is task 1."
+trigger_phrases:
+  - "packet root implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/002-design-interface/001-packet-root"
+    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Authored placeholder implementation-summary for Planned child"
+    next_safe_action: "Populate after the audit and fixes land"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-packet-root |
+| **Completed** | Not yet — status Planned |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Nothing yet. This child is Planned: a sampling read found `SKILL.md` under the hard word/line ceiling but over the recommended word target, and found `README.md` already conformant on the two items the dispatching brief flagged (AT A GLANCE table, blockquote pitch). The exhaustive per-section audit against both governing templates has not run, and no fixes have been applied.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Not delivered yet.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 002-design-interface/002-references/implementation-summary.md
+---
+title: "Implementation Summary [design-interface references conformance]"
+description: "Exhaustive 29-file audit complete. 3 files fixed for missing OVERVIEW, 8 for intro-length/--- separator defects, 1 broken link fixed; 2 flagged as consolidation candidates (not fixed)."
+trigger_phrases:
+  - "references implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/002-design-interface/002-references"
+    last_updated_at: "2026-07-27T16:13:03Z"
+    last_updated_by: "spec-author"
+    recent_action: "Authored placeholder implementation-summary for Planned child"
+    next_safe_action: "Populate after the 29-file audit and fixes land"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-references |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 29 files under `references/` were read in full and checked against `skill-reference-template.md`: 5-field frontmatter, `## 1. OVERVIEW` first, numbered ALL-CAPS H2s, `---` section separators, and a 1-2 sentence header-free intro.
+
+**Fixed (11 files):**
+- `foundations/design-system-artifact-contract.md` — was missing `## 1. OVERVIEW` (first header was `## 1. TOKEN TIERS`); added OVERVIEW with Purpose/When to Use/Core Principle, renumbered TOKEN TIERS through ANTI-EXAMPLES from 1-4 to 2-5.
+- `foundations/smart-router-pseudocode.md` — was missing `## 1. OVERVIEW` (only had `## 1. PSEUDOCODE`); added OVERVIEW, renumbered PSEUDOCODE to section 2.
+- `mcp-tooling/refero-tools.md` — was missing `## 1. OVERVIEW` (first header was `## 1. WHAT STAYS SK-DESIGN'S OWN`); added OVERVIEW, renumbered downstream sections, and fixed a broken link (`tool_surface.md` -> `tool-surface.md`, the real filename in `mcp-tooling/mcp-refero/references/`).
+- `design-grounding/design-inventory.md`, `design-grounding/design-references-mcp.md` — intros were 4 sentences, duplicating Section 1's Core Principle; trimmed to 1 sentence each.
+- `design-process/brief-to-dials.md`, `copy-and-mock-data.md`, `mechanical-defaults.md`, `real-ui-loop.md`, `variation-diversity.md` — intros were 2-3 paragraphs; trimmed to 1-2 sentences, unique content moved into new/existing OVERVIEW subsections (no information lost).
+- `design-process/redesign-intake.md` — 4 of 6 H2 sections were missing their `---` separator; added.
+- `design-process/resource-loading-notes.md` — H1 intro was completely absent (went straight to `## 1. OVERVIEW`), and 2 of 4 sections were missing `---` separators; added a 1-sentence intro and the separators.
+- `design-process/transform-application.md` — H1 intro was completely absent; added a 2-sentence intro and restructured Section 1 into Purpose/When to Use/Core Principle subsections.
+- `foundations/data-viz.md`, `foundations/layout/adaptation-matrix.md` — intros were 3-4 sentences; trimmed to 1-2, unique content moved into OVERVIEW.
+- `foundations/worked-examples.md` — 2 of 4 H2 sections were missing their `---` separator; added.
+
+## 002-design-interface/003-assets/implementation-summary.md
+---
+title: "Implementation Summary [design-interface assets conformance]"
+description: "Exhaustive 3-file audit complete. All 3 files had a real structural defect (missing --- separator or over-long intro); all fixed."
+trigger_phrases:
+  - "assets implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/002-design-interface/003-assets"
+    last_updated_at: "2026-07-27T16:18:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Authored placeholder implementation-summary for Planned child"
+    next_safe_action: "Populate after the audit runs, even if the verdict is no-change"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-assets |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 3 files under `assets/` were read in full against `skill-asset-template.md`. Contrary to the program-level "no defect surfaced" sampling assumption, all 3 had a real, confirmed structural deviation:
+
+- `assets/foundations/contrast-pair-inventory.md` — the H1 intro was a 6-sentence paragraph (script invocation example, tool-boundary note, and a repair-logic pointer all folded into the intro), violating the template's "1-2 SHORT sentences, no headers" rule; Section 1 OVERVIEW also lacked the template's Purpose/Usage subsection structure. Fixed: trimmed the intro to 1 sentence, added `### Purpose` and `### Usage` subsections in Section 1 carrying the moved content verbatim (no information lost).
+- `assets/foundations/token-starter.md` — the H1 intro (1 sentence, correctly short) was followed directly by `## 1. OVERVIEW` with no `---` separator between them. Fixed: added the separator.
+- `assets/interface-preflight-card.md` — same missing-`---`-before-Section-1 defect. Fixed: added the separator.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Direct `Edit` tool changes to each file. Verified with `package_skill.py --check --strict` after all edits.
+
+## 002-design-interface/004-procedures/implementation-summary.md
+---
+title: "Implementation Summary [design-interface procedures conformance]"
+description: "All 9 procedure cards audited and confirmed conformant. Field-label question resolved: Owning mode is correct per the hub-local schema, not drift."
+trigger_phrases:
+  - "procedures implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/002-design-interface/004-procedures"
+    last_updated_at: "2026-07-27T16:20:08Z"
+    last_updated_by: "spec-author"
+    recent_action: "Authored placeholder implementation-summary for Planned child"
+    next_safe_action: "Populate after the audit and field-label decision land"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-procedures |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 9 procedure cards under `procedures/` were checked against `skill-procedure-template.md` and, decisively, against `sk-design/shared/procedure-card-schema.md` (the hub-local schema `skill-procedure-template.md` §9 names as the authority this generic template generalizes from). All 9 cards are conformant, with zero fixes needed.
+
+**Field-label question resolved (not a defect):** `aesthetic-direction.md` uses the field label `Owning mode`, which differs from the generic `skill-procedure-template.md`'s `Owning skill/mode`. `sk-design/shared/procedure-card-schema.md` §2 canonically requires `Owning mode` with the enum `design-interface | design-motion | design-md-generator | shared` — this is sk-design's own established, machine-checked contract, not an unintentional drift. Running `node .opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs` confirms all 12 procedure cards hub-wide (9 in `design-interface`, plus `design-md-generator`, `design-motion`, and `shared`) PASS with zero failures using `Owning mode`. No rename was applied — renaming to `Owning skill/mode` would itself introduce a deviation from the authoritative local schema.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Read-only audit; no edits were needed since all 9 cards already conform to the correct (hub-local) schema. Verified with `package_skill.py --check --strict` and the dedicated `procedure-card-schema-check.mjs` linter.
+<!-- /ANCHOR:how-delivered -->
+
+
+## 002-design-interface/005-corpus/implementation-summary.md
+---
+title: "Implementation Summary [design-interface corpus conformance]"
+description: "Audit complete: 0 violations. README frontmatter question resolved — both zero-frontmatter and partial-frontmatter README.md files are exempt from the 5-field block."
+trigger_phrases:
+  - "corpus implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/002-design-interface/005-corpus"
+    last_updated_at: "2026-07-27T16:21:47Z"
+    last_updated_by: "spec-author"
+    recent_action: "Authored placeholder implementation-summary for Planned child"
+    next_safe_action: "Populate after the audit and README decision land"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-corpus |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 7 files under `corpus/` (`README.md`, `relational-exemplar.mjs`, `relationship-blueprint.mjs`, `tests/README.md`, `tests/fixtures.mjs`, `tests/fixtures-foundations.mjs`, `tests/relational-exemplar.test.mjs`, `tests/relationship-blueprint.schema.test.mjs`, `tests/relationship-blueprint.test.mjs` — 9 files total counting both README.md and the .mjs files) were checked. Zero violations found; zero fixes needed.
+
+**README frontmatter question resolved:** `corpus/README.md` has zero frontmatter; `corpus/tests/README.md` has a partial 2-field frontmatter (title + description only, no trigger_phrases/importance_tier/contextType). Neither is a defect — `frontmatter-templates.md` §2 explicitly exempts `README.md` files from the 5-field block requirement that governs `references/` and `assets/`. A README may carry zero, partial, or full frontmatter at the author's discretion.
+
+**Naming confirmed:** all `.mjs` files use kebab-case (`relational-exemplar.mjs`, `relationship-blueprint.mjs`, `fixtures.mjs`, `fixtures-foundations.mjs`, `relational-exemplar.test.mjs`, `relationship-blueprint.schema.test.mjs`, `relationship-blueprint.test.mjs`).
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Read-only audit; no edits were needed. Verified with `package_skill.py --check --strict` and `node --test corpus/tests/*.test.mjs`.
+
+## 002-design-interface/006-scripts/implementation-summary.md
+---
+title: "Implementation Summary [design-interface scripts conformance]"
+description: "Audit complete, tests/ finding recorded for operator decision (not scaffolded); a real sys.path bug found during verification was fixed in both affected checkers."
+trigger_phrases:
+  - "scripts implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/002-design-interface/006-scripts"
+    last_updated_at: "2026-07-27T20:00:00Z"
+    last_updated_by: "worker-session"
+    recent_action: "Verified scripts/ on disk, fixed a real sys.path off-by-one bug, confirmed tests/ gap still real"
+    next_safe_action: "Present the tests/ scaffold-vs-exception question to the operator"
+    blockers:
+      - "Operator decision needed on scripts/tests/ scaffold vs. formal exception (unchanged from spec.md)"
+    key_files:
+      - ".opencode/skills/sk-design/design-interface/scripts/naming_doc_check.py"
+      - ".opencode/skills/sk-design/design-interface/scripts/baseline_rhythm_check.py"
+      - ".opencode/skills/sk-design/design-interface/scripts/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "worker-session"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions:
+      - "Should design-interface/scripts/ get a tests/ directory, or a documented formal exception?"
+    answered_questions: []
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-scripts |
+| **Status** | Complete (tests/ scaffold-vs-exception decision left open for operator) |
+| **Completed** | Audit complete; `tests/` scaffold decision still open (operator-gated by design) |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+- **Confirmed the `tests/` gap is real and unchanged**: `find .opencode/skills/sk-design/design-interface/scripts -type f` lists only `README.md`, the 3 checkers, and `fixtures/naming-doc/{compliant.md,violating.md}` — no `tests/` directory, matching `skill-reference-template.md` §8's "Required if scripts/ exists" rule (confirmed at that file's lines 995 and 1004). `python3 .opencode/skills/sk-doc/create-skill/scripts/package_skill.py --check .opencode/skills/sk-design` does not flag the gap — confirmed no checker enforces it.
+- **Audited `README.md`'s 2-field frontmatter against `overview.md`**: `.opencode/skills/sk-doc/create-skill/references/shared/overview.md:184` states "`README.md` files are exempt" from the full 5-field frontmatter block. `scripts/README.md`'s 2-field (`title`, `description`) frontmatter is therefore **conformant, not a defect** — this narrows the original spec's open question.
+- **Found and fixed a real bug during verification** (not anticipated by the spec, which scoped this child as audit-only): `naming_doc_check.py:25` and `baseline_rhythm_check.py:32` computed `SHARED_SCRIPTS_DIR` with three `".."` segments, resolving to `.opencode/skills/shared/scripts` (missing the `sk-design` path component) instead of the real `.opencode/skills/sk-design/shared/scripts`. Both checkers threw `ModuleNotFoundError: No module named 'md_table'` on every invocation, so REQ-004 (confirm the fixtures still exercise the checker) could not have passed as originally documented. Fixed both to two `".."` segments. Verified: `python3 naming_doc_check.py fixtures/naming-doc/compliant.md` → `PASS - token names and required headings conform.` (exit 0); `python3 naming_doc_check.py fixtures/naming-doc/violating.md` → 4 `FAIL` lines + `missing heading SPACING SCALE` (exit 1); `python3 baseline_rhythm_check.py ../assets/foundations/token-starter.md` → `PASS - all spacing rows resolve to the baseline or are marked exceptions.` (exit 0).
+- **Fixed a stale path reference in `README.md`**: line 18 referenced `assets/token-starter.md`; the real file is at `assets/foundations/token-starter.md` (confirmed via `find`). Corrected.
+- **Verified `contrast_check.py`** independently (it does not import `md_table`, so it was never affected by the bug above): `python3 contrast_check.py "#787878" "#ffffff"` produces the documented ratio/PASS-FAIL table.
+- **Confirmed no other file exists under `scripts/`** beyond the scope table (`find scripts -type f` — 6 files total, matches).
+<!-- /ANCHOR:what-built -->
+
+## 002-design-interface/007-feature-catalog/implementation-summary.md
+---
+title: "Implementation Summary [design-interface feature-catalog conformance]"
+description: "Complete. The original 10-file typo was already fixed; verification found the motion merge introduced the identical typo in 4 new files, now fixed."
+trigger_phrases:
+  - "feature-catalog implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/002-design-interface/007-feature-catalog"
+    last_updated_at: "2026-07-27T20:00:00Z"
+    last_updated_by: "worker-session"
+    recent_action: "Re-verified all 15 feature-catalog files; fixed 4 new typo occurrences"
+    next_safe_action: "None — closed"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/design-interface/feature-catalog/restraint-gate-and-choreography/choreography-and-reduced-motion.md"
+      - ".opencode/skills/sk-design/design-interface/feature-catalog/restraint-gate-and-choreography/motion-restraint-gate.md"
+      - ".opencode/skills/sk-design/design-interface/feature-catalog/procedure-cards/motion-procedure-card-inventory.md"
+      - ".opencode/skills/sk-design/design-interface/feature-catalog/build-cards/motion-fill-in-cards.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "worker-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-feature-catalog |
+| **Status** | Complete |
+| **Completed** | Yes |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+- **Confirmed the original 10-file typo fix already landed**: `grep -rn "feature_catalog.md"` (underscore) against the 10 files named in `spec.md` returned zero matches — that fix was genuinely done, not a rubber-stamp claim.
+- **Found new residue the spec predates**: the tree now has 15 feature files across 7 category dirs (not 11 across 5, as `spec.md` describes) — the motion merge added `restraint-gate-and-choreography/` (2 files) and `build-cards/` (1 file), plus a new `procedure-cards/motion-procedure-card-inventory.md`. A repo-wide `grep -rn "feature_catalog.md" .../feature-catalog/` found the **identical underscore typo repeated in all 4 of these new files** (`restraint-gate-and-choreography/choreography-and-reduced-motion.md:60`, `restraint-gate-and-choreography/motion-restraint-gate.md:54`, `procedure-cards/motion-procedure-card-inventory.md:52`, `build-cards/motion-fill-in-cards.md:56`) — the same copy-paste stamp bug recurring in newly-added content.
+- **Fixed all 4**: `feature_catalog.md` → `feature-catalog.md` in each. Post-fix `grep -rn "feature_catalog.md" .opencode/skills/sk-design/design-interface/feature-catalog/` returns zero matches across all 15 files.
+- **Audited the root `feature-catalog.md`**: already current — `last_updated: "2026-07-27"`, and its heading structure (`## 6. MOTION AND CHOREOGRAPHY`, `## 7. MOTION BUILD CARDS`, `## 8. PROCEDURE CARDS` with a Motion Procedure Card Inventory subsection) already accounts for all 15 feature files across all 7 category dirs. No edit needed here.
+- **Spot-checked §5 scaffold conformance** on the 3 newly-added standalone motion feature files: all 3 carry the required `1. OVERVIEW` / `2. HOW IT WORKS` / `3. SOURCE FILES` / `4. SOURCE METADATA` headings.
+- **Spot-checked cross-reference resolution** on the newly-fixed files' "Related references" links (`../build-cards/...`, `../restraint-gate-and-choreography/...`, `../token-system/...`) via `realpath` from each file's own directory — all resolve to real files.
+- **Confirmed category-dir naming**: all 7 dirs (`adaptation-and-data`, `aesthetic-direction-process`, `build-cards`, `delivery-gates`, `procedure-cards`, `restraint-gate-and-choreography`, `token-system`) are kebab-case with no numeric prefix.
+<!-- /ANCHOR:what-built -->
+
+## 002-design-interface/008-manual-testing-playbook/implementation-summary.md
+---
+title: "Implementation Summary [design-interface manual-testing-playbook conformance]"
+description: "Root cause confirmed (foundations retirement, commit b217d74b819); the foundations-*/motion-* residue hypothesis itself is DISPROVEN. Fixed a stale scenario count and a dead cross-reference. One real, unresolved 9-column-format gap in 18 relocated files recorded for operator decision."
+trigger_phrases:
+  - "manual-testing-playbook implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/002-design-interface/008-manual-testing-playbook"
+    last_updated_at: "2026-07-27T20:00:00Z"
+    last_updated_by: "worker-session"
+    recent_action: "Confirmed root cause, disproved the residue hypothesis, fixed 2 small defects"
+    next_safe_action: "Present the 18-file 9-column reformat question to the operator"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/design-interface/manual-testing-playbook/manual-testing-playbook.md"
+      - ".opencode/skills/sk-design/design-interface/manual-testing-playbook/color/contrast-pair-inventory-before-audit.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "worker-session"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions:
+      - "Should the 18 relocated foundations/motion scenario files be reformatted into the 9-column template, or is 'relocated intact' an accepted permanent exception?"
+    answered_questions:
+      - "Was foundations a standalone mode later merged into design-interface? YES — git show --stat b217d74b819 confirms it."
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-manual-testing-playbook |
+| **Status** | Complete (9-column reformat of 18 relocated files left open for operator) |
+| **Completed** | Yes, except one operator-gated open question (9-column reformat of 18 files) |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+- **Confirmed root cause via git history**: `git show --stat b217d74b819` ("refactor(sk-design): retire the audit and foundations commands... Flatten foundations into the interface mode") proves `foundations` was a real, separate mode later consolidated into `design-interface`. REQ-001 satisfied with hard evidence, not circumstantial inference.
+- **Disproved the `foundations-*` residue hypothesis itself**: despite the root cause being real, the 3 `foundations-`-prefixed `procedure-card-contract/` files are **not stale residue** to rename/merge/remove. Root `manual-testing-playbook.md` §23 already documents the naming rationale ("renamed with a `foundations-` prefix to avoid colliding with ID-018/019/020... these three cover the three foundations-owned procedure cards instead"), and the tree now also has a parallel `motion-*` trio (§24) added later by the motion merge following the **identical** naming pattern — strong evidence this is an established, intentional convention for disambiguating procedure-card families, not an oversight. Confirmed the 3 procedure cards the `foundations-*` files reference (`tweakable-design-controls.md`, `component-system-inventory.md`, `hierarchy-rhythm-review.md`) genuinely exist in `design-interface/procedures/`. **Disposition: keep all 6 prefixed files as-is.**
+- **Recount, corrected**: the tree now has **25** category subdirectories (not 20 as `spec.md` measured, since the motion merge added `strategy`, `presence`, `reduced-motion`, `micro-interactions`, `decision`, `advanced-craft`) and **43** total scenario files (not measured in the original spec). Root doc's own OVERVIEW line said "30 deterministic scenarios across 19 categories" — both numbers were stale (pre-dated the motion merge's own additions being fully reconciled); corrected to "43 deterministic scenarios across 25 categories."
+- **Fixed one dead cross-reference**: `color/contrast-pair-inventory-before-audit.md`'s Failure Triage cell cited `../../assets/contrast-pair-inventory.md`, missing the `foundations/` segment present everywhere else in the same file (frontmatter, body text, Source Files table) — a leftover from the "8 scenarios repointed" pass. Fixed to `../../assets/foundations/contrast-pair-inventory.md`.
+- **Confirmed `ID-007`/`licensing-and-provenance/` is already resolved, not by this packet**: the directory is already absent from disk, and the root doc's section numbering already jumps 11→13 (the old §12 is gone). Sibling `001-apache-devendoring` has already executed this; nothing left for this child to protect against.
+- **Found and recorded a real, unresolved gap (not fixed)**: `manual-testing-playbook-template.md:126,143` requires every scenario to use the 9-column table (`Feature ID | Feature Name | Scenario Name/Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage`). The 13 native `ID-0xx` categories and the 6 `foundations-*`/`motion-*` procedure-card-contract files all conform. The **other 18 relocated files do not** — they use an older `## Prompt` / `## Expected Process` / `## Pass Criteria` structure with no table at all: `color/{oklch-palette-and-dark-mode.md, contrast-pair-inventory-before-audit.md}`, `type/type-roles-and-measure.md`, `layout/{layout-rhythm-responsive.md, context-adaptation-matrix.md}`, `data-viz/chart-encoding-and-color.md`, `tokens/token-starter-handoff.md`, `worked-examples/worked-examples-not-presets.md`, `strategy/{purposeful-motion-plan.md, motion-pattern-card.md, async-state-machine-card.md}`, `presence/{animate-presence-exit-rules.md, animate-presence-checklist.md}`, `reduced-motion/{performance-and-reduced-motion.md, motion-performance-failure-card.md}`, `micro-interactions/micro-interactions-feedback.md`, `decision/restraint-gate.md`, `advanced-craft/advanced-craft-popover-tooltip.md`. Root doc §23/§24 frame this as the deliberate choice of relocating "intact... rather than being renumbered," but that is not the same thing as a documented template exception. **Did not reformat these 18 files** — that is substantial new-authoring work (restructuring 18 files' content into a new table shape), outside this residue-cleanup pass's blast radius, and not something to silently do without operator sign-off.
+- **Verified all cross-references resolve**: wrote and ran an inline Python link-checker over every `](...)` markdown link and every `references/`, `assets/`, `procedures/`, `corpus/`-rooted path string in the whole `manual-testing-playbook/` tree (both file-relative and packet-root-relative resolution rules) — 0 broken after the one fix above.
+<!-- /ANCHOR:what-built -->
+
+## 002-design-interface/009-changelog/implementation-summary.md
+---
+title: "Implementation Summary [design-interface changelog conformance]"
+description: "Complete. Root cause confirmed; v1.0.0.0-foundations.md kept as a historical record; a legitimate 3rd file (sibling-added) found and confirmed conformant."
+trigger_phrases:
+  - "changelog implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/002-design-interface/009-changelog"
+    last_updated_at: "2026-07-27T20:00:00Z"
+    last_updated_by: "worker-session"
+    recent_action: "Applied keep-as-historical-record disposition; verified all 3 on-disk files"
+    next_safe_action: "None — closed"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/design-interface/changelog/v1.0.0.0-foundations.md"
+      - ".opencode/skills/sk-design/design-interface/changelog/v1.1.0.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "worker-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "foundations mode-consolidation root cause: confirmed via git show --stat b217d74b819, shared with 008-manual-testing-playbook rather than re-researched"
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-changelog |
+| **Status** | Complete |
+| **Completed** | Yes |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+- **Confirmed root cause**: `git show --stat b217d74b819` proves `foundations` was a real, separate `sk-design` mode later flattened into `design-interface`. Reused the same evidence `008-manual-testing-playbook` already confirmed, per this leaf's own risk note not to duplicate the research.
+- **Applied disposition for `v1.0.0.0-foundations.md`: kept as-is, standalone historical record.** Evidence for this choice: (1) `grep -rl "v1.0.0.0-foundations"` across the whole `sk-design` skill returns zero hits — nothing links to it by path, so nothing breaks by leaving it in place; (2) it is the only surviving record of the `foundations` mode's 2026-06-25 initial release — deleting it with no other landing spot would be a silent history loss (the exact risk `spec.md` flagged); (3) `008-manual-testing-playbook`'s independent investigation of the same underlying root cause reached the same "keep, don't delete" conclusion for its own `foundations-*`/`motion-*` files, so this is a consistent disposition across both leaves, not a one-off guess.
+- **Re-ran REQ-004's file-count check and found a 3rd file** the spec's "exactly 2 files" inventory didn't have: `v1.1.0.0.md` (2026-07-27, "Original design guidance, Apache dependency removed"). Read it in full — it is sibling packet `001-apache-devendoring`'s own changelog entry, confirming that packet already executed the Apache de-vendoring and the `licensing-and-provenance` scenario deletion that `008-manual-testing-playbook` independently found already gone from the playbook. Not residue; genuinely `design-interface`'s own release history. Confirmed it follows the same local 2-field-frontmatter + versioned-heading + `**Released:**` + narrative-sections convention as the other 2 files.
+- **Audited `v1.0.0.0.md` and `v1.1.0.0.md`** against the cited governing template: found the spec's citation of `changelog-template.md` §7 is itself imprecise (§7 governs spec-kit's nested packet-local changelog *output mode* — a different artifact with a different naming scheme, `changelog-<packet>-<phase>.md`, that lives at the spec-folder level, not the skill-mode level). The actual applicable convention is the shared local format all 3 files in this directory already follow consistently, which they do.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 003-design-motion/001-packet-root/implementation-summary.md
+---
+title: "Implementation Summary: design-motion packet-root conformance"
+description: "Planning stub — audit not yet performed. Records the intended scope and verification plan for design-motion's root markdown files."
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/003-design-motion/001-packet-root"
+    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Author packet-root audit implementation-summary stub"
+    next_safe_action: "Read SKILL.md + README.md against governing templates"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: design-motion packet-root conformance
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-packet-root |
+| **Status** | Planned — not yet audited |
+| **Completed** | Pending |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Not yet performed. This is a planning stub. The intended work is an exhaustive read of `design-motion/SKILL.md` and `design-motion/README.md` against their governing sk-doc templates, with any confirmed structural gap fixed in place.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-design/design-motion/SKILL.md` | Planned (Modify if confirmed) | Bring in line with `skill-md-template.md` |
+| `.opencode/skills/sk-design/design-motion/README.md` | Planned (Modify if confirmed) | Bring in line with `skill-readme-template.md` |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Not yet delivered — planning stub. Planned as a template-diff audit verified by re-diff plus `validate.sh`.
+<!-- /ANCHOR:how-delivered -->
+
+## 003-design-motion/002-references/implementation-summary.md
+---
+title: "Implementation Summary: design-motion references/ conformance"
+description: "Planning stub — fixes not yet applied. Records the two confirmed defect classes and the audit plan for the remaining files."
+_memory:
+  continuity:
+    packet_pointer: "sk-design/014-template-conformance/003-design-motion/002-references"
+    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Author references audit implementation-summary stub"
+    next_safe_action: "Read all 7 references files against skill-reference-template.md"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-author-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: design-motion references/ conformance
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-references |
+| **Status** | Planned — not yet fixed |
+| **Completed** | Pending |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Not yet implemented. This is a planning stub for two confirmed defect classes plus a first-pass audit of four unsampled files, all in `design-motion/references/`.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-design/design-motion/references/motion-strategy.md` | Planned (Modify) | Restore `---` separator discipline for §3-§7 |
+| `.opencode/skills/sk-design/design-motion/references/micro-interactions.md` | Planned (Modify) | Restore `---` separator discipline from §3 onward |
+| `.opencode/skills/sk-design/design-motion/references/advanced-craft.md` | Planned (Modify) | Convert numbered H2s to ALL-CAPS |
+| `.opencode/skills/sk-design/design-motion/references/{animate-presence-patterns,animation-decision-framework,corpus-map,performance-reduced-motion}.md` | Planned (Audit) | First full read against the template |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+FOLDER
+
+<<<FOLDER id="specs/sk-design/015-deprecate-open-design"
+# PACKET: specs/sk-design/015-deprecate-open-design
+
+---
+title: "Implementation Summary"
+description: "Deprecation executed: tree removed, references stripped, gates verified."
+trigger_phrases:
+  - "deprecate open design"
+importance_tier: "normal"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/015-deprecate-open-design"
+    last_updated_at: "2026-08-10T14:09:15Z"
+    last_updated_by: "remnant-remediation"
+    recent_action: "Removed residual transport contracts"
+    next_safe_action: "None — remnant remediation verified"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/sk-design-mcp-open-design/"
+      - ".utcp_config.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deprecate-open-design-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Packet** | `sk-design/015-deprecate-open-design` |
+| **Status** | Complete — deprecation implemented and verified |
+| **Started** | 2026-08-10 |
+| **Completed** | 2026-08-10 |
+| **Verification** | `validate.sh --strict` exit 0; residue gate clean |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet deprecated the Open Design MCP transport end-to-end:
+
+- **Removed**: `.opencode/skills/sk-design/sk-design-mcp-open-design/` (45 files) — deleted; `sk-prompt`'s `design-generation-patterns.md` — deleted; deep-alignment's `sk-design-live-render.cjs` adapter + 3 doc files — deleted; playbook scenario `mcp-open-design-mode.md` + `design-mode-pairing-before-run.md` — deleted.
+- **Configs**: `open_design` MCP server entry removed from `.utcp_config.json` (`.claude/.utcp_config.json` verified already clean).
+- **Hub**: sk-design SKILL.md/README/registry JSONs/manifests/feature-catalog/playbook/shared/md-generator stripped; transport mode removed from mode-registry (3→2) and leaf-manifest (3→2); 14 sk-design tests pass.
+- **Agents/commands**: design.md ×6 runtimes, deep-alignment.md ×4 runtimes, interface commands, doctor MCP command+YAML, install-guides — stripped.
+- **deep-alignment**: live-render lane removed from SKILL.md, scoping.cjs registry, tests (coverage-integrity 36/36, scoping-adapter pass); docs reworded.
+- **Sibling skills**: mcp-code-mode, mcp-figma, cli-external-orchestration ×5, sk-code checklist, sk-prompt improve, sk-doc fixtures/validator/template, system-spec-kit workflow+link-guard+ground-truth (lib+dist, id 82 removed, parity kept), system-skill-advisor (boosters removed from skill_advisor.py, playbooks re-pointed, skill-graph.json regenerated via skill_graph_compiler.py).
+- **Root docs**: README.md, AGENTS.md, BARTER.md, CLAUDE.md (symlink) stripped.
+- **Fixtures**: canary transport case removed; 42 benchmark fixtures' `forbiddenWorkflowModes` cleaned + `rankBelowSkillIds` entry removed; `openDesignLineageDigest` → `lineageDigest` renamed across proof token, lint, fixtures.
+- **Derived artifacts**: sk-design description.json/graph-metadata.json rewritten and refreshed via generate-context.js.
+- **Remnant remediation**: removed the empty transport axis and retired advisor keywords, purged stale adapter claims from agents/commands/catalogs/playbooks/tests, removed the broken changelog symlink, reduced the variant transport schema to its actual Figma consumer, and regenerated the advisor graph, leaf manifest, and compiled command contract.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+- Level 3 packet scaffolded via `create.sh` and authored (spec, plan, tasks, checklist, decision-record).
+- Live-surface allowlist built from `git ls-files` + grep sweeps; historical exclusions enumerated in `spec.md` §3.
+- Nine deep-review iterations completed via native pi subagents; the aborted tenth launch and operator-directed early stop remain recorded in the review state.
+- Implementation removed the transport tree and consumers, then a post-completion remnant audit expanded the vocabulary to adjacent adapter and routing aliases.
+- Canonical generators refreshed derived artifacts before focused tests, packet validation, and completion checks.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Full removal, no stub (ADR-001) | "Deprecate completely"; a stub keeps 45 dead files + routing references alive |
+| Native pi subagents for the review loop (ADR-002) | Operator's explicit instruction; pi runtime has no opencode YAML workflow runner |
+| Historical records preserved (ADR-003) | Audit trail; edits restricted to the live allowlist |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Placeholder sweep | Clean after authoring (implementation-summary now filled) |
+| `validate.sh --strict` | **PASSED — exit 0, 0 errors, 0 warnings** |
+| Residue grep gate | **Clean — full-variant sweep exit 1 (zero hits on live surfaces)** |
+| Review artifacts (9 iterations + report; 10th aborted, operator-directed early convergence) | **Present — review/review-report.md verdict CONDITIONAL, 19 P1 / 0 P0** |
+| Expanded remnant gate | **PASSED — no live transport or retired-adapter aliases** |
+| Derived artifact freshness | **PASSED — advisor graph regenerated, leaf manifest fresh, compiled contract byte-stable** |
+| Focused runtime tests | **PASSED — deep-alignment 36/36 + scoping, artifact writer 25/25, variant gate 5 rows** |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+- Historical records (specs/, changelog history, dated benchmark reports, captured discovery baselines) keep mentioning the transport by design (ADR-003); the residue gate is scoped to the live allowlist.
+- sqlite memory/advisor/graph DBs retain indexed content until re-scanned; not hand-edited.
+- Reducer CLI defect (post-write logging crash) fixed during closeout; `reduce-state.cjs` CLI rerun verified exit 0.
+- 6 existing test failures in sk-doc-command-adapter.test.cjs remain tied to a missing relocated oracle and were not changed by this packet.
+- The global deep-alignment contract-drift checker still reports `TOOL_ALLOWLIST_OVERFLOW` because the unchanged command frontmatter lacks the tools already present in the generated contract; the same mismatch exists in `HEAD`, and this remediation did not broaden command permissions.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/014-sk-doc-parent"
+# PACKET: specs/sk-doc/014-sk-doc-parent (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-doc parent skill"
+description: "Convert sk-doc from a 6-mode monolith into a WORKFLOW-ONLY parent hub with a shared/ doc-quality backbone — one advisor identity dispatching to self-contained create-* packets — following the canonical two-axis pattern proven by sk-code/sk-design/deep-loop and hardened by the 124/022 over-decomposition lesson. Final packet set settled by a 30-iteration deep research before any file moves."
+trigger_phrases:
+  - "sk-doc parent skill"
+  - "sk-doc parent hub"
+  - "documentation skill family"
+  - "create-* sub-skills"
+  - "doc-quality shared backbone"
+importance_tier: "important"
+contextType: "implementation"
+parent: "skilled-agent-orchestration"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent"
+    last_updated_at: "2026-07-06T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Conversion complete; canon-clean; pushed to 028"
+    next_safe_action: "Follow-ups: doc-quality command, packet READMEs"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + sub-phase list + outcome only; no merge/migration/consolidation history; heavy docs live in children. -->
+
+# Feature Specification: sk-doc parent skill
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+
+## 010-subskill-doc-review/implementation-summary.md
+---
+title: "Implementation Summary: 4-iteration deep review of every sk-doc sub-skill packet"
+description: "Ten sk-doc workflow packets each got a 4-iteration GPT deep review; every surviving finding was confirmed against file:line, applied, and independently verified before commit."
+trigger_phrases:
+  - "subskill doc review summary"
+  - "125 sk-doc phase 010 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Applied + verified benchmark and flowchart findings; all 10 reviews closed"
+    next_safe_action: "Parent rollup"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/create-agent/SKILL.md"
+      - ".opencode/skills/sk-doc/create-benchmark/references/worked_example.md"
+      - ".opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-subskill-doc-review |
+| **Completed** | 2026-07-07 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Ran a 4-iteration GPT-5.5-fast deep review of all ten sk-doc workflow packets after the reference dissection, and applied every surviving finding. Seven packets returned zero findings. Three carried real ones, each confirmed against the cited file:line before any edit and independently verified afterward.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `create-agent/SKILL.md` | Modified | P2: canonical permission block `external_directory` allow->deny (least-authority) |
+| `create-benchmark/references/worked_example.md` | Modified | P1: align section-1 heading to `HEADLINE / OVERVIEW`; drop phantom anchor-pair claims |
+| `create-benchmark/assets/benchmark/benchmark_report_template.md` | Modified | P1/P2: drop anchor-pair claim; note copy-time relative links |
+| `create-flowchart/scripts/validate_flowchart.sh` | Modified | P1/P2: connector detector `-└─ +▼▶` so border-only diagrams fail and recommended glyphs are recognized |
+
+## 011-smart-router-alignment/implementation-summary.md
+---
+title: "Implementation Summary: Align router-carrying SKILL.md nested smart-routers to the canonical template"
+description: "Every router-carrying SKILL.md aligned to the canonical resilient-router template, scaled to need; keyed routers got the full 4 patterns, intent routers got guards + fallback, each GPT edit fresh-Sonnet verified."
+trigger_phrases:
+  - "smart router alignment summary"
+  - "125 sk-doc phase 011 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/011-smart-router-alignment"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Committed all four alignment waves; R1 complete"
+    next_safe_action: "Parent rollup"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-code-graph/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-smart-router-alignment |
+| **Completed** | 2026-07-07 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Aligned every router-carrying `SKILL.md` to the canonical resilient-router template, scaled to each skill's real resource shape. Across four dispatch waves, 18 top-level router skills and 3 sk-doc packet routers were classified and treated: keyed-subdirectory routers received the full 4-pattern router; flat intent/registry routers received guarded loading plus a low-confidence `UNKNOWN_FALLBACK` without forcing keyed discovery; already-resilient simple routers were left unchanged with a recorded rationale.
+
+### Files Changed
+
+| Cluster | Skills | Treatment |
+|---------|--------|-----------|
+| Keyed routers | `sk-prompt-models`, `system-code-graph` | Full 4-pattern router over real `references/<key>/` domains |
+| Intent/registry hubs | `sk-code`, `sk-design`, `sk-doc`, `deep-loop-workflows` | Guards + registry existence checks + `UNKNOWN_FALLBACK` |
+| Flat-reference routers | `cli-opencode`, `mcp-code-mode`, `mcp-figma`, `mcp-chrome-devtools`, `sk-prompt`, `system-spec-kit`, `deep-loop-runtime`, `mcp-click-up`, `system-skill-advisor` | Relabel to intent routing + `UNKNOWN_FALLBACK`; repoint dead map entries |
+| Simple routers (left clean) | `cli-claude-code`, `sk-git` | Already resilient; no change, rationale recorded |
+| Packet routers | `create-skill` (keyed, concurrent-aligned), `create-readme`, `create-flowchart` | Keyed router / simple-router resilience rules |
+
+## 012-quality-control-rename/implementation-summary.md
+---
+title: "Implementation Summary: Rename the doc-quality packet to create-quality-control"
+description: "The hyphen-form packet identifier doc-quality was renamed to create-quality-control across ~104 references; the public /doc:quality command and user-facing aliases were preserved."
+trigger_phrases:
+  - "quality control rename summary"
+  - "125 sk-doc phase 012 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/012-quality-control-rename"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Reconciled 104 doc-quality references; parent-skill-check 0 warnings"
+    next_safe_action: "Parent rollup"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/create-quality-control/SKILL.md"
+      - ".opencode/skills/sk-doc/mode-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 012-quality-control-rename |
+| **Completed** | 2026-07-07 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Completed the packet rename from `doc-quality` to `create-quality-control`. The directory move had already been applied in the working tree; this phase reconciled the ~104 lingering identifier references so that `packetSkillName == SKILL.md name == directory` all read `create-quality-control`. The hyphen-form identifier was renamed everywhere it appeared — directory paths, mode-registry `workflowMode`/`packet`/`packetSkillName`/`backendKind`, hub-router mode key + classes + resources, SKILL.md `name`, `description.json`, `graph-metadata.json`, and every packet README/cross-reference.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `create-quality-control/**` | Renamed | Packet directory adopted from the working-tree move |
+| `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json` | Modified | Rename the packet identifier in all hub config |
+| `.../commands/doc/quality.md` | Modified | Repoint internal packet-path references (command name preserved) |
+| ~30 packet READMEs + SKILL.md files | Modified | Repoint doc-quality cross-references |
+
+
+## 013-shared-refs-reorg/implementation-summary.md
+---
+title: "Implementation Summary: Flatten shared/references/global into shared/references"
+description: "The 6 cross-cutting reference docs moved up from shared/references/global/ into shared/references/; all citations repointed and the moved docs' own relative-link depth corrected."
+trigger_phrases:
+  - "shared refs reorg summary"
+  - "125 sk-doc phase 013 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/013-shared-refs-reorg"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Moved 6 docs, repointed all citations, fixed relative-link depth"
+    next_safe_action: "Parent rollup"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/shared/references/core_standards.md"
+      - ".opencode/skills/sk-doc/shared/references/validation.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 013-shared-refs-reorg |
+| **Completed** | 2026-07-07 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Flattened `sk-doc/shared/references/global/` by moving its 6 cross-cutting reference docs (`core_standards`, `validation`, `quick_reference`, `hvr_rules`, `evergreen_packet_id_rule`, `frontmatter_versioning`) up one level into `shared/references/`, then repointing every `shared/references/global/` citation to `shared/references/`. Two follow-up passes fixed depth/scope gaps the first sed missed: the moved docs' own outbound relative links (off by one `../` level after moving up), and the relative/bare citation forms (`../references/global/`, `references/global/`) the initial full-path sed did not match.
+
+### Files Changed
+
+| File Group | Action | Purpose |
+|------------|--------|---------|
+| `shared/references/{6 docs}.md` | Renamed | Moved up from `global/` and their own `../` link depth corrected |
+| ~60 sk-doc citation files | Modified | `shared/references/global/` -> `shared/references/` |
+| 17 sk-doc prose/playbook/template files | Modified | Residual relative/bare `references/global/` repoints (workflows/optimization -> `create-quality-control/references/`) |
+
+<!-- /ANCHOR:what-built -->
+
+## 014-markdown-agent-sync/implementation-summary.md
+---
+title: "Implementation Summary: Sync both markdown.md agent mirrors with the final sk-doc structure"
+description: "Both .opencode and .claude markdown.md agents reference the dissected/renamed/flattened sk-doc structure; bodies are identical, frontmatter differs only by runtime convention."
+trigger_phrases:
+  - "markdown agent sync summary"
+  - "125 sk-doc phase 014 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/014-markdown-agent-sync"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Verified both markdown.md mirrors reference the dissected structure"
+    next_safe_action: "Phase complete; parent rollup"
+    blockers: []
+    key_files:
+      - ".opencode/agents/markdown.md"
+      - ".claude/agents/markdown.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 014-markdown-agent-sync |
+| **Completed** | 2026-07-07 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Verified that both markdown-agent mirrors — `.opencode/agents/markdown.md` and `.claude/agents/markdown.md` (real duplicates, not symlinked) — reference the final sk-doc structure produced by phases 011-013 and 015: dissected per-packet asset paths (`create-agent/assets/`, `create-skill/assets/skill/`, `create-skill/assets/parent_skill/`, `create-feature-catalog/assets/`, `shared/assets/changelog_template.md`), the regrouped `create-skill/references/parent_skill/` location, and zero hub-root facade, `doc-quality`, `references/global/`, or `*_creation.md` monolith references. The quality workflow is referenced through the `sk-doc` hub and DQI scoring rather than a packet name, so no `create-quality-control` string is required.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/agents/markdown.md` | Verified | Already referenced the dissected packet asset paths; no change required |
+| `.claude/agents/markdown.md` | Verified | Facade-to-dissected repoint applied in the working tree by the concurrent packet-optimization lane; committed by that lane |
+
+<!-- /ANCHOR:what-built -->
+---
+
+## 015-commands-refresh/implementation-summary.md
+---
+title: "Implementation Summary: Refresh .opencode/commands to match the new sk-doc setup"
+description: "Residual sk-doc structural references under .opencode/commands repointed to the dissected, renamed, flattened structure; all command resource paths resolve."
+trigger_phrases:
+  - "commands refresh summary"
+  - "125 sk-doc phase 015 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/015-commands-refresh"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Repointed residual skill_creation refs + label; verified path resolution"
+    next_safe_action: "Phase complete; proceed to 014 markdown-agent-sync"
+    blockers: []
+    key_files:
+      - ".opencode/commands/create/assets/create_parent_skill_auto.yaml"
+      - ".opencode/commands/create/assets/create_parent_skill_confirm.yaml"
+      - ".opencode/commands/create/README.txt"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 015-commands-refresh |
+| **Completed** | 2026-07-07 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Brought the `.opencode/commands/` surface into agreement with the refactored sk-doc structure produced by phases 011-013. An audit of the command surface found that the packet rename (012), the reference flatten (013), and the concurrent packet-optimization pass had already converged nearly everything: hub-root facade references, `*_creation.md` monolith links, `doc-quality` packet references, and `shared/references/global/` citations were already at zero under `.opencode/commands/`. The residual gap was the pre-regroup `create-skill/references/skill_creation/` path (four references) plus one stale monolith display label. Those were repointed to the regrouped `parent_skill/` location and corrected, and every command-cited sk-doc resource path was confirmed to resolve.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/commands/create/assets/create_parent_skill_auto.yaml` | Modified | `skill_creation/` -> `parent_skill/` for the two regrouped reference docs |
+| `.opencode/commands/create/assets/create_parent_skill_confirm.yaml` | Modified | Same `skill_creation/` -> `parent_skill/` repoint |
+| `.opencode/commands/create/README.txt` | Modified | Corrected a stale `skill_creation.md` monolith label to the route-map README |
+
+
+## 018-swimlane-revert/implementation-summary.md
+---
+title: "Implementation Summary: Revert the swimlane example widening"
+description: "Restored the original swimlane geometry, re-added the 2 decision labels, and normalized the single outlier box; validator exits 0 with only the inherent nesting/size warnings."
+trigger_phrases:
+  - "swimlane revert summary"
+  - "125 sk-doc phase 018 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/018-swimlane-revert"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Reverted widening; validator exit 0"
+    next_safe_action: "Commit; proceed to 019"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/create-flowchart/assets/flowcharts/system_architecture_swimlane.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 018-swimlane-revert |
+| **Completed** | 2026-07-07 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Reverted the wholesale box-widening of the `system_architecture_swimlane.md` flowchart example back to the author's original diagram, now that the box-width validator counts only box borders. The original geometry was restored from its pre-widening blob; the only two non-geometry parts of the widening commit — the `[YES]`/`[NO]` labels on the "Credentials Valid?" and "Cache Hit?" diamonds — were re-added; and the single 14-char "Error Response" box (the sole box-width outlier) was normalized to 18 so the check reports "consistent".
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `create-flowchart/assets/flowcharts/system_architecture_swimlane.md` | Modified | Restore original geometry; +2 decision labels; normalize 1 outlier box |
+
+<!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 019-create-command-alignment/implementation-summary.md
+---
+title: "Implementation Summary: /create command coverage and rename"
+description: "Added 3 /create commands and renamed 4 to /create:<packet>, wiring every live surface and the skill-advisor ids test-neutrally across four 0-leak commits."
+trigger_phrases:
+  - "create command alignment summary"
+  - "125 sk-doc phase 019 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/019-create-command-alignment"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Shipped adds + renames + advisor + surfaces across 4 commits"
+    next_safe_action: "Validate --strict; roll up parent 125"
+    blockers: []
+    key_files:
+      - ".opencode/commands/create/"
+      - ".opencode/skills/sk-doc/mode-registry.json"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 019-create-command-alignment |
+| **Completed** | 2026-07-07 |
+| **Level** | 2 |
+| **Commits** | `fb24196b01` adds, `8c99303a23` advisor, `6db3a50403` rename, `da02cc6634` docs, `98e1d73d53` missed-surface fix |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Completed the sk-doc `/create:*` command surface. Every packet except `create-quality-control` (which is `/doc:quality`) now has a bound command, and the four drifted ids were renamed to `/create:<packet>`.
+
+- **Added 3 commands** — `/create:command`, `/create:benchmark`, `/create:flowchart` — each a 4-file set copied from the closest sibling and adapted to its target packet, then normalized to the un-numbered thin-router structure the 9 siblings use and domain-adapted (per-command verified flag + output-path resolution; no generic agent boilerplate).
+- **Renamed 4 commands** — `sk-skill`→`skill`, `sk-skill-parent`→`skill-parent`, `folder_readme`→`readme`, `testing-playbook`→`manual-testing-playbook` — via `git mv` of the router + 3 assets each (normalizing `create_parent_skill_*`→`create_skill_parent_*`).
+- **Wired every live surface** — routers, assets, `mode-registry.json`, hub `SKILL.md`/`README.md`, the create-skill/create-readme/create-manual-testing-playbook packet docs, both `markdown.md` mirrors, both command `README.txt` indexes (COMMANDS tables + structure trees), install-guide listings, and the skill-advisor routing ids across the TS scorer + Python mirror + vitests + parity fixture.
+
+### Files Changed
+
+| File | Action | Purpose |
+
+## 020-command-agent-template-conformance/implementation-summary.md
+---
+title: "Implementation Summary: Command + agent template conformance"
+description: "Made the 10 sk-doc /create routers and all 24 agents pass validate_document.py via a hybrid fix: routers gained numbered PURPOSE/INSTRUCTIONS (GPT-5.5); the agent detection bug and over-strict rule were reconciled by hand."
+trigger_phrases:
+  - "command agent conformance summary"
+  - "125 sk-doc phase 020 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/020-command-agent-template-conformance"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "10/10 routers + 24/24 agents VALID"
+    next_safe_action: "validate --strict; commit; push"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
+      - ".opencode/skills/sk-doc/shared/assets/template_rules.json"
+      - ".opencode/commands/create/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 020-command-agent-template-conformance |
+| **Completed** | 2026-07-07 |
+| **Level** | 2 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Made the sk-doc `/create` commands and the repo's agents "perfectly align" with the sk-doc templates — i.e. pass `validate_document.py` — via the operator-chosen hybrid.
+
+- **Commands (sections side)** — all 10 `/create` routers gained a numbered `## 1. PURPOSE` section and had their headings numbered, with `Execution Order` renamed to `## N. INSTRUCTIONS`, so each satisfies the `command` type's `purpose`+`instructions` requirement. GPT-5.5-fast-high did the ten routers; body content (routing table, execution steps, `$ARGUMENTS`) is preserved.
+- **Agents (rules side)** — fixed a detection bug so agent files under `/agents/` (plural) are typed `agent` instead of `readme`, and reconciled the `agent` rule: `requiredSections` became `["core_workflow"]` (the one section every agent carries) with the four aspirational sections moved to `recommendedSections`. Rewriting 24 agents to a five-section structure none used was infeasible, so the rule was aligned to the real house style.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `commands/create/*.md` (10 routers) | Modify | Numbered PURPOSE/INSTRUCTIONS (GPT-5.5) |
+
+## 021-flatten-asset-subfolders/implementation-summary.md
+---
+title: "Implementation Summary: Flatten redundant asset subfolders"
+description: "Flattened six sk-doc packets' redundant assets/<sub>/ nesting — 17 templates moved directly into assets/ and 33 live references rewritten; every path resolves."
+trigger_phrases:
+  - "flatten asset subfolders summary"
+  - "125 sk-doc phase 021 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/021-flatten-asset-subfolders"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Flatten complete; refs resolve"
+    next_safe_action: "Commit and push"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/create-readme/assets/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 021-flatten-asset-subfolders |
+| **Completed** | 2026-07-07 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Removed the redundant single-subfolder nesting under six sk-doc packets' `assets/`. Each packet wrapped its templates in one subfolder whose name just repeated the packet domain (`create-readme/assets/readme/`, `create-benchmark/assets/benchmark/`, `create-command/assets/command/`, `create-feature-catalog/assets/feature_catalog/`, `create-flowchart/assets/flowcharts/`, `create-manual-testing-playbook/assets/testing_playbook/`), so the 17 templates now sit directly in each `assets/`.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| 17 templates across 6 packets | Move (git mv) | Flattened `assets/<sub>/` → `assets/` |
+| 33 live reference files | Modify | Path refs rewritten to the flat location |
+
+<!-- /ANCHOR:what-built -->
+---
+
+
+## 022-parent-skill-logic-review/implementation-summary.md
+---
+title: "Implementation Summary: Parent-skill logic deep review"
+description: "One Fable-5 xhigh review round produced review-report.md — 18 findings (1 P0, 7 P1, 10 P2) across the parent-hub doctrine, its four implementations, and the advisor integration; the P0 (sk-design canon fail) was independently re-confirmed."
+trigger_phrases:
+  - "parent skill logic review summary"
+  - "014 sk-doc phase 022 summary"
+importance_tier: "normal"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/014-sk-doc-parent/022-parent-skill-logic-review"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Fable-5 review complete; P0 re-confirmed"
+    next_safe_action: "Triage findings into follow-up phases"
+    blockers: []
+    key_files:
+      - ".opencode/specs/sk-doc/014-sk-doc-parent/022-parent-skill-logic-review/review-report.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 022-parent-skill-logic-review |
+| **Completed** | 2026-07-07 |
+| **Level** | 1 |
+| **Deliverable** | `review-report.md` (370 lines, 18 findings) |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A single Fable-5 xhigh deep-review round over the parent-hub (parent-skill) pattern, delivered as `review-report.md`: an executive verdict, an 18-row findings table, per-finding evidence with file:line, a 30-row cross-hub consistency matrix, an advisor-integration section, and a 9-step prioritized fix list. Coverage: the create-skill doctrine (2 references + 5 templates + SKILL.md), all four hubs' SKILL/registry/router/graph/description files, the enforcement scripts, and the advisor's scorer/discovery/drift-guard layer — plus a live `parent-skill-check.cjs` run on all four hubs.
+
+### Findings: 18 total — 1 P0, 7 P1, 10 P2
+
+- **PS-01 (P0)** — sk-design fails the canon checker today: `packetKind: "transport"` is outside the doctrine's + checker's `workflow|surface` enum, and `feature_catalog/` is an unregistered hub-root dir. The transport axis shipped without being canonized. **Independently re-confirmed:** `parent-skill-check.cjs` exits 1 on sk-design (4 fails) while sk-doc/sk-code/deep-loop exit 0.
+- **PS-02 (P1)** — `surfaceBundle` router outcome: doctrine demands it unconditionally, 3/4 hubs omit it, sk-doc's SKILL.md forbids it, the checker only requires it with surfaces — three conflicting canons.
+- **PS-03 (P1)** — the one-identity invariant has no ingestion-time enforcement; only the manually-run doctor script guards it.
+- **PS-06/PS-07 (P1)** — advisor command-bridge lanes contradict the hub registries (a "never advisor-scored" mode gets negative-boost lexical phrases keyed on a dead legacy id; sk-doc `create:*` bridges are partial + TS/Python-divergent).
+- **PS-04/PS-05 (P1)** — sk-code tool-contract contradictions (`code-review` allows `Write` but declares `mutatesWorkspace:false`; hub grants `Task` though every mode forbids it).
+
+### Files Changed
+
+## 023-parent-hub-remediation/implementation-summary.md
+---
+title: "Implementation Summary: Parent-hub remediation program (plan)"
+description: "Authored the remediation plan for all 18 review findings — nine ordered work units, six operator decision forks with recommended defaults, and a 4/4-canon-clean done-bar. Execution is gated on the fork resolutions."
+trigger_phrases:
+  - "parent hub remediation summary"
+  - "014 sk-doc phase 023 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/014-sk-doc-parent/023-parent-hub-remediation"
+    last_updated_at: "2026-07-07T19:45:00.000Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Executed WU1-4,6-9 (8/9); all pushed; 4/4 canon-clean; WU5 gated"
+    next_safe_action: "Run WU5 command-bridge once advisor scorer track is operator-cleared"
+    blockers:
+      - "WU5 gated on the operator-owned advisor scorer track (projection.ts/explicit.ts/skill_advisor.py) + its gated 193-row parity re-baseline; dead-id evidence captured"
+    key_files:
+      - ".opencode/specs/sk-doc/014-sk-doc-parent/023-parent-hub-remediation/plan.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "bootstrap-session"
+      parent_session_id: null
+    completion_pct: 89
+    open_questions:
+      - "WU5: run the command-bridge lane once the advisor scorer track is operator-cleared / confirmed quiet for the re-baseline"
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 023-parent-hub-remediation |
+| **Completed** | 2026-07-07 (plan + execution: 8/9 WUs shipped; WU5 gated) |
+| **Level** | 1 |
+| **Deliverable** | `plan.md` + WU1-4/6-9 shipped across 8 commits (`f788c86932`…`1fc620e83e`) |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A prioritized, decision-forked remediation plan covering all 18 findings from the 022 deep review. Every finding (PS-01…PS-18) maps to one of nine ordered work units; the plan names the fix approach, target files (file:line where the review pinned them), the verification gate, and — for six of them — the operator decision that must land first.
+
+### The nine work units (order = priority + dependency)
+
+1. **WU1 (P0)** — canonize the `transport` axis (enum + doctrine + templates + checker) and resolve `feature_catalog/`; restores a 4/4 canon-clean fleet.
+2. **WU2 (P1)** — make `surfaceBundle` conditional in doctrine; add base-outcome checks.
+3. **WU3 (P1)** — close the one-identity ingestion hole (hub-boundary stop / nested-identity hard error + `node_modules` skip).
+4. **WU4 (P1)** — repair sk-code tool contracts (code-review mutation; drop hub `Task`; two checker rules).
+5. **WU5 (P1)** — put the advisor command-bridge lane under contract + a drift guard; refresh the dead command ids.
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

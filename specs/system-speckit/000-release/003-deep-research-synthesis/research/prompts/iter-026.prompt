@@ -1,0 +1,473 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-code/z_archive/004-sk-code-merger"
+# PACKET: specs/sk-code/z_archive/004-sk-code-merger
+
+---
+title: "Implementation Summary: Merge sk-code-web + sk-code-full-stack into sk-code"
+description: "Created umbrella sk-code skill, smart-routing by detected stack. Web stack live; non-web stacks scaffolded as placeholders pointing at preserved sk-code-full-stack."
+trigger_phrases: ["sk-code merger summary", "054 implementation summary", "054-sk-code-merger continuity"]
+importance_tier: "high"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "sk-code/z_archive/004-sk-code-merger"
+    last_updated_at: "2026-04-30T11:00:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Phases 1-6 complete; advisor rebuilt, 5 trigger tests pass"
+    next_safe_action: "Run web smoke test or proceed with Tiers 3/5/6 cosmetic updates"
+    blockers: []
+    completion_pct: 90
+    open_questions: []
+    answered_questions:
+      - "Suffix: bare sk-code"
+      - "Spec folder: 054-sk-code-merger"
+      - "Placeholders: empty templated stubs"
+      - "Deprecation: additive frontmatter, no rename"
+---
+# Implementation Summary: Merge sk-code-web + sk-code-full-stack into sk-code
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-sk-code-merger |
+| **Completed** | 2026-04-30 (75% — validation pending) |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+You can now route every code prompt through one umbrella skill. The new `sk-code` smart-routes by detected stack: a Webflow project loads full live content carried verbatim from `sk-code-web`; a React, Node.js, Go, Swift, or React Native project surfaces a placeholder pointer that directs you to canonical content preserved in `sk-code-full-stack`. The advisor's tie-break between the two old skills is gone, and both legacy skills remain on disk untouched (additive frontmatter deprecation only).
+
+### sk-code skill (LIVE)
+
+`.opencode/skills/sk-code/` (68 files). The advisor lists it with full description; live web smoke test pending.
+
+The router runs in three steps inside `SKILL.md`: stack detection (Webflow markers → go.mod → Package.swift → app.json+expo → next.config.* → package.json+react → package.json+nodejs → UNKNOWN), intent classification across 12 categories (web's TASK_SIGNALS extended with TESTING/DATABASE/API), then tiered resource loading (MINIMAL/DEBUGGING/FOCUSED/STANDARD).
+
+### Universal namespace (tightly scoped)
+
+`references/universal/` holds only stack-agnostic content: `error_recovery.md` (decision tree), `code_quality_standards.md` (P0/P1/P2 severity model), `code_style_guide.md` (language-agnostic principles), `multi_agent_research.md` (10-agent methodology). `debugging_workflows.md` and `verification_workflows.md` deliberately stayed inside `references/web/` because they assume DOM/console/page-load semantics — promoting them would have smuggled browser assumptions into non-web routes.
+
+### Placeholder pointers
+
+`references/{react,nodejs,go,react-native,swift}/_placeholder.md` and `assets/{...}/_placeholder.md` — 10 pointer files total. Each carries `canonical_source` and `source_version: sk-code-full-stack@1.1.0` frontmatter so future drift is detectable. The full migration steps are documented inline.
+
+### Advisor scoring retargeted
+
+`skill_advisor.py`, `lib/scorer/lanes/explicit.ts`, `lib/scorer/lanes/lexical.ts`, and `tests/lane-attribution.test.ts` got `replace_all "sk-code-web" → "sk-code"` plus `"sk-code-full-stack" → "sk-code"`. Every boost-table entry now points at the umbrella. The hand-tuned weights survive — only the right-hand-side skill name changed.
+
+### Legacy skills preserved (deprecated frontmatter only)
+
+`sk-code-web/SKILL.md` and `sk-code-full-stack/SKILL.md` got three additive YAML keys: `deprecated: true`, `superseded_by: sk-code`, `advisor_weight: 0`, plus a deprecation_note. Bodies, references, assets, and scripts are unchanged. Live verification: the advisor list now shows both with `[DEPRECATED — superseded by sk-code on 2026-04-30 via 054-sk-code-merger]` prefix in their descriptions.
+
+### Cross-repo reference updates
+
+7 graph-metadata.json files updated (legacy skills marked deprecated; siblings/enhances retargeted on sk-code-review, sk-code-opencode, mcp-chrome-devtools, mcp-figma, advisor). 3 root files updated (CLAUDE.md, AGENTS.md, AGENTS_example_fs_enterprises.md routing tables retargeted; AGENTS_Barter.md already aligned to bare sk-code). Spec folder `054-sk-code-merger/` populated with full Level 3 docs.
+
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Implementation followed the approved plan in `~/.claude/plans/merge-users-michelkerkmeester-mega-devel-crispy-rabin.md` across 7 phases. Phase 1 (spec folder) and Phase 2 (skill scaffold + SKILL.md authoring) ran sequentially because Phase 2 blocked everything downstream. Phase 3 (web content migration) used bulk `cp -R` since scripts were verified as CWD-relative — no path edits required. Phase 4 (placeholder scaffolding) authored 10 pointer files. Phase 5 (cross-repo updates) ran tier-by-tier: Tier 1 (advisor scoring) was surgical with `replace_all` for both legacy skill names; Tier 2 (graph metadata) was per-file Edit; Tier 4 (root instructions) was per-line Edit; Tier 7 (legacy frontmatter) added 3 YAML keys per file. Tiers 3 (sister SKILL.md), 5 (agent definitions), and 6 (READMEs) are deferred — they update narrative text only and do not affect routing.
+
+The Plan agent's three risk warnings (universal/ scope, scripts paths, advisor re-amplification) were each addressed: universal scope was tightened during authoring, scripts were audited and confirmed CWD-relative, and the deprecation strategy combined frontmatter flags with full boost-table retargeting (the optional `DEPRECATED_SKILLS` code-level guard remains available if validation surfaces residual amplification).
+
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Stack-detection FIRST, intent classification SECOND (ADR-001) | Intent words like "test", "performance", "build" mean different things across stacks. Web's intent-only model only worked because it implicitly assumed browser. Stack must gate intent. |
+| Bare `sk-code` name (ADR-002) | User-directed. Cleanest umbrella for the code skill family alongside sibling sk-code-opencode and sk-code-review. Boost tables use exact-name keys, so siblings remain disambiguated. |
+| Empty templated stubs for non-web stacks (ADR-003) | User explicitly asked for "empty placeholder references, assets". Single `_placeholder.md` per stack folder honors the directive without per-file stub clutter. canonical_source + source_version frontmatter enables future drift detection. |
+| Code-level exclusion list deferred; rely on additive frontmatter + retargeted boost tables (ADR-004) | "Don't overwrite the 2 skills" forced a non-invasive deprecation. Adding 3 YAML keys preserves all body content and is reversible. The DEPRECATED_SKILLS Python/TS guard is documented as an optional follow-up if amplification recurs after `doctor:skill-advisor :confirm`. |
+| Tightly-scoped universal/ namespace (ADR-005) | Plan-agent flagged debugging_workflows.md and verification_workflows.md as browser-coupled. Promoting them to universal/ would have surfaced wrong guidance to Go/Swift users. They stay in web/. |
+
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `python3 -m py_compile skill_advisor.py` | PASS |
+| `bash validate.sh` on 054-sk-code-merger (non-strict) | PASS WITH WARNINGS (4 non-blocking warnings: AI_PROTOCOL section, SECTION_COUNTS acceptance scenarios, EVIDENCE_CITED items, ANCHORS_VALID custom anchors) |
+| `bash validate.sh --strict` | FAILED (strict treats warnings as failures; non-strict is the operational gate) |
+| `skill_graph_compiler.py --export-json` | PASS — skill-graph.json regenerated (skill_count=22, sk-code in adjacency, sk-code is hub skill) |
+| `advisor_rebuild` MCP tool | PASS — SQLite skill-graph.sqlite rebuilt; skillCount=23, indexedNodes=9, indexedEdges=77 |
+| `npm run build` (TypeScript) | PASS — explicit.ts + lexical.ts changes compiled to dist/ |
+| `npx vitest run lane-attribution.test.ts` | PASS (1/1 tests green) |
+| Trigger test: "fix Webflow animation flicker" | sk-code (conf=0.937) ✓ |
+| Trigger test: "Add a React component to my Next.js app" | sk-code (conf=0.905) ✓ |
+| Trigger test: "implement a Go service handler" | sk-code (conf=0.937) ✓ |
+| Trigger test: "audit OpenCode plugin loader" | sk-code-review (conf=0.937), sk-code-opencode (conf=0.899) — acceptable; "audit" strongly biases review |
+| Trigger test: "review this PR" | sk-code-review (conf=0.950) ✓ |
+| Advisor lifecycle gate | PASS — sk-code-web and sk-code-full-stack filtered (lifecycle_status: deprecated) |
+| Advisor list shows `[DEPRECATED — superseded by sk-code]` prefix | PASS (verified live in advisor brief output) |
+| Web smoke test (minify-webflow.mjs from new vs legacy location) | PENDING (requires Webflow project context to run) |
+| Cross-repo regrep returns only intentional refs | PARTIAL (Tier 3, 5, 6 deferred — cosmetic narrative updates; ~7 sister SKILL.md + 3 agent defs + ~10 docs still mention legacy names) |
+
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Validation suite not yet executed**. Run `/doctor:skill-advisor :confirm`, then 5 trigger-test prompts, lane-attribution test, and the web smoke test. Each is documented in the §6 Verification section of `plan.md`.
+
+2. **Tiers 3, 5, 6 deferred — narrative-only updates**. 7 sister SKILL.md cross-refs, 3 deep-review agent definitions, and ~10 README/doc files still mention legacy skill names in narrative text. These do NOT affect routing (Tier 1 + 2 already retarget). Recommended approach: per-file `replace_all "sk-code-web" → "sk-code"` and `"sk-code-full-stack" → "sk-code"` with manual review for edge cases.
+
+3. **`skill-graph.json` is stale**. The auto-generated file at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` still lists `sk-code-web` and `sk-code-full-stack` in its families/adjacency/signals sections. Will be regenerated by `doctor:skill-advisor :confirm`.
+
+4. **DEPRECATED_SKILLS code-level guard not added**. Defensive measure deferred. If `doctor:skill-advisor :confirm` re-amplifies legacy skills despite frontmatter flags, add `DEPRECATED_SKILLS = frozenset({"sk-code-web", "sk-code-full-stack"})` early-return guard in `skill_advisor.py` and `explicit.ts`. This was the architectural option in ADR-004.
+
+5. **Implementation-summary.md and decision-record.md frontmatter strings were initially too narrative** and tripped the SPECDOC_FRONTMATTER_004 validator. Compacted in this revision.
+
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/sk-code/z_archive/005-sk-code-fullstack-branch"
+# PACKET: specs/sk-code/z_archive/005-sk-code-fullstack-branch
+
+---
+title: "Implementation Summary: sk-code multi-stack scaffolding (Webflow live + Next.js + Go stubs)"
+description: "Final unified summary covering Phases A → B → C → D: original fullstack-branch attempt, naming reconciliation + bulk stub fill, sk-doc smart-router alignment, validation."
+trigger_phrases: ["056 summary", "sk-code multi-stack summary"]
+importance_tier: "high"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-code/z_archive/005-sk-code-fullstack-branch"
+    last_updated_at: "2026-04-30T17:30:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "057 merged into 056"
+    next_safe_action: "Run /memory:save"
+    blockers: []
+    completion_pct: 100
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-sk-code-fullstack-branch |
+| **Completed** | 2026-04-30 |
+| **Level** | 2 |
+| **Absorbed** | `057-sk-code-multi-stack-placeholders` (merged 2026-04-30) |
+| **Builds on** | `054-sk-code-merger` (umbrella skill creation), `055-cli-skill-removal-sk-code-merger-deprecated` (legacy stack content retirement) |
+
+---
+
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`sk-code` is now a working three-stack smart router. Webflow keeps its live content (610K of references plus 139K of assets — untouched). Next.js and Go are scaffolded as project-agnostic stubs the smart router can resolve, every path the SKILL.md `RESOURCE_MAPS` references actually exists, and the canonical Next.js ↔ Go contract sits in `references/router/cross_stack_pairing.md` ready to surface when API or auth intents fire. SKILL.md §2 reads as a sk-doc dialect now: same anchor (`smart-routing-references`), same subsection order, same Python pseudocode shape with the `_task_text` / `_guard_in_skill` / `discover_markdown_resources` / `score_intents` / `select_intents` / `route_code_resources` helpers. The 4 universal/ and 5 router/ reference docs and 2 universal/ checklists all follow the sk-doc reference and asset templates, validated via `validate_document.py` and DQI-scored at good or excellent.
+
+### Three-stack scaffolding
+
+The advisor now routes Next.js, Go, and Webflow prompts to `sk-code` confidently. Stack detection in SKILL.md §2 picks WEBFLOW first (so Webflow projects with `package.json` for build tooling don't misroute to NEXTJS), then GO via `go.mod`, then NEXTJS via `next.config.*` or `package.json` containing `"next"` / `"react"`. Anything else returns UNKNOWN with a four-question disambiguation prompt. The constant `NEXTJS` and folder `references/nextjs/` are the canonical naming — settled after a brief detour through `react/` that the user corrected.
+
+### 43 project-agnostic stubs (cli-codex generated)
+
+`cli-codex` (gpt-5.5 high, fast service tier) wrote 23 NEXTJS stubs and 20 GO stubs in two dispatches. Each stub follows a strict template: YAML frontmatter declaring `status: stub`, `populated: false`, `last_synced_at: 2026-04-30`; a short Intended scope paragraph; an Outline (TODO) bullet list; and a See also section pointing at the corresponding Webflow mirror reference (when applicable) plus `cross_stack_pairing.md` for API / auth files. Markdown stubs contain no fenced code blocks. Code stubs (`.tsx`, `.ts`, `.go`, `.css.ts`, `_test.go`) are comment-only — no function bodies, no imports, no fictional implementations. The dispatch prompt explicitly forbade `populated: true`, library version pins, kerkmeester references, and any code in markdown.
+
+### Carry-over rewrites + cross-stack scrub
+
+Four files from the original 056 attempt — `references/{nextjs,go}/README.md` and `references/{nextjs,go}/implementation/implementation_workflows.md` — used kerkmeester-specific phrasing and falsely claimed `populated: true` while their sibling subdirectories were empty. They are now project-agnostic stubs with honest `populated: false` markers and structural sections (subfolder map, asset map, verification commands, see also) preserved. The fifth carry-over, `references/router/cross_stack_pairing.md`, is genuinely canonical contract guidance referenced from four places — it stays live (not a stub) but with `kerkmeester` removed from the keyword line and the prose phrase "kerkmeester-scale answer" replaced with "small-scope answer". All structural sections (topology, error envelope, JWT handoff, CORS, pagination, deploy table, drift detection) are intact, now wrapped in a sk-doc canonical OVERVIEW section.
+
+### sk-doc smart-router alignment + reference rewrites
+
+SKILL.md §2 SMART ROUTING was rewritten to match sk-doc's pattern: anchor `smart-routing-references`, subsection order Stack Detection → Resource Domains → Resource Loading Levels → Smart Router Pseudocode, single comprehensive Python pseudocode block instead of fragmented sub-blocks, helper functions named verbatim from sk-doc (`_task_text`, `_guard_in_skill`, `discover_markdown_resources`, `score_intents`, `select_intents`, `route_code_resources`), `LOADING_LEVELS = {ALWAYS, ON_DEMAND_KEYWORDS, ON_DEMAND}` shape, `RESOURCE_MAPS` as a nested per-stack dict. A new §5 REFERENCES section was inserted with the sk-doc canonical sub-structure (Core References → Templates and Assets → Build and Verification Scripts), pushing existing sections 5-9 to 6-10. The 4 universal/ refs and 5 router/ refs were rewritten — each now has a 1-2 sentence intro, a numbered `## 1. OVERVIEW` section with Purpose / Core Principle / When to Use / Key Sources subsections, numbered topical sections, and a final `## N. RELATED RESOURCES` section. The 2 universal/ asset checklists (debugging, verification) were rewritten to match sk-doc's asset template (numbered sections, OVERVIEW first, RELATED RESOURCES last). All `<!--.*ANCHOR:.*-->` HTML comments were stripped from every md file under `sk-code/`.
+
+### Honesty + metadata sync
+
+SKILL.md routes block now describes NEXTJS and GO as "scaffolded **stub** content" instead of "full live content"; the Resource Domains block tags both as STUB. The frontmatter description bumps to "WEBFLOW (live), NEXTJS (stub), GO (stub)". `description.json` and `graph-metadata.json` mirror this — `supported_stacks: ["WEBFLOW", "NEXTJS", "GO"]`, kerkmeester removed from keywords / intent_signals / trigger_phrases / key_topics / causal_summary, `placeholder_fill_packet` field added pointing at this packet (`056-sk-code-fullstack-branch` post-merge). The sk-code/README.md Stack Detection table tags NEXTJS and GO as STUB. The skill version bumps from 1.2.0 to 1.3.0 with a new `changelog/v1.3.0.0.md` entry summarizing the rename + 43 stubs + scrub + supersede.
+
+### Files Changed
+
+| File / Path | Action | Purpose |
+|------------|--------|---------|
+| `references/nextjs/` (12 .md stubs + README + impl_workflows) | Create / rewrite | NEXTJS stack scaffolding |
+| `references/go/` (12 .md stubs + README + impl_workflows) | Create / rewrite | GO stack scaffolding |
+| `assets/nextjs/{checklists,patterns,integrations}/` (11 stubs) | Create | NEXTJS checklists / code patterns / integrations |
+| `assets/go/{checklists,patterns}/` (8 stubs) | Create | GO checklists / code patterns |
+| `references/router/cross_stack_pairing.md` | Restructure + scrub | Canonical Next.js ↔ Go contract; sk-doc-aligned |
+| `references/router/{stack_detection,intent_classification,resource_loading,phase_lifecycle}.md` | Rewrite | sk-doc canonical reference template |
+| `references/universal/{code_quality_standards,code_style_guide,error_recovery,multi_agent_research}.md` | Rewrite | sk-doc canonical reference template |
+| `assets/universal/checklists/{debugging,verification}_checklist.md` | Rewrite | sk-doc canonical asset template |
+| `SKILL.md` | Modify | sk-doc smart-router alignment, §5 REFERENCES, anchors stripped, version 1.3.0 |
+| `README.md` | Modify | Stack table updated; STUB markers honest |
+| `changelog/v1.3.0.0.md` | Create | New version changelog entry |
+| `description.json` | Rewrite | supported_stacks, keywords, lastUpdated, placeholder_fill_packet |
+| `graph-metadata.json` | Rewrite | domains, intent_signals, key_files, causal_summary, placeholder_fill_packet |
+| `system-spec-kit/.../scorer/lanes/explicit.ts` | Modify | NEXTJS lane (was REACT); kerkmeester removed; nextjs go pairing triggers |
+| `specs/skilled-agent-orchestration/057-sk-code-multi-stack-placeholders/` | Delete | Absorbed into 056 |
+| `specs/sk-code/z_archive/005-sk-code-fullstack-branch/` (this packet) | Rewrite | Unified narrative covering Phases A → D |
+
+---
+
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Four sequential phases. Phase A authored the original 056 spec packet and got partway through populating `references/{react,go}/` content with kerkmeester-style examples — but folder naming drifted (code said `references/react/`, disk became `references/nextjs/`) and the implementation-summary inflated completion to 85% against a 0%-marked checklist. Phase B (originally packet 057, now absorbed) reconciled naming via two rounds of `git mv`, dispatched cli-codex twice for the 43 stubs with a strict template, hand-wrote the 4 carry-over rewrites and the cross_stack_pairing scrub, and updated SKILL.md routes / description.json / graph-metadata.json / advisor scoring to reflect the three-stack model honestly. Phase C aligned SKILL.md §2 with sk-doc's canonical smart-router pattern, inserted §5 REFERENCES, rewrote the 4 universal/ + 5 router/ + 2 asset/ files to sk-doc canonical templates, and stripped all `<!--.*ANCHOR:.*-->` HTML comments via Python sweep. Phase D ran the validation suite — sk-doc validate (9/9 valid, 0 issues), DQI scoring (all good or excellent), advisor smoke regression (3/3 pass at threshold 0.8), kerkmeester / anchor / fenced-code sweeps (all empty). The merge consolidates 056 + 057 into this single packet.
+
+---
+
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Renamed final folder to `references/nextjs/` (not `react/`) | Original 056 had `references/nextjs/` on disk against `references/react/` in code; 057 first tried renaming to `react/` to match constant, then user corrected to keep `nextjs/`. The constant `NEXTJS` was renamed to match (was `REACT`). |
+| Stubbed the 4 carry-over files but preserved cross_stack_pairing.md | The READMEs and impl_workflows were project-tied prose pretending to be live entry docs; rewriting as stubs is more honest. cross_stack_pairing.md is a canonical contract referenced from 4+ places — stripping it would have lost 15K of contract guidance with no upside. |
+| Merged 056 + 057 into 056 instead of keeping 057 as supersede | Single source of truth for the unified narrative. The lineage with 056's earlier failed attempt is preserved in the spec.md §1 METADATA Absorbed packet row and in this summary's Phase A narrative. |
+| Removed `kerkmeester` from description.json / graph-metadata.json keywords | The user emphasized project-agnostic. Even though kerkmeester is the inspiration for the stack choice, naming it as a trigger keyword leaks the project. Easy to add back if needed. |
+| Skipped `create.sh` for spec packet creation | The skill's `create.sh` auto-creates a feature branch by default. Per the stay-on-main rule, manual authoring is faster than creating then deleting the branch. |
+| Aligned to sk-doc smart router + reference template throughout | User asked for 100% sk-doc alignment in the smart router and reference docs. Numbered sections, OVERVIEW with Purpose/Core Principle/When to Use/Key Sources, RELATED RESOURCES last — matches `extract_structure.py` and `validate_document.py` expectations and yields high DQI scores. |
+| Stripped all `<!--.*ANCHOR:.*-->` HTML comments | User explicitly requested. The auto-linter that was adding `## N. OVERVIEW _TODO_` blocks may continue to flag stub files; the 9 reference docs and SKILL.md now match the sk-doc structure so they should be left alone. |
+
+---
+
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Path-existence sweep across 33 NEXTJS + GO `RESOURCE_MAPS` paths | PASS — 33/33 resolve, 0 missing |
+| Stub-marker sweep across all 43 stubs (md `status: stub` + code `Status: stub`) | PASS — every stub has the marker |
+| Final kerkmeester sweep across `sk-code/` | PASS — 0 occurrences |
+| ANCHOR HTML comment sweep across `sk-code/` | PASS — 0 occurrences |
+| No-fenced-code sweep on markdown stubs (cross_stack_pairing exempt) | PASS — empty result |
+| sk-doc validate_document.py on 9 reference docs | PASS — 9/9 `valid: true`, 0 issues |
+| sk-doc DQI on 9 reference docs | PASS — 5 router (95, 93, 96, 93, 92) + 4 universal (88, 90, 93, 91); 7 of 9 excellent, 2 good |
+| sk-doc validate_document.py on 2 universal asset checklists | PASS — both valid, DQI 85 (good) and 86 (good) |
+| Advisor smoke #1 — "implement Next.js App Router page with vanilla-extract" | PASS — sk-code wins, score 0.857, passes_threshold true |
+| Advisor smoke #2 — "build a gin handler with sqlc and Postgres" | PASS — sk-code wins, score 0.78 |
+| Advisor smoke #3 (regression) — "fix Webflow animation flicker" | PASS — sk-code wins, score 0.842 (no regression after rename + scrub) |
+
+---
+
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Stubs are scaffolding, not content.** Every file under `references/{nextjs,go}/` and `assets/{nextjs,go}/` (excluding `cross_stack_pairing.md`) is a `populated: false` stub. When a real Next.js project or Go service comes online, those stubs need real content written into them. This is the explicit intent of the packet, not a defect.
+2. **Auto-linter may re-pollute non-compliant files.** An automated linter is appending `## N. OVERVIEW _TODO_` blocks to files that don't match sk-doc's reference template. The 9 reference docs and SKILL.md now match the template, so the linter should leave them alone. If the stub files (which use a custom stub template) re-pollute, either the stub template needs updating or the linter rule needs adjusting.
+3. **Memory save pending.** CHK-027 (final `/memory:save`) is pending — to be run by the user after the merge. This refreshes `description.json` + `graph-metadata.json` for the spec packet itself plus re-indexes the memory store.
+4. **Webflow scripts portability.** The 3 `scripts/*.mjs` files use CWD-relative paths; they must be run from the project root, not from the skill directory. This is documented in sk-code/README.md `## Troubleshooting`.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/sk-code/z_archive/006-sk-code-opencode-merger"
+# PACKET: specs/sk-code/z_archive/006-sk-code-opencode-merger
+
+---
+title: "Implementation Summary: sk-code-opencode-merger"
+description: "Implementation summary for the sk-code-opencode merger packet. The standalone OpenCode code skill was merged into sk-code as the OPENCODE surface."
+trigger_phrases:
+  - "sk-code-opencode merger summary"
+  - "planning only summary"
+importance_tier: "important"
+contextType: "implementation-summary"
+_memory:
+  continuity:
+    packet_pointer: "sk-code/z_archive/006-sk-code-opencode-merger"
+    last_updated_at: "2026-05-03T17:45:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Merged OpenCode standards into sk-code"
+    next_safe_action: "Review final diff and decide whether to commit"
+    blockers: []
+    key_files:
+      - ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/spec.md"
+      - ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/plan.md"
+      - ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/resource-map.md"
+    session_dedup:
+      fingerprint: "sha256:0660660660660660660660660660660660660660660660660660660660660665"
+      session_id: "066-sk-code-opencode-merger-plan"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Runtime implementation completed after user approved continuation."
+      - "Historical changelogs: DELETE (13 files)."
+      - "Telemetry JSONL: REWRITE/REGENERATE."
+      - "Route name: 'opencode' (folder) / 'OPENCODE' (identifier)."
+      - "Two-axis detection: Code Surface (Webflow/OpenCode) → Intent Classification → Resource Loading."
+      - "Language sub-detection within OPENCODE surface."
+      - "Barter sk-code comparison: context-aware CWD detection replaces git-remote project routing."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-sk-code-opencode-merger |
+| **Completed** | 2026-05-03 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This implementation merged the standalone OpenCode system-code standards into `sk-code` as the `OPENCODE` surface route, preserving Webflow frontend routing as `WEBFLOW` and leaving unsupported stacks as `UNKNOWN`.
+
+### Planning Packet
+
+The packet now contains a Level 3 specification with completed tasks, verification evidence, ADR with resolved route name, and resource map.
+
+### Deep Analysis Session (2026-05-03)
+
+A deep-analysis session using Sequential Thinking compared three models:
+1. **Current sk-code**: stack-detection-first (marker files → WEBFLOW/GO/NEXTJS → intent → resources)
+2. **Current sk-code-opencode**: language-detection-first (file extension → JS/TS/Python/Shell/Config → standards)
+3. **Barter sk-code**: two-step detection (git remote → project knowledge; marker files → verification commands only)
+
+The delivered design uses **two-axis context-aware detection**: Code Surface (first gate, from CWD + changed files) -> Intent Classification (second gate, weighted keyword scoring) -> Per-surface resource loading with language sub-detection for OpenCode.
+
+### Runtime Changes
+
+| Area | Delivered |
+|------|-----------|
+| `sk-code` | Rewritten as the single code-work skill with `WEBFLOW`, `OPENCODE`, and `UNKNOWN` surfaces. |
+| OpenCode standards | Moved into `.opencode/skills/sk-code/references/opencode/` and `.opencode/skills/sk-code/assets/opencode/checklists/`. |
+| Verifier | Moved to `.opencode/skills/sk-code/scripts/verify_alignment_drift.py`. |
+| Removed branches | Deleted Go and NextJS placeholder branches plus `cross_stack_pairing.md`. |
+| Review/CLI/docs | Updated `sk-code-review`, CLI dispatch guidance, agents, commands, repo docs, and install guides to the single-skill model. |
+| Advisor/tests | Updated scorer lanes, fixtures, hook expectations, telemetry, and generated graph artifacts to route OpenCode system code to `sk-code`. |
+| Obsolete skill | Deleted `.opencode/skills/sk-code-opencode/` after live references were clean. |
+
+### Key Architectural Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Two-axis detection | Single axis can't distinguish Webflow frontend work from OpenCode system work in the same repo |
+| CWD + changed files for surface detection | Unlike Barter's git-remote approach, our repo contains both surfaces |
+| Language sub-detection within OpenCode | Preserves sk-code-opencode's file-extension routing inside the unified router |
+| Full 5-phase lifecycle for OpenCode | Currently OpenCode has only "apply standards"; deserves Implementation→Debug→Verify phases |
+| Folder name "opencode" / identifier "OPENCODE" | Matches existing "webflow"/"WEBFLOW" convention |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Implementation used exact reference searches, direct file inspection, focused patches, advisor graph regeneration, smart-router measurement regeneration, skill graph scan/rebuild, and targeted vitest/verification commands. Remaining old-skill strings are intentionally historical/spec-folder identifiers only.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Implement after continuation approval | The user instructed to continue if next steps were clear |
+| Use Level 3 documentation | The change spans skills, agents, commands, advisor code, tests, docs, and metadata |
+| Design two-axis detection | Single-axis stack detection can't distinguish Webflow frontend from OpenCode system code in the same repository |
+| Route name `opencode` / `OPENCODE` | Matches existing `webflow` / `WEBFLOW` convention |
+| Language sub-detection within OpenCode | Preserves sk-code-opencode's extension-based routing; absorbed as second-level routing |
+| Delete obsolete skill directory | The merger absorbs OpenCode standards into `sk-code`; old changelogs were removed with the directory |
+| Regenerate telemetry JSONL | Generated data; regeneration is cleaner than manual patching |
+| Barter comparison | Barter uses git-remote for project routing; we use CWD+changed-files because same repo has both surfaces |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Focused advisor/router vitest suite | PASS, 11 files / 185 tests |
+| Alignment fixture preservation test | PASS, 1 file / 2 tests |
+| Alignment verifier | PASS, `python3 .opencode/skills/sk-code/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server/skill_advisor` |
+| Advisor graph compile | PASS, 19 skills; warning only for 4631-byte graph exceeding 4KB target |
+| Skill graph scan/status | PASS, 19 skills, 68 edges, healthy, no stale skill IDs |
+| Smart-router measurement | PASS, regenerated with 130/197 advisor label accuracy and no removed-skill labels |
+| Exact live reference search | PASS, only historical/spec-folder identifiers remain |
+| Spec validation | PASS, `validate.sh ... --strict`, 0 errors / 0 warnings |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Generated advisor graph size warning remains.** `skill_graph_compiler.py --export-json` reports `WARNING: Output exceeds 4KB target (4631 bytes)`, but validation passes.
+2. **Historical references remain intentionally.** Old skill strings remain only in spec-folder identifiers or historical changelog text.
+3. **No packaged release was created.** This was a repository refactor/metadata update, not a release workflow.
+
+---
+
+<!-- ANCHOR:runbook -->
+## Runbook
+
+If this needs rollback, restore `.opencode/skills/sk-code-opencode/` and the previous advisor graph/telemetry from git, then rerun `skill_graph_scan` and advisor rebuild. If continuing forward, use `sk-code` for both Webflow frontend and `.opencode/` system-code work, and use `sk-code-review` only for findings-first review output.
+<!-- /ANCHOR:runbook -->
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

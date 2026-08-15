@@ -1,0 +1,358 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/cli-external-orchestration/042-pi-remote-experience-parity"
+# PACKET: specs/cli-external-orchestration/042-pi-remote-experience-parity
+
+---
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/042-pi-remote-experience-parity"
+    last_updated_at: "2026-08-12T06:47:00Z"
+    last_updated_by: "claude"
+    recent_action: "Synthesized both research lineages into research/research.md and completed the packet"
+    next_safe_action: "Review recommendations and amend the 041 packet"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "spec.md"
+    completion_pct: 60
+---
+# Implementation Summary: Pi Remote Experience Parity Research
+
+## Status: Review
+
+## Current State
+
+The two-lineage deep-research run is **complete**. Both lineages finished all 20 iterations with no early convergence and reached `synthesis_complete`:
+
+- **cli-codex · gpt-5.6-luna (max/fast)** — 20 iterations, 794-line per-model synthesis. Orchestration verdict: succeeded.
+- **cli-pi · deepseek-v4-flash (opencode-go)** — 20 iterations, 177-line per-model synthesis. Orchestration verdict: `failed` via the runtime **containment guard** (out-of-scope-paths: null) — a false positive from concurrent daemon/other-session working-tree churn. The lineage's full 20-iteration output survived on disk and is included in the synthesis.
+
+The **GPT-5.6 SOL HIGH (fast)** synthesis merged both lineages into `research/research.md` (1079 lines): executive summary, all eight experience axes, model convergence/divergence, ranked P0/P1/P2 recommendations for the 041 packet, and 20 open validation questions.
+
+## Headline Finding
+
+A best-in-class Pi remote experience is a **typed, redacted, replayable event ledger** with a separate authenticated command protocol — not a terminal mirror or chat clone. Both lineages independently converged on this shape, and it can exceed the Claude Code + mobile reference on transcript richness, replay determinism, approval integrity, notification privacy, authority legibility, session isolation, and local data control — while explicitly not claiming unrestricted cloud-agent autonomy.
+
+## Verification Evidence
+
+- Fan-out config validated against the real executor schema (parse + expand + capability preflight) before launch.
+- Per-lineage `synthesis_complete` state and 20 iteration files on disk.
+- Blast radius: no repo files outside `042/research/` attributable to the CLI children; out-of-window changes were daemon/MCP churn and unrelated concurrent sessions.
+
+## Next Steps
+
+1. Human review of `research/research.md`.
+2. Amend the 041 packet with the P0 recommendations (typed relay envelope, IA, exact-action approval events, content-free attention contract, first-class pending states).
+3. Validate the 20 open questions against the live Pi RPC surface and target device matrix before freezing any schema.
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/043-luna-max-deepseek-max-glm-roster"
+# PACKET: specs/cli-external-orchestration/043-luna-max-deepseek-max-glm-roster
+
+---
+title: "Implementation Summary"
+description: "cli-cursor and cli-devin can now dispatch GPT-5.6 Luna Max, cli-devin can dispatch the DeepSeek V4 max tiers, and the opencode-go catalog documents GLM 5.3 — all live-verified, additive, and doc-consistent."
+trigger_phrases:
+  - "luna max roster summary"
+  - "deepseek max glm 5.3 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/043-luna-max-deepseek-max-glm-roster"
+    last_updated_at: "2026-08-14T11:37:36Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped all roster additions + honesty sweep; deep-loop vitest 190/190 green"
+    next_safe_action: "Packet complete; optional follow-up is dispatch-testing the list-verified ids"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+      - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "impl-043-luna-max-deepseek-max-glm-roster"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 043-luna-max-deepseek-max-glm-roster |
+| **Completed** | 2026-08-14 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+You can now dispatch four more models across the external-CLI orchestration modes, each one confirmed present in the live CLI listing before it was added. Grok 4.6 at all thinking levels, which the request also named, was already shipped in packet 036, so this packet verified that and added nothing there.
+
+### GPT-5.6 Luna Max on cli-cursor and cli-devin
+`gpt-5.6-luna-max` and `gpt-5.6-luna-max-fast` join the enforced Cursor allowlist; `gpt-5-6-luna-max` and `gpt-5-6-luna-max-priority` join the enforced Devin allowlist. These are the first GPT-5.6 persona ids in either curated scope. On Devin the Fast speed tier is the `-priority` suffix, not `-fast`, so a dispatch that wants Fast picks `gpt-5-6-luna-max-priority`.
+
+### DeepSeek V4 Max tiers on cli-devin
+`deepseek-v4-pro-max` and `deepseek-v4-flash-max` join the Devin allowlist. Only the Max tier was requested, so the `-low` and `-high` tiers Devin also exposes stay out.
+
+### GLM 5.3 on cli-opencode
+The opencode-go catalog now documents `opencode-go/glm-5.3`. This one is documentation only: cli-opencode has no code-enforced allowlist, so the model was already dispatchable and the gap was purely in the catalog.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `executor-config.ts` | Modified | `CURSOR_SUPPORTED_MODELS` +2, `DEVIN_SUPPORTED_MODELS` +4, sorted; honest comments |
+| `fanout-run.cjs` | Modified | `CURSOR_ALLOWED_MODELS` / `DEVIN_ALLOWED_MODELS` mirrors kept byte-identical |
+| `executor-config.vitest.ts`, `fanout-run.vitest.ts` | Modified | Cursor +2, Devin +4 fixtures; cursor 18→20 assertion |
+| `cli-cursor/**` (SKILL, README, 4 references, prompt-templates, playbook, providers, changelog) | Modified | Roster rows + count 18→20 honesty sweep + changelog v1.4.0.0 |
+| `cli-devin/**` (SKILL, README, cli-reference, providers, changelog) | Modified | +4 rows + 4→5 families sweep + changelog v1.4.0.0 |
+| `cli-opencode/providers-and-models.md`, `changelog/v1.4.2.0.md`, SKILL | Modified | opencode-go +glm-5.3 row + changelog |
+| `cli-external-orchestration/changelog/v1.4.0.0.md` | Created | Hub-level roll-up changelog for the three-mode roster expansion |
+| `system-deep-loop/changelog/v2.2.0.0.md` | Created | Runtime changelog for the executor-config + fanout-run allowlist additions |
+| `shared/references/smart-routing.md` | Modified | Devin roster mention adds GPT-5.6 Luna Max |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Every id was list-verified against the live `cursor-agent --list-models`, `devin models list`, and `opencode models opencode-go` output on 2026-08-14 before any file changed, so no id was fabricated. The two hand-synced enforcement points were edited together and their cross-check tests confirm they stay identical. The deep-loop unit suite ran green twice: once after the code and test edits, and again as final-state proof (Test Files 3 passed, Tests 190 passed). A residual grep sweep across the whole hub tree confirmed no stale "18" count or "four families" claim survived.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| List-verified, not dispatch-tested | Operator chose to trust the live listings and skip the per-id external API spend that packets 033/036 paid; the comments say so honestly rather than claiming a test that did not run |
+| DeepSeek max tier only | The request said "max thinking levels", so only `-max` was added; the other tiers can follow additively later |
+| Corrected two pre-existing stale "10" counts | SKILL.md and cli-reference.md still said "10 allowed ids" from before packet 036 grew the roster to 18; fixed to the current 20 since they are the same class of claim |
+| Dropped decision-record.md | Level 2 does not require it; the decisions live in spec.md answered_questions and this table |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Deep-loop vitest (executor-config, fanout-run, combo-matrix) | PASS - Test Files 3 passed, Tests 190 passed (2026-08-14) |
+| `tsc --noEmit` | PASS for changed files - only a pre-existing tsconfig TS5107 (`moduleResolution=node10`) deprecation surfaces |
+| Residual-count grep (`18-id`/`four families`/`10 allowed`, non-changelog) | PASS - empty |
+| New ids present in canonical rosters | PASS - cursor 4 hits, devin 6 hits, opencode 1 hit |
+| Live listings 2026-08-14 | PASS - every added id printed verbatim |
+| `validate.sh --strict` | Errors: 0. Two benign warnings remain (EVIDENCE_CITED on planning-doc checkboxes; DESCRIPTION_SHAPE on the tool-generated description.json) - both endemic across the track (the shipped 036 sibling currently carries 7 errors + 3 warnings) |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Ids are list-verified, not dispatch-tested.** If a later dispatch reveals an id that lists but does not resolve, that is a follow-up, not a regression of this packet's stated evidence.
+2. **No Luna prompt-craft profile.** `sk-prompt-models/model-profiles.json` gains no Luna entry; a Luna dispatch inherits the closest existing persona profile, consistent with packet 033's flash-profile deferral.
+3. **DeepSeek `-low`/`-high` tiers not added.** Only the Max tier was in scope; the other tiers can be added additively if requested.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/z_archive/001-cli-gemini-creation"
+# PACKET: specs/cli-external-orchestration/z_archive/001-cli-gemini-creation
+
+---
+title: "Implementation Summary: cli-gemini Skill [03--commands-and-skills/001-cli-gemini-creation/implementation-summary]"
+description: "Documentation-only skill enabling Claude Code and OpenCode to orchestrate Google's Gemini CLI for cross-AI tasks."
+trigger_phrases:
+  - "gemini cli summary"
+  - "cli-gemini summary"
+importance_tier: "normal"
+contextType: "implementation"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-cli-gemini-creation |
+| **Completed** | 2026-03-01 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### What Was Built
+
+| File | Change | LOC |
+|------|--------|-----|
+| `.opencode/skills/cli-gemini/SKILL.md` | Created | 421 |
+| `.opencode/skills/cli-gemini/references/cli_reference.md` | Created | 450 |
+| `.opencode/skills/cli-gemini/references/integration_patterns.md` | Created | 636 |
+| `.opencode/skills/cli-gemini/references/gemini_tools.md` | Created | 474 |
+| `.opencode/skills/cli-gemini/assets/prompt_templates.md` | Created | 351 |
+| `.opencode/skills/cli-gemini/references/agent_delegation.md` | Created | 280 |
+| `.opencode/skills/cli-gemini/SKILL.md` | Rewritten | ~350 |
+| `.opencode/skills/scripts/skill_advisor.py` (Public) | Updated | +20 |
+| `.opencode/skills/scripts/skill_advisor.py` (Barter) | Updated | +20 |
+
+**Total**: 6 skill files created/rewritten, 2 advisor scripts updated, ~3000 lines
+
+---
+
+---
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+### How It Was Delivered
+
+### Data Flow
+
+```
+User request → Gate 2 (skill_advisor.py) → SKILL.md loads
+  → Smart router scores 7 intents → Loads conditional resources
+  → Agent constructs `gemini` CLI command → Bash tool executes
+  → Output captured → Agent validates and applies results
+```
+
+### File Structure
+
+```
+.opencode/skills/cli-gemini/
+├── SKILL.md                              # Main orchestrator (v1.1.0, 8 sk-doc sections)
+├── references/
+│   ├── cli_reference.md                  # CLI flags, commands, config
+│   ├── integration_patterns.md           # 10 cross-AI patterns
+│   ├── gemini_tools.md                   # Built-in tools reference
+│   └── agent_delegation.md              # 9 Gemini agents, routing table
+└── assets/
+    └── prompt_templates.md               # Copy-paste templates
+```
+
+### Smart Routing
+
+The smart router scores user intent against 7 signal categories and loads resources accordingly:
+
+| Intent | Resources Loaded |
+|--------|-----------------|
+| GENERATION | cli_reference.md, prompt_templates.md |
+| REVIEW | integration_patterns.md, agent_delegation.md |
+| RESEARCH | gemini_tools.md, prompt_templates.md |
+| ARCHITECTURE | gemini_tools.md, agent_delegation.md |
+| TEMPLATES | prompt_templates.md, cli_reference.md |
+| PATTERNS | integration_patterns.md, cli_reference.md |
+| AGENT_DELEGATION | agent_delegation.md, integration_patterns.md |
+
+---
+
+---
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+### Key Decisions
+
+- **Progressive disclosure works well**: SKILL.md at ~520 lines keeps agent context lean while reference files provide depth on demand
+- **Parallel implementation**: All reference/asset files are independent and were created concurrently
+- **Smart routing prevents bloat**: Loading only intent-relevant resources avoids unnecessary token usage
+- **Template alignment pays off**: Rewriting SKILL.md to match sk-doc templates (8 sections, canonical smart routing, emoji-prefixed Rules) ensures consistency with other skills
+- **Conductor/executor model**: Claude Code as conductor, Gemini CLI as executor — clean separation of planning and execution
+- **Skill advisor entries enable discovery**: SYNONYM_MAP, INTENT_BOOSTERS, MULTI_SKILL_BOOSTERS, and PHRASE_INTENT_BOOSTERS provide robust routing (0.95 confidence on "use gemini" queries)
+
+---
+---
+
+---
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+### Verification
+
+### Checklist Results
+
+| Category | Result |
+|----------|--------|
+| P0 Items | 8/8 passed |
+| P1 Items | 9/9 passed |
+| P2 Items | 2/2 passed |
+
+### Key Metrics
+
+| Metric | Target | Actual |
+|--------|--------|--------|
+| SKILL.md word count | <5000 | 2395 |
+| Standard sections | 8 | 8 |
+| Anchor pairs | 8 | 8 |
+| File naming | snake_case | All compliant |
+| Hardcoded secrets | 0 | 0 |
+
+---
+
+---
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+### Known Limitations
+
+No known limitations.
+
+---
+<!-- /ANCHOR:limitations -->
+
+---
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

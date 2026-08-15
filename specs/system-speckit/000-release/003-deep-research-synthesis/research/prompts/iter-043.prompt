@@ -1,0 +1,694 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-doc/z_archive/006-sk-doc-agent-template-alignment"
+# PACKET: specs/sk-doc/z_archive/006-sk-doc-agent-template-alignment
+
+---
+title: "Implementation Summary: 063"
+description: "063b implementation summary for sk-doc agent template alignment."
+trigger_phrases:
+  - "063 implementation summary"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/006-sk-doc-agent-template-alignment"
+    last_updated_at: "2026-05-03T00:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Updated sk-doc agent template with production alignment patterns"
+    next_safe_action: "verify_or_complete_remaining_063a_scope"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/assets/agents/agent_template.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-063-2026-05-03"
+      parent_session_id: null
+    completion_pct: 70
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary: 063
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status:** 063b implemented; broader packet completion depends on any remaining 063a promotion/commit scope.
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|---|---|
+| Sub-phase | 063 |
+| Status | 063b implemented |
+| Completion | 70% packet-level estimate |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+- Updated `.opencode/skills/sk-doc/assets/agents/agent_template.md` from the stale 692-line template to a 765-line post-063 alignment template.
+- Added current production patterns from `.opencode/agents/context.md`, `.opencode/agents/deep-review.md`, `.opencode/agents/multi-ai-council.md`, and `.opencode/skills/sk-deep-review/SKILL.md`.
+- Removed the legacy standalone related-resource section pattern, the stale retired documentation-agent reference, and the standalone intro-paragraph section.
+- Refreshed the production examples table to the current 10-agent fleet: `code`, `context`, `debug`, `deep-research`, `deep-review`, `improve-agent`, `improve-prompt`, `multi-ai-council`, `orchestrate`, and `review`.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+- Read the current template and production references before editing.
+- Replaced the template body with a tighter structure covering frontmatter, `mcpServers`, Section 0 hard blocks, BINDING/REFUSE contracts, runtime budgets, hook-injected context routing, per-layer partition discipline, Unicode SUMMARY standards, and validation checks.
+- Used `apply_patch` for the template edit and follow-up cleanup.
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
+## 4. KEY DECISIONS
+
+- Kept the template under the requested 900-line final-size target while documenting a 600-line cap for production agent files.
+- Treated BINDING and REFUSE as canonical grep-checkable contracts, preserving the exact REFUSE string from `@deep-review`.
+- Removed literal stale resource-section and retired-agent references from the template so new agents do not inherit removed production patterns.
+- Did not add `@create-doc` as a production example because it is deferred to packet 064.
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
+## 5. VERIFICATION
+
+- `wc -l .opencode/skills/sk-doc/assets/agents/agent_template.md` -> 765 lines.
+- `rg -n "RELATED RESOURCES|@write|write\\.md|INTRO PARAGRAPH PATTERNS|@general|\\(built-in\\)" .opencode/skills/sk-doc/assets/agents/agent_template.md || true` -> no matches.
+- `rg -n "^## [0-9]+\\.|mcpServers|BINDING:|REFUSE:|HOOK-INJECTED|ILLEGAL NESTING|PRODUCTION EXAMPLES|VALIDATION CHECKLIST|Last Updated" .opencode/skills/sk-doc/assets/agents/agent_template.md` -> confirmed required anchors and contracts are present.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-doc/z_archive/006-sk-doc-agent-template-alignment --strict` initially failed because this implementation summary was still scaffolded; this summary update provides concrete artifact and verification evidence.
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
+## 6. KNOWN LIMITATIONS
+
+- Packet-level completion may still require confirming the 063a 40-file mirror cleanup, TOML parsing, graph metadata status update, commit, and push if those were not already completed outside this turn.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/z_archive/007-sk-doc-organization"
+# PACKET: specs/sk-doc/z_archive/007-sk-doc-organization (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Reorganize sk-doc/assets - promote heavy-traffic templates to assets root, propagate references across 4 runtimes"
+description: "Phase parent for Reorganize sk-doc/assets - promote heavy-traffic templates to assets root, propagate references across 4 runtimes"
+trigger_phrases:
+  - "068-sk-doc-organization"
+  - "sk-doc assets reorganization phase parent"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization"
+    last_updated_at: "2026-04-11T00:00:00Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize phase-parent continuity block"
+    next_safe_action: "Plan or resume a child phase folder"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: Reorganize sk-doc/assets - promote heavy-traffic templates to assets root, propagate references across 4 runtimes
+
+## 001-relocate/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1: relocate"
+description: "Promoted 4 sk-doc asset items to assets/ root and deleted the empty agents/ subfolder. Single atomic commit; references still point to OLD paths (Phase 2 closes that gap)."
+trigger_phrases:
+  - "068/001 summary"
+  - "relocate summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/001-relocate"
+    last_updated_at: "2026-05-05T08:20:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 1 complete: 4 git mv + rmdir + commit ccd73ef55"
+    next_safe_action: "Begin Phase 2 (002-update-and-mirror): substring sweep across canonical .opencode/"
+    blockers: []
+    key_files:
+      - .opencode/skills/sk-doc/assets/agent_template.md
+      - .opencode/skills/sk-doc/assets/command_template.md
+      - .opencode/skills/sk-doc/assets/feature_catalog/
+      - .opencode/skills/sk-doc/assets/testing_playbook/
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase1-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-relocate |
+| **Completed** | 2026-05-05 |
+| **Level** | 1 |
+| **Commit** | ccd73ef55 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+You can now access sk-doc's heavy-traffic templates one folder shallower. The `agent_template.md` and `command_template.md` files moved up out of `assets/agents/`, the `feature_catalog/` and `testing_playbook/` package folders moved up out of `assets/documentation/`, and the empty `assets/agents/` subfolder is physically gone. References across sk-doc internal docs, /create:* commands, and the @create agent still point to the old paths — Phase 2 (002-update-and-mirror) closes that gap with a 4-pattern fixed-string substring sweep.
+
+### Asset Promotion to assets/ root
+
+The four moved items are the sk-doc skill's most frequently loaded templates. Promoting them to `assets/` root removes a redundant level of nesting (the `agents/` subfolder held only these two files; the `documentation/` subfolder held many other templates plus these two package folders). Loading paths are now shorter and more uniform across the asset surface.
+
+### Files Changed
+
+## 002-update-and-mirror/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2: update-and-mirror"
+description: "4 fixed-string substitutions applied to 24 canonical .opencode/ files via sed, then mirrored to 4 runtimes (.claude/.codex via symlink, .gemini regenerated TOML, agents cp + sed). Zero residual hits in active scope."
+trigger_phrases:
+  - "068/002 summary"
+  - "update-and-mirror summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/002-update-and-mirror"
+    last_updated_at: "2026-05-05T08:45:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 2 complete: substring sweep + 4-runtime mirror; tomllib parse-check OK on all 5 .toml files"
+    next_safe_action: "Begin Phase 3 (003-verify-and-ship): opus verification + closeout"
+    blockers: []
+    key_files:
+      - .opencode/skills/sk-doc/SKILL.md
+      - .opencode/agents/create.md
+      - .codex/agents/create.toml
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase2-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-update-and-mirror |
+| **Completed** | 2026-05-05 |
+| **Level** | 1 |
+| **Predecessor** | 001-relocate (commit ccd73ef55) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+You can now load sk-doc templates from the new shorter `assets/` paths and the four runtime mirrors stay in lockstep automatically. 24 files in canonical `.opencode/` got 4 fixed-string substitutions applied via sed (zero regex), `.claude/commands/create/` and `.codex/prompts/create/` followed for free because they're symlinks to `.opencode/commands/create/`, `.gemini/commands/create/*.toml` and `.codex/agents/create.toml` got the same sed treatment with TOML parse-check confirming clean output, and `.claude/agents/create.md` + `.gemini/agents/create.md` are now byte-identical copies of the updated `.opencode/agents/create.md`.
+
+The discovery that `.claude/commands/` and `.codex/prompts/` are symlinks to `.opencode/commands/` simplified Phase 2 considerably — the originally planned rsync round-trip was a no-op for those mirrors. The TOML regeneration plan for `.gemini` was also unnecessary because the substring substitutions don't introduce any new quote/backslash characters that would break TOML escape rules; sed substitution on `.toml` files preserved structure (verified via `python3.12 -c "import tomllib; tomllib.loads(...)"` on all 5 .toml files).
+
+### sk-doc internal references (11 files)
+Updated path-string references in SKILL.md, 6 references/global/, 3 references/specific/, and 1 cross-ref in assets/documentation/frontmatter_templates.md. Markdown links and JSON array values now point to `assets/feature_catalog/`, `assets/testing_playbook/`, `assets/agent_template.md`, `assets/command_template.md`.
+
+### /create:* command surface (11 canonical files = 33 effective via symlink)
+
+## 003-verify-and-ship/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3: verify-and-ship"
+description: "validate.sh --strict PASSED, @review (Opus + sk-code-review) returned VERDICT: PASS in fresh context. Reorg shipped clean to main; one P2 cosmetic fix landed inline."
+trigger_phrases:
+  - "068/003 summary"
+  - "verify-and-ship summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/003-verify-and-ship"
+    last_updated_at: "2026-05-05T09:05:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 3 complete: validate.sh PASS + @review opus PASS + P2 SKILL.md narrative fix"
+    next_safe_action: "Refresh graph-metadata.json via generate-context.js, then final commit"
+    blockers: []
+    key_files:
+      - .opencode/skills/sk-doc/SKILL.md
+      - .opencode/specs/sk-doc/z_archive/007-sk-doc-organization/spec.md
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase3-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-verify-and-ship |
+| **Completed** | 2026-05-05 |
+| **Level** | 1 |
+| **Predecessor** | 002-update-and-mirror |
+| **Verifier** | @review (Opus 4.7) + sk-code-review skill, fresh context, read-only |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sk-doc reorg shipped clean. validate.sh --strict on the parent 068 packet returned exit 0 with zero errors and zero warnings, and a fresh-context Opus 4.7 verifier (loaded with the sk-code-review skill) reran every deterministic check independently in its own shell — validate.sh, residual rg, diff -rq for agent byte-identity, tomllib parse-check on all 5 .toml files, filesystem state assertions for Phase 1, and branch state. All 8 deterministic checks passed and the verifier's Hunter/Skeptic/Referee subjective audit found only one P2 cosmetic concern (two narrative folder-name mentions of "assets/agents/" in SKILL.md prose at L162 and L434) which were patched inline in this same Phase 3 commit.
+
+### Verification gate
+
+The Opus verifier's job was to break correlation with cli-codex and Claude (both touched the work in earlier phases). It ran every check in fresh shell rather than trusting prior reported output, sampled 3 random updated files for content drift, and applied Hunter/Skeptic/Referee challenges on the full git diff. The verifier's PASS verdict cited byte-identity for agent mirrors, clean tomllib parse on all 5 .toml files, zero residual rg hits in active scope, and intact template byte-content for the 4 moved items. All Skeptic-found hits in `.opencode/specs/**` (068's own docs documenting the BEFORE state, plus 057/063/069 historical records) were pre-documented in Phase 2's Known Limitations as the intentional historical-accuracy exclusion.
+
+### P2 cosmetic fix (SKILL.md narrative)
+
+
+## 004-remediation/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4: remediation"
+description: "3 surgical doc fixes applied per 7-iter deep-review findings. validate.sh --strict still PASS, active-scope residual rg still 0 hits. Packet 068 final."
+trigger_phrases:
+  - "068/004 summary"
+  - "remediation summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/004-remediation"
+    last_updated_at: "2026-05-05T12:00:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 4 complete: 3 fixes applied, validate.sh PASS, residual 0"
+    next_safe_action: "Refresh graph-metadata for 004 + parent; commit"
+    blockers: []
+    key_files:
+      - .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md
+      - .opencode/skills/sk-doc/references/global/quick_reference.md
+      - .opencode/skills/sk-doc/assets/skill/skill_md_template.md
+      - .opencode/skills/sk-doc/references/specific/skill_creation.md
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase4-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-remediation |
+| **Completed** | 2026-05-05 |
+| **Level** | 1 |
+| **Predecessor** | 003-verify-and-ship |
+| **Source of findings** | `../review/review-report.md` (7-iter cli-copilot deep-review) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+You can now follow `frontmatter_templates.md`'s "command_template.md" link to a real file, read `quick_reference.md`'s project-structure tree and see the actual current layout, and consult `skill_md_template.md` and `skill_creation.md` for skill-creation guidance without seeing a deprecated `assets/agents/` example. Three surgical doc edits closed the doc-accuracy residue from Phase 2's substring sweep.
+
+The 7-iteration deep-review (cli-copilot fallback after cli-codex stalled 3×) converged at iter 7 with `convergenceStreakInScope=3` (5/6/7 all PASS). The findings shape is what you'd expect: Phase 2's `assets/{prefix}` substring patterns missed (a) relative-path links from inside `assets/documentation/` files (e.g. `../agents/...`), (b) ASCII tree diagrams that depict folder structure visually, and (c) generic illustrative examples listing now-deprecated subfolders.
+
+### P1 Fix (broken cross-link)
+
+
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/z_archive/008-sk-doc-router-stress-test"
+# PACKET: specs/sk-doc/z_archive/008-sk-doc-router-stress-test (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-doc smart router stress test (15 scenarios x 3 CLIs = 45 cell matrix)"
+description: "Phase parent for sk-doc smart router stress test (15 scenarios x 3 CLIs = 45 cell matrix)"
+trigger_phrases:
+  - "071-sk-doc-router-stress-test"
+  - "sk-doc router stress test phase parent"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test"
+    last_updated_at: "2026-04-11T00:00:00Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize phase-parent continuity block"
+    next_safe_action: "Plan or resume a child phase folder"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: sk-doc smart router stress test (15 scenarios x 3 CLIs = 45 cell matrix)
+
+## 001-scenario-author/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1: scenario-author"
+description: "Authored 15 sk-doc playbook scenarios + index across 5 categories via cli-copilot batch dispatch. Closes the sk-doc test-playbook gap."
+trigger_phrases: ["071/001 summary"]
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test/001-scenario-author"
+    last_updated_at: "2026-05-05T12:45:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 1 complete: 15 scenarios + index authored via cli-copilot"
+    next_safe_action: "Begin Phase 2 (002-matrix-execute): 45-cell test matrix"
+    blockers: []
+    key_files:
+      - .opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase1-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-scenario-author |
+| **Completed** | 2026-05-05 |
+| **Level** | 1 |
+| **Authoring executor** | cli-copilot (claude-opus-4.7), batch dispatch (~60s, +748/-0 lines) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+sk-doc finally has a manual_testing_playbook. 15 scenarios across 5 categories (intent-detection, resource-loading, unknown-fallback, cross-cli-dispatch, token-cost-baseline) test the router's INTENT_MODEL classification, RESOURCE_MAP loading behavior, UNKNOWN_FALLBACK escalation, cross-CLI dispatch reliability, and token-cost baselines. Each scenario carries machine-readable frontmatter (id SD-001..SD-015, expected_intent, expected_resources, expected_token_range) plus prose Setup, Expected Behavior, Cross-CLI Variants (codex/copilot/opencode), and Success Criteria sections. Phase 2 can now treat these as the input dataset for the 45-cell test matrix.
+
+### 5 Categories × 3 Scenarios
+
+| Category | Scenarios | Intents Covered |
+|----------|-----------|-----------------|
+| 01--intent-detection | doc-quality, skill-creation, agent-command | DOC_QUALITY, SKILL_CREATION, AGENT_COMMAND |
+| 02--resource-loading | references-global-only, assets-only, mixed-references-assets | HVR, FLOWCHART, README_CREATION |
+| 03--unknown-fallback | ambiguous-multi-intent, no-keyword-match, disambiguation-required | DOC_QUALITY+FLOWCHART (multi), UNKNOWN_FALLBACK, FEATURE_CATALOG+PLAYBOOK |
+| 04--cross-cli-dispatch | short-prompt-baseline, large-prompt-stress, multi-step-dispatch | CHANGELOG, mixed (large-prompt tests cli-codex stall mitigation), sequential intents |
+| 05--token-cost-baseline | minimal-load, medium-load, max-load | min-resource intent, SKILL_CREATION (medium), ON_DEMAND keyword trigger (max) |
+
+
+## 002-matrix-execute/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2: matrix-execute"
+description: "45/45 cells executed via run-matrix.sh; methodology bug surfaced + remediated mid-run via reflective framing; clean re-run produced zero side-effects."
+trigger_phrases: ["071/002 summary"]
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute"
+    last_updated_at: "2026-05-05T15:35:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 2 complete: 45/45 cells, zero side-effects in clean re-run"
+    next_safe_action: "Phase 3 synthesis (matrix.csv + review-report.md)"
+    blockers: []
+    key_files: [.opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute/scripts/run-matrix.sh]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase2-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-matrix-execute |
+| **Completed** | 2026-05-05 |
+| **Level** | 1 |
+| **Cells executed** | 45/45 |
+| **Wall-clock (final re-run)** | ~24 min |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The 45-cell test matrix shipped: 15 sk-doc scenarios × 3 CLIs (cli-codex, cli-opencode), all dispatched via run-matrix.sh with 3-CLIs-in-parallel-per-scenario concurrency. Each cell produced a per-CLI .log file (stdout/stderr) plus a delta JSONL entry (timestamp, exit, duration, tokens). Phase 3 synthesis can now extract metrics, build matrix.csv, and author review-report.md from this raw data.
+
+The big learning from Phase 2 is the **methodology bug**: imperative scenario prompts caused real side-effects when fed to CLIs with file-write permissions. A CLI started `/create:feature-catalog` work and created 7 empty skeleton dirs at `.opencode/skills/sk-doc/feature_catalog/` before hitting the 120s timeout. Fixed by patching all 15 scenarios with a reflective-framing prefix ("DO NOT execute. Describe routing trace only"), then re-running cleanly. Zero side-effects in the final run, verified by `find -newer scripts/run-matrix.sh`.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `002-matrix-execute/scripts/run-matrix.sh` | Created | Dispatcher: 3 CLIs in parallel per scenario, 15 sequential |
+| `002-matrix-execute/logs/SD-NNN/{codex,copilot,opencode}.log` | Created | 45 per-cell logs |
+| `002-matrix-execute/deltas/{codex,copilot,opencode}.jsonl` | Created | 3 per-CLI delta files (15 entries each) |
+| `002-matrix-execute/logs/matrix-run.log` | Created | Top-level dispatcher trace |
+
+## 003-synthesize/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3: synthesize"
+description: "matrix.csv (45 rows × 19 cols) + review-report.md authored. Verdict CONDITIONAL→REMEDIATE_AND_SHIP. Headline: cli-codex wins (67% intent / 66.7% resource accuracy)."
+trigger_phrases: ["071/003 summary"]
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize"
+    last_updated_at: "2026-05-05T15:40:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 3 complete: matrix.csv + review-report.md shipped"
+    next_safe_action: "Phase 4 closeout (validate + final commit)"
+    blockers: []
+    key_files: [.opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize/review-report.md]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase3-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-synthesize |
+| **Completed** | 2026-05-05 |
+| **Level** | 1 |
+| **Headline finding** | cli-codex (gpt-5.5/high/fast) is the clear winner for sk-doc routing tasks |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+You can now read `matrix.csv` for raw 45-cell metrics and `review-report.md` for the analytical narrative. The synthesis script `extract_metrics.py` parses 3 CLI-specific log formats (codex stdout token regex, copilot Tokens summary block, opencode JSONL stream with step_finish events), detects mentioned intents + resources, and computes per-cell accuracy. Per-CLI summary stats reveal a clear ranking: cli-codex outperforms cli-copilot and cli-opencode on intent accuracy (67% vs 40% vs 53%), resource accuracy (66.7% vs 5.6% vs 43.3%), token efficiency (38k avg vs 67k vs 79k), and reliability (100% exit-0 vs 100% vs 87%). cli-codex is the only CLI that's also fast at 28s avg (cli-copilot is 23s but with much worse accuracy; cli-opencode is 74s).
+
+The review-report.md elevates the methodology bug discovered in Phase 2 to P0 status, documents 2 P1 findings (cli-copilot verbosity skewing accuracy measurement; cli-opencode's 120s timeout being too tight), and surfaces 2 P2 measurement-script bugs (codex/opencode token extraction in deltas). Verdict is CONDITIONAL→REMEDIATE_AND_SHIP; ship 071 with this report; spawn follow-up 072 only if user wants tighter copilot accuracy numbers.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `003-synthesize/scripts/extract_metrics.py` | Created | Python synthesis script (~190 lines, no external deps) |
+| `003-synthesize/matrix.csv` | Created | 45 rows × 19 cols of per-cell metrics |
+| `003-synthesize/review-report.md` | Created | Verdict + per-CLI rankings + 5 findings + recommendations |
+<!-- /ANCHOR:what-built -->
+
+
+## 004-closeout/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4: closeout"
+description: "Packet 071 marked final. validate.sh --strict PASS; graph-metadata refreshed for parent + 4 children; final commit on main."
+trigger_phrases: ["071/004 summary"]
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test/004-closeout"
+    last_updated_at: "2026-05-05T15:55:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 4 closeout complete: packet 071 final"
+    next_safe_action: "(packet final; user may request follow-up packet 072 if desired)"
+    blockers: []
+    key_files: [.opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize/review-report.md]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase4-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-closeout |
+| **Completed** | 2026-05-05 |
+| **Level** | 1 |
+| **Status** | Complete |
+| **Headline output** | `../003-synthesize/review-report.md` (CONDITIONAL → REMEDIATE_AND_SHIP; cli-codex wins for sk-doc routing) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Packet 071 is final. The deliverables shipped across 4 phases: 15-scenario manual_testing_playbook (Phase 1), 45-cell test matrix execution (Phase 2 with mid-run methodology fix), matrix.csv + review-report.md (Phase 3), and this closeout. validate.sh --strict on the parent 071 packet continues to PASS post-closeout. graph-metadata.json files are refreshed: parent has children_ids=[001..004] and last_active_child_id=004-closeout; each child has parent_id=071-sk-doc-router-stress-test and derived.status=complete.
+
+The headline finding for downstream consumers: **cli-codex (gpt-5.5/high/fast) is the clear winner for sk-doc routing tasks** — 67% intent accuracy, 66.7% resource accuracy, 28s avg, 38k tokens, 100% reliability. Document this in cli-codex README + sk-doc invocation hints. Follow-up packet 072 is recommended only if the user wants tighter cli-copilot accuracy numbers (the P1-001 measurement-script refinement).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `071/graph-metadata.json` | Modified | children_ids populated; status=complete |
+| `071/00{1,2,3,4}-*/graph-metadata.json` | Modified | parent_id wired; status=complete |
+| `071/004-closeout/{spec,plan,tasks,implementation-summary}.md` | Created | Phase 4 spec docs |
+<!-- /ANCHOR:what-built -->
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

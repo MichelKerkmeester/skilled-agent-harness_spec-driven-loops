@@ -1,0 +1,11 @@
+### Code (sk-code)
+
+- One `sk-code` skill now routes every code request to the right mode — implement, quality, debug, verify, or review — auto-detecting your stack (Webflow, OpenCode, Rust, React/Next.js, Go, Swift, React Native) and bundling that surface's standards with the workflow.
+- Code review became a first-class mode: a stack-agnostic baseline (universal security and correctness minimums) runs on every review, then a detected stack overlay (opencode, web, or full-stack) adds specific rules, with KISS/DRY/SOLID and SRP/OCP/LSP/ISP/DIP checks routed explicitly into the checklist.
+- Rust is now a first-class sk-code language, auto-detected via `.rs` plus Cargo files and backed by a full style guide, quality standards, and quality gate enforcing deterministic builds, documented `unsafe`, and stable napi-rs/WASM interop — multi-language tasks load both standards in one pass.
+- Review efficiency improved: a state hash skips unchanged PRs, skipped or deduped reviews still report COMMENTED rather than silently passing, and an opt-in `SK_CODE_REVIEW_MIN_CHANGED_LINES` skips trivial diffs while sensitive work (security, config, persistence, dependencies, sandboxing) is always reviewed.
+- Verification is harder to fake: a mutation-check ritual requires breaking the code to confirm a test truly fails, and a verification ladder (unit → in-memory → on-server → live) names each rung's blind spot up front.
+- The stale-dist warning no longer paints over terminal chat input and now skips unprovisioned packages in bare worktrees, reporting only genuine staleness through system context with an operator log.
+- Webflow reference docs are safer and clearer: session-cookie and CDN-loader examples are secure to copy (allowlisted HTTPS origin plus Subresource Integrity), and every "When to use" section states a concrete scenario from the page's own content.
+
+**Breaking:** The deprecated `sk-code-full-stack`, `sk-code-web`, and standalone `sk-code-opencode` skills were removed and merged into the single `sk-code` skill. React/Node.js/Go/Swift/React Native guidance now returns a neutralized placeholder pointing to git history, while Webflow's live guidance and the webflow deployment workflow remain fully working.

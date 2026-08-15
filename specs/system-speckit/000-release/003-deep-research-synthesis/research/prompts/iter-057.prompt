@@ -1,0 +1,1261 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/001-sk-recursive-agent-loop"
+# PACKET: specs/system-deep-loop/z_archive/001-sk-recursive-agent-loop (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: 041 Recursive Agent Loop [system-deep-loop/z_archive/001-sk-recursive-agent-loop/spec]"
+description: "Parent packet for the sk-improve-agent program. Phases 001-007 build the evaluator-first MVP through doc alignment, promotion verification, runtime alignment, command rename, and wording cleanup. Phase 008 adds holistic 5-dimension evaluation with integration scanning, dynamic profiling, and any-agent support. Renamed from sk-recursive-agent to sk-improve-agent."
+trigger_phrases:
+  - "041 spec"
+  - "recursive agent loop"
+  - "recursive agent phases"
+importance_tier: "important"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/001-sk-recursive-agent-loop"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["spec.md"]
+---
+# Feature Specification: 041 Recursive Agent Loop
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Complete |
+| **Created** | 2026-04-03 |
+| **Branch** | `main` |
+
+### PHASE DOCUMENTATION MAP
+
+| Phase | Folder | Status | Description |
+
+## 001-sk-recursive-agent-mvp/implementation-summary.md
+---
+title: "Implementati [system-deep-loop/z_archive/001-sk-recursive-agent-loop/001-sk-recursive-agent-mvp/implementation-summary]"
+description: "Completed implementation summary for sk-improve-agent, covering proposal, scoring, promotion, rollback, drift review, and verification evidence."
+trigger_phrases:
+  - "implementation summary"
+  - "agent improvement summary"
+importance_tier: "normal"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/001-sk-recursive-agent-loop/001-sk-recursive-agent-mvp"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-sk-improve-agent-mvp |
+| **Completed** | 2026-04-03 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase now contains the completed first-wave implementation of `sk-improve-agent`. The work started from the proposal-only MVP and then extended into a bounded, approval-gated promotion path for one canonical target with tested rollback, explicit promotion blocking under default settings, and documented mirror-drift handling.
+
+### Shipped Surfaces
+
+The following surfaces now exist:
+
+- The new skill bundle under `.opencode/skills/sk-improve-agent/`
+- The canonical loop mutator at `.opencode/agents/agent-improver.md`
+- Runtime wrappers for Claude, Codex, and Gemini
+- The new `/deep:start-agent-improvement-loop-improver` command plus `:auto` and `:confirm` YAML workflows
+- Promotion, rollback, and mirror-drift helper scripts
+- Catalog and routing updates in the skill README, `skill_advisor.py`, and `descriptions.json`
+- A dedicated runtime area under this packet at `improvement/` for dry-run evidence
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 002-sk-recursive-agent-full-skill/implementation-summary.md
+---
+title: "Imple [system-deep-loop/z_archive/001-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/implementation-summary]"
+description: "Completed implementation summary for the fuller sk-improve-agent packet with benchmark harnesses, target profiles, and bounded second-target support."
+trigger_phrases:
+  - "agent improvement full skill summary"
+  - "implementation summary stub"
+importance_tier: "normal"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/001-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-sk-improve-agent-full-skill |
+| **Completed** | 2026-04-03 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase implemented the fuller `sk-improve-agent` model on top of the phase 001 MVP.
+
+What was added or expanded:
+- profile-aware runtime config and manifest support in `.opencode/skills/sk-improve-agent/assets/`
+- reusable target profiles under `.opencode/skills/sk-improve-agent/assets/target-profiles/`
+- reusable fixture catalogs under `.opencode/skills/sk-improve-agent/assets/fixtures/`
+- a deterministic benchmark runner at `.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs`
+- profile-aware prompt scoring in `.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs`
+- cross-target reducer reporting plus reducer-enforced stop status in `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+- repeatability-gated promotion checks in `.opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs`
+- operator docs for benchmarking, onboarding, promotion posture, and mirror packaging boundaries
+- packet-local runtime evidence under `improvement/` for both `handover` and `context-prime`
+- `session_bootstrap()`-aligned `context-prime` guidance across the canonical agent, runtime mirrors, fixtures, and benchmark evidence
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 003-sk-recursive-agent-doc-alignment/implementation-summary.md
+---
+title: "Im [system-deep-loop/z_archive/001-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment/implementation-summary]"
+description: "Phase 003 closed the remaining sk-doc alignment gaps across sk-improve-agent, the canonical loop command and agent, and the parent packet records."
+trigger_phrases:
+  - "041 phase 003 implementation summary"
+  - "recursive agent doc alignment summary"
+importance_tier: "important"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/001-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-sk-improve-agent-doc-alignment |
+| **Completed** | 2026-04-03 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase closed the remaining documentation-shape work after the functional agent-improver phases were already done.
+
+What changed:
+- `.opencode/skills/sk-improve-agent/SKILL.md` now uses the expected `sk-doc` skill package structure, including a proper `REFERENCES` section
+- the skill README now includes a table of contents, overview, and clearer operator sections
+- every markdown reference and markdown asset under `sk-improve-agent` now has the required `OVERVIEW` structure
+- the canonical loop command now follows the expected command structure with `PURPOSE`, `INSTRUCTIONS`, examples, and notes
+- the canonical loop agent now follows the expected agent structure with workflow, capability scan, verification, anti-patterns, and related resources
+- parent packet `041` now records this work as phase `003`
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The work happened in three steps:
+1. Create a new child phase under `041` for the package-alignment closeout.
+2. Normalize the skill package, command, and agent docs to the `sk-doc` expectations.
+
+## 004-sk-recursive-agent-promotion-verification/implementation-summary.md
+---
+title: "...agent-orchestration/041-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification/implementation-summary]"
+description: "Phase 004 proved the guarded handover promotion path, added context-prime repeatability, and left the canonical handover target restored to its pre-promotion state."
+trigger_phrases:
+  - "041 phase 004 implementation summary"
+  - "recursive agent promotion verification summary"
+importance_tier: "important"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/001-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-sk-improve-agent-promotion-verification |
+| **Completed** | 2026-04-03 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase turned the remaining agent-improver verification claims into packet-local proof.
+
+What changed:
+- `score-candidate.cjs` now recognizes a small set of extra handover structure signals so a materially clearer handover agent can beat the baseline
+- `.opencode/skills/sk-improve-agent/references/evaluator_contract.md` now reflects that operator-facing verification and related-resource structure can contribute to operability scoring
+- a new phase-local `improvement/` runtime was created under `004-sk-improve-agent-promotion-verification/`
+- a stronger handover verification candidate was created and validated
+- repeatability artifacts were created for both `handover` and `context-prime`
+- the guarded promotion path was executed successfully for `.opencode/agents/handover.md`
+- the promoted handover file was validated and then rolled back to the archived pre-promotion backup
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The phase was delivered in five steps:
+1. Create a new phase-local runtime with copied charter, manifest, strategy, and baseline benchmark outputs.
+
+## 005-sk-recursive-agent-package-runtime-alignment/implementation-summary.md
+---
+title: "...nt-orchestration/041-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment/implementation-summary]"
+description: "Phase 005 corrected agent-improver package template fidelity, runtime mutator naming, command alignment, and .agents mirror parity."
+trigger_phrases:
+  - "041 phase 005 implementation summary"
+  - "recursive agent package runtime alignment summary"
+importance_tier: "important"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/001-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-sk-improve-agent-package-runtime-alignment |
+| **Completed** | 2026-04-03 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase `005` corrected the remaining agent-improver package and runtime parity gaps after the earlier functional phases were already complete.
+
+- `.opencode/skills/sk-improve-agent/SKILL.md` now follows the stricter `sk-doc` skill template family rather than only passing minimal validation
+- `.opencode/skills/sk-improve-agent/README.md`, every reference file, and every markdown asset now follow the matching `sk-doc` template family
+- the mutator agent was renamed from `agent-improvement-loop` to `agent-improver` across OpenCode, Claude, Gemini, `.agents`, and Codex runtime surfaces
+- the canonical command and wrapper TOMLs were rewritten to the current command-template shape
+- YAML dispatch now targets `@agent-improver`
+- `.agents/skills/sk-improve-agent/` was resynchronized to the corrected source package, including scripts
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The work was delivered in three passes: correct the source package docs, rename and realign the runtime agent plus command surfaces, then resynchronize the `.agents` skill mirror and update the packet records so the parent packet reflects the stricter correction honestly.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+## 006-sk-recursive-agent-command-rename/implementation-summary.md
+---
+title: "I [system-deep-loop/z_archive/001-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename/implementation-summary]"
+description: "Phase 006 renamed the agent-improver command entrypoint, renamed command assets and wrappers, and synced command references across runtime docs and packet history."
+trigger_phrases:
+  - "041 phase 006 implementation summary"
+  - "recursive agent command rename summary"
+importance_tier: "important"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/001-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-sk-improve-agent-command-rename |
+| **Completed** | 2026-04-03 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase `006` closed the final naming gap in the agent-improver program by renaming the command entrypoint itself.
+
+- the canonical command markdown is now `.opencode/commands/speckit/agent-improver.md`
+- the workflow assets are now `improve_agent-improver_auto.yaml` and `improve_agent-improver_confirm.yaml`
+- the runtime wrappers are now `.agents/commands/speckit/agent-improver.toml` and `.gemini/commands/speckit/agent-improver.toml`
+- runtime agent tables, skill docs, README examples, and active packet docs now point at `/deep:start-agent-improvement-loop-improver`
+- parent packet `041` now records this rename explicitly as phase `006`
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The work was delivered in three passes: rename the canonical command files, rename the wrapper and workflow asset files, then sweep active repo references and packet history so the new command name is consistent everywhere that still represents current state.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 007-sk-recursive-agent-wording-alignment/implementation-summary.md
+---
+title: "...lled-agent-orchestration/041-sk-recursive-agent-loop/007-sk-recursive-agent-wording-alignment/implementation-summary]"
+description: "Phase 007 cleaned up wording across the current agent-improver package, runtime mirrors, wrapper prompts, and active packet docs without changing behavior or historical evidence."
+trigger_phrases:
+  - "041 phase 007 implementation summary"
+  - "recursive agent wording alignment summary"
+importance_tier: "important"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/001-sk-recursive-agent-loop/007-sk-recursive-agent-wording-alignment"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-sk-improve-agent-wording-alignment |
+| **Completed** | 2026-04-04 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase `007` cleaned up the current agent-improver wording so the source package, runtime mirrors, wrapper prompts, and active packet docs read more clearly and more accurately.
+
+This phase updated:
+- the source skill package wording in `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/skills/sk-improve-agent/README.md`, selected `references/`, and selected markdown `assets/`
+- the canonical command wording and mirrored wrapper prompts
+- the runtime-specific agent-improver mirrors across OpenCode, Claude, Gemini, `.agents`, and Codex
+- the parent packet docs so phase `007` is recorded explicitly
+
+Historical `research/` and `memory/` artifacts were intentionally left untouched.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The pass was delivered in three steps: identify the current agent-improver surfaces with awkward or inaccurate wording, apply a wording-only cleanup across the source package and runtime mirrors, then re-run validation and parsing checks until the current surfaces and parent packet read cleanly.
+<!-- /ANCHOR:how-delivered -->
+
+
+## 008-sk-recursive-agent-holistic-evaluation/implementation-summary.md
+---
+title: "...ed-agent-orchestration/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation/implementation-summary]"
+description: "Transformed the sk-improve-agent evaluation from structural keyword-checking (~15-20% coverage) to a 5-dimension integration-aware scoring framework that evaluates agents holist..."
+trigger_phrases:
+  - "agent"
+  - "orchestration"
+  - "041"
+  - "recursive"
+  - "implementation summary"
+  - "008"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/001-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Phase 008 — Holistic Agent Evaluation
+
+| Field | Value |
+| --- | --- |
+| Status | Complete |
+| Phase | 008 |
+| Parent | 041-sk-improve-agent-loop |
+| Date | 2026-04-04 |
+
+## What Was Built
+
+Transformed the sk-improve-agent evaluation from structural keyword-checking (~15-20% coverage) to a **5-dimension integration-aware scoring framework** that evaluates agents holistically across their full system integration surface. Renamed the skill from `sk-recursive-agent` to `sk-improve-agent` and the command from `/speckit:recursive-agent` to `/deep:start-agent-improvement-loop`.
+
+### New Scripts
+
+| Script | Lines | Purpose |
+| --- | --- | --- |
+| `scan-integration.cjs` | ~240 | Discovers all surfaces an agent touches: canonical, mirrors, commands, YAML workflows, skills, global docs, skill advisor |
+| `generate-profile.cjs` | ~260 | Derives scoring profile from any agent's own structure, rules, permissions — no hardcoded profiles needed |
+
+### Refactored Scripts
+
+| Script | Before | After | Change |
+| --- | --- | --- | --- |
+| `score-candidate.cjs` | 434 | ~540 | Added 5-dimension framework + `--dynamic` flag. Backward compatible with legacy `--profile` mode |
+| `run-benchmark.cjs` | 213 | ~270 | Added `--integration-report` flag for integration consistency scoring |
+| `reduce-state.cjs` | 383 | ~467 | Added per-dimension tracking, dimensional dashboard section, dimension plateau stop rule |
+
+### sk-code-opencode Alignment
+
+All 8 `.cjs` scripts aligned with sk-code-opencode JavaScript standard: box comment headers, numbered ALL-CAPS section separators.
+
+### 5-Dimension Scoring Framework
+
+| Dimension | Weight | What It Measures |
+| --- | --- | --- |
+| Structural Integrity | 0.20 | Agent template compliance (required sections present) |
+| Rule Coherence | 0.25 | ALWAYS/NEVER rules align with workflow steps |
+| Integration Consistency | 0.25 | Mirrors in sync, commands reference agent, skills reference agent |
+
+## 009-sk-agent-improver-self-test/implementation-summary.md
+---
+title: "Impleme [system-deep-loop/z_archive/001-sk-recursive-agent-loop/009-sk-agent-improver-self-test/implementation-summary]"
+description: "Ran the first self-referential test of the sk-improve-agent skill: the /deep:start-agent-improvement-loop loop targeting .opencode/agents/agent-improver.md itself. This is the agent that describes t..."
+trigger_phrases:
+  - "impleme"
+  - "implementation summary"
+  - "009"
+  - "agent"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/001-sk-recursive-agent-loop/009-sk-agent-improver-self-test"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Phase 009 — Agent-Improver Self-Test
+
+| Field | Value |
+| --- | --- |
+| Status | Complete |
+| Phase | 009 |
+| Parent | 041-sk-improve-agent-loop |
+| Date | 2026-04-04 |
+
+## What Was Done
+
+Ran the first self-referential test of the sk-improve-agent skill: the `/deep:start-agent-improvement-loop` loop targeting `.opencode/agents/agent-improver.md` itself. This is the agent that describes the improvement workflow evaluating its own quality across 5 dimensions.
+
+### Pre-Flight Verification
+
+All 8 `.cjs` scripts parsed without errors. Standalone tests confirmed the scanner, profiler, and scorer work against the agent-improver target.
+
+### Integration Scanner Results
+
+The scanner discovered **9 surfaces** for `agent-improver`:
+
+| Surface | Path | Status |
+| --- | --- | --- |
+| Canonical | `.opencode/agents/agent-improver.md` | Exists |
+| Mirror (Claude) | `.claude/agents/agent-improver.md` | Aligned |
+| Mirror (Codex) | `.codex/agents/agent-improver.toml` | Aligned |
+| Mirror (.agents) | `.agents/agents/agent-improver.md` | Aligned |
+| Command | `.opencode/commands/deep/start-agent-improvement-loop.md` | 1 reference |
+| YAML (auto) | `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml` | 2 references |
+| YAML (confirm) | `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml` | 2 references |
+| Skill | `.opencode/skills/sk-improve-agent/SKILL.md` | 6 references |
+| Skill Advisor | `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Matched |
+
+### Dynamic Profile Results
+
+Profile extracted from `agent-improver.md`:
+
+| Category | Count | Details |
+| --- | --- | --- |
+| Structural checks | 6 | CORE WORKFLOW, OUTPUT VERIFICATION, ANTI, CAPABILITY SCAN, RULES, RELATED RESOURCES |
+| Always rules | 6 | Read charter, read manifest, read target, stay proposal-only, keep scope narrow, return structured metadata |
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment"
+# PACKET: specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment (rolled up from child summaries)
+
+## parent spec (excerpt)
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+---
+title: "Phase Parent Spec: 060 — sk-improve-agent Test-Report Alignment"
+description: "Phase-parent root spec. Five-phase end-to-end methodology campaign on the sk-improve-agent triad — research → initial implementation + R1 → followup research → command-flow stress tests → executable wiring. Final composite stress score PASS 6 / PARTIAL 0 / FAIL 0 against the substrate built across phases."
+trigger_phrases:
+  - "060 root"
+  - "060 phase parent"
+  - "sk-improve-agent test report alignment"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment"
+    last_updated_at: "2026-05-02T16:30:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Restructured to 5-phase parent"
+    next_safe_action: "Campaign complete"
+    blockers: []
+    key_files:
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/001-deep-research-recommendations/research/research.md
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/003-followup-research/research/research.md
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/test-report.md
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring/spec.md
+    completion_pct: 100
+    open_questions:
+      - "Should @deep-research and @deep-review get their own command-flow stress packets? (Same architecture as @improve-agent — flagged in 003 research §6)"
+      - "Should CP-042 body-discipline gap be addressed in a follow-on packet? (Critic doesn't catch regex-overfit bait hard enough)"
+    answered_questions:
+      - "Phase 001 (deep research): COMPLETE — 854-line research.md synthesis from 10 cli-copilot iterations"
+      - "Phase 002 (initial implementation + R1): COMPLETE — 0/2/4 score surfaced test-layer-selection meta-finding"
+      - "Phase 003 (followup research): COMPLETE — 11-dim rubric + 13-question authoring preflight + packet 004/005 sketches"
+      - "Phase 004 (command-flow stress tests, was 061): COMPLETE — final composite PASS 6 / PARTIAL 0 / FAIL 0"
+      - "Phase 005 (executable wiring, was 062): COMPLETE — static skill assets + materializer + nested gateResults + stop-reason reconciled; 91 tests pass"
+---
+
+# Phase Parent Spec: 060 — sk-improve-agent Test-Report Alignment
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_PHASE_PARENT: true -->
+
+## 001-deep-research-recommendations/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+---
+title: "Implementation Summary: 060 — sk-improve-agent Test-Report Alignment"
+description: "Research-only packet completed. 10 cli-copilot iterations + 1 synthesis call produced 854-line research/research.md covering all 7 RQs with 11 sketched CP-XXX scenarios and prioritized diff sketches for the sk-improve-agent triad. Implementation deferred to packet 004 (was 061)."
+trigger_phrases:
+  - "060 implementation summary"
+  - "060 research findings"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/001-deep-research-recommendations"
+    last_updated_at: "2026-05-02T11:35:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Synthesis complete; research.md authored"
+    next_safe_action: "Hand off to packet 004 (was 061) for implementation"
+    blockers: []
+    key_files:
+      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/research/research.md
+      - .opencode/skills/sk-improve-agent/SKILL.md
+      - .opencode/agents/improve-agent.md
+      - .opencode/commands/deep/start-agent-improvement-loop.md
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All 7 RQs answered with file:line citations across 10 iterations"
+      - "11 CP-XXX scenarios sketched (CP-040 through CP-050+) for packet 004 (was 061) to author as real playbook entries"
+      - "Recommended fixture-target design: small controlled agent-under-improvement"
+      - "Top 3 recommendations identified: ordered evidence chain in Call B, active CRITIC pass in improve-agent.md, test-first packet 004 (was 061)"
+---
+
+# Implementation Summary: 060 — sk-improve-agent Test-Report Alignment
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Summary
+
+Packet 060 took the testing methodology from packet 059 (`@code` stress-test campaign) and pointed it at the `sk-improve-agent` triad. The research ran 10 cli-copilot iterations (gpt-5.5, high reasoning via `~/.copilot/settings.json:effortLevel`) followed by 1 synthesis call, producing `research/research.md` with 854 lines of structured findings.
+
+**Top 3 recommendations identified:**
+
+1. **Make Call B prove an ordered evidence chain, not just produce plausible artifacts.** Iteration 10's clearest framing: mirror inventory must be correct before `integrationGate` is trusted; baseline/delta evidence must exist before `improvementGate` is trusted; `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop` must be journal events, not prose in a dashboard.
+2. **Add an active CRITIC pass to `.opencode/agents/improve-agent.md`** before "If ANY box is unchecked." The mutator currently has anti-pattern reference text but no adversarial challenge — packet 059 §9 L2's lesson directly applies (anti-patterns are reactive; Critic challenges are preventive).
+3. **Make packet 004 (was 061) test-first.** Author CP-040 onward scenarios before broad rewrites, then run the same 059-style score progression against a small controlled agent-under-improvement.
+
+**Iteration count:** 10 / 10 (max-cap reached; no early convergence)
+**Total research lines on disk:** ~1614 lines across iterations + 854 lines synthesis = 2468 lines
+**CP-XXX scenarios sketched:** 11 unique IDs (CP-035, CP-036, CP-040 through CP-050+)
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:rq-by-rq -->
+## RQ-by-RQ Summary
+
+All 7 RQs marked **ANSWERED** in research.md §3 with file:line evidence.
+
+
+## 002-stress-test-implementation/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+---
+title: "Implementation Summary: 060/002 — Stress-Test Implementation"
+description: "Close-out summary for 060/002. Stages 1-3 landed; R1 scored PASS 0 / PARTIAL 2 / FAIL 4 and surfaced a command-vs-agent methodology gap."
+trigger_phrases:
+  - "060/002 implementation summary"
+  - "060/002 close-out"
+  - "CP-040 CP-045 final score"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/002-stress-test-implementation"
+    last_updated_at: "2026-05-02T12:25:00Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Closed 060/002 with final R1 results and methodology finding"
+    next_safe_action: "Commit + push 060; create follow-on 061 for command-flow stress tests"
+    blockers: []
+    key_files:
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/002-stress-test-implementation/stress-runs/stage4-summary.md
+    completion_pct: 100
+    open_questions:
+      - "Should follow-on packet 004 (was 061) preserve CP-040..CP-045 IDs or clone them as command-flow variants?"
+    answered_questions:
+      - "Rounds run → 1 (R1 only)"
+      - "Final score → PASS 0 / PARTIAL 2 / FAIL 4 out of 6"
+      - "Diff sketches applied → 6/6 (5 P0 + 1 P1)"
+      - "4-runtime mirror parity → yes, after manual .codex TOML regeneration"
+      - "Scenarios authored → 6/6"
+      - "Fixture target → built"
+---
+
+# Implementation Summary: 060/002 — Stress-Test Implementation
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+> **Status:** COMPLETE. R1 surfaced a methodology-level gap: the scenarios invoked the thin `@improve-agent` mutator body while the discipline under test lives in the `/deep:start-agent-improvement-loop` command orchestrator.
+
+---
+
+<!-- ANCHOR:summary -->
+## Summary
+
+060/002 executed the planned implementation work and stopped after one stress-test round.
+
+- Rounds run: 1 (R1)
+- Final score: 0 PASS / 2 PARTIAL / 4 FAIL out of 6 scenarios
+- 5 P0 + 1 P1 diff sketches applied: 6/6
+- 4-runtime mirror parity: yes, after manual `.codex` TOML regeneration
+- 6 CP-XXX playbook entries authored: 6/6
+- Fixture target: built at `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/`
+- test-report.md: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md`
+
+The implementation is intact. The validation result is intentionally not green: R1 showed that 059's prepend-agent-body methodology tests the wrong layer for `sk-improve-agent`.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:cp-by-cp -->
+
+## 003-followup-research/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+---
+title: "Implementation Summary: 060/003"
+description: "Completed synthesis of 10 cli-copilot research iterations on 060/002 R1 results, test-layer selection, and 061/062 handoff."
+trigger_phrases: ["060/003 implementation summary"]
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/003-followup-research"
+    last_updated_at: "2026-05-02T13:41:52+02:00"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Synthesized 10 iteration files into research/research.md and finalized packet handoff"
+    next_safe_action: "Start packet 004 (was 061) or 062 from handover prompts"
+    blockers: []
+    key_files:
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/003-followup-research/research/research.md
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/003-followup-research/research/iterations/iteration-001.md
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/003-followup-research/research/iterations/iteration-010.md
+      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md
+    completion_pct: 100
+    open_questions:
+      - "Downstream choice: whether 062 includes the GREEN rerun or leaves it to optional 063"
+      - "Downstream choice: whether 061 keeps expected-RED evidence spec-local or intentionally edits active CP contracts"
+    answered_questions:
+      - "All 7 RQs from spec.md §4 answered in research/research.md"
+---
+
+# Implementation Summary: 060/003
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+> **Status:** COMPLETE. Research synthesis and handoff are finalized.
+
+## Summary
+
+[060/003-followup-research] synthesized 10 cli-copilot gpt-5.5 iterations into the canonical `research/research.md`.
+
+- Iterations run: 10
+- Convergence point: iteration 9 reached synthesis-readiness; iteration 10 added the final evidence-authority guardrail
+- RQs answered: 7/7
+- Top recommendations: split 061/062 by proof layer; keep 061 as command-flow methodology or active CP contract correction; put executable GREEN wiring in 062
+- 061 packet sketch: command-capable temp root, `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`, layer-specific CP lanes, expected-RED evidence kept spec-local unless active release-surface honesty is satisfied
+- 062 packet sketch: auto/confirm YAML parity, benchmark profile/fixture/materializer (**static skill assets** under `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/`), `run-benchmark.cjs` wiring, nested `legal_stop_evaluated.details.gateResults`, stop enum truth, RT-028/RT-032 reconciliation
+- Other meta-agents flagged: `@deep-research` and `@deep-review` share the command-loop leaf pattern with `@improve-agent`; `@write`, `@prompt-improver`, `@debug`, `@context`, and `@review` are body-level; `@code` is body-level with caller gate; `@orchestrate` is primary orchestrator body
+- Reusable rubric template: entry-point fidelity, ordered artifact/journal truth, producer/consumer compatibility, governance/stop semantics, sandbox containment, evaluator asset completeness, verdict-mode honesty, scenario layer partition, cross-playbook oracle check, release-surface honesty, evidence source authority
+
+## Metrics
+
+| Metric | Value |
+|---|---:|
+| Iteration files synthesized | 10 |
+| RQs answered | 7 |
+| Downstream packet sketches | 2 |
+| Meta-agents classified | 10 |
+| Required output sections produced | 11 |
+| Completion percent | 100 |
+
+## Key Outcome
+
+
+## 004-improve-agent-command-flow-stress-tests/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+---
+title: "Implementation Summary: 060/004"
+description: "Close-out summary for the sk-improve-agent command-flow stress packet. R1 validated the 060/003 test-layer-selection finding by moving 060/002's PASS 0 / PARTIAL 2 / FAIL 4 to PASS 3 / PARTIAL 2 / FAIL 1. R2 applied targeted cleanup but stress rerun was blocked by invalid Copilot/GitHub auth."
+trigger_phrases: ["061 implementation summary"]
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests"
+    last_updated_at: "2026-05-02T15:45:00Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "R2 complete via direct Bash; final composite PASS 6 / PARTIAL 0 / FAIL 0"
+    next_safe_action: "Methodology campaign complete; consider follow-on packets for @deep-research/@deep-review command-flow stress, or for CP-042 body-discipline gap"
+    blockers: []
+    key_files:
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/test-report.md
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/stress-runs/r1-summary.md
+      - .opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/stress-runs/r1-run-log.txt
+      - .opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh
+    completion_pct: 100
+    open_questions:
+      - "Is CP-042's remaining PARTIAL a body-discipline gap or scenario-bait weakness? Either way it's a follow-on packet, not a 061 blocker."
+    answered_questions:
+      - "Was R1 executed across all six scenarios? - YES."
+      - "Did command-flow partition validate the methodology? - YES: command-flow lane scored PASS 4 / PARTIAL 0 / FAIL 0 after R2 (CP-040, CP-043, CP-044, CP-045 all PASS)."
+      - "Was R2 run? - YES via direct Bash dispatch (codex sandbox couldn't access copilot keyring). CP-041 PARTIAL→PASS; CP-042 FAIL→PARTIAL; CP-045 PARTIAL→PASS."
+      - "Was the test-layer-selection finding empirically validated? - YES: command-flow lane 100% PASS; body-level lane 50% PASS (1/2)."
+---
+
+# Implementation Summary: 060/004
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+> **Status:** COMPLETE. R1 methodology validated, R2 cleanup applied + rerun via direct Bash. Final composite PASS 6 / PARTIAL 0 / FAIL 0 — all FAILs eliminated.
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Item | Result |
+|---|---|
+| Stages completed | 6 / 6 (Stage 1-3 codex; R1 direct Bash; Stage 5 codex synthesis; R2 cleanup direct Bash) |
+| 060/002 R1 baseline | PASS 0 / PARTIAL 2 / FAIL 4 |
+| 061 R1 score | PASS 3 / PARTIAL 2 / FAIL 1 |
+| 061 R2 score (CP-041/042/045) | PASS 2 / PARTIAL 1 / FAIL 0 |
+| **Final composite score** | **PASS 6 / PARTIAL 0 / FAIL 0** (CP-040, CP-041, CP-043, CP-044, CP-045 PASS; CP-042 PARTIAL — body-discipline gap) |
+| test-report.md path | `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/test-report.md` |
+| Close-out commit | `1203b345f` |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+061 restructured CP-040..CP-045 around the 060/003 test-layer-selection finding and ran R1 against 062's executable wiring substrate. The packet changed the stress harness, not the sk-improve-agent runtime source.
+
+The implementation commit modified six active playbook scenario files and added the command-capable setup helper:
+
+| File | Purpose |
+|---|---|
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md` | CP-040 command-flow dispatch and helper/journal grep contract |
+
+## 005-improve-agent-executable-wiring/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+---
+title: "Implementation Summary: 060/005"
+description: "Stages 2-6 executable wiring completed for sk-improve-agent benchmark, legal-stop, reducer, RT, and CP signal contracts."
+trigger_phrases: ["062 implementation summary"]
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring"
+    last_updated_at: "2026-05-02T14:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Stages 2-6 executable wiring completed"
+    next_safe_action: "Campaign complete — 060/004 absorbed prior 061 scope"
+    blockers: []
+    key_files: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "T-023 single-scenario cli-copilot GREEN check deferred to 061 because command-flow stress execution is out of 062 scope."
+---
+
+# Implementation Summary: 060/005
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+> **Status:** COMPLETE for 062 wiring. Full cli-copilot command-flow stress rerun remains 061 scope.
+
+## Summary
+
+[005-improve-agent-executable-wiring] Stages 2-6 are implemented.
+
+- Stages completed: 6 / 6 (Stage 1 pre-existing; Stages 2-6 landed here)
+- REQ status: REQ-001..REQ-007, REQ-101..REQ-103 complete. REQ-008 verified by helper/static RT checks; full command-flow scenario run deferred to 061. REQ-201 deferred to 061.
+- Files created: benchmark profile, 3 benchmark fixtures, materializer helper
+- Files modified: benchmark runner, journal helper, reducer, auto/confirm YAML, sk-improve-agent docs/tests, RT-028/RT-032 docs, CP-040..045 signal contracts
+- Test suite: `bun test .opencode/skills/sk-improve-agent/scripts/tests/*.vitest.ts` passed, 91 tests / 193 expects
+- Native RT-028/RT-032: helper/static GREEN (`legal_stop_evaluated` nested bundle accepted; auto YAML contains benchmark/legal-stop/session boundaries)
+- Optional T-023 GREEN check: deferred to 061, per packet scope
+
+## Verification
+
+- Materializer + runner E2E wrote 3 fixture markdown files, `benchmark-outputs/report.json` with `status:"benchmark-complete"`, and `agent-improvement-state.jsonl` with `benchmark_run`.
+- `improvement-journal.cjs` accepts nested `details.gateResults` with all five gates and rejects non-canonical stop reasons such as `benchmarkPlateau`.
+- `reduce-state.cjs` surfaces `journalSummary.latestLegalStop.gateResults` and renders the latest legal-stop table in the dashboard.
+- YAML parsing passed for both `deep_start-agent-improvement-loop_auto.yaml` and `deep_start-agent-improvement-loop_confirm.yaml`.
+- Script syntax checks passed for `materialize-benchmark-fixtures.cjs`, `run-benchmark.cjs`, `improvement-journal.cjs`, and `reduce-state.cjs`.
+- Strict validation exited 2 with template-header/template-anchor errors plus warnings; required files and placeholder checks passed.
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests"
+# PACKET: specs/system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests (rolled up from child summaries)
+
+## parent spec (excerpt)
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+---
+title: "Phase Parent Spec: 062 — Deep-Loop Command-Flow Stress Tests"
+description: "Phase-parent root spec. Apply the 060/004 command-flow stress methodology (proven PASS 6/0/0 against @improve-agent) to @deep-research and @deep-review. These are LEAF agents whose discipline lives in their command orchestrators (`/speckit:deep-research`, `/speckit:deep-review`) — same architecture as @improve-agent, flagged in 060/spec.md as same-architecture follow-on candidates."
+trigger_phrases:
+  - "062 root"
+  - "062 phase parent"
+  - "deep-loop stress tests"
+  - "deep-research command-flow stress"
+  - "deep-review command-flow stress"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests"
+    last_updated_at: "2026-05-02T19:30:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Scaffolded 4-phase parent + per-agent sub-phases"
+    next_safe_action: "Pick a sub-phase and dispatch CP-scenario authoring"
+    blockers: []
+    key_files:
+      - .opencode/specs/system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/spec.md
+    completion_pct: 0
+    open_questions:
+      - "Run sub-phases sequentially (research first, then review) or in parallel?"
+      - "Use cli-copilot like 060/004, or try cli-codex for variance?"
+    answered_questions: []
+---
+
+# Phase Parent Spec: 062 — Deep-Loop Command-Flow Stress Tests
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_PHASE_PARENT: true -->
+
+---
+
+<!-- ANCHOR:purpose -->
+## ROOT PURPOSE
+
+In packet 060/004 we proved that `@improve-agent`'s discipline lives in its command orchestrator (`/deep:start-agent-improvement-loop`), not in the agent body. The 060/002 same-task A/B prepend-body stress scored **0/2/4** because we tested the wrong layer. Restructuring to per-CP layer partition (some scenarios test command-flow, some body-level) produced final composite **PASS 6 / PARTIAL 0 / FAIL 0** by R3.
+
+## 001-deep-research-cp-scenarios/implementation-summary.md
+---
+title: "Implementation Summary: 062/001-deep-research-cp-scenarios"
+description: "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology."
+trigger_phrases:
+  - "001-deep-research-cp-scenarios"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/001-deep-research-cp-scenarios"
+    last_updated_at: "2026-05-02T19:30:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Placeholder created at scaffolding time"
+    next_safe_action: "fill_post_implementation"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-062-2026-05-02"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: 062/001-deep-research-cp-scenarios
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status:** PLACEHOLDER
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|---|---|
+| **Sub-phase** | 062/001 |
+| **Target** | `/speckit:deep-research` + `@deep-research` |
+| **Status** | Planned |
+| **Completion** | 0% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+[###-feature-name] [Awaiting implementation. Fill with: CPs authored / stress runs completed / verdicts.]
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+[Fill: which executor (cli-copilot / cli-codex), how many rounds, wall-time, cost.]
+<!-- /ANCHOR:how-delivered -->
+
+
+## 002-deep-research-stress-runs/implementation-summary.md
+---
+title: "Implementation Summary: 062/002-deep-research-stress-runs"
+description: "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology."
+trigger_phrases:
+  - "002-deep-research-stress-runs"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/002-deep-research-stress-runs"
+    last_updated_at: "2026-05-02T19:30:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Placeholder created at scaffolding time"
+    next_safe_action: "fill_post_implementation"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-062-2026-05-02"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: 062/002-deep-research-stress-runs
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status:** PLACEHOLDER
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|---|---|
+| **Sub-phase** | 062/002 |
+| **Target** | `/speckit:deep-research` + `@deep-research` |
+| **Status** | Planned |
+| **Completion** | 0% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+[###-feature-name] [Awaiting implementation. Fill with: CPs authored / stress runs completed / verdicts.]
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+[Fill: which executor (cli-copilot / cli-codex), how many rounds, wall-time, cost.]
+<!-- /ANCHOR:how-delivered -->
+
+
+## 003-deep-review-cp-scenarios/implementation-summary.md
+---
+title: "Implementation Summary: 062/003-deep-review-cp-scenarios"
+description: "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology."
+trigger_phrases:
+  - "003-deep-review-cp-scenarios"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/003-deep-review-cp-scenarios"
+    last_updated_at: "2026-05-02T19:30:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Placeholder created at scaffolding time"
+    next_safe_action: "fill_post_implementation"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-062-2026-05-02"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: 062/003-deep-review-cp-scenarios
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status:** PLACEHOLDER
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|---|---|
+| **Sub-phase** | 062/003 |
+| **Target** | `/speckit:deep-review` + `@deep-review` |
+| **Status** | Planned |
+| **Completion** | 0% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+[###-feature-name] [Awaiting implementation. Fill with: CPs authored / stress runs completed / verdicts.]
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+[Fill: which executor (cli-copilot / cli-codex), how many rounds, wall-time, cost.]
+<!-- /ANCHOR:how-delivered -->
+
+
+## 004-deep-review-stress-runs/implementation-summary.md
+---
+title: "Implementation Summary: 062/004-deep-review-stress-runs"
+description: "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology."
+trigger_phrases:
+  - "004-deep-review-stress-runs"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs"
+    last_updated_at: "2026-05-02T19:30:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Placeholder created at scaffolding time"
+    next_safe_action: "fill_post_implementation"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-062-2026-05-02"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: 062/004-deep-review-stress-runs
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status:** PLACEHOLDER
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|---|---|
+| **Sub-phase** | 062/004 |
+| **Target** | `/speckit:deep-review` + `@deep-review` |
+| **Status** | Planned |
+| **Completion** | 0% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+[###-feature-name] [Awaiting implementation. Fill with: CPs authored / stress runs completed / verdicts.]
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+[Fill: which executor (cli-copilot / cli-codex), how many rounds, wall-time, cost.]
+<!-- /ANCHOR:how-delivered -->
+
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

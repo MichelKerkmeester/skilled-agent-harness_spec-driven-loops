@@ -1,0 +1,2265 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/022-sk-deep-research-evolution"
+# PACKET: specs/system-deep-loop/z_archive/022-sk-deep-research-evolution (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-deep-research evolution"
+description: "Group the archived `sk-deep-research` evolution packets as nested phases covering creation, refinement, playbook work, upgrade research, review-mode extraction, path migration, and later deep-loop improvements. This parent organizes the historical sequence; implementation detail remains in the child phase folders."
+trigger_phrases:
+  - "sk deep research evolution"
+  - "deep research evolution archive"
+  - "sk-deep-research evolution series"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution"
+    last_updated_at: "2026-07-08T00:00:00.000Z"
+    last_updated_by: "opencode"
+    recent_action: "Created archive phase parent for the sk-deep-research evolution series"
+    next_safe_action: "Validate the parent recursively after metadata regeneration"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: phase -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + sub-phase list + outcome only; no merge/migration/consolidation history; heavy docs live in children. -->
+
+# Feature Specification: sk-deep-research evolution
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | phase |
+| **Priority** | P1 |
+| **Status** | Archived historical bundle; child docs retain mixed legacy status labels |
+| **Created** | 2026-03-18 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Parent Spec** | `system-deep-loop` |
+| **Parent Packet** | `system-deep-loop` |
+| **Handoff Criteria** | Each child phase remains independently inspectable; parent validates under recursive phase-parent policy |
+<!-- /ANCHOR:metadata -->
+
+---
+
+## 001-sk-deep-research-creation/implementation-summary.md
+---
+title: "Implementation Summary: Autonomous [system-deep-loop/z_archive/022-sk-deep-research-evolution/001-sk-deep-research-creation/implementation-summary]"
+description: "Summary of implemented phases for the deep research loop system"
+trigger_phrases:
+  - "autoresearch summary"
+importance_tier: "normal"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/001-sk-deep-research-creation"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 023-sk-deep-research-creation |
+| **Completed** | 2026-03-18 (v1 + Phase 5.5) |
+| **Level** | 3 |
+
+### Status
+
+| Phase | Status | Date |
+|-------|--------|------|
+| Phase 1: Spec Folder Completion | Complete | 2026-03-18 |
+| Phase 2: Skill (sk-deep-research) | Complete | 2026-03-18 |
+| Phase 3: Agent (@deep-research) | Complete | 2026-03-18 |
+| Phase 4: Command (/speckit:deep-research) | Complete | 2026-03-18 |
+| Phase 5: Registration Updates | Complete | 2026-03-18 |
+| Phase 5.5: Legacy @research Removal | Complete | 2026-03-18 |
+| Phase 6-9: v2 Improvements | Not started | -- |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### 3-Layer Architecture (v1)
+
+1. **`@deep-research` agent** -- LEAF agent executing single research iterations with fresh context. Reads externalized state, performs research, writes findings, updates JSONL + strategy.md.
+
+2. **`/speckit:deep-research` command** -- YAML workflow managing the full loop lifecycle: initialization, iterative dispatch, convergence detection, synthesis. Supports `:auto` and `:confirm` modes.
+
+3. **`sk-deep-research` skill** -- Protocol documentation with 8-section SKILL.md, 4 reference docs (loop_protocol, state_format, convergence, quick_reference), 2 assets (config.json, strategy.md), and README.
+
+### Legacy Removal (Phase 5.5)
+
+## 002-sk-deep-research-refinement/implementation-summary.md
+---
+title: "Implementation Summary [system-deep-loop/z_archive/022-sk-deep-research-evolution/002-sk-deep-research-refinement/implementation-summary]"
+description: "Summary of the research refinement cycle and the validated proposal outputs."
+trigger_phrases:
+  - "implementation summary"
+  - "deep research refinement summary"
+importance_tier: "normal"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/002-sk-deep-research-refinement"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 024-sk-deep-research-refinement |
+| **Completed** | 2026-03-18 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This cycle validated the next wave of `sk-deep-research` improvements without claiming code changes that were not shipped. The work produced a research synthesis, a refreshed proposal set, and a cross-runtime audit so the follow-on implementation phase can start from evidence instead of guesswork.
+
+### Research Refinement Outputs
+
+The autonomous research loop reviewed the prior 18 proposals from spec 023, checked them against the live v1 implementation and external reference repos, and produced a v3 proposal set with implementation-ready file-level change lists. It also documented cross-runtime divergence findings for the deep-research agent surfaces.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `research/research.md` | Created/Updated | Synthesized findings from the self-research cycle |
+| `scratch/improvement-proposals-v3.md` | Created | Recorded validated v3 proposals with file-level change lists |
+| `scratch/wave1-cross-runtime-audit.md` | Created | Documented runtime divergence findings and alignment recommendations |
+| `spec.md` | Updated | Captured the refinement scope, requirements, and validated outcomes |
+| `plan.md` | Updated | Documented the research execution plan and verification path |
+| `tasks.md` | Updated | Recorded completed research and verification tasks |
+| `checklist.md` | Updated | Captured evidence-backed verification results |
+<!-- /ANCHOR:what-built -->
+
+
+## 003-sk-deep-research-testing-playbook/implementation-summary.md
+---
+title: "Implementation Summary [system-deep-loop/z_archive/022-sk-deep-research-evolution/003-sk-deep-research-testing-playbook/implementation-summary]"
+description: "This summary records the completed alignment of the Level 3 spec packet to the approved 19-scenario implementation plan."
+trigger_phrases:
+  - "deep research playbook implementation summary"
+  - "spec packet summary"
+importance_tier: "important"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/003-sk-deep-research-testing-playbook"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 028-sk-deep-research-testing-playbook |
+| **Completed** | 2026-03-19 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This work aligned the Level 3 spec packet to the approved implementation plan for the future `manual_testing_playbook/` package for `sk-deep-research`. The packet remains spec-folder-only in this task, but it now treats playbook implementation as in scope for the planned workstream and locks the approved 19-scenario, 6-category package shape, validation workflow, and architecture decisions needed to build the playbook from the live deep-research docs and the current `sk-doc` contract.
+
+### Specification And Scope Lock
+
+The packet now defines the approved 20-file playbook package: one root playbook file plus 19 per-feature scenario files using stable IDs `DR-001` through `DR-019` under 6 numbered category folders. It also freezes the key constraints that matter before implementation starts: the package is greenfield create work, no feature catalog exists yet, runtime-agent references in this packet stay canonical to `.codex/agents/deep-research.toml`, and the future package must separate live behavior from reference-only design notes.
+
+### Delivery Plan And Validation Model
+
+The plan translates the approved implementation into five phases: contract lock, package scaffolding, root authoring, per-feature authoring, and validation. The checklist then turns those phases into release gates that future implementation can actually execute, including root-doc validation, 19-scenario parity checks, prompt synchronization review, and explicit handling of the current non-recursive validator limitation.
+
+### Architecture Decisions
+
+Two accepted ADRs anchor the work. The first keeps the playbook unblocked by the missing feature catalog and requires explicit no-catalog disclosure in the future package. The second keeps the package aligned with the integrated `sk-doc` playbook contract and maps the approved `DR-001` through `DR-019` inventory into the 6 required categories, ending with synthesis, save, and guardrails.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 004-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement/implementation-summary.md
+---
+title: "Implementation Summary: Create [system-deep-loop/z_archive/022-sk-deep-research-evolution/004-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement/implementation-summary]"
+description: "The create-command YAML suite now reads much more like one coherent workflow family instead of a mix of thick and thin schemas."
+trigger_phrases:
+  - "create yaml refinement summary"
+  - "create command yaml standardization summary"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/004-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 027-cmd-create-yaml-refinement |
+| **Completed** | 2026-03-19 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The create-command YAML suite now reads much more like one coherent workflow family instead of a mix of thick and thin schemas. The biggest lift went into the newer feature-catalog and testing-playbook assets, which now carry the same kind of request analysis, gate logic, workflow overview, recovery, termination, and rules sections that the stronger workflows already had.
+
+### Stronger Feature and Playbook Assets
+
+`create_feature_catalog_*` and `create_testing_playbook_*` were rewritten into fuller auto/confirm pairs. Confirm mode no longer drops core setup and reporting structure. It now keeps the same root workflow contract and adds checkpoint behavior on top, which makes those pairs much easier to reason about and much closer to the `spec_kit` style baseline.
+
+### Broader Suite Normalization
+
+`create_agent_*`, `create_changelog_*`, and `create_folder_readme_*` were then normalized with the same shared top-level sections. That keeps their command-specific logic intact, but it makes the suite feel far less custom per file. `create_folder_readme` is still the main structural exception because it remains one unified asset for two operations, but it now has the same top-level workflow framing as the rest of the suite.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The refinement was delivered as one bounded documentation-asset pass. I compared the create asset suite against the richer `spec_kit` YAMLs, identified the shared top-level sections that were missing, rewrote the thinner feature/testing pairs, then added the same structural contract to the broader create asset set. After the edits, I ran a full YAML parse pass across `.opencode/commands/create/assets/` and re-validated the two command README surfaces touched by the suite context.
+<!-- /ANCHOR:how-delivered -->
+
+
+## 004-sk-deep-research-first-upgrade/implementation-summary.md
+---
+title: "Implementation Summary [system-deep-loop/z_archive/022-sk-deep-research-evolution/004-sk-deep-research-first-upgrade/implementation-summary]"
+description: "Post-repair summary for the research packet that documents the first sk-deep-research upgrade recommendations."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "029"
+  - "deep research"
+importance_tier: "normal"
+contextType: "research"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/004-sk-deep-research-first-upgrade"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 029-sk-deep-research-first-upgrade |
+| **Completed** | 2026-03-31 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This repair completed the research packet by adding the missing implementation summary and keeping the existing comparative-analysis docs intact. You can now open the folder and see a complete Level 1 packet that points directly at the committed research synthesis instead of failing validation on a missing completion artifact.
+
+### Research Packet Closeout
+
+The packet still centers on the comparative work already captured in `.opencode/specs/03--commands-and-skills/029-sk-deep-research-first-upgrade/research/research.md`. This summary closes the loop around that work by recording what the packet contains, why it exists, and how later implementation planning can reuse it without re-reading the external repositories.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/specs/03--commands-and-skills/029-sk-deep-research-first-upgrade/implementation-summary.md` | Created | Completes the required Level 1 packet and documents the finished research repair |
+| `.opencode/specs/03--commands-and-skills/029-sk-deep-research-first-upgrade/research/research.md` | Referenced | Preserves the ranked upgrade findings that this summary closes out |
+| `.opencode/specs/03--commands-and-skills/029-sk-deep-research-first-upgrade/spec.md` | Referenced | Defines the scope and success criteria for the research packet |
+<!-- /ANCHOR:what-built -->
+
+---
+
+
+## 005-sk-deep-research-review-mode/implementation-summary.md
+---
+title: "Implementation Summary [system-deep-loop/z_archive/022-sk-deep-research-evolution/005-sk-deep-research-review-mode/implementation-summary]"
+description: "Post-repair summary for the review-mode planning packet and handover reference cleanup."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "030"
+  - "review mode"
+importance_tier: "normal"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/005-sk-deep-research-review-mode"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 030-sk-deep-research-review-mode |
+| **Completed** | 2026-03-31 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This repair completed the review-mode planning packet by adding the missing implementation summary and cleaning the handover so it points at real repo artifacts. You can resume the packet without chasing dead markdown references from an earlier local session.
+
+### Review-Mode Packet Repair
+
+The packet still documents planning and handover context rather than a finished runtime feature. This summary records the structural repair: the required Level 1 closeout file now exists, and the handover references now point at committed review doctrine files or clearly marked temporary artifacts.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/implementation-summary.md` | Created | Completes the required Level 1 packet |
+| `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/handover.md` | Modified | Replaces stale markdown references with real repo paths or plain-text temporary artifact notes |
+| `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/spec.md` | Referenced | Preserves the review-mode problem statement and packet scope |
+<!-- /ANCHOR:what-built -->
+
+---
+
+
+## 006-sk-deep-research-review-folders/implementation-summary.md
+---
+title: "Implementation Summary [system-deep-loop/z_archive/022-sk-deep-research-evolution/006-sk-deep-research-review-folders/implementation-summary]"
+description: "Review mode now stores its durable packet under review/, including the final report, with a legacy scratch-to-review migration path, synchronized runtime and documentation contracts, and follow-up command-surface compatibility fixes."
+trigger_phrases:
+  - "review folder implementation summary"
+  - "review folder summary"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/006-sk-deep-research-review-folders"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: sk-deep-research Review Folder Contract
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+This packet is now implemented. Review mode no longer treats `scratch/` as the durable home for state and synthesis output. The canonical review packet now lives under `{spec_folder}/review/`, and the runtime contract, assets, docs, and operator playbooks were updated together so review-mode state is stored consistently. A follow-up remediation pass also aligned the shared command surfaces so both `specs/` and `.opencode/specs/` alias roots remain valid and the parallel `.agents` wrapper reflects the review-mode entrypoints.
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Completed** | 2026-03-27 |
+| **Level** | 3 |
+| **Primary Outcome** | Review-mode config, JSONL state, strategy, dashboard, iteration files, pause sentinel, and final report now live under `review/` |
+| **Implementation Footprint** | Workflow, runtime, asset, wrapper, and documentation surfaces updated across the deep-research command family |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented the full review-folder contract across the planned surfaces:
+
+- Review auto and confirm workflows now use `{spec_folder}/review/` for config, JSONL state, strategy, dashboard, iteration files, the pause sentinel, and the final review report inside the review packet.
+- Both review workflows now include explicit legacy scratch-to-review migration steps with a review-artifact whitelist and conflict-halting behavior.
+- Runtime `deep-review` agents across `.opencode`, `.claude`, `.codex`, and `.gemini` now read and write only `review/` artifacts inside the active spec folder.
+- The review-mode asset layer now matches the runtime contract via `review_mode_contract.yaml` plus the deep-review strategy and dashboard templates.
+- User-facing docs, review references, review-mode playbooks, and the shared pause-resume playbooks were synchronized so review mode points at the durable `review/` packet while research mode keeps its existing `scratch/` behavior.
+- The shared deep-research command surfaces now accept both `specs/` and `.opencode/specs/` alias roots for spec-folder validation without changing the research-mode scratch storage contract.
+- The parallel `.agents` TOML wrapper now advertises the `:review`, `:review:auto`, and `:review:confirm` entrypoints instead of exposing only research-mode suffixes.
+- Recovery docs now distinguish research-mode scratch backups from review-mode preservation of the durable `review/` packet.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Implementation was delivered in three coordinated tracks:
+
+- Main-thread workflow and asset changes:
+  - `.opencode/commands/speckit/assets/speckit_deep-research_review_auto.yaml`
+  - `.opencode/commands/speckit/assets/speckit_deep-research_review_confirm.yaml`
+  - `.opencode/skills/sk-deep-research/assets/review_mode_contract.yaml`
+
+## 007-sk-deep-research-path-migration/implementation-summary.md
+---
+title: "Implementation Summary [system-deep-loop/z_archive/022-sk-deep-research-evolution/007-sk-deep-research-path-migration/implementation-summary]"
+description: "Deep-research packet paths now use the canonical research packet root and review iteration folders across the touched command, skill, runtime, helper, doc, test, and corpus-migration surfaces, with verification evidence captured and residual caveats kept explicit."
+trigger_phrases:
+  - "deep-research path migration implementation summary"
+  - "research packet summary"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/007-sk-deep-research-path-migration"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: sk-deep-research Path Migration
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 035-sk-deep-research-path-migration |
+| **Completed** | 2026-03-28 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-research path migration is now landed across the repo surfaces touched in this session. Research-mode packet state now uses the canonical `research/` packet root, review iterations now live under `review/iterations/`, and the review report stays at the `review/` packet root. The implementation also updated helper logic, migration tooling, docs, tests, and the tracked packet corpus so the old root-plus-scratch research contract is no longer the canonical first-party shape.
+
+### Command, Skill, and Runtime Contract
+
+- Deep-research command and skill docs were updated to the canonical packet contract:
+  - `.opencode/commands/speckit/deep-research.md`
+  - `.opencode/skills/sk-deep-research/SKILL.md`
+  - `.opencode/skills/sk-deep-research/README.md`
+  - `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+  - `.opencode/skills/sk-deep-research/references/state_format.md`
+  - `.opencode/skills/sk-deep-research/references/quick_reference.md`
+  - manual playbook files under `.opencode/skills/sk-deep-research/manual_testing_playbook/`
+- Runtime parity fixes landed on the touched agent-guidance surfaces, including `.opencode/agents/speckit.md` and `.claude/agents/speckit.md`.
+- The `.agents` parity follow-up also landed:
+  - `.agents/commands/speckit/plan.toml`
+  - `.agents/commands/speckit/complete.toml`
+  - `.agents/commands/speckit/phase.toml`
+  - `.agents/workflows/spec_kit_research.md`
+- Those `.agents` surfaces were aligned away from stale `/speckit:research` and `@research` references and now point at `/speckit:deep-research`, `@deep-research`, and the canonical OpenCode deep-research command entrypoint.
+
+## 008-sk-deep-research-review-split/implementation-summary.md
+---
+title: "Implementation Summary [system-deep-loop/z_archive/022-sk-deep-research-evolution/008-sk-deep-research-review-split/implementation-summary]"
+description: "Repository artifacts show that review mode was split out of sk-deep-research into a dedicated sk-deep-review skill and command."
+trigger_phrases:
+  - "036 implementation summary"
+  - "deep-review split summary"
+  - "review mode split shipped"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/008-sk-deep-research-review-split"
+    last_updated_at: "2026-04-13T10:38:46Z"
+    last_updated_by: "copilot"
+    recent_action: "Synced implementation evidence links and packet continuity metadata"
+    next_safe_action: "Sync evidence if docs change"
+    blockers: []
+    key_files:
+      - ".opencode/specs/system-deep-loop/z_archive/022-sk-deep-research-evolution/008-sk-deep-research-review-split/implementation-summary.md"
+      - ".opencode/skills/skill-advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/sk-deep-review/graph-metadata.json"
+      - ".opencode/skills/sk-deep-research/graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:036-sk-deep-research-review-split"
+      session_id: "036-sk-deep-research-review-split"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Advisor evidence calibration now separates graph-heavy matches and deep sibling edges were removed."
+template_source_header: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 036-sk-deep-research-review-split |
+| **Completed** | 2026-03-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Repository changelog and handover artifacts show that the unified review-mode half of `sk-deep-research` was split into a dedicated `sk-deep-review` skill and command. The result is a clearer separation between investigation workflows and iterative code auditing.
+
+### Dedicated review skill and command
+
+`sk-deep-review` was created as a standalone package with its own command entrypoint, references, assets, and testing playbook. That replaced the older `/speckit:deep-research:review` path with `/speckit:deep-review`.
+
+
+## 009-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements/implementation-summary.md
+---
+title: "...ent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements/implementation-summary]"
+description: "Phase 1 is now fully complete: the deep-research contract, executable reducer/helper surfaces, runtime parity, and packet verification all land together."
+trigger_phrases:
+  - "implementation summary"
+  - "deep research summary"
+  - "phase 1 summary"
+importance_tier: "important"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/009-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-sk-deep-research-improvements |
+| **Completed** | 2026-04-03 - full Phase 1 completion |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 1 now gives `sk-deep-research` a complete packet contract instead of leaving lifecycle, parity, and reducer behavior implied across multiple files. You can now trace lineage vocabulary, canonical artifact names, reducer ownership, runtime parity expectations, executable helper entry points, and the findings-registry shape from the skill entrypoint down through the workflow YAML and runtime mirrors without the older research/review ambiguity.
+
+### Deep-Research Contract Alignment
+
+The core skill docs, references, assets, and mirrors were updated together so they describe the same research-only workflow. The capability matrix now has both human-readable and machine-readable forms, the config asset carries lineage and reducer metadata, and the runtime mirrors now read the findings registry as an input instead of treating strategy/dashboard edits as agent-owned work.
+
+### Executable Reducer and Capability Helpers
+
+Phase 1 no longer stops at documentation. The packet now includes `runtime-capabilities.cjs` to resolve runtime metadata from the machine-readable matrix and `reduce-state.cjs` to regenerate the strategy, findings registry, and dashboard from the packet state. Focused Vitest coverage proves both parity and reducer idempotency, and the `.cjs` packaging keeps the helpers executable inside the `.opencode` ESM package boundary.
+
+### Phase Packet Repair
+
+The phase packet itself was rewritten into the active Level 1 template so strict spec validation can reason about the work. The packet now records the real finished state: all Phase 1 tasks are complete, the completion criteria are checked, and the verification evidence covers both documentation and executable surfaces.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 009-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements/implementation-summary.md
+---
+title: "...agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements/implementation-summary]"
+description: "Phase 2 now gives sk-deep-review one canonical review contract across docs, workflow assets, runtime mirrors, and packet-local tests, so the review mode can be audited and resumed without naming drift or reducer ambiguity."
+trigger_phrases:
+  - "implementation summary"
+  - "deep review summary"
+  - "phase 2 summary"
+importance_tier: "important"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/009-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-sk-deep-review-improvements |
+| **Completed** | 2026-04-03 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 2 now makes the deep-review packet contract explicit everywhere it matters. You can trace the same review artifact names, lifecycle branches, reducer inputs and outputs, release-readiness states, and machine-owned boundaries from the deep-review skill docs through the workflow YAML, runtime mirrors, and packet-local tests without falling back to stale `deep-research-*` review naming.
+
+### Deep-Review Contract Alignment
+
+The review skill package, references, and assets were updated together so they describe one canonical review packet model. The config asset now exposes the reducer metrics expected by the contract tests, the pause sentinel is marked as operator-controlled, and the loop protocol names the reducer inputs and outputs directly.
+
+### Runtime and Workflow Parity
+
+The two workflow assets and all four runtime mirrors were kept in lockstep with the same lifecycle vocabulary, reducer-owned findings registry semantics, and `completed-continue` reopen flow. The remaining legacy `deep-research-*` names are now limited to the intentional scratch migration path inside the workflow YAML assets.
+
+### Packet Closeout
+
+This phase folder now follows the active Level 1 Spec Kit template and records complete verification evidence. The packet can be reopened later and still tell the truth: every task is complete, the executable contract tests pass, and the strict validator accepts the folder as a finished phase.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 010-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/implementation-summary.md
+---
+title: "...ed-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/implementation-summary]"
+description: "Deep-loop runtime contracts, stop-reason taxonomy, legal-stop gates, resume semantics, journals, dashboards, and behavior-first test coverage for sk-deep-research and sk-deep-review."
+trigger_phrases:
+  - "042.001"
+  - "implementation summary"
+  - "runtime truth"
+  - "stop contract"
+  - "legal stop"
+importance_tier: "important"
+contextType: "planning"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/001-runtime-truth-foundation"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Runtime Truth Foundation
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-runtime-truth-foundation |
+| **Completed** | 2026-04-10 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Deep research and deep review now have explicit, auditable runtime truth. Every loop stop reports a named reason from a shared taxonomy, every stop decision passes through a legal-stop gate that checks convergence, coverage, and quality together, and every session carries a resume cursor that makes continuation deterministic rather than inferred.
+
+### Stop Contract and Legal-Stop Gates
+
+Both deep-loop products share a typed stop-reason taxonomy with named reasons (`converged`, `max_iterations`, `blocked`, `user_stop`, `error`). The legal-stop gate bundles convergence, coverage, and quality checks into a single binary decision. Blocked-stop events persist with gate results and recovery paths rather than silently terminating. The stop contract uses `stopReason`, `legalStop.blockedBy`, `legalStop.gateResults`, and `legalStop.replayInputs` fields.
+
+### Resume and Continuation Lineage
+
+Sessions now carry `continuedFromRun` semantics that work for both active resume (loop was blocked and continues) and completed-continue (loop finished and a new session extends the prior work). This lineage is explicit in commands, workflows, state contracts, and agent instructions.
+
+### Journals and Observability
+
+Separate append-only journal artifacts track lifecycle events, stop decisions, and recovery actions. Dashboard upgrades expose timing/tool/token histograms, state diffs, anomaly flags, convergence trends, and stop-decision drill-down. Reducer snapshot/compaction ensures durability for 100+ iteration packets with delta replay and periodic snapshot equivalence.
+
+### Semantic Convergence
+
+Convergence now uses typed decision traces that combine novelty, contradiction density, and citation overlap with existing statistical checks. Low novelty alone no longer permits STOP when coverage or verification blockers remain.
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/023-deep-loop-workflows"
+# PACKET: specs/system-deep-loop/z_archive/023-deep-loop-workflows (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: deep-loop-workflows — consolidate the five deep-loop skills"
+description: "Merge the five deep-loop workflow skills (deep-ai-council, deep-context, deep-improvement, deep-research, deep-review) into one skill deep-loop-workflows, leaving a clean two-skill architecture with the frozen deep-loop-runtime backend. Informed by a 5-iteration deep-context sweep and a 15-iteration gpt-5.5 xhigh deep-research run with adversarial verification. Decomposed into nine parity-gated phases."
+trigger_phrases:
+  - "deep-loop-workflows skill"
+  - "merge deep loop skills"
+  - "consolidate deep-research deep-review deep-context deep-improvement deep-ai-council"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows"
+    last_updated_at: "2026-06-15T22:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Merged + functional; 009 gate sign-off 12/18 P0; 007 R1 descoped by decision"
+    next_safe_action: "Quiescent-tree skill-graph rebuild + artifact-replay baseline (CHK-060/065)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/ (merged skill, live in 027)"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-147-deep-loop-workflows"
+      parent_session_id: null
+    completion_pct: 92
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: deep-loop-workflows — consolidate the five deep-loop skills
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | Phase Parent |
+| **Priority** | P1 |
+
+## 001-parity-baseline-and-runtime-ownership-adr/implementation-summary.md
+---
+title: "Implementation Summary: Parity baseline and runtime-ownership ADR"
+description: "Phase 001 of the deep-loop-workflows merge: captured the pristine parity baseline (924 files + advisor routing), authored the runtime-ownership ADR, and resolved the B5 nested-graph-metadata discovery keystone."
+trigger_phrases:
+  - "deep-loop-workflows phase 001 summary"
+  - "parity baseline captured"
+  - "runtime ownership adr complete"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr"
+    last_updated_at: "2026-06-15T05:56:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Captured parity baseline + advisor routing; authored ownership ADR; resolved B5"
+    next_safe_action: "Execute phase 002 runtime backend promotions"
+    blockers: []
+    key_files:
+      - "baseline/file-hashes.txt"
+      - "baseline/advisor-routing.txt"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-152-001-implementation-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "B5: does the advisor discover nested SKILL.md as separate skills? (No — it keys on graph-metadata.json; drop nested copies)"
+---
+# Implementation Summary: Parity baseline and runtime-ownership ADR
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 001 of 009 (foundation) |
+| **Status** | Complete |
+| **Date** | 2026-06-15 |
+| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Depends on** | none (first phase) |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This foundation phase produced the artifacts every later phase verifies against, with no change to any live skill:
+
+- **Pristine parity baseline** — `baseline/file-hashes.txt`: SHA-256 of 924 files across the five source skills, `deep-loop-runtime`, and the seven `/deep:*` commands + assets. Manifest digest `6bbdfa273d422bb3f5bd77d14fac0e89dbe0f51f85a405766335e86d59052d9b`. This is the "before" reference for byte-identical per-mode parity.
+- **Advisor routing baseline** — `baseline/advisor-routing.txt`: the standalone advisor's winning skill for one representative prompt per mode (deep-research MED, deep-review HIGH, deep-context, deep-ai-council HIGH, deep-improvement). Phase 006 must reproduce these as `deep-loop-workflows` + the concrete mode.
+- **Runtime-ownership ADR** — `decision-record.md` (ADR-001): authorizes the phase-002 promotions and names `deep-loop-workflows` the single runtime consumer, per the runtime's ESCALATE rule.
+- **B5 keystone resolution** — recorded in the ADR: the advisor scanner recursively discovers every `graph-metadata.json` and throws on `skill_id ≠ folder`; the mode packets must drop their per-mode `graph-metadata.json`. The whole single-skill-multi-mode layout is now de-risked.
+
+## 002-runtime-backend-promotions/implementation-summary.md
+---
+title: "Implementation Summary: Runtime backend promotions"
+description: "Phase 002: promoted the capability resolver, artifact-root seam, loop-lock CLI, lifecycle taxonomy into deep-loop-runtime and emitResourceMap into workflows-shared, keeping old scripts byte-compatible shims. Verified byte-identical parity + 32/32 new tests in the dlw-build worktree."
+trigger_phrases:
+  - "deep-loop-workflows phase 002 summary"
+  - "runtime backend promotions complete"
+  - "byte-compatible shims verified"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows/002-runtime-backend-promotions"
+    last_updated_at: "2026-06-15T06:45:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Promoted runtime backend contracts in worktree; verified byte-parity + 32/32 tests"
+    next_safe_action: "Execute phase 003 build hub + 5 mode packets"
+    blockers: []
+    key_files:
+      - "deep-loop-runtime/lib/deep-loop/runtime-capabilities.cjs"
+      - "deep-loop-runtime/lib/deep-loop/artifact-root.cjs"
+      - "deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs"
+      - "deep-loop-runtime/scripts/loop-lock.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-152-002-implementation-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "T4/T5 used re-export seams (single impl stays in system-spec-kit/shared); a physical code move into the runtime is an optional fuller-self-containment follow-up"
+    answered_questions: []
+---
+# Implementation Summary: Runtime backend promotions
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 002 of 009 |
+| **Status** | Complete (in `dlw-build` worktree; merges to `027` after the deep-review gate) |
+| **Date** | 2026-06-15 |
+| **Depends on** | phase 001 |
+| **Worktree** | `dlw-build` (off `a39e618f2e`) |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Promoted generic plumbing into `deep-loop-runtime` while keeping every old public entrypoint a byte-compatible shim:
+
+- **`lib/deep-loop/runtime-capabilities.cjs`** — parameterized `createRuntimeCapabilities({label, defaultCapabilityPath})` factory; `deep-research` and `deep-review` scripts became thin shims binding their label.
+- **`lib/deep-loop/artifact-root.cjs`** — runtime seam re-exporting `resolveArtifactRoot`/`allocateShortSubfolder`/`normalizeSpecFolderReference` (same function objects → zero drift). The three graph-backed reducers import from here.
+- **`lib/deep-loop/lifecycle-taxonomy.cjs`** — the 6 `stopReason` + 4 `sessionOutcome` terminal taxonomy; `deep-improvement/improvement-journal.cjs` imports these (exact values + error strings preserved).
+
+## 003-merged-hub-and-mode-packets/implementation-summary.md
+---
+title: "Implementation Summary: Merged hub and mode packets"
+description: "Phase 003: built deep-loop-workflows (thin routing hub SKILL.md + mode-registry.json + graph-metadata.json + README) and the five verbatim mode packets with dropped per-mode graph-metadata.json (B5) and depth-correct path rewrites. Verified one advisor identity + all 73 packet scripts resolve."
+trigger_phrases:
+  - "deep-loop-workflows phase 003 summary"
+  - "merged hub mode packets built"
+  - "five mode packets verbatim"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows/003-merged-hub-and-mode-packets"
+    last_updated_at: "2026-06-15T06:55:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Built deep-loop-workflows hub + 5 mode packets in worktree; verified one skill + scripts resolve"
+    next_safe_action: "Execute Stage 3 phases 004-008 (repoint commands/agents/advisor/governance/docs)"
+    blockers: []
+    key_files:
+      - "deep-loop-workflows/SKILL.md"
+      - "deep-loop-workflows/mode-registry.json"
+      - "deep-loop-workflows/graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-152-003-implementation-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "B5 confirmed live: exactly 1 graph-metadata.json under deep-loop-workflows; packets invisible to the advisor"
+---
+# Implementation Summary: Merged hub and mode packets
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 003 of 009 |
+| **Status** | Complete (in `dlw-build` worktree) |
+| **Date** | 2026-06-15 |
+| **Depends on** | phase 002 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`deep-loop-workflows/` — one public skill, five mode packets, one advisor identity:
+
+- **Five verbatim mode packets** (719 files): `context/`, `research/`, `review/`, `ai-council/`, `improvement/` copied from the source skills (excluding `node_modules`), each with its per-mode `graph-metadata.json` **dropped** (the B5 fix).
+- **Hub `SKILL.md`** — routing-only, registry-driven; documents the three-tier discriminator and the per-mode no-flatten rule.
+- **`mode-registry.json`** — the single source of truth: 7 modes, each with `workflowMode` / `runtimeLoopType` (explicit `null` for the 3 improvement lanes; `ai-council`→`council`) / `backendKind` (4 runtime-loop-type, 3 improvement-host) + packet, command, agent, aliases, artifactRoot.
+- **Hub `graph-metadata.json`** — `skill_id=deep-loop-workflows`, `family=deep-loop`, the unioned trigger phrases (including the 5 old skill names) + edges to the runtime.
+- **Hub `README.md`** — house-voice narrative.
+
+## 004-command-surface-repoint/implementation-summary.md
+---
+title: "Implementation Summary: Command surface repoint"
+description: "Phase 004: repointed the seven /deep:* commands plus their YAML workflow assets and presentation contracts to the merged deep-loop-workflows packet paths and skill keys, keeping command/agent names stable and leaving every deep-loop-runtime path frozen. Shipped as part of the deep-loop merge; per-phase checklist was not independently gate-run."
+trigger_phrases:
+  - "deep-loop-workflows phase 004 summary"
+  - "command surface repoint shipped"
+  - "deep command yaml skill path rewrite done"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows/004-command-surface-repoint"
+    last_updated_at: "2026-06-16T07:20:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Wrote phase 004 impl-summary from spec/plan/tasks/checklist evidence"
+    next_safe_action: "Reconcile per-phase checklist evidence if a standalone gate run is required"
+    blockers: []
+    key_files:
+      - ".opencode/commands/deep/"
+      - ".opencode/commands/deep/assets/"
+      - ".opencode/skills/deep-loop-workflows/mode-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-152-004-impl-summary-remediation-156"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Per-phase checklist was not fully gate-run; the phase shipped inside the deep-loop merge"
+---
+# Implementation Summary: Command surface repoint
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 004 of 009 |
+| **Status** | Shipped (as part of the deep-loop merge) |
+| **Date** | 2026-06-15 |
+| **Depends on** | phase 003 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `/deep` command surface repointed off the five old skill paths onto the merged `deep-loop-workflows` packet — command and agent names stayed stable, only skill references moved:
+
+- **Seven `/deep:*` command routers** repointed where they referenced old skill IDs or old skill paths: context, research, review, ai-council, plus the improvement Lane A/B YAML-backed commands (agent-improvement, model-benchmark) and the Lane C markdown-only command (skill-benchmark).
+- **Twelve YAML workflow assets** moved to `deep-loop-workflows` plus registry-backed mode discrimination — `skill:`/`skill_md:` keys and the nested `references`/`scripts`/`assets` path blocks rewritten to the new packet paths, with mode-specific paths landing under `deep-loop-workflows/{mode}/`.
+- **Six presentation contracts** had their stale old skill package paths removed without changing rendered behavior.
+- The **five per-mode required-input setup schemas** and the **do-not-transfer-sibling-defaults guardrails** were carried verbatim, and **Lane C stayed markdown-only** — no YAML was added for symmetry.
+
+
+## 005-agent-mirror-repoint/implementation-summary.md
+---
+title: "Implementation Summary: Agent mirror repoint"
+description: "Phase 005: repointed the five native deep-loop agent bodies (deep-context, deep-research, deep-review, deep-improvement, ai-council) across all three runtime mirrors (.opencode, .claude, .codex), holding three-way body parity and the ai-council persist-artifacts.cjs/output_schema.md lockstep. Agent names kept; shipped as part of the deep-loop merge; per-phase checklist was not independently gate-run."
+trigger_phrases:
+  - "deep-loop-workflows phase 005 summary"
+  - "agent mirror repoint shipped"
+  - "three-way agent parity done"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows/005-agent-mirror-repoint"
+    last_updated_at: "2026-06-16T07:25:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Wrote phase 005 impl-summary from spec/plan/tasks/checklist evidence"
+    next_safe_action: "Reconcile per-phase checklist evidence if a standalone gate run is required"
+    blockers: []
+    key_files:
+      - ".opencode/agents/"
+      - ".claude/agents/"
+      - ".codex/agents/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-152-005-impl-summary-remediation-156"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Per-phase checklist was not fully gate-run; the phase shipped inside the deep-loop merge"
+---
+# Implementation Summary: Agent mirror repoint
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 005 of 009 |
+| **Status** | Shipped (as part of the deep-loop merge) |
+| **Date** | 2026-06-15 |
+| **Depends on** | phase 004 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The five native deep-loop agent bodies repointed their skill references onto the merged `deep-loop-workflows` packet across all three runtime mirrors, while keeping agent names and dispatch contracts unchanged:
+
+- **Fifteen agent mirror files** repointed — the five agents (`deep-context`, `deep-research`, `deep-review`, `deep-improvement`, `ai-council`) each as a real three-file mirror under `.opencode/agents`, `.claude/agents`, and `.codex/agents` (not symlinks), so no runtime is left pointing at an old skill path.
+- **The ai-council lockstep contract** — the highest-effort triplet (~27 path edits) — had its agent body, the `persist-artifacts.cjs` literal paths, and `output_schema.md` references rewritten together so the council helper paths all resolve under `deep-loop-workflows/ai-council/`.
+- **Three-way body parity** was held per mode (one worker owned all three mirrors of a mode), with the per-runtime "Path Convention" line whitelisted as the only expected diff.
+- **Agent names were kept** — the decision that a skill rename does not force an agent rename (the ai-council/deep-ai-council asymmetry is the precedent), so all dispatch identities stayed `deep-context`, `deep-research`, `deep-review`, `deep-improvement`, and `ai-council`.
+
+
+## 006-advisor-graph-mode-routing/implementation-summary.md
+---
+title: "Implementation Summary: Advisor graph mode-routing collapse"
+description: "Phase 006: corrected the council+improvement advisor family sk-util->deep-loop FIRST, collapsed the five deep-* skill IDs into deep-loop-workflows plus a mode-alias/discriminator layer, and resolved the deep-context Candidate-3 asymmetry (kept metadata-routed). Shipped as part of the deep-loop merge; advisor registry<->map routing parity re-verified True in packet 156."
+trigger_phrases:
+  - "deep-loop-workflows phase 006 summary"
+  - "advisor graph mode routing collapse built"
+  - "skill advisor family correction deep-loop"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows/006-advisor-graph-mode-routing"
+    last_updated_at: "2026-06-16T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Authored impl-summary; advisor collapse shipped in merge, routing parity re-verified in 156"
+    next_safe_action: "Orchestrator reconciles parent Phase Map evidence for phase 006"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-loop-workflows/graph-metadata.json"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-152-006-advisor-graph-mode-routing-implsummary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "B7 family correction sequenced first: council+improvement family is deep-loop before any ID removal"
+      - "B3 deep-context resolved: stays metadata-routed (not a Candidate-3 mode); DEEP_ROUTING_SKILLS stays 3"
+      - "B6 aliases.ts schema resolved: nested skill->modes with canonical=deep-loop-workflows"
+---
+# Implementation Summary: Advisor graph mode-routing collapse
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 006 of 009 |
+| **Status** | Complete (shipped in the deep-loop merge; live in `027`) |
+| **Date** | 2026-06-16 |
+| **Depends on** | phase 005 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The advisor graph and scorer surface were migrated from five `deep-*` skill IDs to one `deep-loop-workflows` skill plus a mode-alias/discriminator layer, with the family correction performed first so routing never failed closed mid-migration:
+
+- **Family correction (B7, sequenced first):** the `deep-ai-council` and `deep-improvement` advisor families were corrected from `sk-util` to `deep-loop` BEFORE any old skill ID was removed. The merged hub `deep-loop-workflows/graph-metadata.json` carries `family: deep-loop` (host-confirmed: `skill_id` and `family` present, single hub node).
+- **Skill-ID collapse:** the five old `deep-*` advisor nodes collapsed into one `deep-loop-workflows` node; the finite inbound edges (system-skill-advisor, sk-code-review, sk-prompt, system-spec-kit, deep-loop-runtime) were repointed to the merged node with unioned, deduped keywords and trigger phrases.
+- **Mode-alias / discriminator layer:** `aliases.ts` was restructured to the nested `skill -> modes` schema (B6 resolved) with `canonical = deep-loop-workflows`, deriving `ALIAS_TO_MODE` so a prompt routes to both the merged skill AND a concrete mode rather than a flat alias.
+
+## 007-governance-consolidation/implementation-summary.md
+---
+title: "Implementation Summary: Governance consolidation (R1 superseded)"
+description: "Phase 007 of the deep-loop-workflows merge: resolved the governance divergence by superseding R1 with a recorded decision. The shipped five per-mode feature_catalog and manual_testing_playbook trees are intentional; no consolidation was built."
+trigger_phrases:
+  - "deep-loop-workflows phase 007 summary"
+  - "r1 superseded per-mode governance"
+  - "governance consolidation decision recorded"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows/007-governance-consolidation"
+    last_updated_at: "2026-06-16T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Recorded ADR superseding R1; reconciled spec and graph-metadata"
+    next_safe_action: "Orchestrator reconciles parent Phase Map for phase 007"
+    blockers: []
+    key_files:
+      - "decision-record.md"
+      - "spec.md"
+      - "graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-152-007-implementation-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "R1: build one consolidated governance root? (No — superseded; per-mode trees are intentional and make CP- collisions moot)"
+---
+# Implementation Summary: Governance consolidation (R1 superseded)
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 007 of 009 (governance consolidation) |
+| **Status** | Complete — R1 superseded |
+| **Date** | 2026-06-16 |
+| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Depends on** | 006 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+No build or consolidation work. This phase resolved a governance divergence by recording a decision and reconciling the phase docs to the shipped reality:
+
+- **Decision record** — `decision-record.md` (ADR-001, Accepted): supersedes R1. R1 required one consolidated `feature_catalog` root + one `manual_testing_playbook` root partitioned by mode; the merge shipped five self-contained per-mode trees instead. The ADR records that this is intentional.
+- **Spec reconciliation** — `spec.md`: R1 is annotated `(SUPERSEDED)` with a pointer to the decision record; Status moved from "Planned (scaffold)" to "Complete — R1 superseded"; `_memory.continuity` updated (`completion_pct` 0 → 100).
+- **Graph metadata reconciliation** — `graph-metadata.json`: `status` moved from `planned_(scaffold)` to `complete`; `decision-record.md` added to `key_files`.
+
+
+## 008-framework-docs-sweep/implementation-summary.md
+---
+title: "Implementation Summary: Framework documentation sweep"
+description: "Phase 008: rewrote the framework docs from the five-skill model to the two-skill model (root README, CLAUDE.md/AGENTS.md paired edits, the deep-loop-runtime README, constitutional deep-skill rule, and sibling Related-skills lines) and stamped the merged deep-loop-workflows skill v1.0.0 while preserving per-mode changelog history. Shipped as part of the deep-loop merge."
+trigger_phrases:
+  - "deep-loop-workflows phase 008 summary"
+  - "framework docs sweep five to two"
+  - "deep-loop-runtime readme rewrite done"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows/008-framework-docs-sweep"
+    last_updated_at: "2026-06-16T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Authored impl-summary; framework docs rewritten to 2-skill model and v1.0.0 stamped in merge"
+    next_safe_action: "Orchestrator reconciles parent Phase Map evidence for phase 008"
+    blockers: []
+    key_files:
+      - "README.md"
+      - ".opencode/skills/README.md"
+      - ".opencode/skills/deep-loop-runtime/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-152-008-framework-docs-sweep-implsummary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Fresh v1.0.0 vs inherited-max version resolved: deep-loop-workflows stamped v1.0.0"
+      - "descriptions.json and changelog history excluded from the rename sweep (per-mode history preserved)"
+---
+# Implementation Summary: Framework documentation sweep
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 008 of 009 |
+| **Status** | Complete (shipped in the deep-loop merge; live in `027`) |
+| **Date** | 2026-06-16 |
+| **Depends on** | phase 007 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The cross-repo framework documentation was rewritten from the five-skill model (five public `deep-*` loop skills) to the two-skill model (one `deep-loop-workflows` hub with modes plus the frozen MCP-free `deep-loop-runtime` backend), and the merged skill was version-stamped:
+
+- **Root `README.md`** — the Deep Loop sections and customization table were rewritten to the two-skill architecture, removing the five-public-skill enumeration and the per-skill README links that would 404 after the folder move.
+- **`.opencode/skills/README.md`** — the skills catalog counts and the deep-loop family rows were updated to match the post-merge skill directories.
+- **`CLAUDE.md` + `AGENTS.md`** — the hand-mirrored deep-loop policy lines were updated as one paired edit at matching positions, so the two mirror files do not drift.
+- **`deep-loop-runtime/README.md`** — rewritten from a five-consumer model to a one-consumer-with-modes model, while keeping the explicit statement that the backend adds no MCP tools (the MCP-free boundary).
+
+## 009-old-skill-deletion-and-validation/implementation-summary.md
+---
+title: "Implementation Summary: Old-skill deletion and full-surface validation (partial — B1 council-graph probe)"
+description: "Phase 009: the B1 /doctor deep-loop council-graph probe built and verified, plus gate sign-off to 13/18 P0 — CHK-060 closed via clean skill_graph_scan (rejectedEdges=0) and CHK-065 descoped via decision-record.md (baseline unrecoverable); four process-circumstantial P0 (CHK-001/010/021/030) remain."
+trigger_phrases:
+  - "deep-loop-workflows phase 009 implementation"
+  - "B1 council-graph doctor probe"
+  - "old-skill-deletion-and-validation summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows/009-old-skill-deletion-and-validation"
+    last_updated_at: "2026-06-16T12:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Closed CHK-060 (skill_graph_scan rejectedEdges=0); descoped CHK-065"
+    next_safe_action: "Ratify CHK-065 descope; clear 4 circumstantial P0 (001/010/021/030)"
+    blockers: []
+    key_files:
+      - ".opencode/commands/doctor/assets/doctor_deep-loop.yaml"
+      - ".opencode/commands/doctor/_routes.yaml"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-152-009-b1-council-graph-probe-implementation"
+      parent_session_id: null
+    completion_pct: 72
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Old-skill deletion and full-surface validation (partial)
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-old-skill-deletion-and-validation |
+| **Completed** | 2026-06-16 (B1 probe + gate sign-off to 13/18 P0; CHK-060 closed, CHK-065 descoped; remediation under packet 156 deep-review) |
+| **Level** | 2 |
+| **Actual Effort** | B1 probe + 6-gate verification (scoped remediation slice) |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The packet-156 deep review found that phase 009's headline B1 gate — `/doctor deep-loop` must probe the council graph (`council-graph.sqlite`), not only the deep-loop coverage graph — was never implemented, even though the destructive five-skill deletion the gate was meant to guard had already shipped. This slice builds that probe and reconciles the checklist to what is genuinely verified.
+
+The read-only deep-loop doctor now covers the council graph alongside the deep-loop coverage graph: a new `council` scope (and an `all` scope that becomes the default), council-graph presence/staleness detection, an `ai-council/**` source-inventory glob, council `status`/`query`/`convergence` sampling at `loopType=council`, and a council-specific recommendation (replay via `replay-graph-from-artifacts.cjs`, since `/doctor:update` does not rebuild the council graph). The route manifest's `allowed_flags` was widened so `--scope=council|all` is accepted.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` | Modified | Add council scope, council-graph probe/staleness, `ai-council/**` inventory, council convergence sampling, and council replay recommendation |
+
+## 010-deep-loop-skill-system-review/implementation-summary.md
+---
+title: "Implementation Summary: Comprehensive deep review of the deep-loop + skill-system trio (152/153/155)"
+description: "The operator-directed deep review of packets 152/153/155 delivered a CONDITIONAL PASS: an orchestrated-wave, read-only review reduced 38 raw findings to 0 P0 / 3 P1 / 35 P2 (≈7 hypotheses refuted in round-2), with the sk-doc skill_creation.md dissection mapped as the top remediation item. The fixes are a follow-on remediation phase."
+trigger_phrases:
+  - "deep-loop trio review summary"
+  - "152 153 155 conditional pass"
+  - "deep review verdict remediation handoff"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/023-deep-loop-workflows/010-deep-loop-skill-system-review"
+    last_updated_at: "2026-06-15T19:40:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Delivered CONDITIONAL PASS; authored the workspace control docs"
+    next_safe_action: "Open the remediation phase from the P1 trio plus split"
+    blockers: []
+    key_files:
+      - "review/review-report.md"
+      - "review/deltas/verdicts.jsonl"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-156-deep-loop-skill-system-review-implsummary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Did the verdict survive adversarial verification? (Yes — round-2 refuted/downgraded ~7 escalations; the CONDITIONAL PASS is stable)"
+      - "Are the fixes part of this packet? (No — remediation is the named follow-on phase)"
+---
+# Implementation Summary: Comprehensive deep review of the deep-loop + skill-system trio (152/153/155)
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-deep-loop-skill-system-review |
+| **Completed** | 2026-06-15 |
+| **Level** | 2 |
+| **Type** | Read-only deep review (delivers a report + remediation plan) |
+| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet delivered a comprehensive, operator-directed deep review of three sibling packets — `147-deep-loop-workflows` (the 9-phase merge that folded the five deep-loop mode packets into one parent skill, including a destructive old-skill-deletion phase), `148-mcp-skill-install-doctor-standardization`, and `117-parent-nested-skill-pattern` — and produced one deliverable: `review/review-report.md`. The verdict is **CONDITIONAL PASS**: the trio is functionally sound (zero P0), and the conditions are a contained completion-honesty + dead-path cluster plus routine cleanup.
+
+### The verdict and its triage
+
+A 50-seat-budget review run as an orchestrated wave reduced **38 raw findings → 0 P0 / 3 P1 / 35 P2**, with roughly **7 hypotheses refuted** in the round-2 adversarial pass (the cold-clone CI gate being inert, mutating installers being unsafe, broken requires from the +1 nesting, the loop-lock race as a P1, the C-plus only-canonical guard as a P1, the seam-guard "coverage hole," and stale skill-graph drift — all refuted or downgraded to P2). Per-packet: 152 is CONDITIONAL (the merge works — 351 runtime tests pass and all requires resolve — but its destructive phase shipped without its gates), while 153 and 155 are PASS (only P2 edges).
+
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/024-deep-loop-improved"
+# PACKET: specs/system-deep-loop/z_archive/024-deep-loop-improved (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Agent Loops Improved"
+description: "Research and phased implementation of loop-system improvements mined from vendored external references (loop-cli-main, kasper)."
+trigger_phrases:
+  - "deep loop improved"
+  - "030 deep loop improved"
+  - "agent loops improved"
+  - "loop systems improvement"
+  - "deep-loop improvements implementation"
+  - "156 agent loops"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved"
+    last_updated_at: "2026-07-02T15:45:49Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Phase 011 complete: child 007 sliding-window mode shipped and verified"
+    next_safe_action: "Run the final strict recursive sweep once the shared-dist gate clears"
+    blockers: []
+    key_files:
+      - "research/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sonnet-011-followup-remediation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Agent Loops Improved
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+
+## 001-reference-research/implementation-summary.md
+---
+title: "Implementation Summary: Reference Research — Loop-Systems Improvement"
+description: "Summary of the 51-iteration deep-research run mining loop-cli-main + kasper into a 40-item improvement backlog."
+trigger_phrases:
+  - "loop reference research summary"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/001-reference-research"
+    last_updated_at: "2026-07-02T00:00:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Authored real implementation content from research artifacts"
+    next_safe_action: "No implementation action remaining"
+    blockers: []
+    key_files:
+      - ".opencode/specs/system-deep-loop/024-deep-loop-improved/001-reference-research/research/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-content-remediation-001"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Reference Research — Loop-Systems Improvement
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-reference-research |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+| **Status** | Complete |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A 51-iteration `/deep:research` run mined two vendored reference codebases -- `external/loop-cli-main` (a TypeScript daemon+CLI cadence runner) and `external/kasper` (an opencode observe-evaluate-improve-measure loop) -- consolidating ~221 raw findings (476 registry rows including graph nodes) into a ranked, deduplicated, evidence-cited backlog of 40 improvements for OUR loop systems. Every item cites a reference `file:line`, an OUR target file, and a difficulty/risk tag; none were implemented in this packet -- each became its own follow-up spec in the sibling `system-deep-loop/024-deep-loop-improved` phase tree (phases 002-010, and now 011).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `research/research.md` | Created | Ranked 40-item backlog with evidence citations |
+| `research/resource-map.md` | Created | Coverage map from convergence evidence |
+| `research/iterations/iteration-001.md` through `iteration-051.md` | Created | Per-iteration findings |
+| `research/deltas/`, `research/findings-registry.json` | Created | Delta streams and consolidated findings registry |
+| `research/deep-research-config.json`, `research/deep-research-strategy.md` | Created | Loop configuration and anti-convergence strategy |
+
+
+## 002-deep-loop-runtime/001-atomic-state-serialize-diff/implementation-summary.md
+---
+title: "Implementation Summary: atomic-state serialize-diff"
+description: "Added writeStateIfChangedAtomic(): serializes and compares against a per-path cache, skipping the fsync+rename when unchanged; writeStateAtomic retained for guaranteed writes. 4/4 hermetic unit tests pass."
+trigger_phrases:
+  - "001-atomic-state-serialize-diff summary"
+  - "001-atomic-state-serialize-diff"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/001-atomic-state-serialize-diff"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Added writeStateIfChangedAtomic(): serializes and compares against a per-path cache, skipp"
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-atomic-state-serialize-diff |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added writeStateIfChangedAtomic(): serializes and compares against a per-path cache, skipping the fsync+rename when unchanged; writeStateAtomic retained for guaranteed writes. 4/4 hermetic unit tests pass.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts` | Modified | atomic-state serialize-diff |
+| `.opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts` | Modified | atomic-state serialize-diff |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 002-deep-loop-runtime/002-atomic-state-integrity-helpers/implementation-summary.md
+---
+title: "Implementation Summary: atomic-state SHA-256 integrity helpers"
+description: "Added computeIntegrityHash/stampIntegrity/verifyIntegrity (SHA-256, warn-first on mismatch) for object/registry JSON; intentionally not applied to append-only JSONL. Unit tests pass."
+trigger_phrases:
+  - "002-atomic-state-integrity-helpers summary"
+  - "002-atomic-state-integrity-helpers"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/002-atomic-state-integrity-helpers"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Added computeIntegrityHash/stampIntegrity/verifyIntegrity (SHA-256, warn-first on mismatch"
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-atomic-state-integrity-helpers |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added computeIntegrityHash/stampIntegrity/verifyIntegrity (SHA-256, warn-first on mismatch) for object/registry JSON; intentionally not applied to append-only JSONL. Unit tests pass.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts` | Modified | atomic-state SHA-256 integrity helpers |
+| `.opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts` | Modified | atomic-state SHA-256 integrity helpers |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 002-deep-loop-runtime/003-atomic-state-deferred-writer/implementation-summary.md
+---
+title: "Implementation Summary: atomic-state deferred/debounced writer"
+description: "Added createDeferredAtomicWriter(): coalesces superseded per-path content with version dirty-again reflush plus flushNow()/close() drain; JSONL stays immediate. Unit tests pass."
+trigger_phrases:
+  - "003-atomic-state-deferred-writer summary"
+  - "003-atomic-state-deferred-writer"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/003-atomic-state-deferred-writer"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Added createDeferredAtomicWriter(): coalesces superseded per-path content with version dir"
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-atomic-state-deferred-writer |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added createDeferredAtomicWriter(): coalesces superseded per-path content with version dirty-again reflush plus flushNow()/close() drain; JSONL stays immediate. Unit tests pass.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts` | Modified | atomic-state deferred/debounced writer |
+| `.opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts` | Modified | atomic-state deferred/debounced writer |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 002-deep-loop-runtime/004-abortable-chunked-sleep/implementation-summary.md
+---
+title: "Implementation Summary: abortable chunked sleep"
+description: "Added an abortable, chunked sleep primitive (sleep.ts): signal-cancellable wait that clears its timeout on abort, drops its listener on completion, rejects with signal.reason; chunked waits via a SLEEP_CHUNK_MS constant; AbortSignal.any composition. 5/5 unit tests pass."
+trigger_phrases:
+  - "004-abortable-chunked-sleep summary"
+  - "004-abortable-chunked-sleep"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/004-abortable-chunked-sleep"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Added an abortable, chunked sleep primitive (sleep.ts): signal-cancellable wait that clear"
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",".opencode/skills/deep-loop-runtime/tests/unit/sleep.vitest.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-abortable-chunked-sleep |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added an abortable, chunked sleep primitive (sleep.ts): signal-cancellable wait that clears its timeout on abort, drops its listener on completion, rejects with signal.reason; chunked waits via a SLEEP_CHUNK_MS constant; AbortSignal.any composition. 5/5 unit tests pass.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts` | Modified | abortable chunked sleep |
+| `.opencode/skills/deep-loop-runtime/tests/unit/sleep.vitest.ts` | Modified | abortable chunked sleep |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 002-deep-loop-runtime/005-lifecycle-taxonomy-guards/implementation-summary.md
+---
+title: "Implementation Summary: lifecycle taxonomy + transition guards"
+description: "Exported LoopActiveStatus + LoopStopReason + a LEGAL_TRANSITIONS map + the one-shot resumeResolve paused-wait gate in lifecycle-taxonomy.cjs (additive, backward-compatible; no caller migration). Unit tests pass."
+trigger_phrases:
+  - "005-lifecycle-taxonomy-guards summary"
+  - "005-lifecycle-taxonomy-guards"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/005-lifecycle-taxonomy-guards"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Exported LoopActiveStatus + LoopStopReason + a LEGAL_TRANSITIONS map + the one-shot resume"
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",".opencode/skills/deep-loop-runtime/tests/unit/lifecycle-taxonomy-guards.vitest.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-lifecycle-taxonomy-guards |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Exported LoopActiveStatus + LoopStopReason + a LEGAL_TRANSITIONS map + the one-shot resumeResolve paused-wait gate in lifecycle-taxonomy.cjs (additive, backward-compatible; no caller migration). Unit tests pass.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs` | Modified | lifecycle taxonomy + transition guards |
+| `.opencode/skills/deep-loop-runtime/tests/unit/lifecycle-taxonomy-guards.vitest.ts` | Modified | lifecycle taxonomy + transition guards |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 002-deep-loop-runtime/006-jsonl-lock-held-merge/implementation-summary.md
+---
+title: "Implementation Summary: JSONL lock-held merge for fan-out salvage"
+description: "Added mergeJsonlUnderLock to jsonl-repair.ts (reread-under-lock + set-union dedupe by stable record identity, atomic write) and wired fanout-salvage.cjs through it instead of bare append. Tests pass (19); typecheck green. Spec path for fanout-salvage corrected (scripts/, not lib/deep-loop/)."
+trigger_phrases:
+  - "006-jsonl-lock-held-merge summary"
+  - "006-jsonl-lock-held-merge"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Added mergeJsonlUnderLock to jsonl-repair.ts (reread-under-lock + set-union dedupe by stab"
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",".opencode/skills/deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-jsonl-lock-held-merge |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added mergeJsonlUnderLock to jsonl-repair.ts (reread-under-lock + set-union dedupe by stable record identity, atomic write) and wired fanout-salvage.cjs through it instead of bare append. Tests pass (19); typecheck green. Spec path for fanout-salvage corrected (scripts/, not lib/deep-loop/).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts` | Modified | JSONL lock-held merge for fan-out salvage |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs` | Modified | JSONL lock-held merge for fan-out salvage |
+| `.opencode/skills/deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts` | Modified | JSONL lock-held merge for fan-out salvage |
+<!-- /ANCHOR:what-built -->
+
+---
+
+
+## 002-deep-loop-runtime/007-loop-lock-heartbeat-hardening/implementation-summary.md
+---
+title: "Implementation Summary: loop-lock heartbeat hardening"
+description: "Hardened the loop-lock heartbeat in loop-lock.ts per the phase scope (TTL-aware heartbeat refresh + staleness/single-flight handling). 8/8 loop-lock tests pass; typecheck green."
+trigger_phrases:
+  - "007-loop-lock-heartbeat-hardening summary"
+  - "007-loop-lock-heartbeat-hardening"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Hardened the loop-lock heartbeat in loop-lock.ts per the phase scope (TTL-aware heartbeat "
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-loop-lock-heartbeat-hardening |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Hardened the loop-lock heartbeat in loop-lock.ts per the phase scope (TTL-aware heartbeat refresh + staleness/single-flight handling). 8/8 loop-lock tests pass; typecheck green.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts` | Modified | loop-lock heartbeat hardening |
+| `.opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts` | Modified | loop-lock heartbeat hardening |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 002-deep-loop-runtime/008-loop-lock-single-flight-decision/implementation-summary.md
+---
+title: "Implementation Summary: loop-lock single-flight decision"
+description: "Added single-flight acquisition decision logic to loop-lock.ts per the phase scope (collapse concurrent acquire attempts for the same lock to one in-flight request). Tests pass; typecheck green."
+trigger_phrases:
+  - "008-loop-lock-single-flight-decision summary"
+  - "008-loop-lock-single-flight-decision"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/008-loop-lock-single-flight-decision"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Added single-flight acquisition decision logic to loop-lock.ts per the phase scope (collap"
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-loop-lock-single-flight-decision |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added single-flight acquisition decision logic to loop-lock.ts per the phase scope (collapse concurrent acquire attempts for the same lock to one in-flight request). Tests pass; typecheck green.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts` | Modified | loop-lock single-flight decision |
+| `.opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts` | Modified | loop-lock single-flight decision |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 002-deep-loop-runtime/009-byte-offset-log-regions/implementation-summary.md
+---
+title: "Implementation Summary: byte-offset log regions"
+description: "Stamp logOffset/logSize/logPath on iteration records (post-dispatch-validate.ts) + optional schema fields (deep_research_auto.yaml) + dashboard surfacing in reduce-state.cjs. 23 vitest + workflows node test pass; typecheck green. Corrected two wrong spec paths (reduce-state lives in deep-loop-workflows; auto yaml in commands/deep/assets)."
+trigger_phrases:
+  - "009-byte-offset-log-regions summary"
+  - "009-byte-offset-log-regions"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/009-byte-offset-log-regions"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Stamp logOffset/logSize/logPath on iteration records (post-dispatch-validate.ts) + optiona"
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",".opencode/commands/deep/assets/deep_research_auto.yaml",".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state-sparkline.test.cjs"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-byte-offset-log-regions |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Stamp logOffset/logSize/logPath on iteration records (post-dispatch-validate.ts) + optional schema fields (deep_research_auto.yaml) + dashboard surfacing in reduce-state.cjs. 23 vitest + workflows node test pass; typecheck green. Corrected two wrong spec paths (reduce-state lives in deep-loop-workflows; auto yaml in commands/deep/assets).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts` | Modified | byte-offset log regions |
+| `.opencode/commands/deep/assets/deep_research_auto.yaml` | Modified | byte-offset log regions |
+| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Modified | byte-offset log regions |
+| `.opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts` | Modified | byte-offset log regions |
+| `.opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Modified | byte-offset log regions |
+| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state-sparkline.test.cjs` | Modified | byte-offset log regions |
+<!-- /ANCHOR:what-built -->
+
+## 002-deep-loop-runtime/010-fixed-rate-overrun-accounting/implementation-summary.md
+---
+title: "Implementation Summary: fixed-rate overrun accounting"
+description: "Added fixed-rate overrun accounting to fanout-run.cjs (process.hrtime slot timing -> skippedCount + slotDurationMs persisted; no catch-up dispatch, per single-flight) plus optional yaml schema fields. 25 tests pass; typecheck green."
+trigger_phrases:
+  - "010-fixed-rate-overrun-accounting summary"
+  - "010-fixed-rate-overrun-accounting"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/010-fixed-rate-overrun-accounting"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Added fixed-rate overrun accounting to fanout-run.cjs (process.hrtime slot timing -> skipp"
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",".opencode/commands/deep/assets/deep_research_auto.yaml",".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-fixed-rate-overrun-accounting |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added fixed-rate overrun accounting to fanout-run.cjs (process.hrtime slot timing -> skippedCount + slotDurationMs persisted; no catch-up dispatch, per single-flight) plus optional yaml schema fields. 25 tests pass; typecheck green.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modified | fixed-rate overrun accounting |
+| `.opencode/commands/deep/assets/deep_research_auto.yaml` | Modified | fixed-rate overrun accounting |
+| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts` | Modified | fixed-rate overrun accounting |
+<!-- /ANCHOR:what-built -->
+
+---
+
+
+## 002-deep-loop-runtime/011-convergence-score-delta/implementation-summary.md
+---
+title: "Implementation Summary: convergence score-delta signal"
+description: "Added a convergence score-delta signal to convergence.cjs declared against the shared profile schema; updated the parity goldens for the intended new behavior and added a unit test. Both pass; typecheck green."
+trigger_phrases:
+  - "011-convergence-score-delta summary"
+  - "011-convergence-score-delta"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/011-convergence-score-delta"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Added a convergence score-delta signal to convergence.cjs declared against the shared prof"
+    next_safe_action: "Proceed to the next phase in the dependency order"
+    blockers: []
+    key_files: [".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",".opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts",".opencode/skills/deep-loop-runtime/tests/unit/convergence-score-delta.vitest.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-convergence-score-delta |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added a convergence score-delta signal to convergence.cjs declared against the shared profile schema; updated the parity goldens for the intended new behavior and added a unit test. Both pass; typecheck green.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Modified | convergence score-delta signal |
+| `.opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts` | Modified | convergence score-delta signal |
+| `.opencode/skills/deep-loop-runtime/tests/unit/convergence-score-delta.vitest.ts` | Modified | convergence score-delta signal |
+<!-- /ANCHOR:what-built -->
+
+---
+
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

@@ -1,0 +1,1581 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-prompt/z_archive/006-sk-prompt-models-rename"
+# PACKET: specs/sk-prompt/z_archive/006-sk-prompt-models-rename (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-prompt-models-rename"
+description: "Phase parent for sk-prompt-models-rename"
+trigger_phrases:
+  - "158-sk-prompt-models-rename"
+  - "phase parent"
+  - "sk-prompt-models rename"
+  - "rename sk-prompt-small-model"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/006-sk-prompt-models-rename"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Rename + review-remediation complete (007-009)"
+    next_safe_action: "Packet complete"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Also rename the older legacy name sk-small-model (124 files), or leave as pre-rename history? (default: leave)"
+    answered_questions:
+      - "New name = sk-prompt-models; scope = Everything (all ~799 files)"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+
+## 001-reference-inventory/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1: reference-inventory"
+description: "Reference map produced; 826 files classified"
+trigger_phrases:
+  - "sk-prompt-models rename 001-reference-inventory"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/006-sk-prompt-models-rename/001-reference-inventory"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Map produced; no files edited"
+    next_safe_action: "Begin 002-core-rename"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "glm-support-001-reference-inventory"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-reference-inventory |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Built the classified reference map (`reference-map.md`) for the rename: 826 files / 4,596 occurrences of `sk-prompt-small-model`, bucketed into TEXT-REPLACE / REGENERATE / GIT-MV / HISTORY-CARE, with the binary exclusion list and the exact set-difference replace command.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Ran `git grep`/`rg` sweeps; established the freeze rule (any file also containing the legacy `sk-small-model` is historical and frozen) plus the 158-packet and compiled-index exclusions.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+
+## 002-core-rename/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2: core-rename"
+description: "Folder moved; identity + back-links + profile_refs updated"
+trigger_phrases:
+  - "sk-prompt-models rename 002-core-rename"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/006-sk-prompt-models-rename/002-core-rename"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "git mv done; skill identity = sk-prompt-models"
+    next_safe_action: "Begin 003-cross-skill-and-code-refs"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "glm-support-002-core-rename"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-core-rename |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`git mv .opencode/skills/sk-prompt-small-model .opencode/skills/sk-prompt-models` (history preserved), then updated the skill's own identity (`name:`, `skill_id`, `description.json`), internal `../../../sk-prompt-small-model/...` back-links, and the 5 `model_profiles.json` `profile_ref` strings.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Scoped the token replace to the moved folder (24 files), excluding its frozen `v0.1`-`v0.3` changelogs which document the earlier rename.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+
+## 003-cross-skill-and-code-refs/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3: cross-skill-and-code-refs"
+description: "Cross-skill + code/config refs updated; card-sync green"
+trigger_phrases:
+  - "sk-prompt-models rename 003-cross-skill-and-code-refs"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/006-sk-prompt-models-rename/003-cross-skill-and-code-refs"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "49 skill files swept; card-sync guard PASS"
+    next_safe_action: "Begin 004-commands-scripts-data"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "glm-support-003-cross-skill-and-code-refs"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-cross-skill-and-code-refs |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Updated the skill ref across the 8 referencing skills plus the hardcoded code/config: the card-sync guard `.sh` path (done first), `reviewer-regression.json` outputsDir, the `secret-scrubber.vitest.ts` fixture string, and the `executor-config.ts` comment.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Updated the card-sync guard path first (it is the model-registry gate), then swept the skills dir, excluding the compiled advisor `skill-graph.json` (regenerated in phase 6).
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+
+## 004-commands-scripts-data/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4: commands-scripts-data"
+description: "Repointed deep_*.yaml benchmark/context paths and command/CI workflow workflows"
+trigger_phrases:
+  - "sk-prompt-models rename 004-commands-scripts-data"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/006-sk-prompt-models-rename/004-commands-scripts-data"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Command/script/agent/CI paths updated"
+    next_safe_action: "Begin 005-specs-history-sweep"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "glm-support-004-commands-scripts-data"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-commands-scripts-data |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Repointed the `/deep:model-benchmark` + `/deep:context` workflow YAMLs (benchmark output/promote/prompt-framing paths), `model-benchmark.md`, the pre-commit hook, the deep-context agent, and the repo-root `README.md` at `sk-prompt-models`. Also caught the cross-runtime mirrors outside `.opencode/`: `.claude/agents/deep-context.md`, `.codex/agents/deep-context.toml`, `.github/workflows/prompt-card-sync.yml` (CI guard), and `AGENTS.md`.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Scoped token replace over commands/scripts/agents/README (10 files), then a `git grep` residual pass surfaced the 4 files OUTSIDE `.opencode/` (`.claude`/`.codex` mirrors, the GitHub CI workflow, and `AGENTS.md`) that the `.opencode`-scoped sweeps had missed.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+
+## 005-specs-history-sweep/implementation-summary.md
+---
+title: "Implementation Summary: Phase 5: specs-history-sweep"
+description: "669 spec files swept; 123 history files frozen"
+trigger_phrases:
+  - "sk-prompt-models rename 005-specs-history-sweep"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/006-sk-prompt-models-rename/005-specs-history-sweep"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Specs swept; history preserved"
+    next_safe_action: "Begin 006-regenerate-verify"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "glm-support-005-specs-history-sweep"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-specs-history-sweep |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Bulk token replace across the specs tree: of 741 spec files containing the old name, 123 were frozen (they also mention the legacy `sk-small-model`) and 669 were renamed. The frozen set (the archived `114-small-ai-model-optimization` rename packet, review iterations, logs, and changelogs that document the EARLIER rename) was left intact.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Ran the scoped `perl` replace in the background (the specs set is large with sizeable logs) over the set-difference list (specs minus `sk-small-model` files minus the 158 packet).
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+
+## 006-regenerate-verify/implementation-summary.md
+---
+title: "Implementation Summary: Phase 6: regenerate-verify"
+description: "Indexes regenerated; gates green; 0 live residual"
+trigger_phrases:
+  - "sk-prompt-models rename 006-regenerate-verify"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/006-sk-prompt-models-rename/006-regenerate-verify"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Advisor force-refreshed; card-sync exit 0"
+    next_safe_action: "Packet complete"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "glm-support-006-regenerate-verify"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-regenerate-verify |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Regenerated the advisor index (force-refresh) so routing resolves `sk-prompt-models` (confidence 0.95), applied a targeted fix to the compiled `skill-graph.json` (both copies), added the `v0.9.0.0` rename changelog, and ran the full gate sweep. Live-wiring residual is **0** (only the frozen history + 158 packet + a binary `.sqlite` backup retain the old name).
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Force-refreshed the advisor and probed routing; the `skill_graph_compiler --export-json` refused to export due to 5 PRE-EXISTING graph-symmetry validation failures (unrelated to the rename), so the compiled snapshot got a targeted token fix instead of a full recompile.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+
+## 007-memory-reindex/implementation-summary.md
+---
+title: "Implementation Summary: Phase 7: memory-reindex"
+description: "Re-indexed spec-memory for the live 157 + 158 packets via memory_index_scan so this session's NEW docs are searchable: the 158 scan indexed 30 docs / updated 1 / left 42 unchanged — the review-report plus phases 007/008/009 (24 rows) are now indexed. 157 coalesced (nothing changed there)."
+trigger_phrases:
+  - "007-memory-reindex implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/006-sk-prompt-models-rename/007-memory-reindex"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Re-indexed 157+158; 30 new 158 docs indexed"
+    next_safe_action: "Phase complete"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "remediation/007-memory-reindex"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-memory-reindex |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Ran `memory_index_scan({ specFolder, force:true })` on both live packets. The original rec R1 premise ("83 stale rows") turned out to be archived history that correctly retains the old name — the live packets carry no stale rows pointing at unrelated content.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Run directly through the spec-memory MCP tool. GPT 5.5's daemon-CLI attempt was blocked by the codex sandbox (IPC EPERM / exit 75), so the re-index was completed outside the sandbox.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+
+## 008-graph-symmetry-cleanup/implementation-summary.md
+---
+title: "Implementation Summary: Phase 8: graph-symmetry-cleanup"
+description: "Added the missing reciprocal skill-graph edges that fix 5 PRE-EXISTING symmetry validation failures: `.opencode/skills/sk-design/graph-metadata.json` gained prerequisite_for + siblings for mcp-figma and mcp-open-design, and `.opencode/skills/sk-code-review/graph-metadata.json` gained sibling sk-design. The compiled `skill-graph.json` was then re-exported cleanly — removing the targeted-edit fallback phase 6 had to use."
+trigger_phrases:
+  - "008-graph-symmetry-cleanup implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/006-sk-prompt-models-rename/008-graph-symmetry-cleanup"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Reciprocal edges added; compiler exports clean"
+    next_safe_action: "Phase complete"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "remediation/008-graph-symmetry-cleanup"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-graph-symmetry-cleanup |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added the 5 mirror edges to `.opencode/skills/sk-design/graph-metadata.json` and `.opencode/skills/sk-code-review/graph-metadata.json` (matching the existing {target,weight,context} shape and the counterpart weights 0.45/0.7/0.4), re-validated to 0 errors, re-exported, and force-refreshed the advisor.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Implemented by GPT 5.5 high fast (cli-codex, workspace-write). This was the substantive fix and ran inside the sandbox without issue.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+
+## 009-filename-residual-cleanup/implementation-summary.md
+---
+title: "Implementation Summary: Phase 9: filename-residual-cleanup"
+description: "git mv'd the 2 cli-opencode playbook files (deepseek-v4 / kimi-k2-7 'direct-with-…') from the old skill name to '…-with-sk-prompt-models.md', and replaced a BROKEN changelog symlink — `.opencode/changelog/sk-prompt-small-model` pointed at the now-nonexistent `../skills/sk-prompt-small-model/changelog` — with `.opencode/changelog/sk-prompt-models → ../skills/sk-prompt-models/changelog`, which resolves. The playbook index already links the new names."
+trigger_phrases:
+  - "009-filename-residual-cleanup implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/006-sk-prompt-models-rename/009-filename-residual-cleanup"
+    last_updated_at: "2026-06-28T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Playbook files renamed; broken changelog symlink fixed"
+    next_safe_action: "Phase complete"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "remediation/009-filename-residual-cleanup"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-filename-residual-cleanup |
+| **Completed** | 2026-06-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Used `git mv` (history-preserving), removed the dangling old symlink, created the resolving new one, and confirmed the only ref to the old playbook filenames was the 158/009 spec itself.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Done directly. GPT 5.5's git mv was blocked by the codex sandbox (cannot create .git/index.lock — Operation not permitted), so the moves were completed outside the sandbox.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/030-deep-loop-unification"
+# PACKET: specs/system-deep-loop/030-deep-loop-unification (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Deep-Loop Unification (system-deep-loop)"
+description: "Merges deep-loop-workflows (the invokable hub) and deep-loop-runtime (its backend) into one skill, system-deep-loop, then migrates every downstream reference across commands, agents, READMEs, hooks, and advisor routing."
+trigger_phrases:
+  - "deep loop unification"
+  - "system-deep-loop merge"
+  - "merge deep-loop-workflows and deep-loop-runtime"
+  - "052 deep loop unification"
+  - "deep-loop-runtime into deep-loop-workflows"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification"
+    last_updated_at: "2026-07-08T00:00:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Phase-parent + 5 child phases scaffolded from 3 parallel sonnet-5 Plan-agent analyses"
+    next_safe_action: "Launch 001-reference-research's /deep:research fanout loop"
+    blockers: []
+    key_files:
+      - "001-reference-research/spec.md"
+      - "002-hub-rename-and-runtime-nesting/spec.md"
+      - "003-external-reference-migration/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-loop-unification-052-scaffold"
+      parent_session_id: null
+    completion_pct: 5
+    open_questions:
+      - "Should fallback-router.ts get a real caller (phase 004) as part of this packet, or is it out-of-scope hardening tracked separately?"
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Deep-Loop Unification (system-deep-loop)
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+## 001-reference-research/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "20-replica multi-model deep-research fanout validating the system-deep-loop merge design. 15/20 completed via the real fanout; 5/5 sonnet5 (cli-claude-code) failed on a macOS Keychain auth gap and were substituted with 5 in-session Plan-agent deep-dives. Real, load-bearing corrections found and applied to phase 002's plan."
+trigger_phrases:
+  - "reference research implementation summary"
+  - "001 research complete"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/001-reference-research"
+    last_updated_at: "2026-07-08T06:06:21.300Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "implementation-summary.md complete; checklist resolved"
+    next_safe_action: "Execute 002-hub-rename-and-runtime-nesting Stage 0"
+    blockers: []
+    key_files:
+      - "research/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-loop-unification-052-001-scaffold"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-reference-research |
+| **Completed** | 2026-07-08 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A 20-replica multi-model deep-research fanout stress-testing the merge design already drafted for phases 002/003, dispatched via `deep-loop-runtime/scripts/{fanout-run,fanout-merge}.cjs`, run detached from the interactive session (`nohup`+`disown`) since a single xhigh iteration alone exceeded a 2-minute smoke test.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `research/research.md` | Create | Synthesis: 8 numbered findings, a revision checklist, and a verdict |
+| `research/resource-map.md` | Create | Coverage map — what was verified vs. out of scope |
+| `research/deep-research-findings-registry.json`, `research/fanout-attribution.md` | Create (auto) | Merged output of the 15 real replicas via `fanout-merge.cjs` |
+| `research/lineages/{gpt55-fast,glm52,sonnet5}-N/` | Create (auto) | Per-replica isolated state |
+| `002-hub-rename-and-runtime-nesting/{spec,plan,tasks,checklist}.md` | Edit | Applied the load-bearing corrections this research found |
+<!-- /ANCHOR:what-built -->
+
+## 002-hub-rename-and-runtime-nesting/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Executed the irreversible structural merge: deep-loop-workflows renamed to system-deep-loop, deep-loop-runtime nested inside as runtime/, ~45 bidirectional path-coupling sites repaired, the system-spec-kit tooling-borrow fixed, graph-metadata.json fresh-authored, version bumped to 2.0.0.0. Verified via real test runs matching the Stage-0 baseline exactly (zero new regressions)."
+trigger_phrases:
+  - "hub rename runtime nesting implementation summary"
+  - "system-deep-loop merge complete"
+importance_tier: "critical"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/002-hub-rename-and-runtime-nesting"
+    last_updated_at: "2026-07-08T06:40:24.201Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Doc finalized, all evidence recorded"
+    next_safe_action: "Commit scoped changes, then hand off to 003"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - ".opencode/skills/system-deep-loop/graph-metadata.json"
+      - ".opencode/skills/system-deep-loop/changelog/v2.0.0.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-loop-unification-052-002-scaffold"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-hub-rename-and-runtime-nesting |
+| **Completed** | 2026-07-08 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Executed the irreversible structural merge that 001-reference-research validated: `deep-loop-workflows` renamed to `system-deep-loop`; `deep-loop-runtime` nested inside as `runtime/` (infrastructure, not a mode); every bidirectional relative-path coupling repaired at the new depth; the `system-spec-kit` TypeScript-tooling borrow fixed on both sides; a fresh-authored `graph-metadata.json`; version `2.0.0.0` across all identity files; a changelog entry.
+
+### Files Changed
+
+~1483 files staged, precisely scoped away from a concurrent session's unrelated work in the same shared tree. Highlights (full detail in `changelog/v2.0.0.0.md`):
+
+| File/Area | Action | Purpose |
+
+## 003-external-reference-migration/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Migrated every deep-loop-workflows/deep-loop-runtime reference to system-deep-loop across ~750 files (Stages A-J), regenerated compiled command contracts, re-baselined the advisor routing corpus, fixed several genuine pre-existing/adjacent bugs found along the way, and removed both temporary compat symlinks. Verified via real test runs across two full suites, not assumed complete."
+trigger_phrases:
+  - "external reference migration implementation summary"
+  - "system-deep-loop reference migration complete"
+importance_tier: "critical"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/003-external-reference-migration"
+    last_updated_at: "2026-07-08T12:45:00.000Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Doc finalized, all evidence recorded"
+    next_safe_action: "Run validate.sh --strict, then hand off to 004/005"
+    blockers: []
+    key_files:
+      - "tasks.md"
+      - "plan.md"
+      - "checklist.md"
+      - "research/stage-a-grep-inventory.txt"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-loop-unification-052-003-scaffold"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-external-reference-migration |
+| **Completed** | 2026-07-08 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Completed the reference migration that 002's physical move made necessary: every remaining `deep-loop-workflows`/`deep-loop-runtime` reference across the repo rewritten to `system-deep-loop`, in dependency order (Stages A-J per `plan.md`), landing on a residual grep of 14 files — every one deliberately preserved (a real filename, historical narrative, dual-keyword backward-compat, or a generated artifact deferred by design). Both temporary compat symlinks from 002 removed at the end, with a full two-suite test re-run confirming the timing was safe.
+
+### Files Changed
+
+~750 files touched across this phase (on top of 002's ~1484). Highlights:
+
+| File/Area | Action | Purpose |
+|---|---|---|
+| `skill_advisor.py`, `aliases.ts`, `explicit.ts`, `lexical.ts`, `fusion.ts` | Edit | Stage C: advisor scorer hardcoded constants (2 files had stale planned paths, corrected live) |
+
+## 005-validation-and-closeout/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Regenerated the phase-parent's description.json and graph-metadata.json, authored 003's implementation-summary.md, published a worktree-drift advisory, and ran recursive strict validation to a clean pass across the whole packet. Commit/push is deliberately held pending explicit confirmation — every other item in this phase's checklist is verified."
+trigger_phrases:
+  - "deep loop unification closeout implementation summary"
+  - "system-deep-loop validation closeout"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/005-validation-and-closeout"
+    last_updated_at: "2026-07-08T13:15:00.000Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Doc finalized, commit/push held for confirmation"
+    next_safe_action: "Get explicit go-ahead, then commit and push"
+    blockers:
+      - "CHK-030 held pending explicit user go-ahead for commit/push"
+    key_files:
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-loop-unification-052-005-scaffold"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-validation-and-closeout |
+| **Completed** | 90% — commit/push held |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The final sweep for packet 052: confirmed 002 and 003 each report their own exit gates green, regenerated the phase-parent's stale (pre-merge) `description.json` and `graph-metadata.json`, confirmed every child (001/002/003) has a real, evidence-backed `implementation-summary.md`, published a worktree-drift advisory for a concurrent-session file collision discovered mid-sweep, and ran recursive strict validation to a clean pass across the phase-parent and all 5 children. No code changes — this phase is a metadata/documentation/verification pass only.
+
+### Files Changed
+
+| File/Area | Action | Purpose |
+|---|---|---|
+| `030-deep-loop-unification/description.json` | Regenerate | Was stale pre-merge content ("deep-loop-workflows... deep-loop-runtime... 4 mode packets") |
+| `030-deep-loop-unification/graph-metadata.json` | Regenerate | Via `backfill-graph-metadata.js`; also needed 2 manual `source_fingerprint` refreshes as later edits (spec.md status table) staled it again |
+| `030-deep-loop-unification/spec.md` | Edit | PHASE DOCUMENTATION MAP: phases 1-3 status `Planned` → `Complete` (they'd never been updated after their own completion) |
+| `003-external-reference-migration/{spec,checklist,implementation-summary}.md` | Edit/create | `spec.md` status → `Complete`; `checklist.md` all 20 items verified; `implementation-summary.md` newly authored |
+
+## 006-skillmd-template-conformance/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Audited all 5 SKILL.md files under system-deep-loop against sk-doc's create-skill templates; structural conformance was already 100%. Fixed the soft warnings found: renamed 131 non-conforming asset files, fixed every reference broken by the rename, fixed changelog frontmatter, and trimmed 3 oversized SKILL.md files under the word-count budget."
+trigger_phrases:
+  - "deep loop skillmd conformance implementation summary"
+  - "system-deep-loop skill audit complete"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/006-skillmd-template-conformance"
+    last_updated_at: "2026-07-08T18:00:00.000Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "All fixes applied and independently re-verified clean"
+    next_safe_action: "None — packet complete"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-loop-unification-052-006"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-skillmd-template-conformance |
+| **Completed** | 2026-07-08 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Audited all 5 SKILL.md files under `.opencode/skills/system-deep-loop/` (the hub itself, plus `deep-research`, `deep-review`, `deep-improvement`, `deep-ai-council`) against `sk-doc`'s `create-skill` canonical templates, using the project's own authoritative validators (`package_skill.py --check` for leaf skills, `parent-skill-check.cjs` for the two-axis hub) rather than manual inspection. **Structural template conformance was already 100%** — every file passed its correct checker with 0 errors before any changes were made. The only findings were soft/recommended warnings, which the operator asked to be fixed anyway: 3 SKILL.md files over the 3000-word soft budget, 131 asset files in `deep-improvement` using hyphen-case instead of snake_case naming, and 4 changelog files missing a `version` frontmatter field. All were fixed, plus 2 stale references and 1 additional missing-version file an independent verification pass caught that the fix agents had missed.
+
+### Files Changed
+
+| File/Area | Action | Purpose |
+|---|---|---|
+| `deep-improvement/assets/**` (131 files) | `git mv` | Hyphen-case → snake_case basenames (directories unchanged) |
+| 98 skill-benchmark fixture JSON files | Edit | Embedded `scenarioId` field updated to match new filename |
+| 7 model-benchmark profile JSON files | Edit | `fixtures[]` array stems updated (5 found beyond original scope via a full sweep) |
+
+## 007-comprehensive-deep-review/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "20-iteration comprehensive deep review (GPT-5.5-fast, high effort) of the entire system-deep-loop hub + 4 workflow packets. Found and fixed 7 confirmed P1 bugs, all independently re-verified. Final verdict: PASS with 15 P2 advisories."
+trigger_phrases:
+  - "deep loop comprehensive review implementation summary"
+  - "system-deep-loop 20 iteration review complete"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/007-comprehensive-deep-review"
+    last_updated_at: "2026-07-09T03:31:53.000Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "All 7 P1 findings fixed and independently re-verified; final checkers pass clean"
+    next_safe_action: "None — packet complete"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "review/review-report.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-loop-unification-052-007"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-comprehensive-deep-review |
+| **Completed** | 2026-07-08 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A genuine 20-iteration `/deep:review` loop over the entire `.opencode/skills/system-deep-loop` tree — the two-axis hub plus all 4 workflow packets (`deep-research`, `deep-review`, `deep-improvement`, `deep-ai-council`; 880 files total) — dispatched to `openai/gpt-5.5-fast` at high reasoning effort via the same audited `cli-opencode` executor path proven in this session's earlier 5-iteration review. Found 22 findings (0 P0, 7 P1, 15 P2). All 7 P1 findings were fixed and independently re-verified by a separate agent before being accepted; two gaps that verification surfaced (a partial fix and a residual sibling-doc omission) were closed in the same session rather than left open.
+
+### Files Changed (remediation)
+
+| File/Area | Action | Purpose |
+|---|---|---|
+| `deep-research/SKILL.md`, `references/guides/quick_reference.md`, `assets/prompt_pack_iteration.md.tmpl` | Edit | Added untrusted-WebFetch-content guardrail rules |
+| `system-spec-kit/shared/review-research-paths.cjs` | Edit | Added workspace-root containment check to `resolveArtifactRoot()` (shared by deep-research + deep-review) |
+
+## 008-divergent-mode-dogfood/implementation-summary.md
+---
+title: "Implementation Summary: Divergent-Mode Live Dogfood — Research + Review"
+description: "Both loops completed 10/10 real iterations against system-deep-loop, both with convergenceMode=divergent active. Neither pivot fired (correct — neither loop reached a genuine legal STOP within budget). A first attempt was destroyed mid-run by an unsandboxed CLI dispatch; after a containment-parity fix and worktree isolation, the retry succeeded and was independently verified end-to-end."
+trigger_phrases:
+  - "divergent mode dogfood implementation summary"
+  - "divergent mode dogfood retry complete"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/008-divergent-mode-dogfood"
+    last_updated_at: "2026-07-11T10:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Both loops verified complete: 10/10 iterations, no pivot fired, tree clean"
+    next_safe_action: "Merge wt/0028-divergent-dogfood-retry to skilled/v4.0.0.0"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "review/deep-review-findings-registry.json"
+      - "research/INCIDENT.md"
+      - "review/INCIDENT.md"
+    completion_pct: 100
+    open_questions:
+      - "Whether to run review's phase_synthesis for parity with research's synthesis doc"
+      - "Whether the real bugs found in system-deep-loop's own runtime warrant a separate remediation packet"
+    answered_questions:
+      - "Deliberately trigger the divergent pivot — confirmed by operator."
+      - "Nest as phase 008 under 030-deep-loop-unification — confirmed by operator."
+      - "After the incident, fix the containment gap and retry in a worktree — confirmed by operator."
+---
+# Implementation Summary: Divergent-Mode Live Dogfood — Research + Review
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-divergent-mode-dogfood |
+| **Completed** | 2026-07-11 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Two parallel deep-loop dogfood runs against `system-deep-loop` itself — `/deep:research` hunting for improvements, `/deep:review` hunting for bugs/drift — both configured with `convergenceMode: "divergent"` to exercise the packet-055 pivot mechanism for the first time with real content-generating iterations. Both loops reached genuine `maxIterationsReached` terminal states: **10/10 real iterations each**, independently verified from raw state logs, not self-reports. **No divergent pivot fired in either loop** — both stayed `STOP_BLOCKED` at every convergence checkpoint (never reached a genuine legal STOP within the 10-iteration budget), so the pivot mechanism was correctly configured and ready but never actually exercised. The mechanism's absence-of-trigger was itself confirmed correct: `maxIterationsReached` is an explicitly-excluded pivot-eligibility reason by design.
+
+The first attempt was destroyed mid-run (research at iteration 9, review at iteration 7) by a dispatched `opencode run` CLI session with unsandboxed repo write access — real, unrecoverable-via-git data loss, contained to this packet's own never-committed artifacts (`system-deep-loop`'s tracked code was untouched). After an operator-approved fix and retry, both loops completed successfully.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 009-deep-router-agent-rename/implementation-summary.md
+---
+title: "Implementation Summary: Rename the deep router agent to deep-loop"
+description: "The primary deep-loop router agent is now named `deep-loop` instead of `deep`, giving it one identity that no longer collides with the `/deep:*` command namespace or the `deep-*` leaf agents. Renamed across all three runtime mirrors; sibling agents, commands, and the registry are untouched."
+trigger_phrases:
+  - "deep router rename summary"
+  - "deep-loop agent summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/009-deep-router-agent-rename"
+    last_updated_at: "2026-07-04T17:50:32Z"
+    last_updated_by: "claude-code"
+    recent_action: "Renamed and verified; ready to commit and push"
+    next_safe_action: "Commit the tracked rename and push the branch"
+    blockers: []
+    key_files:
+      - ".opencode/agents/deep-loop.md"
+      - ".claude/agents/deep-loop.md"
+      - ".opencode/agents/orchestrate.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "034-deep-router-rename"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Rename the deep router agent to deep-loop
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-deep-router-agent-rename |
+| **Completed** | 2026-07-03 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The primary deep-loop router agent now answers to a single, unambiguous name: `deep-loop`. Before, it was named `deep`, which collided visually with the `/deep:*` command namespace, the `deep-loop-workflows` and `deep-loop-runtime` skills, and the `deep-research` / `deep-review` / `deep-context` leaf agents. You can now read `@deep-loop` and know it means the router, nothing else.
+
+### Router identity
+
+The router definition was renamed from `deep.md` to `deep-loop.md` in all three runtime mirrors, its `name:` field set to `deep-loop`, and its internal cross-runtime mirror note repointed at the new filenames.
+
+### Routing-boundary references
+
+The three `orchestrate.md` mirrors carry a boundary rule that forbids Task-dispatching the router as a worker. Their bare `@deep` references were updated to `@deep-loop`. A negative-lookahead pattern (`@deep(?![-\w])`) ensured the sibling leaf mentions (`@deep-research`, `@deep-review`, `@deep-context`) were left alone.
+
+
+## 010-deep-loop-parent-skill-alignment/implementation-summary.md
+---
+title: "Implementation Summary: deep-loop parent-skill alignment"
+description: "Closure status record for deep-loop parent-skill alignment. R1-R5, the deep-ai-council rename, R3 keep-all, R4 keep, and NFR-S01 per-mode allowed-tools contract are done; the full live-loop e2e remains optional and was not run."
+trigger_phrases:
+  - "deep-loop alignment status"
+  - "deep-loop alignment closure"
+importance_tier: "supporting"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/010-deep-loop-parent-skill-alignment"
+    last_updated_at: "2026-06-26T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "R5 gates green; runtime reachability confirmed by registration; optional live-loop e2e not run"
+    next_safe_action: "Optional: run a full live deep-loop e2e; refresh metadata separately"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "author-155-003-deep-loop-alignment"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions:
+      - "R1 static hub routing done."
+      - "R2 deep-ai-council rename done."
+      - "R3 done: all five feature_catalog directories stay because each is earned."
+      - "R4 done: merged identity kept by sign-off; drift-guard green."
+      - "NFR-S01 accepted as per-mode allowed-tools authoritative at dispatch."
+      - "R5 done: strict recursive validation passed, package checks passed, routing fixtures passed, parent-skill invariants passed, and runtime registration confirms reachability; full live-loop e2e remains optional and was not run."
+---
+# Implementation Summary: deep-loop parent-skill alignment
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-deep-loop-parent-skill-alignment |
+| **Completed** | Effectively complete (~95%): R1-R5 done; all static and fixture gates green; reachability confirmed by runtime registration; full live-loop e2e optional/not run |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet's alignment is effectively complete for required gates. R1 is done for the static Option E hub routing contract: `Skill(deep-loop-workflows)` is the invokable hub surface, and routing is registry-driven. R2 is done: the packet folder/name is `deep-ai-council`, while legacy public `/deep:ai-council` and `ai-council` agent surfaces remain. R3 is done as keep-all earned: all five `feature_catalog/` directories remain because each catalog is substantial and warranted. R4 is done as keep: maintainer sign-off plus a green drift-guard keeps the merged-identity layer. NFR-S01 is accepted on the corrected per-mode allowed-tools contract: each mode packet declares its authoritative allowed-tools, and the hub's allowed-tools is its own grant, not the union of mode tools. R5 is done for required evidence: strict recursive spec validation, package checks, routing fixtures, parent-skill invariants, and runtime-registration reachability are green. A full live-loop e2e was not run and remains optional.
+
+### Planning artifacts authored
+
+## 011-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment/implementation-summary.md
+---
+title: "Implementation Summary: Phase 5: deep-ai-council Frontmatter Alignment"
+description: "All 18 deep-ai-council reference/asset docs now conform to the canonical contract, including one net-new authored block and four tier promotions."
+trigger_phrases:
+  - "deep-ai-council frontmatter summary"
+  - "council doc contract evidence"
+  - "frontmatter alignment phase five"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment"
+    last_updated_at: "2026-06-11T09:45:08Z"
+    last_updated_by: "claude-fable"
+    recent_action: "Phase complete: 18 docs conform and smoke passed"
+    next_safe_action: "Campaign continues in sibling phases"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-ai-council/references/structure/output_schema.md"
+      - ".opencode/skills/deep-ai-council/assets/prompt_pack_round.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-11-009-005-deep-ai-council"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-deep-ai-council-frontmatter-alignment |
+| **Completed** | 2026-06-11 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+deep-ai-council's 18 reference and asset docs now carry exactly the canonical frontmatter contract, making the campaign's largest doc set so far fully valid routing signal for the advisor doc harvest. The phase exercised every drift class at once: enum normalization, missing-field backfill, net-new authoring, tier judgment, and phrase hygiene.
+
+### Contract normalization
+
+13 references carried the detailed block with `contextType: reference`, the same natural-but-wrong value the 008 pilot found. Each now declares `planning` (convergence rules, dispatch, failure handling, anti-patterns, seat diversity, scoring, loop protocol) or `implementation` (graph support, command wiring, findings registry, folder layout, output schema, state format) based on whether the doc governs how the council deliberates or how its artifacts persist. Four docs moved from `normal` to `important` tier: `depth_dispatch.md` (seat-dispatch and no-recursive-counciling invariants), `folder_layout.md` (mandatory packet-local artifact layout), `output_schema.md` (single source of truth for the persist-artifacts.cjs parser), and `state_format.md` (append-only JSONL event contract).
+
+### Missing-field backfill and net-new authoring
+
+`loop_protocol.md`, `quick_reference.md`, and both template assets carried only title, description, and trigger phrases; they gained `importance_tier`/`contextType`. `prompt_pack_round.md` had no frontmatter at all and received a full canonical block authored from its actual content (seat prompt slots, required sections, verdict footer).
+
+## 011-skill-frontmatter-standardization/002-deep-improvement-frontmatter-alignment/implementation-summary.md
+---
+title: "Implementation Summary: Phase 7: deep-improvement Frontmatter Alignment"
+description: "All 22 deep-improvement reference/asset docs now conform to the canonical contract, the largest single-skill normalization in the campaign so far."
+trigger_phrases:
+  - "deep-improvement frontmatter summary"
+  - "frontmatter alignment complete"
+  - "doc contract normalization evidence"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/002-deep-improvement-frontmatter-alignment"
+    last_updated_at: "2026-06-11T09:54:32Z"
+    last_updated_by: "claude-fable"
+    recent_action: "Phase complete: 22 docs conform and smoke passed"
+    next_safe_action: "Campaign continues in sibling phases"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-improvement/references/shared/promotion_gate_contract.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-11-009-007-deep-improvement"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-deep-improvement-frontmatter-alignment |
+| **Completed** | 2026-06-11 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 22 deep-improvement reference and asset docs (18 references + 4 non-README assets) now carry exactly the canonical frontmatter contract. This is the largest phase of the campaign so far and the first to exercise every drift state at once: enum fixes, partial-block completion, net-new phrase authoring, and a doc with no frontmatter at all.
+
+### Contract normalization
+
+Baseline had four distinct states. 5 fully-detailed docs used `contextType: reference`, a natural-but-wrong value outside the canonical enum. 12 docs carried trigger_phrases but no tier or contextType. 3 docs (the agent_improvement asset templates) had title+description only. `references/shared/heldout_and_gold_sets.md` had no frontmatter fence at all and received the full block. Every doc now declares the 5-field contract with no leftover keys.
+
+### Phrase repair
+
+Four docs had phrase sets that violated the multi-word policy and were rebuilt from actual content: `profiling_audit_log.md` (single tokens plus a "DAI-004" finding id, also scrubbed from the description), `mixed_executor_methodology.md` (all 4 phrases were single hyphenated tokens), `integration_scanning.md` and `skill_benchmark/operator_guide.md` (command-name tokens like `scan-integration` and `start-skill-benchmark-loop`). Mixed-case Lane C phrases were lowercased.
+
+
+## 011-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment/implementation-summary.md
+---
+title: "Implementation Summary: Phase 8: deep-loop-runtime Frontmatter Alignment"
+description: "All 4 deep-loop-runtime references now conform to the canonical contract; the pilot proved the per-skill recipe end to end."
+trigger_phrases:
+  - "deep-loop-runtime frontmatter summary"
+  - "frontmatter pilot complete"
+  - "doc contract pilot evidence"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment"
+    last_updated_at: "2026-06-11T11:40:00Z"
+    last_updated_by: "claude-fable"
+    recent_action: "Phase complete: 4 docs conform and smoke passed"
+    next_safe_action: "Campaign continues in sibling phases"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/references/script_interface_contract.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-11-009-008-deep-loop-runtime"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-deep-loop-runtime-frontmatter-alignment |
+| **Completed** | 2026-06-11 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+deep-loop-runtime's 4 reference docs now carry exactly the canonical frontmatter contract, making this the first skill whose docs are fully valid routing signal for the advisor doc harvest. As the campaign pilot it proved the per-skill recipe end to end: coverage-mode baseline, frontmatter-only patch, deterministic re-check, daemon-independent routing smoke.
+
+### Contract normalization
+
+All 4 docs carried the detailed block already, but with `contextType: reference` — a natural-but-wrong value outside the canonical enum. Each doc now declares `contextType: implementation` (they document schemas, integration points, script entry contracts and state formats). The two formal contract docs (`script_interface_contract.md`, `state_format.md`) moved from `normal` to `important` tier so dispatch-contract lookups weight them higher in the advisor's derived lane.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/031-smart-routing-benchmark-program"
+# PACKET: specs/system-deep-loop/031-smart-routing-benchmark-program
+
+---
+title: "Implementation Summary: Smart-Routing Benchmark Program"
+description: "What shipped for the smart-routing benchmark program: 7/8 children scoring Mode-A PASS on their own gold, the sk-code union-projection drift guard, a proven live Mode-B pipeline with a circularity meter, and the migration-gated remainder (deep-ai-council + deep-loop hub Type-2)."
+trigger_phrases:
+  - "smart routing benchmark summary"
+  - "routing benchmark shipped"
+  - "circularity meter results"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program"
+    last_updated_at: "2026-07-09T05:05:29Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Completed the full 20-run routing benchmark matrix"
+    next_safe_action: "Wire the Mode-A configs + drift guard into a CI job (only remaining follow-up)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts"
+      - ".opencode/skills/sk-code/shared/references/smart_routing.md"
+      - ".opencode/skills/sk-code/*/manual_testing_playbook/"
+      - ".opencode/skills/system-deep-loop/{deep-research,deep-review,deep-improvement}/manual_testing_playbook/intra-routing-recall/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "session_01Ht7J9NZTEBBXwzTeNvras9"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions:
+      - "Trim Mode-B to representative-per-family permanently, or run all 10 once the deep-loop hub unblocks?"
+    answered_questions:
+      - "Both hubs, each child its own router+gold, both modes — locked before build"
+---
+# Implementation Summary: Smart-Routing Benchmark Program
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 031-smart-routing-benchmark-program |
+| **Completed** | Complete — 20/20 runs (8 children + 2 hubs, both modes); CI wiring is the only follow-up |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The benchmark program delivered the full 10-target / 20-run matrix (per-child routers + gold, parent projection + drift guard, and both Mode-A and Mode-B baselines) plus the circularity-meter synthesis.
+
+## What shipped
+
+The program is complete — **all 8 children and both hubs scored in both modes** (20 runs), verified and pushed to the shared branch `system-speckit/028-memory-search-intelligence`.
+
+### Mode-A (deterministic router-replay — the CI gate)
+
+**All 8 children score PASS** on **their own** non-fabricated gold; **both hub baselines** are captured; the sk-code parent is a drift-guarded union projection of its children.
+
+| Target | Verdict | Aggregate | Notes |
+|--------|---------|-----------|-------|
+| `code-review` | PASS | 100 | already self-routed; gold tightened to exact `assets/*` |
+| `deep-review` | PASS | 93 | router already canonical |
+| `deep-ai-council` | PASS | 92 | tuple `INTENT_MODEL` normalized → canonical `INTENT_SIGNALS`; new gold |
+| `code-webflow` | PASS | 91 | new inline §2b router (13 intents) |
+| `deep-research` | PASS | 91 | router already canonical |
+| `deep-improvement` | PASS | 91 | router already canonical |
+| `code-quality` | PASS | 89 | thin single-intent router (hybrid; path precision is a unit test) |
+| `code-opencode` | PASS | 84 | new inline §2b router (6 intents, 30 paths) |
+| `system-deep-loop` hub | PASS | 100 | 20 hub scenarios; parent→child route-gold |
+| `sk-code` hub | baseline | 85 | union projection; byte-identical before/after P3 |
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Delivery used the existing benchmark engine, a sk-code projection guard, and representative live corroboration.
+
+### Architecture + guardrail
+
+- Decentralized sk-code surface-child routing into each child's `SKILL.md`; rewrote the parent `smart_routing.md` `RESOURCE_MAP` as `union(children) + parent-owned tier`.
+- Extended `sk-code-router-sync.vitest.ts` to enforce `parent == union(children) + tier`, each child self-parseable, and every child path on disk — 7/7 green.
+- **Invariant held**: the sk-code hub Mode-A run is byte-identical before and after the projection rewrite (the highest-value guardrail — the working two-layer hub run did not change).
+
+### Mode-B (live `cli-opencode gpt-5.5-fast --variant high` — advisory)
+
+> **⚠️ These original Mode-B numbers were a measurement artifact and have been SUPERSEDED.** Follow-up children corrected the live scores: **001** (live scoring fix — assets were scored on a channel `resourceRecall` ignored, and live d1-intra was halved by an unobservable intent term) and **002** (code-review routing optimization + a router-replay parser bug). Corrected Mode-B after re-baseline:
+>
+> | Target | orig | **corrected** | | Target | orig | **corrected** |
+> |---|---|---|---|---|---|---|
+> | code-quality | 31 | **100** | | deep-improvement | 62 | **80** |
+> | code-opencode | 56 | **88** | | deep-ai-council | 76 | **90** |
+> | code-webflow | 57 | **86** | | **code-review** | **0** | **100** (via 002) |
+> | deep-research | 80 | **91** | | sk-code hub | 67 | **66** |
+> | deep-review | 71 | **87** | | system-deep-loop hub | 93 | **93** |
+>
+> Every child rose; the two 0.00 cases (code-review, code-quality — all-asset gold) confirmed the artifact. See children 001/002/003 for the fixes; the table below is the historical pre-fix meter.
+
+The live pipeline is proven (`scoringMethod: mode-b-live`, `traceMode: live`). **All 8 children + both hubs were scored live** — the complete 20-run matrix — yielding the full **circularity meter** (Mode-A router-replay vs Mode-B live gpt-5.5-fast, with the live per-scenario `resourceRecall`):
+
+| Target | Mode-A | Mode-B | A→B gap | live resourceRecall | Reading |
+|--------|--------|--------|---------|---------------------|---------|
+| `deep-research` | 91 | 80 (PASS) | **11** | 1.00 | strongest — live recalls every resource |
+| `deep-review` | 93 | 71 (COND) | **22** | 0.89 | holds up live → real capability |
+| `deep-improvement` | 91 | 62 (COND) | **29** | 0.90 | holds up live |
+| `deep-ai-council` | 92 | 76 (COND) | **16** | 0.91 | holds up live → real capability |
+| `code-opencode` | 84 | 56 (COND) | **28** | 0.70 | partial live recall |
+| `code-webflow` | 91 | 57 (COND) | **34** | 0.51 | partial live recall |
+| `code-quality` | 89 | 31 (FAIL) | **58** | 0.00 | thin single-route; live misses it |
+| `code-review` | 100 | 0 (FAIL) | **100** | 0.00 | **most router-overfit** — perfect Mode-A, zero live corroboration |
+| `system-deep-loop` hub | 100 | 93 (PASS) | **7** | — | hub routes to the right child live (strongest hub) |
+| `sk-code` hub | 85 | 67 (COND) | **18** | — | two-layer hub routes correctly in most cases |
+
+**The meter has two components, and the honest reading separates them:**
+
+1. **A systematic live floor (all children): `intentRecall = 0.00`.** The live executor never emits the gold `INTENT_SIGNALS` keys, so live `d1intra` loses its `0.4·intentRecall` term across the board. This depresses *every* child's Mode-B score and accounts for a fixed slice of every gap — it is an executor characteristic, not a per-child routing defect. (Hubs are scored by route-outcome, not child resourceRecall, so this floor does not apply to them — hence their smaller gaps.)
+2. **`resourceRecall` is the real live signal.** The four deep-loop children recall their resources robustly live (0.89–1.00) → genuinely discoverable routers. sk-code surface children recall partially (0.51–0.70). `code-quality` and `code-review` recall nothing live (0.00).
+
+**Standout finding — `code-review` (Mode-A 100 → Mode-B 0, resourceRecall 0):** its perfect Mode-A is pure router self-consistency with *zero* live corroboration — the most overfit Type-1 gold in the set (7/7 scenarios routed to the wrong resources live). This is exactly what the circularity meter exists to surface: a perfect deterministic score that a live model does not reproduce. `code-quality`'s 0.00 is consistent with its deliberately thin single-route (ADR-004). Conversely, all four deep-loop children's high live resourceRecall confirms their routers are real capability, not fixture memorization.
+
+**Both hubs — Type-2 parent→child discoverability, live:** `system-deep-loop` scored **PASS 93** (20 scenarios, Mode-A 100 → gap 7) and `sk-code` scored **CONDITIONAL 67** (30 scenarios, Mode-A 85 → gap 18, D5 hard-gate 100). Both route to the correct child in most cases live — the sk-code hub is the P5 Type-2 measurement that is unscoreable in router mode (contamination bans hub keywords), corroborated here in Mode-B.
+<!-- /ANCHOR:how-delivered -->
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+The implementation follows the ADRs and findings summarized below.
+
+## Key findings (why the build shape is what it is)
+
+1. **Contamination-lint tension** — `--fixtures-dir` hard-fails a router-keyword leak (score 0); the default playbook corpus treats it as advisory. Type-1 prompts must carry the intent keywords to fire the router, so Type-1 gold had to be **playbooks, not fixtures** (ADR-003).
+2. **sk-code Type-2 is a Mode-B measurement** — strict `scoreHubRoute` fixtures are unscoreable in router mode: decontaminated prompts route to no mode (silent default → `BLOCKED-BY-ROUTING`), keyword prompts fail contamination. The router-mode Type-2 signal is the D1-inter advisor probe (which surfaced that the advisor wrongly ranks sk-code top for pure doc edits — a real negative-control finding).
+3. **`parseRouter` takes SKILL.md text, not a path** — the union-diff and drift guard must `readFileSync` then parse, matching the engine contract.
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
+## Verification
+
+Verification evidence is the shipped baseline, live-mode evidence, and blast-gated commit record below.
+
+## Commits (shared branch, scratch-index recipe, all blast-gated)
+
+`ed16475077` (P0 baseline + path fix) · `2b0ec3de0d` (webflow+opencode routers) · `5fcd621310` (code-quality thin router) · `3137fb72d2` (drift guard) · `79812f3393` / `c72367b125` / `9ff574a5dd` / `97c0f01d30` (sk-code children gold) · `2825083449` (sk-code children Mode-A baselines) · `3a0c10020f` (deep-loop children gold + baselines) · `2f61bd89be` (packet + first Mode-B) · `c117b8faa2` (full un-gated Mode-B matrix) · `b3dfe378ed` (sk-code hub Mode-B). deep-ai-council (clean router normalization + gold + both modes) + deep-loop hub Mode-B: this turn's commit.
+
+**The 20-run matrix is complete: 8 children × 2 modes + 2 hubs × 2 modes.**
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+## deep-ai-council un-gating (how the deferral was resolved)
+
+The `deep-ai-council` deferral (originally ADR-006) was resolved by recognizing that my `INTENT_MODEL → INTENT_SIGNALS` normalization and the concurrent `deep-loop-workflows → system-deep-loop` content migration touch **disjoint regions** of `SKILL.md` (my change = the INTENT block; theirs = prose/script-paths, incl. a buggy `runtime//`). The committed `SKILL.md` was built as **origin prose + my INTENT block only** (verified: the diff vs origin is INTENT-scoped, zero migration tokens) and staged via a `git hash-object` blob so the working tree's concurrent migration edits are left untouched. Benchmarking only *reads* the file, so the un-gated runs never required committing the entangled version.
+
+## Remaining follow-up (un-gated, non-blocking)
+
+- **CI wiring**: wire the Mode-A configs + drift guard into a CI job (the drift guard already runs as a vitest). Needs a CI-strategy decision (which runner, blocking vs advisory), so left for the operator.
+
+## Notes
+
+- The `system-deep-loop` hub Mode-B is scored by route-outcome; the concurrent `mode-registry.json` edits did not block a clean PASS 93 run against the current working tree.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

@@ -1,0 +1,937 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/019-deep-agent-improvement-uplift"
+# PACKET: specs/system-deep-loop/z_archive/019-deep-agent-improvement-uplift
+
+---
+title: "Implementation Summary: Phase 4 M-3 mutation signature dedup in mutation-coverage.json"
+description: "Adds sha256-based mutation signatures to mutation-coverage.json with dedup and bypass; updates reducer + SKILL.md + playbook per council §10.6"
+trigger_phrases:
+  - "110 phase 004-dai-uplift summary"
+  - "deep-agent-improvement mutation signature dedup"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/019-deep-agent-improvement-uplift"
+    last_updated_at: "2026-05-16T13:00:00Z"
+    last_updated_by: "cli-opencode-deepseek-v4-pro"
+    recent_action: "implemented_M3_mutation_signature_dedup_reducer_playbook"
+    next_safe_action: "packet_close_out"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs"
+      - ".opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs"
+      - ".opencode/skills/deep-agent-improvement/SKILL.md"
+      - ".opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md"
+    session_dedup:
+      fingerprint: "sha256:d729473fe6359a4fa409dd2cd25346e03a3c7f363dbfd590d2123120e34c1970"
+      session_id: "2026-05-16-110-004-dai-uplift-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "M-3 signature: sha256(dimension + mutationType + targetSection + normalizedBody64)"
+      - "Bypass: DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1"
+      - "Skip reason format: EXHAUSTED-FROM: iter-NNN"
+      - "Backward compat: records without signature fall back to dimension::mutationType"
+      - "Reducer updated to prefer signature over dim::type key"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 035-deep-agent-improvement-uplift |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### mutation-coverage.cjs
+- Added `require('node:crypto')` import
+- Added `SKIP_DEDUP` constant: `process.env.DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP === '1'`
+- Added `computeMutationSignature(mutation)` — sha256-based signature:
+  ```
+  sha256(dimension + "\u001f" + mutationType + "\u001f" + targetSection + "\u001f" + normalizedBody64)
+  ```
+  Where `normalizedBody64` = whitespace-collapsed, lowercased, first 64 chars of body
+- Updated `recordMutation()` to compute and store `signature` on every entry; returns signature
+- Updated `markExhausted()` to accept optional `options.signature` and `options.reason`
+- Added `isSignatureSeen(coveragePath, signature)` — scans `mutations[]` and `exhausted[]` for matching signature; respects `SKIP_DEDUP` bypass; returns `{ seen, reason }`
+- Exported new symbols: `SKIP_DEDUP`, `computeMutationSignature`, `isSignatureSeen`
+
+### reduce-state.cjs
+- Updated `buildMutationCoverageKey()` to prefer `entry.signature` when available (richer dedup)
+- Falls back to `dimension::mutationType` for legacy records without signature field
+- No other changes; all existing consumer paths continue to work
+
+### SKILL.md
+- Extended "Mutation Coverage Graph" section with:
+  - Signature computation formula
+  - Dedup behavior: `isSignatureSeen()` pre-checks before proposing mutations
+  - `EXHAUSTED-FROM: iter-NNN` skip reason format
+  - `DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1` bypass documentation
+  - Backward compatibility note for legacy records
+  - Authoritative storage in `mutation-coverage.json`
+
+### 034-replay-consumer.md (playbook)
+- Added **§6 M-3 SIGNATURE DEDUP SMOKE TEST (Packet 110)** with:
+  - Smoke test scenario verifying dedup and bypass behavior
+  - Exact command sequence for disposable runtime validation
+  - Expected signals and pass/fail criteria
+
+### Smoke test results
+- `node --check` pass for both .cjs files
+- Runtime smoke test:
+  - `computeMutationSignature()` produces stable deterministic hashes
+  - `isSignatureSeen()` correctly detects duplicate signatures (`seen: true`)
+  - `DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1` bypass returns `seen: false`
+  - `markExhausted()` accepts `signature` and `reason` options
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+- 4 files edited via exact string matching
+- Syntax verification: `node --check` on both .cjs files
+- Runtime smoke test: `node -e` verifying signature compute, record, dedup, and bypass
+- Single commit on `main` branch
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+1. **Signature includes `targetSection`**: Per council §10.6 and Skeptic seat — must not erase target-section distinctions when deduplicating
+2. **Signature lives in `mutation-coverage.json`**: Per council §10.6 directive to name the correct artifact boundary; this is the authoritative store for mutation tracking
+3. **`isSignatureSeen()` scans both arrays**: Mutations can be in `mutations[]` (tried) or `exhausted[]` (exhausted); both must be checked to prevent re-proposal
+4. **Bypass at the check level, not the record level**: `SKIP_DEDUP=1` affects `isSignatureSeen()` only — mutations are still recorded with signatures even when bypass is active, ensuring future runs have the full history
+5. **Reducer graceful degradation**: When signature is absent (legacy records), `buildMutationCoverageKey()` falls back to `dimension::mutationType` — existing behavior preserved
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates/004-deep-agent-improvement-uplift --strict` — exit 0
+- `node --check mutation-coverage.cjs` — exit 0
+- `node --check reduce-state.cjs` — exit 0
+- Runtime smoke: `isSignatureSeen` detects duplicates correctly
+- Runtime smoke: `SKIP_DEDUP=1` bypass works
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+- Signature uses first 64 chars of body — very similar mutations with differences beyond 64 chars may collide (mitigated by `targetSection` field uniqueness)
+- No signature migration — legacy entries in existing `mutation-coverage.json` files will use the fallback `dimension::mutationType` key until re-recorded
+- Playbook smoke test requires a disposable temp file; not run automatically in CI
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/020-skill-readme-standardization"
+# PACKET: specs/system-deep-loop/z_archive/020-skill-readme-standardization (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: deep-loop skill README standardization"
+description: "Group the archived deep-loop skill README standardization phases for the deep-ai-council, deep-context, deep-improvement, deep-loop-runtime, deep-research and deep-review README rewrites. This parent organizes the completed child phase folders and their independent validation records."
+trigger_phrases:
+  - "deep-loop readme standardization"
+  - "skill readme standardization campaign"
+  - "deep skill readme batch"
+importance_tier: "archived"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/020-skill-readme-standardization"
+    last_updated_at: "2026-07-08T00:00:00.000Z"
+    last_updated_by: "openai-gpt-5.5"
+    recent_action: "Created archived phase parent for the completed deep-loop skill README standardization batch"
+    next_safe_action: "Archive lookup via child phase folders"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: phase -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + sub-phase list + outcome only; no merge/migration/consolidation history; heavy docs live in children. -->
+
+# Feature Specification: deep-loop skill README standardization
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | phase |
+| **Priority** | P1 |
+| **Status** | Complete |
+| **Created** | 2026-06-07 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Parent Spec** | `system-deep-loop` |
+| **Parent Packet** | `system-deep-loop` |
+| **Handoff Criteria** | Each child phase remains complete and validates independently; this parent validates under recursive phase-parent policy |
+<!-- /ANCHOR:metadata -->
+
+---
+
+## 001-deep-ai-council-readme/implementation-summary.md
+---
+title: "Implementation Summary: deep-ai-council README"
+description: "The deep-ai-council README now reads in the narrative voice and leads with the planning-only council model: six lenses, three critique roles and the two-of-three convergence rule with an auditable artifact trail."
+trigger_phrases:
+  - "deep-ai-council readme shipped"
+importance_tier: "normal"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/020-skill-readme-standardization/001-deep-ai-council-readme"
+    last_updated_at: "2026-07-08T05:56:44.530Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped deep-ai-council README; Batch B underway"
+    next_safe_action: "Begin phase 007 (deep-context README)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-ai-council/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "readme-std-135-006"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "DeepSeek's draft was accurate; host verified all 15 reference paths and the nine playbook categories before publishing"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-deep-ai-council-readme |
+| **Completed** | 2026-06-07 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-ai-council README now opens with a human pitch and an at-a-glance table, explains the problem before the mechanism, and reads like a sibling of the golden example. It is the first skill of Batch B.
+
+### Narrative rewrite
+
+The README moved to the narrative skeleton and leads with the council model: six strategy lenses (Analytical, Creative, Critical, Pragmatic, Holistic, Research), three critique roles (Hunter, Skeptic, Referee) and the two-of-three convergence rule with preserved failed-round forensics. QUICK START shows both surfaces (the `@ai-council` agent and the `/deep:ask-ai-council` deep mode), and INTEGRATION states the planning-only boundary and the sibling deep loops. It is 211 lines and HVR-clean.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/deep-ai-council/README.md` | Modified | Narrative-voice rewrite of the council skill README |
+
+## 002-deep-context-readme/implementation-summary.md
+---
+title: "Implementation Summary: deep-context README"
+description: "The deep-context README now reads in the narrative voice and leads with the by-model parallel sweep and the reuse-first Context Report, dropping the stale version and reference count."
+trigger_phrases:
+  - "deep-context readme shipped"
+importance_tier: "normal"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/020-skill-readme-standardization/002-deep-context-readme"
+    last_updated_at: "2026-07-08T05:56:44.774Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped deep-context README"
+    next_safe_action: "Begin phase 008 (deep-improvement README)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-context/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "readme-std-135-007"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "DeepSeek draft accurate; host verified the four reference subfolders and softened brittle counts"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-deep-context-readme |
+| **Completed** | 2026-06-07 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-context README now opens with a human pitch and an at-a-glance table, explains the discovery problem before the mechanism, and reads like a sibling of the other deep-* READMEs.
+
+### Narrative rewrite
+
+The README moved to the narrative skeleton and leads with the by-model parallel sweep and the reuse-first Context Report. HOW IT WORKS narrates frontier seeding, the parallel sweep, the agreement merge and the five convergence signals with their exact thresholds and weights. INTEGRATION states that you run it before `/speckit:plan` and the boundary with the sibling deep loops. It is 202 lines and HVR-clean.
+
+### Stale facts dropped
+
+The old README's Key Statistics claimed version 1.0.0 (the skill is 1.2.0) and 2 references (the tree has 10 across four subfolders, contradicting the README's own structure section). The new template carries no version line, and the rewrite names the four subfolders without a count.
+
+### Files Changed
+
+## 003-deep-improvement-readme/implementation-summary.md
+---
+title: "Implementation Summary: deep-improvement README"
+description: "The deep-improvement README now reads in the narrative voice and leads with the proposal-first evaluator, the three lanes and the five scoring dimensions; stale counts and the old name are gone."
+trigger_phrases:
+  - "deep-improvement readme shipped"
+importance_tier: "normal"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/020-skill-readme-standardization/003-deep-improvement-readme"
+    last_updated_at: "2026-07-08T05:56:45.040Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped deep-improvement README"
+    next_safe_action: "Begin phase 009 (deep-loop-runtime README)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-improvement/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "readme-std-135-008"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "DeepSeek draft fully accurate; host verified all reference and script paths and the five feature-catalog categories"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-deep-improvement-readme |
+| **Completed** | 2026-06-07 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-improvement README now opens with a human pitch and an at-a-glance table, explains the guesswork problem before the mechanism, and reads like a sibling of the other deep-* READMEs.
+
+### Narrative rewrite
+
+The README leads with the proposal-first lifecycle (it never mutates the canonical file before the score and approval gates pass), the three lanes (agent-improvement, model-benchmark, skill-benchmark) and the five weighted scoring dimensions. HOW IT WORKS covers the integration scan, the dimensions and the guarded promotion with rollback. It is 211 lines and HVR-clean.
+
+### Stale facts and old name dropped
+
+The old README claimed a feature-catalog count of 4 (the directory has 5) and drifted playbook numbers. The rewrite names the categories without a hard count, uses only the current name `deep-improvement` and carries no version line.
+
+### Files Changed
+
+## 004-deep-loop-runtime-readme/implementation-summary.md
+---
+title: "Implementation Summary: deep-loop-runtime README"
+description: "The deep-loop-runtime README now reads in the narrative voice and leads with its role as the shared foundation the five deep loops ride, with stale test and entry-point counts corrected."
+trigger_phrases:
+  - "deep-loop-runtime readme shipped"
+importance_tier: "normal"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/020-skill-readme-standardization/004-deep-loop-runtime-readme"
+    last_updated_at: "2026-07-08T05:56:45.298Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped deep-loop-runtime README"
+    next_safe_action: "Begin phase 010 (deep-research README)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "readme-std-135-009"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "8-script and 4-reference counts verified; code-block semicolons are valid TS and prose stays HVR-clean"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-deep-loop-runtime-readme |
+| **Completed** | 2026-06-07 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-loop-runtime README now opens with a human pitch and an at-a-glance table, explains the duplication problem before the mechanism, and presents the skill as the shared foundation the five deep loops ride rather than a loop you invoke.
+
+### Narrative rewrite
+
+The README leads with the consolidation story (the runtime moved out of the MCP server into one peer skill), the three component families (`lib/deep-loop/`, `lib/coverage-graph/`, `lib/council/`) and the five consumers. QUICK START shows a consumer call (a `.cjs` script invocation and a TypeScript import), not a user slash command. It is 200 lines and HVR-clean in prose.
+
+### Stale counts corrected
+
+The old README's Key Features table claimed 27 vitest files (the suite has more) and four script entry points (there are eight). The rewrite states the verified eight scripts (the four core plus the four fan-out) and avoids a brittle test count, and carries no version line.
+
+### Files Changed
+
+## 005-deep-research-readme/implementation-summary.md
+---
+title: "Implementation Summary: deep-research README"
+description: "The deep-research README now reads in the narrative voice and leads with the autonomous research loop, externalized state and the convergence stop signal, with the stale version line and hard script count dropped."
+trigger_phrases:
+  - "deep-research readme shipped"
+importance_tier: "normal"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/020-skill-readme-standardization/005-deep-research-readme"
+    last_updated_at: "2026-07-08T05:56:45.537Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped deep-research README"
+    next_safe_action: "Begin phase 011 (deep-review README)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-research/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "readme-std-135-010"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All 21 references, scripts and assets resolve; findings-registry named per SKILL.md canonical declaration; version line and hard script count dropped per template"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-deep-research-readme |
+| **Completed** | 2026-06-07 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-research README now opens with a human pitch and an at-a-glance table, explains the context-fatigue problem before the mechanism, and leads with the distinctive value: an autonomous loop that externalizes state to disk and dispatches a fresh LEAF agent per iteration, stopping on a convergence signal computed from the new-information ratio.
+
+### Narrative rewrite
+
+The README leads with the loop. HOW IT WORKS covers the iteration lifecycle (the command YAML owns dispatch, one LEAF per pass capped at roughly twelve tool calls), externalized state (config, JSONL log, strategy, registry, dashboard, the reducer-versus-agent ownership split) and convergence detection (the new-information ratio against a minimum-iterations floor, the quality gate and stuck recovery). It is 207 lines and HVR-clean in prose.
+
+### Stale drift dropped
+
+The old README carried a `1.14.0.0` version line that disagreed with the SKILL.md frontmatter and a Key Statistics block with a drifted script count. The rewrite drops both per the narrative template. The findings registry is named `deep-research-findings-registry.json` per the SKILL.md canonical declaration rather than the legacy short form in the config asset.
+
+### Files Changed
+
+## 006-deep-review-readme/implementation-summary.md
+---
+title: "Implementation Summary: deep-review README"
+description: "The deep-review README now reads in the narrative voice and leads with the severity-weighted multi-dimension review loop and its release-readiness verdict, with the stale version line and six drifted counts dropped."
+trigger_phrases:
+  - "deep-review readme shipped"
+importance_tier: "normal"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/020-skill-readme-standardization/006-deep-review-readme"
+    last_updated_at: "2026-07-08T05:56:45.773Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped deep-review README; Batch B complete"
+    next_safe_action: "Begin phase 012 (mcp-chrome-devtools README)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-review/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "readme-std-135-011"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All 21 references, scripts and assets resolve; no deep-research-only path cited; verdict/severity model verified against review_mode_contract.yaml; version line and brittle counts dropped"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-deep-review-readme |
+| **Completed** | 2026-06-07 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-review README now opens with a human pitch and an at-a-glance table, explains the single-pass-review problem before the mechanism, and leads with the distinctive value: a loop that audits one dimension per pass with fresh context, classifies every finding by blocking severity (P0/P1/P2) and ends with a release-readiness verdict (PASS, CONDITIONAL or FAIL) that routes the next command.
+
+### Narrative rewrite
+
+HOW IT WORKS covers the iteration lifecycle (one dimension per pass, a LEAF agent that reads state and writes back), the severity and verdict model (P0 blocks PASS, the verdict routes to changelog or remediation), externalized state, the three-signal convergence vote behind the nine legal-stop gates with the P0 override, and the Hunter/Skeptic/Referee adversarial self-check. QUICK START shows the five target types (spec folder, skill, agent, track, file set). It is 214 lines and HVR-clean in prose.
+
+### Stale drift dropped
+
+The old Key Statistics block carried six stale or contradictory facts: version 1.11.0.0 (SKILL.md is 1.10.2.0), a stuck threshold of 3 that contradicted its own configuration table value of 2, 7 state files (the packet has 8), a tool budget of 9 to 12 (actual 8 to 11), 21 feature-catalog files (actual 28) and 4 quality gates (the legal-stop bundle has 9). The narrative template carries no version line and avoids brittle counts, so all six drop on rewrite.
+
+### Files Changed
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/021-multi-ai-council-write-protocol"
+# PACKET: specs/system-deep-loop/z_archive/021-multi-ai-council-write-protocol (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Multi-AI Council write protocol"
+description: "Groups the archived Multi-AI Council output, persistence, deferral, write-authority, and main-agent enforcement phases that define how council deliberations produce durable ai-council artifacts."
+trigger_phrases:
+  - "multi-ai-council write protocol"
+  - "council persistence write authority"
+  - "ai-council artifact protocol"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/021-multi-ai-council-write-protocol"
+    last_updated_at: "2026-07-08T00:00:00.000Z"
+    last_updated_by: "opencode"
+    recent_action: "Created archive phase parent for council write-protocol phases"
+    next_safe_action: "Resume a specific child phase for historical detail"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: phase -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + sub-phase list + outcome only; no merge/migration/consolidation history; heavy docs live in children. -->
+
+# Feature Specification: Multi-AI Council write protocol
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | phase |
+| **Priority** | P1 |
+| **Status** | Archived; mixed child states (`DONE`, completed, blocked, code-complete awaiting smoke) |
+| **Created** | 2026-05-06 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Parent Spec** | `system-deep-loop` |
+| **Parent Packet** | `system-deep-loop` |
+| **Handoff Criteria** | Each child phase retains its own completion evidence; parent validates under recursive phase-parent policy |
+<!-- /ANCHOR:metadata -->
+
+---
+
+## 001-multi-ai-council-output-protocol/implementation-summary.md
+---
+title: "Implementation Summary: Multi-AI Council Output Protocol"
+description: "Post-implementation summary for packet 080. Documentation and protocol shipped; orchestrator-level writes deferred."
+trigger_phrases:
+  - "ai-council implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/001-multi-ai-council-output-protocol"
+    last_updated_at: "2026-05-06T13:00:00.000Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Phase 2-3 complete (agent body, references, mirrors, vitest); CHK-022 smoke test deferred"
+    next_safe_action: "Commit packet 080 to main"
+    blockers: []
+    key_files:
+      - ".opencode/agents/multi-ai-council.md"
+      - ".opencode/skills/system-spec-kit/references/multi-ai-council/"
+      - ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:64801e987501ad4d2afbcf6c07ab0768724433cdf1be58fba15d351cea3de8c9"
+      session_id: "implsumm-080-author"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Should ai-council/ be added to validator strict checks? Free-form (per ADR-004)."
+      - "Where do shared references live? Under system-spec-kit/references/multi-ai-council/."
+      - "Should ai-council-state.jsonl have a runtime validator? Convention-only for v1 (per ADR-003)."
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-multi-ai-council-output-protocol |
+| **Phase** | 1-3 complete (documentation + protocol shipped) |
+| **Status** | DONE; CHK-022/023 deferred (orchestrator-level writes scoped to follow-on) |
+| **Date** | 2026-05-06 |
+| **Branch** | `main` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Phase 1 — Spec + design lock-in
+
+- `description.json` + `graph-metadata.json`
+- Level 3 `spec.md` with executive summary, 12 canonical sections, and `ai-council/` folder layout
+- `plan.md` with 7 anchored sections + L2/L3 add-ons (phase-deps, effort, dependency-graph, critical-path, milestones)
+
+## 002-multi-ai-council-persistence/implementation-summary.md
+---
+title: "Implementation Summary: Multi-AI Council Persistence"
+description: "Packet 089 shipped: persist-artifacts.cjs helper + agent body §16 Caller Persistence Protocol + output-schema.md shared §8 contract + 3 vitest fixtures + helper test + hardened validator regression test + 4-runtime mirror parity test. ADR-001 lightweight bound preserved; planning-only invariant intact."
+trigger_phrases:
+  - "multi-ai-council persistence summary"
+  - "packet 089 shipped"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/002-multi-ai-council-persistence"
+    last_updated_at: "2026-05-06T16:30:00.000Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Phase 2A-2C complete; 4-runtime parity verified; strict validation passed"
+    next_safe_action: "Commit packet 089"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs"
+      - ".opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md"
+      - ".opencode/agents/multi-ai-council.md (§16 Caller Persistence Protocol)"
+    session_dedup:
+      fingerprint: "sha256:3acdad44d14d714574512ca0ac00729c8a4108820e32c96f443a78a6c8a953d5"
+      session_id: "implsumm-089-author"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-multi-ai-council-persistence |
+| **Phase** | 1-3 complete (Phase 2A/2B/2C shipped) |
+| **Status** | DONE |
+| **Date** | 2026-05-06 |
+| **Branch** | `main` |
+| **Predecessor** | `080-multi-ai-council-output-protocol` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Phase 1 — Spec lock-in (complete)
+
+- description.json + graph-metadata.json (via create.sh; folder moved to skilled-agent-orchestration/)
+- Level 3 spec.md (executive summary + 12 numbered sections + RELATED DOCUMENTS)
+- plan.md (3-sub-phase rollout + L2/L3 add-ons)
+- tasks.md (40 tasks across Phase 1, Phase 2A/2B/2C, Phase 3)
+
+## 003-multi-ai-council-deferrals/implementation-summary.md
+---
+title: "Implementation Summary [template:level_3/implementation-summary.md]"
+description: "Packet 092 implemented multi-ai-council v1.1 state metadata, memory-save payload routing, advisor checks, docs, and tests."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/003-multi-ai-council-deferrals"
+    last_updated_at: "2026-05-06T18:50:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented packet 092 deferrals"
+    next_safe_action: "Patch blocked .codex runtime mirror manually if needed"
+    blockers:
+      - ".codex/agents/multi-ai-council.toml is not writable in this sandbox"
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs"
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/advise-council-completion.cjs"
+      - ".opencode/skills/system-spec-kit/references/multi-ai-council/command-wiring.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-system-deep-loop/z_archive/021-multi-ai-council-write-protocol/003-multi-ai-council-deferrals"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-multi-ai-council-deferrals |
+| **Completed** | 2026-05-06 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+
+## 004-multi-ai-council-write-authority/implementation-summary.md
+---
+title: "Implementation Summary: Multi-AI Council write authority [system-deep-loop/z_archive/021-multi-ai-council-write-protocol/004-multi-ai-council-write-authority/implementation-summary]"
+description: "Implementation status for the council write-authority flip. Core writer/audit/rollback code is implemented, but completion is blocked by the unwritable Codex TOML mirror."
+trigger_phrases:
+  - "council write authority implementation summary"
+  - "098 implementation summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/004-multi-ai-council-write-authority"
+    last_updated_at: "2026-05-08T23:15:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented core writer/audit/rollback path; Codex TOML mirror blocked by EPERM"
+    next_safe_action: "Fix Codex mirror and rerun validation"
+    blockers:
+      - ".codex/agents/multi-ai-council.toml is not writable in current sandbox (EPERM)"
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/lib/persist-artifacts.js"
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/lib/audit-trail.js"
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/lib/rollback.js"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "council-write-authority-2026-05-08-codex"
+      parent_session_id: null
+    completion_pct: 70
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-multi-ai-council-write-authority |
+| **Completed** | Not complete |
+| **Level** | 3 |
+| **Status** | Blocked |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The core council write path is now implemented: the old monolithic helper has a library-backed writer surface, audit events are produced with sha256 checksums, and rollback can move a failed round into `failed/` while preserving supersede markers. Three writable runtime mirrors now describe scoped council writes under `ai-council/**`, and the reference docs describe v1.2 events and council-owned artifact persistence.
+
+### Scoped Writer Library
+
+`lib/persist-artifacts.js` now exposes `writeConfig`, `writeStrategyMd`, `writeStateJsonl`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. The CLI wrapper `persist-artifacts.cjs` delegates to that library so non-council callers keep the old command shape.
+
+### Audit And Rollback
+
+## 005-multi-ai-council-main-agent-write-enforcement/implementation-summary.md
+---
+title: "Implementation Summary: Multi-AI Council main-agent write enforcement [system-deep-loop/z_archive/021-multi-ai-council-write-protocol/005-multi-ai-council-main-agent-write-enforcement/implementation-summary]"
+description: "Placeholder. Will record the actual outcomes of Phase 4 verification (parity test, validator, sandbox smokes A and B) once implementation lands. Do not flag the placeholder tokens below as stale until completion_pct reaches 100."
+trigger_phrases:
+  - "100 implementation summary"
+  - "council main agent enforcement summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/005-multi-ai-council-main-agent-write-enforcement"
+    last_updated_at: "2026-05-09T20:11:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Shipped body edits"
+    next_safe_action: "User runs sandbox smoke A/B"
+    blockers: []
+    key_files:
+      - ".opencode/agents/multi-ai-council.md"
+      - ".claude/agents/multi-ai-council.md"
+      - ".codex/agents/multi-ai-council.toml"
+      - ".gemini/agents/multi-ai-council.md"
+      - ".opencode/skills/system-spec-kit/references/multi-ai-council/folder-layout.md"
+      - ".opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "council-main-agent-enforcement-2026-05-09"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-multi-ai-council-main-agent-write-enforcement |
+| **Completed** | 2026-05-09 (code edits); sandbox smokes pending user run |
+| **Level** | 2 |
+| **Status** | Code-complete; awaiting live sandbox-smoke verification |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Five enforcement gates added to the Multi-AI Council agent body across all 4 runtime mirrors plus 2 reference doc updates:
+
+1. **§1 Step 0 RESOLVE** — new pre-step before RECEIVE that resolves the target packet path via 4-stage rule (prompt → continuity → cwd ancestor → HALT-and-ASK). Fails closed; no seat dispatch without a packet path.
+2. **§7 ALWAYS / NEVER** — three new ALWAYS bullets (resolve packet, persist before completion, named exports list) and three new NEVER bullets (no chat-only delivery, no unrooted deliberation, no out-of-scope writes).
+3. **§9 PERSISTENCE VERIFICATION block + Q11** — new MANDATORY 9-item checklist parallel to MULTI-AI COUNCIL / PLAN / EVIDENCE blocks; SELF-CHECK extended from 10 to 11 questions; `DO NOT CLAIM COMPLETION` failure handler updated.
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

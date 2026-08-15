@@ -1,0 +1,872 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-design/006-design-mcp-open-design"
+# PACKET: specs/sk-design/006-design-mcp-open-design (spec only)
+
+---
+title: "Feature Specification: Reconstruct the sk-design Open Design transport mode"
+description: "Best-effort Level-2 reconstruction of the shipped design-mcp-open-design transport contract, including od CLI and MCP wiring, routing, guarded reads and writes, mandatory sk-design pairing, and multi-turn runs."
+trigger_phrases:
+  - "sk-design Open Design transport reconstruction"
+  - "design-mcp-open-design source packet"
+  - "Open Design CLI MCP transport"
+  - "od daemon wiring and gated runs"
+importance_tier: "normal"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/006-design-mcp-open-design"
+    last_updated_at: "2026-07-16T00:00:00Z"
+    last_updated_by: "gpt-5.6-luna"
+    recent_action: "Read transport source and references"
+    next_safe_action: "Review packet against shipped source"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md"
+      - ".opencode/skills/sk-design/design-mcp-open-design/references/"
+      - ".opencode/skills/sk-design/design-mcp-open-design/scripts/"
+      - ".opencode/skills/sk-design/design-mcp-open-design/mcp-servers/"
+      - ".opencode/skills/sk-design/mode-registry.json"
+      - ".opencode/specs/sk-design/006-design-mcp-open-design/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-design-open-design-reconstruction-20260716"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Feature Specification: Reconstruct the sk-design Open Design transport mode
+<!-- SPECKIT_LEVEL: 2 -->
+
+> RECONSTRUCTION DRAFT (best-effort). This spec did not previously exist in git or memory; it is reconstructed from the intact source .opencode/skills/sk-design/design-mcp-open-design/SKILL.md and its references/, scripts/, and mcp-servers/. Verify against that source before treating any line as authoritative.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-07-16 |
+| **Branch** | 0055-skilled-migration-000-scaffold |
+| **Spec Folder** | 006-design-mcp-open-design |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The shipped `design-mcp-open-design` transport mode had no packet in git or memory. Its intact source defines how an agent wires and drives the installed Open Design desktop app through the `od` CLI and stdio MCP server, while keeping design judgment in `sk-design` and gating design-affecting operations.
+
+### Purpose
+Reconstruct a Level-2 packet that makes the source-defined transport, routing, safety, multi-turn run, and handoff contracts inspectable without adding behavior.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- The mode identity from `mode-registry.json`: `packetKind: transport`, `backendKind: od-cli-transport`, metadata routing, `Read`/`Bash` allowance, forbidden `Write`/`Edit`/`Task`, and `mutatesWorkspace: false` for this repository.
+- Open Design terminology, the bundled `od` CLI location, the desktop-hosted local daemon, socket discovery, ephemeral HTTP ports, and the distinction from the unrelated PATH `od` tool and `vela`.
+- WIRE, READ, and RUN intent routing; baseline and conditional reference loading; the unknown-intent fallback; and the mandatory `sk-design` ground -> token-system -> critique pairing for design work.
+- Native MCP dry-run wiring, this repository's Code Mode `.utcp_config.json` integration point, live tool-surface verification, and the read-only diagnostics/install script boundaries.
+- Pure-transport reads, design-feeding reads, mutating and destructive operations, explicit target and rollback requirements, and the `openDesignExemption` versus `skDesignGate` purpose model.
+- The multi-turn generation flow from `start_run` through discovery-form answers, build completion, `entryFile`, `previewUrl`, `get_run`, and `get_artifact`, including the artifact-file distinction.
+- The guarded-proxy, freshness, inner-generator binding, CLI child pairing, transport assertion, token-laundering, register acceptance, and named-residual contracts stated by the references.
+- Source and traceability evidence for the intact `SKILL.md`, references, scripts, server pointer, and mode registry.
+
+### Out of Scope
+- Choosing the visual direction, design system, tokens, components, or anti-default critique; the source assigns design judgment to `sk-design`.
+- Modifying the Open Design desktop app, bundled daemon, MCP server, agent configuration, external project, run, artifact, or preview.
+- Implementing a guarded proxy, proof-token validator, child result contract, or daemon-side interceptor; the references specify contracts and boundaries, not a running implementation.
+- Caching or vendoring Open Design `DESIGN.md`, `tokens.css`, `components.html`, generated files, or other live content into this repository.
+- Claiming live daemon, `tools/list`, generation, auth, port, or downstream runtime verification that was not performed for this reconstruction.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| .opencode/specs/sk-design/006-design-mcp-open-design/spec.md | Create | Level-2 reconstruction specification for the transport mode. |
+| .opencode/specs/sk-design/006-design-mcp-open-design/plan.md | Create | Source-faithful reconstruction plan and boundaries. |
+| .opencode/specs/sk-design/006-design-mcp-open-design/tasks.md | Create | Packet authoring and manual verification task breakdown. |
+| .opencode/specs/sk-design/006-design-mcp-open-design/checklist.md | Create | Level-2 source-fidelity and structure checklist. |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Preserve the transport boundary and mode identity. | The packet states that Open Design generates while `sk-design` decides, records `packetKind: transport` and `backendKind: od-cli-transport`, and does not assign taste behavior to the transport. |
+| REQ-002 | Preserve the CLI and daemon model. | The packet records the bundled `daemon-cli.mjs` invocation, the absence of a global `od`, the desktop-hosted daemon, socket discovery, ephemeral HTTP port, and `7456` only as the standalone fallback. |
+| REQ-003 | Preserve WIRE, READ, and RUN routing. | The packet records direction scoring, baseline `od_cli_reference.md`, conditional wiring/tool-surface resources, guarded resource discovery, and the explicit unknown fallback checklist. |
+| REQ-004 | Preserve mandatory design pairing. | The packet states that every generation and every design-feeding read loads `sk-design` and runs ground -> token-system -> critique before shaping briefs or answers; only positively asserted pure transport is exempt. |
+| REQ-005 | Preserve the Open Design surface contract. | The packet distinguishes pure inventory reads, design-feeding reads, mutating tools, destructive tools, and the requirement to verify the live `tools/list` before relying on names or mutability. |
+| REQ-006 | Preserve the gated multi-turn run. | The packet states that turn 1 returns a discovery form with `awaiting_input` and zero files, that answering it fires the build, and that completion requires written files, `entryFile`, and `previewUrl`; `artifacts create` is only a file add. |
+| REQ-007 | Preserve source traceability and reconstruction status. | The packet carries the reconstruction banner, cites the real source paths, stays Draft, and does not claim runtime execution or generated metadata. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-008 | Preserve wiring behavior. | The packet records `mcp install <agent> --print --json` as the required preview, the native opencode/Claude shapes at a high level, Code Mode as this repository's canonical `open_design` manual, and the daemon URL discovery order. |
+| REQ-009 | Preserve guarded-proxy semantics. | The packet records canonical request normalization, `openDesignPurpose`, explicit targets, `DESIGN_PROOF_TOKEN` delegation, positive exemptions, fail-closed classification, and the agent-side daemon-bypass residual. |
+| REQ-010 | Preserve freshness and inner-generator binding. | The packet records stale, future, malformed, excessive-span, replay, and payload-mismatch rejection at the appropriate boundary, plus same-token digest recomputation for subject, brief, form answers, lineage, and pinned model across both turns. |
+| REQ-011 | Preserve cross-CLI evidence contracts. | The packet records structured `OPEN_DESIGN_TRANSPORT_RESULT v1` and assertion pairing, parent demand-back re-validation, REPLAY/OMIT/WEAKEN denial, text-only advisory limits, and the register acceptance gate. |
+| REQ-012 | Preserve script and server-pointer boundaries. | The packet records that `_common.sh`, `doctor.sh`, and `install.sh` locate or report on local readiness, never start or wire the daemon, and that the server directory contains a pointer rather than an installable package. |
+| REQ-013 | Preserve source-stated residuals and uncertainties. | The packet identifies per-machine `OD_DATA_DIR`, remote-installer contents, app-quit lifecycle, standalone headless flow, per-verb auth, live-artifact surface, and daemon-down install fallback as unresolved or inferred where the references do. |
+
+The source classifies the registered MCP surface as eleven read-only tools (`list_projects`, `get_active_context`, `get_artifact`, `get_project`, `get_file`, `search_files`, `list_files`, `list_skills`, `list_plugins`, `list_agents`, `get_run`), five mutating tools (`create_artifact`, `write_file`, `create_project`, `start_run`, `cancel_run`), and two destructive tools (`delete_file`, `delete_project`). The two-axis guard marks a call guarded when it feeds a design decision or mutates workspace state; the five pure inventory tools are the exempt complement, subject to the positive exemption purpose.
+
+For native wiring, the source's dry-run examples are `node "$OD_BIN" mcp install opencode --print --json` and `node "$OD_BIN" mcp install claude --print --json`. The exact launch command and environment come from `GET /api/mcp/install-info`; this repository's canonical integration is the existing Code Mode `open_design` manual rather than a redundant native opencode entry.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: The packet describes `design-mcp-open-design` as a terminal transport and keeps visual judgment with `sk-design`.
+- **SC-002**: The packet captures the WIRE/READ/RUN router, CLI/daemon model, Code Mode wiring boundary, live tool verification, and two-axis gate.
+- **SC-003**: The packet records the confirmed multi-turn generation lifecycle and does not present turn 1 or an artifact file add as a finished rendered design.
+- **SC-004**: The packet preserves deny-by-default guarded-proxy, freshness, inner-payload, and child-revalidation rules without defining a second token schema.
+- **SC-005**: Every source claim can be traced to the intact skill, mode registry, references, scripts, or server pointer listed in Sources / Traceability.
+- **SC-006**: The packet remains an explicit reconstruction draft and makes unverified live behavior visible rather than silently resolving it.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Open Design v0.9.0+ desktop app, Node.js, and the target agent CLI. | The daemon and native wiring surface are unavailable without the stated local prerequisites. | Preserve the source prerequisite and the app-running escalation. |
+| Dependency | The repository's Code Mode `open_design` manual and live daemon install information. | Native `od mcp install` is not this repository's intended integration point, and exact environment values are daemon-provided. | Record Code Mode as canonical and require dry-run inspection for native wiring. |
+| Dependency | Shared `DESIGN_PROOF_TOKEN`, register, and adapter contracts cited by the references. | Their full schemas are outside this transport source set. | Cite them by reference and document only the boundary responsibilities stated here. |
+| Risk | The help text undercounts the live MCP surface and tool classes can drift. | A stale name or read-only assumption could bypass a gate. | Require live `tools/list` verification and guard unknown operations. |
+| Risk | Open Design writes happen in an external project while this packet is non-mutating. | A reconstruction could falsely imply repository-local mutation or runtime control. | Keep `mutatesWorkspace: false`, external-write boundaries, targets, rollback notes, and residuals explicit. |
+| Risk | Generated files can be overwritten by reruns and the preview may render without meeting the design quality bar. | Treating a render or generated file as the final design would overclaim success. | Keep the generated-versus-presentational boundary and `sk-design` quality judgment separate. |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: No runtime benchmark is specified for this transport packet.
+- **NFR-P02**: The desktop daemon's HTTP port is ephemeral; a long-running MCP server caches its resolved URL and needs a client restart after a daemon restart.
+
+### Security
+- **NFR-S01**: Guarded operations deny by default; missing, ambiguous, stale, unmapped, or validator-error paths fail closed.
+- **NFR-S02**: The remote installer is unverified and must not be piped to a shell; credentials must not be pasted into prompts.
+
+### Reliability
+- **NFR-R01**: A run left at `awaiting_input` is incomplete and produces no design; the discovery form must be answered before polling for a completed build.
+- **NFR-R02**: Pure transport exemptions forbid later use of the returned artifact as design-decision input, and unknown operations remain guarded.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Unknown or tied intent: use the source fallback checklist, confirm WIRE/READ/RUN direction, confirm the app and daemon, locate the CLI, and confirm writes and target project when relevant.
+- Pure inventory versus design content: `list_projects`, `list_files`, `list_skills`, `list_plugins`, and `list_agents` are pure transport; context, project, artifact, run, file, and search content are guarded when they feed design decisions.
+- Missing or changed resource: resolve only markdown inside the skill root, load the baseline resource, and load direction-specific resources only when present.
+- Active-project fallback: read operations may fall back to the active project, which expires after roughly five minutes of inactivity; destructive operations require an explicit project and confirmation.
+
+### Error Scenarios
+- App or socket unavailable: live tool calls fail; escalate to opening the app or use the source-stated standalone `od --no-open` option.
+- Native wiring requested: preview with `--print --json`, inspect the daemon-provided command and environment, then install only after confirmation; this repository's canonical path remains Code Mode.
+- Mutating or destructive request: name the target, state the effect and one-line rollback, and wait for approval; deletion also requires `confirm:true`.
+- Auth error: local reads may work without cloud auth, while generation, media, research, or plugin publishing may need `vela` login or configured providers; do not paste credentials.
+- Design parity read or run: resolve one matching system, read its `DESIGN.md`, `tokens.css`, and optional `components.html` live, reuse before generating, route revisions through the run conversation, and inspect the local `previewUrl`; a stalled build may be adjusted and retried at most twice before surfacing failure.
+- Discovery defaults: `--skip` or a blanket recommended-default response must materialize concrete form answers when the inner-generator binding requires a digestable answer object; otherwise the guarded boundary denies the build fire.
+- Text-only child result: digest matching becomes advisory and cannot be called a deterministic pass without structured result evidence.
+
+### State Transitions
+- `WIRE`: locate and verify the CLI, inspect install output, and verify the live MCP surface.
+- `READ`: inventory may use `openDesignExemption`; design-bearing reads require `skDesignGate` and the `sk-design` judgment path.
+- `RUN`: confirmed turn 1 -> discovery form -> confirmed form response or conversation follow-up -> build -> guarded polling and artifact fetch.
+- Child handoff: structured assertion before the operation and structured result after it are reconciled by the parent; missing or mismatched evidence denies the handoff.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 20/25 | Transport identity, routing, wiring, tool gates, multi-turn runs, scripts, and cross-CLI contracts. |
+| Risk | 15/25 | External writes, design-gate bypasses, live surface drift, and several named residuals. |
+| Research | 17/20 | Reconstruction requires the full skill, nine references, three scripts, server pointer, and registry entry. |
+| **Total** | **52/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. OPEN QUESTIONS
+
+- What exact `OD_DATA_DIR` does the live daemon dry-run provide on a given machine?
+- What does the unshipped remote installer script do, and does the app-owned daemon always die when the desktop app quits?
+- Does standalone `od --no-open` support the complete MCP and generation flow when the GUI is closed?
+- Which user-invoked verbs require `OD_TOOL_TOKEN` or `vela` authentication, and what is the live `od mcp live-artifacts` surface?
+- Does `od mcp install` produce the documented `7456` fallback entry when the daemon is down?
+<!-- /ANCHOR:questions -->
+
+---
+
+## 11. SOURCES / TRACEABILITY
+
+The following intact paths were read as reconstruction evidence. They are source references, not additional behavior:
+
+- .opencode/skills/sk-design/mode-registry.json
+- .opencode/skills/sk-design/design-mcp-open-design/SKILL.md
+- .opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md
+- .opencode/skills/sk-design/design-mcp-open-design/references/mcp_wiring.md
+- .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md
+- .opencode/skills/sk-design/design-mcp-open-design/references/freshness_invalidation.md
+- .opencode/skills/sk-design/design-mcp-open-design/references/guarded_proxy.md
+- .opencode/skills/sk-design/design-mcp-open-design/references/cli_child_pairing.md
+- .opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md
+- .opencode/skills/sk-design/design-mcp-open-design/references/inner_generator_binding.md
+- .opencode/skills/sk-design/design-mcp-open-design/references/od_cli_reference.md
+- .opencode/skills/sk-design/design-mcp-open-design/scripts/_common.sh
+- .opencode/skills/sk-design/design-mcp-open-design/scripts/doctor.sh
+- .opencode/skills/sk-design/design-mcp-open-design/scripts/install.sh
+- .opencode/skills/sk-design/design-mcp-open-design/mcp-servers/open-design/README.md
+
+The advanced references cite shared proof-token and register material. This packet preserves those references and their boundary responsibilities without reconstructing a second schema or claiming details absent from the transport source set.
+
+---
+
+## RELATED DOCUMENTS
+
+- Implementation Plan: See plan.md
+- Task Breakdown: See tasks.md
+- Verification Checklist: See checklist.md
+FOLDER
+
+<<<FOLDER id="specs/sk-design/007-design-hub-routing"
+# PACKET: specs/sk-design/007-design-hub-routing (spec only)
+
+---
+title: "Feature Specification: Reconstruct the sk-design hub routing layer"
+description: "The sk-design hub routing layer had no tracked spec-folder packet, although its intact source defines the single advisor identity, six registry modes, and the signals and vocabulary used to route design requests. This reconstruction records only the hub-level routing contract in SKILL.md, mode-registry.json, and hub-router.json."
+trigger_phrases:
+  - "sk-design hub routing reconstruction"
+  - "design mode registry routing"
+  - "hub router signals vocabulary"
+  - "single advisor identity"
+importance_tier: "normal"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/007-design-hub-routing"
+    last_updated_at: "2026-07-16T00:00:00Z"
+    last_updated_by: "gpt-5.6-luna"
+    recent_action: "Drafted hub routing reconstruction packet"
+    next_safe_action: "Review packet against intact hub sources"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/SKILL.md"
+      - ".opencode/skills/sk-design/mode-registry.json"
+      - ".opencode/skills/sk-design/hub-router.json"
+      - ".opencode/specs/sk-design/007-design-hub-routing/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-design-hub-routing-reconstruction-20260716"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Feature Specification: Reconstruct the sk-design hub routing layer
+<!-- SPECKIT_LEVEL: 2 -->
+
+> RECONSTRUCTION DRAFT (best-effort). This spec did not previously exist in git or memory; it is reconstructed from the intact source .opencode/skills/sk-design/SKILL.md, .opencode/skills/sk-design/mode-registry.json, and .opencode/skills/sk-design/hub-router.json. Verify against that source before treating any line as authoritative.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-07-16 |
+| **Branch** | 0055-skilled-migration-000-scaffold |
+| **Spec Folder** | 007-design-hub-routing |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The shipped sk-design hub is the public advisor-routable home for the design family, but its hub-level routing contract was absent from git and memory as a spec packet. The intact source defines one advisor identity, a six-entry mode registry, a discriminator, routing policy, signal classes, vocabulary classes, fallback behavior, and boundaries that need to be documented without reproducing child-mode logic.
+
+### Purpose
+Reconstruct a Level-2 packet that makes the source-defined sk-design hub routing contract inspectable while preserving its single identity and mode-owned boundaries.
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- The public `sk-design` advisor identity and the hub-membership `metadata` routing contract for all six registry entries.
+- The `workflowMode`, `packetKind`, and `backendKind` discriminator, including the five workflow modes and the nested transport packet.
+- The six mode entries, packet paths, commands, aliases, tool surfaces, mutability flags, procedure paths where present, and packet-name parity.
+- The transform-verb routing extension: interface and audit framing, aliases, alias-only behavior, command-projection parity, and excluded aliases.
+- `hub-router.json` policy: default mode, ambiguity delta, tie-break order, single/bundle/defer outcomes, default resources, and the UI build bundle.
+- Router signals and vocabulary classes used to distinguish interface, foundations, motion, audit, md-generator, transport, and hub identity terms.
+- Hub-level intake ordering, smallest-useful-mode routing, unknown fallback, visible planning, proof gates, bundle behavior, and family boundaries.
+- Source and reference/asset traceability for the reconstruction.
+
+### Out of Scope
+- The detailed design judgment, examples, references, assets, or procedures inside any child mode packet; the hub loads those packets but does not flatten their logic.
+- Reconstructing the contents of shared resources such as the anti-slop principles, cognitive laws, design-token vocabulary, register, or proof cards.
+- Implementing or changing the advisor, router, mode packets, transport, extraction pipeline, or downstream `sk-code` consumer.
+- Creating `graph-metadata.json`, `description.json`, or any generated packet metadata.
+- Claiming runtime execution, validator output, generator output, or downstream implementation verification.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| .opencode/specs/sk-design/007-design-hub-routing/spec.md | Create | Level-2 reconstruction specification for the hub routing layer. |
+| .opencode/specs/sk-design/007-design-hub-routing/plan.md | Create | Source-faithful reconstruction plan and routing boundaries. |
+| .opencode/specs/sk-design/007-design-hub-routing/tasks.md | Create | Task breakdown for authoring and checking the packet. |
+| .opencode/specs/sk-design/007-design-hub-routing/checklist.md | Create | Unchecked Level-2 verification checklist for the reconstruction draft. |
+<!-- /ANCHOR:scope -->
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Preserve the one-advisor identity. | The packet states that the advisor routes design queries to `sk-design`, that the hub selects the mode, and that there is no per-mode advisor map entry or merged-identity projection. |
+| REQ-002 | Preserve the registry discriminator. | The packet defines `workflowMode`, `packetKind`, and `backendKind` with the source-defined values and roles. |
+| REQ-003 | Preserve all six registry entries. | The packet names interface, foundations, motion, audit, md-generator, and design-mcp-open-design with their packet kind, backend, packet path, command, tool surface, mutability, and metadata routing. |
+| REQ-004 | Preserve the router policy. | The packet records default mode `interface`, ambiguity delta `1`, the six-item tie-break order, single/orderedBundle/defer outcomes, default resources, and the `ui-build-bundle` rule. |
+| REQ-005 | Preserve signal and vocabulary routing. | The packet records the six router signal groups and the vocabulary classes that supply the mode aliases, intent terms, runtime terms, artifact terms, evaluation terms, and transport terms. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-006 | Preserve manager intake and route ordering. | The packet states the five intake fields, the focused-question behavior, and the hard constraint that substantive intake precedes a route declaration or recommendation. |
+| REQ-007 | Preserve fallback and ambiguity behavior. | The packet records the confidence threshold, missing-registry, unknown-mode, missing-packet, and path-guard fallback conditions and the four-item unknown checklist. |
+| REQ-008 | Preserve hub boundaries and proof cadence. | The packet records smallest-useful-mode routing, explicit-axis bundling, the UI build bundle, visible planning, taste/accessibility/responsive/transport proof, and downstream `sk-code` handoff. |
+| REQ-009 | Preserve the transform-verb extension. | The packet records `make it` versus `should it be`, interface aliases, `clarify` alias-only routing, command-projection parity, and the foundations/audit excluded aliases. |
+
+### Registry entries
+
+| `workflowMode` | `packetKind` | `backendKind` | Packet and command | Tool surface | Workspace mutation | Advisor routing |
+|----------------|--------------|---------------|-------------------|--------------|---------------------|-----------------|
+| `interface` | `workflow` | `reference-base` | `design-interface`; `/design:interface` | Read, Glob, Grep | false | metadata; `design-interface` |
+| `foundations` | `workflow` | `reference-base` | `design-foundations`; `/design:foundations` | Read, Glob, Grep | false | metadata; `design-foundations` |
+| `motion` | `workflow` | `reference-base` | `design-motion`; `/design:motion` | Read, Glob, Grep | false | metadata; `design-motion` |
+| `audit` | `workflow` | `reference-base` | `design-audit`; `/design:audit` | Read, Glob, Grep | false | metadata; `design-audit` |
+| `md-generator` | `workflow` | `playwright-extract` | `design-md-generator`; `/design:md-generator` | Read, Glob, Grep, Write, Edit, Bash | true | metadata; `design-md-generator` |
+| `design-mcp-open-design` | `transport` | `od-cli-transport` | `design-mcp-open-design`; no command | Read, Bash | false | metadata; `design-mcp-open-design` |
+
+The registry's `advisorRoutingContract` and `extensions` describe this projection and the transport axis. Every registry entry has an `advisorRouting` block with `routingClass: metadata`, `packetSkillName`, and `grandfatheredFolderMismatch: false`; each packet folder is also its `packetSkillName`. The transport has no dedicated command and is reached by mandatory pairing with a design-judgment mode.
+
+The first five entries also expose `proceduresPath` values under their packet folders: `design-interface/procedures`, `design-foundations/procedures`, `design-motion/procedures`, `design-audit/procedures`, and `design-md-generator/procedures`. The transport has no procedures path. Each registry entry records `toolSurface.allowed`, `toolSurface.forbidden`, `toolSurface.mutatesWorkspace`, and `toolSurface.bashAllowlist`: the read-only workflow entries forbid Write, Edit, and Bash and carry an empty allowlist; md-generator has no forbidden tools and its workspace mutation is true; the transport forbids Write, Edit, and Task and carries an empty allowlist. The mode `aliases` arrays are represented by the corresponding mode vocabulary classes below.
+
+### Router policy and signal groups
+
+`hub-router.json` stores the policy under `routerPolicy`: `defaultMode` is `interface`, `ambiguityDelta` is `1`, and `tieBreak` is `interface`, `foundations`, `motion`, `audit`, `md-generator`, and `design-mcp-open-design`. Its `outcomes` are `single` for one dominant design axis, `orderedBundle` for clearly separate design axes, and `defer` for unclear or contradictory intent. The `defaultResource` list is the shared anti-slop principles, cognitive laws, design-token vocabulary, and design proof token. The `bundleRules` entry `ui-build-bundle` applies when both `interface` and `foundations` are present and produces an ordered bundle.
+
+| Mode | Weight | Signal classes | Routed resource |
+|------|--------|----------------|-----------------|
+| interface | 4 | interface-aliases, interface-taste, interface-build, hub-identity | design-interface/SKILL.md |
+| foundations | 4 | foundations-aliases, foundations-color, foundations-type, foundations-layout, foundations-tokens, hub-identity | design-foundations/SKILL.md |
+| motion | 4 | motion-aliases, motion-temporal, motion-runtime, motion-feel, hub-identity | design-motion/SKILL.md |
+| audit | 4 | audit-aliases, audit-quality, audit-transform-question, audit-accessibility, audit-hardening, hub-identity | design-audit/SKILL.md |
+| md-generator | 4 | md-generator-aliases, md-generator-extraction, md-generator-artifacts, md-generator-validation, hub-identity | design-md-generator/SKILL.md |
+| design-mcp-open-design | 4 | design-mcp-open-design-aliases, hub-identity | design-mcp-open-design/SKILL.md |
+
+### Transform-verb routing
+
+The registry's `transformVerbRouting` keeps transform verbs split by framing: the interface frame `make it` applies the move, while the audit frame `should it be` evaluates whether the move should happen. `bolder`, `quieter`, `distill`, `clarify`, and `delight` are interface aliases; `clarify` is alias-only. `bolder`, `quieter`, `distill`, and `delight` have command-projection parity. `typeset` and `colorize` are excluded aliases for foundations, while `harden` and `polish` are excluded aliases for audit. The registry states that command metadata projections are a separate layer from free-text transform-verb framing.
+
+### Vocabulary classes
+
+The router exposes these under `routerSignals` and `vocabularyClasses`. The following vocabulary classes and keyword sets are routing evidence, not independent public identities:
+
+- `hub-identity`: `sk-design`, `design-family`, `mode-registry`, `workflowmode`, `backendkind`, `reference-base`, `anti-slop`, `cognitive-laws`.
+- `interface-aliases`: `interface design`, `frontend design`, `visual design`, `visual identity`, `make it look good`, `looks templated`, `redesign the ui`, `hero section`, `landing page direction`, `hero redesign`, `ui build`, `design variations`, `less generic`, `custom not templated`, `visual direction`, `bolder`, `quieter`, `distill`, `clarify`, `delight`.
+- `interface-taste`: `interface-design`, `frontend-design`, `visual-design`, `visual-identity`, `make-it-look-good`, `looks-templated`, `distinctive-interface`, `intentional-design`, `polished-ui`, `refined-ui`, `custom-not-templated`, `premium-ui`, `aesthetic`, `design-taste`, `visual-direction`, `craft`, `make-it-beautiful`, `less-generic`, plus the spaced forms `custom not templated`, `premium ui`, `make it beautiful`, `less generic`, `visual direction`.
+- `interface-build`: `redesign-the-ui`, `hero-section`, `ui-build`, `ux-quality-checklist`, `design-variations`, `redesign the hero`.
+- `foundations-aliases`: `foundations`, `design foundations`, `color system`, `oklch palette`, `color token system`, `dark mode palette`, `typography scale`, `font pairing`, `spacing system`, `layout rhythm`, `information hierarchy`, `responsive layout`, `design tokens`, `theme tokens`, `grid`, `container queries`, `context adaptation`, `data visualization`, `chart type`, `data tables`, `token starter`.
+- `foundations-color`: `palette`, `color-palette`, `color-system`, `oklch`, `dark-mode`, `themes`, `theming`.
+- `foundations-type`: `typography`, `font-pairing`, `typography-scale`, `typography extraction`.
+- `foundations-layout`: `spacing-system`, `responsive-layout`, `layout`, `hierarchy`, `information hierarchy`, `density`.
+- `foundations-tokens`: `design-tokens`, `color-token-system`, `css-tokens`, `semantic tokens`, `theme-tokens`.
+- `motion-aliases`: `motion design`, `animate this`, `micro-interactions`, `transitions`, `interaction states`, `hover state`, `focus state`, `loading state`, `choreography`, `motion budget`, `animatepresence`, `exit animation`, `reduced motion`, `morphing icons`, `motion performance`.
+- `motion-temporal`: `motion-design`, `animation`, `animate-this`, `exit-animation`, `reduced-motion`, `morphing-icons`, `motion-performance`, `smooth-animation`, `hover-effect`, `scroll-animation`, `choreography`, `animate-the-menu`, `transition-design`, plus the spaced forms `smooth animation`, `hover effect`, `scroll animation`, `animate the menu`, `transition design`.
+- `motion-runtime`: `framer-motion`, `framer motion`.
+- `motion-feel`: `interaction-feel`, `interaction feel`.
+- `audit-aliases`: `design audit`, `ui critique`, `design review`, `review the ui`, `audit the design`, `accessibility audit`, `wcag contrast`, `performance audit`, `anti-slop detection`, `ai tell`, `production hardening`, `design quality score`, `ui quality review`, `p0 p1 design findings`.
+- `audit-quality`: `design-audit`, `ui-critique`, `anti-slop-detection`, `design-quality-score`, `p0-p1-design-findings`, `anti-hallucination`, `design-fidelity`, `design-quality-audit`, `design-review`, `design-qa`, `audit-the-design`, `review-the-ui`, `ui-quality-review`, plus the spaced forms `audit the design`, `review the ui`, `ui quality review`.
+- `audit-transform-question`: `should it be`, `should it be bolder`, `should it be quieter`, `should it be distill`, `should it be clarify`, `should it be delight`.
+- `audit-accessibility`: `accessibility-audit`, `wcag-contrast`, `wcag contrast`.
+- `audit-hardening`: `performance-audit`, `production-hardening`.
+- `md-generator-aliases`: `extract design system`, `generate design.md`, `capture website css`, `design tokens from url`, `create design reference`, `style reference`, `tokens.json`, `design-to-markdown`, `extract design tokens`, `validate design.md`, `design.md validation`, `design fidelity check`, `design.md report`, `render design preview`, `source of truth`, `study design.md format`.
+- `md-generator-extraction`: `css-extraction`, `website-design-extraction`, `color-extraction`, `typography-extraction`, `hex-extraction`, `shadow-extraction`, `spacing-extraction`, `extract-design-system`, `capture-website-css`.
+- `md-generator-artifacts`: `design.md`, `design-md`, `design-reference`, `tokens.json`, `style-reference`, `playwright`, `design-system-generator`, `generate-design-md`, `design-tokens-from-url`, `generate design md`.
+- `md-generator-validation`: `design fidelity`.
+- `design-mcp-open-design-aliases`: `open design`, `open-design`, `od mcp`, `od cli`, `wire open design`, `connect open design`, `drive open design from the terminal`, `design system from open design`, `od run start`, `start_run`.
+
+### Mode guardrails
+
+- `hub-identity` terms are family context, not child-mode evidence by themselves.
+- `interface` owns end-to-end visual direction, application verbs, generic "make it look good", visual identity, hero or landing-page direction, and `make-it` transforms such as bolder, quieter, clearer, or custom-not-templated work.
+- `foundations` owns static-system nouns and decisions: color, type, spacing, grid, layout rhythm, hierarchy, responsive adaptation, and design-token systems. Measured `tokens.json` or `DESIGN.md` artifacts route to md-generator unless the request is to design or adapt a token system. The `clarify` alias-only entry and the foundations exclusions `typeset` and `colorize` take the source-defined transform precedence.
+- `motion` owns temporal behavior: animation, interaction states, hover/focus/active feedback, transitions, choreography, motion budget, reduced motion, and motion performance.
+- `audit` owns evaluation frames: audit, review, critique, WCAG, quality score, AI-template risk, production hardening, and release-readiness questions. A single-axis static review can route to foundations when its axis has a matching proof-gated procedure; multi-axis or audit-specific review routes to audit. The audit exclusions `harden` and `polish` take transform precedence when no findings-first audit report is requested.
+- `md-generator` owns measured extraction and fidelity artifacts: live-URL CSS capture, `tokens.json`, `DESIGN.md`, style reference, validation, reports, and provenance.
+- Pair modes only when the prompt contains clearly separate design axes. A generic "make it look good" request defaults to interface unless another explicit axis dominates.
+
+### Routing sequence, bundle, and proof
+
+The source-defined routing sequence is: classify the dominant design intent, let an explicit mode hint such as `motion: ...` override classification, read `mode-registry.json`, resolve `workflowMode`, and load the registered packet `SKILL.md`. The selected mode then cites the shared reference base or uses its registered backend.
+
+For UI build, page generation, and redesign implementation, the ordered build bundle includes `interface`, `foundations`, `design-interface/assets/interface_preflight_card.md`, `shared/register.md`, `design-interface/references/design_process/brief_to_dials.md`, and the matching foundations axis references. The source also requires a context manifest from `shared/context_loading_contract.md`, `shared/assets/context_loaded_card.md` before recommendations, and `shared/assets/proof_of_application_card.md` before a ready claim. Interface, foundations, motion, and audit remain read-and-guide modes; md-generator is the only registry-marked mutating mode.
+
+Verifier cadence is intake before routing, visible plan before substantial design or build output, proof review before ready claims, and `sk-code` review or verification after implementation handoff. Taste proof, accessibility proof, responsive proof, and transport proof must come from the relevant mode or actual transport evidence; transport mechanics cannot substitute for design acceptance.
+<!-- /ANCHOR:requirements -->
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: The packet describes `sk-design` as one advisor-routable identity and identifies hub membership as the route to all six modes.
+- **SC-002**: The packet captures the registry discriminator, six entries, transform-verb extension, commands, packet paths, tool surfaces, mutability, and metadata routing.
+- **SC-003**: The packet captures the router policy, signal classes, vocabulary classes, default resources, and ordered UI build bundle.
+- **SC-004**: The packet records intake ordering, fallback behavior, smallest-useful-mode selection, visible planning, proof gates, transport pairing, and `sk-code` handoff without moving child logic into the hub.
+- **SC-005**: Every source claim in the reconstruction can be traced to the three intact hub source files or to a real path named by those files, and the packet remains explicitly a reconstruction draft.
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | `.opencode/skills/sk-design/SKILL.md`, `mode-registry.json`, and `hub-router.json` | Any source drift changes the routing contract. | Treat the three intact files as the authority and keep the reconstruction banner visible. |
+| Dependency | Child mode packets and shared resources named by the hub | The hub routes and loads them but does not define their detailed behavior. | Cite their real paths as routed resources without reconstructing their contents here. |
+| Risk | Per-mode logic could be flattened into the hub packet. | The single-hub architecture and packet ownership would be misrepresented. | Preserve the source-defined routing-only boundary and list child logic as out of scope. |
+| Risk | Hub identity vocabulary could be mistaken for child-mode evidence. | A request could route to a child mode on family context alone. | Record `hub-identity` as context and preserve the source vocabulary guardrails. |
+| Risk | A transport could be treated as design authority. | Tool output could be mistaken for taste, critique, or acceptance. | Preserve mandatory pairing, transport proof, and `sk-design` ownership of design judgment. |
+<!-- /ANCHOR:risks -->
+
+<!-- ANCHOR:questions -->
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: No routing-performance target or benchmark is specified by the three hub sources.
+- **NFR-P02**: The packet must not claim runtime execution or measure a router that was not run.
+
+### Security
+- **NFR-S01**: The source-defined hub path guard must constrain routed mode paths to a child `SKILL.md` under `SKILL_ROOT`.
+- **NFR-S02**: Tool-surface and workspace-mutation claims must remain tied to each registry entry; the packet does not add permissions.
+
+### Reliability
+- **NFR-R01**: Missing or low-confidence routing conditions use the source-defined `UNKNOWN_FALLBACK` outcome and disambiguation checklist.
+- **NFR-R02**: The mode registry remains the single source of truth for mode mapping; the hub does not hardcode an inventory of child resources.
+<!-- /ANCHOR:nfr -->
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Low intent confidence below `0.5`: return `UNKNOWN_FALLBACK`, require disambiguation, and return no resources.
+- Missing `mode-registry.json`: return the fallback with the source-defined notice to confirm the route before loading a packet.
+- Unknown `workflowMode`: return the fallback with a notice that no sk-design mode is registered for the requested mode.
+- Missing or unguardable child packet: return the fallback with a notice naming the missing registered packet.
+
+### Error Scenarios
+- Unknown intent: confirm the design goal and artifact surface, whether the request creates/guides/animates/audits/extracts, one concrete input, and the proof expected before a ready claim.
+- Several uncertain candidate modes with no disambiguating signal: ask one focused question or state a narrowing assumption; do not bundle every candidate.
+- Clearly separate design axes: use an ordered bundle; for UI build work the source-defined `interface` plus `foundations` bundle applies.
+- Transport-only request: load design judgment through the hub first; the transport never becomes the taste authority.
+
+### State Transitions
+- Intake complete: expose goal, surface, inputs, constraints, and proof expectations before declaring a route or recommendation.
+- Route resolved: show the selected mode or ordered bundle, loaded context, design moves or audit dimensions, proof, and handoff target.
+- Ready claim considered: verify taste, accessibility, responsive, and transport proof; return missing or contradictory proof to the selected mode or audit.
+- Implementation handoff: `sk-code` consumes design output after the plan and proof expectations are clear.
+<!-- /ANCHOR:edge-cases -->
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 15/25 | One hub contract spanning identity, registry, policy, signals, vocabulary, fallback, proof, and boundaries. |
+| Risk | 10/25 | The main risk is routing drift or assigning child behavior to the hub; no runtime source is changed. |
+| Research | 12/20 | The reconstruction requires the intact hub source, registry, router, and every real path cited for traceability. |
+| **Total** | **37/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+## 10. OPEN QUESTIONS
+
+- None are required to reconstruct the stated hub contract; child packet behavior remains owned by each routed packet and the shared resources remain outside this packet.
+<!-- /ANCHOR:questions -->
+
+## 11. SOURCES / TRACEABILITY
+
+The following intact paths were read or verified as reconstruction evidence. They are source references, not additional behavior:
+
+- `.opencode/skills/sk-design/SKILL.md`
+- `.opencode/skills/sk-design/mode-registry.json`
+- `.opencode/skills/sk-design/hub-router.json`
+- `.opencode/skills/sk-design/shared/anti_slop_principles.md`
+- `.opencode/skills/sk-design/shared/cognitive_laws.md`
+- `.opencode/skills/sk-design/shared/design_token_vocabulary.md`
+- `.opencode/skills/sk-design/shared/design_proof_token.md`
+- `.opencode/skills/sk-design/shared/register.md`
+- `.opencode/skills/sk-design/shared/context_loading_contract.md`
+- `.opencode/skills/sk-design/shared/assets/context_loaded_card.md`
+- `.opencode/skills/sk-design/shared/assets/proof_of_application_card.md`
+- `.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md`
+- `.opencode/skills/sk-design/design-interface/references/design_process/brief_to_dials.md`
+- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/design-foundations/SKILL.md`
+- `.opencode/skills/sk-design/design-motion/SKILL.md`
+- `.opencode/skills/sk-design/design-audit/SKILL.md`
+- `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+- `.opencode/skills/sk-design/design-mcp-open-design/SKILL.md`
+
+The hub source names these shared paths as default context, build-bundle resources, routed mode packets, or handoff/proof references. This packet cites the paths without reconstructing their contents or claiming that any child packet was executed.
+
+## RELATED DOCUMENTS
+
+- Implementation Plan: See `plan.md`
+- Task Breakdown: See `tasks.md`
+- Verification Checklist: See `checklist.md`
+FOLDER
+
+<<<FOLDER id="specs/sk-design/008-design-shared-backbone"
+# PACKET: specs/sk-design/008-design-shared-backbone (spec only)
+
+---
+title: "Feature Specification: Reconstruct the sk-design shared backbone"
+description: "The sk-design shared backbone had no tracked packet, while its intact source defines the register, context-loading, proof, dispatch, token, procedure, script, benchmark, and feature-catalog contracts consumed by the design modes. This reconstruction records those source-defined boundaries and current-state artifacts without adding behavior."
+trigger_phrases:
+  - "sk-design shared backbone reconstruction"
+  - "design context loading contract"
+  - "shared design proof gates"
+  - "sk-design benchmark and feature catalog"
+importance_tier: "normal"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/008-design-shared-backbone"
+    last_updated_at: "2026-07-16T00:00:00Z"
+    last_updated_by: "gpt-5.6-luna"
+    recent_action: "Draft shared backbone reconstruction"
+    next_safe_action: "Review packet against source files"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/shared/"
+      - ".opencode/skills/sk-design/benchmark/"
+      - ".opencode/skills/sk-design/feature_catalog/"
+      - ".opencode/specs/sk-design/008-design-shared-backbone/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-design-shared-backbone-reconstruction-20260716"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Feature Specification: Reconstruct the sk-design shared backbone
+<!-- SPECKIT_LEVEL: 2 -->
+
+> RECONSTRUCTION DRAFT (best-effort). This spec did not previously exist in git or memory; it is reconstructed from the intact source .opencode/skills/sk-design/shared/, .opencode/skills/sk-design/benchmark/, and .opencode/skills/sk-design/feature_catalog/. Verify against that source before treating any line as authoritative.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-07-16 |
+| **Branch** | 0055-skilled-migration-000-scaffold |
+| **Spec Folder** | 008-design-shared-backbone |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The sk-design family shares a backbone of register, context, proof, transport-boundary, token, procedure, and verification contracts, but this packet was absent from git and memory. The intact shared source, benchmark snapshots, and feature catalog describe current behavior and evidence that need to be made inspectable without turning a reconstruction into a new runtime contract.
+
+### Purpose
+Reconstruct a Level-2 packet that records the shared sk-design backbone, its source-defined gates and boundaries, and its benchmark and catalog evidence.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- The Brand-versus-Product register, six downstream dials, register card, and register-first context-loading rule.
+- Context manifests, build bundles, proof fields, hard gates, dispatch manifests, and the design proof token contracts.
+- Shared token vocabulary, cognitive and numeric law references, procedure-card schema, the shared polish procedure, and variant parameters.
+- The deterministic shared scripts and their source-defined validation responsibilities, including their test file.
+- The benchmark README, frozen baseline, after snapshots, trace-mode distinctions, recorded scores, and stated measurement gaps.
+- The feature catalog's manager-shell intake, visible plan, proof cadence, transport-versus-taste boundary, and private procedure-card inventory.
+- Source and traceability records for the 24 shared files, 15 benchmark files, and 6 feature-catalog files read for this reconstruction.
+
+### Out of Scope
+- Changing any file under the intact sk-design skill, benchmark, or feature-catalog source trees.
+- Implementing, re-running, or modifying the deterministic scripts, benchmark harness, transports, mode packets, or procedure-card consumers.
+- Assigning mode-specific craft behavior that the shared source only names as owned by interface, foundations, motion, audit, md-generator, or sk-code.
+- Treating benchmark reports as fresh runtime results or converting a recorded measurement gap into a skill defect.
+- Creating description.json, graph-metadata.json, implementation-summary.md, scratch files, or any packet file beyond the four requested documents.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| .opencode/specs/sk-design/008-design-shared-backbone/spec.md | Create | Level-2 reconstruction specification for the shared backbone. |
+| .opencode/specs/sk-design/008-design-shared-backbone/plan.md | Create | Source-faithful reconstruction plan and boundaries. |
+| .opencode/specs/sk-design/008-design-shared-backbone/tasks.md | Create | Task breakdown for authoring and checking the packet. |
+| .opencode/specs/sk-design/008-design-shared-backbone/checklist.md | Create | Level-2 verification checklist for the reconstruction draft. |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Preserve register-first context loading. | The packet records Brand and Product posture, the six dials, register-first files, context-manifest fields, smallest useful build bundle, and the rule that claims name the files behind them. |
+| REQ-002 | Preserve proof and boundary contracts. | The packet records the required proof fields, hard gates, DESIGN_DISPATCH_MANIFEST v1, DESIGN_BOUNDARY_PROOF v1, DESIGN_PROOF_TOKEN v1, raw-byte and canonicalization rules, and fail-closed boundary behavior. |
+| REQ-003 | Preserve the transport, procedure, and handoff boundaries. | The packet keeps design judgment in sk-design, treats transports as evidence or artifact movers, keeps private cards behind public mode selection, and records the shared sk-code handoff ownership without inventing a mode schema. |
+| REQ-004 | Preserve source-defined verification surfaces. | The packet identifies the shared scripts, the command-surface test, their actual checks, the benchmark dimensions and trace modes, and the feature-catalog verifier cadence without claiming that any check was run. |
+| REQ-005 | Preserve reconstruction scope and uncertainty. | The packet is marked as a reconstruction draft, cites the intact source paths, distinguishes recorded benchmark evidence from current execution, and does not add behavior absent from the source. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-006 | Preserve shared vocabulary and numeric guidance. | The packet records token roles, cognitive-law usage, numeric law ownership and enforcement status, and the variant-parameter ownership and transport rows. |
+| REQ-007 | Preserve procedure-card schema and selection. | The packet records required card fields, placement rules, exact-trigger preference, narrower-output selection, no-card fallback, and read-only or mutating boundary statements. |
+| REQ-008 | Preserve benchmark and feature-catalog traceability. | Sources / Traceability names the real shared, benchmark, and feature-catalog paths, including baseline and after snapshots and the six catalog files. |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: The packet describes the shared backbone as common contracts and evidence surfaces consumed by the design modes, without promoting it to a new public mode.
+- **SC-002**: The packet captures register and context loading, proof fields and gates, dispatch and token validation, and the transport-versus-taste boundary.
+- **SC-003**: The packet captures private procedure-card schema and selection, shared assets, numeric and token vocabulary, and deterministic script responsibilities.
+- **SC-004**: The packet records the benchmark baseline and after snapshots with their trace-mode, coverage, score, and measurement-gap caveats.
+- **SC-005**: Every source claim in the reconstruction can be traced to an intact path listed in Sources / Traceability, and no runtime execution is claimed.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | Mode packets and transport implementations are referenced by the shared contracts but are outside this source set. | Reconstructing their detailed behavior here would overstate the shared backbone. | Record ownership and real sibling paths only where the shared source names them; keep mode craft out of scope. |
+| Dependency | Benchmark reports are rendered artifacts with router and live trace modes. | A report headline can be mistaken for a current runtime verdict or for browser-complete coverage. | Preserve each report's trace mode, unscored dimensions, and browser-harness caveat. |
+| Risk | Proof cards and deterministic scripts define hard gates, while this packet is documentation only. | A reader could mistake source-defined gate rules for checks performed during reconstruction. | State the gate responsibilities and keep execution results unclaimed. |
+| Risk | The feature catalog reports a 14-card family inventory, while this source set contains the shared card and catalog references to mode-local cards. | The inventory count could be confused with a reconstructed copy of all mode-local cards. | Attribute the count to the catalog and cite the listed mode-local paths without copying their undisclosed contents. |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: No runtime performance target is specified by the shared backbone; benchmark D3 values are report evidence with mode-specific caveats.
+- **NFR-P02**: The proof and token contracts prioritize explicit evidence and bounded canonicalization; this packet makes no latency or throughput claim.
+
+### Security
+- **NFR-S01**: DESIGN_PROOF_TOKEN v1 binds file hashes, payload digests, time, single-use nonce and run identity, surface, and workflow modes; validators fail closed on required-input or reconstruction failure.
+- **NFR-S02**: Source-proof validation resolves cited paths inside the repository root and rejects path escape, unreadable sources, malformed hashes, or mismatched raw-byte hashes.
+
+### Reliability
+- **NFR-R01**: Register, context-manifest, proof-card, dispatch, and handoff contracts expose the evidence needed at their boundaries; missing proof blocks the corresponding claim.
+- **NFR-R02**: Router and live benchmark reports distinguish scored, unscored, routed-out, and harness-blocked scenarios instead of treating all rows as the same evidence.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Ambiguous register: apply the source's first-match order of task cue, surface in focus, and declared register; ask only when a missing fact could change routing or acceptance, with Product as the safer default for unlabeled internal surfaces.
+- Build work spanning modes: use the smallest useful bundle named by the context contract, including interface, foundations, register and dials, preflight, matching foundation axes, and audit references when audit or readiness claims are in scope.
+- Stateful or global surfaces: fill the interaction-state matrix for stateful work and the locale-stress lane for global or localized work; mark non-applicable lanes N/A where the contract allows it.
+
+### Error Scenarios
+- Missing context: block design decisions until required files are named in the context manifest.
+- Missing proof: do not make ready, ship, audit, accessibility, release, or production-ready claims; return the gap to the owning mode or gate.
+- Invalid proof token or dispatch envelope: reject missing, malformed, stale, replayed, mismatched, or unresolvable evidence as required by the v1 contracts.
+- No private procedure match: keep the selected public mode's baseline behavior and do not create a public route or extra tool permission.
+- Transport conflict: return transport output to the selected mode or audit for acceptance; transport output does not decide taste, accessibility, responsiveness, or production readiness.
+
+### State Transitions
+- Intake to work: set the register, load the context manifest, then choose the mode or bundle before design or transport decisions.
+- Design to implementation: emit the shared sk-code handoff with the fields owned by the selected mode; sk-code implements and verifies rather than silently redesigning.
+- Canonical skill change: use the adoption gate before promoting a lineage recommendation into canonical skill files.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 18/25 | Shared contracts, four assets, one shared procedure, eight gate scripts plus a test, 15 benchmark files, and 6 feature-catalog files. |
+| Risk | 10/25 | The main risks are boundary invention, stale benchmark interpretation, and confusing source-defined gates with executed checks. |
+| Research | 16/20 | Reconstruction required reading the complete shared, benchmark, and feature-catalog source sets plus the required templates and exemplar. |
+| **Total** | **44/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. OPEN QUESTIONS
+
+- The shared source names mode-owned contracts and downstream consumers, but this packet does not define their undisclosed schemas or implementation details.
+<!-- /ANCHOR:questions -->
+
+---
+
+## 11. SOURCES / TRACEABILITY
+
+The following intact paths were read as reconstruction evidence. They are source references, not additional behavior.
+
+### Shared backbone
+
+- .opencode/skills/sk-design/shared/anti_slop_principles.md
+- .opencode/skills/sk-design/shared/assets/context_loaded_card.md
+- .opencode/skills/sk-design/shared/assets/proof_of_application_card.md
+- .opencode/skills/sk-design/shared/assets/register_card.md
+- .opencode/skills/sk-design/shared/assets/variant_parameter_contract.md
+- .opencode/skills/sk-design/shared/cognitive_laws.md
+- .opencode/skills/sk-design/shared/context_loading_contract.md
+- .opencode/skills/sk-design/shared/design_dispatch_boundary.md
+- .opencode/skills/sk-design/shared/design_proof_token.md
+- .opencode/skills/sk-design/shared/design_token_vocabulary.md
+- .opencode/skills/sk-design/shared/numeric_design_laws.md
+- .opencode/skills/sk-design/shared/procedure_card_schema.md
+- .opencode/skills/sk-design/shared/procedures/polish_gate_orchestration.md
+- .opencode/skills/sk-design/shared/register.md
+- .opencode/skills/sk-design/shared/scripts/ai-fingerprint-fixture-check.mjs
+- .opencode/skills/sk-design/shared/scripts/ai-fingerprint-registry-check.mjs
+- .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs
+- .opencode/skills/sk-design/shared/scripts/design-command-surface-check.test.mjs
+- .opencode/skills/sk-design/shared/scripts/md_table.py
+- .opencode/skills/sk-design/shared/scripts/numeric_law_check.py
+- .opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs
+- .opencode/skills/sk-design/shared/scripts/proof_check.py
+- .opencode/skills/sk-design/shared/scripts/variant_parameter_check.py
+- .opencode/skills/sk-design/shared/sk_code_handoff.md
+
+### Benchmark evidence
+
+- .opencode/skills/sk-design/benchmark/README.md
+- .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json
+- .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.md
+- .opencode/skills/sk-design/benchmark/after_009/report.json
+- .opencode/skills/sk-design/benchmark/after_009/report.md
+- .opencode/skills/sk-design/benchmark/after_012_routing_rigor/report.json
+- .opencode/skills/sk-design/benchmark/after_012_routing_rigor/report.md
+- .opencode/skills/sk-design/benchmark/after_016_hub_routing/report.json
+- .opencode/skills/sk-design/benchmark/after_016_hub_routing/report.md
+- .opencode/skills/sk-design/benchmark/after_018_transport_integration/report.json
+- .opencode/skills/sk-design/benchmark/after_018_transport_integration/report.md
+- .opencode/skills/sk-design/benchmark/after_022_coverage_fill/report.json
+- .opencode/skills/sk-design/benchmark/after_022_coverage_fill/report.md
+- .opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json
+- .opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.md
+
+The benchmark README defines the Lane C dimensions as D1 routing, D2 discovery, D3 efficiency, D4 usefulness, and D5 connectivity. The frozen router baseline is CONDITIONAL at 69/100 with D1 intra, D2, and the D5 hard gate at 100, D3 at 0 because of the stated Mode-A measurement gap, and D1 inter and D4 unscored. The stored after_009 report remains CONDITIONAL at 69/100 with 18 scored scenarios; after_012_routing_rigor and after_d3_proxy record router PASS at 100/100. The live after_016_hub_routing and after_018_transport_integration reports record PASS at 93/100, and after_022_coverage_fill records live PASS at 94/100. The live reports retain the browser-stage funnel caveat and leave D1 inter and D4 unscored; these are recorded artifacts, not fresh verification in this packet.
+
+### Feature catalog
+
+- .opencode/skills/sk-design/feature_catalog/feature_catalog.md
+- .opencode/skills/sk-design/feature_catalog/manager_shell/context_first_intake_and_visible_plan.md
+- .opencode/skills/sk-design/feature_catalog/manager_shell/proof_gates_and_verifier_cadence.md
+- .opencode/skills/sk-design/feature_catalog/manager_shell/transport_vs_taste_separation.md
+- .opencode/skills/sk-design/feature_catalog/procedure_card_system/procedure_card_inventory.md
+- .opencode/skills/sk-design/feature_catalog/procedure_card_system/procedure_card_schema_and_selection.md
+
+The feature catalog states that the hub routes one public design-family identity to five mode packets, gathers context, names proof, and keeps private procedure cards behind public routes. It records context-first intake and visible plans, verifier cadence before ready claims, transport-versus-taste separation, and a 14-card private procedure inventory. Those statements remain attributed to the catalog.
+
+---
+
+## RELATED DOCUMENTS
+
+- Implementation Plan: See plan.md
+- Task Breakdown: See tasks.md
+- Verification Checklist: See checklist.md
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

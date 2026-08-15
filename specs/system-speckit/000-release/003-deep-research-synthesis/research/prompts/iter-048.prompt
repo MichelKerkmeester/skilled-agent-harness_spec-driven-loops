@@ -1,0 +1,1042 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-git/014-gitkraken-mcp-integration"
+# PACKET: specs/sk-git/014-gitkraken-mcp-integration (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Integrate the GitKraken MCP server into sk-git and Code Mode with advisor-routed utilization"
+description: "Phase parent for registering the GitKraken MCP server (@gitkraken/gk mcp) as a Code Mode manual, documenting it inside sk-git with safety-scoped tool selection guidance, and updating sk-git's router plus the skill advisor's routing metadata so GitKraken-MCP-shaped requests reach sk-git automatically."
+trigger_phrases:
+  - "014-gitkraken-mcp-integration"
+  - "phase parent"
+  - "gitkraken mcp integration"
+  - "gitkraken mcp sk-git"
+  - "gitlens launchpad routing"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/014-gitkraken-mcp-integration"
+    last_updated_at: "2026-07-15T04:22:47Z"
+    last_updated_by: "claude"
+    recent_action: "All 5 phases complete; GitKraken MCP integrated end-to-end"
+    next_safe_action: "Packet complete; no further action needed"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "014-gitkraken-mcp-integration"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "GitKraken CLI (`gk`) is already installed locally (Homebrew, /opt/homebrew/bin/gk) and authenticated to GitHub; `gk mcp --list-tools` enumerates 31 real tools, confirming the README's tool list is incomplete"
+      - "Registration target is a new top-level packet under the existing sk-git track, not a new hub — this adds one MCP server into the existing flat sk-git skill"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+
+## 001-research-and-context/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1: research-and-context"
+description: "Completed GitKraken MCP research gate: verified 31-tool inventory, config shape, and resolved the read/write safety-carve-out design decision."
+trigger_phrases:
+  - "gitkraken mcp research summary"
+  - "phase 001 summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/014-gitkraken-mcp-integration/001-research-and-context"
+    last_updated_at: "2026-07-15T04:22:47Z"
+    last_updated_by: "claude"
+    recent_action: "Completed the research gate and recorded verified findings"
+    next_safe_action: "Proceed to phase 002"
+    blockers: []
+    key_files:
+      - ".opencode/specs/sk-git/014-gitkraken-mcp-integration/001-research-and-context/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-001-research-and-context"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research-and-context |
+| **Completed** | 2026-07-10 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+No files were created or modified outside this phase folder — this is a read-only research gate. It ran the locally installed, authenticated `gk` CLI directly to establish ground truth for the GitKraken MCP server, since the GitHub README under-documents the tool surface (it names only 3 example tools; the real server exposes 31).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `spec.md` | Created | Verified tool inventory, config shape, and safety-carve-out decision |
+| `plan.md` | Created | Research approach and architecture |
+| `tasks.md` | Created | Task checklist for the research gate |
+| `implementation-summary.md` | Created | This document |
+<!-- /ANCHOR:what-built -->
+
+
+## 002-utcp-config-registration/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2: utcp-config-registration"
+description: "Completed registration of the gitkraken manual_call_template in .utcp_config.json."
+trigger_phrases:
+  - "gitkraken utcp config summary"
+  - "phase 002 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/014-gitkraken-mcp-integration/002-utcp-config-registration"
+    last_updated_at: "2026-07-15T04:22:47Z"
+    last_updated_by: "claude"
+    recent_action: "Registered the gitkraken manual in .utcp_config.json"
+    next_safe_action: "Proceed to phase 003"
+    blockers: []
+    key_files:
+      - ".utcp_config.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-002-utcp-config-registration"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-utcp-config-registration |
+| **Completed** | 2026-07-10 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Added one new `manual_call_template` entry, `gitkraken`, to `.utcp_config.json`, registering the GitKraken MCP server with Code Mode using the repo's standard portable `npx -y <pkg>` stdio pattern.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.utcp_config.json` | Modified | Added `gitkraken` manual (stdio, `npx -y @gitkraken/gk mcp`, no env vars), placed alphabetically between `github` and `open_design` |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 003-sk-git-integration-doc-and-router/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3: sk-git-integration-doc-and-router"
+description: "Completed authoring of gitkraken_mcp_integration.md and the sk-git SKILL.md router/rules updates."
+trigger_phrases:
+  - "gitkraken mcp doc summary"
+  - "phase 003 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router"
+    last_updated_at: "2026-07-15T04:22:47Z"
+    last_updated_by: "claude"
+    recent_action: "Authored the gitkraken doc, updated SKILL.md router, fixed 3 review findings"
+    next_safe_action: "Proceed to phase 004"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-git/references/gitkraken_mcp_integration.md"
+      - ".opencode/skills/sk-git/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-003-sk-git-integration-doc-and-router"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-sk-git-integration-doc-and-router |
+| **Completed** | 2026-07-10 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Authored a new sk-git reference doc for the GitKraken MCP integration and extended `SKILL.md`'s smart router, keyword triggers, references table, and rules so the AI reaches for it automatically and safely.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-git/references/gitkraken_mcp_integration.md` | Created | Tool selection guide, safety carve-out, full 31-tool reference, usage examples, error handling |
+| `.opencode/skills/sk-git/SKILL.md` | Modified | New `GITKRAKEN_MCP` intent in `INTENT_SIGNALS`/`RESOURCE_MAP`; new keyword triggers; new §5 references row; new §4 ALWAYS rule 12 (renumbered the former rule 12 to 13, and fixed a pre-existing stale cross-reference from `(see ALWAYS #11)` to `(see ALWAYS #13)`); version bumped 1.1.2.1 → 1.1.3.0 |
+<!-- /ANCHOR:what-built -->
+
+---
+
+## 004-advisor-routing-update/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4: advisor-routing-update"
+description: "Completed sk-git graph-metadata.json and advisor explicit-lane boost updates; verified live routing with no regressions."
+trigger_phrases:
+  - "gitkraken advisor routing summary"
+  - "phase 004 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/014-gitkraken-mcp-integration/004-advisor-routing-update"
+    last_updated_at: "2026-07-15T04:22:47Z"
+    last_updated_by: "claude"
+    recent_action: "Updated graph-metadata.json and explicit.ts, verified live routing"
+    next_safe_action: "Proceed to phase 005"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-git/graph-metadata.json"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-004-advisor-routing-update"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-advisor-routing-update |
+| **Completed** | 2026-07-10 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Extended sk-git's graph metadata and the skill advisor's curated explicit-author lane with GitKraken vocabulary, then verified live routing behavior end-to-end with the real advisor MCP tools — not just static config edits.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-git/graph-metadata.json` | Modified | Added `gitkraken` to `domains`; added `gitkraken`/`gitlens`/`cross-platform pr`/`multi-provider issue` to `intent_signals`, `derived.trigger_phrases`, `derived.key_topics`, `derived.intent_signals`; added the new reference doc to `key_files`/`entities`/`source_docs` |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts` | Modified | Added `gitkraken: [['sk-git', 0.9]]` to `TOKEN_BOOSTS`; added `'gitlens launchpad': [['sk-git', 0.85]]` to `PHRASE_BOOSTS` — 2 lines, purely additive |
+<!-- /ANCHOR:what-built -->
+
+---
+
+## 005-verify-and-rollout/implementation-summary.md
+---
+title: "Implementation Summary: Phase 5: verify-and-rollout"
+description: "Terminal verification gate for the GitKraken MCP integration packet, run clean, with one documented and expected limitation."
+trigger_phrases:
+  - "gitkraken mcp verify summary"
+  - "phase 005 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/014-gitkraken-mcp-integration/005-verify-and-rollout"
+    last_updated_at: "2026-07-15T04:22:47Z"
+    last_updated_by: "claude"
+    recent_action: "Ran the terminal gate and rolled up the parent packet"
+    next_safe_action: "Packet complete; no further action needed"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-verify-and-rollout"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-verify-and-rollout |
+| **Completed** | 2026-07-10 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The terminal verification gate for the whole GitKraken MCP integration packet: no new product files, only re-verification and the parent rollup.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `005-verify-and-rollout/*` | Created | This phase's own spec docs |
+| `../graph-metadata.json` | Modified | Rolled up parent to `status: complete`, `last_active_child_id: "005"` |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+FOLDER
+
+<<<FOLDER id="specs/sk-git/015-remote-branch-policy"
+# PACKET: specs/sk-git/015-remote-branch-policy
+
+---
+title: "Implementation Summary: Remote Branch Push Permission Policy"
+description: "Origin now stays curated by default: every push outside a small allowlist needs a fresh, explicit go-ahead, while local branch creation keeps its existing freedom."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "remote branch policy"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/015-remote-branch-policy"
+    last_updated_at: "2026-07-17T16:27:39Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Committed 27dd49c73b; push pending"
+    next_safe_action: "Push once operator resolves the tree divergence"
+    blockers:
+      - "push to origin rejected non-fast-forward; shared tree has a concurrent session's uncommitted work"
+    key_files:
+      - ".opencode/scripts/git-hooks/pre-push"
+      - ".opencode/skills/sk-git/scripts/worktree-naming.sh"
+      - ".opencode/skills/sk-git/scripts/remote-branch-allowlist.txt"
+      - ".opencode/scripts/git-hooks/tests/pre-push.test.sh"
+      - ".opencode/skills/sk-git/SKILL.md"
+      - ".opencode/skills/sk-git/references/remote-branch-policy.md"
+      - "AGENTS.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-git-015"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Ask scope: every push, not just creation (operator's explicit choice)."
+      - "CLAUDE.md sync: yes, add a summary row (operator-approved)."
+---
+# Implementation Summary: Remote Branch Push Permission Policy
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 015-remote-branch-policy |
+| **Status** | Complete |
+| **Completed** | 2026-07-17 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`origin` now stays curated by default: only `main`, `skilled/v*` release branches (e.g. `skilled/v4.0.0.0`), and anything the operator lists in a plain text file reach remote without asking. Every other push — a brand-new branch or a new commit on one already there — needs a fresh, explicit go-ahead in the moment it happens, both from Claude (a MANDATORY behavioral rule) and from a git hook that backstops it technically, whether the push comes from an agent or a human typing at a real terminal. Local branch and worktree creation is completely unaffected — it stays exactly as free as it was before.
+
+### Remote-push allowlist
+
+`is_remote_push_allowlisted()` in `worktree-naming.sh` hardcodes `main` and `skilled/v*` (so they can never be silently un-exempted), then optionally extends the exemption list from `remote-branch-allowlist.txt` — one glob pattern per line, matched with bash `case`. Deleting or emptying that file only narrows exemptions back to the two built-ins; it can never widen what's allowed. A new `validate-remote-allowlist <branch>` CLI subcommand lets anyone check the allowlist directly.
+
+### Pre-push permission gate
+
+The `pre-push` hook now runs two independent gates per pushed ref: the existing naming gate (new branches only, migration-tolerant for updates) and a new permission gate (every push, new or update). The permission gate checks the allowlist, then `SPECKIT_ALLOW_REMOTE_PUSH=1`, then a narrowly scoped exception for the continuous-integration autosync's live-branch publish (`SPECKIT_AUTOSYNC=1` AND the exact `$SPECKIT_LIVE_BRANCH`, never a blanket bypass) — and blocks with the exact retry command otherwise. `SPECKIT_SKIP_PREPUSH_NAMING=1` no longer implies a bypass of this gate; the two are fully independent now.
+
+### sk-git behavioral rule
+
+SKILL.md's new "Remote Push Permission Enforcement" subsection (mirroring the existing "Workspace Choice Enforcement" pattern) makes the ask MANDATORY: an explicit in-turn user push instruction counts as the go-ahead (no redundant re-ask), otherwise Claude asks directly before pushing. `finish-workflows.md`'s Option 2 push snippet and the Step 5b reconciliation snippet both now show `SPECKIT_ALLOW_REMOTE_PUSH=1` where it applies.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Built bottom-up and verified at each layer before moving on: the allowlist function was smoke-tested directly via its CLI subcommand (confirmed `main`, `skilled/v4.0.0.0`, a custom `develop` pattern, and an arbitrary non-listed branch all resolve correctly) before the hook was touched. The hook rewrite was checked with `bash -n` for syntax, then verified against a manual dry-run invocation in the real repo tree (both the BLOCKED message and the bypass-var path render correctly). The test suite was rewritten scenario-by-scenario against a documented before/after table (research.md §5), run to green (`PASS=21 FAIL=0`), and the three other existing git-hook test harnesses in the same directory were re-run to confirm no collateral regression. No scratch artifacts were left behind.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Two-layer enforcement (agent ask + hook backstop), not a GitHub ruleset | A git hook can't "ask," and GitHub rulesets can't either — they're binary allow/deny, and this repo's own `main-protection` ruleset already grants the repo-owner role an unconditional bypass, confirmed via `gh api`. Only local enforcement gives the operator's own manual pushes the same safety net as agent-issued ones. |
+| Hardcoded `main`/`skilled/v*` plus an optional allowlist file, not a config-file-only source | A deleted or emptied file must only narrow exemptions, never widen them — putting the two defaults solely in an editable file would break that guarantee. |
+| Autosync exemption scoped to the exact live branch, not a blanket `SPECKIT_AUTOSYNC=1` bypass | Blocking autosync outright would silently regress the working continuous-integration feature; a blanket bypass would turn one env var into a side-channel for pushing any branch unasked. Exact-match scoping gets both right. |
+| Ask every push, not just the branch's first creation | Operator's explicit choice over the recommended lighter option — a prior approval doesn't carry forward, so even a branch already on origin asks again on its next push. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `pre-push.test.sh` (rewritten, 21 scenarios) | PASS — `PASS=21 FAIL=0` |
+| `install-git-hooks-worktree-harness.sh` | PASS — no regression from the pre-push header/behavior change |
+| `memory-drift-marker-lock-harness.sh` | PASS — unaffected (different hook) |
+| `post-commit-code-graph-invalidation.sh` | PASS — unaffected (different hook) |
+| `bash -n` syntax check on `pre-push` and `worktree-naming.sh` | PASS |
+| CLI smoke test: `validate-remote-allowlist main` / `skilled/v4.0.0.0` / `sk-git/0044-foo` | PASS — ok/ok/not-allowlisted as expected |
+| Manual hook invocation against the real repo tree (non-allowlisted branch, bypass var, `skilled/v4.0.0.0`) | PASS — BLOCKED message renders correctly; bypass and allowlisted branches pass with rc=0 |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Existing remote branches not on the allowlist need the bypass var on their next push.** `origin/skilled/0064-spec-root-resolution-impl` and similar in-flight branches will hit the new gate the next time anyone pushes to them. This is the operator's explicit "ask every push" choice, not an oversight, but worth knowing before the next push to one of those surprises anyone.
+2. **A version bump / changelog entry for `sk-git`'s `SKILL.md` was not authored.** This repo's convention pairs every SKILL.md content change with a version bump and a matching `changelog/vX.md` file via the `sk-doc/create-diff` skill; that skill was not invoked here since it wasn't the focus of this task. `SKILL.md`'s `version:` field is unchanged at `1.3.2.0` despite the new subsection and ALWAYS #18. Flagging so it isn't mistaken for stale metadata.
+3. **`.github` was investigated and deliberately left untouched.** See `decision-record.md` ADR-001. No ruleset change is recommended; ruled out with evidence (`gh api` output on the existing `main-protection` ruleset), not left unexamined.
+4. **Commit made, push pending.** Commit `27dd49c73b` is on `skilled/v4.0.0.0` locally. `git push origin skilled/v4.0.0.0` was rejected (non-fast-forward — origin is 12 commits ahead of this session's branch point). The working tree also holds ~200 unrelated uncommitted deletions that look like a concurrent session's in-progress migration work, so this session did not rebase or reset the branch to reconcile — that decision is left to the operator (see `git fetch` + `git log origin/skilled/v4.0.0.0` for the current divergence).
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/sk-git/016-git-action-advisory-hook"
+# PACKET: specs/sk-git/016-git-action-advisory-hook (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Git Action Advisory Hook Phase Parent"
+description: "sk-git carries the rules that would have prevented four real incidents in one session, but nothing surfaces them at the moment a git command runs. This packet researches and builds an advisory hook that does."
+trigger_phrases:
+  - "git advisory hook"
+  - "git action advisor"
+  - "sk-git preflight advisory"
+  - "git hard rules"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/016-git-action-advisory-hook"
+    last_updated_at: "2026-07-28T09:30:00Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Closed the packet: all eight phases complete, six runtimes covered, pushed to v4"
+    next_safe_action: "Operator smoke-tests the Pi, OpenCode and Cursor adapters live"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-27-sk-git-016"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The PreToolUse Bash advisory mechanism already exists and is proven by cli-opencode."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+
+# Feature Specification: Git Action Advisory Hook Phase Parent
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 |
+
+## 001-advisory-research/implementation-summary.md
+---
+title: "Implementation Summary: Advisory Research"
+description: "Ten forced-depth passes across two model families produced a state-gated advisory design, refuted three of five originally proposed rules, and confirmed one live footgun with no rule today."
+trigger_phrases:
+  - "advisory research summary"
+  - "git advisory research outcome"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/016-git-action-advisory-hook/001-advisory-research"
+    last_updated_at: "2026-07-27T21:55:00Z"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Completed the ten-pass program and merged the corpus into research.md"
+    next_safe_action: "Operator reviews findings; phase 002 encodes only the confirmed set"
+    blockers: []
+    key_files:
+      - "research.md"
+      - "research/RUNNING-NOTES.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-27-sk-git-016-001"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions:
+      - "Should the confirmed config-filter footgun be split into its own remediation?"
+    answered_questions:
+      - "The noise threshold is roughly 1 advisory per 100 git mutations per rule."
+      - "The existing evaluator is command-only and cannot express state-gated git rules."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Advisory Research
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-advisory-research |
+| **Completed** | Research complete 2026-07-27; operator review outstanding |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Ten forced-depth research passes across two model families, producing 325 KB of transcripts merged
+into a ranked findings document. The central question — which git operations warrant a preflight
+advisory, and where the noise threshold sits — is answered with measurements rather than assertion.
+
+The measured result that matters: 93% of resets in this repository are unstage-only, so a rule
+gated on the `reset` verb fires on one operation in seven, while the same rule gated on old SHA
+differing from new SHA fires on roughly one in a hundred. The discriminator is the rule; the verb is
+not. Every retained candidate follows that shape.
+
+## 002-rule-encoding/implementation-summary.md
+---
+title: "Implementation Summary: Rule Encoding"
+description: "Ten state-gated rules, an additively extended evaluator, and a test suite that caught a wrong premise in the founding rule."
+trigger_phrases:
+  - "git hard rules encoding"
+  - "sk-git advisory rules"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/016-git-action-advisory-hook/002-rule-encoding"
+    last_updated_at: "2026-07-27T23:30:00Z"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Encoded ten state-gated rules and extended the shared evaluator"
+    next_safe_action: "Phase 003 wires the hook"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-27-sk-git-016-002"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Extend the shared evaluator additively rather than build a git-specific sibling."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Rule Encoding
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-rule-encoding |
+| **Completed** | 2026-07-27 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+sk-git now declares ten `hard_rules:` in its frontmatter, and the evaluator that already ran on every Bash command can finally read them, because it can now see the repository as well as the command.
+
+Every rule is a state discriminator. That is not a style preference: measurement in phase 001 found roughly one operation in seven here is a `reset`, and 93% of those merely unstage. A rule keyed to the word fires constantly and gets skimmed past; the same rule keyed to the commit actually moving fires about a hundredth as often. Each of the ten follows that shape or it would not have shipped.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `sk-git/SKILL.md` | Modified | Ten rules, version 1.4.0.0 |
+| `sk-git/scripts/lib/git-rule-checks.mjs` | Created | Checks plus a narrow git command parser |
+| `sk-git/scripts/lib/git-context.mjs` | Created | Lazy pre-execution state, cached per invocation |
+
+## 003-preflight-hook/implementation-summary.md
+---
+title: "Implementation Summary: Preflight Hook"
+description: "A PreToolUse hook delivering sk-git rules at command time, advisory-only, verified across five payload cases."
+trigger_phrases:
+  - "git preflight hook"
+  - "sk-git advisory hook"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/016-git-action-advisory-hook/003-preflight-hook"
+    last_updated_at: "2026-07-27T23:40:00Z"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Built and registered the preflight advisory hook"
+    next_safe_action: "Phase 004 measures the fire rate"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-27-sk-git-016-003"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Preflight Hook
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-preflight-hook |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A PreToolUse hook that reads sk-git's rules and prints the relevant one at the moment a git command is typed. It is the third entry in a Bash hook group that already had two, and it reuses the parser and evaluator both of them use.
+
+The gap it closes is specific. sk-git's rules were written down and still reached nobody, because a skill is surfaced by prompt routing while the damage happens at command time.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `sk-git/scripts/hooks/git-preflight-advisory.mjs` | Created | The hook |
+| `.claude/settings.json` | Modified | Registered in the existing Bash group |
+<!-- /ANCHOR:what-built -->
+
+## 004-pathspec-integrity/implementation-summary.md
+---
+title: "Implementation Summary: Pathspec Integrity"
+description: "The rule set measured at 0 fires per 25 ordinary commands with 5 of 5 control shapes firing, after the audit was fixed twice for reporting false signals."
+trigger_phrases:
+  - "advisory noise audit"
+  - "git advisory fire rate"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/016-git-action-advisory-hook/004-pathspec-integrity"
+    last_updated_at: "2026-07-27T23:50:00Z"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Measured the real fire rate with a control group"
+    next_safe_action: "Operator reviews the packet"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-27-sk-git-016-004"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Pathspec Integrity
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-pathspec-integrity |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+An audit that replays command shapes against a live repository and reports what the rule set actually costs. Ordinary commands drew no advisory in either measured repository; every control shape drew one.
+
+The pathspec failure this phase is named for was already covered by a rule built in phase 002, with its reproduction asserted there. What was genuinely missing was evidence for the claim the whole design rests on — that these rules stay quiet. Every number to this point was a projection from reflog prevalence, which counts how often an operation happened rather than how often a state-gated rule would fire on it.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `sk-git/scripts/lib/advisory-noise-audit.mjs` | Created | Replay, control group, budget verdict |
+<!-- /ANCHOR:what-built -->
+
+
+## 005-destructive-tier/implementation-summary.md
+---
+title: "Implementation Summary: Destructive Tier"
+description: "Phase 5 of the git action advisory hook packet."
+trigger_phrases:
+  - "005-destructive-tier docs"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/016-git-action-advisory-hook/005-destructive-tier"
+    last_updated_at: "2026-07-28T07:30:00Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Built and verified in one pass"
+    next_safe_action: "Operator review"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-28-sk-git-016-5"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Destructive Tier
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-destructive-tier |
+| **Completed** | 2026-07-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Seven destructive-tier rules, each a state discriminator or a rare explicit destructive token: hard reset fires only on a dirty tree, forced clean only when its dry run would really delete (with `-x` treated as high-blast), `branch -D` only against unmerged commits — mirroring the `-d` guard it exists to bypass — stash clear only with entries present, and the three rare shapes (immediate expiry, remote deletion, plain force) on shape alone, which rarity keeps inside the budget.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `sk-git/SKILL.md` | Modified | Seven rules appended, 17 total |
+| `sk-git/scripts/lib/git-context.mjs` | Modified | clean dry-run, unmerged branches, stash count |
+| `sk-git/scripts/lib/git-rule-checks.mjs` | Modified | Seven checks |
+| `sk-git/scripts/lib/git-rule-checks.test.mjs` | Modified | Five destructive-tier tests |
+<!-- /ANCHOR:what-built -->
+
+---
+
+## 006-runtime-parity/implementation-summary.md
+---
+title: "Implementation Summary: Runtime Parity"
+description: "Phase 6 of the git action advisory hook packet."
+trigger_phrases:
+  - "006-runtime-parity docs"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/016-git-action-advisory-hook/006-runtime-parity"
+    last_updated_at: "2026-07-28T07:30:00Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Built and verified in one pass"
+    next_safe_action: "Operator review"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-28-sk-git-016-6"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Runtime Parity
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-runtime-parity |
+| **Completed** | 2026-07-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The advisory hook accepts both payload dialects — Claude's `Bash` and Codex's `exec` — and resolves the repository from the payload's own `cwd` before falling back to either runtime's project-dir variable. Registered in the Codex `exec` hook group alongside the dispatch preflight that already lives there. One file serves both runtimes; a sibling copy was rejected because a second copy is a second thing to drift.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `sk-git/scripts/hooks/git-preflight-advisory.mjs` | Modified | Accept exec payloads and payload cwd |
+| `.codex/hooks.json` | Modified | Registered in the exec group |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 007-runtime-coverage/implementation-summary.md
+---
+title: "Implementation Summary: Runtime Coverage"
+description: "Phase 7 of the git action advisory hook packet."
+trigger_phrases:
+  - "007-runtime-coverage docs"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/016-git-action-advisory-hook/007-runtime-coverage"
+    last_updated_at: "2026-07-28T08:00:00Z"
+    last_updated_by: "glm-5-2"
+    recent_action: "Built and verified in one pass"
+    next_safe_action: "Operator review"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-28-sk-git-016-7"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Runtime Coverage
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+|| Field | Value |
+||-------|-------|
+|| **Spec Folder** | 007-runtime-coverage |
+|| **Completed** | 2026-07-28 |
+|| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Four runtime adapters and a behavior-neutral style alignment of the five sk-git script files. Every adapter imports the existing hard-rule parser/evaluator, `GIT_CHECKS`, the lazy `createGitContext`, and the `GIT_SHAPE` gate; no rule engine, check registry, or context collector was duplicated.
+
+- OpenCode plugin hooks `tool.execute.before` on `bash`, evaluates through the shared cores, and buffers at most 20 advisory events into the next `experimental.chat.system.transform`. It never writes to process stdout or stderr (the OpenCode plugin exemption tier) and never throws from a tool hook.
+- Pi extension registers `pi.on("tool_call")` on `bash`, dynamic-imports the three shared `.mjs` modules by relative path, and returns a warning as `{ reason }` with no `block: true`. Fail open via try/catch returning `undefined`.
+- Cursor proxy maps the `Shell` payload onto the shared hook's expected stdin JSON and forwards the shared hook's stdout verbatim. Fail open on spawn failure.
+- Devin wiring appends the shared hook to `.devin/hooks.v1.json` under `PreToolUse` matcher `^exec$`, using the same `DEVIN_PROJECT_DIR` shell envelope and an approval-JSON fallback as its siblings.
+
+Style alignment added boxed `╔═╗` COMPONENT headers, numbered `─── N. SECTION ───` dividers, complete JSDoc on exported functions, and camel-case locals. Behavior, messages, exports, and the one additive permitted export (`GIT_SHAPE`) are unchanged.
+
+### Files Changed
+
+|| File | Action | Purpose |
+||------|--------|---------|
+
+## 008-docs-and-playbooks/implementation-summary.md
+---
+title: "Implementation Summary: Docs and Playbooks"
+description: "Phase 8 of the git action advisory hook packet."
+trigger_phrases:
+  - "008-docs-and-playbooks docs"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/016-git-action-advisory-hook/008-docs-and-playbooks"
+    last_updated_at: "2026-07-28T08:30:00Z"
+    last_updated_by: "glm-5-2"
+    recent_action: "Built and verified in one pass"
+    next_safe_action: "Operator review"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-28-sk-git-016-8"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Docs and Playbooks
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+|| Field | Value |
+||-------|-------|
+|| **Spec Folder** | 008-docs-and-playbooks |
+|| **Completed** | 2026-07-28 |
+|| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Two code READMEs and seven manual-testing playbook features documenting the git preflight advisory.
+
+The READMEs (already present from phase 007) document the shared cores (`scripts/lib/README.md`: the 17 checks, the discriminator-not-verb principle, lazy context, the noise audit and its control group, the test suite) and the runtime matrix (`scripts/hooks/README.md`: the six-runtime matrix, registrations, suppression tiers, fail-open guarantees, and the OpenCode next-turn delivery channel).
+
+The seven playbook features each capture one deterministic trap scenario — a directory-scoped `git commit --only <dir>` that silently excludes an untracked file inside the directory — and assert the advisory names `commit-scope-drops-untracked`, the command still runs (advisory never blocks), and suppression works. The sk-git feature (`GIT-042`) covers the shared hook end-to-end; each cli feature covers how its runtime registers and delivers the advisory, the same trap, the suppression envs, and the fail-open guarantee.
+
+### Files Changed
+
+|| File | Action | Purpose |
+||------|--------|---------|
+|| `sk-git/scripts/lib/README.md` | Documented | Cores, checks, lazy context, noise audit, tests |
+|| `sk-git/scripts/hooks/README.md` | Documented | Six-runtime matrix, registrations, suppression, fail-open |
+|| `sk-git/manual-testing-playbook/git-preflight-advisory/advisory-fires-on-silent-scope-drop.md` | Created | `GIT-042` trap scenario for the shared hook |
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

@@ -1,0 +1,1192 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/mcp-tooling/012-template-alignment"
+# PACKET: specs/mcp-tooling/012-template-alignment
+
+---
+title: "Implementation Summary: MCP tooling packet template alignment"
+description: "The asIDE DevTools, Refero, and Mobbin packet documentation now conforms to the canonical create-skill and create-readme structures, and all three deep-alignment lanes pass with no P0 or P1 findings."
+trigger_phrases:
+  - "template alignment summary"
+  - "mcp docs alignment complete"
+  - "deep alignment pass"
+  - "kebab naming exception"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/012-template-alignment"
+    last_updated_at: "2026-07-17T08:07:47Z"
+    last_updated_by: "codex"
+    recent_action: "Closed template alignment packet"
+    next_safe_action: "None; packet complete"
+    blockers: []
+    key_files:
+      - ".opencode/specs/mcp-tooling/012-template-alignment/alignment/alignment-report.md"
+      - ".opencode/specs/mcp-tooling/012-template-alignment/checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-alignment-closeout-20260717"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The 11 kebab-case filename advisories are an accepted exception under the hyphen-naming pilot."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 012-template-alignment |
+| **Completed** | 2026-07-17 |
+| **Level** | 2 |
+| **Status** | Complete |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Workflow** | `/deep:alignment:auto` |
+| **Authority** | `sk-doc` / `docs` |
+| **Executor** | `cli-codex gpt-5.6-sol`, high reasoning, fast service tier |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The three new MCP tooling packets now present their assets, references, and script automation through the repository's canonical documentation structures. The final deep-alignment reducer passes all three lanes with P0 0 and P1 0, so readers get predictable navigation and fixture-consistent Mobbin guidance without overstated authentication claims.
+
+### Canonical overview coverage
+
+Remediation 1 added `## 1. OVERVIEW` with Purpose and Usage to 11 affected asset and reference documents. This cleared all 14 initial P0 `missing_required_section: overview` findings, including the three script READMEs that received full structural rewrites rather than a heading-only patch.
+
+### Script README structure and quality
+
+All three `scripts/README.md` files now follow the create-readme code-folder scaffold: OVERVIEW, ARCHITECTURE, KEY FILES, ENTRYPOINTS, VALIDATION, and RELATED. Their DQI rose from approximately 52 to 76, above the required floor of 75.
+
+### Mobbin reality reconciliation
+
+Remediation 2 reconciled Mobbin's asset, MCP wiring, tool surface, and troubleshooting guidance with the 2026-07-16 discovery fixture. The packet now documents the confirmed live tools `mobbin.mobbin.search_screens`, `mobbin.mobbin.search_flows`, and `mobbin.mobbin.search_sections`, and treats `deep` as a confirmed client-settable mode. Authenticated OAuth and successful call behavior remain honestly labeled Inferred because the discovery fixture does not prove them.
+
+### Alignment Surfaces
+
+| Surface | Action | Outcome |
+|---------|--------|---------|
+| asIDE DevTools assets, references, and script README | Aligned | Final lane PASS |
+| Refero assets, references, and script README | Aligned | Final lane PASS |
+| Mobbin assets, references, and script README | Aligned and fixture-reconciled | Final lane PASS |
+| Packet completion docs | Authored | Level 2 closeout replaces scaffold placeholders |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+The cycle used `/deep:alignment:auto` with three lanes under `sk-doc` / `docs` authority. The operator froze remediation to `cli-codex gpt-5.6-sol` with reasoning effort `high` and service tier `fast`; dispatch receipts record that executor configuration.
+
+The delivery sequence was evidence-driven. Audit 1 failed on deterministic structure and DQI, Remediation 1 aligned the templates, Audit 2 cleared P0 but exposed Mobbin fixture drift, Remediation 2 corrected only the stale factual guidance, and Audit 3 passed every lane. Package and link gates then confirmed the aligned documentation remained internally valid.
+
+| Pass | Verdict | Findings | Delivery Consequence |
+|------|---------|----------|----------------------|
+| Audit 1 | FAIL | P0 14 / P1 0 / P2 3 | Add missing overviews and rebuild all script READMEs. |
+| Audit 2 | CONDITIONAL | P0 0 / P1 3 / P2 7 | Reconcile Mobbin reality drift against the discovery fixture. |
+| Audit 3 | PASS | P0 0 / P1 0 / P2 11 | Accept the filename pilot advisories and close the packet. |
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## 4. KEY DECISIONS
+
+| Decision | Why |
+|----------|-----|
+| Use one deep-alignment lane per packet | Independent verdicts made it clear that asIDE DevTools and Refero passed Audit 2 while Mobbin still needed factual remediation. |
+| Rebuild script READMEs to the full code-folder scaffold | The initial DQI near 52 showed that adding a single overview heading would not provide enough navigational value. |
+| Treat discovery fixture facts as Confirmed and live authenticated behavior as Inferred | The fixture proves three tool names and the `deep` schema value, but it does not prove OAuth success or production calls. |
+| Accept 11 kebab-case filename advisories without remediation | The operator's standing kebab directive and the `sk-doc/032` hyphen-naming program intentionally pilot the repository-wide reversal of the current snake_case rule. The final reducer proves all lanes pass with these filenames present. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## 5. VERIFICATION
+
+| Check | Result |
+|-------|--------|
+| Audit 1 | FAIL as expected: P0 14 / P1 0 / P2 3; 14 missing-overview findings and 3 below-floor DQI findings. |
+| Remediation 1 | PASS: 11 asset/reference overviews added; 3 script READMEs rebuilt; DQI lifted to 76. |
+| Audit 2 | CONDITIONAL as expected: P0 0 / P1 3 / P2 7; asIDE DevTools PASS, Refero PASS, Mobbin CONDITIONAL. |
+| Remediation 2 | PASS: all 3 Mobbin P1 reality-drift findings reconciled without upgrading authenticated-call claims. |
+| Audit 3 | PASS: 3-of-3 lanes PASS; P0 0 / P1 0 / P2 11. |
+| `package_skill.py --check --strict` | PASS for 3-of-3 packets. |
+| `validate_skill_package.py` | PASS for package and parent-skill-check. |
+| Local link validation | PASS with 0 broken links. |
+| Level 2 spec-folder strict validation | PASS: Errors 0, Warnings 0, `RESULT: PASSED`. |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## 6. KNOWN LIMITATIONS
+
+1. **Accepted kebab-case naming exception.** Eleven P2 filename-convention advisories remain by design: five in asIDE DevTools, three in Refero, and three in Mobbin. They are non-blocking under the final reducer and require no remediation while the standing kebab directive and `sk-doc/032` hyphen-naming pilot remain authoritative.
+2. **Authenticated Mobbin behavior remains Inferred.** The discovery fixture confirms the three live tool names and the client-settable `deep` mode, but authenticated OAuth and successful tool calls were not executed in this cycle.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/mcp-tooling/013-mcp-obsidian"
+# PACKET: specs/mcp-tooling/013-mcp-obsidian (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: mcp-obsidian — Obsidian CLI + MCP mode for the mcp-tooling hub"
+description: "Phase parent: add Obsidian dual CLI+MCP tooling as a new mcp-obsidian workflow mode of the mcp-tooling hub, mirroring mcp-click-up — research, build-or-adopt, author the skill package, register in hub + advisor, verify end-to-end."
+trigger_phrases:
+  - "mcp-obsidian"
+  - "obsidian cli mcp"
+  - "obsidian vault tooling"
+  - "mcp-tooling obsidian mode"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/013-mcp-obsidian"
+    last_updated_at: "2026-08-02T00:00:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Author phase-parent spec + 8-phase documentation map"
+    next_safe_action: "Execute 001-deep-research (multi-model /deep:research, no early convergence)"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Build vs adopt for the CLI and MCP servers (decided in 001)"
+      - "Does the target environment have an Obsidian vault + Local REST API available for live smoke?"
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+
+## 001-deep-research/implementation-summary.md
+---
+title: "Implementation Summary [template:level-1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "scaffold/001-deep-research"
+    last_updated_at: "2026-08-02T05:50:26Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize continuity block"
+    next_safe_action: "Replace template defaults on first save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/001-deep-research"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-deep-research |
+| **Completed** | 2026-08-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+
+## 002-tool-selection-and-scaffold/implementation-summary.md
+---
+title: "Implementation Summary [template:level-1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "scaffold/002-tool-selection-and-scaffold"
+    last_updated_at: "2026-08-02T05:50:27Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize continuity block"
+    next_safe_action: "Replace template defaults on first save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/002-tool-selection-and-scaffold"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-tool-selection-and-scaffold |
+| **Completed** | 2026-08-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+
+## 003-cli-tool-integration/implementation-summary.md
+---
+title: "Implementation Summary [template:level-1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "scaffold/003-cli-tool-integration"
+    last_updated_at: "2026-08-02T05:50:28Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize continuity block"
+    next_safe_action: "Replace template defaults on first save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/003-cli-tool-integration"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-cli-tool-integration |
+| **Completed** | 2026-08-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+
+## 004-mcp-server-integration/implementation-summary.md
+---
+title: "Implementation Summary [template:level-1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "scaffold/004-mcp-server-integration"
+    last_updated_at: "2026-08-02T05:50:28Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize continuity block"
+    next_safe_action: "Replace template defaults on first save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/004-mcp-server-integration"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-mcp-server-integration |
+| **Completed** | 2026-08-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+
+## 005-skill-authoring/implementation-summary.md
+---
+title: "Implementation Summary [template:level-1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "scaffold/005-skill-authoring"
+    last_updated_at: "2026-08-02T05:50:29Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize continuity block"
+    next_safe_action: "Replace template defaults on first save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/005-skill-authoring"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-skill-authoring |
+| **Completed** | 2026-08-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+
+## 006-feature-catalog-and-playbook/implementation-summary.md
+---
+title: "Implementation Summary: Feature Catalog and Manual Testing Playbook"
+description: "Current-state feature inventory and operator scenarios for the mcp-obsidian skill mode."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "mcp obsidian catalog"
+  - "mcp obsidian manual testing"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/013-mcp-obsidian/006-feature-catalog-and-playbook"
+    last_updated_at: "2026-08-02T10:45:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Author and validate the mcp-obsidian feature catalog and manual testing playbook"
+    next_safe_action: "Proceed to the next mcp-obsidian phase after the changelog constraint is cleared"
+    blockers:
+      - "Changelog update is deferred because the user explicitly prohibited edits to existing package files"
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/FEATURE-CATALOG.md"
+      - ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex/2026-08-02/006-feature-catalog-and-playbook"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions:
+      - "The existing package changelog remains unchanged by explicit scope constraint."
+    answered_questions:
+      - "The catalog uses headless notesmd-cli, official app-backed obsidian CLI, and MCP priority tiers."
+      - "Unenumerated MCP tools remain explicit VERIFY boundaries; no names or signatures were invented."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-feature-catalog-and-playbook |
+| **Completed** | 2026-08-02 (package authoring) |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `mcp-obsidian` mode now has a current-state inventory and a reproducible operator test surface. The catalog separates headless vault/file operations, the official app-backed CLI, and cyanheads MCP tools without asserting unsupported command names or signatures.
+
+### Feature catalog
+
+
+## 007-hub-registration-and-advisor/implementation-summary.md
+---
+title: "Implementation Summary [template:level-1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "scaffold/007-hub-registration-and-advisor"
+    last_updated_at: "2026-08-02T05:50:30Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize continuity block"
+    next_safe_action: "Replace template defaults on first save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/007-hub-registration-and-advisor"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-hub-registration-and-advisor |
+| **Completed** | 2026-08-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+
+## 008-verification-and-closeout/implementation-summary.md
+---
+title: "Implementation Summary [template:level-1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "scaffold/008-verification-and-closeout"
+    last_updated_at: "2026-08-02T05:50:31Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize continuity block"
+    next_safe_action: "Replace template defaults on first save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/008-verification-and-closeout"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-verification-and-closeout |
+| **Completed** | 2026-08-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+
+## 009-community-plugin-support/implementation-summary.md
+---
+title: "Implementation Summary [template:level-1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/013-mcp-obsidian/009-community-plugin-support"
+    last_updated_at: "2026-08-02T16:22:12Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Deepened the 3 community-plugin references (beancount-finance/obsidian-tables/obsidian42-brat) + remediated the hub integration audit"
+    next_safe_action: "Commit and push the expansion to skilled/v4.0.0.0"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/beancount-finance/"
+      - ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/obsidian-tables/"
+      - ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/obsidian42-brat/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/009-community-plugin-support"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Which finance plugin does the vault actually use? Beancount Ledger (mkshp-dev/obsidian-finance-plugin), not obsidian-flat-financing."
+      - "Should a specific plugin intent beat the generic PLUGINS intent? Yes; specific-first routing was added."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-community-plugin-support |
+| **Completed** | 2026-08-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+
+## 010-playbook-validation/001-provisioning/implementation-summary.md
+---
+title: "Implementation Summary — Phase 1 — Test-environment provisioning"
+description: "Recorded results for Phase 1 — Test-environment provisioning of the mcp-obsidian playbook validation run."
+trigger_phrases:
+  - "001-provisioning results"
+  - "playbook validation results"
+  - "mcp-obsidian scenario results"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/013-mcp-obsidian/010-playbook-validation/001-provisioning"
+    last_updated_at: "2026-08-03T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Provisioned the live playbook test environment"
+    next_safe_action: "Reconcile the 010 packet formal completion once the spec-memory backend accepts a save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/010-playbook-validation-001-provisioning"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary — Phase 1 — Test-environment provisioning
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-provisioning |
+| **Completed** | 2026-08-03 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Provisioned every surface the playbook needs: installed notesmd-cli v0.3.6 (default vault set to Obsidian); file-layer-installed Local REST API v5.1.0 into two vaults with a seeded API key + HTTP/HTTPS server; configured the gitignored .env (obsidian_ vars); and verified an end-to-end MCP round-trip (PUT/GET/DELETE all 204/200). Official obsidian CLI recorded as BLOCKED pending in-app Register CLI.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Scenarios ran against a live throwaway environment (a real vault used with `_pbtest-` throwaway artifacts, cleaned up after each run) by deepseek-v4-flash dispatched through the CLI named per phase. Every verdict is grounded in real command output or HTTP responses.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+## 010-playbook-validation/002-headless-cli-scenarios/implementation-summary.md
+---
+title: "Implementation Summary — Phase 2 — Headless notesmd-cli scenarios"
+description: "Recorded results for Phase 2 — Headless notesmd-cli scenarios of the mcp-obsidian playbook validation run."
+trigger_phrases:
+  - "002-headless-cli-scenarios results"
+  - "playbook validation results"
+  - "mcp-obsidian scenario results"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios"
+    last_updated_at: "2026-08-03T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Ran the 8 headless scenarios via cli-pi deepseek: 7/8 PASS"
+    next_safe_action: "Reconcile the 010 packet formal completion once the spec-memory backend accepts a save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/010-playbook-validation-002-headless-cli-scenarios"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary — Phase 2 — Headless notesmd-cli scenarios
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-headless-cli-scenarios |
+| **Completed** | 2026-08-03 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Executor: deepseek-v4-flash via cli-pi. **7/8 PASS.**
+
+| Scenario | Result |
+|---|---|
+| vault-preflight, vault-registration | PASS, PASS |
+| create-and-read, daily-note, move-note, delete-note, frontmatter | all PASS |
+| search-notes | **FAIL** |
+
+Finding: notesmd-cli v0.3.6 `search` (title search) is broken headlessly — no positional/query flag exists and every form returns "Cannot find note in vault" even for on-disk notes; `search-content` (body search) works. The mode's search-notes scenario + SKILL.md command reference should switch to `search-content` or document the limitation.
+<!-- /ANCHOR:what-built -->
+
+---
+
+## 010-playbook-validation/003-mcp-scenarios/implementation-summary.md
+---
+title: "Implementation Summary — Phase 3 — MCP round-trip scenarios"
+description: "Recorded results for Phase 3 — MCP round-trip scenarios of the mcp-obsidian playbook validation run."
+trigger_phrases:
+  - "003-mcp-scenarios results"
+  - "playbook validation results"
+  - "mcp-obsidian scenario results"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios"
+    last_updated_at: "2026-08-03T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Ran the 6 MCP scenarios via cli-opencode deepseek: 6/6 PASS"
+    next_safe_action: "Reconcile the 010 packet formal completion once the spec-memory backend accepts a save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/010-playbook-validation-003-mcp-scenarios"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary — Phase 3 — MCP round-trip scenarios
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-mcp-scenarios |
+| **Completed** | 2026-08-03 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Executor: deepseek-v4-flash via cli-opencode, against the live Local REST API on 127.0.0.1:27124. **6/6 PASS** (read-write-roundtrip, manage-tags, search-live-vault, delete-throwaway-note, prerequisite-boundary auth 401, tool-inventory).
+
+Finding: the live plugin is Coddington's obsidian-local-rest-api v5.1.0, whose built-in MCP server exposes 16 `vault_*` tools; the mode's references/mcp-tools.md documents cyanheads obsidian-mcp-server v3.2.9 with 14 `obsidian_*` tools. Same REST core, different MCP server identity — the mode's MCP tool catalog should be reconciled to the server it actually targets.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Scenarios ran against a live throwaway environment (a real vault used with `_pbtest-` throwaway artifacts, cleaned up after each run) by deepseek-v4-flash dispatched through the CLI named per phase. Every verdict is grounded in real command output or HTTP responses.
+<!-- /ANCHOR:how-delivered -->
+
+FOLDER
+
+<<<FOLDER id="specs/mcp-tooling/z_archive/001-mcp-coco-integration"
+# PACKET: specs/mcp-tooling/z_archive/001-mcp-coco-integration
+
+---
+title: "Implementation Summary: CocoIndex Code [mcp-tooling/001-mcp-coco-integration/implementation-summary]"
+description: "Phase 1 installed CocoIndex across the repo; Phase 2 hardened the skill; Phase 3 added strict readiness semantics and downstream adoption packaging."
+trigger_phrases:
+  - "cocoindex implementation"
+  - "cocoindex summary"
+  - "coco-index integration summary"
+  - "semantic code search delivered"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/001-mcp-coco-integration"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-mcp-coco-integration |
+| **Completed** | 2026-03-18 (Phase 1 + Phase 2 + Phase 3) |
+| **Level** | 2 |
+| **Actual Effort** | ~225 minutes across all three phases |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+OpenCode now has semantic code search plus a hardened skill wrapper around it. Before this change, every code exploration session started from scratch - Grep needed exact identifiers, Glob needed exact paths, and conceptual queries like "find the authentication middleware" returned nothing. Phase 1 installed CocoIndex Code as the 4th MCP server in the OpenCode ecosystem and registered it across all 6 CLI config files, giving every AI assistant a `search` tool that finds code by intent and concept. Phase 2 then hardened the surrounding skill so agents could verify readiness, recover stale setups, and rely on docs that match the installed runtime. Phase 3 finished the operational layer by adding strict readiness semantics, standardized failure codes, and a downstream adoption checklist for sibling repos.
+
+### Installation and Indexing
+
+`cocoindex-code` v0.2.3 is installed via `bash .opencode/skills/mcp-coco-index/scripts/install.sh`, placing the `ccc` binary at `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc`. The initial index covers 6,792 files across 14 languages, producing 105,965 chunks stored in `.cocoindex_code/` (gitignored). The all-MiniLM-L6-v2 embedding model runs locally - no API key, no code sent to the cloud. Indexing completed in approximately 5 minutes on Apple Silicon.
+
+### Multi-CLI Config Registration
+
+The `cocoindex_code` MCP server entry is registered in all 6 CLI config files using the appropriate format for each. Each entry follows the existing naming convention (`spec_kit_memory`, `code_mode`) and sets `COCOINDEX_CODE_ROOT_PATH` to the repo root via `"."`. The checked-in command paths are repo-relative so the integration remains portable across clone locations. The `.mcp.json` entry is `disabled: true` by default to prevent startup failures on machines where `cocoindex-code` is not installed. The `opencode.json` and `.claude/mcp.json` entries use `_NOTE_*` env vars to document the install requirements inline, following the existing pattern in both files.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.gitignore` | Modified | Added `.cocoindex_code/` to prevent index from being committed |
+| `.mcp.json` | Modified | Registered `cocoindex_code` server (disabled by default for Claude Code) |
+| `opencode.json` | Modified | Registered `cocoindex_code` server with `_NOTE_*` documentation (Copilot/OpenCode) |
+| `.agents/settings.json` | Modified | Registered `cocoindex_code` server with repo-relative paths and `trust: true` (agents) |
+| `.gemini/settings.json` | Modified | Registered `cocoindex_code` server with repo-relative paths and `trust: true` (Gemini CLI) |
+| `.claude/mcp.json` | Modified | Registered `cocoindex_code` server with relative env and `_NOTE_*` docs (Claude Code) |
+| `.codex/config.toml` | Modified | Registered `cocoindex_code` server via `[mcp_servers.cocoindex_code]` section (Codex CLI) |
+| `.opencode/skills/mcp-coco-index/scripts/common.sh` | Added | Shared shell helpers for readiness tooling |
+| `.opencode/skills/mcp-coco-index/scripts/doctor.sh` | Added | Read-only health check with strict readiness modes and expected-config validation |
+| `.opencode/skills/mcp-coco-index/scripts/ensure_ready.sh` | Added | Idempotent bootstrap helper with strict post-bootstrap validation |
+| `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Modified | Prefers repo-local `ccc` and boosts semantic discovery prompts |
+| `.opencode/skills/mcp-coco-index/references/cross_cli_playbook.md` | Added | Canonical operating guide for repeated-query and cross-CLI usage |
+| `.opencode/skills/mcp-coco-index/references/downstream_adoption_checklist.md` | Added | Minimum sibling-repo rollout checklist for payload, config wiring, and gitignore hygiene |
+
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Phase 1 was preceded by multi-agent research: 3 Claude Opus 4.6 sub-agents and 3 GPT-5.4 agents investigated CocoIndex Code in parallel, producing a 17-section `research/research.md` (v1.1). The research identified the PATH collision risk, corrected the cold start estimate to 20-30 seconds (not 3-8), and validated the phased rollout strategy. Phase 2 reused that evidence and the cross-CLI findings to focus on practical hardening instead of new routing rules. Phase 3 then converted the helper scripts from advisory wrappers into stricter readiness boundaries: `doctor.sh` stays read-only, `ensure_ready.sh` remains the bootstrap boundary, and both now share centralized readiness logic from `common.sh`.
+
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Phase 1 config-only | Minimize risk and validate the tool works before writing any custom code or agent integration |
+| `disabled: true` in `.mcp.json` | Prevents accidental startup failure on machines without `cocoindex-code` installed; user opts in explicitly |
+| Snake_case `cocoindex_code` | Matches existing MCP server naming convention (`spec_kit_memory`, `code_mode`); consistent across all 6 configs |
+| Repo-relative command and root paths in all 6 configs | Keeps the integration portable across clone locations while still avoiding `PATH` collisions with unrelated `ccc` binaries |
+| `_NOTE_*` env vars in `opencode.json` and `.claude/mcp.json` | Documents install requirements inline without needing external README; follows existing pattern in both files |
+| `bash .opencode/skills/mcp-coco-index/scripts/install.sh` | Creates a repo-local Python 3.11 environment, avoids PATH collisions, and keeps the MCP binary colocated with the skill |
+| Replace planned Phase 2 routing work with hardening | Cross-CLI validation showed discovery already works; docs, readiness helpers, and advisor utilization address the real gaps |
+| Prefer repo-local `ccc` before PATH in advisor | Avoids collisions with unrelated `ccc` binaries and keeps searches bound to the checked-in integration |
+| `doctor.sh` and `ensure_ready.sh` as first-line recovery | Gives agents deterministic health/setup entrypoints without baking setup logic into every caller |
+| Keep `doctor.sh` read-only and `ensure_ready.sh` mutating | Preserves a clean operational boundary for agents and makes failures easier to diagnose |
+| Use stable exit codes `20` through `25` | Lets agents distinguish missing binary, payload, index, required config, and required daemon conditions without string parsing |
+| Ship downstream adoption as docs + strict checks, not auto-config-writing | Sibling repos need deliberate payload/config rollout; silent config mutation would hide missing integration layers |
+
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python -c "import importlib.metadata as m; print(m.version('cocoindex-code'))"` | PASS - prints `0.2.3` |
+| `ccc index` statistics | PASS - 6,792 files, 105,965 chunks, 14 languages |
+| `ccc search "MCP server initialization"` | PASS - returns TypeScript results with file paths and line numbers |
+| `.mcp.json` syntax (python3 json.load) | PASS |
+| `opencode.json` syntax (python3 json.load) | PASS |
+| `.agents/settings.json` syntax (python3 json.load) | PASS |
+| `.gemini/settings.json` syntax (python3 json.load) | PASS |
+| `.claude/mcp.json` syntax (python3 json.load) | PASS |
+| `.codex/config.toml` syntax (python3.11 tomllib.load) | PASS |
+| `cocoindex_code` naming consistency across 6 configs | PASS |
+| `.cocoindex_code/` gitignored | PASS |
+| Peer review score | PASS - 88/100, 0 blockers, 0 P1 issues |
+| `bash -n` on touched CocoIndex shell scripts | PASS |
+| `bash .opencode/skills/mcp-coco-index/scripts/doctor.sh --json --strict --require-config --expect-config opencode.json` | PASS - reports `status: "ready"`, `expectedConfigs: ["opencode.json"]`, `indexFiles: 5859`, `indexChunks: 78525` after recovery |
+| `bash .opencode/skills/mcp-coco-index/scripts/ensure_ready.sh --json --strict --require-config --expect-config opencode.json` | PASS - reindexed the shared repo (`actionsPerformed: ["index"]`) and returned `status: "ready"` |
+| `bash .opencode/skills/mcp-coco-index/scripts/ensure_ready.sh --json --strict --require-config --root <tmpdir>` | PASS - performs `init` and `index`, then exits `24` with `blockingIssues: [24]` when config wiring is still missing |
+| `python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py --health` | PASS - reports repo-local `.venv/bin/ccc` |
+| `python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "find code that handles auth" --threshold 0.8` | PASS - routes to `mcp-coco-index` at 0.95 confidence |
+| `python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "find exact string TODO comments" --threshold 0.8 --show-rejections` | PASS - exact-text prompt does not pass threshold for CocoIndex |
+
+**NFR Verification**:
+
+| NFR ID | Target | Actual | Status |
+|--------|--------|--------|--------|
+| NFR-P01 | Index build under 15 minutes | ~5 minutes on Apple Silicon | PASS |
+| NFR-P02 | Warm search latency under 500ms | Confirmed fast on warm daemon | PASS |
+| NFR-S01 | No API keys required | all-MiniLM-L6-v2 runs locally | PASS |
+| NFR-S02 | No secrets in configs | Manual review of all 6 files | PASS |
+| NFR-S03 | Index directory gitignored | `.cocoindex_code/` in `.gitignore` | PASS |
+| NFR-S04 | No network exposure | Unix domain socket only | PASS |
+| NFR-R01 | Disabled by default | `disabled: true` in `.mcp.json` | PASS |
+| NFR-R02 | Additive config changes only | Existing MCP servers unaffected | PASS |
+| NFR-R03 | Machine-readable helper output | `doctor.sh --json` and `ensure_ready.sh --json` stay clean | PASS |
+| NFR-R04 | Safer follow-up query guidance | Docs and helper recommendations prefer `refresh_index=false` for unchanged follow-up queries | PASS |
+| NFR-R05 | Stable strict failure codes | `20` through `25` now map to binary, payload, helper payload, index, config, and daemon-required failures | PASS |
+
+**Deviations from Plan**: The planned Phase 2 agent-routing work was intentionally replaced with docs, helper-script, and advisor hardening after cross-CLI validation showed direct tool discovery was already effective.
+
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Disabled by default in `.mcp.json`** - Users must manually set `"disabled": false` (or remove the field) in `.mcp.json` to activate CocoIndex in Claude Code. The entry exists but does not auto-start.
+
+2. **No new runtime agent routing rules** - Phase 2 intentionally avoided adding new `@context` or `@orchestrate` CocoIndex routing rules. Discovery is handled through MCP descriptions plus skill-advisor heuristics.
+
+3. **Index still needs explicit refresh workflows** - There is no verified watch-based continuous reindexing in this skill. After significant code changes, run `ccc index` manually or use `ensure_ready.sh --refresh-index`.
+
+4. **Local embeddings only** - all-MiniLM-L6-v2 (384 dimensions) is smaller and less capable than cloud alternatives (Voyage, OpenAI). Semantic quality is good for code search but not state-of-the-art.
+
+5. **Vector-only retrieval** - No BM25/keyword complement. Exact identifier matches may score lower than conceptually similar but lexically different code. Use Grep for exact pattern matching; CocoIndex for intent-based queries.
+
+6. **Cold start 20-30 seconds** - First query after daemon restart takes 20-30 seconds (daemon startup + embedding model load). Subsequent queries on a warm daemon are fast.
+
+7. **Repeated-query guidance must still be followed** - MCP `refresh_index=true` remains the default for the first query. Follow-up queries should prefer `refresh_index=false` when the codebase has not changed.
+
+8. **Strict config checks do not write config for you** - `--strict --require-config` is intentionally validation-only. If a sibling repo is missing `cocoindex_code` wiring, fix the configs using `../../../skill/mcp-coco-index/references/downstream_adoption_checklist.md` and `../../../skill/mcp-coco-index/assets/config_templates.md`.
+
+<!-- /ANCHOR:limitations -->
+
+---
+
+### Cross-CLI Auto-Usage Test Findings (2026-03-18)
+
+A cross-CLI test validated whether AI models spontaneously use CocoIndex MCP without agent routing changes. Three prompts (implicit semantic, explicit mention, and skill-trigger guidance) were sent to Claude Code, Codex, Gemini, and Copilot.
+
+### F1: Auto-discovery works -- Phase 2 agent routing is unnecessary
+
+All 3 working CLIs (Claude Code, Gemini, Copilot) chose CocoIndex from the MCP tool description alone. No skill-trigger phrases, skill advisor routing, or agent definition changes were needed. The tool description "Semantic code search across the entire codebase" is sufficient for models to independently select it for concept-based queries.
+
+**Implication**: Phase 2's planned @context agent routing adds maintenance without clear benefit. Deprioritize.
+
+### F2: Copilot MCP failures caused by daemon concurrency bug (not a Copilot issue)
+
+Root cause: `cocoindex_core::engine::component` crashes when `refresh_index=true` (MCP default) and multiple requests overlap. The daemon lacks a mutex/lock on index refresh operations.
+
+- 850 `ComponentContext` errors in daemon.log (685 original + 165 reproduction)
+- Copilot sends more concurrent MCP queries than other CLIs (5+ vs 1-2), exposing the race condition
+- Workaround: `refresh_index=false` eliminates all errors
+- Fix: Upstream CocoIndex daemon bug report needed
+
+### F3: Query quality matters more than tool routing
+
+Short natural-language queries outperform long keyword-stuffed queries due to embedding dilution:
+
+| Query style | Example | Results | Scores |
+|-------------|---------|---------|--------|
+| Short, focused (3 words) | "retry logic patterns" | 10 | 0.56-0.60 |
+| Keyword-stuffed (12 words) | "retry helper utilities, exponential backoff, max retries, failed operation retry wrappers" | 5 | 0.64-0.67 |
+
+Both return results, but shorter queries produce tighter semantic matches across a broader range. Keyword stuffing averages the embedding vector across too many concepts.
+
+### F4: Token efficiency -- CocoIndex saves 10-50x tokens
+
+| CLI | Prompt | Token usage | Strategy |
+|-----|--------|-------------|----------|
+| Gemini P2 | Auth patterns | 75K | 2 CocoIndex calls (exclusive) |
+| Copilot P1 | Retry logic | 3.6M | MCP failed, Grep fallback, 15+ file reads |
+
+When CocoIndex works, it eliminates the Grep-Read-Filter cascade entirely.
+
+### Recommendations
+
+| # | Recommendation | Priority | Rationale |
+|---|----------------|----------|-----------|
+| R1 | Deprioritize Phase 2 @context agent routing | High | Auto-discovery works; routing adds maintenance without benefit |
+| R2 | Report upstream daemon concurrency bug | High | `refresh_index=true` + concurrent requests crashes `ComponentContext` |
+| R3 | Add `refresh_index: false` guidance to `../../../skill/mcp-coco-index/SKILL.md` | Medium | Workaround for multi-query sessions |
+| R4 | Add query optimization tips to `../../../skill/mcp-coco-index/SKILL.md` | Medium | Short natural language queries outperform keyword stuffing |
+| R5 | Retest Codex when billing resolved | Low | MCP wiring confirmed correct |
+| R6 | Redefine Phase 2 scope: reliability + query guidance | High | Replace agent routing with concrete fixes |
+
+
+---
+
+<!--
+LEVEL 2 IMPLEMENTATION SUMMARY
+- Phase 1 complete 2026-03-18
+- Config-only, no custom code
+- All NFRs verified, 0 deviations
+- Cross-CLI test findings added 2026-03-18
+-->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

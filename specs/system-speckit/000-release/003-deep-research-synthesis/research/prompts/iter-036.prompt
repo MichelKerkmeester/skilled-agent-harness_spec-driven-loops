@@ -1,0 +1,1092 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-doc/015-hub-doc-conformance-fixes"
+# PACKET: specs/sk-doc/015-hub-doc-conformance-fixes (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Hub-doc conformance for the cli-external + mcp-tooling hubs"
+description: "Phase parent for the cli-external + mcp-tooling hub-doc conformance program: review the hub docs against sk-doc templates and live CLI/MCP reality (001), then produce a collision-free remediation plan for the FAIL findings (002)."
+trigger_phrases:
+  - "hub doc conformance"
+  - "cli-external mcp-tooling doc conformance"
+  - "hub doc reality alignment"
+  - "015-hub-doc-conformance-fixes"
+importance_tier: "important"
+contextType: "review"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/015-hub-doc-conformance-fixes"
+    last_updated_at: "2026-07-11T08:56:59.117Z"
+    last_updated_by: "claude"
+    recent_action: "Grouped review (001) + remediation plan (002) under one phased parent"
+    next_safe_action: "Execute the 002 remediation plan as a downstream fix packet"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "hub-doc-conformance-fixes"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+## 001-hub-doc-conformance-review/implementation-summary.md
+---
+title: "Implementation Summary: Hub-doc conformance + reality-alignment review (cli-external + mcp-tooling)"
+description: "The bounded deep-review of the cli-external + mcp-tooling hub docs completed with a FAIL verdict: 102 P0 / 5 P1 / 4 P2 raw, 67 P0 / 4 P1 / 2 P2 distinct after dedup, across six themes; durable artifacts under review/; findings handed to the 002 remediation plan."
+trigger_phrases:
+  - "hub doc conformance review summary"
+  - "cli-external mcp-tooling doc audit summary"
+importance_tier: "normal"
+contextType: "review"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude"
+    recent_action: "Deep-review closed FAIL; findings handed to the 002 remediation plan"
+    next_safe_action: "Execute the 002 remediation plan against the flagged hub docs"
+    blockers: []
+    key_files:
+      - ".opencode/specs/sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/deep-review-findings-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "hub-doc-conformance-review"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-hub-doc-conformance-review |
+| **Completed** | 2026-07-10 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A bounded deep-review (dimensions `sk-doc-conformance` + `reality-alignment`, ≤10 iterations, stop = max-iterations) of the `cli-external` and `mcp-tooling` hub docs. Every reality claim in those docs — CLI flags, MCP tools, transport/auth config, agent routes, playbook meta-counts, links/paths, and vendored `mcp-servers/**/README.md` schema shape — was checked against live CLI/MCP truth and against the sk-doc create-skill templates, rather than assumed. The review edits no hub doc; its product is a ranked, deduped finding set and durable run artifacts that the `002-hub-doc-conformance-fixes` remediation plan consumes.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `review/deep-review-findings-registry.json` | Created | Authoritative deduped finding set (severity + evidence) |
+| `review/` (deltas, prompts, dispatch receipts) | Created | Per-iteration run telemetry for the ≤10 iterations |
+| `spec.md`, `plan.md`, `tasks.md` | Created | Packet framing of the review as completed work |
+
+<!-- /ANCHOR:what-built -->
+---
+
+## 002-hub-doc-conformance-fixes/implementation-summary.md
+---
+title: "Implementation Summary [015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes]"
+description: "This packet plans, without touching a single reviewed doc, the remediation of the 015-hub-doc-conformance-fixes/001-hub-doc-conformance-review FAIL verdict into four collision-free work-streams."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "hub doc conformance fixes"
+  - "remediation plan delivered"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "claude"
+    recent_action: "Completed the remediation plan and its validation"
+    next_safe_action: "Dispatch WS-A through WS-D fix agents against tasks.md"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "131-hub-doc-conformance-fixes-planning"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-hub-doc-conformance-fixes |
+| **Completed** | 2026-07-10 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet plans, without touching a single reviewed doc, the remediation of a 10-iteration deep review that FAILed every slice of `cli-external` and `mcp-tooling`'s hub docs. It turns 73 distinct findings (67 P0, 4 P1, 2 P2) into four collision-free, immediately dispatchable work-streams, a mandatory verify-first re-validation protocol, and a checked doc-layer/routing-layer scope boundary -- so a follow-up execution packet can dispatch the fixes without re-reading the source review or re-deriving the partition.
+
+### The four-work-stream remediation plan
+
+You can now hand any one of WS-A (ClickUp, 28 P0), WS-B (cli-opencode/cli-claude-code, 20 P0), WS-C (Figma/Chrome DevTools, 11 P0), or WS-D (cross-cutting root playbooks and test-oracle mechanics, 8 P0) to a fix agent in isolation. Each stream's `tasks.md` section names every finding it owns, the exact file(s), and a fix summary traceable to the source iteration narrative -- no cross-stream file collides, verified during planning rather than assumed.
+
+### The verify-first protocol and scope boundary
+
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/016-create-diff-mode"
+# PACKET: specs/sk-doc/016-create-diff-mode (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: AI Document Diff Engine and sk-doc Create-Diff Mode"
+description: "Phase parent for researching and defining a portable, local-first document diff engine surfaced through the sk-doc create-diff mode."
+trigger_phrases:
+  - "standalone document diff skill"
+  - "AI document before and after"
+  - "document diff without git"
+  - "local HTML diff report"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/016-create-diff-mode"
+    last_updated_at: "2026-07-13T18:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Scaffolded six implementation phases from the completed research synthesis"
+    next_safe_action: "Close phase 001 audit, then intake phases 002-003"
+    blockers:
+      - "Phase 001 still records a command-owned deep-loop state audit before production implementation"
+    key_files:
+      - "spec.md"
+      - "001-research-and-requirements/research/research.md"
+      - "002-core-diff-and-snapshot-mvp/spec.md"
+      - "003-validation-security-and-quality-gates/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "document-diff-research-preparation"
+      parent_session_id: null
+    completion_pct: 20
+    open_questions:
+      - "Which repository path should host the portable npm package?"
+      - "Which measured fixture thresholds should become release blockers?"
+      - "Will the optional OCR adapter pass its later go or no-go gate?"
+    answered_questions:
+      - "The primary artifact is a self-contained local HTML report."
+      - "The comparison is semantic and structural, with explicit fidelity warnings."
+      - "The core is portable and the OpenCode skill is an orchestration wrapper."
+      - "Use TypeScript on Node.js 22+, with Node.js 24 LTS as the development default."
+      - "Deliver the required product in phases 002 through 006; keep OCR conditional in phase 007."
+---
+
+## 001-cmd-create-emoji-enforcement/implementation-summary.md
+---
+title: "Implementation Summary [03--commands-and-skills/012-cmd-create-emoji-enforcement/implementation-summary]"
+description: "Emoji usage is optional, not required across all /create command templates and documentation."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "011"
+  - "create"
+importance_tier: "normal"
+contextType: "implementation"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-cmd-create-emoji-enforcement |
+| **Completed** | 2026-02-17 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### What Was Built
+
+### Implementation Summary
+
+### Policy Enforced
+
+**Emoji usage is optional, not required** across all `/create` command templates and documentation.
+
+### Targets Analyzed and Updated
+
+**Primary Targets:**
+1. `.opencode/commands/create/` - Command documentation files
+2. `.opencode/commands/create/assets/` - YAML template files
+
+**Files Changed:**
+
+| Category | File | Changes |
+|----------|------|---------|
+| Documentation | folder_readme.md | Updated emoji guidance to "optional" |
+| Documentation | skill.md | Updated emoji guidance to "optional" |
+| Documentation | skill_asset.md | Updated emoji guidance to "optional" |
+| Templates | `create_folder_readme_auto.yaml` | Removed emoji requirement language |
+| Templates | `create_folder_readme_confirm.yaml` | Removed emoji requirement language |
+| Templates | `create_install_guide_auto.yaml` | Removed emoji requirement language |
+| Templates | `create_install_guide_confirm.yaml` | Removed emoji requirement language |
+| Templates | `create_skill_asset_auto.yaml` | Removed emoji requirement language |
+
+## 001-research-and-requirements/implementation-summary.md
+---
+title: "Implementation Summary: Document Diff Research Preparation"
+description: "Current-state summary of the validated research packet and the remaining command-owned deep-research work."
+trigger_phrases:
+  - "document diff preparation summary"
+  - "document diff research handoff"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/016-create-diff-mode/001-research-and-requirements"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "codex"
+    recent_action: "Accepted the research direction and scaffolded phases 002-007"
+    next_safe_action: "Resolve deep-loop state audit findings"
+    blockers:
+      - "Per-lineage delta files and canonical route-proof fields are missing; command-owned state must not be hand-edited."
+    key_files:
+      - "spec.md"
+      - "research/research.md"
+      - "plan.md"
+      - "tasks.md"
+      - "decision-record.md"
+      - "resource-map.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "fanout-document-diff-research-1783944168326-lgic9n"
+      parent_session_id: "document-diff-research-preparation"
+    completion_pct: 85
+    open_questions:
+      - "Which supported deep-loop recovery path can restore the missing mechanical artifacts?"
+    answered_questions:
+      - "The v1 architecture, runtime, libraries, API, snapshot model, diff strategy, HTML report, and security model are selected and documented."
+      - "The user accepted the research direction and authorized implementation phases under parent 136."
+---
+
+# Implementation Summary: Document Diff Research Preparation
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research-and-requirements |
+| **Prepared** | 2026-07-13 |
+| **Level** | 3 |
+| **Status** | Active: research verification pending |
+| **Research State** | Synthesis complete; mechanical state verification blocked |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 002-cmd-create-codex-compatibility/implementation-summary.md
+---
+title: "Implementation Summary: Create [03--commands-and-skills/013-cmd-create-codex-compatibility/implementation-summary]"
+description: "level: 3"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "create"
+  - "commands"
+  - "codex"
+  - "implementation summary"
+  - "012"
+importance_tier: "normal"
+contextType: "implementation"
+completed: 2026-02-17
+created: 2026-02-17
+level: 3
+SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
+status: done
+---
+# Implementation Summary
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-cmd-create-codex-compatibility |
+| **Completed** | 2026-02-17 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### What Was Built
+
+Made 20 create command files Codex-compatible using the same three-pronged approach as spec 010 (spec_kit commands), plus cleaned up stale emoji optionality language aligned with spec 011.
+
+### Four Changes Applied
+
+| Change | Description | Scope |
+|--------|-------------|-------|
+| **A** | Removed `## Agent Routing` sections and `<!-- REFERENCE ONLY/END -->` guards from .md files | 6 .md files |
+| **B** | Added `## CONSTRAINTS` section with explicit anti-dispatch rules to .md files | 6 .md files |
+| **C** | Restructured `agent_routing:` to `agent_availability:` -- removed `dispatch:` and `agent:` fields, added `condition:` and `not_for:` fields | 14 YAML files (20 blocks) |
+| **D** | Removed emoji optionality language, renamed `emoji_conventions:` to `section_icons:` | All 20 files |
+
+### Files Changed
+
+#### .md Command Files (6)
+
+| File | Changes Applied |
+|------|-----------------|
+
+## 002-core-diff-and-snapshot-mvp/implementation-summary.md
+---
+title: "Implementation Summary: Core document diff and snapshot MVP"
+description: "Planned-state summary for the portable text and Markdown diff MVP; product implementation has not started."
+trigger_phrases:
+  - "document diff MVP summary"
+  - "core diff phase status"
+importance_tier: "important"
+contextType: "implementation"
+status: "draft"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/016-create-diff-mode/002-core-diff-and-snapshot-mvp"
+    last_updated_at: "2026-07-13T18:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Scaffolded the MVP phase from research"
+    next_safe_action: "Resolve the research audit and run implementation intake"
+    blockers:
+      - "Phase 001 command-owned audit closure"
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "document-diff-phase-002-scaffold"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Portable package repository location"
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Core document diff and snapshot MVP
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-core-diff-and-snapshot-mvp |
+| **Status** | Planned; product implementation not started |
+| **Level** | 1 scaffold |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Only the implementation packet was scaffolded. The packet now translates the research synthesis into a bounded MVP contract for the portable core, text and Markdown adapters, deterministic diffing, safe unified HTML, and basic snapshots.
+
+### Files Created
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `spec.md` | Authored | Scope, requirements, gates, and handoff contract |
+
+## 003-cmd-create-changelog/implementation-summary.md
+---
+title: "Implementation Summary: Create Changelog [03--commands-and-skills/015-cmd-create-changelog/implementation-summary]"
+description: "New /create:changelog command with dynamic work detection, component resolution, version calculation, and formatted changelog generation."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "changelog"
+  - "create changelog"
+  - "014"
+importance_tier: "important"
+contextType: "implementation"
+completed: 2026-03-01
+status: done
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-cmd-create-changelog |
+| **Completed** | 2026-03-01 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### What Was Built
+
+A new `/create:changelog` slash command that automates changelog creation for the OpenCode Dev Environment. The command dynamically detects what was worked on (via spec folders or git history), resolves the correct changelog subfolder out of 18 components, calculates the next version number, and generates a properly formatted changelog file matching the established format used across 370+ existing entries.
+
+### Command File
+- **changelog.md** (417 lines): Mode-based command with Phase 0 (@write agent verification), Unified Setup Phase collecting source, version bump type, and execution mode in a single consolidated prompt. Routes to auto or confirm YAML workflows.
+
+### Auto Workflow
+- **create_changelog_auto.yaml** (655 lines): 7-step autonomous workflow — context analysis, component resolution (18 folders mapped with file path patterns), version determination (4-segment MAJOR.MINOR.PATCH.BUILD with auto-detection from change type), content generation (template matching established format), quality validation, file writing, and context save.
+
+### Confirm Workflow
+- **create_changelog_confirm.yaml** (631 lines): Same 7 steps with checkpoint gates at each step. User can Approve, Review, Modify, or Abort at each gate.
+
+### Files Changed
+
+| File | Action | Description |
+|------|--------|-------------|
+| `.opencode/commands/create/changelog.md` | Created | Mode-based command file (417 lines) |
+| `.opencode/commands/create/assets/create_changelog_auto.yaml` | Created | Autonomous 7-step workflow (655 lines) |
+| `.opencode/commands/create/assets/create_changelog_confirm.yaml` | Created | Interactive 7-step workflow with checkpoints (631 lines) |
+| `.opencode/commands/create/README.txt` | Modified | Added changelog entry to command table, structure tree, examples, troubleshooting |
+
+---
+<!-- /ANCHOR:what-built -->
+
+## 003-validation-security-and-quality-gates/implementation-summary.md
+---
+title: "Implementation Summary: Validation, security, and quality gates"
+description: "Planned-state summary for the cross-cutting fixture, security, license, accessibility, and performance gate phase."
+trigger_phrases:
+  - "document diff gate summary"
+  - "document diff validation status"
+importance_tier: "critical"
+contextType: "implementation"
+status: "draft"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/016-create-diff-mode/003-validation-security-and-quality-gates"
+    last_updated_at: "2026-07-13T18:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Scaffolded the quality-gate phase from research"
+    next_safe_action: "Freeze fixture schemas and seed corpus"
+    blockers:
+      - "Phase 001 command-owned audit closure"
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "document-diff-phase-003-scaffold"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Validation, security, and quality gates
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-validation-security-and-quality-gates |
+| **Status** | Planned; test and hardening implementation not started |
+| **Level** | 1 scaffold |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Only the phase packet was scaffolded. It now defines the shared evidence gates that rich adapters and OCR must pass: representative fixtures, hostile-input defenses, CSP, licenses, accessibility, quality metrics, and performance budgets.
+
+### Files Created
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `spec.md` | Authored | Gate scope, requirements, metrics, and unlock contract |
+| `plan.md` | Authored | Harness design, sequence, tests, dependencies, and rollback |
+
+## 004-cmd-create-skill-merger/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Unified create-skill command surfaces into one canonical entrypoint with mode and operation routing, aligned and expanded canonical artifacts, removed legacy command/workflow files, and completed memory indexing."
+# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
+trigger_phrases:
+  - "implementation summary"
+  - "create skill merger"
+  - "canonical command"
+importance_tier: "important"
+contextType: "implementation"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-cmd-create-skill-merger |
+| **Completed** | 2026-03-03 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### What Was Built
+
+The implementation consolidated skill command creation and update flows into one canonical command: `/create:sk-skill`. You now have one deterministic entrypoint for four supported operations (`full-create`, `full-update`, `reference-only`, `asset-only`) with explicit mode routing for `:auto` and `:confirm`.
+
+### Canonical command entrypoint
+
+`.opencode/commands/create/sk-skill.md` now defines the full setup contract, hard/soft gates, operation router, mode router, migration map, and compatibility expectations. It establishes the canonical source of truth and removes ambiguity between legacy commands.
+
+### Unified mode workflows
+
+Two unified YAML workflows were added:
+- `.opencode/commands/create/assets/create_sk_skill_auto.yaml` for autonomous execution
+- `.opencode/commands/create/assets/create_sk_skill_confirm.yaml` for checkpointed execution
+
+Both support the same operation set and validation contract so behavior stays consistent across modes.
+
+### Migration cleanup and reference alignment
+
+Deprecated command markdown files and legacy workflow YAML files were removed. Related command references in `.opencode/commands/create/prompt.md` were updated to canonical `/create:sk-skill` variants.
+
+### Cross-runtime active docs synchronization
+
+Active runtime and onboarding docs were synchronized to the same canonical command surface so users see one command contract regardless of runtime profile or setup entrypoint. Updated files are `.agents/agents/write.md`, `.opencode/agents/write.md`, .opencode/agents/chatgpt/write.md, `.codex/agents/write.toml`, `.opencode/README.md`, `README.md`, `.opencode/install_guides/README.md`, and `.opencode/install_guides/SET-UP - AGENTS.md`.
+
+Directory verification also confirmed no remaining legacy `/create:skill*` references in `.agents/agents`, `.codex`, or `.claude`.
+
+### Alignment and expansion completion
+
+## 004-html-docx-and-move-detection/implementation-summary.md
+---
+title: "Implementation Summary: HTML, DOCX, and move-aware review"
+description: "Planned-state summary for the gated HTML and DOCX adapter, move detection, side-by-side report, and fidelity dashboard phase."
+trigger_phrases:
+  - "HTML DOCX phase summary"
+  - "move-aware review status"
+importance_tier: "critical"
+contextType: "implementation"
+status: "draft"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/016-create-diff-mode/004-html-docx-and-move-detection"
+    last_updated_at: "2026-07-13T18:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Scaffolded the rich-structure phase from research"
+    next_safe_action: "Wait for phase 003 unlock evidence"
+    blockers:
+      - "Phase 003 applicable gates"
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "document-diff-phase-004-scaffold"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: HTML, DOCX, and move-aware review
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-html-docx-and-move-detection |
+| **Status** | Planned; gated rich-format implementation not started |
+| **Level** | 1 scaffold |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Only the phase packet was scaffolded. It now binds HTML and DOCX extraction, parser isolation, deterministic move mapping, side-by-side review, and fidelity diagnostics to the phase 003 gates.
+
+### Files Created
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `spec.md` | Authored | Capability, security, mapping, report, and handoff requirements |
+| `plan.md` | Authored | Adapter and tree-mapping architecture plus verification path |
+
+## 005-cmd-create-readme-install-merger/implementation-summary.md
+---
+title: "Implementation Summary [03--commands-and-skills/020-cmd-create-readme-install-merger/implementation-summary]"
+description: "Implementation cycle completed for canonical create command merge with compatibility aliases and validation evidence captured."
+trigger_phrases:
+  - "implementation summary"
+  - "implementation complete"
+  - "merge strategy"
+  - "canonical wrapper"
+importance_tier: "important"
+contextType: "general"
+SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-cmd-create-readme-install-merger |
+| **Completed** | 2026-03-03 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This cycle implements the canonical command merge for README/install guide creation. Canonical wrappers were added, legacy wrappers were preserved as compatibility aliases, and runtime/catalog references were updated across OpenCode and agent surfaces.
+
+### Implementation Artifacts
+
+The command family now has a canonical entrypoint and compatibility wrappers on both markdown and `.agents` surfaces. Documentation references were updated to direct usage toward the canonical command while retaining non-breaking alias behavior.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/commands/create/folder_readme.md` | Updated | Preferred unified user-facing merged command wrapper (README/install; defaults to README) |
+| compatibility/internal workflow kernel behavior | Updated | Legacy internal wrapper behavior folded into the canonical command flow |
+| install-guide compatibility alias behavior | Updated | Legacy install-guide wrapper behavior now routes through the canonical command |
+| `.agents/commands/create/folder_readme.toml` | Updated | Preferred unified `.agents` wrapper |
+| `.agents/commands/create/doc.toml` | Updated | Compatibility/internal `.agents` wrapper |
+| `.agents/commands/create/install_guide.toml` | Updated | Converted to compatibility alias wrapper |
+| `.opencode/commands/create/README.txt` | Updated | Command catalog canonicalized |
+| `.opencode/README.md` | Updated | Runtime references canonicalized |
+| `README.md` | Updated | Public references canonicalized |
+| `.opencode/install_guides/README.md` | Updated | Install guide references updated |
+| `.opencode/install_guides/SET-UP - AGENTS.md` | Updated | Agent setup references updated |
+| `.opencode/agents/write.md` | Updated | OpenCode write agent references updated |
+| `.claude/agents/write.md` | Updated | Claude runtime write-agent references updated |
+| `.agents/agents/write.md` | Updated | `.agents` write agent references updated |
+| `.codex/agents/write.toml` | Updated | Codex write agent references updated |
+
+## 005-pdf-cli-and-cross-platform-state/implementation-summary.md
+---
+title: "Implementation Summary: Text PDF, lifecycle CLI, and cross-platform state"
+description: "Planned-state summary for text-PDF support, the standalone CLI, and secure cross-platform snapshot lifecycle; product implementation has not started."
+trigger_phrases:
+  - "PDF lifecycle phase summary"
+  - "document diff CLI status"
+importance_tier: "important"
+contextType: "implementation"
+status: "draft"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/016-create-diff-mode/005-pdf-cli-and-cross-platform-state"
+    last_updated_at: "2026-07-13T18:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Scaffolded the PDF and snapshot lifecycle phase"
+    next_safe_action: "Wait for phase gates, then run implementation intake"
+    blockers:
+      - "Phase 003 applicable gates and stable adapter contracts"
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "document-diff-phase-005-scaffold"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Text-PDF fixture fidelity boundary"
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Text PDF, lifecycle CLI, and cross-platform state
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-pdf-cli-and-cross-platform-state |
+| **Status** | Planned; product implementation not started |
+| **Level** | 1 scaffold |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Only the implementation packet was scaffolded. It converts the research findings on text PDFs, operating-system state, atomic capture, locks, retention, cleanup, and the portable CLI into one bounded delivery contract.
+
+### Files Created
+
+| File | Action | Purpose |
+|------|--------|---------|
+| spec.md | Authored | Scope, requirements, gates, and handoff contract |
+
+## 006-cmd-create-feature-catalog/implementation-summary.md
+---
+title: "Implementation Summary [sk-doc/006-cmd-create-feature-catalog/implementation-summary]"
+description: "The /create:feature-catalog command is now implemented, validated, and synchronized across command docs, workflow assets, runtime mirrors, and discovery surfaces."
+trigger_phrases:
+  - "feature catalog command implementation summary"
+  - "/create:feature-catalog summary"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/006-cmd-create-feature-catalog"
+    last_updated_at: "2026-07-17T14:36:44Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 025-cmd-create-feature-catalog |
+| **Completed** | 2026-03-19 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`/create:feature-catalog` now exists as a full create-command family. The delivered implementation includes the canonical command entrypoint, the auto/confirm workflow assets, the `.agents` runtime mirror, and the synchronized runtime-facing command menus that advertise the new scaffold.
+
+### Delivered Artifacts
+
+The implementation added or updated:
+- `.opencode/commands/create/feature-catalog.md`
+- `.opencode/commands/create/assets/create_feature_catalog_auto.yaml`
+- `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml`
+- `.agents/commands/create/feature-catalog.toml`
+- `.opencode/commands/create/README.txt`
+- `.opencode/commands/README.txt`
+- `.opencode/README.md`
+- `.opencode/agents/write.md`
+- `.claude/agents/write.md`
+- `.codex/agents/write.toml`
+- `.agents/agents/write.md`
+
+The generated output contract is now implemented and documented:
+- output lands in each target skill's `feature_catalog/` directory
+
+## 006-opencode-skill-and-accessibility/implementation-summary.md
+---
+title: "Implementation Summary: sk-doc create-diff mode wrapper and accessibility"
+description: "Delivery summary for the create-diff nested sk-doc mode: a self-contained embedded engine (ADR-003) with references, fixtures, and passing canon gates."
+trigger_phrases:
+  - "OpenCode skill phase summary"
+  - "document diff accessibility status"
+importance_tier: "important"
+contextType: "implementation"
+status: "active"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility"
+    last_updated_at: "2026-07-15T13:52:51Z"
+    last_updated_by: "claude"
+    recent_action: "Refined the engine: binary/unsupported refusal and a code-diff report redesign; re-ran all gates"
+    next_safe_action: "Add the optional command or extend format fidelity"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "document-diff-phase-006-scaffold"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions:
+      - "Whether to add the command and richer adapters"
+    answered_questions:
+      - "The mode embeds the engine, not a separate package"
+      - "Automatic capture is default with explicit-pair fallback"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: sk-doc create-diff mode wrapper and accessibility
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-opencode-skill-and-accessibility |
+| **Status** | Active: create-diff mode v1 in progress (self-contained embedded engine, ADR-003); richer fidelity, optional command, and OCR pending |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `create-diff` nested sk-doc mode, delivered as a self-contained embedded engine rather than a wrapper over a separate npm package (see `../001-research-and-requirements/decision-record.md` ADR-003).
+
+### Files Created / Changed (under `.opencode/skills/sk-doc/create-diff/`)
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/017-fenced-code-structure-parity"
+# PACKET: specs/sk-doc/017-fenced-code-structure-parity
+
+---
+title: "Implementation Summary: Fenced Code Block Structure Parity"
+description: "Four sk-doc templates stopped swallowing their own sections: malformed 3-backtick example fences were widened to 4 backticks so nested fences stay literal and every real section parses correctly again."
+trigger_phrases:
+  - "fence fix summary"
+  - "template parity summary"
+  - "swallowed section fix"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/017-fenced-code-structure-parity"
+    last_updated_at: "2026-07-17T14:38:02Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Fixed and verified fence balance in the four affected templates"
+    next_safe_action: "Refresh packet metadata, strict-validate, then commit and FF-push"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/create-readme/assets/install_guide_template.md"
+      - ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md"
+      - ".opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md"
+      - ".opencode/skills/sk-git/assets/pr-template.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "session-034-authoring"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 017-fenced-code-structure-parity |
+| **Completed** | 2026-07-17 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Four authoring templates in sk-doc stopped leaking their own sections into code blocks. Each held an example skeleton fenced with three backticks that wrapped nested three-backtick fences; the first inner bare fence closed the outer example early, so the rest of the example — and several of the template's own `## N.` sections — rendered as live document structure. Now every example is fully contained and every real section parses as real again.
+
+### Fence balance restored
+Each malformed outer example fence is widened to four backticks, so its shorter inner fences stay literal and the example ends only where the author intended. One file (parent_skill_hub) needed the same widen but at a fence I had first misread as an orphan: the ` ``` ` after the scaffold's `## 5. REFERENCES` is the example's true close, so the scaffold example is widened open-and-close rather than truncated. The install guide needed the most work: six separate error-category examples in §7 and the full §13 COMPLETE TEMPLATE were each rebalanced.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| .opencode/skills/sk-doc/create-readme/assets/install_guide_template.md | Modified | Widened six §7 error-example fences; wrapped §13 COMPLETE TEMPLATE in one 4-backtick fence, freeing §8 and the leaked example sections |
+| .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md | Modified | Widened the §5 COPY-PASTE HUB SCAFFOLD example fence (open + true close) to 4 backticks, freeing §6 and §7 |
+| .opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md | Modified | Widened the §4 STANDARD ASSET STRUCTURE example fence to 4 backticks, freeing §5 and §6 |
+| .opencode/skills/sk-git/assets/pr-template.md | Modified | Widened the §12 BREAKING CHANGES example fence to 4 backticks, freeing §13 |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Edits were applied by an assert-guarded, line-targeted Python script that verified the expected content at each fence line before mutating and aborted on any mismatch, guarding against a concurrent session shifting the files. After the edits, a fence-aware scan confirmed the fixes, and `validate_document.py` confirmed each file valid.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Widen outer fences to 4 backticks rather than escape or delete inner fences | Keeps the example bodies byte-for-byte intact so authors copy exactly what the template shows; only the delimiter length changes |
+| Reverted and re-did parent_skill_hub | The first pass deleted the scaffold's true closing fence as if it were an orphan; the non-sequential re-scan caught it and the fix became a widen, not a delete |
+| Scope limited to the four templates | The validator and extractor fence-awareness work shipped earlier on this branch; this packet only closes the template-side gap those checks surfaced |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Fence-aware scan, install_guide_template.md | PASS, real sections 1-14 sequential, 0 unclosed |
+| Fence-aware scan, parent_skill_hub_template.md | PASS, real sections 1-7 sequential, scaffold example 1-5 in-fence, 0 unclosed |
+| Fence-aware scan, skill_asset_template.md | PASS, real sections 1-15 sequential, 0 swallowed, 0 unclosed |
+| Fence-aware scan, pr-template.md | PASS, real sections 1-17 sequential, 0 swallowed, 0 unclosed |
+| `validate_document.py`, all four files | PASS, valid=True, 0 errors, 0 warnings, 0 non-sequential numbering |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **skill_asset_template.md keeps its defensive `\##` header escapes** inside the widened §4 example. They are now redundant (the 4-backtick fence already keeps them literal) but were left in place to keep the change to delimiters only; a follow-up could remove the backslashes so a copied example does not carry them.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

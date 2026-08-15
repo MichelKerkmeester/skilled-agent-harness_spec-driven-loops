@@ -1,0 +1,32 @@
+
+
+Let me start by reading the existing containment layers and the unguarded chain. I'll search for the key files first.
+
+
+
+Now let me trace the freshness chain and the 017 spec.
+
+
+
+
+
+Now let me verify the daemon-side writers and check the existing tests for completeness.
+
+
+
+
+
+Let me find where findRepoRoot is called in spec-gate-core.mjs and verify the guard path resolution.
+
+Let me verify the critical gap definitively.
+
+
+
+
+
+
+
+
+
+
+

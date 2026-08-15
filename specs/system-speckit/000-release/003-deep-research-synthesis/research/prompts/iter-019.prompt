@@ -1,0 +1,1014 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/mcp-tooling/009-mcp-refero"
+# PACKET: specs/mcp-tooling/009-mcp-refero (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: mcp-refero nested mode: Refero design-reference MCP transport for the mcp-tooling hub"
+description: "Phase parent for adding mcp-refero, a read-only Refero design-reference MCP transport mode, to the mcp-tooling parent hub: research the Refero MCP surface, author the transport packet, integrate it into hub routing, and validate end to end."
+trigger_phrases:
+  - "009-mcp-refero"
+  - "mcp-refero"
+  - "refero transport"
+  - "refero design reference"
+  - "mcp-tooling refero mode"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/009-mcp-refero"
+    last_updated_at: "2026-07-16T16:55:00Z"
+    last_updated_by: "claude"
+    recent_action: "Authored phase-parent spec and all four child phase docs"
+    next_safe_action: "Execute phase 001-research deep-research fan-out when approved"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "009-mcp-refero"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Refero auth model and rate limits over mcp-remote (owned by phase 001)"
+      - "Free vs paid tool-surface differences on the Refero MCP (owned by phase 001)"
+    answered_questions:
+      - "A refero manual already exists in .utcp_config.json (npx -y mcp-remote https://api.refero.design/mcp); phase 003 verifies it rather than adding it"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+
+## 001-research/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1: research"
+description: "Completed /deep:research fan-out over the Refero MCP surface: 10/10 iterations across three first-attempt lineages, canonical synthesis with 66 citations and three preserved conflicts, existing refero UTCP manual validated as-is."
+trigger_phrases:
+  - "refero research summary"
+  - "mcp-refero phase 001 summary"
+  - "refero fan-out results"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/009-mcp-refero/001-research"
+    last_updated_at: "2026-07-16T15:05:07Z"
+    last_updated_by: "claude"
+    recent_action: "Compiled canonical research.md + resource-map.md from 3 completed lineages"
+    next_safe_action: "Author mcp-refero transport packet in phase 002 from research/research.md"
+    blockers: []
+    key_files:
+      - ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/research/research.md"
+      - ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/research/resource-map.md"
+      - ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/research/deep-research-findings-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-001-refero-research-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "End-to-end OAuth handshake through mcp-remote remains Inferred (protected-resource-metadata 404) pending operator authorization"
+    answered_questions:
+      - "Code Mode callable form? Doubled prefix refero.refero_refero_<tool> (live-verified); confirm with tool_info after registration"
+      - "Plan gating? Pro 8,000 MCP calls/month; Free tier has NO MCP access"
+      - "Existing refero UTCP manual? Validated as-is by all three lineages — no changes needed"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 1: research
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 1 |
+| **Phase** | 1 of 4 |
+| **Successor** | ../002-skill-authoring/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+A completed deep-research fan-out over the Refero MCP developer surface — 10/10 iterations, forced depth:
+
+- `research/research.md` — canonical 17-section synthesis (48KB, 66 `[SOURCE:]` citations): Cross-Lineage Reconciliation Ledger (14 rows), findings A–H, Eliminated Alternatives (25 rows), Divergence Map, 10 open questions, Convergence Report; all five validator anchors paired.
+
+## 002-skill-authoring/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2: skill-authoring"
+description: "Authored the 29-file mcp-refero transport packet from the phase-001 synthesis; package_skill.py PASS including strict; live doctor probe reproduced the documented 401; OAuth honestly carried as Inferred."
+trigger_phrases:
+  - "refero skill authoring summary"
+  - "mcp-refero packet summary"
+  - "refero phase 002 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/009-mcp-refero/002-skill-authoring"
+    last_updated_at: "2026-07-17T06:03:03.117Z"
+    last_updated_by: "claude"
+    recent_action: "Verified packet gate and marked checklist with evidence"
+    next_safe_action: "Run phase 003 hub integration for mcp-refero (serial window open)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md"
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-002-refero-authoring-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Does the packet pass the create-skill gate? Yes — package_skill.py --check --strict Result: PASS, exit 0 (one word-count advisory with exemplar parity)"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 2: skill-authoring
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Phase** | 2 of 4 |
+| **Predecessor** | ../001-research/ |
+| **Successor** | ../003-hub-integration/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+`.opencode/skills/mcp-tooling/mcp-refero/` — a 29-file nested TRANSPORT packet (`packetKind: transport`, read-only, sk-design judgment pairing), grounded exclusively in the phase-001 synthesis:
+
+- `SKILL.md` — transport contract: doubled-prefix callable (`refero.refero_refero_<tool>`) with mandatory post-registration `tool_info` confirmation, 8-tool surface, plan gating (Pro 8,000 calls/mo, Free has no MCP), Write/Edit/Task forbidden, benchmark-parseable intent block.
+- `README.md`, `install-guide.md` (verify-only posture — the `refero` manual is ALREADY registered; OAuth fenced operator-only).
+- `assets/utcp-refero-manual.md` — byte-identical snapshot of the live manual + luna's Bearer-header alternative, both provenance-marked.
+
+## 003-hub-integration/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3: hub-integration"
+description: "Registered mcp-refero as the hub's second design transport across every hub surface, generalized the transport pairing rules, verified the existing refero UTCP manual read-only, and recompiled the advisor skill graph clean."
+trigger_phrases:
+  - "refero hub integration summary"
+  - "mcp-refero registration"
+  - "refero phase 003 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/009-mcp-refero/003-hub-integration"
+    last_updated_at: "2026-07-16T15:25:00Z"
+    last_updated_by: "claude"
+    recent_action: "Registered mcp-refero across all hub surfaces"
+    next_safe_action: "Run phase 004 gates; 010 hub window opens after its packet gate"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mode-registry.json"
+      - ".opencode/skills/mcp-tooling/hub-router.json"
+      - ".opencode/skills/mcp-tooling/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-003-refero-hub-integration-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Is the hub valid with five modes? Yes — package_skill.py PASS and parent-skill-check PASS, exit 0 both"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 3: hub-integration
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Phase** | 3 of 4 |
+| **Predecessor** | ../002-skill-authoring/ |
+| **Successor** | ../004-validation-and-handoff/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+`mcp-refero` registered as the hub's fifth mode (second design transport):
+
+- `mode-registry.json` — transport entry (`backendKind: code-mode-remote-mcp`, Write/Edit/Task forbidden, 6 aliases); `transport-axis` extension now declares two transports, both `crossHubPairing` → `sk-design`.
+- `hub-router.json` — signal (weight 4: `refero-aliases` + `design-reference-research` + `hub-identity`), mirrored vocabulary, tieBreak appended after `mcp-figma` (5 modes).
+- Hub `SKILL.md` (v1.2.0.0) — mode table row; transport prose GENERALIZED (pairing/read-only/never rules now name both transports rather than figma alone).
+
+## 004-validation-and-handoff/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4: validation-and-handoff"
+description: "Program-wide final gates run green for mcp-refero: strict package check, six-mode hub structural gates, advisor routing probes, and recursive strict packet validation; handoff notes name the operator-only leftovers."
+trigger_phrases:
+  - "refero validation summary"
+  - "mcp-refero final gates"
+  - "009-mcp-refero phase 004 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/009-mcp-refero/004-validation-and-handoff"
+    last_updated_at: "2026-07-16T16:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Ran the program-wide final gates green"
+    next_safe_action: "Operator: reload Code Mode server config; authorize first live OAuth calls"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mode-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-004-refero-final-gates"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All gates green? Yes — package strict PASS, hub PASS x2, advisor probe routed mcp-refero phrasing to mcp-tooling top-1, recursive strict PASS"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 4: validation-and-handoff
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 1 |
+| **Phase** | 4 of 4 |
+| **Predecessor** | ../003-hub-integration/ |
+| **Successor** | None |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The packet's terminal verification record. Program-wide final-gate results as they apply to `mcp-refero`:
+
+- `package_skill.py --check --strict` on `.opencode/skills/mcp-tooling/mcp-refero` -> `Result: PASS`.
+- Hub structural gates with six modes: `package_skill.py --check` PASS + `parent-skill-check.cjs` PASS (exit 0 both).
+- Advisor probe: "search refero for real app checkout screens" -> `mcp-tooling` top-1 (0.783); the compiled skill graph carries the mode's intent signals.
+- Phases 001-003 each independently `RESULT: PASSED` under `validate.sh --strict`; this phase completes the packet.
+
+## 005-inventory-parity-and-doc-truth/implementation-summary.md
+---
+title: "Implementation Summary: Phase 5: inventory-parity-and-doc-truth"
+description: "Brought mcp-refero to hub-sibling inventory parity (examples, install.sh, 9-scenario playbook, 8 per-tool catalog leaves, v1.1.0.0 changelog) and executed the researched sk-design de-duplication with a byte-identical package-gate before/after."
+trigger_phrases:
+  - "refero parity summary"
+  - "mcp-refero phase 005 summary"
+  - "refero dedup summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/009-mcp-refero/005-inventory-parity-and-doc-truth"
+    last_updated_at: "2026-07-17T06:03:03.357Z"
+    last_updated_by: "claude"
+    recent_action: "Shipped parity + dedup; all gates green"
+    next_safe_action: "Proceed to 006-live-verification-capture when operator auth is available"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-refero/examples/README.md"
+      - ".opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh"
+      - ".opencode/skills/sk-design/design-interface/references/mcp_tooling/refero_tools.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-inventory-parity-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Did the sk-design de-dup change its validation gate? No - validate_skill_package.py output is byte-identical before/after (same 1 pre-existing 6a failure)."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 5: inventory-parity-and-doc-truth
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Phase** | 5 of 6 |
+| **Predecessor** | ../004-validation-and-handoff/ |
+| **Successor** | ../006-live-verification-capture/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+`mcp-refero` v1.1.0.0 - full inventory parity plus the executed research section G de-duplication. You can now walk a worked Code Mode invocation instead of reverse-engineering the SKILL.md snippets, verify install posture non-interactively, and find every one of the eight tools in its own catalog leaf; and there is exactly one canonical home for the Refero tool surface.
+
+- **`examples/`** (new, 4 files) - README mirroring the `mcp-aside-devtools/examples/` conventions plus three walkthroughs: the full styles -> screens -> flows funnel, a metadata-first single-tool lookup (including the elements facet), and the image-last screenshot lane. Every callable uses the doubled prefix, every walkthrough opens with the mandatory `tool_info` confirmation, and every OAuth-gated step is SKIP-valid with the exact command.
+- **`scripts/install.sh`** (new) - verify-only posture: Node>=18 + npx, `refero` manual presence via read-only grep (presence = OK; registration stays operator-owned), the Node-25 SIGSEGV warning, OAuth boundaries operator-only. Zero writes.
+
+## 006-live-verification-capture/implementation-summary.md
+---
+title: "Implementation Summary: Phase 6: live-verification-capture (mcp-refero)"
+description: "The refero doubled-prefix naming conflict is closed with live registry evidence: all eight tools listed pre-auth on 2026-07-16 as refero.refero.refero_<tool>, and 7 packet files now cite the dated fixture instead of hedging."
+trigger_phrases:
+  - "refero discovery summary"
+  - "refero fixture summary"
+  - "refero doubled prefix summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/009-mcp-refero/006-live-verification-capture"
+    last_updated_at: "2026-07-17T06:03:03.602Z"
+    last_updated_by: "claude-agent"
+    recent_action: "Phase complete; gates green"
+    next_safe_action: "Operator handoff: OAuth completion and first authenticated search"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/discovery-fixture-2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md"
+      - ".opencode/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "agent-006-live-verification-capture-refero"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-live-verification-capture |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Branch** | `skilled/v4.0.0.0` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The packet's central naming hedge is gone. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) listed all eight Refero tools on 2026-07-16 and wrote the dated fixture `references/discovery-fixture-2026-07-16.json`; seven packet files now cite it instead of preserving a two-lineage dispute.
+
+### The captured facts
+
+You can now state the naming rule as observation, not derivation. The registry carries the dotted doubled names `refero.refero.refero_{search_styles,search_screens,get_style,get_similar_screens,get_screen_image,get_screen,search_flows,get_flow}` - all eight, exactly the documented surface - and the TS callable inside `call_tool_chain` is the doubled `refero.refero_refero_<tool>(...)` form per the fixture's `Access as:` line. The circulating single-prefix derivation is refuted and recorded as negative knowledge. Two schema details landed as well: `response_format?: "json" | "md"` (default `"md"`) is confirmed on both search tools shown in full by the fixture, and `refero_search_screens` requires `platform: "ios" | "web"`.
+
+### The pre-auth correction
+
+
+FOLDER
+
+<<<FOLDER id="specs/mcp-tooling/010-mcp-mobbin"
+# PACKET: specs/mcp-tooling/010-mcp-mobbin (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: mcp-mobbin nested mode: Mobbin design-research MCP transport for the mcp-tooling hub"
+description: "Phase parent for adding mcp-mobbin, a read-only Mobbin app/screen/flow design-research MCP transport mode, to the mcp-tooling parent hub: research the Mobbin MCP tool surface, author the transport packet, integrate it into hub routing plus .utcp_config.json, and validate."
+trigger_phrases:
+  - "010-mcp-mobbin"
+  - "mcp-mobbin"
+  - "mobbin transport"
+  - "mobbin mcp server"
+  - "mobbin design research"
+  - "mcp-tooling mobbin mode"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/010-mcp-mobbin"
+    last_updated_at: "2026-07-16T16:55:00Z"
+    last_updated_by: "claude"
+    recent_action: "Authored parent spec and all four child phase packets"
+    next_safe_action: "Execute phase 001-research when the packet is approved"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "010-mcp-mobbin"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Mobbin API key / auth model: what credential does mobbin-mcp-server require and where does it live?"
+      - "Are any Mobbin MCP tools gated behind a Pro plan, and how should the transport document degraded behavior?"
+    answered_questions:
+      - "mcp-mobbin is a packetKind 'transport' mode like mcp-figma: mutatesWorkspace:false, forbids Write/Edit/Task, mandatory cross-hub judgment pairing with sk-design"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+
+## 001-research/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1: research"
+description: "Completed /deep:research fan-out over the Mobbin MCP surface: 10/10 iterations across three first-attempt lineages, canonical synthesis with 19 merged findings and three preserved conflicts, byte-identical sol/luna UTCP manual drafts."
+trigger_phrases:
+  - "mobbin research summary"
+  - "mcp-mobbin phase 001 summary"
+  - "mobbin fan-out results"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/010-mcp-mobbin/001-research"
+    last_updated_at: "2026-07-16T15:05:07Z"
+    last_updated_by: "claude"
+    recent_action: "Compiled canonical research.md + resource-map.md from 3 completed lineages"
+    next_safe_action: "Author mcp-mobbin transport packet in phase 002 from research/research.md"
+    blockers: []
+    key_files:
+      - ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/research.md"
+      - ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/resource-map.md"
+      - ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/deep-research-findings-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-001-mobbin-research-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Authenticated tools/list schemas, mcp-remote OAuth round trip, and exact callable name pend a live authorized session"
+    answered_questions:
+      - "Auth model? OAuth/DCR/PKCE via the remote MCP server — NO API key env var exists (answered in the negative)"
+      - "UTCP manual shape? stdio mcp-remote bridge to https://api.mobbin.com/mcp with empty env — sol and luna drafts byte-identical"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 1: research
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 1 |
+| **Phase** | 1 of 4 |
+| **Successor** | ../002-skill-authoring/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+A completed deep-research fan-out over the Mobbin MCP developer surface — 10/10 iterations, forced depth:
+
+- `research/research.md` — canonical 17-section synthesis: Cross-Lineage Reconciliation Ledger, findings on tool surface / transport+install / OAuth-DCR-PKCE auth / plan gating / workflows / skills-repo structure / UTCP draft / packet inputs / sk-design pairing; Eliminated Alternatives, Divergence Map, 10 open questions, Convergence Report; 5/5 validator anchor pairs.
+- `research/resource-map.md` — consolidated from sol + luna maps (glm emitted none; its sources folded in), per-row lineage attribution.
+
+## 002-skill-authoring/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2: skill-authoring"
+description: "Authored the 31-file mcp-mobbin transport packet from the phase-001 synthesis; package_skill.py PASS including strict; auth env-var answered in the negative throughout; UTCP manual draft byte-identical to research."
+trigger_phrases:
+  - "mobbin skill authoring summary"
+  - "mcp-mobbin packet summary"
+  - "mobbin phase 002 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/010-mcp-mobbin/002-skill-authoring"
+    last_updated_at: "2026-07-17T06:03:03.924Z"
+    last_updated_by: "claude"
+    recent_action: "Verified packet gate and marked checklist with evidence"
+    next_safe_action: "Run phase 003 hub integration for mcp-mobbin (serial window open)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-002-mobbin-authoring-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Does the packet pass the create-skill gate? Yes — package_skill.py --check --strict PASS (one word-count advisory with sibling parity)"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 2: skill-authoring
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Phase** | 2 of 4 |
+| **Predecessor** | ../001-research/ |
+| **Successor** | ../003-hub-integration/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+`.opencode/skills/mcp-tooling/mcp-mobbin/` — a 31-file nested TRANSPORT packet (`packetKind: transport`, read-only, sk-design pairing), grounded exclusively in the phase-001 synthesis:
+
+- `SKILL.md` — transport contract mirroring the mcp-refero sibling: OAuth/DCR/PKCE (no API key env var — negative answer preserved), stdio `mcp-remote` bridge to `https://api.mobbin.com/mcp`, 60/60 rate limit, plan gating, callable name INFERRED pending live discovery, benchmark-parseable intent block.
+- `README.md`, `install-guide.md` (verify-only; registration + OAuth fenced to later phases/operator).
+- `assets/utcp-mobbin-manual.md` — draft byte-identical to the research (`name: "mobbin"`, empty env), marked NOT REGISTERED with a 9-item post-registration checklist.
+
+## 003-hub-integration/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3: hub-integration"
+description: "Registered mcp-mobbin as the hub's sixth mode and third design transport, added the mobbin UTCP manual byte-per the packet draft, recompiled the advisor graph clean, and completed the three-mode expansion program's hub work."
+trigger_phrases:
+  - "mobbin hub integration summary"
+  - "mcp-mobbin registration"
+  - "mobbin phase 003 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/010-mcp-mobbin/003-hub-integration"
+    last_updated_at: "2026-07-16T16:10:00Z"
+    last_updated_by: "claude"
+    recent_action: "Registered mcp-mobbin across all hub surfaces"
+    next_safe_action: "Run phase 004 and the program-wide final gates"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mode-registry.json"
+      - ".opencode/skills/mcp-tooling/hub-router.json"
+      - ".utcp_config.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-003-mobbin-hub-integration-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Is the hub valid with six modes? Yes — package_skill.py PASS and parent-skill-check PASS, exit 0 both"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 3: hub-integration
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Phase** | 3 of 4 |
+| **Predecessor** | ../002-skill-authoring/ |
+| **Successor** | ../004-validation-and-handoff/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+`mcp-mobbin` registered as the hub's sixth mode (third design transport), completing the expansion program's hub work:
+
+- `mode-registry.json` — transport entry (`backendKind: code-mode-remote-mcp` reused from refero); `transport-axis` declares three transports, all paired to `sk-design`.
+- `hub-router.json` — signal (weight 4: `mobbin-aliases` + `app-design-research` + `hub-identity`), mirrored vocabulary, tieBreak 6/6 (mobbin last).
+- Hub `SKILL.md` (v1.3.0.0), `description.json` (v1.3.0.0), `graph-metadata.json` — mode row, transport enumerations, keywords, trigger example, intent signals, domains, entity, key files.
+
+## 004-validation-and-handoff/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4: validation-and-handoff"
+description: "Program-wide final gates run green for mcp-mobbin: strict package check, six-mode hub structural gates, advisor routing probes, and recursive strict packet validation; handoff notes name the operator-only leftovers."
+trigger_phrases:
+  - "mobbin validation summary"
+  - "mcp-mobbin final gates"
+  - "010-mcp-mobbin phase 004 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/010-mcp-mobbin/004-validation-and-handoff"
+    last_updated_at: "2026-07-16T16:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Ran the program-wide final gates green"
+    next_safe_action: "Operator: reload Code Mode server config; authorize first live OAuth calls"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mode-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-004-mobbin-final-gates"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All gates green? Yes — package strict PASS, hub PASS x2, advisor probe routed mcp-mobbin phrasing to mcp-tooling top-1, recursive strict PASS"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 4: validation-and-handoff
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 1 |
+| **Phase** | 4 of 4 |
+| **Predecessor** | ../003-hub-integration/ |
+| **Successor** | None |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The packet's terminal verification record. Program-wide final-gate results as they apply to `mcp-mobbin`:
+
+- `package_skill.py --check --strict` on `.opencode/skills/mcp-tooling/mcp-mobbin` -> `Result: PASS`.
+- Hub structural gates with six modes: `package_skill.py --check` PASS + `parent-skill-check.cjs` PASS (exit 0 both).
+- Advisor probe: "research onboarding flow patterns on mobbin" -> `mcp-tooling` top-1 (0.704); the compiled skill graph carries the mode's intent signals.
+- Phases 001-003 each independently `RESULT: PASSED` under `validate.sh --strict`; this phase completes the packet.
+
+## 005-inventory-parity-and-doc-truth/implementation-summary.md
+---
+title: "Implementation Summary: Phase 5: inventory-parity-and-doc-truth"
+description: "Flipped the mcp-mobbin packet from pre-registration doctrine to registered-state truth (98 stale marker lines across 15 files; doctor absence now ERR) and shipped sibling inventory parity at v1.1.0.0: examples/, install.sh, a 9-scenario playbook, and enriched catalog leaves; package gate strict PASS."
+trigger_phrases:
+  - "mobbin doc truth summary"
+  - "mobbin inventory parity summary"
+  - "mobbin phase 005 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/010-mcp-mobbin/005-inventory-parity-and-doc-truth"
+    last_updated_at: "2026-07-17T06:03:04.205Z"
+    last_updated_by: "claude"
+    recent_action: "Phase complete: doc truth + parity shipped, gates green"
+    next_safe_action: "Run phase 006 live-verification-capture after operator reconnect + OAuth"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/install.sh"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.0.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-inventory-parity-and-doc-truth"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Is the mobbin manual registered? Yes - verified field-for-field against the researched shape; discovery and OAuth still pend"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+# Implementation Summary: Phase 5: inventory-parity-and-doc-truth
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Phase** | 5 of 6 |
+| **Predecessor** | ../004-validation-and-handoff/ |
+| **Successor** | ../006-live-verification-capture/ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The `mobbin` manual now sits in `.utcp_config.json` (operator-registered 2026-07-16, byte-equivalent to the researched draft), and the packet finally says so: every doc that taught "NOT registered / absence expected / later phase" now teaches registered-state truth — registered; discovery pends a fresh Code Mode session; OAuth pends the operator; callable still INFERRED until `tool_info`. The packet also caught up with its transport siblings on inventory.
+
+- **Doc-truth sweep (15 files, 98 baseline marker lines)**: `SKILL.md` (registration trap became a discovery trap; RULES/ESCALATE reframed to escalate-never-repair), `README.md`, `install-guide.md` (Section 4 is now "Reconnect and Authenticate", operator-only), `references/{mcp_wiring,tool_surface,troubleshooting}.md`, `assets/utcp-mobbin-manual.md` (now the registered manual's reference shape, 9-item checklist executed doc-side: 3 evidenced, 6 SKIP-valid with exact commands), `feature-catalog/**`, `manual-testing-playbook/**`, `mcp-servers/mobbin-mcp/README.md`.
+
+## 006-live-verification-capture/implementation-summary.md
+---
+title: "Implementation Summary: Phase 6: live-verification-capture (mcp-mobbin)"
+description: "Live discovery on 2026-07-16 listed THREE Mobbin tools pre-auth, superseding the one-tool research baseline and resolving the deep-search conflict as a client-settable mode input; 22 packet files now cite the dated fixture."
+trigger_phrases:
+  - "mobbin discovery summary"
+  - "mobbin fixture summary"
+  - "mobbin three tools summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/010-mcp-mobbin/006-live-verification-capture"
+    last_updated_at: "2026-07-17T06:03:04.467Z"
+    last_updated_by: "claude-agent"
+    recent_action: "Phase complete; gates green"
+    next_safe_action: "Operator handoff: browser OAuth and first authenticated smoke search"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.1.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "agent-006-live-verification-capture-mobbin"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-live-verification-capture |
+| **Completed** | 2026-07-16 |
+| **Level** | 2 |
+| **Branch** | `skilled/v4.0.0.0` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The fixture did not just confirm the packet - it corrected it. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) listed **three** Mobbin tools pre-auth on 2026-07-16, where the packet's entire doctrine assumed one. The dated fixture `references/discovery-fixture-2026-07-16.json` is now ground truth, and 22 packet files flipped to match it.
+
+### The supersession
+
+You can now call `search_flows` and `search_sections` - two tools the packet previously forbade an agent to even imagine. The live registry lists `mobbin.mobbin.{search_screens,search_flows,search_sections}` (TS callables `mobbin.mobbin_search_screens(args)` etc., exactly the convention-predicted forms), all read-only search tools; the mutation-refusal check passed. The one-public-tool record stays visible as a dated historical baseline in `tool-surface.md`, and every operating claim now tracks the live inventory. Flow research rebuilt around the real tool: `search_flows` returns flow objects with `actions[]`, `screen_count`, and per-screen previews ordered by `position`, so returned ordering is retrieved fact and only interpolation beyond it stays labeled inference.
+
+### The resolutions
+
+
+FOLDER
+
+<<<FOLDER id="specs/mcp-tooling/011-routing-remediation"
+# PACKET: specs/mcp-tooling/011-routing-remediation
+
+---
+title: "Implementation Summary: mcp-tooling routing remediation - Phase 0 freeze, WS1 router fixes, WS2 route-gold enforcement, WS3 transport trust, WS4 six-mode traceability (in progress)"
+description: "The mcp-tooling routing surface replays clean end to end (13/13 hub, 49/49 packets, route-gold hard gate enforced), the Figma transport's mutation and sk-design pairing contracts are truthful, and all six-mode traceability surfaces (graph projections, phase-007 amendments, playbook index) are regenerated. Phase 5 terminal re-review remains."
+trigger_phrases:
+  - "routing remediation progress"
+  - "ws1 router fixes summary"
+  - "ws2 route-gold gate summary"
+  - "mcp-tooling replay fixtures"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/011-routing-remediation"
+    last_updated_at: "2026-07-16T19:05:00Z"
+    last_updated_by: "claude"
+    recent_action: "Completed Phase 3 WS3 and Phase 4 WS4"
+    next_safe_action: "Execute Phase 5 terminal re-review (T050-T052)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mode-registry.json"
+      - ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md"
+      - ".opencode/skills/mcp-tooling/graph-metadata.json"
+      - ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "impl-011-phase3-4-ws3-ws4"
+      parent_session_id: "planning-011-routing-remediation"
+    completion_pct: 80
+    open_questions: []
+    answered_questions:
+      - "ADR-001 ruling: fallback-only (option a), Accepted 2026-07-16; ADR-002 scope confirmed as planned"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-routing-remediation |
+| **Completed** | In progress (Phase 0 + Phase 1/WS1 + Phase 2/WS2 + Phase 3/WS3 + Phase 4/WS4 done 2026-07-16; Phase 5 pending) |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The mcp-tooling hub router now routes every committed scenario to its intended intent: the deterministic replay went from 6/13 to 13/13 intent matches with the certified-clean MT-H01 boundary byte-identical. Phase 0 froze the pre-fix world (replay fixtures for 13 hub and 49 packet scenarios plus gate baselines) so every later phase has a regression anchor.
+
+### Phase 0: adjudication and regression freeze
+
+ADR-001 (fallback-only `defaultResource`) and ADR-002 (route-gold gate scope) are Accepted in `decision-record.md`. The `regression/` folder holds `pre-fix-replay-hub.json` (6/13 intent, 2/13 resource), `pre-fix-replay-packets.json` (38/49 intent), and `pre-fix-gates.md` (package check PASS, parent-skill-check PASS, advisor ratchet 7/7 with baseline numbers), all captured at repo HEAD `1508a744d3`.
+
+### WS1: deterministic hub routing (F001-F005)
+
+`hub-router.json` v1.1.0.0 now declares `defaultResourceSemantics: "fallback-only"` with an explicit contract string (F002 producer side), moves `hub-identity` and the new `provider-neutral-design-research` class to discovery-only `routerPolicy.discoveryClasses` so hub-vocabulary-only prompts defer (F003, F005), restores Figma lexical recall with the bare `figma` alias plus `design tokens`/`design file` (F001), and binds all five failing blind holdouts with provider-appropriate vocabulary recorded per scenario as `blindExceptions` (F004). The hub `SKILL.md` routing rule states the fallback-only semantics; MT-004 asserts the fallback contract explicitly. Post-fix replay: `regression/post-ws1-replay-hub.json`, 13/13 intents.
+
+### WS2: route-gold enforcement and packet alignment (F008, F012-F015)
+
+The shared skill-benchmark harness now consumes route gold as a hard gate. `run-skill-benchmark.cjs` gains `--route-gold on|off|auto` (auto = enforced for hub-type skills, detected by `hub-router.json`); `load-playbook-scenarios.cjs` parses `expected_intent`/`expected_resources` loudly (a present-but-unparseable block is a counted `goldParseError`, never a silent skip, and packet-pointer gold like `mcp-figma/SKILL.md` — previously dropped by the path-prefix regex — now parses as authored); `score-skill-benchmark.cjs` scores every gold row (`evaluateRouteGold`: exact intent set with `none`/`defer`/`UNKNOWN` asserting the empty set; exact resource assembly for frontmatter corpora, must-include + no-forbidden-prefix for sk-code-shape corpora) and an enforced violation flips the verdict to `BLOCKED-BY-ROUTE-GOLD` with process exit 3; `build-report.cjs` renders the lane with flag state, counts, and per-scenario detail.
+
+The replay consumer fix (T021) makes `router-replay.cjs` honor declared default-resource semantics generically: a router declaring fallback-only never assembles its default (it is the defer-time suggestion); a router with no declaration keeps the legacy union byte-for-byte. All six packet SKILL.md routers now declare `DEFAULT_RESOURCE_SEMANTICS = "fallback-only"` and their documented fallback branches were corrected to the single-valued rejection semantics (zero-score selects no intent, loads nothing, suggests the default beside the disambiguation checklist) — including removing chrome/aside's ALWAYS-preamble load, figma/refero/mobbin's unconditional default load and guessed zero-score intent, and ClickUp's two hardcoded fallback loads (F013/F014). Corpus alignment: five holdout bindings with `blindExceptions` rationale (CD-H01, CU-H01, CU-H02, MB-H01, MB-H02 — zero removals, F012) and one F015 gold correction (AD-R03 gains the declared MCP-intent asset); the other ten F015 rows are correct as authored under fallback-only assembly.
+
+Evidence: `regression/post-ws2-replay-{hub,packets}.json` — hub 13/13 intent + 13/13 resource, packets 49/49 + 49/49 (`scratch/replay-driver.cjs`, loader-enumerated, gold from raw frontmatter); benchmark re-run `mcp-tooling/benchmark/reports/2026-07-16--after-routing-remediation--router/` PASS 98 with routeGold `{auto, enforced, rows 13, matches 13, violations 0}`; enforcement proof (scratch-corpus injection) BLOCKED-BY-ROUTE-GOLD exit 3 and gate-off PASS; new harness suite `tests/route-gold-gate.vitest.ts` 39/39.
+
+### WS3: transport trust metadata (F006-F007)
+
+The Figma transport's mutation metadata is now honest without breaking the schema: `parent-skill-check.cjs` hard-requires `mutatesWorkspace` to be a boolean (3d) and transports to declare `false` (3h), so the boolean keeps the dominant posture (document mutation lands in Figma Desktop) and the figma `toolSurface` gains a `workspaceWrites` export-only clarifier naming the local export writes and their explicit-path/no-overwrite gate. The transport-axis description now defines the three mutation classes (external-document mutation, per-mode local export writes via `workspaceWrites`, direct editing forbidden). A six-row grep-proof against every mode's own command taxonomy found no other misdeclaration: the three workflow bridges honestly declare `true` (each grants Write/Edit and writes local artifacts), refero and mobbin honestly declare `false` (zero local writes, Write/Edit/Task forbidden).
+
+The sk-design pairing is now a named precondition on every design-affecting Figma authoring path, not just on reads feeding decisions: seven bounded edits to `mcp-figma/SKILL.md` (Use Cases, Phase Detection, Resource Loading Levels, Command classes, ALWAYS rule 8, Author/modify Success Criteria, Cross-Workflow Contracts) align the packet with the hub's ADR-002 `crossHubPairing` doctrine, which already required judgment before any design-affecting Figma operation.
+
+### WS4: six-mode traceability (F009-F011)
+
+Hub `graph-metadata.json`'s residual three-mode narrative is gone: `derived.intent_signals` gained the aside/refero/mobbin signal block, the mcp-code-mode/sk-design/sk-code edge contexts and the `causal_summary` now narrate all six modes (with the transport pairing covering all three transports), diff-reviewed against `mode-registry.json`; the hub `description.json` was diff-reviewed and was already six-mode. The skill-graph compiler validated (12 metadata files, 0 errors) and the export recompiled.
+
+Phase-007's acceptance docs carry dated amendment sections (spec/plan/tasks, `ANCHOR:amendment-2026-07-16`) recording the six-mode reality, the executed benchmark evidence (`benchmark/baseline/` PASS 95; `benchmark/2026-07-16--after-routing-remediation--router/` PASS 98 route-gold enforced), and the `router-final/`/`.gitkeep` supersessions — history preserved, no rewrite; the folder's description/graph metadata were regenerated and it validates strict with zero errors and zero warnings.
+
+The hub playbook index was regenerated from the committed corpus: 13 scenario files across six modes (7 primary + 6 blind holdouts, holdout coverage 6/6), the MT-H01 chrome-vs-aside boundary note, fallback-only success criteria, and a scripted link check with 0 broken links (the prior index's four hyphen-named links were all broken).
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Producer-and-gold first, consumer next: every vocabulary and policy edit was verified against the frozen pre-fix fixtures by re-running the same deterministic replay driver, and the packet corpora were left untouched (their 38/49 replay result is identical pre and post, proving WS1 isolation). Gates re-ran after the edits: `jq empty` on both JSON surfaces, package check, parent-skill-check, and the advisor ratchet all PASS.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Keep `defaultResource` and add `defaultResourceSemantics: "fallback-only"` instead of deleting the field | Preserves the zero-signal affordance and the `parent-skill-check` 5d resource-path check while making the contract explicit, per ADR-001 option (a) |
+| Bind all five holdouts rather than re-adjudicating any out of gold | Each had a natural provider-appropriate anchor ("design file", "project tracker", "click through"/"on its own", "web products", "phone apps"); `blindExceptions` frontmatter keeps the blind claim honest |
+| Drop "screen examples" from BOTH provider classes into a discovery-only class | MT-008/MT-009 contracts allow defer for generic phrasing naming neither tool; keeping it in either class would silently privilege one provider |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Post-WS1 hub replay (13 scenarios) | PASS at intent level: 13/13 (pre-fix 6/13); resource assembly 2/13, expected until the Phase 2 `router-replay.cjs:514` consumer fix |
+| MT-H01 certified boundary | PASS: replay object byte-identical pre/post |
+| Packet replay isolation (49 scenarios) | PASS: 38/49 pre and post, unchanged |
+| `jq empty` hub-router.json + description.json | PASS |
+| F005 dual-selection probe | PASS: unqualified screen-examples prompt replays intents=[] (defer) |
+| Post-WS2 hub replay (13 scenarios) | PASS: 13/13 intent AND 13/13 resource (`regression/post-ws2-replay-hub.json`) |
+| Post-WS2 packet replay (49 scenarios) | PASS: 49/49 intent AND 49/49 resource, zero gold removals (`regression/post-ws2-replay-packets.json`) |
+| Benchmark re-run (new run-label, gate enforced) | PASS 98, routeGold rows 13 / matches 13 / violations 0; `baseline/` untouched |
+| Enforcement proof (gate gates) | PASS: scratch-corpus injected violation -> BLOCKED-BY-ROUTE-GOLD exit 3; `--route-gold off` -> PASS exit 0; parse-failure variant also blocks |
+| Consumer-safety controls | PASS: mcp-code-mode (auto->off) and sk-code (`--route-gold off`) verdicts + per-scenario scores identical to pre-change captures |
+| Harness vitest (203 tests) | PASS 184 incl. new route-gold suite 39/39; 19 failures are pre-existing (stash A/B identical pre/post, unrelated fixtures/corpus outside packet scope) |
+| `node --check` on touched .cjs | PASS (router-replay, load-playbook-scenarios, score-skill-benchmark, run-skill-benchmark, build-report) |
+| `package_skill.py --check` hub + six packets, parent-skill-check | PASS (exit 0, all eight checks, post-WS2) |
+| Advisor ratchet (7 tests) | PASS 7/7 after WS1 and again after WS2 (advisor corpus untouched) |
+| Post-WS3/WS4 `jq empty` (mode-registry, hub graph-metadata) | PASS both |
+| Post-WS3/WS4 `validate_skill_package.py` hub | PASS (package check + parent-skill-check both exit 0) |
+| Post-WS3 `package_skill.py --check` mcp-figma | PASS (1 pre-existing-class word-count warning) |
+| Skill-graph compiler | `--validate-only` VALIDATION PASSED (12 metadata files); `--export-json` recompiled clean |
+| Playbook index link check | PASS: 13/13 markdown links + 9/9 referenced sibling paths resolve, 0 broken |
+| Phase-007 folder re-validation | PASS: `validate.sh --strict --no-recursive` Errors 0, Warnings 0 (after amendment + metadata regeneration) |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Advisor probe outputs were not captured in the Phase 0 baseline.** Recorded as open in `regression/pre-fix-gates.md`; capture them with the Phase 5 regression delta.
+2. **Other hub-type skills' NEXT benchmark runs will newly enforce route gold** (per ADR-002 this is the intended default): sk-code's corpus currently carries 10 route-gold recall violations that would block an auto-mode run — true positives for that owner to triage (or run with `--route-gold off` during triage); its frozen baseline stays valid.
+3. **19 pre-existing harness test failures** (missing sk-design-dispatch fixture files; sk-code corpus-count drift from concurrent sessions) fail identically before and after this workstream (stash A/B) and are outside this packet's write authority.
+4. **Phase 2 evidence is pinned to the working tree over base `1508a744d3`** (WS1+WS2 are uncommitted in this session); pin final SHAs at the workstream commit.
+<!-- /ANCHOR:limitations -->
+
+---
+
+<!--
+CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
+Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+-->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

@@ -1,0 +1,52 @@
+You are deep-research iteration 2 (of 5) for lineage "deepseek-v4-pro-max", investigating one issue in this repository. Use Read, Grep and Bash (git) — read only, DO NOT modify any files. Ground every claim in file:line or command output.
+
+ISSUE
+The skill-advisor (and other runtime writers) leak nested .opencode / .advisor-state directories INTO specs/ instead of keeping advisor state at the repo root. Live symptom (HEAD): 23 nested .opencode dirs under specs/, plus .advisor-state under specs/hooks/008-pi-caching-like-reasonix/..., specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/, and specs/system-deep-loop/z_archive/026-goal-opencode-plugin/... . The packet meant to fix this, specs/system-skill-advisor/017-advisor-audit-and-state-containment, is Draft at 0% completion.
+
+FINDINGS SO FAR (prior iterations of this lineage; build on them, do not repeat):
+
+# deepseek-v4-pro-max iteration 1 — PARSE FAIL
+
+
+
+The `find_file_by_name` tool only matches files, not directories. Let me search for files inside `.opencode` and `.advisor-state` directories to confirm their existence and contents.
+
+Let me read the full overflow file and also search more specifically for `.advisor-state` and `.opencode` directories that might be advisor leaks rather than fixtures.
+
+
+
+Let me search more broadly for `.opencode` directories that aren't just test fixtures, and also look for `.advisor-state` in other locations.
+
+The `find_file_by_name` tool only matches files, not directories. Let me use a targeted approach to find `.opencode` and `.advisor-state` directories across specs.
+
+Interesting - 16 of 17 `.opencode` dirs are test fixtures, but one is not. Let me investigate the non-fixture one and also look for `.advisor-state` more broadly, plus check the fix packet.
+
+
+
+Key findings emerging. Let me check the git worktree situation, read the fix packet, and look at the nested `.opencode` directory contents more carefully.
+
+
+
+Now let me check the main repo (not the sandbox) for the full extent of the problem, and read the phase 001 child spec.
+
+
+
+Excellent findings from the main repo. Let me now do a comprehensive enumeration across the entire repo (not just specs/) and verify the content of each stray directory.
+
+
+
+
+
+
+
+
+
+Now I have the full enumeration. Let me verify that the stray dirs contain advisor-written state and check git tracking.
+
+ITERATION 2 FOCUS
+Trace the code: find the advisor workspace/state-directory resolver (system-skill-advisor mcp-server + hooks) and show EXACTLY where and why it can resolve a state path inside a specs/ subtree instead of the repo root. Cite file:line.
+
+Reply with ONLY a fenced json block:
+```json
+{"iteration":2,"lineage":"deepseek-v4-pro-max","focus_summary":"<one line>","findings":["<grounded finding with file:line or command evidence>", "..."],"answered":["<question this iteration resolved>"],"open_questions":["<still open>"],"confidence":0.0}
+```
