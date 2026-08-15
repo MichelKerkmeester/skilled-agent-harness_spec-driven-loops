@@ -39,7 +39,7 @@
       "tamper"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "decision-record.md",
       "spec.md",
@@ -146,12 +146,6 @@
         "source": "derived"
       },
       {
-        "name": "Decomposed Skill Benchmark",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -165,6 +159,12 @@
       },
       {
         "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "seed",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Define immutable, content-addressed, seal-on-write inputs and outputs for Skill Benchmark scenario runs and scoring",
     "created_at": "2026-07-16T03:43:41.603Z",
-    "last_save_at": "2026-08-14T04:27:55.148Z",
+    "last_save_at": "2026-08-15T15:53:26.398Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78248d0f1936e229884791e25dfa3d61ca7cdc2afc89483c47c438f8eed0ff31",
+    "source_fingerprint": "sha256:7168487da8e6f993e01a571fe7704daa085e95d7b07fc6d3aa5110705bb6198b",
     "source_doc_hashes": {
-      "spec.md": "7c5d047a01736e17c47bb75c1b3279cd66bcc49a17a480febbebb04131d0c1e0",
+      "spec.md": "3be828487b16c7cdd8556b728ab41fa433cee71814a47df238c8ac5b15dbaa2b",
       "plan.md": "1774abd0f6dfad27fdd6ee840d9bc20c826ddb08ba698a7a5211bb128320ac7a",
-      "tasks.md": "d22d746d8d3e8fda85ac9dc6aff6a6d3d39f67b758a802d8a61506397ac0ade7",
-      "checklist.md": "fe7c5a079216e4312a811a8fe7a81271b1b6daec75e16e4fa8af023ea86c7524",
+      "tasks.md": "a048214fe0e28dd9577ba9ea8bf0914d26b54c35667e12e22a55d269776b2195",
+      "checklist.md": "52af08e3fbff2bb6a9eda693e3d40593cdb871265486debea967cec7edaa9a03",
       "decision-record.md": "466a5f61d4dd81925bb371441fb89795b03f0685fc51fe440e7c76b73edfbcd3",
-      "implementation-summary.md": "f938374f9eeb6bfbeaae9f4a270563a25cf0ea2fd3913466e11d74241d0176a9"
+      "implementation-summary.md": "78f45ce13ab3969d71a3d5f630d2229a40d223a58bde362ac8a0e4841c623637"
     },
     "last_active_child_id": null,
     "last_active_at": null

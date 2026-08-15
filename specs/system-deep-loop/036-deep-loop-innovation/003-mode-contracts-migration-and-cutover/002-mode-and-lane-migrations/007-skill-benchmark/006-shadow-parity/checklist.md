@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity"
-    last_updated_at: "2026-07-15T21:20:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Added blocking event-parity, gold-integrity, and authority-boundary checks"
-    next_safe_action: "Review the checklist against the frozen shadow and common-service contracts"
+    last_updated_at: "2026-08-15T15:50:59Z"
+    last_updated_by: "codex"
+    recent_action: "Verified HEAD suite and reconciled shadow-parity completion evidence"
+    next_safe_action: "Consume this completed additive-dark leaf in mode-gate verification"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -34,59 +34,59 @@ This checklist is the blocking SOL verifier contract for the Skill Benchmark sha
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-006 [P0] Phase-014 shadow and mode-004 deep-improvement-common contracts are pinned, and the local phase-012 shared-contract freeze plus write-set conflict graph is available
-- [ ] CHK-007 [P2] Candidate SHA, BASE SHA, scenario-manifest hash, service versions, shadow-framework version, and fixture digests are recorded in the candidate report
-- [ ] CHK-008 [P0] Legacy scenario runner, emitter, scorer, gold sources, skill loader, and authority boundary are inventoried before the shadow adapter is enabled
+- [x] CHK-006 [P0] Phase-014 shadow and mode-004 deep-improvement-common contracts are pinned, and the local phase-012 shared-contract freeze plus write-set conflict graph is available [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-007 [P2] Candidate SHA, BASE SHA, scenario-manifest hash, service versions, shadow-framework version, and fixture digests are recorded in the candidate report [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-008 [P0] Legacy scenario runner, emitter, scorer, gold sources, skill loader, and authority boundary are inventoried before the shadow adapter is enabled [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-009 [P1] Changes are scoped to Skill Benchmark scenario/scoring parity; no sibling concern, shared-service rewrite, or authority cutover is included
-- [ ] CHK-010 [P1] The adapter reuses deep-improvement-common and phase-014 services; no duplicate ledger, receipt, budget, replay, sealing, or generic projection implementation exists
-- [ ] CHK-011 [P2] The closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`; each field is checked for presence, type, and non-interference, and no broad timing or payload tolerance hides semantic drift
+- [x] CHK-009 [P1] Changes are scoped to Skill Benchmark scenario/scoring parity; no sibling concern, shared-service rewrite, or authority cutover is included [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-010 [P1] The adapter reuses deep-improvement-common and phase-014 services; no duplicate ledger, receipt, budget, replay, sealing, or generic projection implementation exists [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-011 [P2] The closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`; each field is checked for presence, type, and non-interference, and no broad timing or payload tolerance hides semantic drift [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-001 [P0] The frozen matrix runs paired no-skill, full-skill, distractor, SKILL.md-only, references-ablated, scripts-ablated, compatibility-boundary, and off/auto/forced/placebo diagnostic arms
-- [ ] CHK-002 [P0] Every pair has identical task, treatment, bundle, executor, environment, registry, tool, permission, dependency, gold, seed, and common-service digests before comparison
-- [ ] CHK-003 [P0] Canonical events pair by logical identity rather than raw `eventId`, so independent streams still pair, then match event kind, causal order, payload digest, status, score contribution, and receipt reference
-- [ ] CHK-004 [P0] The corpus has zero unexplained semantic differences; every tolerated diff has a typed disposition, owner, reason, and proof, and missing, extra, reordered, payload, status, score, cost, gold, receipt, or replay mismatches fail closed
-- [ ] CHK-012 [P0] Availability, invocation, resource exposure, trajectory/key-point coverage, milestone, final outcome, cost, and security-probe stages are separately projected; intention-to-treat remains primary
-- [ ] CHK-013 [P0] Scored scenarios with empty required gold are blocked, pending and structural-only rows are excluded from positive numerators, gold provenance is recorded, and gold mutation changes the score or invalidates the run
-- [ ] CHK-014 [P0] Near-neighbor, noise-skill, loader-exposure, model-activation, compatibility, and executor-failure controls distinguish harness exposure from actual skill use and execution failure
-- [ ] CHK-015 [P0] Replay of the same frozen inputs reproduces the canonical projections, pair identity, score projection, mismatch classification, and exit-code receipt
-- [ ] CHK-016 [P0] The shadow path cannot alter legacy authority, emit a cutover signal, or satisfy the later mode gate through a partial or withheld result
-- [ ] CHK-021 [P0] Every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks; existence or shape alone cannot pass
-- [ ] CHK-022 [P0] Fault injections traverse the real scenario runner, authorization, ledger, reducer, scorer projection, receipt, and mode-gate evidence pipeline and assert the exact typed failure class; stub-only or zero-event tests cannot pass
-- [ ] CHK-023 [P1] The manifest-bound parity receipt is evidence that the authenticated mode gate re-verifies; neither the receipt nor its computed status is trusted as standalone authority
+- [x] CHK-001 [P0] The frozen matrix runs paired no-skill, full-skill, distractor, SKILL.md-only, references-ablated, scripts-ablated, compatibility-boundary, and off/auto/forced/placebo diagnostic arms [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-002 [P0] Every pair has identical task, treatment, bundle, executor, environment, registry, tool, permission, dependency, gold, seed, and common-service digests before comparison [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-003 [P0] Canonical events pair by logical identity rather than raw `eventId`, so independent streams still pair, then match event kind, causal order, payload digest, status, score contribution, and receipt reference [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-004 [P0] The corpus has zero unexplained semantic differences; every tolerated diff has a typed disposition, owner, reason, and proof, and missing, extra, reordered, payload, status, score, cost, gold, receipt, or replay mismatches fail closed [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-012 [P0] Availability, invocation, resource exposure, trajectory/key-point coverage, milestone, final outcome, cost, and security-probe stages are separately projected; intention-to-treat remains primary [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-013 [P0] Scored scenarios with empty required gold are blocked, pending and structural-only rows are excluded from positive numerators, gold provenance is recorded, and gold mutation changes the score or invalidates the run [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-014 [P0] Near-neighbor, noise-skill, loader-exposure, model-activation, compatibility, and executor-failure controls distinguish harness exposure from actual skill use and execution failure [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-015 [P0] Replay of the same frozen inputs reproduces the canonical projections, pair identity, score projection, mismatch classification, and exit-code receipt [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-016 [P0] The shadow path cannot alter legacy authority, emit a cutover signal, or satisfy the later mode gate through a partial or withheld result [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-021 [P0] Every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks; existence or shape alone cannot pass [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-022 [P0] Fault injections traverse the real scenario runner, authorization, ledger, reducer, scorer projection, receipt, and mode-gate evidence pipeline and assert the exact typed failure class; stub-only or zero-event tests cannot pass [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-023 [P1] The manifest-bound parity receipt is evidence that the authenticated mode gate re-verifies; neither the receipt nor its computed status is trusted as standalone authority [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-005 [P1] The phase report covers every in-scope scenario, scoring, gold-integrity, projection-diff, replay, and fail-closed requirement without silently absorbing sibling concerns
+- [x] CHK-005 [P1] The phase report covers every in-scope scenario, scoring, gold-integrity, projection-diff, replay, and fail-closed requirement without silently absorbing sibling concerns [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-017 [P1] Tool, permission, dependency, registry, and skill-resource digests are bound to every pair, and controlled security probes cannot be omitted from a positive result
-- [ ] CHK-018 [P2] Shadow execution remains read-only with respect to authority and uses the shared effect/receipt policy for any external operation
+- [x] CHK-017 [P1] Tool, permission, dependency, registry, and skill-resource digests are bound to every pair, and controlled security probes cannot be omitted from a positive result [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] CHK-018 [P2] Shadow execution remains read-only with respect to authority and uses the shared effect/receipt policy for any external operation [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-019 [P2] The parity report documents canonical tuple fields, volatile exclusions, treatment arms, gold policy, mismatch taxonomy, replay command, and evidence locations
+- [x] CHK-019 [P2] The parity report documents canonical tuple fields, volatile exclusions, treatment arms, gold policy, mismatch taxonomy, replay command, and evidence locations [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-020 [P1] Implementation and verification land in dependency-closed, path-scoped commits, with shadow evidence retained as immutable receipts and no destructive cleanup
+- [x] CHK-020 [P1] Implementation and verification land in dependency-closed, path-scoped commits, with shadow evidence retained as immutable receipts and no destructive cleanup [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
