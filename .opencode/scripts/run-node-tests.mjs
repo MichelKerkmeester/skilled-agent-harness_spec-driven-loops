@@ -108,7 +108,11 @@ if (all.length === 0) {
 let failed = false;
 
 if (nodeFiles.length > 0) {
-  const result = spawnSync('node', ['--test', ...nodeFiles], {
+  // Pin the TAP reporter explicitly. Node's default reporter switched to `spec`
+  // (ℹ pass / ✖ fail) for non-TTY output in current releases, whose summary the
+  // `# pass`/`# fail` parse below cannot read -- leaving it to the default made
+  // the whole node suite report NaN and fail closed regardless of real results.
+  const result = spawnSync('node', ['--test', '--test-reporter=tap', '--test-reporter-destination=stdout', ...nodeFiles], {
     cwd: REPO_ROOT,
     stdio: ['ignore', 'pipe', 'inherit'],
     encoding: 'utf8',
