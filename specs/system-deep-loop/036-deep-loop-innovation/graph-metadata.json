@@ -13,7 +13,8 @@
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
     "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
     "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation",
-    "system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence"
+    "system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence",
+    "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution"
   ],
   "manual": {
     "depends_on": [],
@@ -93,7 +94,7 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-16T13:22:42.851Z",
+    "last_save_at": "2026-08-16T13:48:27.259Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
