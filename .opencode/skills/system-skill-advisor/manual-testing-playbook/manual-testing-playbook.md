@@ -166,16 +166,16 @@ This category validates native mcp tools scenarios `NC-001..NC-010`.
 
 | ID | Scenario | File |
 |---|---|---|
-| NC-001 | Native advisor_recommend Happy Path | [native-recommend-happy-path.md](../manual-testing-playbook/native-mcp-tools/native-recommend-happy-path.md) |
-| NC-002 | Native advisor_status Transitions | [native-status-transitions.md](../manual-testing-playbook/native-mcp-tools/native-status-transitions.md) |
-| NC-003 | Native advisor_validate Slice Bundle | [native-validate-slices.md](../manual-testing-playbook/native-mcp-tools/native-validate-slices.md) |
-| NC-004 | Ambiguous Brief Rendering | [ambiguous-brief-rendering.md](../manual-testing-playbook/native-mcp-tools/ambiguous-brief-rendering.md) |
-| NC-005 | Lifecycle Redirect Metadata | [lifecycle-redirect-metadata.md](../manual-testing-playbook/native-mcp-tools/lifecycle-redirect-metadata.md) |
-| NC-006 | Advisor Status and Rebuild Separation | [advisor-status-rebuild-separation.md](../manual-testing-playbook/native-mcp-tools/advisor-status-rebuild-separation.md) |
-| NC-007 | Skill Graph Status | [skill-graph-status.md](../manual-testing-playbook/native-mcp-tools/skill-graph-status.md) |
-| NC-008 | Skill Graph Query | [skill-graph-query.md](../manual-testing-playbook/native-mcp-tools/skill-graph-query.md) |
-| NC-009 | Skill Graph Validate | [skill-graph-validate.md](../manual-testing-playbook/native-mcp-tools/skill-graph-validate.md) |
-| NC-010 | Shadow-Delta Sink Opt-In | [shadow-delta-sink.md](../manual-testing-playbook/native-mcp-tools/shadow-delta-sink.md) |
+| NC-001 | Native advisor_recommend Happy Path | [native-recommend-happy-path.md](native-mcp-tools/native-recommend-happy-path.md) |
+| NC-002 | Native advisor_status Transitions | [native-status-transitions.md](native-mcp-tools/native-status-transitions.md) |
+| NC-003 | Native advisor_validate Slice Bundle | [native-validate-slices.md](native-mcp-tools/native-validate-slices.md) |
+| NC-004 | Ambiguous Brief Rendering | [ambiguous-brief-rendering.md](native-mcp-tools/ambiguous-brief-rendering.md) |
+| NC-005 | Lifecycle Redirect Metadata | [lifecycle-redirect-metadata.md](native-mcp-tools/lifecycle-redirect-metadata.md) |
+| NC-006 | Advisor Status and Rebuild Separation | [advisor-status-rebuild-separation.md](native-mcp-tools/advisor-status-rebuild-separation.md) |
+| NC-007 | Skill Graph Status | [skill-graph-status.md](native-mcp-tools/skill-graph-status.md) |
+| NC-008 | Skill Graph Query | [skill-graph-query.md](native-mcp-tools/skill-graph-query.md) |
+| NC-009 | Skill Graph Validate | [skill-graph-validate.md](native-mcp-tools/skill-graph-validate.md) |
+| NC-010 | Shadow-Delta Sink Opt-In | [shadow-delta-sink.md](native-mcp-tools/shadow-delta-sink.md) |
 
 ---
 
@@ -185,11 +185,11 @@ This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-007
 
 | ID | Scenario | File |
 |---|---|---|
-| CL-001 | Claude Code UserPromptSubmit Hook | [001-claude-user-prompt-submit.md](../manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md) |
+| CL-001 | Claude Code UserPromptSubmit Hook | [001-claude-user-prompt-submit.md](cli-hooks-and-plugin/claude-user-prompt-submit.md) |
 | CL-004 | OpenCode Native Hooks And Wrapper Fallback | 004-opencode-hook-and-wrapper.md (not yet authored) |
-| CL-005 | OpenCode Plugin Bridge | [005-opencode-plugin-bridge.md](../manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md) |
-| CL-006 | skill-advisor CLI Fallback Surface (028) | [006-skill-advisor-cli-fallback.md](../manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md) |
-| CL-007 | Goal OpenCode Plugin | [goal-opencode-plugin.md](../manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md) |
+| CL-005 | OpenCode Plugin Bridge | [005-opencode-plugin-bridge.md](cli-hooks-and-plugin/opencode-plugin-bridge.md) |
+| CL-006 | skill-advisor CLI Fallback Surface (028) | [006-skill-advisor-cli-fallback.md](cli-hooks-and-plugin/skill-advisor-cli-fallback.md) |
+| CL-007 | Goal OpenCode Plugin | [goal-opencode-plugin.md](cli-hooks-and-plugin/goal-opencode-plugin.md) |
 
 ---
 
@@ -199,10 +199,10 @@ This category validates compat and disable scenarios `CP-001..CP-004`.
 
 | ID | Scenario | File |
 |---|---|---|
-| CP-001 | Python Shim --stdin Mode | [001-python-shim-stdin.md](../manual-testing-playbook/compat-and-disable/python-shim-stdin.md) |
-| CP-002 | Force Local And Force Native Toggles | [002-force-local-force-native.md](../manual-testing-playbook/compat-and-disable/force-local-force-native.md) |
-| CP-003 | Global Disable Flag | [003-global-disable-flag.md](../manual-testing-playbook/compat-and-disable/global-disable-flag.md) |
-| CP-004 | Daemon Absent Fallback | [004-daemon-absent-fallback.md](../manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md) |
+| CP-001 | Python Shim --stdin Mode | [001-python-shim-stdin.md](compat-and-disable/python-shim-stdin.md) |
+| CP-002 | Force Local And Force Native Toggles | [002-force-local-force-native.md](compat-and-disable/force-local-force-native.md) |
+| CP-003 | Global Disable Flag | [003-global-disable-flag.md](compat-and-disable/global-disable-flag.md) |
+| CP-004 | Daemon Absent Fallback | [004-daemon-absent-fallback.md](compat-and-disable/daemon-absent-fallback.md) |
 
 ---
 
@@ -212,9 +212,9 @@ This category validates operator h5 scenarios `OP-001..OP-003`.
 
 | ID | Scenario | File |
 |---|---|---|
-| OP-001 | Degraded Daemon | [001-degraded-daemon.md](../manual-testing-playbook/operator-h5/degraded-daemon.md) |
-| OP-002 | Quarantined Daemon | [002-quarantined-daemon.md](../manual-testing-playbook/operator-h5/quarantined-daemon.md) |
-| OP-003 | Unavailable Daemon | [003-unavailable-daemon.md](../manual-testing-playbook/operator-h5/unavailable-daemon.md) |
+| OP-001 | Degraded Daemon | [001-degraded-daemon.md](operator-h5/degraded-daemon.md) |
+| OP-002 | Quarantined Daemon | [002-quarantined-daemon.md](operator-h5/quarantined-daemon.md) |
+| OP-003 | Unavailable Daemon | [003-unavailable-daemon.md](operator-h5/unavailable-daemon.md) |
 
 ---
 
@@ -224,11 +224,11 @@ This category validates auto update daemon scenarios `AU-001..AU-005`.
 
 | ID | Scenario | File |
 |---|---|---|
-| AU-001 | Chokidar Watcher Narrow Scope | [001-watcher-narrow-scope.md](../manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md) |
-| AU-002 | Workspace Single-Writer Lease | [002-lease-single-writer.md](../manual-testing-playbook/auto-update-daemon/lease-single-writer.md) |
-| AU-003 | Daemon Lifecycle and SIGTERM | [003-daemon-lifecycle-shutdown.md](../manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md) |
-| AU-004 | Generation-Tagged Snapshot Publication | [004-generation-publication.md](../manual-testing-playbook/auto-update-daemon/generation-publication.md) |
-| AU-005 | Rebuild From Source on Corrupt SQLite | [005-rebuild-from-source.md](../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md) |
+| AU-001 | Chokidar Watcher Narrow Scope | [001-watcher-narrow-scope.md](auto-update-daemon/watcher-narrow-scope.md) |
+| AU-002 | Workspace Single-Writer Lease | [002-lease-single-writer.md](auto-update-daemon/lease-single-writer.md) |
+| AU-003 | Daemon Lifecycle and SIGTERM | [003-daemon-lifecycle-shutdown.md](auto-update-daemon/daemon-lifecycle-shutdown.md) |
+| AU-004 | Generation-Tagged Snapshot Publication | [004-generation-publication.md](auto-update-daemon/generation-publication.md) |
+| AU-005 | Rebuild From Source on Corrupt SQLite | [005-rebuild-from-source.md](auto-update-daemon/rebuild-from-source.md) |
 
 ---
 
@@ -238,12 +238,12 @@ This category validates auto indexing scenarios `AI-001..AI-006`.
 
 | ID | Scenario | File |
 |---|---|---|
-| AI-001 | Deterministic Derived Extraction | [001-derived-extraction.md](../manual-testing-playbook/auto-indexing/derived-extraction.md) |
-| AI-002 | A7 Sanitizer at Every Write Boundary | [002-sanitizer-boundaries.md](../manual-testing-playbook/auto-indexing/sanitizer-boundaries.md) |
-| AI-003 | Provenance Fingerprints and Trust Lanes | [003-provenance-and-trust-lanes.md](../manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md) |
-| AI-004 | DF/IDF Corpus Stats Active-Only | [004-corpus-df-idf.md](../manual-testing-playbook/auto-indexing/corpus-df-idf.md) |
-| AI-005 | Anti-Stuffing and Cardinality Caps | [005-anti-stuffing.md](../manual-testing-playbook/auto-indexing/anti-stuffing.md) |
-| AI-006 | Doc-Frontmatter Trigger Harvest | [006-doc-frontmatter-harvest.md](../manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md) |
+| AI-001 | Deterministic Derived Extraction | [001-derived-extraction.md](auto-indexing/derived-extraction.md) |
+| AI-002 | A7 Sanitizer at Every Write Boundary | [002-sanitizer-boundaries.md](auto-indexing/sanitizer-boundaries.md) |
+| AI-003 | Provenance Fingerprints and Trust Lanes | [003-provenance-and-trust-lanes.md](auto-indexing/provenance-and-trust-lanes.md) |
+| AI-004 | DF/IDF Corpus Stats Active-Only | [004-corpus-df-idf.md](auto-indexing/corpus-df-idf.md) |
+| AI-005 | Anti-Stuffing and Cardinality Caps | [005-anti-stuffing.md](auto-indexing/anti-stuffing.md) |
+| AI-006 | Doc-Frontmatter Trigger Harvest | [006-doc-frontmatter-harvest.md](auto-indexing/doc-frontmatter-harvest.md) |
 
 ---
 
@@ -253,11 +253,11 @@ This category validates lifecycle routing scenarios `LC-001..LC-005`.
 
 | ID | Scenario | File |
 |---|---|---|
-| LC-001 | Derived-Lane-Only Age Haircut | [001-age-haircut.md](../manual-testing-playbook/lifecycle-routing/age-haircut.md) |
+| LC-001 | Derived-Lane-Only Age Haircut | [001-age-haircut.md](lifecycle-routing/age-haircut.md) |
 | LC-002 | Asymmetric Supersession Redirects | [002-supersession.md](lifecycle-routing/supersession.md) |
-| LC-003 | Archive and Future Skills Indexed But Not Routed | [003-archive-handling.md](../manual-testing-playbook/lifecycle-routing/archive-handling.md) |
-| LC-004 | Schema v1 to v2 Additive Backfill | [004-schema-migration.md](../manual-testing-playbook/lifecycle-routing/schema-migration.md) |
-| LC-005 | Lifecycle-Level Rollback | [005-rollback-lifecycle.md](../manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md) |
+| LC-003 | Archive and Future Skills Indexed But Not Routed | [003-archive-handling.md](lifecycle-routing/archive-handling.md) |
+| LC-004 | Schema v1 to v2 Additive Backfill | [004-schema-migration.md](lifecycle-routing/schema-migration.md) |
+| LC-005 | Lifecycle-Level Rollback | [005-rollback-lifecycle.md](lifecycle-routing/rollback-lifecycle.md) |
 
 ---
 
@@ -267,10 +267,10 @@ This category validates scorer fusion scenarios `SC-001..SC-005`.
 
 | ID | Scenario | File |
 |---|---|---|
-| SC-001 | Five-Lane Analytical Fusion | [001-five-lane-fusion.md](../manual-testing-playbook/scorer-fusion/five-lane-fusion.md) |
+| SC-001 | Five-Lane Analytical Fusion | [001-five-lane-fusion.md](scorer-fusion/five-lane-fusion.md) |
 | SC-002 | Registry Projection Drift Guard and workflowMode Publication | [002-projection.md](scorer-fusion/projection.md) |
 | SC-003 | Top-2 Ambiguity Window | [003-ambiguity.md](scorer-fusion/ambiguity.md) |
-| SC-004 | Lane Contribution Attribution | [004-lane-attribution.md](../manual-testing-playbook/scorer-fusion/lane-attribution.md) |
+| SC-004 | Lane Contribution Attribution | [004-lane-attribution.md](scorer-fusion/lane-attribution.md) |
 | SC-005 | Lane-by-Lane Ablation Protocol | [005-ablation.md](scorer-fusion/ablation.md) |
 
 ---
@@ -281,11 +281,11 @@ This category validates python compat scenarios `PC-001..PC-005`.
 
 | ID | Scenario | File |
 |---|---|---|
-| PC-001 | Python Shim --stdin Round-Trip | [001-stdin-mode.md](../manual-testing-playbook/python-compat/stdin-mode.md) |
-| PC-002 | --force-native and --force-local Toggles | [002-force-native-force-local.md](../manual-testing-playbook/python-compat/force-native-force-local.md) |
-| PC-003 | threshold Confidence Flag | [003-threshold-flag.md](../manual-testing-playbook/python-compat/threshold-flag.md) |
-| PC-004 | Python Regression Dataset | [004-regression-suite.md](../manual-testing-playbook/python-compat/regression-suite.md) |
-| PC-005 | Python Bench Runner | [005-bench-runner.md](../manual-testing-playbook/python-compat/bench-runner.md) |
+| PC-001 | Python Shim --stdin Round-Trip | [001-stdin-mode.md](python-compat/stdin-mode.md) |
+| PC-002 | --force-native and --force-local Toggles | [002-force-native-force-local.md](python-compat/force-native-force-local.md) |
+| PC-003 | threshold Confidence Flag | [003-threshold-flag.md](python-compat/threshold-flag.md) |
+| PC-004 | Python Regression Dataset | [004-regression-suite.md](python-compat/regression-suite.md) |
+| PC-005 | Python Bench Runner | [005-bench-runner.md](python-compat/bench-runner.md) |
 
 ---
 

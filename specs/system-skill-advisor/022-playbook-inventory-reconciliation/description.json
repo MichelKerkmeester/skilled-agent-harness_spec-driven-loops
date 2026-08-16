@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/022-playbook-inventory-reconciliation",
+  "description": "`tests/manual-testing-playbook.vitest.ts` guards that the root playbook table matches the live scenario corpus",
+  "keywords": [
+    "tests",
+    "manual-testing-playbook",
+    "vitest",
+    "guards",
+    "root",
+    "playbook",
+    "table",
+    "matches",
+    "live",
+    "scenario",
+    "corpus"
+  ],
+  "lastUpdated": "2026-08-16T04:21:01.296Z",
+  "specId": "022",
+  "folderSlug": "playbook-inventory-reconciliation",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

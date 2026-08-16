@@ -32,7 +32,7 @@ function listedScenarioRows(markdown: string): ScenarioRow[] {
 
 function actualScenarioFiles(): string[] {
   return readdirSync(playbookRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && /^\d{2}--/.test(entry.name))
+    .filter((entry) => entry.isDirectory() && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(entry.name))
     .flatMap((directory) =>
       readdirSync(resolve(playbookRoot, directory.name), { withFileTypes: true })
         .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
