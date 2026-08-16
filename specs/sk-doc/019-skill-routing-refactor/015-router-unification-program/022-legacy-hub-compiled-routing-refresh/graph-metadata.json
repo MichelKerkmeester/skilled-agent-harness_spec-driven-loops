@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/022-legacy-hub-compiled-routing-refresh",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/022-legacy-hub-compiled-routing-refresh",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
+        "reason": "Plan follows the predecessor phase-chain closeout and its strict validation proof",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "legacy hub compiled routing refresh",
+      "stale compiled manifests",
+      "system-deep-loop prior activation manifest",
+      "seven hub compiled fresh status"
+    ],
+    "key_topics": [
+      "legacy",
+      "hub",
+      "compiled",
+      "routing",
+      "stale",
+      "manifest",
+      "activation",
+      "promotion",
+      "canary",
+      "rollback",
+      "freshness"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "system-deep-loop owner harness",
+        "kind": "tool",
+        "path": ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled route status",
+        "kind": "tool",
+        "path": ".opencode/bin/compiled-route-status.cjs",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deferred plan to repair the system-deep-loop owner harness, rebuild two stale class-H hubs, promote with retained rollback, and prove all seven hubs compiled and fresh",
+    "created_at": "2026-08-16T00:00:00Z",
+    "last_save_at": "2026-08-16T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d840f65f8fb45433d39ace905172102a059fa47c3c837187a09e7058a3ab55dc",
+    "source_doc_hashes": {
+      "spec.md": "d3f698a6c5097d1ed44bf638fe9d952f6ba2a9dda847788f8d1422ad2d772a2b",
+      "plan.md": "1f82500df3000eb1594a30d30d697bcb60bd2458fc9fad0aea8f69b40222d1c3",
+      "tasks.md": "438f0922fd83aea4d8f018b3dcd78e262ccfb8260d4a13832e33c5f0b78b7273",
+      "checklist.md": "776ecad77ffa8f96f0b8dd0971dc3e4732249af8a83aa7df81f86da79d1c8978",
+      "implementation-summary.md": "e9b6c47912a8ca6510a3d08af2d3d5fddedea1f9c676d68a64a1128468af2aaa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
