@@ -65,7 +65,8 @@ async function importPlugin(tag = 'default') {
     .replace(
       /const BRIDGE_PATH = .*?;\nconst SOURCE_PATHS = \[[\s\S]*?\n\];/,
       "const BRIDGE_PATH = '/test/mk-spec-memory-bridge.mjs';\nconst SOURCE_PATHS = [BRIDGE_PATH];",
-    );
+    )
+    .replaceAll('import.meta.url', JSON.stringify(pathToFileURL(PLUGIN_PATH).href));
   const instrumented = `${source}\n// Test module identity: ${tag}-${Date.now()}-${Math.random()}\n`;
   return import(`data:text/javascript;base64,${Buffer.from(instrumented).toString('base64')}`);
 }
