@@ -3,11 +3,9 @@
 // ───────────────────────────────────────────────────────────────
 // Covers the merged-payload shape, the check-completion.sh exit-1
 // err.stdout parse, the never-throws fail-open contract, canonical-doc level
-// inference, and the CLI shim round-trip. The Level-2 fixtures below are
-// real, historical, unrelated spec packets chosen specifically because their
-// checklist state is settled (COMPLETE / EVIDENCE_MISSING) and they sit
-// outside any packet under active concurrent edit, so this suite's fixed
-// assertions stay stable.
+// inference, and the CLI shim round-trip. The fixtures below are generated in
+// a temp dir at load time so their checklist state (COMPLETE / EVIDENCE_MISSING
+// / Level-3) is fixed and self-contained, independent of any live spec packet.
 // ───────────────────────────────────────────────────────────────
 
 import { execFileSync } from 'node:child_process';
@@ -15,7 +13,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, describe, expect, it } from 'vitest';
 
 import core from './completion-state.cjs';
 
@@ -34,23 +32,73 @@ const {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 
-// Real Level-2 packet, COMPLETE checklist, no decision-record.md.
-const LEVEL2_COMPLETE_FIXTURE = path.join(
-  PROJECT_ROOT,
-  '.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync',
+// Fixtures are generated in a temp dir at load time rather than pointed at live
+// spec packets. Earlier revisions pinned real packets for their settled
+// checklist state, but the spec tree is reorganized often enough that those
+// folders moved out from under the suite and every assertion failed for a
+// reason unrelated to the code under test. Self-contained fixtures grade the
+// same way on every machine and never rot.
+const FIXTURES_BASE = fs.mkdtempSync(path.join(os.tmpdir(), 'completion-state-fixtures-'));
+
+function writeCanonicalDocs(dir) {
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'spec.md'), '# Spec\n\nFixture spec.\n');
+  fs.writeFileSync(path.join(dir, 'plan.md'), '# Plan\n\nFixture plan.\n');
+  fs.writeFileSync(path.join(dir, 'tasks.md'), '# Tasks\n\n- Task A\n');
+  fs.writeFileSync(path.join(dir, 'implementation-summary.md'), '# Implementation Summary\n\nDone.\n');
+}
+
+// All items complete; the P0/P1 items carry evidence markers, so
+// check-completion.sh grades this COMPLETE.
+const CHECKLIST_COMPLETE = `# Checklist
+
+## [P0] Core
+- [x] Core behavior implemented (verified)
+- [x] Error path covered (tested)
+
+## [P1] Secondary
+- [x] Docs updated (confirmed)
+
+## [P2] Polish
+- [x] Naming pass
+`;
+
+// Every item is complete, but one completed P0 item has no evidence marker, so
+// check-completion.sh settles at EVIDENCE_MISSING and exits 1 while still
+// emitting its JSON first -- the err.stdout parse path this suite asserts.
+const CHECKLIST_EVIDENCE_MISSING = `# Checklist
+
+## [P0] Core
+- [x] Core behavior implemented
+- [x] Error path covered (tested)
+
+## [P1] Secondary
+- [x] Docs updated (confirmed)
+`;
+
+// Level 2, COMPLETE checklist, no decision-record.md.
+const LEVEL2_COMPLETE_FIXTURE = path.join(FIXTURES_BASE, 'level2-complete');
+writeCanonicalDocs(LEVEL2_COMPLETE_FIXTURE);
+fs.writeFileSync(path.join(LEVEL2_COMPLETE_FIXTURE, 'checklist.md'), CHECKLIST_COMPLETE);
+
+// Level 2, checklist settled at EVIDENCE_MISSING (check-completion.sh exits 1).
+const LEVEL2_INCOMPLETE_FIXTURE = path.join(FIXTURES_BASE, 'level2-incomplete');
+writeCanonicalDocs(LEVEL2_INCOMPLETE_FIXTURE);
+fs.writeFileSync(path.join(LEVEL2_INCOMPLETE_FIXTURE, 'checklist.md'), CHECKLIST_EVIDENCE_MISSING);
+
+// Level 3: a decision-record.md alongside the checklist raises the inferred level.
+const LEVEL3_FIXTURE = path.join(FIXTURES_BASE, 'level3');
+writeCanonicalDocs(LEVEL3_FIXTURE);
+fs.writeFileSync(path.join(LEVEL3_FIXTURE, 'checklist.md'), CHECKLIST_COMPLETE);
+fs.writeFileSync(
+  path.join(LEVEL3_FIXTURE, 'decision-record.md'),
+  '# Decision Record\n\n## Decision\n\nChose X over Y.\n',
 );
-// Real Level-2 packet whose checklist is settled at EVIDENCE_MISSING, which
-// makes check-completion.sh --json exit 1 while still emitting JSON first.
-const LEVEL2_INCOMPLETE_FIXTURE = path.join(
-  PROJECT_ROOT,
-  '.opencode/specs/system-code-graph/002-codegraph-seeded-ppr',
-);
-// This phase's own folder: guaranteed to carry decision-record.md, so it is a
-// stable Level-3 fixture without depending on any sibling packet.
-const LEVEL3_FIXTURE = path.join(
-  PROJECT_ROOT,
-  '.opencode/specs/skilled-agent-orchestration/132-plugin-hook-implementation/007-speckit-completion-exposer',
-);
+
+afterAll(() => {
+  fs.rmSync(FIXTURES_BASE, { recursive: true, force: true });
+});
+
 const NONEXISTENT_FIXTURE = path.join(PROJECT_ROOT, '.opencode/specs/__does-not-exist-fixture__');
 const CLI_SHIM_PATH = path.join(PROJECT_ROOT, '.opencode/bin/speckit-completion.cjs');
 
