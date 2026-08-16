@@ -303,7 +303,7 @@ Before claiming the hub complete:
 
 - `parent-skill-registry-template.json` - companion `mode-registry.json` scaffold.
 - `parent-skill-hub-router-template.json` - companion `hub-router.json` scaffold.
-- [`parent-skill-smart-routing-template.md`](./parent-skill-smart-routing-template.md) - the root `ROUTER.md` stage-two authoring template.
+- [`parent-skill-root-router-template.md`](./parent-skill-root-router-template.md) - the root `ROUTER.md` stage-two authoring template.
 - `parent-skill-description-template.json` - companion `description.json` scaffold.
 - `parent-skill-graph-metadata-template.json` - companion `graph-metadata.json` scaffold.
 - [`skill-root-metadata-contract.md`](../../references/shared/skill-root-metadata-contract.md) - complete root metadata matrix and authored/generated ownership.

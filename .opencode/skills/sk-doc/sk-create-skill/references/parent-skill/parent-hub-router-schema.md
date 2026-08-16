@@ -312,7 +312,7 @@ A hub carries two distinct path kinds. Conflating them is the defect this contra
 | **hubLoadAddress** | `routerSignals[].resources` in this file | packet entrypoint the hub loads | `code-review/SKILL.md` |
 | **leafResourceId** | the root `ROUTER.md` stage-two control document | canonical packet-root-relative resource id | `references/validation.md` |
 
-The hub router selects a **mode**; it emits packet pointers, not the per-intent leaf gold. The exact leaf resources an intent should load belong in the root `ROUTER.md`, scaffolded from [`parent-skill-smart-routing-template.md`](../../assets/parent-skill/parent-skill-smart-routing-template.md).
+The hub router selects a **mode**; it emits packet pointers, not the per-intent leaf gold. The exact leaf resources an intent should load belong in the root `ROUTER.md`, scaffolded from [`parent-skill-root-router-template.md`](../../assets/parent-skill/parent-skill-root-router-template.md).
 
 A raw path in the root `ROUTER.md` is converted to the canonical `(workflowMode, leafResourceId)` pair at **exactly one boundary** — the leaf-resource contract library — through one of two shapes only:
 - a **packet-qualified** prefix: `[packet]/references|assets/…` resolves to the mode bound to that packet.
@@ -343,7 +343,7 @@ Treat check 5 warnings as schema drift. The parent hub may still route during mi
 ## 10. RELATED RESOURCES
 
 - [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md) - parent-skill pattern, single advisor identity, and registry routing contract.
-- [parent-skill-smart-routing-template.md](../../assets/parent-skill/parent-skill-smart-routing-template.md) - the root `ROUTER.md` stage-two authoring template (active and stage1-only states).
+- [parent-skill-root-router-template.md](../../assets/parent-skill/parent-skill-root-router-template.md) - the root `ROUTER.md` stage-two authoring template (active and stage1-only states).
 - [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) - complete root metadata matrix and authored/generated ownership.
 - [parent-skill-hub-template.md](../../assets/parent-skill/parent-skill-hub-template.md) - routing-only hub `SKILL.md` scaffold.
 - [parent-skill-registry-template.json](../../assets/parent-skill/parent-skill-registry-template.json) - mode registry scaffold for parent hubs.
