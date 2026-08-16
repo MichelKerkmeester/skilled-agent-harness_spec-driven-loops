@@ -1358,7 +1358,13 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
         opts,
       ) as { command: string; args: string[]; effectiveConfig: { model: string } };
       expect(command.command).toBe('pi');
-      expect(command.args).toEqual(['-p', '--offline', '--model', `${provider}/${model}`, 'bounded prompt']);
+      // DeepSeek V4 Flash is pinned to the max thinking tier, so it always carries
+      // --thinking max even when the lineage names no reasoningEffort; the other picker
+      // ids carry no --thinking here.
+      const expectedArgs = model === 'deepseek-v4-flash'
+        ? ['-p', '--offline', '--model', `${provider}/${model}`, '--thinking', 'max', 'bounded prompt']
+        : ['-p', '--offline', '--model', `${provider}/${model}`, 'bounded prompt'];
+      expect(command.args).toEqual(expectedArgs);
       expect(command.effectiveConfig.model).toBe(model);
     }
   });
@@ -1376,6 +1382,45 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     ) as { args: string[]; effectiveConfig: { model: string } };
     expect(command.args).toEqual(['-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', 'bounded prompt']);
     expect(command.effectiveConfig.model).toBe('deepseek-v4-pro');
+  });
+
+  it('pins cli-pi deepseek-v4-flash to --thinking max even when a lower effort is requested', () => {
+    const binDir = makeTempDir('fanout-run-pi-flash-max-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    const flashHigh = buildLineageCommand(
+      { kind: 'cli-pi', model: 'deepseek-v4-flash', reasoningEffort: 'high' },
+      'p', 'workspace-write', 'default', opts,
+    ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null } };
+    expect(flashHigh.args).toEqual(['-p', '--offline', '--model', 'opencode-go/deepseek-v4-flash', '--thinking', 'max', 'p']);
+    expect(flashHigh.effectiveConfig.reasoningEffort).toBe('max');
+    // A non-flash pi model keeps the requested effort.
+    const proHigh = buildLineageCommand(
+      { kind: 'cli-pi', model: 'deepseek-v4-pro', reasoningEffort: 'high' },
+      'p', 'workspace-write', 'default', opts,
+    ) as { args: string[] };
+    const idx = proHigh.args.indexOf('--thinking');
+    expect(idx).toBeGreaterThan(-1);
+    expect(proHigh.args[idx + 1]).toBe('high');
+  });
+
+  it('pins cli-opencode deepseek-v4-flash to --variant max even when a lower effort is requested', () => {
+    const flashHigh = buildLineageCommand(
+      { kind: 'cli-opencode', model: 'deepseek/deepseek-v4-flash', reasoningEffort: 'high' },
+      'p', 'danger-full-access', 'default', { env: process.env },
+    ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null } };
+    const vIdx = flashHigh.args.indexOf('--variant');
+    expect(vIdx).toBeGreaterThan(-1);
+    expect(flashHigh.args[vIdx + 1]).toBe('max');
+    expect(flashHigh.effectiveConfig.reasoningEffort).toBe('max');
+    // A non-flash opencode model keeps the requested effort.
+    const other = buildLineageCommand(
+      { kind: 'cli-opencode', model: 'anthropic/claude-opus-4-8', reasoningEffort: 'high' },
+      'p', 'danger-full-access', 'default', { env: process.env },
+    ) as { args: string[] };
+    const oIdx = other.args.indexOf('--variant');
+    expect(oIdx).toBeGreaterThan(-1);
+    expect(other.args[oIdx + 1]).toBe('high');
   });
 
   it('forwards reasoningEffort as --thinking, mapping the renamed levels none->off and ultra->max', () => {

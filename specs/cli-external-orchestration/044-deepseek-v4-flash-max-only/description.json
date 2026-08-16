@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "cli-external-orchestration/044-deepseek-v4-flash-max-only",
+  "description": "Operator policy: DeepSeek V4 Flash may be dispatched only at its max thinking tier — never at a lower effort (high/low/off) and never non-thinking",
+  "keywords": [
+    "operator",
+    "policy",
+    "deepseek",
+    "flash",
+    "dispatched",
+    "only",
+    "max",
+    "thinking",
+    "tier",
+    "never",
+    "lower",
+    "effort",
+    "high",
+    "low",
+    "non-thinking"
+  ],
+  "lastUpdated": "2026-08-16T17:35:20.000Z",
+  "specId": "044",
+  "folderSlug": "deepseek-v4-flash-max-only",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

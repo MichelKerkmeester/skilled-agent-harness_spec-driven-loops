@@ -19,6 +19,8 @@ import {
   PI_SUPPORTED_MODELS,
   PI_DEFAULT_MODEL,
   isPiModelAllowed,
+  isFlashMaxPinnedModel,
+  pinReasoningEffortForModel,
 } from '../../lib/deep-loop/executor-config';
 
 describe('executor-config', () => {
@@ -802,5 +804,27 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
 
   it('rejects the router alias auto', () => {
     expect(isPiModelAllowed('auto')).toBe(false);
+  });
+});
+
+describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
+  it('matches DeepSeek V4 Flash bare and provider-prefixed', () => {
+    expect(isFlashMaxPinnedModel('deepseek-v4-flash')).toBe(true);
+    expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash')).toBe(true);
+    expect(isFlashMaxPinnedModel('opencode-go/deepseek-v4-flash')).toBe(true);
+  });
+
+  it('does not match the devin -max uid or other models', () => {
+    expect(isFlashMaxPinnedModel('deepseek-v4-flash-max')).toBe(false);
+    expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash-max')).toBe(false);
+    expect(isFlashMaxPinnedModel('deepseek-v4-pro')).toBe(false);
+  });
+
+  it('pins Flash effort to max and leaves other models unchanged', () => {
+    expect(pinReasoningEffortForModel('deepseek-v4-flash', 'high')).toBe('max');
+    expect(pinReasoningEffortForModel('deepseek-v4-flash', null)).toBe('max');
+    expect(pinReasoningEffortForModel('deepseek-v4-flash', undefined)).toBe('max');
+    expect(pinReasoningEffortForModel('deepseek-v4-pro', 'high')).toBe('high');
+    expect(pinReasoningEffortForModel('deepseek-v4-pro', null)).toBe(null);
   });
 });
