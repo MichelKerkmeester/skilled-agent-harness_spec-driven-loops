@@ -1,6 +1,6 @@
 ---
 title: "sk-git: Feature Catalog"
-description: "Current-state inventory of sk-git's owner-first worktree naming, session isolation and reaping, commit/finish workflow guidance, and remote-platform integrations."
+description: "Current-state inventory of sk-git's numbered worktree/branch naming, session isolation and reaping, commit/finish workflow guidance, and remote-platform integrations."
 trigger_phrases:
   - "sk-git feature catalog"
   - "git workflow capabilities"
@@ -12,7 +12,7 @@ version: 1.1.0.0
 
 # sk-git: Feature Catalog
 
-This document is the current feature inventory for the `sk-git` skill. It covers the owner-first worktree/branch naming grammar and its allocator, launch-wrapper session isolation with continuous-integration autosync and reaping, the deterministic commit/finish workflow guidance sk-git gives an operating AI, and the two remote-platform MCP integrations (GitHub, GitKraken) it routes to for PR and issue work.
+This document is the current feature inventory for the `sk-git` skill. It covers the numbered worktree/branch naming grammar and its per-namespace allocator, launch-wrapper session isolation with continuous-integration autosync and reaping, the deterministic commit/finish workflow guidance sk-git gives an operating AI, and the two remote-platform MCP integrations (GitHub, GitKraken) it routes to for PR and issue work.
 
 ---
 
@@ -24,15 +24,15 @@ Use this catalog as the canonical inventory for the live `sk-git` feature surfac
 
 ## 2. WORKTREE NAMING
 
-### Owner-first worktree naming grammar and allocator
+### Numbered worktree/branch naming grammar and allocator
 
 #### Description
 
-A clone-wide numbered allocator plus a set of grammar validators give every AI-created branch one owner-first shape — `<owner>/NNNN-<slug>` — pairing with a worktree directory `.worktrees/NNNN-<owner>-<slug>`.
+Two flat per-namespace counters plus a set of grammar validators give every AI-created branch one numbered shape — `worktrees/NNN-slug` (with the directory `.worktrees/NNN-slug`) or `branches/NNN-slug` (a dedicated branch with no worktree).
 
 #### Current Reality
 
-`worktree-naming.sh` discovers canonical owner ids from every checked-in `SKILL.md`'s `name:` frontmatter, computes the next free number from a persisted high-water mark plus every registered worktree and every local/remote ref (so a partial view can never reissue a live number), and exposes `create`/`create-detached` to allocate-and-create in one step. The same validators it uses internally (`is_valid_owner`, `is_valid_slug`, `is_valid_branch`, `is_valid_pair`) are exposed as CLI subcommands and are sourced directly by the pre-push naming hook, so the two surfaces can never drift out of agreement.
+`worktree-naming.sh` allocates the next number in a namespace from that namespace's stored high-water mark plus every matching local/remote ref and (for `worktrees/`) every registered worktree basename (so a partial view can never reissue a live number, and a gap is never back-filled), and exposes `create`/`create-branch`/`create-detached` to allocate-and-create in one step. The same validators it uses internally (`is_valid_slug`, `is_valid_nnn`, `is_valid_branch`, `is_wrapper_branch`, `is_backup_branch`, `is_valid_pair`, `is_remote_push_allowlisted`) are exposed as CLI subcommands and are sourced directly by the pre-push naming hook, so the two surfaces can never drift out of agreement.
 
 #### Source Files
 
@@ -44,7 +44,7 @@ See [`worktree-naming/owner-first-worktree-naming.md`](worktree-naming/owner-fir
 
 #### Description
 
-A `pre-push` git hook runs two independent gates: one blocks the creation of new remote branches whose name breaks the owner-first grammar; the other blocks any push (new or update) to a branch outside a small remote allowlist, so `origin` stays curated even though local branch creation is unrestricted.
+A `pre-push` git hook runs two independent gates: one blocks the creation of new remote branches whose name breaks the numbered-worktree grammar; the other blocks any push (new or update) to a branch outside a small remote allowlist, so `origin` stays curated even though local branch creation is unrestricted.
 
 #### Current Reality
 
@@ -82,7 +82,7 @@ A companion script that prunes finished launch-wrapper worktrees and reports (bu
 
 #### Current Reality
 
-`worktree-reaper.sh` removes a `work/<runtime>/<slug>` worktree only when all three hold at once: the tree is clean, its branch is merged into the live integration tip (the primary checkout's actual `HEAD`, not a possibly stale local `main`), and its session is proven inactive by a marker file recording a now-dead process id. Detached worktrees, human owner-first worktrees, and any wrapper worktree with a missing or unreadable marker are always report-only. Orphan daemon killing is opt-in via `--reap-daemons`.
+`worktree-reaper.sh` removes a `work/<runtime>/<slug>` worktree only when all three hold at once: the tree is clean, its branch is merged into the live integration tip (the primary checkout's actual `HEAD`, not a possibly stale local `main`), and its session is proven inactive by a marker file recording a now-dead process id. Detached worktrees, human task worktrees (`worktrees/NNN-slug`), and any wrapper worktree with a missing or unreadable marker are always report-only. Orphan daemon killing is opt-in via `--reap-daemons`.
 
 #### Source Files
 
@@ -112,11 +112,11 @@ See [`session-lifecycle/continuous-integration-autosync.md`](session-lifecycle/c
 
 #### Description
 
-The end-to-end workflow an AI follows to gather inputs, verify safety, create a numbered owner-first worktree, and report status — covering fast-merge, long-running, and detached-experiment lifecycle strategies.
+The end-to-end workflow an AI follows to gather inputs, verify safety, create a numbered worktree (or dedicated branch), and report status — covering fast-merge, long-running, dedicated-branch and detached-experiment lifecycle strategies.
 
 #### Current Reality
 
-The AI must ask the user to choose between a worktree and the current branch before any worktree is created, and must never create a branch with `git branch`/`git checkout -b`/`git switch -c` directly. All three lifecycle strategies share the identical owner-first naming and creation mechanics; they differ only in how the resulting branch is managed afterward.
+The AI must ask the user to choose between a worktree and the current branch before any worktree is created, and must never create a branch with `git branch`/`git checkout -b`/`git switch -c` directly. All lifecycle strategies share the identical numbered naming and creation mechanics; they differ only in how the resulting branch is managed afterward.
 
 #### Source Files
 

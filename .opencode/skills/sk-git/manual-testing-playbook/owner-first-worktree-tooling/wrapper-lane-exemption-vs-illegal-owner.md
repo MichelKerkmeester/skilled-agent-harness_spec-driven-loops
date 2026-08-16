@@ -1,10 +1,10 @@
 ---
-title: "GIT-026 -- Wrapper-lane exemption vs illegal-owner rejection"
-description: "This scenario validates Wrapper-lane exemption vs illegal-owner rejection for `GIT-026`. It focuses on prove is_wrapper_branch recognizes the launch-wrapper lane as a legal-but-non-task branch while create and validate-owner still reject an owner with no tracked SKILL.md."
-version: 1.0.0.0
+title: "GIT-026 -- Wrapper-lane exemption vs backup-lane recognition"
+description: "This scenario validates Wrapper-lane exemption vs backup-lane recognition for `GIT-026`. It focuses on prove is_wrapper_branch and is_backup_branch recognize the exempt machine-owned lanes as legal-but-non-task branches while create still rejects a malformed slug before touching the repository."
+version: 1.1.0.0
 ---
 
-# GIT-026 -- Wrapper-lane exemption vs illegal-owner rejection
+# GIT-026 -- Wrapper-lane exemption vs backup-lane recognition
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `GIT-026`.
 
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Wrapper-lane exemption vs illegal-owner rejection for `GIT-026`. It focuses on prove `is_wrapper_branch` recognizes the launch-wrapper lane (`work/<runtime>/<slug>`) as a legal-but-non-task branch while `create`/`validate-owner` still reject an owner that has no tracked `SKILL.md`.
+This scenario validates Wrapper-lane exemption vs backup-lane recognition for `GIT-026`. It focuses on prove `is_wrapper_branch` recognizes the launch-wrapper lane (`work/<runtime>/<slug>`) as a legal-but-non-task branch while `is_backup_branch` recognizes `backup/<anything>` safety refs, and `create` still rejects a malformed slug before any worktree is created.
 
 ### Why This Matters
 
-The allocator and the pre-push hook must tell "exempt machine-owned lane" apart from "malformed owner-first name" — conflating the two either blocks legitimate wrapper sessions or lets an unregistered owner slip through.
+The allocator and the pre-push hook must tell "exempt machine-owned lane" and "legal safety ref" apart from "malformed name" — conflating them either blocks legitimate wrapper sessions or safety backups, or lets a malformed name slip through.
 
 ---
 
@@ -24,13 +24,13 @@ The allocator and the pre-push hook must tell "exempt machine-owned lane" apart 
 
 Operators run the exact prompt and command sequence for `GIT-026` and confirm the expected signals without contradictory evidence.
 
-- Objective: prove `is_wrapper_branch` recognizes the launch-wrapper lane (`work/<runtime>/<slug>`) as a legal-but-non-task branch while `create`/`validate-owner` still reject an owner that has no tracked `SKILL.md`.
-- Real user request: `Two things: confirm the launch-wrapper session branches are allowed even though they're not owner-first, and confirm a made-up owner name still gets rejected.`
-- Prompt: `Validate a launch-wrapper branch name as the exempt wrapper lane, then attempt to create an owner-first worktree with a non-existent owner id and confirm it is refused.`
-- Expected execution process: Run `validate-branch` on a `work/<runtime>/<slug>` name (expect `invalid`, since it is outside the owner-first grammar) and separately confirm `is_wrapper_branch` recognizes it as the exempt lane; then run `create <bogus-owner> <slug>` and confirm it fails closed with no worktree created.
-- Expected signals: `work/opencode/20260101-1` fails `validate-branch` but is recognized by the dedicated wrapper check; `bogus-owner` fails `validate-owner` and `create` exits non-zero before any `git worktree add`.
+- Objective: prove `is_wrapper_branch` recognizes the launch-wrapper lane (`work/<runtime>/<slug>`) and `is_backup_branch` recognizes `backup/*` as legal-but-non-task branches, while `create` rejects a malformed slug before any git mutation.
+- Real user request: `Two things: confirm the launch-wrapper session branches and backup refs are allowed even though they're not numbered task branches, and confirm a malformed slug still gets rejected.`
+- Prompt: `Validate a launch-wrapper branch name as the exempt wrapper lane and a backup ref as the safety-ref lane, then attempt to create a worktree with a malformed slug and confirm it is refused.`
+- Expected execution process: Run `validate-branch` on a `work/<runtime>/<slug>` name and on a `backup/<anything>` name (expect `ok`, since both are legal grammar names) and separately confirm `is_wrapper_branch` / `is_backup_branch` recognize the distinct lanes; then run `create bad_slug` and confirm it fails closed with no worktree created.
+- Expected signals: `work/opencode/20260101-1` and `backup/pre-bump` both pass `validate-branch` but are distinguished by the dedicated lane checks; `create bad_slug` exits non-zero before any `git worktree add`.
 - Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
-- Pass/fail: PASS if the wrapper name is recognized as the exempt lane (not flagged as a malformed task branch) and the bogus owner is rejected by both `validate-owner` and `create` with no worktree created. FAIL if a wrapper name is treated identically to a malformed task branch, or if `create` allows an untracked owner through.
+- Pass/fail: PASS if the wrapper name and backup ref are recognized as exempt lanes (not flagged as malformed) and the malformed slug is rejected by `create` with no worktree created. FAIL if a wrapper name or backup ref is treated identically to a malformed task branch, or if `create` allows a malformed slug through.
 
 ---
 
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `GIT-026` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GIT-026 | Wrapper-lane exemption vs illegal-owner rejection | prove `is_wrapper_branch` recognizes the launch-wrapper lane as a legal-but-non-task branch while `create`/`validate-owner` still reject an owner with no tracked `SKILL.md`. | `Validate a launch-wrapper branch name as the exempt wrapper lane, then attempt to create an owner-first worktree with a non-existent owner id and confirm it is refused.` | 1. `bash: bash worktree-naming.sh validate-branch work/opencode/20260101-1` -> 2. `bash: (source worktree-naming.sh; is_wrapper_branch work/opencode/20260101-1 && echo wrapper-exempt)` -> 3. `bash: bash worktree-naming.sh validate-owner bogus-owner` -> 4. `bash: bash worktree-naming.sh create bogus-owner demo-should-fail` -> 5. `bash: git worktree list --porcelain \| grep demo-should-fail \|\| echo none-created` | Step 1 reports `invalid`; step 2 prints `wrapper-exempt`; steps 3-4 fail with `invalid`/`invalid owner`; step 5 confirms no worktree was created. | Exit codes/stdout for each of the 5 commands, and confirmation no worktree named `demo-should-fail` exists afterward. | PASS if the wrapper name is recognized as the exempt lane (not flagged as a malformed task branch) and the bogus owner is rejected by both `validate-owner` and `create` with no worktree created. FAIL if a wrapper name is treated identically to a malformed task branch, or if `create` allows an untracked owner through. | Compare against `is_wrapper_branch` and `is_valid_owner` in `worktree-naming.sh §3`, then the pre-push hook's own `is_wrapper_branch` branch-reject message for the same input family. |
+| GIT-026 | Wrapper-lane exemption vs backup-lane recognition | prove `is_wrapper_branch` / `is_backup_branch` recognize the exempt machine-owned lanes as legal-but-non-task branches while `create` rejects a malformed slug. | `Validate a launch-wrapper branch name as the exempt wrapper lane and a backup ref as the safety-ref lane, then attempt to create a worktree with a malformed slug and confirm it is refused.` | 1. `bash: bash worktree-naming.sh validate-branch work/opencode/20260101-1` -> 2. `bash: (source worktree-naming.sh; is_wrapper_branch work/opencode/20260101-1 && echo wrapper-exempt)` -> 3. `bash: bash worktree-naming.sh validate-branch backup/pre-bump` -> 4. `bash: (source worktree-naming.sh; is_backup_branch backup/pre-bump && echo backup-legal)` -> 5. `bash: bash worktree-naming.sh create bad_slug` -> 6. `bash: git worktree list --porcelain \| grep bad_slug \|\| echo none-created` | Steps 1-4 confirm both exempt lanes validate as legal names; step 5 fails with `invalid slug`; step 6 confirms no worktree was created. | Exit codes/stdout for each command, and confirmation no worktree named `bad_slug` exists afterward. | PASS if the wrapper name and backup ref are recognized as exempt lanes (not flagged as malformed) and the malformed slug is rejected by `create` with no worktree created. FAIL if a wrapper name or backup ref is treated identically to a malformed task branch, or if `create` allows a malformed slug through. | Compare against `is_wrapper_branch` and `is_backup_branch` in `worktree-naming.sh §2`, then the pre-push hook's own `is_wrapper_branch` branch-reject message for the same input family. |
 
 ### Optional Supplemental Checks
 
@@ -68,10 +68,10 @@ No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md
 
 | File | Role |
 |---|---|
-| `../../scripts/worktree-naming.sh` | `is_wrapper_branch` / `is_valid_owner` boundary and `create_named_worktree` fail-closed guard |
-| `../../scripts/tests/worktree-naming.test.sh` | Regression coverage: wrapper recognition and untracked-owner rejection |
+| `../../scripts/worktree-naming.sh` | `is_wrapper_branch` / `is_backup_branch` boundary and `create_named_worktree` fail-closed guard |
+| `../../scripts/tests/worktree-naming.test.sh` | Regression coverage: wrapper and backup recognition and malformed-slug rejection |
 | `../../../../scripts/git-hooks/pre-push` | Consumer of `is_wrapper_branch` for the dedicated wrapper-ref rejection message |
-| `../../SKILL.md` | Launch-wrapper lane description and ALWAYS #4 owner-first grammar |
+| `../../SKILL.md` | Launch-wrapper lane description and ALWAYS #4 numbered grammar |
 
 ---
 

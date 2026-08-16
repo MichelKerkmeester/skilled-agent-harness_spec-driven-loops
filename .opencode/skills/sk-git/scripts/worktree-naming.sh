@@ -1,27 +1,33 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# COMPONENT: Worktree Naming Allocator + Validator
+# COMPONENT: Worktree/Branch Naming Allocator + Validator
 # ───────────────────────────────────────────────────────────────
-# Owner-first branch/worktree naming: every managed branch starts with the
-# owning skill (or "skilled" for cross-cutting work), so a Git-UI branch tree is
-# legible at a glance instead of a flat pile. One clone-wide numbered counter
-# keeps names globally unique.
+# Two flat, spec-style numbered namespaces keep a Git-UI branch tree legible as
+# a few clean folders instead of a per-skill pile. A worktree-backed branch
+# lives under worktrees/, a dedicated worktree-less branch under branches/,
+# both numbered 001, 002, 003 … strictly sequentially with no skipped or
+# reused number. skilled/ (releases) and backup/ (safety refs) stay.
 #
-#   OWNER        := <skill-id> | "skilled"
-#   TASK_BRANCH  := OWNER "/" NNNN "-" SLUG        (NNNN 4-digit; SLUG lowercase kebab)
-#   TASK_DIR     := ".worktrees/" NNNN "-" OWNER "-" SLUG
-#   RELEASE      := "skilled/v" A "." B "." C "." D
-#   RESERVED     := "main"
-#   WRAPPER      := "work/" RUNTIME "/" SLUG        (launch-wrapper lane; exempt)
+#   WORKTREE_BRANCH := "worktrees/" NNN "-" SLUG    (NNN 3-digit 001..999)
+#   WORKTREE_DIR    := ".worktrees/" NNN "-" SLUG    (dir mirrors the branch tail)
+#   DEDICATED_BRANCH:= "branches/" NNN "-" SLUG      (a branch with NO worktree)
+#   RELEASE         := "skilled/v" A "." B "." C "." D
+#   BACKUP          := "backup/" ANYTHING            (safety refs; legal, not numbered)
+#   RESERVED        := "main"
+#   WRAPPER         := "work/" RUNTIME "/" SLUG      (launch-wrapper lane; exempt)
+#   SLUG            := lowercase [a-z0-9-], no leading/trailing/double hyphen
 #
-# The counter cannot be enforced per-owner (Git has no cross-prefix uniqueness),
-# so allocation holds a lock in the shared common Git dir and seeds its max from
-# the stored high-water mark, every registered worktree basename, and all
-# local + remote refs — a partial scan can never reissue a live number.
+# worktrees/ and branches/ each own an INDEPENDENT 001-based sequence (like two
+# spec tracks), so a worktrees/003 and a branches/003 may coexist. Git cannot
+# enforce sequential numbering itself, so allocation holds a lock in the shared
+# common Git dir and seeds its max from the namespace's stored high-water mark,
+# every matching local + remote ref, and (for worktrees/) every registered
+# .worktrees/NNN-* basename — a partial scan can never reissue a live number.
+# Gaps are never back-filled: next = max-in-use + 1, even after a delete.
 #
-# Sourceable: validators (is_valid_owner/slug/branch/pair) are used by the
-# pre-push hook. Strict mode is scoped to direct execution so sourcing a caller's
-# shell does not inherit `set -e`.
+# Sourceable: validators (is_valid_slug/nnn/branch/wrapper/backup/pair) are
+# used by the pre-push hook. Strict mode is scoped to direct execution so
+# sourcing a caller's shell does not inherit `set -e`.
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
   set -euo pipefail
@@ -34,7 +40,7 @@ fi
 _wn_common_dir() { git rev-parse --git-common-dir 2>/dev/null; }
 
 # The common dir's parent is the main worktree toplevel (works from any linked
-# worktree, so the counter is shared clone-wide rather than per-worktree).
+# worktree, so the counters are shared clone-wide rather than per-worktree).
 _wn_toplevel() {
   local common
   common="$(_wn_common_dir)" || return 1
@@ -42,36 +48,14 @@ _wn_toplevel() {
   ( cd "$(dirname "$common")" && pwd -P )
 }
 
-_wn_highwater_file() { echo "$(_wn_common_dir)/worktree-number.highwater"; }
+# Per-namespace high-water files keep the two counters independent.
+_wn_highwater_file() { echo "$(_wn_common_dir)/$1-number.highwater"; }
 _wn_lock_dir()       { echo "$(_wn_common_dir)/worktree-number.lock"; }
 
-# ───────────────────────────────────────────────────────────────
-# 2. SKILL-ID DISCOVERY
-# ───────────────────────────────────────────────────────────────
-
-# Canonical first-party owners = the frontmatter `name:` of every version
-# controlled SKILL.md. One per line, sorted-unique.
-load_skill_ids() {
-  local root skills_dir tracked rel f name
-  root="$(_wn_toplevel)" || return 0
-  skills_dir="$root/.opencode/skills"
-  [ -d "$skills_dir" ] || return 0
-  if ! tracked="$(git -C "$root" ls-files -- \
-    '.opencode/skills/*/SKILL.md' '.opencode/skills/**/SKILL.md' 2>/dev/null)"; then
-    return 2
-  fi
-  while IFS= read -r rel; do
-    [ -n "$rel" ] || continue
-    f="$root/$rel"
-    [ -f "$f" ] || continue
-    name="$(grep -m1 -E '^name:[[:space:]]*' "$f" 2>/dev/null \
-      | sed -E 's/^name:[[:space:]]*//; s/^["'\'']//; s/["'\'']$//; s/[[:space:]]*$//')"
-    [ -n "$name" ] && echo "$name"
-  done <<< "$tracked" | sort -u
-}
+_wn_valid_namespace() { [ "$1" = "worktrees" ] || [ "$1" = "branches" ]; }
 
 # ───────────────────────────────────────────────────────────────
-# 3. VALIDATORS
+# 2. VALIDATORS
 # ───────────────────────────────────────────────────────────────
 
 is_valid_slug() {
@@ -83,45 +67,27 @@ is_valid_slug() {
   return 0
 }
 
-is_valid_nnnn() {
+# Exactly 3 digits, value 001..999, interpreted base-10 (leading zeros are not
+# octal — 007 is the number 7, not octal 7 == 7, but 099 must not trip octal).
+is_valid_nnn() {
   local n="${1:-}" value
-  case "$n" in [0-9][0-9][0-9][0-9]) ;; *) return 1 ;; esac
+  case "$n" in [0-9][0-9][0-9]) ;; *) return 1 ;; esac
   value=$((10#$n))
-  [[ "$value" -ge 1 && "$value" -le 9999 ]]
+  [[ "$value" -ge 1 && "$value" -le 999 ]]
 }
 
-is_valid_owner() {
-  local owner="$1" ids owner_rc id
-  [ "$owner" = "skilled" ] && return 0
-  case "$owner" in ""|*[!a-z0-9-]*|-*|*-) return 1 ;; esac
-  if ids="$(load_skill_ids)"; then
-    :
-  else
-    owner_rc=$?
-    [ "$owner_rc" -eq 2 ] && return 2
-    return 1
-  fi
-  while IFS= read -r id; do
-    [ "$id" = "$owner" ] && return 0
-  done <<< "$ids"
-  return 1
-}
-
-# Legal, in-grammar branch: reserved, release, or an owner-first task branch.
+# Legal, in-grammar branch: reserved, release, a numbered worktrees/ or
+# branches/ task branch, or one of the two legal-but-not-task lanes (wrapper
+# and backup). Owner-first and malformed names are rejected.
 is_valid_branch() {
   local b="$1"
   [ "$b" = "main" ] && return 0
   if [[ "$b" =~ ^skilled/v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then return 0; fi
-  if [[ "$b" =~ ^([a-z0-9][a-z0-9-]*)/([0-9][0-9][0-9][0-9])-([a-z0-9-]+)$ ]]; then
-    if is_valid_owner "${BASH_REMATCH[1]}"; then
-      :
-    else
-      local owner_rc=$?
-      [ "$owner_rc" -eq 2 ] && return 2
-      return 1
-    fi
-    is_valid_nnnn "${BASH_REMATCH[2]}" || return 1
-    is_valid_slug  "${BASH_REMATCH[3]}" || return 1
+  is_wrapper_branch "$b" && return 0
+  is_backup_branch  "$b" && return 0
+  if [[ "$b" =~ ^(worktrees|branches)/([0-9][0-9][0-9])-([a-z0-9-]+)$ ]]; then
+    is_valid_nnn "${BASH_REMATCH[2]}" || return 1
+    is_valid_slug "${BASH_REMATCH[3]}" || return 1
     return 0
   fi
   return 1
@@ -131,6 +97,13 @@ is_valid_branch() {
 # a task branch, so callers can tell "exempt wrapper" apart from "malformed".
 is_wrapper_branch() {
   [[ "$1" =~ ^work/[a-z0-9][a-z0-9-]*/.+$ ]]
+}
+
+# Safety-ref lane: legal but not a numbered task branch, exempt from the
+# new-branch naming gate exactly like the wrapper lane. Anything non-empty
+# after the backup/ prefix is accepted — these refs are operator safety copies.
+is_backup_branch() {
+  [[ "$1" =~ ^backup/.+$ ]]
 }
 
 # Branches exempt from the pre-push remote-push-permission gate (see
@@ -164,65 +137,71 @@ is_remote_push_allowlisted() {
   return 1
 }
 
-# Branch OWNER/NNNN-SLUG must pair with directory NNNN-OWNER-SLUG.
+# A worktrees/NNN-slug branch must pair with directory .worktrees/NNN-slug.
+# branches/NNN-slug dedicated branches have no worktree and therefore no pair.
 is_valid_pair() {
-  local branch="$1" dir="$2" base parent branch_rc
-  if is_valid_branch "$branch"; then
-    :
-  else
-    branch_rc=$?
-    [ "$branch_rc" -eq 2 ] && return 2
-    return 1
-  fi
-  [[ "$branch" =~ ^([a-z0-9][a-z0-9-]*)/([0-9][0-9][0-9][0-9])-([a-z0-9-]+)$ ]] || return 1
+  local branch="$1" dir="$2" base parent
+  [[ "$branch" =~ ^worktrees/([0-9][0-9][0-9])-([a-z0-9-]+)$ ]] || return 1
+  is_valid_nnn  "${BASH_REMATCH[1]}" || return 1
+  is_valid_slug "${BASH_REMATCH[2]}" || return 1
   [[ "$dir" == .worktrees/* ]] || return 1
   base="${dir##*/}"
   parent="${dir%/*}"
   [ "$parent" = ".worktrees" ] || return 1
-  [ "$base" = "${BASH_REMATCH[2]}-${BASH_REMATCH[1]}-${BASH_REMATCH[3]}" ]
+  [ "$base" = "${BASH_REMATCH[1]}-${BASH_REMATCH[2]}" ]
 }
 
 # ───────────────────────────────────────────────────────────────
-# 4. NUMBER SCANNING + ALLOCATION
+# 3. NUMBER SCANNING + ALLOCATION
 # ───────────────────────────────────────────────────────────────
 
-# Leading 4-digit number of a basename/last-segment, else nothing.
-_wn_leading_nnnn() {
+# Leading 3-digit number of a basename/last-segment, else nothing.
+_wn_leading_nnn() {
   case "$1" in
-    [0-9][0-9][0-9][0-9]-*|[0-9][0-9][0-9][0-9]) echo "${1:0:4}" ;;
+    [0-9][0-9][0-9]-*|[0-9][0-9][0-9]) echo "${1:0:3}" ;;
   esac
 }
 
-# Highest number in use across ALL sources (base-10; leading zeros are not octal).
+# Highest number in use in ONE namespace across all sources (base-10; leading
+# zeros are not octal). Scope = the namespace's stored high-water mark + every
+# refs/heads/<ns>/NNN-* and refs/remotes/*/<ns>/NNN-* ref + (worktrees/ only)
+# every registered .worktrees/NNN-* basename.
 scan_max_number() {
-  local max=0 n hw line p bn ref last
-  hw="$(_wn_highwater_file)"
+  local ns="${1:-worktrees}" max=0 n hw line p bn ref
+  _wn_valid_namespace "$ns" || { echo "scan_max_number: invalid namespace: $ns" >&2; return 1; }
+  hw="$(_wn_highwater_file "$ns")"
   if [ -f "$hw" ]; then
     n="$(tr -dc '0-9' < "$hw" 2>/dev/null)"
     [ -n "$n" ] && [ "$((10#$n))" -gt "$max" ] && max="$((10#$n))"
   fi
-  while IFS= read -r line; do
-    case "$line" in "worktree "*) ;; *) continue ;; esac
-    p="${line#worktree }"; bn="$(basename "$p")"
-    n="$(_wn_leading_nnnn "$bn")"
-    [ -n "$n" ] && [ "$((10#$n))" -gt "$max" ] && max="$((10#$n))"
-  done < <(git worktree list --porcelain 2>/dev/null | grep '^worktree ')
+  if [ "$ns" = "worktrees" ]; then
+    while IFS= read -r line; do
+      case "$line" in "worktree "*) ;; *) continue ;; esac
+      p="${line#worktree }"; bn="$(basename "$p")"
+      n="$(_wn_leading_nnn "$bn")"
+      [ -n "$n" ] && [ "$((10#$n))" -gt "$max" ] && max="$((10#$n))"
+    done < <(git worktree list --porcelain 2>/dev/null | grep '^worktree ')
+  fi
   while IFS= read -r ref; do
-    last="${ref##*/}"; n="$(_wn_leading_nnnn "$last")"
+    case "$ref" in
+      "refs/heads/$ns/"*|"refs/remotes/"*"/$ns/"*) ;;
+      *) continue ;;
+    esac
+    last="${ref##*/}"; n="$(_wn_leading_nnn "$last")"
     [ -n "$n" ] && [ "$((10#$n))" -gt "$max" ] && max="$((10#$n))"
   done < <(git for-each-ref --format='%(refname)' refs/heads refs/remotes 2>/dev/null)
   echo "$max"
 }
 
 # Non-binding preview of the next number (no lock, no write). Mirrors the
-# allocator's own >9999 refusal so a preview never promises a number the
+# allocator's own >999 refusal so a preview never promises a number the
 # locked path would then reject: at exhaustion this prints nothing and
 # returns non-zero instead of previewing an unallocatable value.
 next_number() {
-  local max
-  max="$(scan_max_number)" || return 1
-  [ "$max" -ge 9999 ] && return 1
-  printf '%04d\n' "$((max + 1))"
+  local ns="${1:-worktrees}" max
+  max="$(scan_max_number "$ns")" || return 1
+  [ "$max" -ge 999 ] && return 1
+  printf '%03d\n' "$((max + 1))"
 }
 
 _wn_acquire_lock() {
@@ -285,11 +264,11 @@ _wn_release_lock() {
 }
 
 _wn_persist_highwater() {
-  local next="$1" hw tmp expected actual
-  hw="$(_wn_highwater_file)"
+  local ns="$1" next="$2" hw tmp expected actual
+  hw="$(_wn_highwater_file "$ns")"
   [ -d "$hw" ] && return 1
   tmp="$(mktemp "${hw}.tmp.XXXXXX" 2>/dev/null)" || return 1
-  expected="$(printf '%04d' "$next")"
+  expected="$(printf '%03d' "$next")"
   if ! printf '%s\n' "$expected" > "$tmp"; then
     rm -f "$tmp" 2>/dev/null || true
     return 1
@@ -303,9 +282,11 @@ _wn_persist_highwater() {
   [ "$actual" = "$expected" ]
 }
 
-# Atomically reserve the next number and persist the high-water mark.
+# Atomically reserve the next number in ONE namespace and persist that
+# namespace's high-water mark.
 allocate_number() {
-  local max next retries=0
+  local ns="${1:-worktrees}" max next retries=0
+  _wn_valid_namespace "$ns" || { echo "allocate_number: invalid namespace: $ns" >&2; return 1; }
   while :; do
     _wn_acquire_lock || return 1
     if ! _wn_lock_owned; then
@@ -315,7 +296,7 @@ allocate_number() {
       sleep 0.01
       continue
     fi
-    if ! max="$(scan_max_number)"; then
+    if ! max="$(scan_max_number "$ns")"; then
       _wn_release_lock
       return 1
     fi
@@ -327,11 +308,11 @@ allocate_number() {
       continue
     fi
     next=$((max + 1))
-    if [ "$next" -gt 9999 ]; then
+    if [ "$next" -gt 999 ]; then
       _wn_release_lock
       return 1
     fi
-    if ! _wn_persist_highwater "$next"; then
+    if ! _wn_persist_highwater "$ns" "$next"; then
       _wn_release_lock
       return 1
     fi
@@ -343,80 +324,94 @@ allocate_number() {
       continue
     fi
     _wn_release_lock
-    printf '%04d\n' "$next"
+    printf '%03d\n' "$next"
     return 0
   done
 }
 
 # ───────────────────────────────────────────────────────────────
-# 5. WORKTREE CREATION
+# 4. BRANCH / WORKTREE CREATION
 # ───────────────────────────────────────────────────────────────
 
 _wn_default_base() {
   echo "${SPECKIT_LIVE_BRANCH:-$(git symbolic-ref --quiet --short HEAD 2>/dev/null || echo HEAD)}"
 }
 
-# create_named_worktree <owner> <slug> [base]
+# create_named_worktree <slug> [base] — allocate a worktrees/ number, then
+# create branch worktrees/NNN-slug and directory .worktrees/NNN-slug together.
 # Emits "<branch> <dir>" on success.
 create_named_worktree() {
-  local owner="$1" slug="$2" base="${3:-}" top nnnn branch dir
-  is_valid_owner "$owner" || { echo "invalid owner: $owner" >&2; return 1; }
-  is_valid_slug  "$slug"  || { echo "invalid slug: $slug"   >&2; return 1; }
-  top="$(_wn_toplevel)"   || { echo "not in a git repo" >&2; return 1; }
+  local slug="$1" base="${2:-}" top nnn branch dir
+  is_valid_slug "$slug" || { echo "invalid slug: $slug" >&2; return 1; }
+  top="$(_wn_toplevel)" || { echo "not in a git repo" >&2; return 1; }
   [ -n "$base" ] || base="$(_wn_default_base)"
-  nnnn="$(allocate_number)" || return 1
-  branch="$owner/$nnnn-$slug"
-  dir=".worktrees/$nnnn-$owner-$slug"
+  nnn="$(allocate_number worktrees)" || return 1
+  branch="worktrees/$nnn-$slug"
+  dir=".worktrees/$nnn-$slug"
   git -C "$top" worktree add -b "$branch" "$top/$dir" "$base" >&2 || return 1
   echo "$branch $dir"
 }
 
-# create_detached_worktree <slug> [base]  — numbered dir, no branch.
-create_detached_worktree() {
-  local slug="$1" base="${2:-}" top nnnn dir
+# create_branch <slug> [base] — allocate a branches/ number and create branch
+# branches/NNN-slug WITHOUT a worktree. Emits the branch name on success.
+create_branch() {
+  local slug="$1" base="${2:-}" top nnn branch
   is_valid_slug "$slug" || { echo "invalid slug: $slug" >&2; return 1; }
   top="$(_wn_toplevel)" || { echo "not in a git repo" >&2; return 1; }
   [ -n "$base" ] || base="$(_wn_default_base)"
-  nnnn="$(allocate_number)" || return 1
-  dir=".worktrees/$nnnn-detached-$slug"
+  nnn="$(allocate_number branches)" || return 1
+  branch="branches/$nnn-$slug"
+  git -C "$top" branch "$branch" "$base" >&2 || return 1
+  echo "$branch"
+}
+
+# create_detached_worktree <slug> [base] — numbered dir, no branch. Uses the
+# worktrees/ counter so a detached dir can never collide with a paired one.
+create_detached_worktree() {
+  local slug="$1" base="${2:-}" top nnn dir
+  is_valid_slug "$slug" || { echo "invalid slug: $slug" >&2; return 1; }
+  top="$(_wn_toplevel)" || { echo "not in a git repo" >&2; return 1; }
+  [ -n "$base" ] || base="$(_wn_default_base)"
+  nnn="$(allocate_number worktrees)" || return 1
+  dir=".worktrees/$nnn-detached-$slug"
   git -C "$top" worktree add --detach "$top/$dir" "$base" >&2 || return 1
   echo "$dir"
 }
 
 # ───────────────────────────────────────────────────────────────
-# 6. CLI DISPATCH
+# 5. CLI DISPATCH
 # ───────────────────────────────────────────────────────────────
 
 _wn_usage() {
   cat >&2 <<'USAGE'
 worktree-naming.sh <command> [args]
 
-  skill-ids                       List canonical owner ids.
-  next                            Preview the next number (no lock/write).
-  allocate                        Reserve the next number (locked; writes high-water).
-  scan-max                        Highest number currently in use.
-  validate-owner  <owner>
+  allocate  [worktrees|branches]    Reserve the next number (locked; writes high-water).
+  next      [worktrees|branches]    Preview the next number (no lock/write).
+  scan-max  [worktrees|branches]    Highest number currently in use in a namespace.
   validate-slug   <slug>
+  validate-nnn    <nnn>             Exit 0 for a 3-digit number in 001..999.
   validate-branch <branch>
   validate-pair   <branch> <dir>
-  validate-remote-allowlist <branch>        Check the remote-push-permission allowlist.
-  create          <owner> <slug> [base]     Create an owner-first worktree.
-  create-detached <slug> [base]             Create a numbered detached worktree.
+  validate-backup <branch>          Exit 0 when the branch is a backup/* safety ref.
+  validate-remote-allowlist <branch>  Check the remote-push-permission allowlist.
+  create          <slug> [base]     Create a worktrees/NNN-slug worktree (branch + dir).
+  create-branch   <slug> [base]     Create a branches/NNN-slug branch (no worktree).
+  create-detached <slug> [base]     Create a numbered detached worktree.
 USAGE
 }
 
 _wn_main() {
   local cmd="${1:-}" rc; shift || true
   case "$cmd" in
-    skill-ids)       load_skill_ids ;;
-    next)            next_number ;;
-    allocate)        allocate_number ;;
-    scan-max)        scan_max_number ;;
-    validate-owner)
-      if is_valid_owner "${1:-}"; then echo ok; else rc=$?; echo invalid >&2; exit "$rc"; fi
-      ;;
+    next)            next_number "${1:-worktrees}" ;;
+    allocate)        allocate_number "${1:-worktrees}" ;;
+    scan-max)        scan_max_number "${1:-worktrees}" ;;
     validate-slug)
       if is_valid_slug "${1:-}"; then echo ok; else rc=$?; echo invalid >&2; exit "$rc"; fi
+      ;;
+    validate-nnn)
+      if is_valid_nnn "${1:-}"; then echo ok; else rc=$?; echo invalid >&2; exit "$rc"; fi
       ;;
     validate-branch)
       if is_valid_branch "${1:-}"; then echo ok; else rc=$?; echo invalid >&2; exit "$rc"; fi
@@ -424,10 +419,14 @@ _wn_main() {
     validate-pair)
       if is_valid_pair "${1:-}" "${2:-}"; then echo ok; else rc=$?; echo invalid >&2; exit "$rc"; fi
       ;;
+    validate-backup)
+      if is_backup_branch "${1:-}"; then echo ok; else echo not-backup >&2; exit 1; fi
+      ;;
     validate-remote-allowlist)
       if is_remote_push_allowlisted "${1:-}"; then echo ok; else echo not-allowlisted >&2; exit 1; fi
       ;;
     create)          create_named_worktree "$@" ;;
+    create-branch)   create_branch "$@" ;;
     create-detached) create_detached_worktree "$@" ;;
     ""|-h|--help|help) _wn_usage ;;
     *) echo "unknown command: $cmd" >&2; _wn_usage; exit 2 ;;

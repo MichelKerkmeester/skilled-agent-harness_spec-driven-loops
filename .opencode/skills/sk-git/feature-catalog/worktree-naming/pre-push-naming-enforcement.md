@@ -17,7 +17,7 @@ version: 1.1.0.0
 
 ## 1. OVERVIEW
 
-A `pre-push` git hook runs two independent gates on every ref about to reach origin. The naming gate enforces the owner-first branch grammar at the one point where a non-conformant name would otherwise become visible on the remote: the creation of a brand-new remote branch. The remote-push-permission gate answers a different question — should this branch reach origin **at all, right now** — and applies to every push, new or update, unless the branch is on a small allowlist.
+A `pre-push` git hook runs two independent gates on every ref about to reach origin. The naming gate enforces the numbered-worktree branch grammar at the one point where a non-conformant name would otherwise become visible on the remote: the creation of a brand-new remote branch. The remote-push-permission gate answers a different question — should this branch reach origin **at all, right now** — and applies to every push, new or update, unless the branch is on a small allowlist.
 
 Both gates are fail-open in failure mode (a broken/missing validator never turns into a blocked push) and independently bypassable — skipping one gate's env var never skips the other.
 
@@ -31,7 +31,7 @@ Git feeds the hook one line per pushed ref on stdin: local ref, local sha, remot
 
 ### Naming Gate: Validation and Rejection
 
-For a genuinely new branch, the hook sources `worktree-naming.sh` and calls its `is_valid_branch` predicate — the same grammar check the allocator itself uses to create branches, so the gate and the allocator can never disagree. A name that fails validation is rejected (the hook exits non-zero) with the expected grammar printed to stderr. A name that additionally matches the launch-wrapper lane (`work/<runtime>/<slug>`) gets a more specific message: wrapper branches are local-only and machine-reaped, and must never be pushed as a feature branch.
+For a genuinely new branch, the hook sources `worktree-naming.sh` and calls its `is_valid_branch` predicate — the same grammar check the allocator itself uses to create branches, so the gate and the allocator can never disagree. A name that fails validation is rejected (the hook exits non-zero) with the expected grammar printed to stderr. The launch-wrapper lane (`work/<runtime>/<slug>`) is recognized as a legal grammar name but gets a more specific rejection: wrapper branches are local-only and machine-reaped, and must never be pushed as a feature branch. `backup/*` safety refs pass the naming gate as legal-but-not-task branches and reach the permission gate like any other new branch.
 
 ### Remote-Push-Permission Gate
 
@@ -50,7 +50,7 @@ Both gates are fail-open by design: if `worktree-naming.sh` is missing, fails to
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/scripts/git-hooks/pre-push` | Script | Reads git's pushed-ref protocol on stdin; runs the naming gate and the remote-push-permission gate |
-| `.opencode/skills/sk-git/scripts/worktree-naming.sh` | Script | Supplies `is_valid_branch` / `is_wrapper_branch` / `is_remote_push_allowlisted`, sourced by this hook |
+| `.opencode/skills/sk-git/scripts/worktree-naming.sh` | Script | Supplies `is_valid_branch` / `is_wrapper_branch` / `is_backup_branch` / `is_remote_push_allowlisted`, sourced by this hook |
 | `.opencode/skills/sk-git/scripts/remote-branch-allowlist.txt` | Config | Operator-editable allowlist patterns beyond the hardcoded `main`/`skilled/v*` |
 
 ### Validation And Tests
@@ -68,5 +68,5 @@ Both gates are fail-open by design: if `worktree-naming.sh` is missing, fails to
 - Feature file path: `worktree-naming/pre-push-naming-enforcement.md`
 
 Related references:
-- [owner-first-worktree-naming.md](owner-first-worktree-naming.md) — Owner-first worktree naming grammar and allocator
+- [owner-first-worktree-naming.md](owner-first-worktree-naming.md) — Numbered worktree naming grammar and allocator
 - [remote-branch-policy.md](../../references/remote-branch-policy.md) — Full remote-push-permission contract

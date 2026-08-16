@@ -1,7 +1,7 @@
 ---
 title: "GIT-037 -- Pre-push migration tolerance for existing legacy branches"
-description: "This scenario validates migration tolerance for `GIT-037`. It focuses on prove a branch that already exists on the remote can always be pushed again regardless of whether its name conforms to the owner-first grammar."
-version: 1.0.0.0
+description: "This scenario validates migration tolerance for `GIT-037`. It focuses on prove a branch that already exists on the remote can always be pushed again regardless of whether its name conforms to the numbered-worktree grammar."
+version: 1.1.0.0
 ---
 
 # GIT-037 -- Pre-push migration tolerance for existing legacy branches
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates migration tolerance for `GIT-037`. It focuses on prove a branch that already exists on the remote can always be pushed again (updated or deleted) regardless of whether its name conforms to the owner-first grammar.
+This scenario validates migration tolerance for `GIT-037`. It focuses on prove a branch that already exists on the remote can always be pushed again (updated or deleted) regardless of whether its name conforms to the numbered-worktree grammar.
 
 ### Why This Matters
 
-The naming grammar was adopted after real branches already existed under older conventions (`wt/NNNN-name`, ad hoc names). Rewriting or blocking those branches would be far more disruptive than tolerating their names on update.
+The naming grammar was adopted after real branches already existed under older conventions (owner-first `OWNER/NNNN-slug`, `wt/NNNN-name`, ad hoc names). Rewriting or blocking those branches would be far more disruptive than tolerating their names on update.
 
 ---
 
@@ -24,11 +24,11 @@ The naming grammar was adopted after real branches already existed under older c
 
 Operators run the exact prompt and command sequence for `GIT-037` and confirm the expected signals without contradictory evidence.
 
-- Objective: prove a branch that already exists on the remote can always be pushed again regardless of whether its name conforms to the owner-first grammar.
+- Objective: prove a branch that already exists on the remote can always be pushed again regardless of whether its name conforms to the numbered-worktree grammar.
 - Real user request: `I still have some old wt/ and legacy-named branches on the remote — don't block me from continuing to push to them.`
 - RCAF Prompt: `As a git safety reviewer, evaluate an update push to a pre-existing non-conformant remote branch name. Verify the push is allowed under migration tolerance while the same name would be blocked as a brand-new branch. Return the decision and the migration-tolerance rationale.`
 - Expected execution process: Feed an update-shaped line (nonzero remote sha) for a non-conformant name such as `legacy-feature`, confirm it is allowed with an advisory-only warning, then feed the identical name as a new-branch line (zero remote sha) and confirm that one is blocked.
-- Expected signals: the update line exits 0 with `does not match the owner-first naming grammar (update allowed — migration tolerance)`; the new-branch line for the same name exits 1 with `BLOCKED: new branch ...`.
+- Expected signals: the update line exits 0 with `does not match the task-branch naming grammar (update allowed — migration tolerance)`; the new-branch line for the same name exits 1 with `BLOCKED: new branch ...`.
 - Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
 - Pass/fail: PASS if the same non-conformant name is allowed on update and blocked on creation, per the hook's own `is_new` branch. FAIL if the legacy update is blocked, or if the new-branch case is silently allowed.
 
@@ -46,11 +46,11 @@ Operators run the exact prompt and command sequence for `GIT-037` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GIT-037 | Pre-push migration tolerance for existing legacy branches | prove a branch that already exists on the remote can always be pushed again regardless of whether its name conforms to the owner-first grammar. | `As a git safety reviewer, evaluate an update push to a pre-existing non-conformant remote branch name. Verify the push is allowed under migration tolerance while the same name would be blocked as a brand-new branch. Return the decision and the migration-tolerance rationale.` | 1. `bash: printf 'refs/heads/legacy-feature %040d refs/heads/legacy-feature %040d\n' 1 2 \| bash pre-push; echo $?` -> 2. `bash: printf 'refs/heads/legacy-feature %040d refs/heads/legacy-feature %040d\n' 1 0 \| bash pre-push; echo $?` | Step 1 exits 0 with an advisory migration-tolerance notice; step 2 exits 1 with `BLOCKED: new branch ...`. | Both exit codes and stderr text (advisory notice vs BLOCKED message). | PASS if the same non-conformant name is allowed on update and blocked on creation, per the hook's own `is_new` branch. FAIL if the legacy update is blocked, or if the new-branch case is silently allowed. | Compare against the `is_new -eq 0` migration-tolerance branch in `pre-push §2`, then `pre-push.test.sh` "legacy update to an existing branch allowed" case. |
+| GIT-037 | Pre-push migration tolerance for existing legacy branches | prove a branch that already exists on the remote can always be pushed again regardless of whether its name conforms to the numbered-worktree grammar. | `As a git safety reviewer, evaluate an update push to a pre-existing non-conformant remote branch name. Verify the push is allowed under migration tolerance while the same name would be blocked as a brand-new branch. Return the decision and the migration-tolerance rationale.` | 1. `bash: printf 'refs/heads/legacy-feature %040d refs/heads/legacy-feature %040d\n' 1 2 \| bash pre-push; echo $?` -> 2. `bash: printf 'refs/heads/legacy-feature %040d refs/heads/legacy-feature %040d\n' 1 0 \| bash pre-push; echo $?` | Step 1 exits 0 with an advisory migration-tolerance notice; step 2 exits 1 with `BLOCKED: new branch ...`. | Both exit codes and stderr text (advisory notice vs BLOCKED message). | PASS if the same non-conformant name is allowed on update and blocked on creation, per the hook's own `is_new` branch. FAIL if the legacy update is blocked, or if the new-branch case is silently allowed. | Compare against the `is_new -eq 0` migration-tolerance branch in `pre-push`, then `pre-push.test.sh` "legacy update to an existing branch allowed" case. |
 
 ### Optional Supplemental Checks
 
-Repeat with a legacy `wt/0001-old-feature` name explicitly, since it is called out as the canonical permitted-but-non-conformant predecessor form in `SKILL.md` ALWAYS #4.
+Repeat with a legacy owner-first `sk-doc/0131-old-feature` name explicitly, since it is the canonical predecessor form the migration helper renumbers into `worktrees/NNN-slug`.
 
 ---
 
@@ -70,7 +70,8 @@ No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md
 |---|---|
 | `../../../../scripts/git-hooks/pre-push` | Migration-tolerance branch for updates to existing non-conformant names |
 | `../../../../scripts/git-hooks/tests/pre-push.test.sh` | Regression coverage: legacy-update-allowed case |
-| `../../SKILL.md` | ALWAYS #4 legacy `wt/{NNNN}-{name}` permitted-but-non-conformant note |
+| `../../scripts/worktree-naming.sh` | `is_valid_branch` grammar the gate applies to new branches |
+| `../../scripts/migrate-legacy-branch-names.sh` | Renumberer of legacy owner-first names into `worktrees/NNN-slug` |
 
 ---
 

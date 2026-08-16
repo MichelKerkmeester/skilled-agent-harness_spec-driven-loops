@@ -48,11 +48,14 @@ git-worktrees   git-commit      git-finish
 ### Quick Commands
 
 ```bash
-# Named feature worktree (recommended): allocator reserves the next 4-digit counter
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git <name> main
+# Named feature worktree (recommended): allocator reserves the next worktrees/ number
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <name> main
 
 # Long-running feature worktree (needs PR): use the same allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git <name> main
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <name> main
+
+# Dedicated branch with no worktree: branches/NNN-<name>
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-branch <name> main
 
 # Experimental (no branch): allocator creates the detached directory
 bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached <name> main
@@ -61,7 +64,7 @@ bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached <name> m
 git worktree list
 
 # Remove worktree
-git worktree remove .worktrees/<NNNN>-sk-git-<name>
+git worktree remove .worktrees/<NNN>-<name>
 ```
 
 ### 7-Step Workflow
@@ -78,9 +81,10 @@ git worktree remove .worktrees/<NNNN>-sk-git-<name>
 
 | Strategy | When to Use | Example |
 |----------|-------------|---------|
-| `sk-git/{NNNN}-{name}` (merge back fast) | 80% of work, merge back immediately | `sk-git/0001-quick-fix` |
-| `sk-git/{NNNN}-{name}` (long-running) | Long-running, needs PR | `sk-git/0002-user-auth` |
-| Detached HEAD | Experiments, throwaway | `.worktrees/{NNNN}-detached-{name}` |
+| `worktrees/{NNN}-{name}` (merge back fast) | 80% of work, merge back immediately | `worktrees/001-quick-fix` |
+| `worktrees/{NNN}-{name}` (long-running) | Long-running, needs PR | `worktrees/002-user-auth` |
+| `branches/{NNN}-{name}` (dedicated, no worktree) | External dep / standalone branch | `branches/003-external-dep` |
+| Detached HEAD | Experiments, throwaway | `.worktrees/{NNN}-detached-{name}` |
 
 ---
 
@@ -160,7 +164,7 @@ gh pr create --title "..." --body "..."
 git checkout main && git branch -D <branch>
 
 # Cleanup worktree
-git worktree remove .worktrees/{NNNN}-<name>
+git worktree remove .worktrees/{NNN}-<name>
 ```
 
 ### 5-Step Workflow
@@ -194,10 +198,10 @@ git worktree remove .worktrees/{NNNN}-<name>
 
 ```bash
 # 1. Create named feature worktree through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git fix main
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create fix main
 
 # 2. Make changes
-cd .worktrees/<NNNN>-sk-git-fix
+cd .worktrees/<NNN>-fix
 # ... fix code ...
 
 # 3. Commit
@@ -208,21 +212,21 @@ git commit -m "fix(scope): description"
 npm test
 
 # 5. Merge
-cd ../.. && git checkout main && git merge sk-git/<NNNN>-fix
+cd ../.. && git checkout main && git merge worktrees/<NNN>-fix
 
 # 6. Cleanup
-git branch -d sk-git/<NNNN>-fix
-git worktree remove .worktrees/<NNNN>-sk-git-fix
+git branch -d worktrees/<NNN>-fix
+git worktree remove .worktrees/<NNN>-fix
 ```
 
 ### Workflow B: Feature with PR
 
 ```bash
 # 1. Create named feature worktree through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git name main
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create name main
 
 # 2. Develop
-cd .worktrees/<NNNN>-sk-git-name
+cd .worktrees/<NNN>-name
 # ... implement feature ...
 
 # 3. Commit
@@ -233,11 +237,11 @@ git commit -m "feat(scope): description"
 npm test
 
 # 5. Create PR
-git push -u origin sk-git/<NNNN>-name
+git push -u origin worktrees/<NNN>-name
 gh pr create --title "feat(scope): ..." --body "..."
 
 # 6. Cleanup worktree (keep branch)
-cd ../.. && git worktree remove .worktrees/<NNNN>-sk-git-name
+cd ../.. && git worktree remove .worktrees/<NNN>-name
 ```
 
 ### Workflow C: Experiment
@@ -247,16 +251,16 @@ cd ../.. && git worktree remove .worktrees/<NNNN>-sk-git-name
 bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached exp main
 
 # 2. Experiment
-cd .worktrees/<NNNN>-detached-exp
+cd .worktrees/<NNN>-detached-exp
 # ... try approach ...
 
 # 3a. Keep: Create a new named worktree and branch through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git name HEAD
-cd ../<NNNN>-sk-git-name
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create name HEAD
+cd ../<NNN>-name
 git add . && git commit -m "feat(scope): experimental approach"
 
 # 3b. Discard: Remove worktree
-cd ../.. && git worktree remove .worktrees/<NNNN>-detached-exp
+cd ../.. && git worktree remove .worktrees/<NNN>-detached-exp
 ```
 
 ---
@@ -265,12 +269,12 @@ cd ../.. && git worktree remove .worktrees/<NNNN>-detached-exp
 
 | Scenario | Worktree Strategy | Commit Strategy | Finish Option |
 |----------|-------------------|-----------------|---------------|
-| Small fix | sk-git/{NNNN}-{name} | Single commit | Option 1 (Merge) |
-| Feature (solo) | sk-git/{NNNN}-{name} | Multiple commits | Option 1 (Merge) |
-| Feature (team) | sk-git/{NNNN}-{name} | Multiple commits | Option 2 (PR) |
+| Small fix | worktrees/{NNN}-{name} | Single commit | Option 1 (Merge) |
+| Feature (solo) | worktrees/{NNN}-{name} | Multiple commits | Option 1 (Merge) |
+| Feature (team) | worktrees/{NNN}-{name} | Multiple commits | Option 2 (PR) |
 | Experiment | Detached HEAD | N/A or commit | Option 4 (Discard) |
-| Refactor | sk-git/{NNNN}-{name} | Single/multiple | Option 1 or 2 |
-| Bug fix | sk-git/{NNNN}-{name} | Single commit | Option 1 or 2 |
+| Refactor | worktrees/{NNN}-{name} | Single/multiple | Option 1 or 2 |
+| Bug fix | worktrees/{NNN}-{name} | Single commit | Option 1 or 2 |
 
 ---
 
@@ -278,8 +282,10 @@ cd ../.. && git worktree remove .worktrees/<NNNN>-detached-exp
 
 ### Worktree
 ```bash
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <owner> <slug> [base]
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <slug> [base]
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-branch <slug> [base]
 bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached <slug> [base]
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh allocate [worktrees|branches]
 git worktree list                      # List all
 git worktree remove <path>             # Remove
 git worktree prune                     # Clean stale refs
@@ -351,14 +357,14 @@ gh pr create                           # Create PR
 
 ```
 .worktrees/                 # Project-local worktrees (add to .gitignore)
-  0001-sk-git-feature-name/ # Individual owner-first worktree
-  0002-sk-git-quick-fix/
-  0003-detached-experiment/
+  001-feature-name/         # Numbered worktree (worktrees/001-feature-name branch)
+  002-quick-fix/
+  003-detached-experiment/
 
 ~/.config/superpowers/      # Global worktrees location
   worktrees/
     project-name/
-      0001-sk-git-feature-name/
+      001-feature-name/
 ```
 
 ---

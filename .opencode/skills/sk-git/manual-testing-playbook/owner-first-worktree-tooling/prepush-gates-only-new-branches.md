@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `GIT-036` and confirm th
 
 ### Optional Supplemental Checks
 
-Repeat with a well-formed owner-first name on both lines to confirm both the new and the update case exit 0, isolating the gate's behavior from the name's legality.
+Repeat with a well-formed numbered name on both lines to confirm both the new and the update case exit 0, isolating the gate's behavior from the name's legality.
 
 ---
 

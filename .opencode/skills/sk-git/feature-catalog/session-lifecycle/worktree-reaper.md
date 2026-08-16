@@ -30,7 +30,7 @@ A registered worktree is auto-removed only when it is the machine-owned launch-w
 
 ### Report-Only Categories
 
-Detached worktrees, human-created owner-first worktrees, and any wrapper worktree whose branch/directory pairing doesn't match are always report-only — their cleanup is left to the operator. `git worktree prune` still runs unconditionally first to clear stale administrative entries for already-deleted directories.
+Detached worktrees, human task worktrees (`worktrees/NNN-slug`), and any wrapper worktree whose branch/directory pairing doesn't match are always report-only — their cleanup is left to the operator. `git worktree prune` still runs unconditionally first to clear stale administrative entries for already-deleted directories.
 
 ### Orphan Daemon Reporting
 

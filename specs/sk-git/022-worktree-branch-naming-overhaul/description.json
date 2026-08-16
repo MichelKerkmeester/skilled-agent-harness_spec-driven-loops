@@ -1,0 +1,34 @@
+{
+  "level": "3",
+  "specFolder": "sk-git/022-worktree-branch-naming-overhaul",
+  "description": "Replace the owner-first branch grammar with two flat, spec-style numbered namespaces so the Git-UI branch tree reads as a few clean folders instead of",
+  "keywords": [
+    "replace",
+    "owner-first",
+    "branch",
+    "grammar",
+    "two",
+    "flat",
+    "spec-style",
+    "numbered",
+    "namespaces",
+    "git-ui",
+    "tree",
+    "reads",
+    "clean",
+    "folders",
+    "instead"
+  ],
+  "lastUpdated": "2026-08-16T07:03:11.583Z",
+  "specId": "022",
+  "folderSlug": "worktree-branch-naming-overhaul",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "16-08-26_07-45__implemented-the-frozen-022-grammar-rewrote.md",
+    "16-08-26_08-01__implemented-the-frozen-022-grammar-rewrote.md",
+    "16-08-26_08-03__implemented-the-frozen-022-grammar-rewrote.md"
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 title: "GIT-033 -- Keep human, detached, dirty, and marker-ambiguous worktrees"
-description: "This scenario validates report-only keep behavior for `GIT-033`. It focuses on prove the reaper leaves every non-qualifying worktree alone: human owner-first, detached, dirty wrapper, live-marker wrapper, malformed-marker wrapper, and non-wrapper-grammar work/ branches."
-version: 1.0.0.0
+description: "This scenario validates report-only keep behavior for `GIT-033`. It focuses on prove the reaper leaves every non-qualifying worktree alone: human task, detached, dirty wrapper, live-marker wrapper, malformed-marker wrapper, and non-wrapper-grammar work/ branches."
+version: 1.1.0.0
 ---
 
 # GIT-033 -- Keep human, detached, dirty, and marker-ambiguous worktrees
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates report-only keep behavior for `GIT-033`. It focuses on prove the reaper leaves every non-qualifying worktree alone: a human owner-first worktree, a detached worktree, a dirty wrapper worktree, a wrapper with a live or malformed marker, and a `work/` branch that does not match the exact wrapper grammar.
+This scenario validates report-only keep behavior for `GIT-033`. It focuses on prove the reaper leaves every non-qualifying worktree alone: a human task worktree (`worktrees/NNN-slug`), a detached worktree, a dirty wrapper worktree, a wrapper with a live or malformed marker, and a `work/` branch that does not match the exact wrapper grammar.
 
 ### Why This Matters
 
@@ -24,7 +24,7 @@ This scenario validates report-only keep behavior for `GIT-033`. It focuses on p
 
 Operators run the exact prompt and command sequence for `GIT-033` and confirm the expected signals without contradictory evidence.
 
-- Objective: prove the reaper leaves every non-qualifying worktree alone: a human owner-first worktree, a detached worktree, a dirty wrapper worktree, a wrapper with a live or malformed marker, and a `work/` branch that does not match the exact wrapper grammar.
+- Objective: prove the reaper leaves every non-qualifying worktree alone: a human task worktree, a detached worktree, a dirty wrapper worktree, a wrapper with a live or malformed marker, and a `work/` branch that does not match the exact wrapper grammar.
 - Real user request: `Don't touch my in-progress feature worktree, my scratch detached worktree, or anything the cleanup tool can't prove is actually finished.`
 - Prompt: `Run the worktree reaper against a fixture containing a human numbered worktree, a detached worktree, a dirty wrapper worktree, a wrapper with a live-PID marker, and a wrapper with a malformed marker, and confirm every one of them is reported kept, not removed.`
 - Expected execution process: Build the five fixture worktrees, run the reaper with no flags, and inspect its log lines and post-run `git worktree list`/`git show-ref` state for each.
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `GIT-033` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GIT-033 | Keep human, detached, dirty, and marker-ambiguous worktrees | prove the reaper leaves every non-qualifying worktree alone: human owner-first, detached, dirty wrapper, live-marker wrapper, malformed-marker wrapper, and non-wrapper-grammar `work/` branches. | `Run the worktree reaper against a fixture containing a human numbered worktree, a detached worktree, a dirty wrapper worktree, a wrapper with a live-PID marker, and a wrapper with a malformed marker, and confirm every one of them is reported kept, not removed.` | 1. `bash: git worktree add -q -b sk-git/0001-human .worktrees/0001-sk-git-human HEAD` -> 2. `bash: git worktree add -q --detach .worktrees/0002-detached HEAD` -> 3. `bash: git worktree add -q -b work/rt/dirty .worktrees/rt-dirty HEAD && touch .worktrees/rt-dirty/uncommitted.txt` -> 4. `bash: git worktree add -q -b work/rt/live .worktrees/rt-live HEAD && printf '%s\n' $$ > <common-dir>/worktree-sessions/rt-live.pid` -> 5. `bash: bash .opencode/bin/worktree-reaper.sh` | Each fixture logs a distinct `keep (...)` reason; a post-run `git worktree list` still shows all five entries. | Full reaper log, and `git worktree list`/`git show-ref` proof that all five survive. | PASS if all five non-qualifying worktrees and their branches still exist after the run, each with a `keep` log line naming the correct reason. FAIL if any of the five is removed, or if a `keep` reason is misattributed. | Compare each `keep` branch of the classification chain in `worktree-reaper.sh §4` against `bin/tests/worktree-reaper.test.sh` cases (b)-(e) and the human/detached report-only cases. |
+| GIT-033 | Keep human, detached, dirty, and marker-ambiguous worktrees | prove the reaper leaves every non-qualifying worktree alone: human task, detached, dirty wrapper, live-marker wrapper, malformed-marker wrapper, and non-wrapper-grammar `work/` branches. | `Run the worktree reaper against a fixture containing a human numbered worktree, a detached worktree, a dirty wrapper worktree, a wrapper with a live-PID marker, and a wrapper with a malformed marker, and confirm every one of them is reported kept, not removed.` | 1. `bash: git worktree add -q -b worktrees/001-human .worktrees/001-human HEAD` -> 2. `bash: git worktree add -q --detach .worktrees/002-detached HEAD` -> 3. `bash: git worktree add -q -b work/rt/dirty .worktrees/rt-dirty HEAD && touch .worktrees/rt-dirty/uncommitted.txt` -> 4. `bash: git worktree add -q -b work/rt/live .worktrees/rt-live HEAD && printf '%s\n' $$ > <common-dir>/worktree-sessions/rt-live.pid` -> 5. `bash: bash .opencode/bin/worktree-reaper.sh` | Each fixture logs a distinct `keep (...)` reason; a post-run `git worktree list` still shows all five entries. | Full reaper log, and `git worktree list`/`git show-ref` proof that all five survive. | PASS if all five non-qualifying worktrees and their branches still exist after the run, each with a `keep` log line naming the correct reason. FAIL if any of the five is removed, or if a `keep` reason is misattributed. | Compare each `keep` branch of the classification chain in `worktree-reaper.sh §4` against `bin/tests/worktree-reaper.test.sh` cases (b)-(e) and the human/detached report-only cases. |
 
 ### Optional Supplemental Checks
 

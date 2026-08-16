@@ -29,7 +29,7 @@ PR creation and listing work equally well through `gh` CLI or GitHub MCP; `gh` i
 
 ### Branch Creation Boundary
 
-GitHub MCP exposes `github_create_branch`, but sk-git explicitly routes branch creation back to local `git worktree add -b ...` instead — the same no-direct-branch-creation discipline that applies everywhere else in the skill, so a remote-API shortcut can never bypass the owner-first naming grammar or the ask-first worktree rule.
+GitHub MCP exposes `github_create_branch`, but sk-git explicitly routes branch creation back to local `git worktree add -b ...` (or the allocator's `create-branch`) instead — the same no-direct-branch-creation discipline that applies everywhere else in the skill, so a remote-API shortcut can never bypass the numbered naming grammar or the ask-first worktree rule.
 
 ### Typical Usage
 
