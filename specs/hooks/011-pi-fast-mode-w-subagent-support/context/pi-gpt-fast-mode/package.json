@@ -1,0 +1,47 @@
+{
+  "name": "pi-gpt-fast-mode",
+  "version": "0.1.2",
+  "description": "Pi extension to control OpenAI's GPT service tier (priority/flex/default/auto) for GPT-5.4 / GPT-5.5, with subagent hand-off.",
+  "license": "MIT",
+  "type": "module",
+  "author": "devwithpug",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "openai",
+    "gpt-5",
+    "fast-mode",
+    "service-tier",
+    "priority",
+    "flex"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devwithpug/pi-gpt-fast-mode.git"
+  },
+  "files": [
+    "index.ts",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/devwithpug/pi-gpt-fast-mode/main/assets/preview.png"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test",
+    "check": "npm run typecheck && npm test"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}

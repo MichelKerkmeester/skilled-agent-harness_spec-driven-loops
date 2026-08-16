@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support",
+  "description": "The two leading pi fast-mode extensions cover complementary halves of the requirement, but neither covers both:",
+  "keywords": [
+    "two",
+    "leading",
+    "fast-mode",
+    "extensions",
+    "cover",
+    "complementary",
+    "halves",
+    "requirement",
+    "covers"
+  ],
+  "lastUpdated": "2026-08-16T07:09:46.610Z",
+  "specId": "011",
+  "folderSlug": "pi-fast-mode-w-subagent-support",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

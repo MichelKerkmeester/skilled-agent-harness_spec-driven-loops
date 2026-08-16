@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff",
+  "description": "When a parent pi session runs with fast mode enabled and spawns subagents (via pi-subagents or any child pi process), the children start with fast",
+  "keywords": [
+    "parent",
+    "session",
+    "runs",
+    "fast",
+    "mode",
+    "enabled",
+    "spawns",
+    "subagents",
+    "via",
+    "pi-subagents",
+    "child",
+    "process",
+    "children",
+    "start"
+  ],
+  "lastUpdated": "2026-08-16T07:12:02.438Z",
+  "specId": "002",
+  "folderSlug": "subagent-handoff",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

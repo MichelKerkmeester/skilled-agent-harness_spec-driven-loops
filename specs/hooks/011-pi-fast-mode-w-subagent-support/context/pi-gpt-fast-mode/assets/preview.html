@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    font-family: "SF Mono", "JetBrains Mono", "Menlo", monospace;
+    background: radial-gradient(1200px 630px at 30% 0%, #1b2330 0%, #0d1117 60%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .wrap { width: 1080px; }
+  .title { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+  .title h1 { color: #e6edf3; font-size: 40px; letter-spacing: -0.5px; }
+  .title .tag { color: #7ee787; font-size: 18px; }
+  .subtitle { color: #8b949e; font-size: 18px; margin-bottom: 22px; }
+  .subtitle b { color: #58a6ff; }
+
+  .term {
+    background: #0b0f14;
+    border: 1px solid #232b36;
+    border-radius: 12px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    overflow: hidden;
+  }
+  .bar {
+    background: #161b22; height: 38px; display: flex; align-items: center;
+    padding: 0 14px; gap: 8px; border-bottom: 1px solid #232b36;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .r { background: #ff5f56; } .y { background: #ffbd2e; } .g { background: #27c93f; }
+  .bar .name { color: #6e7681; font-size: 13px; margin-left: 10px; }
+
+  .body { padding: 22px 24px; font-size: 18px; line-height: 1.7; }
+  .muted { color: #6e7681; }
+  .cmd { color: #e6edf3; }
+  .accent { color: #58a6ff; }
+  .ok { color: #7ee787; }
+  .warn { color: #d29922; }
+  .prompt { color: #7ee787; }
+
+  .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid #232b36; padding: 10px 24px; font-size: 15px;
+    background: #0d1117;
+  }
+  .footer .left { color: #6e7681; }
+  .footer .model { color: #8b949e; }
+  .footer .fast {
+    color: #0b0f14; background: #7ee787; font-weight: 700;
+    padding: 2px 10px; border-radius: 6px; letter-spacing: 0.5px;
+  }
+  .pill { background: #161b22; color: #58a6ff; padding: 1px 8px; border-radius: 5px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">
+      <h1>pi-gpt-fast-mode</h1>
+      <span class="tag">for pi</span>
+    </div>
+    <div class="subtitle">
+      Control OpenAI's <b>service tier</b> for GPT-5.4 / 5.5 —
+      <span class="pill">priority</span> <span class="pill">flex</span>
+      <span class="pill">default</span> <span class="pill">auto</span>
+    </div>
+
+    <div class="term">
+      <div class="bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="name">pi · openai-codex/gpt-5.5</span>
+      </div>
+      <div class="body">
+        <div><span class="prompt">›</span> <span class="cmd">/fast</span> <span class="muted"># toggle the fast (priority) tier</span></div>
+        <div class="ok">✓ Fast Mode enabled — service tier "priority"</div>
+        <div style="height:10px"></div>
+        <div><span class="prompt">›</span> <span class="cmd">/fast</span> <span class="accent">flex</span> <span class="muted"># switch to the economy tier</span></div>
+        <div class="ok">✓ Fast Mode enabled — service tier "flex"</div>
+        <div style="height:10px"></div>
+        <div><span class="prompt">›</span> <span class="cmd">/fast</span> <span class="accent">status</span></div>
+        <div class="muted">Fast Mode is ON — requesting "flex" on openai-codex/gpt-5.5</div>
+      </div>
+      <div class="footer">
+        <span class="left">⌥ subagents inherit the preference automatically</span>
+        <span><span class="model">openai-codex/gpt-5.5</span> &nbsp; <span class="fast">flex</span></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests",
+  "description": "The fork is complete on disk but useless until installed and proven in the real environment",
+  "keywords": [
+    "fork",
+    "complete",
+    "disk",
+    "useless",
+    "until",
+    "installed",
+    "proven",
+    "real",
+    "environment"
+  ],
+  "lastUpdated": "2026-08-16T07:13:05.914Z",
+  "specId": "003",
+  "folderSlug": "integration-and-tests",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

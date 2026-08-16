@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package",
+  "description": "The chosen engine (pi-openai-fast-mode v0.3.0) lacks subagent handoff, which pi-gpt-fast-mode has",
+  "keywords": [
+    "chosen",
+    "engine",
+    "pi-openai-fast-mode",
+    "lacks",
+    "subagent",
+    "handoff",
+    "pi-gpt-fast-mode"
+  ],
+  "lastUpdated": "2026-08-16T07:10:55.823Z",
+  "specId": "001",
+  "folderSlug": "fork-and-package",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

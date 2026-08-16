@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff",
+  "spec_folder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff",
+  "parent_id": "hooks/011-pi-fast-mode-w-subagent-support",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "subagent-handoff",
+      "fast mode handoff",
+      "002-subagent-handoff",
+      "subagent-handoff checklist",
+      "subagent-handoff implementation summary"
+    ],
+    "key_topics": [
+      "subagent-handoff",
+      "fast",
+      "mode",
+      "handoff",
+      "002-subagent-handoff",
+      "checklist",
+      "implementation",
+      "summary",
+      "parent",
+      "session",
+      "runs",
+      "enabled"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement When",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Environment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When a parent pi session runs with fast mode enabled and spawns subagents (via pi-subagents or any child pi process), the children start with fast mode off unless manually toggled — the preference is not inherited",
+    "created_at": "2026-08-16T07:07:47Z",
+    "last_save_at": "2026-08-16T07:19:24.273Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7ba612d361f5c8f419e251d35e0929524019d23a19f1caf1bf3f6d632b771fb6",
+    "source_doc_hashes": {
+      "spec.md": "f525303f0f888f7099355865485f41faaaa4aa879cdc4977a0078d4f4abe2ae3",
+      "plan.md": "aed107ef206ddbefc6c56a7d25986d88ebb4e548dc6bac1f3a01187c25e5e550",
+      "tasks.md": "0c1f3923ed0d725d74cead378ccd481576e35a064a72f15028fc1f8a154b430c",
+      "checklist.md": "780c017ad477998573ca6096ba0047b50e7e6044e6c2d2d0b44f6a070dd5b634",
+      "implementation-summary.md": "1a4512612c9717b866dfcf7216732160d10e4c83eabc7d4dcf022edba98a5ea1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
