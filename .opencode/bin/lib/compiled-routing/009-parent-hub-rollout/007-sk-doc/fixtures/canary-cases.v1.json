@@ -139,19 +139,19 @@
       }
     },
     {
-      "id": "single-create-flowchart",
+      "id": "single-create-flowchart-alias",
       "prompt": "/create:flowchart",
       "expectedAction": "route",
       "expectedSelectionKind": "single",
       "expectedModes": [
-        "sk-create-flowchart"
+        "sk-create-diagram"
       ],
       "gold": {
         "expectedIntents": [
-          "sk-create-flowchart"
+          "sk-create-diagram"
         ],
         "expectedResources": [
-          "sk-create-flowchart/SKILL.md"
+          "sk-create-diagram/SKILL.md"
         ]
       }
     },

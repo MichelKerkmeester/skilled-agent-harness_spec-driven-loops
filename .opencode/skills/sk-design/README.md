@@ -5,7 +5,7 @@ trigger_phrases:
   - "design skill"
   - "ui design interface motion md-generator"
   - "design system tokens accessibility"
-version: 1.7.0.0
+version: 1.7.1.0
 ---
 
 # sk-design
@@ -55,7 +55,7 @@ The hub resolves the request to the `design-interface` mode and applies it. Succ
 
 ## 4. HOW IT WORKS
 
-A design request resolves through the hub to one mode when a single design axis dominates. It resolves to an ordered bundle of modes when the request clearly spans separate axes, for example interface plus md-generator. It stays at the hub for disambiguation when the intent is unclear or contradictory. The two design modes:
+A design request resolves through the hub to one mode when a single design axis dominates. It resolves to an ordered bundle of modes when the request clearly spans separate axes, for example interface plus md-generator. It stays at the hub for disambiguation when the intent is unclear or contradictory. Once the mode is chosen, the root `ROUTER.md` (stage two) maps the request's design intent to the exact packet-local leaf resources that mode loads. The two design modes:
 
 | Mode | Owns |
 |---|---|
@@ -114,6 +114,7 @@ Reach for sk-design when output looks generic and needs taste, when a visual sys
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic |
 | [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map |
+| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: design intent to the exact leaf resources the selected mode loads |
 | [`shared/creation-contract.md`](./shared/creation-contract.md) | Shared nine-stage lifecycle for the two canonical `/interface:*` creation commands |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory, including the indexed style backend and creation-command surface |
 | [`benchmark/`](./benchmark/) | Frozen baseline and after-009 skill-benchmark reports for router trace scoring |

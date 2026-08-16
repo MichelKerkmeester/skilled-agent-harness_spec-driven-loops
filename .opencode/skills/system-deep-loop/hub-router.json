@@ -1,6 +1,6 @@
 {
   "skill": "system-deep-loop",
-  "version": "2.0.0.0",
+  "version": "2.0.1.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -10,7 +10,7 @@
       "orderedBundle": "clearly separate deep-loop intents route to an ordered mode list",
       "defer": "unclear or contradictory deep-loop intent asks for disambiguation"
     },
-    "defaultResource": ["shared/references/smart-routing.md", "mode-registry.json"],
+    "defaultResource": ["ROUTER.md", "mode-registry.json"],
     "launcherVocabularyClasses": ["command-benchmark-aliases"]
   },
   "routerSignals": {

@@ -1,0 +1,36 @@
+{
+  "level": 3,
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout",
+  "description": "Completed parity and closeout packet for the root ROUTER.md program: bounded routing-only remediation, owner-harness rebuilds, the seven-canary fleet gate, adjudication-before-write expectations, graduated manifest refresh with authored freshness, compiled-route-sync check/promotion/verify with retained rollback and late finalize, parity and kill-switch probes, canonical-seven status, recursive strict validation, metadata/continuity regeneration, and the final scoped closeout.",
+  "keywords": [
+    "parity",
+    "closeout",
+    "seven canaries",
+    "compiled-route-sync",
+    "manifest refresh",
+    "fleet promotion",
+    "retained rollback",
+    "canonical seven",
+    "kill-switch",
+    "recursive validation"
+  ],
+  "lastUpdated": "2026-08-16T07:53:24.852Z",
+  "specId": "004",
+  "folderSlug": "parity-regression-and-closeout",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program",
+    "020-root-router-document-standard"
+  ],
+  "memorySequence": 7,
+  "memoryNameHistory": [
+    "16-08-26_08-15__rebuilt-validated-refreshed-and-promoted-all.md",
+    "16-08-26_08-17__rebuilt-validated-refreshed-and-promoted-all.md",
+    "16-08-26_08-29__rebuilt-validated-refreshed-and-promoted-all.md",
+    "16-08-26_08-29__rebuilt-validated-refreshed-and-promoted-all.md",
+    "16-08-26_08-41__rebuilt-validated-refreshed-and-promoted-all.md",
+    "16-08-26_08-41__rebuilt-validated-refreshed-and-promoted-all.md",
+    "16-08-26_08-53__rebuilt-validated-refreshed-and-promoted-all.md"
+  ]
+}

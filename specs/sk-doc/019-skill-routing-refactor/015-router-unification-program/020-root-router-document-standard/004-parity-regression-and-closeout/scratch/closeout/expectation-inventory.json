@@ -1,0 +1,7 @@
+{"entries": [
+  {"surface": "sk-code canary authored-source pins", "cause": "root-router/version update + one-resource delta", "adjudicated": "ADR-012"},
+  {"surface": "system-deep-loop canary authored-source pins", "cause": "root-router/version update + alignment-convergence registry", "adjudicated": "ADR-012"},
+  {"surface": "sk-prompt canary authored-source pins", "cause": "root-router/version update + packet-skill evolution", "adjudicated": "ADR-012"},
+  {"surface": "sk-doc flowchart expectations", "cause": "sk-create-flowchart retired; merged into sk-create-diagram", "adjudicated": "ADR-010"},
+  {"surface": "sk-design canary topology counts", "cause": "Open Design transport retired; two live modes", "adjudicated": "ADR-011"}
+], "frozenDigestEntries": 0}

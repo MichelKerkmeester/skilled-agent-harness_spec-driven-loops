@@ -39,7 +39,7 @@ create-skill runs one of two workflow modes from a single packet. `create-skill`
 | Mode | What the skill scaffolds |
 |---|---|
 | **`create-skill`** | a standalone skill folder with its own advisor identity, `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/` |
-| **`create-skill-parent`** | a parent hub root with `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json` and `command-metadata.json`, plus a `SKILL.md`, `README.md` and `changelog/` per nested packet |
+| **`create-skill-parent`** | a parent hub root with `mode-registry.json`, `hub-router.json`, root `ROUTER.md` (`stage1-only` on a fresh scaffold), `description.json`, `graph-metadata.json` and `command-metadata.json`, plus a `SKILL.md`, `README.md` and `changelog/` per nested packet |
 
 ---
 
@@ -80,7 +80,7 @@ The standalone path starts with concrete examples of what the skill needs to do,
 
 ### The Parent-Hub Path
 
-The parent-hub path starts by confirming the target really is one advisor-routable identity, not several skills that happen to be related. `scripts/init_skill.py --kind parent` then scaffolds the hub root (`SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `command-metadata.json` and the generated `leaf-manifest.json`) and each nested packet gets its own `SKILL.md`, `README.md` and `changelog/`, with no packet-local `graph-metadata.json` anywhere but the root.
+The parent-hub path starts by confirming the target really is one advisor-routable identity, not several skills that happen to be related. `scripts/init_skill.py --kind parent` then scaffolds the hub root (`SKILL.md`, `mode-registry.json`, `hub-router.json`, root `ROUTER.md` with `router_state: stage1-only`, `description.json`, `graph-metadata.json`, `command-metadata.json` and the generated `leaf-manifest.json`) and each nested packet gets its own `SKILL.md`, `README.md` and `changelog/`, with no packet-local `graph-metadata.json` anywhere but the root. The root `ROUTER.md` stays `stage1-only` (empty maps, all routing in stage one) until an author promotes it to `active` with a concrete, resolvable leaf map; the scaffolder never fabricates placeholder intents.
 
 ### Compiled Routing: Legacy Versus Ready
 

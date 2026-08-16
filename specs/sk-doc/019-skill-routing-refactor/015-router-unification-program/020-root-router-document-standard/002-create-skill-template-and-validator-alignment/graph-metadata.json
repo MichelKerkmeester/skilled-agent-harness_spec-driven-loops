@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/002-create-skill-template-and-validator-alignment",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/002-create-skill-template-and-validator-alignment",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/001-contract-and-fleet-audit",
+        "reason": "The toolchain implements the ratified root-router contract and fleet decisions.",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create skill template alignment",
+      "root router validator",
+      "stage1-only scaffold",
+      "parent skill doctor gate",
+      "stable router failure codes",
+      "create skill alignment plan",
+      "root router validator plan",
+      "stage1-only scaffold plan",
+      "parent doctor integration plan",
+      "create skill alignment tasks",
+      "root router validator tasks",
+      "stage1-only scaffold tasks"
+    ],
+    "key_topics": [
+      "skill",
+      "template",
+      "alignment",
+      "root",
+      "router",
+      "validator",
+      "stage1-only",
+      "scaffold",
+      "parent",
+      "doctor",
+      "gate",
+      "stable"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Template",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validator Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mutation Policy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Protected Pins",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent generator emits no second-stage router and its template still instructs authors to create `shared/references/smart-routing.md`",
+    "created_at": "2026-08-15T13:00:00Z",
+    "last_save_at": "2026-08-16T07:40:58.180Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b90783e3eb4c20d831bcad349ff88eb40d7789441708f165229340e71496c4c1",
+    "source_doc_hashes": {
+      "spec.md": "e610c3fdbbc439e2ae10dd4263bc0240d0c19a1936e33d937bc61e2552b007ba",
+      "plan.md": "dc0701a742df63f5ae3a9aeeefa24cc66f080208fbf59cf2ae7c3313f55598ce",
+      "tasks.md": "9b848b3f3e042f22d40f28989eca83aed26f0283a878ad9732b8fc12ff5a274f",
+      "checklist.md": "869f1deb3ac0b9c905517b6e2553b5bf95dffdac9b6cdb55a0db16f0285a225b",
+      "decision-record.md": "670cdf2380ddf52effd7092474963686ea2f1e8e0bf066726aa66ea428adcf91",
+      "implementation-summary.md": "683d8e57cac9e5be166b3e002b9720bd30bb2ead81ab689d2089b8e09059f90a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

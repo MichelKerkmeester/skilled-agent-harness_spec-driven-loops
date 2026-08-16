@@ -228,7 +228,7 @@ On a **keyword-routed hub** (one with a `routerPolicy.defaultMode`), `hub-identi
 
 A **detection-routed hub** (`defaultMode: null`, mode resolved from surface/stack markers rather than keyword scoring — e.g. sk-code) is the exception: detection selects the mode, so a shared identity class across modes does not drive selection. Such a hub is scored with subset resource semantics, not exact-set intent equality, so it is not subject to the over-emission failure above.
 
-A **defer-routed hub** (`defaultMode: null`, keyword-scored — NOT detection-based) is the third pattern, for a hub whose modes are materially distinct with no dominant common case, so no child is a safe zero-signal lean. A request that scores no mode **defers** rather than guessing. Keep any catch-all class (`hub-identity`) as **discovery-only** — defined but referenced by no mode's `classes`, so it never drives selection — and point `defaultResource` at the routing helper (`shared/references/smart-routing.md` + `mode-registry.json`, the mode-map) so the deferred request is pointed at *how to choose*, never at a guessed child. This is the shape of `system-deep-loop`, `mcp-tooling`, and `cli-external-orchestration`; `sk-design` is keyword-routed with `sk-design-interface` as its declared default. Choosing a named default over defer-routed is an evidence-bearing decision, never the scaffold default.
+A **defer-routed hub** (`defaultMode: null`, keyword-scored — NOT detection-based) is the third pattern, for a hub whose modes are materially distinct with no dominant common case, so no child is a safe zero-signal lean. A request that scores no mode **defers** rather than guessing. Keep any catch-all class (`hub-identity`) as **discovery-only** — defined but referenced by no mode's `classes`, so it never drives selection — and point `defaultResource` at the routing helper (root `ROUTER.md` + `mode-registry.json`, the mode-map) so the deferred request is pointed at *how to choose*, never at a guessed child. This is the shape of `system-deep-loop`, `mcp-tooling`, and `cli-external-orchestration`; `sk-design` is keyword-routed with `sk-design-interface` as its declared default. Choosing a named default over defer-routed is an evidence-bearing decision, never the scaffold default.
 
 ---
 
@@ -310,15 +310,15 @@ A hub carries two distinct path kinds. Conflating them is the defect this contra
 | Kind | Where it lives | Shape | Example |
 | --- | --- | --- | --- |
 | **hubLoadAddress** | `routerSignals[].resources` in this file | packet entrypoint the hub loads | `code-review/SKILL.md` |
-| **leafResourceId** | the second-layer surface router (`shared/references/smart-routing.md`) | canonical packet-root-relative resource id | `references/validation.md` |
+| **leafResourceId** | the root `ROUTER.md` stage-two control document | canonical packet-root-relative resource id | `references/validation.md` |
 
-The hub router selects a **mode**; it emits packet pointers, not the per-intent leaf gold. The exact leaf resources an intent should load belong in the surface router, scaffolded from [`parent-skill-smart-routing-template.md`](../../assets/parent-skill/parent-skill-smart-routing-template.md).
+The hub router selects a **mode**; it emits packet pointers, not the per-intent leaf gold. The exact leaf resources an intent should load belong in the root `ROUTER.md`, scaffolded from [`parent-skill-smart-routing-template.md`](../../assets/parent-skill/parent-skill-smart-routing-template.md).
 
-A raw path in the surface router is converted to the canonical `(workflowMode, leafResourceId)` pair at **exactly one boundary** — the leaf-resource contract library — through one of two shapes only:
+A raw path in the root `ROUTER.md` is converted to the canonical `(workflowMode, leafResourceId)` pair at **exactly one boundary** — the leaf-resource contract library — through one of two shapes only:
 - a **packet-qualified** prefix: `[packet]/references|assets/…` resolves to the mode bound to that packet.
 - an **authored shared alias**: a `shared/…` disk path listed in `leaf-aliases.json`.
 
-Never strip a prefix generically, and never infer a shared-tier file into a mode. A hub that keeps its per-intent leaf sets only in this file, with no surface router, re-creates the handoff ambiguity.
+Never strip a prefix generically, and never infer a shared-tier file into a mode. A hub that keeps its per-intent leaf sets only in this file, with no root `ROUTER.md`, re-creates the handoff ambiguity.
 
 ---
 
@@ -336,11 +336,14 @@ It validates:
 
 Treat check 5 warnings as schema drift. The parent hub may still route during migration, but the published contract is the shape above.
 
+`parent-skill-check` check 12 is the enforcement point for the root `ROUTER.md` two-state contract: the shared `root-router-contract.cjs` library validates the state declaration, stage-two map shape, root `SKILL.md` pointer, legacy coexistence, and typed leaf membership, and every failure reports a stable RRC code.
+
 ---
 
 ## 10. RELATED RESOURCES
 
 - [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md) - parent-skill pattern, single advisor identity, and registry routing contract.
+- [parent-skill-smart-routing-template.md](../../assets/parent-skill/parent-skill-smart-routing-template.md) - the root `ROUTER.md` stage-two authoring template (active and stage1-only states).
 - [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) - complete root metadata matrix and authored/generated ownership.
 - [parent-skill-hub-template.md](../../assets/parent-skill/parent-skill-hub-template.md) - routing-only hub `SKILL.md` scaffold.
 - [parent-skill-registry-template.json](../../assets/parent-skill/parent-skill-registry-template.json) - mode registry scaffold for parent hubs.

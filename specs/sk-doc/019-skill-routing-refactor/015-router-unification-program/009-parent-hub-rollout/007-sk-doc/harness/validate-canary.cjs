@@ -83,20 +83,20 @@ const PROTECTED_DIGESTS = Object.freeze({
   'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
 });
 const AUTHORED_DIGESTS = Object.freeze({
-  'SKILL.md': '828b2bde31cdf7e040e867cf72c49c47d2d8e02e015da09fd19c7001fa1bd79f',
-  'hub-router.json': '6045796bb186a6a67177a5081b03e851cd04c80274fb6afcf37d7cc2b49cb5d9',
-  'mode-registry.json': '1adbc0e88b35a313f67967f2292f52ae27f1ab6818d0b96fbbe8962b2996753e',
+  'SKILL.md': 'a0efc55f43af16565afdfed10a729e232c26a8348b285bc3a9796a4ae1ed8e6c',
+  'hub-router.json': 'b8da3ec61618c323ac66ff9a2b2863db971a099ff761eef93241b98ffbf98eba',
+  'mode-registry.json': 'fe8097db0cebf545481e7fc823009a52dcfb5daf35014d1a280f97366dc5cfd1',
   'packets/sk-create-agent/SKILL.md': '86a4aa72ae597cd0313a1d0d7e4790ea03f80c02c2999413e112349f511eda7f',
   'packets/sk-create-benchmark/SKILL.md': 'e2b8f93301bb9d91c3116cb1c2e932cebfa7d980af9563c24b7124f6b1bdeaf8',
   'packets/sk-create-changelog/SKILL.md': '540813a0323f902628c29e1f3bfabbd5fbd2213292955e1f28d6567ade32bdae',
   'packets/sk-create-command/SKILL.md': '176c3c62910ef1ef7b19bb260e4b0176c2ea82d975c34da72520ade9f2f57466',
   'packets/sk-create-diff/SKILL.md': '53bc12941ae0ec52372a2bdcf52be43034c99cb3e722ddcb2de0de1f75e5dcdb',
-  'packets/sk-create-feature-catalog/SKILL.md': 'b61de02bc92f759d9da7af5297793931348f9cd8b5f56173160b95b9a60c28f3',
-  'packets/sk-create-flowchart/SKILL.md': '1b62610643659e6b12d66d3daee715d8995fe7c6277b1038b9a3107fed3ffb45',
-  'packets/sk-create-manual-testing-playbook/SKILL.md': 'fcbc34deb5fd1da548e70df729b27d238c6400a76dd9fe11131a01bc1d9cefff',
+  'packets/sk-create-feature-catalog/SKILL.md': '88dde2adf676cbbe76b4684c14503b668d88e97dec05bdfe39848fc470a5dd8a',
+  'packets/sk-create-manual-testing-playbook/SKILL.md': '35d75124c12dc73035694b1bc3b14c9fca9f9c9c227018e0e87a0caeb2c16500',
   'packets/sk-create-quality-control/SKILL.md': 'c547aa0e2cf27d0685e8e6af322dfa342bfb19754864b3d2af061d93160c5f63',
-  'packets/sk-create-readme/SKILL.md': '9c4198dfb3870cdf4bbcc40ac4921e3b0044cd9aaa3862cc8824a0141c899cf0',
-  'packets/sk-create-skill/SKILL.md': 'bbf2feafed3dd1a8b3a14261feaaaa1abc0f0d008de8fb731265234f81c47465',
+  'packets/sk-create-readme/SKILL.md': 'd68c33d779ee74aaa877309f106edb98c2771fdbe14afc9f6c83580111ecfdea',
+  'packets/sk-create-skill/SKILL.md': 'b47d82d94547db8c8bdcf66e33d32fa36808cd428c4d1774675deae98971929b',
+  'packets/sk-create-diagram/SKILL.md': '0799f4eef8d405be3c1831dee2f14453aa3886d171b4e21c5eeb9fad8defbc40',
 });
 
 function readJson(filePath) {

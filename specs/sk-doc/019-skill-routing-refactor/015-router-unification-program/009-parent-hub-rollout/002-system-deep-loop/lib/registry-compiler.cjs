@@ -195,9 +195,12 @@ function assertNoCollapse(rows, registry) {
   const alignment = rowByMode.get('alignment');
   if (!review || !alignment
     || review.runtimeLoopType !== 'review'
-    || alignment.runtimeLoopType !== 'review'
+    || review.packetRef !== 'deep-review'
+    || alignment.runtimeLoopType !== null
+    || alignment.backendKind !== 'alignment-convergence'
+    || alignment.packetRef !== 'deep-alignment'
     || review.packetRef === alignment.packetRef) {
-    fail('RUNTIME_KEY_COLLAPSE', 'review runtime key no longer preserves distinct packets');
+    fail('RUNTIME_KEY_COLLAPSE', 'review and alignment no longer preserve their distinct runtime/backend contracts');
   }
 }
 

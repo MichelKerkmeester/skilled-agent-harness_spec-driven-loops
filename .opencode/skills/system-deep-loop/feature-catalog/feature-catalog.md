@@ -32,7 +32,7 @@ Use this catalog as the current-state inventory for the `system-deep-loop` hub. 
 
 #### Current Reality
 
-`runtimeLoopType` is the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs`, explicitly `null` for the three improvement lanes rather than inferred; `backendKind` splits `runtime-loop-type` (research/review/ai-council/alignment) from `improvement-host` (the three improvement lanes). A second-layer surface router at `shared/references/smart-routing.md` supports router-replay benchmarking without re-deciding the mode.
+`runtimeLoopType` is the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs`, explicitly `null` for the three improvement lanes rather than inferred; `backendKind` splits `runtime-loop-type` (research/review/ai-council/alignment) from `improvement-host` (the three improvement lanes). A second-layer surface router at the root `ROUTER.md` supports router-replay benchmarking without re-deciding the mode.
 
 #### Source Files
 

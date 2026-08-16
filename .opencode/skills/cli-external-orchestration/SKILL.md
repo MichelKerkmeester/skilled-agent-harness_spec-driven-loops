@@ -2,7 +2,7 @@
 name: cli-external-orchestration
 description: "Parent hub for external CLI dispatch: routes to six workflow modes through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.2.0.0
+version: 1.4.2.0
 metadata:
   author: OpenCode
   family: cli
@@ -39,7 +39,7 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 
 ## 2. SMART ROUTING
 
-Routing is registry-driven. `mode-registry.json` lists all six modes in one `modes[]` array. `hub-router.json` decides whether the result is a single mode, an ordered bundle, or a deferred disambiguation.
+Routing is two-stage. Stage 1 (hub → mode): the compiled router / `hub-router.json` scores the request and resolves it to one workflow mode — or an ordered bundle — per `mode-registry.json`. Stage 2 (mode → leaves): the surface router below maps the request's CLI-dispatch intent to the exact packet-local leaf resources that mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode. The surface router is a first-class document at the hub root — `ROUTER.md` — carrying the intent model, the machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block, and the how-to-read rules.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
@@ -68,6 +68,12 @@ read hub-router.json
 - `orderedBundle`: multiple explicitly requested executors route in tie-break order.
 - `defer`: unclear or contradictory dispatch intent asks for disambiguation — the router does not silently default to `cli-opencode` on genuine ambiguity.
 
+### Surface Router — per-mode leaf sets
+
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (all six modes, plus the deliberate absence: a bare CLI-dispatch phrase that names no executor fires no intent and defers at the hub), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union, the `orderedBundle` outcome; no keyword match → hub `defer`, never a silent default to `cli-opencode`). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+
+`ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule).
+
 ### Executor Delegation
 
 A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to opencode", "get a claude code second opinion", "delegate to codex", "delegate to cursor", "delegate to devin", "delegate to pi", or a small model that dispatches through one) is resolved by the system-skill-advisor's executor-delegation scorer, which sources its alias table from THIS hub's `mode-registry.json` — keyed by each mode's `packetSkillName` — and resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, or `cli-pi`. See `system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts`.
@@ -91,7 +97,7 @@ cli-external-orchestration/
   manual-testing-playbook/
   benchmark/
   leaf-manifest.json
-  shared/
+  ROUTER.md
   cli-opencode/
     SKILL.md
     README.md
@@ -158,6 +164,8 @@ Each mode's self-invocation guard is runtime-signal-based (env var / process anc
 - Keep every packet in `modes[]` and give every packet a `packetKind`.
 - Keep exactly one `graph-metadata.json`, at the hub root.
 - Keep `hub-router.json` signal keys and registry `workflowMode` values bidirectionally aligned.
+- Keep the surface router's `RESOURCE_MAP` in sync with `leaf-manifest.json` — the leaf sets dual-read to canonical typed pairs at the one contract boundary (`sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`).
+- Keep every `RESOURCE_MAP` path packet-qualified (`<packet>/references|assets/…`) and resolving on disk.
 - Read the target mode's `SKILL.md` before composing any dispatch prompt (constitutional cli-dispatch-skill-preload rule) — the advisor recommendation alone does not waive this.
 
 ### ⛔ NEVER
@@ -179,6 +187,7 @@ Each mode's self-invocation guard is runtime-signal-based (env var / process anc
 
 - Registry: `mode-registry.json`.
 - Router: `hub-router.json`.
+- Surface router: `ROUTER.md`.
 - Advisor description: `description.json`.
 - Skill graph identity: `graph-metadata.json`.
 - Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`.

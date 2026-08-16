@@ -13,7 +13,7 @@ trigger_phrases:
   - "feature catalog"
   - "conformance benchmark"
   - "peer adapter benchmark"
-version: 2.0.0.0
+version: 2.0.1.0
 ---
 
 # sk-doc
@@ -192,6 +192,7 @@ The skill ships the checks that prove a document is ready.
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the mode rules |
+| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: authoring intent to the exact leaf resources the selected mode loads |
 | [`references/quick-reference.md`](shared/references/quick-reference.md) | One-page command and gate cheat sheet |
 | [`references/hvr-rules.md`](shared/references/hvr-rules.md) | Human Voice Rules, the writing standard all output must pass |
 | [`references/validation.md`](shared/references/validation.md) | DQI scoring criteria, quality gates and assessment interpretation |

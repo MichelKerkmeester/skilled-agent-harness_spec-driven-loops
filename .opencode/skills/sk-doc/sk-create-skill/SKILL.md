@@ -257,30 +257,31 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 2. Keep the hub routing-only; nested packets own detailed workflows, evidence, examples, tool boundaries, and validation.
 3. Ask whether the generated state must be `legacy` or `ready`; do not silently choose in the authoring workflow. Existing CLI calls remain backward-compatible and default to `legacy`.
 4. Scaffold the selected state with `scripts/init_skill.py <hub-name> --path <parent-directory> --kind parent --compiled-routing legacy|ready`.
-5. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, and generated `leaf-manifest.json`, plus `changelog/`, `manual-testing-playbook/`, and `benchmark/`. Add `command-metadata.json` only when the hub owns slash commands; when present, it has one entry per owned command.
-6. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
-7. Add `references/` and `assets/` to surface packets when they carry evidence material.
-8. Give a workflow packet its own `procedures/` folder, using `assets/skill/skill-procedure-template.md`, when it has multiple distinct, individually-triggered internal processes; use `shared/procedures/` only for a card that genuinely coordinates two or more packets.
-9. Do not add `graph-metadata.json` to nested workflow packets or surface packets.
-10. Define every packet in one `mode-registry.json > modes[]` array.
-11. Use `packetKind: "workflow"` for lifecycle or process packets.
-12. Use `packetKind: "surface"` for read-only evidence packets.
-13. For every `modes[]` entry, define `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, `packet`, `packetSkillName`, `grandfatheredFolderMismatch`, `aliases`, and `advisorRouting`.
-14. Keep `folder == packetSkillName` for all new packets.
-15. Set `grandfatheredFolderMismatch: false` unless preserving an existing mismatch.
-16. Keep aliases unique across all modes.
-17. Put all workflow and surface packets in `modes[]`; never create a second array such as `surfacePackets[]`.
-18. Create `hub-router.json` with `routerPolicy`, `routerSignals`, and `vocabularyClasses`.
-19. Ensure `routerSignals` keys match `mode-registry.json > modes[].workflowMode` exactly.
-20. Ensure `routerPolicy.tieBreak` lists every registry mode once, with workflow modes before surface packets.
-21. Ensure router outcomes include the base three `single`, `orderedBundle`, and `defer`; add `surfaceBundle` only when the hub has surface packets (`surface-axis`).
-22. Ensure all router resources are hub-root-relative, packet-qualified paths that resolve on disk.
-23. Use named `extensions` only when real routing semantics require them; do not add extra directory tiers for extensions.
-24. Treat `legacy (no manifest)` as complete only when no canonical manifest was emitted. For `ready`, the initializer calls `compiled-route-manifest.cjs mint` after the final router inputs exist and then calls `freshness` against the same hub root.
-25. Accept `compiled-ready (fresh manifest verified)` only from a valid, fresh canonical result. A missing minter, failed mint, malformed manifest, or stale manifest is a failed generation and retains legacy fallback; never synthesize a digest or author an activation manifest.
-26. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs --fix`, then rerun `node scripts/ci-skill-root-metadata.cjs` to prove cleanliness. Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub; declaring only one of them is a half-written declaration the gate rejects. Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
-27. Replace every slug-only routing default: `graph-metadata.json` `domains` and `intent_signals`, `description.json` keywords, and per-mode registry aliases are the fields the advisor's scorers read — fill them with phrases a user would genuinely type.
-28. Confirm advisor discovery. A warm advisor daemon ingests a new hub automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next start ingests it. Manual refresh: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test with `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json`.
+5. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, root `ROUTER.md`, `description.json`, `graph-metadata.json`, and generated `leaf-manifest.json`, plus `changelog/`, `manual-testing-playbook/`, and `benchmark/`. Add `command-metadata.json` only when the hub owns slash commands; when present, it has one entry per owned command.
+6. `init_skill.py --kind parent` always emits the root `ROUTER.md` with `router_state: stage1-only` — empty stage-two maps and a root `SKILL.md` pointer. Keep it `stage1-only` until a concrete leaf map is authored; only then replace `router_state` with `active` with non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP` whose paths resolve and map to typed `leaf-manifest.json` pairs. Never synthesize placeholder intents.
+7. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
+8. Add `references/` and `assets/` to surface packets when they carry evidence material.
+9. Give a workflow packet its own `procedures/` folder, using `assets/skill/skill-procedure-template.md`, when it has multiple distinct, individually-triggered internal processes; use `shared/procedures/` only for a card that genuinely coordinates two or more packets.
+10. Do not add `graph-metadata.json` to nested workflow packets or surface packets.
+11. Define every packet in one `mode-registry.json > modes[]` array.
+12. Use `packetKind: "workflow"` for lifecycle or process packets.
+13. Use `packetKind: "surface"` for read-only evidence packets.
+14. For every `modes[]` entry, define `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, `packet`, `packetSkillName`, `grandfatheredFolderMismatch`, `aliases`, and `advisorRouting`.
+15. Keep `folder == packetSkillName` for all new packets.
+16. Set `grandfatheredFolderMismatch: false` unless preserving an existing mismatch.
+17. Keep aliases unique across all modes.
+18. Put all workflow and surface packets in `modes[]`; never create a second array such as `surfacePackets[]`.
+19. Create `hub-router.json` with `routerPolicy`, `routerSignals`, and `vocabularyClasses`.
+20. Ensure `routerSignals` keys match `mode-registry.json > modes[].workflowMode` exactly.
+21. Ensure `routerPolicy.tieBreak` lists every registry mode once, with workflow modes before surface packets.
+22. Ensure router outcomes include the base three `single`, `orderedBundle`, and `defer`; add `surfaceBundle` only when the hub has surface packets (`surface-axis`).
+23. Ensure all router resources are hub-root-relative, packet-qualified paths that resolve on disk.
+24. Use named `extensions` only when real routing semantics require them; do not add extra directory tiers for extensions.
+25. Treat `legacy (no manifest)` as complete only when no canonical manifest was emitted. For `ready`, the initializer calls `compiled-route-manifest.cjs mint` after the final router inputs exist and then calls `freshness` against the same hub root.
+26. Accept `compiled-ready (fresh manifest verified)` only from a valid, fresh canonical result. A missing minter, failed mint, malformed manifest, or stale manifest is a failed generation and retains legacy fallback; never synthesize a digest or author an activation manifest.
+27. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs --fix`, then rerun `node scripts/ci-skill-root-metadata.cjs` to prove cleanliness. Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub; declaring only one of them is a half-written declaration the gate rejects. Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
+28. Replace every slug-only routing default: `graph-metadata.json` `domains` and `intent_signals`, `description.json` keywords, and per-mode registry aliases are the fields the advisor's scorers read — fill them with phrases a user would genuinely type.
+29. Confirm advisor discovery. A warm advisor daemon ingests a new hub automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next start ingests it. Manual refresh: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test with `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json`.
 
 ### Parent Hub Shape
 
@@ -289,6 +290,7 @@ parent-hub/
 ├── SKILL.md
 ├── mode-registry.json
 ├── hub-router.json
+├── ROUTER.md                   # stage-two control; stage1-only on a fresh scaffold
 ├── description.json
 ├── graph-metadata.json
 ├── command-metadata.json          # optional; only when the hub owns slash commands
@@ -390,7 +392,7 @@ scripts/package_skill.py <path/to/skill-folder> <output-directory>
 - The correct workflow mode was selected: `create-skill` or `create-skill-parent`.
 - Concrete trigger examples, boundaries, tool needs, and output contracts are reflected in the artifact.
 - Standalone skills contain valid frontmatter, executable `SKILL.md` workflow content, useful resources, and no placeholder examples.
-- Parent hubs contain one hub identity, one `modes[]` registry, valid router metadata, and nested packets without packet-local graph metadata.
+- Parent hubs contain one hub identity, one `modes[]` registry, valid router metadata, one root `ROUTER.md` in a valid `stage1-only` or `active` state, and nested packets without packet-local graph metadata.
 - Generated resource paths use kebab-case, with Python and tool-mandated names preserved exactly.
 - `scripts/validate_skill_package.py <path>` exits clean, or exact blockers are reported.
 - Shared create-quality-control standards from `../shared` were applied when quality evidence was needed.

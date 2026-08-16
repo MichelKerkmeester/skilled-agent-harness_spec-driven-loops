@@ -1,0 +1,36 @@
+{
+  "level": 3,
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/001-contract-and-fleet-audit",
+  "description": "Ratified contract and completed read-only fleet-audit packet for the two-state root ROUTER.md schema, seven active hubs, default-resource decisions, source authority, historical classification, machine hashes, sk-code exception, frozen digests, and the no-live-edit handoff.",
+  "keywords": [
+    "root router",
+    "contract",
+    "fleet audit",
+    "router state",
+    "active",
+    "stage1-only",
+    "default resource",
+    "machine hash",
+    "sk-code",
+    "frozen digest",
+    "no live edit"
+  ],
+  "lastUpdated": "2026-08-16T07:40:51.096Z",
+  "specId": "001",
+  "folderSlug": "contract-and-fleet-audit",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program",
+    "020-root-router-document-standard"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "16-08-26_08-12__ratified-the-two-state-root-router-contract-and.md",
+    "16-08-26_08-13__ratified-the-two-state-root-router-contract-and.md",
+    "16-08-26_08-13__ratified-the-two-state-root-router-contract-and.md",
+    "16-08-26_08-16__ratified-the-two-state-root-router-contract-and.md",
+    "16-08-26_08-29__ratified-the-two-state-root-router-contract-and.md",
+    "16-08-26_08-40__ratified-the-two-state-root-router-contract-and.md"
+  ]
+}

@@ -1,0 +1,11 @@
+Expectation updates applied only after ADJ-001..ADJ-005 existed:
+- system-deep-loop: SKILL.md and mode-registry.json authored-source pins replaced
+  with rebuilt-canary hashes (unchanged: hub-router/mode pins stay).
+- sk-prompt: root SKILL.md and both packet SKILL.md pins replaced; hub-router and
+  mode-registry pins untouched.
+- sk-code: root SKILL.md/README pins replaced per rebuilt canary.
+- sk-doc: supplemental rule quality-then-flowchart -> quality-then-diagram; retired
+  packet pin replaced with sk-create-diagram/SKILL.md digest; /create:flowchart kept
+  as a legacy-alias probe routing to sk-create-diagram.
+- sk-design: canary rebaselined to 2 modes, 1 composition rule, 61 manifest resources;
+  retired transport phrase kept as negative-compatibility probe.

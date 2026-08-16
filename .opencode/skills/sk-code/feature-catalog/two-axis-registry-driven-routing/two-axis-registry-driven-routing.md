@@ -29,7 +29,7 @@ The WORKFLOW axis is process: `quality` (`backendKind: surface-router`) and `cod
 
 ### Registry-Driven, Not Keyed-Resource
 
-`sk-code` is a simple intent-to-packet router, not a root `references/<key>/` resource router: root `references/` and `assets/` directories are intentionally absent at the hub level, and resource slicing lives inside the nested packets plus `shared/references/smart-routing.md`. Implement/debug/verify phase doctrine is consolidated in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, then symlinked into each surface packet rather than duplicated per packet.
+`sk-code` is a simple intent-to-packet router, not a root `references/<key>/` resource router: root `references/` and `assets/` directories are intentionally absent at the hub level, and resource slicing lives inside the nested packets plus root `ROUTER.md`. Implement/debug/verify phase doctrine is consolidated in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, then symlinked into each surface packet rather than duplicated per packet.
 
 ---
 
@@ -40,6 +40,7 @@ The WORKFLOW axis is process: `quality` (`backendKind: surface-router`) and `cod
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/sk-code/SKILL.md` | Shared | States the routing contract, the workflow/surface discriminator, and the bundling rule. |
+| `.opencode/skills/sk-code/ROUTER.md` | Shared | Owns stage-two intent/resource maps and the explicit hub-shared control allowlist. |
 | `.opencode/skills/sk-code/mode-registry.json` | Shared | Declarative two-axis registry; single source of truth for `workflowMode`/`packetKind`/`backendKind`/`advisorRoutingContract` per packet. |
 | `.opencode/skills/sk-code/hub-router.json` | Shared | Router signal and tie-break data consumed alongside the registry. |
 

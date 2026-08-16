@@ -1,0 +1,1 @@
+canonical Level-3 anchor pairs and frontmatter fields verified for all six docs per child.

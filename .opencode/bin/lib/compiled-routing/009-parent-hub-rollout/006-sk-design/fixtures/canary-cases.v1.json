@@ -121,6 +121,25 @@
       }
     },
     {
+      "id": "retired-open-design-default-interface",
+      "prompt": "read open design project",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-design-interface"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-design-interface"
+        ],
+        "expectedResources": [
+          "sk-design-interface/references/design-process/design-principles.md",
+          "shared/register.md",
+          "shared/context-loading-contract.md"
+        ]
+      }
+    },
+    {
       "id": "ui-build-authored-bundle",
       "prompt": "ui build design tokens",
       "expectedAction": "route",

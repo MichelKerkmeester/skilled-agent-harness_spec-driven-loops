@@ -1,0 +1,7 @@
+{"rows": [
+  {"id": "ADJ-001", "surface": "sk-code canary pins", "priorValue": "stale authored digest", "cause": "phase-003 root adoption", "expectedDelta": "hashes printed by rebuilt canary", "decision": "approved", "adr": "ADR-012"},
+  {"id": "ADJ-002", "surface": "system-deep-loop canary pins", "priorValue": "stale authored digest", "cause": "phase-003 root adoption", "expectedDelta": "hashes printed by rebuilt canary", "decision": "approved", "adr": "ADR-012"},
+  {"id": "ADJ-003", "surface": "sk-prompt canary pins", "priorValue": "stale authored digest", "cause": "phase-003 root adoption", "expectedDelta": "hashes printed by rebuilt canary", "decision": "approved", "adr": "ADR-012"},
+  {"id": "ADJ-004", "surface": "sk-doc flowchart rule/pin", "priorValue": "quality-then-flowchart + retired pin", "cause": "packet retirement", "expectedDelta": "quality-then-diagram + sk-create-diagram pin", "decision": "approved", "adr": "ADR-010"},
+  {"id": "ADJ-005", "surface": "sk-design canary", "priorValue": "3 destinations/64 leaves", "cause": "transport retirement", "expectedDelta": "2 modes/61 leaves; negative-compat probe", "decision": "approved", "adr": "ADR-011"}
+], "rule": "no expectation write before its adjudication row exists"}

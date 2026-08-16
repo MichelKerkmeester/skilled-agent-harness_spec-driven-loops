@@ -217,10 +217,10 @@ function scoreTieBreakOrder(hubRouter) {
 // so -- unlike the hub-router.json-declared rules below -- it is not re-sorted
 // by the generic tie-break map: a generic score/tie-break sort cannot express
 // an order that depends on which of two DIFFERENT scores won for a given
-// prompt (e.g. create-quality-control:4 outscoring create-flowchart:3), only
+// prompt (e.g. create-quality-control:4 outscoring create-diagram:3), only
 // on a fixed mode-to-mode priority.
 const SUPPLEMENTAL_BUNDLE_RULES = [
-  { name: 'quality-then-flowchart', whenAll: ['sk-create-quality-control', 'sk-create-flowchart'] },
+  { name: 'quality-then-diagram', whenAll: ['sk-create-quality-control', 'sk-create-diagram'] },
   { name: 'feature-catalog-then-playbook', whenAll: ['sk-create-feature-catalog', 'sk-create-manual-testing-playbook'] },
   { name: 'agent-then-command', whenAll: ['sk-create-agent', 'sk-create-command'] },
   { name: 'skill-then-quality-then-changelog', whenAll: ['sk-create-skill', 'sk-create-quality-control', 'sk-create-changelog'] },

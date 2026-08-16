@@ -13,7 +13,33 @@ const crypto = require('node:crypto');
 
 const layout = require('./compiled-route-layout.cjs');
 
-const RUNTIME_ROOT = path.join(__dirname, 'compiled-routing');
+// A private root binding names one closure this module must serve: runtime
+// paths, activation root, require cache and writer lock all derive from it.
+// The binding is realpath-canonicalized so every spelling of one closure — a
+// symlink alias, a relative path, a trailing slash — resolves to one lock and
+// one cache root. Without a binding the default promoted runtime root is used.
+// The variable name is shared with bin/compiled-route-manifest.cjs; the CLI
+// clears it for default operations and sets it only inside the isolated child
+// process it spawns for explicit roots.
+const RUNTIME_ROOT_OVERRIDE_ENV = process.env.SPECKIT_COMPILED_ROUTING_MANIFEST_RUNTIME_ROOT;
+const RUNTIME_ROOT_OVERRIDDEN = Boolean(RUNTIME_ROOT_OVERRIDE_ENV);
+
+// Canonicalize an explicitly bound runtime root to its real path so a symlink
+// alias and its target directory derive the same writer lock, require-cache
+// boundary and activation store. A root that cannot be realpath'd (missing
+// target) keeps its resolved path and fails the coherence gate downstream.
+function canonicalRuntimeRoot(value) {
+  const resolved = path.resolve(value);
+  try {
+    return fs.realpathSync(resolved);
+  } catch {
+    return resolved;
+  }
+}
+
+const RUNTIME_ROOT = RUNTIME_ROOT_OVERRIDE_ENV
+  ? canonicalRuntimeRoot(RUNTIME_ROOT_OVERRIDE_ENV)
+  : path.join(__dirname, 'compiled-routing');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -49,11 +75,17 @@ function clearRuntimeRequireCache() {
 }
 
 function runtimePaths({ allowLegacyFallback = false } = {}) {
-  return layout.resolveRuntimePaths(RUNTIME_ROOT, { allowLegacyFallback });
+  // An explicitly selected runtime root names one specific closure: it must
+  // never silently fall back to a legacy layout, because a root without a
+  // coherent compiled-routing layout there is a configuration error.
+  const fallback = allowLegacyFallback && !RUNTIME_ROOT_OVERRIDDEN;
+  return layout.resolveRuntimePaths(RUNTIME_ROOT, { allowLegacyFallback: fallback });
 }
 
 function activationRoot() {
-  return runtimePaths({ allowLegacyFallback: true }).activationRoot;
+  const binding = runtimePaths({ allowLegacyFallback: true });
+  if (!binding) throw contractError('invalid-runtime-root');
+  return binding.activationRoot;
 }
 
 function runtimeContext() {
@@ -637,7 +669,17 @@ function mintCanonicalManifestUnlocked({ hubId, skillRoot }) {
   };
 }
 
+// The writer lease lives beside the runtime root, so an incoherent override
+// root must fail before a lock file can be created next to a tree that cannot
+// serve it. The default root keeps its historical legacy-fallback behavior.
+function runtimeRootCoherent() {
+  return !RUNTIME_ROOT_OVERRIDDEN || Boolean(runtimePaths());
+}
+
 function mintCanonicalManifest(input) {
+  if (!runtimeRootCoherent()) {
+    return failureRecord(input && input.hubId, 'invalid-runtime-root', { created: false });
+  }
   const lease = acquireManifestWriterLease('mint');
   if (!lease) return failureRecord(input && input.hubId, 'publication-locked', { created: false });
   try {
@@ -744,6 +786,9 @@ function refreshCanonicalManifestUnlocked({ hubId, skillRoot }) {
 }
 
 function refreshCanonicalManifest(input) {
+  if (!runtimeRootCoherent()) {
+    return failureRecord(input && input.hubId, 'invalid-runtime-root', { refreshed: false });
+  }
   const lease = acquireManifestWriterLease('refresh');
   if (!lease) return failureRecord(input && input.hubId, 'publication-locked', { refreshed: false });
   try {

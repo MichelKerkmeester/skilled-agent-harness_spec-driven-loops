@@ -160,6 +160,7 @@ defaults:
   skill_path: .opencode/skills/
   registry_filename: mode-registry.json
   hub_router_filename: hub-router.json
+  root_router_filename: ROUTER.md
   description_filename: description.json
   graph_metadata_filename: graph-metadata.json
   shared_dirname: shared
@@ -168,6 +169,56 @@ defaults:
   execution_mode: :confirm
   dqi_hard_minimum: 75
 
+# ─────────────────────────────────────────────────────────────────
+# CANONICAL ROOT ROUTER CLASSIFICATION + ACTION CONTRACT
+# ─────────────────────────────────────────────────────────────────
+# Both workflows bind this exact block: the classification states, the action
+# line, and the invariants are one contract shared by :auto and :confirm. The
+# parity test compares this block structurally, so the two workflows can never
+# drift apart on when they create, migrate, leave unchanged, or stop. Only
+# checkpointing differs between the modes.
+# ─────────────────────────────────────────────────────────────────
+root_router_contract:
+  action_line: "ROUTER.md: create|migrate|unchanged"
+  classification_states:
+    - stage1-only
+    - active
+    - legacy-migratable
+    - already-current
+    - conflict
+    - malformed
+  actions:
+    - create
+    - migrate
+    - unchanged
+  state_action_map:
+    stage1-only:
+      action: unchanged
+      note: "Existing stage1-only router with empty maps stays as-is; an absent root on a new hub routes to create"
+    active:
+      action: unchanged
+      note: "Existing active router with non-empty equal-key maps stays as-is"
+    legacy-migratable:
+      action: migrate
+      note: "No root router; only a legacy smart-routing.md exists. Create the root ROUTER.md from the legacy content, preserve the machine block byte-for-byte, then delete the legacy file only after the migrated hub validates"
+    already-current:
+      action: unchanged
+      note: "Root router already matches the contract"
+    conflict:
+      action: null
+      stop_before_write: true
+      note: "Root ROUTER.md coexists with a legacy smart-routing.md; STOP before any write and require manual resolution"
+    malformed:
+      action: null
+      stop_before_write: true
+      note: "Router state or machine maps are unreadable; STOP before any write and require manual repair"
+  invariants:
+    create_emits_stage1_only_with_empty_maps: true
+    stop_before_write_on_conflict: true
+    stop_before_write_on_malformed: true
+    delete_legacy_only_after_validation: true
+    preserve_machine_block_bytes_on_migrate: true
+
 operation_router:
   create:
     requires_existing_skill: false
@@ -175,6 +226,7 @@ operation_router:
       - SKILL.md
       - mode-registry.json
       - hub-router.json
+      - ROUTER.md                # stage-two control; router_state: stage1-only on a fresh scaffold
       - description.json
       - graph-metadata.json
       - changelog/
@@ -191,6 +243,7 @@ operation_router:
       - SKILL.md
       - mode-registry.json
       - hub-router.json
+      - ROUTER.md                # stage-two control; classify, then create/migrate/unchanged
       - description.json
       - graph-metadata.json
       - changelog/
@@ -209,6 +262,7 @@ template_sources:
   hub_skill: .opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md
   mode_registry: .opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-registry-template.json
   hub_router: .opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json
+  root_router: .opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-smart-routing-template.md
   description: .opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-description-template.json
   hub_graph_metadata: .opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json
 
@@ -224,6 +278,7 @@ quality_standards:
     - "exactly one graph-metadata.json at the hub root (from parent_skill_graph_metadata_template.json) with skill_id == hub folder name and family in {cli, mcp, sk-code, deep-loop, sk-util, system}"
     - mode-registry.json present and valid JSON
     - "hub-router.json present and valid (routerSignals cover every workflowMode, typed vocabularyClasses, tieBreak covers all modes; any catch-all vocabulary class (hub-identity) is on the default mode only, not specialized modes (see parent_hub_router_schema.md); surface packets get metadata routerSignals plus a surfaceBundle outcome)"
+    - "root ROUTER.md present with router_state: stage1-only or active, a root skill_pointer, and a four-part version; stage1-only maps stay empty, active maps are non-empty and equal-keyed"
     - description.json present
     - "changelog/ with real files (no symlinks) at the hub root and in every packet"
   registry_requirements:
@@ -246,6 +301,7 @@ quality_standards:
     - non-discoverable shared/ for packet-shared workflow-layer helpers (synthesis, not execution primitives)
     - NO graph-metadata.json inside shared/
   one_identity_rule: "Exactly one graph-metadata.json (the hub's). A nested graph-metadata.json creates a rogue advisor identity."
+  root_router_rule: "Root ROUTER.md declares router_state: stage1-only or active. Fresh scaffolds are stage1-only with empty maps; promote to active only after authoring a concrete leaf map. On update, classify the router state and emit exactly one ROUTER.md: create|migrate|unchanged action; stop on conflict or malformed state; preserve the machine block byte-for-byte in ordinary migration."
   validation_pipeline:
     - "python3 .opencode/skills/sk-doc/scripts/validate_document.py [skill_root]/SKILL.md"
     - "python3 .opencode/skills/sk-doc/scripts/extract_structure.py [skill_root]/SKILL.md"
@@ -366,9 +422,12 @@ workflow:
       - Plan the advisorRouting block per mode (routingClass, legacyAdvisorId for lexical/alias-fold, advisorDefaultMode, legacyAliases, packetSkillName)
       - Preserve existing packet names, registry keys, and routing blocks when update mode
       - "When several modes intentionally share one packet folder, log it as an assumption — do not treat it as a duplicate-folder failure"
+      - "On update, classify the target's root ROUTER.md as stage1-only, active, legacy-migratable, already-current, conflict, or malformed and select the ROUTER.md: create|migrate|unchanged action (see skill-parent.md section 7); stop on conflict or malformed"
     outputs:
       - packet_plan
       - registry_plan
+      - router_state_classification
+      - router_action_line
     checkpoint:
       question: "Review the proposed mode list, packet names, and advisorRouting plan?"
       options:
@@ -385,9 +444,10 @@ workflow:
       - Read parent_skill_hub_template.md
       - Read parent_skill_registry_template.json
       - Read parent_skill_hub_router_template.json
+      - Read parent_skill_root_router_template.md (root ROUTER.md two-state authoring)
       - Read parent_skill_description_template.json
       - Read parent_skill_graph_metadata_template.json
-      - Extract the hub SKILL.md, registry, hub-router, description, and hub graph-metadata contracts
+      - Extract the hub SKILL.md, registry, hub-router, root router, description, and hub graph-metadata contracts
     outputs:
       - template_contract_loaded
 
@@ -398,6 +458,7 @@ workflow:
       - Create or update the thin hub SKILL.md (routing only)
       - "Create or update mode-registry.json with the two-axis discriminator (workflowMode + packetKind + backendKind), toolSurface and grandfatheredFolderMismatch per mode, a top-level packet, and one advisorRouting block per mode"
       - "Create or update hub-router.json from parent_skill_hub_router_template.json (routerSignals for every mode, typed vocabularyClasses, tieBreak covering all modes; keep any catch-all class (hub-identity) on the default mode only, never specialized modes (route-gold over-emission); surface packets get metadata routerSignals plus a surfaceBundle outcome)"
+      - "Create or update root ROUTER.md from parent_skill_root_router_template.md per the classified action: create -> stage1-only with empty maps; migrate -> root ROUTER.md from the legacy smart-routing.md content with the inner machine block preserved byte-for-byte; unchanged -> leave as-is; conflict/malformed -> STOP before generation"
       - "Create or update description.json from parent_skill_description_template.json"
       - "Create or update exactly one hub graph-metadata.json from parent_skill_graph_metadata_template.json (skill_id == hub folder, family in the allowed set)"
       - "Create or update one workflow packet dir per distinct packet value (default folder == packetSkillName == [hub-prefix]-<mode>; reuse a shared packet folder when several modes map to one), each with its own SKILL.md, README.md, and changelog/"
@@ -410,6 +471,7 @@ workflow:
       - generated_hub_preview
       - generated_packet_plan
       - generated_leaf_manifest
+      - root_router_actioned
     checkpoint:
       question: "Review the hub + registry preview and the representative packet plan?"
       options:
@@ -431,6 +493,7 @@ workflow:
       - "Check each mode's top-level packet resolves to an existing direct-child sub-directory (no absolute or ../ paths) that contains its own SKILL.md; workflow folder == [hub-prefix]-<mode> and surface folder == bare noun are recommended, grandfathered mismatches allowed via grandfatheredFolderMismatch"
       - Count graph-metadata.json files under skill_root; assert exactly 1 (the hub) and 0 inside packets/shared
       - "Assert [skill_root]/leaf-manifest.json exists and is valid JSON (step_4 generates it via the scoped generator); parent_skill_check_passed already covers its class-H structural requirement, so a missing/stale file here means step_4's generation activity was skipped, not a separate defect to fix in this step"
+      - "Assert the root ROUTER.md conforms to the two-state contract via parent_skill_check's check 12 (stable RRC codes) and, on migrate, assert the machine-block hash before == after"
     outputs:
       - hub_validation_passed
       - parent_skill_check_passed
@@ -440,6 +503,7 @@ workflow:
       - packet_structure_passed
       - one_identity_passed
       - leaf_manifest_present
+      - root_router_contract_passed
 
   step_5b_save_context:
     purpose: Preserve spec-folder documentation and index the implementation summary for this parent-skill work
@@ -529,6 +593,10 @@ completion_report_template: |
   Mode: :confirm
   Target: [skill_root]
 
+  Root router:
+  - ROUTER.md state: [stage1-only|active|legacy-migratable|already-current|conflict|malformed]
+  - ROUTER.md action: [create|migrate|unchanged]
+
   Spec Folder: [spec_path] ([created|existing|skipped])
   Context saved: [yes/no]
 
@@ -538,6 +606,7 @@ completion_report_template: |
 
   Validation:
   - parent-skill-check.cjs (canonical gate): [exit 0 / FAIL]
+  - Root router contract (check 12, stable RRC codes): [passed/failed]
   - Hub structure: [passed/failed]
   - Hub identity (skill_id == folder, family in allowed set): [passed/failed]
   - Canon files (hub-router.json, description.json, changelogs): [present/missing]
@@ -559,12 +628,13 @@ termination:
 
 rules:
   must:
-    - "Load the creation reference and all canon templates (hub, registry, hub-router, description, graph-metadata) before writing"
+    - "Load the creation reference and all canon templates (hub, registry, hub-router, root router, description, graph-metadata) before writing"
     - "Keep the hub SKILL.md thin and routing-only"
     - "Resolve modes through the registry; keep per-mode contracts in packets"
-    - "Emit the full canon set: mode-registry.json, hub-router.json, description.json, graph-metadata.json, and changelogs (real files) at hub and packet level"
+    - "Emit the full canon set: mode-registry.json, hub-router.json, ROUTER.md (stage1-only on create), description.json, graph-metadata.json, and changelogs (real files) at hub and packet level"
     - "Gate completion on parent-skill-check.cjs exit 0"
     - "Keep exactly one graph-metadata.json (the hub's)"
+    - "On update, classify the root ROUTER.md state and emit exactly one ROUTER.md: create|migrate|unchanged action; stop on conflict or malformed; preserve the machine block byte-for-byte in ordinary migration"
   must_not:
     - "Add a graph-metadata.json inside a packet or inside shared/"
     - "Emit runtimeLoopType for a mode that is not a runtime-loop workflow mode"
@@ -572,3 +642,5 @@ rules:
     - "Use symlinks for changelog files"
     - "Move synthesis helpers into the execution backend"
     - "Widen the behavior-parity contract to chase coverage"
+    - "Synthesize placeholder leaf intents or promote ROUTER.md to active without a concrete authored leaf map"
+    - "Create a legacy shared/references/smart-routing.md path or point hub-router defaultResource at a legacy router path"

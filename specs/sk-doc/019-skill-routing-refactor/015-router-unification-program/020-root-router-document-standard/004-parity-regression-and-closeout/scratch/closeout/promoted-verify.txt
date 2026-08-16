@@ -1,0 +1,3 @@
+compiled-route-sync promoted --verify
+exit 0; 7/7 hubs verified; zero spec-tree reads detected during verification
+(realpath-canonical authored closure, ADR-013).

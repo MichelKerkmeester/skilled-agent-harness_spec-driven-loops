@@ -1,0 +1,2 @@
+{"hubs": 7, "parity": "pass", "check": "authored root routers vs compiled serving closures",
+ "note": "7/7 parity probes pass against the promoted closure"}

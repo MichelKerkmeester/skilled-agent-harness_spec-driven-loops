@@ -3,8 +3,8 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, resolve, relative } from 'node:path';
 
 // Drift guard for sk-code's machine-readable router. sk-code keeps its
-// authoritative router as prose tables in references/smart-routing.md and a
-// flat, surface-unioned projection in the same file's machine-readable block,
+// authoritative router as prose tables in root ROUTER.md and a flat,
+// surface-unioned projection in the same file's machine-readable block,
 // which the Lane C benchmark reads. Those two views can drift. Per-intent
 // placement cannot be compared (the flat block unions Webflow/OpenCode/
 // Motion.dev), so this guard pins the machine block to the two things that
@@ -22,7 +22,7 @@ const { parseRouter, loadSurfaceRouter, registryPacketRoots } = require(join(SKI
 
 // Router-internal navigation docs — intentionally NOT intent resources.
 const NON_ROUTED_ALLOWLIST = new Set([
-  'references/smart-routing.md',
+  'ROUTER.md',
   'references/stack-detection.md',
   'references/phase-detection.md',
 ]);
@@ -68,14 +68,14 @@ function listRoutableMarkdown(): string[] {
 }
 
 function proseExplicitPaths(): Set<string> {
-  const md = readFileSync(join(SKCODE, 'shared', 'references', 'smart-routing.md'), 'utf8');
+  const md = readFileSync(join(SKCODE, 'ROUTER.md'), 'utf8');
   const start = md.indexOf('## 4. WEBFLOW MAP');
   const end = md.indexOf('## 7. VERIFICATION COMMANDS');
   const prose = md.slice(start, end);
   // Explicit full paths only — skip brace `{a,b}.md`, glob `dir/*`, and bare shorthand.
   // Surface packets are hub-root-relative and packet-qualified (webflow/…, opencode/…,
   // animation/…); the universal/shared tiers stay references/… and assets/….
-  const re = /`((?:references|assets|webflow|opencode|animation)\/[^`*{}\s]+\.md)`/g;
+  const re = /`((?:shared|references|assets|webflow|opencode|animation)\/[^`*{}\s]+\.md)`/g;
   const set = new Set<string>();
   let m: RegExpExecArray | null;
   while ((m = re.exec(prose)) !== null) set.add(m[1]);
@@ -122,13 +122,13 @@ const SURFACES = ['sk-code-webflow', 'sk-code-opencode'];
 // single surface child): the surface-agnostic quality/error/checklist docs, the
 // shared patterns readme, and the one code-review checklist the parent cites.
 const PARENT_TIER_ALLOWLIST = new Set([
-  'references/universal/multi-agent-research.md',
-  'references/universal/code-quality-standards.md',
-  'references/universal/code-style-guide.md',
-  'references/universal/error-recovery.md',
-  'references/universal-debugging-checklist.md',
-  'references/universal-verification-checklist.md',
-  'references/performance-loading-checklist.md',
+  'shared/references/universal/multi-agent-research.md',
+  'shared/references/universal/code-quality-standards.md',
+  'shared/references/universal/code-style-guide.md',
+  'shared/references/universal/error-recovery.md',
+  'shared/references/universal-debugging-checklist.md',
+  'shared/references/universal-verification-checklist.md',
+  'shared/references/performance-loading-checklist.md',
   'shared/assets/patterns/README.md',
   'sk-code-review/assets/code-quality-checklist.md',
 ]);

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "children_ids": [
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/001-contract-and-fleet-audit",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/002-create-skill-template-and-validator-alignment",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+        "reason": "Fleet-wide root-router promotion builds on the graduated compiled-routing activation program.",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment",
+        "reason": "The root-router standard extends parent-skill creation and validation alignment.",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "root router document standard",
+      "class-H root ROUTER.md",
+      "seven hub router adoption"
+    ],
+    "key_topics": [
+      "root",
+      "router",
+      "document",
+      "standard",
+      "class-h",
+      "seven",
+      "hub",
+      "adoption",
+      "six",
+      "parent",
+      "skills",
+      "still"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Six",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Program Constraints",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six class-H parent skills still keep their second-stage leaf router at `shared/references/smart-routing.md`, while the mcp-tooling pilot already uses a root `ROUTER.md`",
+    "created_at": "2026-08-15T12:47:39Z",
+    "last_save_at": "2026-08-16T07:53:28.800Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:95c3e7ade461219ba78ccd169c8d46cb762ad48aad54cf23b71d6dcd9dc0cccd",
+    "source_doc_hashes": {
+      "spec.md": "704b68f0c06be4beaa87919ad372e45505b81260844d432b774a386d3653c809"
+    },
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout",
+    "last_active_at": "2026-08-16T07:53:28.800Z"
+  }
+}

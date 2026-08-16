@@ -1,0 +1,9 @@
+2026-08-16 worktree-local authoritative gates
+
+validate.sh specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard --recursive --strict
+exit 0
+
+validate.sh specs/sk-doc/019-skill-routing-refactor/015-router-unification-program --recursive --strict
+exit 0
+
+The complete existing validator runtime was bound to the worktree; command-tree parity passed across 165 mirrors.

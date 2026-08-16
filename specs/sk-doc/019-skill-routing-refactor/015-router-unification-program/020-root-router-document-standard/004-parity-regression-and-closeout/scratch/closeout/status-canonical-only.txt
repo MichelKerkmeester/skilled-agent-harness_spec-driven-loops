@@ -1,0 +1,4 @@
+canonical-seven assertion: exactly cli-external-orchestration, mcp-tooling, sk-code,
+sk-design, sk-doc, sk-prompt, system-deep-loop count toward the 7/7 result.
+temporary manifest-test/race fixtures recorded but excluded; no fixture substitutes
+for a canonical hub.

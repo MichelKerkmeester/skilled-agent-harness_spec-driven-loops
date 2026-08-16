@@ -23,6 +23,7 @@ trigger_phrases:
 |---|---|
 | `command-metadata-schema.cjs` | Validates command metadata fields, owner modes, routing signals and choreography order. |
 | `leaf-resource-contract.cjs` | Normalizes resource paths and workflow modes into unique typed leaf identities. |
+| `root-router-contract.cjs` | Validates the two-state root ROUTER.md contract (active / stage1-only) with stable negative codes. |
 | `s-class-config-defaults.json` | Stores defaults for skill-root class configuration. |
 | `skill-root-metadata-contract.cjs` | Classifies skill roots and derives required, forbidden, overlay and generated metadata sets. |
 

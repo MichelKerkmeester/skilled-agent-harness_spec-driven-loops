@@ -1,0 +1,1 @@
+unresolved-token scan across all authored packet docs: zero tokens (no TODO/TBD/{{...}}).

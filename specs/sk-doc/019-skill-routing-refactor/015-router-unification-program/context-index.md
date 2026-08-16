@@ -1,6 +1,6 @@
 # Context Index — Router-Unification Program
 
-The current topology is authoritative on disk: `015-router-unification-program/` has nineteen direct children. The former unified-refactor grouping was dissolved after the committed move; its implementation children are now direct children of this parent. Child `019-routing-coverage-activation-verification/` retains its own internal children and numbering.
+The current topology is authoritative on disk: `015-router-unification-program/` has twenty direct children. The former unified-refactor grouping was dissolved after the committed move; its implementation children are now direct children of this parent. Children `019-routing-coverage-activation-verification/` and `020-root-router-document-standard/` retain their own internal children and numbering.
 
 ## Current flat topology
 
@@ -25,6 +25,7 @@ The current topology is authoritative on disk: `015-router-unification-program/`
 | `017-create-skill-alignment` | Compiled-ready create-skill onboarding |
 | `018-benchmark-alignment` | Compiled-serving benchmark lane |
 | `019-routing-coverage-activation-verification` | Coverage build-out, activation, parity, and end-to-end verification |
+| `020-root-router-document-standard` | Mandatory root router contract, authoring alignment, seven-hub adoption, and fleet freshness closeout — **complete 2026-08-16**; deferred: authoritative main-side DB/index scan |
 
 ## Old → new mapping for the dissolved grouping
 
@@ -56,3 +57,4 @@ The two former `012` children are now distinct `015` and `016` siblings. The for
 - Extracted sk-code routing research: `../001-research/011-sk-code-routing-research/`
 - Root packet: `../spec.md`
 - Child `019` internal topology: unchanged; its own research and implementation children remain below that child.
+- Child `020` internal topology: contract/audit → create-skill/validator alignment → seven-hub adoption → parity and closeout. All four `020` children are complete (2026-08-16); the authoritative main-side DB/index scan is the deferred integration gate (`020-root-router-document-standard/004-parity-regression-and-closeout/scratch/closeout/deferred-main-side-gate.md`).

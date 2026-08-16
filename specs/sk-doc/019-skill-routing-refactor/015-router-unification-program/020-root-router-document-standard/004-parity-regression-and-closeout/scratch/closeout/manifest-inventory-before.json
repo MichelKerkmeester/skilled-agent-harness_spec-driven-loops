@@ -1,0 +1,3 @@
+{"graduatedManifests": 7, "hubs": ["cli-external-orchestration","mcp-tooling","sk-code","sk-design","sk-doc","sk-prompt","system-deep-loop"],
+ "attributes": "generation, serving authority, shadow-only state, fence epoch preserved through refresh",
+ "temporaryFixtures": "manifest-test/race fixtures recorded but excluded from canonical-seven assertion"}

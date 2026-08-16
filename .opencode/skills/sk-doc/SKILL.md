@@ -2,7 +2,7 @@
 name: sk-doc
 description: "Documentation & OpenCode-component authoring parent hub: routes to eleven workflow packets that create skills, parent hubs, READMEs/install-guides, agents, commands, feature catalogs, manual-testing playbooks, MCP benchmark folders, HTML/SVG diagrams and ASCII flowcharts, changelogs, and local before/after document reviews, plus a sk-create-quality-control mode that validates/scores/optimizes existing docs. Holds no per-packet logic; dispatches by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.0.0.0
+version: 2.0.1.0
 metadata:
   author: OpenCode
   family: sk-util
@@ -45,13 +45,19 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven at runtime and packet-authored at source**. Each nested packet's single `Keyword triggers:` line is the source of truth for its routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized projections that the hub reads without re-deriving mappings during a request. The advisor routes any documentation/authoring query to the single identity `sk-doc`; the hub then picks the packet.
+Routing is **registry-driven at runtime and packet-authored at source** in two stages. Stage 1 (hub → mode): each nested packet's single `Keyword triggers:` line is the source of truth for its routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized projections that the hub reads without re-deriving mappings during a request. The advisor routes any documentation/authoring query to the single identity `sk-doc`; the hub then picks the packet. Stage 2 (mode → leaves): the root `ROUTER.md` maps the request's authoring intent to the exact packet-local leaf resources that mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
 > node .opencode/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-doc`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+
+### Surface Router — per-intent leaf sets
+
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-intent leaf model (document quality, optimization, skill/agent/command creation, flowcharts, install guides, HVR rules, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, and the explicit full-toolkit intent), the machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub UNKNOWN fallback, never a silent default). Every `RESOURCE_MAP` path is packet-qualified or an authored shared-alias disk path, and each converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+
+`ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule). The `shared/` backbone stays the universal sk-create-quality-control source; the surface router only selects leaves.
 
 ### The discriminator
 - **`workflowMode`** — the public packet key (e.g. `sk-create-skill`, `sk-create-quality-control`). `sk-create-skill-parent` is a second mode over the same `sk-create-skill` packet.
@@ -121,6 +127,7 @@ This hub does **not** use keyed resource discovery (`references/<key>/` or `asse
 ```
 sk-doc/
   SKILL.md               # this routing hub (no per-packet logic)
+  ROUTER.md              # stage-two surface router (authoring intent -> leaf sets)
   mode-registry.json     # the eleven-packet discriminator + advisorRouting (single source of truth)
   hub-router.json        # router signals + vocabulary classes
   description.json       # hub advisor descriptor
@@ -146,6 +153,7 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 - **ALWAYS** resolve a packet through `mode-registry.json`; never hardcode a router mapping in the hub.
 - **ALWAYS** keep authoring contracts in the packets; the hub stays routing-only.
 - **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one identity.
+- **ALWAYS** keep the root `ROUTER.md` `RESOURCE_MAP` in sync with `leaf-manifest.json` and `leaf-aliases.json` — the leaf sets dual-read to canonical typed pairs at the one contract boundary.
 - **ALWAYS** keep the sk-create-quality-control pipeline as one shared source under `shared/`, consumed by the packets.
 - **ALWAYS** keep changelogs as real files at the hub and in each packet — never symlinked.
 
@@ -164,6 +172,7 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 
 - Registry: `mode-registry.json` (eleven packets; `packetKind: workflow`).
 - Hub router: `hub-router.json` (signals + vocabulary classes).
+- Surface router: `ROUTER.md` (authoring intent to packet-local leaf sets).
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
 - Packets: `sk-create-skill/`, `sk-create-readme/`, `sk-create-agent/`, `sk-create-command/`, `sk-create-feature-catalog/`, `sk-create-manual-testing-playbook/`, `sk-create-benchmark/`, `sk-create-diagram/`, `sk-create-changelog/`, `sk-create-diff/`, `sk-create-quality-control/`.
 - Shared backbone: `shared/scripts/`, `shared/references/`, `shared/assets/`.

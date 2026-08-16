@@ -200,7 +200,7 @@
       "mode-registry.json",
       "hub-router.json",
       "shared/references/stack-detection.md",
-      "shared/references/smart-routing.md",
+      "ROUTER.md",
       "shared/references/phase-detection.md",
       "sk-code-webflow/references/animation/animate-and-timelines.md",
       "sk-code-webflow/references/animation/decision-matrix.md",
@@ -219,7 +219,7 @@
       ".opencode/skills/sk-code/sk-code-quality/SKILL.md",
       ".opencode/skills/sk-code/sk-code-review/SKILL.md",
       ".opencode/skills/sk-code/shared/references/stack-detection.md",
-      ".opencode/skills/sk-code/shared/references/smart-routing.md",
+      ".opencode/skills/sk-code/ROUTER.md",
       ".opencode/skills/sk-code/shared/references/phase-detection.md",
       ".opencode/skills/sk-code/sk-code-webflow/references/animation/quick-start.md",
       ".opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md",
@@ -262,6 +262,6 @@
     ],
     "causal_summary": "sk-code is the single public code skill that routes a request through mode-registry.json to two workflow modes (quality, code-review) or bundles one of two read-only surface evidence packets (code-webflow, code-opencode) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; code-webflow also carries the Motion.dev animation overlay. The shared router centralizes WEBFLOW, OPENCODE, and MOTION_DEV identity and precedence so the advisor sees exactly one code identity.",
     "created_at": "2026-04-30T08:30:00Z",
-    "last_updated_at": "2026-07-06T00:00:00Z"
+    "last_updated_at": "2026-08-15T00:00:00Z"
   }
 }

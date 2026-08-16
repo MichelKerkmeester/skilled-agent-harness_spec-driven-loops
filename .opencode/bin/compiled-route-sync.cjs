@@ -35,10 +35,10 @@ const {
 const layout = require('./lib/compiled-route-layout.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
+const SPECS_ROOT = fs.realpathSync(path.join(REPO_ROOT, '.opencode', 'specs'));
 const IMPL_ROOT = path.join(
-  REPO_ROOT,
-  '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program',
+  SPECS_ROOT,
+  'sk-doc/019-skill-routing-refactor/015-router-unification-program',
 );
 const CURRENT_LAYOUT = Object.freeze({
   activation: '013-live-activation',
@@ -755,6 +755,9 @@ function build({
   if (unresolved.length > 0) {
     throw new Error(`authored closure failed to resolve hubs: ${unresolved.join(', ')}`);
   }
+  if (closureFiles.length === 0) {
+    throw new Error('authored closure is empty');
+  }
   const publicationId = `${process.pid}-${Date.now()}`;
   const stagingRoot = `${runtimeResolved}.staging-${publicationId}`;
   const rollbackRoot = `${runtimeResolved}.rollback-${publicationId}`;
@@ -989,6 +992,9 @@ function check({ sourceRoot = IMPL_ROOT } = {}) {
   const unresolved = HUBS.filter((h) => !resolved[h]);
   if (unresolved.length > 0) {
     throw new Error(`authored closure failed to resolve hubs: ${unresolved.join(', ')}`);
+  }
+  if (closureFiles.length === 0) {
+    throw new Error('authored closure is empty');
   }
   process.stdout.write(`${closureFiles.length} closure files under authored root\n`);
   for (const abs of closureFiles) process.stdout.write(`  ${path.relative(sourceRoot, abs)}\n`);

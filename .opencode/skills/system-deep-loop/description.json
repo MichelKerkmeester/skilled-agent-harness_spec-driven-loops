@@ -1,7 +1,7 @@
 {
   "name": "system-deep-loop",
   "description": "Unified deep-loop parent hub: the single advisor-routable home for active deep-loop personas, routing to seven modes across five workflow families over a nested runtime/ infrastructure layer (formerly the separate deep-loop-runtime skill, merged 2026-07-08). research (outward web+code iterative investigation \u2192 research/ artifacts), review (iterative review loop \u2192 P0/P1/P2 findings + verdict), ai-council (multi-seat planning deliberation \u2192 ai-council/ artifacts), alignment (read-only-by-default conformance against a named standard authority \u2192 alignment/ artifacts), and three improvement lanes on the deep-improvement packet (agent-improvement, model-benchmark, skill-benchmark). The hub holds no per-mode convergence, state, or synthesis logic; each mode keeps its own contract in its packet and is reachable via its /deep:* command and native agent.",
-  "version": "2.0.0.0",
+  "version": "2.2.2.0",
   "importance_tier": "high",
   "keywords": [
     "system-deep-loop",

@@ -1,0 +1,3 @@
+captured_at=2026-08-16T06:30:00Z
+repository_root=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/010-root-router-document-standard
+check=isolated-010-worktree

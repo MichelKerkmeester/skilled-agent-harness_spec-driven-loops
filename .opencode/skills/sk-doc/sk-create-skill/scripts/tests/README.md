@@ -24,6 +24,7 @@ trigger_phrases:
 | `compiled-routing-lockstep-parity.test.cjs` | Checks compiled-routing lockstep fixtures and reports live parity. |
 | `create-journey-proof.test.cjs` | Checks standalone and parent-hub create journeys. |
 | `leaf-resource-contract.test.cjs` | Tests typed leaf-resource identity behavior. |
+| `root-router-contract.test.cjs` | Tests the two-state root ROUTER.md contract and its stable negative codes. |
 | `skill-derived-regenerator.test.cjs` | Tests derived-data regeneration and freshness behavior. |
 | `skill-root-metadata-contract.test.cjs` | Tests skill-root metadata classification and fleet conformance. |
 | `validate-compiled-routing-scenarios.test.cjs` | Tests compiled-routing scenario admission fixtures. |

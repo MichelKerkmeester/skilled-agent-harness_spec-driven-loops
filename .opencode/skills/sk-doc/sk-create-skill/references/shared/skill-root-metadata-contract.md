@@ -44,6 +44,8 @@ The registry and the router are the discriminator because they are consumed as o
 
 Classification deliberately ignores every other file, including generated output. If a generated manifest could change a root's class, then a root whose manifest was never written would classify differently after regeneration, and the gate could never report that manifest as missing.
 
+`ROUTER.md` is deliberately outside classification. The root `ROUTER.md` stage-two control document is a markdown companion, not a JSON metadata file: it never appears in the required/forbidden/generated sets below, it never changes a root's class, and a hub is classified by `mode-registry.json` plus `hub-router.json` whether or not it carries a root router. `ROUTER.md` is also never a leaf, advisor identity, or typed leaf-manifest pair — it is enforced by the separate root-router contract validator, not by this metadata gate.
+
 ### Current fleet
 
 | Class | Roots |
@@ -55,7 +57,7 @@ Classification deliberately ignores every other file, including generated output
 
 ## 3. THE FILE MATRIX
 
-`SKILL.md` is required for every root — it is the marker that makes a directory a skill root at all, and the gate discovers roots by it.
+`SKILL.md` is required for every root — it is the marker that makes a directory a skill root at all, and the gate discovers roots by it. `ROUTER.md` (class H, stage-two control document) is a markdown companion enforced by the root-router contract, not by this gate; it does not appear in the JSON matrix below and does not affect classification.
 
 | File | H | S | Producer |
 | --- | :---: | :---: | --- |
@@ -144,7 +146,7 @@ Beyond presence and forbidden files, the gate enforces:
 
 ## 6. ADDING A ROOT
 
-**A new hub (H):** author `SKILL.md`, `graph-metadata.json`, `description.json`, `mode-registry.json`, and `hub-router.json`, and — only if the hub ships slash commands — `command-metadata.json` (one entry per owned command; omit the file when the hub owns none). Run `--fix` to generate the manifest. Author `leaf-aliases.json` only if a mode genuinely resolves a resource outside its own packet.
+**A new hub (H):** author `SKILL.md`, `graph-metadata.json`, `description.json`, `mode-registry.json`, and `hub-router.json`, and — only if the hub ships slash commands — `command-metadata.json` (one entry per owned command; omit the file when the hub owns none). Run `--fix` to generate the manifest. Author `leaf-aliases.json` only if a mode genuinely resolves a resource outside its own packet. Add the root `ROUTER.md` stage-two control document per the two-state contract (see [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md)); it is a markdown companion outside the JSON matrix below and does not affect class-H classification.
 
 **A new standalone skill (S):** author `SKILL.md`, `graph-metadata.json`, and `leaf-manifest.config.json` — that config is the single declaration that names the workflow mode and the leaf roots. Run `--fix` to generate the manifest and the alias projection.
 
@@ -172,7 +174,7 @@ Every authored file has a scaffold under `create-skill/assets/`; the two generat
 ## 7. RELATED RESOURCES
 
 - [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md) - Parent-hub doctrine: one identity, nested mode packets, the two-axis registry
-- [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - Field-level schema for `mode-registry.json` and `hub-router.json`
+- [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - Field-level schema for `mode-registry.json` and `hub-router.json`, plus the two-state root `ROUTER.md` contract
 - [validation-and-packaging.md](validation-and-packaging.md) - The validation tiers a skill passes before release
 - `scripts/lib/skill-root-metadata-contract.cjs` - The pure library this document describes
 - `scripts/lib/command-metadata-schema.cjs` - The core command-metadata schema validated per hub

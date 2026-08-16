@@ -1,0 +1,3 @@
+.opencode/bin/compiled-route-status.cjs --all [--pretty]
+7 canonical hubs report servingAuthority=compiled and manifestFreshness.fresh=true
+(re-verified 2026-08-16: 7 rows, all compiled-serving fresh).
