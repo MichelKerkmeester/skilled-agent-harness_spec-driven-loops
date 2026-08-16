@@ -1,44 +1,37 @@
 ---
-title: "Feature Specification: Phase 2: install-and-command-ownership [template:level-1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 2: install-transition"
+description: "Replace the colliding installed extension with the fork using a captured rollback state and live command ownership proof."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "install-transition"
+  - "pi extension replacement"
+  - "fast command ownership"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-install-and-command-ownership"
-    last_updated_at: "2026-08-16T09:08:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition"
+    last_updated_at: "2026-08-16T11:00:00Z"
+    last_updated_by: "pi-coding-agent"
+    recent_action: "Planned bounded install transition child phase"
+    next_safe_action: "Capture pre-state before any settings mutation"
     blockers: []
-    key_files: []
+    key_files:
+      - "../../research/research.md"
+      - "../../../../../.pi/settings.json"
+      - "../../../../../.pi/PLUGINS.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-install-and-command-ownership"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
     completion_pct: 0
-    open_questions: []
+    open_questions:
+      - "Should the first settings entry use a local path or a pinned git source?"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: install-and-command-ownership
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
 
----
+# Feature Specification: Phase 2: install-transition
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -46,137 +39,115 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Draft |
 | **Created** | 2026-08-16 |
-| **Branch** | `scaffold/002-install-and-command-ownership` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | `../spec.md` |
 | **Phase** | 2 of 3 |
-| **Predecessor** | 001-suite-and-static-gates |
-| **Successor** | 003-live-ui-handoff-and-closeout |
-| **Handoff Criteria** | [To be defined during planning] |
-<!-- /ANCHOR:metadata -->
+| **Predecessor** | 001-extension-integration-suite |
+| **Successor** | 003-live-verification-and-sync |
+| **Handoff Criteria** | Pre-state is saved, fork is installed, legacy package is absent, and bare `/fast` ownership is verified |
 
----
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the integration and tests nested workstreams specification.
-
-**Scope Boundary**: [To be defined during planning]
+This child owns the one bounded settings/npm transition. It must name a rollback before mutating settings, remove the colliding `pi-gpt-fast-mode` in the same operation, and verify command ownership before handing off to live UI/session checks.
 
 **Dependencies**:
-- [To be defined during planning]
+- `001-extension-integration-suite/` passes.
+- Canonical Public `.pi/settings.json`, package scopes, and Pi install/remove commands.
 
 **Deliverables**:
-- [To be defined during planning]
+- Pre-state snapshot and rollback command.
+- Fork install and `pi-gpt-fast-mode` removal.
+- `pi list`/npm inventory and `get_commands` ownership evidence.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Installing the fork beside another extension that registers `/fast` and `--fast` creates load-order ambiguity. Settings and package scopes also need a reversible transition so a failed install does not leave the operator without a known working extension.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
+Make the installed extension set deterministic and prove bare command ownership before live behavior is judged.
 
----
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Capture `pi list`, settings package entries, and both relevant npm scopes.
+- Remove `pi-gpt-fast-mode` and install the fork as one bounded transition.
+- Verify settings/npm state, absence of the legacy package, and bare `/fast` source ownership through `get_commands`.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Live `/fast` UX, status rendering, child-session behavior, PLUGINS.md, and sync; see `003-live-verification-and-sync/`.
+- Rewriting fork production code; route defects to the owning earlier child.
+- Other machines or npm publication.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
+| `.pi/settings.json` | Modify | Replace package entry |
+| User/project npm scopes | Operator mutation | Remove legacy and install fork |
+| Install evidence under phase scratch | Create | Preserve pre/post receipts without committing credentials |
 
----
+<!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Pre-state and rollback are recorded before mutation | Snapshot contains settings and package inventory |
+| REQ-002 | Legacy package is absent after transition | `pi list` and npm inventories agree |
+| REQ-003 | Fork owns bare `/fast` | `get_commands` identifies the fork source without an unexpected suffix |
 
-### P1 - Required (complete OR user-approved deferral)
+### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-004 | Settings remain valid and scoped to the canonical checkout | Settings diff and sync expectations are recorded for the closeout child |
+
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
+- **SC-001**: A failed transition can restore the exact pre-state.
+- **SC-002**: No duplicate legacy fast-mode extension remains loaded.
 
----
+<!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+| Risk | Peer conflict blocks install/remove | Partial transition | Capture pre-state and use only the documented npm fallback |
+| Risk | Load-order suffix hides ownership | Wrong extension answers `/fast` | Query `get_commands` and assert source path |
+| Risk | External sync changes settings during transition | Rollback target drifts | Check status before/after and record final diff |
 
----
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Local path versus pinned git source must be decided before the first settings write.
+
 <!-- /ANCHOR:questions -->
 
----
+## RELATED DOCUMENTS
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Parent:** `../spec.md`
+- **Research:** `../../research/research.md`
+- **Rollback owner:** `003-live-verification-and-sync/`

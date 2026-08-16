@@ -1,44 +1,32 @@
 ---
-title: "Implementation Plan: Phase 2: config-and-request-safety [template:level-1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 2 identity-config-compat"
+description: "Apply package identity and the researched config/request safety contract without adding handoff behavior."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "identity-config-compat plan"
+  - "config compatibility plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-config-and-request-safety"
-    last_updated_at: "2026-08-16T09:08:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat"
+    last_updated_at: "2026-08-16T11:00:00Z"
+    last_updated_by: "pi-coding-agent"
+    recent_action: "Planned compatibility and request-safety implementation"
+    next_safe_action: "Implement the selected path policy and pure guards"
     blockers: []
-    key_files: []
+    key_files: ["../../research/research.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-config-and-request-safety"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: config-and-request-safety
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
 
----
+# Implementation Plan: Phase 2 identity-config-compat
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
@@ -47,124 +35,126 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript |
+| **Framework** | Pi Extension API |
+| **Storage** | User/project JSON config |
+| **Testing** | Vitest pure unit tests |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
+Start with the upstream `{ enabled, targets }` schema. Resolve the fork path first, use the selected one-time compatibility policy when only the old path exists, normalize state, write through a temporary file plus rename, and keep provider/model/tier guards pure and config-driven.
 
----
+
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Source baseline exists.
+- [x] Research evidence identifies config, atomic-write, and guard constraints.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
+- [ ] Compatibility fixture preserves user state.
+- [ ] Malformed/torn state fails safe.
+- [ ] Negative model/tier cases return unchanged behavior.
 
----
+
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Pure normalization and model-gate helpers around one resolved config path.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- `config.ts`: path resolution, normalization, compatibility, atomic save. Evidence: config schema + normalize `config.ts:6-55`; path resolution `config.ts:92-104`; `syncSupportedTargets` refresh `config.ts:108-153`.
+- `payload.ts`: explicit request/model/service-tier guard. Evidence: replace-style payload + `service_tier` injection `payload.ts:45-70`; request guards modeled on `context/pi-fast-mode/extensions/openai-codex-fast-mode.ts:196-208`.
+- `types.ts`: package-owned identity constants.
+
+### Config Compatibility Policy
+Adopt a ONE-TIME legacy migration, not a continuing dual-read fallback:
+1. Resolve the fork's own new config path.
+2. If it is absent, read the legacy `pi-openai-fast-mode` config path once.
+3. Normalize field-aware (an explicit empty `targets` array stays an opt-out) and ATOMIC-write the migrated data to the new path.
+4. Leave the legacy file untouched — no delete, no continuing fallback read after migration.
+5. Preserve and document the upstream project-local path quirk: a project-local install selects the project path even when the file does not yet exist.
+
+Evidence: research.md Section 7; `config.ts:6-55` (schema+normalize), `config.ts:92-104` (path resolution), `config.ts:108-153` (`syncSupportedTargets`); the Eliminated-Alternatives rows rejecting dual-read and gpt/TBG schemas.
+
+### Payload Guard Contract
+`before_provider_request` is REPLACE-style:
+- Return a cloned `{ ...payload, service_tier }` only when applying a tier to a matching, untiered request.
+- Return `undefined` (no change) otherwise.
+- Never mutate the payload in place.
+- Never stamp a tier for an unsupported or unconfigured model (guard against the request record and `payload.model`).
+
+Evidence: `payload.ts:45-70`; `openai-codex-fast-mode.ts:196-208`.
 
 ### Data Flow
-[Brief description of how data moves through the system]
-<!-- /ANCHOR:architecture -->
+Resolved path → compatible read → normalized state → atomic write → config-driven payload gate.
 
----
+
+<!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Config path resolver | Chooses user/project state | Add explicit compatibility policy | Legacy-only fixture |
+| State writer | Persists JSON | Use temporary file plus rename | Torn-write test |
+| Payload hook | Applies service tier | Guard request record, payload model, and explicit tier | Negative matrix |
+| Handoff env | Child preference | Unchanged in this child | Namespace grep |
 
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
 <!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Confirm the new and legacy path names and write scope against `config.ts:92-104`, including the project-local path quirk.
+- [ ] Write the compatibility and model-gate test matrix in `tests/config.test.ts` and `tests/payload.test.ts`.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Apply package/status/config identity constants and preserve the `{ enabled, targets }` schema (`config.ts:6-55`).
+- [ ] Implement the one-time compatibility policy: field-aware normalization and atomic new-path write with the legacy file untouched (`config.ts:92-104`, `config.ts:108-153`).
+- [ ] Implement malformed-state fallback and torn-write-safe persistence.
+- [ ] Implement the replace-style payload guard: cloned `{ ...payload, service_tier }` for matching untiered requests, `undefined` otherwise, never in-place mutation (`payload.ts:45-70`; guards modeled on `openai-codex-fast-mode.ts:196-208`).
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
+- [ ] Run `npm run typecheck` and `npm test`; record exit codes and relevant output.
+- [ ] Confirm no handoff code or install settings changed.
 
----
+
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
-<!-- /ANCHOR:testing -->
+| Unit | Schema normalization, one-time migration, path policy, atomic writes — `tests/config.test.ts` | Vitest |
+| Unit | Supported/unsupported model, cloned payload, cross-model guard matrix — `tests/payload.test.ts` | Vitest |
+| Static | Identity and handoff ownership | `rg` |
 
----
+
+<!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
-<!-- /ANCHOR:dependencies -->
+| `001-source-baseline/` | Internal | Green | No safe source target |
+| Pinned Pi runtime docs | External reference | Green | Guard semantics need re-check |
 
----
+
+<!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Compatibility or guard tests fail, or state writes touch an unintended path.
+- **Procedure**: Revert only this child, restore the source-baseline copy, and retain the pinned context snapshot.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

@@ -1,19 +1,26 @@
 {
-  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-and-command-ownership",
-  "description": "Phase 2: install-and-command-ownership",
+  "level": "1",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition",
+  "description": "Installing the fork beside another extension that registers `/fast` and `--fast` creates load-order ambiguity",
   "keywords": [
-    "phase",
-    "install-and-command-ownership"
+    "installing",
+    "fork",
+    "beside",
+    "another",
+    "extension",
+    "registers",
+    "fast",
+    "load-order",
+    "ambiguity"
   ],
-  "lastUpdated": "2026-08-16T09:08:03.994Z",
+  "lastUpdated": "2026-08-16T10:21:05.656Z",
   "specId": "002",
-  "folderSlug": "install-and-command-ownership",
+  "folderSlug": "install-transition",
   "parentChain": [
     "hooks",
     "011-pi-fast-mode-w-subagent-support",
     "003-integration-and-tests"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

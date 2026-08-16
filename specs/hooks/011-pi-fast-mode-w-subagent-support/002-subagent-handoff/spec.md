@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "../spec.md"
-      - "../../research/research.md"
-      - "../../context/pi-gpt-fast-mode/src/handoff.ts"
+      - "../research/research.md"
+      - "../context/pi-gpt-fast-mode/src/handoff.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
@@ -126,6 +126,6 @@ Define and verify one environment variable, one writer policy, and one session-s
 ## RELATED DOCUMENTS
 
 - **Parent packet:** See `../spec.md`.
-- **Research:** See `../../research/research.md`.
+- **Research:** See `../research/research.md`.
 - **Child phases:** See `001-handoff-contract/`, `002-session-precedence/`, and `003-process-propagation/`.
-- **Handoff reference:** See `../../context/pi-gpt-fast-mode/src/handoff.ts`.
+- **Handoff reference:** See `../context/pi-gpt-fast-mode/src/handoff.ts`.

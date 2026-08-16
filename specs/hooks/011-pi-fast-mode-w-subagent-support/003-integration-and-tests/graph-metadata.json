@@ -3,7 +3,11 @@
   "packet_id": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests",
   "spec_folder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests",
   "parent_id": "hooks/011-pi-fast-mode-w-subagent-support",
-  "children_ids": [],
+  "children_ids": [
+    "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite",
+    "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition",
+    "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -11,64 +15,34 @@
   },
   "derived": {
     "trigger_phrases": [
-      "integration-and-tests",
-      "fast mode install",
-      "003-integration-and-tests",
-      "integration-and-tests checklist",
-      "integration-and-tests implementation summary"
+      "integration-and-tests workstream",
+      "fast-mode install transition",
+      "fast-mode live verification"
     ],
     "key_topics": [
       "integration-and-tests",
-      "fast",
-      "mode",
+      "workstream",
+      "fast-mode",
       "install",
-      "003-integration-and-tests",
-      "checklist",
-      "implementation",
-      "summary",
-      "fork",
-      "complete",
-      "disk",
-      "useless"
+      "transition",
+      "live",
+      "verification",
+      "unit",
+      "tests",
+      "cannot",
+      "prove",
+      "extension"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -84,129 +58,43 @@
         "source": "derived"
       },
       {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement Unit",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Purpose Prove",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Finish",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Replace",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Install",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "custom",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The fork is complete on disk but useless until installed and proven in the real environment",
+    "causal_summary": "Unit tests cannot prove that the extension loader, settings transition, duplicate command registry, custom footer, RPC surface, and real child process work together",
     "created_at": "2026-08-16T07:07:48Z",
-    "last_save_at": "2026-08-16T07:19:24.458Z",
+    "last_save_at": "2026-08-16T10:40:36.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:81a0cf019865fb94ced3cf0b6de85b15274b290fed60e00ca9490242d96d6c36",
+    "source_fingerprint": "sha256:17b313c6c74d542720d8356db7f5623329aceaeacd91bdac79eaf6ab8ac99dc9",
     "source_doc_hashes": {
-      "spec.md": "0d33446d2f38b7a8b61372336c4bf4f38fc092ed8ba453e83a3441bdc136dcad",
-      "plan.md": "b4db3a01615047c92b1ac032d6e310a723ab3c8bfc405e22848cfe411b478185",
-      "tasks.md": "1d3de8e7ebaf6d9247fec0ff15d0de92d0c7acfa2f659936d2c6d37d0a930236",
-      "checklist.md": "15b5caf1e5f11bae8def8ef68337f954308e4705c9fc7a2f8fe01e4af96f6b55",
-      "implementation-summary.md": "9ed8179af5b82d00a5a0bcef69f67fdcc93c49cacdab0257910257f25b99a365"
+      "spec.md": "3f780f450962936ca72b0a1dd6c51eebcb1428b2f889a188be98d67e822a935d"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync",
     "last_active_at": null
   }
 }

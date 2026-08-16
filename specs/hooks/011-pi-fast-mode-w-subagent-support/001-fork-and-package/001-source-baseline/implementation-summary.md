@@ -1,135 +1,86 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Phase 1 source-baseline"
+description: "Closeout record for the isolated source baseline."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "source-baseline implementation summary"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-source-fork-and-identity"
-    last_updated_at: "2026-08-16T09:08:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline"
+    last_updated_at: "2026-08-16T12:45:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Copied 16-file inventory into packages/, verified byte-identical and reference unchanged"
+    next_safe_action: "Hand off to 002-identity-config-compat"
     blockers: []
-    key_files: []
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-source-fork-and-identity"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
----
+# Implementation Summary: Phase 1 source-baseline
 
 <!-- ANCHOR:metadata -->
 ## Metadata
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-source-fork-and-identity |
+| **Spec Folder** | 001-source-baseline |
+| **Status** | Complete |
 | **Completed** | 2026-08-16 |
 | **Level** | 1 |
-<!-- /ANCHOR:metadata -->
 
----
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The isolated working package `packages/pi-fast-mode-w-subagent-support/` — a byte-for-byte copy of the pinned upstream source (`context/pi-openai-fast-mode/`, commit `9b28456`, v0.3.0). Sixteen files were copied: `src/{commands,config,index,payload,status,types}.ts`, `tests/{commands,config,extension,payload-status}.test.ts`, and `package.json`, `tsconfig.json`, `README.md`, `LICENSE`, `.gitignore`, `preview-img.png`. No identity, config, handoff, or install change was made — those belong to later children.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
 <!-- /ANCHOR:what-built -->
-
----
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
+The reference tree was confirmed clean, the 16 inventory files were copied into a fresh `src/`+`tests/` layout (excluding `package-lock.json`, `.git`, `node_modules`), and every copied file was proven identical to source before re-confirming the reference was untouched.
 
-[How was this tested, verified and shipped? What was the rollout approach?]
 <!-- /ANCHOR:how-delivered -->
-
----
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
-<!-- /ANCHOR:decisions -->
+| Working package at `packages/pi-fast-mode-w-subagent-support/` | Conventional distributable-npm location; root has no npm workspaces so it is not auto-picked-up; a stable repo-relative path for the later local-path install; smallest rollback surface. |
+| Exclude `package-lock.json` from the copy | The fork's dependency set and identity change in later children; the lockfile is regenerated at the package-baseline-gates phase rather than carried stale. |
+| Keep the pinned context snapshot separate and unedited | Later diffs need a stable source of truth. |
 
----
+<!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
+| Check | Command | Result |
+|-------|---------|--------|
+| Reference clean before copy | `git status --short context/pi-openai-fast-mode` | 0 lines |
+| Copied file count | `find packages/pi-fast-mode-w-subagent-support -type f` | 16 files |
+| No leaked artifacts | grep for `package-lock.json` / `.git` / `node_modules` | 0 |
+| Copy byte-identical | `diff -rq src/`, `diff -rq tests/`, `cmp` on 6 root files | all silent (identical) |
+| Reference clean after copy | `git status --short context/pi-openai-fast-mode` | 0 lines |
+| Strict validation | `validate.sh 001-source-baseline --strict` | PASSED, Errors:0 |
 
-| Check | Result |
-|-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
 <!-- /ANCHOR:verification -->
-
----
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Package identity is still upstream's.** `package.json` name/metadata remain `pi-openai-fast-mode`; renaming and the `pi.extensions` manifest are owned by `002-identity-config-compat` and `003-package-baseline-gates`.
+2. **No dependencies installed and no typecheck/test run here.** Those gates belong to `003-package-baseline-gates`.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-

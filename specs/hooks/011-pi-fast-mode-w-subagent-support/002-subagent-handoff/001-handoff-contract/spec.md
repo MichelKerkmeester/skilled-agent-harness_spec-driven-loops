@@ -1,44 +1,35 @@
 ---
-title: "Feature Specification: Phase 1: handoff-contract [template:level-1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 1: handoff-contract"
+description: "Define the strict fork-owned environment contract for fast-mode preference handoff."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
+  - "handoff-contract"
+  - "PI_FAST_MODE_W_SUBAGENT_SUPPORT contract"
+  - "strict fast-mode env"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-handoff-contract"
-    last_updated_at: "2026-08-16T09:08:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract"
+    last_updated_at: "2026-08-16T11:00:00Z"
+    last_updated_by: "pi-coding-agent"
+    recent_action: "Planned handoff contract child phase"
+    next_safe_action: "Implement strict parser/writer tests"
     blockers: []
-    key_files: []
+    key_files:
+      - "../../context/pi-gpt-fast-mode/src/handoff.ts"
+      - "../../research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-handoff-contract"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: handoff-contract
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
 
----
+# Feature Specification: Phase 1: handoff-contract
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -46,137 +37,115 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Draft |
 | **Created** | 2026-08-16 |
-| **Branch** | `scaffold/001-handoff-contract` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | `../spec.md` |
 | **Phase** | 1 of 3 |
 | **Predecessor** | None |
-| **Successor** | 002-parent-export-and-precedence |
-| **Handoff Criteria** | [To be defined during planning] |
-<!-- /ANCHOR:metadata -->
+| **Successor** | 002-session-precedence |
+| **Handoff Criteria** | Strict parser/writer tests pass and parent-only ownership is documented |
 
----
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 1** of the subagent handoff nested workstreams specification.
-
-**Scope Boundary**: [To be defined during planning]
+This child defines the single environment contract used by later lifecycle and process tests. It does not wire hooks or spawn processes.
 
 **Dependencies**:
-- [To be defined during planning]
+- `../../context/pi-gpt-fast-mode/src/handoff.ts`.
+- The package baseline from `../../001-fork-and-package/`.
 
 **Deliverables**:
-- [To be defined during planning]
+- `HANDOFF_ENV = "PI_FAST_MODE_W_SUBAGENT_SUPPORT"`.
+- `readHandoff` and `writeHandoff` with strict values.
+- Pure tests for unset, invalid, `1`, and `0`.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Child Pi processes need a stable representation of the parent's fast-mode preference. Truthy parsing or multiple aliases could unexpectedly enable a paid priority tier or make different extensions disagree.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
+Define a small, collision-free, strict `1`/`0` contract that later lifecycle code can consume without guessing.
 
----
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Add the fork-owned constant and handoff module.
+- Parse only `1` and `0`; return `undefined` for unset or invalid input.
+- Normalize writes to the string `1` or `0` and document parent-write/child-read ownership.
+- Add pure unit tests.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Hook lifecycle wiring; see `002-session-precedence/`.
+- Child process spawning; see `003-process-propagation/`.
+- Backward aliases for unrelated environment names.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
+| Fork `src/types.ts` | Modify | Export the stable environment name |
+| Fork `src/handoff.ts` | Create | Implement strict read/write helpers |
+| Fork `tests/handoff.test.ts` | Create | Test the contract |
 
----
+<!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Only `1` and `0` carry preference | Unit tests return true/false only for those values |
+| REQ-002 | Invalid or absent input means no preference | Tests return `undefined` without guessing |
+| REQ-003 | Writes are normalized | Both boolean inputs write exact string values |
 
-### P1 - Required (complete OR user-approved deferral)
+### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-004 | Parent-only write policy is explicit | Contract docs state children read their copied environment and do not rewrite the parent |
+
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
+- **SC-001**: The handoff module has no provider-payload responsibility.
+- **SC-002**: Contract tests pass under raw TypeScript Vitest.
 
----
+<!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+| Risk | Truthy parsing accepts unexpected values | Priority tier could be enabled accidentally | Exact-value parser and negative tests |
+| Risk | Name collides with another package | Parent/child state becomes ambiguous | Namespace grep before merge |
 
----
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None for the value contract; lifecycle precedence is owned by the next child.
+
 <!-- /ANCHOR:questions -->
 
----
+## RELATED DOCUMENTS
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Parent:** `../spec.md`
+- **Research:** `../../research/research.md`
+- **Reference:** `../../context/pi-gpt-fast-mode/src/handoff.ts`

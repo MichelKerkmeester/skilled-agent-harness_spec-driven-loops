@@ -1,106 +1,77 @@
 ---
-title: "Tasks: Phase 3: live-ui-handoff-and-closeout [template:level-1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 3 live-verification-and-sync"
+description: "Task ledger for live runtime proof and repository closeout."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "live-verification-and-sync tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-live-ui-handoff-and-closeout"
-    last_updated_at: "2026-08-16T09:08:05Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync"
+    last_updated_at: "2026-08-16T11:00:00Z"
+    last_updated_by: "pi-coding-agent"
+    recent_action: "Created live closeout task ledger"
+    next_safe_action: "Execute T901"
     blockers: []
-    key_files: []
+    key_files: ["../../../../../.pi/PLUGINS.md", "../../../../../.pi/SYNC.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-live-ui-handoff-and-closeout"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 3: live-ui-handoff-and-closeout
+<!-- SPECKIT_LEVEL: 2 -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-
----
+# Tasks: Phase 3 live-verification-and-sync
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-| Prefix | Meaning |
-|--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+`[ ]` pending · `[x]` complete · `[P]` parallelizable · `[B]` blocked.
 
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
-<!-- /ANCHOR:phase-1 -->
+- [ ] T901 Confirm install post-state and supported model.
+- [ ] T902 Define redacted live evidence outputs and rollback receipt.
 
----
+<!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
-<!-- /ANCHOR:phase-2 -->
+- [ ] T903 Run `/fast on`, `/fast off`, and explicit flag checks.
+- [ ] T904 Run an RPC-mode session and capture the namespaced `setStatus("pi-fast-mode-w-subagent-support", ...)` request JSON as the indicator evidence artifact; record optional widget behavior separately.
+- [ ] T905 Spawn a real child session on `openai-codex/gpt-5.6-luna` (serviceTier priority) and capture that it inherited `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1` and applied the handoff state.
 
----
+<!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
-<!-- /ANCHOR:phase-3 -->
+- [ ] T906 Alpha-sort `.pi/PLUGINS.md` (fork in, legacy removed).
+- [ ] T907 Run `sync-pi-configs.sh --check` (exit 0) and inspect the final diff/status.
+- [ ] T908 Record the rollback receipt (fork removal, legacy reinstall, settings/docs revert) and authorized commit evidence.
 
----
+<!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-<!-- /ANCHOR:completion -->
+- [ ] All tasks marked `[x]`.
+- [ ] No `[B]` blocked tasks remain.
+- [ ] Handoff criteria in `spec.md` are evidenced.
 
----
+<!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See `spec.md`.
+- **Plan**: See `plan.md`.
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

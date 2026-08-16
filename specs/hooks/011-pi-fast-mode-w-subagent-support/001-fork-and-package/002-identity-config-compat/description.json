@@ -1,19 +1,29 @@
 {
-  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-config-and-request-safety",
-  "description": "Phase 2: config-and-request-safety",
+  "level": "1",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat",
+  "description": "Changing the package identity can strand an existing fast-mode configuration if the loader only looks at a new path",
   "keywords": [
-    "phase",
-    "config-and-request-safety"
+    "changing",
+    "package",
+    "identity",
+    "strand",
+    "existing",
+    "fast-mode",
+    "configuration",
+    "loader",
+    "only",
+    "looks",
+    "new",
+    "path"
   ],
-  "lastUpdated": "2026-08-16T09:08:03.994Z",
+  "lastUpdated": "2026-08-16T10:20:28.576Z",
   "specId": "002",
-  "folderSlug": "config-and-request-safety",
+  "folderSlug": "identity-config-compat",
   "parentChain": [
     "hooks",
     "011-pi-fast-mode-w-subagent-support",
     "001-fork-and-package"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

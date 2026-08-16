@@ -1,19 +1,32 @@
 {
-  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-suite-and-static-gates",
-  "description": "Phase 1: suite-and-static-gates",
+  "level": "1",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite",
+  "description": "Pure helper tests can pass while extension registration, lifecycle ordering, command ownership, or status calls are wired incorrectly",
   "keywords": [
-    "phase",
-    "suite-and-static-gates"
+    "pure",
+    "helper",
+    "tests",
+    "pass",
+    "while",
+    "extension",
+    "registration",
+    "lifecycle",
+    "ordering",
+    "command",
+    "ownership",
+    "status",
+    "calls",
+    "wired",
+    "incorrectly"
   ],
-  "lastUpdated": "2026-08-16T09:08:02.948Z",
+  "lastUpdated": "2026-08-16T10:21:03.754Z",
   "specId": "001",
-  "folderSlug": "suite-and-static-gates",
+  "folderSlug": "extension-integration-suite",
   "parentChain": [
     "hooks",
     "011-pi-fast-mode-w-subagent-support",
     "003-integration-and-tests"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

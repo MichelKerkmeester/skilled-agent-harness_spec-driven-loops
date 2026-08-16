@@ -1,182 +1,153 @@
 ---
-title: "Feature Specification: Phase 3: package-and-baseline-verification [template:level-1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 3: package-baseline-gates"
+description: "Finalize raw TypeScript packaging, licensing/provenance, and baseline typecheck/test/pack gates for the fork."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "package-baseline-gates"
+  - "pi extension package manifest"
+  - "fast-mode package verification"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-package-and-baseline-verification"
-    last_updated_at: "2026-08-16T09:08:05Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates"
+    last_updated_at: "2026-08-16T11:00:00Z"
+    last_updated_by: "pi-coding-agent"
+    recent_action: "Reframed package verification as the final child of the fork-and-package workstream"
+    next_safe_action: "Finalize manifest and run the baseline package gates"
     blockers: []
-    key_files: []
+    key_files:
+      - "../../context/pi-openai-fast-mode/package.json"
+      - "../../context/README.md"
+      - "../../research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-package-and-baseline-verification"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 3: package-and-baseline-verification
+<!-- SPECKIT_LEVEL: 2 -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: Phase 3: package-baseline-gates
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Draft |
 | **Created** | 2026-08-16 |
-| **Branch** | `scaffold/003-package-and-baseline-verification` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | `../spec.md` |
 | **Phase** | 3 of 3 |
-| **Predecessor** | 002-config-and-request-safety |
+| **Predecessor** | 002-identity-config-compat |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
-<!-- /ANCHOR:metadata -->
+| **Handoff Criteria** | Raw TypeScript package loads, upstream behavior tests pass, provenance is preserved, and the package can be packed |
 
----
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the fork and package nested workstreams specification.
-
-**Scope Boundary**: [To be defined during planning]
+This child owns the distributable package contract and the baseline gates. It does not add handoff behavior or mutate installation settings.
 
 **Dependencies**:
-- [To be defined during planning]
+- `001-source-baseline/` and `002-identity-config-compat/`.
+- Pi package and extension-loader guidance in the installed runtime docs.
 
 **Deliverables**:
-- [To be defined during planning]
+- `pi.extensions` manifest pointing to raw `.ts`.
+- Peer dependency and keyword metadata, unchanged MIT attribution, and README provenance for commit `9b28456`.
+- Passing no-emit typecheck, upstream regression suite, and `npm pack --dry-run` output.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+A correct source tree is not enough for Pi to load or discover the extension. The package must declare its raw TypeScript entry, keep Pi core packages as peers, preserve licensing, and prove that the identity/config work did not regress upstream behavior.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
+Produce an installable, attributable package baseline that is ready for the handoff workstream and later local/git installation.
 
----
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- `package.json` name, description, keywords, `pi.extensions`, scripts, peer dependencies, and included files.
+- README usage/provenance and unchanged upstream MIT LICENSE.
+- `tsconfig.json` no-emit gate, lockfile review, upstream tests, typecheck, and pack dry-run.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Handoff implementation and child-process tests; see `../../002-subagent-handoff/`.
+- Settings mutation, `/fast` command ownership, live UI/RPC checks, and PLUGINS.md; see `../../003-integration-and-tests/`.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
+| Fork `package.json` and lockfile | Modify | Declare Pi package and raw extension entry |
+| Fork `README.md`, `LICENSE`, `tsconfig.json` | Modify/Verify | Preserve provenance and no-emit loading contract |
+| Fork `src/`, `tests/` | Verify | Run baseline tests after earlier child changes |
 
----
+<!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Pi can load the extension from the package manifest | `package.json` `pi.extensions` points at `./src/index.ts` (an existing raw `.ts` entry) and `npm pack --dry-run` lists it |
+| REQ-002 | Core Pi packages remain peer dependencies and no compiled `dist/` is required | Pi core packages are declared in `peerDependencies` and no `dist/` is emitted; pack output contains raw source only |
+| REQ-003 | Upstream behavior remains green after baseline changes | `npm run typecheck` and `npm test` both exit 0 |
 
-### P1 - Required (complete OR user-approved deferral)
+### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-004 | Licensing and provenance remain auditable | LICENSE content is unchanged and README cites `pi-openai-fast-mode` commit `9b28456` |
+| REQ-005 | No dependency drift is introduced by packaging | `package.json` and lockfile diff show only intentional package identity/metadata changes |
+
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
+- **SC-001**: `npm pack --dry-run` shows the expected package name and source files.
+- **SC-002**: Typecheck and upstream Vitest suites pass from the final child state.
+- **SC-003**: The handoff workstream can consume the package without another packaging rewrite.
 
----
+<!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+| Risk | A build step hides the raw extension entry | Pi install succeeds but runtime loading fails | Keep `pi.extensions`, `files`, and pack output explicit |
+| Risk | License/provenance drift | Distribution becomes unauditable | Byte-check LICENSE and grep README for commit provenance |
+| Dependency | Node.js >=22.19 and Vitest | Gates cannot run | Use the upstream declared toolchain and record versions |
 
----
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None for this planning pass; npm publication remains a top-level release decision.
+
 <!-- /ANCHOR:questions -->
 
----
+## RELATED DOCUMENTS
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Parent:** `../spec.md`
+- **Research:** `../../research/research.md`
+- **Package guidance:** Installed Pi package documentation cited by the research synthesis.

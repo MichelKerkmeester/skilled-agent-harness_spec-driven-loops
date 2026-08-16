@@ -29,15 +29,14 @@
       "openai",
       "fork",
       "011-pi-fast-mode-w-subagent-support",
-      "two",
-      "leading",
       "fast-mode",
-      "extensions"
+      "engine",
+      "child-process",
+      "installed-environment"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      "context/pi-gpt-fast-mode/src/handoff.ts",
       "research/research.md",
       "context/README.md",
       "research/iterations/iteration-001.md",
@@ -56,12 +55,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "handoff.ts",
-        "kind": "code",
-        "path": "context/pi-gpt-fast-mode/src/handoff.ts",
-        "source": "derived"
-      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -199,23 +192,29 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "Boundaries The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The two leading pi fast-mode extensions cover complementary halves of the requirement, but neither covers both:",
+    "causal_summary": "The fast-mode engine, child-process handoff, and installed-environment proof span separate ownership boundaries",
     "created_at": "2026-08-16T07:07:46Z",
-    "last_save_at": "2026-08-16T08:45:06.414Z",
+    "last_save_at": "2026-08-16T09:38:43.945Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:37c26db701f5553c9174c9b4023ff99e7d0bad215f0c99a595c07e3794e1770d",
+    "source_fingerprint": "sha256:976acf00afa4ca1c13bbf4f7bd46f51954d0533d519b654a175e249ff6557535",
     "source_doc_hashes": {
-      "spec.md": "1069f8e26bfdb5a0bde11bbda2e239e743cfc484a186dc7860be8aaa3d3bab01",
+      "spec.md": "0e7308fc605e30c04adec42daf94bfad51c8192e4f3e40c0d9fe87aa3ef65141",
       "research/research.md": "9246c19056271d8a034918e1ef5436cf60a21cb97f749c8b64191548dab47beb"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests",
     "last_active_at": "2026-08-16T08:45:06.414Z"
   }
 }

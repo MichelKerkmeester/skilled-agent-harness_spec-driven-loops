@@ -1,19 +1,24 @@
 {
-  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-and-baseline-verification",
-  "description": "Phase 3: package-and-baseline-verification",
+  "level": "2",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates",
+  "description": "A correct source tree is not enough for Pi to load or discover the extension",
   "keywords": [
-    "phase",
-    "package-and-baseline-verification"
+    "correct",
+    "source",
+    "tree",
+    "enough",
+    "load",
+    "discover",
+    "extension"
   ],
-  "lastUpdated": "2026-08-16T09:08:05.009Z",
+  "lastUpdated": "2026-08-16T10:32:19.261Z",
   "specId": "003",
-  "folderSlug": "package-and-baseline-verification",
+  "folderSlug": "package-baseline-gates",
   "parentChain": [
     "hooks",
     "011-pi-fast-mode-w-subagent-support",
     "001-fork-and-package"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

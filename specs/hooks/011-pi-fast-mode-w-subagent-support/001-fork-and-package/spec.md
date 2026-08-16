@@ -12,18 +12,18 @@ _memory:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package"
     last_updated_at: "2026-08-16T11:00:00Z"
     last_updated_by: "pi-coding-agent"
-    recent_action: "Decomposed the fork-and-package workstream into three executable child phases"
-    next_safe_action: "Execute 001-source-baseline, then 002-identity-config-compat, then 003-package-baseline-gates"
+    recent_action: "Source baseline (001) complete; working package created under packages/"
+    next_safe_action: "Execute 002-identity-config-compat next"
     blockers: []
     key_files:
       - "../spec.md"
-      - "../../research/research.md"
-      - "../../context/pi-openai-fast-mode/"
+      - "../research/research.md"
+      - "../context/pi-openai-fast-mode/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 33
     open_questions:
       - "Which package location gives local and git installs the smallest operational surface?"
       - "Which one-time configuration compatibility policy should the implementation test?"
@@ -96,7 +96,7 @@ Establish a testable, raw-TypeScript package foundation that the handoff workstr
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-source-baseline/` | Establish the source snapshot, package location, and clean baseline boundary | draft |
+| 1 | `001-source-baseline/` | Establish the source snapshot, package location, and clean baseline boundary | complete |
 | 2 | `002-identity-config-compat/` | Apply package/config identity, compatibility policy, atomic writes, and request guards | draft |
 | 3 | `003-package-baseline-gates/` | Finalize Pi packaging, provenance, and typecheck/test/pack gates | draft |
 
@@ -126,6 +126,6 @@ Establish a testable, raw-TypeScript package foundation that the handoff workstr
 ## RELATED DOCUMENTS
 
 - **Parent packet:** See `../spec.md`.
-- **Research:** See `../../research/research.md`.
+- **Research:** See `../research/research.md`.
 - **Child phases:** See `001-source-baseline/`, `002-identity-config-compat/`, and `003-package-baseline-gates/`.
-- **Pinned sources:** See `../../context/README.md`.
+- **Pinned sources:** See `../context/README.md`.

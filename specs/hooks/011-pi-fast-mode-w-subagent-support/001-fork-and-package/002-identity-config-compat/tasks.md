@@ -1,106 +1,79 @@
 ---
-title: "Tasks: Phase 2: config-and-request-safety [template:level-1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 2 identity-config-compat"
+description: "Task ledger for package identity, config compatibility, safe persistence, and request guards."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "identity-config-compat tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-config-and-request-safety"
-    last_updated_at: "2026-08-16T09:08:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat"
+    last_updated_at: "2026-08-16T11:00:00Z"
+    last_updated_by: "pi-coding-agent"
+    recent_action: "Created compatibility task ledger"
+    next_safe_action: "Execute T201"
     blockers: []
-    key_files: []
+    key_files: ["../../research/research.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-config-and-request-safety"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 2: config-and-request-safety
-
 <!-- SPECKIT_LEVEL: 1 -->
 
----
+# Tasks: Phase 2 identity-config-compat
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-| Prefix | Meaning |
-|--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+`[ ]` pending · `[x]` complete · `[P]` parallelizable · `[B]` blocked.
 
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
-<!-- /ANCHOR:phase-1 -->
+- [ ] T201 Confirm new/legacy path names and project/user write scope against `config.ts:92-104`, including the project-local path quirk.
+- [ ] T202 [P] Write the config and request-guard matrix from the research handoff into `tests/config.test.ts` and `tests/payload.test.ts`:
+  - `tests/config.test.ts`: legacy-only fixture migrates to the new path with no data loss; malformed/torn config falls back safely; explicit empty `targets` opt-out survives.
+  - `tests/payload.test.ts`: unsupported model returns `undefined`; supported model returns a cloned payload carrying `service_tier`; a parallel/child request for a different model is NOT stamped.
 
----
+<!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
-<!-- /ANCHOR:phase-2 -->
+- [ ] T203 Apply package/status/config identity constants and keep `{ enabled, targets }` (`config.ts:6-55`).
+- [ ] T204 Implement the one-time compatibility policy: when the new path is absent, read the legacy path once, normalize field-aware, atomic-write to the new path, and leave the legacy file untouched.
+- [ ] T205 Add atomic replacement (temporary file plus rename) and malformed/torn JSON reads that fail safe to a valid default.
+- [ ] T206 Add explicit request-record, payload-model, and service-tier guards returning a cloned `{ ...payload, service_tier }` or `undefined`; never mutate in place (`payload.ts:45-70`; guards modeled on `openai-codex-fast-mode.ts:196-208`).
 
----
+<!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
-<!-- /ANCHOR:phase-3 -->
+- [ ] T207 Run `npm run typecheck` and `npm test`; record exit codes and relevant output.
+- [ ] T208 Grep for unintended handoff/install ownership and record the clean boundary.
 
----
+<!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-<!-- /ANCHOR:completion -->
+- [ ] All tasks marked `[x]`.
+- [ ] No `[B]` blocked tasks remain.
+- [ ] Handoff criteria in `spec.md` are evidenced.
 
----
+<!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See `spec.md`.
+- **Plan**: See `plan.md`.
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

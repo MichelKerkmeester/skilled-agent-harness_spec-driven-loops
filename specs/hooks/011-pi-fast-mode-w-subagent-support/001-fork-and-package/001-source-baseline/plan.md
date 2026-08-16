@@ -1,44 +1,32 @@
 ---
-title: "Implementation Plan: Phase 1: source-fork-and-identity [template:level-1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 1 source-baseline"
+description: "Copy the pinned upstream source into a separate working package and freeze the comparison boundary."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "source-baseline plan"
+  - "fast-mode source inventory"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-source-fork-and-identity"
-    last_updated_at: "2026-08-16T09:08:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline"
+    last_updated_at: "2026-08-16T12:45:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Copied 16-file inventory into packages/, verified byte-identical"
+    next_safe_action: "Hand off to 002-identity-config-compat"
     blockers: []
-    key_files: []
+    key_files: ["../../context/pi-openai-fast-mode/"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-source-fork-and-identity"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: source-fork-and-identity
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
 
----
+# Implementation Plan: Phase 1 source-baseline
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
@@ -47,124 +35,95 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript, raw source |
+| **Framework** | Pi Extension API |
+| **Storage** | None changed |
+| **Testing** | Source inventory and reference diff |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
+Select the package location outside `context/`, copy the pinned upstream source into a separate working package, and record the exact source boundary. Provenance is pinned by `context/README.md` (commit `9b28456`, v0.3.0); `context/pi-openai-fast-mode/` is the immutable source of truth. Do not rename identities or alter source logic here.
 
----
+
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Pinned source and commit are named.
+- [x] Later child ownership is explicit.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
+- [x] Working package exists outside `context/`.
+- [x] Reference snapshot is unchanged.
+- [x] Source inventory and rollback deletion path are recorded.
 
----
+
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Source snapshot plus isolated working copy.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Pinned context**: immutable comparison source at `context/pi-openai-fast-mode/` (commit `9b28456`, v0.3.0).
+- **Working package**: later implementation target outside `context/`.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Pinned source inventory → isolated copy → baseline handoff to identity/config compatibility.
+
+
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Resolve the working package location outside `context/` and record it.
+- [x] Inventory the pinned upstream snapshot (`context/README.md`, commit `9b28456`, v0.3.0) and record the concrete copy list: `src/commands.ts`, `src/config.ts`, `src/index.ts`, `src/payload.ts`, `src/status.ts`, `src/types.ts`, `tests/commands.test.ts`, `tests/config.test.ts`, `tests/extension.test.ts`, `tests/payload-status.test.ts`, `package.json`, `tsconfig.json`, `README.md`, `LICENSE`, `.gitignore`, `preview-img.png`.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Copy exactly the inventoried files into the working package.
+- [x] Exclude `.git`, `node_modules`, and any local build/install artifacts.
+- [x] Verify the copied tree has the expected entry points and package files.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
+- [x] Confirm `context/pi-openai-fast-mode/` is clean via `git status`/`git diff` before and after the copy.
+- [x] Record the deletion/re-copy rollback procedure.
 
----
+
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
-<!-- /ANCHOR:testing -->
+| Static | Source inventory and reference unchanged | `find`, `rg`, `git diff` |
+| Manual | Confirm package location and rollback | Shell inspection |
 
----
+
+<!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
-<!-- /ANCHOR:dependencies -->
+| Pinned upstream snapshot | Internal | Green | Cannot establish a trustworthy baseline |
+| Repository layout | Internal | Open until decided | Later install source remains ambiguous |
 
----
+
+<!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Copy includes unintended files or the pinned reference changes.
+- **Procedure**:
+  1. Delete the working package directory: `rm -rf packages/pi-fast-mode-w-subagent-support`.
+  2. Re-copy from the pinned source `context/pi-openai-fast-mode/` (commit `9b28456`, v0.3.0) using the exact copy list.
+  3. Confirm the pinned reference is unchanged: `git status` in `context/pi-openai-fast-mode/` shows a clean tree.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

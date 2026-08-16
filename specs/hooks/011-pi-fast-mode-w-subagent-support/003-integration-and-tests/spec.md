@@ -13,13 +13,12 @@ _memory:
     last_updated_at: "2026-08-16T11:00:00Z"
     last_updated_by: "pi-coding-agent"
     recent_action: "Decomposed integration into suite, install, and live closeout phases"
-    next_safe_action: "Execute 001-extension-integration-suite, then 002-install-transition, then 003-live-verification-and-sync"
+    next_safe_action: "Execute the suite, install-transition, then live-verification children in order"
     blockers: []
     key_files:
       - "../spec.md"
-      - "../../research/research.md"
-      - "../../context/pi-fast-mode/"
-      - "../../.pi/PLUGINS.md"
+      - "../research/research.md"
+      - "../context/pi-fast-mode/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
@@ -127,6 +126,6 @@ Prove the completed extension across package boundaries and the live environment
 ## RELATED DOCUMENTS
 
 - **Parent packet:** See `../spec.md`.
-- **Research:** See `../../research/research.md`.
+- **Research:** See `../research/research.md`.
 - **Child phases:** See `001-extension-integration-suite/`, `002-install-transition/`, and `003-live-verification-and-sync/`.
-- **Runtime references:** See `../../context/pi-fast-mode/` and `.pi/SYNC.md`.
+- **Runtime references:** See `../context/pi-fast-mode/` and `.pi/SYNC.md`.
