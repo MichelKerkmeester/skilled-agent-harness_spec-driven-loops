@@ -55,9 +55,11 @@ Custom provider carrying the GPT-5.6 personas — see the effort cross-map in §
 
 ### deepseek
 
+Policy: DeepSeek V4 Flash is a reasoning model (its `models-store.json` entry is `reasoning: true` with a `max` thinking level) and is dispatched **only at its max thinking tier**. The fan-out builder pins `deepseek-v4-flash` to `--thinking max` automatically, so a lineage requesting a lower effort is upgraded to max.
+
 | Model id | Notes |
 |----------|-------|
-| `deepseek-v4-flash` | Latency-optimized; a live `--provider deepseek --model deepseek-v4-flash -p` dispatch completed a real tool-using turn |
+| `deepseek-v4-flash` | Latency-optimized reasoning model, pinned to `--thinking max` by policy; a live `--provider deepseek --model deepseek-v4-flash -p` dispatch completed a real tool-using turn |
 | `deepseek-v4-pro` | Reasoning-optimized |
 
 ### minimax
@@ -83,7 +85,7 @@ OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--pro
 
 | Model id | Notes |
 |----------|-------|
-| `deepseek-v4-flash` | Latency-optimized (2x usage); opencode-go is the fan-out provider for this model. A live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07. Also reachable directly via `--provider deepseek` (see above) |
+| `deepseek-v4-flash` | Latency-optimized reasoning model pinned to `--thinking max` by policy; opencode-go is the fan-out provider for this model. A live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07. Also reachable directly via `--provider deepseek` (see above) |
 | `qwen3.8-max` | Qwen 3.8 Max; a live `pi --provider opencode-go --model qwen3.8-max -p` dispatch completed a real turn 2026-08-07 |
 
 Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the five authenticated providers above have a confirmed installed catalog.

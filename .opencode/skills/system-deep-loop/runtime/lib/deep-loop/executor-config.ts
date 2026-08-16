@@ -176,6 +176,25 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
 }
 
 /**
+ * DeepSeek V4 Flash is a reasoning model, and operator policy pins it to the max
+ * thinking tier: it is never dispatched at a lower effort. The id is bare on cli-pi
+ * (`deepseek-v4-flash`) and provider-prefixed on cli-opencode
+ * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the devin `-max`
+ * uid already bakes the tier into the id and is intentionally not matched here.
+ */
+export function isFlashMaxPinnedModel(model: string): boolean {
+  return /(^|\/)deepseek-v4-flash$/.test(model);
+}
+
+/** Effective reasoning effort after the Flash max-tier pin: 'max' for Flash, else unchanged. */
+export function pinReasoningEffortForModel(
+  model: string,
+  reasoningEffort: string | null | undefined,
+): string | null | undefined {
+  return isFlashMaxPinnedModel(model) ? 'max' : reasoningEffort;
+}
+
+/**
  * Enforced allowlist of cursor-agent --model ids. Cursor's live roster spans
  * 150+ hosted-frontier ids across GPT/Claude/Gemini/Grok/GLM/Kimi families,
  * with no per-model prompt-craft data for almost all of them and ids that

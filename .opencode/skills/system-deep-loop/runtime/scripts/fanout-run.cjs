@@ -1744,6 +1744,15 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   });
 }
 
+// Mirrors isFlashMaxPinnedModel in executor-config.ts. DeepSeek V4 Flash is a
+// reasoning model pinned to the max thinking tier by operator policy — it is never
+// dispatched below max. Bare on cli-pi, provider-prefixed on cli-opencode; the devin
+// `-max` uid bakes the tier into the id and is intentionally not matched. Duplicated as
+// a plain function so the pin lands inside the synchronous command builders below.
+function isFlashMaxPinnedModel(model) {
+  return /(^|\/)deepseek-v4-flash$/.test(model);
+}
+
 function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   const model = lineage.model || 'anthropic/claude-opus-4-8';
   const args = [
@@ -1764,8 +1773,9 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
         + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
     );
   }
-  if (lineage.reasoningEffort) {
-    args.push('--variant', lineage.reasoningEffort);
+  const opencodeEffort = isFlashMaxPinnedModel(model) ? 'max' : lineage.reasoningEffort;
+  if (opencodeEffort) {
+    args.push('--variant', opencodeEffort);
   }
   args.push(prompt);
   return finalizeLineageCommand({
@@ -1777,7 +1787,7 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
     promptArgIndexes: [args.length - 1],
     executableVersion: resolveExecutableVersion('opencode', options),
     model,
-    reasoningEffort: lineage.reasoningEffort || null,
+    reasoningEffort: opencodeEffort || null,
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission,
@@ -2080,11 +2090,12 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
   if (resolvedSandbox === 'read-only') {
     args.push('--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates');
   }
-  if (lineage.reasoningEffort) {
-    const thinking = REASONING_TO_PI_THINKING.get(lineage.reasoningEffort);
+  const piEffort = isFlashMaxPinnedModel(model) ? 'max' : lineage.reasoningEffort;
+  if (piEffort) {
+    const thinking = REASONING_TO_PI_THINKING.get(piEffort);
     if (!thinking) {
       throw inputError(
-        `cli-pi reasoningEffort '${lineage.reasoningEffort}' has no pi --thinking mapping: ${[...REASONING_TO_PI_THINKING.keys()].join(', ')}`,
+        `cli-pi reasoningEffort '${piEffort}' has no pi --thinking mapping: ${[...REASONING_TO_PI_THINKING.keys()].join(', ')}`,
       );
     }
     args.push('--thinking', thinking);
@@ -2099,7 +2110,7 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
     promptArgIndexes: [args.length - 1],
     executableVersion: resolveExecutableVersion('pi', options),
     model,
-    reasoningEffort: lineage.reasoningEffort || null,
+    reasoningEffort: piEffort || null,
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission,

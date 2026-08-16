@@ -44,10 +44,12 @@ OpenCode resolves models through configured providers; the model string passed t
 
 ### deepseek
 
+Policy: DeepSeek V4 Flash is a reasoning model (confirmed via `opencode models deepseek`: `reasoning: true`, with a `max` thinking level) and is dispatched **only at its max thinking tier** — never at a lower effort. The fan-out builder pins `deepseek-v4-flash` to `--variant max` automatically, so a lineage that requests a lower effort is upgraded to max.
+
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `deepseek/deepseek-v4-pro` | **Default** | Deep reasoning at low cost via direct DeepSeek API |
-| `deepseek/deepseek-v4-flash` | — | Latency-optimized sibling; non-reasoning (`--variant` ignored) |
+| `deepseek/deepseek-v4-flash` | — | Latency-optimized reasoning sibling; pinned to `--variant max` (max thinking tier) by policy |
 
 ### minimax
 
@@ -78,7 +80,7 @@ OpenCode Go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and 
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `opencode-go/deepseek-v4-flash` | — | Latency-optimized DeepSeek V4 Flash via the Go gateway (2x usage); a live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07 |
+| `opencode-go/deepseek-v4-flash` | — | Latency-optimized DeepSeek V4 Flash via the Go gateway (2x usage); reasoning model pinned to `--variant max` by policy; a live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07 |
 | `opencode-go/glm-5.3` | — | Z.AI GLM 5.3 via the Go gateway; list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
 | `opencode-go/qwen3.8-max` | — | Qwen 3.8 Max via the Go gateway; a live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
 
