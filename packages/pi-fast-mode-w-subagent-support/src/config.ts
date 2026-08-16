@@ -1,3 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Config
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { randomUUID } from "node:crypto";
 import { promises as fs } from "node:fs";
 import { existsSync } from "node:fs";
@@ -13,6 +21,35 @@ import {
   type ResolvedConfigPath,
 } from "./types";
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
+type RecordLike = Record<string, unknown>;
+
+/** Options used to select the applicable configuration path. */
+export type SelectConfigPathOptions = {
+  cwd: string;
+  extensionDir?: string;
+  agentDir?: string;
+  exists?: (path: string) => boolean;
+};
+
+/** Options used when loading configuration for a scope. */
+export type LoadConfigOptions = Omit<SelectConfigPathOptions, "exists"> & {
+  fallback?: FastModeConfig;
+};
+
+/** Configuration loaded together with its resolved path. */
+export type LoadedConfig = ResolvedConfigPath & {
+  config: FastModeConfig;
+};
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
+/** Default Fast Mode settings used when no persisted configuration exists. */
 export const DEFAULT_CONFIG: FastModeConfig = {
   enabled: false,
   targets: [
@@ -69,7 +106,9 @@ export const DEFAULT_CONFIG: FastModeConfig = {
 
 const SUPPORTED_PROVIDER_SET = new Set<string>(SUPPORTED_PROVIDERS);
 
-type RecordLike = Record<string, unknown>;
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isRecord(value: unknown): value is RecordLike {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -80,23 +119,6 @@ function cloneTarget(target: FastTarget): FastTarget {
     provider: target.provider,
     model: target.model,
     serviceTier: target.serviceTier ?? DEFAULT_SERVICE_TIER,
-  };
-}
-
-export function cloneConfig(
-  config: FastModeConfig = DEFAULT_CONFIG,
-): FastModeConfig {
-  return {
-    enabled: config.enabled,
-    targets: config.targets.map(cloneTarget),
-  };
-}
-
-/** Keep the persisted toggle while replacing targets with this package's current list. */
-export function syncSupportedTargets(config: FastModeConfig): FastModeConfig {
-  return {
-    enabled: config.enabled,
-    targets: DEFAULT_CONFIG.targets.map(cloneTarget),
   };
 }
 
@@ -126,6 +148,29 @@ function normalizeTarget(rawTarget: unknown): FastTarget | undefined {
   return { provider, model, serviceTier };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
+/** Clone a Fast Mode configuration without sharing target objects. */
+export function cloneConfig(
+  config: FastModeConfig = DEFAULT_CONFIG,
+): FastModeConfig {
+  return {
+    enabled: config.enabled,
+    targets: config.targets.map(cloneTarget),
+  };
+}
+
+/** Keep the persisted toggle while replacing targets with this package's current list. */
+export function syncSupportedTargets(config: FastModeConfig): FastModeConfig {
+  return {
+    enabled: config.enabled,
+    targets: DEFAULT_CONFIG.targets.map(cloneTarget),
+  };
+}
+
+/** Normalize an unknown target list while removing invalid and duplicate targets. */
 export function normalizeTargets(
   rawTargets: unknown,
 ): FastTarget[] | undefined {
@@ -170,6 +215,7 @@ export function normalizeConfig(
   return { enabled, targets };
 }
 
+/** Parse JSON into a normalized Fast Mode configuration. */
 export function parseConfigJson(
   json: string,
   fallback: FastModeConfig = DEFAULT_CONFIG,
@@ -181,24 +227,29 @@ export function parseConfigJson(
   }
 }
 
+/** Resolve the user-level configuration path. */
 export function getUserConfigPath(agentDir: string = getAgentDir()): string {
   return join(agentDir, "extensions", PACKAGE_NAME, "config.json");
 }
 
+/** Resolve the project-level configuration path. */
 export function getProjectConfigPath(cwd: string): string {
   return join(resolve(cwd), ".pi", PACKAGE_NAME, "config.json");
 }
 
+/** Resolve the legacy user-level configuration path. */
 export function getLegacyUserConfigPath(
   agentDir: string = getAgentDir(),
 ): string {
   return join(agentDir, "extensions", LEGACY_PACKAGE_NAME, "config.json");
 }
 
+/** Resolve the legacy project-level configuration path. */
 export function getLegacyProjectConfigPath(cwd: string): string {
   return join(resolve(cwd), ".pi", LEGACY_PACKAGE_NAME, "config.json");
 }
 
+/** Determine whether an extension directory belongs to the current project. */
 export function isProjectLocalExtension(
   extensionDir: string | undefined,
   cwd: string,
@@ -216,13 +267,7 @@ export function isProjectLocalExtension(
   );
 }
 
-export type SelectConfigPathOptions = {
-  cwd: string;
-  extensionDir?: string;
-  agentDir?: string;
-  exists?: (path: string) => boolean;
-};
-
+/** Select the project or user configuration path for the current context. */
 export function selectConfigPath({
   cwd,
   extensionDir,
@@ -241,14 +286,12 @@ export function selectConfigPath({
   return { scope: "user", path: getUserConfigPath(agentDir) };
 }
 
-export type LoadConfigOptions = Omit<SelectConfigPathOptions, "exists"> & {
-  fallback?: FastModeConfig;
-};
-
-export type LoadedConfig = ResolvedConfigPath & {
-  config: FastModeConfig;
-};
-
+/** Load and normalize configuration from a specific path.
+ *
+ * @param configPath - Path to the persisted configuration file.
+ * @param fallback - Configuration used when the file cannot be read.
+ * @returns The normalized persisted configuration or the fallback clone.
+ */
 export async function loadConfigFromPath(
   configPath: string,
   fallback: FastModeConfig = DEFAULT_CONFIG,
@@ -261,6 +304,11 @@ export async function loadConfigFromPath(
   }
 }
 
+/** Load configuration using scope selection and migrate legacy files when needed.
+ *
+ * @param options - Scope, directory, and fallback settings for resolution.
+ * @returns The selected path and normalized configuration.
+ */
 export async function loadConfigForScope(
   options: LoadConfigOptions,
 ): Promise<LoadedConfig> {
@@ -281,6 +329,12 @@ export async function loadConfigForScope(
   return { ...selected, config };
 }
 
+/** Persist normalized configuration with an atomic temporary-file rename.
+ *
+ * @param configPath - Destination path for the configuration file.
+ * @param config - Configuration to normalize and persist.
+ * @returns A promise that resolves after the file is written.
+ */
 export async function saveConfigToPath(
   configPath: string,
   config: FastModeConfig,
@@ -300,12 +354,13 @@ export async function saveConfigToPath(
       "utf8",
     );
     await fs.rename(tempPath, configPath);
-  } catch (error) {
+  } catch (error: unknown) {
     await fs.rm(tempPath, { force: true });
     throw error;
   }
 }
 
+/** Persist configuration to the path selected for the current scope. */
 export async function saveConfigForScope(
   options: SelectConfigPathOptions,
   config: FastModeConfig,
