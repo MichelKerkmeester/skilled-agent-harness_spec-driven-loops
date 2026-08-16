@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Planned lifecycle precedence"
-    next_safe_action: "Implement explicit flag presence and precedence matrix"
+    last_updated_at: "2026-08-16T15:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implemented presence-aware precedence; tests green"
+    next_safe_action: "Continue the 002-subagent-handoff workstream"
     blockers: []
     key_files: ["../../research/research.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,9 +54,9 @@ Resolve only explicit flag presence as an override: `--fast` true enables, `/fas
 - [x] Research identifies the flag-default ambiguity.
 
 ### Definition of Done
-- [ ] Presence-aware precedence helper is tested.
-- [ ] Toggle and session-start writes are observed.
-- [ ] Existing payload/status tests remain green.
+- [x] Presence-aware precedence helper is tested.
+- [x] Toggle and session-start writes are observed.
+- [x] Existing payload/status tests remain green.
 
 
 <!-- /ANCHOR:quality-gates -->
@@ -109,15 +109,15 @@ The env is parent-owned. The parent writes the normalized `1`/`0` value after ev
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Capture flag API/argv behavior and write the precedence table.
+- [x] Capture flag API/argv behavior and write the precedence table.
 
 ### Phase 2: Core Implementation
-- [ ] Wire toggle/explicit flag writes.
-- [ ] Implement session-start resolution and persist/write ordering.
+- [x] Wire toggle/explicit flag writes.
+- [x] Implement session-start resolution and persist/write ordering.
 
 ### Phase 3: Verification
-- [ ] Run all precedence rows and negative target-gating cases.
-- [ ] Record the explicit-false decision for README/process child.
+- [x] Run all precedence rows and negative target-gating cases.
+- [x] Record the explicit-false decision for README/process child.
 
 
 <!-- /ANCHOR:phases -->

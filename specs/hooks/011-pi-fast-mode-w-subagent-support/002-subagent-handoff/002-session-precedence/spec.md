@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Reframed session precedence as the handoff lifecycle child"
-    next_safe_action: "Implement presence-aware flag resolution and lifecycle tests"
+    last_updated_at: "2026-08-16T15:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Wired session precedence; matrix rows verified"
+    next_safe_action: "Continue the 002-subagent-handoff workstream"
     blockers: []
     key_files:
       - "../../research/research.md"
@@ -22,10 +22,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Should an explicit false flag be added, or is /fast off the only false override?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "/fast off is the explicit-false path; an absent flag never overrides inherited env."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -143,7 +143,7 @@ Make lifecycle state transitions deterministic by distinguishing explicit user i
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Confirm whether `/fast off` remains the explicit false path rather than adding a `--no-fast` flag.
+- Resolved: `/fast off` remains the explicit-false path; no `--no-fast` flag was added, and an absent flag never overrides inherited state.
 
 <!-- /ANCHOR:questions -->
 

@@ -2,14 +2,14 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { mkdtemp } from "node:fs/promises";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { createPiFastModeExtension } from "../src/index";
 import {
   DEFAULT_CONFIG,
   getProjectConfigPath,
   getUserConfigPath,
 } from "../src/config";
-import { PACKAGE_NAME, STATUS_KEY } from "../src/types";
+import { HANDOFF_ENV, PACKAGE_NAME, STATUS_KEY } from "../src/types";
 
 type FakePi = {
   registerFlag: ReturnType<typeof vi.fn>;
@@ -37,6 +37,12 @@ afterEach(async () => {
   await Promise.all(
     tempDirs.splice(0).map((dir) => rm(dir, { recursive: true, force: true })),
   );
+});
+
+// The extension reads and writes the real process env for subagent handoff, so
+// each case must start from a clean slate or a prior test's value leaks in.
+beforeEach(() => {
+  delete process.env[HANDOFF_ENV];
 });
 
 function createFakePi(fastFlag = false): {
