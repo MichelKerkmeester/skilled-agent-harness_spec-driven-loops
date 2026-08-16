@@ -12,7 +12,8 @@
     "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
     "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
-    "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation"
+    "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation",
+    "system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence"
   ],
   "manual": {
     "depends_on": [],
@@ -25,11 +26,7 @@
       "implement the 178 deep-loop recs",
       "evidence-ledger runtime for system-deep-loop",
       "per-mode migration deep-loop",
-      "transition-authorized ledger core",
-      "036 epic next steps",
-      "deep-loop-innovation completion roadmap",
-      "resume WS1 remediation",
-      "014 authority cutover gate"
+      "transition-authorized ledger core"
     ],
     "key_topics": [
       "deep-loop",
@@ -48,20 +45,13 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      "spec.md",
-      "handover.md"
+      "spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -99,51 +89,19 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Innovation Epic",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "sealed",
-        "kind": "key_phrase",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "handover.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-14T12:49:51.606Z",
+    "last_save_at": "2026-08-16T13:22:42.851Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "handover.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:1cf45bb0a9c2f4fd1cdf943c3a97c5753e0b1f49d6551dd86cead40bd838d5e1",
+    "source_fingerprint": "sha256:a185f3199ef6e29657598537d15c7f14fb9d050d19d2e3c40b09151e850850e3",
     "source_doc_hashes": {
-      "spec.md": "a312bdfb68adc6ebfa77f1443984e60c0d952e4fb0ef89b402ebbdd923f1736d",
-      "handover.md": "d1d37a65570ec58323ca26e4fdfaa0a92da567135cc00be2c810564523c27837"
+      "spec.md": "a312bdfb68adc6ebfa77f1443984e60c0d952e4fb0ef89b402ebbdd923f1736d"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration",
     "last_active_at": "2026-08-12T15:23:08.017Z"
