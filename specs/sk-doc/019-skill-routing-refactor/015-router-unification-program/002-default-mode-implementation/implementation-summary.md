@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation"
-    last_updated_at: "2026-07-17T00:00:00Z"
+    last_updated_at: "2026-08-16T12:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Flipped 4 hubs to defaultMode null + routing-helper fallback; sk-design fixed"
     next_safe_action: "Open follow-ups: defaultApplied telemetry (blocked), cli runtime enforcement, live measurement"

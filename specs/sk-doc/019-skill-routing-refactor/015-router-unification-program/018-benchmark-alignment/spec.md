@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/018-benchmark-alignment"
-    last_updated_at: "2026-07-21T06:48:08Z"
+    last_updated_at: "2026-08-16T12:00:00Z"
     last_updated_by: "codex-gpt-5.6"
     recent_action: "Restored default-off benchmark parity isolation"
     next_safe_action: "Keep activation operator-gated"
