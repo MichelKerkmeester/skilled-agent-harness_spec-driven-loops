@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Status** | In Progress |
-| **Stage** | Census done, Tier-1 repairs applied; Tier-2 and Tier-3 still open |
+| **Stage** | Census done; Tier-1 + Tier-2 reference repairs applied (2026-07-19, 380 audited); Tier-3 plan amendments deferred to a scoped operator planning pass |
 | **Level** | 2 |
 | **Started** | 2026-07-19 |
 | **Baseline** | `0ce43ff589` (2026-07-16) |

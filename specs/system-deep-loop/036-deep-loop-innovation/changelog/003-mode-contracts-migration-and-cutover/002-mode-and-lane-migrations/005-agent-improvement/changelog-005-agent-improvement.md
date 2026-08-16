@@ -31,3 +31,17 @@ This phase-parent migrates the agent-improvement variant of the deep-improvement
 | `005-resume-adapter` | Plan the Agent Improvement resume adapter over the sealed typed event ledger, re-entering idempotently without double-applying events or losing branch evidence. |
 | `006-shadow-parity` | Plan the Agent Improvement shadow-parity harness that compares the agent-specific projections event-for-event and blocks authority cutover on any unexplained semantic difference. |
 | `007-rollback-and-mode-gate` | Plan the fail-closed Agent Improvement rollback switch and independent migration gate, certifying this mode only after shadow parity, sealed evidence, and rollback readiness pass. |
+
+## 2026-08-16
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement` (Level 2)
+
+### Summary
+
+The Agent Improvement migration lane is now Complete, with all seven concern children at Complete. Certificates and receipts verified green at 14/14, the resume adapter at 34/34, shadow parity at 36/36, and the rollback gate at 61/61. The variant runs on the shared typed event-ledger substrate, additive-dark, reusing the deep-improvement-common backbone.
+
+### What Changed
+
+- All 7 leaves Complete.
+- Certificates-and-receipts verified green at 14/14; resume-adapter at 34/34.
+- Shadow-parity at 36/36; rollback-gate at 61/61.
