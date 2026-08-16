@@ -66,5 +66,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `doctor-mcp-debug.yaml` | `.opencode/commands/doctor/mcp.md` | `sha256:d395c40b32ae2b3f67a6257621639cbf3af7f4467510a20d1a7b1433ee46b0be` |
-| `debug` | `.opencode/commands/doctor/mcp.md` | `sha256:d395c40b32ae2b3f67a6257621639cbf3af7f4467510a20d1a7b1433ee46b0be` |
+| `doctor-mcp-debug.yaml` | `.opencode/commands/doctor/mcp.md` | `sha256:cf34916ef41a5af6a735e4cbea57a5982efbd298a138b9ee2eeb5e6313402b53` |
+| `debug` | `.opencode/commands/doctor/mcp.md` | `sha256:cf34916ef41a5af6a735e4cbea57a5982efbd298a138b9ee2eeb5e6313402b53` |

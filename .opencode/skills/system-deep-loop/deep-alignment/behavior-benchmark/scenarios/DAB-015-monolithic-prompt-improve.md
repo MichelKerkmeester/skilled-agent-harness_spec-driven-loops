@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `Q2. Save Location` | `.opencode/commands/prompt-improve.md` | `sha256:86d9e5e6fd83de393a9518f503e933a698c99de9d57fb85f41b00b3e5e375330` |
-| `Q4. Dispatch Mode` | `.opencode/commands/prompt-improve.md` | `sha256:86d9e5e6fd83de393a9518f503e933a698c99de9d57fb85f41b00b3e5e375330` |
+| `Q2. Save Location` | `.opencode/commands/prompt/improve.md` | `sha256:f7da5445df756ba0d39bcc57b8e7c62b577daf2fced07e0240db3ca6bcb7314e` |
+| `Q4. Dispatch Mode` | `.opencode/commands/prompt/improve.md` | `sha256:f7da5445df756ba0d39bcc57b8e7c62b577daf2fced07e0240db3ca6bcb7314e` |
