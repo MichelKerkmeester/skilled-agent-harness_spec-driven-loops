@@ -53,11 +53,11 @@ const SYNC_PROMPTS_CJS = path.join(
   'codex',
   'sync-prompts.cjs',
 );
-const COMMAND_CANON = path.join(SKILLS_DIR, 'sk-doc', 'create-command', 'SKILL.md');
+const COMMAND_CANON = path.join(SKILLS_DIR, 'sk-doc', 'sk-create-command', 'SKILL.md');
 const COMMAND_CONTRACT = path.join(
   SKILLS_DIR,
   'sk-doc',
-  'create-command',
+  'sk-create-command',
   'assets',
   'command-contract.json',
 );
@@ -66,7 +66,7 @@ const TOPOLOGY_TAXONOMY = path.join(
   '.opencode',
   'specs',
   'system-deep-loop',
-  '066-command-surface-benchmark',
+  '035-command-surface-benchmark',
   '000-command-benchmark-contract',
   'topology-taxonomy.md',
 );

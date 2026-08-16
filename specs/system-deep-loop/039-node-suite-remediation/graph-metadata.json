@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-node-suite-remediation",
+  "spec_folder": "system-deep-loop/039-node-suite-remediation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "system-deep-loop/035-command-surface-benchmark"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "node test remediation",
+      "fixture rot",
+      "command benchmark path repoint",
+      "behavior_benchmark rename",
+      "node suite failures"
+    ],
+    "key_topics": [
+      "node-test",
+      "remediation",
+      "repoint",
+      "command-benchmark",
+      "behavior-benchmark",
+      "compiled-routing",
+      "sha-pin",
+      "adapter-inventory"
+    ],
+    "importance_tier": "medium",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

@@ -9,12 +9,12 @@
   "command_topology": "monolithic",
   "entry_surface": "E1",
   "clarity": "C2",
-  "prompt": "$raw \"Improve the prompt in .opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-015-monolithic/src/prompt.txt while preserving PILOT_SENTINEL.\" :auto",
+  "prompt": "$raw \"Improve the prompt in .opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/src/prompt.txt while preserving PILOT_SENTINEL.\" :auto",
   "invocation": {
     "kind": "command",
     "command": "prompt-improve"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-015-monolithic",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic",
   "expected_interaction": "question_halt",
   "expected_presentation_markers": [
     "Q2. Save Location",

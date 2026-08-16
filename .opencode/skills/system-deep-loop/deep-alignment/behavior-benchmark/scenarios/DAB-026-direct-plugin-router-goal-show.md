@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "goal-opencode"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-026-goal-show",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-026-goal-show",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "STATUS=OK ACTION=",

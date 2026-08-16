@@ -26,8 +26,8 @@ const RUNNER_PATH = path.join(
   REPO_ROOT,
   '.opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs',
 );
-const PILOT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures';
-const ROLLOUT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures';
+const PILOT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures';
+const ROLLOUT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures';
 const PENDING = 'pending (deferred live capture)';
 const EXPECTED_RUNNER_SHA256 = 'f568f79f98c1ccb72924bbee6cb0d742f82bdf34fc65318aff4471148882595b';
 const ALLOWED_PROBES = new Set([

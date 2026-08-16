@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "agent_router"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-027-agent-router-bare",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-027-agent-router-bare",
   "expected_interaction": "question_halt",
   "expected_presentation_markers": [
     "What request would you like to route?",

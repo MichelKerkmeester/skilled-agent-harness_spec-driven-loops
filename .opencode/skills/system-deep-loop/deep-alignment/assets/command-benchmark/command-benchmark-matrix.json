@@ -50,7 +50,7 @@
   },
   "fixtures": {
     "DAB-012": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-012-workflow-router",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "0d238a26ef875311cf4ebe2af256dfeded20628011b8a6f487874b726dc281b0",
@@ -61,7 +61,7 @@
       }
     },
     "DAB-013": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-013-subaction-router",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "e72ad113ddb4a0793ef92a52e9182d15ac8dfbc0357443df81e6c37a03adce77",
@@ -73,7 +73,7 @@
       }
     },
     "DAB-014": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-014-direct-tool-router",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "789b25a968679dbad4882dd88831573648baef1c35cacbd584dc2578872008f2",
@@ -84,7 +84,7 @@
       }
     },
     "DAB-015": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-015-monolithic",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "7a7257b8f4da467362b5d90688f08f4d91553befccac15d1a98868e505709d2b",
@@ -95,7 +95,7 @@
       }
     },
     "DAB-016": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-016-create-benchmark",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "448e50a3b0d304adc884156cbf01387149b97c06cb0401e23a6fc765ff515009",
@@ -106,7 +106,7 @@
       }
     },
     "DAB-017": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-017-design-audit",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-017-design-audit",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "5717022b0e37bf7b976929573c7a51db807e231d7ae31cc7cbf7b166be6e9af5",
@@ -115,7 +115,7 @@
       }
     },
     "DAB-018": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-018-doctor-mcp-install",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-018-doctor-mcp-install",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "016c33753349c774d3d2ee7561a9c81f385b5e7ea20a161f95e1c37afa28e305",
@@ -123,7 +123,7 @@
       }
     },
     "DAB-019": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-019-doctor-mcp-debug",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-019-doctor-mcp-debug",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "f80f15f78fe3311ed48c61bed3debe1d78b7554ef7c5904bb0551330932ae08e",
@@ -131,7 +131,7 @@
       }
     },
     "DAB-020": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-020-doctor-mcp-conflict",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-020-doctor-mcp-conflict",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "df42b76c724b6f3ec4c7fd4aa78fe5f64bda94eb8c90b8a581dae97f2c0f7ac0",
@@ -139,7 +139,7 @@
       }
     },
     "DAB-021": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-021-memory-learn-list",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-021-memory-learn-list",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "a1d9c10466d82e0eec6214d0396b97a8b1f9f351f380e3abb0b4766f1df8f96c",
@@ -147,7 +147,7 @@
       }
     },
     "DAB-022": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-022-memory-learn-budget",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-022-memory-learn-budget",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "e3329b18aa3d1dbf80eafdb34d9d80e1e807b60487b5f2782253a6b710189bf5",
@@ -155,7 +155,7 @@
       }
     },
     "DAB-023": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-023-memory-manage-health",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-023-memory-manage-health",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "ef9d652e8c6c69ba7d41950949831546c638134b4c29d063fda1f179653bc6e6",
@@ -163,7 +163,7 @@
       }
     },
     "DAB-024": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-024-memory-checkpoint-list",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-024-memory-checkpoint-list",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "7ca33c14a5d16cb498f29b764c2595bfab43f88992ac8466eada8abde98f3e4a",
@@ -171,7 +171,7 @@
       }
     },
     "DAB-025": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-025-memory-save-apply",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "540c17941469baec57febfc31b5599b89b0e6927aea90445b6eaaa1544a296a8",
@@ -182,7 +182,7 @@
       }
     },
     "DAB-026": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-026-goal-show",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-026-goal-show",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "fbf4eea71e4a986143a7d524b74b13375e53bf559d104b2299074fc4ec8678ba",
@@ -190,7 +190,7 @@
       }
     },
     "DAB-027": {
-      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-027-agent-router-bare",
+      "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-027-agent-router-bare",
       "restorePolicy": "git",
       "hashes": {
         "FIXTURE.md": "20dfe483ba92c4b7430f7828ee1baaeed170c83c088d7438d1f9de6cb653b2a6",

@@ -9,12 +9,12 @@
   "command_topology": "direct-tool/plugin router",
   "entry_surface": "E1",
   "clarity": "C3",
-  "prompt": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-025-memory-save-apply/src/save-packet --apply",
+  "prompt": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet --apply",
   "invocation": {
     "kind": "command",
     "command": "memory/save"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-025-memory-save-apply",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "save plan",

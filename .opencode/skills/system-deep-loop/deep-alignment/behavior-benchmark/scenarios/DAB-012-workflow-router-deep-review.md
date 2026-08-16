@@ -9,12 +9,12 @@
   "command_topology": "workflow router",
   "entry_surface": "E1",
   "clarity": "C3",
-  "prompt": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-012-workflow-router :auto --review-target-type=spec-folder --dims=correctness --max-iterations=1 --convergence=0.0 --stop-policy=max-iterations --spec-folder=.opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-012-workflow-router",
+  "prompt": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router :auto --review-target-type=spec-folder --dims=correctness --max-iterations=1 --convergence=0.0 --stop-policy=max-iterations --spec-folder=.opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router",
   "invocation": {
     "kind": "command",
     "command": "deep/review"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-012-workflow-router",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "deep-review",

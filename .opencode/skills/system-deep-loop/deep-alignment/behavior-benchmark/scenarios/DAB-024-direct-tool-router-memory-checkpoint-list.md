@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "memory/manage"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-024-memory-checkpoint-list",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-024-memory-checkpoint-list",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "checkpoint_list",

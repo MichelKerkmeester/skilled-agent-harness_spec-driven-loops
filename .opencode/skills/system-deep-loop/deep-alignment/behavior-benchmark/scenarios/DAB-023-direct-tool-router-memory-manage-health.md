@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "memory/manage"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-023-memory-manage-health",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-023-memory-manage-health",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "memory_health",

@@ -20,10 +20,10 @@ const INDEX_PATH = path.join(PACKAGE_ROOT, 'behavior-benchmark.md');
 const BASELINE_PATH = path.join(PACKAGE_ROOT, 'baselines/claude-baseline.md');
 const SPEC_ROOT = path.join(
   REPO_ROOT,
-  '.opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot',
+  '.opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot',
 );
 const RESULT_ROOT = path.join(SPEC_ROOT, 'evidence');
-const FIXTURE_ROOT = path.join(SPEC_ROOT, 'behavior-benchmark/fixtures');
+const FIXTURE_ROOT = path.join(SPEC_ROOT, 'behavior_benchmark/fixtures');
 const FIXTURE_ROOT_REL = path.relative(REPO_ROOT, FIXTURE_ROOT).split(path.sep).join('/');
 const ALLOWED_PROBES = new Set([
   'file_exists',

@@ -9,12 +9,12 @@
   "command_topology": "workflow router",
   "entry_surface": "E1",
   "clarity": "C3",
-  "prompt": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-017-design-audit/src/interface.html --scope accessibility,responsive --score --register product :auto",
+  "prompt": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-017-design-audit/src/interface.html --scope accessibility,responsive --score --register product :auto",
   "invocation": {
     "kind": "command",
     "command": "design/audit"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-017-design-audit",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-017-design-audit",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "design-audit-auto.yaml",

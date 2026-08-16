@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "doctor/mcp"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-019-doctor-mcp-debug",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-019-doctor-mcp-debug",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "doctor-mcp-debug.yaml",

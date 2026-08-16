@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-deep-loop/039-node-suite-remediation",
+  "description": "Remediate node:test failures left by skill/spec reorganizations after the reporter-parse bug was fixed. Cluster A command-benchmark path-rot repointed and verified; sha256 tripwires, adapter inventory drift, and clusters B and C deferred to their owners.",
+  "keywords": [
+    "node-test",
+    "remediation",
+    "fixture-rot",
+    "path-repoint",
+    "command-benchmark",
+    "behavior-benchmark",
+    "compiled-routing",
+    "sha-pin",
+    "deep-alignment"
+  ],
+  "lastUpdated": "2026-08-16T00:00:00.000Z",
+  "specId": "039",
+  "folderSlug": "node-suite-remediation",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

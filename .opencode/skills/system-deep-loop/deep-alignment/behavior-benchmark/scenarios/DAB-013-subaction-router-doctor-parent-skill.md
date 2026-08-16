@@ -9,12 +9,12 @@
   "command_topology": "subaction router",
   "entry_surface": "E1",
   "clarity": "C3",
-  "prompt": "parent-skill --dir=.opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-013-subaction-router/src/parent-skill",
+  "prompt": "parent-skill --dir=.opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/src/parent-skill",
   "invocation": {
     "kind": "command",
     "command": "doctor/speckit"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-013-subaction-router",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "parent-skill",

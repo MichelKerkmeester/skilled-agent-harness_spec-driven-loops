@@ -19,7 +19,7 @@ const EXPECTATION_INDEX = path.join(
   '.opencode',
   'specs',
   'system-deep-loop',
-  '066-command-surface-benchmark',
+  '035-command-surface-benchmark',
   '002-deterministic-fixtures-oracle',
   'expectations',
   'index.json',

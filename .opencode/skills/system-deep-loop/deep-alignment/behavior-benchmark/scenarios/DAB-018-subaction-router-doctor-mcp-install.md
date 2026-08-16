@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "doctor/mcp"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-018-doctor-mcp-install",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-018-doctor-mcp-install",
   "expected_interaction": "question_halt",
   "expected_presentation_markers": [
     "doctor-mcp-install.yaml",

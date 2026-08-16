@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "memory/search"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-014-direct-tool-router",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "MEMORY:SEARCH",
