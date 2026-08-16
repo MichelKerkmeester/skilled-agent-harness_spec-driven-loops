@@ -1,9 +1,9 @@
 ---
 title: sk-git
-description: Takes a git workflow from a clean workspace to a merged pull request with owner-first worktrees, deterministic commit subjects, an ask-first workspace rule and cleanup at every step.
+description: Takes a git workflow from a clean workspace to a merged pull request with numbered worktrees, deterministic commit subjects, an ask-first workspace rule and cleanup at every step.
 trigger_phrases:
   - "git workflow orchestrator"
-  - "owner-first worktree naming"
+  - "numbered worktree naming"
   - "conventional commits worktree"
   - "git workspace commit finish"
   - "pull request commit hygiene"
@@ -12,7 +12,7 @@ version: 1.4.1.0
 
 # sk-git
 
-> Move from a clean workspace to a merged pull request, with owner-first worktrees and deterministic commit subjects at each step.
+> Move from a clean workspace to a merged pull request, with numbered worktrees and deterministic commit subjects at each step.
 
 ---
 
@@ -22,8 +22,8 @@ version: 1.4.1.0
 |---|---|
 | **Use it for** | Git workflow from a clean workspace to a merged PR for AI sessions and operators sharing one repository: worktree setup, commit hygiene, completion and cleanup |
 | **Invoke with** | Git-workflow keywords ("commit", "worktree", "pull request", "finish work") through the skill advisor, plus a direct `SKILL.md` read path |
-| **Works on** | Any repository with owner-first worktrees, staged changes ready to commit or finished work ready to integrate |
-| **Produces** | Owner-first worktrees and branches, deterministic Conventional Commit subjects, merged or closed PRs with cleanup |
+| **Works on** | Any repository with numbered worktrees, staged changes ready to commit or finished work ready to integrate |
+| **Produces** | Numbered worktrees and branches, deterministic Conventional Commit subjects, merged or closed PRs with cleanup |
 
 ---
 
@@ -47,8 +47,8 @@ sk-git does not write code or manage spec folders. `sk-code` owns the code that 
 
 | Feature | What the skill operates |
 |---|---|
-| **Owner-first worktree grammar** | Every managed branch starts with its owner, so a Git-UI branch tree is legible at a glance |
-| **Clone-wide number allocator** | Reserves a globally unique `NNNN` under a lock that reads a high-water mark plus every worktree and ref |
+| **Numbered worktree grammar** | Worktree-backed branches use `worktrees/NNN-slug` with the directory `.worktrees/NNN-slug`; dedicated branches without a worktree use `branches/NNN-slug` |
+| **Per-namespace number allocator** | Reserves the next `NNN` under a lock per namespace (`worktrees/` and `branches/` each number independently), reading that namespace's high-water mark plus every matching worktree and ref |
 | **Ask-first workspace rule** | Never picks worktree vs current branch on its own. Holds your choice for the session |
 | **Launch-wrapper isolation** | An operator opt-in that places each top-level session in its own worktree and branch, with isolated MCP databases |
 | **Continuous-integration autosync** | Publishes each commit to one shared live branch so the operator's IDE stays current |
@@ -87,38 +87,43 @@ The advisor prints a routing recommendation. The Read call opens the runtime ins
 **Step 3: Confirm the workspace (setup only).** The skill asks before it creates anything. Choose an isolated worktree for parallel or long-running work. Stay on the current branch for a quick fix.
 
 ```bash
-# Owner-first worktree: the allocator reserves a collision-free number under a
-# clone-wide lock and creates the branch plus directory together.
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git add-oauth-login
-# -> branch sk-git/0007-add-oauth-login, directory .worktrees/0007-sk-git-add-oauth-login
+# Numbered worktree: the allocator reserves a collision-free number under a
+# per-namespace lock and creates the branch plus directory together.
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create add-oauth-login
+# -> branch worktrees/007-add-oauth-login, directory .worktrees/007-add-oauth-login
+
+# Dedicated branch with no worktree (branches/ numbers independently):
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-branch external-dep
+# -> branch branches/003-external-dep
 ```
 
-Expected result: an isolated directory on an owner-first `{owner}/{NNNN}-{slug}` branch, ready to code. `{owner}` is the owning skill id. Use `skilled` for cross-cutting work.
+Expected result: an isolated directory on a numbered `worktrees/{NNN}-{slug}` branch (or a standalone `branches/{NNN}-{slug}` branch), ready to code.
 
 ---
 
 ## 4. HOW IT WORKS
 
-### Owner-First Worktree Grammar
+### Numbered Worktree Grammar
 
 Every managed name follows one grammar:
 
 ```text
-OWNER        := <skill-id> | "skilled"
-TASK_BRANCH  := OWNER "/" NNNN "-" SLUG        (NNNN 4-digit, SLUG lowercase kebab)
-TASK_DIR     := ".worktrees/" NNNN "-" OWNER "-" SLUG
-RELEASE      := "skilled/v" A "." B "." C "." D
-RESERVED     := "main"
-WRAPPER      := "work/" RUNTIME "/" SLUG        (launch-wrapper lane, exempt)
+WORKTREE_BRANCH := "worktrees/" NNN "-" SLUG        (NNN 3-digit 001..999)
+WORKTREE_DIR    := ".worktrees/" NNN "-" SLUG
+DEDICATED_BRANCH:= "branches/" NNN "-" SLUG          (a branch with NO worktree)
+RELEASE         := "skilled/v" A "." B "." C "." D
+BACKUP          := "backup/" ANYTHING                (safety refs; legal, not numbered)
+RESERVED        := "main"
+WRAPPER         := "work/" RUNTIME "/" SLUG          (launch-wrapper lane, exempt)
 ```
 
-The owner prefix groups every feature branch under its skill in a Git UI instead of a flat pile, so a reviewer can read who owns what at a glance. Two other lanes stay distinct from owner-first task branches. `work/{runtime}/{slug}` is the launch wrapper's ephemeral, auto-reaped lane, unnumbered and exempt. The legacy `wt/{NNNN}-{slug}` form predates this convention. It is permitted but non-conformant. Migration renames the branch and directory into the owner-first form, never rewriting history.
+Two flat spec-style namespaces — `worktrees/` and `branches/` — keep a Git-UI branch tree legible as a few clean folders instead of a per-skill pile, and they number **independently**: a `worktrees/003` and a `branches/003` may coexist. Strictly sequential, never skipped, never reused; deleting a middle number never back-fills the gap. `backup/<anything>` safety refs and the launch wrapper's `work/{runtime}/{slug}` lane stay distinct legal-but-not-numbered namespaces.
 
 ### The Number Allocator And Its Lock
 
-Git has no cross-prefix uniqueness, so a per-owner counter cannot be enforced by git itself. Allocation instead holds a lock in the shared common Git dir and seeds its maximum from the stored high-water mark first, then from every registered worktree basename and all local and remote refs. Because the lock serializes contenders and the scan reads the high-water mark first, a partial scan can never reissue a live number, even when several sessions allocate at the same moment. Never hand-compute `NNNN`. Call `worktree-naming.sh create` or `allocate` and let the lock do its job.
+Git cannot enforce sequential uniqueness itself, so each namespace's counter is allocated under a lock in the shared common Git dir, seeded from that namespace's stored high-water mark first, then every matching local + remote ref and (for `worktrees/`) every registered worktree basename. Because the lock serializes contenders and the scan reads the high-water mark first, a partial scan can never reissue a live number, even when several sessions allocate at the same moment. Never hand-compute `NNN`. Call `worktree-naming.sh create`, `create-branch`, or `allocate` and let the lock do its job.
 
-The allocator exposes `create`, `create-detached`, `allocate`, `next` and `scan-max`, plus four validators.
+The allocator exposes `create`, `create-branch`, `create-detached`, `allocate`, `next` and `scan-max`, plus validators (`is_valid_slug`, `is_valid_nnn`, `is_valid_branch`, `is_wrapper_branch`, `is_backup_branch`, `is_valid_pair`, `is_remote_push_allowlisted`).
 
 ### Workspace Choice Is Always Yours
 
@@ -166,7 +171,7 @@ Use `gh` for simple PR creation and listing. Use the GitHub MCP when you need st
 
 | Capability | sk-git | Raw git |
 |---|---|---|
-| Branch naming | Owner-first `{owner}/{NNNN}-{slug}`, number from a locked allocator | Freeform, chosen by hand |
+| Branch naming | `worktrees/{NNN}-{slug}` or `branches/{NNN}-{slug}`, number from a per-namespace locked allocator | Freeform, chosen by hand |
 | Workspace choice | Asks worktree vs current branch, holds the answer | Whatever you type |
 | Commit subjects | Deterministic from diff and metadata | Freeform, drifts across authors |
 | Concurrent sessions | Isolated worktrees plus autosync to one live branch | Manual coordination |
@@ -195,7 +200,7 @@ sk-git/
 
 | Path | Purpose |
 |---|---|
-| `scripts/worktree-naming.sh` | Owner-first allocator, worktree creators and grammar validators |
+| `scripts/worktree-naming.sh` | Numbered-worktree allocator, worktree creators and grammar validators |
 | `references/worktree-workflows.md` | Workspace creation, directory and branch strategy |
 | `references/commit-workflows.md` | Commit flow with artifact filtering and scoped staging |
 | `references/finish-workflows.md` | Completion: PR, merge, cleanup and release notes |
@@ -237,13 +242,13 @@ A: Use `gh` for simple PR creation and listing. Use the GitHub MCP when you need
 
 **Q: A PR merged but the worktree was never cleaned up. Now what?**
 
-A: Run `git worktree list` to find the stale one, remove it with `git worktree remove .worktrees/{NNNN}-{owner}-{slug}`, delete the local branch with `git branch -d {owner}/{NNNN}-{slug}` and the remote with `git push origin --delete {owner}/{NNNN}-{slug}`, then `git worktree prune`. Remove the worktree before deleting its branch, because a branch checked out by a worktree cannot be deleted.
+A: Run `git worktree list` to find the stale one, remove it with `git worktree remove .worktrees/{NNN}-{slug}`, delete the local branch with `git branch -d worktrees/{NNN}-{slug}` (or `branches/{NNN}-{slug}`) and the remote with `git push origin --delete worktrees/{NNN}-{slug}`, then `git worktree prune`. Remove the worktree before deleting its branch, because a branch checked out by a worktree cannot be deleted.
 
 ---
 
 ## 8. VERIFICATION
 
-The skill ships a manual testing playbook with 42 scenarios across 8 categories and a feature catalog covering worktree, commit, finish, GitKraken and owner-first worktree tooling.
+The skill ships a manual testing playbook with scenarios across 8 categories and a feature catalog covering worktree, commit, finish, GitKraken and numbered worktree tooling.
 
 | Check | How to run it |
 |---|---|

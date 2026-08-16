@@ -30,7 +30,7 @@ The wrapper execs in place — no new worktree — whenever either signal is pre
 
 ### Worktree Allocation and Basing
 
-A top-level session gets a short unique slug (`epoch-pid`), a numbered ephemeral directory `.worktrees/<runtime>-<slug>`, and a `work/<runtime>/<slug>` branch — a separate, machine-owned lane from the owner-first task-worktree grammar, intentionally not numbered or owner-scoped. The session worktree is based on whatever branch the primary checkout currently has open (the "live branch"); when the primary checkout is on a detached HEAD, the wrapper falls back to basing on `HEAD` and skips autosync wiring for that session.
+A top-level session gets a short unique slug (`epoch-pid`), a numbered ephemeral directory `.worktrees/<runtime>-<slug>`, and a `work/<runtime>/<slug>` branch — a separate, machine-owned lane from the numbered task-worktree grammar, intentionally not numbered. The session worktree is based on whatever branch the primary checkout currently has open (the "live branch"); when the primary checkout is on a detached HEAD, the wrapper falls back to basing on `HEAD` and skips autosync wiring for that session.
 
 ### Dependency Sharing and DB Isolation
 

@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/` holds the harness for `worktree-naming.sh`. It runs entirely inside a throwaway git repo created with `mktemp`, so it never creates refs or worktrees in the real clone. It exercises the grammar validators, the number scan, locked allocation including the concurrent case and both the named and detached worktree creators.
+`tests/` holds the harness for `worktree-naming.sh`. It runs entirely inside a throwaway git repo created with `mktemp`, so it never creates refs or worktrees in the real clone. It exercises the grammar validators, the per-namespace number scan, locked allocation including the concurrent case and the no-skip rule, and the named, dedicated and detached worktree creators.
 
 Current state:
 
@@ -36,7 +36,7 @@ tests/
 
 | File | Responsibility |
 |---|---|
-| `worktree-naming.test.sh` | Builds an isolated fixture repo, then asserts grammar, scan, locked allocation and worktree creation |
+| `worktree-naming.test.sh` | Builds an isolated fixture repo, then asserts grammar, per-namespace scan, locked allocation, no-skip and worktree/branch creation |
 
 ---
 
@@ -48,7 +48,7 @@ Run from the repository root.
 bash .opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh
 ```
 
-Expected result: the harness prints a summary line ending in `FAIL=0` (for example `worktree-naming tests: PASS=43 FAIL=0`) and exits 0. A failing assertion prints a `FAIL: <desc>` line with its expected and actual values, and the run exits non-zero.
+Expected result: the harness prints a summary line ending in `FAIL=0` (for example `worktree-naming tests: PASS=65 FAIL=0`) and exits 0. A failing assertion prints a `FAIL: <desc>` line with its expected and actual values, and the run exits non-zero.
 
 ---
 

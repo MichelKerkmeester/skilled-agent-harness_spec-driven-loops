@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/022-worktree-branch-naming-overhaul",
+  "spec_folder": "sk-git/022-worktree-branch-naming-overhaul",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "worktree",
+      "branch",
+      "naming",
+      "grammar",
+      "implementation",
+      "plan",
+      "tasks",
+      "allocator",
+      "verification",
+      "checklist"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "worktree",
+      "branch",
+      "naming",
+      "grammar",
+      "implementation",
+      "plan",
+      "tasks",
+      "allocator",
+      "verification",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Branch Naming Overhaul",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Replace",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Push Hook",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migration Helper",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The owner-first grammar scatters the Git-UI branch tree into a per-skill pile and couples every branch to a single clone-wide 4-digit counter that cannot be scoped per namespace",
+    "created_at": "2026-08-16T06:45:24.918Z",
+    "last_save_at": "2026-08-16T07:03:11.583Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f129e13f97fea032e8ff06699aed58862c588b3a0853ba82a444d7d5c25ac3d0",
+    "source_doc_hashes": {
+      "spec.md": "2e9b2119720ee08189e8c089fb4ebd8aee4f864530b1b4f0e443e08de9d5451e",
+      "plan.md": "7a907cddc7c76d22cd9a10d679ea9508b51b75e0e2c81d2143ee7a7bff180537",
+      "tasks.md": "4660b987761c24dac43a701a09e49f9a28a8a15c2e8990897327053c1c9d567c",
+      "checklist.md": "9749d882f1fad7b661289ff5108a14547ee908ed1f97bb7157912013db09e6ef",
+      "decision-record.md": "0c5759abe2d00465040e5f19c66c627b3e8224ecf4a78fd2e90ca9a2646602a7",
+      "implementation-summary.md": "e601108784937bb21de2525bd34e9f35454a8c61ce77eb2d1092685d0600f2b8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

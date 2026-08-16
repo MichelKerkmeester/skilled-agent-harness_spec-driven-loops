@@ -16,7 +16,7 @@ This scenario validates the release-branch exemption for `GIT-039`. It focuses o
 
 ### Why This Matters
 
-Release branches follow their own version-tag grammar, not the owner-first task grammar. Gating them would either block a release cut outright or force a confusing owner-first name onto a release branch.
+Release branches follow their own version-tag grammar, not the numbered task grammar. Gating them would either block a release cut outright or force a confusing numbered name onto a release branch.
 
 ---
 
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `GIT-039` and confirm th
 
 ### Optional Supplemental Checks
 
-Confirm a malformed release-shaped name that is not actually `skilled/v*` (e.g. `skilled/version9`) is NOT exempt and falls through to the normal owner-first grammar check.
+Confirm a malformed release-shaped name that is not actually `skilled/v*` (e.g. `skilled/version9`) is NOT exempt and falls through to the normal numbered grammar check.
 
 ---
 

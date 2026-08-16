@@ -20,7 +20,7 @@ Keep `origin` curated while local branch/worktree creation stays free: only a sm
 
 ## 1. OVERVIEW
 
-Numbered worktrees and owner-first branches (ALWAYS #4) make local branch creation cheap and frequent by design — but nothing about that design implies every one of those branches belongs on `origin`. This policy adds a second question, independent of branch naming: **should this branch reach remote at all, right now?**
+Numbered worktrees and `worktrees/NNN-slug` / `branches/NNN-slug` branches (ALWAYS #4) make local branch creation cheap and frequent by design — but nothing about that design implies every one of those branches belongs on `origin`. This policy adds a second question, independent of branch naming: **should this branch reach remote at all, right now?**
 
 Two layers answer it:
 
@@ -67,7 +67,7 @@ SPECKIT_AUTOSYNC=1  AND  branch being pushed == $SPECKIT_LIVE_BRANCH
 
 Both conditions must hold. `SPECKIT_AUTOSYNC=1` alone does **not** exempt an arbitrary branch — only the exact live branch the wrapper resolved at session start.
 
-The same exact predicate exempts the destination from the new-branch naming gate. This matters on the first publication of a live branch: the source is a local `work/<runtime>/<slug>` wrapper branch, but the remote ref is the operator-selected live branch. The source branch remains local-only. No wrapper ref is pushed. A push to any other new remote branch still receives the owner-first naming check.
+The same exact predicate exempts the destination from the new-branch naming gate. This matters on the first publication of a live branch: the source is a local `work/<runtime>/<slug>` wrapper branch, but the remote ref is the operator-selected live branch. The source branch remains local-only. No wrapper ref is pushed. A push to any other new remote branch still receives the task-branch naming check.
 
 **Why this branch is different**: it was already an explicit operator choice — the primary checkout's own branch — made before any session existed to autosync into it. `git-sync.sh`'s documented contract is "never asks the caller mid-hook" and "non-fatal by default" ([continuous-integration.md](continuous-integration.md)); blocking its publish would silently strand every wrapper session's commits and regress a separately documented feature.
 
@@ -79,7 +79,7 @@ This exception does not apply to safety or consistency gates. The mass-deletion 
 
 | Variable | Scope | Skips |
 |---|---|---|
-| `SPECKIT_SKIP_PREPUSH_NAMING=1` | Naming gate only | The owner-first grammar check on a brand-new branch |
+| `SPECKIT_SKIP_PREPUSH_NAMING=1` | Naming gate only | The task-branch grammar check on a brand-new branch |
 | `SPECKIT_ALLOW_REMOTE_PUSH=1` | Permission gate only | The remote-allowlist/ask-first check, new or update |
 
 Setting one does **not** imply the other. A malformed, non-allowlisted new branch pushed with only `SPECKIT_SKIP_PREPUSH_NAMING=1` still blocks on the permission gate; both are needed together to push it unconditionally.

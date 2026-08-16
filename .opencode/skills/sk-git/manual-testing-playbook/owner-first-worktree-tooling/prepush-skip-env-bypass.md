@@ -16,7 +16,7 @@ This scenario validates the explicit bypass env var for `GIT-040`. It focuses on
 
 ### Why This Matters
 
-There are legitimate reasons to push a branch outside the owner-first grammar (one-off backups, external collaboration branches). The bypass must be explicit, logged, and total — never a silent partial skip.
+There are legitimate reasons to push a branch outside the numbered-worktree grammar (one-off backups, external collaboration branches). The bypass must be explicit, logged, and total — never a silent partial skip.
 
 ---
 

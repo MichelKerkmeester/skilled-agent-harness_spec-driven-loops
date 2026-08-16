@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `GIT-041` and confirm th
 - Objective: prove a brand-new `work/<runtime>/<slug>` ref pushed to the remote is explicitly rejected with a wrapper-specific message, not just a generic naming failure.
 - Real user request: `I don't want a launch-wrapper session branch ever accidentally ending up pushed as a real remote branch.`
 - RCAF Prompt: `As a git safety reviewer, push a brand-new work/<runtime>/<slug> ref to the remote and verify it is rejected with a message identifying it specifically as a launch-wrapper ref, distinct from a generic malformed-name rejection.`
-- Expected execution process: Feed a new-branch line (zero remote sha) named `work/opencode/x`, and confirm the hook rejects it with the dedicated wrapper message rather than the generic "does not match the owner-first naming grammar" text.
+- Expected execution process: Feed a new-branch line (zero remote sha) named `work/opencode/x`, and confirm the hook rejects it with the dedicated wrapper message rather than the generic "does not match the task-branch naming grammar" text.
 - Expected signals: exit code 1; stderr contains `BLOCKED: 'work/opencode/x' is a launch-wrapper ref (work/<runtime>/<slug>)` and the "local-only and machine-reaped" explanation.
 - Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
 - Pass/fail: PASS if the rejection message specifically names the ref as a launch-wrapper ref rather than falling through to the generic malformed-branch message. FAIL if the ref is accepted, or if it is rejected only with the generic malformed-name message without the wrapper-specific explanation.

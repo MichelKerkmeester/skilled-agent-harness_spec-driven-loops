@@ -1,12 +1,12 @@
 ---
 title: "Numbered worktree workflows"
-description: "The end-to-end workflow an AI follows to gather inputs, verify safety, create a numbered owner-first worktree, and report status."
+description: "The end-to-end workflow an AI follows to gather inputs, verify safety, create a numbered worktree (or dedicated branch), and report status."
 trigger_phrases:
   - "numbered worktree workflows"
   - "create a git worktree"
   - "fast-merge worktree lifecycle"
   - "detached experiment worktree"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Numbered worktree workflows
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-Git worktrees create isolated working directories sharing one repository database, letting an AI work on multiple features in parallel without stash chaos or context switching. sk-git wraps raw `git worktree` usage in a seven-step workflow — gather inputs, verify safety, create, install dependencies, verify a clean baseline, and report — built around the owner-first naming grammar.
+Git worktrees create isolated working directories sharing one repository database, letting an AI work on multiple features in parallel without stash chaos or context switching. sk-git wraps raw `git worktree` usage in a seven-step workflow — gather inputs, verify safety, create, install dependencies, verify a clean baseline, and report — built around the numbered naming grammar.
 
 The workflow only applies once the user has explicitly chosen to create a worktree; the AI must never decide this on its own.
 
@@ -25,7 +25,7 @@ The workflow only applies once the user has explicitly chosen to create a worktr
 
 ### Workspace Choice Enforcement
 
-The AI must ask the user to choose between creating a git worktree or working on the current branch before proceeding, and must wait for an explicit selection. It must never create a new branch directly with `git branch`, `git checkout -b`, or `git switch -c` — every branch is created only through `git worktree add -b`, in practice via the naming allocator's `create` command.
+The AI must ask the user to choose between creating a git worktree or working on the current branch before proceeding, and must wait for an explicit selection. It must never create a new branch directly with `git branch`, `git checkout -b`, or `git switch -c` — worktree branches are created only through `git worktree add -b`, in practice via the naming allocator's `create` command; a dedicated branch without a worktree is created only via `create-branch`.
 
 ### Directory and Safety Verification
 
@@ -33,7 +33,7 @@ Named feature worktrees live under the repo-local `.worktrees/` home, which is n
 
 ### Lifecycle Strategies
 
-All three strategies share the identical owner-first `{OWNER}/{NNNN}-{slug}` branch and `.worktrees/{NNNN}-{OWNER}-{slug}` directory; they differ only in how the branch is managed afterward. Fast-merge (the default) is a short-lived branch merged straight back after testing. Long-running keeps the same branch across multiple days for PR review. Detached experiment uses a numbered-but-unbranched detached HEAD for throwaway work, with no owner and no branch — promoting it later means creating a fresh owner-first branch from that commit.
+All named strategies share the identical `worktrees/{NNN}-{slug}` branch and `.worktrees/{NNN}-{slug}` directory (a dedicated branch uses `branches/{NNN}-{slug}`); they differ only in how the branch is managed afterward. Fast-merge (the default) is a short-lived branch merged straight back after testing. Long-running keeps the same branch across multiple days for PR review. Detached experiment uses a numbered-but-unbranched detached HEAD for throwaway work — promoting it later means creating a fresh `worktrees/NNN-slug` branch from that commit.
 
 ### Project Setup and Baseline Verification
 

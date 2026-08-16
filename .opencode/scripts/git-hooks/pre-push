@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Pre-push hook — independent safety and consistency gates run before origin:
 #
-#   1. Naming gate:      a brand-new remote branch must match the owner-first
+#   1. Naming gate:      a brand-new remote branch must match the task-branch
 #                         grammar (updates to an existing remote branch are
 #                         always naming-exempt — migration tolerance for a
 #                         name that predates or falls outside the grammar).
@@ -73,12 +73,13 @@ fi
 _expected_grammar() {
   cat <<'GRAMMAR'
     Expected new-branch grammar:
-      <owner>/NNNN-<slug>   e.g. sk-git/0041-fix-thing
-        owner = a skill's frontmatter name: (.opencode/skills/*/SKILL.md), or "skilled"
-        NNNN  = 4-digit zero-padded number
-        slug  = lowercase kebab-case ([a-z0-9] segments joined by single hyphens)
-      skilled/vA.B.C.D      release branch, e.g. skilled/v4.0.0.0 (never gated)
-      main                  reserved
+      worktrees/NNN-<slug>    worktree-backed branch, e.g. worktrees/0041-fix-thing
+      branches/NNN-<slug>     dedicated branch with no worktree, e.g. branches/0003-external-dep
+        NNN  = 3-digit zero-padded number (001..999)
+        slug = lowercase kebab-case ([a-z0-9] segments joined by single hyphens)
+      skilled/vA.B.C.D        release branch, e.g. skilled/v4.0.0.0 (never gated)
+      backup/<anything>       safety ref; legal, not numbered, not a task branch
+      main                    reserved
 GRAMMAR
 }
 
@@ -150,7 +151,7 @@ while read -r _ local_sha remote_ref remote_sha; do
     : # operator explicitly asked to skip naming for this push — Gate 2 still runs below
   elif [[ "$is_new" -eq 0 ]]; then
     if ! is_valid_branch "$branch_name"; then
-      echo "⚠️  pre-push: '$branch_name' does not match the owner-first naming grammar (update allowed — migration tolerance)." >&2
+      echo "⚠️  pre-push: '$branch_name' does not match the task-branch naming grammar (update allowed — migration tolerance)." >&2
     fi
   else
     branch_rc=0
@@ -158,25 +159,30 @@ while read -r _ local_sha remote_ref remote_sha; do
 
     if [[ "$branch_rc" -eq 2 ]]; then
       echo "⚠️  pre-push: internal validator error for '$branch_name' — allowing push (fail-open)." >&2
+    elif is_wrapper_branch "$branch_name"; then
+      # The wrapper lane is a legal grammar name but its refs are local-only and
+      # machine-reaped; a brand-new push of one is always wrong. Checked before
+      # is_valid_branch so a legal wrapper name is still blocked as a new branch.
+      {
+        echo ""
+        echo "BLOCKED [gate:naming]: '$branch_name' is a launch-wrapper ref (work/<runtime>/<slug>)."
+        echo "Wrapper branches are local-only and machine-reaped — they must never be pushed as a feature branch."
+        _expected_grammar
+        echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
+        echo ""
+      } >&2
+      REJECTED=1
+      continue   # already rejected on naming — skip the permission gate for this ref
     elif [[ "$branch_rc" -ne 0 ]]; then
-      if is_wrapper_branch "$branch_name"; then
-        {
-          echo ""
-          echo "BLOCKED [gate:naming]: '$branch_name' is a launch-wrapper ref (work/<runtime>/<slug>)."
-          echo "Wrapper branches are local-only and machine-reaped — they must never be pushed as a feature branch."
-          _expected_grammar
-          echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
-          echo ""
-        } >&2
-      else
-        {
-          echo ""
-          echo "BLOCKED [gate:naming]: new branch '$branch_name' does not match the owner-first naming grammar."
-          _expected_grammar
-          echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
-          echo ""
-        } >&2
-      fi
+      # backup/* refs pass is_valid_branch, so they reach the permission gate
+      # below like any other new branch — legal name, still gated on permission.
+      {
+        echo ""
+        echo "BLOCKED [gate:naming]: new branch '$branch_name' does not match the task-branch naming grammar."
+        _expected_grammar
+        echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
+        echo ""
+      } >&2
       REJECTED=1
       continue   # already rejected on naming — skip the permission gate for this ref
     fi
