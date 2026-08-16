@@ -6,7 +6,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/038-weak-model-loop-adherence"
-    last_updated_at: "2026-08-16T10:57:01Z"
+    last_updated_at: "2026-08-16T15:55:15Z"
     last_updated_by: "claude"
     recent_action: "Shipped + proved the fan-out write-boundary hardening; DeepSeek runs clean"
     next_safe_action: "Optional: live per-mode cli-pi spot-check to fully close REQ-006"
@@ -105,7 +105,8 @@ REQ-002 satisfied: DeepSeek completes inside its lineage directory with zero bre
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- The live acceptance used cli-opencode (`opencode-go/deepseek-v4-flash`) — the same `buildLoopPrompt` path as cli-pi. A full live per-mode cli-pi run across all eight modes was not run (disproportionate cost); the prompt-level test covers cli-pi for research and review, and a live cli-pi spot-check remains a cheap future confirmation.
+- The live acceptance used cli-opencode (`opencode-go/deepseek-v4-flash`) — the same `buildLoopPrompt` path as cli-pi. A full live per-mode cli-pi run across all eight modes was not run (disproportionate cost); the prompt-level test covers cli-pi for research and review.
+- **cli-pi live spot-check now done (packet 011).** A live cli-pi DeepSeek review lineage drove the full loop; on one run DeepSeek wrote out-of-scope into a sibling packet and the write-containment backstop reverted it (`containment_violation` → the lineage was failed and the repo left clean). This is direct live confirmation that weak-model out-of-scope writes still occur on cli-pi and that the enforced net catches them.
 - Prompt-hardening reduces but cannot guarantee a weak model never breaches. Write-containment stays the enforced net for the residual case.
 
 <!-- /ANCHOR:limitations -->

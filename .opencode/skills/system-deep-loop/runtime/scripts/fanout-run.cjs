@@ -1355,6 +1355,84 @@ function startLineageStallWatchdog({ thresholdMs, label, ledgerPath, getLastEven
 }
 
 /**
+ * Cheap, monotonic-ish signature of a lineage's on-disk artifacts. It advances
+ * whenever files are added, grown, or rewritten, so a change between polls means
+ * the lineage produced real output — the liveness signal a non-streaming executor
+ * cannot express through incremental stdout.
+ */
+function computeLineageArtifactSignature(dir) {
+  let count = 0;
+  let bytes = 0;
+  let maxMtimeMs = 0;
+  const walk = (current) => {
+    let entries;
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const entry of entries) {
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        walk(full);
+        continue;
+      }
+      let stat;
+      try {
+        stat = fs.statSync(full);
+      } catch {
+        continue;
+      }
+      count += 1;
+      bytes += stat.size;
+      if (stat.mtimeMs > maxMtimeMs) maxMtimeMs = stat.mtimeMs;
+    }
+  };
+  walk(dir);
+  return { count, bytes, maxMtimeMs };
+}
+
+function lineageArtifactProgressed(prev, next) {
+  if (!prev) return next.count > 0 || next.bytes > 0;
+  return next.count > prev.count || next.bytes > prev.bytes || next.maxMtimeMs > prev.maxMtimeMs;
+}
+
+/**
+ * Poll cadence for artifact progress: a few checks per heartbeat window so a write
+ * is noticed well before any stall/lag threshold keyed off the same cadence, floored
+ * and capped so it neither busy-loops nor lags a slow writer.
+ */
+function computeArtifactPollCadenceMs(progressHeartbeatMs) {
+  const base = Number.isFinite(progressHeartbeatMs) && progressHeartbeatMs > 0
+    ? progressHeartbeatMs
+    : 60000;
+  return Math.max(5000, Math.min(30000, Math.floor(base / 2)));
+}
+
+/**
+ * Watch a lineage's artifact directory and fire onArtifactProgress whenever its
+ * on-disk output advances. Baselines the current signature at start so only writes
+ * made after dispatch count (a retry that reuses a populated dir does not false-fire).
+ */
+function startLineageArtifactProgressPoller({ lineageDir, cadenceMs, onArtifactProgress }) {
+  if (!Number.isFinite(cadenceMs) || cadenceMs <= 0) return () => {};
+  let lastSignature = computeLineageArtifactSignature(lineageDir);
+  const timer = setInterval(() => {
+    const signature = computeLineageArtifactSignature(lineageDir);
+    if (lineageArtifactProgressed(lastSignature, signature)) {
+      lastSignature = signature;
+      try {
+        onArtifactProgress();
+      } catch {
+        // The progress signal is best-effort liveness; never let it break the run.
+      }
+    }
+  }, cadenceMs);
+  timer.unref?.();
+  return () => clearInterval(timer);
+}
+
+/**
  * Run a lineage subprocess without blocking the Node event loop.
  *
  * Resolves a spawnSync-shaped result ({ status, signal, stdout, error }) so the
@@ -2458,6 +2536,22 @@ async function main() {
         getGauges: () => latestGauges,
       });
 
+      // A non-streaming executor (a print-mode CLI that returns output only at the
+      // end) emits no incremental stdout, so the stall-watchdog and the pool's stall
+      // clock -- both fed by streamed output -- would flag a genuinely-working lineage
+      // as idle and, where the abort/orphan guards are armed, requeue it. Count real
+      // artifact writes under the lineage dir as liveness: while iteration and state
+      // files keep appearing, the lineage is making progress regardless of streaming,
+      // and a lineage that writes nothing at all is still caught by its own timeout.
+      const stopArtifactProgressPoller = startLineageArtifactProgressPoller({
+        lineageDir,
+        cadenceMs: computeArtifactPollCadenceMs(progressHeartbeatMs),
+        onArtifactProgress: () => {
+          markLineageEvent();
+          if (typeof context.reportProgress === 'function') context.reportProgress();
+        },
+      });
+
       // Every dispatch kind runs write-containment uniformly: a not-in-HEAD out-of-scope
       // path is preserved on disk and reported as a non-fatal advisory (never deleted),
       // and only an in-HEAD breach (git-recoverable via checkout HEAD) is fatal. That
@@ -2505,6 +2599,7 @@ async function main() {
           ...(typeof input === 'string' ? { input } : {}),
         });
       } finally {
+        stopArtifactProgressPoller();
         stopProgressHeartbeat();
         stopStallWatchdog();
       }
