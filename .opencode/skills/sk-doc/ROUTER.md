@@ -215,7 +215,7 @@ RESOURCE_MAP = {
         "sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
         "sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
         "sk-create-skill/assets/parent-skill/parent-skill-registry-template.json",
-        "sk-create-skill/assets/parent-skill/parent-skill-smart-routing-template.md",
+        "sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md",
         "sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md",
         "sk-create-skill/assets/parent-skill/scaffold/packet-skill-scaffold.md",
         "sk-create-skill/assets/skill/skill-asset-template.md",

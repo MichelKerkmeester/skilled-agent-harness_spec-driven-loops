@@ -131,7 +131,7 @@ Tie-break order lists workflow modes first and surface packets after them. `surf
 
 ### Two-stage authoring: `hub-router.json` then root `ROUTER.md`
 
-Stage one and stage two are separate authoring acts. `hub-router.json` selects a workflow mode. The root `ROUTER.md` then owns stage-two leaf selection when `active` — mapping request intent to the exact packet-local leaf resources that mode loads — or declares `stage1-only` and leaves the whole routing story to stage one. A fresh hub scaffolds `stage1-only` with empty maps, a root `SKILL.md` pointer, and a four-part `version`. Promotion to `active` is the deliberate act of authoring non-empty equal-key maps with resolvable, typed leaf paths; the authoring tooling never fabricates those maps. See [`parent-skill-smart-routing-template.md`](../../assets/parent-skill/parent-skill-smart-routing-template.md) for both states.
+Stage one and stage two are separate authoring acts. `hub-router.json` selects a workflow mode. The root `ROUTER.md` then owns stage-two leaf selection when `active` — mapping request intent to the exact packet-local leaf resources that mode loads — or declares `stage1-only` and leaves the whole routing story to stage one. A fresh hub scaffolds `stage1-only` with empty maps, a root `SKILL.md` pointer, and a four-part `version`. Promotion to `active` is the deliberate act of authoring non-empty equal-key maps with resolvable, typed leaf paths; the authoring tooling never fabricates those maps. See [`parent-skill-root-router-template.md`](../../assets/parent-skill/parent-skill-root-router-template.md) for both states.
 
 ---
 
@@ -244,7 +244,7 @@ Companion file policy:
 ## 8. RELATED RESOURCES
 
 - [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - published router and registry schema details for parent hubs.
-- [parent-skill-smart-routing-template.md](../../assets/parent-skill/parent-skill-smart-routing-template.md) - root `ROUTER.md` stage-two authoring template.
+- [parent-skill-root-router-template.md](../../assets/parent-skill/parent-skill-root-router-template.md) - root `ROUTER.md` stage-two authoring template.
 - [skill-creation.md](../README.md) - skill-creation index and route map.
 - [overview.md](../shared/overview.md) - skill anatomy and layered structure.
 - [creation-workflow.md](../skill/creation-workflow.md) - ordered creation workflow.

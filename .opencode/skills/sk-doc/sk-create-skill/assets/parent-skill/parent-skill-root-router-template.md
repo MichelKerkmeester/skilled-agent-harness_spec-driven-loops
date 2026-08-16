@@ -1,8 +1,8 @@
 ---
-title: Parent Skill Smart Routing Template - Root ROUTER.md Authoring
+title: Parent Skill Root Router Template - Root ROUTER.md Authoring
 description: Authoring guide for the root ROUTER.md stage-two control document: the active state maps request intent to packet-local leaf resources, and the stage1-only state delegates all routing to hub-router.json plus mode-registry.json.
 trigger_phrases:
-  - "parent skill smart routing template"
+  - "parent skill root router template"
   - "root router authoring"
   - "intent signals resource map"
   - "leaf resource routing"

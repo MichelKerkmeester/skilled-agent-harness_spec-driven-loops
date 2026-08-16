@@ -103,7 +103,7 @@ expected_resources:
   - sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json
   - sk-create-skill/assets/parent-skill/parent-skill-hub-template.md
   - sk-create-skill/assets/parent-skill/parent-skill-registry-template.json
-  - sk-create-skill/assets/parent-skill/parent-skill-smart-routing-template.md
+  - sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md
   - sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md
   - sk-create-skill/assets/parent-skill/scaffold/packet-skill-scaffold.md
   - sk-create-skill/assets/skill/skill-asset-template.md
@@ -321,7 +321,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/parent-skill/parent-skill-registry-template.json
   - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/parent-skill/parent-skill-smart-routing-template.md
+    leaf_resource_id: assets/parent-skill/parent-skill-root-router-template.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/parent-skill/scaffold/hub-skill-scaffold.md
   - workflow_mode: sk-create-skill
@@ -367,7 +367,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-skill-parent
     leaf_resource_id: assets/parent-skill/parent-skill-registry-template.json
   - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: assets/parent-skill/parent-skill-smart-routing-template.md
+    leaf_resource_id: assets/parent-skill/parent-skill-root-router-template.md
   - workflow_mode: sk-create-skill-parent
     leaf_resource_id: assets/parent-skill/scaffold/hub-skill-scaffold.md
   - workflow_mode: sk-create-skill-parent
@@ -516,4 +516,3 @@ Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare a
 - Playbook ID: SD-015
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `token-cost-baseline/max-load.md`
-
