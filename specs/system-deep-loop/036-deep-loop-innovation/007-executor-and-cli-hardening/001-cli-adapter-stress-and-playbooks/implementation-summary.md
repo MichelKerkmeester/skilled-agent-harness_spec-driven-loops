@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: CLI-Adapter Stress-Tests and Playbooks"
-description: "Progressive build of a hermetic stress-test program for the six external CLI deep-loop adapters and the fan-out scheduler; phase 1 delivers the shared harness and cli-codex coverage."
+description: "Delivered a hermetic stress program for the six external CLI adapters and fan-out, with 98 paired playbooks, a bijection validator, and direct destructive-scope containment evidence."
 trigger_phrases:
   - "cli adapter stress tests"
   - "fan-out stress testing"
@@ -11,22 +11,25 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardenin
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/001-cli-adapter-stress-and-playbooks"
-    last_updated_at: "2026-08-15T17:19:22Z"
+    last_updated_at: "2026-08-16T03:12:23Z"
     last_updated_by: "claude"
-    recent_action: "Built stress harness + cli-codex; suite 26/26 + 1 gated skip, exit 0"
-    next_safe_action: "Phase 2: add the five remaining adapter stress files"
+    recent_action: "Reconciled to Complete; leaf strict PASSED, global parity drift fixed on origin"
+    next_safe_action: "Hand off to 004 whole-system gate and 036 parent reconcile"
     blockers: []
     key_files:
-      - ".opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts"
-      - ".opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts"
-      - ".opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/shims/codex-shim.cjs"
-      - ".opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/process-fixture.ts"
-    completion_pct: 40
+      - ".opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/"
+      - ".opencode/skills/cli-external-orchestration/cli-*/manual-testing-playbook/stress/"
+      - ".opencode/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/"
+      - "checklist.md"
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The stress harness is hermetic: PATH shims inject real faults with no provider access"
-      - "Each cli-codex edge cell binds to the real dispatchCodex path, not fixture code"
-      - "The suite is additive-only; no shipped adapter, scheduler, or config is modified"
+      - "The stress harness is hermetic: PATH shims inject faults without provider access."
+      - "All six adapters and fan-out have independent stress files."
+      - "The validator proves 98 tests map bijectively to 98 playbooks."
+      - "The program range changes no shipped adapter, scheduler, or config file."
+      - "The fatal containment path restores HEAD and rejects the violating lineage."
+      - "Leaf validation has Errors: 0; the global parity probe still exits non-zero."
 ---
 # Implementation Summary
 
@@ -41,10 +44,11 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-cli-adapter-stress-and-playbooks |
-| **Status** | In Progress — phase 1 of 3 |
+| **Status** | Complete |
 | **Level** | 3 |
-| **Phase 1 Scope** | shared harness + cli-codex adapter |
-| **Files Created (phase 1)** | 8 stress-tree files |
+| **Completion** | 100% (47/47 checklist items) |
+| **Implemented Subjects** | six CLI adapters plus fan-out |
+| **Coverage Surface** | 7 Vitest files, 133 tests, 98 indexed cells, 98 playbook snippets |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -52,27 +56,26 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This leaf builds a hermetic, hang-safe stress-test program that exercises the six external CLI deep-loop adapters and the fan-out scheduler against their real dispatch paths, using deterministic PATH shims so faults reproduce without any provider credentials or network access. The build is progressive across three phases; this commit is phase 1.
+The implementation delivers a hermetic, hang-safe stress program for `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`, `cli-devin`, `cli-cursor`, and the fan-out scheduler. Deterministic PATH shims exercise real command-building and process boundaries without provider credentials. Live probes remain opt-in and become specific dependency skips when unavailable.
 
-Phase 1 delivered the shared harness and cli-codex coverage:
-- A serial, hang-safe test tree at `runtime/tests/stress/cli-adapter/` (no full-aggregate gate).
-- A frozen matrix manifest of the 14 edge-case rows, each mapped to a named, adapter-bound test.
-- Deterministic PATH shims injecting real OS-level faults (auth denial, model-not-found / insufficient balance, rate-limit, transport-missing, stdin, timeout, malformed output, missing artifact, non-zero / signal exit) without provider access.
-- Bounded temporary-process fixtures with captured PIDs and descendant reaping, plus a live preflight that SKIPs gated live cells.
-- `cli-codex.vitest.ts`: every one of the 14 edge cells drives the real `dispatchCodex` path with the shim as the `codex` binary, so an adapter regression fails the cell.
+Delivered artifacts include:
+
+- Seven independently runnable Vitest files under `runtime/tests/stress/cli-adapter/`.
+- A 14-row × seven-subject matrix with 98 implemented, named cells.
+- Shared bounded-process, worktree, live-preflight, and adapter fixtures.
+- Fourteen snippets in each of six adapter stress directories and fourteen fan-out snippets.
+- A validator that enforces exact test/playbook bijection, required evidence sections, triage language, and zero missing, duplicate, or orphan cells.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `runtime/tests/stress/cli-adapter/matrix-manifest.ts` | Created | 14-row edge-case matrix, adapter-bound indexing |
-| `runtime/tests/stress/cli-adapter/live-contracts.json` | Created | Captured live dispatch / fan-out contracts |
-| `runtime/tests/stress/cli-adapter/cli-codex.vitest.ts` | Created | cli-codex adapter stress suite |
-| `runtime/tests/stress/cli-adapter/shims/codex-shim.cjs` | Created | Deterministic fault-injection shim |
-| `runtime/tests/stress/cli-adapter/fixtures/process-fixture.ts` | Created | Bounded process + descendant reaping |
-| `runtime/tests/stress/cli-adapter/fixtures/codex-fixture.ts` | Created | cli-codex dispatch + PATH-prefix helpers |
-| `runtime/tests/stress/cli-adapter/fixtures/live-preflight.ts` | Created | Gated-live SKIP preflight |
-| `runtime/tests/stress/cli-adapter/fixtures/worktree-fixture.ts` | Created | Isolated-worktree + realpath fixtures |
+| `runtime/tests/stress/cli-adapter/*.vitest.ts` | Created | Six adapter suites plus fan-out scheduler coverage |
+| `runtime/tests/stress/cli-adapter/{fixtures,shims}/` | Created | Hermetic fault injection, process bounds, worktree isolation, and preflight |
+| `runtime/tests/stress/cli-adapter/matrix-manifest.ts` | Created | 98 named test/playbook cells |
+| `runtime/tests/stress/cli-adapter/validate-playbook-package.cjs` | Created | Matrix/test/playbook bijection and content validation |
+| `cli-external-orchestration/cli-*/manual-testing-playbook/stress/` | Created | 84 adapter operator snippets |
+| `cli-external-orchestration/manual-testing-playbook/fanout-stress/` | Created | 14 fan-out operator snippets |
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -80,9 +83,9 @@ Phase 1 delivered the shared harness and cli-codex coverage:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The build is phased to keep each step independently verifiable and additive-only. Phase 1 (this commit) establishes the shared harness plus the first adapter; phase 2 adds the remaining five adapters; phase 3 adds the fan-out scheduler stress, the operator playbook package, the matrix-bijection validator, and the leaf closeout.
+Program commits delivered the foundation, five additional adapters, fan-out coverage, playbooks, the bijection validator, two adversarial-review remediations, and the final destructive-scope support test. Commit `5d953ef6b2` makes transport-missing discrimination and max-iterations enforcement behaviorally meaningful; commit `eb87c7e2cf` proves fatal write containment against a committed out-of-scope file.
 
-The shipped adapters, fan-out scheduler, executor config, and mode registry are read as the behaviour contract and never modified. gpt-5.6-sol (cli-codex) implemented the harness; an adversarial DeepSeek V4 Flash review (via opencode-go) then refuted test meaningfulness, finding four vacuous cells and one overclaimed guarantee. Those were remediated with a test-first red run — constant-true and fixture-only cells were rebound to the real dispatch path, and the manifest was corrected to state only what is asserted.
+The shipped adapters, fan-out scheduler, executor configuration, and registries remain read-only contracts. The program-range diff from `07bd8e9e4e` through `eb87c7e2cf` contains 23 stress-tree files and 98 stress playbooks, with zero changes under `runtime/lib`, `runtime/scripts`, or runtime/package configuration.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -112,12 +115,20 @@ See `decision-record.md` for full ADR documentation.
 
 | Check | Status | Details |
 |-------|--------|---------|
-| cli-codex stress | Pass | 26 passed + 1 gated-live skip, exit 0 |
-| TypeScript | Pass | `tsc --noEmit --ignoreDeprecations 6.0` exit 0 |
-| Adversarial review | Pass | DeepSeek: 4 vacuous cells + 1 overclaim found and remediated |
-| Static matrix audit | Pass | 14 rows, 14 indexed tests, allAdapterBound true, overclaims none |
-| Process cleanup | Pass | No leftover shim processes after the run |
-| Scope | Pass | Additive only; no shipped runtime modified |
+| Aggregate stress suite | Pass | 7 files; 133 passed + 7 gated-live skips; exit 0 |
+| cli-codex | Pass | 26 passed + 1 skip; exit 0 |
+| cli-opencode | Pass | 18 passed + 1 skip; exit 0 |
+| cli-pi | Pass | 19 passed + 1 skip; exit 0 |
+| cli-claude-code | Pass | 17 passed + 1 skip; exit 0 |
+| cli-devin | Pass | 18 passed + 1 skip; exit 0 |
+| cli-cursor | Pass | 17 passed + 1 skip; exit 0 |
+| fan-out | Pass | 18 passed + 1 skip; exit 0 |
+| Destructive-scope containment | Pass | `fanout.vitest.ts:338-407`; restored HEAD, fatal violation, rejected lineage, exit 3 |
+| Matrix bijection | Pass | 98 cells / 98 indexed tests / 98 indexed playbooks; 35 support tests; zero gaps, duplicates, or orphans |
+| TypeScript | Pass | `npx --no-install tsc --noEmit --ignoreDeprecations 6.0`; exit 0 |
+| Additive-only scope | Pass | 0 program-range changes under shipped runtime/config paths |
+| Redaction and cleanup scans | Pass | 0 credential-pattern, operator-path, or blanket-pkill file hits |
+| Strict packet validation | Blocked | Errors: 0 / Warnings: 0 / RESULT: PASSED, but wrapper exit 2 from global `COMMAND_TREE_PARITY` exit 1 |
 
 <!-- /ANCHOR:verification -->
 ---
@@ -125,8 +136,8 @@ See `decision-record.md` for full ADR documentation.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Phases 2-3 pending** - the five remaining adapters, the fan-out scheduler stress, the operator playbook package, and the matrix-bijection validator are not built yet.
-2. **Direct-children kill discipline** - the cli-codex adapter intentionally reaps only the captured pid and its direct children (never a blanket kill of unrelated processes); the suite asserts this true contract rather than full-tree reaping.
-3. **Gated live probes** - real CLI/auth cells run only under an explicit opt-in env flag and otherwise SKIP; live evidence is not part of the default hermetic gate.
+1. **Global command-mirror parity (out-of-scope, already fixed on main)**: the strict wrapper exits 2 because repository-wide `.claude/commands` mirrors are stale and `.cursor` has an extra hook — drift already fixed on origin/skilled/v4.0.0.0 that this Aug-14 fork predates (36 files differ). This additive leaf changes none of those paths, and its own validation is Errors: 0 / Warnings: 0 / RESULT: PASSED; the branch inherits the fix on rebase/merge.
+2. **Direct-children kill discipline**: cli-codex intentionally reaps the captured PID and direct children without blanket process matching; the suite preserves unrelated processes.
+3. **Gated live probes**: real CLI/auth probes are opt-in; the default hermetic gate records seven specific dependency skips.
 
 <!-- /ANCHOR:limitations -->

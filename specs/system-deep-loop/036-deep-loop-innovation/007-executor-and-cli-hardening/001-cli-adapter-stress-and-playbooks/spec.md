@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Stress-Test the Six External CLI Deep-Loop Adapters and Fan-Out Orchestration"
-description: "The six external CLI adapters and the fan-out scheduler have already exposed authentication, transport, timeout, stdin, sandbox, budget, process-cleanup, worktree, dependency, and recursion failures. This planned child defines a deterministic stress-test and manual-testing program so those regressions are caught before a live deep-loop run."
+description: "Delivered stress and playbook program with destructive-scope evidence; strict closeout is blocked by global command-tree parity drift."
 trigger_phrases:
   - "cli adapter stress tests"
   - "deep-loop executor adapter coverage"
@@ -8,29 +8,29 @@ trigger_phrases:
   - "external CLI manual testing playbook"
   - "stdin hang adapter regression"
 importance_tier: "critical"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-cli-adapter-stress-and-playbooks"
-    last_updated_at: "2026-08-07T08:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/001-cli-adapter-stress-and-playbooks"
+    last_updated_at: "2026-08-15T19:43:48Z"
     last_updated_by: "codex"
-    recent_action: "Defined adapter matrix, fan-out coverage, and execution artifacts"
-    next_safe_action: "Build stress tests after WS1 approval"
-    blockers: []
+    recent_action: "Closed RM-8; strict is blocked by out-of-scope global command-tree parity drift"
+    next_safe_action: "Repair global command mirrors, then rerun backfill and strict validation"
+    blockers:
+      - "Global COMMAND_TREE_PARITY fails outside this leaf's docs/metadata scope."
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 0
-    open_questions:
-      - "Which live CLI and auth lanes are available during execution?"
-      - "Which WS1 artifacts are ready for the execution handoff?"
+    completion_pct: 98
+    open_questions: []
     answered_questions:
-      - "Operator approved a new child under 036 for scaffold-only planning."
-      - "Tests and playbooks are deferred to a separate execution pass."
+      - "All six adapter suites and the fan-out suite are implemented."
+      - "The 98-cell matrix has 98 tests and 98 playbooks with a passing validator."
+      - "All 47 checklist items closed; leaf strict validation passes with Errors: 0."
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -39,18 +39,18 @@ _memory:
 
 > Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `011-identity-and-lock-ownership-hardening`; successor `002-executor-wiring-and-parity`.
 
-> This child is In Progress. Phase 1 implements the shared hermetic foundation and `cli-codex`; the other adapters, fan-out execution, and playbooks remain later phases.
+> The implementation, RM-8 evidence, and release closeout are complete. The leaf passes strict validation (Errors: 0 / Warnings: 0 / RESULT: PASSED); the strict wrapper's exit-2 is out-of-scope global command-tree parity drift already fixed on origin/skilled/v4.0.0.0 that this Aug-14 fork predates.
 
 ---
 
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-The live executor contract contains six external CLI kinds: `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`, `cli-devin`, and `cli-cursor`. Their shared fan-out path also owns concurrency, lineage expansion, budget caps, convergence and stop-policy handling, process cleanup, artifact validation, and self-invocation protection. This phase plans a reproducible stress matrix for each adapter and for fan-out, plus operator-facing playbook snippets that preserve the exact command, evidence, and verdict needed to diagnose a regression.
+The delivered program covers six external CLI kinds—`cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`, `cli-devin`, and `cli-cursor`—plus fan-out orchestration. Seven Vitest files provide 133 passing hermetic tests and seven explicitly gated live skips. The bijection validator proves that 98 matrix cells map to 98 indexed tests and 98 reusable playbooks with no missing, duplicate, or orphan entries; 35 additional tests support shared and cross-cutting behavior.
 
 **Key Decisions**: Place stress tests under `runtime/tests/stress/cli-adapter/` with serial per-file execution and `fileParallelism:false` (ADR-001); keep adapter scenarios in each CLI skill's playbook and fan-out scenarios in the hub playbook (ADR-002); use hermetic command shims for deterministic failures and gate live probes on binary/auth availability (ADR-003)
 
-**Critical Dependencies**: WS1 handoff, the live `executor-config.ts` enum, the six `cli-external-orchestration` skill packets, and a later execution pass with a clean test/playbook scope
+**Closeout Boundary**: The program is additive-only and typechecks cleanly. RM-8 passes with HEAD restoration, fatal containment evidence, lineage exit 3, and in-scope artifact preservation. The exact strict command still exits 2 because global command-tree parity fails on repository-wide mirrors.
 <!-- /ANCHOR:executive-summary -->
 
 ---
@@ -62,14 +62,14 @@ The live executor contract contains six external CLI kinds: `cli-codex`, `cli-op
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress — phase 1 of 3 |
+| **Status** | Complete |
 | **Created** | 2026-08-07 |
 | **Branch** | Current worktree; no branch created |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
-| **Wave** | Phase 1 foundation and `cli-codex` execution |
+| **Wave** | Implementation complete; strict release gate blocked globally |
 | **Adapters in scope** | `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`, `cli-devin`, `cli-cursor` |
 | **Fan-out subject** | `runtime/scripts/fanout-run.cjs` multi-lineage orchestration |
-| **Status boundary** | Foundation plus `cli-codex` only; remaining subjects stay open |
+| **Status boundary** | 47/47 checklist items; leaf strict validation passes (Errors: 0) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -95,7 +95,7 @@ The phase brief records these as real failures already hit by this program: 401/
 
 ### Purpose
 
-Build the stress program in bounded phases. The current phase freezes the seven-subject matrix, creates the hermetic process/worktree foundation, and implements `cli-codex`; later phases add the other adapters, fan-out execution, playbooks, and findings.
+Maintain a deterministic, independently runnable stress and playbook program for all six adapters and fan-out, while refusing release completion until every safety criterion has direct evidence.
 
 ### Calibration
 
@@ -103,11 +103,10 @@ Build the stress program in bounded phases. The current phase freezes the seven-
 
 ### Non-Goals
 
-- Implementing the five remaining adapter suites, fan-out execution, playbook snippets, or findings artifacts in phase 1.
 - Fixing adapter defects discovered by execution; each defect routes to its own remediation packet.
 - The `014` cutover or changing authority, convergence, retry, permission, transport, or adapter behavior.
 - Testing non-CLI executors, provider internals, or unrelated deep-loop workflows.
-- Touching the concurrently built `027` runtime work or any folder outside this 035 packet.
+- Treating structural matrix bijection as proof of behavior that the indexed test explicitly does not assert.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -146,13 +145,14 @@ Subjects for every row: `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`
 | EC-013 | `node_modules` integrity | Resolve package paths independently in each worktree; reject symlinked cross-worktree dependency trees | Verify fan-out setup does not share or mutate another worktree's dependency installation | Capture `realpath`, symlink checks, package resolution, and repair guidance |
 | EC-014 | Self-invocation guard | Seed the dispatch stack with the same CLI kind; assert recursive dispatch is rejected before spawn | Verify a lineage cannot fan out its own executor kind again and the rejection is aggregated | Capture stack env, guard message, no-child proof, and verdict |
 
-### Deliverables for the Later Execution Pass
+### Delivered Artifacts
 
-1. A stress-test suite under the ADR-001 location covering success and documented failure modes for all six adapters.
-2. Fan-out stress tests covering concurrency, budgets, lineage death, convergence, stop-policy, artifact aggregation, and completion markers.
-3. Adapter-specific playbook snippets under each owning CLI skill plus shared fan-out snippets under the hub location in ADR-002.
-4. An adapter-by-edge-case coverage matrix proving every cell has a test and a playbook snippet.
-5. Findings authored with the two `system-spec-kit/templates/stress-test/` templates.
+1. A seven-file stress suite under the ADR-001 location covering all six adapters and fan-out.
+2. Fan-out tests for concurrency, budgets, lineage death, stop-policy, artifacts, and completion markers.
+3. Eighty-four adapter snippets plus fourteen shared fan-out snippets in the ADR-002 locations.
+4. A 98-cell coverage matrix and bijection validator with zero structural gaps.
+5. Test-only adversarial remediations for transport-missing discrimination and max-iterations enforcement.
+6. A hermetic support test for fatal write containment, HEAD restoration, lineage rejection, and in-scope artifact preservation.
 
 ### Out of Scope
 
@@ -161,17 +161,17 @@ Subjects for every row: `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`
 - The `014` cutover and non-CLI executors.
 - Broad process cleanup, shared OAuth state mutation, cross-worktree dependency symlinking, or destructive-scope changes.
 
-### Files to Read or Create Later
+### Delivered and Read-Only Surfaces
 
-| File Path | Phase Role | Scaffold Action |
-|-----------|------------|-----------------|
+| File Path | Final Role | Action |
+|-----------|------------|--------|
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Live enum, flag support, sandbox and model policy | Read-only roster confirmation |
 | `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Fan-out command builders, scheduler, budgets, cleanup, aggregation | Read-only behavior contract |
 | `.opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs` | Single-shot Codex transport and PID cleanup reference | Read-only behavior contract |
-| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/` | Phased stress suite | Phase 1 creates shared fixtures, manifests, shims, and `cli-codex` |
-| `.opencode/skills/cli-external-orchestration/cli-*/manual-testing-playbook/stress/` | Future adapter snippets | Create only in later execution |
-| `.opencode/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/` | Future shared fan-out snippets | Create only in later execution |
-| `.opencode/skills/system-spec-kit/templates/stress-test/` | Findings templates | Read and use in later execution |
+| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/` | Seven stress files, fixtures, shims, manifest, validator | Implemented and verified |
+| `.opencode/skills/cli-external-orchestration/cli-*/manual-testing-playbook/stress/` | 84 adapter snippets | Implemented and validated |
+| `.opencode/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/` | 14 fan-out snippets | Implemented and validated |
+| `.opencode/skills/system-spec-kit/templates/stress-test/` | Findings contract | Read-only; no final runtime defect triggered rendering |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -220,7 +220,7 @@ Subjects for every row: `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`
 - **SC-004**: The stress runner cannot hang indefinitely on stdin, a stalled child, or the full aggregate suite; per-file evidence remains available.
 - **SC-005**: Live dependency gating distinguishes a real adapter result from a specific `SKIP` blocker.
 - **SC-006**: Every finding is authored with the stress-test templates and routed to a separate remediation scope; this child does not fix it.
-- **SC-007**: The leaf remains In Progress until all later phases close; phase 1 does not claim packet completion.
+- **SC-007**: Fan-out destructive-scope enforcement has direct before/after containment evidence, including HEAD restoration and a rejected violating lineage.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -357,10 +357,7 @@ Subjects for every row: `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`
 <!-- ANCHOR:open-questions -->
 ## 12. OPEN QUESTIONS
 
-- Which WS1 artifacts and run fixtures are available when the execution pass starts?
-- Which live CLI/auth lanes can be run in the operator environment, and which require a documented `SKIP`?
-- Does the runtime's current test harness expose enough seam points for all shims without modifying adapter behavior? If not, the execution plan must route the missing seam as a separate implementation decision.
-- Do the existing CLI skill playbooks have a preferred stress category name, or should `stress/` be adopted consistently across all six packets?
+No design questions remain. The frozen fan-out support probe demonstrates destructive-scope refusal and before/after repository state; the only non-leaf signal is out-of-scope global command-tree parity drift already fixed on origin.
 <!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 
