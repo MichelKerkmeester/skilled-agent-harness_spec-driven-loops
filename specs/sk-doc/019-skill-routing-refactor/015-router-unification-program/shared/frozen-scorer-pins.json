@@ -1,6 +1,6 @@
 {
   "note": "Conscious scorer-surface freeze. Re-pin only after the routing gate battery is green on the new scorer.",
-  "frozenAt": "2026-07-30T16:10:17.627Z",
+  "frozenAt": "2026-08-15T12:00:39.712Z",
   "files": {
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/ablation.ts": "cb5d5f71366d8d717d76b6f49ea0e3c88fe72750806be45a562e9509bb10a406",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/age-policy.ts": "01d91c77d5c091e25a09143a4b0362417cd37913c0f2dd569aaffc101ba6b816",
@@ -10,7 +10,7 @@
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/beta-reliability.ts": "ed8a90f7f412744da8165feaa4ed850a1408a7222707db77d28574c71ea6f5d3",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts": "94b93e0fbd880d62fde77f5ad814a2b6fbac786933131190e39de99e5a74e929",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/feedback-calibration.ts": "c8e18c4548aa8267dc1e507d5d8009dee6a20f8ad49766f39217dcb5715173c0",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts": "d62f8d33e3572aa309585bc5b058c0e3a49209e3732ca3da824f53b7031412c4",
+    ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts": "bdb00e89303356a681e709b7dcf350a8a6553eba3909d989a7020c3cc7caac04",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lane-registry.ts": "2ff14728ad4dee9f0ac00670b3ce4511fa62daea5ec31b3dcfd941c657471a94",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/bm25.ts": "0d570ae49cb1c0f34b9efc72dc6eeaf77b3eef8d673a6b7c75b8edb9081b2a0c",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/derived.ts": "80d792b57c52fb11d2d8ad6100974486d79f737d2be98e794d26f1b34463b2bc",
@@ -18,7 +18,7 @@
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/graph-causal.ts": "f36407a99ab65e3e18ac35af057abfc92e4c8c04d31513d9606ebce7e9ca2b92",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/lexical.ts": "2f57bc31e00a4f50293f80fdb51e1c66ff09b5766de21988826ab5eb80687ca6",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/semantic-shadow.ts": "8257e4e9a256441528b3cba3f30f27979371688d90bc0f0b60fd437f60ead529",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts": "ee6917cf689e271f2a819ed056ca97ea51737fc338c4203ca954cac594f244c8",
+    ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts": "b20476ea0bdeb6f1ec026a3f88cfbf79b12448af4262190cde2c4ced7e3d6035",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/scoring-constants.ts": "f0e8f616feec75501762ff6d31bc9963fa0d0bb4e94b7e03546db48b3c9ec144",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/text.ts": "09ad0a7c1dbb7852e2e892bd946f9eea1f6b8dc97c84ae2fc470224de7f670dc",
     ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/types.ts": "532868a90a58a03ec995e7dbb3d0753f87c8491d5a27a71f4f39cd89dc730029",

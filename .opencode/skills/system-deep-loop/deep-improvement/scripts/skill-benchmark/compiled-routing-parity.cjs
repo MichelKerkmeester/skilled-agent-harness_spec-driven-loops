@@ -91,8 +91,8 @@ const STATUS_PROBE = path.resolve(RUNTIME_ROOT, '..', '..', 'compiled-route-stat
 // be scored against a scorer that changed mid-flight. These are the same digests
 // the activation driver refuses to run without.
 const PINNED_FROZEN_SCORER_DIGESTS = Object.freeze({
-  'router-replay.cjs': '1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954',
-  'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
+  'router-replay.cjs': '14f169a466d970648f46f0f312904cc682221d1adfdedef97264398ffc9124d9',
+  'score-skill-benchmark.cjs': '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
   'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
 });
 

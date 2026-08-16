@@ -79,8 +79,8 @@ const SCORER_ROOT = path.join(
 );
 const PROTECTED_DIGESTS = Object.freeze({
   'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
-  'router-replay.cjs': '1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954',
-  'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
+  'router-replay.cjs': '14f169a466d970648f46f0f312904cc682221d1adfdedef97264398ffc9124d9',
+  'score-skill-benchmark.cjs': '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
 });
 const AUTHORED_DIGESTS = Object.freeze({
   'SKILL.md': 'a0efc55f43af16565afdfed10a729e232c26a8348b285bc3a9796a4ae1ed8e6c',
@@ -95,7 +95,7 @@ const AUTHORED_DIGESTS = Object.freeze({
   'packets/sk-create-manual-testing-playbook/SKILL.md': '35d75124c12dc73035694b1bc3b14c9fca9f9c9c227018e0e87a0caeb2c16500',
   'packets/sk-create-quality-control/SKILL.md': 'c547aa0e2cf27d0685e8e6af322dfa342bfb19754864b3d2af061d93160c5f63',
   'packets/sk-create-readme/SKILL.md': 'd68c33d779ee74aaa877309f106edb98c2771fdbe14afc9f6c83580111ecfdea',
-  'packets/sk-create-skill/SKILL.md': 'b47d82d94547db8c8bdcf66e33d32fa36808cd428c4d1774675deae98971929b',
+  'packets/sk-create-skill/SKILL.md': 'b004dde0e12f462fd2b7879e22d84afa6b322b06cfa55b43a34ec05456cc9ebd',
   'packets/sk-create-diagram/SKILL.md': '0799f4eef8d405be3c1831dee2f14453aa3886d171b4e21c5eeb9fad8defbc40',
 });
 
