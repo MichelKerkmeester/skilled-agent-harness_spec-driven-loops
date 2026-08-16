@@ -73,7 +73,7 @@ Enumerate all possible partial-state combinations (config only, JSONL only, stra
 |---|---|
 | `.opencode/commands/deep/assets/deep-review-auto.yaml` | Session classification and migration, inspect `step_classify_session` and `step_migrate_legacy_review_state` |
 | `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Session classification, inspect `step_classify_session` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance, use `ANCHOR:smart-routing` |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance |
 
 ---
 

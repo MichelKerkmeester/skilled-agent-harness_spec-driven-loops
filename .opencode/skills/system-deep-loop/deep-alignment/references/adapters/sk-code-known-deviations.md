@@ -122,7 +122,7 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 
 **Deviation name**: Motion.dev / GSAP / Lenis / Swiper / HLS peer-library references are not off-standard
 
-**Why it is not a violation**: `smart-routing.md` §5 states Motion.dev (and by the same logic, GSAP/Lenis/Swiper/HLS, the same marker family `stack-detection.md`'s WEBFLOW content-grep checks) is *"a peer resource category... It is not a separate code surface. It supplements WEBFLOW, OPENCODE, or future surfaces."* A file that references one of these peer libraries is not thereby non-conformant to its own surface's standard. It is drawing on documented, expected cross-stack integration material (`sk-code-webflow/references/animation/`), the exact resource `standardSource()`'s `motionOverlay` reference already surfaces to the reasoning-agent layer when `motionDevOverlay: true`.
+**Why it is not a violation**: `sk-code/ROUTER.md` §5 states Motion.dev (and by the same logic, GSAP/Lenis/Swiper/HLS, the same marker family `stack-detection.md`'s WEBFLOW content-grep checks) is *"a peer resource category... It is not a separate code surface. It supplements WEBFLOW, OPENCODE, or future surfaces."* A file that references one of these peer libraries is not thereby non-conformant to its own surface's standard. It is drawing on documented, expected cross-stack integration material (`sk-code-webflow/references/animation/`), the exact resource `standardSource()`'s `motionOverlay` reference already surfaces to the reasoning-agent layer when `motionDevOverlay: true`.
 
 **Evidence**:
 - `.opencode/skills/sk-code/ROUTER.md` Section 5 ("MOTION_DEV MAP"): "supplements... rather than replacing it."
@@ -227,8 +227,8 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
       "matchSurfaces": null,
       "status": "confirmed-live",
       "evidence": [
-        "smart-routing.md Section 5",
-        "smart-routing.md Section 1",
+        "sk-code/ROUTER.md Section 5",
+        "sk-code/ROUTER.md Section 1",
         "sk-code-adapter.md Section 8 (motionDevOverlay self-reference reproduction)"
       ]
     }
