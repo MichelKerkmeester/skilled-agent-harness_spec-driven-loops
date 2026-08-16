@@ -43,7 +43,7 @@ _memory:
 | **Track** | sk-doc |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `020-root-router-document-standard` |
-| **Successor** | None |
+| **Successor** | `022-legacy-hub-compiled-routing-refresh` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -175,4 +175,4 @@ None. The operator selected full-program exit-0 remediation, and the packet reco
 
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `020-root-router-document-standard` |
-| **Successor** | None |
+| **Successor** | `022-legacy-hub-compiled-routing-refresh` |
