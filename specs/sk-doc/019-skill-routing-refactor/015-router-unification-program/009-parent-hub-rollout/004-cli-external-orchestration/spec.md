@@ -191,3 +191,8 @@ None. Live activation remains a parent-rollout decision outside this child.
 - `tasks.md` — completed work units.
 - `checklist.md` — verification evidence.
 - `implementation-summary.md` — delivered state and limitations.
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `003-mcp-tooling`
+- Successor phase(s): `005-sk-prompt`
+- Parent phase spec: `../spec.md`

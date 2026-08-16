@@ -7,6 +7,22 @@ trigger_phrases:
   - "stage zero contract baseline"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -35,7 +51,7 @@ contextType: "implementation"
 - [x] CHK-002 [P0] Ordered Steps 1–6 and file layout read from `plan.md`.
   - **Evidence**: implementation order was serialization/hash → schemas → fixtures → harness → gate record.
 - [x] CHK-003 [P0] Design source and migration ownership read.
-  - **Evidence**: synthesis §§2, 2.1, 2.2, 2.3, 4, 5, 5.1, 8, 9, 10, 11.4 and the parent Stage-0/Stage-1 map were inspected.
+  - **Evidence**: synthesis §§2, 2.1, 2.2, 2.3, 4, 5, 5.1, 8, 9, 10, 11.4 and the parent Stage-0/Stage-1 map were inspected. Design source path is recorded at spec.md:41.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -48,9 +64,9 @@ contextType: "implementation"
 - [x] CHK-011 [P0] Runtime code uses Node built-ins only.
   - **Evidence**: direct imports are limited to `crypto`, `fs`, `path`, and `assert`; no package dependency exists.
 - [x] CHK-012 [P0] Targeted validation is strict rather than permissive.
-  - **Evidence**: explicit required/optional allow-lists are authoritative, trim-check named references, enforce route cardinality/evidence authority, reject duplicate identities, and close selector/composition/authority references over declared destinations.
+  - **Evidence**: explicit required/optional allow-lists are authoritative, trim-check named references, enforce route cardinality/evidence authority, reject duplicate identities, and close selector/composition/authority references over declared destinations. The allow-list primitive is `exactObject` at harness/validate-contracts.cjs:97.
 - [x] CHK-013 [P1] JSON Schemas remain high-fidelity interoperability artifacts.
-  - **Evidence**: nine Draft 2020-12 schemas carry `$id`, title, strict object shapes, enums, bounds, patterns, evidence-role/cardinality conditionals, and the four-branch decision union; the harness checks those load-bearing schema nodes exist.
+  - **Evidence**: nine Draft 2020-12 schemas carry `$id`, title, strict object shapes, enums, bounds, patterns, evidence-role/cardinality conditionals, and the four-branch decision union; the harness checks those load-bearing schema nodes exist. Harness confirms `9/9 loaded` schema artifacts.
 - [x] CHK-014 [P0] No singleton or skill-name branch exists.
   - **Evidence**: the harness inventories every `.cjs` recursively and finds no `if`, `switch`, or ternary condition using `skillId` or a policy skill name; multiline-if, `switch (skillId)`, and ternary negative self-tests prove the detector fires.
 <!-- /ANCHOR:code-quality -->
@@ -67,15 +83,15 @@ contextType: "implementation"
 - [x] CHK-022 [P0] Canonical bytes are deterministic and normalize a null overlay to omission.
   - **Evidence**: 5/5 hand-derived external byte vectors match, including `{"10":1,"2":2}`, nested objects, and arrays of objects; lone surrogates and floats are rejected, and null-overlay omission remains byte-identical.
 - [x] CHK-023 [P0] All identity hashes reproduce and remain domain-separated.
-  - **Evidence**: base/overlay/effective/request/proof/projection hashes recompute; ten registered tags produce ten distinct hashes over equal bytes.
+  - **Evidence**: base/overlay/effective/request/proof/projection hashes recompute; ten registered tags produce ten distinct hashes over equal bytes. Harness reports `10/10` registered tags unique.
 - [x] CHK-024 [P0] Decision algebra safety and no-over-emission hold.
   - **Evidence**: only route has targets; negative authority is `Withheld`; zero-signal is target-free `defer(no-match)` with no default union.
 - [x] CHK-025 [P1] N=1 degeneracy holds through the common schema.
-  - **Evidence**: one destination, empty composition/authority collections, omitted overlay, no handoff rung, zero ranking fields/calls.
+  - **Evidence**: one destination, empty composition/authority collections, omitted overlay, no handoff rung, zero ranking fields/calls. See `compiled-policy.n1.json` in fixtures/.
 - [x] CHK-026 [P1] Advisor projection omission is enforced recursively.
-  - **Evidence**: paths, tools, mutation scope, fences, handoff leases, and commit authority are absent.
+  - **Evidence**: paths, tools, mutation scope, fences, handoff leases, and commit authority are absent. Enforced by `assertOmittedRecursively` at harness/validate-contracts.cjs:494.
 - [x] CHK-027 [P1] Compatibility, stale-proof, overlay, and idempotency evidence are represented.
-  - **Evidence**: positive/negative compatibility projection, expired proof, base-bound replay overlay, and duplicate key → one receipt/one effect assertions pass.
+  - **Evidence**: positive/negative compatibility projection, expired proof, base-bound replay overlay, and duplicate key → one receipt/one effect assertions pass. Fixtures: `route-proof.stale.json` and `correction-overlay.replay.json`.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -86,19 +102,19 @@ contextType: "implementation"
 The original green result was insufficient: it used self-derived canonical bytes, broad `assert.throws`, incomplete reference closure, and a one-line branch regex. The evidence below records the strengthened defect-remediation bar.
 
 - [x] CHK-FIX-001 [P0] Every negative class the contracts must reject has adversarial coverage.
-  - **Evidence**: 17 must-fail fixtures cover the original six classes plus route evidence mutation/COMMIT authority, both selection-cardinality directions, duplicate identity, dangling selector/composition/authority targets, blank/unknown unavailable evidence, and capability-bearing clarify alternatives.
+  - **Evidence**: 17 must-fail fixtures cover the original six classes plus route evidence mutation/COMMIT authority, both selection-cardinality directions, duplicate identity, dangling selector/composition/authority targets, blank/unknown unavailable evidence, and capability-bearing clarify alternatives. Harness reports `17/17 rejected` for expected rule.
 - [x] CHK-FIX-002 [P0] Serialization and hashing have a single producer, so no divergent second implementation can drift.
   - **Evidence**: `rg` finds only `lib/canonical.cjs` implementing canonical bytes and domain-separated hashing; the independent oracle is checked-in expected text derived by hand, and hashes compare actual versus expected bytes through Node `crypto`.
 - [x] CHK-FIX-003 [P0] Every contract type is validated by the same strict allow-lists.
-  - **Evidence**: the harness validates all nine `V1` types and their fixtures against one allow-list mechanism; no type bypasses it.
+  - **Evidence**: the harness validates all nine `V1` types and their fixtures against one allow-list mechanism; no type bypasses it. Shared mechanism is `exactObject` (harness/validate-contracts.cjs:97).
 - [x] CHK-FIX-004 [P0] Structural rejection is proven, not assumed.
   - **Evidence**: harness reports 17/17 adversarial fixtures rejected for their individually declared rule substring, not incidental parse, hash, or file errors.
 - [x] CHK-FIX-005 [P1] The fixture matrix axes and counts are listed before completion.
-  - **Evidence**: 20 golden fixtures across nine contract types, 17 adversarial fixtures, and five independent canonical-byte vectors.
+  - **Evidence**: 20 golden fixtures across nine contract types, 17 adversarial fixtures, and five independent canonical-byte vectors. `fixtures/canonical-vectors.json` holds 5/5 vectors, all matched.
 - [x] CHK-FIX-006 [P1] No hostile global/process-wide state path exists to exercise.
-  - **Evidence**: the harness is offline and reads only Node built-ins; it consults no environment or process-wide state.
+  - **Evidence**: the harness is offline and reads only Node built-ins; it consults no environment or process-wide state. Requires only `assert`, `crypto`, `fs`, `path` (harness/validate-contracts.cjs:3-6).
 - [x] CHK-FIX-007 [P1] Evidence is pinned to this phase's committed artifacts.
-  - **Evidence**: harness output and the fixture corpus are materialized in this folder and move together under one commit.
+  - **Evidence**: harness output and the fixture corpus are materialized in this folder and move together under one commit. Artifacts live under `harness/validate-contracts.cjs` and `fixtures/` in this same folder.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -107,11 +123,11 @@ The original green result was insufficient: it used self-derived canonical bytes
 ## Security
 
 - [x] CHK-030 [P0] Authority locality is structural.
-  - **Evidence**: route authority is withheld until VERIFY, negatives withhold authority, proof allow-list has no COMMIT grant, and evidence destinations/targets can neither mutate nor reference COMMIT authority.
+  - **Evidence**: route authority is withheld until VERIFY, negatives withhold authority, proof allow-list has no COMMIT grant, and evidence destinations/targets can neither mutate nor reference COMMIT authority. Non-route authority is pinned to `WithheldUntilVerify` at schemas/route-decision.v1.schema.json:103.
 - [x] CHK-031 [P0] Harness is offline.
   - **Evidence**: no HTTP/network built-in import, request call, or `fetch` call exists.
 - [x] CHK-032 [P0] Shared serving surfaces are isolated.
-  - **Evidence**: no scorer, benchmark loader, mode registry, or skill document is read/imported; every created/edited artifact is in this folder.
+  - **Evidence**: no scorer, benchmark loader, mode registry, or skill document is read/imported; every created/edited artifact is in this folder. No `node_modules` or `package.json` exists in this folder.
 <!-- /ANCHOR:security -->
 
 ---
@@ -133,9 +149,9 @@ The original green result was insufficient: it used self-derived canonical bytes
 ## File Organization
 
 - [x] CHK-050 [P1] All writes are confined to the approved phase folder.
-  - **Evidence**: schemas, fixtures, library, harness, and documentation live below this checklist's directory.
+  - **Evidence**: schemas, fixtures, library, harness, and documentation live below this checklist's directory. Confirmed via `schemas/`, `fixtures/`, `harness/`, and `lib/` subdirectories.
 - [x] CHK-051 [P1] No temporary or dependency artifacts were introduced.
-  - **Evidence**: no install command ran; fixture generation writes only the checked-in JSON corpus.
+  - **Evidence**: no install command ran; fixture generation writes only the checked-in JSON corpus. No `package.json` or `node_modules` present in this folder.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -144,11 +160,11 @@ The original green result was insufficient: it used self-derived canonical bytes
 ## Migration Gate
 
 - [x] CHK-060 [P0] Stage-0 contract baseline portion is frozen.
-  - **Evidence**: V1 byte rules, schemas, domain registry, golden/adversarial corpus, and validator are materialized and green.
+  - **Evidence**: V1 byte rules, schemas, domain registry, golden/adversarial corpus, and validator are materialized and green. Harness SUMMARY line reports `groups=11 passed=11`.
 - [x] CHK-061 [P1] Phase `001` has the contract inputs needed for shadow compilation.
-  - **Evidence**: canonical byte generation and typed compatibility projection are executable without live authority or shared-scorer changes.
+  - **Evidence**: canonical byte generation and typed compatibility projection are executable without live authority or shared-scorer changes. See `compatibilityProjection` at harness/validate-contracts.cjs:606.
 - [x] CHK-062 [P1] Remaining Stage-0 ownership is named.
-  - **Evidence**: Phase `001` still owns the serving legacy-baseline capture before activation; the orchestrator owns strict packet validation.
+  - **Evidence**: Phase `001` still owns the serving legacy-baseline capture before activation; the orchestrator owns strict packet validation. See plan.md:118.
 <!-- /ANCHOR:migration-gate -->
 
 ---

@@ -7,6 +7,22 @@ trigger_phrases:
   - "recovery shadow replay"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/007-recovery-ladder"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Verification Checklist: Recovery Ladder
 
@@ -33,9 +49,9 @@ contextType: "implementation"
 - [x] CHK-001 [P0] Authoritative packet docs, cited synthesis sections, frozen schemas, canonical library, and protected scorer APIs were read first.
   - **Evidence**: Intake covered `spec.md`, `plan.md`, `tasks.md`, synthesis §§2.1, 2.3, 3-4, 8.1-8.2, 9-10, both consumed schemas, representative frozen fixtures, `lib/canonical.cjs`, and the exported scorer/router functions.
 - [x] CHK-002 [P0] All writes stayed inside this phase folder.
-  - **Evidence**: Created runtime, fixture, harness, checklist, and summary artifacts are phase-local; only the three existing canonical packet docs were updated.
+  - **Evidence**: Created runtime, fixture, harness, checklist, and summary artifacts are phase-local under `lib/recovery-ladder.cjs`, `fixtures/recovery-cases.v1.json`, and `harness/validate-recovery-ladder.cjs`; only the three existing canonical packet docs were updated.
 - [x] CHK-003 [P1] Baseline and rollback were recorded.
-  - **Evidence**: Frozen-contract validation and protected API loading passed before implementation; rollback is disabling/removing this authority-free shadow lane.
+  - **Evidence**: Frozen-contract validation and protected API loading passed before implementation; rollback is disabling/removing this authority-free shadow lane, recorded at plan.md:147.
 
 <!-- /ANCHOR:pre-impl -->
 ---
@@ -52,7 +68,7 @@ contextType: "implementation"
 - [x] CHK-013 [P1] Public CommonJS functions are documented and boundary inputs are guarded.
   - **Evidence**: `evaluateRecovery`, `projectCompatibility`, and `buildTypedRouteGold` carry JSDoc; request, decision, route candidate, clarify candidate target, question, reason, and threaded budget inputs use explicit guards or closed vocabularies.
 - [x] CHK-014 [P1] The implementation uses no external dependency.
-  - **Evidence**: Runtime imports only the frozen canonical library; the harness imports Node built-ins, the two phase-local libraries, and the same frozen canonical library.
+  - **Evidence**: Runtime imports only the frozen canonical library (`lib/recovery-ladder.cjs:13`); the harness imports Node built-ins, the two phase-local libraries, and the same frozen canonical library.
 
 <!-- /ANCHOR:code-quality -->
 ---
@@ -61,7 +77,7 @@ contextType: "implementation"
 ## Testing
 
 - [x] CHK-020 [P0] The full six-rung order is exercised with specific terminal reasons.
-  - **Evidence**: Twenty-two data-driven cases assert the exact invoked-rung list, terminal rung, terminal reason, decision action, and decision reason where applicable.
+  - **Evidence**: The data-driven cases in `fixtures/recovery-cases.v1.json` assert the exact invoked-rung list, terminal rung, terminal reason, decision action, and decision reason where applicable.
 - [x] CHK-021 [P0] Clarify and handoff consume one shared counter and recovery is finite.
   - **Evidence**: The output exposes symmetric `budgetState` input/output; a two-call handoff case threads call 1 state into call 2 and asserts cumulative accepted turn and hop increments are exactly one. An unthreaded accepted clarification answer is specifically rejected as a caller-contract violation.
 - [x] CHK-022 [P0] Handoff hop and visited guards are driven rather than inferred.
@@ -69,7 +85,7 @@ contextType: "implementation"
 - [x] CHK-023 [P0] Downstream `NEEDS_INPUT` cannot allocate another user turn.
   - **Evidence**: The downstream path records one input attempt, one spent turn, one hop, one ownership transfer, and `completionClaimed=false` before typed defer.
 - [x] CHK-024 [P0] Confident routes bypass recovery and exact routes emit no handoff artifacts.
-  - **Evidence**: The confident case has an empty rung list; the non-confident exact case stops at rung 2 with zero handoff attempts and zero ownership transfers.
+  - **Evidence**: The confident bypass at `lib/recovery-ladder.cjs:382` returns before any `invokeRung` call; the non-confident exact case stops at rung 2 with zero handoff attempts and zero ownership transfers.
 - [x] CHK-025 [P0] Replay and typed-gold projection are deterministic.
   - **Evidence**: Twenty-five same-process runs and three child processes reproduce identical result hashes and checked-in `TypedRouteGoldV1` projection hashes for all 22 cases.
 - [x] CHK-026 [P1] The real scorer is invoked with a working falsifier.
@@ -88,7 +104,7 @@ contextType: "implementation"
 - [x] CHK-032 [P1] All six defer reasons are exercised.
   - **Evidence**: The replay set contains `idle`, `no-match`, `dependency-failure`, `handoff-required`, `stale-policy`, and `evidence-unavailable` outcomes.
 - [x] CHK-033 [P1] Rank evidence cannot auto-route without certificate validation.
-  - **Evidence**: The ranked candidate without a certificate records one rank call and falls through to typed clarify; the declarative contract keeps the unavailable certificate validator inert.
+  - **Evidence**: The ranked candidate without a certificate (`fixtures/recovery-cases.v1.json:414`, scenario `rank-without-certificate-clarifies`) records one rank call and falls through to typed clarify; the declarative contract keeps the unavailable certificate validator inert.
 
 <!-- /ANCHOR:fix-completeness -->
 ---
@@ -101,7 +117,7 @@ contextType: "implementation"
 - [x] CHK-041 [P0] Handoff transfers ownership without commit authority or completion claims.
   - **Evidence**: Handoff trace entries contain only owner ids, acceptance, and `completionClaimed=false`; public decisions carry no capability, proof, lease, fence, or commit token.
 - [x] CHK-042 [P1] No network, secret, package, or live routing surface was introduced.
-  - **Evidence**: Static scans find no network APIs in phase CJS and no runtime-library filesystem mutation; no package file, install command, credential, registry, or serving config is present.
+  - **Evidence**: Static scans of `lib/recovery-ladder.cjs` find no network APIs and no runtime-library filesystem mutation; no package file, install command, credential, registry, or serving config is present.
 
 <!-- /ANCHOR:security -->
 ---
@@ -125,7 +141,7 @@ contextType: "implementation"
 - [x] CHK-060 [P0] Runtime, fixtures, harness, and documentation remain phase-local.
   - **Evidence**: Runtime code is under `lib/`, fixture data under `fixtures/`, the replay driver under `harness/`, and canonical docs at the phase root.
 - [x] CHK-061 [P1] Protected scorer, router, loader, schemas, registries, and skills remain untouched.
-  - **Evidence**: Harness before/after SHA-256 checks match five trusted constants; alignment drift reports zero findings across eight implementation/config artifacts.
+  - **Evidence**: Harness before/after SHA-256 checks (`harness/validate-recovery-ladder.cjs:65`, `TRUSTED_DIGESTS`) match five trusted constants; alignment drift reports zero findings across eight implementation/config artifacts.
 
 <!-- /ANCHOR:file-org -->
 ---

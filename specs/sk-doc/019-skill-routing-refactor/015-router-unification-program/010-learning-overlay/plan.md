@@ -8,6 +8,22 @@ trigger_phrases:
 importance_tier: "critical"
 contextType: "implementation"
 status: "implemented-dormant"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -77,15 +93,20 @@ Each arrow is a stage boundary; no arrow runs during a live request. The serving
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-1. **Bind upstream contracts.** Consume the `CorrectionOverlayV1` schema + serialization from `000` and the effective-identity hash + fenced manifest from `001`. Assert the base is complete with `overlay = null` (the N=1 configuration) before adding anything (synthesis §5.3, §12).
-2. **Offline ingestion + sanitizer.** Build a batch ingester that reads receipts (`003`) and accepted-handoff records (`004`), applies the privacy filter + retention/partition policy, and emits normalized, sanitized correction records (synthesis open-q 7). Nothing enters the compiler unsanitized.
-3. **Candidate overlay compiler (offline).** Derive vocabulary→destination adjustments *only* from the sanitized records; reject any field that is not a vocab→destination adjustment (no weights). Freeze and content-address the candidate → `overlayHash` (synthesis §2.1, §3 Idea 2).
-4. **Deterministic replay harness.** Run the `002` evaluator + compatibility projector over route-gold for `base` and `base+candidate`; classify every delta. The shared scorer `router-replay.cjs` is invoked read-only and never edited (synthesis §8.2, §10). Gold never auto-updates.
-5. **Safety/parity gates.** Encode the hard gates from synthesis §9 as blocking checks: hash mismatch against the pinned tuple, a request observing mixed generations, a negative decision carrying a target, an evidence target committing, a COMMIT lacking VERIFY. Any violation blocks promotion regardless of aggregate score.
-6. **Independent human promotion.** Require an approval record from an approver distinct from the proposer; store the approval alongside the candidate hash. Aggregate score informs but cannot override a hard gate (synthesis §9).
-7. **Fenced activation + rollback drill.** Implement promotion as a CAS on the activation manifest (snapshot candidate + prior manifest, compare expected generation/hash, swap atomically under token lock + fencing epoch). Retain the prior generation; build and run a byte-exact rollback drill that CAS-swaps back to base-only or the prior overlay (synthesis §9 stage 5).
-8. **Overlay replay/rollback fixtures.** Add the overlay replay/rollback fixture family to the typed route-gold set (synthesis §8.2) so the reversible round-trip is regression-guarded.
-9. **Wire the meta-gate.** Document and enforce that none of steps 3–7 may promote absent a demonstrated routing gain from real correction-telemetry volume; the subsystem is dormant until then and may stay `P = static` forever (synthesis §12).
+### Phase 1: Setup
+- [x] **Bind upstream contracts.** Consume the `CorrectionOverlayV1` schema + serialization from `000` and the effective-identity hash + fenced manifest from `001`. Assert the base is complete with `overlay = null` (the N=1 configuration) before adding anything (synthesis §5.3, §12).
+- [x] **Offline ingestion + sanitizer.** Build a batch ingester that reads receipts (`003`) and accepted-handoff records (`004`), applies the privacy filter + retention/partition policy, and emits normalized, sanitized correction records (synthesis open-q 7). Nothing enters the compiler unsanitized.
+
+### Phase 2: Core Implementation
+- [x] **Candidate overlay compiler (offline).** Derive vocabulary→destination adjustments *only* from the sanitized records; reject any field that is not a vocab→destination adjustment (no weights). Freeze and content-address the candidate → `overlayHash` (synthesis §2.1, §3 Idea 2).
+- [x] **Deterministic replay harness.** Run the `002` evaluator + compatibility projector over route-gold for `base` and `base+candidate`; classify every delta. The shared scorer `router-replay.cjs` is invoked read-only and never edited (synthesis §8.2, §10). Gold never auto-updates.
+- [x] **Safety/parity gates.** Encode the hard gates from synthesis §9 as blocking checks: hash mismatch against the pinned tuple, a request observing mixed generations, a negative decision carrying a target, an evidence target committing, a COMMIT lacking VERIFY. Any violation blocks promotion regardless of aggregate score.
+- [x] **Independent human promotion.** Require an approval record from an approver distinct from the proposer; store the approval alongside the candidate hash. Aggregate score informs but cannot override a hard gate (synthesis §9).
+- [x] **Fenced activation + rollback drill.** Implement promotion as a CAS on the activation manifest (snapshot candidate + prior manifest, compare expected generation/hash, swap atomically under token lock + fencing epoch). Retain the prior generation; build and run a byte-exact rollback drill that CAS-swaps back to base-only or the prior overlay (synthesis §9 stage 5).
+
+### Phase 3: Verification
+- [x] **Overlay replay/rollback fixtures.** Add the overlay replay/rollback fixture family to the typed route-gold set (synthesis §8.2) so the reversible round-trip is regression-guarded.
+- [x] **Wire the meta-gate.** Document and enforce that none of the core-implementation steps may promote absent a demonstrated routing gain from real correction-telemetry volume; the subsystem is dormant until then and may stay `P = static` forever (synthesis §12).
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

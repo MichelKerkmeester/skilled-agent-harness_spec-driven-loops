@@ -269,3 +269,6 @@ Specify a controller that turns "make compiled routing the default" into a seque
 - **Foundation consumed (tri-state flag, cohort state, status probe, resolver promotion)**: `../002-runtime-promotion-and-status-foundation/`
 - **Rollback command and non-hub policy consumed**: `../010-rollback-audit-and-non-hub-policy/`
 - **Sibling alignment phases required implemented-and-verified**: `../../017-create-skill-alignment/`, `../../018-benchmark-alignment/`
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Successor phase(s): `012-p3-canonical-minter-foundation`

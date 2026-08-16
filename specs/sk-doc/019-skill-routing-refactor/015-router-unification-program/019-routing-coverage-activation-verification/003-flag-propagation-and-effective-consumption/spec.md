@@ -271,3 +271,6 @@ Make `SPECKIT_COMPILED_ROUTING` reach the advisor daemon child and make the comp
 - **Decision drop sites**: `mk-skill-advisor-bridge.mjs` (`buildNativeBrief`), `.opencode/skills/system-skill-advisor/mcp-server/lib/subprocess.ts` (`AdvisorRecommendation`)
 - **Attach point (upstream)**: `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts` (`enrichCompiledRoutes`, additive attach `:371`)
 - **Hook render + cache**: `.opencode/plugins/mk-skill-advisor.js` (`cacheKeyForPrompt`)
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Successor phase(s): `004-benchmark-compiled-lane-c`

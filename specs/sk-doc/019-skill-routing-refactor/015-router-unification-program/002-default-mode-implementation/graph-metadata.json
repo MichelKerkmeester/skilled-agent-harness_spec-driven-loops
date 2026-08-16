@@ -125,11 +125,17 @@
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d56ab568365f521a129182cc608dd178147cdc291014c42884251c64d652038a",
+    "source_fingerprint": "sha256:b12458fadf9ff76f3705b5418177c7b20d3c34f82a6f2574a26e1c514d9aaf95",
     "source_doc_hashes": {
-      "spec.md": "49c10b9c925528fc9d426746b7261e83baaf530fc532ce682abdaafe1c1c1027",
+      "spec.md": "e8254f9e8e89f089fff0e1ea1060b3dd272403cc85d92e2e0717c6f4cefe239d",
+      "plan.md": "80f7636c54ae72af15da4ce2ec7f77213e995670e30e12252567d7aac5c50fa0",
+      "tasks.md": "fee9397568c938b668e9b6823bac5bd12a0da64180b2365b2084319ec2a64f26",
+      "checklist.md": "cb0e20bd256bcfb7da403c6c48b25e762372bab71d5700bce17aedab2b5e5925",
       "implementation-summary.md": "54a1f8b85124e8adc080dc36032ffb6ebd8a51eade68e0281169c1719e43d6e9"
     },
     "last_active_child_id": null,

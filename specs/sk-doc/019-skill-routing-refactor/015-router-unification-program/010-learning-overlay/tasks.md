@@ -8,6 +8,22 @@ trigger_phrases:
 importance_tier: "critical"
 contextType: "implementation"
 status: "implemented-dormant"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -50,12 +66,15 @@ status: "implemented-dormant"
 
 - [x] T006 Build a batch ingester (offline only) that reads receipts + accepted-handoff records into a raw record set.
 - [x] T007 Implement the privacy filter + retention/partition policy governing the shadow-evaluation traffic sample (synthesis open-q 7); reject unsanitized records.
+  - Evidence: `containsSensitiveContent()` gates ingestion at `lib/correction-overlay.cjs:339`; the harness asserts excluded reasons equal `['privacy-filter', 'retention-policy']` at `harness/validate-learning-overlay.cjs:285`.
 - [x] T008 Emit normalized, sanitized correction records; assert no raw record can reach the compiler.
+  - Evidence: `brandSanitized()` stamps the sanitized marker at `lib/correction-overlay.cjs:213`; `compileCandidateOverlay()` at `lib/correction-overlay.cjs:415` fails `SANITIZED_CORPUS_REQUIRED` for any record missing that brand.
 
 ### Candidate overlay compiler (offline)
 
 - [x] T009 Build the offline compiler that derives **only** vocabulary→destination adjustments from sanitized records (synthesis §2.1, §3 Idea 2).
 - [x] T010 Reject any candidate carrying a weight or any non-vocabulary field; keep weights a uniform inert `4` (synthesis open-q 3).
+  - Evidence: `INERT_WEIGHT = 4` and the schema-derived `ADJUSTMENT_FIELDS` allowlist at `lib/correction-overlay.cjs:61`; `validateAdjustment()` fails `OVERLAY_FIELD_FORBIDDEN` for any non-vocabulary key.
 - [x] T011 Freeze + content-address the candidate → `overlayHash`; assert base bytes unchanged and `overlayHash ≠ basePolicyHash` (REQ-001).
   - Evidence: evaluator materialization keeps original base hash `d8181c...`; the old merged-graph recompute yields `149732...` and fails the regression assertion.
 
@@ -67,16 +86,20 @@ status: "implemented-dormant"
 - [x] T014 Encode the synthesis §9 hard gates as blocking checks (hash mismatch vs pinned tuple, mixed generations in one request, negative decision carrying a target, evidence target committing, COMMIT lacking VERIFY).
   - Evidence: promotion consumes the three authority verdicts before replay/CAS; route-gold and stale CAS remain blocking in the same call, and each rejects aggregate `999999.000000`.
 - [x] T015 [P] Add the overlay replay/rollback fixture family to the typed route-gold set (synthesis §8.2).
+  - Evidence: `fixtures/learning-overlay-cases.v1.json` carries `routeGold` (3), `records` (4), and `divergentRecords` (1); consumed by the harness at `harness/validate-learning-overlay.cjs:432`.
 - [x] T016 Add the `overlay = null` equivalence test proving base behavior is identical without the overlay (REQ-009, not load-bearing).
   - Evidence: null, empty, and parity overlays preserve byte-identical base decisions including the valid `implement` route.
 
 ### Promotion + fenced activation (META-GATED)
 
 - [x] T017 Document + enforce the **meta-gate**: no promotion until a demonstrated routing gain from real correction-telemetry volume is recorded (synthesis §12). Production remains dormant without that evidence.
+  - Evidence: `validateTelemetryGain()` at `lib/correction-overlay.cjs:712` fails `TELEMETRY_GAIN_REQUIRED` unless `candidateCorrect` exceeds `baselineCorrect` over the bound sanitized corpus.
 - [x] T018 Implement the independent human promotion protocol: approver distinct from proposer; approval stored with the candidate hash (REQ-005).
+  - Evidence: `validateApproval()` at `lib/correction-overlay.cjs:678` fails `INDEPENDENT_APPROVAL_REQUIRED` when `proposedBy === approvedBy`, and binds `approval.candidateId` to the candidate hash.
 - [x] T019 Assert aggregate score informs but cannot override a hard gate (synthesis §9).
+  - Evidence: `validatePromotionHardGates()` at `lib/correction-overlay.cjs:652` fails each named gate on its own `pass`/`code` verdict, independent of any aggregate score.
 - [x] T020 Implement shadow promotion as a fenced CAS on the activation manifest (snapshot candidate + prior manifest; compare expected generation/hash; swap under fencing epoch); retain the prior generation.
-  - Evidence: the preimage now includes actual base-plus-overlay artifact bytes and a reproducing tuple; declared hash mismatch and manifest-only retention reject.
+  - Evidence: the preimage now includes actual base-plus-overlay artifact bytes and a reproducing tuple; declared hash mismatch and manifest-only retention reject; see `fencedSwapInMemory()` call at `lib/correction-overlay.cjs:903` and the stale-CAS drive at `harness/validate-learning-overlay.cjs:612`.
 - [x] T021 Build + run the byte-exact rollback drill: CAS-swap back to base-only or the prior overlay; reproduce byte-identical prior bytes (REQ-006, synthesis §9 stage 5).
   - Evidence: rollback restores generation-7 artifact identity `022e26de...` and exact manifest bytes at fencing epoch 2.
 <!-- /ANCHOR:phase-2 -->
@@ -89,8 +112,9 @@ status: "implemented-dormant"
 - [x] T022 Verify offline route-gold replay is green for `base+candidate` and protected scorer hashes are unchanged (SC-002).
   - Evidence: three rows pass with replay hash `fdba309f...`; replay and promotion both retain base hash `d8181c...`, and the router/scorer/loader digests remain `b039b8dd...`, `d5a9cc72...`, and `249be7c1...`.
 - [x] T023 Verify the activated shadow tuple is byte-stable and the rollback drill is byte-exact (SC-003).
+  - Evidence: `assert.strictEqual(rollback.byteExact, true)` and the restored/prior byte-equality check at `harness/validate-learning-overlay.cjs:638`.
 - [x] T024 Verify no online-mutation path exists — serving policy immutable during a request; promotion only re-points the activation manifest (SC-004).
-  - Evidence: an external canonical-byte comparison remains equal before and after materialization, replay, and shadow promotion; only the fenced manifest pointer changes.
+  - Evidence: an external canonical-byte comparison remains equal before and after materialization, replay, and shadow promotion; only the fenced manifest pointer changes; see `baseBytesPreserved` at `harness/validate-learning-overlay.cjs:719`.
 - [x] T025 Verify destination-local authority — an overlay cannot make a non-`route` decision carry a target, cannot let evidence COMMIT, cannot bypass VERIFY (REQ-007).
   - Evidence: named gate outcomes are `NEGATIVE_TARGET_FORBIDDEN`, `ROLE_CANNOT_COMMIT`, and `COMMIT_WITHOUT_READY`; false verdicts block promotion.
 - [x] T026 Confirm the Stage 5 machinery enforces offline replay + safety/parity + independent approval + byte-stable tuple before any `overlay ≠ null` generation could serve (`spec.md` → MIGRATION GATE).

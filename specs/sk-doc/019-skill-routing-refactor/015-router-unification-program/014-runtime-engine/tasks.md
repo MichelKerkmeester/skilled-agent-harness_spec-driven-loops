@@ -6,6 +6,22 @@ trigger_phrases:
   - "P4b cutover task list"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Tasks: Unified Router Refactor — Runtime Engine (P4b Literal Cutover)
 
@@ -66,7 +82,7 @@ contextType: "implementation"
 - [x] T011 Prove the flip on `sk-code`: `serving-flip-record.json` shows `servingAuthority: compiled`, generation 2, fence `3 → 4`, gates green (`canaryGreen: true`, `scorerFrozen: true`, routed 1/5 scenarios).
 - [x] T012 Prove the front-door: with `SPECKIT_COMPILED_ROUTING=1` the CLI returns `action: route` to the `code-quality` surface (sk-code/quality mode); with the flag off it returns the legacy sentinel.
 - [x] T013 Prove byte-exact rollback: `--rollback` restores `manifest.serving-prior.json` byte-for-byte (the retained serving-prior reads `servingAuthority: legacy`, `shadowOnly: true`). The rollback mechanism was exercised and proven; `sk-code` was then flipped for the production cutover and is currently `servingAuthority: compiled` at fence epoch 4, with the byte-identical serving-prior retained so the same byte-exact rollback remains available.
-- [x] T014 Confirm the three frozen scorer digests are unchanged after the full proof and the seven-hub cutover.
+- [x] T014 Confirm the three frozen scorer digests are unchanged after the full proof and the seven-hub cutover (`implementation-summary.md:97` lists `router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs` with unchanged pinned digests).
 
 **Evidence**: The `sk-code` end-to-end proof is complete, and the cutover was then executed across all seven hubs — each flipped `legacy → compiled` and left compiled-serving but inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. Evidence lives in `013-live-activation/activation/<hub>/{serving-flip-record.json, manifest.serving-prior.json, manifest.json, fence-state.json}`.
 

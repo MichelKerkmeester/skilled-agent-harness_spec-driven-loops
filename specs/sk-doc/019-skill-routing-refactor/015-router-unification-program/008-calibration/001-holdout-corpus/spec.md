@@ -139,3 +139,6 @@ Activation is reversible and fenced: a corpus generation is promoted by a fenced
 - The production privacy program (independent reviewer role, retention owner, right-to-be-forgotten operations) is open-question 7; this phase defines the governance contract, not the operational program [synthesis §11 open-q 7].
 - Whether any hub beyond the three multi-candidate hubs (`sk-code`, `system-deep-loop`, `mcp-tooling`) ever needs a calibration slice is deferred until a real routing-gain signal appears.
 <!-- /ANCHOR:questions -->
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Successor phase(s): `002-rank-vs-calibrated-contract`

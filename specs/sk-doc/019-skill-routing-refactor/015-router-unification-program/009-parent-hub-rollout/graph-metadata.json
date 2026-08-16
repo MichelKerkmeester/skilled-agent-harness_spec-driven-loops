@@ -94,9 +94,9 @@
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0217905a9f2e8e534e9637bf2099c0b9ccf6e81dc1a2ce2d2d00ccae70b0f759",
+    "source_fingerprint": "sha256:905594827d43aae3c21225f02febd863d57b461babac1b296cb782452277a578",
     "source_doc_hashes": {
-      "spec.md": "cf46ce2f3124f6da85b747794e9b0ca108c51500d19f93f3232a8c59d6b1bd85"
+      "spec.md": "5545a1d0dd9ee9ffd4431620095dcbe67398262927edc19f785775ceaea8911c"
     },
     "last_active_child_id": null,
     "last_active_at": null

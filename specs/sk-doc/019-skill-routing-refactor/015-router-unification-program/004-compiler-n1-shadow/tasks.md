@@ -50,7 +50,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Confirm Phase 0 schema + deterministic serialization is frozen and importable; if absent, fail closed and halt (dependency; spec REQ-002) (`../003-contract-schemas/`)
-- [x] T002 Capture the Stage-0 legacy route-gold baseline and confirm it is green BEFORE any shadow artifact exists (Stage 0 handshake; synthesis §9)
+- [x] T002 Capture the Stage-0 legacy route-gold baseline and confirm it is green BEFORE any shadow artifact exists (Stage 0 handshake; synthesis §9) (`harness/run-phase.cjs:654` `verifyProtectedBaseline()` vs `harness/protected-baseline.json`)
 - [x] T003 Ingest `mcp-code-mode` authored sources read-only and verify against synthesis §5 confirmed line refs (`.../mcp-code-mode/SKILL.md`, `.../mcp-code-mode/leaf-manifest.json`)
 - [x] T004 Confirm `mcp-route-guard.cjs` is advisory (`allow`/`warn`, fails open) and record that it MUST NOT become destination VERIFY (synthesis §5.2)
 - [x] T005 [P] Stand up the isolated `<shadow-root>/` tree and the append-only typed-fixture location; confirm no live routing path is writable
@@ -82,9 +82,9 @@ _memory:
 ### 2c. Shadow parity + fenced activation + rollback
 
 - [x] T018 Implement the read-only shadow parity harness; run typed replay + compatibility projection vs legacy route-gold; classify mismatches; NEVER auto-update gold (spec REQ-007; synthesis §9) (`<shadow-root>/parity/`)
-- [x] T019 Assert zero live authority: legacy stays serving-authoritative, compiled policy emits no COMMIT/effect (spec REQ-007 / SC-005; synthesis §10)
+- [x] T019 Assert zero live authority: legacy stays serving-authoritative, compiled policy emits no COMMIT/effect (spec REQ-007 / SC-005; synthesis §10) (`harness/run-phase.cjs:868` asserts `parity.effectCount` equals 0)
 - [x] T020 Implement fenced activation of the single generation: token lock + fencing epoch checked immediately before an atomic temp/fsync/rename; one generation pinned per request (spec REQ-008; synthesis §9) (`<shadow-root>/activation/manifest.json`)
-- [x] T021 Retain the prior generation and run the byte-exact rollback drill: swap to the prior manifest; assert restored bytes hash-equal to the pre-activation manifest (spec REQ-008 / SC-006; synthesis §9)
+- [x] T021 Retain the prior generation and run the byte-exact rollback drill: swap to the prior manifest; assert restored bytes hash-equal to the pre-activation manifest (spec REQ-008 / SC-006; synthesis §9) (`harness/run-phase.cjs:975` rollback drill asserts `restoredState.manifest` deep-equals `priorManifest`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -93,7 +93,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T022 Determinism: recompile ≥3× and assert byte-identical body + identical `effectivePolicyHash` (SC-001)
-- [x] T023 Fail-closed: run the three negative fixtures (T007–T009) and assert typed error + zero artifacts written (SC-003)
+- [x] T023 Fail-closed: run the three negative fixtures (T007–T009) and assert typed error + zero artifacts written (SC-003) (`verifyFailClosed()` in `harness/run-phase.cjs:323`, logged `PASS SC-003` at `harness/run-phase.cjs:1109`)
 - [x] T024 Scorer untouched: protected `router-replay.cjs` checksum is exact; route-gold evaluator green with projected fields and a deliberate falsifier red; existing gold byte-unchanged (SC-004; synthesis §8.2, §10)
 - [x] T025 Standalone document-only route from `PolicyCardV1.md` alone reaches single/clarify/defer/reject + `PREPARED_DRAFT` and honestly terminates `DOCUMENT_ONLY_UNATTESTED` (spec REQ-010; synthesis §8.3)
 - [x] T026 Confirm the Migration Stage-1 gate (spec §6) is satisfied and dual-read fail-closed resolution holds for `mcp-code-mode`, so Phase 2 (`../005-decision-evaluator/`) may activate

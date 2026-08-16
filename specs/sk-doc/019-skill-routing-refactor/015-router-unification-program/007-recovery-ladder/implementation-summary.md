@@ -7,6 +7,22 @@ trigger_phrases:
   - "recovery shadow replay results"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/007-recovery-ladder"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Implementation Summary: Recovery Ladder
 
@@ -20,7 +36,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Status** | Implemented; phase-local evidence is `shadow-partial` |
+| **Status** | Correctness-remediated and phase-locally verified; evidence is `shadow-partial` |
 | **Date** | 2026-07-18 |
 | **Level** | 2 |
 | **Authority** | Shadow-only; no serving route, commit authority, or external effect |

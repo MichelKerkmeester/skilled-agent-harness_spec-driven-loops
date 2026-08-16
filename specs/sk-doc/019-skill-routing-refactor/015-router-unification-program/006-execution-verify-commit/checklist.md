@@ -7,6 +7,22 @@ trigger_phrases:
   - "idempotency fencing evidence"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/006-execution-verify-commit"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Verification Checklist: Destination-Local Execution Plane
 
@@ -33,9 +49,9 @@ contextType: "implementation"
 - [x] CHK-001 [P0] Authoritative packet docs, synthesis sections, frozen schemas, canonical hashing, projector, and scorer APIs were read first.
   - **Evidence**: Intake covered `spec.md`, `plan.md`, `tasks.md`, synthesis §§2, 3 Idea 7, 4, 5.2, 8.2, 9, 10, 11.5, both frozen schemas, `lib/canonical.cjs`, the phase-002 projector, and protected exports.
 - [x] CHK-002 [P0] Every write remained inside the authorized phase folder.
-  - **Evidence**: Phase inventory contains all new runtime, fixture, test, harness, and documentation files; scorer, registry, routing config, guard, and skill paths were read-only.
+  - **Evidence**: Phase inventory contains all new runtime, fixture, test, harness, and documentation files; scorer, registry, routing config, guard, and skill paths were read-only. `harness/run-phase.cjs:175` (`listCjsFiles`) recursively resolves every `.cjs` file from `PHASE_ROOT`, confirming all five code files stay inside this phase folder.
 - [x] CHK-003 [P1] Baseline, blast radius, and rollback were recorded.
-  - **Evidence**: Baseline contained three planning docs plus generated metadata; blast radius is zero-live-authority shadow execution; rollback is the tested pre-effect adapter disable path.
+  - **Evidence**: Baseline contained three planning docs plus generated metadata; blast radius is zero-live-authority shadow execution; rollback is the tested pre-effect adapter disable path exercised at `tests/execution-plane.test.cjs:381` (`testAdapterDisable`).
 
 <!-- /ANCHOR:pre-impl -->
 ---
@@ -50,7 +66,7 @@ contextType: "implementation"
 - [x] CHK-012 [P0] Frozen canonical serialization/hashing is reused without a local implementation.
   - **Evidence**: Protocol and harness imports resolve to `../003-contract-schemas/lib/canonical.cjs`; proof and replay hashes match fixed fixture oracles across 25 runs.
 - [x] CHK-013 [P1] Public boundaries are documented and invalid inputs fail with stable codes.
-  - **Evidence**: Exported PREPARE, projector, ledger operations, VERIFY, evidence resolution, and COMMIT carry JSDoc; unsafe paths assert exact codes rather than bare throws.
+  - **Evidence**: Exported PREPARE, projector, ledger operations, VERIFY, evidence resolution, and COMMIT carry JSDoc starting at `lib/execution-plane.cjs:241`; unsafe paths assert exact codes rather than bare throws.
 - [x] CHK-014 [P1] The two cohesive protocol/test files exceed the 500-line style target without mixing runtime responsibilities.
   - **Evidence**: `execution-plane.cjs` keeps one state machine and delegates ledger/projector concerns; the long test file is direct transition coverage. Splitting either would add indirection without changing the public contract.
 
@@ -82,11 +98,11 @@ contextType: "implementation"
 - [x] CHK-030 [P0] PREPARE binds every required input while preserving frozen `RouteProofV1` bytes.
   - **Evidence**: Exact proof key allowlist passes; seven versioned read entries bind request, policy, registry/authority, targets, authority class, preconditions, and destination state.
 - [x] CHK-031 [P0] Negative decisions and bare/forged proofs cannot commit.
-  - **Evidence**: All three negative actions emit zero proofs; malformed negative target smuggling is rejected; null, bare, and forged READY values fail with exact codes.
+  - **Evidence**: All three negative actions emit zero proofs; malformed negative target smuggling is rejected; null, bare, and forged READY values fail with exact codes at `tests/execution-plane.test.cjs:270-277`.
 - [x] CHK-032 [P0] Ordering and N=1 cardinality use one code path without name branches.
   - **Evidence**: Single and bundle legs report `PREPARE → VERIFY → COMMIT`; static multiline `if`/`switch`/ternary gate reports zero skill-name violations.
 - [x] CHK-033 [P0] Receipt, fencing, and local authority semantics match the destination boundary.
-  - **Evidence**: COMMIT re-acquires a destination-owned handle, stores the post-mutation fencing epoch in the receipt, and never serializes the handle into proof or receipt.
+  - **Evidence**: COMMIT re-acquires a destination-owned handle at `lib/execution-plane.cjs:505`, stores the post-mutation fencing epoch (`lib/execution-plane.cjs:515`) in the receipt, and never serializes the handle into proof or receipt.
 - [x] CHK-034 [P1] Atomic and explicitly non-atomic destination behavior is declared.
   - **Evidence**: `execution-plane.md` declares all four roles; a failed non-atomic external attempt remains pending and a retry performs no second effect.
 
@@ -97,11 +113,11 @@ contextType: "implementation"
 ## Security
 
 - [x] CHK-040 [P0] Proof is evidence and carries no capability.
-  - **Evidence**: Frozen proof keys contain no authority/capability field; the READY ticket is process-local and COMMIT still requires current destination-local acquisition.
+  - **Evidence**: Frozen proof keys contain no authority/capability field; `tests/execution-plane.test.cjs:133` asserts `Object.hasOwn(first, 'authority')` is `false` on the frozen proof; COMMIT still requires current destination-local acquisition.
 - [x] CHK-041 [P0] Evidence roles cannot mutate or COMMIT.
   - **Evidence**: Mutating evidence targets fail validation; a READY evidence leg fails COMMIT as `ROLE_CANNOT_COMMIT` and resolves through the read-only path.
 - [x] CHK-042 [P1] No dependency, credential, network, or live-authority surface was introduced.
-  - **Evidence**: Runtime dependencies are Node built-ins, phase-local modules, and the frozen canonical library; no install, environment secret, network request, or live adapter exists.
+  - **Evidence**: Runtime dependencies are Node built-ins, phase-local modules, and the frozen canonical library; every `require(...)` in `lib/execution-plane.cjs:13-18` and `harness/run-phase.cjs:13-26` resolves to a built-in or a phase-local/frozen-canonical module, with no install, environment secret, network request, or live adapter.
 
 <!-- /ANCHOR:security -->
 ---
@@ -114,7 +130,7 @@ contextType: "implementation"
 - [x] CHK-051 [P1] Operating decisions cite the approved synthesis.
   - **Evidence**: `execution-plane.md` and `implementation-summary.md` cite synthesis §§2, 3 Idea 7, 4, 5.2, 6, 7, 8.2, 9, 10, and 11.5.
 - [x] CHK-052 [P1] Required anchor contracts are exact and balanced.
-  - **Evidence**: Anchor scan confirms every checklist and summary anchor appears once, opens and closes once, and follows the required order.
+  - **Evidence**: Anchor scan confirms every checklist and summary anchor appears once, opens and closes once, and follows the required order: checklist.md 9/9 open/close pairs, implementation-summary.md 6/6.
 
 <!-- /ANCHOR:docs -->
 ---
@@ -125,7 +141,7 @@ contextType: "implementation"
 - [x] CHK-060 [P0] Runtime, ledger, projector, fixtures, tests, harness, and docs remain phase-local.
   - **Evidence**: Runtime is under `lib/`, typed data under `fixtures/`, tests under `tests/`, harness under `harness/`, and operating/docs at the phase root.
 - [x] CHK-061 [P1] Protected scorer, router, live config, registries, guards, and skills remain untouched.
-  - **Evidence**: Both protected files match pinned SHA-256 constants before and after scoring; phase-local source has no guard import; write inventory contains only phase paths.
+  - **Evidence**: Both protected files match pinned SHA-256 constants before and after scoring via `harness/run-phase.cjs:137` (`assertTrustedProtectedDigests`); phase-local source has no guard import; write inventory contains only phase paths.
 
 <!-- /ANCHOR:file-org -->
 ---

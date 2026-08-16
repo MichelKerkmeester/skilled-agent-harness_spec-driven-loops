@@ -20,6 +20,7 @@
   "lastUpdated": "2026-07-24T13:05:44.407Z",
   "specId": "007",
   "folderSlug": "recovery-ladder",
+  "level": 2,
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",

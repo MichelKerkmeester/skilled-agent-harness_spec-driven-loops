@@ -172,3 +172,6 @@ Produce a verified, ranked, actionable findings base that a phased implementatio
 - **Orchestrator review / authoring brief**: `review-v1.md`
 - **Raw research state**: `research/` (iterations, deltas, findings-registry, progress log)
 - **Parent program**: `../spec.md`
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Successor phase(s): `002-runtime-promotion-and-status-foundation`

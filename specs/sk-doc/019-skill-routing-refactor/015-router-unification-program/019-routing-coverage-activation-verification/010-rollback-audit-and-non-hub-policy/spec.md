@@ -224,3 +224,7 @@ Add `--rollback` to `activate-hub.cjs` reusing its existing `proveRollback()` ha
 - **Verification checklist**: See `checklist.md`
 - **Completion record**: See `implementation-summary.md`
 - **Upstream evidence**: `../001-research/synthesis-v1.md` §2.1 (CF-ACT-8, CF-ACT-9, CF-ACT-11), `../001-research/verification-v1.md`, `../001-research/review-v1.md` §2-4
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `009-sk-doc-template-alignment`
+- Parent phase spec: `../spec.md`

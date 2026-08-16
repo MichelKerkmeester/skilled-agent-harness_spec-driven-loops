@@ -249,3 +249,7 @@ Define a durable, fail-closed report-path convention and a joined `serving-snaps
 - **Dependencies**: `../002-runtime-promotion-and-status-foundation/`, `../004-benchmark-compiled-lane-c/`
 - **Master plan (phase map + shared gate model)**: `../spec.md`
 - **Storage conventions**: `.opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md`
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `006-feature-catalogs`
+- Successor phase(s): `008-sk-code-alignment-and-drift-guards`

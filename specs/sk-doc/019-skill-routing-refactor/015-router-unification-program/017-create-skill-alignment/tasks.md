@@ -6,6 +6,22 @@ trigger_phrases:
   - "parent hub onboarding tasks"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Tasks: create-skill Compiled-Routing Alignment
 
@@ -32,9 +48,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Pin the P3 minter, manifest-location, freshness, and runtime-discovery interfaces. (REQ-001, REQ-004; shared compiled-routing interface)
-- [x] T002 Capture baseline standalone and parent generator outputs plus existing test results. (REQ-006; temp fixtures)
-- [x] T003 Extract and approve the canonical directive block and hub-name substitution points. (REQ-002; both parent templates)
+- [x] T001 Pin the P3 minter, manifest-location, freshness, and runtime-discovery interfaces. (REQ-001, REQ-004; `init_skill.py:412` `_compiled_manifest_cli`)
+- [x] T002 Capture baseline standalone and parent generator outputs plus existing test results. (REQ-006; `test_create_skill_contract.py` 23/23 passed)
+- [x] T003 Extract and approve the canonical directive block and hub-name substitution points. (REQ-002; `compiled-routing-lockstep-surfaces.json` directiveMarker/hubNamePlaceholder)
 - [x] T004 Define the parent-only `legacy|ready` option and backward-compatible default. (REQ-003, REQ-006; `init_skill.py`)
 
 **Evidence**: interface note, baseline fixture tree, directive text fixture, and option matrix.
@@ -62,12 +78,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T013 Verify both templates carry the same normalized directive. (REQ-002, REQ-008; template parity test)
+- [x] T013 Verify both templates carry the same normalized directive. (REQ-002, REQ-008; `test_parent_templates_carry_the_same_exact_directive` passed)
 - [x] T014 Verify legacy parent generation emits no manifest and reports legacy. (REQ-003, REQ-006; pytest temp fixture)
-- [x] T015 Verify ready parent generation mints a fresh canonical manifest and reports compiled-ready. (REQ-004, REQ-007; test minter fixture)
-- [x] T016 Verify missing minter, stale manifest, malformed manifest, and invalid option fail without a ready claim. (REQ-005, REQ-007; negative matrix)
-- [x] T017 Verify existing standalone and parent invocations remain compatible. (REQ-006, REQ-007; regression suite)
-- [x] T018 Run strict skill-package validation on generated fixtures and strict spec-folder validation on this packet. (REQ-007, REQ-008)
+- [x] T015 Verify ready parent generation mints a fresh canonical manifest and reports compiled-ready. (REQ-004, REQ-007; `test_parent_scaffold_ready_mints_and_verifies_canonical_manifest` passed)
+- [x] T016 Verify missing minter, stale manifest, malformed manifest, and invalid option fail without a ready claim. (REQ-005, REQ-007; `test_parent_scaffold_never_reports_ready_when_minter_is_missing`, `test_compiled_routing_validator_rejects_stale_manifest`, `test_compiled_routing_validator_rejects_malformed_manifest`, `test_parent_scaffold_rejects_unknown_compiled_state` all passed)
+- [x] T017 Verify existing standalone and parent invocations remain compatible. (REQ-006, REQ-007; `test_create_skill_contract.py` 23/23 passed)
+- [x] T018 Run strict skill-package validation on generated fixtures and strict spec-folder validation on this packet. (REQ-007, REQ-008; `validate.sh --strict`)
 
 **Evidence**: pytest output, generated-file assertions, strict validator output, and explicit legacy/ready status samples.
 <!-- /ANCHOR:phase-3 -->

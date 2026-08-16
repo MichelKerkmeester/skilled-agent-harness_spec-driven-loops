@@ -170,3 +170,7 @@ These release-branch invariants must hold throughout:
 - `013-compiled-coverage-buildout/` (the reviewed packet) and its `review/lineages/{luna-xhigh,sol-high}/review-report.md`.
 
 <!-- /ANCHOR:related-docs -->
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Successor phase(s): `017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root`
+- Parent phase spec: `../spec.md`

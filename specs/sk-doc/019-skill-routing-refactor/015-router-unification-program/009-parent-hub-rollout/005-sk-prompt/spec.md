@@ -239,3 +239,7 @@ default, and prove exact single and ordered-bundle decisions through the real fr
 None. The requested scope, default behavior, scorer boundary, and serving authority are explicit.
 <!-- /ANCHOR:questions -->
 
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `004-cli-external-orchestration`
+- Successor phase(s): `006-sk-design`
+- Parent phase spec: `../spec.md`

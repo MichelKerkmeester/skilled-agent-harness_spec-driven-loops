@@ -7,6 +7,22 @@ trigger_phrases:
   - "clarify handoff ladder fixtures"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/007-recovery-ladder"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -60,7 +76,7 @@ The recovery plane is the **ordered negative-branch behavior** of the phase-002 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### 2.1 Design the shared budget contract seam (rungs 3 + 4 share one budget)
+### Phase 1: Design the shared budget contract seam (rungs 3 + 4 share one budget)
 
 `UncertaintyBudgetV1` is defined structurally in phase 000; this phase pins its *semantics* on the ladder:
 
@@ -73,7 +89,7 @@ Key contract touch-points (read-only against phase 000/002 outputs; no edits her
 - `RouteDecisionV1.defer { reason, recovery, authority: Withheld }`
 - `RouteDecisionV1.reject { reason, authority: Withheld }`
 
-### 2.2 Specify the six rungs and their guard predicates
+### Phase 2: Specify the six rungs and their guard predicates
 
 Encode the fixed order and the admit-condition for each rung (synthesis §4, lines 133-141):
 
@@ -84,7 +100,7 @@ Encode the fixed order and the admit-condition for each rung (synthesis §4, lin
 5. **Typed defer.** Recoverable missing evidence/dependency; reason from the fixed enum; no default/fallback union (synthesis §2.3, §10).
 6. **Reject.** Invalid/forbidden requests; target-free and authority-free (synthesis §2.3).
 
-### 2.3 Author the typed route-gold fixtures via the compatibility projector
+### Phase 3: Author the typed route-gold fixtures via the compatibility projector
 
 Fixtures are produced through the **phase-002 compatibility projector** only (synthesis §8.2) — positive routes → intents/resources; `clarify | defer | reject` → the existing empty-intent convention. The shared scorer is never touched. Fixture families this phase owns (synthesis §8.2 minimum-fixture list):
 
@@ -97,7 +113,7 @@ Fixtures are produced through the **phase-002 compatibility projector** only (sy
 - handoff ownership-transfer + downstream `NEEDS_INPUT` terminates without new turn (REQ-007);
 - role-escalation + missing-authority-dependency defer (rung 1/5 boundary).
 
-### 2.4 Prove the bypass and the finiteness properties
+### Phase 4: Prove the bypass and the finiteness properties
 
 - Confident-route fixtures assert **zero** ladder-rung invocation (SC-004) — the bypass is measured, not assumed.
 - Budget fixtures assert no request consumes >1 user turn across clarify+handoff, no handoff exceeds `H=1`, and no visited destination is revisited (SC-002).
