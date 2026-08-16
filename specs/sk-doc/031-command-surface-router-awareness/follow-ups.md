@@ -28,7 +28,10 @@ Fixed: the three comments now reference `sk-code/ROUTER.md`; `grep -c smart_rout
 - **Fix:** repoint the three comments to `sk-code/ROUTER.md` (durable-WHY wording; do not embed spec paths/ids per comment hygiene).
 - **Verify:** `grep -n "smart_routing" .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs` shows no `smart_routing.md` reference.
 
-## FU-2 — Two hubs legacy-serving with stale compiled manifests (INVESTIGATE)
+## FU-2 — Two hubs legacy-serving with stale compiled manifests — TRACKED in packet `022-legacy-hub-compiled-routing-refresh`
+
+> A dedicated Level-2 planning packet now owns this work: `../019-skill-routing-refactor/015-router-unification-program/022-legacy-hub-compiled-routing-refresh/` (Status: Planned). The finding below is preserved for context.
+
 
 - **Observed:** `node .opencode/bin/compiled-route-status.cjs --all` reports `sk-prompt` and `system-deep-loop` as `servingAuthority: legacy`, `fresh: false`, `causeCode: stale-manifest`; the other five hubs are `compiled` / `fresh`.
 - **Why deferred:** pre-existing and unrelated to 031 — this session only touched sk-doc's routing (via the Phase 4 template rename), and sk-doc stays `compiled` / `fresh`. Renaming did not cause the sk-prompt / system-deep-loop state.
