@@ -74,7 +74,7 @@ Verify the classify step inspects all three state files (config, JSONL, strategy
 | `.opencode/commands/deep/assets/deep-review-auto.yaml` | Session classification logic, inspect `step_classify_session` |
 | `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Session classification logic, inspect `step_classify_session` |
 | `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Resume behavior documentation, use `ANCHOR:troubleshooting` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance, use `ANCHOR:smart-routing` |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance |
 
 ---
 
