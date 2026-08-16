@@ -71,7 +71,7 @@ in `auth.json` / `models-store.json`. The file is a symlinked canonical
 #### pi-gpt-fast-mode (v0.1.2)
 [github.com/devwithpug/pi-gpt-fast-mode](https://github.com/devwithpug/pi-gpt-fast-mode)
 
-Controls OpenAI's GPT service tier (priority/flex/default/auto) for GPT-5.4 / GPT-5.5, with subagent hand-off
+Controls OpenAI's GPT service tier (priority/flex/default/auto), with subagent hand-off. The shipped defaults cover GPT-5.4 / 5.5 only; GPT-5.6 is enabled via the `models` override in `.pi/extensions/pi-gpt-fast-mode.json` (project config wins over the user-level default).
 
 ---
 
