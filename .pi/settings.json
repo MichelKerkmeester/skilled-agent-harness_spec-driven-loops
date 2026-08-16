@@ -1,8 +1,8 @@
 {
   "lastChangelogVersion": "0.84.2",
   "theme": "dark",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-luna",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "deepseek-v4-flash",
   "defaultThinkingLevel": "max",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
@@ -32,10 +32,10 @@
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-todo",
     "npm:pi-blackhole",
-    "npm:pi-gpt-fast-mode",
     "npm:pi-statusline",
     "npm:pi-subagents",
-    "npm:pi-web-access"
+    "npm:pi-web-access",
+    "../../MEGA/Development/Code_Environment/Public/packages/pi-fast-mode-w-subagent-support"
   ],
   "extensions": [],
   "hideThinkingBlock": false,
