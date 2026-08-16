@@ -55,7 +55,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `sk-vision/001-sk-vision-fork-of-opencode-senses` |
 | **Predecessor** | 004-opencode-adapter |
-| **Successor** | None |
+| **Successor** | 006-skill-contract-realignment |
 | **Handoff Criteria** | Nested children Complete. Owner factory is a function. Relative symlink matches the locked target. pi --offline --approve starts without fail-closed. |
 <!-- /ANCHOR:metadata -->
 

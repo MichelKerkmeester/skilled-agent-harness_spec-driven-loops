@@ -4,6 +4,8 @@
   "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook",
   "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -13,34 +15,201 @@
     "trigger_phrases": [
       "sk-vision testing playbook",
       "sk-vision manual scenarios",
-      "sk-vision benchmark scaffold"
+      "sk-vision benchmark scaffold",
+      "sk-vision 009 tasks",
+      "sk-vision 009 checklist",
+      "sk-vision 009 summary"
     ],
     "key_topics": [
       "sk-vision",
-      "playbook",
-      "scenarios",
-      "manual",
       "testing",
+      "playbook",
+      "manual",
+      "scenarios",
       "benchmark",
-      "evidence"
+      "scaffold",
+      "tasks",
+      "checklist",
+      "summary",
+      "skill",
+      "automated"
     ],
+    "importance_tier": "important",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      ".opencode/skills/sk-vision/manual-testing-playbook/manual-testing-playbook.md"
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
       {
-        "name": "manual-testing-playbook.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-vision/manual-testing-playbook/manual-testing-playbook.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Stabilize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Corpus",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "source_docs": [
-      "spec.md"
-    ],
-    "causal_summary": "sk-vision lacks reproducible operator validation; this child authors the scenario corpus and the benchmark run index.",
+    "causal_summary": "The skill has automated tests (8 passing) and a GPU smoke, but no reproducible operator validation: no deterministic prompts, no evidence contract, no place where a release decision can be reviewed",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_updated_at": "2026-08-16T12:00:00.000Z"
+    "last_save_at": "2026-08-16T09:13:30.852Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e0c96a52802e6e46acacaab8474ed5315067fa9d67c7a61be80e14d3ec7de42e",
+    "source_doc_hashes": {
+      "spec.md": "a88b2e055980d505c14de9a12ab14a8049d8b5a6cc612761e3242316bb19b45e",
+      "plan.md": "75fd06b4269813b8933b6d90adf13e833d39fc551bd1c0b10759687f2ccaf1f0",
+      "tasks.md": "e889b831b2882424397feb0a0fe2d0bfb0e7f1eb6d642f260f9e57238601e03b",
+      "checklist.md": "af85933588b05e151a79f1e7a90af3d54cc955ce585736daee808efc584b7dac",
+      "implementation-summary.md": "aa6c18e5d84b7e5c44c6d2f9bf664bfaccba21c3778b60da2679789d06fb8a44"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -4,6 +4,8 @@
   "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate",
   "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -13,33 +15,201 @@
     "trigger_phrases": [
       "sk-vision quality gate",
       "sk-vision conformance proof",
-      "sk-vision metadata reconciliation"
+      "sk-vision metadata reconciliation",
+      "sk-vision 010 tasks",
+      "sk-vision 010 checklist",
+      "sk-vision 010 summary"
     ],
     "key_topics": [
       "sk-vision",
       "quality",
       "gate",
       "conformance",
+      "proof",
+      "metadata",
       "reconciliation",
-      "sweep"
+      "tasks",
+      "checklist",
+      "summary",
+      "six",
+      "phases"
     ],
+    "importance_tier": "important",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      ".opencode/skills/sk-vision/SKILL.md"
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-vision/SKILL.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Six",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execute",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Final",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "source_docs": [
-      "spec.md"
-    ],
-    "causal_summary": "After six shipped phases, one authoritative gate run proves alignment and reconciles stale metadata.",
+    "causal_summary": "Six phases of work (001-005 shipped, 006-009 amended) need one authoritative proof that the skill is aligned with sk-create-skill standards and the packet is coherent",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_updated_at": "2026-08-16T12:00:00.000Z"
+    "last_save_at": "2026-08-16T09:13:31.101Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3e49468600ae56e68a8a3e831dbe9d76fe6b63a612b4a6e4375637559a40e94e",
+    "source_doc_hashes": {
+      "spec.md": "966bd487b3858bc6c20067b2ab194e461d179ef8ede32c4794744a7394d55303",
+      "plan.md": "c6160e22d607e291fb8f0c09ee528b31d7787e1bb235a8bb03dd5ad9ba7b3afc",
+      "tasks.md": "a696a37d82c91c7ec58cbea9118e75a3da1e4b4efdf151e75d0d4b4ed4467ced",
+      "checklist.md": "7a1de29c39ed45886da1a4d2b077efbdf2f124384cb90360da7d560726c16f35",
+      "implementation-summary.md": "486bd4b792529b381f98411724a1fc0bc34139ed1b3980d2aef7f83b5b7b96e3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

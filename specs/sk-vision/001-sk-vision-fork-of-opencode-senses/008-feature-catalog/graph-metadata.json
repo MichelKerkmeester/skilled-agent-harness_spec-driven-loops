@@ -4,6 +4,8 @@
   "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog",
   "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -13,7 +15,10 @@
     "trigger_phrases": [
       "sk-vision feature catalog",
       "sk-vision capability inventory",
-      "sk-vision catalog package"
+      "sk-vision catalog package",
+      "sk-vision 008 tasks",
+      "sk-vision 008 checklist",
+      "sk-vision 008 summary"
     ],
     "key_topics": [
       "sk-vision",
@@ -21,25 +26,190 @@
       "catalog",
       "capability",
       "inventory",
-      "anchors"
+      "package",
+      "tasks",
+      "checklist",
+      "summary",
+      "ships",
+      "tools",
+      "plus"
     ],
+    "importance_tier": "important",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      ".opencode/skills/sk-vision/feature-catalog/feature-catalog.md"
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
       {
-        "name": "feature-catalog.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-vision/feature-catalog/feature-catalog.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Stabilize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Root",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "source_docs": [
-      "spec.md"
-    ],
-    "causal_summary": "sk-vision has no canonical capability inventory; this child authors the feature-catalog package with anchored per-feature files.",
+    "causal_summary": "sk-vision ships 13 tools plus a runtime and two host adapters, but has no canonical current-state inventory",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_updated_at": "2026-08-16T12:00:00.000Z"
+    "last_save_at": "2026-08-16T09:13:30.591Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1e0353431aca34ea49384565e06997d976de7c99c19dd0b644e245af0cad86dc",
+    "source_doc_hashes": {
+      "spec.md": "15c2674794b5f73bfa3f964b007aeb322580b12a83d175fd904c67fa09393b7c",
+      "plan.md": "c5afd09533005bef2e387c45599b97c814f02830e43d526b631c5fef6a98e2af",
+      "tasks.md": "65e133553dfdefb8c122dbfcd8fd79f7a87af81b3929da7eb2f375bfcd65b794",
+      "checklist.md": "451a3f9a57848d99455592e3fb051f1c5296cd38161f736b6df7eea802f54330",
+      "implementation-summary.md": "c19fa160455e6fd8db7ad118ee601a3a44fb9fc5198138910711091f31834152"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }
