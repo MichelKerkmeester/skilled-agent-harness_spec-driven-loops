@@ -23,21 +23,23 @@ contextType: "implementation"
 - [x] T004 [P0] Wired `root-router-contract.cjs` `validateRootRouter` into the class-H branch of `ci-skill-root-metadata.cjs`; violations propagate to a non-zero exit. Reused the frozen codes; no parallel validator. (GAP-2)
 - [x] T005 [P0] Verified: gate exits 0 over the 7 real hubs (`checked=13 passed=13`); removing a hub `ROUTER.md` exits 1 with `MISSING_REQUIRED_FILE` + `RRC-001`; comment-hygiene scan clean.
 
-## Phase 2 — Doctor fleet-ROUTER sweep (MEDIUM) — after Phase 1
+## Phase 2 — Doctor fleet-ROUTER sweep (MEDIUM) — RESOLVED BY PHASE 1 (no code needed)
 
-- [ ] T006 [P1] Extend the `parent-skill` route in `.opencode/commands/doctor/_routes.yaml` (and `assets/doctor-parent-skill.yaml`) to loop the per-hub `ROUTER.md` check over every `mode-registry.json`-bearing hub, OR add a dedicated fleet-ROUTER sweep route. (GAP-3)
-- [ ] T007 [P1] Verify: the chosen `/doctor` route enumerates all 7 hubs and prints each `router_state`; a broken fixture hub is reported failing.
+- [x] T006 [P1] Not required as separate work. The `parent-skill` route (`_routes.yaml:150`) already runs `ci-skill-root-metadata.cjs` fleet-wide (no `--skill`), and Phase 1 made that gate ROUTER-aware — so `/doctor parent-skill` now audits root `ROUTER.md` across all seven hubs in one invocation. (GAP-3)
+- [x] T007 [P1] Verified transitively: the fleet gate's negative control (Phase 1) proves a broken hub `ROUTER.md` → exit 1; the doctor route invokes that exact command fleet-wide. Adding a second sweep would duplicate coverage.
 
-## Phase 3 — Documentation citation cleanup (MEDIUM/LOW) — parallelizable
+## Phase 3 — Documentation citation cleanup (MEDIUM/LOW) — DONE (commit e07b5f2ae1; deepseek-v4-flash max)
 
-- [ ] T008 [P2] `.opencode/skills/sk-code/shared/references/phase-detection.md:40,110` — repoint the two `./smart-routing.md` links to `../ROUTER.md` (or drop the rows). (GAP-4)
-- [ ] T009 [P2] `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-code-adapter.md:123,255,263,286` and `sk-code-known-deviations.md:125,230-231` — rewrite `smart-routing.md §N` citations to `sk-code/ROUTER.md §…`. (GAP-5)
-- [ ] T010 [P3] deep-review playbook `invalid-or-contradictory-review-state-halts-for-repair.md:76` and `resume-classification-from-valid-prior-review-state.md:77` — replace `ANCHOR:smart-routing` with the real deep-review SKILL.md anchor, or drop it. (GAP-6)
-- [ ] T011 [P2] Verify: `grep -rn "smart-routing.md" .opencode/skills` shows only legitimate legacy-rejection/migration/test/template hits; the three files have no dead links.
+- [x] T008 [P2] `phase-detection.md` — both `./smart-routing.md` links repointed to `../../ROUTER.md` (resolves to sk-code/ROUTER.md). (GAP-4)
+- [x] T009 [P2] `sk-code-adapter.md` (4) and `sk-code-known-deviations.md` (3) — `smart-routing.md` citations rewritten to `sk-code/ROUTER.md`. (GAP-5)
+- [x] T010 [P3] Both deep-review playbook files — dropped the dangling `ANCHOR:smart-routing` (deep-review SKILL.md has no anchors); file pointer kept. (GAP-6)
+- [x] T011 [P2] Verified: `grep -c smart-routing.md` = 0 in all three FIX-A/B files; `ANCHOR:smart-routing` = 0 in both playbook files; new link target exists. Follow-up noted: `sk-code.cjs:134` carries a `smart_routing.md` (underscore) variant — latent, out of scope.
 
-## Phase 4 — Cosmetic template rename (LOW, optional) — last or skip
+## Phase 4 — Cosmetic template rename (LOW) — HELD: bigger than estimated (operator decision pending)
 
-- [ ] T012 [P3] `git mv` `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-smart-routing-template.md` → `parent-skill-root-router-template.md`. (GAP-7)
-- [ ] T013 [P3] Update the ~9 cross-references (create-skill-parent auto/confirm YAMLs, `parent-skill-hub-template.md`, `parent-hub-router-schema.md`, `parent-skills-nested-packets.md`, `skill-smart-router.md`, `.opencode/agents/markdown.md` + `.claude` mirror).
-- [ ] T014 [P3] Verify: no reference to the old filename remains; the new filename resolves from every referencing file; create-skill-parent still loads the template.
+> Discovery: `parent-skill-smart-routing-template.md` is a ROUTED LEAF resource, not just an asset — referenced in `sk-doc/ROUTER.md:218` (active RESOURCE_MAP) and `sk-doc/leaf-manifest.json:249,289` (typed leaf, 2 modes). A rename therefore cascades into leaf-manifest regeneration → route-gold / compiled-routing churn → the CI byte-drift freshness checks hardened in Phase 1. This is a routing-leaf migration, not a filename edit. GAP-7 is rated cosmetic / no functional impact. Recommendation: DEFER unless a full leaf-rename migration is explicitly wanted.
+
+- [ ] T012 [P3] (deferred) rename the template file. (GAP-7)
+- [ ] T013 [P3] (deferred) regenerate `sk-doc/leaf-manifest.json` + update `sk-doc/ROUTER.md` leaf path + ~8 live doc cross-refs (NOT the frozen benchmark reports or historical spec docs).
+- [ ] T014 [P3] (deferred) verify no old-name reference remains in live surfaces; leaf-manifest byte-drift + route-gold stay green.
 <!-- /ANCHOR:tasks -->

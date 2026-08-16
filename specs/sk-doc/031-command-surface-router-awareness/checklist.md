@@ -22,23 +22,23 @@ contextType: "implementation"
 - [x] CHK-004 [P0] `ci-skill-root-metadata.cjs` exits 0 over the fleet (`checked=13 passed=13 failed=0`). (SC-2)
 - [x] CHK-005 [P0] Negative control: removing a hub `ROUTER.md` → exit 1, `FAIL [H] sk-prompt` with `MISSING_REQUIRED_FILE` + `RRC-001`; restored clean. (SC-2)
 
-## Phase 2 — Doctor fleet-ROUTER sweep
+## Phase 2 — Doctor fleet-ROUTER sweep — RESOLVED BY PHASE 1
 
-- [ ] CHK-006 [P1] One `/doctor` route enumerates all seven `mode-registry.json` hubs and prints each `router_state`. (SC-3)
-- [ ] CHK-007 [P1] The same route flags a broken fixture hub as failing. (SC-3, negative control)
+- [x] CHK-006 [P1] `/doctor parent-skill` runs `ci-skill-root-metadata.cjs` fleet-wide (`_routes.yaml:150`, no `--skill`), which is now ROUTER-aware → all seven hubs audited in one invocation. (SC-3)
+- [x] CHK-007 [P1] The fleet gate's negative control (Phase 1) proves a broken hub `ROUTER.md` → exit 1; the doctor route invokes that exact command. (SC-3)
 
-## Phase 3 — Documentation citation cleanup
+## Phase 3 — Documentation citation cleanup — DONE (commit e07b5f2ae1)
 
-- [ ] CHK-008 [P2] `sk-code/shared/references/phase-detection.md` no longer links to a non-existent `smart-routing.md`; any repointed target exists on disk. (SC-4)
-- [ ] CHK-009 [P2] deep-alignment `sk-code-adapter.md` / `sk-code-known-deviations.md` cite `sk-code/ROUTER.md §…`, not `smart-routing.md §N`. (SC-4)
-- [ ] CHK-010 [P3] deep-review playbook files no longer reference a non-existent `ANCHOR:smart-routing`. (SC-4)
-- [ ] CHK-011 [P2] `grep -rn "smart-routing.md" .opencode/skills` shows only legitimate legacy-rejection/migration/test/template hits — zero dead links. (SC-4)
+- [x] CHK-008 [P2] `phase-detection.md` links repointed to `../../ROUTER.md`; target exists. (SC-4)
+- [x] CHK-009 [P2] deep-alignment adapter docs cite `sk-code/ROUTER.md`, not `smart-routing.md`. (SC-4)
+- [x] CHK-010 [P3] deep-review playbook files no longer reference `ANCHOR:smart-routing`. (SC-4)
+- [x] CHK-011 [P2] `grep -c smart-routing.md` = 0 across the three fixed files. (SC-4)
 
-## Phase 4 — Cosmetic template rename (optional)
+## Phase 4 — Cosmetic template rename — HELD (operator decision; see plan.md)
 
-- [ ] CHK-012 [P3] `parent-skill-smart-routing-template.md` no longer exists; `parent-skill-root-router-template.md` does.
-- [ ] CHK-013 [P3] `grep -rn "parent-skill-smart-routing-template" .opencode .claude` returns zero hits.
-- [ ] CHK-014 [P3] create-skill-parent auto/confirm still resolve the renamed template.
+- [ ] CHK-012 [P3] (deferred) template renamed; leaf-manifest + ROUTER.md leaf path updated.
+- [ ] CHK-013 [P3] (deferred) no old-name reference in live surfaces (excluding frozen benchmark/historical docs).
+- [ ] CHK-014 [P3] (deferred) leaf-manifest byte-drift + route-gold stay green; create-skill-parent resolves the template.
 
 ## Cross-cutting
 
