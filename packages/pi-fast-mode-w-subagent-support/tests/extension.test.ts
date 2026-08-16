@@ -9,7 +9,7 @@ import {
   getProjectConfigPath,
   getUserConfigPath,
 } from "../src/config";
-import { STATUS_KEY } from "../src/types";
+import { PACKAGE_NAME, STATUS_KEY } from "../src/types";
 
 type FakePi = {
   registerFlag: ReturnType<typeof vi.fn>;
@@ -26,7 +26,9 @@ type RegisteredCommand = {
 const tempDirs: string[] = [];
 
 async function makeTempDir(): Promise<string> {
-  const dir = await mkdtemp(join(tmpdir(), "pi-openai-fast-mode-ext-"));
+  const dir = await mkdtemp(
+    join(tmpdir(), "pi-fast-mode-w-subagent-support-ext-"),
+  );
   tempDirs.push(dir);
   return dir;
 }
@@ -116,7 +118,7 @@ describe("piFastModeExtension registration", () => {
     const { pi, handlers, commands } = createFakePi();
 
     createPiFastModeExtension({
-      extensionDir: "/global/pi-openai-fast-mode/src",
+      extensionDir: `/global/${PACKAGE_NAME}/src`,
       agentDir: "/agent",
     })(pi as any);
 
@@ -145,7 +147,7 @@ describe("piFastModeExtension runtime behavior", () => {
     const cwd = join(root, "project");
     const agentDir = join(root, "agent");
     const configPath = getUserConfigPath(agentDir);
-    await mkdir(join(agentDir, "extensions", "pi-openai-fast-mode"), {
+    await mkdir(join(agentDir, "extensions", PACKAGE_NAME), {
       recursive: true,
     });
     await mkdir(cwd, { recursive: true });
@@ -162,7 +164,7 @@ describe("piFastModeExtension runtime behavior", () => {
 
     const { pi, handlers } = createFakePi(false);
     createPiFastModeExtension({
-      extensionDir: join(root, "global", "pi-openai-fast-mode", "src"),
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
       agentDir,
     })(pi as any);
 
@@ -188,7 +190,7 @@ describe("piFastModeExtension runtime behavior", () => {
 
     const { pi, handlers } = createFakePi(true);
     createPiFastModeExtension({
-      extensionDir: join(root, "global", "pi-openai-fast-mode", "src"),
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
       agentDir,
     })(pi as any);
 
@@ -232,7 +234,7 @@ describe("piFastModeExtension runtime behavior", () => {
 
     const { pi, handlers, commands } = createFakePi(false);
     createPiFastModeExtension({
-      extensionDir: join(root, "global", "pi-openai-fast-mode", "src"),
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
       agentDir,
     })(pi as any);
 
@@ -277,7 +279,7 @@ describe("piFastModeExtension runtime behavior", () => {
 
     const { pi, handlers, commands } = createFakePi(true);
     createPiFastModeExtension({
-      extensionDir: join(root, "global", "pi-openai-fast-mode", "src"),
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
       agentDir,
     })(pi as any);
 
@@ -316,7 +318,7 @@ describe("piFastModeExtension runtime behavior", () => {
 
     const { pi, handlers, commands } = createFakePi(false);
     createPiFastModeExtension({
-      extensionDir: join(root, "global", "pi-openai-fast-mode", "src"),
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
       agentDir,
     })(pi as any);
 
@@ -340,7 +342,7 @@ describe("piFastModeExtension runtime behavior", () => {
     const root = await makeTempDir();
     const cwd = join(root, "project");
     const agentDir = join(root, "agent");
-    const extensionDir = join(cwd, ".pi", "npm", "pi-openai-fast-mode", "src");
+    const extensionDir = join(cwd, ".pi", "npm", PACKAGE_NAME, "src");
     await mkdir(extensionDir, { recursive: true });
 
     const { pi, handlers } = createFakePi(true);
@@ -372,7 +374,7 @@ describe("piFastModeExtension runtime behavior", () => {
 
     const { pi, handlers } = createFakePi(true);
     createPiFastModeExtension({
-      extensionDir: join(root, "global", "pi-openai-fast-mode", "src"),
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
       agentDir,
     })(pi as any);
 

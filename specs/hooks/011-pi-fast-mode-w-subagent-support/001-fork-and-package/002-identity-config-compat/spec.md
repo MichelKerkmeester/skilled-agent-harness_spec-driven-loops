@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Planned identity and config compatibility child phase"
-    next_safe_action: "Choose and test the one-time compatibility policy"
+    last_updated_at: "2026-08-16T14:15:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Identity/config compat complete; tsc 0, 57 tests green"
+    next_safe_action: "Hand off to 003-package-baseline-gates"
     blockers: []
     key_files:
       - "../../context/pi-openai-fast-mode/src/config.ts"
@@ -23,10 +23,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Should compatibility read the old path once and write the new path, or retain a bounded fallback?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Compatibility reads the legacy path once then atomic-writes the new path; no continuing fallback."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -144,8 +144,8 @@ Preserve user intent while establishing a safe, config-driven engine boundary fo
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should migration leave the old file untouched after a successful new-path write, or record a completion marker?
-- Does project-local config keep the upstream path-selection behavior when the file does not yet exist?
+- RESOLVED: migration leaves the legacy file untouched after the atomic new-path write (no completion marker, no fallback read).
+- RESOLVED: project-local config keeps the upstream path-selection behavior even when the file does not yet exist (`selectConfigPath` unchanged, fixture-tested).
 
 <!-- /ANCHOR:questions -->
 

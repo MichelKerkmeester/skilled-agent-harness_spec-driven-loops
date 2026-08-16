@@ -1,14 +1,23 @@
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import {
+  mkdir,
+  mkdtemp,
+  readFile,
+  readdir,
+  rm,
+  writeFile,
+} from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { afterEach, describe, expect, it } from "vitest";
 import {
   DEFAULT_CONFIG,
   cloneConfig,
+  getLegacyUserConfigPath,
   getProjectConfigPath,
   getUserConfigPath,
   isProjectLocalExtension,
   loadConfigFromPath,
+  loadConfigForScope,
   normalizeConfig,
   normalizeTargets,
   parseConfigJson,
@@ -16,11 +25,14 @@ import {
   selectConfigPath,
   syncSupportedTargets,
 } from "../src/config";
+import { LEGACY_PACKAGE_NAME, PACKAGE_NAME } from "../src/types";
 
 const tempDirs: string[] = [];
 
 async function makeTempDir(): Promise<string> {
-  const dir = await mkdtemp(join(tmpdir(), "pi-openai-fast-mode-"));
+  const dir = await mkdtemp(
+    join(tmpdir(), "pi-fast-mode-w-subagent-support-"),
+  );
   tempDirs.push(dir);
   return dir;
 }
@@ -191,6 +203,68 @@ describe("config JSON IO", () => {
         { provider: "openai", model: "gpt-5.4", serviceTier: "priority" },
       ],
     });
+    expect(await readdir(join(dir, "nested"))).toEqual(["config.json"]);
+  });
+
+  it("migrates a legacy user config once and leaves the legacy file untouched", async () => {
+    const dir = await makeTempDir();
+    const cwd = join(dir, "project");
+    const agentDir = join(dir, "agent");
+    const legacyPath = getLegacyUserConfigPath(agentDir);
+    const legacyJson = JSON.stringify({
+      enabled: true,
+      targets: [
+        { provider: "openai-codex", model: "gpt-5.5", serviceTier: "flex" },
+      ],
+    });
+    await mkdir(join(agentDir, "extensions", LEGACY_PACKAGE_NAME), {
+      recursive: true,
+    });
+    await writeFile(legacyPath, legacyJson, "utf8");
+
+    const loaded = await loadConfigForScope({
+      cwd,
+      agentDir,
+      extensionDir: join(dir, "global", PACKAGE_NAME, "src"),
+    });
+
+    expect(loaded.path).toBe(getUserConfigPath(agentDir));
+    expect(loaded.config).toEqual({
+      enabled: true,
+      targets: [
+        { provider: "openai-codex", model: "gpt-5.5", serviceTier: "flex" },
+      ],
+    });
+    expect(JSON.parse(await readFile(loaded.path, "utf8"))).toEqual(
+      loaded.config,
+    );
+    expect(await readFile(legacyPath, "utf8")).toBe(legacyJson);
+  });
+
+  it("preserves an explicit empty target opt-out through load and save", async () => {
+    const dir = await makeTempDir();
+    const cwd = join(dir, "project");
+    const agentDir = join(dir, "agent");
+    const configPath = getUserConfigPath(agentDir);
+    const optOut = { enabled: true, targets: [] };
+
+    await saveConfigToPath(configPath, optOut);
+    const loaded = await loadConfigForScope({
+      cwd,
+      agentDir,
+      extensionDir: join(dir, "global", PACKAGE_NAME, "src"),
+    });
+    await saveConfigToPath(loaded.path, loaded.config);
+
+    expect(JSON.parse(await readFile(configPath, "utf8"))).toEqual(optOut);
+  });
+
+  it("falls back to a safe default for malformed config JSON", async () => {
+    const dir = await makeTempDir();
+    const configPath = join(dir, "config.json");
+    await writeFile(configPath, "{", "utf8");
+
+    expect(await loadConfigFromPath(configPath)).toEqual(DEFAULT_CONFIG);
   });
 });
 
@@ -203,7 +277,7 @@ describe("persistence scope selection", () => {
       selectConfigPath({
         cwd,
         agentDir,
-        extensionDir: "/home/user/.pi/agent/npm/pi-openai-fast-mode/src",
+        extensionDir: `/home/user/.pi/agent/npm/${PACKAGE_NAME}/src`,
         exists: () => false,
       }),
     ).toEqual({ scope: "user", path: getUserConfigPath(agentDir) });
@@ -217,7 +291,7 @@ describe("persistence scope selection", () => {
       selectConfigPath({
         cwd,
         agentDir: "/home/user/.pi/agent",
-        extensionDir: "/home/user/.pi/agent/npm/pi-openai-fast-mode/src",
+        extensionDir: `/home/user/.pi/agent/npm/${PACKAGE_NAME}/src`,
         exists: (path) => path === projectPath,
       }),
     ).toEqual({ scope: "project", path: projectPath });
@@ -231,7 +305,7 @@ describe("persistence scope selection", () => {
       selectConfigPath({
         cwd,
         agentDir: "/home/user/.pi/agent",
-        extensionDir: "/repo/.pi/npm/pi-openai-fast-mode/src",
+        extensionDir: `/repo/.pi/npm/${PACKAGE_NAME}/src`,
         exists: () => false,
       }),
     ).toEqual({ scope: "project", path: projectPath });
@@ -240,13 +314,13 @@ describe("persistence scope selection", () => {
   it("detects project-local extension directories deterministically", () => {
     expect(
       isProjectLocalExtension(
-        "/repo/.pi/extensions/pi-openai-fast-mode",
+        `/repo/.pi/extensions/${PACKAGE_NAME}`,
         "/repo",
       ),
     ).toBe(true);
     expect(isProjectLocalExtension("/repo/.pi", "/repo")).toBe(true);
     expect(
-      isProjectLocalExtension("/repo/.pi-other/pi-openai-fast-mode", "/repo"),
+      isProjectLocalExtension(`/repo/.pi-other/${PACKAGE_NAME}`, "/repo"),
     ).toBe(false);
     expect(isProjectLocalExtension(undefined, "/repo")).toBe(false);
   });

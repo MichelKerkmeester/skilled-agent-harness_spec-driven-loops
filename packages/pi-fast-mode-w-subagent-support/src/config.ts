@@ -1,9 +1,12 @@
+import { randomUUID } from "node:crypto";
 import { promises as fs } from "node:fs";
 import { existsSync } from "node:fs";
-import { dirname, join, resolve, sep } from "node:path";
+import { basename, dirname, join, resolve, sep } from "node:path";
 import { getAgentDir } from "@earendil-works/pi-coding-agent";
 import {
   DEFAULT_SERVICE_TIER,
+  LEGACY_PACKAGE_NAME,
+  PACKAGE_NAME,
   SUPPORTED_PROVIDERS,
   type FastModeConfig,
   type FastTarget,
@@ -179,11 +182,21 @@ export function parseConfigJson(
 }
 
 export function getUserConfigPath(agentDir: string = getAgentDir()): string {
-  return join(agentDir, "extensions", "pi-openai-fast-mode", "config.json");
+  return join(agentDir, "extensions", PACKAGE_NAME, "config.json");
 }
 
 export function getProjectConfigPath(cwd: string): string {
-  return join(resolve(cwd), ".pi", "pi-openai-fast-mode", "config.json");
+  return join(resolve(cwd), ".pi", PACKAGE_NAME, "config.json");
+}
+
+export function getLegacyUserConfigPath(
+  agentDir: string = getAgentDir(),
+): string {
+  return join(agentDir, "extensions", LEGACY_PACKAGE_NAME, "config.json");
+}
+
+export function getLegacyProjectConfigPath(cwd: string): string {
+  return join(resolve(cwd), ".pi", LEGACY_PACKAGE_NAME, "config.json");
 }
 
 export function isProjectLocalExtension(
@@ -252,10 +265,19 @@ export async function loadConfigForScope(
   options: LoadConfigOptions,
 ): Promise<LoadedConfig> {
   const selected = selectConfigPath(options);
-  const config = await loadConfigFromPath(
-    selected.path,
-    options.fallback ?? DEFAULT_CONFIG,
-  );
+  const fallback = options.fallback ?? DEFAULT_CONFIG;
+  const legacyPath =
+    selected.scope === "project"
+      ? getLegacyProjectConfigPath(options.cwd)
+      : getLegacyUserConfigPath(options.agentDir);
+
+  if (!existsSync(selected.path) && existsSync(legacyPath)) {
+    const config = await loadConfigFromPath(legacyPath, fallback);
+    await saveConfigToPath(selected.path, config);
+    return { ...selected, config };
+  }
+
+  const config = await loadConfigFromPath(selected.path, fallback);
   return { ...selected, config };
 }
 
@@ -264,12 +286,24 @@ export async function saveConfigToPath(
   config: FastModeConfig,
 ): Promise<void> {
   const normalized = normalizeConfig(config);
-  await fs.mkdir(dirname(configPath), { recursive: true });
-  await fs.writeFile(
-    configPath,
-    `${JSON.stringify(normalized, null, 2)}\n`,
-    "utf8",
+  const configDir = dirname(configPath);
+  const tempPath = join(
+    configDir,
+    `.${basename(configPath)}.${randomUUID()}.tmp`,
   );
+
+  await fs.mkdir(configDir, { recursive: true });
+  try {
+    await fs.writeFile(
+      tempPath,
+      `${JSON.stringify(normalized, null, 2)}\n`,
+      "utf8",
+    );
+    await fs.rename(tempPath, configPath);
+  } catch (error) {
+    await fs.rm(tempPath, { force: true });
+    throw error;
+  }
 }
 
 export async function saveConfigForScope(

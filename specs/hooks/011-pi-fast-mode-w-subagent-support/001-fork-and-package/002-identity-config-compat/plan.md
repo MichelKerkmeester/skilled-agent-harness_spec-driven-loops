@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Planned compatibility and request-safety implementation"
-    next_safe_action: "Implement the selected path policy and pure guards"
+    last_updated_at: "2026-08-16T14:15:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Landed identity, migration, atomic writes, guards; tsc 0, 57 tests green"
+    next_safe_action: "Hand off to 003-package-baseline-gates"
     blockers: []
     key_files: ["../../research/research.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,9 +54,9 @@ Start with the upstream `{ enabled, targets }` schema. Resolve the fork path fir
 - [x] Research evidence identifies config, atomic-write, and guard constraints.
 
 ### Definition of Done
-- [ ] Compatibility fixture preserves user state.
-- [ ] Malformed/torn state fails safe.
-- [ ] Negative model/tier cases return unchanged behavior.
+- [x] Compatibility fixture preserves user state.
+- [x] Malformed/torn state fails safe.
+- [x] Negative model/tier cases return unchanged behavior.
 
 
 <!-- /ANCHOR:quality-gates -->
@@ -113,18 +113,18 @@ Resolved path → compatible read → normalized state → atomic write → conf
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the new and legacy path names and write scope against `config.ts:92-104`, including the project-local path quirk.
-- [ ] Write the compatibility and model-gate test matrix in `tests/config.test.ts` and `tests/payload.test.ts`.
+- [x] Confirm the new and legacy path names and write scope against `config.ts:92-104`, including the project-local path quirk.
+- [x] Write the compatibility and model-gate test matrix in `tests/config.test.ts` and `tests/payload.test.ts`.
 
 ### Phase 2: Core Implementation
-- [ ] Apply package/status/config identity constants and preserve the `{ enabled, targets }` schema (`config.ts:6-55`).
-- [ ] Implement the one-time compatibility policy: field-aware normalization and atomic new-path write with the legacy file untouched (`config.ts:92-104`, `config.ts:108-153`).
-- [ ] Implement malformed-state fallback and torn-write-safe persistence.
-- [ ] Implement the replace-style payload guard: cloned `{ ...payload, service_tier }` for matching untiered requests, `undefined` otherwise, never in-place mutation (`payload.ts:45-70`; guards modeled on `openai-codex-fast-mode.ts:196-208`).
+- [x] Apply package/status/config identity constants and preserve the `{ enabled, targets }` schema (`config.ts:6-55`).
+- [x] Implement the one-time compatibility policy: field-aware normalization and atomic new-path write with the legacy file untouched (`config.ts:92-104`, `config.ts:108-153`).
+- [x] Implement malformed-state fallback and torn-write-safe persistence.
+- [x] Implement the replace-style payload guard: cloned `{ ...payload, service_tier }` for matching untiered requests, `undefined` otherwise, never in-place mutation (`payload.ts:45-70`; guards modeled on `openai-codex-fast-mode.ts:196-208`).
 
 ### Phase 3: Verification
-- [ ] Run `npm run typecheck` and `npm test`; record exit codes and relevant output.
-- [ ] Confirm no handoff code or install settings changed.
+- [x] Run `npm run typecheck` and `npm test`; record exit codes and relevant output.
+- [x] Confirm no handoff code or install settings changed.
 
 
 <!-- /ANCHOR:phases -->

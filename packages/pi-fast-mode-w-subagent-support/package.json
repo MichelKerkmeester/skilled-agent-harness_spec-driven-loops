@@ -1,14 +1,16 @@
 {
-  "name": "pi-openai-fast-mode",
+  "name": "pi-fast-mode-w-subagent-support",
   "version": "0.3.0",
-  "description": "Pi extension package for toggling OpenAI Fast Mode priority inference",
+  "description": "Pi extension: OpenAI fast-mode priority inference with subagent handoff support",
   "license": "MIT",
   "type": "module",
   "keywords": [
     "pi-package",
     "pi-extension",
     "openai",
-    "fast-mode"
+    "fast-mode",
+    "subagent",
+    "handoff"
   ],
   "repository": {
     "type": "git",

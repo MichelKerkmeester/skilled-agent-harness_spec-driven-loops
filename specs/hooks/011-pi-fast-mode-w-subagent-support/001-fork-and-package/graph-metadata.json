@@ -84,15 +84,15 @@
     ],
     "causal_summary": "The implementation needs a stable fast-mode extension baseline before handoff behavior and environment installation are added",
     "created_at": "2026-08-16T07:07:46Z",
-    "last_save_at": "2026-08-16T10:56:57.122Z",
+    "last_save_at": "2026-08-16T12:14:20.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c4cee5c0ae1144069959326faa994d7dab03892761a66b0787110c47b6571643",
+    "source_fingerprint": "sha256:cdc51d04ba13021d2a2d589ef628eed4446bbd8594b129332782178c81140849",
     "source_doc_hashes": {
-      "spec.md": "224ebe84aa83cb8382bd849b899aa820ef0bd650b1649d8101b9ddbb22483b1f"
+      "spec.md": "08388340ef95e2d6d798c34a1d037f5cc65b3e735aba14b0c0d2f3e4aaab5cb9"
     },
     "last_active_child_id": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates",
     "last_active_at": null

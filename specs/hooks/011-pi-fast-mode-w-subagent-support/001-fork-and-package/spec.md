@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package"
     last_updated_at: "2026-08-16T11:00:00Z"
     last_updated_by: "pi-coding-agent"
-    recent_action: "Source baseline (001) complete; working package created under packages/"
-    next_safe_action: "Execute 002-identity-config-compat next"
+    recent_action: "Identity/config compat (002) complete; tsc + 57 tests green"
+    next_safe_action: "Execute 003-package-baseline-gates next"
     blockers: []
     key_files:
       - "../spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 33
+    completion_pct: 67
     open_questions:
       - "Which package location gives local and git installs the smallest operational surface?"
       - "Which one-time configuration compatibility policy should the implementation test?"
@@ -97,7 +97,7 @@ Establish a testable, raw-TypeScript package foundation that the handoff workstr
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | `001-source-baseline/` | Establish the source snapshot, package location, and clean baseline boundary | complete |
-| 2 | `002-identity-config-compat/` | Apply package/config identity, compatibility policy, atomic writes, and request guards | draft |
+| 2 | `002-identity-config-compat/` | Apply package/config identity, compatibility policy, atomic writes, and request guards | complete |
 | 3 | `003-package-baseline-gates/` | Finalize Pi packaging, provenance, and typecheck/test/pack gates | draft |
 
 ### Phase Transition Rules

@@ -62,6 +62,20 @@ export function getFastModePayload(
   const target = findMatchingTarget(model, config.targets);
   if (!target) return undefined;
 
+  if (!isRecord(payload)) return undefined;
+  const payloadServiceTier = payload.service_tier;
+  if (
+    payloadServiceTier !== undefined &&
+    payloadServiceTier !== null &&
+    (typeof payloadServiceTier !== "string" ||
+      payloadServiceTier.trim() !== "")
+  ) {
+    return undefined;
+  }
+  if (payload.model !== undefined && payload.model !== target.model) {
+    return undefined;
+  }
+
   return applyFastModePayload(
     payload,
     target.serviceTier ?? DEFAULT_SERVICE_TIER,

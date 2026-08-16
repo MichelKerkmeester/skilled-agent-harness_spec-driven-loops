@@ -93,16 +93,19 @@ describe("payload mutation", () => {
   });
 
   it("injects priority only when enabled and matched", () => {
+    const payload = { model: "gpt-5.4", a: 1 };
     expect(
       getFastModePayload(
         config,
         { provider: "openai", id: "gpt-5.4" },
-        { a: 1 },
+        payload,
       ),
     ).toEqual({
+      model: "gpt-5.4",
       a: 1,
       service_tier: "priority",
     });
+    expect(payload).toEqual({ model: "gpt-5.4", a: 1 });
   });
 
   it("uses target-specific serviceTier when configured", () => {
@@ -123,6 +126,53 @@ describe("payload mutation", () => {
         { a: 1 },
       ),
     ).toEqual({ a: 1, service_tier: "priority" });
+  });
+
+  it("does not overwrite an existing service tier", () => {
+    expect(
+      getFastModePayload(
+        config,
+        { provider: "openai", id: "gpt-5.4" },
+        { model: "gpt-5.4", service_tier: "flex" },
+      ),
+    ).toBeUndefined();
+  });
+
+  it("does not stamp a different model", () => {
+    expect(
+      getFastModePayload(
+        config,
+        { provider: "openai", id: "gpt-5.4" },
+        { model: "gpt-5.5" },
+      ),
+    ).toBeUndefined();
+  });
+
+  it("does not stamp an unsupported model", () => {
+    expect(
+      getFastModePayload(
+        config,
+        { provider: "anthropic", id: "claude" },
+        { model: "claude" },
+      ),
+    ).toBeUndefined();
+  });
+
+  it("returns undefined for non-record payloads", () => {
+    expect(
+      getFastModePayload(
+        config,
+        { provider: "openai", id: "gpt-5.4" },
+        null,
+      ),
+    ).toBeUndefined();
+    expect(
+      getFastModePayload(
+        config,
+        { provider: "openai", id: "gpt-5.4" },
+        [],
+      ),
+    ).toBeUndefined();
   });
 
   it("does nothing when disabled", () => {
