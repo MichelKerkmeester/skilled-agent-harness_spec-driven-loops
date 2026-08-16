@@ -8,9 +8,9 @@ contextType: "summary"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter"
-    last_updated_at: "2026-08-15T17:45:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Rewrote planned delivery claims; 13 tools and 2s grace."
+    recent_action: "Noted copy pack in spec.md; plugin file not delivered."
     next_safe_action: "Wait for 003 dist/plugin.js; then author plugin."
     blockers: []
     key_files:
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This child will add `.opencode/plugins/sk-vision.js` as a **real file** after 003 emits `dist/plugin.js`. The plugin file does not exist yet.
+This child will add `.opencode/plugins/sk-vision.js` as a **real file** after 003 emits `dist/plugin.js`. The plugin file does not exist yet. Use the spec.md re-export bytes. Do not symlink. Do not edit `opencode.json`.
 
 ### Plugin Discovery Loader
 This child will author a regular file analog to `.opencode/plugins/mk-communication-projection.js`, importing `../skills/sk-vision/vision-runtime/dist/plugin.js`. `test ! -L` must pass.

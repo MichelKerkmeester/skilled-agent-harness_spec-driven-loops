@@ -9,9 +9,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork"
-    last_updated_at: "2026-08-15T17:45:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Aligned plan with GPU load/status and package name."
+    recent_action: "Pointed plan phases at spec.md copy and rebrand steps."
     next_safe_action: "Wait for 002; then copy dump into vision-runtime/."
     blockers: []
     key_files:
@@ -104,15 +104,15 @@ Host-agnostic JSON-RPC client/server subprocess architecture.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup & Code Extraction
+Follow `spec.md` Implementer copy pack. Stop if 002 is still Planned.
 - Create `.opencode/skills/sk-vision/vision-runtime/`.
-- Copy shipped v0.2.0 files from `../context/`.
+- Copy only the Step 1 file list from `../context/`. Do not copy `PLAN.md` or dump `opencode.json`.
 
 ### Phase 2: Core Implementation & Rebranding
-- Rebrand all `SENSES_*` variables to `SK_VISION_*`.
-- Update cache and venv default directories to `~/.cache/sk-vision`.
-- Update error tags to `<SK-VISION ...>`.
-- Update `LICENSE` file with original author copyright and modification notice.
-- Run build script to generate `dist/plugin.js`.
+- Apply Step 2 longest-token-first table. Skip LICENSE for bulk replace.
+- Keep package name `sk-vision`. Keep default model `moondream2`.
+- Keep bun build (`bun run build`) unless this child records a `tsc` substitute.
+- Confirm `dist/plugin.js` exists.
 
 ### Phase 3: Verification & Smoke Testing
 - Run `rg -n 'SENSES_|opencode-senses|~/.cache/opencode-senses|<SENSES|senses_'` across `vision-runtime/`.

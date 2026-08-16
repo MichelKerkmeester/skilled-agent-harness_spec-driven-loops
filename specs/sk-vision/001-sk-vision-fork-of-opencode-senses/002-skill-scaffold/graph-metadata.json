@@ -82,12 +82,6 @@
         "source": "derived"
       },
       {
-        "name": "Enriched Class",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Standalone Class",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -112,13 +106,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Without Class",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Corrected Class",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -143,6 +137,12 @@
       },
       {
         "name": "Verification Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Metadata Gate",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -178,13 +178,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Status Reporting Format",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Later children need a legal OpenCode skill root before they can drop a runtime package or host adapters",
     "created_at": "2026-08-15T16:25:59.005Z",
-    "last_save_at": "2026-08-16T06:30:15.424Z",
+    "last_save_at": "2026-08-16T06:56:12.994Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dccc134bab7ba4a2cc27290dcb41bb3dcec5313c2fa2e61c5b3fc728e15d5f0d",
+    "source_fingerprint": "sha256:a0f8d46dceec66c1f2258c4effe00eacd190ac5f5a3702f75f53c6b7cd4f7ee6",
     "source_doc_hashes": {
-      "spec.md": "e74e0746a3608b5ad637f027f3884804e7868e2a75a149aa3196b914471e68f3",
-      "plan.md": "98a4cc0229fd4c3b20d6d243686d429514739fe0c54c6536e9dd494245b3bf40",
-      "tasks.md": "f91ed025e2f070bb0524bb29684236acf9ddeeb7f81c92974ad5edd15b3b693f",
-      "checklist.md": "e98b59d20a74402936e5f37a27fc865ab8e769cd766a07d251e14518b967715a",
-      "implementation-summary.md": "4aa6b556c4e07f85f0e78c8687d4732817a437e2cdd5eb10f2889e6aa0041e99"
+      "spec.md": "60a4b61f29cb3eba9991705ec8dda2c3d2d2f7b1a7ca2079c14259a501ef0788",
+      "plan.md": "cc1d2db59045365361e91d5d76e6416221169c984c232f44709a2465a48afd26",
+      "tasks.md": "c4c94dcfcd126fe224bb83933d244b8021117ed50e3feaa367b64f93e11f71ce",
+      "checklist.md": "c29b1c28fb0dc949a79941f74d58432f2f5a9f8155ec639df98fda67b578a057",
+      "implementation-summary.md": "9a345382d4b2d56c2790ac3f8101f5e26e66f7d48c6823f0a757d9d16f398697"
     },
     "last_active_child_id": null,
     "last_active_at": null

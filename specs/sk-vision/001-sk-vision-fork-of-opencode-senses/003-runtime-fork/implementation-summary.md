@@ -8,9 +8,9 @@ contextType: "summary"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork"
-    last_updated_at: "2026-08-15T17:45:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Rewrote planned delivery claims; GPU load then status."
+    recent_action: "Noted copy pack in spec.md; runtime files not delivered."
     next_safe_action: "Wait for 002; then copy dump into vision-runtime/."
     blockers: []
     key_files:
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This child will copy shipped OpenCode Senses v0.2.0 into `.opencode/skills/sk-vision/vision-runtime/` after 002 closes. No runtime tree exists yet.
+This child will copy shipped OpenCode Senses v0.2.0 into `.opencode/skills/sk-vision/vision-runtime/` after 002 closes. No runtime tree exists yet. Use the spec.md copy pack (`cp` list, rebrand table, GPU NDJSON). Do not edit `../context/`.
 
 ### Core Runtime Extraction
 This child will copy shipped TypeScript and Python files from `../context/`, omitting unbuilt `PLAN.md` roadmap work.

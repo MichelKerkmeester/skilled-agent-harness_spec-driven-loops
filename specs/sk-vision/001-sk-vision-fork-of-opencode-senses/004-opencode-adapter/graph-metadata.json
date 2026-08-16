@@ -192,7 +192,7 @@
     ],
     "causal_summary": "OpenCode discovers plugins from `.opencode/plugins/.js`, not from a repo-root `opencode.json` `plugin` array",
     "created_at": "2026-08-15T16:31:07.271Z",
-    "last_save_at": "2026-08-16T06:30:15.788Z",
+    "last_save_at": "2026-08-16T06:56:13.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:859b741355ec3928898e9f7e998dd9fbb9ae3bead601b92f7dedc99874e6d4f3",
+    "source_fingerprint": "sha256:d439cafb9e61370027c5b9341a723864a42c8131855c324ee1756c70991c573c",
     "source_doc_hashes": {
-      "spec.md": "9ec74f43fde6cb3797e6e67d19d458d1587f1cc58cb7ac20c5f004fdff3cc9ba",
-      "plan.md": "b6d048779b7ed9ccd8bd70f3637492d80b90c01eb07928722a0e55b54aad53ca",
-      "tasks.md": "921e95f74186c9b8138a7767eddcce57acabf91245545871b78b250a96d0af13",
-      "checklist.md": "d484b12db81833c65d6869ed372a930755c1876333757103f64f6a0e47b1d856",
-      "implementation-summary.md": "42a82464678476e57aa1e37caee94402f63c651a84dc85a75215658d755dda7f"
+      "spec.md": "90d6c9bd4137fd845f890c2bf87e406ec0adb468696e05c1fcbbc09d0e2245d4",
+      "plan.md": "3f5abba8261494b23d3397b1bced83779092c49c565dec7f989a14a858ddd361",
+      "tasks.md": "8fc1757e5cc5c3e0edd30f985d39d8a8069626ddf248c6ba9675c54ae9424354",
+      "checklist.md": "10530b12c57290a5a7e9efa0dbb3697909e71ad8950817c4806964854120fa3c",
+      "implementation-summary.md": "e5a96a08b3667ba6fb5a71e602d538c4984132aaaac9094de16a6e85817b63cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

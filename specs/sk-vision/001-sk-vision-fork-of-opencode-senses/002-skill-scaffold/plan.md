@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold"
-    last_updated_at: "2026-08-15T17:20:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Corrected Class S generator and validator script paths."
-    next_safe_action: "Create .opencode/skills/sk-vision/ with SKILL.md and Class S metadata."
+    recent_action: "Pointed plan phases at spec.md copy-pack skeletons."
+    next_safe_action: "Create .opencode/skills/sk-vision/ from spec.md copy pack."
     blockers: []
     key_files:
       - "plan.md"
@@ -104,9 +104,10 @@ Create `.opencode/skills/sk-vision/` following Class S standalone conventions. D
 - Ensure no residual hub files exist.
 
 ### Phase 2: Metadata & Documentation Authoring
-- Author `SKILL.md` with full frontmatter, trigger keywords, and usage boundaries.
-- Author `graph-metadata.json` adhering strictly to standalone Class S schema.
-- Author `leaf-manifest.config.json` with `workflowMode: "sk-vision"` and `leafRoots: ["references"]`.
+Follow `spec.md` Implementer copy pack File 1-4 skeletons. Do not improvise hub JSON.
+- Author `SKILL.md` from File 1 (required headings + locked triggers).
+- Author `graph-metadata.json` from File 2 (`skill_id: sk-vision`).
+- Author `leaf-manifest.config.json` from File 3 (`leafRoots: ["references"]` only).
 - Generate `leaf-manifest.json` and `leaf-aliases.json` with `ci-skill-root-metadata.cjs --fix` (do not hand-edit).
 - Author `README.md`. Leave `vision-runtime/` empty.
 

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The dump at `../context/` still speaks `SENSES`, `~/.cache/opencode-senses`, `<SENSES>`, and `senses` tools",
     "created_at": "2026-08-15T16:28:28.616Z",
-    "last_save_at": "2026-08-16T06:30:15.608Z",
+    "last_save_at": "2026-08-16T06:56:13.213Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d23da56e6e1d9dbaccc8174c162cea77d5cad06806c3393b1edc82789ffddd0",
+    "source_fingerprint": "sha256:7c000ea08c6ba52f220bc5a25330ab8943158810caa234affb86c380e04f8059",
     "source_doc_hashes": {
-      "spec.md": "88f5528a2d242027ccf9c6ebd610a80f2bc8ff7854cb76db042828459fdf5d15",
-      "plan.md": "f344c432f36c2807ea7857e763a8f852ad12cfec492f7604ad86a25ed3477a80",
-      "tasks.md": "52d2c06c5fab38f7cf1a3de2f3ab49d577b667c62592aead8742ff34e29582ca",
-      "checklist.md": "2b6e3691686bab34d42ac042dfe23830b52bde5f5a944ffdbf8dc768dd586af8",
+      "spec.md": "810d245cb462cb0d2f73f67e610973a2b26b140afd90f71dd35fd3ce244247c1",
+      "plan.md": "ed55104b8055d8d7be0d2740ecff00403d9f042f7b5aeeddb377fa5841f75605",
+      "tasks.md": "bc5eae5215a53d35e9ac81a3aa4e6cccad3fe60fdaf3a4cfaccd898f3f8d83af",
+      "checklist.md": "10a6c78606acb33dee3cb496841795aed64b78bcf8b36a2f4f0384cd57067b67",
       "decision-record.md": "21ebf92813ae1819950b4a6f92cadc8305d8f27a06f61bc67b2057a95385ef7f",
-      "implementation-summary.md": "59f1bb6543374400a2c5446a91aef11f290d7d6eb21a956bb478eb95be0e7616"
+      "implementation-summary.md": "31b17df8eb2ef3c0a6be167f73092ec5ffb08cc32a955c9737d3e97cb652e088"
     },
     "last_active_child_id": null,
     "last_active_at": null

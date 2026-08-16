@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter"
-    last_updated_at: "2026-08-15T17:45:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Added 13-tool, fail-closed, and dry-factory tasks."
+    recent_action: "Bound tasks to ln -s, factory skeleton, and dry factory."
     next_safe_action: "Wait for 003 core; then execute T001."
     blockers: []
     key_files:
@@ -82,9 +82,9 @@ If a task is BLOCKED, stop, record the blocker in continuity frontmatter, and do
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Author `.opencode/skills/sk-vision/pi/sk-vision.ts` as a valid `ExtensionFactory` default export (invalid export fail-closes Pi)
-- [ ] T004 Create relative symlink `.pi/extensions/sk-vision.ts` → `../../.opencode/skills/sk-vision/pi/sk-vision.ts` (analog: git-preflight-advisory.ts)
-- [ ] T005 [P] Update `.pi/extensions/README.md` with `sk-vision.ts` owner path and 13 tool names
+- [ ] T003 Author `.opencode/skills/sk-vision/pi/sk-vision.ts` from spec.md skeleton: function default export, 13 `pi.registerTool` names, `client.close()` on shutdown. Invalid export fail-closes Pi.
+- [ ] T004 From repo root: `ln -s ../../.opencode/skills/sk-vision/pi/sk-vision.ts .pi/extensions/sk-vision.ts` (analog: git-preflight-advisory.ts). No absolute path.
+- [ ] T005 [P] Update `.pi/extensions/README.md` with owner path `../../.opencode/skills/sk-vision/pi/sk-vision.ts` and the 13 tool names
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -92,7 +92,7 @@ If a task is BLOCKED, stop, record the blocker in continuity frontmatter, and do
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Confirm `readlink .pi/extensions/sk-vision.ts` is the relative owner path
+- [ ] T006 Confirm `test -L .pi/extensions/sk-vision.ts` and `readlink` equals `../../.opencode/skills/sk-vision/pi/sk-vision.ts`
 - [ ] T007 Confirm `pi.registerTool` for the 13 dump `sk_vision_*` names; no `sk_vision_query`
 - [ ] T008 Dry factory: `pi --offline --approve` starts without extension fail-closed
 - [ ] T009 Record bounded `input.images` 2s grace, or record the unproven-paste gap

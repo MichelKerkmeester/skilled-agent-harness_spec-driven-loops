@@ -8,9 +8,9 @@ contextType: "verification"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork"
-    last_updated_at: "2026-08-15T17:45:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Specified GPU load then status or SKIP."
+    recent_action: "Added in-scope copy check against spec.md Step 1."
     next_safe_action: "Wait for 002 before pre-implementation checks."
     blockers: []
     key_files:
@@ -61,6 +61,7 @@ _memory:
 - [ ] CHK-013 [P1] Cache paths point to `~/.cache/sk-vision` | Evidence: src/providers/types.ts & python/runtime.py
 - [ ] CHK-014 [P0] package.json name is `sk-vision` (not `@opencode-ai/sk-vision`) | Evidence: vision-runtime/package.json
 - [ ] CHK-015 [P0] Tools are the 13 dump `sk_vision_*` names; no `sk_vision_query` | Evidence: tools.ts after rebrand
+- [ ] CHK-016 [P0] Only in-scope dump files copied; `PLAN.md` and dump `opencode.json` omitted | Evidence: `vision-runtime/` listing vs spec.md Step 1
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -120,7 +121,7 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 15 | 0/15 |
+| P0 Items | 16 | 0/16 |
 | P1 Items | 18 | 0/18 |
 | P2 Items | 0 | 0/0 |
 

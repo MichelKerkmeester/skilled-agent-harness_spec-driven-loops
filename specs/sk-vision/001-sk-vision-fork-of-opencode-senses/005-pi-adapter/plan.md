@@ -9,9 +9,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter"
-    last_updated_at: "2026-08-15T17:45:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Named analog, 13 tools, and fail-closed dry factory."
+    recent_action: "Pointed plan at factory skeleton and relative ln -s."
     next_safe_action: "Wait for 003 core; then author pi/sk-vision.ts."
     blockers: []
     key_files:
@@ -103,8 +103,9 @@ Author `.opencode/skills/sk-vision/pi/sk-vision.ts` as an `ExtensionFactory` def
 - Verify Pi extension directory `.pi/extensions/`.
 
 ### Phase 2: Extension Authoring & Symlinking
-- Author `.opencode/skills/sk-vision/pi/sk-vision.ts` implementing `ExtensionFactory`.
-- Create relative symlink `.pi/extensions/sk-vision.ts`.
+Follow `spec.md` Implementer copy pack. Function default export only.
+- Author `.opencode/skills/sk-vision/pi/sk-vision.ts` from the skeleton (13 `registerTool` names).
+- Create relative symlink: `ln -s ../../.opencode/skills/sk-vision/pi/sk-vision.ts .pi/extensions/sk-vision.ts`.
 - Update `.pi/extensions/README.md`.
 
 ### Phase 3: Verification

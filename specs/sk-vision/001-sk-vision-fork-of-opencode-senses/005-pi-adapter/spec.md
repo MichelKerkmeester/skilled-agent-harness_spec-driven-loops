@@ -11,9 +11,9 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter"
-    last_updated_at: "2026-08-15T16:55:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Enriched Pi fail-closed, 13-tool, and symlink analog contracts."
+    recent_action: "Added Pi factory skeleton, symlink, and fail-closed rules."
     next_safe_action: "Author pi/sk-vision.ts and relative symlink after 003 core exists."
     blockers: []
     key_files:
@@ -99,6 +99,91 @@ Give Pi the same local vision tools as OpenCode through `ExtensionAPI.registerTo
 ### Tool names (must match 003/004)
 
 `sk_vision_inspect`, `sk_vision_detect`, `sk_vision_point`, `sk_vision_ocr`, `sk_vision_status`, `sk_vision_segment`, `sk_vision_metadata`, `sk_vision_crop`, `sk_vision_zoom`, `sk_vision_colors`, `sk_vision_diff`, `sk_vision_annotate`, `sk_vision_reverse`.
+
+### Implementer copy pack (follow exactly)
+
+Stop and report if any of these is true: 003 has no RuntimeClient / PhotonProvider; you are about to put a real file in `.pi/extensions/` instead of a relative symlink; you are about to use an absolute symlink; you are about to make MCP or bash JSON-RPC the primary path; you are about to default-export an object, class instance, or promise instead of a function; you are about to invent `sk_vision_query`; you are treating 004 as a compile-time import.
+
+Analog symlink: `.pi/extensions/git-preflight-advisory.ts` → `../../.opencode/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts`. Analog default export: that file's `export default function gitPreflightAdvisory(pi: ExtensionAPI): void`. Confirmed: invalid default export fail-closes the whole Pi session.
+
+Pi types: `@earendil-works/pi-coding-agent` (and/or the cli-pi pin from 001-research). `registerTool` plus optional `InputEvent.images?: ImageContent[]` with `{type, data, mimeType}`.
+
+#### Step 1 — owner file
+
+Create `.opencode/skills/sk-vision/pi/sk-vision.ts`. Default export MUST be a function `ExtensionFactory`: `(pi: ExtensionAPI) => void`. Keep it tiny. Construct `RuntimeClient` + `PhotonProvider` from 003. Register all 13 tools. Close the client on `session_shutdown` (prove the event name against installed 0.84.2 types; if different, document the substitute).
+
+Skeleton (fill execute bodies from dump `context/src/opencode/tools.ts` via PhotonProvider; do not spawn a second Python wrapper):
+
+```typescript
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { RuntimeClient } from "../vision-runtime/src/runtime/client.ts";
+import { PhotonProvider } from "../vision-runtime/src/providers/photon.ts";
+
+export default function skVision(pi: ExtensionAPI): void {
+  const client = new RuntimeClient();
+  const provider = new PhotonProvider(client, { projectDir: pi.cwd ?? process.cwd() });
+
+  // Register each of the 13 names with pi.registerTool. Map:
+  // sk_vision_inspect  -> caption+scene+ocr, or query when question is set
+  // sk_vision_detect   -> provider.detect
+  // sk_vision_point    -> provider.point
+  // sk_vision_ocr      -> provider.ocr
+  // sk_vision_status   -> provider.health
+  // sk_vision_segment  -> provider.segment
+  // sk_vision_metadata -> provider.metadata
+  // sk_vision_crop     -> provider.crop
+  // sk_vision_zoom     -> provider.zoom
+  // sk_vision_colors   -> provider.colors
+  // sk_vision_diff     -> provider.diff
+  // sk_vision_annotate -> provider.annotate
+  // sk_vision_reverse  -> provider reverse / hashSearch
+  // Do not register sk_vision_query.
+
+  pi.on("session_shutdown", async () => {
+    await client.close();
+  });
+}
+```
+
+Adjust import paths if 003 emits only `dist/` (prefer the same modules 004 imports). `PhotonProvider` constructor args must match 003 after rebrand. If `pi.cwd` is not on 0.84.2 `ExtensionAPI`, use the documented context field from installed types.
+
+Fail-closed rules (any one of these fail-closes Pi — do not ship them):
+
+- missing default export
+- default export is not a function
+- thrown error during factory load (outside a tool execute try/catch)
+
+Tool execute may fail with `SK_VISION_ERROR`; that must not crash session start.
+
+#### Step 2 — relative symlink from `.pi/extensions/`
+
+```bash
+ln -s ../../.opencode/skills/sk-vision/pi/sk-vision.ts .pi/extensions/sk-vision.ts
+test -L .pi/extensions/sk-vision.ts
+test "$(readlink .pi/extensions/sk-vision.ts)" = "../../.opencode/skills/sk-vision/pi/sk-vision.ts"
+```
+
+Do not use `ln -s /absolute/...`. Do not copy the TypeScript file into `.pi/extensions/`.
+
+#### Step 3 — README rows
+
+`.pi/extensions/README.md` overview table: add `sk-vision.ts` | `.opencode/skills/sk-vision/pi/sk-vision.ts`. Directory tree: add `sk-vision.ts`. Optional KEY FILES row: `sk-vision.ts` | `registerTool` (13 `sk_vision_*`) plus optional `input` / `session_shutdown`.
+
+#### Step 4 — optional P1 `input.images`
+
+If implementing: `pi.on("input")` when `images` is present; bound wait 2000ms; never block send on full GPU. If live paste is unproven in this environment, record the gap in implementation-summary and still close on tools.
+
+#### Step 5 — dry factory
+
+```bash
+test -f .opencode/skills/sk-vision/pi/sk-vision.ts
+test -L .pi/extensions/sk-vision.ts
+readlink .pi/extensions/sk-vision.ts
+pi --offline --approve
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter --strict
+```
+
+`pi --offline --approve` must start without extension fail-closed. If 003 GPU SKIP, do not require live path-tool execute.
 <!-- /ANCHOR:scope -->
 
 ---

@@ -8,10 +8,10 @@ contextType: "summary"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold"
-    last_updated_at: "2026-08-15T17:45:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Rewrote planned delivery claims; fixed Class S paths."
-    next_safe_action: "Create .opencode/skills/sk-vision/ with SKILL.md."
+    recent_action: "Noted copy pack in spec.md; skill files not delivered."
+    next_safe_action: "Create .opencode/skills/sk-vision/ from spec.md File 1-4."
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This child will create the Class S standalone skill root at `.opencode/skills/sk-vision/`. No skill files exist yet. Implementation starts from this child's spec, not from a delivered tree.
+This child will create the Class S standalone skill root at `.opencode/skills/sk-vision/`. No skill files exist yet. Implementation starts from this child's spec copy pack (File 1-4 skeletons plus generator commands), not from a delivered tree.
 
 ### Skill Root Scaffolding
 This child will add `SKILL.md`, `graph-metadata.json`, `leaf-manifest.config.json`, `references/`, and `README.md`. `vision-runtime/` stays empty until 003.

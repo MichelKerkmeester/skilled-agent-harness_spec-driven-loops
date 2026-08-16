@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses"
-    last_updated_at: "2026-08-16T06:28:08.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Aligned 002-005 plans, tasks, checklists, and summaries."
-    next_safe_action: "Implement 002-skill-scaffold from its child spec."
+    recent_action: "Pointed 002-005 implementer copy packs; next is 002 scaffold."
+    next_safe_action: "Implement 002-skill-scaffold from its spec copy pack."
     blockers: []
     key_files:
       - "spec.md"
@@ -65,7 +65,7 @@ _memory:
 | **Parent Packet** | `sk-vision` |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | `001-research` is Complete, child phase spec suites `002-005` are scaffolded on disk. Next: implement `002-skill-scaffold`. |
+| **Handoff Criteria** | `001-research` is Complete. Children `002-005` each have an implementer copy pack in `spec.md`. Next: implement `002-skill-scaffold` from that copy pack. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -135,6 +135,13 @@ Summary of aggregate file scope. Per-phase detail lives in the Phase Documentati
 > This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children. This parent stays a lean trio: `spec.md`, `description.json`, `graph-metadata.json`.
 
 **Directory status:** all 5 child phase folders (`001-research/`, `002-skill-scaffold/`, `003-runtime-fork/`, `004-opencode-adapter/`, `005-pi-adapter/`) exist on disk with validated spec suites. Implementation proceeds sequentially from 002 through 005.
+
+**Small-model implementation order.** Do not skip children. Do not implement runtime or adapters from this parent. Each planned child `spec.md` has an "Implementer copy pack" with stop rules, exact files or commands, and proof commands.
+
+1. `002-skill-scaffold/spec.md` — Class S skill root only. No dump copy.
+2. `003-runtime-fork/spec.md` — copy listed dump files, rebrand, build `dist/plugin.js`.
+3. `004-opencode-adapter/spec.md` — real file `.opencode/plugins/sk-vision.js`.
+4. `005-pi-adapter/spec.md` — owner file plus relative symlink.
 
 | Phase | Folder | Title / Focus | Level | Status |
 |-------|--------|---------------|-------|--------|

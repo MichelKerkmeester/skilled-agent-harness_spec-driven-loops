@@ -11,9 +11,9 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter"
-    last_updated_at: "2026-08-15T16:55:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Enriched hook map, 13-tool list, and 2s grace contract."
+    recent_action: "Added plugin re-export bytes and proof commands."
     next_safe_action: "Author .opencode/plugins/sk-vision.js after 003 emits dist/plugin.js."
     blockers: []
     key_files:
@@ -101,6 +101,62 @@ Add a thin real-file adapter that default-exports the skill package plugin, rest
 ### Tool names (must match 003)
 
 `sk_vision_inspect`, `sk_vision_detect`, `sk_vision_point`, `sk_vision_ocr`, `sk_vision_status`, `sk_vision_segment`, `sk_vision_metadata`, `sk_vision_crop`, `sk_vision_zoom`, `sk_vision_colors`, `sk_vision_diff`, `sk_vision_annotate`, `sk_vision_reverse`.
+
+### Implementer copy pack (follow exactly)
+
+Stop and report if any of these is true: `003-runtime-fork` has no `dist/plugin.js` and no documented `tsc` substitute; you are about to `ln -s` this plugin (Pi is the symlink host, not OpenCode); you are about to edit repo-root `opencode.json`; you are about to copy dump `context/opencode.json`; you are about to add a `plugin` array; you are about to await full GPU in `chat.message`; you are about to invent `sk_vision_query`.
+
+Analog (real file importing skill `dist/`): `.opencode/plugins/mk-communication-projection.js` lines 17–22 import `../skills/sk-communication/cli-communication-projection/dist/index.js` and line 361 `export default async function`. Dump factory with the four hooks: `../context/src/plugin.ts` (copied into `vision-runtime/src/plugin.ts` by 003). 2s grace lives in dump `../context/src/opencode/attachments.ts` around the `Promise.race` with `2_000`; 004 keeps that by re-exporting the built factory, not by rewriting it.
+
+#### Step 1 — prove the import target exists
+
+```bash
+test -f .opencode/skills/sk-vision/vision-runtime/dist/plugin.js
+```
+
+#### Step 2 — write `.opencode/plugins/sk-vision.js` as a regular file
+
+Preferred bytes (thin re-export, same pattern as the analog's skill-`dist/` import):
+
+```javascript
+'use strict';
+
+export { default } from '../skills/sk-vision/vision-runtime/dist/plugin.js';
+```
+
+If OpenCode fails to load a re-export, use an explicit default function that calls the skill factory and returns its hooks object. Do not put GPU logic in this file. Canonical factory stays in the skill package.
+
+```bash
+test -f .opencode/plugins/sk-vision.js && test ! -L .opencode/plugins/sk-vision.js
+```
+
+The loaded factory MUST still expose dump hooks from `context/src/plugin.ts`:
+
+| Hook | Contract |
+|------|----------|
+| `event` | `message.part.updated` fire-and-forget preload; never stall the TUI |
+| `chat.message` | injector; wait at most 2000ms; never await the full GPU run |
+| `tool` | the 13 `sk_vision_*` names only |
+| `dispose` | `client.close()` |
+
+Config keys to document (defaults from dump): `enabled`, `autoInspect` (default on), `python`, `timeoutMs`, `fetchTimeoutMs`, `reverseSearch`. Yandex stays opt-in.
+
+#### Step 3 — README inventory row
+
+Add one row to `.opencode/plugins/README.md` section 2 CONTENTS table:
+
+`sk-vision.js` | Local vision adapter: default-exports `vision-runtime/dist/plugin.js`. Registers 13 `sk_vision_*` tools. Auto-inspect uses a 2s grace and never awaits full GPU.
+
+#### Step 4 — proof (no opencode.json plugin array)
+
+```bash
+test -f .opencode/plugins/sk-vision.js && test ! -L .opencode/plugins/sk-vision.js
+rg -n "from '\\.\\./skills/sk-vision/vision-runtime/dist/plugin.js'|from \"\\.\\./skills/sk-vision/vision-runtime/dist/plugin.js\"" .opencode/plugins/sk-vision.js
+rg -n 'plugin' opencode.json
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter --strict
+```
+
+`opencode.json` must not gain a `plugin` array for this skill. GPU attach smoke runs only if 003 `load` smoke passed; otherwise SKIP.
 <!-- /ANCHOR:scope -->
 
 ---

@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold"
-    last_updated_at: "2026-08-15T17:20:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Corrected Class S generator tasks."
-    next_safe_action: "Execute T001 to create skill structure."
+    recent_action: "Bound tasks to spec.md copy-pack skeletons and commands."
+    next_safe_action: "Execute T001 mkdir from the copy pack."
     blockers: []
     key_files:
       - "tasks.md"
@@ -73,8 +73,8 @@ If a task is BLOCKED, stop, record the blocker in continuity frontmatter, and do
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create skill root directory structure (`.opencode/skills/sk-vision/`, `.opencode/skills/sk-vision/references/`)
-- [ ] T002 Verify absence of hub JSON metadata files in skill root
+- [ ] T001 Create skill root: `mkdir -p .opencode/skills/sk-vision/references && touch .opencode/skills/sk-vision/references/.gitkeep`
+- [ ] T002 Confirm hub JSON absent. Stop if you were about to write `description.json`, `mode-registry.json`, `hub-router.json`, or `command-metadata.json`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -82,11 +82,11 @@ If a task is BLOCKED, stop, record the blocker in continuity frontmatter, and do
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Author `.opencode/skills/sk-vision/SKILL.md` with Class S frontmatter and vision triggers
-- [ ] T004 [P] Author `.opencode/skills/sk-vision/graph-metadata.json` with standalone skill schema
-- [ ] T005 [P] Author `.opencode/skills/sk-vision/leaf-manifest.config.json`
-- [ ] T006 Generate `leaf-manifest.json` and `leaf-aliases.json` with `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix`
-- [ ] T007 [P] Author `.opencode/skills/sk-vision/README.md`
+- [ ] T003 Author `.opencode/skills/sk-vision/SKILL.md` from spec.md File 1 skeleton (required sections + locked triggers + WHEN NOT TO USE)
+- [ ] T004 [P] Author `.opencode/skills/sk-vision/graph-metadata.json` from spec.md File 2 skeleton (`skill_id: sk-vision`)
+- [ ] T005 [P] Author `.opencode/skills/sk-vision/leaf-manifest.config.json` from spec.md File 3 skeleton (`leafRoots: ["references"]` only)
+- [ ] T006 Generate manifests: `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix`. Do not hand-edit outputs. Do not invent `generate-manifest.js`.
+- [ ] T007 [P] Author `.opencode/skills/sk-vision/README.md` from spec.md File 4 notes
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -94,10 +94,10 @@ If a task is BLOCKED, stop, record the blocker in continuity frontmatter, and do
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Confirm hub JSON absent: `description.json`, `mode-registry.json`, `hub-router.json`, `command-metadata.json`
-- [ ] T009 Run `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-vision --check`
-- [ ] T010 Confirm `vision-runtime/` is absent or empty of source
-- [ ] T011 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold --strict`
+- [ ] T008 Confirm hub JSON absent: `ls .opencode/skills/sk-vision/{description,mode-registry,hub-router,command-metadata}.json` must fail
+- [ ] T009 Run `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-vision --check` (exit 0)
+- [ ] T010 Confirm `test ! -e .opencode/skills/sk-vision/vision-runtime` or the directory is empty of source
+- [ ] T011 Run `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` then `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold --strict`
 <!-- /ANCHOR:phase-3 -->
 
 ---

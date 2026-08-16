@@ -9,9 +9,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter"
-    last_updated_at: "2026-08-15T17:45:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Named analog, 13 tools, and 2s grace in plan."
+    recent_action: "Pointed plan at re-export copy pack and analog file."
     next_safe_action: "Wait for 003 dist/plugin.js; then author plugin."
     blockers: []
     key_files:
@@ -102,9 +102,10 @@ Create `.opencode/plugins/sk-vision.js` as a **real file** (not a symlink), anal
 - Inspect `.opencode/plugins/` directory structure.
 
 ### Phase 2: Plugin Adapter Creation
-- Author `.opencode/plugins/sk-vision.js` as a real file (not a symlink).
-- Restore `event`, `chat.message` (2s grace, never full GPU await), `tool` (13 names), and `dispose`.
-- Update `.opencode/plugins/README.md` with configuration options.
+Follow `spec.md` Implementer copy pack. Do not symlink. Do not edit `opencode.json`.
+- Author `.opencode/plugins/sk-vision.js` as the documented re-export of `vision-runtime/dist/plugin.js`.
+- Keep dump hooks via that factory: `event`, `chat.message` (2s grace), `tool` (13 names), `dispose`.
+- Update `.opencode/plugins/README.md` with the inventory row from the copy pack.
 
 ### Phase 3: Verification
 - Verify OpenCode plugin discovery.

@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter"
-    last_updated_at: "2026-08-15T17:45:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Added real-file, 13-tool, and no-plugin-array tasks."
+    recent_action: "Bound tasks to re-export bytes, analog, and proof commands."
     next_safe_action: "Wait for 003 dist/plugin.js; then T001."
     blockers: []
     key_files:
@@ -73,8 +73,8 @@ If a task is BLOCKED, stop, record the blocker in continuity frontmatter, and do
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Verify `vision-runtime/dist/plugin.js` build artifact exists
-- [ ] T002 Inspect `.opencode/plugins/` directory and current plugin registrations
+- [ ] T001 Verify `test -f .opencode/skills/sk-vision/vision-runtime/dist/plugin.js` (or documented substitute). Stop if missing.
+- [ ] T002 Read analog `.opencode/plugins/mk-communication-projection.js` and dump `../context/src/plugin.ts`. Do not edit `opencode.json`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -82,8 +82,8 @@ If a task is BLOCKED, stop, record the blocker in continuity frontmatter, and do
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Author `.opencode/plugins/sk-vision.js` as a real file (`test ! -L`), analog to `mk-communication-projection.js`
-- [ ] T004 [P] Update `.opencode/plugins/README.md` with `sk-vision.js` documentation and config keys
+- [ ] T003 Write `.opencode/plugins/sk-vision.js` as the spec.md re-export (real file, `test ! -L`). Do not symlink.
+- [ ] T004 [P] Add the `sk-vision.js` row to `.opencode/plugins/README.md` (2s grace, 13 tools, skill dist import)
 <!-- /ANCHOR:phase-2 -->
 
 ---

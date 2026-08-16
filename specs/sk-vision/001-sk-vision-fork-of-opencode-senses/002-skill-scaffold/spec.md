@@ -11,10 +11,10 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold"
-    last_updated_at: "2026-08-15T16:55:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Enriched Class S file matrix and verification commands."
-    next_safe_action: "Implement skill root files in .opencode/skills/sk-vision/."
+    recent_action: "Added implementer copy pack: files, commands, stop rules."
+    next_safe_action: "Implement skill root files from the copy pack in spec.md."
     blockers: []
     key_files:
       - "spec.md"
@@ -104,7 +104,230 @@ Create `.opencode/skills/sk-vision/` as a standalone skill so 003 can copy the r
 | `.opencode/skills/sk-vision/leaf-manifest.json` | Generate | `--fix` only |
 | `.opencode/skills/sk-vision/leaf-aliases.json` | Generate | `--fix` only |
 | `.opencode/skills/sk-vision/README.md` | Create | Operator README |
-| `.opencode/skills/sk-vision/references/` | Create | Stub leaf root |
+| `.opencode/skills/sk-vision/references/` | Create | Stub leaf root (`references/.gitkeep` only) |
+
+### Implementer copy pack (follow exactly)
+
+Stop and report if any of these is true: you are about to copy `../context/` into this child; you are about to write `description.json`, `mode-registry.json`, `hub-router.json`, or `command-metadata.json`; you are about to create `.opencode/plugins/sk-vision.js` or `.pi/extensions/sk-vision.ts`; you are about to populate `vision-runtime/` with source; you cannot find `sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`. Do not invent `generate-manifest.js`. Do not run `/create:skill-parent`.
+
+Analog for Class S shape only: `.opencode/skills/sk-git/` (has `graph-metadata.json` + `leaf-manifest.config.json`, no hub JSON). Do not copy sk-git content.
+
+Work from the repository root. Run these commands in order.
+
+```bash
+mkdir -p .opencode/skills/sk-vision/references
+touch .opencode/skills/sk-vision/references/.gitkeep
+```
+
+Then write the four authored files below with the exact bytes in the skeletons. Then generate manifests. Then prove.
+
+#### File 1 — `.opencode/skills/sk-vision/SKILL.md`
+
+`package_skill.py --check` requires frontmatter `name`, `description` (single line, no `<` `>`, prefer ≤130 chars), `allowed-tools` as a YAML array, `version` as `X.Y.Z.W`, plus headings `WHEN TO USE`, `SMART ROUTING`, `HOW IT WORKS` (or `HOW TO USE`), `RULES`, `REFERENCES`.
+
+Write this file verbatim. The SMART ROUTING python block is part of SKILL.md; copy it as a fenced python block inside SKILL.md.
+
+~~~~
+---
+name: sk-vision
+description: "Local vision for text-only models: OCR, inspect, and detect on screenshots and mockups via Moondream."
+allowed-tools: [Read, Bash]
+version: 0.1.0.0
+---
+
+<!-- Keywords: screenshot OCR, attached image, mockup, error.png, local vision, moondream, grounded evidence, sk-vision -->
+
+# sk-vision
+
+Local vision skill. Text-only coding models get grounded OCR, layout, detect, and inspect evidence from a local image. The runtime and host adapters land in later children. This file only reserves paths and advisor triggers.
+
+## 1. WHEN TO USE
+
+Use this skill when the primary model is text-only and the user attached or named a local image:
+
+- screenshot OCR
+- attached image
+- mockup
+- error.png
+- local vision
+- moondream
+- grounded evidence
+
+### WHEN NOT TO USE
+
+- The primary model is already multimodal and can see the image itself.
+- The ask is audio, video, or documents.
+- Publishing under the upstream npm name `opencode-senses`.
+- Inventing a tool named `sk_vision_query`. Dump `senses_inspect` without a question already runs caption + scene + OCR together.
+
+## 2. SMART ROUTING
+
+Standalone Class S skill. One workflow mode: `sk-vision`. Leaf root: `references/` only. No `mode-registry.json`. No `hub-router.json`.
+
+| Level | When to load | Resources |
+|-------|----------------|-----------|
+| ALWAYS | Every invocation | This SKILL.md |
+| ON_DEMAND | Explicit request | `references/` markdown if any exists |
+
+```python
+from pathlib import Path
+SKILL_ROOT = Path(__file__).resolve().parent
+INTENT_SIGNALS = {
+    "VISION": {
+        "weight": 4,
+        "keywords": [
+            "screenshot OCR", "attached image", "mockup", "error.png",
+            "local vision", "moondream", "grounded evidence",
+        ],
+    },
+}
+RESOURCE_MAP = {"VISION": []}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the input is a local image path or attachment",
+    "Confirm the primary model is text-only",
+    "Do not route audio, video, or document work here",
+]
+```
+
+## 3. HOW IT WORKS
+
+This child does not copy runtime code and does not register host tools.
+
+Reserved package home (leave empty here): `.opencode/skills/sk-vision/vision-runtime/`
+
+Later OpenCode load path (do not create here): `.opencode/plugins/sk-vision.js` as a real file, not a symlink.
+
+Later Pi load path (do not create here): `.pi/extensions/sk-vision.ts` as a relative symlink to `.opencode/skills/sk-vision/pi/sk-vision.ts`.
+
+Locked tool names (13, implement in 003/004/005): `sk_vision_inspect`, `sk_vision_detect`, `sk_vision_point`, `sk_vision_ocr`, `sk_vision_status`, `sk_vision_segment`, `sk_vision_metadata`, `sk_vision_crop`, `sk_vision_zoom`, `sk_vision_colors`, `sk_vision_diff`, `sk_vision_annotate`, `sk_vision_reverse`.
+
+## 4. RULES
+
+- Class S: author `graph-metadata.json` and `leaf-manifest.config.json`. Generate `leaf-manifest.json` and `leaf-aliases.json` with `ci-skill-root-metadata.cjs --fix`.
+- Forbidden at this root: `description.json`, `mode-registry.json`, `hub-router.json`, `command-metadata.json`.
+- Do not populate `vision-runtime/` in this child.
+- Do not publish as `opencode-senses`.
+- Do not add a repo-root `opencode.json` `plugin` array.
+
+## 5. REFERENCES
+
+- Class S analog: `.opencode/skills/sk-git/`
+- Contract: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`
+- Read-only dump (not this skill's corpus): `specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/`
+~~~~
+
+#### File 2 — `.opencode/skills/sk-vision/graph-metadata.json`
+
+Filled from `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json`. `skill_id` MUST equal the folder name `sk-vision`. Do not add `description.json`.
+
+```json
+{
+  "schema_version": 2,
+  "skill_id": "sk-vision",
+  "family": "sk-util",
+  "category": "utility",
+  "deprecated": false,
+  "edges": {
+    "depends_on": [],
+    "enhances": [],
+    "siblings": [
+      {
+        "target": "sk-code",
+        "weight": 0.3,
+        "context": "vision evidence for text-only coding models"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "domains": [
+    "vision",
+    "ocr",
+    "screenshot",
+    "mockup",
+    "moondream",
+    "local-vision"
+  ],
+  "intent_signals": [
+    "screenshot OCR",
+    "attached image",
+    "mockup",
+    "error.png",
+    "local vision",
+    "moondream",
+    "grounded evidence"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "screenshot OCR",
+      "attached image",
+      "mockup",
+      "error.png",
+      "local vision",
+      "moondream",
+      "grounded evidence",
+      "sk-vision"
+    ],
+    "key_topics": [
+      "vision",
+      "ocr",
+      "screenshot",
+      "mockup",
+      "moondream"
+    ],
+    "key_files": [
+      ".opencode/skills/sk-vision/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "sk-vision",
+        "kind": "skill",
+        "path": ".opencode/skills/sk-vision/SKILL.md",
+        "source": "derived"
+      }
+    ],
+    "source_docs": [
+      "SKILL.md",
+      "leaf-manifest.config.json"
+    ],
+    "causal_summary": "Standalone local-vision skill that routes screenshot OCR, mockup, and error-image work to a later JSON-RPC runtime; it does not own hub routing or multimodal primary models.",
+    "created_at": "2026-08-16T07:10:00.000Z",
+    "last_updated_at": "2026-08-16T07:10:00.000Z"
+  }
+}
+```
+
+#### File 3 — `.opencode/skills/sk-vision/leaf-manifest.config.json`
+
+`leafRoots` is `["references"]` only. Do not add unused `assets` or catalog roots.
+
+```json
+{
+  "workflowMode": "sk-vision",
+  "packet": ".",
+  "leafRoots": ["references"],
+  "excludeIndexFiles": true,
+  "resourceContractVersion": 1,
+  "_note": "Standalone Class S config. references/ is the only routed leaf root. Generate leaf-manifest.json and leaf-aliases.json with ci-skill-root-metadata.cjs --fix. Do not hand-edit those two files."
+}
+```
+
+#### File 4 — `.opencode/skills/sk-vision/README.md`
+
+Short operator README. State: Class S standalone; runtime lands in `vision-runtime/` in a later child; OpenCode plugin is a real file; Pi extension is a relative symlink; 13 `sk_vision_*` tools; do not publish as `opencode-senses`.
+
+#### Generate (do not hand-edit outputs)
+
+```bash
+node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix
+node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-vision --check
+ls .opencode/skills/sk-vision/{description,mode-registry,hub-router,command-metadata}.json
+test ! -e .opencode/skills/sk-vision/vision-runtime
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold --strict
+```
+
+`ls` of the four hub JSON names MUST fail (files absent). `ci-skill-root-metadata.cjs` without `--fix` must report no forbidden files. Optional equivalent generator: `node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .opencode/skills/sk-vision`. Wrong paths: `system-skill-advisor/scripts/ci-skill-root-metadata.cjs`, `sk-doc/scripts/dist/leaf/generate-manifest.js`.
 <!-- /ANCHOR:scope -->
 
 ---

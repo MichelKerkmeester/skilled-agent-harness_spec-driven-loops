@@ -8,9 +8,9 @@ contextType: "summary"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter"
-    last_updated_at: "2026-08-15T17:45:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Rewrote planned delivery claims; 13 tools fail-closed."
+    recent_action: "Noted copy pack in spec.md; Pi factory not delivered."
     next_safe_action: "Wait for 003 core; then author pi/sk-vision.ts."
     blockers: []
     key_files:
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This child will add a native Pi adapter after 003 provides RuntimeClient. The owner file and symlink do not exist yet. `004` is not a code dependency.
+This child will add a native Pi adapter after 003 provides RuntimeClient. The owner file and symlink do not exist yet. `004` is not a code dependency. Use the spec.md factory skeleton and `ln -s` command.
 
 ### Native Extension Factory
 This child will author `.opencode/skills/sk-vision/pi/sk-vision.ts` exporting a valid `ExtensionFactory`. Invalid default export fail-closes the Pi session. Tools register through `pi.registerTool`: `sk_vision_inspect`, `sk_vision_detect`, `sk_vision_point`, `sk_vision_ocr`, `sk_vision_status`, `sk_vision_segment`, `sk_vision_metadata`, `sk_vision_crop`, `sk_vision_zoom`, `sk_vision_colors`, `sk_vision_diff`, `sk_vision_annotate`, `sk_vision_reverse`. Do not invent `sk_vision_query`.

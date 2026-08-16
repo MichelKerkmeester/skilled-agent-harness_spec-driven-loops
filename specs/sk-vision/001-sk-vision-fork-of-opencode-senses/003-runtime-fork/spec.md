@@ -11,10 +11,10 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork"
-    last_updated_at: "2026-08-15T16:55:00.000Z"
+    last_updated_at: "2026-08-16T07:10:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Enriched rebrand map, 13-tool lock, and GPU smoke protocol."
-    next_safe_action: "Copy shipped dump files into vision-runtime/ after 002 closes."
+    recent_action: "Added copy commands, rebrand order, and GPU NDJSON."
+    next_safe_action: "Wait for 002; then copy dump files using the copy pack."
     blockers: []
     key_files:
       - "spec.md"
@@ -140,6 +140,115 @@ Do not invent `sk_vision_query`. Dump `senses_inspect` without a question runs c
 ### GPU smoke (optional, this child)
 
 If NVIDIA Ampere+ or Apple Silicon is present: JSON-RPC `load` then `status` against the copied runtime. First `load` may download ~3.9 GB from Hugging Face and provision `~/.cache/sk-vision/venv`. `ping` alone is not the smoke. If hardware is absent: record SKIP with the hardware note. Packet close does not require GPU. 6 GB VRAM is enough for default `moondream2`.
+
+### Implementer copy pack (follow exactly)
+
+Stop and report if any of these is true: `002-skill-scaffold` is still Planned; `.opencode/skills/sk-vision/SKILL.md` is missing; you are about to edit `../context/` (read-only); you are about to copy `PLAN.md`, `.github/`, `opencode.json`, `media/`, or FUNDING files; you are about to create `.opencode/plugins/sk-vision.js` or `.pi/extensions/sk-vision.ts`; you are about to publish npm; you are about to invent `sk_vision_query`.
+
+Dump root (read-only): `specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/`
+Destination: `.opencode/skills/sk-vision/vision-runtime/`
+
+#### Step 1 — copy only these files
+
+```bash
+DUMP="specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context"
+DEST=".opencode/skills/sk-vision/vision-runtime"
+mkdir -p "$DEST"/src/{runtime,providers,opencode,core} "$DEST"/python "$DEST"/scripts
+cp "$DUMP/src/runtime/client.ts" "$DEST/src/runtime/"
+cp "$DUMP/src/providers/types.ts" "$DEST/src/providers/"
+cp "$DUMP/src/providers/photon.ts" "$DEST/src/providers/"
+cp "$DUMP/src/providers/photon.test.ts" "$DEST/src/providers/"
+cp "$DUMP/src/plugin.ts" "$DEST/src/"
+cp "$DUMP/src/opencode/tools.ts" "$DEST/src/opencode/"
+cp "$DUMP/src/opencode/attachments.ts" "$DEST/src/opencode/"
+cp "$DUMP/src/core/context-builder.ts" "$DEST/src/core/"
+cp "$DUMP/python/runtime.py" "$DEST/python/"
+cp "$DUMP/python/runtime.test.ts" "$DEST/python/"
+cp "$DUMP/scripts/build.ts" "$DEST/scripts/"
+cp "$DUMP/package.json" "$DEST/"
+cp "$DUMP/tsconfig.json" "$DEST/"
+cp "$DUMP/LICENSE" "$DEST/"
+```
+
+Do not copy: `PLAN.md`, `opencode.json`, `.github/`, `media/`, `FUNDING.yml`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `bun.lock` (optional later if bun install needs it). README.md is optional operator copy, not required.
+
+#### Step 2 — rebrand in `$DEST` only (never in `context/`)
+
+Apply replacements longest-token-first. Skip `LICENSE` for string rewrite; keep `Copyright (c) 2026 Adarsh Gourab Mahalik` and append a second line `Copyright (c) 2026` plus this project's modification notice.
+
+| Find | Replace | Notes |
+|------|---------|-------|
+| `SENSES_DISABLE_AUTO_PROVISION` | `SK_VISION_DISABLE_AUTO_PROVISION` | |
+| `SENSES_KV_CACHE_PAGES` | `SK_VISION_KV_CACHE_PAGES` | |
+| `SENSES_CACHE_DIR` | `SK_VISION_CACHE_DIR` | |
+| `SENSES_VENV_DIR` | `SK_VISION_VENV_DIR` | |
+| `SENSES_PYTHON` | `SK_VISION_PYTHON` | |
+| `SENSES_MODEL` | `SK_VISION_MODEL` | default remains `moondream2` |
+| `SENSES_DEBUG` | `SK_VISION_DEBUG` | |
+| `SENSES_ERROR` | `SK_VISION_ERROR` | |
+| `SENSES_UV` | `SK_VISION_UV` | |
+| `~/.cache/opencode-senses` | `~/.cache/sk-vision` | also `.cache", "opencode-senses"` path joins |
+| `/tmp/senses-` | `/tmp/sk-vision-` | |
+| `<SENSES` | `<SK-VISION` | includes Atlas/Notice variants |
+| `</SENSES>` | `</SK-VISION>` | |
+| `senses_inspect` | `sk_vision_inspect` | then the other 12 keys |
+| `senses_detect` | `sk_vision_detect` | |
+| `senses_point` | `sk_vision_point` | |
+| `senses_ocr` | `sk_vision_ocr` | |
+| `senses_status` | `sk_vision_status` | |
+| `senses_segment` | `sk_vision_segment` | |
+| `senses_metadata` | `sk_vision_metadata` | |
+| `senses_crop` | `sk_vision_crop` | |
+| `senses_zoom` | `sk_vision_zoom` | |
+| `senses_colors` | `sk_vision_colors` | |
+| `senses_diff` | `sk_vision_diff` | |
+| `senses_annotate` | `sk_vision_annotate` | |
+| `senses_reverse` | `sk_vision_reverse` | |
+| `sensesTools` | `skVisionTools` | |
+| `SensesPlugin` | `SkVisionPlugin` | |
+| `SensesError` | `SkVisionError` | |
+| `SensesMessage` | `SkVisionMessage` | |
+| `[senses]` / `[senses:py]` | `[sk-vision]` / `[sk-vision:py]` | stderr prefixes |
+| package.json `"name": "opencode-senses"` | `"name": "sk-vision"` | not `@opencode-ai/sk-vision` |
+
+Do not globally replace every remaining `opencode-senses` string. The dump `package.json` `repository.url` may keep the upstream git URL as provenance. Do not rewrite LICENSE author name.
+
+In `python/runtime.py` header: it mentions Moondream 3.1 Photon. Keep default model `moondream2`. Correct the comment.
+
+#### Step 3 — build
+
+```bash
+cd .opencode/skills/sk-vision/vision-runtime
+# package.json script is "build": "bun run scripts/build.ts"
+bun install
+bun run build
+test -f dist/plugin.js
+```
+
+If bun is unavailable, document a `tsc` substitute in this child's implementation-summary and still emit `dist/plugin.js`. Do not skip the artifact.
+
+#### Step 4 — tests and identifier proof
+
+```bash
+cd .opencode/skills/sk-vision/vision-runtime
+bun test
+rg -n 'SENSES_|opencode-senses|~/.cache/opencode-senses|<SENSES|senses_' .
+```
+
+`rg` must return only the LICENSE Adarsh copyright line (if it mentions the upstream name) or zero hits. `senses_` tool keys must be gone.
+
+#### Step 5 — optional GPU smoke (not ping)
+
+NDJSON over the Python daemon stdin/stdout. Protocol from dump `python/runtime.py`:
+
+Request: `{"id": 1, "method": "load", "params": {}}`
+Then: `{"id": 2, "method": "status", "params": {}}`
+
+Pass when `status` shows `model_loaded: true` (or equivalent) after `load`. First `load` may download ~3.9 GB. Hardware: NVIDIA Ampere+ or Apple Silicon. 6 GB VRAM is enough for `moondream2`. If hardware is absent, write SKIP plus the hardware note in implementation-summary. `{"method":"ping"}` is not the smoke.
+
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork --strict
+```
 <!-- /ANCHOR:scope -->
 
 ---
