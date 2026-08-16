@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Planned package baseline gates"
-    next_safe_action: "Finalize package.json and run the package gate"
+    last_updated_at: "2026-08-16T14:30:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Package gates green: tsc 0, 57 tests, pack 9 files, provenance added"
+    next_safe_action: "Hand off to the 002-subagent-handoff workstream"
     blockers: []
     key_files: ["../../context/pi-openai-fast-mode/package.json", "../../research/research.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,9 +54,9 @@ Use the source and compatibility children as inputs. Finalize `pi.extensions`, `
 - [x] Research names raw TypeScript, peers, provenance, and package checks.
 
 ### Definition of Done
-- [ ] Manifest loads the raw extension entry.
-- [ ] License and provenance checks pass.
-- [ ] Typecheck, Vitest, and pack dry-run pass.
+- [x] Manifest loads the raw extension entry.
+- [x] License and provenance checks pass.
+- [x] Typecheck, Vitest, and pack dry-run pass.
 
 
 <!-- /ANCHOR:quality-gates -->
@@ -101,18 +101,18 @@ Peer-dependency and raw-source expectations cite `packages.md:106-135,150,169-18
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Review the earlier child outputs and upstream package manifest.
-- [ ] Define expected pack file list: `package.json`, `README.md`, `LICENSE`, `tsconfig.json`, `src/*.ts`, and `tests/*.ts` (raw TypeScript, no `dist/`).
+- [x] Review the earlier child outputs and upstream package manifest.
+- [x] Define expected pack file list: `package.json`, `README.md`, `LICENSE`, and `src/*.ts` (raw TypeScript; `tsconfig.json` and `tests/` are dev-only, excluded by the `files` allowlist; no `dist/`).
 
 ### Phase 2: Core Implementation
-- [ ] Apply package identity, keywords, `pi.extensions`, peers, and scripts.
-- [ ] Update README with provenance and raw-source install expectations.
-- [ ] Preserve MIT LICENSE and no-emit TypeScript configuration.
+- [x] Apply package identity, keywords, `pi.extensions`, peers, and scripts.
+- [x] Update README with provenance and raw-source install expectations.
+- [x] Preserve MIT LICENSE and no-emit TypeScript configuration.
 
 ### Phase 3: Verification
-- [ ] Run `npm install` only in the fork package if needed.
-- [ ] Run typecheck, upstream Vitest, identity grep, and `npm pack --dry-run`.
-- [ ] Record output before handing off to subagent-handoff.
+- [x] Run `npm install` only in the fork package if needed.
+- [x] Run typecheck, upstream Vitest, identity grep, and `npm pack --dry-run`.
+- [x] Record output before handing off to subagent-handoff.
 
 **Toolchain evidence**: record the Node version used (repo baseline `node >=22.19`) and confirm a lockfile is present, as part of the reproducible gate.
 

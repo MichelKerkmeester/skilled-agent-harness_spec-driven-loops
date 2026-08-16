@@ -69,7 +69,7 @@ extensions/
 | `session-stop-context.ts` | `session_shutdown` (reason `quit`) | `system-spec-kit/mcp-server/dist/hooks/claude/session-stop.js` (via `lib/claude-hook-adapter.ts`) |
 | `prompt-advisor.ts` | `input` | `system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js` `handleClaudeUserPromptSubmit()` (in-process dynamic import); full first + boundaries, no transform on proven repeats (`SPECKIT_PI_DIRECTIVE_DEDUP`) |
 | `session-compact-context.ts` | `session_compact` | Native port of `mcp-server/hooks/devin/post-compaction.cjs`'s recovery chain (shared tmpdir state file + `spec-memory.cjs` CLI fallback) |
-| `sk-vision.ts` | `registerTool` (13 `sk_vision_*`); optional `input` / `session_shutdown` | `.opencode/skills/sk-vision/pi/sk-vision.ts` — `session_shutdown` stops the Python runtime; `input.images` not wired (P1 gap) |
+| `sk-vision.ts` | `registerTool` (13 `sk_vision_*`); bounded `input.images` auto-inspect; `session_shutdown` | `.opencode/skills/sk-vision/pi/sk-vision.ts` — `session_shutdown` stops the Python runtime; `input.images` auto-injects `<SK-VISION>` evidence after a 2s grace window (extension-sourced traffic and mid-stream steers are passed through untouched) |
 
 Paths without a leading `.opencode/` are relative to `.opencode/skills/`. The four `.opencode/hooks/` cores are the fully-portable guard cores relocated out of their owning skill; see [`../../.opencode/hooks/README.md`](../../.opencode/hooks/README.md) for why those four moved and the rest did not.
 

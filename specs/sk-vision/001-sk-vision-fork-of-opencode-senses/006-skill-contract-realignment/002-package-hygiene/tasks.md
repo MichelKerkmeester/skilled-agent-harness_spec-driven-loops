@@ -49,8 +49,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read `vision-runtime/package.json` and confirm current publish/provenance fields
-- [ ] T002 Inspect `python/runtime.test.ts` + `scripts/build.ts` to understand interpreter discovery before deleting `.venv`
+- [x] T001 Read `vision-runtime/package.json` and confirm current publish/provenance fields — evidence: `repository.url` = upstream `opencode-senses`; `publishConfig.access` = public; `publish:npm` script present
+- [x] T002 Inspect `python/runtime.test.ts` + `scripts/build.ts` to understand interpreter discovery — evidence: test hardcoded `VENV_PYTHON = join(REPO, ".venv", "bin", "python")`; cache venv `~/.cache/sk-vision/venv` has PIL 12.3.0; torch/transformers imported lazily in runtime.py (lines 166/270)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Remove `publishConfig` and `publish:npm`; neutralize `repository`/`author`; fix `description` for dual-host
-- [ ] T004 Delete `.venv`: `rm -rf .opencode/skills/sk-vision/vision-runtime/.venv`
-- [ ] T005 Add `vision-runtime/.gitignore` if absent (node_modules, .venv, __pycache__, *.pyc)
-- [ ] T006 Prove hermetic `bun run build && bun test` exit 0 without `.venv` (record output; if fail, fix interpreter discovery or record named-blocker SKIP)
+- [x] T003 Remove `publishConfig` and `publish:npm`; omit `repository`; `author` -> `sk-vision contributors`; dual-host `description` — evidence: rewritten `package.json`; `rg -n "publishConfig|publish:npm" package.json` exit 1
+- [x] T004 Delete `.venv` — evidence: `rm -rf` ran; `test ! -d .opencode/skills/sk-vision/vision-runtime/.venv` exit 0
+- [x] T005 Add `vision-runtime/.gitignore` — evidence: created with node_modules/, .venv/, __pycache__/, *.pyc, .DS_Store; `test -f` exit 0
+- [x] T006 Prove hermetic build + tests without `.venv` — evidence: `bun run build` exit 0 (`built dist/plugin.js + dist/python/runtime.py`); `bun test` exit 0 (`8 pass, 0 fail`); interpreter discovery fixed in `python/runtime.test.ts` to prefer `~/.cache/sk-vision/venv` then local venv then `python3`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,11 +69,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Prove `rg -n "publishConfig|publish:npm" package.json` exit 1 and `rg -i "opencode-senses|itsmeadarsh" package.json` exit 1
-- [ ] T008 Prove `test ! -d .opencode/skills/sk-vision/vision-runtime/.venv` exit 0 and `dist/plugin.js` + `dist/python/runtime.py` exist after rebuild
-- [ ] T009 Identifier sweep: `rg -n -i "opencode-senses" . --glob '!bun.lock' --glob '!LICENSE'` exit 1; `rg -n "SENSES_" . --glob '!LICENSE'` exit 1; `rg "Adarsh" LICENSE` exit 0
-- [ ] T010 Run `validate.sh --strict` on this child
-- [ ] T011 All tasks marked `[x]` with evidence; no `[B]` remaining
+- [x] T007 Prove publish/provenance sweep — evidence: `rg -n "publishConfig|publish:npm" package.json` exit 1; `rg -i "opencode-senses|itsmeadarsh" package.json` exit 1
+- [x] T008 Prove venv gone + dist rebuilt — evidence: `test ! -d` exit 0; `dist/plugin.js` 499333 bytes and `dist/python/runtime.py` 34705 bytes exist after `bun run build`
+- [x] T009 Identifier sweep — evidence: `rg -n -i "opencode-senses" . --glob '!bun.lock' --glob '!LICENSE'` exit 1; `rg -n "SENSES_" . --glob '!LICENSE'` exit 1; `rg "Adarsh" LICENSE` exit 0 (MIT copyright kept)
+- [x] T010 Run `validate.sh --strict` on this child — evidence: folder RESULT PASSED errors=0 warnings=0 (wrapper exit 2 from pre-existing repo COMMAND_TREE_PARITY drift, same as prior children; not a folder failure)
+- [x] T011 All tasks marked `[x]` with evidence; no `[B]` remaining — evidence: this closeout
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate",
-  "description": "Final conformance proof: every skill and packet gate, metadata reconciliation, and stray-file sweep",
+  "description": "Six phases of work (001-005 shipped, 006-009 amended) need one authoritative proof that the skill is aligned with sk-create-skill standards and the packet is coherent",
   "keywords": [
     "sk-vision",
     "quality",

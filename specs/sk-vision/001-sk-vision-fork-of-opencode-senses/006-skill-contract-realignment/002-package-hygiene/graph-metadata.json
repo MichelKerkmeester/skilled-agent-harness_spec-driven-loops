@@ -34,7 +34,7 @@
       "points"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "implementation-summary.md",
@@ -163,13 +163,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "node_modules",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`vision-runtime/package.json` still points its `repository` at the upstream `opencode-senses` repo, keeps `publishConfig.access: public` and a `publish:npm` script (so a stray `npm publish` would ship this fork to npm), names the upstream author, and describes the package as \"for text-only OpenCode models\" even though Pi is a first-class host",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-16T09:13:30.289Z",
+    "last_save_at": "2026-08-16T10:14:56.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f7a48aaed246e5ac1a8eee02213a139ceada7ad3651fc3a0edc7e65b0b13651",
+    "source_fingerprint": "sha256:d0c2e643d786aefc99b6c67953c9fe49887cf3ad036df1b4f6534c2fb75554f1",
     "source_doc_hashes": {
-      "spec.md": "af5f256abb094c24a7afb4ddd559ffd2d7b43256f635027303aed28098477d5b",
+      "spec.md": "92dcf9624c6caee876613a8a59aef62d011b7e7f405770d7a9c4403fbb365b8d",
       "plan.md": "277b48f442d0e3bd44b9510b4eb0be2d4546099aa900aaa3394f8b49a532241a",
-      "tasks.md": "ce04675d60a7f86483586edea63f0d41dad61d5744903a582edfa1b0a283fef0",
-      "implementation-summary.md": "a466c47697e67d6b63c2c05ca65ca1c0fd799d8d02a896cfc745358087869971"
+      "tasks.md": "b1c69b9b9c3c07ef9ce9147b9beb0374a16b6a33b9b16ce2798199f9ea6850b5",
+      "implementation-summary.md": "23f29b96dd48b90793e581f08f2cf5176244ee4405d5e0a8200ee6471bcc6667"
     },
     "last_active_child_id": null,
     "last_active_at": null

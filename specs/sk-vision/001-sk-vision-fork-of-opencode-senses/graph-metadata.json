@@ -25,7 +25,10 @@
       "sk-vision",
       "opencode senses fork",
       "local vision skill",
-      "pi vision adapter"
+      "pi vision adapter",
+      "sk-vision handover",
+      "sk-vision resume",
+      "sk-vision session handover"
     ],
     "key_topics": [
       "sk-vision",
@@ -36,10 +39,10 @@
       "vision",
       "skill",
       "adapter",
-      "text-only",
-      "coding",
-      "models",
-      "cannot"
+      "handover",
+      "resume",
+      "session",
+      "text-only"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -91,12 +94,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -119,21 +116,65 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover Document",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover Document Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "From Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "To Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Completed",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Text-only coding models in OpenCode and Pi cannot read screenshots, mockups, or error images",
     "created_at": "2026-08-15T15:38:25Z",
-    "last_save_at": "2026-08-16T09:13:29.407Z",
+    "last_save_at": "2026-08-16T10:25:36.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:d2692c2b4120a342a5220c9ba5e79be662b26aaf168e4eb8cacc979eca620566",
+    "source_fingerprint": "sha256:4fcfa36bb3c8704db0c743fdc9748e86208b9f2fc1fc1d37f04d976873630501",
     "source_doc_hashes": {
-      "spec.md": "e0ba4be974fe6c0bbc1d4d90de2a34d130a692da949b9f5eb25c06341f14fd05"
+      "spec.md": "368b63afa1768f025adf3139617084a9d4d851b2f0d2076dc78217f088b8c142",
+      "handover.md": "afd25fc7e3e414d52adb94152c4fc783d9ae1cabda977ca61946464f24e95841"
     },
-    "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment",
-    "last_active_at": null
+    "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate",
+    "last_active_at": "2026-08-16T12:30:00.000Z"
   }
 }

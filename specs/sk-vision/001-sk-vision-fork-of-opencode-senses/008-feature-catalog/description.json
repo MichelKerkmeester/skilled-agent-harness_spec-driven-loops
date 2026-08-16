@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog",
-  "description": "Canonical capability inventory for sk-vision: root catalog plus 16 per-feature files with source and validation anchors",
+  "description": "sk-vision ships 13 tools plus a runtime and two host adapters, but has no canonical current-state inventory. Reviewers, the 009 playbook, and the skill README all need one stable place that says what the skill does today, with source anchors for every claim.",
   "keywords": [
     "sk-vision",
     "feature",

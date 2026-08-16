@@ -398,6 +398,91 @@ export default function skVision(pi: ExtensionAPI): void {
     },
   });
 
+  // Bounded auto-inspect for attached images. A message that carries images
+  // gets a short analysis window so fast submitters still see real evidence,
+  // mirroring the OpenCode AttachmentInjector. The handler never blocks
+  // message submission and never raises: a timeout or analysis failure falls
+  // through to the untouched message, and extension-injected traffic is never
+  // analyzed so the hook cannot echo or amplify tool-driven input.
+  const inputEvidenceCache = new Map<string, string>();
+  const maxInputEvidenceEntries = 32;
+
+  async function inspectAttachedImages(
+    images: Array<{ data: string; mimeType: string }>,
+    ctx: ExtensionContext,
+  ): Promise<string | undefined> {
+    const blocks: string[] = [];
+    for (const img of images) {
+      // The data URL is the identity: identical image bytes reuse the same
+      // evidence instead of paying the GPU again.
+      const key = `${img.mimeType}:${img.data}`;
+      let evidence = inputEvidenceCache.get(key);
+      if (evidence === undefined) {
+        const pending = (async () => {
+          try {
+            const source = makeImageSource(undefined, img.data);
+            const p = provider(ctx);
+            const [cap, scene, ocr] = await Promise.all([
+              p.caption({ source }),
+              p.scene({ source }),
+              p.ocr({ source }),
+            ]);
+            return [
+              contextBuilder.renderScene(scene, { source: "inline-image" }),
+              contextBuilder.renderCaption(cap, { source: "inline-image" }),
+              contextBuilder.renderOCR(ocr, { source: "inline-image" }),
+            ].join("\n");
+          } catch {
+            return undefined;
+          }
+        })();
+        const ready = await Promise.race([
+          pending,
+          new Promise<undefined>((resolve) => setTimeout(() => resolve(undefined), 2_000)),
+        ]);
+        if (ready !== undefined) {
+          inputEvidenceCache.set(key, ready);
+          if (inputEvidenceCache.size > maxInputEvidenceEntries) {
+            const oldest = inputEvidenceCache.keys().next().value;
+            if (oldest !== undefined) inputEvidenceCache.delete(oldest);
+          }
+          evidence = ready;
+        } else {
+          // Let the in-flight analysis warm the cache for a follow-up message
+          // with the same image instead of re-running the model.
+          void pending.then((warmed) => {
+            if (warmed !== undefined) {
+              inputEvidenceCache.set(key, warmed);
+              if (inputEvidenceCache.size > maxInputEvidenceEntries) {
+                const oldest = inputEvidenceCache.keys().next().value;
+                if (oldest !== undefined) inputEvidenceCache.delete(oldest);
+              }
+            }
+          });
+        }
+      }
+      if (evidence) blocks.push(evidence);
+    }
+    return blocks.length > 0 ? blocks.join("\n") : undefined;
+  }
+
+  pi.on("input", async (event, ctx) => {
+    try {
+      if (event.source === "extension") return { action: "continue" as const };
+      if (event.streamingBehavior === "steer") return { action: "continue" as const };
+      const images = event.images ?? [];
+      if (images.length === 0) return { action: "continue" as const };
+      const evidence = await inspectAttachedImages(images, ctx);
+      if (!evidence) return { action: "continue" as const };
+      return {
+        action: "transform" as const,
+        text: `${event.text}\n\n<SK-VISION>\n${evidence}\n</SK-VISION>`,
+      };
+    } catch {
+      return { action: "continue" as const };
+    }
+  });
+
   pi.on("session_shutdown", async () => {
     await client.close();
   });

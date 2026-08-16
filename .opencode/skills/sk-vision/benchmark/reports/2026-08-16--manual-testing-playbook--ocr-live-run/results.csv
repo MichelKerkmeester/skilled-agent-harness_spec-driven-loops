@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+VSN-002,sk-vision,,routing,manual,,moondream2,ocr-live-run,,PASS,"load + ocr over NDJSON on fixture.png: result.type ocr, text 'ERROR' - the visible word is transcribed verbatim by moondream2 (the '42' glyph is not picked up at this font size)"

@@ -2,7 +2,7 @@
   "modes": [
     {
       "leaves": [
-        "references/.gitkeep"
+        "references/runtime-reference.md"
       ],
       "packet": ".",
       "workflowMode": "sk-vision"

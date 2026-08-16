@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-007-pi-input-images"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -62,14 +62,14 @@ Mirror the OpenCode `AttachmentInjector` for Pi: bounded 2s preload on attached 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met — evidence: REQ-001..REQ-006 + REQ-P1..REQ-P3 satisfied; see `implementation-summary.md`
-- [ ] Tests passing (if applicable) — evidence: rg proofs + `pi --offline --approve` + runtime regression
-- [ ] Docs updated (spec/plan/tasks) — evidence: closeout refresh
+- [x] All acceptance criteria met — evidence: REQ-001..REQ-006 + REQ-P1..REQ-P3 satisfied; see `implementation-summary.md`
+- [x] Tests passing (if applicable) — evidence: rg proofs + `pi --offline --approve` + runtime regression
+- [x] Docs updated (spec/plan/tasks) — evidence: closeout refresh
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -106,17 +106,17 @@ input(event.images) → cache hit? instant : race(analysis, 2s) → success: tra
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Read
-- [ ] Read attachments.ts injector + pi docs Input Events + input-transform examples
-- [ ] Read installed `InputEvent` type for `images` shape
+- [x] Read attachments.ts injector + pi docs Input Events + input-transform examples
+- [x] Read installed `InputEvent` type for `images` shape
 
 ### Phase 2: Implement
-- [ ] Add bounded input handler inside factory
-- [ ] Add bounded cache; try/catch → continue
+- [x] Add bounded input handler inside factory
+- [x] Add bounded cache; try/catch → continue
 
 ### Phase 3: Docs + verify
-- [ ] Update .pi/extensions/README.md (remove gap note)
-- [ ] rg proofs; bun regression; pi --offline --approve
-- [ ] validate.sh --strict on this child
+- [x] Update .pi/extensions/README.md (remove gap note)
+- [x] rg proofs; bun regression; pi --offline --approve
+- [x] validate.sh --strict on this child
 <!-- /ANCHOR:phases -->
 
 ---

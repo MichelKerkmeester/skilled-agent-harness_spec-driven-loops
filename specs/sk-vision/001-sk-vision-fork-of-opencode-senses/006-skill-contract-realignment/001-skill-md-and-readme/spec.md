@@ -49,14 +49,14 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 2 |
 | **Predecessor** | None |
 | **Successor** | 002-package-hygiene |
-| **Handoff Criteria** | SKILL.md is the real contract and passes `validate_document.py --type skill` (0 errors). README accurate. `references/runtime-reference.md` exists. Manifests regenerated. |
+| **Handoff Criteria** | SKILL.md is the real contract and passes `validate_document.py --type skill` (0 errors). README accurate. `references/runtime-reference.md` exists. Manifests regenerated. — SATISFIED 2026-08-16 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -179,12 +179,12 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- [ ] SKILL.md passes `validate_document.py --type skill` (0 errors) — record output
-- [ ] `package_skill.py --check` PASS — record output
-- [ ] `ci-skill-root-metadata.cjs` fleet gate OK for sk-vision — record output
-- [ ] `references/runtime-reference.md` present and listed in `leaf-manifest.json`
-- [ ] No stub language in SKILL.md or README (grep for `later children`, `leave empty`, `do not populate`)
-- [ ] This child `validate.sh --strict` exits 0
+- [x] SKILL.md passes `validate_document.py --type skill` (0 errors) — record output
+- [x] `package_skill.py --check` PASS — record output
+- [x] `ci-skill-root-metadata.cjs` fleet gate OK for sk-vision — record output
+- [x] `references/runtime-reference.md` present and listed in `leaf-manifest.json`
+- [x] No stub language in SKILL.md or README (grep for `later children`, `leave empty`, `do not populate`)
+- [x] This child `validate.sh --strict` exits 0 — evidence: all recorded in `implementation-summary.md` §Verification
 <!-- /ANCHOR:success-criteria -->
 
 ---

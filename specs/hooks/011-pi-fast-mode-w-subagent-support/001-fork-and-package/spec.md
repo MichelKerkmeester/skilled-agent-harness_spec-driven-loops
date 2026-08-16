@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package"
     last_updated_at: "2026-08-16T11:00:00Z"
     last_updated_by: "pi-coding-agent"
-    recent_action: "Identity/config compat (002) complete; tsc + 57 tests green"
-    next_safe_action: "Execute 003-package-baseline-gates next"
+    recent_action: "Fork-and-package workstream complete; fork built, tested, packaged"
+    next_safe_action: "Execute the 002-subagent-handoff workstream next"
     blockers: []
     key_files:
       - "../spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 67
+    completion_pct: 100
     open_questions:
       - "Which package location gives local and git installs the smallest operational surface?"
       - "Which one-time configuration compatibility policy should the implementation test?"
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -98,7 +98,7 @@ Establish a testable, raw-TypeScript package foundation that the handoff workstr
 |-------|--------|-------|--------|
 | 1 | `001-source-baseline/` | Establish the source snapshot, package location, and clean baseline boundary | complete |
 | 2 | `002-identity-config-compat/` | Apply package/config identity, compatibility policy, atomic writes, and request guards | complete |
-| 3 | `003-package-baseline-gates/` | Finalize Pi packaging, provenance, and typecheck/test/pack gates | draft |
+| 3 | `003-package-baseline-gates/` | Finalize Pi packaging, provenance, and typecheck/test/pack gates | complete |
 
 ### Phase Transition Rules
 

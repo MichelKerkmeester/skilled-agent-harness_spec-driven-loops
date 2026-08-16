@@ -85,15 +85,15 @@
     ],
     "causal_summary": "Pi loads extensions from `.pi/extensions/` via relative symlinks to owner trees",
     "created_at": "2026-08-15T16:32:20.893Z",
-    "last_save_at": "2026-08-16T08:37:45.223Z",
+    "last_save_at": "2026-08-16T09:14:43.287Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0e1b1d61ace6ee8e6f981b944715a0e33f9301c104d882cad852db4addb904ec",
+    "source_fingerprint": "sha256:a58114113cb7c5a5470f244de6d75a3ade7e4e8b049d631dc67c4efd3a99c51f",
     "source_doc_hashes": {
-      "spec.md": "16ea4586c875247a04b504ab0a37c0a56e4b7026d85f18a466abc7207cfe28d1"
+      "spec.md": "4672dbd50e33d01b1566af2f24e084d2c3350560ad1c0055acff6d9efa1ecccd"
     },
     "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/002-symlink-and-dry-factory",
     "last_active_at": null

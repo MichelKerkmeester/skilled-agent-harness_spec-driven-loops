@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses"
     last_updated_at: "2026-08-16T08:35:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Amended for 006-010 realignment phases."
-    next_safe_action: "Implement 006-001 next."
+    recent_action: "006-010 amendment complete; all gates green."
+    next_safe_action: "Commit when the operator asks (nothing committed yet)."
     blockers: []
     key_files:
       - "spec.md"
@@ -33,13 +33,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-parent-20260815"
       parent_session_id: null
-    completion_pct: 70
-    open_questions:
-      - "Should the fork publish to npm at all? 006-002 neutralizes publishConfig unless the operator says otherwise."
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "001-research is a one-shot Level 3 research child, not a deep-research loop."
       - "The parent stays a lean trio; context/ remains the upstream dump."
       - "002-005 are phase parents; nested L1 children hold implementer copy packs."
+      - "006-010 close the standards drift; no npm publishing (publishConfig removed)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -64,14 +64,14 @@ _memory:
 |-------|-------|
 | **Level** | Phase parent |
 | **Priority** | P0 |
-| **Status** | In Progress (amended 2026-08-16) |
+| **Status** | Complete |
 | **Created** | 2026-08-15 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None |
 | **Parent Packet** | `sk-vision` |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | `001-research` Complete. Nested children under `002-005` Complete (shipped, but skill docs drifted from sk-create-skill standards). `006-010` close the drift: real SKILL.md contract, package hygiene, Pi `input.images`, feature catalog, manual testing playbook, and a final quality gate. Next: implement `006-skill-contract-realignment/001-skill-md-and-readme`; commit only when the operator asks. |
+| **Handoff Criteria** | `001-research` Complete. Nested children under `002-005` Complete. `006-010` amendment Complete: real SKILL.md contract, package hygiene, Pi `input.images`, feature catalog, manual testing playbook, and a green quality gate. Next: commit when the operator asks. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -186,11 +186,11 @@ Summary of aggregate file scope. Per-phase detail lives in the Phase Documentati
 | 3 | `003-runtime-fork/` | Rebranded v0.2.0 JSON-RPC core (nested L1 children) | Phase parent | Complete |
 | 4 | `004-opencode-adapter/` | Repo plugin load path (nested L1 children) | Phase parent | Complete |
 | 5 | `005-pi-adapter/` | Pi `registerTool` extension (nested L1 children) | Phase parent | Complete |
-| 6 | `006-skill-contract-realignment/` | SKILL.md contract + README + references + package hygiene (nested L1 children) | Phase parent | Planned |
-| 7 | `007-pi-input-images/` | Bounded `input.images` auto-inspect for Pi parity | 2 | Planned |
-| 8 | `008-feature-catalog/` | Canonical feature catalog package | 2 | Planned |
-| 9 | `009-manual-testing-playbook/` | Operator scenario corpus + benchmark scaffold | 2 | Planned |
-| 10 | `010-quality-gate/` | Full conformance proof + metadata reconciliation | 2 | Planned |
+| 6 | `006-skill-contract-realignment/` | SKILL.md contract + README + references + package hygiene (nested L1 children) | Phase parent | Complete |
+| 7 | `007-pi-input-images/` | Bounded `input.images` auto-inspect for Pi parity | 2 | Complete |
+| 8 | `008-feature-catalog/` | Canonical feature catalog package | 2 | Complete |
+| 9 | `009-manual-testing-playbook/` | Operator scenario corpus + benchmark scaffold | 2 | Complete |
+| 10 | `010-quality-gate/` | Full conformance proof + metadata reconciliation | 2 | Complete |
 
 **Nested children (implementer surface):**
 - **002:** `001-skill-md/`, `002-metadata-and-manifests/` — Level 1
@@ -339,9 +339,7 @@ Purpose: lock housing, fork baseline, and host adapters. Deliverables are on dis
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Should the fork ever publish to npm? Default: no — 006-002 removes `publishConfig` and the `publish:npm` script. Operator can override in 006-002.
-- Real-image tool proof (ocr/inspect on a fixture) is deferred to 009's optional live execution; the GPU smoke already proved `load`+`status` on MPS.
-- Whether `references/` should grow beyond `runtime-reference.md` stays open until 006-001 delivers and real usage shows a need.
+- None. All 006-010 open questions resolved at closeout: no npm publishing (publishConfig removed in 006-002), real-image proof recorded via 009's live runs (status + ocr reports in `benchmark/reports/`), and `references/` ships `runtime-reference.md`.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -35,7 +35,7 @@
       "phases"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "implementation-summary.md",
@@ -177,7 +177,7 @@
         "source": "derived"
       },
       {
-        "name": "generate-context.js",
+        "name": "INSUFFICIENT_CONTEXT_ABORT",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Six phases of work (001-005 shipped, 006-009 amended) need one authoritative proof that the skill is aligned with sk-create-skill standards and the packet is coherent",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-16T09:13:31.101Z",
+    "last_save_at": "2026-08-16T10:19:34.764Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e49468600ae56e68a8a3e831dbe9d76fe6b63a612b4a6e4375637559a40e94e",
+    "source_fingerprint": "sha256:0393d0de661f82d3a5ddba2b89cb54c0e96f5ac700238c636d429fcefa7dae4e",
     "source_doc_hashes": {
-      "spec.md": "966bd487b3858bc6c20067b2ab194e461d179ef8ede32c4794744a7394d55303",
+      "spec.md": "187ba14e71923e0e70aa2776a20f466f1c0edf864bce4e36a1d2ceceb6d520ee",
       "plan.md": "c6160e22d607e291fb8f0c09ee528b31d7787e1bb235a8bb03dd5ad9ba7b3afc",
-      "tasks.md": "a696a37d82c91c7ec58cbea9118e75a3da1e4b4efdf151e75d0d4b4ed4467ced",
-      "checklist.md": "7a1de29c39ed45886da1a4d2b077efbdf2f124384cb90360da7d560726c16f35",
-      "implementation-summary.md": "486bd4b792529b381f98411724a1fc0bc34139ed1b3980d2aef7f83b5b7b96e3"
+      "tasks.md": "a62d3aa177d0223129c4a786933fd2bd05d5be8d71349533dbc801649667e00f",
+      "checklist.md": "7d287f9cf549a8617e20058f33540e6971514de413b16ff79a9516cbcbcb078e",
+      "implementation-summary.md": "08f9cb1d1f2e244576d03c7a247ea7feeb74ed5aad7f38dd2d5d1d5602527351"
     },
     "last_active_child_id": null,
     "last_active_at": null

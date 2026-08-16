@@ -1,0 +1,2 @@
+{"id": 1, "result": {"loaded": true}, "_ms": 7781}
+{"id": 2, "result": {"model_loaded": true, "model_id": "moondream2", "device": "mps", "gpu": {}, "capabilities": {"query": true, "point": true, "detect": true, "caption": true, "segment": true, "chat": true}, "initialized_ms": 7782, "request_count": 0, "last_inference_ms": null, "uptime_s": 7}, "_ms": 0}

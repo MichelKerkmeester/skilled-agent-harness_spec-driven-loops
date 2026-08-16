@@ -1,4 +1,4 @@
-# pi-openai-fast-mode
+# pi-fast-mode-w-subagent-support
 
 Pi package that adds a Fast Mode toggle for GPT-5.6, GPT-5.5, and GPT-5.4.
 
@@ -12,14 +12,14 @@ Pi package that adds a Fast Mode toggle for GPT-5.6, GPT-5.5, and GPT-5.4.
 - Shows a compact right-aligned TUI `fast` indicator only when enabled and the current model is configured.
 - Persists state in user or project scope depending on how the package is loaded.
 
-> View on the [Pi Package Registry](https://pi.dev/packages/pi-openai-fast-mode)
+> View on the [Pi Package Registry](https://pi.dev/packages/pi-fast-mode-w-subagent-support)
 
 ## Install
 
 ```bash
-pi install npm:pi-openai-fast-mode
+pi install npm:pi-fast-mode-w-subagent-support
 # or project-local
-pi install -l npm:pi-openai-fast-mode
+pi install -l npm:pi-fast-mode-w-subagent-support
 ```
 
 For local development:
@@ -91,8 +91,12 @@ Fast Mode starts disabled and only applies to exact configured provider/model pa
 }
 ```
 
-User-scoped state is stored under `~/.pi/agent/extensions/pi-openai-fast-mode/config.json`.
-Project-scoped state is stored under `./.pi/pi-openai-fast-mode/config.json`.
+User-scoped state is stored under `~/.pi/agent/extensions/pi-fast-mode-w-subagent-support/config.json`.
+Project-scoped state is stored under `./.pi/pi-fast-mode-w-subagent-support/config.json`.
+
+## Provenance
+
+Fork of [`pi-openai-fast-mode`](https://github.com/johncmunson/pi-openai-fast-mode) pinned at commit `9b28456` (v0.3.0). MIT-licensed; the original copyright is retained in `LICENSE`. This fork renames the package and is the base for adding fast-mode subagent handoff support.
 
 ## Development
 

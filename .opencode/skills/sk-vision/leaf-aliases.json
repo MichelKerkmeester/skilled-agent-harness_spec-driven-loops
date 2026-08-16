@@ -1,7 +1,7 @@
 [
   {
     "workflowMode": "sk-vision",
-    "leafResourceId": "references/.gitkeep",
-    "diskPath": "references/.gitkeep"
+    "leafResourceId": "references/runtime-reference.md",
+    "diskPath": "references/runtime-reference.md"
   }
 ]

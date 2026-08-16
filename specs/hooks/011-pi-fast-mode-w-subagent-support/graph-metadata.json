@@ -35,7 +35,7 @@
       "installed-environment"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "research/research.md",
       "context/README.md",
@@ -202,16 +202,16 @@
     ],
     "causal_summary": "The fast-mode engine, child-process handoff, and installed-environment proof span separate ownership boundaries",
     "created_at": "2026-08-16T07:07:46Z",
-    "last_save_at": "2026-08-16T09:38:43.945Z",
+    "last_save_at": "2026-08-16T12:33:34.738Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:976acf00afa4ca1c13bbf4f7bd46f51954d0533d519b654a175e249ff6557535",
+    "source_fingerprint": "sha256:10ebc71694c7c28213c7172b7968bfb62c0e458ab4f48e40f2592a0ec4f19c15",
     "source_doc_hashes": {
-      "spec.md": "0e7308fc605e30c04adec42daf94bfad51c8192e4f3e40c0d9fe87aa3ef65141",
+      "spec.md": "74521b6669c4576685df6b35236f4211373535c97fd1fbe3e884af1be744cef7",
       "research/research.md": "9246c19056271d8a034918e1ef5436cf60a21cb97f749c8b64191548dab47beb"
     },
     "last_active_child_id": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests",

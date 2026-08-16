@@ -35,7 +35,7 @@
       "get"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "implementation-summary.md",
@@ -81,12 +81,6 @@
         "source": "derived"
       },
       {
-        "name": "Implement File",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -106,6 +100,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -177,7 +177,7 @@
         "source": "derived"
       },
       {
-        "name": "blocker",
+        "name": "oldest-eviction",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "OpenCode users get automatic sk-vision evidence when they attach an image (the plugin's `AttachmentInjector` preloads analysis with a 2s grace and injects a `<SK-VISION>` block)",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-16T09:13:23.168Z",
+    "last_save_at": "2026-08-16T09:44:34.516Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87d113162bc7180f452d1d191140367aea224de3712420d6c5407e519a91d13e",
+    "source_fingerprint": "sha256:83cb8a584dc7bf62f25f57dc7ab57839f7b0b31d35478aaf11acf481de3bdf14",
     "source_doc_hashes": {
-      "spec.md": "cb0d736292ccfcb969080e0e1cc804bab1034454ad1a54708c7294434c2d6779",
-      "plan.md": "c2db2357be91fbded6e1405310188aadba8fc79624356e8b24d0b4610b630583",
-      "tasks.md": "e464960b2c357b11768584ffd65685f0996e6e00512846f0033d5119232c136b",
-      "checklist.md": "002edfe7b9a0320991ea897cc566012d4324cb81a93702e6d71b979aaf364c17",
-      "implementation-summary.md": "012e2f7abfdc386c098ca6afb514fecff1336209d49d06806afc0e446259df9a"
+      "spec.md": "575f20d8126fac182a3a042c71ca18a3e735baa32aab854a60df5ff2a4952e92",
+      "plan.md": "ee58cc335ded66ed983c3a4fc8a503c874a98ab07f47fb3f218a9f4717fd5fdb",
+      "tasks.md": "38e4cab6a735870a4f7fd27dea4df8c019fc58c30b52f8479e0dbb9b05fca0b0",
+      "checklist.md": "54624c83c7c36ec6531dca5bd94c845c80e5317d41a5656090b180603d606248",
+      "implementation-summary.md": "4daa2d9001bfdd2f1de4f93a52d47180f9297bb3cc4f3fde6d086737260e09b9"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -35,15 +35,21 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
+      "checklist.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -57,21 +63,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "A correct source tree is not enough for Pi to load or discover the extension",
     "created_at": "2026-08-16T09:08:04Z",
-    "last_save_at": "2026-08-16T10:33:10.242Z",
+    "last_save_at": "2026-08-16T12:34:21.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:56eb85ccad48d41366d5f073f653df27edd89927494bc587609da325db8f2d4c",
+    "source_fingerprint": "sha256:f8bc18cf496a4693a793c1934c3d84a8f703aad30390c78dd0a25e1e5208876e",
     "source_doc_hashes": {
-      "spec.md": "8c191abe9cc1b8afaaf856c4b7c02ee75c37ad5a1d79572fc788038cc458b51f",
-      "plan.md": "7c974523c29620c30095f22aa25939e975641e6ac9be0fb0ac63eec413149e97",
-      "tasks.md": "71b39fc8485327e11a418778366997b1da5e6e295724a300318690a2e2575061",
-      "checklist.md": "4654318dda4bc8211d22fb252fef8c0dd73e060db21f9b4d78eb5e49634691e5",
-      "implementation-summary.md": "f5e7ccd3721aa58f3a025df00999ba22e2dac8743a17a89aef95b847d5e8c260"
+      "spec.md": "d471df6ea766b398ceb3b412f3a7a954409163e9617a0eb8debd282ac25647bc",
+      "plan.md": "092c19fba9fe0d13c326797bc1fdf1d61b19b4affd2dea4057b0919bb56ba3cd",
+      "tasks.md": "7ccc624d5d8e0a78ebb56541756b593f64b4c09ff29625dcb46b4ba8df704fdd",
+      "checklist.md": "be2bcde7cb4cc62b020bee2a09a7d2e08786c00b4b421410398c83bf1e3e133e",
+      "implementation-summary.md": "c42ba8783810dcfd255b41b1d707d18ed167cd8986404784e9dcf97c2476070c"
     },
     "last_active_child_id": null,
     "last_active_at": null
