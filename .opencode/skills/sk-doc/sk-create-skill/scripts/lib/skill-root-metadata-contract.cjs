@@ -50,6 +50,7 @@ const METADATA_FILES = Object.freeze([
   'leaf-manifest.config.json',
   'mode-registry.json',
   'hub-router.json',
+  'ROUTER.md',
   'command-metadata.json',
 ]);
 
@@ -76,6 +77,7 @@ const REQUIRED_BY_CLASS = Object.freeze({
     'description.json',
     'mode-registry.json',
     'hub-router.json',
+    'ROUTER.md',
     'leaf-manifest.json',
   ]),
   [CLASS_STANDALONE]: Object.freeze([
