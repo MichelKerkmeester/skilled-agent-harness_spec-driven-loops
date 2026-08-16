@@ -31,3 +31,17 @@ This phase-parent migrates the skill-benchmark variant's scenario runs and scori
 | `005-resume-adapter` | Plan the Skill Benchmark resume adapter that rebuilds scenario-cell, skill-exposure, trajectory, and scoring state through reducers with idempotent re-entry. |
 | `006-shadow-parity` | Plan the Skill Benchmark shadow-parity harness for paired skill scenarios and scoring that blocks authority movement until parity is green. |
 | `007-rollback-and-mode-gate` | Plan the Skill Benchmark mode's rollback switch and independent mode gate with fail-closed authority-cutover controls and a bounded rollback window. |
+
+## 2026-08-16
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark` (Level 2)
+
+### Summary
+
+The Skill Benchmark migration lane is now Complete, with all seven concern children at Complete. Sealed artifacts verified green at 13/13, certificates at 20/20, and the resume adapter at 22/22. Shadow parity is green at 20/20 with stale documented counts corrected (17 to 20, and 223 to 80), and the rollback gate is green at 80/80. The variant runs on the shared typed event-ledger substrate, additive-dark.
+
+### What Changed
+
+- All 7 leaves Complete.
+- Sealed-artifacts verified green at 13/13; certificates-and-receipts at 20/20; resume-adapter at 22/22.
+- Shadow-parity at 20/20 (stale documented counts corrected 17->20 and 223->80); rollback-gate at 80/80.

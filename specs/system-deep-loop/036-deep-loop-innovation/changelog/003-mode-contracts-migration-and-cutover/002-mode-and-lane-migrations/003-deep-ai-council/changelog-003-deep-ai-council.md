@@ -31,3 +31,17 @@ This phase-parent migrates the multi-seat Deep AI Council deliberation onto the 
 | `005-resume-adapter` | Plan the Deep AI Council resume adapter that reconstructs interrupted multi-seat deliberations from the sealed ledger through deterministic reducers with idempotent re-entry. |
 | `006-shadow-parity` | Run the typed event-ledger path beside the legacy council emitter against the same frozen execution and compare canonical behavior projections event-for-event. |
 | `007-rollback-and-mode-gate` | Implement the additive-dark rollback switch and independent mode gate for the Deep AI Council migration to the typed event-ledger substrate. |
+
+## 2026-08-16
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council` (Level 2)
+
+### Summary
+
+The Deep AI Council migration lane is now Complete, with all seven concern children at Complete. Certificates and receipts verified green at 16/16, the resume adapter at 10/10, shadow parity at 41/41, and the rollback gate at 32/32. The migration stays additive-dark on the shared typed event-ledger substrate.
+
+### What Changed
+
+- All 7 leaves Complete.
+- Certificates-and-receipts verified green at 16/16; resume-adapter at 10/10.
+- Shadow-parity at 41/41; rollback-gate at 32/32.

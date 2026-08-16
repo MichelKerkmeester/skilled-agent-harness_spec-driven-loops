@@ -32,3 +32,4 @@ The 036 epic implements the 178 research recommendations from packets 065/001 an
 | `006-runtime-docs-and-integrity-hardening` — Runtime Docs and Integrity Hardening | 11 | 12 | [`changelog-006-…`](./006-runtime-docs-and-integrity-hardening/changelog-006-runtime-docs-and-integrity-hardening.md) |
 | `007-executor-and-cli-hardening` — Executor and CLI Hardening | 7 | 24 | [`changelog-007-…`](./007-executor-and-cli-hardening/changelog-007-executor-and-cli-hardening.md) |
 | `008-review-and-rollback-followup` — Review and Rollback Follow-up | 4 | 5 | [`changelog-008-…`](./008-review-and-rollback-followup/changelog-008-review-and-rollback-followup.md) |
+| `009-innovation-gap-remediation` — Innovation Gap Remediation | 5 | 6 | [`changelog-009-…`](./009-innovation-gap-remediation/changelog-009-innovation-gap-remediation.md) |
