@@ -3,7 +3,10 @@
   "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter",
   "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter",
   "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
-  "children_ids": [],
+  "children_ids": [
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/001-plugin-reexport",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -12,67 +15,35 @@
   "derived": {
     "trigger_phrases": [
       "sk-vision opencode adapter",
-      "sk-vision opencode plugin",
-      "sk-vision auto inspect",
-      "sk-vision image attach",
-      "sk-vision opencode plan",
-      "sk-vision plugin plan",
-      "sk-vision opencode tasks",
-      "sk-vision opencode checklist",
-      "sk-vision opencode summary"
+      "sk-vision plugin",
+      "sk-vision.js"
     ],
     "key_topics": [
       "sk-vision",
       "opencode",
       "adapter",
       "plugin",
-      "auto",
-      "inspect",
-      "image",
-      "attach",
-      "plan",
-      "tasks",
-      "checklist",
-      "summary"
+      "discovers",
+      "plugins",
+      "real",
+      "files",
+      "feature",
+      "specification",
+      "phase",
+      "parent"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "001-plugin-reexport/spec.md",
+      "002-readme-and-proof/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -83,6 +54,12 @@
       },
       {
         "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -104,113 +81,21 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Plugin Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Create",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Command",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Plugin Real",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Checklist Before",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Rules",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Reporting Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "OpenCode discovers plugins from `.opencode/plugins/.js`, not from a repo-root `opencode.json` `plugin` array",
+    "causal_summary": "OpenCode discovers plugins as real files under `.opencode/plugins/`",
     "created_at": "2026-08-15T16:31:07.271Z",
-    "last_save_at": "2026-08-16T06:56:13.412Z",
+    "last_save_at": "2026-08-16T07:30:56.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:d439cafb9e61370027c5b9341a723864a42c8131855c324ee1756c70991c573c",
+    "source_fingerprint": "sha256:9a5b21810eac4caacedc0f13144a7e91266da6c83244d25e444b9ebe3ffb4a28",
     "source_doc_hashes": {
-      "spec.md": "90d6c9bd4137fd845f890c2bf87e406ec0adb468696e05c1fcbbc09d0e2245d4",
-      "plan.md": "3f5abba8261494b23d3397b1bced83779092c49c565dec7f989a14a858ddd361",
-      "tasks.md": "8fc1757e5cc5c3e0edd30f985d39d8a8069626ddf248c6ba9675c54ae9424354",
-      "checklist.md": "10530b12c57290a5a7e9efa0dbb3697909e71ad8950817c4806964854120fa3c",
-      "implementation-summary.md": "e5a96a08b3667ba6fb5a71e602d538c4984132aaaac9094de16a6e85817b63cf"
+      "spec.md": "f71add2ced89a9a1e67868e96b0d55fa24bb848ea4ce560937cac2ad092bc0f7"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof",
     "last_active_at": null
   }
 }

@@ -3,7 +3,12 @@
   "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork",
   "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork",
   "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
-  "children_ids": [],
+  "children_ids": [
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/001-copy-shipped-files",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/002-rebrand-identifiers",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/003-build-and-tests",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/004-gpu-smoke"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -12,40 +17,31 @@
   "derived": {
     "trigger_phrases": [
       "sk-vision runtime fork",
-      "sk-vision senses fork",
-      "sk-vision rebrand",
-      "sk-vision vision runtime",
-      "sk-vision runtime plan",
-      "sk-vision fork plan",
-      "sk-vision runtime tasks",
-      "sk-vision runtime checklist",
-      "sk-vision runtime adr",
-      "sk-vision fork decision",
-      "sk-vision runtime summary"
+      "sk-vision vision-runtime",
+      "sk-vision rebrand"
     ],
     "key_topics": [
       "sk-vision",
       "runtime",
       "fork",
-      "senses",
+      "vision-runtime",
       "rebrand",
-      "vision",
-      "plan",
-      "tasks",
-      "checklist",
-      "adr",
-      "decision",
-      "summary"
+      "skill",
+      "root",
+      "importable",
+      "json-rpc",
+      "core",
+      "feature",
+      "specification"
     ],
-    "importance_tier": "critical",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "decision-record.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "001-copy-shipped-files/spec.md",
+      "002-rebrand-identifiers/spec.md",
+      "003-build-and-tests/spec.md",
+      "004-gpu-smoke/spec.md"
     ],
     "entities": [
       {
@@ -55,61 +51,7 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Keep Adarsh Gourab Mahalik",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Empty Class",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,101 +63,43 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Parent Packet",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Subprocess Core",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Overview Copy",
+        "name": "Purpose Place",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Host",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Checklist Before",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Rules",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Reporting Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The dump at `../context/` still speaks `SENSES`, `~/.cache/opencode-senses`, `<SENSES>`, and `senses` tools",
+    "causal_summary": "The skill root has no importable JSON-RPC core",
     "created_at": "2026-08-15T16:28:28.616Z",
-    "last_save_at": "2026-08-16T06:56:13.213Z",
+    "last_save_at": "2026-08-16T07:30:55.709Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:7c000ea08c6ba52f220bc5a25330ab8943158810caa234affb86c380e04f8059",
+    "source_fingerprint": "sha256:34722176b6989c15725526449cb4101c7b1d868cf90f6526d6fb29a53007656b",
     "source_doc_hashes": {
-      "spec.md": "810d245cb462cb0d2f73f67e610973a2b26b140afd90f71dd35fd3ce244247c1",
-      "plan.md": "ed55104b8055d8d7be0d2740ecff00403d9f042f7b5aeeddb377fa5841f75605",
-      "tasks.md": "bc5eae5215a53d35e9ac81a3aa4e6cccad3fe60fdaf3a4cfaccd898f3f8d83af",
-      "checklist.md": "10a6c78606acb33dee3cb496841795aed64b78bcf8b36a2f4f0384cd57067b67",
-      "decision-record.md": "21ebf92813ae1819950b4a6f92cadc8305d8f27a06f61bc67b2057a95385ef7f",
-      "implementation-summary.md": "31b17df8eb2ef3c0a6be167f73092ec5ffb08cc32a955c9737d3e97cb652e088"
+      "spec.md": "a0977dc913a3d560b5cb5e0ec62b2d66ea529cad6ca393195e882a3d4e68f289"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/004-gpu-smoke",
     "last_active_at": null
   }
 }

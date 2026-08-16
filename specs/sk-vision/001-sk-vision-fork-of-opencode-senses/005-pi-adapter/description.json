@@ -1,18 +1,17 @@
 {
-  "level": "2",
+  "level": "phase",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter",
-  "description": "Pi loads `.ts` from `.pi/extensions/` and fail-closes the whole session if the default export is invalid",
+  "description": "Pi loads extensions from `.pi/extensions/` via relative symlinks to owner trees",
   "keywords": [
     "loads",
     "extensions",
-    "fail-closes",
-    "whole",
-    "session",
-    "default",
-    "export",
-    "invalid"
+    "via",
+    "relative",
+    "symlinks",
+    "owner",
+    "trees"
   ],
-  "lastUpdated": "2026-08-16T06:56:14.393Z",
+  "lastUpdated": "2026-08-16T07:27:19.737Z",
   "specId": "005",
   "folderSlug": "pi-adapter",
   "parentChain": [

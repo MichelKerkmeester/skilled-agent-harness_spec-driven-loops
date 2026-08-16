@@ -1,60 +1,62 @@
 ---
-title: "Feature Specification: sk-vision 005 pi adapter"
-description: "Author ExtensionFactory at .opencode/skills/sk-vision/pi/sk-vision.ts, relative-symlink it into .pi/extensions/, register 13 sk_vision_* tools, and optionally bound pi.on(input) image handling."
+title: "Feature Specification: sk-vision 005 Pi adapter"
+description: "Phase parent for the Pi extension: function default-export factory, then relative symlink and dry factory."
 trigger_phrases:
   - "sk-vision pi adapter"
+  - "sk-vision registerTool"
   - "sk-vision pi extension"
-  - "sk-vision pi registerTool"
-  - "pi vision tools"
 importance_tier: "important"
-contextType: "specification"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter"
-    last_updated_at: "2026-08-16T07:10:00.000Z"
+    last_updated_at: "2026-08-16T07:45:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Added Pi factory skeleton, symlink, and fail-closed rules."
-    next_safe_action: "Author pi/sk-vision.ts and relative symlink after 003 core exists."
+    recent_action: "Rewrote 005-pi-adapter as lean phase parent over nested children."
+    next_safe_action: "Wait for 004-opencode-adapter to close, then implement 001-extension-factory."
     blockers: []
     key_files:
       - "spec.md"
-      - "plan.md"
-      - ".opencode/skills/sk-vision/pi/sk-vision.ts"
-      - ".pi/extensions/sk-vision.ts"
-      - ".pi/extensions/README.md"
-      - ".pi/extensions/git-preflight-advisory.ts"
+      - "001-extension-factory/spec.md"
+      - "002-symlink-and-dry-factory/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "sk-vision-005-pi-20260815"
+      session_id: "sk-vision-005-pi-adapter-parent-20260816"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
-    answered_questions:
-      - "Skill owns the source file; .pi/extensions/ holds a relative symlink."
-      - "Primary path is pi.registerTool, not MCP or bash JSON-RPC."
+    answered_questions: []
 ---
-# Feature Specification: sk-vision 005 pi adapter
-
-<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
 
----
+# Feature Specification: sk-vision 005 Pi adapter
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 2 |
+| **Level** | Phase parent |
 | **Priority** | P0 |
 | **Status** | Planned |
-| **Created** | 2026-08-15 |
+| **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 5 of 5 |
-| **Predecessor** | `003-runtime-fork` (code). `004-opencode-adapter` is not a code dependency; run 005 after 004 so tool names and evidence tags stay aligned. |
-| **Successor** | None. Parent epic is then ready for operator use on both hosts. |
-| **Handoff Criteria** | `pi --offline --approve` starts without extension fail-closed. Model sees `sk_vision_*` tools. Relative symlink resolves. Optional `input.images` hook is bounded or the gap is recorded. |
+| **Parent Packet** | `sk-vision/001-sk-vision-fork-of-opencode-senses` |
+| **Predecessor** | 004-opencode-adapter |
+| **Successor** | None |
+| **Handoff Criteria** | Nested children Complete. Owner factory is a function. Relative symlink matches the locked target. pi --offline --approve starts without fail-closed. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -63,10 +65,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Pi loads `*.ts` from `.pi/extensions/` and fail-closes the whole session if the default export is invalid. MCP wrappers and bash JSON-RPC are fallbacks, not the native path. Without an `ExtensionFactory` that calls `pi.registerTool`, Pi models only see read/bash/edit/write/grep/find/ls.
+Pi loads extensions from `.pi/extensions/` via relative symlinks to owner trees. There is no sk-vision factory yet.
 
 ### Purpose
-Give Pi the same local vision tools as OpenCode through `ExtensionAPI.registerTool`, using the 003 RuntimeClient, with a relative symlink that matches every other extension in this repo.
+Author `.opencode/skills/sk-vision/pi/sk-vision.ts` and link it the same way `git-preflight-advisory.ts` is linked.
+
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -75,176 +79,65 @@ Give Pi the same local vision tools as OpenCode through `ExtensionAPI.registerTo
 ## 3. SCOPE
 
 ### In Scope
-- Author `.opencode/skills/sk-vision/pi/sk-vision.ts` as an `ExtensionFactory` default export.
-- Create relative symlink `.pi/extensions/sk-vision.ts` → `../../.opencode/skills/sk-vision/pi/sk-vision.ts`. Analog: `git-preflight-advisory.ts` → `../../.opencode/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts`. `.pi/SYNC.md` already describes this pattern; do not invent a new sync mechanism.
-- Add a row to `.pi/extensions/README.md`.
-- Register the same 13 `sk_vision_*` tools as 003/004. Each tool calls PhotonProvider / RuntimeClient. No extra subprocess wrapper.
-- Optional P1 auto-inspect: `pi.on("input")` when `InputEvent.images` is present. Confirmed Pi 0.84.2 shape: `images?: ImageContent[]` with `{type, data, mimeType}`. Mirror the 2s grace. Never block the full GPU run. If live image paste is unproven, record that gap and still close on tools.
-- Close the client on `session_shutdown` (inferred from Pi lifecycle; prove against 0.84.2 types or document the substitute event).
+- Nested child `001-extension-factory/`: function default export; 13 `pi.registerTool`; `client.close()`
+- Nested child `002-symlink-and-dry-factory/`: relative symlink; README; `pi --offline --approve`
 
 ### Out of Scope
-- MCP server, bash JSON-RPC, or SKILL.md-only as the **primary** adapter (those remain fallbacks only).
-- Changing core RPC or Python runtime.
-- npm publish.
-- Making 004 a compile-time dependency.
+- Absolute symlink or copied TS under `.pi/extensions/`
+- Object, class, or promise default export
+- MCP or bash JSON-RPC as the primary path
+- Inventing `sk_vision_query`
 
 ### Files to Change
+Summary of aggregate file scope. Per-phase detail lives in each child's spec.md.
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `.opencode/skills/sk-vision/pi/sk-vision.ts` | Create | Owner factory |
-| `.pi/extensions/sk-vision.ts` | Create | Relative symlink |
-| `.pi/extensions/README.md` | Modify | Inventory row |
-
-### Tool names (must match 003/004)
-
-`sk_vision_inspect`, `sk_vision_detect`, `sk_vision_point`, `sk_vision_ocr`, `sk_vision_status`, `sk_vision_segment`, `sk_vision_metadata`, `sk_vision_crop`, `sk_vision_zoom`, `sk_vision_colors`, `sk_vision_diff`, `sk_vision_annotate`, `sk_vision_reverse`.
-
-### Implementer copy pack (follow exactly)
-
-Stop and report if any of these is true: 003 has no RuntimeClient / PhotonProvider; you are about to put a real file in `.pi/extensions/` instead of a relative symlink; you are about to use an absolute symlink; you are about to make MCP or bash JSON-RPC the primary path; you are about to default-export an object, class instance, or promise instead of a function; you are about to invent `sk_vision_query`; you are treating 004 as a compile-time import.
-
-Analog symlink: `.pi/extensions/git-preflight-advisory.ts` → `../../.opencode/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts`. Analog default export: that file's `export default function gitPreflightAdvisory(pi: ExtensionAPI): void`. Confirmed: invalid default export fail-closes the whole Pi session.
-
-Pi types: `@earendil-works/pi-coding-agent` (and/or the cli-pi pin from 001-research). `registerTool` plus optional `InputEvent.images?: ImageContent[]` with `{type, data, mimeType}`.
-
-#### Step 1 — owner file
-
-Create `.opencode/skills/sk-vision/pi/sk-vision.ts`. Default export MUST be a function `ExtensionFactory`: `(pi: ExtensionAPI) => void`. Keep it tiny. Construct `RuntimeClient` + `PhotonProvider` from 003. Register all 13 tools. Close the client on `session_shutdown` (prove the event name against installed 0.84.2 types; if different, document the substitute).
-
-Skeleton (fill execute bodies from dump `context/src/opencode/tools.ts` via PhotonProvider; do not spawn a second Python wrapper):
-
-```typescript
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { RuntimeClient } from "../vision-runtime/src/runtime/client.ts";
-import { PhotonProvider } from "../vision-runtime/src/providers/photon.ts";
-
-export default function skVision(pi: ExtensionAPI): void {
-  const client = new RuntimeClient();
-  const provider = new PhotonProvider(client, { projectDir: pi.cwd ?? process.cwd() });
-
-  // Register each of the 13 names with pi.registerTool. Map:
-  // sk_vision_inspect  -> caption+scene+ocr, or query when question is set
-  // sk_vision_detect   -> provider.detect
-  // sk_vision_point    -> provider.point
-  // sk_vision_ocr      -> provider.ocr
-  // sk_vision_status   -> provider.health
-  // sk_vision_segment  -> provider.segment
-  // sk_vision_metadata -> provider.metadata
-  // sk_vision_crop     -> provider.crop
-  // sk_vision_zoom     -> provider.zoom
-  // sk_vision_colors   -> provider.colors
-  // sk_vision_diff     -> provider.diff
-  // sk_vision_annotate -> provider.annotate
-  // sk_vision_reverse  -> provider reverse / hashSearch
-  // Do not register sk_vision_query.
-
-  pi.on("session_shutdown", async () => {
-    await client.close();
-  });
-}
-```
-
-Adjust import paths if 003 emits only `dist/` (prefer the same modules 004 imports). `PhotonProvider` constructor args must match 003 after rebrand. If `pi.cwd` is not on 0.84.2 `ExtensionAPI`, use the documented context field from installed types.
-
-Fail-closed rules (any one of these fail-closes Pi — do not ship them):
-
-- missing default export
-- default export is not a function
-- thrown error during factory load (outside a tool execute try/catch)
-
-Tool execute may fail with `SK_VISION_ERROR`; that must not crash session start.
-
-#### Step 2 — relative symlink from `.pi/extensions/`
-
-```bash
-ln -s ../../.opencode/skills/sk-vision/pi/sk-vision.ts .pi/extensions/sk-vision.ts
-test -L .pi/extensions/sk-vision.ts
-test "$(readlink .pi/extensions/sk-vision.ts)" = "../../.opencode/skills/sk-vision/pi/sk-vision.ts"
-```
-
-Do not use `ln -s /absolute/...`. Do not copy the TypeScript file into `.pi/extensions/`.
-
-#### Step 3 — README rows
-
-`.pi/extensions/README.md` overview table: add `sk-vision.ts` | `.opencode/skills/sk-vision/pi/sk-vision.ts`. Directory tree: add `sk-vision.ts`. Optional KEY FILES row: `sk-vision.ts` | `registerTool` (13 `sk_vision_*`) plus optional `input` / `session_shutdown`.
-
-#### Step 4 — optional P1 `input.images`
-
-If implementing: `pi.on("input")` when `images` is present; bound wait 2000ms; never block send on full GPU. If live paste is unproven in this environment, record the gap in implementation-summary and still close on tools.
-
-#### Step 5 — dry factory
-
-```bash
-test -f .opencode/skills/sk-vision/pi/sk-vision.ts
-test -L .pi/extensions/sk-vision.ts
-readlink .pi/extensions/sk-vision.ts
-pi --offline --approve
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter --strict
-```
-
-`pi --offline --approve` must start without extension fail-closed. If 003 GPU SKIP, do not require live path-tool execute.
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `.opencode/skills/sk-vision/pi/sk-vision.ts` | Create | 001-extension-factory | Owner factory |
+| `.pi/extensions/sk-vision.ts` | Create | 002-symlink-and-dry-factory | Relative symlink |
+| `.pi/extensions/README.md` | Modify | 002-symlink-and-dry-factory | Inventory rows |
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-### Functional Requirements
-- **REQ-001**: Placement: owner file at `.opencode/skills/sk-vision/pi/sk-vision.ts`; `.pi/extensions/sk-vision.ts` is a relative symlink (`readlink` equals `../../.opencode/skills/sk-vision/pi/sk-vision.ts`).
-- **REQ-002**: Tools: `pi.registerTool` for all 13 `sk_vision_*` names. Model must see them, not only the built-in file tools.
-- **REQ-003**: Bridge: tools MUST call the 003 PhotonProvider / RuntimeClient. No bash JSON-RPC primary path.
-- **REQ-004**: Fail-closed safety: default export MUST be a valid `ExtensionFactory`. Invalid export fail-closes the Pi session (confirmed by cli-pi pin / 001-research).
-- **REQ-005**: Shutdown: register a lifecycle handler that calls `client.close()`, or document why the 0.84.2 API uses a different event name.
-- **REQ-006**: README: `.pi/extensions/README.md` MUST list `sk-vision.ts` and the owner path.
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
 
-### Non-Functional Requirements
-- **NFR-001**: Symlink is relative, not absolute.
-- **NFR-002**: Startup MUST NOT block on model `load`. Pre-warm is optional.
-- **NFR-003**: Path-tool execute is proven when GPU is present. If 003 SKIP, close on registration plus a dry factory test (`pi --offline --approve` starts).
-<!-- /ANCHOR:requirements -->
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-extension-factory/ | Function default-export factory | Planned |
+| 2 | 002-symlink-and-dry-factory/ | Relative symlink and dry factory | Planned |
 
----
+### Phase Transition Rules
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+- Do not implement from this parent spec. Open the next Planned child's `spec.md` copy pack.
 
-- [ ] `test -f .opencode/skills/sk-vision/pi/sk-vision.ts`
-- [ ] `test -L .pi/extensions/sk-vision.ts` and `readlink` is the relative owner path
-- [ ] README row exists
-- [ ] `pi --offline --approve` starts without extension fail-closed
-- [ ] Registered tool names match the 13-name list
-- [ ] Auto-inspect is implemented with a 2s bound, or the unproven-paste gap is recorded in implementation-summary
-- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter --strict` exits 0
-- [ ] Parent `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/001-sk-vision-fork-of-opencode-senses --recursive --strict` exits 0 after this child closes
-<!-- /ANCHOR:success-criteria -->
+### Phase Handoff Criteria
 
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Risk / Assumption | Impact | Mitigation |
-|-------------------|--------|------------|
-| Invalid default export | High | Fail-closes entire Pi session; keep factory tiny and typed |
-| Absolute symlink | High | Match `git-preflight-advisory.ts` relative form |
-| `input` handler blocks send | High | 2s grace; tools still work on paths if auto-inspect is skipped |
-| `session_shutdown` name drift | Medium | Prove against installed 0.84.2 types; document substitute |
-| GPU absent | Medium | Close on registration + dry factory; SKIP live execute |
-<!-- /ANCHOR:risks -->
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-extension-factory | 002-symlink-and-dry-factory | Owner file; function export; 13 tools | rg export default function |
+| 002-symlink-and-dry-factory | Parent remaining work | Relative symlink; pi dry-load | readlink; `pi --offline --approve` |
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 4. OPEN QUESTIONS
 
-### Answered Questions
-- **Q**: Real file or symlink in `.pi/extensions/`?
-  - **A**: Relative symlink to the skill owner file (ADR-001, ADR-003, `.pi/extensions/README.md`).
-- **Q**: MCP / bash as primary?
-  - **A**: No. `registerTool` is primary. MCP/bash/skill-only stay fallbacks inside this child, not a sixth phase.
-
-### Open Questions
-- Live image-paste auto-inspect on Pi may stay unproven in this environment. If so, record the gap and still close on tool registration.
+- None.
 <!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
+- **Parent Spec**: See `../spec.md`
+- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

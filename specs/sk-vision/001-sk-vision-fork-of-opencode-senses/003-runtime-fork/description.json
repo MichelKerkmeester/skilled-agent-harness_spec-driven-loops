@@ -1,18 +1,15 @@
 {
-  "level": "3",
+  "level": "phase",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork",
-  "description": "The dump at `../context/` still speaks `SENSES`, `~/.cache/opencode-senses`, `<SENSES>`, and `senses` tools",
+  "description": "The skill root has no importable JSON-RPC core",
   "keywords": [
-    "dump",
-    "context",
-    "still",
-    "speaks",
-    "senses",
-    "cache",
-    "opencode-senses",
-    "tools"
+    "skill",
+    "root",
+    "importable",
+    "json-rpc",
+    "core"
   ],
-  "lastUpdated": "2026-08-16T06:56:03.003Z",
+  "lastUpdated": "2026-08-16T07:27:19.737Z",
   "specId": "003",
   "folderSlug": "runtime-fork",
   "parentChain": [

@@ -1,17 +1,15 @@
 {
-  "level": "2",
+  "level": "phase",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter",
-  "description": "OpenCode discovers plugins from `.opencode/plugins/.js`, not from a repo-root `opencode.json` `plugin` array",
+  "description": "OpenCode discovers plugins as real files under `.opencode/plugins/`",
   "keywords": [
     "opencode",
     "discovers",
     "plugins",
-    "repo-root",
-    "json",
-    "plugin",
-    "array"
+    "real",
+    "files"
   ],
-  "lastUpdated": "2026-08-16T06:56:08.729Z",
+  "lastUpdated": "2026-08-16T07:27:19.737Z",
   "specId": "004",
   "folderSlug": "opencode-adapter",
   "parentChain": [

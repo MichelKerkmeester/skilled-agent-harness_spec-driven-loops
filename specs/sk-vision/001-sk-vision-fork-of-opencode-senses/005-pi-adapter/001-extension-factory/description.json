@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/001-extension-factory",
+  "description": "Pi has no owner-tree factory, so a later symlink would have nothing legal to load",
+  "keywords": [
+    "owner-tree",
+    "factory",
+    "later",
+    "symlink",
+    "nothing",
+    "legal",
+    "load"
+  ],
+  "lastUpdated": "2026-08-16T07:27:19.736Z",
+  "specId": "001",
+  "folderSlug": "extension-factory",
+  "parentChain": [
+    "sk-vision",
+    "001-sk-vision-fork-of-opencode-senses",
+    "005-pi-adapter"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,22 +1,19 @@
 {
-  "level": "2",
+  "level": "phase",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold",
-  "description": "Later children need a legal OpenCode skill root before they can drop a runtime package or host adapters",
+  "description": "Text-only models need a legal standalone skill root before any runtime copy",
   "keywords": [
-    "later",
-    "children",
+    "text-only",
+    "models",
     "need",
     "legal",
-    "opencode",
+    "standalone",
     "skill",
     "root",
-    "drop",
     "runtime",
-    "package",
-    "host",
-    "adapters"
+    "copy"
   ],
-  "lastUpdated": "2026-08-16T06:55:24.726Z",
+  "lastUpdated": "2026-08-16T07:27:19.736Z",
   "specId": "002",
   "folderSlug": "skill-scaffold",
   "parentChain": [

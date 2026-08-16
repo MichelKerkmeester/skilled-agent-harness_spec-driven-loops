@@ -41,14 +41,19 @@
     "key_files": [
       "spec.md",
       "001-research/spec.md",
-      "002-skill-scaffold/spec.md",
-      "003-runtime-fork/spec.md",
-      "004-opencode-adapter/spec.md",
-      "005-pi-adapter/spec.md",
+      "002-skill-scaffold/001-skill-md/spec.md",
+      "003-runtime-fork/001-copy-shipped-files/spec.md",
+      "004-opencode-adapter/001-plugin-reexport/spec.md",
+      "005-pi-adapter/001-extension-factory/spec.md",
       "context/README.md",
       "context/PLAN.md",
-      "context/opencode.json",
-      "context/src/plugin.ts"
+      "002-skill-scaffold/002-metadata-and-manifests/spec.md",
+      "003-runtime-fork/002-rebrand-identifiers/spec.md",
+      "003-runtime-fork/003-build-and-tests/spec.md",
+      "003-runtime-fork/004-gpu-smoke/spec.md",
+      "004-opencode-adapter/002-readme-and-proof/spec.md",
+      "005-pi-adapter/002-symlink-and-dry-factory/spec.md",
+      "context/opencode.json"
     ],
     "entities": [
       {
@@ -73,12 +78,6 @@
         "name": "opencode.json",
         "kind": "config",
         "path": "context/opencode.json",
-        "source": "derived"
-      },
-      {
-        "name": "plugin.ts",
-        "kind": "code",
-        "path": "context/src/plugin.ts",
         "source": "derived"
       },
       {
@@ -120,15 +119,15 @@
     ],
     "causal_summary": "Text-only coding models in OpenCode and Pi cannot read screenshots, mockups, or error images",
     "created_at": "2026-08-15T15:38:25Z",
-    "last_save_at": "2026-08-16T06:56:12.752Z",
+    "last_save_at": "2026-08-16T07:30:54.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bb7956be5566a8023c4aa287d5320afbea884584a45afe185887c8d4035d33d1",
+    "source_fingerprint": "sha256:39395f66729edb0ce68a06d0192a9ea57e0b5dedbe2e37d9c5c5074b790abd51",
     "source_doc_hashes": {
-      "spec.md": "84b83102623c5fd9f0d60005cd5ce5e2538742548878fa53b130c967a4e62e89"
+      "spec.md": "303e00b68fa72388e48f06a67cc7cde8b813e310cbc5f398978da82bbc899463"
     },
     "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/001-research",
     "last_active_at": null

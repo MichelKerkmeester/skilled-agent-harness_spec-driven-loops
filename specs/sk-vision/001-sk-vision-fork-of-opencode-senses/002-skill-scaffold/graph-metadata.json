@@ -3,7 +3,10 @@
   "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold",
   "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold",
   "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
-  "children_ids": [],
+  "children_ids": [
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/001-skill-md",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/002-metadata-and-manifests"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -13,36 +16,28 @@
     "trigger_phrases": [
       "sk-vision skill scaffold",
       "sk-vision standalone skill",
-      "sk-vision leaf manifest",
-      "sk-vision class S",
-      "sk-vision scaffold plan",
-      "sk-vision skill structure",
-      "sk-vision scaffold tasks",
-      "sk-vision scaffold checklist",
-      "sk-vision scaffold summary"
+      "sk-vision class S"
     ],
     "key_topics": [
       "sk-vision",
       "skill",
       "scaffold",
       "standalone",
-      "leaf",
-      "manifest",
       "class",
-      "plan",
-      "structure",
-      "tasks",
-      "checklist",
-      "summary"
+      "text-only",
+      "models",
+      "need",
+      "legal",
+      "root",
+      "runtime",
+      "copy"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "001-skill-md/spec.md",
+      "002-metadata-and-manifests/spec.md"
     ],
     "entities": [
       {
@@ -52,37 +47,7 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Standalone Class",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -94,123 +59,43 @@
         "source": "derived"
       },
       {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Later",
+        "name": "Problem Statement Text",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Without Class",
+        "name": "Purpose Deliver",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Skill System",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Create",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Command",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Skill Metadata Gate",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Checklist Before",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Rules",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Reporting Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Later children need a legal OpenCode skill root before they can drop a runtime package or host adapters",
+    "causal_summary": "Text-only models need a legal standalone skill root before any runtime copy",
     "created_at": "2026-08-15T16:25:59.005Z",
-    "last_save_at": "2026-08-16T06:56:12.994Z",
+    "last_save_at": "2026-08-16T07:30:55.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:a0f8d46dceec66c1f2258c4effe00eacd190ac5f5a3702f75f53c6b7cd4f7ee6",
+    "source_fingerprint": "sha256:a680cdd9f951f66b117bf45d5f3d032a97fbca89ad66b071b92d91758a7966b4",
     "source_doc_hashes": {
-      "spec.md": "60a4b61f29cb3eba9991705ec8dda2c3d2d2f7b1a7ca2079c14259a501ef0788",
-      "plan.md": "cc1d2db59045365361e91d5d76e6416221169c984c232f44709a2465a48afd26",
-      "tasks.md": "c4c94dcfcd126fe224bb83933d244b8021117ed50e3feaa367b64f93e11f71ce",
-      "checklist.md": "c29b1c28fb0dc949a79941f74d58432f2f5a9f8155ec639df98fda67b578a057",
-      "implementation-summary.md": "9a345382d4b2d56c2790ac3f8101f5e26e66f7d48c6823f0a757d9d16f398697"
+      "spec.md": "a485716bcea4b76cfdbfe9e203cb1b0dd2cc6c3428e31d998656d86ad3cde8a4"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/002-metadata-and-manifests",
     "last_active_at": null
   }
 }

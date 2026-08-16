@@ -3,7 +3,10 @@
   "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter",
   "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter",
   "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
-  "children_ids": [],
+  "children_ids": [
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/001-extension-factory",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/002-symlink-and-dry-factory"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -12,37 +15,29 @@
   "derived": {
     "trigger_phrases": [
       "sk-vision pi adapter",
-      "sk-vision pi extension",
-      "sk-vision pi registerTool",
-      "pi vision tools",
-      "sk-vision pi plan",
-      "sk-vision extension plan",
-      "sk-vision pi tasks",
-      "sk-vision pi checklist",
-      "sk-vision pi summary"
+      "sk-vision registerTool",
+      "sk-vision pi extension"
     ],
     "key_topics": [
       "sk-vision",
       "adapter",
-      "extension",
       "registertool",
-      "vision",
-      "tools",
-      "plan",
-      "tasks",
-      "checklist",
-      "summary",
+      "extension",
       "loads",
-      "extensions"
+      "extensions",
+      "via",
+      "relative",
+      "symlinks",
+      "owner",
+      "trees",
+      "feature"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "001-extension-factory/spec.md",
+      "002-symlink-and-dry-factory/spec.md"
     ],
     "entities": [
       {
@@ -52,43 +47,19 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Added Pi",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -106,111 +77,25 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Give Pi",
+        "name": "Purpose Author",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pi Extension Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Author",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Command",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Symlink Resolution",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Checklist Before",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Rules",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Reporting Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Pi loads `.ts` from `.pi/extensions/` and fail-closes the whole session if the default export is invalid",
+    "causal_summary": "Pi loads extensions from `.pi/extensions/` via relative symlinks to owner trees",
     "created_at": "2026-08-15T16:32:20.893Z",
-    "last_save_at": "2026-08-16T06:56:25.049Z",
+    "last_save_at": "2026-08-16T07:30:57.049Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:6b16f32abf27bfbc6e4e2710b049c5c5eb3c429f56f7dfdeec4396cd906fdb9f",
+    "source_fingerprint": "sha256:74b76bcb70a76f42e7ac7f35f928f89e6bc2b0132ff9b76543b77a403f834abe",
     "source_doc_hashes": {
-      "spec.md": "ba77bd413be4724324ef475c38fc866269e75ff7a7bb548b2f2c1ab4d7d5604a",
-      "plan.md": "b32613f6ec0593a5e59f31ee8999e675a65251e0329cbc1ccb3d753b0f55939e",
-      "tasks.md": "c8bb03986cbb5ec6ef6dc39e43d9dfed06eb30b8a567e11d970c08cf55b5b4f5",
-      "checklist.md": "6b1e0fb57c977de05053f176e8dffde89717b962efcbb8ba42eaa28f29177c85",
-      "implementation-summary.md": "4d42ea1002cca2c8b31e476a7f8d5fe8d148e6093c4de76daec1dee8a29334b3"
+      "spec.md": "a6ff368a56b9a778784886deadc184d4c0a52cbc2c1fa9d964a05680944b6394"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/002-symlink-and-dry-factory",
     "last_active_at": null
   }
 }
