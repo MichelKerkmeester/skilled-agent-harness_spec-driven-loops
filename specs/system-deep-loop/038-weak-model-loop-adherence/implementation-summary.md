@@ -63,9 +63,22 @@ Remaining (per `tasks.md`): Phase 2 — weak-model directive via `sk-prompt/sk-p
 <!-- ANCHOR:verification -->
 ## Verification
 
-Phase 1 verified: `fanout.vitest.ts` passes 19/1-skipped, including the new regression test that asserts the fan-out prompt names `generate-context.js`, `validate.sh`, and the `git` write prohibition for both research and review modes. The red is by construction — those strings exist only in the new prompt, so the assertions cannot pass against the prior text. REQ-001 and REQ-003 (explicit prohibition; all-modes coverage via the shared prompt) are met.
+**Phase 1 unit test:** `fanout.vitest.ts` passes 19/1-skipped, including the new regression test asserting the fan-out prompt names `generate-context.js`, `validate.sh`, and the `git` write prohibition for research and review. Red is by construction — those strings exist only in the new prompt. REQ-001, REQ-003, REQ-005 met.
 
-Still to verify: REQ-002 (a live DeepSeek review lineage completes with zero out-of-scope reverts) needs a live fan-out re-run in an isolated worktree; SC-004 (strong-model runs unaffected) — the existing green suite is initial evidence, confirmed fully by the live non-regression run. The authoritative packet gate `validate.sh --strict` is run at completion.
+**Phase 3 live acceptance (REQ-002, SC-004):** a fresh two-executor fan-out review (luna-max codex + deepseek-flash opencode-go), 4 iterations each, ran against a clean worktree baseline with the hardened prompt. Result:
+
+| Signal | Prior run (breached) | This run (hardened) |
+|--------|----------------------|---------------------|
+| Orchestration summary | 1 succeeded / 1 failed | **2 succeeded / 0 failed** |
+| deepseek-flash outcome | rejected | **fulfilled** |
+| luna-max outcome | fulfilled | fulfilled (unchanged, SC-004) |
+| Real forbidden-tool runs (deepseek) | 26 generate-context / 24 validate.sh | **0 / 0** |
+| Write-containment violations | 8 reverts, fatal | **0** |
+| Worktree out-of-scope dirty | 8 paths | **0** |
+
+REQ-002 satisfied: DeepSeek completes inside its lineage directory with zero breaches. Earlier log "counts" of the tooling were prompt-text/SKILL echoes, not invocations — the command-parse shows zero real runs.
+
+**Remaining (P1):** REQ-004 (weak-model directive in `sk-prompt/sk-prompt-models`) and REQ-006 (per-mode cli-pi adherence table) are not yet done. The authoritative packet gate `validate.sh --strict` and full doc conformance close at packet completion.
 
 <!-- /ANCHOR:verification -->
 ---
