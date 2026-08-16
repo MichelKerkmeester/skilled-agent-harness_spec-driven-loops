@@ -74,6 +74,8 @@ Phase numbers follow **build order** (the sequence argued in `ROADMAP.md`), so t
 | `006-rich-content-blocks` | Claude-style bash Command/Output cards + code/text artifact cards (copy + full-screen) | PARTIAL — reach desired | 5 × SOL + 5 × Grok | build |
 | `007-media-upload` | Upload media from the iOS gallery into the chat | NO — net-new binary lane, security-first | 5 × SOL + 5 × Grok + 5 × DeepSeek | build |
 | `008-inbound-media` | Preview media/screenshots that `pi` sends, inline | NO — net-new inbound content type, security-first | 5 × SOL + 5 × Grok + 5 × DeepSeek | build |
+| `009-ask-question` | Support `pi`'s ask-question extension (terminal-style prompt UI) | NO — net-new surface | reference-screen research (pending) | pending |
+| `010-todos` | Support `pi`'s todos (Manus/Claude-grade task list) | NO — net-new surface | reference-screen research (pending) | pending |
 
 ### Dependency and transition rules
 
@@ -84,7 +86,7 @@ Phase numbers follow **build order** (the sequence argued in `ROADMAP.md`), so t
 ## 5. OPEN QUESTIONS
 
 - Reliability of the UI/UX quality bar: a follow-on research loop gathers real reference screens per feature (Mobbin + Refero via code mode) to raise confidence beyond text-only synthesis.
-- Two candidate features under evaluation for inclusion: `pi`'s ask-question extension and `pi`'s todos surface (terminal-parity or better).
+- Two net-new feature phases are scaffolded and awaiting reference-screen research: `009-ask-question` (`pi`'s ask-question extension, terminal-style prompt UI) and `010-todos` (`pi`'s todos surface, Manus/Claude-grade — better than terminal parity).
 
 ## RELATED DOCUMENTS
 

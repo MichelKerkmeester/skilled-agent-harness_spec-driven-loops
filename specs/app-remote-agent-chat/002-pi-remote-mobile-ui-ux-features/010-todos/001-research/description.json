@@ -1,0 +1,22 @@
+{
+  "specFolder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/010-todos/001-research",
+  "description": "Research phase for 010-todos: reference-screen research pending",
+  "keywords": [
+    "research",
+    "phase",
+    "010-todos",
+    "reference-screen",
+    "pending"
+  ],
+  "lastUpdated": "2026-08-16T08:23:21.478Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "app-remote-agent-chat",
+    "002-pi-remote-mobile-ui-ux-features",
+    "010-todos"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

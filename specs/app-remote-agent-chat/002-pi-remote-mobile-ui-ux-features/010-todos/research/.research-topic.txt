@@ -1,0 +1,5 @@
+Feature: Support pi’s todos in the PWA
+
+Goal: Render pi’s todo/plan list in the mobile chat with a UX better than the desktop terminal — clear task states, progress, and grouping — referencing how Manus and Claude present agent task lists.
+
+Desired: A first-class todo surface: task rows with state (pending / active / done / blocked), progress affordance, grouping, and live updates, in the fixed ink-on-parchment system — ideally clearer than the terminal version.

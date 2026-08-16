@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/009-ask-question/001-research",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/009-ask-question/001-research",
+  "parent_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/009-ask-question",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi ask question pwa",
+      "ask question prompt mobile",
+      "terminal-style question ui"
+    ],
+    "key_topics": [
+      "ask",
+      "question",
+      "pwa",
+      "prompt",
+      "mobile",
+      "terminal-style",
+      "research",
+      "phase",
+      "009-ask-question",
+      "reference-screen",
+      "pending",
+      "support"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redaction Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliverable (in ../research/)",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance criteria",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Security & Redaction",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Research phase for 009-ask-question: reference-screen research pending",
+    "created_at": "2026-08-16T08:23:20.721Z",
+    "last_save_at": "2026-08-16T08:23:20.721Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1bb14ed2e640b485e45c2694e5b6e1139489b7ffb330baba6569d4a70be2c1cc",
+    "source_doc_hashes": {
+      "spec.md": "2cdaeae5a08c7111b6d477026635447bae3b578e4396288db7356961e2bc85fb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

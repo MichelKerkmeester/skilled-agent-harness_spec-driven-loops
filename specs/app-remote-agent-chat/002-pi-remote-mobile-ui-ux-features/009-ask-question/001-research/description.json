@@ -1,0 +1,22 @@
+{
+  "specFolder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/009-ask-question/001-research",
+  "description": "Research phase for 009-ask-question: reference-screen research pending",
+  "keywords": [
+    "research",
+    "phase",
+    "009-ask-question",
+    "reference-screen",
+    "pending"
+  ],
+  "lastUpdated": "2026-08-16T08:23:20.476Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "app-remote-agent-chat",
+    "002-pi-remote-mobile-ui-ux-features",
+    "009-ask-question"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

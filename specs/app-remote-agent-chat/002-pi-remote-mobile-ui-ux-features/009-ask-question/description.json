@@ -1,0 +1,22 @@
+{
+  "specFolder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/009-ask-question",
+  "description": "Support pi ask-question extension in the PWA (terminal-style prompt UI)",
+  "keywords": [
+    "support",
+    "ask-question",
+    "extension",
+    "pwa",
+    "terminal-style",
+    "prompt"
+  ],
+  "lastUpdated": "2026-08-16T08:23:19.958Z",
+  "specId": "009",
+  "folderSlug": "ask-question",
+  "parentChain": [
+    "app-remote-agent-chat",
+    "002-pi-remote-mobile-ui-ux-features"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}
