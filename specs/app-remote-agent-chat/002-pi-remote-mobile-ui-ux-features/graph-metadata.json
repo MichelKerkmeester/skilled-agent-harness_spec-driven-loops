@@ -19,20 +19,22 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "feature specification: pi remote — mobile ui/ux feature parity"
+    ],
     "key_topics": [
+      "feature",
+      "specification",
+      "remote",
+      "mobile",
+      "parity",
       "secure",
       "foundation",
       "exists",
-      "mobile",
       "chat",
       "quality",
       "bar",
-      "claude",
-      "gpt",
-      "apps",
-      "several",
-      "first-class"
+      "claude"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -85,15 +87,15 @@
     ],
     "causal_summary": "The secure foundation exists, but the mobile chat UI/UX is not yet at the quality bar of the Claude and GPT mobile apps, and several first-class agent controls that `pi` exposes on the desktop terminal are missing from the phone",
     "created_at": "2026-08-16T06:37:29.320Z",
-    "last_save_at": "2026-08-16T07:24:40.206Z",
+    "last_save_at": "2026-08-16T08:10:13.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e000479e7cd631719e617fa29a68e60e4949f0ea0a33a93a8177ae8aaae8db3a",
+    "source_fingerprint": "sha256:7e93053f1e9c8a1208c2ac79690b1b4938d3050b2964c2856eb55ff52c4006fe",
     "source_doc_hashes": {
-      "spec.md": "615ce0eb0cb6abe3f4e45a00eacec5b10a03f49fbe03acc0aaba711dc3e599fb"
+      "spec.md": "3753b971188ef36b2ed7e80e28c5dc7936570cacea4c861ca6b27d33f2d0dbb1"
     },
     "last_active_child_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media",
     "last_active_at": null

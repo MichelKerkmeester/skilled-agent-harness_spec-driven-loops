@@ -1,3 +1,24 @@
+---
+title: "F3 — Typed “/” Commands"
+description: "F3 — Typed “/” Commands"
+trigger_phrases:
+  - "f3 — typed “/” commands"
+importance_tier: "important"
+_memory:
+  continuity:
+    packet_pointer: "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands"
+    last_updated_at: "2026-08-16T07:47:48Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Synthesized research and scaffolded feature spec plus build sub-phases"
+    next_safe_action: "Prepare reference screens, then build sub-phase 002"
+    blockers: []
+    key_files:
+      - "spec.md"
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: phase -->
 
@@ -46,7 +67,7 @@ The relay-filtered catalog is the sole source of truth. The protocol work must e
 
 ### Catalog identity
 
-The response exposed by `/api/commands/list` must carry these semantics, whether the wire names are introduced directly or the existing `revision` field is migrated compatibly:
+The response exposed by `/api/commands/list` must carry these semantics, whether the wire names are introduced directly or the existing `revision` field is carried over compatibly:
 
 | Field | Requirement |
 |---|---|
@@ -108,7 +129,7 @@ Open the inline panel only when all of these conditions hold:
 
 1. The composer is focused.
 2. The draft begins with ASCII `/` at character index zero.
-3. The selection is collapsed and the caret is within the first token.
+3. The selection is caret-only (no range) and the caret is within the first token.
 4. The first token contains no whitespace, newline, or second slash.
 5. IME composition is not active.
 6. The exact draft/selection has not been dismissed with Escape.
@@ -271,7 +292,7 @@ Use CSS logical properties throughout. Set `lang` and `dir` from the selected BC
 
 The feature is complete only when every check below passes. Each criterion identifies the proof required.
 
-1. **Trigger predicate — component test and DOM assertion.** `/` at index zero opens; ` /`, `hello /`, `/plan args`, a slash after a newline, a noncollapsed selection, and active IME composition do not open. Caret movement and committed paste/dictation/undo/redo reevaluate the same predicate.
+1. **Trigger predicate — component test and DOM assertion.** `/` at index zero opens; ` /`, `hello /`, `/plan args`, a slash after a newline, a ranged selection, and active IME composition do not open. Caret movement and committed paste/dictation/undo/redo reevaluate the same predicate.
 2. **Escape latch — component test.** Escape closes without changing draft, selection, focus, or attachments and prevents reopening until draft/selection changes or focus leaves and returns.
 3. **Catalog authority — relay and protocol tests.** The browser renders only an authenticated relay response projected from Pi `get_commands`; no hardcoded fallback or TUI-only command appears, and a malformed/incompatible response renders no partial rows.
 4. **Identity isolation — relay/client race test.** A response for another host epoch or session, including an out-of-order response that arrives after a switch, is discarded and cannot replace the current catalog.
@@ -323,4 +344,4 @@ The feature remains read-only by default. Discovery is an authenticated read of 
 | Web styling/PWA | `apps/pi-remote-web/src/style.css`, `apps/pi-remote-web/index.html`, existing viewport/theme helpers | Semantic light/dark styles, logical layout, safe-area/`100dvh`/`visualViewport` handling, no-displacement panel, and reduced motion. |
 | Tests/release | `apps/pi-remote-web/tests/*`, `apps/pi-remote-relay/tests/commands.test.ts`, `prompt.test.ts`, `security/negative-controls.test.ts`, protocol tests, CDP harness, physical iPhone checklist | Pure-function, component, relay, protocol, accessibility, security, performance, true-390px light/dark, and on-device verification. |
 
-No database migration or catalog persistence is required for v1.
+No database schema change or catalog persistence is required for v1.

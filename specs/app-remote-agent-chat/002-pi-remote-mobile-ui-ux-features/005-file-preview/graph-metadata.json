@@ -16,7 +16,9 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "f6 — file preview"
+    ],
     "key_topics": [
       "file",
       "preview",
@@ -99,16 +101,16 @@
     ],
     "causal_summary": "F6 — File Preview",
     "created_at": "2026-08-16T07:15:12.583Z",
-    "last_save_at": "2026-08-16T07:33:30.813Z",
+    "last_save_at": "2026-08-16T08:10:28.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d1ee6dd574816888b6552716d8d03358065ab90993fa8892e9de9c8d0d397863",
+    "source_fingerprint": "sha256:eddad3dce3697976df32cefadb866cb360925c1d4536a87b7c568d7240d9c710",
     "source_doc_hashes": {
-      "spec.md": "ab8b1b66bb43131ce6f56c88c0e352f7a1193b97f945e31d4c6c3a01bd47ca5b",
+      "spec.md": "5fb7594ef100a41f4a82769a24ac76085634477fa7e332d6330bf51e2ef7af2c",
       "research/research.md": "3a44f417fd1f32cd577a0e2f3c06bf9556decb22126758f59a97a76099f97d9f"
     },
     "last_active_child_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/005-file-preview/001-research",

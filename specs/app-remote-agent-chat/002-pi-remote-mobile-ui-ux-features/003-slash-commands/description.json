@@ -1,11 +1,18 @@
 {
+  "level": "phase",
   "specFolder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands",
-  "description": "F3 — Typed “/” Commands",
+  "description": "Typed slash commands with the real host command list, inline",
   "keywords": [
     "typed",
-    "commands"
+    "slash",
+    "commands",
+    "real",
+    "host",
+    "command",
+    "list",
+    "inline"
   ],
-  "lastUpdated": "2026-08-16T07:15:07.245Z",
+  "lastUpdated": "2026-08-16T08:13:01.115Z",
   "specId": "003",
   "folderSlug": "slash-commands",
   "parentChain": [
@@ -13,6 +20,5 @@
     "002-pi-remote-mobile-ui-ux-features"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

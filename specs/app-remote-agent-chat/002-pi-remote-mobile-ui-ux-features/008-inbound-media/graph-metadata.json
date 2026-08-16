@@ -18,7 +18,9 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "f8 — inbound media preview"
+    ],
     "key_topics": [
       "inbound",
       "media",
@@ -43,6 +45,12 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inbound Media Preview",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -76,12 +84,6 @@
         "source": "derived"
       },
       {
-        "name": "Browser Cache Storage",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Build",
         "kind": "proper_noun",
         "path": "research/research.md",
@@ -108,16 +110,16 @@
     ],
     "causal_summary": "F8 — Inbound Media Preview",
     "created_at": "2026-08-16T07:15:19.350Z",
-    "last_save_at": "2026-08-16T07:33:37.234Z",
+    "last_save_at": "2026-08-16T08:10:39.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6909a5893e3d6e6e210c4d0ab0659e90e30f3adc05c15cfb7f1bd5912f5af111",
+    "source_fingerprint": "sha256:6eab4389ce935c1120a7d0021d598d13406c876c7887d38efc0a89c271f21801",
     "source_doc_hashes": {
-      "spec.md": "33b57df9340473bda89612997ae93fda9b2d5b3daeac26549c2c6c76d041c1aa",
+      "spec.md": "a1643fc9ea7f01d545e5cb740600fa548158b7c18aca3a3338381e87b8517d62",
       "research/research.md": "acf16d2574e807bcb8b7c7467b68402f4454161ce1167d712ed5ab1bb0af34f4"
     },
     "last_active_child_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media/001-research",

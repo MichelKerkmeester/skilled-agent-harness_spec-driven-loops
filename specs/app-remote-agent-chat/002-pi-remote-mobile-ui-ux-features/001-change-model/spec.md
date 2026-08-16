@@ -1,3 +1,25 @@
+---
+title: "F1 — Change the active AI model"
+description: "F1 — Change the active AI model"
+trigger_phrases:
+  - "f1 — change the active ai model"
+importance_tier: "important"
+_memory:
+  continuity:
+    packet_pointer: "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/001-change-model"
+    last_updated_at: "2026-08-16T07:47:48Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Synthesized research and scaffolded feature spec plus build sub-phases"
+    next_safe_action: "Prepare reference screens, then build sub-phase 002"
+    blockers:
+      - "Build sub-phases not yet implemented; reference-screen research and F9/F10 pending"
+    key_files:
+      - "spec.md"
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: phase -->
 

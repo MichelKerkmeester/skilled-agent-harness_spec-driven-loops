@@ -15,7 +15,9 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "f1 — change the active ai model"
+    ],
     "key_topics": [
       "change",
       "active",
@@ -111,16 +113,16 @@
     ],
     "causal_summary": "F1 — Change the active AI model",
     "created_at": "2026-08-16T07:15:02.969Z",
-    "last_save_at": "2026-08-16T07:33:21.815Z",
+    "last_save_at": "2026-08-16T08:10:14.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:92061922f1bb9f50894fbcfbd431b5b930f881f86943c65b6090878157987d0e",
+    "source_fingerprint": "sha256:9a20cae501eba14f4713a7239cbb07474c35edde218983c5a440f7184e3e3614",
     "source_doc_hashes": {
-      "spec.md": "a71a9ddf0f8409bd584c8bd52716c75fa0584fb45582d74dc9affeffc204c0d0",
+      "spec.md": "d84ed155e651742b3a0d91881c1cd3944a97a5c80768761bffb23d97ff0b4ff9",
       "research/research.md": "ed4016b55c6a739ce6d2d2693b0c34c3ccfe6d531353dd17022e89e9c83245cb"
     },
     "last_active_child_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/001-change-model/001-research",

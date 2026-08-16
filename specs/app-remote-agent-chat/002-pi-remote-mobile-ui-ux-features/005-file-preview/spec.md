@@ -1,3 +1,24 @@
+---
+title: "F6 — File Preview"
+description: "F6 — File Preview"
+trigger_phrases:
+  - "f6 — file preview"
+importance_tier: "important"
+_memory:
+  continuity:
+    packet_pointer: "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/005-file-preview"
+    last_updated_at: "2026-08-16T07:47:48Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Synthesized research and scaffolded feature spec plus build sub-phases"
+    next_safe_action: "Prepare reference screens, then build sub-phase 002"
+    blockers: []
+    key_files:
+      - "spec.md"
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: phase -->
 

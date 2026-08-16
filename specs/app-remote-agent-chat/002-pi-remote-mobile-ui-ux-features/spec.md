@@ -1,3 +1,24 @@
+---
+title: "Feature Specification: Pi Remote — Mobile UI/UX Feature Parity"
+description: "Pi Remote — Mobile UI/UX Feature Parity"
+trigger_phrases:
+  - "feature specification: pi remote — mobile ui/ux feature parity"
+importance_tier: "important"
+_memory:
+  continuity:
+    packet_pointer: "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features"
+    last_updated_at: "2026-08-16T07:47:48Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Scaffolded packet and migrated research to deep-loop research folders"
+    next_safe_action: "Prepare reference-screen research per feature, then build 001 to 008"
+    blockers: []
+    key_files:
+      - "spec.md"
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: phase -->
 
