@@ -2,8 +2,8 @@
   "lastChangelogVersion": "0.84.2",
   "theme": "dark",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-luna",
-  "defaultThinkingLevel": "max",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "medium",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
   "steeringMode": "one-at-a-time",
@@ -33,7 +33,6 @@
     "npm:@juicesharp/rpiv-todo",
     "npm:pi-blackhole",
     "npm:pi-gpt-fast-mode",
-    "npm:pi-intercom",
     "npm:pi-statusline",
     "npm:pi-subagents",
     "npm:pi-web-access"

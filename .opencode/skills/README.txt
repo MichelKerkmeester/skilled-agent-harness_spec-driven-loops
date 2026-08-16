@@ -71,7 +71,7 @@ Each skill name links to its own README. One-line descriptions reflect current b
 
 ### Runtime Plugin Skills
 
-Outside this tree, runtimes may contribute their own skills. Pi, for example, loads `pi-intercom` (cross-session coordination) and `pi-subagents` (subagent delegation) from its plugin packages under `.pi/npm/node_modules/`.
+Outside this tree, runtimes may contribute their own skills. Pi, for example, loads `pi-subagents` (subagent delegation) from its plugin packages under `.pi/npm/node_modules/`.
 
 ---
 

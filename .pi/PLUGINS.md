@@ -75,13 +75,6 @@ Controls OpenAI's GPT service tier (priority/flex/default/auto), with subagent h
 
 ---
 
-#### pi-intercom (v0.10.1)
-[github.com/nicobailon/pi-intercom](https://github.com/nicobailon/pi-intercom)
-
-Direct 1:1 messaging between pi sessions on the same machine — send context, findings, or requests from one session to another
-
----
-
 #### pi-plan-build (v0.1.25)
 [github.com/janvitos/pi-plan-build](https://github.com/janvitos/pi-plan-build)
 
@@ -134,6 +127,4 @@ verify the banner check passes: the installed version in
 ---
 
 Source of truth: `pi list` and the `repository`/`homepage` fields of each
-package's `package.json`. Versions reflect the installed release. The
-`pi-intercom` package ships no repository/homepage metadata, so its URL comes
-from its upstream repository.
+package's `package.json`. Versions reflect the installed release.
