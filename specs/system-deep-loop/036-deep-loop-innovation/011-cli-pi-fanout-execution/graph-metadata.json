@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-pi fanout execution",
+      "pi lineage orphan requeue",
+      "deepseek cli-pi stall",
+      "non-streaming executor fanout"
+    ],
+    "key_topics": [
+      "cli-pi",
+      "fanout",
+      "execution",
+      "lineage",
+      "orphan",
+      "requeue",
+      "deepseek",
+      "stall",
+      "non-streaming",
+      "executor",
+      "via",
+      "cannot"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Diagnose",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Executor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "reason",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "siblings",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "iterations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "DeepSeek via the cli-pi executor cannot complete a deep-loop fan-out lineage — the runner requeues the Pi worker to death before it produces a single iteration",
+    "created_at": "2026-08-16T13:47:37.884Z",
+    "last_save_at": "2026-08-16T13:47:37.884Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aca37e553ca5f7957d7bb5091d118d61640c7d4a8d7652b08af3b1fef9d984b3",
+    "source_doc_hashes": {
+      "spec.md": "b561f907bb5dae856d3d3bfe1c3a992376b196979b5a558f7e214204522d5628",
+      "plan.md": "6457851cd7dcbd2587039a0e0352f395f7f1f27b2a20ae74688743e1fd409782",
+      "tasks.md": "74fb3909e35130c7f2585746cfa1d5d656c3c9d83a1e92f788ac737a21a75b89",
+      "checklist.md": "5851630746107604f0b511a0b123e27eacd14432e3c39b5d81333c6e14b6f9f2",
+      "implementation-summary.md": "e1fb10625eb6e0a2cff9b886d33a6a8cf57f12ff6b5510040823c314b9762c16"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
