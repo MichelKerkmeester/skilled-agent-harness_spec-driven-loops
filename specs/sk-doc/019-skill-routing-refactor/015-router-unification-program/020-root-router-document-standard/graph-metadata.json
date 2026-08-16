@@ -97,7 +97,7 @@
     ],
     "causal_summary": "Six class-H parent skills still keep their second-stage leaf router at `shared/references/smart-routing.md`, while the mcp-tooling pilot already uses a root `ROUTER.md`",
     "created_at": "2026-08-15T12:47:39Z",
-    "last_save_at": "2026-08-16T07:53:28.800Z",
+    "last_save_at": "2026-08-16T08:57:06.360Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -108,6 +108,6 @@
       "spec.md": "704b68f0c06be4beaa87919ad372e45505b81260844d432b774a386d3653c809"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout",
-    "last_active_at": "2026-08-16T07:53:28.800Z"
+    "last_active_at": "2026-08-16T08:57:06.360Z"
   }
 }
