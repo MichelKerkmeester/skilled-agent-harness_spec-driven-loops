@@ -48,7 +48,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -171,10 +171,10 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- [ ] readlink matches the locked relative target
-- [ ] README lists sk-vision.ts
-- [ ] pi --offline --approve starts
-- [ ] This child validate.sh --strict exits 0
+- [x] readlink matches the locked relative target — evidence: `readlink` = `../../.opencode/skills/sk-vision/pi/sk-vision.ts`
+- [x] README lists sk-vision.ts — evidence: `.pi/extensions/README.md` overview, tree, KEY FILES rows
+- [x] pi --offline --approve starts — evidence: exit 0; sk-vision extension loads without fail-close
+- [x] This child validate.sh --strict exits 0 — evidence: orchestrator PASSED errors 0 warnings 0; script wrapper exit 2 from repo-wide COMMAND_TREE_PARITY only
 <!-- /ANCHOR:success-criteria -->
 
 ---

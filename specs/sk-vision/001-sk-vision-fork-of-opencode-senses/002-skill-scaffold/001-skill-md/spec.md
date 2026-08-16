@@ -49,7 +49,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -259,10 +259,10 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- [ ] `.opencode/skills/sk-vision/SKILL.md` exists with locked triggers and WHEN NOT TO USE
-- [ ] `references/.gitkeep` exists
-- [ ] `vision-runtime/` is absent or empty
-- [ ] This child `validate.sh --strict` exits 0
+- [x] `.opencode/skills/sk-vision/SKILL.md` exists with locked triggers and WHEN NOT TO USE
+- [x] `references/.gitkeep` exists
+- [x] `vision-runtime/` is absent or empty
+- [x] This child `validate.sh --strict` exits 0
 <!-- /ANCHOR:success-criteria -->
 
 ---

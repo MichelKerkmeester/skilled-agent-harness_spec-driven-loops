@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/001-plugin-reexport"
-    last_updated_at: "2026-08-16T07:45:00.000Z"
-    last_updated_by: "cursor-grok"
-    recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    last_updated_at: "2026-08-16T08:20:00.000Z"
+    last_updated_by: "cursor-code"
+    recent_action: "Created .opencode/plugins/sk-vision.js thin re-export; copy-pack proofs passed."
+    next_safe_action: "002-readme-and-proof"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-sk-vision-fork-of-opencode-senses-004-opencode-adapter-001-plugin-reexport"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -67,9 +67,9 @@ Prove the import target, write the analog re-export, prove it is not a symlink.
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -106,17 +106,17 @@ OpenCode loads plugins/sk-vision.js → skill dist/plugin.js hooks.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] test -f dist/plugin.js
-- [ ] Read analog mk-communication-projection.js
+- [x] test -f dist/plugin.js
+- [x] Read analog mk-communication-projection.js
 
 ### Phase 2: Core Implementation
-- [ ] Write re-export bytes
-- [ ] Do not symlink
+- [x] Write re-export bytes
+- [x] Do not symlink
 
 ### Phase 3: Verification
-- [ ] test ! -L
-- [ ] rg import path
-- [ ] validate.sh --strict
+- [x] test ! -L
+- [x] rg import path
+- [x] validate.sh --strict
 <!-- /ANCHOR:phases -->
 
 ---

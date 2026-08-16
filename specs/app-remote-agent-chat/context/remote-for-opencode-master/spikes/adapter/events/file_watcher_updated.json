@@ -1,0 +1,8 @@
+{
+  "id": "evt_fc5248717001kOTTEOYSoe3RLP",
+  "type": "file.watcher.updated",
+  "properties": {
+    "file": "/Users/timwilliams/www/projects/opencodego/spikes/playground/.git/index.lock",
+    "event": "unlink"
+  }
+}

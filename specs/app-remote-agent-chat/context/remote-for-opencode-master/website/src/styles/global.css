@@ -1,0 +1,335 @@
+/*
+ * The app's design system, on the web. Values come from
+ * docs/design-spec.md — the same warm neutrals, the same rule that nothing
+ * is a pure grey, the same easeOutQuart curve.
+ */
+
+:root {
+  /* Warm neutrals. #141413 is not black; #faf9f5 is not white. */
+  --canvas: #faf9f5;
+  --surface: #f0eee6;
+  --surface-raised: #e8e6dc;
+  --ink: #141413;
+  --ink-muted: #5e5d59;
+  --ink-faint: #87867f;
+  --hairline: rgb(20 20 19 / 0.1);
+  --clay: #d97757;
+  --clay-pressed: #c6613f;
+  --positive: #3d9a57;
+
+  --radius-chip: 4px;
+  --radius-control: 8px;
+  --radius-block: 12px;
+  --radius-sheet: 16px;
+
+  /* Anthropic's house ease-out. Never ease-in on UI. */
+  --ease: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  --measure: 34rem;
+  --gutter: clamp(1.25rem, 5vw, 2.5rem);
+
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: #141413;
+    --surface: #1f1e1d;
+    --surface-raised: #262624;
+    --ink: #f4f0ec;
+    --ink-muted: #b0aea5;
+    --ink-faint: #87867f;
+    --hairline: rgb(250 249 245 / 0.1);
+    --clay: #e08a63;
+    --clay-pressed: #d97757;
+    --positive: #7fd88f;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  /* 1.5 line height, per the spec's reading rhythm. */
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+}
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+}
+h3 {
+  font-size: 1.1875rem;
+}
+
+p {
+  margin: 0 0 1rem;
+  max-width: var(--measure);
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--hairline);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.2s var(--ease);
+}
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+code {
+  background: var(--surface);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-chip);
+}
+
+pre {
+  background: var(--surface);
+  padding: 1rem 1.125rem;
+  border-radius: var(--radius-block);
+  overflow-x: auto;
+  line-height: 1.5;
+}
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* ---- Layout ---- */
+
+.wrap {
+  max-width: 62rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+}
+.site-nav a {
+  text-decoration: none;
+}
+.site-nav a[aria-current="page"] {
+  color: var(--ink);
+}
+
+.site-footer {
+  margin-top: 6rem;
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-faint);
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.site-footer a {
+  text-decoration: none;
+}
+
+/* ---- Pieces ---- */
+
+.hero {
+  padding-block: clamp(3rem, 10vw, 6rem) clamp(2rem, 6vw, 4rem);
+}
+.hero p.lede {
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+  max-width: 38rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--clay);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.375rem;
+  border-radius: var(--radius-control);
+  text-decoration: none;
+  transition: background 0.2s var(--ease);
+}
+.button:hover {
+  background: var(--clay-pressed);
+}
+.button.secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+}
+.button.secondary:hover {
+  background: var(--surface);
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  margin-block: 3rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-block);
+  padding: 1.375rem 1.5rem;
+}
+.card h3 {
+  margin-bottom: 0.5rem;
+}
+.card p {
+  color: var(--ink-muted);
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.note {
+  color: var(--ink-faint);
+  font-size: 0.875rem;
+}
+
+.shots {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-block: 1rem;
+  scroll-snap-type: x mandatory;
+}
+.shots img {
+  /* Height-led so the strip reads as a row of phones, and an explicit
+     aspect ratio so the row reserves its space before the lazy images
+     arrive — without it they collapse to hairlines until they load. */
+  height: min(30rem, 70vh);
+  width: auto;
+  aspect-ratio: 1284 / 2778;
+  border-radius: var(--radius-block);
+  border: 1px solid var(--hairline);
+  scroll-snap-align: start;
+  flex: none;
+}
+
+/* Demo videos. Same row-of-phones read as .shots, but each one is a real
+   player with a caption. preload="none" in the markup keeps three clips off
+   the wire until someone actually asks for one — the poster carries the
+   still. */
+.demos-section {
+  margin-top: 3.5rem;
+}
+.demos-section h2 {
+  margin-bottom: 0.25rem;
+}
+
+.demos {
+  /* One width drives both the video and its caption. Sizing the figure off
+     the video instead lets the caption run wider than the phone and get
+     clipped at the scroll container's edge. */
+  --demo-w: calc(min(30rem, 70vh) * 1206 / 2622);
+
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding-block: 1.5rem;
+  scroll-snap-type: x mandatory;
+}
+.demos figure {
+  margin: 0;
+  flex: none;
+  scroll-snap-align: start;
+  width: var(--demo-w);
+}
+.demos video {
+  /* Explicit ratio reserves the space before the poster loads, exactly as
+     the screenshot strip does — otherwise the row collapses on first paint. */
+  width: var(--demo-w);
+  height: auto;
+  aspect-ratio: 1206 / 2622;
+  border-radius: var(--radius-block);
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  display: block;
+}
+.demos figcaption {
+  margin-top: 0.75rem;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.demos figcaption strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.prose h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.prose ul {
+  max-width: var(--measure);
+  color: var(--ink-muted);
+  padding-left: 1.1rem;
+}
+.prose li {
+  margin-bottom: 0.4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

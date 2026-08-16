@@ -148,3 +148,30 @@ Aggregate scope; per-phase detail lives in child plans.
 | 001-fork-and-package | 002-subagent-handoff | Renamed package typechecks; upstream vitest suite passes unmodified; behavior unchanged (no handoff yet) | `npm run typecheck` + `npm test` exit 0; `git diff` vs upstream limited to identity renames |
 | 002-subagent-handoff | 003-integration-and-tests | Handoff unit tests pass; parent → child process preference propagation verified manually | `npm test` exit 0; two-process handoff check in plan.md |
 <!-- /ANCHOR:phase-map -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+- fork pi-openai-fast-mode into pi-fast-mode-w-subagent-support with subagent handoff everything needed to implement properly pi extension api surface env-inheritance handoff mechanics config compat packaging tests indicator ux under custom footers licensing
+<!-- /ANCHOR:questions -->
+
+## RESEARCH CONTEXT
+
+Deep-research is active for this topic. `research/research.md` remains the canonical research source.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+### Research findings
+
+- Ten approved research lanes completed. The fork should preserve the `pi-openai-fast-mode` config/target engine and add strict `1`/`0` environment handoff on `session_start` for child Pi processes.
+- Use replace-style `before_provider_request` payload handling, explicit `service_tier` and `payload.model` guards, atomic config/state writes, and a namespaced `setStatus` indicator rather than exclusive `setFooter` rendering.
+- Preserve legacy config migration, verify `/fast` ownership with `get_commands`, ship raw TypeScript through `pi.extensions`, and add child-process handoff tests plus the phase-defined licensing/provenance checks.
+- Full evidence and residual implementation probes: `research/research.md`; per-iteration audit trail: `research/iterations/` and `research/deltas/`.
+<!-- END GENERATED: deep-research/spec-findings -->
+
+## RELATED DOCUMENTS
+
+- **Phase children**: See sub-folders `001-fork-and-package/`, `002-subagent-handoff/`, and `003-integration-and-tests/` for per-phase specifications.
+- **Context snapshots**: See `context/README.md` for pinned source provenance.
+- **Research packet**: See `research/` for the workflow-owned state and synthesis artifacts.

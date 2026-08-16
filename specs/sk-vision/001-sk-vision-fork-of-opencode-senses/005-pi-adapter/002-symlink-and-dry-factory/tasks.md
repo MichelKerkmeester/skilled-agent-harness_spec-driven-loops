@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm owner factory exists
+- [x] T001 Confirm owner factory exists — evidence: `test -f .opencode/skills/sk-vision/pi/sk-vision.ts` exit 0; `export default function skVision` at line 46
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,9 +60,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Create relative symlink (`.pi/extensions/sk-vision.ts`)
-- [ ] T003 Add README rows (`.pi/extensions/README.md`)
-- [ ] T004 Optional P1 input.images with 2s bound, or record the gap
+- [x] T002 Create relative symlink (`.pi/extensions/sk-vision.ts`) — evidence: `readlink .pi/extensions/sk-vision.ts` = `../../.opencode/skills/sk-vision/pi/sk-vision.ts`; `test -L` exit 0
+- [x] T003 Add README rows (`.pi/extensions/README.md`) — evidence: overview table, directory tree, and KEY FILES rows include `sk-vision.ts`
+- [x] T004 Optional P1 input.images with 2s bound, or record the gap — evidence: gap recorded in `implementation-summary.md` §Known Limitations; no `pi.on("input")` in owner
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -70,9 +70,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 readlink equals locked relative target
-- [ ] T006 pi --offline --approve
-- [ ] T007 Run validate.sh --strict on this child
+- [x] T005 readlink equals locked relative target — evidence: `test "$(readlink .pi/extensions/sk-vision.ts)" = "../../.opencode/skills/sk-vision/pi/sk-vision.ts"` exit 0
+- [x] T006 pi --offline --approve — evidence: `pi --offline --approve` exit code 0; sk-vision extension loads (unrelated deep-pi lock timeout logged, session not fail-closed)
+- [x] T007 Run validate.sh --strict on this child — evidence: post-closeout run exit 0 recorded in `implementation-summary.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -80,9 +80,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` — evidence: T001–T007 all `[x]` with inline evidence above
+- [x] No `[B]` blocked tasks remaining — evidence: no `[B]` entries in tasks.md
+- [x] Manual verification passed — evidence: `pi --offline --approve` exit 0; readlink proof exit 0
 <!-- /ANCHOR:completion -->
 
 ---

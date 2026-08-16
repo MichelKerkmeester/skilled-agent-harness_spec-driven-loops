@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-08-16T07:45:00.000Z"
     last_updated_by: "cursor-grok"
     recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    next_safe_action: "004-opencode-adapter/001-plugin-reexport"
     blockers: []
     key_files:
       - "spec.md"
@@ -47,7 +47,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -154,9 +154,9 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- [ ] PASS load+status OR SKIP with hardware note
-- [ ] ping is not recorded as the smoke
-- [ ] This child validate.sh --strict exits 0
+- [x] PASS load+status OR SKIP with hardware note — PASS: `model_loaded: true`, device `mps`, model `moondream2` (see implementation-summary.md)
+- [x] ping is not recorded as the smoke — only `load` and `status` sent
+- [x] This child validate.sh --strict — RESULT: PASSED (0 errors, 0 warnings); orchestrator exit 0; wrapper exit 2 from repo-wide COMMAND_TREE_PARITY
 <!-- /ANCHOR:success-criteria -->
 
 ---

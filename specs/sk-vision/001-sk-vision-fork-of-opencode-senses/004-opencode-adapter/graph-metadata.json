@@ -33,7 +33,7 @@
       "parent"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-plugin-reexport/spec.md",
@@ -85,15 +85,15 @@
     ],
     "causal_summary": "OpenCode discovers plugins as real files under `.opencode/plugins/`",
     "created_at": "2026-08-15T16:31:07.271Z",
-    "last_save_at": "2026-08-16T07:30:56.532Z",
+    "last_save_at": "2026-08-16T08:37:45.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9a5b21810eac4caacedc0f13144a7e91266da6c83244d25e444b9ebe3ffb4a28",
+    "source_fingerprint": "sha256:45f25e5d383ab43886f38d59b0b6b9475f083c3047b0520660231699603ce288",
     "source_doc_hashes": {
-      "spec.md": "f71add2ced89a9a1e67868e96b0d55fa24bb848ea4ce560937cac2ad092bc0f7"
+      "spec.md": "0f089d6d7baedacbe161d9c81ca101a367ad1eedd208bd19074377ccb8289a60"
     },
     "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof",
     "last_active_at": null

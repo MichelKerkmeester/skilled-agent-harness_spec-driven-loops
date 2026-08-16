@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/001-copy-shipped-files"
-    last_updated_at: "2026-08-16T07:45:00.000Z"
-    last_updated_by: "cursor-grok"
-    recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    last_updated_at: "2026-08-16T08:00:00.000Z"
+    last_updated_by: "code-agent"
+    recent_action: "Copied 14 shipped files into vision-runtime/; proofs passed."
+    next_safe_action: "002-rebrand-identifiers"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-sk-vision-fork-of-opencode-senses-003-runtime-fork-001-copy-shipped-files"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-copy-shipped-files |
-| **Completed** | Not delivered |
+| **Completed** | 2026-08-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,21 +49,26 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This child is Planned. No target files exist yet. The operator implements from the copy pack in `spec.md`.
+Copied 14 shipped Senses v0.2.0 files from the read-only dump into `.opencode/skills/sk-vision/vision-runtime/`. No string rewrites; `senses_` tool keys preserved.
 
-### Planned delivery
-
-Copy shipped v0.2.0 files into vision-runtime/ without touching context/.
-
-### Files Changed
+### Delivered files
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-vision/vision-runtime/src/runtime/client.ts` | Planned | Copy from dump |
-| `.opencode/skills/sk-vision/vision-runtime/src/plugin.ts` | Planned | Copy from dump |
-| `.opencode/skills/sk-vision/vision-runtime/python/runtime.py` | Planned | Copy from dump |
-| `.opencode/skills/sk-vision/vision-runtime/package.json` | Planned | Copy from dump |
-| `.opencode/skills/sk-vision/vision-runtime/LICENSE` | Planned | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/src/runtime/client.ts` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/src/providers/types.ts` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/src/providers/photon.ts` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/src/providers/photon.test.ts` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/src/plugin.ts` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/src/opencode/tools.ts` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/src/opencode/attachments.ts` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/src/core/context-builder.ts` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/python/runtime.py` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/python/runtime.test.ts` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/scripts/build.ts` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/package.json` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/tsconfig.json` | Created | Copy from dump |
+| `.opencode/skills/sk-vision/vision-runtime/LICENSE` | Created | Copy from dump |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +76,7 @@ Copy shipped v0.2.0 files into vision-runtime/ without touching context/.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. This packet stays Planned until the copy-pack proof commands pass.
+Used the locked copy pack from `spec.md`: `mkdir -p` destination trees, then `cp` each listed file from `specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/` to `.opencode/skills/sk-vision/vision-runtime/`. Forbidden extras (PLAN.md, opencode.json, .github/, media/, FUNDING files, bun.lock) were not copied.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -92,8 +97,8 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 
 | Check | Result |
 |-------|--------|
-| Copy-pack proof commands | Not run |
-| `validate.sh --strict` on this child | Not run after implementation |
+| Copy-pack proof commands | PASS — plugin.ts, runtime.py, LICENSE present; PLAN.md and opencode.json absent; `git diff --exit-code` on context/ exit 0 |
+| `validate.sh --strict` on this child | PASS — RESULT: PASSED, Errors: 0, Warnings: 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -101,5 +106,5 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented.** Skill and adapter files are out of this documentation pass.
+None for this child. Identifier rebrand is deferred to `002-rebrand-identifiers`.
 <!-- /ANCHOR:limitations -->

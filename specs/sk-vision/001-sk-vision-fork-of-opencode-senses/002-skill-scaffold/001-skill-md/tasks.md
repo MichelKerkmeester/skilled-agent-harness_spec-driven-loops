@@ -53,8 +53,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm 001-research is Complete (`specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/`)
-- [ ] T002 Create skill directories (`.opencode/skills/sk-vision/references/`)
+- [x] T001 Confirm 001-research is Complete (`specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/`) — evidence: `001-research/spec.md` Status Complete
+- [x] T002 Create skill directories (`.opencode/skills/sk-vision/references/`) — evidence: `mkdir -p` exit 0
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,8 +62,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Write SKILL.md from File 1 skeleton (`.opencode/skills/sk-vision/SKILL.md`)
-- [ ] T004 Add references stub (`.opencode/skills/sk-vision/references/.gitkeep`)
+- [x] T003 Write SKILL.md from File 1 skeleton (`.opencode/skills/sk-vision/SKILL.md`) — evidence: file exists, 86 lines, verbatim from spec.md File 1
+- [x] T004 Add references stub (`.opencode/skills/sk-vision/references/.gitkeep`) — evidence: `test -f` exit 0
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Prove SKILL.md and .gitkeep exist
-- [ ] T006 Confirm vision-runtime absent and no sk_vision_query
-- [ ] T007 Run validate.sh --strict on this child
+- [x] T005 Prove SKILL.md and .gitkeep exist — evidence: `test -f` both exit 0
+- [x] T006 Confirm vision-runtime absent and no sk_vision_query — evidence: `test ! -e vision-runtime` exit 0; `sk_vision_query` only in WHEN NOT TO USE prose (expected)
+- [x] T007 Run validate.sh --strict on this child — evidence: RESULT PASSED errors=0 warnings=0; process exit 2 from repo-wide COMMAND_TREE_PARITY only
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

@@ -8,7 +8,12 @@
     "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold",
     "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork",
     "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter",
-    "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter"
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/007-pi-input-images",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -53,7 +58,12 @@
       "003-runtime-fork/004-gpu-smoke/spec.md",
       "004-opencode-adapter/002-readme-and-proof/spec.md",
       "005-pi-adapter/002-symlink-and-dry-factory/spec.md",
-      "context/opencode.json"
+      "context/opencode.json",
+      "006-skill-contract-realignment/spec.md",
+      "007-pi-input-images/spec.md",
+      "008-feature-catalog/spec.md",
+      "009-manual-testing-playbook/spec.md",
+      "010-quality-gate/spec.md"
     ],
     "entities": [
       {
@@ -81,13 +91,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Luna Max Fast",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -119,17 +129,17 @@
     ],
     "causal_summary": "Text-only coding models in OpenCode and Pi cannot read screenshots, mockups, or error images",
     "created_at": "2026-08-15T15:38:25Z",
-    "last_save_at": "2026-08-16T07:30:54.817Z",
+    "last_save_at": "2026-08-16T08:37:36.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:39395f66729edb0ce68a06d0192a9ea57e0b5dedbe2e37d9c5c5074b790abd51",
+    "source_fingerprint": "sha256:76737f2a41e30758b81f1f8cad5b4494a7729f4c647e58abe0b5826ed563d6ea",
     "source_doc_hashes": {
-      "spec.md": "303e00b68fa72388e48f06a67cc7cde8b813e310cbc5f398978da82bbc899463"
+      "spec.md": "7965725db5e582b074dc46b39c5ec138d21d4f6e041d68170c252716603591f2"
     },
-    "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/001-research",
+    "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment",
     "last_active_at": null
   }
 }

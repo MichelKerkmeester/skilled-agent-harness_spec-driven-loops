@@ -30,12 +30,12 @@
       "feature"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "implementation-summary.md",
-      "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "plan.md"
     ],
     "entities": [
       {
@@ -51,15 +51,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -159,13 +159,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "NDJSON",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "004/005 attach smokes need a known GPU result",
     "created_at": "2026-08-16T07:22:45Z",
-    "last_save_at": "2026-08-16T07:30:56.343Z",
+    "last_save_at": "2026-08-16T08:19:15.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cabfc4fbd4da3970ecc3be89ee1b39075bf11644049a9ac6690c3349362182e5",
+    "source_fingerprint": "sha256:31b57a654f95e877ae3f46c29c5aaa277a978f3424e18af48f92fb19b6ab3bff",
     "source_doc_hashes": {
-      "spec.md": "6e8c9856e04ac8c9289a1064e900982a3f9f245faf4891e5624062c36152f96f",
-      "plan.md": "e343f5a00abff0ffa053c4d0a4ef948d9095f1196b902c312f16c57fdccf0f31",
-      "tasks.md": "f55546467ac2a4c117f2616a2f8d8c82ce19373b3223b8d10c42b31a69c154b2",
-      "implementation-summary.md": "ad6618433c3b44b69f0fc7be4b878f640d29e504c6e97e6a80b853dacd8b2856"
+      "spec.md": "549608ef7f184631f26ea53a05e3fc3171314b56050ba3aeb97b259886b19d1d",
+      "plan.md": "087b4ac12461fd24c9d399ecf8a28485837d7db1172e9eabafe2c81dd6ad5564",
+      "tasks.md": "073fca83aaff6967a257a18c89bdb60872f0410b8ea570cd4455b31ab3a2e2c6",
+      "implementation-summary.md": "9bbecd7328a521adadae2f01d76930f656e7c768d63f70640b1c8afbe219ed9b"
     },
     "last_active_child_id": null,
     "last_active_at": null

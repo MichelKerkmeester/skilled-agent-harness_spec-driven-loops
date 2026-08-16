@@ -10,20 +10,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/002-metadata-and-manifests"
-    last_updated_at: "2026-08-16T07:45:00.000Z"
-    last_updated_by: "cursor-grok"
-    recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    last_updated_at: "2026-08-16T09:55:00.000Z"
+    last_updated_by: "cursor-markdown-leaf"
+    recent_action: "Class S identity files delivered; all proof commands passed."
+    next_safe_action: "003 context copy or 004 host adapters per parent scaffold plan."
     blockers: []
     key_files:
-      - "spec.md"
       - ".opencode/skills/sk-vision/graph-metadata.json"
       - ".opencode/skills/sk-vision/leaf-manifest.config.json"
+      - ".opencode/skills/sk-vision/leaf-manifest.json"
+      - ".opencode/skills/sk-vision/leaf-aliases.json"
+      - ".opencode/skills/sk-vision/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-sk-vision-fork-of-opencode-senses-002-skill-scaffold-002-metadata-and-manifests"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +43,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-metadata-and-manifests |
-| **Completed** | Not delivered |
+| **Completed** | 2026-08-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -50,7 +52,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This child is Planned. No target files exist yet. The operator implements from the copy pack in `spec.md`.
+Class S identity files for `sk-vision`: authored graph metadata, leaf manifest config, operator README, and generator-produced manifests. Hub JSON absent; `vision-runtime/` not created.
 
 ### Planned delivery
 
@@ -60,11 +62,11 @@ Finish the Class S identity files without copying the dump and without hub JSON.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-vision/graph-metadata.json` | Planned | Class S identity |
-| `.opencode/skills/sk-vision/leaf-manifest.config.json` | Planned | Authored manifest config |
-| `.opencode/skills/sk-vision/leaf-manifest.json` | Planned | --fix output |
-| `.opencode/skills/sk-vision/leaf-aliases.json` | Planned | --fix output |
-| `.opencode/skills/sk-vision/README.md` | Planned | Operator README |
+| `.opencode/skills/sk-vision/graph-metadata.json` | Created | Class S identity (skill_id sk-vision) |
+| `.opencode/skills/sk-vision/leaf-manifest.config.json` | Created | Authored manifest config (references/ only) |
+| `.opencode/skills/sk-vision/leaf-manifest.json` | Generated | ci-skill-root-metadata.cjs --fix output |
+| `.opencode/skills/sk-vision/leaf-aliases.json` | Generated | ci-skill-root-metadata.cjs --fix output |
+| `.opencode/skills/sk-vision/README.md` | Created | Operator README |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -72,7 +74,9 @@ Finish the Class S identity files without copying the dump and without hub JSON.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. This packet stays Planned until the copy-pack proof commands pass.
+Copy pack from `spec.md` implemented directly. One generator-required deviation: added `"sk-vision"` as the 8th top-level `intent_signals` entry (copy pack had 7; `INTENT_SIGNALS_BELOW_FLOOR` requires 8). `SKILL.md` untouched.
+
+Generators run in order: `ci-skill-root-metadata.cjs --fix` (exit 0), `ci-skill-root-metadata.cjs` (exit 0), `package_skill.py --check` (exit 0).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -84,6 +88,7 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 |----------|-----|
 | Keep this child Level 1 | Smaller scope for a small model; copy pack lives here not on the mid-level parent |
 | Stop rules in spec.md | Prevent dump edits, hub JSON, invented tools, and adapter files landing in the wrong child |
+| Add 8th intent_signal `sk-vision` | CI floor requires ≥8 entries; already present in derived.trigger_phrases |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -93,8 +98,12 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 
 | Check | Result |
 |-------|--------|
-| Copy-pack proof commands | Not run |
-| `validate.sh --strict` on this child | Not run after implementation |
+| `ci-skill-root-metadata.cjs --fix` | exit 0 |
+| `ci-skill-root-metadata.cjs` (no --fix) | exit 0, OK [S] sk-vision |
+| `package_skill.py --check` | exit 0, PASS |
+| Hub JSON ls | exit 1 (files absent) |
+| `vision-runtime/` absent | exit 0 |
+| `validate.sh --strict` (scoped) | RESULT PASSED, Errors 0; process exit 2 from repo-wide COMMAND_TREE_PARITY (runtime-mirror-sync drift unrelated to this packet) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -102,5 +111,6 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented.** Skill and adapter files are out of this documentation pass.
+1. **Runtime and adapters deferred.** `vision-runtime/`, OpenCode plugin, and Pi symlink land in later scaffold children.
+2. **SKILL.md scaffold warnings.** `package_skill.py --check` reports expected scaffold warnings (missing SMART ROUTING markers, `.gitkeep` in references/) — acceptable until reference docs arrive in 003.
 <!-- /ANCHOR:limitations -->

@@ -1,0 +1,12 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "references/.gitkeep"
+      ],
+      "packet": ".",
+      "workflowMode": "sk-vision"
+    }
+  ],
+  "resourceContractVersion": 1
+}

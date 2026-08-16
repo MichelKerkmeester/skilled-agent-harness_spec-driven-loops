@@ -67,9 +67,9 @@ If hardware present, load then status. Else SKIP. Do not ping.
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -105,15 +105,15 @@ stdin load → download/provision if needed → status → record result.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm dist/plugin.js
-- [ ] Check NVIDIA Ampere+ or Apple Silicon
+- [x] Confirm dist/plugin.js
+- [x] Check NVIDIA Ampere+ or Apple Silicon
 
 ### Phase 2: Core Implementation
-- [ ] Run load then status OR write SKIP
+- [x] Run load then status OR write SKIP
 
 ### Phase 3: Verification
-- [ ] Evidence is not ping
-- [ ] validate.sh --strict
+- [x] Evidence is not ping
+- [x] validate.sh --strict — RESULT: PASSED (0 errors, 0 warnings)
 <!-- /ANCHOR:phases -->
 
 ---

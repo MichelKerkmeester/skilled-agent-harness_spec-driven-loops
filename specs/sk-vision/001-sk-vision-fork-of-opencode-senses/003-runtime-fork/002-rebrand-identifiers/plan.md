@@ -62,14 +62,14 @@ Apply the table longest-token-first in dest. Keep LICENSE author. Do not build y
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Problem statement clear and scope documented
-- [x] Success criteria measurable
-- [x] Dependencies identified
+- [x] Problem statement clear and scope documented [evidence: spec.md §2-3]
+- [x] Success criteria measurable [evidence: spec.md §5 rg proof commands]
+- [x] Dependencies identified [evidence: spec.md predecessor 001-copy-shipped-files]
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met [evidence: spec.md §5 all [x]]
+- [x] Tests passing (if applicable) [evidence: rg inventory proofs pass]
+- [x] Docs updated (spec/plan/tasks) [evidence: spec.md Status Complete; tasks.md all [x]]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -106,18 +106,18 @@ Edit dest files. context/ stays untouched.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm copied files exist
-- [ ] Read longest-token-first table
+- [x] Confirm copied files exist [evidence: 14 vision-runtime files present]
+- [x] Read longest-token-first table [evidence: spec.md copy pack applied]
 
 ### Phase 2: Core Implementation
-- [ ] Apply replacements
-- [ ] Set package name
-- [ ] Fix runtime.py model comment
+- [x] Apply replacements [evidence: NO_SENSES_OUTSIDE_LICENSE; NO_OLD]
+- [x] Set package name [evidence: package.json name sk-vision]
+- [x] Fix runtime.py model comment [evidence: moondream2 in header and DEFAULT_MODEL]
 
 ### Phase 3: Verification
-- [ ] rg sk_vision_query empty
-- [ ] package.json name
-- [ ] validate.sh --strict
+- [x] rg sk_vision_query empty [evidence: rg no matches]
+- [x] package.json name [evidence: line 2 match]
+- [x] validate.sh --strict [evidence: RESULT PASSED]
 <!-- /ANCHOR:phases -->
 
 ---

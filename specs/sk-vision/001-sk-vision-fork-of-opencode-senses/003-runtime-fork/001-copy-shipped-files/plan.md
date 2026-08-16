@@ -62,14 +62,14 @@ mkdir dest trees and cp the locked list. Do not rebrand.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Problem statement clear and scope documented
-- [x] Success criteria measurable
-- [x] Dependencies identified
+- [x] Problem statement clear and scope documented [evidence: spec.md §2-3 documents problem and copy-only scope]
+- [x] Success criteria measurable [evidence: spec.md §5 lists testable proof commands]
+- [x] Dependencies identified [evidence: spec.md Phase Context lists 002-skill-scaffold Complete]
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met [evidence: spec.md §5 success criteria all [x]]
+- [x] Tests passing (if applicable) [evidence: copy-pack proof commands exit 0]
+- [x] Docs updated (spec/plan/tasks) [evidence: spec.md Status Complete; tasks.md all [x]]
 <!-- /ANCHOR:quality-gates -->
 
 ---

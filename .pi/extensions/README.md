@@ -24,6 +24,7 @@ trigger_phrases:
 | `lib/claude-hook-adapter.ts` | `.opencode/skills/system-spec-kit/mcp-server/hooks/pi/lib/` |
 | `prompt-advisor.ts` | `.opencode/skills/system-skill-advisor/hooks/pi/` |
 | `git-preflight-advisory.ts` | `.opencode/skills/sk-git/scripts/hooks/pi/` |
+| `sk-vision.ts` | `.opencode/skills/sk-vision/pi/sk-vision.ts` |
 
 Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). The 6 tool_call/tool_result/input adapters delegate to the same shared, runtime-neutral guard-core modules `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call. Four of the five session-lifecycle adapters (`session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `session-compact-context.ts`) proxy into the Claude lifecycle-hook dist files under `system-spec-kit/mcp-server/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. `prompt-advisor.ts` is the exception: it imports the compiled advisor lifecycle module (`system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js`) directly and calls `handleClaudeUserPromptSubmit()` in-process, because Pi awaits `input` handlers before agent processing begins and the old two-process `spawnSync` bridge blocked every send. Its visible contribution is lifecycle-deduped: the advisor brief and Pi dispatch reminder render in full on the first message and after `session_start`/`session_compact`, while a proven same-content repeat returns no transform and leaves the raw turn byte-identical (`SPECKIT_PI_DIRECTIVE_DEDUP`, default ON; `0`/`false`/`off` restores always-full). The separate tool-call preflight still enforces dispatch authorization on every turn. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes.
 
@@ -45,6 +46,7 @@ extensions/
 +-- prompt-advisor.ts           # Bridges the skill-advisor's UserPromptSubmit recommendation (in-process)
 +-- session-compact-context.ts  # Rehydrates spec-folder continuity after a compaction
 +-- git-preflight-advisory.ts   # Warn-only git-outcome advisories on bash git commands
++-- sk-vision.ts                # Registers 13 sk_vision_* tools backed by the shared Python runtime
 +-- lib/
 |   `-- claude-hook-adapter.ts  # Pi-specific spawnSync proxy into the Claude lifecycle-hook dist files
 `-- README.md                   # (this file and lib/README.md are the only real files here; all *.ts are symlinks)
@@ -67,6 +69,7 @@ extensions/
 | `session-stop-context.ts` | `session_shutdown` (reason `quit`) | `system-spec-kit/mcp-server/dist/hooks/claude/session-stop.js` (via `lib/claude-hook-adapter.ts`) |
 | `prompt-advisor.ts` | `input` | `system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js` `handleClaudeUserPromptSubmit()` (in-process dynamic import); full first + boundaries, no transform on proven repeats (`SPECKIT_PI_DIRECTIVE_DEDUP`) |
 | `session-compact-context.ts` | `session_compact` | Native port of `mcp-server/hooks/devin/post-compaction.cjs`'s recovery chain (shared tmpdir state file + `spec-memory.cjs` CLI fallback) |
+| `sk-vision.ts` | `registerTool` (13 `sk_vision_*`); optional `input` / `session_shutdown` | `.opencode/skills/sk-vision/pi/sk-vision.ts` — `session_shutdown` stops the Python runtime; `input.images` not wired (P1 gap) |
 
 Paths without a leading `.opencode/` are relative to `.opencode/skills/`. The four `.opencode/hooks/` cores are the fully-portable guard cores relocated out of their owning skill; see [`../../.opencode/hooks/README.md`](../../.opencode/hooks/README.md) for why those four moved and the rest did not.
 

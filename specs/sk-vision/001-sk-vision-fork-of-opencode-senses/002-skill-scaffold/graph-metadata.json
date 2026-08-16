@@ -33,7 +33,7 @@
       "copy"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-skill-md/spec.md",
@@ -85,15 +85,15 @@
     ],
     "causal_summary": "Text-only models need a legal standalone skill root before any runtime copy",
     "created_at": "2026-08-15T16:25:59.005Z",
-    "last_save_at": "2026-08-16T07:30:55.203Z",
+    "last_save_at": "2026-08-16T08:37:44.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a680cdd9f951f66b117bf45d5f3d032a97fbca89ad66b071b92d91758a7966b4",
+    "source_fingerprint": "sha256:125a654996f8fb89e52e3621cffc11fdbf4d2702f481feeb8153e14d0b603050",
     "source_doc_hashes": {
-      "spec.md": "a485716bcea4b76cfdbfe9e203cb1b0dd2cc6c3428e31d998656d86ad3cde8a4"
+      "spec.md": "96b39682835feb62c7f63924e438e36415469e1a7f2ec5a409ec1635916121c5"
     },
     "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold/002-metadata-and-manifests",
     "last_active_at": null

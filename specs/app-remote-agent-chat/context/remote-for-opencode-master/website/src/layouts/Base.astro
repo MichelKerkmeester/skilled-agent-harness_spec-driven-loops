@@ -1,0 +1,83 @@
+---
+import "../styles/global.css";
+import Wordmark from "../components/Wordmark.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+const { title, description, image = "/og/card.png" } = Astro.props;
+const path = Astro.url.pathname;
+const canonical = new URL(path === "/index" ? "/" : path, Astro.site).href;
+const imageUrl = new URL(image, Astro.site).href;
+
+const nav = [
+  { href: "/", label: "Overview" },
+  { href: "/download", label: "Download" },
+  { href: "/privacy", label: "Privacy" },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Remote for OpenCode",
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "iOS 17+, macOS 14+",
+    url: Astro.site?.href,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf9f5" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141413" />
+    <meta property="og:site_name" content="Remote for OpenCode" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site-header">
+        <a href="/" aria-label="Remote for OpenCode home" style="color: var(--ink); display: flex;">
+          <Wordmark height={18} />
+        </a>
+        <nav class="site-nav">
+          {nav.map((item) => (
+            <a href={item.href} aria-current={path === item.href || (item.href === "/" && path === "/index") ? "page" : undefined}>
+              {item.label}
+            </a>
+          ))}
+          <a href="https://github.com/tjameswilliams/remote-for-opencode">Source</a>
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        <span>Not affiliated with, endorsed by, or sponsored by the OpenCode project.</span>
+        <span>
+          <a href="/privacy">Privacy</a> · <a href="https://github.com/tjameswilliams/remote-for-opencode">Source</a>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "id": "evt_fc524a77c002EXG7LEKEwqPERu",
+  "type": "permission.asked",
+  "properties": {
+    "id": "per_fc524a77c001WIHoYpXH2YRAF5",
+    "sessionID": "ses_03adb783bffeXTP8RaL1dW19ha",
+    "permission": "bash",
+    "patterns": [
+      "echo spike-ok"
+    ],
+    "metadata": {
+      "command": "echo spike-ok"
+    },
+    "always": [
+      "echo *"
+    ],
+    "tool": {
+      "messageID": "msg_fc5249e0f0013hrpojV3vsn7L6",
+      "callID": "NQQaJ607dgYBqJgM"
+    }
+  }
+}

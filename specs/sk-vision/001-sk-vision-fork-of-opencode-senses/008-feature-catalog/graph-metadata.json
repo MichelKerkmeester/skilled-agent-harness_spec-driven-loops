@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog",
+  "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision feature catalog",
+      "sk-vision capability inventory",
+      "sk-vision catalog package"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "feature",
+      "catalog",
+      "capability",
+      "inventory",
+      "anchors"
+    ],
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-vision/feature-catalog/feature-catalog.md"
+    ],
+    "entities": [
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-vision/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      }
+    ],
+    "source_docs": [
+      "spec.md"
+    ],
+    "causal_summary": "sk-vision has no canonical capability inventory; this child authors the feature-catalog package with anchored per-feature files.",
+    "created_at": "2026-08-16T12:00:00.000Z",
+    "last_updated_at": "2026-08-16T12:00:00.000Z"
+  }
+}

@@ -1,0 +1,152 @@
+name: RemoteForOpenCode
+options:
+  bundleIdPrefix: com.timwilliams
+  deploymentTarget:
+    macOS: "14.0"
+    iOS: "17.0"
+settings:
+  base:
+    DEVELOPMENT_TEAM: 7NHJT99NX8
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "5.9"
+packages:
+  # Everything both apps share, as a real package: unit-testable on its
+  # own, with a deliberate public surface, and ready for a third client.
+  RemoteKit:
+    path: ../packages/RemoteKit
+  # Auto-update for the direct/brew-distributed Mac app. Pinned exactly;
+  # bump deliberately alongside SPARKLE_VERSION in scripts/release.sh.
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    exactVersion: 2.9.4
+targets:
+  MacCompanion:
+    type: application
+    platform: macOS
+    sources: [MacCompanion, Shared]
+    dependencies:
+      - package: RemoteKit
+      - package: Sparkle
+    entitlements:
+      path: MacCompanion/MacCompanion.entitlements
+      properties:
+        # Not sandboxed: the companion spawns the opencode CLI, which reads
+        # the user's real repos and shells out freely. Direct distribution,
+        # like Tomte's Mac half.
+        com.apple.security.app-sandbox: false
+        com.apple.security.network.client: true
+        com.apple.security.network.server: true
+        # Pairing rendezvous: public keys and device names only, in the
+        # user's own private CloudKit database (RemoteKit/Pairing).
+        com.apple.developer.icloud-services: [CloudKit]
+        com.apple.developer.icloud-container-identifiers:
+          - iCloud.com.timwilliams.opencodego
+    info:
+      path: MacCompanion/Info.plist
+      properties:
+        CFBundleDisplayName: Remote for OpenCode
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        # Menu bar only — no Dock icon, no app switcher entry.
+        LSUIElement: true
+        # Sparkle: SUPublicEDKey is the public half of the EdDSA keypair in
+        # the login keychain. Deliberately the SAME key Tomte uses —
+        # Sparkle's own tooling states one signing key covers however many
+        # apps you embed it in, and it reuses an existing keychain item
+        # rather than minting a second. The tradeoff is a shared blast
+        # radius: losing this key would strand updates for both products,
+        # so the keychain item is worth backing up.
+        SUFeedURL: https://remoteforopencode.com/downloads/appcast.xml
+        SUPublicEDKey: XRBDz3tt37lMTWp01Ep65tGBHuG/kt2pB2GXyXdoUak=
+        SUEnableAutomaticChecks: true
+        NSLocalNetworkUsageDescription: >-
+          Remote for OpenCode serves your coding agent to your paired iPhone on your
+          local network.
+        NSBonjourServices: ["_opencodego._tcp"]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.timwilliams.opencodego.mac
+        # Notarization rejects anything without it — the first 1.0 attempt
+        # came back Invalid for exactly this, on both architectures. Set as
+        # a build setting so the export signs correctly from the start,
+        # rather than re-signing afterwards.
+        ENABLE_HARDENED_RUNTIME: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        MARKETING_VERSION: "0.1"
+        CURRENT_PROJECT_VERSION: "1"
+  Phone:
+    type: application
+    platform: iOS
+    sources: [Phone, Shared]
+    # Required by App Store Connect since 2024: declares which
+    # "required reason" APIs the app touches and that it collects nothing.
+    resources: [Phone/PrivacyInfo.xcprivacy]
+    dependencies:
+      - package: RemoteKit
+    # Entitlements are hand-maintained rather than generated: the two
+    # files differ only in aps-environment, and xcodegen's `entitlements:`
+    # would override the per-configuration setting below.
+    info:
+      path: Phone/Info.plist
+      properties:
+        CFBundleDisplayName: Remote for OpenCode
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        # Must be set explicitly. Left unset, CFBundleName falls through to
+        # $(PRODUCT_NAME), which is the *target* name — "Phone" — and App
+        # Store Connect rejects the upload with error 90129, "the bundle
+        # uses a bundle name or display name that is already taken",
+        # because Phone is one of Apple's own apps. The rejection happens
+        # during processing, after the upload succeeds, so Xcode reports
+        # success and the build simply never appears in TestFlight.
+        #
+        # 13 characters against the 15-character ceiling Apple documents
+        # for this key — "Remote for OpenCode" doesn't fit, and a bare
+        # "Remote" would collide with Apple's own Remote app, which is
+        # exactly the 90129 rejection described above. Users only ever see
+        # CFBundleDisplayName.
+        CFBundleName: Remote for OC
+        # The app's own crypto is the pairing channel — Curve25519/ChaChaPoly
+        # via CryptoKit — plus HTTPS and CloudKit, all OS-provided: exactly
+        # the export-compliance exemption this key claims.
+        ITSAppUsesNonExemptEncryption: false
+        UILaunchScreen: {}
+        NSLocalNetworkUsageDescription: >-
+          Remote for OpenCode connects to your Mac on your local network to run your
+          coding agent. Your code never leaves your machines.
+        NSBonjourServices: ["_opencodego._tcp"]
+        NSFaceIDUsageDescription: >-
+          Remote for OpenCode confirms it's you before approving the agent's
+          commands.
+        # Dictating a prompt. Recognition is pinned on-device (see
+        # Dictation.swift) — the audio never leaves the phone.
+        NSMicrophoneUsageDescription: >-
+          Remote for OpenCode uses the microphone so you can dictate prompts to your
+          coding agent.
+        NSSpeechRecognitionUsageDescription: >-
+          Remote for OpenCode transcribes your dictated prompts on this device.
+          Nothing is sent to Apple or anyone else.
+        # Attaching a photo of a screen, a whiteboard, an error. The image
+        # goes to your own Mac and nowhere else. The photo library needs no
+        # entry — the system picker runs out of process.
+        NSCameraUsageDescription: >-
+          Remote for OpenCode uses the camera so you can send your agent a photo —
+          a screenshot, a diagram, an error on another screen.
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.timwilliams.opencodego.ios
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        MARKETING_VERSION: "1.0"
+        # Bumped past the two 1.0 (1) uploads that failed processing. App
+        # Store Connect can hold a build number from a failed upload, and
+        # colliding costs another full archive-and-upload cycle.
+        CURRENT_PROJECT_VERSION: "2"
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_ENTITLEMENTS: Phone/Phone.entitlements
+      configs:
+        # A development APNs entitlement in a store build means push fails
+        # silently against the production gateway. See the file's header.
+        Release:
+          CODE_SIGN_ENTITLEMENTS: Phone/Phone.release.entitlements

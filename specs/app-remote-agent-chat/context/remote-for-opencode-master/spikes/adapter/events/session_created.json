@@ -1,0 +1,37 @@
+{
+  "id": "evt_fc52487c4002QZ4B0445JrY48I",
+  "type": "session.created",
+  "properties": {
+    "sessionID": "ses_03adb783bffeXTP8RaL1dW19ha",
+    "info": {
+      "id": "ses_03adb783bffeXTP8RaL1dW19ha",
+      "slug": "eager-canyon",
+      "version": "1.18.10",
+      "projectID": "eaf75cf54fa5304b97a96a780ce00f926d691dd2",
+      "directory": "/Users/timwilliams/www/projects/opencodego/spikes/playground",
+      "path": "",
+      "title": "m0 adapter spike",
+      "permission": [
+        {
+          "permission": "bash",
+          "pattern": "*",
+          "action": "ask"
+        }
+      ],
+      "cost": 0,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "reasoning": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "time": {
+        "created": 1785718933444,
+        "updated": 1785718933444
+      }
+    }
+  }
+}

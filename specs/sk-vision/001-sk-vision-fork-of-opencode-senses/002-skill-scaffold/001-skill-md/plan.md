@@ -69,9 +69,9 @@ Write SKILL.md from the verbatim skeleton and stub references/. Do not run ci-sk
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -108,17 +108,17 @@ Operator writes SKILL.md. Advisor later reads WHEN TO USE. Runtime still absent.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm 001-research is Complete
-- [ ] mkdir skill root and references/
+- [x] Confirm 001-research is Complete
+- [x] mkdir skill root and references/
 
 ### Phase 2: Core Implementation
-- [ ] Write SKILL.md verbatim from File 1
-- [ ] Do not write JSON manifests
+- [x] Write SKILL.md verbatim from File 1
+- [x] Do not write JSON manifests
 
 ### Phase 3: Verification
-- [ ] test -f SKILL.md
-- [ ] rg WHEN NOT TO USE
-- [ ] validate.sh --strict
+- [x] test -f SKILL.md
+- [x] rg WHEN NOT TO USE
+- [x] validate.sh --strict
 <!-- /ANCHOR:phases -->
 
 ---

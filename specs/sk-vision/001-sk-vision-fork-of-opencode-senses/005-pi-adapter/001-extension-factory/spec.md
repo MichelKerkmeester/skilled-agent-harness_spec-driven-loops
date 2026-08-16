@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/001-extension-factory"
-    last_updated_at: "2026-08-16T07:45:00.000Z"
-    last_updated_by: "cursor-grok"
-    recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    last_updated_at: "2026-08-16T10:30:00.000Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Closed out factory delivery; validate.sh --strict on this child."
+    next_safe_action: "002-symlink-and-dry-factory"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-sk-vision-fork-of-opencode-senses-005-pi-adapter-001-extension-factory"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -198,10 +198,10 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- [ ] Owner file exists
-- [ ] Default export is a function
-- [ ] 13 tools named; no sk_vision_query
-- [ ] This child validate.sh --strict exits 0
+- [x] Owner file exists — evidence: `test -f .opencode/skills/sk-vision/pi/sk-vision.ts` exit 0 (404 lines)
+- [x] Default export is a function — evidence: `rg 'export default function skVision' .opencode/skills/sk-vision/pi/sk-vision.ts` exit 0
+- [x] 13 tools named; no sk_vision_query — evidence: `rg -c 'pi\.registerTool'`=13; `rg sk_vision_query` exit 1
+- [x] This child validate.sh --strict exits 0 — evidence: see `implementation-summary.md` verification table
 <!-- /ANCHOR:success-criteria -->
 
 ---

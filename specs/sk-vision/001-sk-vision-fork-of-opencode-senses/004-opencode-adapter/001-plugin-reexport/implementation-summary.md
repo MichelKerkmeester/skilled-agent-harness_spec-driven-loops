@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/001-plugin-reexport"
-    last_updated_at: "2026-08-16T07:45:00.000Z"
-    last_updated_by: "cursor-grok"
-    recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    last_updated_at: "2026-08-16T08:20:00.000Z"
+    last_updated_by: "cursor-code"
+    recent_action: "Created .opencode/plugins/sk-vision.js thin re-export; copy-pack proofs passed."
+    next_safe_action: "002-readme-and-proof"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-sk-vision-fork-of-opencode-senses-004-opencode-adapter-001-plugin-reexport"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-plugin-reexport |
-| **Completed** | Not delivered |
+| **Completed** | 2026-08-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,17 +49,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This child is Planned. No target files exist yet. The operator implements from the copy pack in `spec.md`.
-
-### Planned delivery
-
-Add a thin re-export matching mk-communication-projection.js.
+Created a thin OpenCode plugin adapter at `.opencode/plugins/sk-vision.js` that default-re-exports the built vision-runtime factory. No GPU logic, no symlink, no opencode.json edits.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/plugins/sk-vision.js` | Planned | Thin default re-export |
+| `.opencode/plugins/sk-vision.js` | Created | Thin default re-export to vision-runtime/dist/plugin.js |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +63,7 @@ Add a thin re-export matching mk-communication-projection.js.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. This packet stays Planned until the copy-pack proof commands pass.
+Wrote the preferred copy-pack bytes verbatim (3 lines: `'use strict'`, blank line, ESM re-export). Import target verified at `.opencode/skills/sk-vision/vision-runtime/dist/plugin.js`. Analog pattern confirmed against `.opencode/plugins/mk-communication-projection.js` (real file importing skill dist/).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,6 +75,7 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 |----------|-----|
 | Keep this child Level 1 | Smaller scope for a small model; copy pack lives here not on the mid-level parent |
 | Stop rules in spec.md | Prevent dump edits, hub JSON, invented tools, and adapter files landing in the wrong child |
+| Preferred re-export bytes | Matches mk-communication-projection pattern; defers all hooks to dist/plugin.js factory |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -86,10 +83,12 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 <!-- ANCHOR:verification -->
 ## Verification
 
-| Check | Result |
-|-------|--------|
-| Copy-pack proof commands | Not run |
-| `validate.sh --strict` on this child | Not run after implementation |
+| Check | Command | Exit Code | Result |
+|-------|---------|-----------|--------|
+| dist/plugin.js exists | `test -f .opencode/skills/sk-vision/vision-runtime/dist/plugin.js` | 0 | Pass |
+| plugin is regular file | `test -f .opencode/plugins/sk-vision.js && test ! -L .opencode/plugins/sk-vision.js` | 0 | Pass |
+| import path | `rg -n "from '../skills/sk-vision/vision-runtime/dist/plugin.js'" .opencode/plugins/sk-vision.js` | 0 | Pass (line 3) |
+| validate.sh --strict | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/001-plugin-reexport --strict` | 2 | Folder RESULT: PASSED (errors=0 warnings=0); exit 2 from repo-wide COMMAND_TREE_PARITY (pre-existing, out of child scope) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -97,5 +96,6 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented.** Skill and adapter files are out of this documentation pass.
+1. **README row not added.** Child `002-readme-and-proof` owns plugin README documentation and extended proof.
+2. **Runtime load not exercised in chat.** Factory hooks (event, chat.message, tool, dispose) remain in dist/plugin.js; this child only wires the host load path.
 <!-- /ANCHOR:limitations -->

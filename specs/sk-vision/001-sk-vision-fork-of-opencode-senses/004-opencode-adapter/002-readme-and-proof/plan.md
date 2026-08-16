@@ -68,9 +68,9 @@ Add the README row and run the proof commands. Do not edit opencode.json.
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -106,15 +106,15 @@ Edit README. rg proofs. Optional SKIP attach smoke.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm plugin file is not a symlink
+- [x] Confirm plugin file is not a symlink
 
 ### Phase 2: Core Implementation
-- [ ] Add README row
-- [ ] Do not edit opencode.json
+- [x] Add README row
+- [x] Do not edit opencode.json
 
 ### Phase 3: Verification
-- [ ] rg proofs
-- [ ] validate.sh --strict
+- [x] rg proofs
+- [x] validate.sh --strict
 <!-- /ANCHOR:phases -->
 
 ---

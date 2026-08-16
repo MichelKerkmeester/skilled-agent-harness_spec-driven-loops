@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook",
+  "description": "Operator validation corpus for sk-vision: 16 deterministic scenarios plus the benchmark run-index scaffold",
+  "keywords": [
+    "sk-vision",
+    "playbook",
+    "scenarios",
+    "manual testing",
+    "benchmark",
+    "evidence"
+  ],
+  "lastUpdated": "2026-08-16T12:00:00.000Z",
+  "specId": "009",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-vision",
+    "001-sk-vision-fork-of-opencode-senses"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

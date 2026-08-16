@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Remote for OpenCode</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Remote for OC</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_opencodego._tcp</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Remote for OpenCode uses the camera so you can send your agent a photo — a screenshot, a diagram, an error on another screen.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Remote for OpenCode confirms it's you before approving the agent's commands.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Remote for OpenCode connects to your Mac on your local network to run your coding agent. Your code never leaves your machines.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Remote for OpenCode uses the microphone so you can dictate prompts to your coding agent.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Remote for OpenCode transcribes your dictated prompts on this device. Nothing is sent to Apple or anyone else.</string>
+	<key>UILaunchScreen</key>
+	<dict/>
+</dict>
+</plist>

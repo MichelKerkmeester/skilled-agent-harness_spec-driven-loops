@@ -1,0 +1,1 @@
+../../.opencode/skills/sk-vision/pi/sk-vision.ts

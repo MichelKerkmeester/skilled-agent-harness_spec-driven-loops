@@ -10,20 +10,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof"
-    last_updated_at: "2026-08-16T07:45:00.000Z"
-    last_updated_by: "cursor-grok"
-    recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    last_updated_at: "2026-08-16T08:23:00.000Z"
+    last_updated_by: "cursor-code"
+    recent_action: "Added README inventory row; file/import proofs PASS; GPU attach SKIP."
+    next_safe_action: "005-pi-adapter/001-extension-factory"
     blockers: []
     key_files:
-      - "spec.md"
       - ".opencode/plugins/README.md"
+      - ".opencode/plugins/sk-vision.js"
       - "opencode.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-sk-vision-fork-of-opencode-senses-004-opencode-adapter-002-readme-and-proof"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-readme-and-proof |
-| **Completed** | Not delivered |
+| **Completed** | 2026-08-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -50,17 +50,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This child is Planned. No target files exist yet. The operator implements from the copy pack in `spec.md`.
-
-### Planned delivery
-
-Document the plugin and prove opencode.json stays without a plugin array.
+Added one inventory row for `sk-vision.js` to `.opencode/plugins/README.md` section 2 CONTENTS table, placed after `session-cleanup.js`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/plugins/README.md` | Planned | Inventory row for sk-vision.js |
+| `.opencode/plugins/README.md` | Modified | Inventory row for sk-vision.js |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +64,7 @@ Document the plugin and prove opencode.json stays without a plugin array.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. This packet stays Planned until the copy-pack proof commands pass.
+Inserted the row per spec copy pack. Re-ran file-type and import proofs. Confirmed `opencode.json` has no `plugin` key. GPU attach smoke SKIP (003 load already PASS; cheap file/import proof sufficient).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,8 +74,8 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 
 | Decision | Why |
 |----------|-----|
-| Keep this child Level 1 | Smaller scope for a small model; copy pack lives here not on the mid-level parent |
-| Stop rules in spec.md | Prevent dump edits, hub JSON, invented tools, and adapter files landing in the wrong child |
+| Place row after session-cleanup.js | Alphabetical-ish ordering near other session/s* entries |
+| SKIP GPU attach smoke | 003 load smoke passed; file/import proof sufficient per spec |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -89,8 +85,11 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 
 | Check | Result |
 |-------|--------|
-| Copy-pack proof commands | Not run |
-| `validate.sh --strict` on this child | Not run after implementation |
+| `test -f .opencode/plugins/sk-vision.js && test ! -L .opencode/plugins/sk-vision.js` | PASS (FILE_OK) |
+| rg import path on sk-vision.js | PASS (line 3 matches) |
+| `rg -n 'plugin' opencode.json` | PASS (exit 1, no matches — no plugin array) |
+| GPU attach smoke | SKIP |
+| `validate.sh --strict` on this child | PASS (0 errors, 0 warnings) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -98,5 +97,5 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented.** Skill and adapter files are out of this documentation pass.
+None for this child scope.
 <!-- /ANCHOR:limitations -->

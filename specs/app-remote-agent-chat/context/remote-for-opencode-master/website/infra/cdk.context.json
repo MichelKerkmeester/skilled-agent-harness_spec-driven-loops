@@ -1,0 +1,10 @@
+{
+  "hosted-zone:account=961861335674:domainName=goforopencode.com:region=us-east-1": {
+    "Id": "/hostedzone/Z00234522G5Z4LL0JFAIY",
+    "Name": "goforopencode.com."
+  },
+  "hosted-zone:account=961861335674:domainName=remoteforopencode.com:region=us-east-1": {
+    "Id": "/hostedzone/Z05645001WHSGWI6YEN25",
+    "Name": "remoteforopencode.com."
+  }
+}

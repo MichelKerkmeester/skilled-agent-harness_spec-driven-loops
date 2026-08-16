@@ -10,19 +10,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/002-rebrand-identifiers"
-    last_updated_at: "2026-08-16T07:45:00.000Z"
-    last_updated_by: "cursor-grok"
-    recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    last_updated_at: "2026-08-16T08:00:00.000Z"
+    last_updated_by: "code-agent"
+    recent_action: "Rebranded vision-runtime identifiers longest-token-first; rg proofs clean."
+    next_safe_action: "003-build-and-tests"
     blockers: []
     key_files:
       - "spec.md"
       - ".opencode/skills/sk-vision/vision-runtime/package.json"
+      - ".opencode/skills/sk-vision/vision-runtime/src/opencode/tools.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-sk-vision-fork-of-opencode-senses-003-runtime-fork-002-rebrand-identifiers"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +41,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-rebrand-identifiers |
-| **Completed** | Not delivered |
+| **Completed** | 2026-08-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,20 +50,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This child is Planned. No target files exist yet. The operator implements from the copy pack in `spec.md`.
-
-### Planned delivery
-
-Rewrite identifiers longest-token-first in dest only. Keep MIT Adarsh copyright.
+Applied the frozen find/replace table longest-token-first across `.opencode/skills/sk-vision/vision-runtime/`. Package name is `sk-vision`. Thirteen `sk_vision_*` host tools remain; no `sk_vision_query`. LICENSE keeps the Adarsh copyright line with an appended modification notice.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-vision/vision-runtime/src/**` | Planned | Identifier rewrite |
-| `.opencode/skills/sk-vision/vision-runtime/python/runtime.py` | Planned | Env, envelope, model comment |
-| `.opencode/skills/sk-vision/vision-runtime/package.json` | Planned | name sk-vision |
-| `.opencode/skills/sk-vision/vision-runtime/LICENSE` | Planned | Append modification notice only |
+| `.opencode/skills/sk-vision/vision-runtime/src/**` | Modified | Identifier rewrite |
+| `.opencode/skills/sk-vision/vision-runtime/python/runtime.py` | Modified | Env vars, cache path, model comment |
+| `.opencode/skills/sk-vision/vision-runtime/python/runtime.test.ts` | Modified | Temp dir prefix |
+| `.opencode/skills/sk-vision/vision-runtime/scripts/build.ts` | Modified | `SK_VISION_VERSION` define |
+| `.opencode/skills/sk-vision/vision-runtime/package.json` | Modified | name `sk-vision`; upstream repository.url kept |
+| `.opencode/skills/sk-vision/vision-runtime/LICENSE` | Modified | Append modification notice only |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -70,7 +69,7 @@ Rewrite identifiers longest-token-first in dest only. Keep MIT Adarsh copyright.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. This packet stays Planned until the copy-pack proof commands pass.
+Longest-token-first string replacements per `spec.md` copy pack. Skipped LICENSE for bulk replace except the appended copyright line. Left `context/` untouched. No `bun install` or build in this child.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -80,8 +79,9 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 
 | Decision | Why |
 |----------|-----|
-| Keep this child Level 1 | Smaller scope for a small model; copy pack lives here not on the mid-level parent |
-| Stop rules in spec.md | Prevent dump edits, hub JSON, invented tools, and adapter files landing in the wrong child |
+| Keep upstream `repository.url` | Provenance per fork ADRs |
+| Rename temp/cache paths to `sk-vision` | Avoid host cache collisions |
+| Default model stays `moondream2` | Frozen requirement |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,8 +91,14 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 
 | Check | Result |
 |-------|--------|
-| Copy-pack proof commands | Not run |
-| `validate.sh --strict` on this child | Not run after implementation |
+| `rg sk_vision_query` | Empty |
+| `rg '"name": "sk-vision"' package.json` | Match line 2 |
+| `rg SENSES_ --glob '!LICENSE'` | `NO_SENSES_OUTSIDE_LICENSE` |
+| `rg senses_inspect\|sensesTools\|SensesPlugin` | `NO_OLD` |
+| `rg Copyright (c) 2026 Adarsh` LICENSE | Present |
+| `rg moondream2` | Present in runtime.py and photon.ts |
+| `git diff --exit-code context/` | Exit 0 |
+| `validate.sh --strict` | `RESULT: PASSED` (Errors 0, Warnings 0) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -100,5 +106,6 @@ Not delivered. This packet stays Planned until the copy-pack proof commands pass
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented.** Skill and adapter files are out of this documentation pass.
+1. Build and tests deferred to child `003-build-and-tests`.
+2. `repository.url` still references upstream `opencode-senses` git URL by design.
 <!-- /ANCHOR:limitations -->

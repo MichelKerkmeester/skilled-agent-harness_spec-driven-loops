@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/001-skill-md-and-readme",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/001-skill-md-and-readme",
+  "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision SKILL.md contract",
+      "sk-vision readme rewrite",
+      "sk-vision runtime reference"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "skill-md",
+      "contract",
+      "readme",
+      "references",
+      "runtime-reference",
+      "manifests"
+    ],
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-vision/SKILL.md",
+      ".opencode/skills/sk-vision/README.md",
+      ".opencode/skills/sk-vision/references/runtime-reference.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-vision/SKILL.md",
+        "source": "derived"
+      }
+    ],
+    "source_docs": [
+      "spec.md"
+    ],
+    "causal_summary": "The shipped sk-vision SKILL.md and README still describe a scaffold; this child rewrites them truthfully and adds a references corpus.",
+    "created_at": "2026-08-16T12:00:00.000Z",
+    "last_updated_at": "2026-08-16T12:00:00.000Z"
+  }
+}

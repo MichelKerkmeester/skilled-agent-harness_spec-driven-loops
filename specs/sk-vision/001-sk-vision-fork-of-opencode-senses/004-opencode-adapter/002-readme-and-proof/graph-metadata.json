@@ -30,7 +30,7 @@
       "row"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Operators will not find the plugin without an inventory row, and a plugin array in opencode.json would fight this repo's discovery path",
     "created_at": "2026-08-16T07:22:47Z",
-    "last_save_at": "2026-08-16T07:30:56.851Z",
+    "last_save_at": "2026-08-16T08:25:52.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75cc4c6052ba519811ef6077c4e1411c8ce32992e3e8b911502531766c42bf31",
+    "source_fingerprint": "sha256:1cc72d970db717ef1bc0679a5ea8f943719fff35debe97954a975245ba040524",
     "source_doc_hashes": {
-      "spec.md": "004f380e0669b054dec2b9943a5516c6a128f68872b208e7836a2946aaa67ec5",
-      "plan.md": "201ee2cd8da8cf174eb0aa023fad49a6f21e521fe6f93728b2db4c6e4486d079",
-      "tasks.md": "0056ab5ef6c7ee027f8c0ff274277037bebddc50fb1e6a3fcd558cb34bbe1ab1",
-      "implementation-summary.md": "32268c84caf89d832a4b5b0b9c3c5655959c320fd324a9d1f844296a0dc9c207"
+      "spec.md": "a7347928d34277ca5b9f877778b238d27dab9f5cefcaa2300e87dd527cb428f6",
+      "plan.md": "69309c23a53abf928e07fd218bfd8b174fb07c93d52307540de0b72f0574a71e",
+      "tasks.md": "d1d72a1654b3854fbd896426a99841ff3062ec255af287a17305ec7c00af4680",
+      "implementation-summary.md": "2db60df4f7559286270b7c5fa869953a13f4b2c3dfe0138bdd7b0dbdc1d1686b"
     },
     "last_active_child_id": null,
     "last_active_at": null

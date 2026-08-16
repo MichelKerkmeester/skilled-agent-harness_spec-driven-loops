@@ -36,6 +36,7 @@ The directory inventory is authoritative for the auto-loaded plugin surface. Sha
 | `mk-spec-memory.js` | Injects Spec Kit continuity and exposes memory status. |
 | `mk-speckit-completion.js` | Exposes read-only completion evidence. |
 | `session-cleanup.js` | Performs bounded session and host cleanup. |
+| `sk-vision.js` | Local vision adapter: default-exports `vision-runtime/dist/plugin.js`. Registers 13 `sk_vision_*` tools. Auto-inspect uses a 2s grace and never awaits full GPU. |
 | `tests/` | Contains the plugin regression suites. |
 
 ## 3. HOOK MODEL

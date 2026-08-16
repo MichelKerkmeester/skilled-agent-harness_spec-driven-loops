@@ -38,6 +38,21 @@
     "status": "draft",
     "key_files": [
       "context/pi-gpt-fast-mode/src/handoff.ts",
+      "research/research.md",
+      "context/README.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-config.json",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
+      "context/pi-openai-fast-mode/tsconfig.json",
+      "context/pi-openai-fast-mode/package.json",
+      "context/pi-gpt-fast-mode/package.json",
+      "context/pi-fast-mode/package.json",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md",
+      "research/iterations/iteration-009.md",
+      "research/iterations/iteration-002.md",
       "spec.md"
     ],
     "entities": [
@@ -45,6 +60,84 @@
         "name": "handoff.ts",
         "kind": "code",
         "path": "context/pi-gpt-fast-mode/src/handoff.ts",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "context/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": "context/pi-openai-fast-mode/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "context/pi-openai-fast-mode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-009.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
         "source": "derived"
       },
       {
@@ -88,21 +181,41 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Decision Fork",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Objective",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The two leading pi fast-mode extensions cover complementary halves of the requirement, but neither covers both:",
     "created_at": "2026-08-16T07:07:46Z",
-    "last_save_at": "2026-08-16T07:14:31.540Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-16T08:45:06.414Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:35e8163fc1e7834644973d913e500aeceb6703365a30439a82b92554b115b55a",
+    "source_fingerprint": "sha256:37c26db701f5553c9174c9b4023ff99e7d0bad215f0c99a595c07e3794e1770d",
     "source_doc_hashes": {
-      "spec.md": "d7011afddde40c35ebdbf924a5b65b897186930215d279f30b2d7c2236d33cce"
+      "spec.md": "1069f8e26bfdb5a0bde11bbda2e239e743cfc484a186dc7860be8aaa3d3bab01",
+      "research/research.md": "9246c19056271d8a034918e1ef5436cf60a21cb97f749c8b64191548dab47beb"
     },
-    "last_active_child_id": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package",
-    "last_active_at": "2026-08-16T09:20:00Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-16T08:45:06.414Z"
   }
 }

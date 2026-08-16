@@ -30,7 +30,7 @@
       "plugins"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "OpenCode will not load the skill factory until a real file exists under .opencode/plugins/",
     "created_at": "2026-08-16T07:22:46Z",
-    "last_save_at": "2026-08-16T07:30:56.694Z",
+    "last_save_at": "2026-08-16T08:22:59.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b656c38413196c517b3955fb977da328322663252df93f9c1e6c41e0a3965557",
+    "source_fingerprint": "sha256:3e90ccb77f981e60d8dd9dccbf9a68de97e7efa8f6cddf6e0b4257ccf8238f97",
     "source_doc_hashes": {
-      "spec.md": "aea5888242c68746a3c043a1cfbe13a9c93cea129733fcef8c692acd2be5212b",
-      "plan.md": "f54b6b2a28a3bec938ac020e44e0abfa8c35656fbd1682cff01faaf3b6aa9028",
-      "tasks.md": "a6110c1b17ec5f9926ecbec2a3b084e92b7a0eef87031e335dccc78b503f0813",
-      "implementation-summary.md": "9cf5d3f2e6932ec6dc3704968e4033f5126d24a0b57112ab9d2f71b8387c6ef1"
+      "spec.md": "ce87d2bdf6236448c358b2c5d2d2ccbd2b6482606b92ac399624e4241a7348be",
+      "plan.md": "be853243cc88f173f8b5ec3b6d9355a22afc96ded070a6df609a9771d2f13bc9",
+      "tasks.md": "e80fc87e3b72650fb6436fc3190b60395c5b614dcded19bcfb99a0b369d04d25",
+      "implementation-summary.md": "3e1c4d3d8f440f66cbf02b890a97af9390b2886589b48d85a09b917ff9e55dfc"
     },
     "last_active_child_id": null,
     "last_active_at": null

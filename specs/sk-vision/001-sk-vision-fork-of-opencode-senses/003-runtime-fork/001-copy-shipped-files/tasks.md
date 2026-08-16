@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-08-16T07:45:00.000Z"
     last_updated_by: "cursor-grok"
     recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    next_safe_action: "002-rebrand-identifiers"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-sk-vision-fork-of-opencode-senses-003-runtime-fork-001-copy-shipped-files"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -51,8 +51,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm SKILL.md exists
-- [ ] T002 mkdir dest trees (`.opencode/skills/sk-vision/vision-runtime/`)
+- [x] T001 Confirm SKILL.md exists [evidence: test -f .opencode/skills/sk-vision/SKILL.md exit code 0]
+- [x] T002 mkdir dest trees (`.opencode/skills/sk-vision/vision-runtime/`) [evidence: mkdir -p vision-runtime/src/{runtime,providers,opencode,core} python scripts exit code 0]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,8 +60,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Copy locked file list from context/ to vision-runtime/
-- [ ] T004 Do not copy PLAN.md, .github/, or dump opencode.json
+- [x] T003 Copy locked file list from context/ to vision-runtime/ [evidence: 14 files under .opencode/skills/sk-vision/vision-runtime/; cp locked list exit code 0]
+- [x] T004 Do not copy PLAN.md, .github/, or dump opencode.json [evidence: test ! -e vision-runtime/PLAN.md exit code 0; test ! -e vision-runtime/opencode.json exit code 0]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,9 +69,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 test -f listed dest files
-- [ ] T006 git diff --exit-code on context/
-- [ ] T007 Run validate.sh --strict on this child
+- [x] T005 test -f listed dest files [evidence: test -f vision-runtime/src/plugin.ts vision-runtime/python/runtime.py vision-runtime/LICENSE exit code 0]
+- [x] T006 git diff --exit-code on context/ [evidence: git diff --exit-code -- specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context exit code 0]
+- [x] T007 Run validate.sh --strict on this child [evidence: validate.sh specs/.../001-copy-shipped-files --strict RESULT PASSED exit code 0]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` [evidence: T001-T007 all [x] with evidence]
+- [x] No `[B]` blocked tasks remaining [evidence: zero [B] entries in tasks.md]
+- [x] Manual verification passed [evidence: copy-pack proof commands exit 0]
 <!-- /ANCHOR:completion -->
 
 ---

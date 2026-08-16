@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter/001-extension-factory"
-    last_updated_at: "2026-08-16T07:45:00.000Z"
-    last_updated_by: "cursor-grok"
-    recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    last_updated_at: "2026-08-16T10:30:00.000Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Definition of Done and phase checklists marked complete."
+    next_safe_action: "002-symlink-and-dry-factory"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-sk-vision-fork-of-opencode-senses-005-pi-adapter-001-extension-factory"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -67,9 +67,9 @@ Write the owner factory from the skeleton. Do not symlink yet.
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met — evidence: REQ-001–REQ-004 satisfied; see `implementation-summary.md`
+- [x] Tests passing (if applicable) — evidence: rg/copy-pack proofs pass; no unit suite in scope
+- [x] Docs updated (spec/plan/tasks) — evidence: this closeout refresh
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -105,18 +105,18 @@ Pi will later load the symlink → factory → registerTool × 13 → shutdown c
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm 003 RuntimeClient exists
-- [ ] Read analog git-preflight-advisory.ts
+- [x] Confirm 003 RuntimeClient exists
+- [x] Read analog git-preflight-advisory.ts
 
 ### Phase 2: Core Implementation
-- [ ] Write function default export
-- [ ] Register 13 tools
-- [ ] Close client on shutdown
+- [x] Write function default export
+- [x] Register 13 tools
+- [x] Close client on shutdown
 
 ### Phase 3: Verification
-- [ ] rg sk_vision_query empty
-- [ ] test ! -e .pi/extensions/sk-vision.ts
-- [ ] validate.sh --strict
+- [x] rg sk_vision_query empty
+- [x] test ! -e .pi/extensions/sk-vision.ts (orchestrator gate at factory delivery)
+- [x] validate.sh --strict
 <!-- /ANCHOR:phases -->
 
 ---
@@ -138,7 +138,7 @@ Pi will later load the symlink → factory → registerTool × 13 → shutdown c
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 003-runtime-fork | Internal | Yellow until Complete | No provider to call |
+| 003-runtime-fork | Internal | Complete | No provider to call |
 <!-- /ANCHOR:dependencies -->
 
 ---

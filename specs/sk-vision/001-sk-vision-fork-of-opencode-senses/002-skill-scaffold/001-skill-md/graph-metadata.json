@@ -30,7 +30,7 @@
       "path"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -147,6 +147,12 @@
         "source": "derived"
       },
       {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -160,12 +166,6 @@
       },
       {
         "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The workspace has no `sk-vision` skill body, so later children have nowhere to reserve the package path or advisor triggers",
     "created_at": "2026-08-16T07:22:40Z",
-    "last_save_at": "2026-08-16T07:30:55.367Z",
+    "last_save_at": "2026-08-16T07:50:04.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1584270b2fc6d753935bc3f0cea027b8b10d45fe00b4363bd0aa08550865113b",
+    "source_fingerprint": "sha256:5f160c7734a9732ba6f16a169ffae38507c10208d28d753539ddf1848cbff412",
     "source_doc_hashes": {
-      "spec.md": "ee47e5888215c89f1ede46f37fe91c81e1bf6268f3acecf6f6a3ee5b51f75931",
-      "plan.md": "5141e5caa9717640bb7c8845df7c02c1d9ec5c3a8a5ff15e434ece3e32d2ada1",
-      "tasks.md": "9d0d5282f8d53f5c3df2a38b56321aff20bf31165198c978a106ca1bb69f18ad",
-      "implementation-summary.md": "ba18fe6f397889a9876b7bc516cce2fc8cc414b25e153f2945b21041ec9bbb1c"
+      "spec.md": "1bdf152e0842d493fe50ca71d190fb0cd92aff997444752e0716d5962df61eb0",
+      "plan.md": "7d9cfc4216775f1977db94a5b15357e13f6fa1c477287ce7ef801f520e163bbf",
+      "tasks.md": "929dfb1ca62cff15cab8dfac1631ba00c2c8d4214e54429172e757ac57641905",
+      "implementation-summary.md": "d988262676082dfabe671838bf53b26d13443704331143f64f40371fd6207d32"
     },
     "last_active_child_id": null,
     "last_active_at": null

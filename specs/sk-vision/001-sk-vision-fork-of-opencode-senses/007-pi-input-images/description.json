@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/007-pi-input-images",
+  "description": "Close the P1 gap: bounded input.images auto-inspect for Pi, mirroring the OpenCode 2s-grace injector",
+  "keywords": [
+    "sk-vision",
+    "input",
+    "images",
+    "auto-inspect",
+    "pi",
+    "attachment",
+    "grace"
+  ],
+  "lastUpdated": "2026-08-16T12:00:00.000Z",
+  "specId": "007",
+  "folderSlug": "pi-input-images",
+  "parentChain": [
+    "sk-vision",
+    "001-sk-vision-fork-of-opencode-senses"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

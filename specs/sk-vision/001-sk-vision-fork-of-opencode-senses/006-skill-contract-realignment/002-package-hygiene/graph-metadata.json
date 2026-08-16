@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/002-package-hygiene",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment/002-package-hygiene",
+  "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision package hygiene",
+      "sk-vision publishConfig",
+      "sk-vision venv cleanup"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "hygiene",
+      "publishconfig",
+      "venv",
+      "hermetic",
+      "provenance",
+      "rebuild"
+    ],
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-vision/vision-runtime/package.json"
+    ],
+    "entities": [
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/vision-runtime/package.json",
+        "source": "derived"
+      }
+    ],
+    "source_docs": [
+      "spec.md"
+    ],
+    "causal_summary": "The fork package still carries a live publish config and upstream identity; this child neutralizes them and removes the venv residue.",
+    "created_at": "2026-08-16T12:00:00.000Z",
+    "last_updated_at": "2026-08-16T12:00:00.000Z"
+  }
+}

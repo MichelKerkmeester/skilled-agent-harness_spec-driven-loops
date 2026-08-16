@@ -10,19 +10,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/003-build-and-tests"
-    last_updated_at: "2026-08-16T07:45:00.000Z"
-    last_updated_by: "cursor-grok"
-    recent_action: "Authored nested-phase copy pack and L1 suite."
-    next_safe_action: "Implement files from this child's spec.md copy pack."
+    last_updated_at: "2026-08-16T10:15:00.000Z"
+    last_updated_by: "code-agent"
+    recent_action: "bun install/build/test passed; all tasks complete with evidence."
+    next_safe_action: "004-gpu-smoke"
     blockers: []
     key_files:
       - "spec.md"
       - ".opencode/skills/sk-vision/vision-runtime/dist/plugin.js"
+      - ".opencode/skills/sk-vision/vision-runtime/dist/python/runtime.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-001-sk-vision-fork-of-opencode-senses-003-runtime-fork-003-build-and-tests"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -51,8 +52,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 cd vision-runtime
-- [ ] T002 bun install (or document tsc substitute)
+- [x] T001 cd vision-runtime [evidence: cwd `.opencode/skills/sk-vision/vision-runtime` for all commands]
+- [x] T002 bun install (or document tsc substitute) [evidence: `bun install` exit 0, 33 packages]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,9 +61,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 bun run build (`scripts/build.ts`)
-- [ ] T004 Prove dist/plugin.js (`vision-runtime/dist/plugin.js`)
-- [ ] T005 bun test
+- [x] T003 bun run build (`scripts/build.ts`) [evidence: `bun run build` exit 0; output `built dist/plugin.js + dist/python/runtime.py`]
+- [x] T004 Prove dist/plugin.js (`vision-runtime/dist/plugin.js`) [evidence: `test -f dist/plugin.js` exit 0; 499333 bytes]
+- [x] T005 bun test [evidence: `bun test` exit 0 after `.venv` + Pillow; 8 pass, 0 fail]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -70,8 +71,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 rg residual dump identifiers
-- [ ] T007 Run validate.sh --strict on this child
+- [x] T006 rg residual dump identifiers [evidence: `rg --no-ignore` → only `package.json:13` provenance URL; zero `senses_` in `src/`]
+- [x] T007 Run validate.sh --strict on this child [evidence: validate.sh RESULT PASSED after metadata backfill]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +80,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` [evidence: T001-T007 all [x] with evidence tags]
+- [x] No `[B]` blocked tasks remaining [evidence: zero [B] entries in tasks.md]
+- [x] Manual verification passed [evidence: copy-pack proofs in implementation-summary.md §Verification]
 <!-- /ANCHOR:completion -->
 
 ---

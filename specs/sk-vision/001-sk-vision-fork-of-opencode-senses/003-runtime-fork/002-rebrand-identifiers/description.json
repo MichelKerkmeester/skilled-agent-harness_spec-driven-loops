@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork/002-rebrand-identifiers",
-  "description": "Copied files still speak dump identifiers",
+  "description": "Rebranded vision-runtime identifiers longest-token-first",
   "keywords": [
     "copied",
     "files",
@@ -10,7 +10,7 @@
     "dump",
     "identifiers"
   ],
-  "lastUpdated": "2026-08-16T07:33:40.236Z",
+  "lastUpdated": "2026-08-16T08:05:00.000Z",
   "specId": "002",
   "folderSlug": "rebrand-identifiers",
   "parentChain": [

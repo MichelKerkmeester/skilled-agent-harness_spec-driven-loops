@@ -68,9 +68,9 @@ Create the relative symlink, document it, dry-load Pi. Absolute paths are a stop
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met — evidence: REQ-001–REQ-004 satisfied; see `implementation-summary.md`
+- [x] Tests passing (if applicable) — evidence: readlink + `pi --offline --approve` exit 0
+- [x] Docs updated (spec/plan/tasks) — evidence: this closeout refresh
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -107,18 +107,18 @@ ln -s relative → Pi loads factory → session starts or fail-closes.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm owner file exists
-- [ ] Read analog symlink
+- [x] Confirm owner file exists
+- [x] Read analog symlink
 
 ### Phase 2: Core Implementation
-- [ ] ln -s relative target
-- [ ] README rows
-- [ ] optional input hook
+- [x] ln -s relative target
+- [x] README rows
+- [x] optional input hook
 
 ### Phase 3: Verification
-- [ ] readlink
-- [ ] pi --offline --approve
-- [ ] validate.sh --strict
+- [x] readlink
+- [x] pi --offline --approve
+- [x] validate.sh --strict
 <!-- /ANCHOR:phases -->
 
 ---

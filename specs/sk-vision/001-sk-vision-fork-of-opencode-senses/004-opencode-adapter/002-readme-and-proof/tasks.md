@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm plugin file exists and is not a symlink
+- [x] T001 Confirm plugin file exists and is not a symlink — evidence: `test -f .opencode/plugins/sk-vision.js && test ! -L .opencode/plugins/sk-vision.js` exit 0 (FILE_OK)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,8 +60,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Add README CONTENTS row (`.opencode/plugins/README.md`)
-- [ ] T003 Do not add a plugin array to opencode.json
+- [x] T002 Add README CONTENTS row (`.opencode/plugins/README.md`) — evidence: `.opencode/plugins/README.md:39` lists sk-vision.js row
+- [x] T003 Do not add a plugin array to opencode.json — evidence: `rg -n 'plugin' opencode.json` exit 1 (no matches)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,9 +69,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 rg import path and rg plugin opencode.json
-- [ ] T005 Record GPU attach SKIP unless 003 load passed
-- [ ] T006 Run validate.sh --strict on this child
+- [x] T004 rg import path and rg plugin opencode.json — evidence: `.opencode/plugins/sk-vision.js:3` import match; `rg -n 'plugin' opencode.json` exit 1
+- [x] T005 Record GPU attach SKIP unless 003 load passed — evidence: `implementation-summary.md:91` GPU attach smoke SKIP row
+- [x] T006 Run validate.sh --strict on this child — evidence: validate.sh RESULT PASSED after metadata refresh
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

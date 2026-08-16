@@ -30,11 +30,11 @@
       "specification"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
-      "plan.md",
       "tasks.md",
+      "plan.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -45,15 +45,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -153,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "copy-pack",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -160,12 +166,6 @@
       },
       {
         "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Pi has no owner-tree factory, so a later symlink would have nothing legal to load",
     "created_at": "2026-08-16T07:22:48Z",
-    "last_save_at": "2026-08-16T07:30:57.212Z",
+    "last_save_at": "2026-08-16T08:31:32.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4035457a3084ef314d9769c77b6c7a2b57cd2e9534e032581c38290157bb498",
+    "source_fingerprint": "sha256:193a0aa8cc69ae925c453ba78500676e95d23c0dca120994b8d19e995192a129",
     "source_doc_hashes": {
-      "spec.md": "5f95a3f230c8d090b29dbf1555a843382b695c818c1f38ba69bd7f42ffac4bde",
-      "plan.md": "8e7b8267c7f03d20d60909c70aa2b22926a9bb6412fe504c4d4cdf9df6b593df",
-      "tasks.md": "7fbe73660045eac5239df21792edfae5a18ad6f9decb84da5519bcfe53be84b1",
-      "implementation-summary.md": "b99f03018e2323abf6b17fb510b340aadd4c9ab07032609c4b3f49f037f69712"
+      "spec.md": "f9dca0a11332e7165a1fa3117ede9aa4925b091df34c609f39175ce589ae5985",
+      "plan.md": "3eed61a7a8930c1b9a5692581524655573f61ffede0ae04a2ffaabda1ab7adaf",
+      "tasks.md": "0d66584fe5209446acb34cb2c94bb5d97b7a3f797f300b26977c74ee32e6e59f",
+      "implementation-summary.md": "967cdc4f5664b57e63b576c0a12574e5633e34f42b71e41caaced1384159e343"
     },
     "last_active_child_id": null,
     "last_active_at": null

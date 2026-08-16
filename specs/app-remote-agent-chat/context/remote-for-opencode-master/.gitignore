@@ -1,0 +1,67 @@
+# dependencies (bun install)
+node_modules
+
+# output
+out
+dist
+*.tgz
+
+# code coverage
+coverage
+*.lcov
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
+
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
+.DS_Store
+
+# Xcode (project is generated — run `xcodegen generate` in app/)
+app/RemoteForOpenCode.xcodeproj/
+app/build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+
+# Spike playground (throwaway git repo the M0 spike works in)
+spikes/playground/
+
+# Release artifacts (dmgs are GitHub release assets; appcast is committed)
+build/
+dist/*.dmg
+dist/updates/*.dmg
+dist/updates/*.delta
+tools/uiharness/Harness.xcodeproj/
+
+# SwiftPM build state. .swiftpm in particular must not exist in a package
+# an Xcode project references by path: Xcode tries to open .swiftpm/xcode
+# as a project and fails with "Couldn't load project at …".
+.build/
+.swiftpm/
+Package.resolved
+
+# Website build + CDK state
+website/node_modules/
+website/dist/
+website/.astro/
+website/infra/node_modules/
+website/infra/cdk.out/
+website/infra/outputs.json
+app/OpenCodeGo.xcodeproj/
