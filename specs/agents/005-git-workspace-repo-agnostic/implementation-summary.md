@@ -49,17 +49,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The root `AGENTS.md` now carries the git-workspace rules without this repo's sk-git implementation, so the framework doc reads the same in any repository that adopts it. Six repo-specific rows became five agnostic ones; `CLAUDE.md` (a symlink to `AGENTS.md`) inherits the change.
+The root `AGENTS.md` now carries the git-workspace rules without this repo's sk-git implementation, so the framework doc reads the same in any repository that adopts it. Six repo-specific rows became five agnostic ones, and a concise agnostic row was added noting that git hooks (not just conventions) enforce the push policy and drive the live-sync. `CLAUDE.md` (a symlink to `AGENTS.md`) inherits the change.
 
 ### Repo-agnostic Git Workspace Safety rows
 
-Each row states its universal principle and names sk-git as the owner of the detail: branch naming lives in two numbered namespaces (sk-git holds the grammar); numbers are allocated by sk-git under a lock (never hand-counted); branches are never made with raw `git` commands; pushes to non-allowlisted remote branches ask first; and the main-checkout live-sync has documented disable flags. The internal hyphen-case-pilot row — an implementation-migration note with no meaning outside this repo — was removed.
+Each row states its universal principle and names sk-git as the owner of the detail: branch naming lives in two numbered namespaces (sk-git holds the grammar); numbers are allocated by sk-git under a lock (never hand-counted); branches are never made with raw `git` commands; pushes to non-allowlisted remote branches ask first; and the main-checkout live-sync has documented disable flags. A final row records that sk-git-installed git hooks back these rules — a pre-push backstop for the push policy and commit/session hooks for the live-sync — without naming any hook file or flag. The internal hyphen-case-pilot row — an implementation-migration note with no meaning outside this repo — was removed.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `AGENTS.md` | Modified | Rewrote the Git Workspace Safety table rows repo-agnostic (5 insertions / 6 deletions). `CLAUDE.md` is a symlink, so it inherits the edit. |
+| `AGENTS.md` | Modified | Rewrote the Git Workspace Safety table rows repo-agnostic and added a concise git-hook-enforcement row. `CLAUDE.md` is a symlink, so it inherits the edit. |
 <!-- /ANCHOR:what-built -->
 
 ---

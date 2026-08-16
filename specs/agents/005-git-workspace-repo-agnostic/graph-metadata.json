@@ -172,7 +172,7 @@
     ],
     "causal_summary": "`AGENTS.md` (and its `CLAUDE.md` symlink) is a portable framework doc, yet its Git Workspace Safety rows hardcode this repo's sk-git implementation: the literal branch grammar, the allocator script path and command names, an allowlist filename, several env flag names, reference-doc paths, and an internal migration-program row",
     "created_at": "2026-08-16T08:23:04.472Z",
-    "last_save_at": "2026-08-16T08:23:04.472Z",
+    "last_save_at": "2026-08-16T09:05:15.011Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,12 +181,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2286e640f09a0e4c7795ce657323ec72b0adb1c536699ceccdf134a19b7ae502",
+    "source_fingerprint": "sha256:a65bbc9407a1883e0ff85104297c2a0c8ddcf268ffb83d43b59575307ae5d725",
     "source_doc_hashes": {
       "spec.md": "44c92ba25d77c9169017bcd4b9c7337fc5a04eac1ec21da89622cc9571675380",
       "plan.md": "b8f6275b9a716bcb5f0170a838d73aa2c9ac4da8e525c02e0e92a50ff610b86a",
-      "tasks.md": "d962210f9a8459e3808ec4f85ed8eb77727640c8f26cbe7edd0192ec45f5f757",
-      "implementation-summary.md": "bc34789bca6ee64814a6a5a35021ba60a3df32a546d6ac4e244c7ce9f61bde51"
+      "tasks.md": "9ac4a51b1d92f7f68db493c8e905bba8c8f43283e0d78b187d8e33216ee56132",
+      "implementation-summary.md": "23e8eeb881dae90ed7e94e8041e01f89c4d57e454141f26b3647f79b77f3e912"
     },
     "last_active_child_id": null,
     "last_active_at": null

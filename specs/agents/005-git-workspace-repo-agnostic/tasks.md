@@ -57,6 +57,7 @@ _memory:
 - [x] T5 — Rewrite the "Ask before push" row (drop allowlist file, env bypass flag, reference path).
 - [x] T6 — Remove the "Hold the hyphen-case pilot" row.
 - [x] T7 — Rewrite the "Live-sync" row (drop the four flag names + reference path).
+- [x] T8 — Add a concise agnostic row noting git hooks enforce the push policy and drive the live-sync (no hook file or flag named).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -64,8 +65,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T8 — Section-scoped grep for the forbidden repo-specific tokens returns 0.
-- [x] T9 — Confirm sk-git still named (Mandatory Tools + Quick Reference) and no other section changed.
+- [x] T9 — Section-scoped grep for the forbidden repo-specific tokens returns 0.
+- [x] T10 — Confirm sk-git still named (Mandatory Tools + Quick Reference) and no other section changed.
 <!-- /ANCHOR:phase-3 -->
 
 ---

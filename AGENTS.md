@@ -356,6 +356,7 @@ Every spec folder (Level 1+) MUST contain:
 | **No direct branch creation** | Never create a branch with `git branch`, `git checkout -b`, or `git switch -c`. Branches are created only through sk-git's worktree and dedicated-branch commands. |
 | **Ask before every push to a non-allowlisted remote branch** | Local branch and worktree creation stays unrestricted, but `origin` only ever receives release and reserved branches plus anything sk-git's allowlist permits, without asking. Every other push — new branch or update — needs a fresh, in-the-moment go-ahead; an explicit user push instruction counts as that go-ahead, a prior approval for an earlier push does not. sk-git documents the allowlist and the one-invocation bypass. |
 | **Live-sync in the main checkout** | sk-git can auto-publish commits to the live branch, safely reconcile clean local drift at session start, and auto-follow the live branch. Each leg has a documented disable flag. See sk-git for the flags and the model. |
+| **Git hooks enforce these rules** | The push policy and live-sync are not just conventions: sk-git installs and verifies git hooks that back them — a pre-push hook is the technical backstop for the remote-push policy, and commit-time and session-start hooks drive the live-sync legs. sk-git owns installing, checking, and disabling them. |
 
 #### Code Search Decision Tree
 
