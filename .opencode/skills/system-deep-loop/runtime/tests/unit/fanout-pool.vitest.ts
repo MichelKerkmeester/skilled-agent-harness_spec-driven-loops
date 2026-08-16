@@ -19,7 +19,7 @@ const {
   runCappedPool: (options: {
     items: Array<{ label?: string } | unknown>;
     concurrency: number;
-    worker: (item: unknown, ctx: { index: number; signal?: AbortSignal }) => Promise<unknown>;
+    worker: (item: unknown, ctx: { index: number; signal?: AbortSignal; attempt?: number; reportProgress?: () => void }) => Promise<unknown>;
     onEvent?: (event: Record<string, unknown>) => void;
     maxRetries?: number;
     initialRetryCounts?: Record<string, number>;
@@ -488,6 +488,136 @@ describe('runCappedPool', () => {
     gated.releaseAll();
     const result = await run;
     expect(result.summary).toMatchObject({ total: 1, succeeded: 1, failed: 0 });
+  });
+
+  it('does not lag-abort a silent worker that keeps reporting artifact progress', async () => {
+    // A non-streaming lineage emits no incremental output but writes artifacts. Reporting
+    // that progress must reset the stall clock so an actively-working lineage is not
+    // requeued, even with a queued sibling and abort-requeue armed.
+    const events: Array<Record<string, unknown>> = [];
+    const calls = new Map<string, number>();
+    const timers: ReturnType<typeof setInterval>[] = [];
+    const worker = (item: { label: string }, ctx: { reportProgress?: () => void }) => {
+      calls.set(item.label, (calls.get(item.label) ?? 0) + 1);
+      if (item.label === 'active') {
+        return new Promise<{ label: string }>((resolve) => {
+          const ping = setInterval(() => ctx.reportProgress?.(), 5);
+          timers.push(ping);
+          setTimeout(() => {
+            clearInterval(ping);
+            resolve({ label: item.label });
+          }, 80);
+        });
+      }
+      return Promise.resolve({ label: item.label });
+    };
+
+    const result = await runCappedPool({
+      items: [{ label: 'active' }, { label: 'queued' }],
+      concurrency: 1,
+      maxRetries: 1,
+      lagCeilingMs: 20,
+      lagCeilingAction: 'abort-requeue',
+      worker,
+      onEvent: (event) => events.push(event),
+    });
+    timers.forEach(clearInterval);
+
+    expect(events.filter((event) => event.event === 'lag_ceiling_abort')).toEqual([]);
+    expect(calls.get('active')).toBe(1);
+    expect(result.summary).toMatchObject({ total: 2, succeeded: 2, failed: 0 });
+  });
+
+  it('still lag-aborts a worker whose artifact progress stops past the ceiling', async () => {
+    // The allowance is bounded: one progress report does not grant immunity. Once writes
+    // stop and the ceiling elapses with nothing settling, the stalled slot is requeued.
+    const events: Array<Record<string, unknown>> = [];
+    const calls = new Map<string, number>();
+    const worker = (item: { label: string }, ctx: { reportProgress?: () => void }) => {
+      const n = (calls.get(item.label) ?? 0) + 1;
+      calls.set(item.label, n);
+      if (item.label === 'active' && n === 1) {
+        ctx.reportProgress?.();
+        return new Promise<never>(() => {});
+      }
+      return Promise.resolve({ label: item.label, n });
+    };
+
+    const result = await runCappedPool({
+      items: [{ label: 'active' }, { label: 'queued' }],
+      concurrency: 1,
+      maxRetries: 1,
+      lagCeilingMs: 15,
+      lagCeilingAction: 'abort-requeue',
+      worker,
+      onEvent: (event) => events.push(event),
+    });
+
+    expect(events.filter((event) => event.event === 'lag_ceiling_abort').map((event) => event.label)).toEqual(['active']);
+    expect(calls.get('active')).toBe(2);
+    expect(result.summary).toMatchObject({ total: 2, succeeded: 2, failed: 0 });
+  });
+
+  it('does not orphan an exited-but-still-writing worker while artifact progress continues', async () => {
+    // The tracked subprocess can exit while a child keeps writing the lineage's artifacts.
+    // Continued progress within the grace window proves real work, so the slot is not reaped.
+    const events: Array<Record<string, unknown>> = [];
+    const liveness = new Map<string, { alive: boolean; exitedAtMs?: number; pid?: number }>();
+    const timers: ReturnType<typeof setInterval>[] = [];
+    const worker = (item: { label: string }, ctx: { attempt?: number; reportProgress?: () => void }) => {
+      liveness.set(`${item.label}:${ctx.attempt ?? 1}`, { alive: false, exitedAtMs: Date.now(), pid: 999 });
+      ctx.reportProgress?.();
+      return new Promise<{ label: string }>((resolve) => {
+        const ping = setInterval(() => ctx.reportProgress?.(), 4);
+        timers.push(ping);
+        setTimeout(() => {
+          clearInterval(ping);
+          resolve({ label: item.label });
+        }, 60);
+      });
+    };
+
+    const result = await runCappedPool({
+      items: [{ label: 'child-writer' }],
+      concurrency: 1,
+      postExitGraceMs: 15,
+      postExitPollMs: 2,
+      getAttemptLiveness: (attempt) => liveness.get(`${attempt.label}:${attempt.attempt}`) ?? { alive: true },
+      worker,
+      onEvent: (event) => events.push(event),
+    });
+    timers.forEach(clearInterval);
+
+    expect(events.filter((event) => event.event === 'failed')).toEqual([]);
+    expect(result.summary).toMatchObject({ total: 1, succeeded: 1, failed: 0 });
+  });
+
+  it('still orphans an exited worker once artifact progress stops past the grace window', async () => {
+    // Bounded: a burst of progress then silence after the subprocess exited is still an
+    // orphaned slot once the grace elapses with no new writes.
+    const events: Array<Record<string, unknown>> = [];
+    const liveness = new Map<string, { alive: boolean; exitedAtMs?: number; pid?: number }>();
+    const worker = (item: { label: string }, ctx: { attempt?: number; reportProgress?: () => void }) => {
+      liveness.set(`${item.label}:${ctx.attempt ?? 1}`, { alive: false, exitedAtMs: Date.now(), pid: 888 });
+      ctx.reportProgress?.();
+      return new Promise<never>(() => {});
+    };
+
+    const result = await runCappedPool({
+      items: [{ label: 'stalled-child' }],
+      concurrency: 1,
+      postExitGraceMs: 12,
+      postExitPollMs: 2,
+      getAttemptLiveness: (attempt) => liveness.get(`${attempt.label}:${attempt.attempt}`) ?? { alive: true },
+      worker,
+      onEvent: (event) => events.push(event),
+    });
+
+    expect(result.results[0]).toMatchObject({
+      status: 'rejected',
+      error: { reason: 'orphaned_after_subprocess_exit' },
+    });
+    expect(result.summary).toMatchObject({ total: 1, succeeded: 0, failed: 1 });
   });
 
   it('surfaces bounded failure classes and rolls them up in the summary', async () => {

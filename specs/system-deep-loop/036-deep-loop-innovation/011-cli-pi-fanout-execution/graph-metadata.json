@@ -27,17 +27,17 @@
       "stall",
       "non-streaming",
       "executor",
-      "via",
-      "cannot"
+      "amendment",
+      "phase-1"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md",
       "decision-record.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -174,21 +174,21 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "one",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "iterations",
+        "name": "no",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "DeepSeek via the cli-pi executor cannot complete a deep-loop fan-out lineage — the runner requeues the Pi worker to death before it produces a single iteration",
+    "causal_summary": "Amendment (from Phase-1 reproduction)",
     "created_at": "2026-08-16T13:47:37.884Z",
-    "last_save_at": "2026-08-16T14:33:42.047Z",
+    "last_save_at": "2026-08-16T16:04:07.864Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,14 +199,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed14058bbe15a23e6cffdd67b8ff3113bacf4b661e2d750d1c4d223d0d00ee47",
+    "source_fingerprint": "sha256:8afa73c40800fb09e23718133bae7162d0de32f92228820207d290d06c55f434",
     "source_doc_hashes": {
-      "spec.md": "0b4a871b5afbbc24fdb3ff3bbf855f1d7a77b334ed381d25d4ffdc3b761ceae1",
-      "plan.md": "9875ab4cdba1b32f4321784201dd4b2b3838628bc829b18e1b31b10de9267ee2",
-      "tasks.md": "c2f6d46b4ac97545894ce672e3d3cef9d777413b73d5e98cf22a262b37c3b36a",
-      "checklist.md": "7f98bb9e4ce4c794c0d10aa9fa37ad4083492178d4245fefb020f7af6fe8d454",
-      "decision-record.md": "1f9ce7fceb51f4d7849966ac6f945513da81f109da051081634729c34c4a043c",
-      "implementation-summary.md": "2e7a34807894273e21c508beeb72e87a10a68be6a06bd332f3ec9191757a4a1f"
+      "spec.md": "c0411f99f7c5c497f01a8c65f5fe06aa100a2989f92ce6cedc6ed9269b70e639",
+      "plan.md": "b78fe241189874f17f097e69c18f11be4eada91d227adcf0b46a7551f60b0ccd",
+      "tasks.md": "62f064f755bcb7dc1abb97f40bf0db6e5fd013538dd87f0b037f2f9d2c234bc4",
+      "checklist.md": "48c2d8e0776eb53e668f0de79723f4bfe6b52b0ff885f16d119e03185036cf01",
+      "decision-record.md": "3bd24222204a656985ee971def7018a2c86bd1c319cb3836b3f3763dea841a12",
+      "implementation-summary.md": "3034ae7f23fa067e51b2ce1ce4038453ec2a0ca78088f7dfd77b4f216dc7fc78"
     },
     "last_active_child_id": null,
     "last_active_at": null

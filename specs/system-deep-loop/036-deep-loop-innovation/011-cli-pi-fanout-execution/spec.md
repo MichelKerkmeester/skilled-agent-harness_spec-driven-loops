@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution"
-    last_updated_at: "2026-08-16T14:33:41Z"
+    last_updated_at: "2026-08-16T16:04:07Z"
     last_updated_by: "claude"
     recent_action: "Scoped the cli-pi fan-out execution fix from the live stall finding"
     next_safe_action: "Operator approves approach, then diagnose the exact requeue trigger"
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution` |
 
@@ -51,13 +51,13 @@ _memory:
 
 ### Problem Statement
 
-DeepSeek via the cli-pi executor cannot complete a deep-loop fan-out lineage — the runner requeues the Pi worker to death before it produces a single iteration.
+> **Amendment (from Phase-1 reproduction).** This packet was scoped from a live per-mode test that appeared to show a cli-pi review lineage requeuing to death. Controlled reproduction **overturned that premise**: a single cli-pi DeepSeek review lineage completes `fulfilled` (exit 0, all iterations), the lag-ceiling abort path is not armed in the shipped runtime, and no persisted ledger records a real `orphan_requeued`. The original "failure" was a slow-but-working run killed by hand when it looked idle. The requirements below are retained — at the operator's direction — as a **robustness hardening** of the real defect described here, not a fix for an active loop. Full evidence: `decision-record.md`.
 
-A live per-mode adherence test made this concrete. The route itself works: `pi -p --offline --model opencode-go/deepseek-v4-flash --thinking high` returns real output for both a trivial prompt and an agentic review-style prompt (exit 0). But a fan-out review lineage with that same executor cycled `started → orphan_requeued → started → orphan_requeued` repeatedly, wrote zero iteration files, captured an empty `fanout-lineage.out`, and ended in `stall_detected`.
+The real defect is that a genuinely-working **non-streaming** lineage looks idle to the fan-out runner. The route itself works: `pi -p --offline --model opencode-go/deepseek-v4-flash --thinking high` returns real output for both trivial and agentic prompts (exit 0), and drives the review loop to completion.
 
-The root cause is an orchestration mismatch, not a model or route failure. The fan-out runner's orphan-and-stall detection — `stallWatchdog`, `progressHeartbeat`, orphan reaping — is tuned for **streaming** executors (opencode, codex), which emit incremental output the runner reads as liveness. Pi's `-p` print mode does not stream: it returns its whole response only at the end. With no incremental signal, the runner judges the still-working Pi worker to be orphaned and requeues it, and the cycle repeats until the run stalls.
+The runner's liveness detection — `stallWatchdog`, `progressHeartbeat`, orphan reaping — reads liveness from **streamed** stdout, which opencode and codex emit incrementally. Pi's `-p` print mode does not stream: it returns its whole response only at the end. So a working pi lineage produces no incremental signal and the runner judges it idle. Today that surfaces as a misleading advisory `stall_detected` (log only — it does not abort), which invites an operator to kill a healthy run. It also leaves the lineage exposed to two **latent** requeue paths: the lag-ceiling abort (if a config ever arms it) and a post-exit-orphan false-positive (if a print-mode CLI hands work to a child that keeps writing after the tracked process exits).
 
-Two consequences follow. First, the 010 write-boundary hardening — proven via cli-opencode — cannot be exercised via cli-pi at all, because the pi lineage never runs far enough to write anything. Second, DeepSeek-via-cli-pi cannot run any fan-out loop mode, which blocks the standing goal of DeepSeek working across the deep-loop through cli-pi.
+The fix closes all three: real artifact writes are counted as liveness, so a working non-streaming lineage is never falsely stalled, aborted, or orphaned — while a lineage that writes nothing at all is still caught, bounded by its own timeout. (A caveat surfaced in verification: an executor that buffers *all* writes to the end, as this pi config does, still emits the advisory `stall_detected` because there is nothing incremental to observe; it completes regardless.)
 
 ### Purpose
 

@@ -1,20 +1,20 @@
 ---
 title: "Decision Record: cli-pi Fan-out Execution"
-description: "Phase-1 diagnosis of the cli-pi fan-out stall and the chosen fix mechanism: recognize lineage-artifact progress as liveness for a non-streaming executor."
+description: "Diagnosis and fix for cli-pi (non-streaming) fan-out liveness: a single lineage already completes; the fix makes real artifact writes count as liveness so a working non-streaming lineage is never falsely stalled, aborted, or orphaned."
 importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution"
-    last_updated_at: "2026-08-16T14:33:41Z"
+    last_updated_at: "2026-08-16T16:04:07Z"
     last_updated_by: "claude"
-    recent_action: "Recorded the Phase-1 diagnosis: pi slow-but-working, fix = artifact-progress liveness"
-    next_safe_action: "Implement artifact-progress markProgress in the fan-out stall detection"
+    recent_action: "Corrected the diagnosis from live reproduction; recorded the artifact-progress fix and the live findings"
+    next_safe_action: "validate --strict and mark Complete with the honest caveats"
     blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -22,31 +22,37 @@ _memory:
 
 ## Context
 
-The 011 spec assumed the cli-pi fan-out stall was a liveness-detection mismatch. Phase-1 diagnosis (live runs, real evidence) confirms that direction and pins the mechanism.
+The packet was scoped from an earlier live test that appeared to show a cli-pi review lineage requeuing to death. Controlled reproduction **overturned that premise**. This record states what the ledger actually shows, why, the fix that was built, and the live findings — including where the fix does and does not change behaviour.
 
 ## Diagnosis (evidence)
 
-- **The route works.** `pi -p --offline --model opencode-go/deepseek-v4-flash --thinking high` returns real output for a trivial prompt, a "reply DONE" agentic prompt, reading the deep-review SKILL, and a nested file write — all exit 0 in ~1-2s.
-- **pi is slow-but-working on the full loop, not deadlocked.** Given the full fan-out loop prompt and a 5-minute run, pi wrote the init artifacts (`deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-strategy.md`, `deep-review-findings-registry.json`) AND `iterations/iteration-001.md` — genuine progress. It did not emit `FANOUT_LINEAGE_COMPLETE` because 5 minutes only got it through init plus one iteration. The observed 0% CPU is pi waiting on the DeepSeek API during a long generation (network I/O), not a deadlock.
-- **The runner kills it at ~60s.** The fan-out stall detection reads liveness from streaming stdout (`opts.onOutput` → the pool's `markProgress`) and from lineage-settle events. Pi's print mode does not stream — it returns only at the end — so within ~60s the runner sees no progress, aborts the still-working subprocess, and the killed worker is then flagged `orphaned_after_subprocess_exit` and requeued. Repeat: the `started → orphan_requeued` loop.
+A single cli-pi DeepSeek review lineage, run with the documented config (`kind: cli-pi`, `deepseek-v4-flash` → opencode-go, `iterations: 3`, `concurrency: 1`), **completed successfully**: `status: fulfilled`, `exitCode: 0`, ~10.9 min, all iterations, `run_id 1786892651162-qypn2j`. Ledger: `started → progress×N → completed`, **zero `orphan_requeued` / `lag_ceiling_abort`**. One advisory `stall_detected` at the 5-minute mark did **not** abort. No persisted ledger anywhere records a real `orphan_requeued`.
 
-## Root cause
+## Root cause (why there is no active requeue)
 
-The stall/orphan liveness signal is streaming-output-based. A non-streaming executor (cli-pi) that writes artifacts slowly produces no incremental stdout, so a genuinely-working lineage is judged stalled and killed before it can finish.
+1. **The lag-ceiling abort path is not armed.** `fanout-run.cjs` never forwards `lagCeilingAction` to the pool, so `shouldAbortStalledLineages === false`. A fan-out cannot lag-abort/requeue a slow lineage in the shipped runtime.
+2. **The post-exit-orphan path needs a real subprocess exit.** A live pi never trips it.
+3. **`stall_detected` is advisory-only** — it logs, never aborts. It fires for *any* non-streaming executor because the stall-watchdog's liveness is fed solely by streamed stdout (`markLineageEvent` = `onOutput` = a stdout `data` event), which pi's `-p` print mode never emits.
+
+The real defect is that a working non-streaming lineage *looks* idle — a misleading `stall_detected` (which invited the original hand-kill) plus exposure to two *latent* requeue paths (the lag-ceiling abort if a config arms it; a post-exit-orphan false-positive if a print-mode CLI hands work to a child that keeps writing after the tracked process exits).
 
 ## Decision
 
-**Recognize lineage-artifact progress as liveness.** When files appear or grow in the lineage artifact directory (iteration files, state log), treat it as progress — call the same `markProgress` path that streaming output does. This is:
+**Make real artifact writes count as liveness** (operator elected the full anti-requeue hardening). One signal closes all three exposures:
 
-- **Executor-agnostic** — any executor that writes artifacts benefits; no cli-pi special case.
-- **Still safe** — a genuinely hung worker that writes nothing and streams nothing is still caught; the allowance is bounded by the executor's own timeout, and the stall detector is not disabled (it keys off real artifact progress).
-- **Minimal** — the runtime already has `countIterationFiles(lineageDir)` and the `markProgress` reset; the change is to feed artifact-directory change into that reset while a worker is alive.
+- A per-lineage **artifact-progress poller** (`fanout-run.cjs`) watches the lineage dir; when its output advances it calls `markLineageEvent()` (resets the stall-watchdog) and `context.reportProgress()`.
+- `reportProgress` is threaded from the pool into the worker context; it resets the pool's stall clock (`markProgress`, closing the lag-ceiling path) and records `lastArtifactProgressAtMs`; the post-exit-orphan watchdog treats fresh progress within the grace window as "still working."
 
-Rejected alternatives:
-- **Blanket per-executor liveness allowance (subprocess-alive only):** would let a truly-hung pi run to its full timeout with no progress; less precise than artifact-progress.
-- **Dispatch pi in `--mode json` for streaming:** larger change to the cli-pi command builder and output capture; deferred unless artifact-progress proves insufficient.
-- **Per-iteration dispatch for cli-pi (like the native path):** a bigger re-architecture; not needed since pi does run the loop, only slowly.
+**Bounded, not a disable:** a lineage that writes nothing *and* streams nothing still trips the guards; the ultimate bound is the executor's own timeout (`SIGTERM`).
 
-## Practical caveat
+Rejected: a blanket subprocess-alive allowance (less precise — a truly-hung pi would run to full timeout); `--mode json` streaming dispatch (larger command-builder change, unnecessary).
 
-pi via opencode-go DeepSeek is slow here (~5 min for init + one iteration), so a full cli-pi review lineage runs ~15-20 min. The fix makes it complete; it does not make it fast. This is acceptable for an asynchronous fan-out but is a real cost to record.
+## Proof
+
+- **Unit + watch-it-fail** (`tests/unit/fanout-pool.vitest.ts`, +4): a silent worker that keeps reporting progress is **not** lag-aborted; an exited-but-still-writing worker is **not** orphaned; both **are** still caught once progress stops (bounded). Stashing the pool fix makes the two positive tests fail — proving they exercise the fix. Pool suite **31/31**; fan-out + cli-pi stress **38 passed / 2 skipped**.
+- **Live**: the pre-fix diagnosis run completed `fulfilled`. A post-fix run drove the **full loop** — all three iterations + `review-report.md` produced, zero requeue/orphan events — then the **write-containment backstop reverted 4 out-of-scope paths** pi wrote into a sibling packet dir and marked the lineage `rejected`. That is the 010 write boundary doing its job on a weak-model out-of-scope write, not a fan-out liveness failure.
+
+## Confirmed limitations
+
+- **This pi config emits no incremental disk writes** — it flushes every artifact at the end. At the 5-min mark the lineage dir held only `invocation-metadata.json`, so the poller has nothing to observe and the advisory `stall_detected` still fires exactly as pre-fix. pi completes regardless (log-only; abort not armed). The artifact-progress signal helps executors that write incrementally; for a zero-incremental-write executor it does not silence `stall_detected`. Fully silencing that would require a subprocess-liveness heartbeat in the stall-watchdog — a separate change that weakens the watchdog's "alive but wedged" advisory meaning, deferred to an operator decision.
+- pi via opencode-go DeepSeek is slow (~11–14 min for a 3-iteration review). The fix makes a non-streaming lineage legible and safe, not fast.

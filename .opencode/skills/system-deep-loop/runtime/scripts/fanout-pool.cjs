@@ -347,6 +347,7 @@ async function settleItem({
   attempt: rawAttempt,
   emitSettledEvent: shouldEmitSettledEvent,
   abortSignal,
+  reportProgress,
   startedAtIso: rawStartedAtIso,
   startedAtMs: rawStartedAtMs,
 }) {
@@ -362,7 +363,10 @@ async function settleItem({
 
   try {
     const baseContext = { index, label, attempt };
-    const workerContext = abortSignal ? { ...baseContext, signal: abortSignal } : baseContext;
+    const withSignal = abortSignal ? { ...baseContext, signal: abortSignal } : baseContext;
+    const workerContext = typeof reportProgress === 'function'
+      ? { ...withSignal, reportProgress }
+      : withSignal;
     const output = await worker(item, workerContext);
     const completedAtIso = normalizeTimestamp(now());
     const durationMs = Math.max(0, Date.now() - startedAtMs);
@@ -735,6 +739,18 @@ function runCappedPool(options) {
           continue;
         }
 
+        // The tracked subprocess can exit while a child it spawned keeps writing the
+        // lineage's artifacts (a print-mode CLI that hands off to a worker process).
+        // Fresh artifact progress within the grace window proves the lineage is still
+        // producing real output, so its slot is not an orphaned dead one — do not
+        // requeue it. A slot that has exited AND written nothing new is still reaped.
+        const lastArtifactMs = activeAttempt.lastArtifactProgressAtMs;
+        if (Number.isFinite(lastArtifactMs) && (nowMs - lastArtifactMs) < postExitGraceMs) {
+          activeAttempt.subprocessExitedAtMs = null;
+          nextDelayMs = Math.min(nextDelayMs, postExitGraceMs);
+          continue;
+        }
+
         const exitedAtMs = Number.isFinite(liveness.exitedAtMs)
           ? liveness.exitedAtMs
           : (activeAttempt.subprocessExitedAtMs ?? nowMs);
@@ -799,6 +815,19 @@ function runCappedPool(options) {
         nextAttemptId += 1;
         activeAttempts.set(activeAttempt.id, activeAttempt);
         active += 1;
+        // A non-streaming worker (e.g. a CLI print mode that returns output only at
+        // the end) produces no incremental signal, so the stall/orphan guards would
+        // judge a genuinely-working lineage idle. Let the worker report real forward
+        // progress (artifact writes) back into the same clock a settlement resets, so
+        // an actively-working lineage is not aborted or orphaned while it is silent.
+        const reportProgress = (shouldAbortStalledLineages || shouldWatchPostExitOrphans)
+          ? () => {
+            if (activeAttempt.settled) return;
+            activeAttempt.lastArtifactProgressAtMs = Date.now();
+            markProgress();
+            scheduleLagCeilingCheck();
+          }
+          : undefined;
         settleItem({
           item: items[index],
           index,
@@ -808,6 +837,7 @@ function runCappedPool(options) {
           attempt,
           emitSettledEvent: false,
           abortSignal: abortController ? abortController.signal : undefined,
+          reportProgress,
           startedAtIso,
           startedAtMs,
         })
