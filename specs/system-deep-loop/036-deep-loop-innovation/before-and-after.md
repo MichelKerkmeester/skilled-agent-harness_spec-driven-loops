@@ -8,11 +8,11 @@ A plain-language tour of every deep-loop system this program touches — what it
 
 This program does not rip out the old machine and drop in a new one. That would be reckless — the deep-loop runtime is live, and real runs are in flight at any moment. Swapping the engine mid-flight would leave the system half-old and half-new, and inconsistent.
 
-So the change lands in stages, and the word **"after" in this document means "after the whole program finishes."** Today we are partway there:
+So the change lands in stages, and the word **"after" in this document means "after the whole program finishes."** Most of the way there now:
 
-- **Landed (waves 3–12):** the shared foundation — the new ledger, the gateway, the evidence services, the safety net — is built and running.
-- **Nearly done (wave 13):** each of the eight deep-loop modes is being given its own typed schema on top of that foundation.
-- **Still ahead (waves 14–17):** the actual switch-over, where the new system takes charge one mode at a time, the old writers get retired, and the whole thing is graded end to end.
+- **Landed:** the shared foundation — the new ledger, the gateway, the evidence services, the safety net — is built and running.
+- **Landed:** all eight deep-loop modes now carry their own typed schema on that foundation — schema, reducers, sealed artifacts, certificates, resume adapter, shadow-parity harness, and rollback gate — each built additive-dark and verified green. The hermetic CLI-adapter stress program and the whole-system acceptance gate landed alongside.
+- **Still ahead — and deliberately gated:** the actual switch-over, where the new system takes charge one mode at a time and the old writers get retired. Not one authority has flipped; the first flip is held for an explicit operator go-ahead.
 
 Crucially, **everything built so far runs "dark."** It records everything in parallel with the old system but is **not in charge of anything yet**. The old code is still the source of truth. Nothing flips to the new machinery until a mode passes a parity check and an operator approves its cutover. So when you read "after" below, read it as *"how it's designed to work once each mode has safely cut over"* — not *"how it behaves in production today."*
 
@@ -171,8 +171,9 @@ This is the meta-system, and arguably the most important design decision in the 
 To keep the "before/after" honest, here's the real state as of this writing:
 
 - **Foundation — done.** The ledger, gateway, evidence services (sealed artifacts, certificates, receipts), the shared control services, and the compatibility-and-shadow-and-rollback safety net are built and landed.
-- **Per-mode migrations — nearly done.** Each of the eight modes is being given its full typed schema on the shared spine, column by column (schema, reducers, sealed artifacts, certificates, resume, shadow-parity, and the rollback gate). This is where the work currently sits.
-- **The switch-over — not yet.** The staged authority cutover, the legacy-writer retirement, and the whole-system final grade are still ahead, and the first authority flip is deliberately held for an explicit operator go-ahead.
+- **Per-mode migrations — done.** All eight modes carry their full typed schema on the shared spine, column by column (schema, reducers, sealed artifacts, certificates, resume, shadow-parity, and the rollback gate), each built additive-dark and verified green.
+- **The whole-system gate — run.** Recursive strict validation came back clean, and an independent blocking acceptance review confirmed the additive-dark claim — with one accepted, deliberate exception: the containment that made autonomous model-benchmark promotion advisory-only. The hermetic CLI-adapter stress program (the six external CLI adapters plus the fan-out scheduler, operator playbooks, a matrix-bijection validator, and a destructive-scope write-containment proof) landed as part of the hardening.
+- **The switch-over — still gated.** The staged authority cutover and the legacy-writer retirement are the remaining work, and the first authority flip is deliberately held for an explicit operator go-ahead.
 
 So the new machine is built and it is watching, but **the old machine is still driving.** That's by design, and it stays that way until each mode has earned its cutover the hard way — by proving parity — and a human says go.
 

@@ -6,6 +6,11 @@ after, so the lineage survives the phase-consolidation renumbering. Generated at
 
 Sort: `created_at` (graph-metadata) primary, `git_first_add` cross-check, original prefix tie-break.
 
+> The `status` column below is the frozen M0-baseline snapshot, kept as-is for historical
+> fidelity. Those baseline folders were later consolidated into the current phase tree. For where
+> the program actually stands after that consolidation, see **Current program state** beneath the
+> table.
+
 | seq | stable_id | created_at | git_first_add | path_at_baseline | status | evidence |
 |----:|-----------|------------|---------------|------------------|--------|----------|
 | 1 | `deep-loop-market-research` | 2026-07-15T19:00:45.940Z | 2026-07-14T22:32:08+02:00 | `001-deep-loop-market-research` | complete | confirmed |
@@ -52,3 +57,33 @@ Sort: `created_at` (graph-metadata) primary, `git_first_add` cross-check, origin
 | 42 | `review-drift-remediation` | 2026-08-13T06:44:37.262Z | 2026-08-13T08:54:52+02:00 | `054-review-drift-remediation` | complete | confirmed |
 | 43 | `rollback-candidate-hash-hardening` | 2026-08-13T06:44:37.411Z | 2026-08-13T08:54:52+02:00 | `055-rollback-candidate-hash-hardening` | complete | confirmed |
 | 44 | `review-containment-exemption` | 2026-08-13T06:44:37.562Z | 2026-08-13T08:54:52+02:00 | `056-review-containment-exemption` | complete | confirmed |
+
+---
+
+## Current program state (2026-08-16)
+
+The table above is the frozen M0 baseline — original identity and creation order, with the `status`
+column captured when the baseline was generated. Those baseline folders were consolidated into the
+current phase tree (`001-research-inputs-and-architecture` … `009-innovation-gap-remediation`).
+Post-consolidation, here is where the program actually stands:
+
+- **Substrate — done.** The typed event-ledger substrate — versioned envelope, typed append-only
+  ledger, fail-closed transition-authorization gateway, sealed-reference artifacts keyed by a single
+  reference-set digest, replay fingerprints, and the shadow-parity harness with its identity
+  registry — is built and landed.
+- **All eight modes — migrated additive-dark, verified green.** deep-research, deep-review,
+  deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark, and
+  deep-alignment each carry a typed ledger schema, reducers/projections, sealed artifacts,
+  certificates/receipts, a resume adapter, a shadow-parity harness, and a rollback-guarded mode-gate.
+- **CLI-adapter stress program — built.** A hermetic stress suite across the six external CLI
+  adapters plus the fan-out scheduler, operator playbooks, a matrix-bijection validator, and a
+  destructive-scope write-containment proof — all additive, touching no shipped adapter.
+- **Whole-system gate — run.** Recursive strict validation clean; an independent blocking acceptance
+  review confirmed the additive-dark claim, with one accepted, deliberate exception (autonomous
+  model-benchmark promotion made advisory-only).
+- **Still gated — not done.** No mode authority has flipped and no legacy writer has been retired.
+  The staged per-mode authority cutover, the legacy-writer retirement, and the final closeout are
+  held for explicit operator approval.
+
+The ledger records everything in parallel with the legacy path, but the legacy path is still
+authoritative. The new machine is watching; the old machine is still driving.
