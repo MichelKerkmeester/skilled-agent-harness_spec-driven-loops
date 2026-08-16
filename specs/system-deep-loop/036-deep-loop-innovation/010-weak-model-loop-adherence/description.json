@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-deep-loop/038-weak-model-loop-adherence",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence",
   "description": "Weak models do not obey the deep-loop's observation-only leaf contract, and today the runtime can only catch the breach after the fact — it cannot let",
   "keywords": [
     "weak",

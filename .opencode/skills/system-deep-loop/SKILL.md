@@ -1,6 +1,6 @@
 ---
 name: system-deep-loop
-version: 2.2.3.0
+version: 2.2.4.0
 description: "Routes research, review, AI Council, improvement, and named-standard alignment modes through registry-selected packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
