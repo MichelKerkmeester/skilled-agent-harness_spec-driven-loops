@@ -14,13 +14,13 @@ contextType: "implementation"
 > Mark `[x]` only with evidence (command output, grep count, or exit code). Each item is an objective pass/fail gate.
 
 <!-- ANCHOR:checklist -->
-## Phase 1 — CI fleet-gate hardening
+## Phase 1 — CI fleet-gate hardening — DONE (commit 4dfd1f33e5)
 
-- [ ] CHK-001 [P0] `grep -c 'ROUTER.md' .github/workflows/routing-registry-drift.yml` returns ≥ 2 (both `paths:` blocks). (SC-1)
-- [ ] CHK-002 [P0] The workflow YAML parses cleanly (no syntax break introduced).
-- [ ] CHK-003 [P0] `ci-skill-root-metadata.cjs` now references `root-router-contract.cjs` in its class-H branch (`grep -c` ≥ 1). (SC-2)
-- [ ] CHK-004 [P0] `ci-skill-root-metadata.cjs` exits 0 over the seven real hubs. (SC-2)
-- [ ] CHK-005 [P0] `ci-skill-root-metadata.cjs` exits non-zero over a deliberately-broken fixture hub (missing or corrupted `router_state`), citing an RRC code. (SC-2, negative control)
+- [x] CHK-001 [P0] `grep -c ROUTER.md .github/workflows/routing-registry-drift.yml` returns 2 (both `paths:` blocks). (SC-1)
+- [x] CHK-002 [P0] The workflow YAML parses cleanly; diff is +2 insertions only.
+- [x] CHK-003 [P0] `ci-skill-root-metadata.cjs` references `root-router-contract.cjs` and calls `validateRootRouter` in its class-H branch. (SC-2)
+- [x] CHK-004 [P0] `ci-skill-root-metadata.cjs` exits 0 over the fleet (`checked=13 passed=13 failed=0`). (SC-2)
+- [x] CHK-005 [P0] Negative control: removing a hub `ROUTER.md` → exit 1, `FAIL [H] sk-prompt` with `MISSING_REQUIRED_FILE` + `RRC-001`; restored clean. (SC-2)
 
 ## Phase 2 — Doctor fleet-ROUTER sweep
 
