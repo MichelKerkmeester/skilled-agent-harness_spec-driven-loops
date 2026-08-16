@@ -46,7 +46,7 @@ _memory:
 | **Worktree** | `.worktrees/010-root-router-document-standard` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `019-routing-coverage-activation-verification` |
-| **Successor** | None |
+| **Successor** | `021-recursive-validation-remediation` |
 <!-- /ANCHOR:metadata -->
 
 ---

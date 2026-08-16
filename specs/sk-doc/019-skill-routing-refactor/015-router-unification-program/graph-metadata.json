@@ -23,7 +23,8 @@
     "sk-doc/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment",
     "sk-doc/019-skill-routing-refactor/015-router-unification-program/018-benchmark-alignment",
     "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
-    "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard"
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation"
   ],
   "manual": {
     "depends_on": [],

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
+        "reason": "Remediation follows the completed root-router packet and its recursive strict-validation failure",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recursive validation remediation",
+      "strict validator exit zero",
+      "router program metadata drift",
+      "runtime mirror hook parity"
+    ],
+    "key_topics": [
+      "recursive",
+      "validation",
+      "remediation",
+      "runtime",
+      "mirror",
+      "hook",
+      "parity",
+      "metadata",
+      "strict",
+      "phase",
+      "chain"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.cjs",
+        "kind": "tool",
+        "path": ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "tool",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Global command-tree parity repair and packet metadata reconciliation restored strict recursive validation for the completed root-router phase and full router-unification program",
+    "created_at": "2026-08-16T00:00:00Z",
+    "last_save_at": "2026-08-16T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5a373fba34534b4699e0dbbd34c63c2b1129b6d098856ff0a3424c8c0c94206d",
+    "source_doc_hashes": {
+      "spec.md": "6251ca81ecab576df281e140932e246e2dc410b1f624f0f71c6b6a88b82d4ca6",
+      "plan.md": "b1c264c69094bee2c8df0a9e494c23f2998b31eafbd37a4b9cc4e5d2868f0766",
+      "tasks.md": "0b2de95975fe7eca578c9e17ca48bec2cd44cbe68aec39c1f8b157f3fefef4ea",
+      "checklist.md": "e96f1c6a9ae79fa1d49fe83b75e721dd5cf8163086cbc3d3d9d191a73e9c9f54",
+      "implementation-summary.md": "fe65d5ed5b7c8e6087f9bee5b35a963d08a7e6a824da58c9d64483270a46a5d5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

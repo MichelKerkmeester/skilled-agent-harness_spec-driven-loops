@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
+  "description": "Record the global hook-parity repair and packet-metadata remediation that restored strict recursive validation for the completed root-router phase and its full program",
+  "keywords": [
+    "recursive",
+    "validation",
+    "remediation",
+    "runtime",
+    "mirror",
+    "hook",
+    "parity",
+    "metadata",
+    "strict",
+    "phase",
+    "chain"
+  ],
+  "lastUpdated": "2026-08-16T00:00:00.000Z",
+  "specId": "021",
+  "folderSlug": "recursive-validation-remediation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 2
+}
