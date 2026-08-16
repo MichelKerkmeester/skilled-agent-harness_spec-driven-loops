@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Stress-Test the Six External CLI Deep-Loop Adapters and Fan-Out Orchestration"
-description: "Planned decisions for the future stress program: a hang-safe per-file test suite, per-skill adapter playbooks with a shared fan-out playbook, and deterministic external-dependency gating."
+description: "Accepted decisions for the delivered stress program: serial tests, owned playbooks, and deterministic dependency gating."
 trigger_phrases:
   - "cli adapter stress tests"
   - "deep-loop executor adapter coverage"
@@ -12,19 +12,21 @@ contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-cli-adapter-stress-and-playbooks"
-    last_updated_at: "2026-08-07T08:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/001-cli-adapter-stress-and-playbooks"
+    last_updated_at: "2026-08-15T19:43:48Z"
     last_updated_by: "codex"
-    recent_action: "Recorded planned test, playbook, and dependency-gating decisions"
-    next_safe_action: "Review planned ADRs before execution handoff"
-    blockers: []
+    recent_action: "Confirmed all ADRs; global command-tree parity blocks strict closeout"
+    next_safe_action: "Repair global command mirrors, then rerun backfill and strict validation"
+    blockers:
+      - "Global COMMAND_TREE_PARITY exits 1 outside this leaf's docs/metadata scope."
     key_files:
       - "decision-record.md"
-    completion_pct: 0
-    open_questions:
-      - "Does execution need any additional harness seam beyond current exports?"
+    completion_pct: 98
+    open_questions: []
     answered_questions:
-      - "The three required decisions are captured as Planned ADRs."
+      - "The three decisions are accepted and implemented as documented."
+      - "The final containment support test preserves the read-only runtime boundary."
+      - "The ADRs are satisfied; the leaf passes strict validation with Errors: 0."
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
@@ -41,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
+| **Status** | Accepted |
 | **Date** | 2026-08-07 |
 | **Deciders** | Packet owner, later execution owner |
 
@@ -116,13 +118,13 @@ The adapter tests need to exercise real child-process behavior: auth and transpo
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | Planned | The phase brief identifies stdin hangs, timeout, and shared-process failures as real blockers to a live run |
-| 2 | **Beyond Local Maxima?** | Planned | Dedicated, unit-integrated, aggregate, and shell-script approaches are compared above |
-| 3 | **Sufficient?** | Planned | Independent per-file evidence plus a dedicated concurrency file covers both isolation and fan-out behavior |
-| 4 | **Fits Goal?** | Planned | The location is scoped to stress artifacts and does not change adapter behavior |
-| 5 | **Open Horizons?** | Planned | A future adapter can add one subject file and matrix rows without changing the execution boundary |
+| 1 | **Necessary?** | Verified | Per-file timeout, stdin, and cleanup cells pass in all seven files |
+| 2 | **Beyond Local Maxima?** | Verified | Dedicated, unit-integrated, aggregate, and shell-script approaches are compared above |
+| 3 | **Sufficient?** | Verified | Seven independent files pass with 133 tests and seven gated-live skips |
+| 4 | **Fits Goal?** | Verified | Program-range diff changes no shipped runtime or configuration file |
+| 5 | **Open Horizons?** | Verified | The manifest and validator accept one subject file plus 14 matrix rows |
 
-**Checks Summary**: 0/5 verified in this scaffold; execution must close the checks.
+**Checks Summary**: 5/5 verified by the per-file runs, aggregate run, and scoped diff.
 <!-- /ANCHOR:adr-001-five-checks -->
 
 ---
@@ -130,7 +132,7 @@ The adapter tests need to exercise real child-process behavior: auth and transpo
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
-**What changes later**:
+**Delivered**:
 
 - `runtime/tests/stress/cli-adapter/cli-codex.vitest.ts`
 - `runtime/tests/stress/cli-adapter/cli-opencode.vitest.ts`
@@ -153,7 +155,7 @@ The adapter tests need to exercise real child-process behavior: auth and transpo
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
+| **Status** | Accepted |
 | **Date** | 2026-08-07 |
 | **Deciders** | Packet owner, CLI skill owners |
 
@@ -228,13 +230,13 @@ Each CLI packet owns different command syntax, auth preflight, models, sandbox f
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | Planned | Six CLI packets have materially different dispatch contracts while fan-out is shared |
-| 2 | **Beyond Local Maxima?** | Planned | Consolidated, duplicated, packet-local, and hybrid layouts are compared above |
-| 3 | **Sufficient?** | Planned | The split preserves one canonical snippet for every adapter and fan-out cell |
-| 4 | **Fits Goal?** | Planned | Paths are the user's requested CLI skill and hub playbook surfaces |
-| 5 | **Open Horizons?** | Planned | A future adapter adds its own packet subtree without moving fan-out truth |
+| 1 | **Necessary?** | Verified | Six CLI packets have distinct commands while fan-out remains shared |
+| 2 | **Beyond Local Maxima?** | Verified | Consolidated, duplicated, packet-local, and hybrid layouts are compared above |
+| 3 | **Sufficient?** | Verified | Validator proves 84 adapter and 14 fan-out snippets map one-to-one |
+| 4 | **Fits Goal?** | Verified | All snippets live in the owning adapter or shared fan-out locations |
+| 5 | **Open Horizons?** | Verified | A future adapter can add its packet subtree without moving fan-out truth |
 
-**Checks Summary**: 0/5 verified in this scaffold; execution must close the checks.
+**Checks Summary**: 5/5 verified by the 98-cell bijection validator.
 <!-- /ANCHOR:adr-002-five-checks -->
 
 ---
@@ -242,7 +244,7 @@ Each CLI packet owns different command syntax, auth preflight, models, sandbox f
 <!-- ANCHOR:adr-002-impl -->
 ### Implementation
 
-**What changes later**:
+**Delivered**:
 
 - One `stress/` category and one scenario file per adapter/edge-case cell under each owning CLI packet.
 - One `fanout-stress/` category under the hub package for shared orchestration scenarios.
@@ -261,7 +263,7 @@ Each CLI packet owns different command syntax, auth preflight, models, sandbox f
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
+| **Status** | Accepted |
 | **Date** | 2026-08-07 |
 | **Deciders** | Packet owner, later execution owner |
 
@@ -328,19 +330,19 @@ The six adapters depend on external binaries, provider auth, model availability,
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | Planned | Provider/auth availability and stdin/process failures are independent concerns |
-| 2 | **Beyond Local Maxima?** | Planned | Live-only, mock-only, pass-on-skip, and two-lane approaches are compared above |
-| 3 | **Sufficient?** | Planned | Hermetic coverage plus gated live evidence covers both deterministic and native behavior |
-| 4 | **Fits Goal?** | Planned | The gate preserves honest PASS/FAIL/SKIP semantics and no adapter behavior change |
-| 5 | **Open Horizons?** | Planned | A new provider or adapter can add a shim and preflight without rewriting the matrix contract |
+| 1 | **Necessary?** | Verified | Hermetic cells and seven explicit live dependency skips remain distinct |
+| 2 | **Beyond Local Maxima?** | Verified | Live-only, mock-only, pass-on-skip, and two-lane approaches are compared above |
+| 3 | **Sufficient?** | Verified | All 133 hermetic tests pass; live probes expose specific skip reasons |
+| 4 | **Fits Goal?** | Verified | Validator enforces PASS/FAIL/SKIP language without runtime changes |
+| 5 | **Open Horizons?** | Verified | New providers can add a shim and preflight without rewriting the matrix |
 
-**Checks Summary**: 0/5 verified in this scaffold; execution must close the checks.
+**Checks Summary**: 5/5 verified by aggregate/per-file results and playbook validation.
 
 ---
 
 ### Implementation
 
-**What changes later**:
+**Delivered**:
 
 - Shared deterministic command shims and live dependency preflight helpers in the dedicated stress suite.
 - Per-cell evidence fields for command, environment, output, artifacts, and `PASS` / `FAIL` / `SKIP`.

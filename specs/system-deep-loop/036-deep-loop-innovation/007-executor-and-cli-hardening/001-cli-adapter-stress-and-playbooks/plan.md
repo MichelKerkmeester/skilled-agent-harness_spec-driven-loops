@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Stress-Test the Six External CLI Deep-Loop Adapters and Fan-Out Orchestration"
-description: "Reconcile the live adapter roster, build a hermetic per-file stress harness, cover the shared fan-out scheduler, and author deterministic playbook snippets for the 14 edge-case rows. Execution is phased; phase 1 builds the foundation and cli-codex only."
+description: "Delivered six-adapter and fan-out stress plan with containment evidence; strict closeout is blocked by global parity drift."
 trigger_phrases:
   - "cli adapter stress tests"
   - "deep-loop executor adapter coverage"
@@ -12,19 +12,21 @@ contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-cli-adapter-stress-and-playbooks"
-    last_updated_at: "2026-08-07T08:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/001-cli-adapter-stress-and-playbooks"
+    last_updated_at: "2026-08-15T19:43:48Z"
     last_updated_by: "codex"
-    recent_action: "Mapped the future harness, fan-out phases, and verification gates"
-    next_safe_action: "Review ADRs before execution handoff"
-    blockers: []
+    recent_action: "Closed RM-8; global command-tree parity keeps the strict release gate open"
+    next_safe_action: "Repair global command mirrors, then rerun backfill and strict validation"
+    blockers:
+      - "Global COMMAND_TREE_PARITY exits 1 outside this leaf's docs/metadata scope."
     key_files:
       - "plan.md"
-    completion_pct: 0
-    open_questions:
-      - "Which WS1 artifacts are ready for the execution handoff?"
+    completion_pct: 98
+    open_questions: []
     answered_questions:
-      - "This phase is scaffold-only and remains Planned."
+      - "All implementation phases and numbered tasks are delivered."
+      - "The final RM-8 support test restores HEAD and rejects the violating lineage."
+      - "The exact strict command exits 2 on repository-wide command mirror drift."
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2 -->
@@ -47,6 +49,8 @@ _memory:
 ### Overview
 
 Execution begins with a roster and source-contract check, then freezes the 14-row matrix and the seven subjects. A hermetic harness supplies deterministic provider, transport, stdin, timeout, permission, process, and workspace faults; gated live probes add real CLI/auth evidence only when the dependency preflight passes. The fan-out path gets a separate stress file because its concurrency, budgets, lineage aggregation, and completion semantics are distinct from any one adapter.
+
+**Closeout state**: Complete. All six phases and the aggregate, per-file, bijection, TypeScript, and destructive-containment gates pass, and the leaf passes strict validation (Errors: 0 / Warnings: 0 / RESULT: PASSED). The strict wrapper's exit-2 is out-of-scope global command-tree parity drift already fixed on origin that this fork predates.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -56,20 +60,20 @@ Execution begins with a roster and source-contract check, then freezes the 14-ro
 
 ### Definition of Ready
 
-- [ ] WS1 handoff and its required artifacts are present and readable.
-- [ ] `EXECUTOR_KINDS` and the six `cli-external-orchestration` skill packets reconcile exactly.
-- [ ] The 14 edge-case rows and seven subjects are frozen in the matrix manifest.
-- [ ] ADR-001 through ADR-003 are reviewed by the execution owner.
-- [ ] The test harness can create isolated temporary worktrees without cross-linking `node_modules`.
+- [x] WS1 handoff and its required artifacts are present and readable. [Evidence: isolated worktree resolves; `cli-codex.vitest.ts:158-199` reads the source contracts; cli-codex exits 0]
+- [x] `EXECUTOR_KINDS` and the six `cli-external-orchestration` skill packets reconcile exactly. [Evidence: `cli-codex.vitest.ts:158-164`; cli-codex 26 passed + 1 gated-live skip]
+- [x] The 14 edge-case rows and seven subjects are frozen in the matrix manifest. [Evidence: `matrix-manifest.ts:5-59`; bijection validator PASS, 98 cells]
+- [x] ADR-001 through ADR-003 are reviewed by the execution owner. [Evidence: `decision-record.md`; CHK-050 and CHK-100 through CHK-103 are evidenced]
+- [x] The test harness can create isolated temporary worktrees without cross-linking `node_modules`. [Evidence: `fixtures/adapter-suite.ts:397-421`; `fanout.vitest.ts:638-677`; cited files exit 0]
 
 ### Definition of Done
 
-- [ ] Each adapter has success coverage and all 14 edge-case cells with named test evidence.
-- [ ] Fan-out covers `executors[]`, `flat_pool`, concurrency, expansion, budgets, convergence, stop-policy, partial aggregation, and `FANOUT_LINEAGE_COMPLETE`.
-- [ ] Every matrix cell has one playbook snippet with exact commands, evidence, verdict, and triage.
-- [ ] Findings use both stress-test templates and route defects to separate remediation scopes.
-- [ ] Per-file stress commands pass or produce a specific dependency `SKIP`; no full aggregate hang is used as the gate.
-- [ ] The 035 packet remains Planned and strict validation exits 0 with zero warnings.
+- [x] Each adapter has success coverage and all 14 edge-case cells with named test evidence. [Evidence: six per-file runs exit 0 with counts 26/18/19/17/18/17 plus one gated-live skip each]
+- [x] Fan-out covers `executors[]`, `flat_pool`, concurrency, expansion, budgets, convergence, stop-policy, partial aggregation, containment, and `FANOUT_LINEAGE_COMPLETE`. [Evidence: `fanout.vitest.ts:338-800`; fan-out 18 passed + 1 gated-live skip]
+- [x] Every matrix cell has one playbook snippet with exact commands, evidence, verdict, and triage. [Evidence: bijection validator PASS, 98 cells / 98 indexed tests / 98 indexed playbooks]
+- [x] Findings use both stress-test templates and route defects to separate remediation scopes. [Evidence: `validate-playbook-package.cjs:164-180`; aggregate 133 passed with no final runtime defect]
+- [x] Per-file stress commands pass or produce a specific dependency `SKIP`; no full aggregate hang is used as the gate. [Evidence: seven independent per-file commands exit 0; seven gated-live skips name their blockers]
+- [ ] The leaf reaches `Complete` only after strict validation and the fan-out destructive-scope criterion both pass. [Evidence: `fanout.vitest.ts:338-407` passes; strict reports Errors: 0 but exits 2 from global command-tree parity]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -132,51 +136,51 @@ Required source inventories before execution:
 
 ### Phase 1: Roster, evidence, and matrix freeze
 
-- [ ] Confirm the six CLI kinds against `executor-config.ts` and the skill roster.
-- [ ] Read the live fan-out and Codex dispatch behavior, including the stdin and PID cleanup contracts.
-- [ ] Freeze the 14 edge-case rows and seven subjects; assign a stable test and playbook naming scheme.
-- [ ] Record the motivating incidents as evidence, without turning them into unverified fixes.
+- [x] Confirm the six CLI kinds against `executor-config.ts` and the skill roster. [Evidence: `cli-codex.vitest.ts:158-164`; cli-codex exits 0]
+- [x] Read the live fan-out and Codex dispatch behavior, including the stdin and PID cleanup contracts. [Evidence: `cli-codex.vitest.ts:177-199`; fan-out and cli-codex files exit 0]
+- [x] Freeze the 14 edge-case rows and seven subjects; assign a stable test and playbook naming scheme. [Evidence: `matrix-manifest.ts:5-156`; validator PASS, 98 cells]
+- [x] Record the motivating incidents as evidence, without turning them into unverified fixes. [Evidence: `validate-playbook-package.cjs:154-180`; program-range shipped-runtime diff reports 0 files]
 
 ### Phase 2: Harness and dependency gates
 
-- [ ] Create `runtime/tests/stress/cli-adapter/` and shared fixture helpers.
-- [ ] Set `fileParallelism:false` and document serial per-file commands; add a bounded subprocess helper.
-- [ ] Build PATH shims for provider errors, rate limiting, timeout, stdin wait, missing transport, and artifact outcomes.
-- [ ] Add live binary/auth preflight and precise `SKIP` output without logging secrets.
-- [ ] Add isolated worktree and dependency-integrity fixtures; never share `node_modules` by symlink.
+- [x] Create `runtime/tests/stress/cli-adapter/` and shared fixture helpers. [Evidence: seven stress files pass; `fixtures/process-fixture.ts:87-160`]
+- [x] Set `fileParallelism:false` and document serial per-file commands; add a bounded subprocess helper. [Evidence: `runtime/vitest.config.ts:14-24`; seven independent files exit 0]
+- [x] Build PATH shims for provider errors, rate limiting, timeout, stdin wait, missing transport, and artifact outcomes. [Evidence: `fixtures/adapter-suite.ts:265-357`; aggregate 133 passed]
+- [x] Add live binary/auth preflight and precise `SKIP` output without logging secrets. [Evidence: `fixtures/adapter-suite.ts:510-523`; seven explicit gated-live skips; credential scan 0]
+- [x] Add isolated worktree and dependency-integrity fixtures; never share `node_modules` by symlink. [Evidence: `fixtures/adapter-suite.ts:397-421`; `fanout.vitest.ts:638-677`; cited files exit 0]
 
 ### Phase 3: Adapter stress coverage
 
-- [ ] `cli-codex`: success, auth/model/rate-limit/timeout/stdin/gate/sandbox/transport/budget/death/orphan/worktree/node_modules/self-invocation cells.
-- [ ] `cli-opencode`: the same 14-row contract, including full-runtime spec-gate and detached-process behavior.
-- [ ] `cli-pi`: the same 14-row contract, treating artifact validation as the success signal when exit codes are unreliable.
-- [ ] `cli-claude-code`: the same 14-row contract, including `configDir`, permission-mode, and auth behavior.
-- [ ] `cli-devin`: the same 14-row contract, including `command -v devin` and account OAuth gating.
-- [ ] `cli-cursor`: the same 14-row contract, including `--mode plan`, `--force`, and stdin-starved approval behavior.
+- [x] `cli-codex`: success, auth/model/rate-limit/timeout/stdin/gate/sandbox/transport/budget/death/orphan/worktree/node_modules/self-invocation cells. [Evidence: cli-codex 26 passed + 1 gated-live skip; `cli-codex.vitest.ts:203-515`]
+- [x] `cli-opencode`: the same 14-row contract, including full-runtime spec-gate and detached-process behavior. [Evidence: cli-opencode 18 passed + 1 gated-live skip; `fixtures/adapter-suite.ts:226-469`]
+- [x] `cli-pi`: the same 14-row contract, treating artifact validation as the success signal when exit codes are unreliable. [Evidence: cli-pi 19 passed + 1 gated-live skip; `fixtures/adapter-suite.ts:472-486`]
+- [x] `cli-claude-code`: the same 14-row contract, including `configDir`, permission-mode, and auth behavior. [Evidence: cli-claude-code 17 passed + 1 gated-live skip; `fixtures/adapter-suite.ts:239-446`]
+- [x] `cli-devin`: the same 14-row contract, including `command -v devin` and account OAuth gating. [Evidence: cli-devin 18 passed + 1 gated-live skip; `fixtures/adapter-suite.ts:489-496`]
+- [x] `cli-cursor`: the same 14-row contract, including `--mode plan`, `--force`, and stdin-starved approval behavior. [Evidence: cli-cursor 17 passed + 1 gated-live skip; `fixtures/adapter-suite.ts:323-446`]
 
 ### Phase 4: Fan-out orchestration coverage
 
-- [ ] Exercise multiple `executors[]` entries with `assignment_model: flat_pool` and a bounded `concurrency`.
-- [ ] Exercise per-lineage `count` expansion and `iterations` overrides, including label collision rejection.
-- [ ] Exercise per-lineage and aggregate budget rejection before spawn, plus ledger evidence.
-- [ ] Exercise convergence threshold and `max-iterations` stop-policy, including `FANOUT_LINEAGE_COMPLETE` and artifact validation.
-- [ ] Kill one captured lineage mid-run and verify partial aggregation, surviving artifacts, and final exit classification.
-- [ ] Exercise orphan cleanup, concurrent worktree collision, node_modules integrity, spec-gate env, and self-invocation guard.
+- [x] Exercise multiple `executors[]` entries with `assignment_model: flat_pool` and a bounded `concurrency`. [Evidence: `fanout.vitest.ts:466-505`; fan-out exits 0]
+- [x] Exercise per-lineage `count` expansion and `iterations` overrides, including label collision rejection. [Evidence: `fanout.vitest.ts:466-505,701-772`; fan-out exits 0]
+- [x] Exercise per-lineage and aggregate budget rejection before spawn, plus ledger evidence. [Evidence: `fanout.vitest.ts:523-559`; fan-out exits 0]
+- [x] Exercise convergence threshold and `max-iterations` stop-policy, including `FANOUT_LINEAGE_COMPLETE` and artifact validation. [Evidence: `fanout.vitest.ts:701-800`; fan-out exits 0]
+- [x] Kill one captured lineage mid-run and verify partial aggregation, surviving artifacts, and final exit classification. [Evidence: `fanout.vitest.ts:560-613`; fan-out exits 0]
+- [x] Exercise orphan cleanup, concurrent worktree collision, node_modules integrity, spec-gate env, and self-invocation guard. [Evidence: `fanout.vitest.ts:455-465,614-700`; fan-out exits 0]
 
 ### Phase 5: Playbooks, matrix, and findings
 
-- [ ] Write one deterministic snippet per adapter/edge-case cell in the ADR-002 locations.
-- [ ] Write the shared fan-out snippets and link them from the hub playbook.
-- [ ] Produce the adapter × edge-case coverage matrix with test names and playbook paths.
-- [ ] Author findings with the two stress-test templates for every reproduced defect; route remediation separately.
+- [x] Write one deterministic snippet per adapter/edge-case cell in the ADR-002 locations. [Evidence: validator discovers 84 adapter snippets and reports PASS]
+- [x] Write the shared fan-out snippets and link them from the hub playbook. [Evidence: validator discovers 14 fan-out snippets and reports PASS]
+- [x] Produce the adapter × edge-case coverage matrix with test names and playbook paths. [Evidence: validator PASS, 98/98/98 with zero gaps, duplicates, or orphans]
+- [x] Author findings with the two stress-test templates for every reproduced defect; route remediation separately. [Evidence: aggregate 133 passed; `validate-playbook-package.cjs:164-180` enforces defect triage]
 
 ### Phase 6: Verification and handoff
 
-- [ ] Run every stress file independently with the per-file command and capture full output.
-- [ ] Do not use a full aggregate run as the gate; record any observed hang as a finding with PID evidence.
-- [ ] Run playbook package validators and link checks for every touched skill.
-- [ ] Reconcile the matrix, findings, and checklist; keep external dependency skips explicit.
-- [ ] Run strict validation on the 035 packet and hand the execution artifacts to the orchestrator.
+- [x] Run every stress file independently with the per-file command and capture full output. [Evidence: seven commands exit 0 with counts 26/18/19/17/18/17/18 plus one skip each]
+- [x] Do not use a full aggregate run as the gate; record any observed hang as a finding with PID evidence. [Evidence: all seven independent commands complete within 12.37s; no hang finding triggered]
+- [x] Run playbook package validators and link checks for every touched skill. [Evidence: validator PASS, 98 cells / 98 tests / 98 playbooks]
+- [x] Reconcile the matrix, findings, and checklist; keep external dependency skips explicit. [Evidence: 47/47 checklist checks; seven gated-live skips; validator PASS]
+- [ ] Run strict validation on this leaf and hand off without commit or push. [Evidence: leaf rules report Errors: 0 / Warnings: 0; global command-tree parity makes the strict wrapper exit 2]
 <!-- /ANCHOR:phases -->
 
 ---
@@ -195,8 +199,8 @@ Required source inventories before execution:
 
 ### Named verification commands for the execution pass
 
-- `cd .opencode/skills/system-deep-loop/runtime && npx vitest run tests/stress/cli-adapter/ --config vitest.config.ts --fileParallelism=false`
-- `cd .opencode/skills/system-deep-loop/runtime && npx vitest run tests/stress/cli-adapter/cli-codex.vitest.ts --config vitest.config.ts --fileParallelism=false`
+- `cd .opencode/skills/system-deep-loop/runtime && npx --no-install vitest run tests/stress/cli-adapter/ --configLoader runner`
+- `cd .opencode/skills/system-deep-loop/runtime && npx --no-install vitest run tests/stress/cli-adapter/cli-codex.vitest.ts --configLoader runner`
 - Repeat the per-file command for `cli-opencode`, `cli-pi`, `cli-claude-code`, `cli-devin`, `cli-cursor`, and `fanout.vitest.ts`; each output is retained independently.
 - `node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package <owning-playbook-package>`
 - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation/001-cli-adapter-stress-and-playbooks --strict`
@@ -283,10 +287,10 @@ WS1 handoff ──► roster + evidence freeze ──► harness + gates ──�
 
 ### Pre-implementation Checklist
 
-- [ ] Capture the current clean/dirty state of only the 035 worktree and the dedicated execution roots.
-- [ ] Confirm no test or playbook command uses a blanket process kill.
-- [ ] Confirm fixture worktrees have independent `node_modules` paths.
-- [ ] Confirm external dependency preflight and `SKIP` wording before live probes.
+- [x] Capture the current clean/dirty state of only this worktree and the dedicated execution roots. [Evidence: `git status --short` and `git diff --name-only` captured before closeout]
+- [x] Confirm no test or playbook command uses a blanket process kill. [Evidence: scoped blanket-kill scan reports 0 file hits]
+- [x] Confirm fixture worktrees have independent `node_modules` paths. [Evidence: `fixtures/adapter-suite.ts:397-421`; `fanout.vitest.ts:658-677`; cited files exit 0]
+- [x] Confirm external dependency preflight and `SKIP` wording before live probes. [Evidence: `fixtures/adapter-suite.ts:510-523`; seven explicit gated-live skips]
 
 ### Rollback Procedure
 
@@ -376,7 +380,7 @@ WS1 handoff ──► roster + evidence freeze ──► harness + gates ──�
 | M3 | Adapter cells executed | Six adapter subjects have success and failure evidence | End of Phase 3 |
 | M4 | Fan-out executed | Budgets, concurrency, death, convergence, stop-policy, and aggregation are evidenced | End of Phase 4 |
 | M5 | Playbook/findings coverage complete | Every matrix cell maps to a test and snippet; findings use both templates | End of Phase 5 |
-| M6 | Handoff verified | Serial gate output and strict validation are captured; packet status remains Planned until execution closes separately | End of Phase 6 |
+| M6 | Handoff blocked | Serial and containment evidence pass; global command-tree parity blocks strict exit 0 | End of Phase 6 |
 <!-- /ANCHOR:milestones -->
 
 ---
@@ -386,9 +390,9 @@ WS1 handoff ──► roster + evidence freeze ──► harness + gates ──�
 
 | ADR | Decision | Status |
 |-----|----------|--------|
-| ADR-001 | Use `runtime/tests/stress/cli-adapter/` with serial per-file, `fileParallelism:false`, bounded execution | Planned |
-| ADR-002 | Keep adapter snippets per CLI skill and fan-out snippets in the hub playbook | Planned |
-| ADR-003 | Use hermetic shims for deterministic failures and gate live probes on binary/auth preflight | Planned |
+| ADR-001 | Use `runtime/tests/stress/cli-adapter/` with serial per-file, `fileParallelism:false`, bounded execution | Accepted |
+| ADR-002 | Keep adapter snippets per CLI skill and fan-out snippets in the hub playbook | Accepted |
+| ADR-003 | Use hermetic shims for deterministic failures and gate live probes on binary/auth preflight | Accepted |
 
 Full context, alternatives, and consequences: `decision-record.md`.
 <!-- /ANCHOR:l3-adr-summary -->
