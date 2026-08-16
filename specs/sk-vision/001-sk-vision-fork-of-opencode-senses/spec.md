@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses"
     last_updated_at: "2026-08-16T08:35:00.000Z"
     last_updated_by: "cursor-grok"
-    recent_action: "Amended for 006-010: shipped skill drifted from sk-create-skill standards (SKILL.md stub, missing feature-catalog + manual-testing-playbook, package.json provenance)."
-    next_safe_action: "Implement 006-skill-contract-realignment/001-skill-md-and-readme, then 002-package-hygiene, 007, 008, 009, 010 in order."
+    recent_action: "Amended for 006-010 realignment phases."
+    next_safe_action: "Implement 006-001 next."
     blockers: []
     key_files:
       - "spec.md"

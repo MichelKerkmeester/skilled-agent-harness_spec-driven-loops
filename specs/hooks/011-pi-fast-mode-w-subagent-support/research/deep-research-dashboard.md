@@ -30,18 +30,18 @@ Reducer-generated observability surface for the active research packet.
 <!-- ANCHOR:progress -->
 ## 3. PROGRESS
 
-| # | Focus | Track | Ratio | Findings | Status |
-|---|-------|-------|-------|----------|--------|
-| 1 | pi Extension API surface for the fork: before_provider_request payload mutation semantics; session_start/model_select/session_shutdown ordering; registerCommand/registerFlag; hasUI gating; ui.setWidget vs ui.setStatus rendering rules | extension-api | 1.00 | 8 | complete |
-| 2 | Subagent handoff mechanics: pi-subagents child pi spawn; process.env propagation; official env surface; PI_GPT_FAST_MODE behavior; toggle/session_start semantics | subagent-handoff | 1.00 | 6 | complete |
-| 3 | Env-var namespace hygiene: collision scan of PI_* vars across installed packages, git sources, and Public .pi; naming conventions; PI_FAST_MODE_W_SUBAGENT_SUPPORT fit | env-namespace | 0.83 | 6 | complete |
-| 4 | Config compatibility & migration: pi-openai-fast-mode schema and self-upgrade; pi-gpt-fast-mode models list; migration path; both-configs-read question | config-compat | 1.00 | 7 | complete |
-| 5 | /fast command collision: duplicate command/flag registration behavior; safe install/remove ordering; verification method | command-collision | 0.92 | 6 | complete |
-| 6 | Packaging & install mechanics: pi install local/git/npm; package.json pi.extensions; raw TypeScript; tsconfig; pi.dev/npm indexing; publish checklist | packaging-install | 1.00 | 8 | complete |
-| 7 | Testing patterns: upstream ExtensionAPI mocks; vitest setup for raw TypeScript; env-inheritance child-process tests; coverage expectations | testing | 1.00 | 7 | complete |
-| 8 | Indicator UX under custom footers: pi-statusline setFooter replacement vs widget placement; custom footer behavior; status fallback; recommendation | indicator-ux | 0.93 | 7 | complete |
-| 9 | TheBinaryGuy pi-fast-mode edge cases worth adopting: footer-composition wrapper; atomic state writes; service_tier guard; payload.model guard; supportsFastMode regex; adopt vs reject | tbg-edge-cases | 0.93 | 7 | complete |
-| 10 | Licensing, notices, docs, maintenance: MIT compliance; THIRD_PARTY_NOTICES; README provenance; PLUGINS.md and sync-manifest; npm keywords and pi key | licensing-docs-maintenance | 0.94 | 8 | complete |
+| #   | Focus                                                                                                                                                                                                                                     | Track                      | Ratio | Findings | Status   |
+| -----| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ----------------------------| -------| ----------| ----------|
+| 1   | pi Extension API surface for the fork: before_provider_request payload mutation semantics; session_start/model_select/session_shutdown ordering; registerCommand/registerFlag; hasUI gating; ui.setWidget vs ui.setStatus rendering rules | extension-api              | 1.00  | 8        | complete |
+| 2   | Subagent handoff mechanics: pi-subagents child pi spawn; process.env propagation; official env surface; PI_GPT_FAST_MODE behavior; toggle/session_start semantics                                                                         | subagent-handoff           | 1.00  | 6        | complete |
+| 3   | Env-var namespace hygiene: collision scan of PI_* vars across installed packages, git sources, and Public .pi; naming conventions; PI_FAST_MODE_W_SUBAGENT_SUPPORT fit                                                                    | env-namespace              | 0.83  | 6        | complete |
+| 4   | Config compatibility & migration: pi-openai-fast-mode schema and self-upgrade; pi-gpt-fast-mode models list; migration path; both-configs-read question                                                                                   | config-compat              | 1.00  | 7        | complete |
+| 5   | /fast command collision: duplicate command/flag registration behavior; safe install/remove ordering; verification method                                                                                                                  | command-collision          | 0.92  | 6        | complete |
+| 6   | Packaging & install mechanics: pi install local/git/npm; package.json pi.extensions; raw TypeScript; tsconfig; pi.dev/npm indexing; publish checklist                                                                                     | packaging-install          | 1.00  | 8        | complete |
+| 7   | Testing patterns: upstream ExtensionAPI mocks; vitest setup for raw TypeScript; env-inheritance child-process tests; coverage expectations                                                                                                | testing                    | 1.00  | 7        | complete |
+| 8   | Indicator UX under custom footers: pi-statusline setFooter replacement vs widget placement; custom footer behavior; status fallback; recommendation                                                                                       | indicator-ux               | 0.93  | 7        | complete |
+| 9   | TheBinaryGuy pi-fast-mode edge cases worth adopting: footer-composition wrapper; atomic state writes; service_tier guard; payload.model guard; supportsFastMode regex; adopt vs reject                                                    | tbg-edge-cases             | 0.93  | 7        | complete |
+| 10  | Licensing, notices, docs, maintenance: MIT compliance; THIRD_PARTY_NOTICES; README provenance; PLUGINS.md and sync-manifest; npm keywords and pi key                                                                                      | licensing-docs-maintenance | 0.94  | 8        | complete |
 
 - iterationsCompleted: 10
 - keyFindings: 74

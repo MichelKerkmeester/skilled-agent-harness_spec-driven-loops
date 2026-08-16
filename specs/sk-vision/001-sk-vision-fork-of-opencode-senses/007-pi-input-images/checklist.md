@@ -37,23 +37,90 @@ _memory:
 | Priority | Handling | Completion Impact |
 |----------|----------|-------------------|
 | **[P0]** | HARD BLOCKER | Cannot claim done until complete |
-| **[P1]** | Required | Complete or documented deferral |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
 
 ---
 
-<!-- ANCHOR:items -->
-## Verification Items
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
 
-| ID | Priority | Item | Status | Evidence |
-|----|----------|------|--------|----------|
-| V001 | P0 | Input hook present inside factory | [ ] | `rg 'on\("input"\)'` exit 0 |
-| V002 | P0 | 2s grace cap via `Promise.race`; no unbounded await | [ ] | grep handler body |
-| V003 | P0 | Handler never raises (try/catch → continue) | [ ] | read + forced-error smoke |
-| V004 | P0 | Extension/steer traffic skipped | [ ] | read handler guards |
-| V005 | P0 | README gap note removed | [ ] | `rg "not wired"` exit 1 |
-| V006 | P0 | `pi --offline --approve` exit 0; no fail-closed | [ ] | command output |
-| V007 | P0 | Runtime regression: `bun run build && bun test` exit 0 | [ ] | command output |
-| V008 | P1 | Transform injection uses `<SK-VISION>` envelope | [ ] | read handler |
-| V009 | P1 | Live attach-image smoke (PASS/SKIP with blocker) | [ ] | recorded |
-| V010 | P0 | `validate.sh --strict` on this child exit 0 | [ ] | command output |
-<!-- /ANCHOR:items -->
+- [ ] CHK-001 [P0] Requirements documented in spec.md. Evidence: REQ-001..REQ-006 in `spec.md` section 4.
+- [ ] CHK-002 [P0] Technical approach defined in plan.md. Evidence: bounded preload pattern in `plan.md` Architecture.
+- [ ] CHK-003 [P1] Dependencies identified and available. Evidence: pi `on("input")` + `event.images` confirmed in installed docs.
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] Code passes lint/format checks. Evidence: `bun run build` in vision-runtime regression.
+- [ ] CHK-011 [P0] No console errors or warnings. Evidence: `pi --offline --approve` session output.
+- [ ] CHK-012 [P1] Error handling implemented. Evidence: handler try/catch → `continue`; never raises.
+- [ ] CHK-013 [P1] Code follows project patterns. Evidence: mirrors `AttachmentInjector` in `src/opencode/attachments.ts`.
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing
+
+- [ ] CHK-020 [P0] All acceptance criteria met. Evidence: REQ-001..006 mapped in `implementation-summary.md`.
+- [ ] CHK-021 [P0] Manual testing complete. Evidence: `pi --offline --approve` exit 0; optional live attach-image smoke recorded.
+- [ ] CHK-022 [P1] Edge cases tested. Evidence: extension-source and steer-stream passthrough guards read.
+- [ ] CHK-023 [P1] Error scenarios validated. Evidence: timeout path returns `continue` by design; forced-error smoke if feasible.
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Finding class: `feature-completion`. Evidence: closes the recorded P1 gap in `.pi/extensions/README.md`.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory. Evidence: OpenCode `AttachmentInjector` is the analog producer.
+- [ ] CHK-FIX-003 [P0] Consumer inventory. Evidence: Pi interactive and RPC input paths consume the hook.
+- [ ] CHK-FIX-004 [P0] Adversarial table. Evidence: unbounded-await and raise-on-input rows listed in `spec.md` risks.
+- [ ] CHK-FIX-005 [P1] Matrix axes listed. Evidence: source (interactive/rpc/extension) × streaming (steer/followUp/undefined) matrix in copy pack.
+- [ ] CHK-FIX-006 [P1] Hostile env variant. Evidence: cold model cache → timeout → silent continue.
+- [ ] CHK-FIX-007 [P1] Evidence pinned. Evidence: `rg` proofs + session output in `implementation-summary.md`.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No hardcoded secrets. Evidence: no credentials added; images handled via existing helpers.
+- [ ] CHK-031 [P0] Input validation implemented. Evidence: image source validated via `makeImageSource`; bbox/params unchanged.
+- [ ] CHK-032 [P1] Auth/authz working correctly. Evidence: local-first runtime; no new trust boundary.
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: REQ/task numbering matches across docs.
+- [ ] CHK-041 [P1] Code comments adequate. Evidence: handler comments explain the 2s race and never-raise rule.
+- [ ] CHK-042 [P2] README updated (if applicable). Evidence: `.pi/extensions/README.md` gap note replaced.
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Temp files in scratch/ only. Evidence: no temp files outside this child's `scratch/`.
+- [ ] CHK-051 [P1] scratch/ cleaned before completion. Evidence: sweep at closeout.
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+- [ ] All checklist items marked `[x]` or explicitly deferred with reasons.
+- [ ] This child `validate.sh --strict` exits 0.
+<!-- /ANCHOR:summary -->

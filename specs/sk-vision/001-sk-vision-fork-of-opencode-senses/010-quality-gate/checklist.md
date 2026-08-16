@@ -37,24 +37,90 @@ _memory:
 | Priority | Handling | Completion Impact |
 |----------|----------|-------------------|
 | **[P0]** | HARD BLOCKER | Cannot claim done until complete |
-| **[P1]** | Required | Complete or documented deferral |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
 
 ---
 
-<!-- ANCHOR:items -->
-## Verification Items
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
 
-| ID | Priority | Item | Status | Evidence |
-|----|----------|------|--------|----------|
-| V001 | P0 | Skill metadata fleet OK `[S] sk-vision` | [ ] | command output |
-| V002 | P0 | package gates PASS | [ ] | command outputs |
-| V003 | P0 | All authored docs validate (SKILL/README/references/catalog 17/playbook) | [ ] | command outputs |
-| V004 | P0 | Catalog + playbook package validators exit 0 | [ ] | command outputs |
-| V005 | P1 | DQI recorded | [ ] | extract_structure output |
-| V006 | P0 | Runtime regression green | [ ] | bun outputs |
-| V007 | P1 | Advisor smoke attempted (result or cold note) | [ ] | recorded |
-| V008 | P0 | Parent `validate.sh --recursive --strict` exit 0 | [ ] | command output |
-| V009 | P0 | Metadata reconciled | [ ] | grep proofs |
-| V010 | P0 | Sweep clean; `context/` untouched | [ ] | sweep outputs |
-| V011 | P0 | `validate.sh --strict` on this child exit 0 | [ ] | command output |
-<!-- /ANCHOR:items -->
+- [ ] CHK-001 [P0] Requirements documented in spec.md. Evidence: REQ-001..REQ-005 in `spec.md` section 4.
+- [ ] CHK-002 [P0] Technical approach defined in plan.md. Evidence: sequential gate sweep in `plan.md`.
+- [ ] CHK-003 [P1] Dependencies identified and available. Evidence: 006-009 gate targets on disk.
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] Code passes lint/format checks. Evidence: `bun run build && bun test` regression.
+- [ ] CHK-011 [P0] No console errors or warnings. Evidence: validator outputs exit 0.
+- [ ] CHK-012 [P1] Error handling implemented. Evidence: N/A — verification-only phase; failures are reported not patched.
+- [ ] CHK-013 [P1] Code follows project patterns. Evidence: gates reuse the same commands as 006-009 children.
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing
+
+- [ ] CHK-020 [P0] All acceptance criteria met. Evidence: REQ-001..005 mapped in `implementation-summary.md`.
+- [ ] CHK-021 [P0] Manual testing complete. Evidence: every gate executed from the final state with recorded output.
+- [ ] CHK-022 [P1] Edge cases tested. Evidence: cold-daemon and missing-generator paths handled with recorded notes.
+- [ ] CHK-023 [P1] Error scenarios validated. Evidence: failing-gate protocol documented (report, bounded remediation).
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Finding class: `conformance-verification`. Evidence: this phase proves alignment; it does not introduce fixes.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory. Evidence: all skill surfaces enumerated in the gate sequence.
+- [ ] CHK-FIX-003 [P0] Consumer inventory. Evidence: packet resume + operator release review consume the proof.
+- [ ] CHK-FIX-004 [P0] Adversarial table. Evidence: gate-failure rows listed in `spec.md` risks.
+- [ ] CHK-FIX-005 [P1] Matrix axes listed. Evidence: gate × exit-status matrix in copy pack.
+- [ ] CHK-FIX-006 [P1] Hostile env variant. Evidence: no-GPU/no-daemon variants recorded as notes.
+- [ ] CHK-FIX-007 [P1] Evidence pinned. Evidence: every gate output in `implementation-summary.md`.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No hardcoded secrets. Evidence: no secrets touched; read-only verification.
+- [ ] CHK-031 [P0] Input validation implemented. Evidence: N/A — no input surfaces.
+- [ ] CHK-032 [P1] Auth/authz working correctly. Evidence: no privileged operations in the gate sequence.
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: REQ/task numbering matches across docs.
+- [ ] CHK-041 [P1] Code comments adequate. Evidence: N/A — no code authored.
+- [ ] CHK-042 [P2] README updated (if applicable). Evidence: metadata reconciliation covers spec surfaces only.
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Temp files in scratch/ only. Evidence: gate logs land in this child's `scratch/` if kept.
+- [ ] CHK-051 [P1] scratch/ cleaned before completion. Evidence: final sweep at closeout.
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+- [ ] All checklist items marked `[x]` or explicitly deferred with reasons.
+- [ ] Parent `validate.sh --recursive --strict` exit 0; this child `validate.sh --strict` exit 0.
+<!-- /ANCHOR:summary -->

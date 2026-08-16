@@ -1,43 +1,42 @@
 ---
-title: "Feature Specification: Phase 2: subagent-handoff [template:level-2/spec.md]"
-description: "Add pi-gpt-fast-mode-style environment-based subagent handoff to pi-fast-mode-w-subagent-support: preference exported as PI_FAST_MODE_W_SUBAGENT_SUPPORT=1|0 and inherited by child pi processes."
+title: "Feature Specification: subagent-handoff workstream"
+description: "Nested phase parent for strict fast-mode preference handoff from parent Pi sessions to child processes."
 trigger_phrases:
-  - "subagent-handoff"
-  - "fast mode handoff"
+  - "subagent-handoff workstream"
+  - "fast-mode environment handoff"
+  - "PI_FAST_MODE_W_SUBAGENT_SUPPORT"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff"
-    last_updated_at: "2026-08-16T09:20:00Z"
+    last_updated_at: "2026-08-16T11:00:00Z"
     last_updated_by: "pi-coding-agent"
-    recent_action: "Authored phase docs from scaffold"
-    next_safe_action: "Execute phase plan: add handoff.ts, wire index.ts, write handoff unit tests"
+    recent_action: "Decomposed the subagent-handoff workstream into contract, precedence, and propagation phases"
+    next_safe_action: "Execute 001-handoff-contract, then 002-session-precedence, then 003-process-propagation"
     blockers: []
     key_files:
-      - "context/pi-gpt-fast-mode/src/handoff.ts"
+      - "../spec.md"
+      - "../../research/research.md"
+      - "../../context/pi-gpt-fast-mode/src/handoff.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "Precedence between --fast flag, inherited handoff env, and explicit /fast toggle in a child session"
+      - "How should the implementation distinguish an absent --fast flag from an explicit false default?"
+      - "Which child-process fixture best proves inheritance without coupling tests to pi-subagents internals?"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: subagent-handoff
-
 <!-- SPECKIT_LEVEL: 2 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  This parent owns only the workstream purpose, scope, child map, and handoff rules.
+  Detailed plans, tasks, checklists, decisions, and continuity live in child folders.
 -->
 
----
+# Feature Specification: subagent-handoff workstream
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -49,169 +48,84 @@ FAILURE MODES:
 | **Status** | Draft |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 3 |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff |
 | **Predecessor** | 001-fork-and-package |
 | **Successor** | 003-integration-and-tests |
-| **Handoff Criteria** | Handoff unit tests pass; parent → child process preference propagation verified manually |
+| **Handoff Criteria** | Contract, precedence, and process propagation children pass strict validation and the handoff suite is green |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This is **Phase 2** of the pi-fast-mode-w-subagent-support specification.
-
-**Scope Boundary**: Add the subagent handoff mechanism to the phase-1 fork. New file `src/handoff.ts` (env read/write), wiring in `src/index.ts` (write on toggle/flag, apply on `session_start`), identity constant `HANDOFF_ENV` in `src/types.ts`, and new unit tests for the handoff contract. No changes to target matching, config format, or indicator behavior.
-
-**Dependencies**:
-- Phase 1 fork (renamed package baseline)
-- Reference implementation: `context/pi-gpt-fast-mode/src/handoff.ts` (commit `2ac61e0`) — env-export pattern; `PI_GPT_FAST_MODE=1|0` → ours `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1|0`
-
-**Deliverables**:
-- `src/handoff.ts` with `readHandoff` / `writeHandoff`
-- `src/index.ts` wiring: handoff write on state change; handoff apply + precedence resolution on `session_start`
-- `tests/handoff.test.ts` (vitest) covering read/write and precedence
-- Updated README section documenting the handoff env contract
-
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
-<!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-
-When a parent pi session runs with fast mode enabled and spawns subagents (via pi-subagents or any child pi process), the children start with fast mode **off** unless manually toggled — the preference is not inherited. pi-gpt-fast-mode solves this by exporting the desired state into `process.env`; child processes inherit the environment and confirm the preference on `session_start`. The forked engine (phase 1) has no such mechanism.
+A child Pi process inherits the parent process environment, but the fast-mode preference is not currently represented by a fork-owned contract. Without a strict, one-directional handoff, child sessions silently revert to persisted state and can diverge from the parent.
 
 ### Purpose
+Define and verify one environment variable, one writer policy, and one session-start precedence rule so child sessions receive the parent's fast-mode preference without bypassing their own model/target checks.
 
-Give `pi-fast-mode-w-subagent-support` the same environment-inheritance handoff: one env var, written by the parent whenever the desired state changes, read and applied by each child at session start, gated by the child's own target matching so injection still only happens on supported models.
-
-### Non-Goals
-
-- No changes to how `before_provider_request` matches targets or injects `service_tier`
-- No IPC/network handoff (env inheritance is the mechanism; it is the deliberate, simple contract)
-- No tier handoff (children inherit the parent's on/off preference; the tier stays per-target from config)
+> **Phase-parent note:** This spec.md is the only authored document at this parent level. Detailed plans, tasks, checklists, decisions, and continuity live in the child phases below.
 <!-- /ANCHOR:problem -->
-
----
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-
-- `src/handoff.ts`: `HANDOFF_ENV = "PI_FAST_MODE_W_SUBAGENT_SUPPORT"`, `readHandoff(env)` → `boolean | undefined`, `writeHandoff(desired, env)` → sets `"1"|"0"` (pattern from `context/pi-gpt-fast-mode/src/handoff.ts`)
-- `src/types.ts`: export `HANDOFF_ENV`
-- `src/index.ts` wiring:
-  - after `/fast` toggle and `--fast` flag application: `writeHandoff(config.enabled)`
-  - on `session_start`: resolve effective desired state = explicit `--fast` flag > inherited handoff env > persisted `config.enabled`; write the resolved value back to env; persist if changed
-- `tests/handoff.test.ts`: read/write round-trip, invalid values → undefined, precedence resolution, env write on toggle
-- README: document the handoff env contract and subagent behavior
+- Strict `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1|0` parsing and normalized writes.
+- Parent toggle/flag export and child `session_start` precedence resolution.
+- Child-process inheritance, one-directional ownership, and model-gated application.
 
 ### Out of Scope
-
-- Handoff for non-OpenAI providers (target matching already restricts injection)
-- Toggling the parent's own session from a child's state change (one-directional inheritance)
-- In-session install/verification (phase 3)
+- Package identity, configuration-path compatibility, and distribution metadata; they belong to `001-fork-and-package/`.
+- Live installation, RPC/TUI smoke checks, settings, PLUGINS.md, and repository sync; they belong to `003-integration-and-tests/`.
+- IPC, network coordination, tier handoff, or changes to pi-subagents itself.
 
 ### Files to Change
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `src/handoff.ts` | Create | env read/write helpers |
-| `src/types.ts` | Modify | add HANDOFF_ENV constant |
-| `src/index.ts` | Modify | write handoff on state change; apply + resolve precedence on session_start |
-| `tests/handoff.test.ts` | Create | handoff unit tests |
-| `README.md` | Modify | handoff contract section |
+| File Path | Change Type | Child Phase | Description |
+|-----------|-------------|-------------|-------------|
+| `src/handoff.ts`, `src/types.ts` | Create/Modify | 001-handoff-contract | Define the strict environment contract |
+| `src/index.ts` | Modify | 002-session-precedence | Export state and resolve flag/env/config precedence |
+| `tests/` and `README.md` | Create/Modify | 003-process-propagation | Prove child inheritance and document the final contract |
 <!-- /ANCHOR:scope -->
-
----
-
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-
-### Functional Requirements
-
-| ID | Requirement | Verification |
-|----|-------------|--------------|
-| REQ-FUNC-1 | `writeHandoff(true/false)` sets `PI_FAST_MODE_W_SUBAGENT_SUPPORT` to `"1"`/`"0"` in the given env object | unit test |
-| REQ-FUNC-2 | `readHandoff` returns `true`/`false` for `"1"`/`"0"`, `undefined` for unset/invalid | unit test |
-| REQ-FUNC-3 | Toggling `/fast` or applying `--fast` rewrites the handoff env immediately | unit test (mock env) |
-| REQ-FUNC-4 | Child `session_start`: handoff env present → effective desired state = handoff value (unless `--fast` flag overrides); env absent → persisted config | unit test (precedence) |
-| REQ-FUNC-5 | Injection remains gated by target matching — handoff only sets the desired state, never bypasses `isSupportedModel`-equivalent matching | existing payload tests stay green |
-| REQ-FUNC-6 | Child processes spawned later inherit the current env value (no per-child API) | manual two-process check |
-
-### Non-Functional Requirements
-
-| ID | Requirement | Verification |
-|----|-------------|--------------|
-| REQ-NFR-1 | No new runtime dependencies | package.json unchanged |
-| REQ-NFR-2 | Handoff code does not touch provider payloads directly (single responsibility, matching upstream pattern) | code review + tests |
-<!-- /ANCHOR:requirements -->
-
----
-
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- [ ] `npm test` exit 0 including the new `tests/handoff.test.ts`
-- [ ] `npm run typecheck` exit 0
-- [ ] Manual two-process check: parent with fast mode on → spawned child process env shows `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1`; child session reports fast mode enabled on a supported model
-- [ ] `rg -n "PI_FAST_MODE_W_SUBAGENT_SUPPORT" src/` covers types, handoff, index wiring, and README consistently
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Risk | Likelihood | Impact | Mitigation |
-|------|-----------|--------|------------|
-| Precedence ambiguity (flag vs env vs persisted config) confuses users | Medium | Medium | Documented precedence order; unit tests pin it; README example |
-| Env var name collision with another tool | Low | Low | Namespaced name `PI_FAST_MODE_W_SUBAGENT_SUPPORT`; grep before finalizing |
-| Child applies handoff then user toggles off — env write from child leaks to sibling subagents | Medium | Low | Accept: child env is copy-on-spawn; document that children do not rewrite the parent's env, only their own process env |
-| `session_start` ordering vs pi-subagents env injection | Low | Medium | Manual two-process test in handoff criteria |
-<!-- /ANCHOR:risks -->
-
----
-
-<!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
-
-| Question | Impact | Decision Needed By |
-|----------|--------|-------------------|
-| Should `/fast status` also display the inherited handoff source (flag/env/persisted)? | UX clarity | Phase 2 execution |
-| Keep upstream's exact `writeHandoff` mutation style (mutates env in place) vs return a copy? | API shape of handoff.ts | Phase 2 execution |
-<!-- /ANCHOR:questions -->
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+> Each child is an independently executable workstream. Child plans own implementation details; this parent owns sequencing and handoffs.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-handoff-contract/ | [Phase 1 scope] | Pending |
-| 2 | 002-parent-export-and-precedence/ | [Phase 2 scope] | Pending |
-| 3 | 003-child-apply-and-inheritance/ | [Phase 3 scope] | Pending |
+| 1 | `001-handoff-contract/` | Strict values, namespace, normalized writes, and pure contract tests | draft |
+| 2 | `002-session-precedence/` | Parent export and child session-start precedence with target gating | draft |
+| 3 | `003-process-propagation/` | Deterministic child-process proof, isolation, and final handoff documentation | draft |
 
 ### Phase Transition Rules
 
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+- The contract is fixed before wiring lifecycle behavior.
+- Precedence must distinguish an explicit `--fast` request from the flag's absent/default value.
+- Child propagation tests must prove the child reads a copied environment and cannot mutate the parent process.
+- Each child passes `validate.sh --strict` before the next child starts.
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-handoff-contract | 002-parent-export-and-precedence | [Criteria TBD] | [Verification TBD] |
-| 002-parent-export-and-precedence | 003-child-apply-and-inheritance | [Criteria TBD] | [Verification TBD] |
+| `001-handoff-contract` | `002-session-precedence` | Strict parser/writer behavior and ownership rules are tested | Unit tests for `1`, `0`, unset, and invalid values |
+| `002-session-precedence` | `003-process-propagation` | Toggle/flag writes and session-start precedence are deterministic and model-gated | Precedence matrix and existing payload tests |
+| `003-process-propagation` | `../003-integration-and-tests/` | Child fixture proves inherited value and child isolation | Child-process test plus strict validation |
 <!-- /ANCHOR:phase-map -->
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+- Should only an explicitly present `--fast` true value override inherited state, with `/fast off` remaining the explicit false path?
+- Should the child fixture invoke the actual pi-subagents spawn helper or use a minimal `spawnSync` contract fixture plus one live probe later?
+<!-- /ANCHOR:questions -->
+
+## RELATED DOCUMENTS
+
+- **Parent packet:** See `../spec.md`.
+- **Research:** See `../../research/research.md`.
+- **Child phases:** See `001-handoff-contract/`, `002-session-precedence/`, and `003-process-propagation/`.
+- **Handoff reference:** See `../../context/pi-gpt-fast-mode/src/handoff.ts`.
