@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media/003-ticketed-publication-sanitization-storage",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media/003-ticketed-publication-sanitization-storage",
+  "parent_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ticketed inbound publication",
+      "image sanitization and artifact storage",
+      "atomic artifact settlement",
+      "publication sanitizer plan",
+      "artifact store plan",
+      "ticketed image publication",
+      "sanitizer tasks",
+      "artifact storage tasks",
+      "ticketed publication tasks",
+      "publication sanitizer checklist",
+      "artifact store verification",
+      "ticketed image publication QA"
+    ],
+    "key_topics": [
+      "ticketed",
+      "inbound",
+      "publication",
+      "image",
+      "sanitization",
+      "artifact",
+      "storage",
+      "atomic",
+      "settlement",
+      "sanitizer",
+      "plan",
+      "store"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Inbound",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redaction The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "random",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "expected-revision",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Storage",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Publication",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Boundary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References See",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Build the ticketed relay publication boundary and store only bounded sanitized derivatives.",
+    "created_at": "2026-08-16T07:15:20.523Z",
+    "last_save_at": "2026-08-16T07:15:20.523Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:6159a33cfd72828575a1f03d98c963973cc7e119322347b2964e03422810e985",
+    "source_doc_hashes": {
+      "spec.md": "0b66f5bd29006b3922054074ba3332d4cee87b4710f32311b6e70c6a30774e65",
+      "plan.md": "54e67ec9969074e396874972d14d86bc8f512943e34c51d8680865c79e827337",
+      "tasks.md": "99b135ef569ed4bb9dd27c0307b1bd89ce37f12eb021339bb1f3a97c42a0fc8b",
+      "checklist.md": "cdac7c3dd0c806cdad05ddb2cb1dac283de4982d4b94c21edfad7b563e5c9a4d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

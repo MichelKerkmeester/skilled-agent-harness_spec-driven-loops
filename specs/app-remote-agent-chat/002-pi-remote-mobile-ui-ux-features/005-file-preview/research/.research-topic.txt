@@ -1,0 +1,5 @@
+Feature: See and preview a file like the Claude app
+
+Goal: Open and preview files/artifacts inline the way Claude does (not just rendered diffs).
+
+Desired: A Claude-style artifact/file viewer: tap to open full-screen, image/pdf/text/code renderers, redaction-aware (only shows what the relay already sends), share/close, a11y.

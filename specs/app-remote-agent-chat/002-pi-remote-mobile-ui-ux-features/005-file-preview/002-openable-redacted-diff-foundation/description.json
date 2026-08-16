@@ -1,0 +1,22 @@
+{
+  "specFolder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/005-file-preview/002-openable-redacted-diff-foundation",
+  "description": "Phase 1 — Openable redacted diff foundation",
+  "keywords": [
+    "phase",
+    "openable",
+    "redacted",
+    "diff",
+    "foundation"
+  ],
+  "lastUpdated": "2026-08-16T07:15:13.102Z",
+  "specId": "002",
+  "folderSlug": "openable-redacted-diff-foundation",
+  "parentChain": [
+    "app-remote-agent-chat",
+    "002-pi-remote-mobile-ui-ux-features",
+    "005-file-preview"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

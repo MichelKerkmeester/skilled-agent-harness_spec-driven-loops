@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort/005-accessibility-visual-hardening",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort/005-accessibility-visual-hardening",
+  "parent_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "phase",
+      "accessibility",
+      "visual",
+      "hardening",
+      "device",
+      "proof",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Serif",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redaction Accessibility",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem & Goal",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Treat",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Plan",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Aria",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "browser",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 4 — Accessibility, visual hardening, and device proof",
+    "created_at": "2026-08-16T07:15:07.070Z",
+    "last_save_at": "2026-08-16T07:24:44.050Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:a66ab0e16c917d4a488e7d7b8b1f5ffe5dfe6bcf51c7241db1fa4d528f89b3f4",
+    "source_doc_hashes": {
+      "spec.md": "116c63edf89b80086b29f28949c132b5d531a1e6ab7d136273d2077b3f807302",
+      "plan.md": "5fe8516812cecb6ca214dfbc3652b5054103b98111c7ae50735024f91b9708c2",
+      "tasks.md": "d6751ae1c98252c16b46382c19683155f7a1ce07c510a91c5c7a3e313d9831f7",
+      "checklist.md": "aba13e99823550b44c1d6e8d96b6d711c61defcdf8bc346b64ce2d3adaeee669"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

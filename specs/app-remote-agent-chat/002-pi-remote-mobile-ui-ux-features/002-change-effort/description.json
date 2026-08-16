@@ -1,0 +1,20 @@
+{
+  "specFolder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort",
+  "description": "Change the effort / reasoning level",
+  "keywords": [
+    "change",
+    "effort",
+    "reasoning",
+    "level"
+  ],
+  "lastUpdated": "2026-08-16T07:15:04.899Z",
+  "specId": "002",
+  "folderSlug": "change-effort",
+  "parentChain": [
+    "app-remote-agent-chat",
+    "002-pi-remote-mobile-ui-ux-features"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

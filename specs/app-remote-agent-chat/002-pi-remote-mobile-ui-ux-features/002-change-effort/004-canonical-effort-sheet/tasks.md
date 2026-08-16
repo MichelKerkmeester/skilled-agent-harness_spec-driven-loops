@@ -1,0 +1,22 @@
+# Tasks — Canonical sheet, effort rows, and shared entry points
+
+- [ ] Add `effort.ts` with the seven known IDs, exact visible labels/descriptions, localized template keys, safe unknown-ID ordinal formatting, and confirmed/pending trigger formatters.
+- [ ] Preserve host order and subset without adding default, cost, rank, or raw host metadata to visible copy.
+- [ ] Implement a controlled React Aria `RadioGroup` with one row per advertised level.
+- [ ] Associate each radio with its description.
+- [ ] Render the confirmed check and requested-row spinner/indicator.
+- [ ] Set `aria-busy` while pending and guard read-only pending events.
+- [ ] Retain the model picker in one `ModelEffortSheet`.
+- [ ] Replace the nested effort `Select → Popover → ListBox` with `EffortRadioGroup`.
+- [ ] Support `initialSection="model" | "effort"`.
+- [ ] Use controlled open state, one top-level Dialog/Popover, read-only hydrate on open, safe-area padding, internal scrolling, and pending dismissal.
+- [ ] Remove the local model/effort nested-dialog implementation from `SessionHeader.tsx`.
+- [ ] Render confirmed model and effort as separate spans and open the shared sheet at the model section.
+- [ ] Replace the RuntimeStrip effort `Select` with the compact confirmed-effort trigger and open the shared sheet at the effort section.
+- [ ] Keep Build/Plan behavior separate and host-confirmed.
+- [ ] Wire the RuntimeStrip trigger through the composer-adjacent control area without creating another picker or mutation implementation.
+- [ ] Own one `ModelEffortSheet` instance per session view in `App.tsx`/the session composition.
+- [ ] Pass the originating-trigger callback/focus target to both entry points.
+- [ ] Add radio-row, confirmed wash, accessible check, pending spinner, read-only, issue, sheet-scroll, sticky-heading, safe-area, radius, and light/dark styles using existing tokens.
+- [ ] Keep the sheet at `min(92vw, 24rem)` and approximately `75dvh` with existing parchment, typography, and restrained motion language.
+- [ ] Test canonical labels, order/subset, unknown IDs, all catalog edge states, one shared dialog, initial section, pending dismissal, keyboard selection, focus restoration, and exact callback/request routing.

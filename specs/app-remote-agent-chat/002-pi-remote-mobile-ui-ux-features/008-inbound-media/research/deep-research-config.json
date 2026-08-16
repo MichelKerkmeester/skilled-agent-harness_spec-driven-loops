@@ -1,0 +1,54 @@
+{
+  "topic": "Feature: Preview media/screenshots that pi sends, inline\n\nGoal: Let pi surface an image/screenshot into the transcript, previewed inline as a card and full-screen — the inbound analog of F5, designed security-first.\n\nDesired: A new redacted INBOUND image content type: relay-sanitized bytes served under an opaque artifact id + revision + digest (no raw host paths or unbounded bytes in durable state), an inline thumbnail card + full-screen viewer (reuse F6), with size/type limits and redaction rules. This crosses the read-only/redaction posture on the inbound side — design the content block, sanitization, delivery, and how it is redacted in the durable transcript.",
+  "status": "complete",
+  "provenance": "external-cli-orchestration",
+  "runtimeNote": "Produced by external-CLI orchestration, not the /deep:research state-machine runtime; runtime state artifacts are intentionally absent (see PROVENANCE.md).",
+  "antiConvergence": {
+    "policy": "no-early-convergence",
+    "minIterations": 15
+  },
+  "iterationsPlanned": 15,
+  "iterationsComplete": 15,
+  "executors": [
+    {
+      "kind": "cli-codex",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "high",
+      "label": "GPT 5.6 SOL high (--search, cli-codex)",
+      "iterations": 5
+    },
+    {
+      "kind": "cli-cursor",
+      "model": "cursor-grok-4.6-xhigh",
+      "reasoningEffort": "xhigh",
+      "label": "Grok 4.6 xhigh (cli-cursor)",
+      "iterations": 5
+    },
+    {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4-flash",
+      "reasoningEffort": null,
+      "label": "DeepSeek v4 Flash (opencode-go gateway)",
+      "iterations": 5
+    }
+  ],
+  "createdAt": "2026-08-16T06:48:24.404Z",
+  "completedAt": "2026-08-16T06:48:24.398Z",
+  "outputs": {
+    "research": "research.md",
+    "iterations": "iterations/iteration-NNN.md",
+    "brief": "BRIEF.md",
+    "topic": ".research-topic.txt"
+  },
+  "absentRuntimeArtifacts": [
+    "deep-research-state.jsonl",
+    "findings-registry.json",
+    "deep-research-dashboard.md",
+    "deep-research-strategy.md (runtime)",
+    "observability-events.jsonl",
+    "orchestration-summary.json",
+    "deltas/",
+    "dispatch-receipts/",
+    "lineages/"
+  ]
+}

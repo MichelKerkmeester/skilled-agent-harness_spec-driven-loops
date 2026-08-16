@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/001-change-model/003-functional-model-switcher-sheet",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/001-change-model/003-functional-model-switcher-sheet",
+  "parent_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/001-change-model",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "phase",
+      "functional",
+      "model",
+      "switcher",
+      "sheet",
+      "state",
+      "machine",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redaction Browsing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "functional",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "one RAC",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "existing",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mobile",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "RAC",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 2 — Functional model switcher sheet and state machine",
+    "created_at": "2026-08-16T07:15:04.285Z",
+    "last_save_at": "2026-08-16T07:24:41.685Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:c52bca63d69dfaf40a9c4f3e22da6cd2ea7273d1f8b5cdc261bb04f4357157f2",
+    "source_doc_hashes": {
+      "spec.md": "d270d4eef3ac66fa1827806f65ee5ac2a40cd1c659244d4c1b84ca30b79cdfa2",
+      "plan.md": "c72024229d29942b3659d29cf575e5409d08ea3792dd2cd1895509dc0da26e31",
+      "tasks.md": "664f78a1a61943bc13ccfbce6f0fc2c5d0f63ce76e90b2881c36111c2d92ba86",
+      "checklist.md": "6c8fad5958ec7c7e462523310b6e9b17287e0b06a36f4750476d65ebd1586626"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

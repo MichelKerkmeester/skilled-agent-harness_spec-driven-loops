@@ -1,0 +1,25 @@
+# Checklist — Complete runtime state machine and mutation boundary
+
+- [ ] Confirmed effort remains unchanged on control start, timeout, unsupported, unavailable, and delivery-unknown.
+- [ ] A deliberate selection creates exactly one fresh ticket, control ID, and operation tuple.
+- [ ] Same-tick repeated input and all further input while pending are ignored.
+- [ ] Streaming sends zero tickets and zero mutations.
+- [ ] Idle re-enables only after a confirmed hydrate.
+- [ ] Stale and unsupported perform one read-only reconcile and zero automatic mutation retries.
+- [ ] Delivery-unknown remains terminal until a read-only read-back confirms state.
+- [ ] Offline renders bounded local Offline copy and recovers through read-only hydration after connectivity returns.
+- [ ] Foreground-required renders bounded local ownership copy and never takes authority automatically.
+- [ ] Rate-limited handling uses only bounded retry metadata, reconciles, and requires a new selection/ticket.
+- [ ] Host-unavailable and invalid responses render bounded local copy with no raw error text.
+- [ ] Sheet-open, visible-foreground, online-recovery, and live-sync transition refreshes are read-only.
+- [ ] Concurrent refresh calls are deduplicated.
+- [ ] Model, effort, and mode mutations lock while runtime mutation is pending.
+- [ ] Build/Plan state and tool authority remain unchanged.
+- [ ] The document has one polite atomic runtime status region.
+- [ ] The DOM and accessibility tree contain no raw HTTP status, body, server reason, host reason, or RPC reason.
+- [ ] `npm run typecheck` exits 0.
+- [ ] `npm test` exits 0.
+- [ ] `npm run test:web` exits 0, including Phase 1 suites.
+- [ ] CDP captures are taken at exactly 390 CSS px in light and dark themes.
+- [ ] Checking, ready, pending, streaming, offline, and delivery-unknown fixtures show no horizontal overflow.
+- [ ] The same fixtures show no raw issue text in the DOM or accessibility tree.

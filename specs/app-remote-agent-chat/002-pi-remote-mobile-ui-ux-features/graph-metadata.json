@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features",
+  "parent_id": null,
+  "children_ids": [
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/001-change-model",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/004-plan-mode-tab",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/005-file-preview",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/006-rich-content-blocks",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/007-media-upload",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "secure",
+      "foundation",
+      "exists",
+      "mobile",
+      "chat",
+      "quality",
+      "bar",
+      "claude",
+      "gpt",
+      "apps",
+      "several",
+      "first-class"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kimi Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The secure foundation exists, but the mobile chat UI/UX is not yet at the quality bar of the Claude and GPT mobile apps, and several first-class agent controls that `pi` exposes on the desktop terminal are missing from the phone",
+    "created_at": "2026-08-16T06:37:29.320Z",
+    "last_save_at": "2026-08-16T07:24:40.206Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e000479e7cd631719e617fa29a68e60e4949f0ea0a33a93a8177ae8aaae8db3a",
+    "source_doc_hashes": {
+      "spec.md": "615ce0eb0cb6abe3f4e45a00eacec5b10a03f49fbe03acc0aaba711dc3e599fb"
+    },
+    "last_active_child_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media",
+    "last_active_at": null
+  }
+}

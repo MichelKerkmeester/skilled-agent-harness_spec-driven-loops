@@ -1,0 +1,5 @@
+Feature: Switch to plan mode, including a Tab / keyboard affordance
+
+Goal: Fast, legible entry/exit of pi plan mode, including a Tab-key affordance for hardware keyboards.
+
+Desired: A clear plan-mode entry/exit + persistent status; a Tab affordance for hardware-keyboard sessions; how Claude/other apps signal a distinct mode; the plan -> execute handoff.

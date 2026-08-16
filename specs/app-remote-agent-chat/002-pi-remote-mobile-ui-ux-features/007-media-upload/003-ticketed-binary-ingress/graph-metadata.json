@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/007-media-upload/003-ticketed-binary-ingress",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/007-media-upload/003-ticketed-binary-ingress",
+  "parent_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/007-media-upload",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "ticketed",
+      "binary",
+      "ingress",
+      "quarantine",
+      "cleanup",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ticketed Binary Ingress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Pi Remote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redaction Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "exact",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "attachment",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "host-gated",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "approved",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ticketed Binary Ingress, Quarantine, and Cleanup",
+    "created_at": "2026-08-16T07:15:17.855Z",
+    "last_save_at": "2026-08-16T07:24:54.412Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:990d00ae7b0d6525660c83056051aaa8609c471ed581376eab40d24c34538597",
+    "source_doc_hashes": {
+      "spec.md": "b8d1cb8df082d966db889499ae6a01dc227028610b26922452017ddc29fb66b3",
+      "plan.md": "7fe1613d24a210f1a3e268f5327dc7ae317ce51deb37bdd8231c9bd788ef466a",
+      "tasks.md": "584c08a023e94b82b9ac4046b0e64c1eab0a95d913a985226e51cfd982bf6bc4",
+      "checklist.md": "8eb327d4f78a5f1cc56db723dc516d135a8225747c062091e16c7122c5384075"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

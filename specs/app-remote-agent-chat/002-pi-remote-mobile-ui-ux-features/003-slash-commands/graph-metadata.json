@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands",
+  "parent_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features",
+  "children_ids": [
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands/001-research",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands/002-versioned-catalog-authority",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands/003-shared-command-engine",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands/004-inline-autocomplete-surface",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands/005-explicit-send-pwa-hardening"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "typed",
+      "commands",
+      "f3-slash-commands",
+      "synthesis"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commands One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Build",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Explicit Send",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kimi Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Aria",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cache Storage",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Zero Pi",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use React Aria",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "F3 — Typed “/” Commands",
+    "created_at": "2026-08-16T07:15:07.443Z",
+    "last_save_at": "2026-08-16T07:33:26.064Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:7230daff7c59858db404b4f7d68de9581768420ad4ac99be0d7ca7898b199579",
+    "source_doc_hashes": {
+      "spec.md": "f4b9093e95be5cea68f0a346b4f1c4fd1598074c1a0d48db54c4b9933e55e955",
+      "research/research.md": "3eb71834f7d440cd79eafc90ff3972fb5910a2f1e3afd2a99dd7324426ff0c4d"
+    },
+    "last_active_child_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands/001-research",
+    "last_active_at": null
+  }
+}

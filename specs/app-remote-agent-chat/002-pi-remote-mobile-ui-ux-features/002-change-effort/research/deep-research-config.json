@@ -1,0 +1,40 @@
+{
+  "topic": "Feature: Change the effort / reasoning level from within the app\n\nGoal: A flawless in-app effort switcher.\n\nDesired: Hardened: legible labels + what each level means, switch-mid-turn behavior, disabled/unavailable handling, a11y, and how it reads next to the model control.",
+  "status": "complete",
+  "provenance": "external-cli-orchestration",
+  "runtimeNote": "Produced by external-CLI orchestration, not the /deep:research state-machine runtime; runtime state artifacts are intentionally absent (see PROVENANCE.md).",
+  "antiConvergence": {
+    "policy": "no-early-convergence",
+    "minIterations": 5
+  },
+  "iterationsPlanned": 5,
+  "iterationsComplete": 5,
+  "executors": [
+    {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4-flash",
+      "reasoningEffort": null,
+      "label": "DeepSeek v4 Flash (opencode-go gateway)",
+      "iterations": 5
+    }
+  ],
+  "createdAt": "2026-08-16T06:48:24.324Z",
+  "completedAt": "2026-08-16T06:48:24.324Z",
+  "outputs": {
+    "research": "research.md",
+    "iterations": "iterations/iteration-NNN.md",
+    "brief": "BRIEF.md",
+    "topic": ".research-topic.txt"
+  },
+  "absentRuntimeArtifacts": [
+    "deep-research-state.jsonl",
+    "findings-registry.json",
+    "deep-research-dashboard.md",
+    "deep-research-strategy.md (runtime)",
+    "observability-events.jsonl",
+    "orchestration-summary.json",
+    "deltas/",
+    "dispatch-receipts/",
+    "lineages/"
+  ]
+}

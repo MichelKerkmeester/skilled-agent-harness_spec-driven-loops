@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media/007-host-enablement-security-release",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media/007-host-enablement-security-release",
+  "parent_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "approved inbound media host enablement",
+      "inbound media security signoff",
+      "Pi Remote media release gate",
+      "host enablement release plan",
+      "inbound media security release",
+      "Pi Remote kill switch verification",
+      "host enablement tasks",
+      "security signoff tasks",
+      "inbound media release tasks",
+      "host enablement checklist",
+      "inbound media security release checklist",
+      "Pi Remote release signoff"
+    ],
+    "key_topics": [
+      "approved",
+      "inbound",
+      "media",
+      "host",
+      "enablement",
+      "security",
+      "signoff",
+      "remote",
+      "release",
+      "gate",
+      "plan",
+      "kill"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Earlier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redaction Production",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Treat",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Host",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation End",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Device",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References See",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Connect the completed slices to the allowlisted host integration and pass security, device, release, and kill-switch gates.",
+    "created_at": "2026-08-16T07:15:22.067Z",
+    "last_save_at": "2026-08-16T07:15:22.067Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:1cdd7515f40e0f514c07f0587f723f176eee0021f4b3495bc0aca6b3504339ef",
+    "source_doc_hashes": {
+      "spec.md": "a97951d3d14a33c167ad66fcd1a0dd7d9e28ace5b1c9fec7112788cb337d22ba",
+      "plan.md": "adc5438e3dc99a8afa4e00c175f07f59ee303f488b71fb9a88a51b1a3854f6f2",
+      "tasks.md": "105c9cc13ac823e67c88c7e058187b2dfc51996199ccd26ba0327eb91443dd3b",
+      "checklist.md": "3ca13daff962109d594f35148807d64e11baff46277b15e37f71c6d1fd184583"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

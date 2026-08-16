@@ -1,0 +1,24 @@
+# Checklist — Canonical sheet, effort rows, and shared entry points
+
+- [ ] Header opens one controlled sheet at the Model section.
+- [ ] RuntimeStrip opens the same controlled sheet at the Effort section.
+- [ ] The DOM contains one top-level `role="dialog"` and no effort-specific second overlay.
+- [ ] The effort group renders exactly the host-advertised order and subset for three-, five-, and seven-level fixtures.
+- [ ] Known IDs use the exact bounded local labels and descriptions.
+- [ ] Unknown IDs remain internally selectable but raw IDs are absent from visible and accessible copy.
+- [ ] No `Default`, cost, rank, latency, quality, or raw host metadata marker appears.
+- [ ] Radio rows have descriptions, 44px targets, visible focus, and keyboard selection behavior.
+- [ ] Header and RuntimeStrip readouts show confirmed values only and use separate spans/localized accessible names.
+- [ ] No local committed model or effort state exists in the sheet, header, or RuntimeStrip.
+- [ ] The confirmed row remains checked during pending.
+- [ ] Only the requested row shows its pending indicator.
+- [ ] Pending sets `aria-busy`, keeps radios focusable/read-only, and shows bounded status copy.
+- [ ] Closing the sheet while pending leaves the mutation running.
+- [ ] Streaming, empty, off-only, inconsistent, offline, foreground-required, rate-limited, host-unavailable, stale, unsupported, and delivery-unknown fixtures remain distinct.
+- [ ] Build/Plan behavior and host authority remain unchanged.
+- [ ] `npm run typecheck` exits 0.
+- [ ] `npm test` exits 0.
+- [ ] `npm run test:web` exits 0, including protocol/relay security and runtime lifecycle suites.
+- [ ] CDP captures are taken at exactly 390 CSS px in light and dark themes.
+- [ ] Closed, Model-open, three-level Effort-open, and seven two-line-row views show no horizontal overflow or clipped safe-area content.
+- [ ] The Effort section has no nested effort overlay.

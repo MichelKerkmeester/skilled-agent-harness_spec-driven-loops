@@ -1,0 +1,22 @@
+{
+  "specFolder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/003-slash-commands/004-inline-autocomplete-surface",
+  "description": "Phase 3 — Inline terminal-style autocomplete surface",
+  "keywords": [
+    "phase",
+    "inline",
+    "terminal-style",
+    "autocomplete",
+    "surface"
+  ],
+  "lastUpdated": "2026-08-16T07:15:08.785Z",
+  "specId": "004",
+  "folderSlug": "inline-autocomplete-surface",
+  "parentChain": [
+    "app-remote-agent-chat",
+    "002-pi-remote-mobile-ui-ux-features",
+    "003-slash-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -1,0 +1,24 @@
+{
+  "specFolder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/005-file-preview/005-image-pdf-renderers-device-release-hardening",
+  "description": "Phase 4 — Image/PDF renderers and device release hardening",
+  "keywords": [
+    "phase",
+    "image",
+    "pdf",
+    "renderers",
+    "device",
+    "release",
+    "hardening"
+  ],
+  "lastUpdated": "2026-08-16T07:15:14.285Z",
+  "specId": "005",
+  "folderSlug": "image-pdf-renderers-device-release-hardening",
+  "parentChain": [
+    "app-remote-agent-chat",
+    "002-pi-remote-mobile-ui-ux-features",
+    "005-file-preview"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/007-media-upload/004-pi-image-bridge-transcript",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/007-media-upload/004-pi-image-bridge-transcript",
+  "parent_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/007-media-upload",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "normalized",
+      "image",
+      "bridge",
+      "redacted",
+      "transcript",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Normalized Pi Image Bridge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redacted Transcript",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Validated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redaction The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Treat",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "media",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "image",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Normalized Pi Image Bridge and Redacted Transcript",
+    "created_at": "2026-08-16T07:15:18.246Z",
+    "last_save_at": "2026-08-16T07:24:54.763Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:4df0a8cf9e64fbd28dbb1fc5d5c10def46ed6479c0b0691ba3bebfdeea1a701a",
+    "source_doc_hashes": {
+      "spec.md": "9db638673b922e0df4dff3550716fc950c5dc094dc0545459993d04798075907",
+      "plan.md": "21612999df3795a3a7db3fcf984a36ac74877a50a9f3c6103b92383bbdc867ff",
+      "tasks.md": "89e2dc9ba80c5f05e2a483f0354830c4bd3163606943d94e46e85350c7d42712",
+      "checklist.md": "902ba81099f06c9636741941be744ed98270e87f97a1eda837286100e4a7a4ec"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

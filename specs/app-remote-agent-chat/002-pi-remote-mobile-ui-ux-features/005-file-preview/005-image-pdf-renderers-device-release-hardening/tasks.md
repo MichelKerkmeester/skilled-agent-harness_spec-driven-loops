@@ -1,0 +1,13 @@
+# Tasks — Image/PDF renderers and device release hardening
+
+- [ ] Complete `artifact-sanitizer.ts` for raster decode/re-encode and destructive PDF sanitization; strip metadata/profiles/active payloads, bound dimensions/bytes, derive thumbnails only from sanitized output, set `textLayerSafe` only after verification, and return `withheld` when assurance is unavailable.
+- [ ] Complete `artifact-store.ts` and `http/server.ts` for bounded ranges, three-page/canvas budgets, digest/ETag consistency, expiry, revocation purge, and no-store headers.
+- [ ] Add the pinned PDF.js dependency and worker configuration in `apps/pi-remote-web/package.json`, `package-lock.json`, and `vite.config.ts`; do not make native iframe or uncontrolled browser PDF navigation the primary path.
+- [ ] Add `ImagePreview.tsx` with sanitized in-memory Blob handling, intrinsic-size rules, 1×–4× zoom, fit/double-tap behavior, carbon stage, pan ownership, visible Zoom out/Fit/Zoom in controls, and decode/limit failure states.
+- [ ] Add `PdfPreview.tsx` with lazy worker loading, visible plus adjacent pages, continuous vertical scrolling, page labels/indicator, Previous/Next, Fit width/zoom controls, safe text-layer/search gating, consistent range validation, and bounded canvas disposal.
+- [ ] Change `ArtifactViewerProvider.tsx`, `ArtifactViewerHost.tsx`, `useArtifactResource.ts`, and `artifact-share.ts` so revoke/expiry/close/visibility restoration aborts binary work, purges payloads, and enables binary Share only after exact bytes are prepared and `canShare` succeeds.
+- [ ] Change `App.tsx`, `state.ts`, `cache.ts`, `main.tsx`, `index.html`, `style.css`, and `public/service-worker.js` for pageshow revalidation, heartbeat offline states, no artifact persistence, safe-area fallback, background/revocation behavior, 320px/200%/RTL/reduced-motion behavior, and consistent status/alert announcements.
+- [ ] Add `ImagePreview.test.tsx`, `PdfPreview.test.tsx`, `artifact-memory.test.ts`, and final state/a11y/cache regressions; add relay PDF/image sanitizer, unsafe-text-layer, range-mismatch, and redaction tests.
+- [ ] Update `scripts/file-preview-cdp.mjs` and `apps/pi-remote-web/src/demo.ts` with deterministic image, safe PDF, unsafe PDF, too-large, corrupt, offline-loaded, and revision-conflict fixtures; keep screenshot output temporary.
+- [ ] Run installed-PWA physical-device verification on the oldest supported iOS in portrait and landscape, including VoiceOver scrub, edge-back, native text selection, app background/bfcache restoration, relay loss, revocation, reduced motion, RTL, 200% text, and repeated memory/open-close checks.
+

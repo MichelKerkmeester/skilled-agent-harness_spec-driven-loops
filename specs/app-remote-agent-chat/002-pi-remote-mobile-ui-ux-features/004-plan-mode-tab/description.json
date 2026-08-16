@@ -1,0 +1,21 @@
+{
+  "specFolder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/004-plan-mode-tab",
+  "description": "F4 — Plan mode with a Tab / keyboard affordance",
+  "keywords": [
+    "plan",
+    "mode",
+    "tab",
+    "keyboard",
+    "affordance"
+  ],
+  "lastUpdated": "2026-08-16T07:15:09.640Z",
+  "specId": "004",
+  "folderSlug": "plan-mode-tab",
+  "parentChain": [
+    "app-remote-agent-chat",
+    "002-pi-remote-mobile-ui-ux-features"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

@@ -1,0 +1,47 @@
+{
+  "topic": "Feature: See and preview a file like the Claude app\n\nGoal: Open and preview files/artifacts inline the way Claude does (not just rendered diffs).\n\nDesired: A Claude-style artifact/file viewer: tap to open full-screen, image/pdf/text/code renderers, redaction-aware (only shows what the relay already sends), share/close, a11y.",
+  "status": "complete",
+  "provenance": "external-cli-orchestration",
+  "runtimeNote": "Produced by external-CLI orchestration, not the /deep:research state-machine runtime; runtime state artifacts are intentionally absent (see PROVENANCE.md).",
+  "antiConvergence": {
+    "policy": "no-early-convergence",
+    "minIterations": 10
+  },
+  "iterationsPlanned": 10,
+  "iterationsComplete": 10,
+  "executors": [
+    {
+      "kind": "cli-codex",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "high",
+      "label": "GPT 5.6 SOL high (--search, cli-codex)",
+      "iterations": 5
+    },
+    {
+      "kind": "cli-cursor",
+      "model": "cursor-grok-4.6-xhigh",
+      "reasoningEffort": "xhigh",
+      "label": "Grok 4.6 xhigh (cli-cursor)",
+      "iterations": 5
+    }
+  ],
+  "createdAt": "2026-08-16T06:48:24.365Z",
+  "completedAt": "2026-08-16T06:48:24.365Z",
+  "outputs": {
+    "research": "research.md",
+    "iterations": "iterations/iteration-NNN.md",
+    "brief": "BRIEF.md",
+    "topic": ".research-topic.txt"
+  },
+  "absentRuntimeArtifacts": [
+    "deep-research-state.jsonl",
+    "findings-registry.json",
+    "deep-research-dashboard.md",
+    "deep-research-strategy.md (runtime)",
+    "observability-events.jsonl",
+    "orchestration-summary.json",
+    "deltas/",
+    "dispatch-receipts/",
+    "lineages/"
+  ]
+}

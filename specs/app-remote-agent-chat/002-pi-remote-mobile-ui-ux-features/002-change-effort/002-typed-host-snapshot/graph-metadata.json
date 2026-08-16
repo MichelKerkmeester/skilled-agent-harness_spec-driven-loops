@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort/002-typed-host-snapshot",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort/002-typed-host-snapshot",
+  "parent_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "phase",
+      "typed",
+      "host",
+      "snapshot",
+      "reconciliation",
+      "redacted",
+      "outcomes",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redaction Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "bounded",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem & Goal",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Introduce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "exact-key",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "confirmed",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 1 — Typed host snapshot, reconciliation, and redacted outcomes",
+    "created_at": "2026-08-16T07:15:05.827Z",
+    "last_save_at": "2026-08-16T07:24:43.022Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:af4abfedbe4fe9a03f4568e6e7f0a118c1d26ee4f7c66efd75e821b4db1d776e",
+    "source_doc_hashes": {
+      "spec.md": "e47adc9a8f307974f54d38a20c1a7ec04101fbb82b6009db5866b686a35c98b5",
+      "plan.md": "de189557b0b722b422b70cc2220d3e57b2c85189c1085520ee2a102a5465b8d8",
+      "tasks.md": "a3960089e2a7d00bc0b62fa51930914c1c39aa1b9d9f3946cec5e77faa60a293",
+      "checklist.md": "8d6bbcfcebe5d26d6bde846ba572cc2bcad125114308e2dada4d96801da9921e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

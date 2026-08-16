@@ -1,0 +1,5 @@
+Feature: Preview media/screenshots that pi sends, inline
+
+Goal: Let pi surface an image/screenshot into the transcript, previewed inline as a card and full-screen — the inbound analog of F5, designed security-first.
+
+Desired: A new redacted INBOUND image content type: relay-sanitized bytes served under an opaque artifact id + revision + digest (no raw host paths or unbounded bytes in durable state), an inline thumbnail card + full-screen viewer (reuse F6), with size/type limits and redaction rules. This crosses the read-only/redaction posture on the inbound side — design the content block, sanitization, delivery, and how it is redacted in the durable transcript.

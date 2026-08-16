@@ -1,0 +1,10 @@
+# Tasks — Phase 2 — Host enforcement and structured plan lifecycle
+
+- [ ] Refactor `extensions/pi-remote-plan/src/index.ts` so Plan is default-deny for built-in edit/write tools, mutating shell forms, unknown extension tools, and unknown MCP tools; preserve the existing read-only bash allowlist as a narrow allowlist.
+- [ ] Add a host-side plan-artifact adapter beside `extensions/pi-remote-plan/src/index.ts` (for example `extensions/pi-remote-plan/src/plan-artifact.ts`) that emits a versioned artifact with stable ID, revision, opaque token, redacted projection fields, validity, and optional approaches; never derive the token from plan text.
+- [ ] Implement lifecycle publication in the extension/host bridge: Build or Plan on hydration and every transition, `plan.ready` only from the structured artifact, `plan.superseded` on feedback/invalidation/branch or repository change/another-client change/host restart per host policy, and `executing-plan` only after atomic handoff succeeds.
+- [ ] Add a bounded execution lease in `extensions/pi-remote-plan/src/index.ts` or its adapter; restore Plan restrictions after success, cancellation, and failure, and keep restrictions active with a safe error when handoff or restoration fails.
+- [ ] Update `apps/pi-remote-relay/src/runtime/plan-status.ts` and `src/runtime/runtime-service.ts` to consume structured mode/artifact events, increment the correct revision, and return `unknown` when the extension is unhealthy or the event is malformed.
+- [ ] Update `apps/pi-remote-relay/src/prompt/prompt-service.ts` to reject a leading `/plan` token after leading-whitespace normalization before any Pi prompt is sent, and update `src/commands/command-service.ts` to remove the extension’s Plan control command from the phone catalog while retaining safe non-control commands.
+- [ ] Add negative coverage to `extensions/pi-remote-plan/tests/plan-mode.test.ts`, `apps/pi-remote-relay/tests/prompt.test.ts`, `tests/commands.test.ts`, `tests/authority-loop.test.ts`, and plan-control/redaction tests; assert internal control events are not transcript blocks or model-visible prompts.
+

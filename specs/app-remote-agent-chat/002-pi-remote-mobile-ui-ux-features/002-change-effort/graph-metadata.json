@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort",
+  "spec_folder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort",
+  "parent_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features",
+  "children_ids": [
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort/001-research",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort/002-typed-host-snapshot",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort/003-runtime-state-machine",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort/004-canonical-effort-sheet",
+    "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort/005-accessibility-visual-hardening"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "change",
+      "effort",
+      "reasoning",
+      "level",
+      "f2-change-effort",
+      "synthesis"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Build",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "While Pi",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Aria Components",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Aria",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use React Aria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Controlled React Aria",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Applying High",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Serif",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Change the effort / reasoning level",
+    "created_at": "2026-08-16T07:15:05.081Z",
+    "last_save_at": "2026-08-16T07:33:23.792Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:a49a5e290287fef1f58e85abc87592e9faafb13c160c6b406e34af89ba38fbe3",
+    "source_doc_hashes": {
+      "spec.md": "658520741d3bab68055a45de5355fe27794566ad16da1863a8395f166f84af75",
+      "research/research.md": "068fdec642af4bb40f6db2b421d87a10109413be627e9bf6f1f750a5d6dc3d2c"
+    },
+    "last_active_child_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/002-change-effort/001-research",
+    "last_active_at": null
+  }
+}

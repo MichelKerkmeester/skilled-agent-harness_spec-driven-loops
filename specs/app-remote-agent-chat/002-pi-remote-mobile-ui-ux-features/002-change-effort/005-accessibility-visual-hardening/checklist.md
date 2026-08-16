@@ -1,0 +1,25 @@
+# Checklist — Accessibility, visual hardening, and device proof
+
+- [ ] Every acceptance criterion in the parent feature `spec.md` has a recorded automated or manual result.
+- [ ] No criterion is waived because a screenshot looks correct.
+- [ ] VoiceOver announces pending, accepted, stale, and failure outcomes once.
+- [ ] No raw host text or competing alert/live region appears in the accessibility tree.
+- [ ] The sheet works at 320px and 390px.
+- [ ] The sheet works at 200% zoom and large text with browser text inflation enabled.
+- [ ] RTL arrow/focus behavior follows React Aria and remains usable.
+- [ ] Reduced motion removes transforms and pulses as specified.
+- [ ] Light and dark themes retain the fixed tokens and pass text/non-text contrast checks.
+- [ ] Selected, focused, pending, disabled, and issue states have non-color-only indicators.
+- [ ] Safe-area padding, landscape, keyboard-open viewport, and internal scrolling do not clip content.
+- [ ] True 390px CDP screenshots exist for closed, model-open, effort-open, pending, streaming, offline, stale, and delivery-unknown in both themes.
+- [ ] CDP checks report no horizontal overflow, clipped row, hidden focus indicator, or raw issue/ID canary in DOM/accessibility tree.
+- [ ] The real standalone iPhone pass covers touch selection, press-cancel, dismissal, VoiceOver, ownership, reconnect, streaming lock, delivery-unknown reconcile, themes, RTL, reduced motion, and keyboard/text inflation.
+- [ ] Plan mode remains host/extension enforced; effort cannot approve tools or enable Build.
+- [ ] Final security review finds no new authority, ticket leakage, automatic replay, optimistic commit, Plan-mode bypass, or redaction regression.
+- [ ] Evidence contains no tickets, cookies, enrollment payloads, paths, secrets, raw host responses, or prompt text.
+- [ ] `npm run typecheck` exits 0.
+- [ ] `npm test` exits 0.
+- [ ] `npm run test:web` exits 0.
+- [ ] Contrast and accessibility suites exit 0.
+- [ ] The CDP gate passes at a true 390px viewport in light and dark themes for all listed states.
+- [ ] Manual on-device verification passes on a real iPhone running the standalone PWA, including VoiceOver and recovery paths.
