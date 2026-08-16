@@ -66,4 +66,49 @@ else
   cost_part=""
 fi
 
-printf "%s%s%s%s%s%s%s" "$branch_part" "$model_part" "$five_part" "$week_part" "$ctx_part" "$used_part" "$cost_part"
+# --- DeepSeek peak/off-peak phase ---
+# DeepSeek's pricing schedule (baked into @juanmackie/pi-deepseek-peak and the
+# docs at api-docs.deepseek.com): PEAK 01:00-04:00 UTC and 06:00-10:00 UTC, 2x
+# off-peak; the schedule becomes effective 2026-08-16 16:00 UTC. Before the
+# cutover the phase is a projection and the countdown targets LIVE.
+# DS_TEST_EPOCH overrides the clock for boundary testing.
+utc_epoch() {
+  date -u -j -f "%Y-%m-%d %H:%M:%S" "$1" +%s 2>/dev/null \
+    || date -u -d "$1" +%s 2>/dev/null \
+    || echo 0
+}
+fmt_dur() {
+  local m=$1
+  if [ "$m" -ge 60 ]; then printf "%dh %02dm" $((m / 60)) $((m % 60)); else printf "%dm" "$m"; fi
+}
+
+now_epoch=$(date -u +%s)
+[ -n "${DS_TEST_EPOCH:-}" ] && now_epoch="$DS_TEST_EPOCH"
+cutover_epoch=$(utc_epoch "2026-08-16 16:00:00")
+min_of_day=$(( (now_epoch / 60) % 1440 ))
+
+phase="OFF-PEAK"
+if { [ "$min_of_day" -ge 60 ] && [ "$min_of_day" -lt 240 ]; } \
+   || { [ "$min_of_day" -ge 360 ] && [ "$min_of_day" -lt 600 ]; }; then
+  phase="PEAK"
+fi
+
+next_boundary=1440
+for b in 60 240 360 600; do
+  if [ "$b" -gt "$min_of_day" ] && [ "$b" -lt "$next_boundary" ]; then
+    next_boundary=$b
+  fi
+  if [ "$next_boundary" -eq 1440 ]; then
+    next_boundary=$((60 + 1440))
+  fi
+done
+rem_min=$((next_boundary - min_of_day))
+
+if [ "$now_epoch" -lt "$cutover_epoch" ]; then
+  ds_part=" | DS ● $phase · PRE-CUTOVER · $(fmt_dur $(((cutover_epoch - now_epoch) / 60))) → LIVE"
+else
+  next_phase="PEAK"; [ "$phase" = "PEAK" ] && next_phase="OFF-PEAK"
+  ds_part=" | DS ● $phase · $(fmt_dur "$rem_min") → $next_phase"
+fi
+
+printf "%s%s%s%s%s%s%s%s" "$branch_part" "$model_part" "$five_part" "$week_part" "$ctx_part" "$used_part" "$cost_part" "$ds_part"
