@@ -51,6 +51,7 @@ const path = require('path');
 const { buildManifestBytes } = require('./generate-leaf-manifest.cjs');
 const leafContract = require('./lib/leaf-resource-contract.cjs');
 const rootContract = require('./lib/skill-root-metadata-contract.cjs');
+const rootRouterContract = require('./lib/root-router-contract.cjs');
 const commandSchema = require('./lib/command-metadata-schema.cjs');
 
 // Keep this closed: an ignored top-level block hid authored routing data for
@@ -479,6 +480,96 @@ function checkRoot(skillDir, options = {}) {
   // resources and command definition files against the disk.
   if (evaluation.skillClass === rootContract.CLASS_HUB) {
     violations.push(...checkCommandMetadata(skillDir));
+
+    const routerPath = path.join(skillDir, 'ROUTER.md');
+    let routerText = null;
+    let routerReadError = null;
+    if (presence['ROUTER.md']) {
+      try {
+        routerText = fs.readFileSync(routerPath, 'utf8');
+      } catch (error) {
+        routerReadError = error;
+      }
+    }
+
+    let registry = null;
+    if (presence['mode-registry.json']) {
+      try {
+        registry = readJson(path.join(skillDir, 'mode-registry.json'));
+      } catch {
+        // The class and manifest checks own malformed registry findings; the
+        // router contract still runs with no declared modes and fails closed.
+      }
+    }
+
+    let aliasEntries = [];
+    if (presence['leaf-aliases.json']) {
+      try {
+        const data = readJson(path.join(skillDir, 'leaf-aliases.json'));
+        aliasEntries = Array.isArray(data) ? data : (Array.isArray(data && data.aliases) ? data.aliases : []);
+      } catch {
+        // An unreadable alias file cannot authorize a mapped leaf resource.
+      }
+    }
+
+    let manifestObject = null;
+    if (presence['leaf-manifest.json']) {
+      try {
+        manifestObject = readJson(path.join(skillDir, 'leaf-manifest.json'));
+      } catch {
+        // An unreadable manifest cannot authorize a mapped leaf resource.
+      }
+    }
+
+    let hubRouterObject = null;
+    if (presence['hub-router.json']) {
+      try {
+        hubRouterObject = readJson(path.join(skillDir, 'hub-router.json'));
+      } catch {
+        // The root metadata checks own malformed hub-router findings.
+      }
+    }
+
+    if (routerReadError) {
+      violations.push({
+        code: 'RRC-UNKNOWN',
+        file: 'ROUTER.md',
+        message: `${skillId}: could not read ROUTER.md: ${routerReadError.message}`,
+      });
+    } else {
+      const legacyFiles = rootRouterContract.LEGACY_ROUTER_PATHS
+        .filter((relativePath) => fs.existsSync(path.join(skillDir, relativePath)));
+      const hubDefaultResource = (hubRouterObject
+        && hubRouterObject.routerPolicy
+        && Array.isArray(hubRouterObject.routerPolicy.defaultResource))
+        ? hubRouterObject.routerPolicy.defaultResource
+        : [];
+
+      try {
+        const routerEvaluation = rootRouterContract.validateRootRouter({
+          routerText,
+          declaredModes: (registry && Array.isArray(registry.modes)) ? registry.modes : [],
+          aliasEntries,
+          manifest: manifestObject,
+          hubRouterDefaultResource: hubDefaultResource,
+          legacyFiles,
+          // Keep disk resolution closed to this hub even if a malformed router
+          // supplies an absolute path or a parent-segment escape.
+          resolveOnDisk: (relativePath) => {
+            const resolved = path.resolve(skillDir, relativePath);
+            const rootPrefix = `${path.resolve(skillDir)}${path.sep}`;
+            return resolved.startsWith(rootPrefix) && fs.existsSync(resolved);
+          },
+        });
+        violations.push(...routerEvaluation.violations);
+      } catch (error) {
+        violations.push({
+          code: 'RRC-UNKNOWN',
+          file: 'ROUTER.md',
+          message: `${skillId}: root-router contract failed unexpectedly: ${error.message}`,
+        });
+      }
+    }
   }
 
   return {
