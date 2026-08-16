@@ -15,13 +15,13 @@ contextType: "implementation"
 > Status legend: `[ ]` open · `[x]` done. Executor: deepseek/luna (operator directive). Each task is self-contained; cite `research/lineages/dsflashgo/research.md` for evidence.
 
 <!-- ANCHOR:tasks -->
-## Phase 1 — CI fleet-gate hardening (HIGH)
+## Phase 1 — CI fleet-gate hardening (HIGH) — DONE (commit 4dfd1f33e5; deepseek-flash GAP-1, LUNA GAP-2)
 
-- [ ] T001 [P0] Add `.opencode/skills/*/ROUTER.md` to the `push` `paths:` block of `.github/workflows/routing-registry-drift.yml`. (GAP-1)
-- [ ] T002 [P0] Add `.opencode/skills/*/ROUTER.md` to the `pull_request` `paths:` block of the same workflow. (GAP-1)
-- [ ] T003 [P0] In `.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`, add a class-H (`CLASS_HUB`) requirement for a root `ROUTER.md`. (GAP-2)
-- [ ] T004 [P0] In `.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` class-H branch, call `scripts/lib/root-router-contract.cjs` to validate the hub's root `ROUTER.md`; propagate RRC failure to a non-zero exit. Reuse the frozen codes; add no parallel validator. (GAP-2)
-- [ ] T005 [P0] Verify: `grep -c 'ROUTER.md' .github/workflows/routing-registry-drift.yml` ≥ 2; `ci-skill-root-metadata.cjs` exits 0 over the 7 real hubs and non-zero over a deliberately-broken fixture hub.
+- [x] T001 [P0] Added `.opencode/skills/*/ROUTER.md` to the `push` `paths:` block of `.github/workflows/routing-registry-drift.yml`. (GAP-1) — `grep -c ROUTER.md` = 2
+- [x] T002 [P0] Added `.opencode/skills/*/ROUTER.md` to the `pull_request` `paths:` block of the same workflow. (GAP-1)
+- [x] T003 [P0] Added `ROUTER.md` to `REQUIRED_BY_CLASS[CLASS_HUB]` in `skill-root-metadata-contract.cjs`. (GAP-2)
+- [x] T004 [P0] Wired `root-router-contract.cjs` `validateRootRouter` into the class-H branch of `ci-skill-root-metadata.cjs`; violations propagate to a non-zero exit. Reused the frozen codes; no parallel validator. (GAP-2)
+- [x] T005 [P0] Verified: gate exits 0 over the 7 real hubs (`checked=13 passed=13`); removing a hub `ROUTER.md` exits 1 with `MISSING_REQUIRED_FILE` + `RRC-001`; comment-hygiene scan clean.
 
 ## Phase 2 — Doctor fleet-ROUTER sweep (MEDIUM) — after Phase 1
 
