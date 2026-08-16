@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Planned bounded install transition child phase"
-    next_safe_action: "Capture pre-state before any settings mutation"
+    last_updated_at: "2026-08-16T18:45:28Z"
+    last_updated_by: "claude-code"
+    recent_action: "Install transition complete; fork owns /fast, pi-gpt removed"
+    next_safe_action: "Continue to 003-live-verification-and-sync"
     blockers: []
     key_files:
       - "../../research/research.md"
@@ -23,10 +23,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Should the first settings entry use a local path or a pinned git source?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "First install uses the local path; user-scope global replace rather than -l project."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
