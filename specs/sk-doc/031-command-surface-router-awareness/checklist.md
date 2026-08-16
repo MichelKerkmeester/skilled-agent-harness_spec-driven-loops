@@ -34,11 +34,11 @@ contextType: "implementation"
 - [x] CHK-010 [P3] deep-review playbook files no longer reference `ANCHOR:smart-routing`. (SC-4)
 - [x] CHK-011 [P2] `grep -c smart-routing.md` = 0 across the three fixed files. (SC-4)
 
-## Phase 4 — Cosmetic template rename — HELD (operator decision; see plan.md)
+## Phase 4 — Template rename (routing-leaf migration) — DONE (commit b10fed2e4d)
 
-- [ ] CHK-012 [P3] (deferred) template renamed; leaf-manifest + ROUTER.md leaf path updated.
-- [ ] CHK-013 [P3] (deferred) no old-name reference in live surfaces (excluding frozen benchmark/historical docs).
-- [ ] CHK-014 [P3] (deferred) leaf-manifest byte-drift + route-gold stay green; create-skill-parent resolves the template.
+- [x] CHK-012 [P3] Template renamed to `parent-skill-root-router-template.md`; `leaf-manifest.json` regenerated + `ROUTER.md` leaf path updated.
+- [x] CHK-013 [P3] `grep -rn parent-skill-smart-routing-template` over live surfaces = 0 (frozen benchmark/historical docs excluded by design).
+- [x] CHK-014 [P3] leaf-manifest byte-drift `--check` exit 0; leaf/derived freshness 13/13; fleet gate exit 0; sk-doc compiled routing compiled-serving/fresh; agent-mirror-sync OK.
 
 ## Cross-cutting
 
