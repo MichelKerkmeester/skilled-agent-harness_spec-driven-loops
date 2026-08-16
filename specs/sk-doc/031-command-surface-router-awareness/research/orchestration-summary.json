@@ -1,0 +1,65 @@
+{
+  "run_id": "1786890391696-n9twet",
+  "loop_type": "research",
+  "spec_folder": "specs/sk-doc/031-command-surface-router-awareness",
+  "base_artifact_dir": "specs/sk-doc/031-command-surface-router-awareness/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "dsflashgo",
+      "state_log": "specs/sk-doc/031-command-surface-router-awareness/research/lineages/dsflashgo/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-16T14:26:31.700Z",
+        "end_at_iso": "2026-08-16T14:41:53.414Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 4,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-08-16T14:50:00Z",
+          "deltaMs": 366586
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-08-16T14:58:00Z",
+          "deltaMs": 846586
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-08-16T15:05:00Z",
+          "deltaMs": 1266586
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-08-16T15:10:00Z",
+          "deltaMs": 1566586
+        }
+      ]
+    }
+  ]
+}

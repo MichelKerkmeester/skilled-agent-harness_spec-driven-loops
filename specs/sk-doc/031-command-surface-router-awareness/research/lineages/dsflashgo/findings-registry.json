@@ -1,0 +1,45 @@
+{
+  "openQuestions": [
+    "Whether GAP-3 should be a new doctor route or an extension of the existing parent-skill route (recommended: extend to mirror CI glob-enrollment)",
+    "Whether ROUTER.md should join the advisor harvest scope (current answer: no)"
+  ],
+  "resolvedQuestions": [
+    "Q1. Create command family invokes updated init_skill.py, parent-skill templates, and root-router-contract.cjs, and presents root ROUTER.md — CONFORMANT (iteration 1).",
+    "Q2. Doctor per-hub check 12 validates ROUTER.md two-state contract; fleet class gate is ROUTER-blind; no doctor route sweeps the seven hubs — GAPS (iteration 2).",
+    "Q3. CI workflow runs check 12 fleet-wide but omits ROUTER.md from trigger paths; advisor/validators/compiled-route/agents intentionally ROUTER-agnostic (iteration 3).",
+    "Q4. All smart-routing string hits (5 under .opencode/commands, 8 under sk-create-skill) are legitimate — legacy-rejection lists, migration notes, templates, references, contracts, test fixtures (iterations 1, 4).",
+    "Q5. Ranked update list produced (7 gaps: 3 functional, 3 documentation, 1 cosmetic) separated from 13 conformant surface groups (iterations 2, 3, 5)."
+  ],
+  "keyFindings": [
+    "All seven hubs carry conformant root ROUTER.md (router_state: active, skill_pointer: SKILL.md, four-part version); zero legacy smart-routing.md files on disk.",
+    "GAP-1: routing-registry-drift.yml trigger paths omit ROUTER.md, bypassing the only fleet-level ROUTER.md gate.",
+    "GAP-2: ci-skill-root-metadata.cjs (fleet class gate) and its class-H contract are ROUTER-blind.",
+    "GAP-3: no doctor route audits root ROUTER.md across the seven hubs fleet-wide.",
+    "GAP-4/5/6: three stale doc citations to the relocated legacy file (sk-code phase-detection.md:40,110; deep-alignment adapter §citations; deep-review ANCHOR:smart-routing).",
+    "GAP-7 (cosmetic): parent-skill-smart-routing-template.md filename retains legacy term; rename deferred.",
+    "Create family, mirrors, advisor, validators, compiled-route, benchmark replay, package_skill flat-section markers, playbook content, remaining agents all conformant."
+  ],
+  "ruledOutDirections": [
+    "Flat create-skill flow as a ROUTER.md gap (flat skills have no root ROUTER.md; init_skill() correct)",
+    "doctor-update.yaml as a ROUTER.md surface (DB rebuild orchestrator, scope-excluded)",
+    "mcp-doctor / mcp.md as ROUTER.md surfaces (MCP server diagnostics only)",
+    "Skill advisor as a ROUTER.md consumer (harvesters walk references/assets frontmatter by design)",
+    "package_skill.py SMART ROUTING markers as a legacy hit (flat-skill section pattern, distinct surface)",
+    "Renaming parent-skill-smart-routing-template.md now (cosmetic churn, deferred)",
+    "A seventh-hub ROUTER.md gap (all seven active and valid)",
+    "router-replay.cjs as a legacy authoring hit (ROUTER.md-first with ordered legacy fallbacks)"
+  ],
+  "coverageBySources": {
+    "create-command-family": 6,
+    "doctor-command-family": 5,
+    "ci-and-tooling": 6,
+    "sk-create-skill": 8,
+    "seven-hub-sweep": 8
+  },
+  "convergenceScore": 0.67,
+  "blockedStopHistory": [],
+  "graphConvergenceScore": null,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "lastUpdated": "2026-08-16T15:10:00Z"
+}
