@@ -6,6 +6,22 @@ trigger_phrases:
   - "hub activation QA gate"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation"
+    last_updated_at: "2026-07-19T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Activated compiled routing for all seven hubs and proved byte-exact rollback"
+    next_safe_action: "Run strict validation and reconcile packet metadata"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Checklist: Unified Router Refactor — Live Activation
 
@@ -49,7 +65,7 @@ contextType: "implementation"
 - [x] CHK-011 [P0] CommonJS and JSON syntax are valid.
   - **Evidence**: `node --check` passes for the driver; every `activation/<hub>/*.json` parses with `JSON.parse`.
 - [x] CHK-012 [P1] The driver contains no per-hub conditional branch.
-  - **Evidence**: One code path runs for all seven hubs; hub identity is data (the seed source), not a control-flow discriminator.
+  - **Evidence**: `lib/activate-hub.cjs` runs one code path for all seven hubs; the hub id is a data argument (`args.hub`, the seed source), never a control-flow discriminator — no `if (hub === ...)` branch exists.
 
 <!-- /ANCHOR:code-quality -->
 
@@ -69,7 +85,7 @@ contextType: "implementation"
 - [x] CHK-024 [P0] The canary green gate aborts on a non-zero exit.
   - **Evidence**: Records report `canaryGreen=true`; a non-GREEN `validate-canary.cjs` exit aborts activation for that hub.
 - [x] CHK-025 [P1] Re-running an already-bound hub is idempotent.
-  - **Evidence**: A second run is a no-op ship that still executes and proves the rollback drill.
+  - **Evidence**: A second run re-executes as a no-op that still proves the rollback drill; the idempotent path in `lib/activate-hub.cjs` emits a `binding-rollback-noop` event with `byteExact: true` and leaves the fence epoch unchanged.
 
 <!-- /ANCHOR:testing -->
 
@@ -97,9 +113,9 @@ contextType: "implementation"
 - [x] CHK-040 [P0] No live routing file was edited.
   - **Evidence**: No `SKILL.md`, `hub-router.json`, or `mode-registry.json` was changed; activation state is confined to `013-live-activation/activation/`.
 - [x] CHK-041 [P0] The shared benchmark scorer is untouched.
-  - **Evidence**: The three pinned scorer digests are unchanged after the full seven-hub run.
+  - **Evidence**: Every `activation/<hub>/activation-record.json` records `eligibility.scorerDigestsPinned: true` with the digests for `router-replay.cjs`, `score-skill-benchmark.cjs`, and `load-playbook-scenarios.cjs` unchanged after the full seven-hub run.
 - [x] CHK-042 [P1] No network, package install, credential, or dynamic-code surface was introduced.
-  - **Evidence**: The driver is zero-dependency CommonJS and runs offline; it reads no environment secret.
+  - **Evidence**: `lib/activate-hub.cjs` imports Node built-ins only (`fs`, `path`, `crypto`, `child_process`) plus two shared program `*.cjs` contract modules; `node --check` passes, it runs offline, and reads no environment secret.
 
 <!-- /ANCHOR:security -->
 
@@ -127,7 +143,7 @@ contextType: "implementation"
 - [x] CHK-060 [P0] The driver and all activation state are phase-local.
   - **Evidence**: `lib/activate-hub.cjs` and `activation/<hub>/{manifest.json, manifest.prior.json, manifest.candidate.json, fence-state.json, activation-record.json}` live beneath this phase root.
 - [x] CHK-061 [P1] Protected authored inputs and the completed rollout children remain byte-unchanged.
-  - **Evidence**: The seed is a read-only byte copy; the driver never writes under a child path, and the scorer digests are unchanged.
+  - **Evidence**: The seed is a read-only byte copy; `lib/activate-hub.cjs` writes only under `activation/<hub>/` and never under a child path, and each record's `sourceHashes` for `SKILL.md`/`hub-router.json`/`mode-registry.json` plus the pinned scorer digests are unchanged.
 
 <!-- /ANCHOR:file-org -->
 
