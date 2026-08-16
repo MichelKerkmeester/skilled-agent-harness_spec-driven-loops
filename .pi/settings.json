@@ -1,8 +1,8 @@
 {
   "lastChangelogVersion": "0.84.2",
   "theme": "dark",
-  "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-v4-flash",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-luna",
   "defaultThinkingLevel": "max",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
@@ -29,7 +29,6 @@
     "extensions/pi-cache-optimizer",
     "git:github.com/dbachelder/pi-btw",
     "https://github.com/janvitos/pi-plan-build",
-    "npm:@juanmackie/pi-deepseek-peak",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-todo",
     "npm:pi-blackhole",

@@ -1,6 +1,6 @@
 # Pi Plugins
 
-Reference list of all pi plugins installed for this environment. Nine npm
+Reference list of all pi plugins installed for this environment. Eight npm
 packages install at both user level (`~/.pi/agent/npm`) and project level
 (`.pi/npm`) carrying the same set; two git-source extensions (`pi-btw`,
 `pi-plan-build`) install the same way under `git/`. `deep-pi` and
@@ -65,13 +65,6 @@ automatic and does not need it, and the Zen gateway's support for OpenAI long
 confirming the endpoint accepts it. No credentials live in `models.json`; auth stays
 in `auth.json` / `models-store.json`. The file is a symlinked canonical
 (`~/.pi/agent/models.json` → repo `.pi/models.json`) — see [`SYNC.md`](SYNC.md).
-
----
-
-#### pi-deepseek-peak (v0.1.3)
-[github.com/juanmackie/pi-deepseek-peak](https://github.com/juanmackie/pi-deepseek-peak)
-
-Shows DeepSeek's scheduled PEAK/OFF-PEAK pricing phase and countdown in pi's default status bar, plus a lightweight authenticated account-health check reusing pi's existing DeepSeek credentials
 
 ---
 
