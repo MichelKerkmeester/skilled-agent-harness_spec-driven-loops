@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-fork-and-identity",
+  "description": "Phase 1: source-fork-and-identity",
+  "keywords": [
+    "phase",
+    "source-fork-and-identity"
+  ],
+  "lastUpdated": "2026-08-16T09:08:02.948Z",
+  "specId": "001",
+  "folderSlug": "source-fork-and-identity",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support",
+    "001-fork-and-package"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

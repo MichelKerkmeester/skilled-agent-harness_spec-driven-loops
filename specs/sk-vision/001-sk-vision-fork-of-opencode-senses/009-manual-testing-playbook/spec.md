@@ -216,3 +216,15 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 | Risk | Hand-authored report files | Medium | Renderer-ownership rule enforced |
 | Dependency | 008 catalog | Shipped | Stop if cross-links can't resolve |
 <!-- /ANCHOR:risks -->
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+### Answered Questions
+- **Q**: Can this phase run GPU scenarios without approval? **A**: No — live execution is operator-gated; otherwise SKIP with a named blocker.
+
+### Open Questions
+- None.
+<!-- /ANCHOR:questions -->
+

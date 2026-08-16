@@ -189,3 +189,29 @@ Give `pi-fast-mode-w-subagent-support` the same environment-inheritance handoff:
 | Should `/fast status` also display the inherited handoff source (flag/env/persisted)? | UX clarity | Phase 2 execution |
 | Keep upstream's exact `writeHandoff` mutation style (mutates env in place) vs return a copy? | API shape of handoff.ts | Phase 2 execution |
 <!-- /ANCHOR:questions -->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-handoff-contract/ | [Phase 1 scope] | Pending |
+| 2 | 002-parent-export-and-precedence/ | [Phase 2 scope] | Pending |
+| 3 | 003-child-apply-and-inheritance/ | [Phase 3 scope] | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-handoff-contract | 002-parent-export-and-precedence | [Criteria TBD] | [Verification TBD] |
+| 002-parent-export-and-precedence | 003-child-apply-and-inheritance | [Criteria TBD] | [Verification TBD] |
+<!-- /ANCHOR:phase-map -->

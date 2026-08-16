@@ -206,3 +206,15 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 | Risk | Removing author/repo fields confuses provenance | Low | LICENSE keeps the upstream copyright; summary explains the choice |
 | Dependency | 001-skill-md-and-readme | Low | Manifest regeneration already done there |
 <!-- /ANCHOR:risks -->
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+### Answered Questions
+- **Q**: Can the fork keep the upstream repository URL? **A**: No — upstream identity stays only in the LICENSE attribution.
+
+### Open Questions
+- Whether to omit the `repository` field or use a placeholder URL (default: omit; record the choice in the summary).
+<!-- /ANCHOR:questions -->
+

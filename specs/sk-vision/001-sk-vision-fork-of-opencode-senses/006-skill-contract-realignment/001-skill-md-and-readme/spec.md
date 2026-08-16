@@ -198,3 +198,15 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 | Risk | Reference doc goes stale vs runtime | Medium | Anchor detail to source files; do not duplicate docstrings |
 | Dependency | Runtime files on disk (002-005) | High | Stop if `vision-runtime/` or `pi/sk-vision.ts` missing |
 <!-- /ANCHOR:risks -->
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+### Answered Questions
+- **Q**: Does SKILL.md need a new tool list? **A**: No — the 13 locked names are final; only their descriptions change.
+
+### Open Questions
+- None.
+<!-- /ANCHOR:questions -->
+

@@ -212,3 +212,15 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 | Risk | generate-context.js unavailable | Low | Keep hand-authored metadata; record limitation |
 | Dependency | 006-009 complete | Required | Stop if any gate target is missing |
 <!-- /ANCHOR:risks -->
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+### Answered Questions
+- **Q**: Is 010 allowed to fix failing docs? **A**: No — only metadata reconciliation; any other failure is reported.
+
+### Open Questions
+- None.
+<!-- /ANCHOR:questions -->
+

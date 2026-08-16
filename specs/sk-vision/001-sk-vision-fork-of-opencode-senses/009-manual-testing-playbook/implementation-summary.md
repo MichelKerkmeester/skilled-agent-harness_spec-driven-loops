@@ -48,6 +48,32 @@ _memory:
 
 _Pending implementation. Fill at closeout: scenario inventory, root policy summary, benchmark scaffold, live-run evidence or SKIP reason._
 <!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+_Pending implementation. Fill at closeout: delivery order, template usage, validator results._
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| _Pending_ | _Pending_ |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+_Pending implementation. Fill at closeout: recorded blockers, deferred items, environment limitations._
+<!-- /ANCHOR:limitations -->
+
 
 ---
 

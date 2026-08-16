@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-and-baseline-verification",
+  "description": "Phase 3: package-and-baseline-verification",
+  "keywords": [
+    "phase",
+    "package-and-baseline-verification"
+  ],
+  "lastUpdated": "2026-08-16T09:08:05.009Z",
+  "specId": "003",
+  "folderSlug": "package-and-baseline-verification",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support",
+    "001-fork-and-package"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

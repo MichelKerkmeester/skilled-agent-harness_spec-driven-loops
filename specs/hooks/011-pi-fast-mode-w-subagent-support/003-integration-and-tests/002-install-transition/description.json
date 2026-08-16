@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-and-command-ownership",
+  "description": "Phase 2: install-and-command-ownership",
+  "keywords": [
+    "phase",
+    "install-and-command-ownership"
+  ],
+  "lastUpdated": "2026-08-16T09:08:03.994Z",
+  "specId": "002",
+  "folderSlug": "install-and-command-ownership",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support",
+    "003-integration-and-tests"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -50,6 +50,24 @@ _memory:
 
 _Pending implementation. Fill at closeout: SKILL.md rewrite summary, README rewrite summary, references/runtime-reference.md summary, manifest regeneration result._
 <!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+_Pending implementation. Fill at closeout: rewrite order, template usage, manifest regeneration._
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| _Pending_ | _Pending_ |
+<!-- /ANCHOR:decisions -->
+
 
 ---
 

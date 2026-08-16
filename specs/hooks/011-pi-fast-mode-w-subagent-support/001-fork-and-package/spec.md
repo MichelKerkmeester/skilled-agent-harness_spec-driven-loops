@@ -183,3 +183,29 @@ Create the `pi-fast-mode-w-subagent-support` package as a byte-faithful rename o
 | Fork lives at repo root or `packages/` subdir? | File layout of the deliverable | Phase 1 start |
 | Keep upstream test files byte-identical or rename `PACKAGE_NAME` expectations? | Test integrity vs rename purity | Phase 1 execution |
 <!-- /ANCHOR:questions -->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-source-fork-and-identity/ | [Phase 1 scope] | Pending |
+| 2 | 002-config-and-request-safety/ | [Phase 2 scope] | Pending |
+| 3 | 003-package-and-baseline-verification/ | [Phase 3 scope] | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-source-fork-and-identity | 002-config-and-request-safety | [Criteria TBD] | [Verification TBD] |
+| 002-config-and-request-safety | 003-package-and-baseline-verification | [Criteria TBD] | [Verification TBD] |
+<!-- /ANCHOR:phase-map -->

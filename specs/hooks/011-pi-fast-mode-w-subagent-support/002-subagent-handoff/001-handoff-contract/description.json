@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract",
+  "description": "Phase 1: handoff-contract",
+  "keywords": [
+    "phase",
+    "handoff-contract"
+  ],
+  "lastUpdated": "2026-08-16T09:08:02.958Z",
+  "specId": "001",
+  "folderSlug": "handoff-contract",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support",
+    "002-subagent-handoff"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

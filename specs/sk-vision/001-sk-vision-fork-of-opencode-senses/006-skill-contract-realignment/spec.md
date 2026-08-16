@@ -136,3 +136,15 @@ Per-phase detail lives in the nested children. Summary:
 | 001-skill-md-and-readme | 002-package-hygiene | SKILL.md is the real contract and passes the shared validator; README accurate; references corpus exists; manifests regenerated | `validate_document.py --type skill` exit 0; `package_skill.py --check` PASS; `ci-skill-root-metadata.cjs` OK `[S] sk-vision` |
 | 002-package-hygiene | 007-pi-input-images | package.json neutralized; `.venv` gone; tests hermetic and green; dist rebuilt; sweep clean | `bun run build && bun test` exit 0 without `.venv`; `rg` sweep exit 1 on residual identifiers; both children `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:phase-map -->
+---
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+### Answered Questions
+- **Q**: Should 006 touch the runtime code? **A**: No — 006 is docs + package hygiene only; 007 owns the pi factory change.
+
+### Open Questions
+- Whether the fork should ever publish to npm (default: no; 006-002 neutralizes publishConfig unless the operator says otherwise).
+<!-- /ANCHOR:questions -->
+

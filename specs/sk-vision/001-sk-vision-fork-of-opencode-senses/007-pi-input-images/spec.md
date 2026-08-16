@@ -215,3 +215,15 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 | Risk | Image shape drift in pi types | Medium | Read installed types first; adapt via existing helpers |
 | Dependency | 005 factory + symlink | Shipped | Stop if factory missing |
 <!-- /ANCHOR:risks -->
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+### Answered Questions
+- **Q**: Should the input hook analyze extension-injected messages? **A**: No — `event.source === "extension"` returns `continue`.
+
+### Open Questions
+- None.
+<!-- /ANCHOR:questions -->
+

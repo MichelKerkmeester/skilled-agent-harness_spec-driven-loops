@@ -211,3 +211,15 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-vision/0
 | Risk | Catalog treated as roadmap | Medium | Current-state wording enforced in review |
 | Dependency | 006 + 007 shipped | Shipped | Stop if docs/code contradict |
 <!-- /ANCHOR:risks -->
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+### Answered Questions
+- **Q**: Are feature-catalog leaves routable advisor resources? **A**: No — they are not leafRoots; `leaf-manifest.config.json` stays `["references"]`.
+
+### Open Questions
+- None.
+<!-- /ANCHOR:questions -->
+

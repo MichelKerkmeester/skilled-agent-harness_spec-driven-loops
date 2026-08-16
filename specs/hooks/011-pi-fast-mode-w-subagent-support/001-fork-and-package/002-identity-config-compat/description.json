@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-config-and-request-safety",
+  "description": "Phase 2: config-and-request-safety",
+  "keywords": [
+    "phase",
+    "config-and-request-safety"
+  ],
+  "lastUpdated": "2026-08-16T09:08:03.994Z",
+  "specId": "002",
+  "folderSlug": "config-and-request-safety",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support",
+    "001-fork-and-package"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
