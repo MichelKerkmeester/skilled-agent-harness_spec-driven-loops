@@ -2,13 +2,13 @@
 name: mcp-tooling
 description: "Parent hub for MCP tool bridges: routes to four workflow modes (mcp-chrome-devtools, mcp-click-up, mcp-obsidian for Obsidian vault note-management and markdown-note management via notesmd-cli, the official obsidian CLI, and the cyanheads MCP, mcp-aside-devtools) plus three design transports (mcp-figma, mcp-refero, mcp-mobbin) through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.4.2.0
+version: 1.5.2.0
 metadata:
   author: OpenCode
   family: mcp
 ---
 
-<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-refero, refero, design-reference, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-code-mode, mcp-obsidian, obsidian, obsidian-vault, notesmd-cli, obsidian-mcp, note-management, markdown-notes, iconic, iconic-rulebook, icon-rules, icon-automation, file-icons, folder-icons -->
+<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-refero, refero, design-reference, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-code-mode, mcp-obsidian, obsidian, obsidian-vault, notesmd-cli, obsidian-mcp, note-management, markdown-notes, iconic, iconic-rulebook, icon-rules, icon-automation, file-icons, folder-icons, mcp-tooling smart routing, mcp tool bridge surface router, mcp tool leaf routing, mcp tool bridge resource map -->
 
 # MCP Tooling Hub (mcp-tooling)
 
@@ -40,7 +40,7 @@ Use this skill (through the hub) for any MCP tool-bridge workflow. Invoke it as 
 
 ## 2. SMART ROUTING
 
-Routing is registry-driven. `mode-registry.json` lists all seven modes (four workflow, three transport) in one `modes[]` array. `hub-router.json` decides whether the result is a single mode, an ordered bundle, or a deferred disambiguation.
+Routing is two-stage. Stage 1 (hub → mode): the compiled router / `hub-router.json` scores the request and resolves it to one workflow mode — or an ordered bundle — per `mode-registry.json`. Stage 2 (mode → leaves): the surface router below maps the request's tool-bridge intent to the exact packet-local leaf resources that mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode. The surface router is a first-class document at the hub root — `ROUTER.md` — carrying the intent model, the machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block, and the how-to-read rules.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
@@ -71,6 +71,12 @@ A scored route loads exactly the selected mode's declared resources. `routerPoli
 - `orderedBundle`: multiple explicitly requested tools route in tie-break order.
 - `defer`: unclear or contradictory tool intent asks for disambiguation — the router does not silently default to `mcp-chrome-devtools` on genuine ambiguity.
 
+### Surface Router — per-mode leaf sets
+
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (all seven modes plus the two deliberate absences: a bare tool-bridge phrase fires no intent and defers at the hub; provider-neutral design-research phrasing defers between `mcp-refero` and `mcp-mobbin`), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union, the `orderedBundle` outcome; no keyword match → hub `defer`, never a silent default to `mcp-chrome-devtools`). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+
+`ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule).
+
 ---
 
 ## 3. HOW IT WORKS
@@ -90,7 +96,7 @@ mcp-tooling/
   manual-testing-playbook/
   benchmark/
   leaf-manifest.json
-  shared/
+  ROUTER.md
   mcp-chrome-devtools/
     SKILL.md
     README.md
@@ -151,6 +157,8 @@ mcp-tooling/
 - Keep every transport (`mcp-figma`, `mcp-refero`, `mcp-mobbin`) read-only in this workspace (`mutatesWorkspace:false`), paired with `sk-design` for judgment.
 - Keep exactly one `graph-metadata.json`, at the hub root.
 - Keep `hub-router.json` signal keys and registry `workflowMode` values bidirectionally aligned.
+- Keep the surface router's `RESOURCE_MAP` in sync with `leaf-manifest.json` — the leaf sets dual-read to canonical typed pairs at the one contract boundary (`sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`).
+- Keep every `RESOURCE_MAP` path packet-qualified (`<packet>/references|assets/…`) and resolving on disk.
 
 ### ⛔ NEVER
 
@@ -172,6 +180,7 @@ mcp-tooling/
 
 - Registry: `mode-registry.json`.
 - Router: `hub-router.json`.
+- Surface router: `ROUTER.md`.
 - Advisor description: `description.json`.
 - Skill graph identity: `graph-metadata.json`.
 - Workflow packets: `mcp-chrome-devtools/SKILL.md`, `mcp-click-up/SKILL.md`, `mcp-obsidian/SKILL.md`, `mcp-aside-devtools/SKILL.md`.

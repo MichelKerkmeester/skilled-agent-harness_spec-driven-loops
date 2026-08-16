@@ -1,0 +1,1 @@
+No activate-hub invocation and no mcp-tooling direct-mirror exception in any receipt. PASS.

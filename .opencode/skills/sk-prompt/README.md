@@ -6,7 +6,7 @@ trigger_phrases:
   - "prompt engineering"
   - "small model prompt craft"
   - "clear scoring"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # sk-prompt
@@ -36,7 +36,7 @@ This skill exists to close both gaps. It turns a rough request into a prompt tha
 
 ### What It Does
 
-`sk-prompt` is a parent hub. It holds no packet-local logic. Every request routes to exactly one of two nested workflow packets through `mode-registry.json` and `hub-router.json`.
+`sk-prompt` is a parent hub. It holds no packet-local logic. Every request routes to exactly one of two nested workflow packets through `mode-registry.json` and `hub-router.json`. Once the mode is chosen, the root `ROUTER.md` (stage two) maps the request's prompt-craft intent to the exact packet-local leaf resources that mode loads.
 
 - `prompt-improve` is the mutating engine. It picks a framework from seven (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT), runs a five-phase DEPTH thinking pass and scores the result with CLEAR. Invoke it with `/prompt:improve` or the `@prompt-improver` agent.
 - `prompt-models` is the read-only lookup. It holds per-model prompt-craft profiles for small-model dispatch. It has no slash command. The advisor co-surfaces it alongside `cli-opencode` or you read the profile directly.
@@ -113,6 +113,7 @@ Expected: 0 invariant failures and 0 warnings.
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic for the hub |
+| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: prompt-craft intent to the exact leaf resources the selected mode loads |
 | [`sk-prompt-improve/README.md`](./sk-prompt-improve/README.md) | The mutating engine with DEPTH thinking and CLEAR scoring across seven frameworks |
 | [`sk-prompt-models/README.md`](./sk-prompt-models/README.md) | The read-only per-model prompt-craft profiles |
 | [`changelog/v1.1.0.0.md`](./changelog/v1.1.0.0.md) | Release notes for this README rewrite |

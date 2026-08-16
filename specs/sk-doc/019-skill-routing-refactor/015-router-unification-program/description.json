@@ -19,16 +19,15 @@
     "recovery",
     "budget"
   ],
-  "lastUpdated": "2026-07-24T13:05:44.620Z",
+  "lastUpdated": "2026-08-16T07:27:14.071Z",
   "specId": "015",
   "folderSlug": "router-unification-program",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor"
   ],
-  "memorySequence": 37,
+  "memorySequence": 38,
   "memoryNameHistory": [
-    "19-07-26_09-28__holding.md",
     "19-07-26_09-28__holding.md",
     "19-07-26_09-29__holding.md",
     "19-07-26_09-29__holding.md",
@@ -47,6 +46,7 @@
     "19-07-26_13-30__critical-p4b-finding-confirmed-no-runtime-code.md",
     "19-07-26_15-52__the-full-deep-path-is-now-underway-i-ve.md",
     "19-07-26_15-57__the-sk-code-cascade-is-re-dispatched-background.md",
-    "19-07-26_17-09__fresh-post-flip-real-model-sweep-is-running.md"
+    "19-07-26_17-09__fresh-post-flip-real-model-sweep-is-running.md",
+    "16-08-26_08-27__extended-the-router-unification-program-with.md"
   ]
 }

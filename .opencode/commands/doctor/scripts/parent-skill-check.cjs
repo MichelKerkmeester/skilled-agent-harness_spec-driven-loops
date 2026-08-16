@@ -1287,6 +1287,119 @@ function main() {
   }
 
   // ───────────────────────────────────────────────────────────────
+  // 12. Root-router two-state contract (canon: FAIL by default)
+  //
+  // Every parent hub now owns one root ROUTER.md declaring router_state
+  // active|stage1-only, a resolvable root SKILL.md pointer, and zero legacy
+  // router coexistence; an active router's mapped resources must resolve on
+  // disk and dual-read to typed leaf-manifest pairs. The shared library owns
+  // the stable RRC codes so the doctor, package gate, and command workflows
+  // print the same failure set. The hub-router.json defaultResource is never
+  // required to point at ROUTER.md — it is only rejected when it literally
+  // names a legacy smart-router path.
+  // ───────────────────────────────────────────────────────────────
+  const rootRouterContractPath = path.join(
+    path.dirname(target), 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'root-router-contract.cjs',
+  );
+  if (!fs.existsSync(rootRouterContractPath)) {
+    softFail('12-lib: the shared root-router contract library is missing under sk-doc/sk-create-skill/scripts/lib/');
+  } else {
+    let rootRouterContract = null;
+    try {
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      rootRouterContract = require(rootRouterContractPath);
+    } catch (e) {
+      softFail(`12-lib: failed to load the root-router contract library: ${e.message}`);
+    }
+    if (rootRouterContract) {
+      const rootRouterPath = path.join(target, 'ROUTER.md');
+      let routerText = null;
+      let routerReadFailed = false;
+      if (fs.existsSync(rootRouterPath)) {
+        try {
+          routerText = fs.readFileSync(rootRouterPath, 'utf8');
+        } catch (e) {
+          routerReadFailed = true;
+          softFail(`12a-router-contract: could not read ROUTER.md: ${e.message}`);
+        }
+      }
+      if (!routerReadFailed) {
+        const legacyFiles = [];
+        for (const rel of rootRouterContract.LEGACY_ROUTER_PATHS) {
+          if (fs.existsSync(path.join(target, rel))) legacyFiles.push(rel);
+        }
+        let manifestObject = null;
+        const manifestPath = path.join(target, 'leaf-manifest.json');
+        if (fs.existsSync(manifestPath)) {
+          try {
+            manifestObject = readJson(manifestPath);
+          } catch {
+            // An unreadable manifest already failed 10a when applicable; the
+            // router check must still run against the null manifest and report
+            // every mapped pair as missing from it.
+          }
+        }
+        let aliasEntries = [];
+        const aliasesPath = path.join(target, 'leaf-aliases.json');
+        if (fs.existsSync(aliasesPath)) {
+          try {
+            const data = readJson(aliasesPath);
+            aliasEntries = Array.isArray(data) ? data : (Array.isArray(data && data.aliases) ? data.aliases : []);
+          } catch {
+            // An unreadable leaf-aliases.json is reported by check 10 when
+            // applicable; here it only widens the failure to an unresolved
+            // path, which is still fail-closed.
+          }
+        }
+        // The parsed hub-router variable from check 5 is block-scoped to that
+        // check, so the default-resource fact is read here independently (a
+        // malformed hub-router.json already failed 5a when applicable).
+        let hubRouterObject = null;
+        const hubRouterPath = path.join(target, 'hub-router.json');
+        if (fs.existsSync(hubRouterPath)) {
+          try {
+            hubRouterObject = readJson(hubRouterPath);
+          } catch {
+            // 5a owns the malformed-JSON finding; nothing further to add here.
+          }
+        }
+        const hubDefaultResource = (hubRouterObject && hubRouterObject.routerPolicy && Array.isArray(hubRouterObject.routerPolicy.defaultResource))
+          ? hubRouterObject.routerPolicy.defaultResource
+          : [];
+        try {
+          const evaluation = rootRouterContract.validateRootRouter({
+            routerText,
+            declaredModes: (registry && Array.isArray(registry.modes)) ? registry.modes : [],
+            aliasEntries,
+            manifest: manifestObject,
+            hubRouterDefaultResource: hubDefaultResource,
+            legacyFiles,
+            // The probe must never resolve a path outside the hub: a
+            // `..`/absolute segment that happens to exist on disk would
+            // otherwise hand a foreign file the identity of a hub leaf. The
+            // contract rejects such paths before probing, and this guard
+            // keeps the probe itself closed as a second barrier.
+            resolveOnDisk: (rel) => {
+              const resolved = path.resolve(target, rel);
+              const rootPrefix = `${path.resolve(target)}${path.sep}`;
+              return resolved.startsWith(rootPrefix) && fs.existsSync(resolved);
+            },
+          });
+          if (evaluation.violations.length === 0) {
+            pass(`12a-router-contract: root ROUTER.md conforms to the two-state contract (${evaluation.state})`);
+          } else {
+            for (const violation of evaluation.violations) {
+              softFail(`12a-router-contract: ${violation.code} — ${violation.message}`);
+            }
+          }
+        } catch (e) {
+          softFail(`12a-router-contract: RRC-UNKNOWN — the root-router contract library failed unexpectedly: ${e.message}`);
+        }
+      }
+    }
+  }
+
+  // ───────────────────────────────────────────────────────────────
   // SUMMARY
   // ───────────────────────────────────────────────────────────────
   console.log('');

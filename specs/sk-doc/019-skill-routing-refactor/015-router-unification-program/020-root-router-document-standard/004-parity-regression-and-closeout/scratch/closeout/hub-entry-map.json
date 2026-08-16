@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {"hub": "sk-code", "entry": "001-sk-code"},
+    {"hub": "system-deep-loop", "entry": "002-system-deep-loop"},
+    {"hub": "mcp-tooling", "entry": "003-mcp-tooling"},
+    {"hub": "cli-external-orchestration", "entry": "004-cli-external-orchestration"},
+    {"hub": "sk-prompt", "entry": "005-sk-prompt"},
+    {"hub": "sk-design", "entry": "006-sk-design"},
+    {"hub": "sk-doc", "entry": "007-sk-doc"}
+  ],
+  "canonicalHubCount": 7,
+  "source": "009-parent-hub-rollout checkpoint receipts (phase 003)"
+}

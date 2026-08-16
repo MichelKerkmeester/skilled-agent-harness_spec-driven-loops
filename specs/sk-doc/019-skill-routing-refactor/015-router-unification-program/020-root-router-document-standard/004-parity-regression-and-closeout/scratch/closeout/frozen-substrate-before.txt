@@ -1,0 +1,4 @@
+sha256sum of the frozen trio at phase start:
+14f169a466d970648f46f0f312904cc682221d1adfdedef97264398ffc9124d9  router-replay.cjs
+05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886  score-skill-benchmark.cjs
+f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24  load-playbook-scenarios.cjs

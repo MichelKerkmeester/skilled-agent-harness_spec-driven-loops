@@ -8,7 +8,7 @@ trigger_phrases:
   - "notesmd-cli"
   - "figma cli"
   - "mcp tool bridge"
-version: 1.5.0.0
+version: 1.5.2.0
 ---
 
 # mcp-tooling

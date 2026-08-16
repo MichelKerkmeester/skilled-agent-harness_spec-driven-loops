@@ -35,6 +35,7 @@ const REAL_SK_DOC_ROOT = path.join(__dirname, '..', '..', '..', '..', 'skills', 
 const REAL_GENERATOR_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
 const REAL_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
 const REAL_ROOT_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs');
+const REAL_ROOT_ROUTER_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'root-router-contract.cjs');
 const REAL_S_CLASS_DEFAULTS_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 's-class-config-defaults.json');
 
 const MODE_A = 'demo-alpha';
@@ -69,8 +70,10 @@ function installContractLibrary(hubRoot) {
   fs.copyFileSync(REAL_CONTRACT_LIB_PATH, path.join(libDir, 'leaf-resource-contract.cjs'));
   // The root-metadata class check resolves from the same sibling location, so a
   // fixture that stages only the leaf tooling would fail on a missing library
-  // rather than on the leaf-manifest behaviour these cases exist to cover.
+  // rather than on the leaf-manifest behaviour these cases exist to cover. The
+  // root-router two-state check (12) resolves from the same location too.
   fs.copyFileSync(REAL_ROOT_CONTRACT_LIB_PATH, path.join(libDir, 'skill-root-metadata-contract.cjs'));
+  fs.copyFileSync(REAL_ROOT_ROUTER_CONTRACT_LIB_PATH, path.join(libDir, 'root-router-contract.cjs'));
   // generate-leaf-manifest.cjs reads the shared S-class config defaults, so the
   // staged copy needs it too or its require fails at runtime.
   fs.copyFileSync(REAL_S_CLASS_DEFAULTS_PATH, path.join(libDir, 's-class-config-defaults.json'));
@@ -144,6 +147,28 @@ function buildCleanFixture() {
   // requires the file's presence, so the fixture carries the empty form.
   writeJson(path.join(hubRoot, 'command-metadata.json'), []);
   fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nallowed-tools: [Read]\n---\n# demo-hub\n');
+  // The root-router two-state check runs on every hub, so the clean fixture
+  // ships the leafless stage1-only root router its fresh-scaffold twin would
+  // carry; it stays out of the way of the leaf-manifest guards under test.
+  fs.writeFileSync(path.join(hubRoot, 'ROUTER.md'), [
+    '---',
+    'title: demo-hub Surface Router — stage-one only',
+    'version: 1.0.0.0',
+    'router_state: stage1-only',
+    'skill_pointer: SKILL.md',
+    '---',
+    '# demo-hub Surface Router',
+    '```python',
+    'DEFAULT_RESOURCE = []',
+    '',
+    'INTENT_SIGNALS = {}',
+    '',
+    'RESOURCE_MAP = {}',
+    '',
+    'SHARED_CONTROL_RESOURCES = []',
+    '```',
+    '',
+  ].join('\n'));
   fs.mkdirSync(path.join(hubRoot, 'changelog'), { recursive: true });
   fs.writeFileSync(path.join(hubRoot, 'changelog', 'CHANGELOG.md'), '# Changelog\n');
   fs.mkdirSync(path.join(hubRoot, 'manual-testing-playbook'), { recursive: true });

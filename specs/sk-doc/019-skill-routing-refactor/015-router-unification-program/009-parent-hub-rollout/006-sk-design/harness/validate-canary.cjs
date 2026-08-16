@@ -178,14 +178,14 @@ function assertCompiled(snapshot) {
     assert.deepStrictEqual(schemaErrors(TYPED_GOLD_SCHEMA, row), []);
     assert.strictEqual(computeProjectionHash('TypedRouteGoldV1', row), row.projectionHash);
   });
-  assert.strictEqual(snapshot.policy.destinations.length, 3);
-  assert.strictEqual(snapshot.projectionGraph.rows.length, 3);
-  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => canonicalize(row.identityTuple))).size, 3);
+  assert.strictEqual(snapshot.policy.destinations.length, 2);
+  assert.strictEqual(snapshot.projectionGraph.rows.length, 2);
+  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => canonicalize(row.identityTuple))).size, 2);
   assert.strictEqual(snapshot.routingModel.bundleRules.length, 0);
-  assert.strictEqual(snapshot.policy.compositionRules.length, 3);
+  assert.strictEqual(snapshot.policy.compositionRules.length, 1);
   assert.strictEqual(snapshot.routingModel.defaultMode, 'sk-design-interface');
   assert.strictEqual(snapshot.routingModel.ambiguityDelta, 1);
-  assert.strictEqual(snapshot.manifestResources.length, 64);
+  assert.strictEqual(snapshot.manifestResources.length, 61);
   const byMode = new Map(snapshot.policy.destinations.map((destination) => [
     destination.id.workflowMode,
     destination,
@@ -194,21 +194,17 @@ function assertCompiled(snapshot) {
     [byMode.get('sk-design-md-generator').role, byMode.get('sk-design-md-generator').mutatesWorkspace],
     ['actor', true],
   );
-  assert.deepStrictEqual(
-    [byMode.get('sk-design-mcp-open-design').role, byMode.get('sk-design-mcp-open-design').mutatesWorkspace],
-    ['transport', false],
-  );
   assert.ok(snapshot.policy.destinations.filter((destination) => (
-    !['sk-design-md-generator', 'sk-design-mcp-open-design'].includes(destination.id.workflowMode)
+    destination.id.workflowMode !== 'sk-design-md-generator'
   )).every((destination) => destination.role === 'actor' && destination.mutatesWorkspace === false));
   snapshot.manifestResources.forEach((entry) => {
     assert.ok(fs.existsSync(path.join(SKILL_ROOT, entry.resource)), `missing authored leaf ${entry.resource}`);
   });
   return {
     byteIdenticalRecompile: true,
-    compiledPairRules: 3,
-    destinationCount: 3,
-    leafResourceCount: 64,
+    compiledPairRules: 1,
+    destinationCount: 2,
+    leafResourceCount: 61,
     namedBundleRules: 0,
     schemaValidation: 'pass',
   };
@@ -514,7 +510,7 @@ function runAuthority(snapshot, fixture) {
   assert.deepStrictEqual(committed.protocolPath, ['PREPARE', 'VERIFY', 'COMMIT']);
   assert.strictEqual(effects.count, 1);
 
-  for (const caseId of ['single-interface', 'single-open-design-transport']) {
+  for (const caseId of ['single-interface', 'retired-open-design-default-interface']) {
     const entry = fixture.cases.find((candidate) => candidate.id === caseId);
     const result = evaluateCanary(snapshot, entry);
     const localContext = executionContext(snapshot, result);

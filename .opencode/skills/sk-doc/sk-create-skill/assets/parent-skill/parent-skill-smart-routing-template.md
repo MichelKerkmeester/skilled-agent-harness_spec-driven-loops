@@ -1,37 +1,47 @@
 ---
-title: Parent Skill Smart Routing Template - Surface Router Scaffold
-description: Copy-paste second-layer surface router scaffold that maps request intent to packet-local leaf resources for a parent hub.
+title: Parent Skill Smart Routing Template - Root ROUTER.md Authoring
+description: Authoring guide for the root ROUTER.md stage-two control document: the active state maps request intent to packet-local leaf resources, and the stage1-only state delegates all routing to hub-router.json plus mode-registry.json.
 trigger_phrases:
   - "parent skill smart routing template"
-  - "surface router scaffold"
+  - "root router authoring"
   - "intent signals resource map"
   - "leaf resource routing"
+  - "stage1-only router"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.1.0.0
+router_state: active
+skill_pointer: SKILL.md
 ---
 
-# [parent-skill-name] Surface Router - Per-Intent Leaf Sets
+# [parent-skill-name] Root Router — Two-State Authoring
 
-A copy-paste scaffold for a parent hub's second-layer surface router. It maps a request's intent to the exact packet-local leaf resources a mode should load.
+The parent hub's stage-two control document is first-class at the hub root as
+`ROUTER.md` — never at a nested path. `hub-router.json` selects a workflow mode;
+this document maps a request's intent to the exact packet-local leaf resources
+that mode loads. It declares exactly one of two states:
 
----
+| State | Meaning | Stage-two content |
+|-------|---------|-------------------|
+| `router_state: active` | The hub owns second-stage leaf selection | Non-empty equal-key `INTENT_SIGNALS` / `RESOURCE_MAP`; `SHARED_CONTROL_RESOURCES` names `shared/…` control documents exempt from typed-pair checks |
+| `router_state: stage1-only` | The hub owns no leaf selection | Empty maps, empty stage-two default, and empty `SHARED_CONTROL_RESOURCES`; routing delegates to `hub-router.json` plus `mode-registry.json` |
 
-## 1. OVERVIEW
-
-### Purpose
-
-The hub router (`hub-router.json`) selects a workflow mode. This file is the second layer: it maps a request's intent to the specific leaf resources that mode loads. Copy it to `shared/references/smart-routing.md` in the hub root and replace every bracketed placeholder.
-
-### Usage
-
-Every `RESOURCE_MAP` path is either packet-qualified (`[packet]/references|assets/…`) or a shared-alias disk path (`shared/…` listed in `leaf-aliases.json`). Both convert to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary. See [parent-hub-router-schema.md](../../references/parent-skill/parent-hub-router-schema.md) section 8, the path contract. Never strip a prefix generically, and never infer a shared-tier file into a mode. Keep `INTENT_SIGNALS` and `RESOURCE_MAP` keys aligned. Delete `FULL_INVENTORY` if the hub has no show-everything intent.
+Every `RESOURCE_MAP` path is either packet-qualified (`[packet]/references|assets/…`) or a shared-alias disk path (`shared/…` listed in `leaf-aliases.json`). Both convert to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary. Keep `INTENT_SIGNALS` and `RESOURCE_MAP` keys aligned. Delete `FULL_INVENTORY` if the hub has no show-everything intent. A root `skill_pointer: SKILL.md` and a four-part `version` are required in both states, and the router must never coexist with a legacy `smart-routing.md`.
 
 ---
 
-## 2. INTENT SIGNALS AND RESOURCE MAP
+## 1. ACTIVE STATE
+
+Replace `router_state` with `active` only after a concrete leaf map exists. Every path below must resolve on disk and be registered in `leaf-manifest.json` as a typed pair.
 
 ```python
+# An always-loaded preamble is optional; [] keeps the default route minimal.
+DEFAULT_RESOURCE = []
+
+# Hub-shared control documents deliberately exempted from typed-pair checks.
+# Each entry must start with `shared/` and be referenced by RESOURCE_MAP below.
+SHARED_CONTROL_RESOURCES = ["shared/references/[shared-standard].md"]
+
 INTENT_SIGNALS = {
     "[INTENT_A]": {"weight": 4, "keywords": ["[phrase a1]", "[phrase a2]"]},
     "[INTENT_B]": {"weight": 4, "keywords": ["[phrase b1]", "[phrase b2]"]},
@@ -56,6 +66,24 @@ RESOURCE_MAP = {
 
 ---
 
+## 2. STAGE1-ONLY STATE
+
+A hub with no authored leaf map stays `stage1-only`: all four collections remain empty and the prose delegates routing to stage one.
+
+```python
+DEFAULT_RESOURCE = []
+
+SHARED_CONTROL_RESOURCES = []
+
+INTENT_SIGNALS = {}
+
+RESOURCE_MAP = {}
+```
+
+Promote to `active` only when the maps carry concrete, resolvable leaf paths — never placeholder intents.
+
+---
+
 ## 3. HOW TO READ THIS
 
 - One dominant intent routes to one mode's leaf set.
@@ -67,5 +95,5 @@ RESOURCE_MAP = {
 
 ## 4. RELATED RESOURCES
 
-- [`parent-hub-router-schema.md`](../../references/parent-skill/parent-hub-router-schema.md) - The two-axis hub router schema and the path contract (section 8) these paths obey.
-- [`parent-skill-hub-template.md`](./parent-skill-hub-template.md) - The first-layer hub scaffold this surface router pairs with.
+- [`parent-hub-router-schema.md`](../../references/parent-skill/parent-hub-router-schema.md) - The two-axis hub router schema and the path contract these paths obey.
+- [`parent-skill-hub-template.md`](./parent-skill-hub-template.md) - The first-layer hub scaffold this router pairs with.

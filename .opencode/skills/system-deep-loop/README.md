@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review council alignment improvement"
   - "deep-loop hub routing"
-version: 2.0.0.0
+version: 2.2.2.0
 ---
 
 # system-deep-loop
@@ -101,6 +101,7 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review`, `deep
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic. |
+| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: deep-loop intent to the exact leaf resources the selected mode loads. |
 | [`mode-registry.json`](./mode-registry.json) | The three-tier discriminator for every mode. |
 | [`deep-ai-council/SKILL.md`](./deep-ai-council/SKILL.md) | An example mode packet. |
 | [`deep-alignment/SKILL.md`](./deep-alignment/SKILL.md) | Named-standard conformance mode packet. |

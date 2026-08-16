@@ -210,7 +210,7 @@ gate (`validate-playbook-topology.cjs`) can validate the gold against
 `leaf-manifest.json`. This package therefore uses the typed per-scenario shape
 (no root `Feature ID | file | Yes/No` cross-reference table); the surface router
 that supplies the observed leaf addresses lives at
-`shared/references/smart-routing.md`.
+`ROUTER.md`.
 
 - **Mode Routing** (`mode-routing/`): `MO-001` research, `MO-002` review, `MO-003` ai-council, `MO-004` mode-hint override, `MO-005` alignment.
 - **Improvement Lane Routing** (`improvement-lane-routing/`): `IL-001` agent-improvement (typed), `IL-002` model-benchmark, `IL-003` skill-benchmark.

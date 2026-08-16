@@ -2,7 +2,7 @@
 name: sk-design
 description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and the anti-slop pre-delivery gate; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, or extract a real design system from a live site. The single advisor-routable design skill: it routes to sk-design-interface and sk-design-md-generator via mode-registry.json, and each holds its own logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.7.0.0
+version: 1.7.1.0
 metadata:
   author: OpenCode
   family: sk-hub
@@ -44,13 +44,19 @@ These commands share `shared/creation-contract.md` and are the sole public desig
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any design query to the single identity `sk-design`; the hub then picks the mode. Canonical `/interface:*` commands resolve to the same stable mode IDs.
+Routing is **registry-driven** in two stages. Stage 1 (hub → mode): `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any design query to the single identity `sk-design`; the hub then picks the mode. Canonical `/interface:*` commands resolve to the same stable mode IDs. Stage 2 (mode → leaves): the root `ROUTER.md` maps the request's design intent to the exact packet-local leaf resources that mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
 > node .opencode/bin/compiled-route.cjs --hub sk-design --prompt "<task>"
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-design`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+
+### Surface Router — per-intent leaf sets
+
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-intent leaf model (the interface visual-system and motion leaf sets, the md-generator extraction leaf set, and the preflight/variation intents), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules. Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+
+`ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule). Deeper per-mode references and the shared reference base remain owned by the mode packets and `shared/`, not by the hub root.
 
 ### Manager Intake Before Routing
 
@@ -83,7 +89,7 @@ read mode-registry.json
 
 ### Intent-Router Resilience
 
-This hub has simple intent-mode routing, not keyed resource discovery: it selects one or more mode packet folders from `mode-registry.json`. There is no root `references/<key>/` or `assets/<key>/` resource map for the hub; mode packets and `shared/` own their own references and assets. Keep the router resilient without replacing it with the keyed-resource router:
+Stage-one mode resolution is simple intent-mode routing, not keyed resource discovery: it selects one or more mode packet folders from `mode-registry.json`. The keyed leaf-resource map lives in the root `ROUTER.md` (stage two); there are no root `references/<key>/` or `assets/<key>/` directories, and mode packets and `shared/` own their own references and assets. Keep the router resilient without replacing it with the keyed-resource router:
 
 ```python
 from pathlib import Path
@@ -197,6 +203,7 @@ Verifier cadence is: intake before routing, visible plan before substantial desi
 ```
 sk-design/
   SKILL.md               # this routing hub (no per-mode design logic)
+  ROUTER.md              # stage-two surface router (design intent -> leaf sets)
   mode-registry.json     # the discriminator + advisorRouting (single source of truth)
   graph-metadata.json    # the ONE advisor identity for the whole skill
   shared/                # shared design reference base the hub + modes cite
@@ -222,6 +229,7 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 - **ALWAYS** make the route and proof plan visible before substantial design, build, or transport work.
 - **ALWAYS** keep each mode's design judgment, examples, and verification in its packet — the hub stays logic-free.
 - **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill identity.
+- **ALWAYS** keep the root `ROUTER.md` `RESOURCE_MAP` in sync with `leaf-manifest.json` — the leaf sets dual-read to canonical typed pairs at the one contract boundary.
 - **ALWAYS** give every mode an `advisorRouting` block with a valid `routingClass` and `packetSkillName`.
 - **ALWAYS** route a generic design prompt to the smallest useful mode; default to `interface` when no other axis dominates.
 - **ALWAYS** route evidence requirements to the existing modes and consumers instead of inventing hub-local verification logic.
@@ -250,6 +258,7 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 - Style retrieval: `styles/lib/engine/persistent-adapter.mjs` (mode switch, default `legacy`) and `styles/lib/database/README.md` (persistent index lifecycle).
 - Mode packets: `sk-design-interface/SKILL.md`, `sk-design-md-generator/SKILL.md` (per-mode detail).
 - Registry: `mode-registry.json` (the routing contract).
+- Surface router: `ROUTER.md` (stage-two design-intent leaf router).
 - Implementation handoff: `sk-code` consumes the design output; its code-review mode can audit it after build.
 
 ---

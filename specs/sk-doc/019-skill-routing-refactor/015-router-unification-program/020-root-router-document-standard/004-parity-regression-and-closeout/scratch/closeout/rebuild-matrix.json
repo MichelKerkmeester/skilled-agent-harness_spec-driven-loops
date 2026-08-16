@@ -1,0 +1,6 @@
+{"schemaVersion": 1, "rebuilds": 7, "status": "built", "hubs": [
+  "cli-external-orchestration", "sk-design", "sk-prompt", "sk-doc",
+  "system-deep-loop", "sk-code", "mcp-tooling"],
+ "note": "6 hubs rebuilt through owner harnesses; mcp-tooling inputs matched its golden
+ receipt, so its owner run was a no-op verification (status built, zero drift).",
+ "outOfOwnerRebuilds": 0}

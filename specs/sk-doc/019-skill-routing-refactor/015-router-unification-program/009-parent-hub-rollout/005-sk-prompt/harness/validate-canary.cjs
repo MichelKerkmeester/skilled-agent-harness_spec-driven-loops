@@ -92,11 +92,11 @@ const PROTECTED_DIGESTS = Object.freeze({
   'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
 });
 const AUTHORED_SOURCE_DIGESTS = Object.freeze({
-  'SKILL.md': '5d7bdc13bb53363557927ea4a14de8beb518ce01efed0ea0a90b50a6af930121',
+  'SKILL.md': '11be5c0b3deb70f2a6fe986326b8ab88ec58bc05146a8951328ca2162c495d45',
   'hub-router.json': '9591886dac2f63abf77a89d8b6ed79b7534d7293163c25a0cbd513a7ab63fa25',
   'mode-registry.json': 'a96830f197e8cab8d89b8a7ff46f7264f7d2e16e06f29c7bf3a773a4f9bda4fa',
-  'sk-prompt-improve/SKILL.md': 'b3cc8f5e2678472ff9e8ebdff74503481c08d911e61a2b6ffe85d54e3d14fc72',
-  'sk-prompt-models/SKILL.md': '6b6f81f6f5ddf4558d87e9e3066211d85e4ea287e4c1032a2c49320833a6ef9e',
+  'sk-prompt-improve/SKILL.md': '2eb2dcab831956b5fbe2afbdcda668cd720a6c7ed054aacfc95b149296d3b16a',
+  'sk-prompt-models/SKILL.md': '8bd2f3e6fd02f2b06682d56de03e92b8e127d88c6c32635c7ce874b24ec6082e',
 });
 
 function readJson(filePath) {

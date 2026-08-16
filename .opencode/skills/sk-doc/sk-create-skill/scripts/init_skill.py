@@ -459,6 +459,63 @@ def _run_manifest_command(
     return False, payload, str(cause)
 
 
+def stage1_only_router_content(skill_name: str, skill_title: str) -> str:
+    """Return the stage1-only root ROUTER.md a fresh parent hub is born with.
+
+    A new hub owns no second-stage leaf map, so it must not fabricate one:
+    both maps, the stage-two default and the hub-shared control list stay empty
+    and the document declares `router_state: stage1-only`, delegating all
+    routing to stage one (hub-router.json plus mode-registry.json). Promotion
+    to `active` is an authored act that fills the maps with concrete,
+    resolvable leaf paths; this generator never synthesizes placeholder paths
+    or fake intents.
+    """
+    return (
+        '---\n'
+        f'title: "{skill_title} Surface Router — stage-one only"\n'
+        f'description: "First-class stage-two control document at the {skill_name} hub root; hub-router.json plus mode-registry.json own mode selection and this leafless router owns no second-stage leaf sets until an author promotes it to active."\n'
+        'trigger_phrases:\n'
+        f'  - "{skill_name} smart routing"\n'
+        f'  - "{skill_name} surface router"\n'
+        f'  - "{skill_name} leaf routing"\n'
+        'importance_tier: normal\n'
+        'contextType: general\n'
+        'version: 1.0.0.0\n'
+        'router_state: stage1-only\n'
+        'skill_pointer: SKILL.md\n'
+        '---\n'
+        '\n'
+        f'# {skill_title} Surface Router — stage-one only\n'
+        '\n'
+        f'This is {skill_name}\'s stage-two control document, first-class at the hub root as\n'
+        '`ROUTER.md`. The hub selects a workflow mode in [`hub-router.json`](hub-router.json);\n'
+        'mode identity lives in [`mode-registry.json`](mode-registry.json). This router\n'
+        'declares `router_state: stage1-only`, so it owns no second-stage leaf selection:\n'
+        'routing delegates entirely to stage one until an author promotes it to `active`\n'
+        'with a concrete `INTENT_SIGNALS` / `RESOURCE_MAP`.\n'
+        '\n'
+        '## 1. MACHINE-READABLE ROUTER\n'
+        '\n'
+        '```python\n'
+        '# Leafless by construction: stage-one mode selection is the whole routing story.\n'
+        'DEFAULT_RESOURCE = []\n'
+        '\n'
+        'INTENT_SIGNALS = {}\n'
+        '\n'
+        'RESOURCE_MAP = {}\n'
+        '\n'
+        'SHARED_CONTROL_RESOURCES = []\n'
+        '```\n'
+        '\n'
+        '## 2. PROMOTION\n'
+        '\n'
+        'Replace `router_state: stage1-only` with `router_state: active` only after\n'
+        'authoring non-empty equal-key `INTENT_SIGNALS` / `RESOURCE_MAP` entries whose\n'
+        'packet-qualified or shared-alias paths resolve on disk and map to typed\n'
+        '`(workflowMode, leafResourceId)` pairs in `leaf-manifest.json`.\n'
+    )
+
+
 def init_parent_skill(
     skill_name: str,
     path: str,
@@ -666,6 +723,8 @@ def init_parent_skill(
         "lastUpdated": timestamp,
     }
 
+    router_content = stage1_only_router_content(skill_name, skill_title)
+
     packet_dir = skill_dir / packet_name
     changelog_dir = packet_dir / 'changelog'
     try:
@@ -675,6 +734,7 @@ def init_parent_skill(
         scaffold_benchmark_tree(skill_dir, skill_name)
         print(f"✅ Created parent skill directory: {skill_dir}")
 
+        (skill_dir / 'ROUTER.md').write_text(router_content, encoding='utf-8')
         (skill_dir / 'SKILL.md').write_text(hub_content, encoding='utf-8')
         (skill_dir / 'README.md').write_text(
             f"# {skill_title}\n\nRouting hub. See SKILL.md and mode-registry.json.\n",

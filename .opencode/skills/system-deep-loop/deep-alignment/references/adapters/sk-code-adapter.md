@@ -33,7 +33,7 @@ ADR-008 (decision-record.md, ANCHOR `adr-008`) LOCKS this adapter's `check()` as
 Per REQ-001/REQ-002, four real, already-shipping sources, cited with exact line numbers so this specification stays checkable against the live files:
 
 1. `.opencode/skills/sk-code/shared/references/stack-detection.md`: the surface-detection Detection Order (§2, lines 36-56) this adapter's `classifySurface()` ports directly.
-2. `.opencode/skills/sk-code/shared/references/smart-routing.md`: the MOTION_DEV overlay's peer-category framing (§5) and the machine-readable `INTENT_SIGNALS`/`RESOURCE_MAP` this adapter's `standardSource()` points at.
+2. `.opencode/skills/sk-code/ROUTER.md`: the MOTION_DEV overlay's peer-category framing (§5) and the machine-readable `INTENT_SIGNALS`/`RESOURCE_MAP` this adapter's `standardSource()` points at.
 3. `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py`: the real OPENCODE-surface deterministic pattern-drift checker. CLI usage at lines 110-123 (`--root` is `action='append'`, repeatable, directory-only, see Section 4.1's live-reality note). `SUPPORTED_EXTENSIONS` at lines 39-51 lists **7 languages**: TypeScript, JavaScript, Python, Shell, **Rust**, JSON and JSONC, one more than spec.md REQ-002's own acceptance-criteria prose names, "TS/JS/Python/Shell/JSON/JSONC". This was confirmed by reading the live docstring, lines 11-18, and `check_rust()`, lines 357-393, in full. It is a real spec-vs-tool discrepancy recorded here rather than silently resolved either direction. No `--json` flag exists (text stdout only, parsed by regex, Section 4.1).
 4. `.opencode/skills/sk-code/sk-code-webflow/assets/scripts/{verify-minification.mjs,test-minified-runtime.mjs}`: the real, read-only WEBFLOW-surface verification scripts (Section 4.2's live-reality findings explain why `minify-webflow.mjs`, the third script in this directory, is explicitly excluded).
 
@@ -49,7 +49,7 @@ Explicitly **not wrapped**: any new deterministic linter beyond what already exi
 {
   "authority": "sk-code",
   "surfaceRouter": {
-    "smartRouting": "<repo>/.opencode/skills/sk-code/shared/references/smart-routing.md",
+    "smartRouting": "<repo>/.opencode/skills/sk-code/ROUTER.md",
     "stackDetection": "<repo>/.opencode/skills/sk-code/shared/references/stack-detection.md"
   },
   "validators": {

@@ -1,0 +1,2 @@
+(empty) — every changed path is inside a 020 child folder or a named execution
+surface; no unrelated advisor/command/packet/product path changed.

@@ -1,0 +1,28 @@
+{
+  "level": "phase",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
+  "description": "Lean phase parent for a mandatory root ROUTER.md standard across all seven class-H hubs, with serial contract, tooling, adoption, and closeout children.",
+  "keywords": [
+    "root",
+    "router",
+    "document",
+    "standard",
+    "class-H",
+    "seven-hub",
+    "compiled-routing"
+  ],
+  "lastUpdated": "2026-08-16T07:41:24.352Z",
+  "specId": "020",
+  "folderSlug": "root-router-document-standard",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "16-08-26_08-26__completed-the-root-router-document-standard.md",
+    "16-08-26_08-29__completed-the-root-router-document-standard.md",
+    "16-08-26_08-41__completed-the-root-router-document-standard.md"
+  ]
+}

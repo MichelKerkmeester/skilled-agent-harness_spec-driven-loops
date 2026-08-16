@@ -25,7 +25,7 @@
 
 /**
  * sk-code.cjs — wraps the real, already-shipping sk-code surface-detection
- * router (stack-detection.md/smart-routing.md, reused not reimplemented)
+ * router (stack-detection.md plus root ROUTER.md, reused not reimplemented)
  * and the real deterministic pattern-drift tooling
  * (verify_alignment_drift.py for OPENCODE; verify-minification.mjs and
  * test-minified-runtime.mjs for WEBFLOW) behind the deep-alignment adapter
@@ -82,7 +82,7 @@ const TEST_MINIFIED_RUNTIME_MJS = path.join(SK_CODE_DIR, 'sk-code-webflow', 'ass
 // header comment for why (it writes z_minified/*.min.js + manifest.tsv,
 // violating read-only-by-default).
 const MINIFY_WEBFLOW_MJS = path.join(SK_CODE_DIR, 'sk-code-webflow', 'assets', 'scripts', 'minify-webflow.mjs');
-const SMART_ROUTING_MD = path.join(SK_CODE_DIR, 'shared', 'references', 'smart-routing.md');
+const SURFACE_ROUTER_MD = path.join(SK_CODE_DIR, 'ROUTER.md');
 const STACK_DETECTION_MD = path.join(SK_CODE_DIR, 'shared', 'references', 'stack-detection.md');
 const OPENCODE_REFERENCES_DIR = path.join(SK_CODE_DIR, 'sk-code-opencode', 'references');
 const WEBFLOW_REFERENCES_DIR = path.join(SK_CODE_DIR, 'sk-code-webflow', 'references');
@@ -452,7 +452,7 @@ function standardSource(authority) {
   return {
     authority: 'sk-code',
     surfaceRouter: {
-      smartRouting: SMART_ROUTING_MD,
+      smartRouting: SURFACE_ROUTER_MD,
       stackDetection: STACK_DETECTION_MD,
     },
     validators: {

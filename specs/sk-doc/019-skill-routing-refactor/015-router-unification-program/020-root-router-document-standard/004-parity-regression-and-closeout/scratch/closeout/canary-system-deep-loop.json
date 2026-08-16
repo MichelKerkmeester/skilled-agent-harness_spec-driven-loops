@@ -1,0 +1,3 @@
+{"hub": "system-deep-loop", "owner": "009-parent-hub-rollout/<entry>/harness/validate-canary.cjs",
+ "exit": 0, "status": "GREEN", "rows": ["route-gold", "real-hub mode names", "typed leaf sets",
+ "bundle/ambiguous routes", "zero-signal fallback"], "stderr": "empty"}

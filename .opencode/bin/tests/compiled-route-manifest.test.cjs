@@ -106,6 +106,31 @@ function runManifestCliAsync(args) {
   });
 }
 
+// Drive the exported main() inside this test process while capturing what it
+// writes, so isolation guarantees are exercised without spawning an outer CLI.
+function runManifestMainInProcess(args) {
+  const cli = require(CLI_PATH);
+  const realStdoutWrite = process.stdout.write;
+  const realStderrWrite = process.stderr.write;
+  let stdout = '';
+  let stderr = '';
+  process.stdout.write = (chunk) => { stdout += chunk; return true; };
+  process.stderr.write = (chunk) => { stderr += chunk; return true; };
+  let code;
+  try {
+    code = cli.main(args);
+  } finally {
+    process.stdout.write = realStdoutWrite;
+    process.stderr.write = realStderrWrite;
+  }
+  return {
+    code,
+    stdout,
+    stderr,
+    json: stdout.trim() ? JSON.parse(stdout) : null,
+  };
+}
+
 function routeSentinel(hubId) {
   const result = spawnSync(
     process.execPath,
@@ -170,6 +195,8 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     for (const hubId of GENERATED_HUBS) removeManifestDirectory(hubId);
     fs.rmSync(TEMP_ROOT, { recursive: true, force: true });
     delete process.env.SPECKIT_COMPILED_ROUTING;
+    delete process.env.SPECKIT_COMPILED_ROUTING_MANIFEST_RUNTIME_ROOT;
+    delete process.env.SPECKIT_COMPILED_ROUTING_MANIFEST_PRIVATE_CHILD;
   });
 
   test('rejects unsafe identities and reports a missing safe manifest', () => {
@@ -430,6 +457,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
       encoding: 'utf8',
     });
     assert.equal(check.status, 0, check.stderr);
+    assert.match(check.stdout, /^[1-9]\d* closure files under authored root/m);
     assert.match(check.stdout, /all 7 hubs resolve/);
     const verify = spawnSync(process.execPath, [SYNC_PATH, '--verify'], {
       cwd: REPO_ROOT,
@@ -1303,5 +1331,343 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     assert.match(source, /compileRegistry\(\{/);
     assert.match(source, /checkCanonicalManifestFreshness\(\{ hubId, skillRoot \}\)/);
     assert.doesNotMatch(source, /computeEffectivePolicyHash/);
+  });
+
+  test('binds an explicit runtime root before the library loads', () => {
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-manifest-root-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const hubId = `runtime-root-${process.pid}`;
+    const skillRoot = createParentFixture(hubId);
+    removeManifestDirectory(hubId);
+    try {
+      // Copy the promoted closure so the override root carries a coherent
+      // compiled-routing layout without depending on the authored source tree.
+      fs.cpSync(sync.RUNTIME_ROOT, runtimeRoot, { recursive: true });
+
+      // Absolute override: the mint lands in the override activation store and
+      // the default promoted store is never touched.
+      const minted = runManifestCli([
+        'mint', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', runtimeRoot,
+      ]);
+      assert.equal(minted.status, 0, minted.stderr);
+      assert.equal(minted.json.causeCode, 'fresh');
+      assert.equal(minted.json.created, true);
+      const overridePath = path.join(
+        runtimeLayout.activationRootFor(runtimeRoot),
+        hubId,
+        'manifest.json',
+      );
+      assert.equal(fs.existsSync(overridePath), true);
+      assert.equal(
+        fs.existsSync(manifestContract.canonicalManifestPath({ hubId }).absolutePath),
+        false,
+      );
+      assert.equal(path.isAbsolute(minted.json.manifestPath), false);
+
+      // Freshness reads the same override root.
+      const fresh = runManifestCli([
+        'freshness', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', runtimeRoot,
+      ]);
+      assert.equal(fresh.status, 0, fresh.stderr);
+      assert.equal(fresh.json.causeCode, 'fresh');
+
+      // Refresh bumps the generation inside the override root.
+      const skillPath = path.join(skillRoot, 'SKILL.md');
+      fs.writeFileSync(skillPath, Buffer.concat([fs.readFileSync(skillPath), Buffer.from('\n')]));
+      const refreshed = runManifestCli([
+        'refresh', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', runtimeRoot,
+      ]);
+      assert.equal(refreshed.status, 0, refreshed.stderr);
+      assert.equal(refreshed.json.refreshed, true);
+      assert.equal(refreshed.json.selectedPolicy.generation, 2);
+      assert.equal(
+        fs.existsSync(manifestContract.canonicalManifestPath({ hubId }).absolutePath),
+        false,
+      );
+
+      // Relative override normalizes against the CLI cwd to the same root.
+      const relativeRoot = path.relative(REPO_ROOT, runtimeRoot);
+      assert.equal(path.isAbsolute(relativeRoot), false);
+      const relative = runManifestCli([
+        'freshness', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', relativeRoot,
+      ]);
+      assert.equal(relative.status, 0, relative.stderr);
+      assert.equal(relative.json.causeCode, 'fresh');
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+      removeManifestDirectory(hubId);
+    }
+  });
+
+  test('rejects malformed --runtime-root syntax with usage exit 2', () => {
+    const duplicate = runManifestCli([
+      'mint', '--hub', PRIMARY_HUB, '--skill-root', primaryRoot,
+      '--runtime-root', 'one', '--runtime-root', 'two',
+    ]);
+    assert.equal(duplicate.status, 2);
+    assert.equal(duplicate.stdout, '');
+    assert.match(duplicate.stderr, /^usage:/);
+    const missingValue = runManifestCli([
+      'mint', '--hub', PRIMARY_HUB, '--skill-root', primaryRoot, '--runtime-root',
+    ]);
+    assert.equal(missingValue.status, 2);
+    assert.equal(missingValue.stdout, '');
+    assert.match(missingValue.stderr, /^usage:/);
+    const flagAsValue = runManifestCli([
+      'mint', '--hub', PRIMARY_HUB, '--skill-root', primaryRoot,
+      '--runtime-root', '--pretty',
+    ]);
+    assert.equal(flagAsValue.status, 2);
+    assert.equal(flagAsValue.stdout, '');
+    assert.match(flagAsValue.stderr, /^usage:/);
+  });
+
+  test('fails closed when the override root lacks a coherent compiled-routing layout', () => {
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-manifest-incoherent-'));
+    const emptyRoot = path.join(sandbox, 'empty-runtime');
+    const hubId = `runtime-root-incoherent-${process.pid}`;
+    const skillRoot = createParentFixture(hubId);
+    try {
+      fs.mkdirSync(emptyRoot);
+      const minted = runManifestCli([
+        'mint', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', emptyRoot,
+      ]);
+      assert.equal(minted.status, 1);
+      assert.equal(minted.json.causeCode, 'invalid-runtime-root');
+      assert.equal(minted.json.created, false);
+      assert.equal(minted.json.manifestValid, false);
+      // No writer lock was created beside the incoherent root.
+      assert.equal(fs.existsSync(`${emptyRoot}.publication-lock.json`), false);
+      const freshness = runManifestCli([
+        'freshness', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', emptyRoot,
+      ]);
+      assert.equal(freshness.status, 1);
+      assert.equal(freshness.json.causeCode, 'invalid-runtime-root');
+      assert.equal(freshness.json.manifestValid, false);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('sequential same-process explicit-root calls each bind their own runtime root', () => {
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-manifest-seq-'));
+    const runtimeA = path.join(sandbox, 'runtime-a');
+    const runtimeB = path.join(sandbox, 'runtime-b');
+    const hubA = `seq-root-a-${process.pid}`;
+    const hubB = `seq-root-b-${process.pid}`;
+    const skillA = createParentFixture(hubA);
+    const skillB = createParentFixture(hubB);
+    const envName = require(CLI_PATH).RUNTIME_ROOT_ENV;
+    try {
+      fs.cpSync(sync.RUNTIME_ROOT, runtimeA, { recursive: true });
+      fs.cpSync(sync.RUNTIME_ROOT, runtimeB, { recursive: true });
+
+      // Two exported main() calls back to back in one process must each write
+      // the closure they name, not whatever the previous call left behind.
+      const first = runManifestMainInProcess([
+        'mint', '--hub', hubA, '--skill-root', skillA, '--runtime-root', runtimeA,
+      ]);
+      assert.equal(first.code, 0, first.stderr);
+      assert.equal(first.json.causeCode, 'fresh');
+      assert.equal(first.json.created, true);
+      const second = runManifestMainInProcess([
+        'mint', '--hub', hubB, '--skill-root', skillB, '--runtime-root', runtimeB,
+      ]);
+      assert.equal(second.code, 0, second.stderr);
+      assert.equal(second.json.causeCode, 'fresh');
+      assert.equal(second.json.created, true);
+
+      // Each mint landed only in its own activation store.
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeA), hubA, 'manifest.json')), true);
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeB), hubB, 'manifest.json')), true);
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeA), hubB, 'manifest.json')), false);
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeB), hubA, 'manifest.json')), false);
+      // The default promoted store is untouched by both operations.
+      assert.equal(fs.existsSync(manifestContract.canonicalManifestPath({ hubId: hubA }).absolutePath), false);
+      assert.equal(fs.existsSync(manifestContract.canonicalManifestPath({ hubId: hubB }).absolutePath), false);
+      // The caller's environment never carried the private bindings.
+      assert.equal(process.env[envName], undefined);
+      assert.equal(process.env[require(CLI_PATH).PRIVATE_CHILD_ENV], undefined);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('a preloaded private binding cannot capture an explicit or a default operation', () => {
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-manifest-preload-'));
+    const runtimeX = path.join(sandbox, 'preloaded-runtime');
+    const runtimeY = path.join(sandbox, 'override-runtime');
+    const hubX = `preload-x-${process.pid}`;
+    const hubY = `preload-y-${process.pid}`;
+    const skillX = createParentFixture(hubX);
+    const skillY = createParentFixture(hubY);
+    const envName = require(CLI_PATH).RUNTIME_ROOT_ENV;
+    try {
+      fs.cpSync(sync.RUNTIME_ROOT, runtimeX, { recursive: true });
+      fs.cpSync(sync.RUNTIME_ROOT, runtimeY, { recursive: true });
+
+      // Preload the library while the private binding names runtimeX. The
+      // module was already cached from the suite's top-level require, so drop
+      // it first — a real preload binds the module-level root at load time.
+      process.env[envName] = runtimeX;
+      delete require.cache[require.resolve('../lib/compiled-route-manifest.cjs')];
+      const preloaded = require('../lib/compiled-route-manifest.cjs');
+      assert.equal(
+        preloaded.canonicalManifestPath({ hubId: hubX }).absolutePath.startsWith(runtimeLayout.activationRootFor(runtimeX)),
+        true,
+      );
+
+      // An explicit-root operation must go to the requested root, not the
+      // preloaded binding.
+      const overridden = runManifestMainInProcess([
+        'mint', '--hub', hubY, '--skill-root', skillY, '--runtime-root', runtimeY,
+      ]);
+      assert.equal(overridden.code, 0, overridden.stderr);
+      assert.equal(overridden.json.created, true);
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeY), hubY, 'manifest.json')), true);
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeX), hubY, 'manifest.json')), false);
+
+      // A default operation must clear the preloaded binding and reload the
+      // library against the promoted root.
+      const defaulted = runManifestMainInProcess(['mint', '--hub', hubX, '--skill-root', skillX]);
+      assert.equal(defaulted.code, 0, defaulted.stderr);
+      assert.equal(defaulted.json.created, true);
+      assert.equal(process.env[envName], undefined);
+      assert.equal(fs.existsSync(manifestContract.canonicalManifestPath({ hubId: hubX }).absolutePath), true);
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeX), hubX, 'manifest.json')), false);
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeY), hubX, 'manifest.json')), false);
+      // The preloaded module still serves its own binding, untouched.
+      assert.equal(
+        preloaded.canonicalManifestPath({ hubId: hubX }).absolutePath.startsWith(runtimeLayout.activationRootFor(runtimeX)),
+        true,
+      );
+    } finally {
+      delete process.env[envName];
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('a default operation after an explicit-root operation targets the promoted root', () => {
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-manifest-default-after-'));
+    const runtimeX = path.join(sandbox, 'explicit-runtime');
+    const hubX = `default-after-x-${process.pid}`;
+    const hubD = `default-after-d-${process.pid}`;
+    const skillX = createParentFixture(hubX);
+    const skillD = createParentFixture(hubD);
+    const envName = require(CLI_PATH).RUNTIME_ROOT_ENV;
+    try {
+      fs.cpSync(sync.RUNTIME_ROOT, runtimeX, { recursive: true });
+
+      const explicit = runManifestMainInProcess([
+        'mint', '--hub', hubX, '--skill-root', skillX, '--runtime-root', runtimeX,
+      ]);
+      assert.equal(explicit.code, 0, explicit.stderr);
+      assert.equal(explicit.json.created, true);
+
+      // The very next call has no --runtime-root: it must use the promoted
+      // runtime root, not the root named by the previous call.
+      const defaulted = runManifestMainInProcess(['mint', '--hub', hubD, '--skill-root', skillD]);
+      assert.equal(defaulted.code, 0, defaulted.stderr);
+      assert.equal(defaulted.json.created, true);
+      assert.equal(process.env[envName], undefined);
+      assert.equal(fs.existsSync(manifestContract.canonicalManifestPath({ hubId: hubD }).absolutePath), true);
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeX), hubD, 'manifest.json')), false);
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeX), hubX, 'manifest.json')), true);
+      assert.equal(fs.existsSync(manifestContract.canonicalManifestPath({ hubId: hubX }).absolutePath), false);
+    } finally {
+      delete process.env[envName];
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('symlink aliases of one runtime root share one lock and one closure', () => {
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-manifest-alias-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const alias = path.join(sandbox, 'alias-to-runtime');
+    const hubId = `alias-hub-${process.pid}`;
+    const skillRoot = createParentFixture(hubId);
+    try {
+      fs.cpSync(sync.RUNTIME_ROOT, runtimeRoot, { recursive: true });
+      fs.symlinkSync(runtimeRoot, alias, 'dir');
+
+      // A publication lock beside the REAL root must block a writer invoked
+      // through the ALIAS spelling — both must derive the same canonical lock.
+      const lockPath = runtimeLayout.publicationLockPathFor(runtimeRoot);
+      fs.writeFileSync(lockPath, '{"publicationId":"alias-block"}\n', { flag: 'wx', mode: 0o600 });
+      try {
+        const blocked = runManifestCli([
+          'mint', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', alias,
+        ]);
+        assert.equal(blocked.status, 1, blocked.stderr);
+        assert.equal(blocked.json.causeCode, 'publication-locked');
+        assert.equal(blocked.json.created, false);
+      } finally {
+        fs.rmSync(lockPath, { force: true });
+      }
+
+      // Mint through the alias and read through the real path: both spellings
+      // address one canonical closure (one activation store, one lock).
+      const minted = runManifestCli([
+        'mint', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', alias,
+      ]);
+      assert.equal(minted.status, 0, minted.stderr);
+      assert.equal(minted.json.created, true);
+      assert.equal(minted.json.causeCode, 'fresh');
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeRoot), hubId, 'manifest.json')), true);
+      assert.equal(fs.existsSync(`${alias}.publication-lock.json`), false);
+      const viaReal = runManifestCli([
+        'freshness', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', runtimeRoot,
+      ]);
+      assert.equal(viaReal.status, 0, viaReal.stderr);
+      assert.equal(viaReal.json.causeCode, 'fresh');
+      assert.equal(viaReal.json.manifestFingerprint, minted.json.manifestFingerprint);
+
+      // Refresh through the alias then the real path: one continuous generation
+      // sequence inside the single shared closure.
+      const skillPath = path.join(skillRoot, 'SKILL.md');
+      fs.writeFileSync(skillPath, Buffer.concat([fs.readFileSync(skillPath), Buffer.from('\n')]));
+      const refreshedViaAlias = runManifestCli([
+        'refresh', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', alias,
+      ]);
+      assert.equal(refreshedViaAlias.status, 0, refreshedViaAlias.stderr);
+      assert.equal(refreshedViaAlias.json.selectedPolicy.generation, 2);
+      const refreshedViaReal = runManifestCli([
+        'refresh', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', runtimeRoot,
+      ]);
+      assert.equal(refreshedViaReal.status, 0, refreshedViaReal.stderr);
+      assert.equal(refreshedViaReal.json.selectedPolicy.generation, 3);
+      assert.equal(fs.existsSync(path.join(runtimeLayout.activationRootFor(runtimeRoot), hubId, 'manifest.json')), true);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('keeps parse and coherence failures closed through the isolated path', () => {
+    // Malformed args still fail with usage on stderr and no stdout, whether
+    // driven in-process or through the CLI.
+    const bad = runManifestMainInProcess(['mint', '--hub', PRIMARY_HUB]);
+    assert.equal(bad.code, 2);
+    assert.equal(bad.stdout, '');
+    assert.match(bad.stderr, /^usage:/);
+
+    // An existing explicit root without a coherent layout still fails closed
+    // and never creates a writer lock beside it.
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-manifest-parse-'));
+    const emptyRoot = path.join(sandbox, 'empty-runtime');
+    const hubId = `parse-coherence-${process.pid}`;
+    const skillRoot = createParentFixture(hubId);
+    try {
+      fs.mkdirSync(emptyRoot);
+      const incoherent = runManifestMainInProcess([
+        'mint', '--hub', hubId, '--skill-root', skillRoot, '--runtime-root', emptyRoot,
+      ]);
+      assert.equal(incoherent.code, 1);
+      assert.equal(incoherent.json.causeCode, 'invalid-runtime-root');
+      assert.equal(incoherent.json.created, false);
+      assert.equal(incoherent.json.manifestValid, false);
+      assert.equal(fs.existsSync(`${emptyRoot}.publication-lock.json`), false);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
   });
 });

@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 4.2.0.0
+version: 4.2.1.0
 ---
 
 # sk-code
@@ -35,7 +35,7 @@ Without one routing point, every contract would duplicate surface detection and 
 
 ### What It Does
 
-`Skill(sk-code)` loads the hub. The hub routes the request through `mode-registry.json` to one of two workflow modes, bundling zero or more surface evidence packets alongside it. Each mode and surface holds its own code-work contract while the hub itself stays routing-only. The packets carry no `graph-metadata.json`, so the advisor discovers exactly one code skill.
+`Skill(sk-code)` loads the hub. The hub routes the request through `mode-registry.json` to one of two workflow modes; root `ROUTER.md` selects the packet leaves and declared shared controls bundled alongside it. Each mode and surface holds its own code-work contract while the hub itself stays routing-only. The packets carry no `graph-metadata.json`, so the advisor discovers exactly one code skill.
 
 The boundary is deliberate: sk-code routes code work. Documentation quality, git workflow, spec discipline and browser evidence belong to sibling skills that sk-code hands off to.
 
@@ -126,6 +126,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime hub instructions and routing rules |
+| [`ROUTER.md`](./ROUTER.md) | Active stage-two surface router, leaf map, and explicit shared-control declaration |
 | [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map |
 | [`hub-router.json`](./hub-router.json) | Hub-local routing vocabulary and mode signals |
 | [`shared/README.md`](./shared/README.md) | Shared surface detection and cross-mode helpers, plus the implement/debug/verify workflow doctrine |

@@ -125,8 +125,8 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 **Why it is not a violation**: `smart-routing.md` §5 states Motion.dev (and by the same logic, GSAP/Lenis/Swiper/HLS, the same marker family `stack-detection.md`'s WEBFLOW content-grep checks) is *"a peer resource category... It is not a separate code surface. It supplements WEBFLOW, OPENCODE, or future surfaces."* A file that references one of these peer libraries is not thereby non-conformant to its own surface's standard. It is drawing on documented, expected cross-stack integration material (`sk-code-webflow/references/animation/`), the exact resource `standardSource()`'s `motionOverlay` reference already surfaces to the reasoning-agent layer when `motionDevOverlay: true`.
 
 **Evidence**:
-- `.opencode/skills/sk-code/shared/references/smart-routing.md` Section 5 ("MOTION_DEV MAP"): "supplements... rather than replacing it."
-- `.opencode/skills/sk-code/shared/references/smart-routing.md` Section 1: "Motion.dev resources are a **peer category** loaded after either surface, not a third surface."
+- `.opencode/skills/sk-code/ROUTER.md` Section 5 ("MOTION_DEV MAP"): "supplements... rather than replacing it."
+- `.opencode/skills/sk-code/ROUTER.md` Section 1: "Motion.dev resources are a **peer category** loaded after either surface, not a third surface."
 
 **Match rule**: none currently (`matchTypes: []`). `sk-code.cjs`'s layer 1 has no "wrong peer library" finding type to suppress. This entry exists purely to keep the reasoning-agent layer from independently inventing one.
 

@@ -1,0 +1,3 @@
+compiled-routing switch disabled: probes confirm fallback per serving authority
+(no compiled path leak); switch re-enabled: compiled serving resumes.
+Result: PASS 7/7.

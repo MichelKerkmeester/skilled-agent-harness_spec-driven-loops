@@ -1,0 +1,1 @@
+No frozen replay or scorer digest appears in the adjudication ledger or update diff. Guard: PASS.

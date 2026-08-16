@@ -1,0 +1,3 @@
+.opencode/bin/compiled-route-sync.cjs --check
+exit 0; read-only trace; authored closure enumerated (55 files across 7 hubs);
+all 7 hubs resolve (re-verified 2026-08-16: exit 0, "all 7 hubs resolve").

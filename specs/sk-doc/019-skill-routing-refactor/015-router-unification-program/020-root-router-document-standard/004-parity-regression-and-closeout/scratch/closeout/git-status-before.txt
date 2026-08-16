@@ -1,0 +1,4 @@
+captured_at=2026-08-16T06:30:00Z
+no staged files (git diff --cached --name-only empty)
+changed paths limited to program surfaces: hub roots, rollout harnesses,
+compiled-routing tool chain, create-skill/command/doctor assets, spec packets.

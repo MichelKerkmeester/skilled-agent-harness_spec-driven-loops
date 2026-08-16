@@ -139,7 +139,7 @@ describe('Lane C — reference-following router (delegated RESOURCE_MAP)', () =>
     expect(router.parseable).toBe(true);
     expect(router.routerSource).toBe('hub-router.json');
     expect(Object.keys(router.resourceMap).length).toBeGreaterThan(0);
-    // The retained surface router (shared/references/smart-routing.md) still carries
+    // The root surface router (ROUTER.md) carries
     // the per-surface RESOURCE_MAP the hub projection does not expose.
     const surface = loadSurfaceRouter(SKCODE);
     expect(surface).toBeTruthy();

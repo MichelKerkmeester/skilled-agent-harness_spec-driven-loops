@@ -2,7 +2,7 @@
 name: sk-prompt
 description: "Prompt engineering parent hub: routes to prompt-improve (7-framework, DEPTH-thinking, CLEAR-scored prompt enhancement) and prompt-models (read-only per-model prompt-craft profiles for small-model dispatch) through mode-registry.json; holds no packet-local logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.1.1.0
 ---
 
 <!-- Keywords: sk-prompt, prompt-engineering, mode-registry, hub-router, workflowmode, packetkind, prompt-improve, prompt-models, DEPTH, CLEAR-scoring, framework-selection, small-model-dispatch -->
@@ -31,13 +31,19 @@ Use this skill for prompt engineering and small-model prompt-craft lookup. The h
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any prompt-engineering query to the single identity `sk-prompt`; the hub then picks the packet.
+Routing is **registry-driven** in two stages. Stage 1 (hub → mode): `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any prompt-engineering query to the single identity `sk-prompt`; the hub then picks the packet. Stage 2 (mode → leaves): the root `ROUTER.md` maps the request's prompt-craft intent to the exact packet-local leaf resources that mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
 > node .opencode/bin/compiled-route.cjs --hub sk-prompt --prompt "<task>"
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-prompt`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+
+### Surface Router — per-intent leaf sets
+
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-intent leaf model (the DEPTH/CLEAR prompt-improve leaves, the design/evaluation/format focused leaves, and the per-model prompt-craft profiles), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub `defer`, never a silent default to a model). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+
+`ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule).
 
 ### The discriminator
 - **`workflowMode`** — the public packet key (`prompt-improve` or `prompt-models`).
@@ -98,6 +104,7 @@ Per-packet behavior is **not flattened**: each packet keeps its own authoring co
 ```
 sk-prompt/
   SKILL.md               # this routing hub (no per-packet logic)
+  ROUTER.md              # stage-two surface router (prompt-craft intent -> leaf sets)
   mode-registry.json     # 2 workflow modes, zero extensions
   hub-router.json        # base 3 outcomes, defaultMode: prompt-improve
   description.json       # hub advisor descriptor
@@ -120,6 +127,7 @@ This hub declares no named extensions (no `surface-axis`, `runtime-loop`, `advis
 - **ALWAYS** resolve a packet through `mode-registry.json`; never hardcode a router mapping in the hub.
 - **ALWAYS** keep authoring contracts in the packets; the hub stays routing-only.
 - **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one identity.
+- **ALWAYS** keep the root `ROUTER.md` `RESOURCE_MAP` in sync with `leaf-manifest.json` — the leaf sets dual-read to canonical typed pairs at the one contract boundary.
 - **ALWAYS** keep changelogs as real files at the hub and in each packet — never symlinked.
 
 ### ⛔ NEVER
@@ -137,6 +145,7 @@ This hub declares no named extensions (no `surface-axis`, `runtime-loop`, `advis
 
 - Registry: `mode-registry.json` (2 packets; `packetKind: workflow`).
 - Hub router: `hub-router.json` (signals + vocabulary classes).
+- Surface router: `ROUTER.md` (prompt-craft intent to packet-local leaf sets).
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
 - Packets: `prompt-improve/`, `prompt-models/`.
 - Parent-skill pattern: `sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.

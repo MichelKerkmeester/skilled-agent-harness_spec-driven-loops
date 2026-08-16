@@ -1,7 +1,7 @@
 {
   "name": "cli-external-orchestration",
   "description": "Parent hub for external CLI dispatch: routes to six workflow modes, cli-opencode (OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback), cli-claude-code (Claude Code CLI executor: Anthropic-backed reasoning, edits, reviews, structured cross-AI handoff), cli-codex (Codex CLI executor: OpenAI-backed coding, review, and web research; fails closed when codex is absent), cli-cursor (Cursor CLI executor: cursor-agent-backed coding, Composer-model dispatch, read-only plan/ask modes; fails closed when cursor-agent is absent), cli-devin (Devin CLI executor: Cognition-backed coding, cloud handoff, subagent delegation; fails closed when devin is absent), and cli-pi (Pi CLI executor: guarded print, JSON event, RPC, native-resource, and community-package dispatch; fails closed when pi is absent), through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. All six modes orchestrate a CLI binary and their dispatched writes land in this repo's workspace, so none is a transport packet.",
-  "version": "1.2.0.0",
+  "version": "1.4.2.0",
   "importance_tier": "high",
   "keywords": [
     "cli-external-orchestration",

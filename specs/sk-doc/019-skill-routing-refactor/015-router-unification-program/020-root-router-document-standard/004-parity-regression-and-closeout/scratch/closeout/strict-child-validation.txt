@@ -1,0 +1,8 @@
+2026-08-16 worktree-local authoritative gate
+
+001-contract-and-fleet-audit: validate.sh --strict exit 0
+002-create-skill-template-and-validator-alignment: validate.sh --strict exit 0
+003-seven-hub-root-adoption: validate.sh --strict exit 0
+004-parity-regression-and-closeout: validate.sh --strict exit 0
+
+Each run used the complete existing validator runtime and reported packet rules with Errors 0 and Warnings 0.

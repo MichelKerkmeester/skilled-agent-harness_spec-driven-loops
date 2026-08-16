@@ -1,6 +1,6 @@
 {
   "skill": "sk-design",
-  "version": "1.4.3.0",
+  "version": "1.4.4.0",
   "routerPolicy": {
     "defaultMode": "sk-design-interface",
     "ambiguityDelta": 1,
@@ -14,7 +14,7 @@
       "defer": "unclear or contradictory design intent asks for disambiguation"
     },
     "defaultResource": [
-      "shared/references/smart-routing.md",
+      "ROUTER.md",
       "mode-registry.json"
     ],
     "bundleRules": []

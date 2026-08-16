@@ -29,6 +29,7 @@ parent-hub/
   SKILL.md
   mode-registry.json
   hub-router.json
+  ROUTER.md
   description.json
   graph-metadata.json
   command-metadata.json             # optional; only when the hub owns slash commands
@@ -57,6 +58,7 @@ Core rules:
 - **Surface packets**: read-only evidence bases such as `code-webflow` or `code-opencode` (hub-prefixed, matching `folder == packetSkillName`). They are advisor-invisible and enrich a workflow rather than becoming advisor identities.
 - **One advisor identity**: the hub's `graph-metadata.json` is the advisor identity input. Hub-only `description.json` is doctor metadata; packets never carry either file. No mode packet or `shared/` directory holds them. The full per-class rule for every root-level metadata JSON is canonical in [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md).
 - **Required router**: every hub has `hub-router.json` with `routerPolicy`, `routerSignals`, `vocabularyClasses`, and resource paths that resolve on disk.
+- **Stage-two control document**: every hub also carries one root `ROUTER.md` declaring `router_state: stage1-only` or `active`. A fresh scaffold is `stage1-only` with empty maps, delegating all routing to stage one; `active` requires non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP` whose paths resolve and map to typed `leaf-manifest.json` pairs. Promote only after authoring a concrete leaf map — never synthetic intents. `ROUTER.md` is a control-plane companion, never a leaf, advisor identity, or class discriminator.
 - **Named extensions only**: optional behavior is declared in top-level `extensions`; it never changes the physical layout.
 
 Required fields for every `modes[]` entry:
@@ -126,6 +128,10 @@ Top-level registry fields:
 - Hub-root-relative `resources[]` paths that resolve on disk.
 
 Tie-break order lists workflow modes first and surface packets after them. `surfaceBundle` means one primary workflow mode plus zero or more surface packets, with the workflow ordered first.
+
+### Two-stage authoring: `hub-router.json` then root `ROUTER.md`
+
+Stage one and stage two are separate authoring acts. `hub-router.json` selects a workflow mode. The root `ROUTER.md` then owns stage-two leaf selection when `active` — mapping request intent to the exact packet-local leaf resources that mode loads — or declares `stage1-only` and leaves the whole routing story to stage one. A fresh hub scaffolds `stage1-only` with empty maps, a root `SKILL.md` pointer, and a four-part `version`. Promotion to `active` is the deliberate act of authoring non-empty equal-key maps with resolvable, typed leaf paths; the authoring tooling never fabricates those maps. See [`parent-skill-smart-routing-template.md`](../../assets/parent-skill/parent-skill-smart-routing-template.md) for both states.
 
 ---
 
@@ -226,7 +232,7 @@ Naming policy:
 
 Companion file policy:
 
-- Every hub has `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, generated `leaf-manifest.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`. Add authored `command-metadata.json` only when the hub owns slash commands.
+- Every hub has `SKILL.md`, `mode-registry.json`, `hub-router.json`, root `ROUTER.md`, `description.json`, `graph-metadata.json`, generated `leaf-manifest.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`. Add authored `command-metadata.json` only when the hub owns slash commands.
 - Every packet has `README.md`, `SKILL.md`, and `changelog/`.
 - Surface packets also carry `references/` and `assets/` when they need evidence material.
 - A class-H hub may carry authored `command-metadata.json` when it owns slash commands. The file has one entry per owned command and is validated when present; omit it for a command-less hub. See [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) for the complete matrix.
@@ -238,6 +244,7 @@ Companion file policy:
 ## 8. RELATED RESOURCES
 
 - [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - published router and registry schema details for parent hubs.
+- [parent-skill-smart-routing-template.md](../../assets/parent-skill/parent-skill-smart-routing-template.md) - root `ROUTER.md` stage-two authoring template.
 - [skill-creation.md](../README.md) - skill-creation index and route map.
 - [overview.md](../shared/overview.md) - skill anatomy and layered structure.
 - [creation-workflow.md](../skill/creation-workflow.md) - ordered creation workflow.

@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/002-create-skill-template-and-validator-alignment",
+        "reason": "Live adoption uses the validated scaffolds, command workflow, and stable root-router contract.",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "seven hub root adoption",
+      "root router serial migration",
+      "hub adoption checkpoint",
+      "legacy router deletion gate",
+      "root router residue scan",
+      "seven hub adoption plan",
+      "root router checkpoint procedure",
+      "legacy deletion gate plan",
+      "hub migration receipts",
+      "seven hub adoption tasks",
+      "root router checkpoint tasks",
+      "hub migration task ledger"
+    ],
+    "key_topics": [
+      "seven",
+      "hub",
+      "root",
+      "adoption",
+      "router",
+      "serial",
+      "migration",
+      "checkpoint",
+      "legacy",
+      "deletion",
+      "gate",
+      "residue"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/checkpoints/mcp-tooling/checkpoint-close.md",
+      "scratch/checkpoints/cli-external-orchestration/checkpoint-close.md",
+      "scratch/checkpoints/sk-design/checkpoint-close.md",
+      "scratch/checkpoints/sk-prompt/checkpoint-close.md",
+      "scratch/checkpoints/sk-doc/checkpoint-close.md",
+      "scratch/checkpoints/system-deep-loop/checkpoint-close.md",
+      "scratch/checkpoints/sk-code/checkpoint-close.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoint-close.md",
+        "kind": "doc",
+        "path": "scratch/checkpoints/mcp-tooling/checkpoint-close.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Root Adoption",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mutation Policy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Git",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Golden Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six class-H hubs still load their stage-two router from `shared/references/smart-routing.md`, while mcp-tooling already serves a root `ROUTER.md`",
+    "created_at": "2026-08-15T13:45:00Z",
+    "last_save_at": "2026-08-16T07:41:07.311Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8c5c046ff6054f0f10901ee898353c19d5fee3568575c069e8d5ad07d1bbd563",
+    "source_doc_hashes": {
+      "spec.md": "e5d6268cf27e4d105e93b371cf8e1a7b049b12ecbb80fc81a0da20fcb345bde4",
+      "plan.md": "6c280aad9ce52c74d9286ed2f66e0c9fde0df9b5f0f037bec52f6290b87ee360",
+      "tasks.md": "1a64dd51e94a5358568dd68e822301162f49075347a4bdd13062bf8d460a1407",
+      "checklist.md": "d907959fbed92b06d522dee2e4b6fa7c0b7e7cb018c751446b28db0c73490e6c",
+      "decision-record.md": "bfa2d3700ee313ac1417c1ac4b9d63a1226ef67a5702869c2cc3d985200b1d03",
+      "implementation-summary.md": "e6f95a567b201058d714333c6c7981ed2ef637b5ced2af0839172cd3a302219f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,3 @@
+captured_at=2026-08-16T06:30:00Z
+no staged files; changed paths confined to the 020 spec packets and the named
+execution surfaces (hub roots, rollout harnesses, compiled-routing tool chain).

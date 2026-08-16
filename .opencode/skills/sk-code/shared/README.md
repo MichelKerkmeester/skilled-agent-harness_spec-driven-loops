@@ -29,7 +29,7 @@ Layout:
 | File | What it covers |
 |---|---|
 | [`references/stack-detection.md`](./references/stack-detection.md) | Surface detection (WEBFLOW / OPENCODE / UNKNOWN) plus OpenCode language sub-detection — the primary routing key, resolved from CWD and changed/target files before intent classification. |
-| [`references/smart-routing.md`](./references/smart-routing.md) | Authoritative surface router: intent classification plus surface→resource maps for WEBFLOW, OPENCODE, and MOTION_DEV, with load tiers, verification commands, and the UNKNOWN fallback. |
+| [`../ROUTER.md`](../ROUTER.md) | Authoritative root surface router: intent classification, surface-to-resource maps, declared shared controls, load tiers, verification commands, and UNKNOWN fallback. |
 | [`references/phase-detection.md`](./references/phase-detection.md) | Phase 1/2/3 development lifecycle (Implementation / Testing + Debugging / Verification) with per-surface resource expectations. |
 
 ---

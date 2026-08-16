@@ -1,0 +1,2 @@
+rollback probe against the retained rollback root: closure reverts and restores
+serving per the pre-promotion state. Result: PASS.

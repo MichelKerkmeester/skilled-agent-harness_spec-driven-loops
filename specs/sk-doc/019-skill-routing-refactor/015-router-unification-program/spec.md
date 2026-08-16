@@ -49,6 +49,7 @@ The design source is the sibling research synthesis at `../001-research/010-unif
 | 017 | `017-create-skill-alignment/` | Teach create-skill onboarding to express the compiled-ready contract deliberately. |
 | 018 | `018-benchmark-alignment/` | Extend benchmark validation to the compiled-serving path and its parity evidence. |
 | 019 | `019-routing-coverage-activation-verification/` | Build remaining hub coverage, verify activation, and close the end-to-end parity and rollback gates. This child retains its own internal children unchanged. |
+| 020 | `020-root-router-document-standard/` | Standardize mandatory root `ROUTER.md` contracts, align create-skill and validation, migrate all seven hubs, and restore coherent compiled-serving freshness. **Complete as of 2026-08-16; the only remaining step is the deferred authoritative main-side DB/index scan.** |
 
 ## SHARED MIGRATION-GATE MODEL
 

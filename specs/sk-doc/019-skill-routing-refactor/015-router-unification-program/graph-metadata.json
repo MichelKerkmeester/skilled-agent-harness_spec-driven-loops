@@ -22,7 +22,8 @@
     "sk-doc/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision",
     "sk-doc/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment",
     "sk-doc/019-skill-routing-refactor/015-router-unification-program/018-benchmark-alignment",
-    "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification"
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard"
   ],
   "manual": {
     "depends_on": [],
@@ -51,7 +52,7 @@
       "gates"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -101,17 +102,17 @@
     ],
     "causal_summary": "Phase parent for the fleet router-unification program: a reversible compiled policy, closed route decision algebra, shared recovery budget, destination-local execution, calibrated negotiation, offline correction, and the rollout, cleanup, onboarding, benchmark, and activation gates that make the contract operational.",
     "created_at": "2026-07-18T04:39:04.759Z",
-    "last_save_at": "2026-07-24T12:00:50.351Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-16T07:27:43.308Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f24921b3586e009e38771583319577764cded1b621cb3a6327f0651183d1e7d4",
+    "source_fingerprint": "sha256:e677a12d1409d75342200d9f5046b44f7cdb318b6d9e64fc882afca5d382e652",
     "source_doc_hashes": {
-      "spec.md": "bd4502deba1dd0ae69a9130438a3203c1140ba4974419b40d8aebdfac6e61e35"
+      "spec.md": "fd824e82403f093781cd00d69be04116f941ef25f47a9122a54748c224547392"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
+    "last_active_at": "2026-08-16T07:29:37.956Z"
   }
 }

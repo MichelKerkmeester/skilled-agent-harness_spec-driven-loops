@@ -1,0 +1,2 @@
+before/after manifest inventory diff: only freshness-bound fields changed
+(generation/authority/shadow/fence attributes identical); no non-graduated manifest touched.

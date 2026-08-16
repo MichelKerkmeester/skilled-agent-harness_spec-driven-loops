@@ -1,0 +1,33 @@
+{
+  "level": 3,
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
+  "description": "Completed serial adoption packet for seven active root routers: mcp-tooling idempotence, four byte-equal moves, bounded sk-prompt and sk-code routing repairs, fallback preservation, owner-tool regeneration, gated legacy deletion, and the zero-residue handoff proof.",
+  "keywords": [
+    "seven hub adoption",
+    "root router",
+    "router_state active",
+    "serial checkpoint",
+    "machine block",
+    "sk-code delta",
+    "link rebasing",
+    "defaultResource",
+    "legacy deletion",
+    "residue scan"
+  ],
+  "lastUpdated": "2026-08-16T07:41:07.311Z",
+  "specId": "003",
+  "folderSlug": "seven-hub-root-adoption",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program",
+    "020-root-router-document-standard"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "16-08-26_08-14__adopted-active-root-router-md-across-all-seven.md",
+    "16-08-26_08-17__adopted-active-root-router-md-across-all-seven.md",
+    "16-08-26_08-29__adopted-active-root-router-md-across-all-seven.md",
+    "16-08-26_08-41__adopted-active-root-router-md-across-all-seven.md"
+  ]
+}

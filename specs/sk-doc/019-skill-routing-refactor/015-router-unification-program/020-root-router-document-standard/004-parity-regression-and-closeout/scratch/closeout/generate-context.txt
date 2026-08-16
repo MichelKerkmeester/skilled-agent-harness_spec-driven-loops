@@ -1,0 +1,8 @@
+2026-08-16 canonical save and index results
+
+001-contract-and-fleet-audit: exit 0; 6 indexed/updated, 2 unchanged, 0 failed
+002-create-skill-template-and-validator-alignment: exit 0; 7 indexed/updated, 1 unchanged, 0 failed
+003-seven-hub-root-adoption: exit 0; 7 indexed/updated, 1 unchanged, 0 failed
+004-parity-regression-and-closeout: exit 0; 7 indexed/updated, 1 unchanged, 0 failed
+
+All saves refreshed generated metadata and parent pointers through generate-context.js.

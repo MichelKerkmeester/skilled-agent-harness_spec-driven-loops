@@ -102,8 +102,8 @@ const PROTECTED_DIGESTS = Object.freeze({
   'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
 });
 const AUTHORED_SOURCE_DIGESTS = Object.freeze({
-  'SKILL.md': '5d6b49f23e72b5dcdb172682a127098a1bda69b26921d7afaf77156e602500ac',
-  'mode-registry.json': 'dcada81e7c71b1e17b5522263f90b80df4f39178531770211cca6bc99448a691',
+  'SKILL.md': '9a44f34a925cf878ef0438b978c0a4c11b2754d1d8cbfb895629bbae029c3e08',
+  'mode-registry.json': '8b6e6ae055b03a7c7c4da9c85a74e6564b04a5e40bcd03212079077b3365ac6d',
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

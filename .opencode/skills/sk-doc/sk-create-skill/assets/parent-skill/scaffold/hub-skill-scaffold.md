@@ -21,7 +21,7 @@ Do not put packet-specific workflow logic in this hub.
 
 ## 2. SMART ROUTING
 
-`mode-registry.json` defines the available workflow packets. `hub-router.json` supplies the routing policy and intent signals used to select a `workflowMode`.
+`mode-registry.json` defines the available workflow packets. `hub-router.json` supplies the routing policy and intent signals used to select a `workflowMode`. The hub's second-stage control document lives at the root as `ROUTER.md`; a fresh scaffold declares `router_state: stage1-only` with empty maps, so all routing stays in stage one until an author promotes it to `active` with a concrete leaf map.
 
 > **Compiled routing (default-on fleet-wide, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
@@ -108,6 +108,7 @@ The initial registry contains one mode, `{{MODE}}`, which routes to `{{PACKET}}/
 
 ## 5. REFERENCES
 
+- `ROUTER.md` — stage-two control document; `stage1-only` on a fresh scaffold.
 - `mode-registry.json` — workflow packet registry and tool surface.
 - `hub-router.json` — routing policy, signals, and vocabulary.
 - `{{PACKET}}/SKILL.md` — the initial workflow packet contract.

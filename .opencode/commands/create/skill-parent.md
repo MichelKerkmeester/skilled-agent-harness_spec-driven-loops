@@ -72,7 +72,25 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 The bound workflow YAML (`create-skill-parent-auto.yaml` for `:auto`, `create-skill-parent-confirm.yaml` for `:confirm` or an omitted mode) runs the parent-skill scaffolding workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
-**What This Scaffolds:**
+## 7. ROOT ROUTER STATE CLASSIFICATION
+
+Both workflows classify the target's root `ROUTER.md` on `update` and emit exactly one action line before mutating anything:
+
+| Classified state | Meaning | `ROUTER.md` action |
+|------------------|---------|--------------------|
+| `stage1-only` | Existing root router with `router_state: stage1-only` and empty maps | `unchanged` (or `create` when absent and the hub is new) |
+| `active` | Existing root router with non-empty equal-key maps | `unchanged` |
+| `legacy-migratable` | No root router; only a legacy `smart-routing.md` exists | `migrate` — create root `ROUTER.md`, preserve the machine block byte-for-byte, remove the legacy file |
+| `already-current` | Root router matches the contract and no change is needed | `unchanged` |
+| `conflict` | Root `ROUTER.md` coexists with a legacy `smart-routing.md` | STOP — no decision; report the dual source and require manual resolution |
+| `malformed` | Root router exists but the state or maps are unreadable | STOP — report the violation and require manual repair before any action |
+
+- The action line is always the literal text `ROUTER.md: create|migrate|unchanged` for the chosen action.
+- Ordinary `migrate` preserves the inner machine-block bytes exactly (hash before == hash after); only the deliberate, documented sk-code one-resource amendment may change a machine block.
+- `conflict` and `malformed` always stop the workflow; the classifier never picks a side for a dual or unreadable router.
+- The `:auto` and `:confirm` workflows share this exact classification and action set; they differ only in checkpointing.
+
+## 8. WHAT THIS SCAFFOLDS
 
 This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon. The canonical example is `sk-code` (workflow modes plus read-only surface packets); `system-deep-loop` is the runtime-loop variant that expresses its extra machinery as named `extensions`. The pattern is standardized in `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, and the hub-router contract in `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md`. The templates are `parent-skill-hub-template.md`, `parent-skill-registry-template.json`, `parent-skill-hub-router-template.json`, `parent-skill-description-template.json`, and `parent-skill-graph-metadata-template.json` under `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/`.
 
@@ -81,10 +99,12 @@ The generated package is:
 - A thin hub `SKILL.md` (routing only, no per-mode logic).
 - A declarative `mode-registry.json` where every mode carries the two-axis discriminator — `workflowMode` + `packetKind` (`workflow` | `surface`) + `backendKind` — plus `toolSurface`, `grandfatheredFolderMismatch`, and one `advisorRouting` block (`routingClass`, `legacyAdvisorId` for lexical/alias-fold modes, optional `advisorDefaultMode`, `legacyAliases`, `packetSkillName`). The registry is the single source of truth; routers and tests read it, none re-derive it.
 - A `hub-router.json` describing how a prompt selects and bundles modes (routerSignals, typed vocabularyClasses, tieBreak, a catch-all class like `hub-identity` on the default mode only, and a `surfaceBundle` outcome when surfaces exist), and a `description.json`.
+- A root `ROUTER.md` stage-two control document. Fresh scaffolds declare `router_state: stage1-only` with empty maps; `active` is authored later with concrete, resolvable leaf paths and is never synthesized by this command.
 - Exactly one hub `graph-metadata.json` — the one hard invariant.
 - N workflow mode packets, each self-contained with its own `SKILL.md`, `README.md`, and `changelog/`, where `folder == packetSkillName == [hub-prefix]-<mode>`, and with NO per-packet `graph-metadata.json`.
 - Optional read-only `surface` packets (bare-noun folders, `packetKind: surface`, `backendKind: evidence-base`, read-only `toolSurface`, advisor-invisible `metadata` routing) carrying domain evidence rather than process.
 - A hub `changelog/` and `manual-testing-playbook/` (changelog entries are real files, never symlinks).
 - A non-discoverable `shared/` directory (with `shared/README.md`) for packet-shared workflow-layer helpers.
+- Root `ROUTER.md` validation: the parent-skill doctor's check 12 (root-router contract with stable RRC codes) and the package gate both run the shared `root-router-contract.cjs` library on the generated hub.
 
 User request: $ARGUMENTS

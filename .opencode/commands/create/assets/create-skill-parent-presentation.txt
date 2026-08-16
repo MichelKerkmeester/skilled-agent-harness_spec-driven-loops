@@ -121,8 +121,10 @@ Hard stops:
 | `execution_mode` | Yes | `:auto` or `:confirm` | `[value]` |
 | `spec_choice` | Yes | A/B/C/D/E | `[value]` |
 | `spec_path` | Conditional | required for A/B/C/E | `[value]` |
+| `router_state` | On update | classify the target root `ROUTER.md`: `stage1-only`, `active`, `legacy-migratable`, `already-current`, `conflict`, or `malformed` | `[value]` |
+| `router_action` | On update | exactly one of `create`, `migrate`, `unchanged` | `[value]` |
 
-Proceed only when every required field validates.
+Proceed only when every required field validates. `conflict` and `malformed` router states stop the workflow before any mutation; ordinary `migrate` preserves the inner machine block byte-for-byte.
 
 ## 5. Completion Result Template
 
@@ -135,13 +137,18 @@ Modes: [comma-separated mode list]
 Mode: [:auto|:confirm]
 Target: [skill_root]
 
+Root router:
+- ROUTER.md state: [stage1-only|active|legacy-migratable|already-current|conflict|malformed]
+- ROUTER.md action: [create|migrate|unchanged]
+
 Identity:
 - Hub graph-metadata.json count: [must be exactly 1]
 - Per-packet graph-metadata.json count: [must be 0]
 
 Validation:
 - parent-skill-check.cjs canonical gate (exit 0): [PASSED|FAILED]
-- Hub structure (SKILL.md + mode-registry.json + hub-router.json + description.json + graph-metadata.json): [PASSED|FAILED]
+- Root router contract (check 12, stable RRC codes): [PASSED|FAILED]
+- Hub structure (SKILL.md + mode-registry.json + hub-router.json + ROUTER.md + description.json + graph-metadata.json): [PASSED|FAILED]
 - Canon files (hub-router.json, description.json, changelogs): [PRESENT|MISSING]
 - Per-mode packet (workflow folder == packetSkillName == [hub-prefix]-<mode>, surfaces bare-noun, own SKILL.md): [PASSED|FAILED]
 - Registry advisorRouting coverage (one block per mode): [PASSED|FAILED]

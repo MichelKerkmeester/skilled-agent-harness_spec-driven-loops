@@ -29,7 +29,7 @@ Every packet carries `workflowMode` (the public mode key: `research`, `review`, 
 
 ### Intent Classification, Not Keyed Resource Discovery
 
-The advisor routes any deep-loop query to the single identity `system-deep-loop`; the hub then classifies intent to a `workflowMode` (a mode hint like `"research: ..."` overrides), guards `mode-registry.json`, and loads the resolved packet. It omits `discover_markdown_resources` and never selects hub-level `references/<key>/` or `assets/<key>/` resources by runtime key. A second-layer surface router at `shared/references/smart-routing.md` (mirroring the equivalent surfaces in `sk-prompt` and `sk-code`) maps a resolved mode's intent to packet-qualified child leaves for router-replay benchmarking; it never re-decides the mode and is not itself a runtime discovery surface.
+The advisor routes any deep-loop query to the single identity `system-deep-loop`; the hub then classifies intent to a `workflowMode` (a mode hint like `"research: ..."` overrides), guards `mode-registry.json`, and loads the resolved packet. It omits `discover_markdown_resources` and never selects hub-level `references/<key>/` or `assets/<key>/` resources by runtime key. A second-layer surface router at the root `ROUTER.md` (mirroring the equivalent surfaces in `sk-prompt` and `sk-code`) maps a resolved mode's intent to packet-qualified child leaves for router-replay benchmarking; it never re-decides the mode and is not itself a runtime discovery surface.
 
 ---
 
@@ -41,7 +41,7 @@ The advisor routes any deep-loop query to the single identity `system-deep-loop`
 |---|---|---|
 | `.opencode/skills/system-deep-loop/SKILL.md` | Shared | States the registry-driven classification contract and the three-tier discriminator. |
 | `.opencode/skills/system-deep-loop/mode-registry.json` | Shared | Declarative registry for all seven `workflowMode` packets. |
-| `.opencode/skills/system-deep-loop/shared/references/smart-routing.md` | Shared | Second-layer intent-to-leaf mapping consumed by router-replay benchmarking. |
+| `.opencode/skills/system-deep-loop/ROUTER.md` | Shared | Second-layer intent-to-leaf mapping consumed by router-replay benchmarking. |
 
 ### Validation And Tests
 

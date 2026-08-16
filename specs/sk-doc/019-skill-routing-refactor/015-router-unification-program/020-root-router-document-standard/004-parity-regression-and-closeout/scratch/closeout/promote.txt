@@ -1,0 +1,2 @@
+.opencode/bin/compiled-route-sync.cjs (default canonical promotion)
+62 files copied; rollback root retained and reported; no publication lock remains.

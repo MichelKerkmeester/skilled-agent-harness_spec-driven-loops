@@ -15,7 +15,7 @@ trigger_phrases:
   - "delegate to pi"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.3.0.0
+version: 1.4.2.0
 ---
 
 # cli-external-orchestration
@@ -81,7 +81,7 @@ The hub holds no packet-local logic. Every request routes to exactly one of six 
 
 ### The Routing Chain
 
-Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity and tool surface. The registry also carries the advisor routing fields. When a request names several modes at once, `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` as an `orderedBundle`. `defaultMode` is `cli-opencode`. Genuinely unclear or contradictory intent still defers to disambiguation instead of defaulting silently.
+Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity and tool surface. The registry also carries the advisor routing fields. The hub's root `ROUTER.md` then maps the request's dispatch intent to the exact leaf resources the selected mode loads (stage two); the hub never emits leaf paths and the surface router never re-decides the mode. When a request names several modes at once, `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` as an `orderedBundle`. `defaultMode` is `cli-opencode`. Genuinely unclear or contradictory intent still defers to disambiguation instead of defaulting silently.
 
 ### The Guard Rails
 
@@ -129,5 +129,6 @@ Use the hub when a request belongs to an external CLI runtime: full-runtime Open
 | [`SKILL.md`](./SKILL.md) | Hub runtime instructions and routing logic |
 | [`mode-registry.json`](./mode-registry.json) | Packet identity, tool surface and advisor routing for the six modes |
 | [`hub-router.json`](./hub-router.json) | Signal and vocabulary routing that precedes the registry |
+| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: dispatch intent to the exact leaf resources the selected mode loads |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of hub dispatch capabilities |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate hub routing |

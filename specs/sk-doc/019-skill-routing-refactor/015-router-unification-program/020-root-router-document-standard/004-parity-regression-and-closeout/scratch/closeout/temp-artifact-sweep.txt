@@ -1,0 +1,2 @@
+task-created temporary artifacts (non-receipt, non-authored) removed; receipts and
+authored docs retained under scratch/closeout/.

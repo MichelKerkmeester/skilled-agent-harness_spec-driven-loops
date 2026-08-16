@@ -62,7 +62,7 @@ QUALITY TASK
     |
     +- Surface identity -> ../shared/references/stack-detection.md
     +- Phase lifecycle  -> ../shared/references/phase-detection.md
-    +- Resource routing -> ../shared/references/smart-routing.md
+    +- Resource routing -> ../ROUTER.md
     |
     +- WEBFLOW target     -> assets/code-quality-checklist/overview-header-and-comments.md + shared web standards
     +- OPENCODE target    -> ../sk-code-opencode/assets/checklists/<target-checklist>.md
@@ -97,7 +97,7 @@ Phase 1 Implementation writes or changes files
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Any quality-gate invocation | `../shared/references/stack-detection.md`, `../shared/references/smart-routing.md`, `../shared/references/phase-detection.md` |
+| ALWAYS | Any quality-gate invocation | `../shared/references/stack-detection.md`, `../ROUTER.md`, `../shared/references/phase-detection.md` |
 | ALWAYS | Before any implementation-done claim | `assets/code-quality-checklist/overview-header-and-comments.md`, `../shared/references/universal/code-quality-standards.md`, `../shared/references/universal/code-style-guide.md` |
 | ALWAYS | Any modified file with comments or comment-capable syntax | `scripts/check-comment-hygiene.sh` |
 | CONDITIONAL | `.opencode/skills/` target | `../sk-code-opencode/assets/checklists/skill-authoring.md` |
@@ -288,7 +288,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 - [`../SKILL.md`](../SKILL.md) - Routing-only parent hub.
 - [`../mode-registry.json`](../mode-registry.json) - Source of truth for mode tool surfaces and packet identity.
 - [`../shared/references/stack-detection.md`](../shared/references/stack-detection.md) - Shared surface detection consumed by every mode.
-- [`../shared/references/smart-routing.md`](../shared/references/smart-routing.md) - Shared intent and resource routing.
+- [`../ROUTER.md`](../ROUTER.md) - Root stage-two intent and resource routing.
 - [`../shared/references/phase-detection.md`](../shared/references/phase-detection.md) - Lifecycle transitions around the quality gate.
 
 ### Quality References And Assets

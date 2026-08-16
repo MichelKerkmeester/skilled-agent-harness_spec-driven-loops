@@ -17,8 +17,10 @@ Template for a **parent skill hub**: one advisor-routable identity with a thin `
 
 The core is always the same **2-tier shape**:
 
-1. Hub tier: `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, and generated `leaf-manifest.json`; add `command-metadata.json` only when the hub owns slash commands.
+1. Hub tier: `SKILL.md`, `mode-registry.json`, `hub-router.json`, root `ROUTER.md`, `description.json`, `graph-metadata.json`, and generated `leaf-manifest.json`; add `command-metadata.json` only when the hub owns slash commands.
 2. Packet tier: workflow packets and optional surface packets listed in one `modes[]` array.
+
+`hub-router.json` selects a workflow mode; the root `ROUTER.md` is the hub's stage-two control document. A fresh hub ships `router_state: stage1-only` with empty stage-two maps, so stage one is the whole routing story until an author promotes it to `active` with a concrete leaf map.
 
 Deep-loop-style runtime machinery is not the core shape. If a hub needs it, declare it under top-level `extensions` in `mode-registry.json`; do not create a third physical tier.
 
@@ -78,6 +80,7 @@ Surface packets have these required properties:
 | Hub | `SKILL.md` | Yes | Thin routing entry point; no packet-local logic |
 | Hub | `mode-registry.json` | Yes | Single packet array with `packetKind`, `toolSurface`, and `advisorRouting` |
 | Hub | `hub-router.json` | Yes | Router policy, tie-breaks, outcomes, signals, vocabulary classes |
+| Hub | `ROUTER.md` | Yes | Stage-two control document; `router_state: stage1-only` on a fresh hub, `active` only with an authored leaf map |
 | Hub | `description.json` | Yes | Hub-doctor metadata and triggers |
 | Hub | `graph-metadata.json` | Yes | One skill-graph identity node for the whole hub |
 | Hub | `command-metadata.json` | Conditional | Add only when the hub owns slash commands; one entry per owned command |
@@ -198,6 +201,7 @@ read hub-router.json
   SKILL.md
   mode-registry.json
   hub-router.json
+  ROUTER.md                     # stage-two control; stage1-only on a fresh scaffold
   description.json
   graph-metadata.json
   command-metadata.json          # optional; only when the hub owns slash commands
@@ -221,6 +225,7 @@ read hub-router.json
 
 - `mode-registry.json` owns `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, packet folder identity, alias phrases, and `advisorRouting`.
 - `hub-router.json` owns `routerPolicy`, `routerSignals`, `vocabularyClasses`, and bundle rules.
+- `ROUTER.md` is the stage-two control document: `router_state: active` declares non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP`; `router_state: stage1-only` keeps all stage-two collections empty and delegates to stage one. Promote to `active` only after authoring concrete, resolvable leaf paths — never placeholder intents.
 - `description.json` owns hub-doctor metadata fields and optional hub-specific arrays.
 - `graph-metadata.json` owns the one skill-graph identity node.
 
@@ -287,6 +292,7 @@ Before claiming the hub complete:
 - [ ] Every mode has `toolSurface` and `grandfatheredFolderMismatch`.
 - [ ] Every surface is read-only, `backendKind: "evidence-base"`, and `routingClass: "metadata"`.
 - [ ] `hub-router.json` has base outcomes (`single`, `orderedBundle`, `defer`) — plus `surfaceBundle` iff surface packets exist — workflow-first `tieBreak`, bidirectional mode keys, and defined vocabulary classes.
+- [ ] Root `ROUTER.md` exists with `router_state: stage1-only` or `active`, a root `SKILL.md` pointer, and a four-part `version`; `active` maps are non-empty and equal-keyed, `stage1-only` maps are empty.
 - [ ] `description.json` has the required hub-doctor fields and a four-part version.
 - [ ] `graph-metadata.json` is the only advisor identity node for the hub.
 - [ ] Changelog directories use real files, not symlinks.
@@ -297,6 +303,7 @@ Before claiming the hub complete:
 
 - `parent-skill-registry-template.json` - companion `mode-registry.json` scaffold.
 - `parent-skill-hub-router-template.json` - companion `hub-router.json` scaffold.
+- [`parent-skill-smart-routing-template.md`](./parent-skill-smart-routing-template.md) - the root `ROUTER.md` stage-two authoring template.
 - `parent-skill-description-template.json` - companion `description.json` scaffold.
 - `parent-skill-graph-metadata-template.json` - companion `graph-metadata.json` scaffold.
 - [`skill-root-metadata-contract.md`](../../references/shared/skill-root-metadata-contract.md) - complete root metadata matrix and authored/generated ownership.

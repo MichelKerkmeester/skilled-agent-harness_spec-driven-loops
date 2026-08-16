@@ -118,6 +118,6 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 
 ## 5. RELATED RESOURCES
 
-- `references/smart-routing.md` — intent classification, resource maps, and load tiers
+- [`../../ROUTER.md`](../../ROUTER.md) — root intent classification, resource maps, declared shared controls, and load tiers
 - `references/phase-detection.md` — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` section 2 — operator-facing summary of the routing contract

@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
+        "reason": "Parity and promotion close the seven-hub adoption after every live router is final.",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parity regression closeout",
+      "seven canary fleet gate",
+      "compiled route sync promotion",
+      "graduated manifest refresh",
+      "canonical seven compiled status",
+      "parity closeout plan",
+      "seven canary plan",
+      "fleet promotion plan",
+      "compiled route sync plan",
+      "parity closeout tasks",
+      "seven canary tasks",
+      "fleet promotion tasks"
+    ],
+    "key_topics": [
+      "parity",
+      "regression",
+      "closeout",
+      "seven",
+      "canary",
+      "fleet",
+      "gate",
+      "compiled",
+      "route",
+      "sync",
+      "promotion",
+      "graduated"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/closeout/adjudication-ledger.json",
+      "scratch/closeout/sync-check.txt",
+      "scratch/closeout/finalize.txt",
+      "scratch/closeout/status-all.txt",
+      "scratch/closeout/strict-child-validation.txt",
+      "scratch/closeout/final-index-status.md",
+      "scratch/closeout/rebuild-matrix.json",
+      "scratch/closeout/canary-matrix.json",
+      "scratch/closeout/out-of-scope-paths.txt",
+      "scratch/closeout/handoff-contract.md",
+      "scratch/closeout/worktree-path.txt",
+      "scratch/closeout/authority-sha256.txt",
+      "scratch/closeout/hub-entry-map.json",
+      "scratch/closeout/git-status-before.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "adjudication-ledger.json",
+        "kind": "config",
+        "path": "scratch/closeout/adjudication-ledger.json",
+        "source": "derived"
+      },
+      {
+        "name": "sync-check.txt",
+        "kind": "file",
+        "path": "scratch/closeout/sync-check.txt",
+        "source": "derived"
+      },
+      {
+        "name": "finalize.txt",
+        "kind": "file",
+        "path": "scratch/closeout/finalize.txt",
+        "source": "derived"
+      },
+      {
+        "name": "status-all.txt",
+        "kind": "file",
+        "path": "scratch/closeout/status-all.txt",
+        "source": "derived"
+      },
+      {
+        "name": "strict-child-validation.txt",
+        "kind": "file",
+        "path": "scratch/closeout/strict-child-validation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-index-status.md",
+        "kind": "doc",
+        "path": "scratch/closeout/final-index-status.md",
+        "source": "derived"
+      },
+      {
+        "name": "rebuild-matrix.json",
+        "kind": "config",
+        "path": "scratch/closeout/rebuild-matrix.json",
+        "source": "derived"
+      },
+      {
+        "name": "canary-matrix.json",
+        "kind": "config",
+        "path": "scratch/closeout/canary-matrix.json",
+        "source": "derived"
+      },
+      {
+        "name": "out-of-scope-paths.txt",
+        "kind": "file",
+        "path": "scratch/closeout/out-of-scope-paths.txt",
+        "source": "derived"
+      },
+      {
+        "name": "handoff-contract.md",
+        "kind": "doc",
+        "path": "scratch/closeout/handoff-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-path.txt",
+        "kind": "file",
+        "path": "scratch/closeout/worktree-path.txt",
+        "source": "derived"
+      },
+      {
+        "name": "authority-sha256.txt",
+        "kind": "file",
+        "path": "scratch/closeout/authority-sha256.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hub-entry-map.json",
+        "kind": "config",
+        "path": "scratch/closeout/hub-entry-map.json",
+        "source": "derived"
+      },
+      {
+        "name": "git-status-before.txt",
+        "kind": "file",
+        "path": "scratch/closeout/git-status-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 leaves seven canonical hubs on root `ROUTER.md` with byte-preserved policy, but the fleet is not yet proven: rollout artifacts must be rebuilt from the adopted inputs, canaries and parity must be green, authored activation manifests must be fresh, the promoted closure must verify, and status must report the seven canonical hubs compiled-serving and fresh",
+    "created_at": "2026-08-15T14:15:00Z",
+    "last_save_at": "2026-08-16T07:53:24.852Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5fa3139b54f4e5d507391640b1f7483579d32d52cdaa4ce811689e1f11beed6d",
+    "source_doc_hashes": {
+      "spec.md": "ffb8953a03d839aae1b159d6202c65d43c63a6c87f8db193c31fea53cd9a77c7",
+      "plan.md": "99ec8e222960799b2d51e2e8bdbb4b420afc53faf8ecb8bb6317bf5abd1f14fe",
+      "tasks.md": "ac4ce193bdd2ef11db23d12d3f0d1fb4b4b56e8e804f9ee2b06f7cf2b3fb6d54",
+      "checklist.md": "b04d6cc01e5c6c1d0ec6898bc487563a94fd25697e64a87f75359db11f6ec810",
+      "decision-record.md": "54c9d3ed22a72da25cf1645eab97a68f09c8bc31b32540eb4d0253841ed85e6b",
+      "implementation-summary.md": "70dd598132c8a9a077fa75a62baf53feeeac1fb016399878ecb75f96243f4a88"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
