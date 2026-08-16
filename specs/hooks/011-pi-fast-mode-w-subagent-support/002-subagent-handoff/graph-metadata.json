@@ -34,7 +34,7 @@
       "represented"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -84,15 +84,15 @@
     ],
     "causal_summary": "A child Pi process inherits the parent process environment, but the fast-mode preference is not currently represented by a fork-owned contract",
     "created_at": "2026-08-16T07:07:47Z",
-    "last_save_at": "2026-08-16T09:38:42.920Z",
+    "last_save_at": "2026-08-16T13:55:31.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2c5df42fde13acbccf0cf128e733626f4e32586db5ac5a1fff4fa8a66c769770",
+    "source_fingerprint": "sha256:8b3291b6e3dd3bf98327b9496c320ed412bf37ac99743a5ebeb7824d13292353",
     "source_doc_hashes": {
-      "spec.md": "e0a16a33a0b9463eae924b99c5ba01eeecdb659db97dfb12b8b313dff8910ee7"
+      "spec.md": "3f051558241e39280dd10ebb996d52a9ceb1207b486a82b31572b6be1de64b6f"
     },
     "last_active_child_id": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation",
     "last_active_at": null

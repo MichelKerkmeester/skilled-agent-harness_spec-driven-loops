@@ -2,6 +2,9 @@ export const PACKAGE_NAME = "pi-fast-mode-w-subagent-support";
 export const LEGACY_PACKAGE_NAME = "pi-openai-fast-mode";
 export const STATUS_KEY = PACKAGE_NAME;
 export const DEFAULT_SERVICE_TIER = "priority";
+export const HANDOFF_ENV = "PI_FAST_MODE_W_SUBAGENT_SUPPORT";
+
+export type FastModePreference = boolean | undefined;
 
 export const SUPPORTED_PROVIDERS = ["openai", "openai-codex"] as const;
 export type SupportedProvider = (typeof SUPPORTED_PROVIDERS)[number];

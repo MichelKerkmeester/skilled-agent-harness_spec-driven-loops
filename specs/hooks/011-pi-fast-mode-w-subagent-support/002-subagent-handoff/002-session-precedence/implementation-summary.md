@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Created lifecycle precedence closeout record"
-    next_safe_action: "Record precedence matrix and lifecycle test evidence"
+    last_updated_at: "2026-08-16T15:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Recorded precedence closeout; 76 tests green"
+    next_safe_action: "Continue the 002-subagent-handoff workstream"
     blockers: []
     key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -33,8 +33,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-session-precedence |
-| **Status** | Not started |
-| **Completed** | — |
+| **Status** | Complete |
+| **Completed** | 2026-08-16 |
 | **Level** | 2 |
 
 <!-- /ANCHOR:metadata -->
@@ -42,14 +42,14 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This phase will wire strict handoff state into `src/index.ts` lifecycle transitions while preserving explicit user intent and config-driven request gating.
+Wired the handoff state into `src/index.ts`. The `/fast` command handler writes the normalized value after persisting (`src/index.ts:111-113`). The `session_start` hook resolves the effective preference as explicit `pi.getFlag("fast") === true` first, then inherited `readHandoff(process.env)`, then persisted `config.enabled` (`src/index.ts:126-135`), and re-exports it as a single writer so children inherit. Model/target gating is unchanged. Rows are pinned in `tests/precedence.test.ts`, and `tests/extension.test.ts` gained a `beforeEach` deleting `HANDOFF_ENV` for isolation.
 
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-To be recorded after the flag-presence probe, precedence matrix, lifecycle tests, and regression suite.
+GPT-5.6-luna authored the code; verified locally. `tests/precedence.test.ts` covers explicit-true override, inherited `1`, inherited `0`, and the no-bypass guard; invalid/unset fallback is guaranteed by `readHandoff` returning undefined (proven in `tests/handoff.test.ts`) composed with `?? config.enabled` at `src/index.ts:130`. `/fast off` is the explicit-false path via `parseFastCommand` at `src/index.ts:111-113`. `npm run typecheck` exits 0 and `npm test` reports 76 passed.
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -69,9 +69,9 @@ To be recorded after the flag-presence probe, precedence matrix, lifecycle tests
 
 | Check | Result |
 |-------|--------|
-| Vitest precedence matrix | Pending |
-| Toggle/session-start env writes | Pending |
-| Existing payload/status regression tests | Pending |
+| Vitest precedence matrix | `tests/precedence.test.ts` green |
+| Toggle/session-start env writes | `writeHandoff` at `src/index.ts:113,135` |
+| Existing payload/status regression tests | `tests/payload-status.test.ts` green |
 
 <!-- /ANCHOR:verification -->
 

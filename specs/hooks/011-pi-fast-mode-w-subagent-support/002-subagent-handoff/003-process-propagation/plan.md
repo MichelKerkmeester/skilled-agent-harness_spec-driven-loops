@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Planned child process propagation"
-    next_safe_action: "Implement fixture and isolation assertions"
+    last_updated_at: "2026-08-16T15:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Added spawnSync inheritance and isolation tests; green"
+    next_safe_action: "Hand off to the 003-integration-and-tests workstream"
     blockers: []
     key_files: ["../../research/research.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,9 +54,9 @@ Launch a child fixture via `spawnSync(process.execPath, [fixturePath], { env: { 
 - [x] Research confirms ordinary process inheritance.
 
 ### Definition of Done
-- [ ] Fixture covers `1`, `0`, invalid, and unset.
-- [ ] Parent isolation is asserted.
-- [ ] README wording matches the final precedence decision.
+- [x] Fixture covers `1`, `0`, invalid, and unset.
+- [x] Parent isolation is asserted.
+- [x] README wording matches the final precedence decision.
 
 
 <!-- /ANCHOR:quality-gates -->
@@ -93,16 +93,16 @@ Parent env snapshot → child spawn → strict read → child-local mutation →
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Choose fixture location and output shape.
+- [x] Choose fixture location and output shape.
 
 ### Phase 2: Core Implementation
-- [ ] Add the fixture and spawn helper.
-- [ ] Add tests for inheritance and isolation.
-- [ ] Update README handoff section.
+- [x] Add the fixture and spawn helper.
+- [x] Add tests for inheritance and isolation.
+- [x] Update README handoff section.
 
 ### Phase 3: Verification
-- [ ] Run child-process tests and typecheck.
-- [ ] Pass the receipt to integration for the live probe.
+- [x] Run child-process tests and typecheck.
+- [x] Pass the receipt to integration for the live probe.
 
 
 <!-- /ANCHOR:phases -->

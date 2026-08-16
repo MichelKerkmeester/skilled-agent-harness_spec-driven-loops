@@ -13,6 +13,7 @@ import {
   saveConfigToPath,
   syncSupportedTargets,
 } from "./config";
+import { readHandoff, writeHandoff } from "./handoff";
 import { getFastModePayload, toModelRef } from "./payload";
 import { clearFastStatus, updateFastStatus } from "./status";
 import type { FastModeConfig, ModelRef } from "./types";
@@ -109,6 +110,7 @@ export function createPiFastModeExtension(
           refreshCurrentModel(ctx);
           config.enabled = parseFastCommand(args, config.enabled);
           await saveCurrent(ctx);
+          writeHandoff(process.env, config.enabled);
           updateFastStatus(ctx, config, currentModel);
         } catch (error) {
           notifyError(ctx, error);
@@ -121,10 +123,16 @@ export function createPiFastModeExtension(
         currentModel = toModelRef(ctx.model);
         await loadForContext(ctx);
 
-        if (pi.getFlag("fast") === true) {
-          config.enabled = true;
+        const inheritedPreference = readHandoff(process.env);
+        const effectiveEnabled =
+          pi.getFlag("fast") === true
+            ? true
+            : inheritedPreference ?? config.enabled;
+        if (effectiveEnabled !== config.enabled) {
+          config.enabled = effectiveEnabled;
           await saveCurrent(ctx);
         }
+        writeHandoff(process.env, config.enabled);
 
         updateFastStatus(ctx, config, currentModel);
       } catch (error) {

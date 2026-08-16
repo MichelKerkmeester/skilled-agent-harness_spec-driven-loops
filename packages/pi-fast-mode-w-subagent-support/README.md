@@ -94,6 +94,15 @@ Fast Mode starts disabled and only applies to exact configured provider/model pa
 User-scoped state is stored under `~/.pi/agent/extensions/pi-fast-mode-w-subagent-support/config.json`.
 Project-scoped state is stored under `./.pi/pi-fast-mode-w-subagent-support/config.json`.
 
+## Subagent handoff
+
+Fast Mode preference propagates from a parent Pi session to child processes through the `PI_FAST_MODE_W_SUBAGENT_SUPPORT` environment variable.
+
+- Strict values: `1` enables, `0` disables; any other or unset value carries no opinion.
+- The parent writes the normalized value whenever Fast Mode is toggled (`/fast`) or set by the `--fast` startup flag; children inherit it via ordinary process-environment copying.
+- At `session_start`, resolution precedence is: an explicitly present `--fast` flag, then the inherited `PI_FAST_MODE_W_SUBAGENT_SUPPORT` value, then persisted config. Handoff never bypasses the configured provider/model target match.
+- The variable is parent-owned and one-directional: children read it and never overwrite the parent's value.
+
 ## Provenance
 
 Fork of [`pi-openai-fast-mode`](https://github.com/johncmunson/pi-openai-fast-mode) pinned at commit `9b28456` (v0.3.0). MIT-licensed; the original copyright is retained in `LICENSE`. This fork renames the package and is the base for adding fast-mode subagent handoff support.
