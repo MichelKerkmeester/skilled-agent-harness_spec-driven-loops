@@ -1,0 +1,76 @@
+{
+  "topic": "Audit whether OpenCode command surfaces and tooling are linked to and aware of the new root ROUTER.md parent-skill creation standard (a first-class ROUTER.md at the hub root with router_state active or stage1-only, replacing the legacy shared/references/smart-routing.md path). Investigate: (1) the create command family under .opencode/commands/create (create-skill and create-skill-parent auto/confirm/presentation assets) - do they invoke the updated init_skill.py, parent-skill templates, and root-router-contract.cjs, and present root ROUTER.md rather than the legacy reference-folder path; (2) the doctor command family under .opencode/commands/doctor (doctor-parent-skill.yaml, doctor speckit _routes, doctor-update, doctor-runtime-mirrors, mcp-doctor) - do any diagnostics or repairs still assume shared/references/smart-routing.md or fail to validate the root ROUTER.md two-state contract, and should any doctor route now audit root ROUTER.md across the seven hubs; (3) other surfaces - CI scripts (ci-skill-root-metadata.cjs, ci-leaf-manifest-freshness.cjs, ci-skill-derived-freshness.cjs), skill advisor metadata and index, agent definitions, mode-registry and hub-router schema docs, validators - any that reference the legacy path or lack awareness of root ROUTER.md.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-doc/031-command-surface-router-awareness",
+  "createdAt": "2026-08-16T14:30:00Z",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "completedAt": "2026-08-16T15:10:00Z",
+  "totalIterations": 5,
+  "answeredQuestions": 5,
+  "totalQuestions": 5,
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4-flash",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-dsflashgo-1786890391696-n9twet",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanoutLineageArtifactDir": "specs/sk-doc/031-command-surface-router-awareness/research/lineages/dsflashgo",
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}
