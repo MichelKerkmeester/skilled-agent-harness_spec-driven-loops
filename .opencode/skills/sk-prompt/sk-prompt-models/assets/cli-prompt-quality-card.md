@@ -118,6 +118,7 @@ ESCALATION_NOTES: <open ambiguity or risk>
 - No guardrails for security, compliance, or "do not change" boundaries
 - No verification request when the delegated CLI should prove its work
 - Overloaded prompts that mix research, implementation, and review with no order
+- **Weak-model observation drift**: a cheaper model (DeepSeek, MiniMax, Qwen) told to "review" or "observe" a repo will run the repo's own tooling — `generate-context.js`, `validate.sh`, `git` writes — and edit files it was only meant to read, unless the prompt forbids it by name. For any observation-only or single-directory-scoped dispatch, state the exact write surface AND name the forbidden tooling. "Stay inside your directory" is inferred by strong models but ignored by weak ones; make the boundary followable, not just present.
 
 ---
 
