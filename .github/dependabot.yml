@@ -1,0 +1,21 @@
+# Dependabot version updates — maintained runtime surfaces only.
+#
+# Vendored third-party snapshots kept as reference material are deliberately
+# NOT listed here. Those are frozen upstream copies the framework never
+# installs, runs, or ships, so their advisories are noise rather than real
+# exposure. Scoping Dependabot to the runtime roots keeps update PRs limited
+# to dependencies we actually build and execute.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directories:
+      - "/"
+      - "/.opencode/**"
+      - "/.pi/extensions/**"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      npm-runtime:
+        patterns:
+          - "*"
