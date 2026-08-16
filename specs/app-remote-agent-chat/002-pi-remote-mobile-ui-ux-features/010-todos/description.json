@@ -1,16 +1,13 @@
 {
+  "level": "phase",
   "specFolder": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/010-todos",
-  "description": "Support pi todos in the PWA (Manus/Claude-grade task list)",
+  "description": "Support pi todos in the PWA",
   "keywords": [
     "support",
     "todos",
-    "pwa",
-    "manus",
-    "claude-grade",
-    "task",
-    "list"
+    "pwa"
   ],
-  "lastUpdated": "2026-08-16T08:23:20.967Z",
+  "lastUpdated": "2026-08-16T09:02:23.724Z",
   "specId": "010",
   "folderSlug": "todos",
   "parentChain": [
@@ -18,6 +15,5 @@
     "002-pi-remote-mobile-ui-ux-features"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

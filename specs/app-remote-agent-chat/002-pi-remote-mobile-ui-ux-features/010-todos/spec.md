@@ -8,7 +8,7 @@ trigger_phrases:
 importance_tier: "important"
 _memory:
   continuity:
-    packet_pointer: "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features"
+    packet_pointer: "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/010-todos"
     last_updated_at: "2026-08-16T08:22:22Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded feature phase; reference-screen research not yet run"

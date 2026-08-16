@@ -82,17 +82,17 @@
     ],
     "causal_summary": "Render pi’s ask-question prompts inline in the mobile chat with a terminal-style, keyboard-friendly question card — the way OpenCode, Claude, and Codex present agent questions.",
     "created_at": "2026-08-16T08:23:20.243Z",
-    "last_save_at": "2026-08-16T08:23:20.243Z",
+    "last_save_at": "2026-08-16T09:04:44.121Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5adffc85d91f16b3739e400c011e218523fce867e5a94e2325d2a4863b7fb858",
+    "source_fingerprint": "sha256:a757a8cb7c998115722f51eb1569510a0eff6911cf2e1f2145f587a1941bf733",
     "source_doc_hashes": {
-      "spec.md": "8c7e185d60e68cb844b27118d3c96abebb00accdf8a7f8c9ad8f2f96548ef55f"
+      "spec.md": "6b538258945bb216d9356ac9714d7493c7ab1406ffcc05bd33324f4c7df0e498"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/009-ask-question/001-research",
     "last_active_at": null
   }
 }
