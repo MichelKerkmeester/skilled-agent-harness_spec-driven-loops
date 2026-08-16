@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-parent-export-and-precedence",
+  "description": "Phase 2: parent-export-and-precedence",
+  "keywords": [
+    "phase",
+    "parent-export-and-precedence"
+  ],
+  "lastUpdated": "2026-08-16T09:08:03.991Z",
+  "specId": "002",
+  "folderSlug": "parent-export-and-precedence",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support",
+    "002-subagent-handoff"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

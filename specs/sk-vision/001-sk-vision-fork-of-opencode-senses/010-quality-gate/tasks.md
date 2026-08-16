@@ -1,6 +1,6 @@
 ---
 title: "Tasks: sk-vision 010 quality gate"
-description: "Task list for the quality gate child."
+description: "Executable tasks for the quality gate child."
 trigger_phrases:
   - "sk-vision 010 tasks"
 importance_tier: "important"
@@ -24,27 +24,74 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: sk-vision 010 quality gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
-<!-- ANCHOR:tasks -->
-## Tasks
+<!-- ANCHOR:notation -->
+## Task Notation
 
-| ID | Task | Status |
-|----|------|--------|
-| T001 | Run `ci-skill-root-metadata.cjs` (fleet) — record output | [ ] |
-| T002 | Run `validate_skill_package.py` + `package_skill.py --check` — record output | [ ] |
-| T003 | Run `validate_document.py` on SKILL.md, README, references/runtime-reference.md, catalog root + 16 leaves, playbook root — record outputs | [ ] |
-| T004 | Run `validate_catalog_package.cjs` + `validate-playbook-package.cjs` — record outputs | [ ] |
-| T005 | Run `extract_structure.py` on SKILL.md (DQI) — record score | [ ] |
-| T006 | Run `bun run build && bun test` in vision-runtime — record output | [ ] |
-| T007 | Run advisor smoke (`advisor_recommend --warm-only`) — record result or cold-daemon note | [ ] |
-| T008 | Run parent `validate.sh --recursive --strict` — record output | [ ] |
-| T009 | Reconcile metadata: 002-001 `completion_pct` → 100; parent `last_active_child_id` → current; refresh description/graph via generate-context.js if available | [ ] |
-| T010 | Final sweep: no `.venv`, no temp/bak files, no hub JSON on skill root, `context/` diff empty | [ ] |
-| T011 | Run `validate.sh --strict` on this child | [ ] |
-| T012 | All tasks marked `[x]` with evidence; no `[B]` remaining | [ ] |
-<!-- /ANCHOR:tasks -->
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+- [ ] T001 Confirm 006-009 folders exist with their gate targets on disk
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [ ] T002 Run `ci-skill-root-metadata.cjs` (fleet) — record output
+- [ ] T003 Run `validate_skill_package.py` + `package_skill.py --check` — record output
+- [ ] T004 Run `validate_document.py` on SKILL.md, README, references/runtime-reference.md, catalog root + 16 leaves, playbook root — record outputs
+- [ ] T005 Run `validate_catalog_package.cjs` + `validate-playbook-package.cjs` — record outputs
+- [ ] T006 Run `extract_structure.py` on SKILL.md (DQI) — record score
+- [ ] T007 Run `bun run build && bun test` in vision-runtime — record output
+- [ ] T008 Run advisor smoke (`advisor_recommend --warm-only`) — record result or cold-daemon note
+- [ ] T009 Reconcile metadata: 002-001 `completion_pct` → 100; parent `last_active_child_id` → current; refresh description/graph via generate-context.js if available
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [ ] T010 Run parent `validate.sh --recursive --strict` — record output
+- [ ] T011 Final sweep: no `.venv`, no temp/bak files, no hub JSON on skill root, `context/` diff empty; run `validate.sh --strict` on this child
+- [ ] T012 All tasks marked `[x]` with evidence; no `[B]` remaining
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+<!-- /ANCHOR:cross-refs -->

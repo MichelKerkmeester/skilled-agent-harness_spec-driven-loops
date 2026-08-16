@@ -49,6 +49,32 @@ _memory:
 
 _Pending implementation. Fill at closeout: handler design, cache behavior, README row changes, live smoke result._
 <!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+_Pending implementation. Fill at closeout: delivery order, template usage, validator results._
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| _Pending_ | _Pending_ |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+_Pending implementation. Fill at closeout: recorded blockers, deferred items, environment limitations._
+<!-- /ANCHOR:limitations -->
+
 
 ---
 

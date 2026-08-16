@@ -193,3 +193,29 @@ Deliver a verified, installed, documented extension: full test suite green, `/fa
 | Install source: local dir (`pi install <path>`) vs git URL vs npm? | settings entry shape, upgrade path | Phase 3 execution |
 | Document pi-gpt-fast-mode as a predecessor entry in PLUGINS.md? | doc completeness vs list purity | Phase 3 execution |
 <!-- /ANCHOR:questions -->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-suite-and-static-gates/ | [Phase 1 scope] | Pending |
+| 2 | 002-install-and-command-ownership/ | [Phase 2 scope] | Pending |
+| 3 | 003-live-ui-handoff-and-closeout/ | [Phase 3 scope] | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-suite-and-static-gates | 002-install-and-command-ownership | [Criteria TBD] | [Verification TBD] |
+| 002-install-and-command-ownership | 003-live-ui-handoff-and-closeout | [Criteria TBD] | [Verification TBD] |
+<!-- /ANCHOR:phase-map -->
