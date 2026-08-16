@@ -1159,7 +1159,12 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     `command; bind artifact_dir directly to the override value.`,
     ``,
     `Run phase_init, phase_main_loop (${stopClause}), and phase_synthesis.`,
-    `Write all outputs to ${lineageDir}. Do not touch any path outside ${lineageDir}.`,
+    `Write EVERY file you create or modify inside ${lineageDir} and nowhere else — that directory is`,
+    `your entire write surface. You may read anywhere, but do NOT modify, create, or delete any file`,
+    `outside ${lineageDir}, and do NOT run any command that writes outside it: in particular do NOT`,
+    `run generate-context.js, validate.sh (especially --recursive), or any git write/checkout/commit`,
+    `command. Producing findings does not mean running the repo's tooling — a single out-of-scope`,
+    `write fails this whole lineage.`,
     ``,
     `When complete, output a single line: FANOUT_LINEAGE_COMPLETE:${lineage.label}`,
   ].join('\n');
@@ -2335,9 +2340,10 @@ async function main() {
       // the review subprocess writes its own iteration artifacts (iterations/iteration-NNN.md,
       // deep-review-state.jsonl, review-report.md, resource-map.md) INTO lineageDir, so a
       // blanket read-only default would break those writes. The lineageDir-only write boundary
-      // is enforced by the prompt ('Do not touch any path outside lineageDir') rather than by a
-      // narrower sandbox; a path-scoped workspace-write would be the stronger fix if the CLIs
-      // exposed one. Callers can still pass an explicit sandboxMode to override.
+      // is enforced by the lineage prompt's explicit write-scope instruction (which also names the
+      // repo tooling a weaker model must not run) rather than by a narrower sandbox; a path-scoped
+      // workspace-write would be the stronger fix if the CLIs exposed one. Callers can still pass an
+      // explicit sandboxMode to override.
       //
       // cli-opencode has no OS-level sandbox flag at all, so the generic workspace-write
       // default would silently ask it to honor a mode it can never enforce. An UNSPECIFIED

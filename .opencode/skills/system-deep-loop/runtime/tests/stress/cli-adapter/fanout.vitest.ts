@@ -698,6 +698,27 @@ describe.sequential('fan-out scheduler contracts', () => {
     expect(readAdapterCaptures(fixture)).toEqual([]);
   });
 
+  it('names the forbidden repo tooling in the fan-out write-boundary for every mode', () => {
+    // A weaker model in a review/research lineage once ran generate-context.js and validate.sh
+    // during an observation pass and breached containment; the lineage prompt must spell out the
+    // boundary and name the tooling, not just say "stay in your dir", so a weak model can follow it.
+    for (const loopType of ['research', 'review'] as const) {
+      const prompt = fanoutRun.buildLoopPrompt(
+        loopType,
+        'specs/fanout-policy',
+        '/tmp/lineage-x',
+        'sess',
+        { label: 'wk', kind: 'cli-opencode', model: 'opencode-go/deepseek-v4-flash', iterations: 2 },
+        loopType === 'research' ? 'topic' : undefined,
+        { stopPolicy: 'max-iterations' },
+      );
+      expect(prompt, `${loopType} prompt names generate-context.js`).toContain('generate-context.js');
+      expect(prompt, `${loopType} prompt names validate.sh`).toContain('validate.sh');
+      expect(prompt, `${loopType} prompt forbids git writes`).toMatch(/git write\/checkout\/commit/);
+      expect(prompt, `${loopType} prompt states the out-of-scope consequence`).toContain('a single out-of-scope');
+    }
+  });
+
   it('binds convergence, maximum iterations, completion marker, artifacts, and summary status', async () => {
     const fixture = useShim('success');
     const prompt = fanoutRun.buildLoopPrompt(
