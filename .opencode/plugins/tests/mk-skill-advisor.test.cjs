@@ -510,7 +510,7 @@ test('Claude source clamps prompts, keeps fallback parity, and flushes fail-open
   assert.match(hookSource, /MAX_PROMPT_BYTES = 64 \* 1024/);
   assert.match(hookSource, /Buffer\.byteLength\(value\.slice/);
   assert.match(hookSource, /brief \?\? renderAdvisorFallbackDirective\(renderOptions\)/);
-  assert.match(hookSource, /const output: ClaudeUserPromptSubmitOutput = \{[\s\S]*observeEmittedAdvisorPolicy\(emitted/);
+  assert.match(hookSource, /const output: ClaudeUserPromptSubmitOutput = \{[\s\S]*observeEmittedAdvisorPolicy\((?:effectiveEmitted|emitted)/);
   assert.match(hookSource, /await writeHookOutput\(\{\}\)/);
   assert.match(rendererSource, /export function renderAdvisorFallbackDirective/);
 });

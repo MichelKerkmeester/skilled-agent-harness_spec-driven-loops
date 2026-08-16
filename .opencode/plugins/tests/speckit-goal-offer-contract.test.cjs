@@ -13,7 +13,7 @@ const test = require('node:test');
 const OPENCODE_ROOT = join(__dirname, '..', '..');
 const SPECKIT_ROOT = join(OPENCODE_ROOT, 'commands', 'speckit');
 
-const OFFER_LINE = 'Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Skip  C) Set goal: <objective>';
+const OFFER_LINE = 'Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Set goal: <objective>  C) Skip';
 
 const PRESENTATION_FILES = [
   'commands/speckit/assets/speckit-plan-presentation.txt',
