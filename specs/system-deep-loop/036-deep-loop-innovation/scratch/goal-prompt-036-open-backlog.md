@@ -1,4 +1,4 @@
-# Goal Prompt — Tackle the 036 Open Backlog with DeepSeek v4 Flash (opencode-go)
+# Goal Prompt — Tackle the 036 Open Backlog with DeepSeek via opencode
 
 > Kickoff brief for a future session. Paste it, or point a session at this file. It is scoped so a
 > weak model does useful work **without** the failure modes the executor's own docs warn about.
@@ -8,8 +8,10 @@
 ## Goal
 
 Advance the open sub-packets of `specs/system-deep-loop/036-deep-loop-innovation` toward `Complete`,
-using **DeepSeek v4 Flash at its highest variant, via cli-opencode (opencode-go provider)** as the
-primary executor — scoped to work it can do safely, escalating the rest.
+using DeepSeek via cli-opencode as the primary executor — **`deepseek-v4-pro --variant high` (the
+reasoning model) for anything that edits code**, and `deepseek-v4-flash` (non-reasoning, fast, cheap)
+only for triage/read/docs passes. Scoped to work each can do safely; the hardest multi-phase builds
+escalate to a stronger model. See the Executor section for the reasoning fact behind this split.
 
 ## ⚠️ Read this before dispatching (non-negotiable)
 
@@ -27,11 +29,19 @@ primary executor — scoped to work it can do safely, escalating the rest.
 
 ## Executor
 
-- **Primary:** `cli-opencode`, `--model deepseek/deepseek-v4-flash`, highest available `--variant`
-  (confirm the exact variant name via `opencode models deepseek` / `references/providers-and-models.md`
-  — DeepSeek may cap at `high`, there may be no literal `max`), `--format json`, `--dir <fresh-worktree>`.
-- **Escalation for substantive/multi-phase builds:** `cli-copilot` + `gpt-5.6-sol` reasoning high
-  (verify availability on the Copilot surface first).
+**Model-reasoning fact (verified in `references/providers-and-models.md`):** `deepseek-v4-flash` is
+**non-reasoning — `--variant` is ignored**. There is no "flash max"; you cannot turn thinking on for
+Flash. The *thinking* DeepSeek is **`deepseek-v4-pro`** (`--variant high` = deep reasoning at low cost).
+
+- **Substantive work (builds, hardening, anything with code):** `cli-opencode`,
+  `--model deepseek/deepseek-v4-pro --variant high --format json --dir <fresh-worktree>`. This is the
+  reasoning model; use it for reliability on anything that edits code.
+- **Cheap non-reasoning passes (triage, read, docs-drift scan):** `deepseek-v4-flash` is fine — fast
+  and low cost — precisely because those passes don't need reasoning.
+- **Escalation for the hardest multi-phase / phase-parent builds:** `cli-copilot` + `gpt-5.6-sol`
+  reasoning high (verify availability on the Copilot surface first). Note the 44-file incident was a
+  *reasoning* model (`deepseek-v4-pro`) — reasoning lowers the odds of a mistake, it does not remove
+  the need for the isolation net below.
 - **Fan-out children** inherit an enforced spec-gate and hang at 0% CPU unless dispatched with
   `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode run ... </dev/null`.
 
