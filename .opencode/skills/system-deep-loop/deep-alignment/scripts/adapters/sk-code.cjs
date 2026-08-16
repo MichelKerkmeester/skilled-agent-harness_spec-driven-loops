@@ -128,10 +128,10 @@ const EXCLUDED_PATH_SEGMENTS = new Set([
 // pattern (`Webflow\.push\|--vw-` plus the animation-library globals line).
 const WEBFLOW_CONTENT_MARKER_RE = /Webflow\.push|--vw-|window\.Motion|window\.gsap|gsap\.(?:to|from|set|timeline|registerPlugin)|new Lenis|new Hls|new Swiper|FilePond/;
 
-// MOTION_DEV overlay content-marker regex — NOT a surface (smart_routing.md
+// MOTION_DEV overlay content-marker regex — NOT a surface (sk-code/ROUTER.md
 // §5: "Motion.dev... is not a separate code surface; it supplements WEBFLOW,
 // OPENCODE... when the request needs Motion API"). Translated from
-// smart_routing.md's machine-readable MOTION_DEV keyword list ("animate()",
+// sk-code/ROUTER.md's machine-readable MOTION_DEV keyword list ("animate()",
 // "inview", "scroll()", "stagger()") into a content regex, since discover()
 // has file content to check, not prompt text.
 const MOTION_DEV_CONTENT_MARKER_RE = /window\.Motion\b|Motion\.animate|\banimate\(|\binView\(|\bstagger\(|\bscroll\(\s*\{/;
@@ -192,7 +192,7 @@ function classifySurface(relPath, content) {
 
 /**
  * Detect the MOTION_DEV overlay signal — a supplemental resource-category
- * flag, never a surface (smart_routing.md §5). See spec.md Data Boundaries:
+ * flag, never a surface (sk-code/ROUTER.md §5). See spec.md Data Boundaries:
  * "MOTION_DEV overlay detected alongside WEBFLOW or OPENCODE: adapter loads
  * the Motion.dev overlay reference material as supplemental evidence... not
  * as a replacement surface."
