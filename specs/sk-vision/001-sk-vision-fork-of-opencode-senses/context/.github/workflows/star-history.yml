@@ -1,0 +1,43 @@
+name: Update star history
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    concurrency:
+      group: star-history
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: nicoloboschi/gh-stars@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          line-color: '#ef4444'
+      - name: Patch chart (legend outline + swatch)
+        run: |
+          python3 - <<'EOF'
+          import re
+          p = '.github/star-history/chart.svg'
+          svg = open(p).read()
+          svg = svg.replace('.badge{fill:#fff;stroke:#8c959f;stroke-width:1}', '.badge{fill:#fff}')
+          m = re.search(r'<circle cx="([\d.]+)" cy="([\d.]+)" r="([\d.]+)"', svg)
+          if m:
+              cx, cy = float(m.group(1)), float(m.group(2))
+              r = float(m.group(3))
+              svg = re.sub(r'<circle[^>]*/>', f'<path class="line" d="M{cx - 2 * r} {cy}H{cx + 2 * r}"/>', svg)
+          open(p, 'w').write(svg)
+          EOF
+      - name: Commit chart
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/star-history/data.json .github/star-history/chart.svg
+          git diff --cached --quiet || git commit -m 'chore: update star history'
+          git push

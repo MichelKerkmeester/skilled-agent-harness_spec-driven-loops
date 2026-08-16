@@ -1,0 +1,25 @@
+{
+  "level": "phase",
+  "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "description": "Text-only coding models in OpenCode and Pi cannot read screenshots, mockups, or error images",
+  "keywords": [
+    "text-only",
+    "coding",
+    "models",
+    "opencode",
+    "cannot",
+    "read",
+    "screenshots",
+    "mockups",
+    "error",
+    "images"
+  ],
+  "lastUpdated": "2026-08-16T06:28:16.411Z",
+  "specId": "001",
+  "folderSlug": "sk-vision-fork-of-opencode-senses",
+  "parentChain": [
+    "sk-vision"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision",
+  "spec_folder": "sk-vision",
+  "parent_id": null,
+  "children_ids": [
+    "sk-vision/001-sk-vision-fork-of-opencode-senses"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "sk-communication",
+      "cli-external-orchestration"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "vision",
+      "senses",
+      "opencode",
+      "pi",
+      "moondream",
+      "ocr",
+      "plugin"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Track folder for a local-first vision skill forked from OpenCode Senses, with OpenCode and Pi CLI adapters over a shared JSON-RPC runtime.",
+    "created_at": "2026-08-15T00:00:00.000Z",
+    "last_save_at": "2026-08-15T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_fingerprint": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_doc_hashes": {},
+    "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+    "last_active_at": "2026-08-15T00:00:00.000Z"
+  }
+}

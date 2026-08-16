@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "parent_id": null,
+  "children_ids": [
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/001-research",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision",
+      "opencode senses fork",
+      "local vision skill",
+      "pi vision adapter"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "opencode",
+      "senses",
+      "fork",
+      "local",
+      "vision",
+      "skill",
+      "adapter",
+      "text-only",
+      "coding",
+      "models",
+      "cannot"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-research/spec.md",
+      "002-skill-scaffold/spec.md",
+      "003-runtime-fork/spec.md",
+      "004-opencode-adapter/spec.md",
+      "005-pi-adapter/spec.md",
+      "context/README.md",
+      "context/PLAN.md",
+      "context/opencode.json",
+      "context/src/plugin.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "context/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "PLAN.md",
+        "kind": "doc",
+        "path": "context/PLAN.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.json",
+        "kind": "config",
+        "path": "context/opencode.json",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.ts",
+        "kind": "code",
+        "path": "context/src/plugin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Text",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Text-only coding models in OpenCode and Pi cannot read screenshots, mockups, or error images",
+    "created_at": "2026-08-15T15:38:25Z",
+    "last_save_at": "2026-08-16T06:28:43.572Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2bd59d72d422f1cecddb3d8bbbe8b140be1a37b0fac3b63e6c420f1a8ecd792e",
+    "source_doc_hashes": {
+      "spec.md": "796b2f7d540359b85e221245a421e7c40a8681a3497d293fae2cea3c97cdd991"
+    },
+    "last_active_child_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/001-research",
+    "last_active_at": null
+  }
+}

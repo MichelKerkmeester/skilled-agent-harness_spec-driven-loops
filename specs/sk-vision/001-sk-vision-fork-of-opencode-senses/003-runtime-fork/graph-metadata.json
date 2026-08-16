@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork",
+  "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision runtime fork",
+      "sk-vision senses fork",
+      "sk-vision rebrand",
+      "sk-vision vision runtime",
+      "sk-vision runtime plan",
+      "sk-vision fork plan",
+      "sk-vision runtime tasks",
+      "sk-vision runtime checklist",
+      "sk-vision runtime adr",
+      "sk-vision fork decision",
+      "sk-vision runtime summary"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "runtime",
+      "fork",
+      "senses",
+      "rebrand",
+      "vision",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr",
+      "decision",
+      "summary"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Adarsh Gourab Mahalik",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Empty Class",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Subprocess Core",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Copy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Host",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist Before",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Reporting Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The dump at `../context/` still speaks `SENSES`, `~/.cache/opencode-senses`, `<SENSES>`, and `senses` tools",
+    "created_at": "2026-08-15T16:28:28.616Z",
+    "last_save_at": "2026-08-16T06:30:15.608Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6d23da56e6e1d9dbaccc8174c162cea77d5cad06806c3393b1edc82789ffddd0",
+    "source_doc_hashes": {
+      "spec.md": "88f5528a2d242027ccf9c6ebd610a80f2bc8ff7854cb76db042828459fdf5d15",
+      "plan.md": "f344c432f36c2807ea7857e763a8f852ad12cfec492f7604ad86a25ed3477a80",
+      "tasks.md": "52d2c06c5fab38f7cf1a3de2f3ab49d577b667c62592aead8742ff34e29582ca",
+      "checklist.md": "2b6e3691686bab34d42ac042dfe23830b52bde5f5a944ffdbf8dc768dd586af8",
+      "decision-record.md": "21ebf92813ae1819950b4a6f92cadc8305d8f27a06f61bc67b2057a95385ef7f",
+      "implementation-summary.md": "59f1bb6543374400a2c5446a91aef11f290d7d6eb21a956bb478eb95be0e7616"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

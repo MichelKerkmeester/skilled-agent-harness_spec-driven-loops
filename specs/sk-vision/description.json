@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-vision",
+  "description": "Track folder for sk-vision packets — a local-first vision skill forked from OpenCode Senses that gives text-only coding models grounded image evidence (OCR, layout, detection) through a host-agnostic JSON-RPC runtime with OpenCode plugin and Pi CLI adapters.",
+  "keywords": [
+    "sk-vision",
+    "vision",
+    "opencode-senses",
+    "moondream",
+    "ocr",
+    "screenshot",
+    "plugin",
+    "pi-cli",
+    "local-inference",
+    "track"
+  ],
+  "lastUpdated": "2026-08-15T00:00:00.000Z",
+  "specId": "sk-vision",
+  "folderSlug": "sk-vision",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

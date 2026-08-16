@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/001-research",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/001-research",
+  "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision research",
+      "senses fork feasibility",
+      "pi vision registerTool",
+      "sk-vision research plan",
+      "senses fork plan",
+      "sk-vision research tasks",
+      "sk-vision research checklist",
+      "sk-vision ADR",
+      "senses fork decisions",
+      "sk-vision research summary",
+      "opencode senses architecture",
+      "pi registerTool vision"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "research",
+      "senses",
+      "fork",
+      "feasibility",
+      "vision",
+      "registertool",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr",
+      "decisions"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "research/research.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Installed Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Scaffold",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Host",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Image",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist Before",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The workspace has an OpenCode Senses source dump but no spec, no skill, and no Pi path",
+    "created_at": "2026-08-15T15:38:25Z",
+    "last_save_at": "2026-08-16T06:28:43.872Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:271078a77505aa0db1e134a20527750c6d45a57bafe4700662f88b072d2eab06",
+    "source_doc_hashes": {
+      "spec.md": "a8535c29d320ff10bed0263f289a85e0e0efd46c3af2a3bf475ff9d1e8ef3e3b",
+      "plan.md": "a4581ec8bd8324f44423447f2cdc10f6953176b20715e1dc71b2574908120ac1",
+      "tasks.md": "0868436bade87e816007142088d15b233910c86faf61840a9433765160654102",
+      "checklist.md": "145d9b70ba761bece5ad479811066ea9c3aabe9cc7ecc3c09beab83210538b1b",
+      "decision-record.md": "0614bec1c850a2972770ec8d95bc1117a7ef67425d72ad703b8a9e1126505e2e",
+      "implementation-summary.md": "c90f19d4cc028972874d97ca4f3e48adbde430b98ae5793bbe8be2c62369fc20",
+      "research/research.md": "5baa3f72e5fae2056a33c52be5d3738fc3abd0e76cecb64af7576e15ef997d8d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
