@@ -35,11 +35,11 @@ contextType: "implementation"
 - [x] T010 [P3] Both deep-review playbook files — dropped the dangling `ANCHOR:smart-routing` (deep-review SKILL.md has no anchors); file pointer kept. (GAP-6)
 - [x] T011 [P2] Verified: `grep -c smart-routing.md` = 0 in all three FIX-A/B files; `ANCHOR:smart-routing` = 0 in both playbook files; new link target exists. Follow-up noted: `sk-code.cjs:134` carries a `smart_routing.md` (underscore) variant — latent, out of scope.
 
-## Phase 4 — Cosmetic template rename (LOW) — HELD: bigger than estimated (operator decision pending)
+## Phase 4 — Template rename (routing-leaf migration) — DONE (commit b10fed2e4d; operator chose full migration; LUNA authored + orchestrator generators)
 
-> Discovery: `parent-skill-smart-routing-template.md` is a ROUTED LEAF resource, not just an asset — referenced in `sk-doc/ROUTER.md:218` (active RESOURCE_MAP) and `sk-doc/leaf-manifest.json:249,289` (typed leaf, 2 modes). A rename therefore cascades into leaf-manifest regeneration → route-gold / compiled-routing churn → the CI byte-drift freshness checks hardened in Phase 1. This is a routing-leaf migration, not a filename edit. GAP-7 is rated cosmetic / no functional impact. Recommendation: DEFER unless a full leaf-rename migration is explicitly wanted.
+> The template was a ROUTED LEAF resource; the rename was executed as a full migration. Compiled routing does NOT key on this leaf path (verified), so no compiled-routing rebuild was needed — only leaf-manifest regeneration.
 
-- [ ] T012 [P3] (deferred) rename the template file. (GAP-7)
-- [ ] T013 [P3] (deferred) regenerate `sk-doc/leaf-manifest.json` + update `sk-doc/ROUTER.md` leaf path + ~8 live doc cross-refs (NOT the frozen benchmark reports or historical spec docs).
-- [ ] T014 [P3] (deferred) verify no old-name reference remains in live surfaces; leaf-manifest byte-drift + route-gold stay green.
+- [x] T012 [P3] Renamed `parent-skill-smart-routing-template.md` → `parent-skill-root-router-template.md`; updated its internal title/trigger. (GAP-7)
+- [x] T013 [P3] Regenerated `sk-doc/leaf-manifest.json` (dir scan) + updated `sk-doc/ROUTER.md` leaf path + 10 live cross-refs across create YAMLs, schema/reference docs, and all runtime agent mirrors (`.opencode`/`.claude`/`.pi` markdown.md, `.codex/agents/markdown.toml`; cursor/devin follow symlinks). Frozen benchmark reports and historical spec docs left as-is.
+- [x] T014 [P3] Verified: 0 old-name refs in live surfaces; leaf-manifest byte-drift `--check` exit 0; leaf/derived freshness 13/13; fleet gate exit 0; sk-doc compiled routing stays compiled-serving/fresh; agent-mirror-sync gate OK.
 <!-- /ANCHOR:tasks -->

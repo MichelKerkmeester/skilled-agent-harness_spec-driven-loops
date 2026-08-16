@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete — all 4 phases shipped (Phase 2 resolved by Phase 1) |
 | **Created** | 2026-08-16 |
 | **Evidence** | `research/lineages/dsflashgo/research.md` (deep-research, 5 iterations, opencode-go/deepseek-v4-flash) |
 | **Predecessor** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` (shipped the root ROUTER.md standard) |
