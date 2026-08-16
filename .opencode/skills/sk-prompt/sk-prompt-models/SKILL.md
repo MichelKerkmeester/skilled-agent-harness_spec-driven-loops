@@ -2,7 +2,7 @@
 name: sk-prompt-models
 description: Small-model dispatch prompt-craft profiles for DeepSeek, Kimi, MiniMax, MiMo, GLM, and Composer via their maintained CLI executors.
 allowed-tools: [Read, Grep, Glob]
-version: 0.9.0.1
+version: 0.9.1.0
 ---
 
 <!-- Keywords: small-model, deepseek-v4-pro, kimi-k2.7-code, kimi-for-coding, minimax-m3, minimax-coding-plan, minimax-token-plan, minimax-api, mimo-v2.5-pro, glm-5.2, composer-2.5, cli-pi, cli-cursor, zai-coding-plan, z.ai-coding-plan, haiku, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
