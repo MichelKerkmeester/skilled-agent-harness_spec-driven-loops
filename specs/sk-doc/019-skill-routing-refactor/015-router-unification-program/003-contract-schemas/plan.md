@@ -7,6 +7,22 @@ trigger_phrases:
   - "schema validation harness plan"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -70,14 +86,14 @@ No live routing surface is touched; the whole design is document-and-schema mate
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Step 1 — Fix the canonical-JSON serialization rule (resolves open-q 4, part A)
+### Phase 1 — Fix the canonical-JSON serialization rule (resolves open-q 4, part A)
 
 Author a serialization reference specifying, exactly: UTF-8 / no BOM; object keys sorted lexicographically (Proposed: by UTF-16 code unit per RFC 8785 JCS, so an off-the-shelf JCS library is usable); no insignificant whitespace; **no floating point in any hashed field** — thresholds and weights are integers or decimal strings, never IEEE-754 (the GLM "inert weight `4`" is an integer) [synthesis §12, §11.3]; collections always present as `[]`; optional *scalars* omitted when absent so `overlayHash?` absent ≡ null-overlay byte-for-byte [synthesis §5.1]. State the choice as **Proposed** (open-q 4) and record the one reproduction test that would confirm it (two independent serializers, byte-identical output).
 
 - **Key contract**: "identical inputs compile to byte-identical policy bodies" [synthesis §10].
 - **Touches**: `serialization-hashing.md` reference; no schema yet.
 
-### Step 2 — Fix the domain-separated hashing rule (resolves open-q 4, part B)
+### Phase 2 — Fix the domain-separated hashing rule (resolves open-q 4, part B)
 
 Define `H(x) = SHA-256(domainTag || 0x00 || canonicalBytes(x))` with a **closed, versioned domain-tag registry** — one ASCII tag per artifact type (`speckit.router.CompiledPolicyV1`, `…CorrectionOverlayV1`, `…RouteRequestV1`, `…RouteProofV1`, `…AdvisorProjectionV1`, `…PolicyCardV1`). Then define each identity field precisely:
 - `basePolicyHash` = `H(base body with the three `*Hash` fields excluded)` — resolves the digest self-reference.
@@ -88,11 +104,11 @@ Define `H(x) = SHA-256(domainTag || 0x00 || canonicalBytes(x))` with a **closed,
 - **Key contract**: EffectivePolicy identity + request pinning + byte-exact rollback all reduce to this rule [synthesis §2, §9].
 - **Touches**: the same `serialization-hashing.md` reference; the domain-tag registry file.
 
-### Step 3 — Author the schema family (`V1`) against Steps 1–2
+### Phase 3 — Author the schema family (`V1`) against Phases 1–2
 
 Author JSON Schemas for `CompiledPolicyV1`, `CorrectionOverlayV1`, `RouteRequestV1`, `RouteDecisionV1`, `RouteProofV1`, `UncertaintyBudgetV1`, and the three projections. Load-bearing modeling decisions:
 
-- **`CompiledPolicyV1`**: destination `id` is the compound `(skillId, workflowMode, packetId, packetKind, backendKind, runtimeDiscriminator?)`; `role ∈ {actor, evidence, transport, judgment}`; `authorityRef`; `mutatesWorkspace` (an `evidence` role with `mutatesWorkspace:true` is invalid) [synthesis §2.2, §7]. `(T,R,P)` posture as three sub-objects. Identity hashes as defined in Step 2.
+- **`CompiledPolicyV1`**: destination `id` is the compound `(skillId, workflowMode, packetId, packetKind, backendKind, runtimeDiscriminator?)`; `role ∈ {actor, evidence, transport, judgment}`; `authorityRef`; `mutatesWorkspace` (an `evidence` role with `mutatesWorkspace:true` is invalid) [synthesis §2.2, §7]. `(T,R,P)` posture as three sub-objects. Identity hashes as defined in Phase 2.
 - **`RouteDecisionV1`**: a **discriminated union** on the action tag. `route` is the only branch with `targets` (NonEmpty) and with `selectionKind` (inside `route`). `clarify`/`defer`/`reject` have **no** `targets` and **no** capability-bearing authority field — the dangerous states are unrepresentable at the schema level, not caught by a later lint [synthesis §2.3, §4 Seam A]. `rankScore`/`scoreMargin` typed as evidence; `basis` enum with the `degraded-fallback`-names-missing-evidence constraint.
 - **`RouteRequestV1`**: `explicitMode?` a separate optional field (precedence, not weight); `evidence[]` items carry `trust ∈ {live, stale, absent, unavailable}` [synthesis §8.1]; `pinnedActivationGeneration`.
 - **`RouteProofV1`**: read-set, expiry/epoch, `idempotencyKey`, attestation — no field that itself confers COMMIT rights [synthesis §3 Idea 7].
@@ -101,19 +117,19 @@ Author JSON Schemas for `CompiledPolicyV1`, `CorrectionOverlayV1`, `RouteRequest
 
 - **Touches**: `schemas/*.schema.json` (proposed layout).
 
-### Step 4 — Author golden fixtures (incl. the N=1 shape)
+### Phase 4 — Author golden fixtures (incl. the N=1 shape)
 
 Author one fixture per synthesis §8.2 family (see tasks T-11), plus the two anchor shapes: a multi-mode `CompiledPolicyV1` and the N=1 `mcp-code-mode`-shaped `CompiledPolicyV1` with `compositionRules: []`, `authorityGraph: []`, `overlayHash` omitted, `T=exact-admission`, `R=clarify→defer/reject`, `P=static` [synthesis §5.1]. The zero-signal fixture must be `defer(no-match)` with a target-free body and **no** default/registry union [synthesis §10].
 
 - **Touches**: `fixtures/*.json`.
 
-### Step 5 — Build the offline validation harness
+### Phase 5 — Build the offline validation harness
 
 A Node harness that: validates every fixture against its schema; asserts the discriminated-union invariants (a target inside a negative decision must fail to parse); serializes each fixture twice and asserts byte-identity; computes hashes and asserts reproducibility + cross-type domain separation (equal bytes, different tags ⇒ different hashes); asserts the degeneracy identity (N=1 fixture has no bundle/handoff entries and triggers no ranking field); and asserts `AdvisorProjectionV1` omits every excluded field. The harness imports **nothing** from the scorer, registry, or skills, and makes no network calls.
 
 - **Touches**: `harness/validate-contracts.cjs` (proposed).
 
-### Step 6 — Verify + record the migration gate closure
+### Phase 6 — Verify + record the migration gate closure
 
 Run the harness green; hand strict spec validation to the orchestrator as required by the operator constraint; confirm the Stage 0 freeze conditions and that `TypedRouteGoldV1` fixtures parse into the compatibility shape without touching `router-replay.cjs`. Record that Stage 1 (phase `001`) is technically unblocked, with strict packet validation remaining an external administrative gate.
 <!-- /ANCHOR:phases -->

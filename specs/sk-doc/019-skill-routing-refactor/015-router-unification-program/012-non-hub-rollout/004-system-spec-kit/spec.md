@@ -202,3 +202,7 @@ Produce one deterministic `CompiledPolicyV1` and its three projections for `syst
 
 None. Live activation is a separate authorization and is outside this child.
 <!-- /ANCHOR:questions -->
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `003-system-skill-advisor`
+- Parent phase spec: `../spec.md`

@@ -151,3 +151,7 @@ projects them through the shared projector, and proves them against the existing
 
 None. The authored router determines the rollout behavior.
 <!-- /ANCHOR:questions -->
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `006-sk-design`
+- Parent phase spec: `../spec.md`

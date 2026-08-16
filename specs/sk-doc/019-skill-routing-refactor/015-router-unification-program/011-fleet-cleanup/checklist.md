@@ -7,6 +7,22 @@ trigger_phrases:
   - "shadow rollout cleanup block"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 15
+    open_questions: []
+    answered_questions: []
 ---
 # Verification Checklist: Fleet Legacy-Read Cleanup
 
@@ -26,7 +42,7 @@ contextType: "implementation"
 ## Pre-Implementation
 
 - [x] CHK-010 [P1] The design authority and all four committed selectors were read before edits.
-  - **Evidence**: synthesis §9 and §3 Idea 1 were checked; the N=1 selector and three parent-hub selectors all read legacy/shadow-only.
+  - **Evidence**: synthesis §9 and §3 Idea 1 were checked; the N=1 selector and three parent-hub selectors all read legacy/shadow-only via `readCommittedActivationEvidence()` (lib/fleet-cleanup.cjs:274).
 - [x] CHK-011 [P1] The defective baseline was captured before implementation.
   - **Evidence**: the old harness exited 0 with `status:"GREEN"` and minted from `rolledOutManifests` despite committed legacy/shadow bytes.
 - [x] CHK-012 [P1] Protected scorer baselines were captured from disk.
@@ -82,9 +98,9 @@ contextType: "implementation"
 ## Security
 
 - [x] CHK-050 [P1] Manifest evidence locations are fixed by the library.
-  - **Evidence**: the N=1 and three parent-hub paths are module constants; callers cannot supply alternate paths.
+  - **Evidence**: the N=1 and three parent-hub paths are frozen in `COMMITTED_ACTIVATION_MANIFESTS` (lib/fleet-cleanup.cjs:46); callers cannot supply alternate paths.
 - [x] CHK-051 [P1] Hypothetical file operations are contained.
-  - **Evidence**: a unique temporary simulation root is created by the library and path containment is boundary-safe.
+  - **Evidence**: `createHypotheticalPreflight()` mints the simulation root via `fs.mkdtempSync` and `pathIsWithin()` (lib/fleet-cleanup.cjs:390,405) enforces containment.
 - [x] CHK-052 [P1] Protected scorer files remain byte-identical.
   - **Evidence**: harness end-state hashes match `b039b8dd...`, `d5a9cc72...`, and `249be7c1...`.
 <!-- /ANCHOR:security -->
@@ -95,18 +111,18 @@ contextType: "implementation"
 - [x] CHK-060 [P1] Packet status reflects the actual shadow state.
   - **Evidence**: spec, plan, tasks, and implementation summary use `blocked-shadow`; completed deletion checkboxes were reopened.
 - [x] CHK-061 [P1] The implementation summary follows the Level-2 section order.
-  - **Evidence**: metadata → what-was-built → how-it-was-delivered → key-decisions → verification → limitations appears in order.
+  - **Evidence**: metadata → what-was-built → how-it-was-delivered → key-decisions → verification → limitations appears in order starting at implementation-summary.md:18.
 - [x] CHK-062 [P1] Decisions cite the approved design authority.
-  - **Evidence**: the summary cites synthesis §9 for staged authority and §3 Idea 1 for compiled policy ownership.
+  - **Evidence**: the summary cites synthesis §9 for staged authority at implementation-summary.md:77 and §3 Idea 1 for compiled policy ownership.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
 - [x] CHK-070 [P1] Every edit is inside the designated cleanup phase.
-  - **Evidence**: code, fixture, and documentation changes are confined to this folder.
+  - **Evidence**: code, fixture, and documentation changes are confined to `lib/fleet-cleanup.cjs`, `harness/validate-cleanup.cjs`, and `fixtures/deletion-cases.v1.json` in this folder.
 - [x] CHK-071 [P1] Upstream activation manifests and protected scorers were read-only.
-  - **Evidence**: the harness reads them for evidence/digests; no write path targets those files.
+  - **Evidence**: `scorerDigests()` (harness/validate-cleanup.cjs:98) reads them for evidence/digests; no write path targets those files.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

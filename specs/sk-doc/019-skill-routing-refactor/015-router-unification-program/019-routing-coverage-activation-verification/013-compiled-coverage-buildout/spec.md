@@ -261,3 +261,8 @@ Grow every thin or stale hub's compiled policy to the same production-grade cove
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `012-p3-canonical-minter-foundation`
+- Successor phase(s): `016-review-remediation`
+- Parent phase spec: `../spec.md`

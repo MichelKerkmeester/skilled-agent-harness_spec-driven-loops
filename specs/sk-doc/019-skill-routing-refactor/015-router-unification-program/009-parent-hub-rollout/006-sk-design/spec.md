@@ -185,3 +185,8 @@ None. The candidate intentionally remains shadow-only.
 | Research | 10/20 | Two archetype siblings plus six nested router forms |
 | **Total** | **46/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `005-sk-prompt`
+- Successor phase(s): `007-sk-doc`
+- Parent phase spec: `../spec.md`

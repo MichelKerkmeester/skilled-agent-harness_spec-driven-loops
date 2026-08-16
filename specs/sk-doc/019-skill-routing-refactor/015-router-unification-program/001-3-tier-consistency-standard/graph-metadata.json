@@ -132,11 +132,19 @@
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a7d98cb02017cc7aa83cc5627b535793337c40ec22238da7641b95b17d397b7",
+    "source_fingerprint": "sha256:311b07392a85fde4f97aab4a153dd2bc07e4bc3bfa8d3d17a70ef25aecde295f",
     "source_doc_hashes": {
       "spec.md": "edcb689ffb2cdcff7853570b06361e13ba3b496926c63b09bd54506fbffdbc5a",
+      "plan.md": "31718c72dd3c0f835fde18b4dba5722d2be1f4e49f6fe397f7b69e326982a480",
+      "tasks.md": "a5afdf6f305eaa151786fe32fa028fc1e63accde55821904562b83bca107f4cf",
+      "checklist.md": "8835e420b463ebf903a1ad99ca4cabe042016c77219049ce8749ac6e4e0e6d2a",
+      "decision-record.md": "d1bf4d46c25a4cf062e4dacdff92b91ac93cb9be5a4bbf53fc8262925f03d97d",
       "implementation-summary.md": "70b8e1c83a7d5caf1d477fd2cc1411c51145d367fe9c4d9b77e4d42b78629119"
     },
     "last_active_child_id": null,

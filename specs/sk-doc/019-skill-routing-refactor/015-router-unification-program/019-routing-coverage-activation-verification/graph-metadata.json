@@ -161,10 +161,10 @@
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:abe5a45d6f97b722438b324fc577c91f979961181515fb06e005fe70d30b75aa",
+    "source_fingerprint": "sha256:ff811e0c5e7071b2df7c4a8cd19445750d301bfde7b08e5a81f8b9c2d43405e0",
     "source_doc_hashes": {
-      "spec.md": "012edded903fad9d5120b99287fd944215e1ff5ce046b3ddf45397a1de5e0268",
-      "handover.md": "fae46e093dcf9c3f5bbc4c2bfb713c3e9e2670dc6de234547cced5f9c50359b3"
+      "spec.md": "df8b345124d14da292f1935298077b3be4b7daa39627f02ba7343071c659e5bc",
+      "handover.md": "e71c9211e8e741998069bd1fdb99c4e2e5176ba77119671f596d2c4244bed82c"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",
     "last_active_at": "2026-07-26T08:02:14.332Z"

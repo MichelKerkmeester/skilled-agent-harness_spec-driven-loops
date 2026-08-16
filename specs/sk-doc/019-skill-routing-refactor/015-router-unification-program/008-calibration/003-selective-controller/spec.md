@@ -151,3 +151,6 @@ This phase rides one shared gate from the master plan's **SHARED MIGRATION-GATE 
 - **Sibling calibration phases**: `../001-*` (held-out corpus), `../002-*` (rank-vs-calibrated contract)
 - **Upstream contracts**: `../../005-decision-evaluator/` (4-action algebra), `../../007-recovery-ladder/` (shared uncertainty budget)
 - **Plan / Tasks**: `plan.md`, `tasks.md`
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `002-rank-vs-calibrated-contract`

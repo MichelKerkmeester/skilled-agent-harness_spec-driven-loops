@@ -7,6 +7,21 @@ trigger_phrases:
   - "sk-design hub-identity over-emission fix"
 importance_tier: "important"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation"
+    last_updated_at: "2026-07-18T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Flipped 4 hubs to defaultMode null + routing-helper fallback; sk-design over-emission fixed"
+    next_safe_action: "Open follow-ups: defaultApplied telemetry (blocked), cli runtime enforcement, live measurement"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The defaultMode flips do not move route-gold (the gate does not score the default on zero-signal), so gating was clean"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->

@@ -108,9 +108,9 @@
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e677a12d1409d75342200d9f5046b44f7cdb318b6d9e64fc882afca5d382e652",
+    "source_fingerprint": "sha256:062a78d1683dd7a6b7c24f8c5ccfdb4920278bbafc30c2544a611bce3bdabb02",
     "source_doc_hashes": {
-      "spec.md": "fd824e82403f093781cd00d69be04116f941ef25f47a9122a54748c224547392"
+      "spec.md": "8129520e9c23677ec4e166314a1582ccb01d9e4912b8380551e7fd66bb8e715d"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
     "last_active_at": "2026-08-16T07:29:37.956Z"

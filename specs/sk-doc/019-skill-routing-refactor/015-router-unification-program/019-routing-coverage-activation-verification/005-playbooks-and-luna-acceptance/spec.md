@@ -244,3 +244,7 @@ Ship the minimal 7-hub compiled-routing scenario matrix with a complete evidence
 - **Completion record**: See `implementation-summary.md`
 - **Upstream research**: `../001-research/{review-v1.md, synthesis-v1.md}` §2.3 (CF-PB-1..5), §2.2 (CF-BM-7)
 - **Sibling dependency**: `../004-benchmark-compiled-lane-c/` (compiled-parity evidence shape)
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Successor phase(s): `006-feature-catalogs`
+- Parent phase spec: `../spec.md`

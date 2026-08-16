@@ -7,6 +7,22 @@ trigger_phrases:
   - "typed route-gold fixtures tasks"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/005-decision-evaluator"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Tasks: Decision Evaluator — Closed 4-Action Route Algebra
 
@@ -91,10 +107,10 @@ before and after without writing it.
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T015 Static scan confirms no I/O/clock/RNG imports; N-run cross-process replay is byte-identical (SC-001)
+- [x] T015 Static scan of `lib/evaluator.cjs` confirms no I/O/clock/RNG imports; N-run cross-process replay is byte-identical (SC-001)
 - [x] T016 Assert unrepresentability: negative-with-target, negative-with-authority, top-level `selectionKind`, route-with-recovery-artifact all fail the type/guard (SC-002)
 - [x] T017 Protected-byte hashes prove `router-replay.cjs` is unchanged; existing route-gold gate stays green with the projector (SC-003)
-- [x] T018 Stage 3 gate passes: deterministic typed replay, projection matches gold, mismatches classified, gold untouched (SC-004, MIGRATION GATE)
+- [x] T018 Stage 3 gate passes via `replay-driver.cjs`: deterministic typed replay, projection matches gold, mismatches classified, gold untouched (SC-004, MIGRATION GATE)
 - [x] T019 N=1 fixture asserts zero rank/bundle/handoff calls and `defer(no-match)` on zero signal (SC-005)
 
 **Evidence**: Unit tests report 112 assertions. Replay reports 11/11 route-gold matches,

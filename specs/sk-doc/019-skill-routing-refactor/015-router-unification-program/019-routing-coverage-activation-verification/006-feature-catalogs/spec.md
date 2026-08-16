@@ -223,3 +223,7 @@ Plan — and record the topology decision for — complete, durable, phase-hones
 - **Dependency**: `../002-runtime-promotion-and-status-foundation/`
 - **Master plan (phase map + shared gate model)**: `../spec.md`
 - **Catalog authoring workflow**: `.opencode/skills/sk-doc/create-feature-catalog/SKILL.md`
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `005-playbooks-and-luna-acceptance`
+- Successor phase(s): `007-durable-archiving-and-serving-snapshot`

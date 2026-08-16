@@ -7,6 +7,22 @@ trigger_phrases:
   - "compatibility projector route-gold"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/005-decision-evaluator"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -47,17 +63,25 @@ The decision plane is built type-first: a closed `RouteDecisionV1` discriminated
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
+### Phase 1: Type & Guard Layer
+
 1. **Pin the consumed contracts.** Import `RouteRequestV1`, `CompiledPolicyV1`, and the `Target`/identity types from Phase 0 (`../003-contract-schemas/`) and the compiled artifact + projections from Phase 1 (`../004-compiler-n1-shadow/`). Confirm the request's `pinnedActivationGeneration` and the policy's `effectivePolicyHash` are both present and comparable (synthesis §2.1).
 
 2. **Define `RouteDecisionV1` as a closed discriminated union.** Model `route | clarify | defer | reject` with `selectionKind` as an interior field of `route` only. Encode the negatives so they *cannot* carry `targets` or a non-`Withheld` authority — make the flat six-value enum and top-level `selectionKind` unrepresentable at the type level (synthesis §2.3, §4 seam A, §6). Encode the reason vocabularies: `defer.reason ∈ {idle, no-match, dependency-failure, handoff-required, stale-policy, evidence-unavailable}`; `route.basis ∈ {signal, bounded-default, degraded-fallback}`.
 
 3. **Write the structural guards** (a parse/validate layer over the union) that reject: a target on any negative branch; an authority value outside the per-branch allow-set; a `route` with empty targets or with clarify/handoff artifacts; a target whose identity tuple is absent from `CompiledPolicyV1.destinations[]`; an `evidence`-role target that could COMMIT; a `surfaceBundle` that is not exactly one `actor` + N `evidence`; a `degraded-fallback` that is unnamed, mutating, or cached (synthesis §2.2, §2.3, §7).
 
+### Phase 2: Evaluator
+
 4. **Implement `evaluate(request, policy)` as a pure total function** with an explicit branch order that mirrors the recovery ladder's *decision* boundary only (synthesis §4): generation/authority admission first → deterministic exact route → typed `clarify` when one answer discriminates to a legal local route → typed `defer(handoff-required)` when a distinct viable candidate is already named → typed `defer` for recoverable missing evidence/dependency → `reject` for invalid/forbidden. Confident routes never emit recovery artifacts. Ranking/bundle selection reads only compiled `selectors[]`/`compositionRules[]`; at `candidateCount = 1` those collections are empty and the machinery is never entered (synthesis §5.1).
 
 5. **Enforce rank-as-evidence and generation pinning.** `rankScore`/`scoreMargin` flow through as evidence and can never flip a negative into a `route` or act as a probability (calibration is Phase 5) (synthesis §2.3, §3 idea 5). A `pinnedActivationGeneration` mismatch, or a request observing mixed generations, resolves to `defer(stale-policy)`/`reject`, never a route (synthesis §9).
 
+### Phase 3: Projector
+
 6. **Build the compatibility projector** `projectToRouteGold(decision) -> {observedIntents, observedResources}`: positive routes → intents/resources; `clarify|defer|reject` → the existing empty-intent convention; typed leaf pairs → the current manifest-aware resource observations (synthesis §8.2). The projector is the *only* bridge to the scorer; `router-replay.cjs` and the existing gold rows are read-only inputs.
+
+### Phase 4: Fixtures & Shadow-Evaluate Gate
 
 7. **Author the typed route-gold fixture families** (synthesis §8.2): exact single route; ordered + surface bundles; zero-signal idle `defer` with no default union; one-turn clarification; forbidden rejection; direct route with **no** recovery artifacts; singular omission + zero rank-call assertion; stale/mixed-generation refusal. Each fixture is a `RouteRequestV1` + expected `RouteDecisionV1` + expected projection.
 

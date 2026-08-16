@@ -7,6 +7,22 @@ trigger_phrases:
   - "compiled routing p0 foundation"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
@@ -21,7 +37,7 @@ contextType: "implementation"
 
 Make the compiled skill-router — BUILT and SHIPPED but held INERT behind default-off `SPECKIT_COMPILED_ROUTING` — **perfectly integrated, enabled by default, and verified**. 012 settled (ADR-001 Accepted) that default-on is a phased P4 *outcome*, not a premature flip; 013/014 planned create-skill + benchmark alignment. A review then found four coverage gaps (feature catalogs 0/24, benchmark legacy-only, manual playbooks 0/39, durable results 0 outside specs). This packet is the real build-out.
 
-A **25-iteration deep-research pass** (`001-research/`; 143 findings → 47 consolidated in `synthesis-v1.md`, adversarially verified in `verification-v1.md`, reconciled in `review-v1.md`) reframed the program: **default-on is a structural no-op end-to-end.** The advisor attaches the compiled decision additively (`advisor-recommend.ts:371`), but the OpenCode plugin bridge rebuilds the recommendation list and drops it (`mk-skill-advisor-bridge.mjs:539-551`), and the flag is stripped from BOTH daemon child-env allowlists — so the compiled decision never reaches an agent, and the flag cannot even reach the daemon. The load-bearing work is therefore a **P0 activation foundation** (promote the resolver/engine/activation closure out of the spec tree; split manifest-eligibility from the `HUB_CHILD` engine-dispatch table; ship a per-hub serving-status probe; tri-state the flag; un-strip it; un-drop the decision). The four named coverage gaps are a **downstream P3 join gate**, not parallel work.
+A **25-iteration deep-research pass** (`001-research/`; 143 findings narrowed to 47 in `synthesis-v1.md`, adversarially verified in `verification-v1.md`, reconciled in `review-v1.md`) reframed the program: **default-on is a structural no-op end-to-end.** The advisor attaches the compiled decision additively (`advisor-recommend.ts:371`), but the OpenCode plugin bridge rebuilds the recommendation list and drops it (`mk-skill-advisor-bridge.mjs:539-551`), and the flag is stripped from BOTH daemon child-env allowlists — so the compiled decision never reaches an agent, and the flag cannot even reach the daemon. The load-bearing work is therefore a **P0 activation foundation** (promote the resolver/engine/activation closure out of the spec tree; split manifest-eligibility from the `HUB_CHILD` engine-dispatch table; ship a per-hub serving-status probe; tri-state the flag; un-strip it; un-drop the decision). The four named coverage gaps are a **downstream P3 join gate**, not parallel work.
 
 **Hard invariants at every gate:** compiled routing stays **byte-identical to legacy** on all routing fields (this program never changes a routing decision); the three frozen scorer files (`router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs`) are SHA-256-pinned and NEVER edited; every step names a byte-exact-manifest or flag-based rollback; no runtime path reads under `.opencode/specs`. All 7 activation manifests are already `servingAuthority: compiled`, so the P4 flip is staged per-hub via cohort state, never a fleet-wide unset=on.
 
@@ -39,7 +55,7 @@ A **25-iteration deep-research pass** (`001-research/`; 143 findings → 47 cons
 | P3 | 006-feature-catalogs/ | 7 hub-root catalogs (or advisor-central) + routing leaf; feature-flag-governance + advisor-recommend extension; phase-gated wording; durable source paths only | 2 | 002 |
 | P2 | 007-durable-archiving-and-serving-snapshot/ | `<hub>/benchmark/compiled-routing/<run-label>/` convention; `serving-snapshot.json` + renderer; repo-relative portable provenance; append-only `flip-history.jsonl`; overwrite fail-closed | 2 | 002, 004 |
 | P3 | 008-sk-code-alignment-and-drift-guards/ | Make the RESOURCE_MAP equality gate real (markdown parser behind `--check-router`, or rename+backlink to the vitest); `qualifiedIdToLeaf` bidirectional bijection tests; `run-all-drift-guards.sh`; owns the single code-opencode alignment authority | 2 | 002 |
-| P3 | 009-sk-doc-template-alignment/ | Test-type taxonomy 2→12; topology quote-tolerance; catalog `trigger_phrases` routing-claim fix; strict package validator; both create-skill parent templates into the P4 lockstep set | 2 | 002 |
+| P3 | 009-sk-doc-template-alignment/ | Test-type taxonomy expanded to 12 categories; topology quote-tolerance; catalog `trigger_phrases` routing-claim fix; strict package validator; both create-skill parent templates into the P4 lockstep set | 2 | 002 |
 | P1 | 010-rollback-audit-and-non-hub-policy/ | `activate-hub.cjs --rollback`; unconditional `serving-prior` refresh; fence `direction`; append-only audit; explicit non-hub archetype ineligibility policy + negative fixtures; named P2 canary profile/owner/thresholds | 2 | 002 |
 | P4 | 011-activation-cutover-p4/ | The staged hub-by-hub tri-state default-on controller: lockstep directives/templates/catalog wording; the P3 coverage-closure join gate; `=0` kill-switch drill; per-hub stop-on-first-failure | 3 | 002-010 |
 | P3 | 012-p3-canonical-minter-foundation/ | Canonical initial manifest minter and exact freshness predicate for new registry-driven hubs; additive status visibility and sync durability; no eligibility-map removal or default-on cohort change | 3 | 002, 006 compiler |
@@ -58,3 +74,6 @@ Every child builds behind the still-off flag and clears the same gates before co
 | **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
 | **Predecessor** | `018-benchmark-alignment` |
 | **Successor** | `None` |
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Successor phase(s): `020-root-router-document-standard`

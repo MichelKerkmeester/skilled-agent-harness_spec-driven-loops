@@ -192,3 +192,7 @@ Compile the authored `sk-git` router through the shared generic compiler, emit t
 - **Verification Checklist**: See `checklist.md`.
 - **Evidence Summary**: See `implementation-summary.md`.
 <!-- /ANCHOR:related-docs -->
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Successor phase(s): `002-system-code-graph`
+- Parent phase spec: `../spec.md`

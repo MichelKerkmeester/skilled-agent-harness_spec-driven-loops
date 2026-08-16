@@ -230,3 +230,7 @@ Ship `compiled-routing-parity.cjs` — a non-frozen sibling in the existing skil
 - **Verification checklist**: See `checklist.md`
 - **Completion record**: See `implementation-summary.md`
 - **Upstream research**: `../001-research/{review-v1.md, synthesis-v1.md}` §2.2 (CF-BM-1..8), §3 (F-15-3, F-25-8)
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `003-flag-propagation-and-effective-consumption`
+- Parent phase spec: `../spec.md`

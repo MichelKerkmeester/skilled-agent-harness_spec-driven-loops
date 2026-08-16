@@ -103,9 +103,9 @@
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:95c3e7ade461219ba78ccd169c8d46cb762ad48aad54cf23b71d6dcd9dc0cccd",
+    "source_fingerprint": "sha256:c89f25855d7af4cc7e0bc1c3705f8d2554716d154538bd80c64f74ec5fed292f",
     "source_doc_hashes": {
-      "spec.md": "704b68f0c06be4beaa87919ad372e45505b81260844d432b774a386d3653c809"
+      "spec.md": "854dfd3dd7ccb35812e88cf435c54fea75e4ff1b33543977080d097b7261f49b"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout",
     "last_active_at": "2026-08-16T08:57:06.360Z"

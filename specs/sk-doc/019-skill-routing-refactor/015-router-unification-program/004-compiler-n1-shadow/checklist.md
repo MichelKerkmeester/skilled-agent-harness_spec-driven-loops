@@ -88,7 +88,7 @@ FAILURE MODES:
 - [x] CHK-021 [P0] Determinism proven: ≥3× recompile → byte-identical body + identical `effectivePolicyHash` (SC-001)
   - **Evidence**: Three in-process and two isolated-process compiles produced body SHA-256 `25051d39c2d75bdbf5bb0ed5e072aff6221192c3c4b9fe46f7b497e4c8b18fbf` and effective hash `663c356a3dc72455a25f391a1d97767ace28de911c91b3b70ab4ef91bb37ce9f`; synthetic `z`/`ä` child fingerprints also match under `en_US.UTF-8` and `sv_SE.UTF-8`.
 - [x] CHK-022 [P0] Three fail-closed negatives pass: missing mode, unresolved leaf, authority contradiction (SC-003)
-  - **Evidence**: The driver asserted the exact error code and element for all three required faults, plus duplicate destination closure, and verified no output file existed after each failure.
+  - **Evidence**: The driver asserted the exact error code and element for all three required faults, plus duplicate destination closure, and verified no output file existed after each failure. Traced to `verifyFailClosed()` in `harness/run-phase.cjs:323`, which asserts `MISSING_REFERENCED_MODE`, `UNRESOLVED_LEAF`, and `AUTHORITY_GRAPH_CONTRADICTION`.
 - [x] CHK-023 [P0] Route-gold stays green via the compatibility projector; scorer diff empty (SC-004)
   - **Evidence**: A read-only subprocess invokes the protected scorer for five intent-derived fixture-gold rows. Both extra-resource and fabricated `WRONG` observations fail. The scorer and router replay match trusted constants `d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c` and `b039b8dd22dbfaaa91042f613998d54610080feadef6179362e0d01b83e8bedf`.
 - [x] CHK-024 [P0] Shadow parity derives checked-manifest authority and observes zero emitted effects (SC-005)
@@ -109,11 +109,11 @@ FAILURE MODES:
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
   - **Evidence**: The nine findings were closed as `class-of-bug` (ordering, identity, validation, deferred receipt claim), `algorithmic` (metamorphic identity and artifact regeneration), `matrix/evidence` (real scorer gold), and `test-isolation` (temp-only negative/rollback drills).
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed: the legacy router is the only serving authority during shadow (synthesis §9).
-  - **Evidence**: The harness calls the legacy replay as the serving decision, while the compiled evaluator result is observation-only and cannot select or commit a live destination.
+  - **Evidence**: The harness calls the legacy replay as the serving decision, while the compiled evaluator result is observation-only and cannot select or commit a live destination. `harness/run-phase.cjs:170` pins `servingAuthority: 'legacy'`, matched by the zero-effect assertion at `harness/run-phase.cjs:868`.
 - [x] CHK-FIX-003 [P0] Consumer inventory completed: only the three projections + parity harness read the compiled artifact; nothing commits.
   - **Evidence**: Exact require/import inventory confines compiled-policy consumers to `compiler/projections.cjs`, `compiler/evaluator.cjs`, `parity/shadow-parity.cjs`, and the verification driver; emitted authority is empty.
 - [x] CHK-FIX-004 [P0] Adversarial cases covered for the fail-closed + fence paths: unmapped leaf, authority contradiction, stale fencing token, missing schema.
-  - **Evidence**: The negative matrix also covers duplicate destination, stale epoch, concurrent lock ownership, dangling selector/composition/authority references, and exact no-artifact behavior.
+  - **Evidence**: The negative matrix also covers duplicate destination, stale epoch, concurrent lock ownership, dangling selector/composition/authority references, and exact no-artifact behavior. Unmapped-leaf and authority-contradiction cases reuse `verifyFailClosed()` (`harness/run-phase.cjs:323`); the stale-token case asserts `restoredState.fencingEpoch` at `harness/run-phase.cjs:986`.
 - [x] CHK-FIX-005 [P1] Fixture-family matrix listed before completion (single route, idle defer, clarify, reject, singular-omission + zero-rank-call) (synthesis §8.2).
   - **Evidence**: `route-gold.typed.json` and `compiled/mcp-code-mode/fixtures/` contain all five named rows, each schema-validated and replayed.
 - [x] CHK-FIX-006 [P1] Determinism variant executed across two processes/machines, not one run (SC-001).
@@ -128,7 +128,7 @@ FAILURE MODES:
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets in shadow artifacts or fixtures
-  - **Evidence**: Source/config review found no credential material, environment access, network endpoint, or secret-bearing field.
+  - **Evidence**: Source/config review found no credential material, environment access, network endpoint, or secret-bearing field. `rg -niE "secret|credential"` across the 28 files under `compiler/`, `harness/`, `parity/`, `activation/`, and `compiled/` returned 0/28 matches.
 - [x] CHK-031 [P0] Authority stays destination-local — a proof/recommendation is never a capability; negatives withhold authority (synthesis §2.3, §10)
   - **Evidence**: Positive routes remain `WithheldUntilVerify`; negative paths return `Withheld` through typed `defer`, `clarify`, or `reject`, and parity asserts zero effects.
 - [x] CHK-032 [P1] `mcp-route-guard.cjs` stays advisory (fails open) and is never wired as destination VERIFY (synthesis §5.2)

@@ -7,6 +7,22 @@ trigger_phrases:
   - "clarify handoff ladder checklist"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/007-recovery-ladder"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -51,13 +67,13 @@ phase-local projector as directed; the downstream `NEEDS_INPUT` fixture ends at 
 
 ### Specify the six rungs and their guards
 
-- [x] T004 Specify rung 1 — eligibility + authority gate BEFORE ranking; negative outcome withholds authority (REQ-003, synthesis §4 step 1, §2.3)
-- [x] T005 Specify rung 2 — deterministic exact route; encode the "no phase-005 certificate ⇒ no calibrated auto-route" fall-through; auto-route stays inert (REQ-004, synthesis §4 step 2, §8.1)
+- [x] T004 Specify rung 1 — eligibility + authority gate BEFORE ranking; negative outcome withholds authority (REQ-003, synthesis §4 step 1, §2.3; encoded at `lib/recovery-ladder.cjs:397`)
+- [x] T005 Specify rung 2 — deterministic exact route; encode the "no phase-005 certificate ⇒ no calibrated auto-route" fall-through; auto-route stays inert (REQ-004, synthesis §4 step 2, §8.1; encoded at `lib/recovery-ladder.cjs:421`)
 - [x] T006 Specify rung 3 — clarify admit predicate (one answer discriminates to a legal local route), ≤3 options + `none_of_these`, exactly one rescore (REQ-005, synthesis §4 step 3)
-- [x] T007 Specify rung 4 — handoff admit predicate (distinct named viable candidate + policy permits), visited-set guard, single hop `H=1`, ownership-not-completion (REQ-006, REQ-007, synthesis §3 Idea 4, §4 step 4)
+- [x] T007 Specify rung 4 — handoff admit predicate (distinct named viable candidate + policy permits), visited-set guard, single hop `H=1`, ownership-not-completion (REQ-006, REQ-007, synthesis §3 Idea 4, §4 step 4; encoded at `lib/recovery-ladder.cjs:484`)
 - [x] T008 Specify rung 5 — typed `defer` reasons (fixed enum) with NO default/fallback union (REQ-008, synthesis §2.3, §10)
 - [x] T009 Specify rung 6 — `reject` for invalid/forbidden requests, target-free and authority-free (REQ-009, synthesis §2.3)
-- [x] T010 Fix the rung ORDER and the "confident routes bypass the ladder entirely" rule (REQ-001, synthesis §4 line "confident routes never touch the ladder")
+- [x] T010 Fix the rung ORDER and the "confident routes bypass the ladder entirely" rule (REQ-001, synthesis §4 line "confident routes never touch the ladder"; bypass at `lib/recovery-ladder.cjs:382`)
 
 **Evidence**: `lib/recovery-ladder.cjs` executes the declared six-rung order only for
 non-confident inputs. The contract keeps certificate validation unavailable, fails closed on
@@ -70,14 +86,14 @@ returns valid confident routes with an empty rung trace.
 ### Author typed route-gold fixtures (via the phase-002 compatibility projector only)
 
 - [x] T011 [P] Fixture: one-turn clarification — discriminating ambiguity → one clarify, ≤3 options + `none_of_these`, one rescore (REQ-005)
-- [x] T012 [P] Fixture: non-discriminating ambiguity → defer (NOT clarify) (REQ-005/REQ-008)
-- [x] T013 [P] Fixture: zero-signal idle defer with NO default union (REQ-008, SC-005)
-- [x] T014 [P] Fixture: forbidden rejection — target-free + authority-free (REQ-009, SC-003)
-- [x] T015 [P] Fixture: exact route emits NO clarify/handoff artifacts (REQ-004, synthesis §8.2 "direct route with forbidden handoff artifacts")
-- [x] T016 [P] Fixture: handoff visited-set revisit refused + second-hop (H>1) refused + budget-exceeded refused (REQ-006, SC-002)
+- [x] T012 [P] Fixture: non-discriminating ambiguity → defer (NOT clarify) (REQ-005/REQ-008; `fixtures/recovery-cases.v1.json:686`)
+- [x] T013 [P] Fixture: zero-signal idle defer with NO default union (REQ-008, SC-005; `fixtures/recovery-cases.v1.json:783`)
+- [x] T014 [P] Fixture: forbidden rejection — target-free + authority-free (REQ-009, SC-003; `fixtures/recovery-cases.v1.json:253`)
+- [x] T015 [P] Fixture: exact route emits NO clarify/handoff artifacts (REQ-004, synthesis §8.2 "direct route with forbidden handoff artifacts"; `fixtures/recovery-cases.v1.json:216`)
+- [x] T016 [P] Fixture: handoff visited-set revisit refused + second-hop (H>1) refused + budget-exceeded refused (REQ-006, SC-002; `fixtures/recovery-cases.v1.json:987`)
 - [x] T017 [P] Fixture: handoff ownership-transfer recorded; downstream `NEEDS_INPUT` terminates without a new user turn (REQ-007, SC-002)
 - [x] T018 [P] Fixture: role-escalation + missing-authority-dependency → defer (rung 1/5 boundary) (REQ-003/REQ-008)
-- [x] T019 [P] Fixture: confident route invokes ZERO ladder rungs (REQ-001, SC-004)
+- [x] T019 [P] Fixture: confident route invokes ZERO ladder rungs (REQ-001, SC-004; `fixtures/recovery-cases.v1.json:56`)
 
 **Evidence**: `fixtures/recovery-cases.v1.json` drives 22 behavioral cases and
 `fixtures/typed-route-gold.v1.json` stores their frozen-schema-shaped projections. The cases
@@ -92,8 +108,8 @@ contract violation, gate absence, targetless candidate, invalidity, authority, a
 
 ### Verify (deterministic, scorer untouched)
 
-- [x] T020 Replay all ladder fixtures through the compatibility projector; assert byte-identical outputs and route-gold stays byte-green (SC-001, synthesis §8.2)
-- [x] T021 Assert budget finiteness across all fixtures: ≤1 user turn (clarify+handoff), hop count ≤1, no visited-set revisit (SC-002)
+- [x] T020 Replay all ladder fixtures through the compatibility projector; assert byte-identical outputs and route-gold stays byte-green (SC-001, synthesis §8.2; `harness/validate-recovery-ladder.cjs:285`)
+- [x] T021 Assert budget finiteness across all fixtures: ≤1 user turn (clarify+handoff), hop count ≤1, no visited-set revisit (SC-002; `harness/validate-recovery-ladder.cjs:214`)
 - [x] T022 Assert authority-withheld on every `clarify | defer | reject` fixture (empty targets, no authority field) (SC-003)
 - [x] T023 Compare `router-replay.cjs` hash before/after — MUST be hash-identical; a required scorer edit is logged as a migration failure, not applied (REQ-010, synthesis §8.2)
 - [x] T024 Confirm the phase diff touches only `007-recovery-ladder/**` planning docs + typed fixtures; no live routing config/registry/skill modified (REQ-010, SC-005)
@@ -109,9 +125,9 @@ intentionally orchestrator-owned by the execution brief; `validate.sh` was not i
 
 ### Gate & close
 
-- [x] T026 Confirm the phase satisfies the shared **Stage 3 — Shadow evaluate** gate (deterministic typed replay + route-gold-matching projection, gold never auto-updated) before phase 005 activates (spec.md MIGRATION GATE)
-- [x] T027 Confirm the three §9 hard gates hold: (a) no handoff revisits/exceeds budget; (b) no exact route emits recovery artifacts; (c) no negative decision carries target/authority (synthesis §9)
-- [x] T028 Record continuation note: rung-2 calibrated auto-route stays inert until phase 005 ships the risk certificate (synthesis §11 open-q 2)
+- [x] T026 Confirm the phase satisfies the shared **Stage 3 — Shadow evaluate** gate (deterministic typed replay + route-gold-matching projection, gold never auto-updated) before phase 005 activates (spec.md:151 MIGRATION GATE)
+- [x] T027 Confirm the three §9 hard gates hold: (a) no handoff revisits/exceeds budget; (b) no exact route emits recovery artifacts; (c) no negative decision carries target/authority (synthesis §9; spec.md:157)
+- [x] T028 Record continuation note: rung-2 calibrated auto-route stays inert until phase 005 ships the risk certificate (synthesis §11 open-q 2; `recovery-ladder.v1.json:40` certificateValidatorAvailable)
 
 **Evidence**: Stage-3 phase-local evidence is green and intentionally reported as
 `shadow-partial`; real producer/hub scenario activation remains a later per-hub gate. All three

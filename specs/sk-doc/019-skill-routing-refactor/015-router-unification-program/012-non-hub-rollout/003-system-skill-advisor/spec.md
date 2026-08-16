@@ -195,3 +195,8 @@ None. Live activation is a separate authorization and remains outside this child
 node .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor/harness/run-phase.cjs
 ```
 <!-- /ANCHOR:questions -->
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `002-system-code-graph`
+- Successor phase(s): `004-system-spec-kit`
+- Parent phase spec: `../spec.md`

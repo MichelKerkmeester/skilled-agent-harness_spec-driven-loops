@@ -276,3 +276,6 @@ This implementation did not modify `resolve.cjs`, `compiled-route.cjs`, the advi
 - `../../017-create-skill-alignment/plan.md`
 - `../../016-default-on-decision/decision-record.md`
 - `decision-record.md`
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Successor phase(s): `013-compiled-coverage-buildout`

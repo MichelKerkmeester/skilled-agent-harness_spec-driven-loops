@@ -149,3 +149,8 @@ All writes are confined to this child. The lean phase parent already existed and
 
 None for this shadow-only rollout. Live activation remains a later program decision.
 <!-- /ANCHOR:questions -->
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `001-sk-git`
+- Successor phase(s): `003-system-skill-advisor`
+- Parent phase spec: `../spec.md`

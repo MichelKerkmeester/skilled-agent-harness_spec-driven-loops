@@ -3,6 +3,22 @@ title: "Verification Checklist: Offline Correction Overlay"
 description: "Level-2 evidence for immutable vocabulary assignment, real scorer replay, gated shadow promotion, privacy exclusion, fenced rollback, and the inert singleton case."
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions: []
 ---
 # Verification Checklist: Offline Correction Overlay
 
@@ -83,7 +99,7 @@ contextType: "implementation"
 ## Fix Completeness
 
 - [x] CHK-021 [P1] Every anti-hollow guard is driven red at its real boundary.
-  - **Evidence**: exact failures cover merged-graph base recomputation, real-evaluator route-gold divergence, each high-score promotion gate, locale-sensitive comparator restoration, caller-supplied gold, hash/bytes mismatch, unretained rollback, mixed corpus identities, injected weight, online mutation, same-person approval, unbound corpus, absent gain, mixed generations, and stale CAS.
+  - **Evidence**: exact failures cover merged-graph base recomputation, real-evaluator route-gold divergence, each high-score promotion gate, locale-sensitive comparator restoration, caller-supplied gold, hash/bytes mismatch, unretained rollback, mixed corpus identities, injected weight, online mutation, same-person approval, unbound corpus, absent gain, mixed generations, and stale CAS; see the `expectCode()` negative drives at `harness/validate-learning-overlay.cjs:173` (`ROLE_CANNOT_COMMIT`) and `:606` (`MIXED_GENERATIONS`).
 - [x] CHK-022 [P1] Candidate-set closure is preserved.
   - **Evidence**: every adjustment destination must resolve in the compiled base index; a changed destination rejects with `CANDIDATE_SET_WIDENED`, and the harness reports candidate count 3 before and after overlay application.
 - [x] CHK-023 [P1] Base policy bytes are never rewritten by learning or promotion.
@@ -100,9 +116,9 @@ contextType: "implementation"
 - [x] CHK-031 [P1] Negative decisions and evidence targets cannot acquire capability.
   - **Evidence**: upstream guards reject the planted target-bearing defer with `NEGATIVE_TARGET_FORBIDDEN`, the planted evidence commit with `ROLE_CANNOT_COMMIT`, and actor commit without destination READY with `COMMIT_WITHOUT_READY`.
 - [x] CHK-032 [P1] Activation is preimage-checked and ABA-resistant.
-  - **Evidence**: caller-supplied expected generation/hash is checked by the upstream CAS, while the independent fencing epoch advances on promotion and rollback.
+  - **Evidence**: caller-supplied expected generation/hash is checked by the upstream CAS, while the independent fencing epoch advances on promotion and rollback; see the `expectedFencingEpoch`/`expectedCurrent` preimage passed into `fencedSwapInMemory()` at `lib/correction-overlay.cjs:903`.
 - [x] CHK-033 [P1] No external input controls file paths or live config.
-  - **Evidence**: all runtime imports and fixtures use module-owned resolved constants; the implementation has no file-write API and edits no live routing surface.
+  - **Evidence**: all runtime imports and fixtures use module-owned resolved constants; the implementation has no file-write API and edits no live routing surface; see the `IMPLEMENTATION_ROOT` resolution at `lib/correction-overlay.cjs:14`.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
@@ -111,16 +127,16 @@ contextType: "implementation"
 - [x] CHK-040 [P1] Architectural decisions cite the approved synthesis.
   - **Evidence**: `implementation-summary.md` cites synthesis §2, §2.1, §3 Idea 2, §4 seam D, §5.3, §6, §9, §12, and open question 7.
 - [x] CHK-041 [P1] Dormancy is described as a valid result rather than a defect.
-  - **Evidence**: Metadata and Known Limitations state that no production corpus or live authority was supplied and the overlay may correctly remain null forever.
+  - **Evidence**: Metadata and Known Limitations state that no production corpus or live authority was supplied and the overlay may correctly remain null forever; see `implementation-summary.md:198`.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
 - [x] CHK-050 [P1] Every created or edited artifact is rooted in this phase folder.
-  - **Evidence**: the phase inventory contains one library, one validator, one fixture, Level-2 docs, and updates to the three pre-existing contract documents only.
+  - **Evidence**: the phase inventory contains one library, one validator, one fixture (3/3), Level-2 docs, and updates to the three pre-existing contract documents only — `lib/correction-overlay.cjs`, `harness/validate-learning-overlay.cjs`, `fixtures/learning-overlay-cases.v1.json`.
 - [x] CHK-051 [P1] Protected scorers, registry, skill, and live routing config remain untouched.
-  - **Evidence**: all three protected hashes match before and after the harness; no file outside the phase folder was written.
+  - **Evidence**: all three protected hashes match before and after the harness; no file outside the phase folder was written; see `scorerHashes()` at `harness/validate-learning-overlay.cjs:100`, captured as `protectedBefore`/`protectedAfter`.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

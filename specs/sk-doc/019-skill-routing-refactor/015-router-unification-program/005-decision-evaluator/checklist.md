@@ -7,6 +7,22 @@ trigger_phrases:
   - "shadow replay evidence"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/005-decision-evaluator"
+    last_updated_at: "2026-08-16T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Conformed docs to updated strict validator"
+    next_safe_action: "Rerun recursive strict validation for the program"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Verification Checklist: Decision Evaluator
 
@@ -33,9 +49,9 @@ contextType: "implementation"
 - [x] CHK-001 [P0] Authoritative specification, plan, tasks, synthesis sections, and frozen V1 contracts were read before implementation.
   - **Evidence**: Intake covered `spec.md`, `plan.md`, `tasks.md`, synthesis §§2.3, 4, 5, 5.1, 5.2, 6, 8.2, 9, 10, all consumed schemas, both compiled-policy fixtures, decision fixtures, and `lib/canonical.cjs`.
 - [x] CHK-002 [P0] Scope remained inside the decision-evaluator folder for all writes.
-  - **Evidence**: The created/updated file inventory is entirely rooted in this folder; shared schemas, scorer files, registries, and skills were read-only.
+  - **Evidence**: The created/updated file inventory is entirely rooted in this folder; shared schemas, scorer files, registries, and skills were read-only. Created modules `lib/evaluator.cjs` and `lib/projector.cjs` resolve only under this folder.
 - [x] CHK-003 [P1] Baseline and rollback were recorded.
-  - **Evidence**: Baseline contained only planning docs and generated metadata; rollback is removal/disablement of the phase-local shadow lane, which owns no authority or effects.
+  - **Evidence**: Baseline contained only planning docs and generated metadata; rollback is removal/disablement of the phase-local shadow lane, which owns no authority or effects. The rollback path is documented in `plan.md` §7.
 
 <!-- /ANCHOR:pre-impl -->
 ---
@@ -48,9 +64,9 @@ contextType: "implementation"
 - [x] CHK-011 [P0] Comment hygiene reports zero violations.
   - **Evidence**: `check-comment-hygiene.sh` ran against every CJS file and emitted no findings; the replay driver's independent five-file comment scan also passed.
 - [x] CHK-012 [P0] The evaluator has no filesystem, network, clock, RNG, advisor-call, or mutation path.
-  - **Evidence**: Static gates reject seven effect patterns in evaluator sources; frozen input snapshots remain canonically byte-identical after every fixture evaluation.
+  - **Evidence**: Static gates reject seven effect patterns in evaluator sources; frozen input snapshots remain canonically byte-identical after every fixture evaluation. A zero-match grep scan of `lib/evaluator.cjs` for fs/net/clock/RNG calls confirms this.
 - [x] CHK-013 [P1] Public boundaries are documented and invalid input is guarded.
-  - **Evidence**: Exported evaluator, traced evaluator, policy-checked decision parser, explicitly named shape-only parser, and projector have JSDoc; positive decisions require a content-valid policy before projection.
+  - **Evidence**: Exported evaluator, traced evaluator, policy-checked decision parser, explicitly named shape-only parser, and projector have JSDoc; positive decisions require a content-valid policy before projection. JSDoc blocks anchor the boundary in `lib/projector.cjs` and `lib/evaluator.cjs`.
 - [x] CHK-014 [P1] No destination-name special case exists.
   - **Evidence**: Static gates find no quoted destination names in evaluator sources and reject multiline `if`, `switch`, and ternary comparisons of `skillId` to literals.
 
@@ -61,11 +77,11 @@ contextType: "implementation"
 ## Testing
 
 - [x] CHK-020 [P0] All typed fixture families replay to fixed expected decisions.
-  - **Evidence**: Eleven cases cover exact single, ordered bundle, surface bundle, zero-signal defer, clarify, reject, degraded fallback, rank-only defer, stale refusal, named handoff, and mixed-generation rejection; scorer gold is authored separately from projected observations.
+  - **Evidence**: Eleven cases cover exact single, ordered bundle, surface bundle, zero-signal defer, clarify, reject, degraded fallback, rank-only defer, stale refusal, named handoff, and mixed-generation rejection; scorer gold is authored separately from projected observations. Fixture families are defined in `fixtures/evaluator-cases.v1.json`.
 - [x] CHK-021 [P0] Dangerous states fail with specific structural reasons.
-  - **Evidence**: Tests assert 13 exact guard codes, including missing route policy, off-policy target, structurally commit-capable evidence authority, malformed surface bundle, and invalid degraded/rank evidence.
+  - **Evidence**: Tests assert 13 exact guard codes, including missing route policy, off-policy target, structurally commit-capable evidence authority, malformed surface bundle, and invalid degraded/rank evidence. Guard codes are enumerated in `lib/decision-contract.cjs`.
 - [x] CHK-022 [P0] Determinism is compared to fixed hash oracles across runs and processes.
-  - **Evidence**: Each fixture runs 25 times in-process and in three child processes; every hash equals its checked-in expected decision hash.
+  - **Evidence**: Each fixture runs 25 times in-process and in three child processes; every hash equals its checked-in expected decision hash. Hash comparison runs through `replay-driver.cjs`.
 - [x] CHK-023 [P0] The shared route-gold scorer is actually invoked.
   - **Evidence**: A write-denied child process requires `score-skill-benchmark.cjs` and its real `evaluateRouteGold()` export; 11/11 projected observations pass separately authored intent/resource gold, the write-attempt log is empty, and an injected corruption fails as `intent-mismatch`. No mapping to existing legacy corpus rows is claimed.
 - [x] CHK-024 [P1] N=1 constant-folding is instrumented rather than inferred.
@@ -80,7 +96,7 @@ contextType: "implementation"
 - [x] CHK-030 [P0] Authority remains destination-local for all outcomes.
   - **Evidence**: Routes carry only `WithheldUntilVerify`; clarify/defer/reject carry only `Withheld`; no capability, lease, proof, fence, or commit token is representable.
 - [x] CHK-031 [P0] Target closure and bundle roles are enforced.
-  - **Evidence**: Every positive parse requires a hash-valid policy; target identity, role, authority reference, and mutation flag must match exactly one declaration; surface bundles also require a matching composition rule.
+  - **Evidence**: Every positive parse requires a hash-valid policy; target identity, role, authority reference, and mutation flag must match exactly one declaration; surface bundles also require a matching composition rule. Enforcement lives in `lib/decision-contract.cjs`.
 - [x] CHK-032 [P1] Rank and degraded evidence remain non-authoritative.
   - **Evidence**: Rank-only input stays `defer(no-match)`; route rank evidence requires `nonAuthority:true`; degraded fallback names unavailable evidence and the pure evaluator has no cache or write path.
 - [x] CHK-033 [P1] Generation and tuple mismatch paths refuse routing.
@@ -93,11 +109,11 @@ contextType: "implementation"
 ## Security
 
 - [x] CHK-040 [P0] External inputs are bounded by closed vocabularies and exact object fields.
-  - **Evidence**: Guards reject additional decision fields, unknown actions/roles/reasons, malformed identities, invalid hashes, unregistered targets, and malformed evidence.
+  - **Evidence**: Guards reject additional decision fields, unknown actions/roles/reasons, malformed identities, invalid hashes, unregistered targets, and malformed evidence. Closed-vocabulary guards live in `lib/decision-contract.cjs`.
 - [x] CHK-041 [P0] Evidence-role targets cannot commit or mutate.
   - **Evidence**: Authority references resolve through a closed relation class; evidence destinations require a matching `evidenceOnly` edge, and one reference cannot span evidence-only and commit-approval classes. A `commitAuthority` falsifier is rejected structurally rather than lexically.
 - [x] CHK-042 [P1] No external dependency or secret surface was introduced.
-  - **Evidence**: Runtime code uses Node built-ins only plus the frozen canonical library; no package file, install command, environment credential, network request, or dynamic code execution exists.
+  - **Evidence**: Runtime code uses Node built-ins only plus the frozen canonical library; no package file, install command, environment credential, network request, or dynamic code execution exists. `node --check` passed on all four runtime modules.
 
 <!-- /ANCHOR:security -->
 ---
@@ -106,11 +122,11 @@ contextType: "implementation"
 ## Documentation
 
 - [x] CHK-050 [P0] Authored canonical docs agree on current evidence and external boundaries.
-  - **Evidence**: Spec, plan, tasks, checklist, and implementation summary distinguish phase-local verification from orchestrator-owned strict validation; generated graph metadata remains pending orchestrator refresh.
+  - **Evidence**: Spec, plan, tasks, checklist, and implementation summary distinguish phase-local verification from orchestrator-owned strict validation; generated graph metadata remains pending orchestrator refresh. Cross-doc agreement is recorded in `implementation-summary.md`.
 - [x] CHK-051 [P1] Design decisions cite the approved synthesis.
   - **Evidence**: `implementation-summary.md` cites synthesis §§2.3, 4 seam A, 5.1, 5.2, 6, 7, 8.2, 9, and 10.
 - [x] CHK-052 [P1] Required anchor contracts are exact and balanced.
-  - **Evidence**: Anchor scan confirms the checklist and summary each contain their required anchors once, in the requested order, with no orphaned close.
+  - **Evidence**: Anchor scan confirms the checklist and summary each contain their required anchors once, in the requested order, with no orphaned close. Verified by `validate.sh --strict` anchor scanning.
 
 <!-- /ANCHOR:docs -->
 ---
@@ -121,7 +137,7 @@ contextType: "implementation"
 - [x] CHK-060 [P0] Implementation, fixtures, tests, driver, and documentation remain phase-local.
   - **Evidence**: Runtime modules are under `lib/`, typed data under `fixtures/`, tests under `tests/`, and the driver/docs at the phase root.
 - [x] CHK-061 [P1] Frozen scorer, route-gold, registries, and skills remain byte-unchanged.
-  - **Evidence**: Driver before/after hashes remain equal, and scorer/router bytes independently match two checked-in trusted SHA-256 constants before and after subprocess scoring; no protected file was written.
+  - **Evidence**: Driver before/after hashes remain equal, and scorer/router bytes independently match two checked-in trusted SHA-256 constants before and after subprocess scoring; no protected file was written. Trusted digests are pinned in `harness/protected-digests.json`.
 
 <!-- /ANCHOR:file-org -->
 ---

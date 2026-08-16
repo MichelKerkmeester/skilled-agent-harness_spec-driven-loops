@@ -222,3 +222,7 @@ Make the RESOURCE_MAP-equality claim true by naming and backlinking the real gua
 - **Verification checklist**: See `checklist.md`
 - **Completion record**: See `implementation-summary.md`
 - **Upstream evidence**: `../001-research/synthesis-v1.md` §2.6 (CF-SC-1..5), `../001-research/verification-v1.md` (CF-SC-1 CONFIRMED), `../001-research/review-v1.md` §4
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `007-durable-archiving-and-serving-snapshot`
+- Parent phase spec: `../spec.md`

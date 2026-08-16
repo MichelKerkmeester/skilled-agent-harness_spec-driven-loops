@@ -225,3 +225,4 @@ Correct or remove the false trigger_phrases routing claim; make the topology val
 - **Verification checklist**: See `checklist.md`
 - **Completion record**: See `implementation-summary.md`
 - **Upstream evidence**: `../001-research/synthesis-v1.md` §2.7 (CF-TPL-1..5), `../001-research/verification-v1.md`, `../001-research/review-v1.md` §4
+- Parent phase spec: `../spec.md`

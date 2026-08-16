@@ -1,4 +1,5 @@
 {
+  "level": "phase",
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
   "description": "Phase parent that activates the compiled unified-router contract on the parent hubs one at a time, in increasing blast-radius order: sk-code (evidence",
   "keywords": [

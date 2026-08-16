@@ -160,3 +160,7 @@ Per the master plan SHARED MIGRATION-GATE MODEL, this phase (`006/003`) owns two
 - **Phase parent / gate model**: `../../spec.md`
 - **Build approach**: `plan.md`
 - **Task breakdown**: `tasks.md`
+
+<!-- Structural phase adjacency: literal sibling folder names -->
+- Predecessor phase(s): `002-system-deep-loop`
+- Successor phase(s): `004-cli-external-orchestration`
