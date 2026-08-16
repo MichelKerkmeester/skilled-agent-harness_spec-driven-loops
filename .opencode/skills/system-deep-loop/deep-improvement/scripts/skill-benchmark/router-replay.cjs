@@ -544,6 +544,10 @@ function detectOpencodeLanguages(taskLower) {
 // hubs without one) yields null and is left on the normal path unchanged.
 function loadSurfaceRouter(skillRoot) {
   const candidates = [
+    // First-class root surface router (ROUTER.md pattern); additive — no
+    // existing skill has this file, so the two legacy paths below keep
+    // identical behavior for every current hub.
+    path.join(skillRoot, 'ROUTER.md'),
     path.join(skillRoot, 'shared', 'references', 'smart-routing.md'),
     path.join(skillRoot, 'references', 'smart-routing.md'),
   ];

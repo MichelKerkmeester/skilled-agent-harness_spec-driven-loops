@@ -1,6 +1,6 @@
 {
  "skill": "mcp-tooling",
- "version": "1.1.3.0",
+ "version": "1.1.4.0",
  "routerPolicy": {
   "defaultMode": null,
   "ambiguityDelta": 1,
@@ -19,7 +19,7 @@
    "defer": "unclear or contradictory tool intent asks for disambiguation"
   },
   "defaultResource": [
-   "shared/references/smart-routing.md",
+   "ROUTER.md",
    "mode-registry.json"
   ],
   "defaultResourceSemantics": "fallback-only",
