@@ -15,7 +15,12 @@ contextType: "implementation"
 
 These two items surfaced during the 031 remediation but were out of its scope. Neither is a regression from that work. Captured here so they are not lost.
 
-## FU-1 — Stale `smart_routing.md` (underscore) comments in the deep-alignment sk-code adapter (LOW, docs)
+## FU-1 — Stale `smart_routing.md` (underscore) comments in the deep-alignment sk-code adapter (LOW, docs) — DONE (commit fb54a91437)
+
+Fixed: the three comments now reference `sk-code/ROUTER.md`; `grep -c smart_routing.md` on the adapter = 0; `node --check` passes. (Done directly — the deepseek-flash gateway returned two empty sessions for this trivial fix; noted as a reliability observation.)
+
+### Original finding
+
 
 - **File:** `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs` lines 131, 134, 195.
 - **What:** Three CODE COMMENTS reference `smart_routing.md` (underscore variant) — e.g. `smart_routing.md's machine-readable MOTION_DEV keyword list`, `smart_routing.md §5`. That file never existed under the underscore name and the content it describes now lives in `sk-code/ROUTER.md` (the hub-root router; machine block preserved verbatim).
