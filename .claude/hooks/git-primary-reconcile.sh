@@ -1,0 +1,1 @@
+../../.opencode/bin/git-primary-reconcile.sh

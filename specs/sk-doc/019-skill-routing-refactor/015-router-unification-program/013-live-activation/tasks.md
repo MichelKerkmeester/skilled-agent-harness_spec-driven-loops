@@ -6,6 +6,22 @@ trigger_phrases:
   - "hub activation task list"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation"
+    last_updated_at: "2026-07-19T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Activated compiled routing for all seven hubs and proved byte-exact rollback"
+    next_safe_action: "Run strict validation and reconcile packet metadata"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Tasks: Unified Router Refactor — Live Activation
 
@@ -34,7 +50,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Author `lib/activate-hub.cjs` — the shared, zero-dependency fenced-CAS activation driver.
-- [x] T002 Frozen-scorer gate: re-hash the three shared scorer files and abort on any drift from the pinned digests.
+- [x] T002 Frozen-scorer gate: re-hash the three shared scorer files (`router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs`) and abort on any drift; each record reports `scorerDigestsPinned: true`.
 - [x] T003 Canary gate: execute each child's `harness/validate-canary.cjs`; abort on a non-zero exit.
 - [x] T004 Seed: byte-for-byte copy each child's prior + candidate manifests into `activation/<hub>/`; verify the seeded prior hash equals the accepted `priorManifestHash`.
 
