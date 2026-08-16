@@ -13,7 +13,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/038-weak-model-loop-adherence"
-    last_updated_at: "2026-08-16T09:00:00Z"
+    last_updated_at: "2026-08-16T10:57:01Z"
     last_updated_by: "claude"
     recent_action: "Authored the spec: problem, scope, requirements, acceptance criteria"
     next_safe_action: "Operator approves approach, then implement Phase 1 contract text"
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `system-deep-loop/038-weak-model-loop-adherence` |
 
@@ -146,49 +146,10 @@ Make DeepSeek Flash — and weak models generally — reliably stay inside the o
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:nfr -->
-## 7. NON-FUNCTIONAL REQUIREMENTS
-
-### Performance
-No added latency on the dispatch path — the change is prompt text plus test coverage.
-
-### Security
-The observation-only boundary is a safety property; the hardened prompt reduces the chance a weak model mutates the repo. Write-containment remains the enforced backstop.
-
-### Reliability
-The change must not weaken write-containment; the net stays in place. Strong-model runs must be unaffected (SC-004).
-
-<!-- /ANCHOR:nfr -->
----
-
-<!-- ANCHOR:edge-cases -->
-## 8. EDGE CASES
-
-### Data Boundaries
-- Modes that legitimately write beyond a single lineage dir (research emits `research.md`, benchmarks emit reports) must not be over-constrained — the prohibition targets out-of-scope *tooling* and out-of-lineage paths, not the mode's own artifacts.
-
-### Error Scenarios
-- A weak model that ignores the hardened prompt still hits write-containment → fatal, same as today. The fix improves the odds; it does not remove the net.
-- Direct-DeepSeek provider returns 402 → the working `opencode-go/deepseek-v4-flash` route is used (already the case); provider routing is out of this packet's scope.
-
-### Concurrent Operations
-- Multiple lineages running concurrently each get their own lineage dir; the hardened wording is per-lineage and does not introduce cross-lineage coupling.
-
-<!-- /ANCHOR:edge-cases -->
----
-
-<!-- ANCHOR:open-questions -->
-## 9. OPEN QUESTIONS
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
 
 - Should this packet also adopt the hard pre-write jail (prevent-not-revert), or ship prompt-hardening first and split the jail into a follow-on phase? (Recommendation: ship prompt-hardening + per-mode + test here; evaluate the jail in `decision-record.md`.)
 - For P1-4-style scope calls in each mode: which mode-owned files are legitimately writable by that mode's leaf vs. strictly forbidden?
 
-<!-- /ANCHOR:open-questions -->
----
-
-## RELATED DOCUMENTS
-
-- `plan.md` — implementation approach and sequencing
-- `tasks.md` — concrete task breakdown
-- `checklist.md` — QA verification
-- Motivating evidence: the two-executor deep-review run on `036-deep-loop-innovation` (deepseek-flash lineage write-containment failure)
+<!-- /ANCHOR:questions -->

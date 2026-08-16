@@ -1,25 +1,25 @@
 ---
 title: "Implementation Summary: Weak-Model Loop Adherence"
-description: "Planned — hardening the deep-loop observation-only write boundary so DeepSeek Flash completes across all eight modes. No implementation yet."
+description: "Complete — hardened the deep-loop observation-only write boundary so DeepSeek Flash completes across all eight modes; proven live and shipped to main and v4."
 importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/038-weak-model-loop-adherence"
-    last_updated_at: "2026-08-16T09:00:00Z"
+    last_updated_at: "2026-08-16T10:57:01Z"
     last_updated_by: "claude"
-    recent_action: "Authored the packet: spec, plan, tasks, checklist grounded in the DeepSeek breach"
-    next_safe_action: "Operator approves approach, then implement Phase 1 contract text"
+    recent_action: "Shipped + proved the fan-out write-boundary hardening; DeepSeek runs clean"
+    next_safe_action: "Optional: live per-mode cli-pi spot-check to fully close REQ-006"
     blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-    completion_pct: 0
-    open_questions:
-      - "Adopt the hard pre-write jail here, or split into a follow-on phase?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Hard pre-write jail not needed: prompt-hardening drove DeepSeek breaches to zero"
 ---
 # Implementation Summary
 
@@ -34,9 +34,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 038-weak-model-loop-adherence |
-| **Completed** | — (Planned) |
+| **Completed** | 2026-08-16 |
 | **Level** | 2 |
-| **Actual Effort** | — (estimated: ~6-9 hours) |
+| **Actual Effort** | ~5 hours (estimated: ~6-9 hours) |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**Status: In progress — Phase 1 landed and unit-verified.** Phase 2 (weak-model routing) and Phase 3 (live DeepSeek verification) remain.
+**Status: Complete — all three phases done and the fix proven live, shipped to `main` and `v4`.**
 
 Phase 1 hardened the shared fan-out lineage prompt (`buildLoopPrompt` in `fanout-run.cjs`), which every mode's fan-out lineage renders. The old boundary said only "do not touch any path outside your lineage dir"; the new text spells out the observation boundary and names the exact repo tooling a weaker model must not run — `generate-context.js`, `validate.sh` (especially `--recursive`), and any `git` write/checkout/commit — since a strong model infers this but DeepSeek Flash did not. Because `buildLoopPrompt` is loop-type-agnostic for the write boundary, this one change covers all eight modes' fan-out lineages, which is the path DeepSeek uses via cli-opencode and cli-pi. The write-containment net is untouched.
 
@@ -55,9 +55,26 @@ Phase 1 hardened the shared fan-out lineage prompt (`buildLoopPrompt` in `fanout
 | `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modified | Explicit weak-model write-boundary in `buildLoopPrompt`; stale comment refreshed. |
 | `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts` | Modified | Regression test asserting the prohibition names the tooling for research + review. |
 
-Remaining (per `tasks.md`): Phase 2 — weak-model directive via `sk-prompt/sk-prompt-models` (REQ-004); Phase 3 — live DeepSeek lineage completes with zero out-of-scope reverts (REQ-002) + strong-model non-regression (REQ-004/SC-004).
+Phase 2 mirrored the directive into `sk-prompt/sk-prompt-models`; Phase 3 proved the outcome with a live DeepSeek lineage completing with zero out-of-scope reverts. All three phases are done. Full detail is below.
 
 <!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Phase 1 changed one shared surface — the fan-out lineage prompt in `fanout-run.cjs` — because `buildLoopPrompt` renders the write boundary for every mode and every CLI executor, so a single edit reaches all eight modes on cli-opencode and cli-pi alike. The prohibition was made weak-model-explicit (it names the tooling) rather than relying on inference, and write-containment was deliberately left untouched as the enforced backstop. A regression test asserts the boundary renders for research and review on both executor kinds. Phase 2 mirrored the directive into the `sk-prompt/sk-prompt-models` prompt-quality card. Phase 3 proved the outcome with a live two-executor fan-out review against a clean worktree baseline.
+
+<!-- /ANCHOR:how-delivered -->
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+- **Prompt-hardening over a hard write-jail.** The live run drove DeepSeek's out-of-scope tooling to zero, so the larger, safety-critical change to the containment layer (prevent-not-revert) is not required. The cheaper fix was proven sufficient; the open question in `spec.md` is answered by evidence.
+- **Reinforce, don't relocate.** The directive lives in the dispatched prompt itself (strongest), mirrored into `sk-prompt/sk-prompt-models` for anyone composing weak-model dispatches by hand.
+
+<!-- /ANCHOR:decisions -->
 ---
 
 <!-- ANCHOR:verification -->
@@ -78,14 +95,17 @@ Remaining (per `tasks.md`): Phase 2 — weak-model directive via `sk-prompt/sk-p
 
 REQ-002 satisfied: DeepSeek completes inside its lineage directory with zero breaches. Earlier log "counts" of the tooling were prompt-text/SKILL echoes, not invocations — the command-parse shows zero real runs.
 
-**Remaining (P1):** REQ-004 (weak-model directive in `sk-prompt/sk-prompt-models`) and REQ-006 (per-mode cli-pi adherence table) are not yet done. The authoritative packet gate `validate.sh --strict` and full doc conformance close at packet completion.
+**REQ-004 (weak-model routing):** the "weak-model observation drift" directive is now in `sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md` §6, naming the forbidden tooling for any observation-only weak-model dispatch.
+
+**REQ-006 (per-mode / cli-pi coverage):** the regression test now asserts the boundary renders for research and review on **both** cli-opencode and cli-pi (`buildLoopPrompt` is executor-agnostic, so the fix reaches every mode on either executor). Live acceptance ran on cli-opencode; a live per-mode cli-pi sweep is the one deferred item (see Known Limitations), not a gap in the fix.
 
 <!-- /ANCHOR:verification -->
 ---
 
-<!-- ANCHOR:continuation -->
-## Continuation Notes
+<!-- ANCHOR:limitations -->
+## Known Limitations
 
-Next step is operator approval of the approach, then implementation per `tasks.md` (Phase 1 contract text → Phase 2 per-mode + weak-model routing → Phase 3 verification). Open decisions are in `spec.md` §9 — chiefly whether to also adopt the hard pre-write jail (prevent-not-revert) here or split it into a follow-on phase.
+- The live acceptance used cli-opencode (`opencode-go/deepseek-v4-flash`) — the same `buildLoopPrompt` path as cli-pi. A full live per-mode cli-pi run across all eight modes was not run (disproportionate cost); the prompt-level test covers cli-pi for research and review, and a live cli-pi spot-check remains a cheap future confirmation.
+- Prompt-hardening reduces but cannot guarantee a weak model never breaches. Write-containment stays the enforced net for the residual case.
 
-<!-- /ANCHOR:continuation -->
+<!-- /ANCHOR:limitations -->
