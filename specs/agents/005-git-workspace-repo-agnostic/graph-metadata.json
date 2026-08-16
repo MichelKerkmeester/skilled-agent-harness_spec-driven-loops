@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/005-git-workspace-repo-agnostic",
+  "spec_folder": "agents/005-git-workspace-repo-agnostic",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agents.md",
+      "repo agnostic",
+      "git workspace safety",
+      "sk-git",
+      "branch grammar",
+      "agents.md plan",
+      "agents.md tasks",
+      "agents.md summary"
+    ],
+    "key_topics": [
+      "agents",
+      "repo",
+      "agnostic",
+      "git",
+      "workspace",
+      "safety",
+      "sk-git",
+      "branch",
+      "grammar",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agnostic Git Workspace Rows",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Git Workspace Safety",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Git Workspace Safety",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mandatory Tools",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quick Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`AGENTS.md` (and its `CLAUDE.md` symlink) is a portable framework doc, yet its Git Workspace Safety rows hardcode this repo's sk-git implementation: the literal branch grammar, the allocator script path and command names, an allowlist filename, several env flag names, reference-doc paths, and an internal migration-program row",
+    "created_at": "2026-08-16T08:23:04.472Z",
+    "last_save_at": "2026-08-16T08:23:04.472Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2286e640f09a0e4c7795ce657323ec72b0adb1c536699ceccdf134a19b7ae502",
+    "source_doc_hashes": {
+      "spec.md": "44c92ba25d77c9169017bcd4b9c7337fc5a04eac1ec21da89622cc9571675380",
+      "plan.md": "b8f6275b9a716bcb5f0170a838d73aa2c9ac4da8e525c02e0e92a50ff610b86a",
+      "tasks.md": "d962210f9a8459e3808ec4f85ed8eb77727640c8f26cbe7edd0192ec45f5f757",
+      "implementation-summary.md": "bc34789bca6ee64814a6a5a35021ba60a3df32a546d6ac4e244c7ce9f61bde51"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
