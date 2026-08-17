@@ -145,7 +145,7 @@ function hermeticSpawnEnv() {
   };
 }
 
-test('production manifest is the exact bounded 16-scenario and 52-cell matrix', () => {
+test('production manifest is the exact bounded 15-scenario and 49-cell matrix', () => {
   const manifest = JSON.parse(fs.readFileSync(MATRIX_PATH, 'utf8'));
   const scenarioIds = new Set(manifest.requiredCells.map(({ scenarioId }) => scenarioId));
   const cellIds = new Set(manifest.requiredCells.map(({ id }) => id));
@@ -154,11 +154,11 @@ test('production manifest is the exact bounded 16-scenario and 52-cell matrix', 
     ({ cellKind }) => cellKind === 'alignment-leaf-sentinel',
   );
 
-  assert.equal(manifest.bounds.scenarioCount, 16);
-  assert.equal(scenarioIds.size, 16);
-  assert.equal(manifest.requiredCells.length, 52);
-  assert.equal(cellIds.size, 52);
-  assert.equal(drivers.length, 48);
+  assert.equal(manifest.bounds.scenarioCount, 15);
+  assert.equal(scenarioIds.size, 15);
+  assert.equal(manifest.requiredCells.length, 49);
+  assert.equal(cellIds.size, 49);
+  assert.equal(drivers.length, 45);
   assert.equal(leaves.length, 4);
   assert.ok(manifest.requiredCells.every(({ samples }) => samples === 1));
   assert.ok(drivers.every(({ skip }) => (
@@ -180,7 +180,7 @@ test('scheduler enumerates every required cell and reconciles all predeclared sk
   assert.equal(reconciliation.requiredCellCount, manifest.requiredCells.length);
   assert.equal(reconciliation.accountedCellCount, manifest.requiredCells.length);
   assert.equal(reconciliation.resultCount, 0);
-  assert.equal(reconciliation.skipCount, 52);
+  assert.equal(reconciliation.skipCount, 49);
   assert.deepEqual(
     reconciliation.cells.map(({ id }) => id),
     manifest.requiredCells.map(({ id }) => id),

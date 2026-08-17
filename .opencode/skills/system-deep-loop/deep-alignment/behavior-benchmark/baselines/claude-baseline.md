@@ -53,7 +53,6 @@ mechanical label, the raw label and the reason are footnoted.
 | DAB-014 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |
 | DAB-015 | question_halt | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |
 | DAB-016 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |
-| DAB-017 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |
 | DAB-018 | question_halt | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |
 | DAB-019 | autonomous | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |
 | DAB-020 | fail_fast | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) | pending (deferred live capture) |

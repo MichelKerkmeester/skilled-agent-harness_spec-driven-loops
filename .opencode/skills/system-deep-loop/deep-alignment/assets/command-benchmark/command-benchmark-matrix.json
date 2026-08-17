@@ -9,7 +9,6 @@
       "DAB-014",
       "DAB-015",
       "DAB-016",
-      "DAB-017",
       "DAB-018",
       "DAB-019",
       "DAB-020",
@@ -21,7 +20,7 @@
       "DAB-026",
       "DAB-027"
     ],
-    "scenarioCount": 16,
+    "scenarioCount": 15,
     "driverLegs": [
       {
         "legName": "claude-cli",
@@ -404,48 +403,6 @@
       "legName": "gpt-fast-med",
       "samples": 1,
       "fixtureRef": "DAB-016",
-      "skip": {
-        "code": "deferred_live_capture_pending_operator_green_light",
-        "reason": "deferred live capture pending operator green-light"
-      }
-    },
-    {
-      "id": "driver:DAB-017:claude-cli",
-      "cellKind": "driver",
-      "role": "claude-baseline",
-      "scenarioId": "DAB-017",
-      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-017-workflow-router-design-audit.md",
-      "legName": "claude-cli",
-      "samples": 1,
-      "fixtureRef": "DAB-017",
-      "skip": {
-        "code": "deferred_live_capture_pending_operator_green_light",
-        "reason": "deferred live capture pending operator green-light"
-      }
-    },
-    {
-      "id": "driver:DAB-017:gpt-fast-high",
-      "cellKind": "driver",
-      "role": "gpt-high-effort-driver",
-      "scenarioId": "DAB-017",
-      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-017-workflow-router-design-audit.md",
-      "legName": "gpt-fast-high",
-      "samples": 1,
-      "fixtureRef": "DAB-017",
-      "skip": {
-        "code": "deferred_live_capture_pending_operator_green_light",
-        "reason": "deferred live capture pending operator green-light"
-      }
-    },
-    {
-      "id": "driver:DAB-017:gpt-fast-med",
-      "cellKind": "driver",
-      "role": "gpt-fast-driver",
-      "scenarioId": "DAB-017",
-      "scenarioPath": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-017-workflow-router-design-audit.md",
-      "legName": "gpt-fast-med",
-      "samples": 1,
-      "fixtureRef": "DAB-017",
       "skip": {
         "code": "deferred_live_capture_pending_operator_green_light",
         "reason": "deferred live capture pending operator green-light"
