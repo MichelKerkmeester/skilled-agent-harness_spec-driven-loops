@@ -456,7 +456,26 @@ describe('fanout-run.cjs — max-iterations stop-reason tolerance', () => {
       stopPolicy: string;
       lineage: { iterations: number };
       stateRead: { missing?: boolean; parseError?: string | null; records: Array<Record<string, unknown>> };
+      lineageDir?: string;
     }) => string | null;
+  };
+
+  // A real research lineage never emits a review-style synthesis event; its terminal event is
+  // maxIterationsReached and it leaves research.md on disk. This helper reproduces that exact
+  // shape so the forced-depth validator is exercised through the artifact-completion fallback,
+  // which is where a research run is actually judged.
+  const makeResearchLineageDir = (iterations: number, withReport: boolean) => {
+    const dir = mkdtempSync(join(tmpdir(), 'fanout-research-forced-'));
+    mkdirSync(join(dir, 'iterations'), { recursive: true });
+    for (let i = 1; i <= iterations; i++) {
+      writeFileSync(join(dir, 'iterations', `iteration-${String(i).padStart(3, '0')}.md`), 'x');
+    }
+    if (withReport) writeFileSync(join(dir, 'research.md'), 'synthesis');
+    const records = [
+      ...Array.from({ length: iterations }, (_, index) => ({ type: 'iteration', iteration: index + 1 })),
+      { type: 'event', event: 'maxIterationsReached', stopReason: 'maxIterationsReached' },
+    ];
+    return { dir, stateRead: { missing: false, parseError: null, records } };
   };
 
   const stateReadFor = (stopReason: unknown, iterations = 10) => ({
@@ -498,6 +517,60 @@ describe('fanout-run.cjs — max-iterations stop-reason tolerance', () => {
       stateRead: stateReadFor('converged'),
     });
     expect(violation).toBe('expected stopReason=maxIterationsReached, got converged');
+  });
+
+  it('now enforces forced-depth for a research loop (previously gated out entirely)', () => {
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'research',
+      stopPolicy: 'max-iterations',
+      lineage: { iterations: 10 },
+      stateRead: stateReadFor('converged'),
+    });
+    expect(violation).toBe('expected stopReason=maxIterationsReached, got converged');
+  });
+
+  it('passes a complete research loop that ran every iteration under max-iterations', () => {
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'research',
+      stopPolicy: 'max-iterations',
+      lineage: { iterations: 10 },
+      stateRead: stateReadFor('maxIterationsReached'),
+    });
+    expect(violation).toBeNull();
+  });
+
+  it('leaves non-forced-depth research loops unvalidated (convergence stop policy)', () => {
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'research',
+      stopPolicy: 'convergence',
+      lineage: { iterations: 10 },
+      stateRead: stateReadFor('converged'),
+    });
+    expect(violation).toBeNull();
+  });
+
+  it('passes a real research forced-depth run: maxIterationsReached event + research.md on disk', () => {
+    const { dir, stateRead } = makeResearchLineageDir(10, true);
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'research',
+      stopPolicy: 'max-iterations',
+      lineage: { iterations: 10 },
+      stateRead,
+      lineageDir: dir,
+    });
+    expect(violation).toBeNull();
+  });
+
+  it('fails a research forced-depth run that is missing research.md', () => {
+    const { dir, stateRead } = makeResearchLineageDir(10, false);
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'research',
+      stopPolicy: 'max-iterations',
+      lineage: { iterations: 10 },
+      stateRead,
+      lineageDir: dir,
+    });
+    expect(violation).toContain('no research.md on disk');
   });
 });
 
@@ -1350,6 +1423,10 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'mimo-v2.5-pro': 'xiaomi',
       'mimo-v2.5-pro-ultraspeed': 'xiaomi',
       'qwen3.8-max': 'opencode-go',
+      // OpenRouter-routed variants dispatch as openrouter/<upstream>/<id>; the
+      // -latest Flash stays on the max thinking pin.
+      'deepseek/deepseek-v4-flash-latest': 'openrouter',
+      'openai/gpt-5.6-luna': 'openrouter',
     };
     for (const [model, provider] of Object.entries(providerByModel)) {
       const command = buildLineageCommand(
@@ -1360,10 +1437,11 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
         opts,
       ) as { command: string; args: string[]; effectiveConfig: { model: string } };
       expect(command.command).toBe('pi');
-      // DeepSeek V4 Flash is pinned to the max thinking tier, so it always carries
-      // --thinking max even when the lineage names no reasoningEffort; the other picker
-      // ids carry no --thinking here.
-      const expectedArgs = model === 'deepseek-v4-flash'
+      // DeepSeek V4 Flash (bare, provider-prefixed, or the OpenRouter -latest variant) is
+      // pinned to the max thinking tier, so it always carries --thinking max even when the
+      // lineage names no reasoningEffort; the other picker ids carry no --thinking here.
+      const isFlashPinned = /(^|\/)deepseek-v4-flash(-latest)?$/.test(model);
+      const expectedArgs = isFlashPinned
         ? ['-p', '--offline', '--model', `${provider}/${model}`, '--thinking', 'max', 'bounded prompt']
         : ['-p', '--offline', '--model', `${provider}/${model}`, 'bounded prompt'];
       expect(command.args).toEqual(expectedArgs);

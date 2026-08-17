@@ -1,0 +1,29 @@
+{
+  "level": 2,
+  "specFolder": "cli-external-orchestration/047-cli-pi-opencode-openrouter-roster",
+  "description": "DeepSeek V4 Flash and GPT-5.6 Luna already exist in both rosters, but only via non-OpenRouter providers (`opencode-go`, `openai-codex`, `openai`)",
+  "keywords": [
+    "deepseek",
+    "flash",
+    "gpt-5",
+    "luna",
+    "already",
+    "exist",
+    "rosters",
+    "only",
+    "via",
+    "non-openrouter",
+    "providers",
+    "opencode-go",
+    "openai-codex",
+    "openai"
+  ],
+  "lastUpdated": "2026-08-17T17:53:41.605Z",
+  "specId": "047",
+  "folderSlug": "cli-pi-opencode-openrouter-roster",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -164,6 +164,13 @@ export const PI_SUPPORTED_MODELS = [
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
+  // OpenRouter-routed variants. The id keeps the upstream provider path so that
+  // `${provider}/${model}` composes to the full OpenRouter selector
+  // (openrouter/deepseek/deepseek-v4-flash-latest, openrouter/openai/gpt-5.6-luna).
+  // They are distinct entries from the bare deepseek-v4-flash / gpt-5.6-luna ids,
+  // which route through opencode-go / openai-codex respectively.
+  'deepseek/deepseek-v4-flash-latest',
+  'openai/gpt-5.6-luna',
 ] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 
@@ -179,11 +186,13 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  * DeepSeek V4 Flash is a reasoning model, and operator policy pins it to the max
  * thinking tier: it is never dispatched at a lower effort. The id is bare on cli-pi
  * (`deepseek-v4-flash`) and provider-prefixed on cli-opencode
- * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the devin `-max`
- * uid already bakes the tier into the id and is intentionally not matched here.
+ * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the OpenRouter
+ * `-latest` variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family
+ * and is pinned too. The devin `-max` uid already bakes the tier into the id and is
+ * intentionally not matched here.
  */
 export function isFlashMaxPinnedModel(model: string): boolean {
-  return /(^|\/)deepseek-v4-flash$/.test(model);
+  return /(^|\/)deepseek-v4-flash(-latest)?$/.test(model);
 }
 
 /** Effective reasoning effort after the Flash max-tier pin: 'max' for Flash, else unchanged. */

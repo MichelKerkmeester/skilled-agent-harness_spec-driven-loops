@@ -45,6 +45,7 @@ user_inputs:
   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations. Default: 10."
   convergence_threshold: "[CONVERGENCE_THRESHOLD] - Stop threshold. Default: 0.05."
   convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
+  stop_policy: "[convergence|max-iterations] - Convergence stop policy; max-iterations forces the loop to run every iteration. Default: convergence."
 
 # ─────────────────────────────────────────────────────────────────
 # CONTEXT LOADING
@@ -168,7 +169,8 @@ workflow:
             --research-topic "{research_topic}" \
             --fanout-config-json '{config.fanout_json}' \
             --base-artifact-dir {artifact_dir} \
-            --convergence-threshold {convergence_threshold}
+            --convergence-threshold {convergence_threshold} \
+            --stop-policy {stop_policy}
         working_directory: "{repo_root}"
         wait_for_completion: true
 
@@ -182,7 +184,7 @@ workflow:
       step_preflight_contract:
         action: "Validate required setup bindings and executable workflow contract before any file writes"
         verify:
-          - required_values_present: [research_topic, spec_folder, max_iterations, convergence_threshold, convergence_mode]
+          - required_values_present: [research_topic, spec_folder, max_iterations, convergence_threshold, convergence_mode, stop_policy]
           - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
           - tool_contract: "FAIL if executable steps reference tools outside the command allowlist"

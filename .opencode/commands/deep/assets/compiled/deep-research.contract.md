@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "8618406ecbcdd41aa266d2fe9ebd8d0ba40dab1b34dc915798a1643be7c5888c",
+      "sha256": "020b88715c0765226a93522cc89f5e0855887b4692027f809961ff59eca536fc",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "9f64298b79c1b9a05b78278b80dcfafb21668ac900dedda4f864e57837a4edc2",
+      "sha256": "cdef3e7d11f89387bbba8212006f1588ca8b95906a5e5ffae8066cee0c26b150",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "bafec1aa180dd4b6a729d4c048db2d4b8680d391229a03b20af63d5da7396eda",
+      "sha256": "cec8a4eaffd662bc618bb2da7e681e388bc0bc26d59bbdef1c5a62c72c939281",
       "section": "full"
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "dc4a50f8b78bc24008b1676f4a4e47521d42194a5b418ebb9a1e57e8b0aa30d9",
+      "sha256": "9ba7361dd7c9571ebb03c29f50a278774bd905052a1f422dd7ed439e87e46741",
       "section": "full"
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "path": ".opencode/agents/deep-research.md",
-      "sha256": "5e75e886e293f282ba84b3a8d9bcf837e24dce0aed2c657f6fff8deba9134fad",
+      "sha256": "fbf6110894d1e64a41bd47362a17a29b581d0c815212d63ded0971f2bade50fe",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "1703201cb1169dc039e7852e3a8c42d411cf0e161636bc56f5a9d344ec9a8589"
+  "compiledBodyDigest": "e6bac05cdb08bf5def0411332a7725b52ad34319e25b542e6380bced10fb6779"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -206,6 +206,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 | `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default                                                                                                                                            | `10`                               | N                                                       |
 | `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
 | `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
+| `stop_policy`           | Y        | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default                                                                                                                      | `convergence`                      | N                                                       |
 | `executor`              | N        | flag `--executor`, marker `executor`, config file, or default                                                                                                                                          | `native`                           | N                                                       |
 | `executor_model`        | N        | flag `--model`, marker `executor_model`, or executor-specific validation                                                                                                                               | none                               | N                                                       |
 | `executor_config_dir`   | N        | flag `--config-dir`, marker `executor_config_dir`, or executor-specific default                                                                                                                        | none                               | N                                                       |

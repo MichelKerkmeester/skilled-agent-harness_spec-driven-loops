@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":6,"run":6,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.5,"status":"complete","focus":"F4 Cursor .mcp.json resolution chain","findingsCount":3,"keyQuestions":["F4 where env lives?"],"answeredQuestions":["F4 Cursor-scoped config env/envFile"],"timestamp":"2026-08-17T18:24:00.000Z","durationMs":45000,"sessionId":"fanout-pi-flash-or-1786990303810-r1u8es","generation":1}
+{"type":"finding","id":"f-it006-001","severity":"P1","label":"Cursor reads .cursor/mcp.json (project) symlinked to .mcp.json/.claude/mcp.json; env lives in Cursor scope not .claude/mcp.json","iteration":6}
+{"type":"finding","id":"f-it006-002","severity":"P2","label":"Per-server env via env block or envFile in .cursor/mcp.json","iteration":6}
+{"type":"finding","id":"f-it006-003","severity":"P2","label":"Docs gap: hooks/cursor/mcp.json is portable reference not owned source","iteration":6}
+{"type":"observation","id":"obs-it006-001","classification":"real","label":".cursor/mcp.json symlinks to .mcp.json to .claude/mcp.json; shared-with-editor surface","iteration":6}
+{"type":"ruled_out","direction":"general env read from .claude/mcp.json","reason":"Cursor honors its own scope only","iteration":6}

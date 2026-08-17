@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":7,"run":7,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.6,"status":"complete","focus":"F5a base64 Incorrect padding","findingsCount":3,"keyQuestions":["F5a root cause?"],"answeredQuestions":["F5a strict b64decode on unpadded data URL"],"timestamp":"2026-08-17T18:25:00.000Z","durationMs":40000,"sessionId":"fanout-pi-flash-or-1786990303810-r1u8es","generation":1}
+{"type":"finding","id":"f-it007-001","severity":"P0","label":"_resolve_image data branch uses strict b64decode; unpadded/URL-safe data URLs fail","iteration":7}
+{"type":"finding","id":"f-it007-002","severity":"P1","label":"Durable fix: tolerant decode (strip, altchars, repad) in runtime.py _resolve_image","iteration":7}
+{"type":"finding","id":"f-it007-003","severity":"P2","label":"Fails before model load; host-independent (single Python runtime)","iteration":7}
+{"type":"observation","id":"obs-it007-001","classification":"real","label":"path param bypasses base64 path entirely; local python verification confirms error","iteration":7}
+{"type":"ruled_out","direction":"TS-side padding fix","reason":"decoder lives in Python; one fix covers all hosts","iteration":7}
