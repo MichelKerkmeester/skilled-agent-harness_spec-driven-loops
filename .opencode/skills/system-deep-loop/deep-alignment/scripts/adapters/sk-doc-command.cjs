@@ -88,6 +88,13 @@ const KNOWN_DEVIATIONS_MD = path.resolve(
 );
 
 const referenceChecks = require(REFERENCE_CHECKS_CJS);
+const { isCanonicalMirrorExcluded } = require(path.join(
+  SKILLS_DIR,
+  'system-spec-kit',
+  'scripts',
+  'runtime-mirrors',
+  'command-scope.cjs',
+));
 
 const FINDING_RULES = Object.freeze({
   'mirror-missing': ['CMD-S1-MIRROR-MISSING', 'P0', 'S1'],
@@ -221,7 +228,13 @@ function discover(scope) {
     throw new Error(`discover(scope): unknown scope.type "${scope.type}"`);
   }
 
-  const inventory = referenceChecks.inspectCommandSurface(REPO_ROOT).inventory;
+  // Runtime-native commands the Codex prompt mirror excludes by design are absent
+  // from the prompt-sync count, so drop them from the surface before reconciling.
+  const inventory = referenceChecks
+    .inspectCommandSurface(REPO_ROOT)
+    .inventory.filter(
+      (entry) => !isCanonicalMirrorExcluded(path.relative('.opencode/commands', entry.source)),
+    );
   const sync = runSyncInventoryCheck();
   if (!sync.ok) {
     throw new Error(`discover(scope): prompt-sync inventory check failed with exit ${sync.exitCode}`);
