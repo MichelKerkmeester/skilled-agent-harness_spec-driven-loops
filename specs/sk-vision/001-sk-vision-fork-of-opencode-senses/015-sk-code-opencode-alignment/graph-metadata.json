@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-opencode-alignment",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-opencode-alignment",
+  "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision code alignment",
+      "sk-vision adapter jsdoc",
+      "sk-vision inline comments",
+      "sk-vision code alignment plan",
+      "sk-vision code alignment tasks",
+      "sk-vision code alignment checklist",
+      "sk-vision code alignment summary"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "code",
+      "alignment",
+      "adapter",
+      "jsdoc",
+      "inline",
+      "comments",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "sparse"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-vision adapter code was sparse on documentation: `vision-runtime/src/mcp/server.ts` had 2 comment lines across 82, `hooks/pi/sk-vision.ts` 11 across 489",
+    "created_at": "2026-08-17T12:51:39.874Z",
+    "last_save_at": "2026-08-17T12:52:34.005Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:46e055d80c356960ff136bdca04815b583ee2f2ba7a33e94b751906d3b43262f",
+    "source_doc_hashes": {
+      "spec.md": "2701a6a7849502bb9c2d8cea77a866f72bee90c9481a54bb71acccf7a25e4983",
+      "plan.md": "1735e7af768f11b18cd7d07ccd5fd473f71ba6e545f6a23a49eb71b14fef60a1",
+      "tasks.md": "1bce9d8bbc2a675b2c6d848eb71eb2afa83c0939622adb04e6c072e1438916a2",
+      "checklist.md": "9b294d4de66ebc4b01d070668bf08704984706793f08ecee2b3e206fdbe15853",
+      "implementation-summary.md": "23def1740006b57f0a2abc7f648e195bf6f7fe182fdfdce8cb4b269750311307"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

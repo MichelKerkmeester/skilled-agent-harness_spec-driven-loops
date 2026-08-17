@@ -1,3 +1,16 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: sk-vision Pi Extension (host adapter)                          ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Register the 13 sk_vision_* tools with Pi and auto-inspect       ║
+// ║          attached images, backed by the shared vision-runtime core.       ║
+// ║          Pi loads this TypeScript source directly, so it imports the      ║
+// ║          runtime from src/ (no build step, unlike the OpenCode adapter).  ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
 import { RuntimeClient, SkVisionError } from "../../.opencode/skills/sk-vision/vision-runtime/src/runtime/client.ts";
@@ -5,27 +18,65 @@ import { PhotonProvider } from "../../.opencode/skills/sk-vision/vision-runtime/
 import contextBuilder from "../../.opencode/skills/sk-vision/vision-runtime/src/core/context-builder.ts";
 import type { BBox, ImageSource, VisionHealth } from "../../.opencode/skills/sk-vision/vision-runtime/src/providers/types.ts";
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. SHARED HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Shared image-parameter schema: every tool accepts either a file `path` or a base64 `image`. */
 const PathImageParams = {
   path: Type.Optional(Type.String({ description: "Path to the image file, relative to the current project." })),
   image: Type.Optional(Type.String({ description: "Image as a base64 data URL (data:image/...;base64,...)." })),
 };
 
+/**
+ * Normalize the two accepted image inputs into a single runtime source.
+ * Inline `image` wins over `path` so a caller can override a stale file.
+ *
+ * @param path - Project-relative image path, if any.
+ * @param image - Base64 data URL, if any.
+ * @returns The runtime image source.
+ * @throws {SkVisionError} `INVALID_INPUT` when neither input is provided.
+ */
 function makeImageSource(path: string | undefined, image: string | undefined): ImageSource {
   if (image) return { type: "data", data: image };
   if (path) return { type: "path", path };
   throw new SkVisionError("INVALID_INPUT", "must provide either 'path' or 'image'");
 }
 
+/**
+ * Human-readable label for evidence blocks — the file path, or a placeholder
+ * for inline images that have no path to show.
+ *
+ * @param args - The tool params carrying an optional `path`.
+ * @returns The source label.
+ */
 function sourceLabel(args: { path?: string }): string {
   return args.path ?? "inline-image";
 }
 
+/**
+ * Render any thrown error as a stable, host-safe text result. Every tool routes
+ * failures through here so a bad image degrades to a plain message instead of
+ * crashing the Pi session, and the code is preserved when it is an sk-vision error.
+ *
+ * @param err - The caught error.
+ * @returns The `SK_VISION_ERROR (<CODE>): <message>` text.
+ */
 function fail(err: unknown): string {
   const isSkVision = err instanceof SkVisionError;
   const message = (err as Error).message;
   return `SK_VISION_ERROR (${isSkVision ? (err as SkVisionError).code : "UNKNOWN"}): ${message}\n\nThe image could not be analyzed. Report this to the user plainly.`;
 }
 
+/**
+ * Parse and validate a normalized bbox string into ordered coordinates.
+ * Validation happens here rather than in the runtime so an obviously malformed
+ * box is rejected before a subprocess round-trip.
+ *
+ * @param s - Comma-separated `x1,y1,x2,y2` in the 0-1 range.
+ * @returns The parsed bounding box.
+ * @throws {SkVisionError} `INVALID_INPUT` when the shape is wrong or unordered.
+ */
 function parseBBox(s: string): BBox {
   const parts = s.split(",").map((p) => Number(p.trim()));
   if (parts.length !== 4 || parts.some((p) => !Number.isFinite(p))) {
@@ -38,18 +89,41 @@ function parseBBox(s: string): BBox {
   return { x1, y1, x2, y2 };
 }
 
+/**
+ * Wrap plain text in the Pi tool-result envelope.
+ *
+ * @param text - The rendered evidence or error text.
+ * @returns The `{ content: [...] }` result Pi expects.
+ */
 function textResult(text: string) {
   return { content: [{ type: "text" as const, text }] };
 }
 
-/** Pi extension factory: registers sk-vision tools backed by the shared Python runtime. */
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. EXTENSION FACTORY (tool registration + lifecycle)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Pi extension entry point. Opens one runtime client for the extension's
+ * lifetime, registers the 13 `sk_vision_*` tools plus the attached-image
+ * auto-inspect hook, and closes the client on session shutdown.
+ *
+ * @param pi - The Pi extension API used to register tools and event handlers.
+ */
 export default function skVision(pi: ExtensionAPI): void {
+  // One long-lived runtime client for the whole extension; the Python
+  // subprocess and its warm model are reused across every tool call and closed
+  // once on `session_shutdown`.
   const client = new RuntimeClient();
 
+  // A fresh provider per call binds the shared client to the caller's cwd so
+  // relative image paths resolve against the active project, not the extension.
   function provider(ctx: ExtensionContext): PhotonProvider {
     return new PhotonProvider(client, { projectDir: ctx.cwd });
   }
 
+  // ── Tools ── each registration validates params, calls the provider, and
+  // renders a <SK-VISION> evidence block; all failures route through fail().
   pi.registerTool({
     name: "sk_vision_inspect",
     label: "sk-vision inspect",
@@ -398,6 +472,9 @@ export default function skVision(pi: ExtensionAPI): void {
     },
   });
 
+  // ───────────────────────────────────────────────────────────────────────────
+  // 4. AUTO-INSPECT (attached images)
+  // ───────────────────────────────────────────────────────────────────────────
   // Bounded auto-inspect for attached images. A message that carries images
   // gets a short analysis window so fast submitters still see real evidence,
   // mirroring the OpenCode AttachmentInjector. The handler never blocks
@@ -407,6 +484,17 @@ export default function skVision(pi: ExtensionAPI): void {
   const inputEvidenceCache = new Map<string, string>();
   const maxInputEvidenceEntries = 32;
 
+  /**
+   * Analyze the images attached to a message and return a combined evidence
+   * block, or `undefined` when nothing is ready. Each image races its analysis
+   * against a 2-second grace so submission stays fast; a miss warms the cache so
+   * a resend of the same image is instant. Results are keyed by image bytes and
+   * the cache is bounded, so identical images never re-pay the GPU.
+   *
+   * @param images - The attached images (base64 data + MIME type).
+   * @param ctx - The Pi execution context, for cwd-scoped source resolution.
+   * @returns The joined `<SK-VISION>` evidence text, or `undefined`.
+   */
   async function inspectAttachedImages(
     images: Array<{ data: string; mimeType: string }>,
     ctx: ExtensionContext,
@@ -466,6 +554,14 @@ export default function skVision(pi: ExtensionAPI): void {
     return blocks.length > 0 ? blocks.join("\n") : undefined;
   }
 
+  // ───────────────────────────────────────────────────────────────────────────
+  // 5. LIFECYCLE HANDLERS
+  // ───────────────────────────────────────────────────────────────────────────
+
+  // Inject evidence for user-attached images. The guard clauses skip cases that
+  // must never be analyzed or transformed: extension-sourced traffic (avoids a
+  // feedback loop), mid-stream "steer" edits, and messages with no images. Any
+  // failure falls through to `continue` so submission is never blocked.
   pi.on("input", async (event, ctx) => {
     try {
       if (event.source === "extension") return { action: "continue" as const };
@@ -483,6 +579,8 @@ export default function skVision(pi: ExtensionAPI): void {
     }
   });
 
+  // Release the Python subprocess and its GPU-resident model back to the host
+  // when the session ends.
   pi.on("session_shutdown", async () => {
     await client.close();
   });
