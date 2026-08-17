@@ -15,6 +15,8 @@ skill_pointer: SKILL.md
 
 # system-deep-loop Surface Router — per-mode leaf sets
 
+## 1. OVERVIEW
+
 This is system-deep-loop's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub selects a
 workflow mode in [`hub-router.json`](hub-router.json) (`research`,
@@ -31,7 +33,7 @@ emits leaf paths, and this router never re-decides the mode.
 
 ---
 
-## 1. INTENT MODEL
+## 2. INTENT MODEL
 
 - **research leaves** — the deep-research loop protocol, externalized state, and
   convergence references a `/deep:research` iteration loads.
@@ -54,7 +56,7 @@ intent and falls back to the hub default (disambiguation).
 
 ---
 
-## 2. MACHINE-READABLE ROUTER (replay / benchmark source)
+## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
 
 The single machine-readable projection of the intent model above. The prose is
 the human-facing contract; this block is the byte-for-byte source the
@@ -117,7 +119,7 @@ RESOURCE_MAP = {
 
 ---
 
-## 3. HOW TO READ THIS
+## 4. HOW TO READ THIS
 
 - One dominant intent routes to one mode's leaf set.
 - Two near-tied intents (within the ambiguity delta) route to both leaf sets; the

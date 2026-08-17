@@ -15,9 +15,11 @@ skill_pointer: SKILL.md
 
 # sk-doc Surface Router — per-intent leaf sets
 
+## 1. OVERVIEW
+
 This is sk-doc's second-layer (surface) router, first-class at the hub root as
 `ROUTER.md`. The hub selects a workflow mode in [`hub-router.json`](hub-router.json)
-(sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command,
+(sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command,
 sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark,
 sk-create-diagram, sk-create-changelog, sk-create-diff, or sk-create-quality-control);
 this doc maps a request's documentation/authoring intent to the exact packet-local
@@ -31,8 +33,64 @@ enumerates the whole hub.
 Routing is two stages: the hub picks the WORKFLOW mode (mode telemetry), this
 router picks the LEAVES within it. The two layers stay separate — the hub never
 emits leaf paths, and this router never re-decides the mode.
+---
 
-## 2. MACHINE-READABLE ROUTER (replay / benchmark source)
+## 2. INTENT MODEL
+
+- **doc-quality leaves** — the validation rules, core standards, evergreen
+  packet-id rule, and the quality-control workflow a request to validate, audit,
+  or score documentation against sk-doc standards loads. Fired by "documentation
+  quality / validate documentation / review the docs / audit the docs / pass
+  review" requests.
+- **optimization leaves** — the optimization reference and the llms.txt templates
+  a request to compress, trim, or token-optimize a doc, or emit a machine-readable
+  index loads. Fired by "optimize / token efficiency / llms.txt / reduce tokens /
+  slim down" requests.
+- **skill-creation leaves** — the skill creation workflow and the skill.md /
+  readme / reference templates a request to scaffold or author a new skill loads.
+  Fired by "create a skill / skill.md scaffold / resource_map wiring / package a
+  capability" requests.
+- **agent-command leaves** — the agent and command READMEs and templates a
+  request to author a paired agent plus a `/create` command loads. Fired by
+  "agent and paired / paired /create / @analyze agent" requests.
+- **flowchart leaves** — the simple-workflow and decision-tree ASCII patterns a
+  request to diagram a flow as ASCII / text characters loads. Fired by
+  "flowchart / ascii / text diagram / decision tree / process diagram" requests.
+- **install-guide leaves** — the install-guide template and the readme README a
+  request to author install / setup instructions loads. Fired by "install guide /
+  setup instructions / how to install / running from scratch" requests.
+- **hvr leaves** — the HVR rules reference a request governed by the
+  hidden-variation rule loads. Fired by "hvr" requests.
+- **playbook leaves** — the manual-testing-playbook README a request to author a
+  manual testing playbook loads. Fired by "playbook system / manual testing
+  playbook / testing playbook" requests.
+- **feature-catalog leaves** — the feature-catalog README a request to inventory a
+  project's features / capabilities loads. Fired by "feature catalog / feature
+  inventory / capabilities" requests.
+- **readme-creation leaves** — the readme README and readme template a request to
+  author a project README / front-page overview loads. Fired by "create a readme /
+  readme for / project overview / landing doc" requests.
+- **changelog leaves** — the changelog template a request to author release notes
+  / version notes loads. Fired by "changelog / release notes / what shipped /
+  since the last version" requests.
+- **benchmark leaves** — the benchmark shared README, worked example, and report
+  template a request to author a behavior / conformance / model / skill benchmark
+  loads. Fired by "create a benchmark / benchmark suite / behavior benchmark /
+  skill benchmark" requests.
+- **diff leaves** — the diff README, workflow, and worked example a request to
+  produce a before/after document diff loads. Fired by "document diff / before
+  and after diff / visual document diff" requests.
+- **full-inventory leaves** — the entire sk-doc toolkit. `FULL_INVENTORY` is the
+  single explicit full-toolkit intent; no other intent enumerates the whole hub.
+  Fired only by an explicit "show the full sk-doc toolkit / everything sk-doc
+  offers" request.
+
+A single dominant documentation axis routes to one mode's leaf set; two clearly
+separate axes route to both.
+
+---
+
+## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
 
 The single machine-readable projection of the intent model above. The prose is the
 human-facing contract; this block is the byte-for-byte source the deterministic
@@ -237,7 +295,7 @@ RESOURCE_MAP = {
 }
 ```
 
-## How to read this
+## 4. HOW TO READ THIS
 
 - One dominant intent routes to one mode's leaf set.
 - Two near-tied intents (within the ambiguity delta) route to both leaf sets; the

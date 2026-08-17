@@ -72,7 +72,10 @@ function routerText(state, { intents, resources, defaults = '[]', pointer = 'SKI
   const resourcesBlock = resources === undefined ? 'RESOURCE_MAP = {}' : (resources === null ? '' : `RESOURCE_MAP = ${resources}`);
   const defaultsLine = defaults === null ? '' : `DEFAULT_RESOURCE = ${defaults}`;
   const sharedLine = sharedControls === null ? '' : `SHARED_CONTROL_RESOURCES = ${sharedControls}`;
-  return `${frontmatter}\n\n# Fixture Router\n\n## 1. MACHINE-READABLE ROUTER\n\n` +
+  return `${frontmatter}\n\n# Fixture Router\n\n` +
+    '## 1. OVERVIEW\n\nThe fixture hub surface router.\n\n' +
+    '## 2. INTENT MODEL\n\nThe fixture intents this router selects.\n\n' +
+    '## 3. MACHINE-READABLE ROUTER\n\n' +
     '```python\n' +
     `${defaultsLine}\n\n` +
     `${intentsBlock}\n\n` +
@@ -249,6 +252,16 @@ function testRealShapeActiveSharedControlFixture() {
     'skill_pointer: SKILL.md',
     '---',
     '# demo-hub Surface Router',
+    '',
+    '## 1. OVERVIEW',
+    '',
+    'The demo-hub surface router.',
+    '',
+    '## 2. INTENT MODEL',
+    '',
+    'The demo-hub intents this router selects.',
+    '',
+    '## 3. MACHINE-READABLE ROUTER',
     '```python',
     'DEFAULT_RESOURCE = []',
     '',
@@ -670,4 +683,32 @@ testMappedResourcePathAbsolute();
 testSharedControlTraversal();
 testActiveMalformedIntentSignals();
 testActiveMalformedDefaultResource();
+
+function testMissingProseSectionRaisesRRC009() {
+  // A router with a valid machine block but no orienting prose still parses and
+  // routes, so only the section check catches its regression into a bare block.
+  const withProse = validate({
+    routerText: routerText('active', { intents: ACTIVE_INTENTS, resources: ACTIVE_RESOURCES }),
+  });
+  assert.ok(
+    !codesOf(withProse).includes('RRC-009'),
+    'a router carrying OVERVIEW + INTENT MODEL must not raise RRC-009',
+  );
+
+  const noProse = [
+    '---', 'title: fixture router', 'version: 1.0.0.0',
+    'router_state: active', 'skill_pointer: SKILL.md', '---',
+    '', '# Fixture Router', '', '## 1. MACHINE-READABLE ROUTER', '',
+    '```python', 'DEFAULT_RESOURCE = []', '',
+    `INTENT_SIGNALS = ${ACTIVE_INTENTS}`, '',
+    `RESOURCE_MAP = ${ACTIVE_RESOURCES}`, '',
+    'SHARED_CONTROL_RESOURCES = []', '```', '',
+  ].join('\n');
+  const codes = codesOf(validate({ routerText: noProse }));
+  assert.ok(
+    codes.includes('RRC-009'),
+    `a router missing OVERVIEW/INTENT MODEL must raise RRC-009 (got ${codes.join(', ') || 'none'})`,
+  );
+}
+testMissingProseSectionRaisesRRC009();
 console.log('[root-router-contract] all positive and negative fixtures passed');
