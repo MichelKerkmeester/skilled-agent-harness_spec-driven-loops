@@ -94,6 +94,8 @@ Locked tool names (do not add or rename):
 
 The runtime lazy-loads the model on the first inference request (default `moondream2`), keeps it warm across calls, and can be told to unload so the GPU is released back to the host model. `load` warms it explicitly; `unload` frees it; `status` reports load state, device, VRAM, and request count.
 
+`sk_vision_ocr` requires a Moondream 3.x checkpoint — the default `moondream2` cannot transcribe text and now fails loudly (the runtime enforces the `ocr` task). Set `SK_VISION_MODEL=moondream3-preview` for OCR, and treat its output as approximately correct (a preview checkpoint can repeat tokens), verifying against ground truth when exactness matters.
+
 ### Host adapters
 
 - **OpenCode** — `.opencode/plugins/sk-vision.js` is a real file that re-exports `vision-runtime/dist/plugin.js`. The plugin auto-inspects attached images with a 2-second grace period before message submission and injects a `<SK-VISION>` evidence block; it never awaits the full GPU run on the submit path.
