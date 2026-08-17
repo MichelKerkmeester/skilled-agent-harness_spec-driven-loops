@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Planned deterministic integration suite"
-    next_safe_action: "Map observable boundaries and extend the fake"
+    last_updated_at: "2026-08-17T03:34:46Z"
+    last_updated_by: "claude-code"
+    recent_action: "FakePi coverage delivered across config/lifecycle/status/handoff"
+    next_safe_action: "Continue to 002-install-transition"
     blockers: []
     key_files: ["../../research/research.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,9 +54,9 @@ Mirror the upstream structural FakePi: capture registrations and invoke handlers
 - [x] Research names the FakePi and layered testing approach.
 
 ### Definition of Done
-- [ ] Cross-boundary cases pass.
-- [ ] Full Vitest and typecheck pass.
-- [ ] No settings/npm mutation occurs.
+- [x] Cross-boundary cases pass.
+- [x] Full Vitest and typecheck pass.
+- [x] No settings/npm mutation occurs.
 
 
 <!-- /ANCHOR:quality-gates -->
@@ -82,16 +82,16 @@ Extension factory → fake registrations → lifecycle invocation → observable
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Inventory upstream tests and identify missing cross-boundary rows.
-- [ ] Define temporary directory cleanup and model fixtures.
+- [x] Inventory upstream tests and identify missing cross-boundary rows.
+- [x] Define temporary directory cleanup and model fixtures.
 
 ### Phase 2: Core Implementation
-- [ ] Extend the FakePi and config fixture helpers.
-- [ ] Add model selection, status, handoff, and command registration cases.
+- [x] Extend the FakePi and config fixture helpers.
+- [x] Add model selection, status, handoff, and command registration cases.
 
 ### Phase 3: Verification
-- [ ] Run focused suites, then full Vitest and typecheck.
-- [ ] Capture a clean settings/npm status proving no install mutation.
+- [x] Run focused suites, then full Vitest and typecheck.
+- [x] Capture a clean settings/npm status proving no install mutation.
 
 
 <!-- /ANCHOR:phases -->

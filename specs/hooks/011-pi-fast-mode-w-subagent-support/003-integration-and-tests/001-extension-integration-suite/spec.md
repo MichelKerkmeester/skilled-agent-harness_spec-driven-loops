@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Planned extension integration suite child phase"
-    next_safe_action: "Map cross-boundary cases and extend the FakePi harness"
+    last_updated_at: "2026-08-17T03:34:46Z"
+    last_updated_by: "claude-code"
+    recent_action: "Extension-boundary suite complete: typecheck exit 0, 76 tests passed"
+    next_safe_action: "Continue to 002-install-transition"
     blockers: []
     key_files:
       - "../../research/research.md"
@@ -23,9 +23,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "get_commands ownership stays live-only via RPC; the in-process suite covers registration, lifecycle, config, status, and handoff."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -39,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

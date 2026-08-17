@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Decomposed integration into suite, install, and live closeout phases"
-    next_safe_action: "Execute the suite, install-transition, then live-verification children in order"
+    last_updated_at: "2026-08-17T03:34:48Z"
+    last_updated_by: "claude-code"
+    recent_action: "Integration workstream complete: suite, install, live closeout all green"
+    next_safe_action: "Close out the 011-pi-fast-mode-w-subagent-support packet"
     blockers: []
     key_files:
       - "../spec.md"
@@ -23,11 +23,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Which local, git, or npm source should the settings entry pin for the first install?"
-      - "Which live TUI/RPC evidence is available for the custom-footer and child-session claims?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The settings entry pins the local package path; npm publication stays deferred."
+      - "RPC setStatus request JSON plus child-env captures on openai-codex/gpt-5.6-luna provide the live evidence."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -96,9 +96,9 @@ Prove the completed extension across package boundaries and the live environment
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-extension-integration-suite/` | Deterministic cross-boundary tests, static gates, and regression coverage | draft |
-| 2 | `002-install-transition/` | Rollback snapshot, package replacement, settings/npm state, and bare command ownership | draft |
-| 3 | `003-live-verification-and-sync/` | Live UI/handoff proof, PLUGINS.md, sync, and reversible closeout | draft |
+| 1 | `001-extension-integration-suite/` | Deterministic cross-boundary tests, static gates, and regression coverage | complete |
+| 2 | `002-install-transition/` | Rollback snapshot, package replacement, settings/npm state, and bare command ownership | complete |
+| 3 | `003-live-verification-and-sync/` | Live UI/handoff proof, PLUGINS.md, sync, and reversible closeout | complete |
 
 ### Phase Transition Rules
 

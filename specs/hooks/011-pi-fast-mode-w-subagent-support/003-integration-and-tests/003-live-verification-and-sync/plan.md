@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Planned live verification and sync"
-    next_safe_action: "Run live session checks after command ownership passes"
+    last_updated_at: "2026-08-17T03:36:31Z"
+    last_updated_by: "claude-code"
+    recent_action: "Live verification + sync closeout complete; sync --check exit 0"
+    next_safe_action: "Close out the 003-integration-and-tests workstream"
     blockers: []
     key_files: ["../../../../../.pi/PLUGINS.md", "../../../../../.pi/SYNC.md", "../../research/research.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,9 +55,9 @@ After install ownership passes, run the real `/fast` and child-session probes. T
 - [x] Research identifies `setStatus` as composable and RPC-safe compared with `setFooter`.
 
 ### Definition of Done
-- [ ] Live toggle, status, and child handoff evidence exists.
-- [ ] PLUGINS.md and sync checks pass.
-- [ ] Rollback and final no-stray-file checks are recorded.
+- [x] Live toggle, status, and child handoff evidence exists.
+- [x] PLUGINS.md and sync checks pass.
+- [x] Rollback and final no-stray-file checks are recorded.
 
 
 <!-- /ANCHOR:quality-gates -->
@@ -96,17 +96,17 @@ Installed fork → live toggle → namespaced status/env → child session → r
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm install post-state and choose supported model/session mode.
-- [ ] Define evidence filenames without storing credentials.
+- [x] Confirm install post-state and choose supported model/session mode.
+- [x] Define evidence filenames without storing credentials.
 
 ### Phase 2: Core Verification
-- [ ] Run `/fast on`, `/fast off`, and explicit flag checks.
-- [ ] Run an RPC-mode session and capture the namespaced `setStatus("pi-fast-mode-w-subagent-support", ...)` request JSON as the indicator proof; record a TUI capture only as an optional supplement.
-- [ ] Spawn a real child on `openai-codex/gpt-5.6-luna` (serviceTier priority) and capture that it inherited `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1` and applied the handoff state.
+- [x] Run `/fast on`, `/fast off`, and explicit flag checks.
+- [x] Run an RPC-mode session and capture the namespaced `setStatus("pi-fast-mode-w-subagent-support", ...)` request JSON as the indicator proof; record a TUI capture only as an optional supplement.
+- [x] Spawn a real child on `openai-codex/gpt-5.6-luna` (serviceTier priority) and capture that it inherited `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1` and applied the handoff state.
 
 ### Phase 3: Closeout
-- [ ] Alpha-sort `.pi/PLUGINS.md` (fork in, legacy removed) and run `sync-pi-configs.sh --check`; require exit 0.
-- [ ] Inspect the final diff/status and record the rollback receipt (fork removal, legacy reinstall, settings/docs revert).
+- [x] Alpha-sort `.pi/PLUGINS.md` (fork in, legacy removed) and run `sync-pi-configs.sh --check`; require exit 0.
+- [x] Inspect the final diff/status and record the rollback receipt (fork removal, legacy reinstall, settings/docs revert).
 
 
 <!-- /ANCHOR:phases -->
