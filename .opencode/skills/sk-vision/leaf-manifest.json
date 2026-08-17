@@ -2,7 +2,22 @@
   "modes": [
     {
       "leaves": [
-        "references/runtime-reference.md"
+        "feature-catalog/host-adapters/opencode-plugin.md",
+        "feature-catalog/host-adapters/pi-extension.md",
+        "feature-catalog/pixel-analysis/annotate.md",
+        "feature-catalog/pixel-analysis/colors.md",
+        "feature-catalog/pixel-analysis/crop.md",
+        "feature-catalog/pixel-analysis/diff.md",
+        "feature-catalog/pixel-analysis/metadata.md",
+        "feature-catalog/pixel-analysis/zoom.md",
+        "feature-catalog/runtime-core/json-rpc-runtime.md",
+        "feature-catalog/scene-understanding/detect.md",
+        "feature-catalog/scene-understanding/inspect.md",
+        "feature-catalog/scene-understanding/ocr.md",
+        "feature-catalog/scene-understanding/point.md",
+        "feature-catalog/scene-understanding/segment.md",
+        "feature-catalog/system-health/reverse.md",
+        "feature-catalog/system-health/status.md"
       ],
       "packet": ".",
       "workflowMode": "sk-vision"

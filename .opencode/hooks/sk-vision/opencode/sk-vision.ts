@@ -1,0 +1,1 @@
+../../../skills/sk-vision/hooks/opencode/sk-vision.ts

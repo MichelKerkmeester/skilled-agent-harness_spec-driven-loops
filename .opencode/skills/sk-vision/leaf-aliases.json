@@ -1,7 +1,82 @@
 [
   {
     "workflowMode": "sk-vision",
-    "leafResourceId": "references/runtime-reference.md",
-    "diskPath": "references/runtime-reference.md"
+    "leafResourceId": "feature-catalog/host-adapters/opencode-plugin.md",
+    "diskPath": "feature-catalog/host-adapters/opencode-plugin.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/host-adapters/pi-extension.md",
+    "diskPath": "feature-catalog/host-adapters/pi-extension.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/pixel-analysis/annotate.md",
+    "diskPath": "feature-catalog/pixel-analysis/annotate.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/pixel-analysis/colors.md",
+    "diskPath": "feature-catalog/pixel-analysis/colors.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/pixel-analysis/crop.md",
+    "diskPath": "feature-catalog/pixel-analysis/crop.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/pixel-analysis/diff.md",
+    "diskPath": "feature-catalog/pixel-analysis/diff.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/pixel-analysis/metadata.md",
+    "diskPath": "feature-catalog/pixel-analysis/metadata.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/pixel-analysis/zoom.md",
+    "diskPath": "feature-catalog/pixel-analysis/zoom.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/runtime-core/json-rpc-runtime.md",
+    "diskPath": "feature-catalog/runtime-core/json-rpc-runtime.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/scene-understanding/detect.md",
+    "diskPath": "feature-catalog/scene-understanding/detect.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/scene-understanding/inspect.md",
+    "diskPath": "feature-catalog/scene-understanding/inspect.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/scene-understanding/ocr.md",
+    "diskPath": "feature-catalog/scene-understanding/ocr.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/scene-understanding/point.md",
+    "diskPath": "feature-catalog/scene-understanding/point.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/scene-understanding/segment.md",
+    "diskPath": "feature-catalog/scene-understanding/segment.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/system-health/reverse.md",
+    "diskPath": "feature-catalog/system-health/reverse.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/system-health/status.md",
+    "diskPath": "feature-catalog/system-health/status.md"
   }
 ]
