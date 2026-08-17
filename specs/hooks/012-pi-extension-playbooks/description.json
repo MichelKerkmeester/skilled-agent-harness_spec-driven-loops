@@ -1,0 +1,25 @@
+{
+  "specFolder": "hooks/012-pi-extension-playbooks",
+  "description": "The `pi-cache-optimizer` and `deep-pi` Pi extensions ship unit tests but no operator-facing manual-testing playbook, unlike",
+  "keywords": [
+    "pi-cache-optimizer",
+    "deep-pi",
+    "extensions",
+    "ship",
+    "unit",
+    "tests",
+    "operator-facing",
+    "manual-testing",
+    "playbook",
+    "unlike"
+  ],
+  "lastUpdated": "2026-08-17T14:11:46.991Z",
+  "specId": "012",
+  "folderSlug": "pi-extension-playbooks",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

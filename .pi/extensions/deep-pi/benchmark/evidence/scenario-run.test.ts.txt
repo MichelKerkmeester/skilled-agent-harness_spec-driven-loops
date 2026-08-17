@@ -1,0 +1,107 @@
+// One-off deterministic runner for the deep-pi manual-testing-playbook.
+// It drives the real extension (default export + registered command and hooks)
+// with the shared FakePi test double and records PASS/FAIL per scenario. The
+// eligibility scenarios check isDeepPiModel and the session-start activation;
+// the measurement scenarios feed a known response and read the footer and the
+// /deeppi report. No provider or API calls are made.
+
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { afterAll, it } from 'vitest';
+import deepPi from '../extensions/deeppi.js';
+import { isDeepPiModel } from '../extensions/deeppi/eligibility.js';
+import { FakePi, fakeContext } from '../tests/fake-pi.js';
+
+const RUN_EVIDENCE = join('benchmark', 'evidence');
+type Verdict = 'PASS' | 'FAIL' | 'SKIP';
+const results: { id: string; name: string; verdict: Verdict; reason: string; evidence: string }[] = [];
+const record = (r: (typeof results)[number]) => results.push(r);
+
+const proCost = { input: 1.74, output: 3.48, cacheRead: 0.145, cacheWrite: 0 };
+// A response with 80,000 cache-read of 100,000 input tokens = 80% cache hit.
+const usageEvent = () => ({
+  message: {
+    role: 'assistant',
+    provider: 'deepseek',
+    model: 'deepseek-v4-pro',
+    content: [{ type: 'text', text: 'done' }],
+    usage: {
+      input: 20_000,
+      output: 100,
+      cacheRead: 80_000,
+      cacheWrite: 0,
+      totalTokens: 100_100,
+      cost: { input: 0.0348, output: 0.000348, cacheRead: 0.0116, cacheWrite: 0, total: 0.046748 },
+    },
+  },
+});
+
+function activate(model: { provider: string; id: string; name?: string; cost?: any }) {
+  const fake = new FakePi();
+  deepPi(fake.asExtensionAPI());
+  const ctx = fakeContext(model);
+  return { fake, ctx };
+}
+
+it('deep-pi manual-testing-playbook scenarios', async () => {
+  // DEEP-001 flash active
+  {
+    const eligible = isDeepPiModel({ provider: 'deepseek', id: 'deepseek-v4-flash' });
+    const { fake, ctx } = activate({ provider: 'deepseek', id: 'deepseek-v4-flash', cost: proCost });
+    await fake.emit('session_start', {}, ctx);
+    const ok = eligible === true && fake.activeTools.includes('edit_lines') && ctx.statuses.get('deeppi') === 'DeepPi · warming';
+    record({ id: 'DEEP-001', name: 'Active on deepseek-v4-flash', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'edit_lines active and footer warming on flash' : 'did not activate on flash', evidence: `isDeepPiModel=${eligible}; footer=${JSON.stringify(ctx.statuses.get('deeppi'))}; edit_lines=${fake.activeTools.includes('edit_lines')}` });
+  }
+  // DEEP-002 pro active
+  {
+    const eligible = isDeepPiModel({ provider: 'deepseek', id: 'deepseek-v4-pro' });
+    const { fake, ctx } = activate({ provider: 'deepseek', id: 'deepseek-v4-pro', cost: proCost });
+    await fake.emit('session_start', {}, ctx);
+    const ok = eligible === true && fake.activeTools.includes('edit_lines') && ctx.statuses.get('deeppi') === 'DeepPi · warming';
+    record({ id: 'DEEP-002', name: 'Active on deepseek-v4-pro', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'edit_lines active and footer warming on pro' : 'did not activate on pro', evidence: `isDeepPiModel=${eligible}; footer=${JSON.stringify(ctx.statuses.get('deeppi'))}; edit_lines=${fake.activeTools.includes('edit_lines')}` });
+  }
+  // DEEP-003 dormant on proxy route
+  {
+    const eligible = isDeepPiModel({ provider: 'openrouter', id: 'deepseek/deepseek-v4-pro' });
+    const { fake, ctx } = activate({ provider: 'openrouter', id: 'deepseek/deepseek-v4-pro' });
+    await fake.emit('session_start', {}, ctx);
+    const ok = eligible === false && ctx.statuses.get('deeppi') === undefined && !fake.activeTools.includes('edit_lines');
+    record({ id: 'DEEP-003', name: 'Dormant on a proxy route', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'no footer and no edit_lines on proxy route' : 'activated on a proxy route', evidence: `isDeepPiModel=${eligible}; footer=${JSON.stringify(ctx.statuses.get('deeppi'))}; tools=${JSON.stringify(fake.activeTools)}` });
+  }
+  // DEEP-004 warns on unrecognized id
+  {
+    const { fake, ctx } = activate({ provider: 'deepseek', id: 'deepseek-v5-test', name: 'DeepSeek V5 Test' });
+    await fake.emit('session_start', {}, ctx);
+    const warned = ctx.notifications.some((n: string) => n.includes('doesn\'t recognize model "deepseek-v5-test"'));
+    const ok = warned && ctx.statuses.get('deeppi') === undefined && !fake.activeTools.includes('edit_lines');
+    record({ id: 'DEEP-004', name: 'Warns on an unrecognized DeepSeek id', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'warned once and stayed dormant on unrecognized id' : 'no warning or activated', evidence: `warned=${warned}; footer=${JSON.stringify(ctx.statuses.get('deeppi'))}` });
+  }
+  // DEEP-005 /deeppi reports hit rate
+  {
+    const { fake, ctx } = activate({ provider: 'deepseek', id: 'deepseek-v4-pro', cost: proCost });
+    await fake.emit('session_start', {}, ctx);
+    await fake.emit('message_end', usageEvent(), ctx);
+    await fake.commands.get('deeppi').handler('', ctx);
+    const report = String(ctx.notifications.at(-1) ?? '');
+    const ok = report.includes('Cache hit rate:') && report.includes('80.0%');
+    record({ id: 'DEEP-005', name: '/deeppi reports the cache hit rate', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? '/deeppi report includes the measured 80.0% cache hit rate' : 'report missing the hit rate', evidence: `report-includes-hit-rate=${ok}` });
+  }
+  // DEEP-006 footer shows measured cache percent
+  {
+    const { fake, ctx } = activate({ provider: 'deepseek', id: 'deepseek-v4-pro', cost: proCost });
+    await fake.emit('session_start', {}, ctx);
+    const warming = ctx.statuses.get('deeppi');
+    await fake.emit('message_end', usageEvent(), ctx);
+    const after = ctx.statuses.get('deeppi');
+    const ok = warming === 'DeepPi · warming' && after === 'DeepPi · 80% cache';
+    record({ id: 'DEEP-006', name: 'Footer shows the measured cache percent', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'footer moved from warming to 80% cache' : `footer did not update (before=${JSON.stringify(warming)} after=${JSON.stringify(after)})`, evidence: `before=${JSON.stringify(warming)}; after=${JSON.stringify(after)}` });
+  }
+});
+
+afterAll(() => {
+  mkdirSync(RUN_EVIDENCE, { recursive: true });
+  const pass = results.filter((r) => r.verdict === 'PASS').length;
+  writeFileSync(join(RUN_EVIDENCE, 'results.json'), JSON.stringify({ subject: 'deep-pi', variant: 'deeppi-behavior', date: '2026-08-17', total: results.length, pass, fail: results.length - pass, results }, null, 2));
+  const csv = ['id,name,verdict,reason', ...results.map((r) => `${r.id},"${r.name}",${r.verdict},"${r.reason.replace(/"/g, "'")}"`)].join('\n');
+  writeFileSync(join(RUN_EVIDENCE, 'results.csv'), `${csv}\n`);
+});

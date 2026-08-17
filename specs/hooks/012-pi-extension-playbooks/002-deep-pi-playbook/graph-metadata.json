@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/012-pi-extension-playbooks/002-deep-pi-playbook",
+  "spec_folder": "hooks/012-pi-extension-playbooks/002-deep-pi-playbook",
+  "parent_id": "hooks/012-pi-extension-playbooks",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-pi playbook",
+      "deeppi manual testing",
+      "deep-pi playbook plan",
+      "deep-pi playbook tasks",
+      "deep-pi playbook checklist",
+      "deep-pi playbook implementation summary"
+    ],
+    "key_topics": [
+      "deep-pi",
+      "playbook",
+      "deeppi",
+      "manual",
+      "testing",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "unit",
+      "tests"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Register",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-pi` has 81 unit tests but no operator-facing manual-testing playbook, so there is no reproducible way to validate that `/deeppi` activates only on the supported DeepSeek models and reports the measured cache economics",
+    "created_at": "2026-08-17T14:15:15.700Z",
+    "last_save_at": "2026-08-17T15:48:07.441Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:354b9d48e663d9ed719de85c015623539067048f2a5881d2cd2e1172d4e86527",
+    "source_doc_hashes": {
+      "spec.md": "a788c845485825b685cbc90ac55ebdb581c976cc29f72cfc258314f7e2eb011c",
+      "plan.md": "7a42aec80b4870b6d309eecf77f645c0b3e07a9df6219256cf47276569a69ba2",
+      "tasks.md": "a258d9ee0712273206ec434a1b84b8015b005a2bfaffe4b706946ca0543b856d",
+      "checklist.md": "4044d78fc61883a3dabd019a080aa1be1373794e799ad93ecc0b12e66788c651",
+      "implementation-summary.md": "14d59c9a8c26b960a3933697657e75c338c444b095d0b4c9fa7ea37182c35bdd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

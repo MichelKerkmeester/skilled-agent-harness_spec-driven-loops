@@ -1,0 +1,156 @@
+// One-off deterministic runner for the pi-cache-optimizer manual-testing-playbook.
+// It drives the real extension (default export + registered command and hooks)
+// with the shared FakePi test double and records PASS/FAIL per scenario. The
+// load-bearing proof for the cache-key scenarios is the exact payload the real
+// before_provider_request hook returns. No provider or API calls are made.
+
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { after, test } from 'node:test';
+import { createJiti } from 'jiti';
+
+const jiti = createJiti(join(process.cwd(), 'benchmark', 'scenario-run.test.ts'), {
+  interopDefault: false,
+  moduleCache: false,
+});
+
+const RUN_EVIDENCE = join('benchmark', 'evidence');
+
+type Verdict = 'PASS' | 'FAIL' | 'SKIP';
+const results: {
+  id: string;
+  name: string;
+  verdict: Verdict;
+  reason: string;
+  evidence: string;
+}[] = [];
+const record = (r: (typeof results)[number]) => results.push(r);
+
+function openAIModel(id: string) {
+  return {
+    provider: 'proxy',
+    id,
+    name: `Proxy ${id}`,
+    api: 'openai-completions',
+    baseUrl: 'https://proxy.example/v1',
+    compat: {},
+    reasoning: false,
+    input: ['text'],
+    cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+    contextWindow: 128_000,
+    maxTokens: 4096,
+  };
+}
+
+test('pi-cache-optimizer manual-testing-playbook scenarios', async () => {
+  // Isolate footer-mode persistence away from the real agent dir.
+  process.env.PI_CODING_AGENT_DIR = mkdtempSync(join(tmpdir(), 'cache-opt-agent-'));
+
+  const optimizer = await jiti.import<any>(join(process.cwd(), 'index.ts'));
+  const fakePi = await jiti.import<any>(
+    join(process.cwd(), '..', 'deep-pi', 'tests', 'fake-pi.ts'),
+  );
+
+  function fresh() {
+    const pi = new fakePi.FakePi();
+    optimizer.default(pi.asExtensionAPI());
+    return pi;
+  }
+  const cmdReply = (ctx: any) => ({
+    msg: String(ctx.notifications.at(-1) ?? ''),
+    sev: ctx.notificationSeverities.at(-1),
+  });
+
+  // CACHE-001 enable
+  {
+    const pi = fresh();
+    const ctx = fakePi.fakeContext(openAIModel('gpt-4o'));
+    await pi.commands.get('cache-optimizer').handler('enable', ctx);
+    const { msg, sev } = cmdReply(ctx);
+    const ok = msg.startsWith('✅ Pi Cache Optimizer enabled for this Pi process') && sev === 'info';
+    record({ id: 'CACHE-001', name: 'Enable reports enabled', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'enable reported at info severity' : `got "${msg.slice(0, 60)}" (${sev})`, evidence: `notify="${msg.slice(0, 70)}" (${sev})` });
+  }
+
+  // CACHE-002 disable
+  {
+    const pi = fresh();
+    const ctx = fakePi.fakeContext(openAIModel('gpt-4o'));
+    await pi.commands.get('cache-optimizer').handler('disable', ctx);
+    const { msg, sev } = cmdReply(ctx);
+    const ok = msg.startsWith('⏸️ Pi Cache Optimizer disabled for this Pi process') && sev === 'warning';
+    record({ id: 'CACHE-002', name: 'Disable reports disabled', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'disable reported at warning severity' : `got "${msg.slice(0, 60)}" (${sev})`, evidence: `notify="${msg.slice(0, 70)}" (${sev})` });
+  }
+
+  // CACHE-003 config footer-mode session
+  {
+    const pi = fresh();
+    const ctx = fakePi.fakeContext(openAIModel('gpt-4o'));
+    await pi.commands.get('cache-optimizer').handler('config footer-mode session', ctx);
+    const { msg } = cmdReply(ctx);
+    const ok = msg.startsWith('✅ Footer mode set to session');
+    record({ id: 'CACHE-003', name: 'Footer mode config persists', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'footer mode set to session and confirmed' : `got "${msg.slice(0, 60)}"`, evidence: `notify="${msg.slice(0, 70)}"` });
+  }
+
+  // CACHE-004 invalid footer mode
+  {
+    const pi = fresh();
+    const ctx = fakePi.fakeContext(openAIModel('gpt-4o'));
+    await pi.commands.get('cache-optimizer').handler('config footer-mode bogus', ctx);
+    const { msg } = cmdReply(ctx);
+    const ok = msg.startsWith('Usage: /cache-optimizer config footer-mode total|session|process');
+    record({ id: 'CACHE-004', name: 'Invalid footer mode shows usage', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'usage message shown for invalid mode' : `got "${msg.slice(0, 60)}"`, evidence: `notify="${msg.slice(0, 70)}"` });
+  }
+
+  // CACHE-005 injects prompt_cache_key
+  {
+    const pi = fresh();
+    const ctx = fakePi.fakeContext(openAIModel('gpt-4o'));
+    // Injection is gated on the optimizer being enabled, which is the default
+    // startup state. Enable explicitly so the shared module state is on.
+    await pi.commands.get('cache-optimizer').handler('enable', ctx);
+    const payload: any = { model: 'gpt-4o', messages: [] };
+    const result: any = await pi.handlers.get('before_provider_request')[0]({ payload }, ctx);
+    const key = result?.prompt_cache_key ?? payload.prompt_cache_key;
+    const ok = typeof key === 'string' && key.length > 0;
+    record({ id: 'CACHE-005', name: 'Injects prompt_cache_key', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'hook injected a non-empty prompt_cache_key' : 'no cache key injected', evidence: `prompt_cache_key=${JSON.stringify(key)}` });
+  }
+
+  // CACHE-006 preserves a caller-supplied key
+  {
+    const pi = fresh();
+    const ctx = fakePi.fakeContext(openAIModel('gpt-4o'));
+    await pi.commands.get('cache-optimizer').handler('enable', ctx);
+    const payload: any = { model: 'gpt-4o', messages: [], prompt_cache_key: 'caller-key' };
+    const result: any = await pi.handlers.get('before_provider_request')[0]({ payload }, ctx);
+    const finalKey = (result?.prompt_cache_key ?? payload.prompt_cache_key);
+    const ok = finalKey === 'caller-key';
+    record({ id: 'CACHE-006', name: 'Preserves a caller-supplied key', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'existing caller key left unchanged' : `caller key changed to ${JSON.stringify(finalKey)}`, evidence: `prompt_cache_key=${JSON.stringify(finalKey)}` });
+  }
+
+  // CACHE-007 env opt-out disables injection (fresh module so the gate reads the env)
+  {
+    process.env.PI_CACHE_OPTIMIZER_NO_OPENAI_CACHE_KEY = '1';
+    const freshOpt = await jiti.import<any>(join(process.cwd(), 'index.ts'));
+    const pi = new fakePi.FakePi();
+    freshOpt.default(pi.asExtensionAPI());
+    const ctx = fakePi.fakeContext(openAIModel('gpt-4o'));
+    const payload: any = { model: 'gpt-4o', messages: [] };
+    const result: any = await pi.handlers.get('before_provider_request')[0]({ payload }, ctx);
+    const injected = result?.prompt_cache_key ?? payload.prompt_cache_key;
+    delete process.env.PI_CACHE_OPTIMIZER_NO_OPENAI_CACHE_KEY;
+    const ok = injected === undefined;
+    record({ id: 'CACHE-007', name: 'Env opt-out disables injection', verdict: ok ? 'PASS' : 'FAIL', reason: ok ? 'no cache key injected while opt-out env is set' : `still injected ${JSON.stringify(injected)}`, evidence: `opt-out set; prompt_cache_key=${JSON.stringify(injected)}` });
+  }
+});
+
+after(() => {
+  mkdirSync(RUN_EVIDENCE, { recursive: true });
+  const pass = results.filter((r) => r.verdict === 'PASS').length;
+  writeFileSync(
+    join(RUN_EVIDENCE, 'results.json'),
+    JSON.stringify({ subject: 'pi-cache-optimizer', variant: 'cache-behavior', date: '2026-08-17', total: results.length, pass, fail: results.length - pass, results }, null, 2),
+  );
+  const csv = ['id,name,verdict,reason', ...results.map((r) => `${r.id},"${r.name}",${r.verdict},"${r.reason.replace(/"/g, "'")}"`)].join('\n');
+  writeFileSync(join(RUN_EVIDENCE, 'results.csv'), `${csv}\n`);
+});

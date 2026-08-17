@@ -1,0 +1,8 @@
+id,name,verdict,reason
+CACHE-001,"Enable reports enabled",PASS,"enable reported at info severity"
+CACHE-002,"Disable reports disabled",PASS,"disable reported at warning severity"
+CACHE-003,"Footer mode config persists",PASS,"footer mode set to session and confirmed"
+CACHE-004,"Invalid footer mode shows usage",PASS,"usage message shown for invalid mode"
+CACHE-005,"Injects prompt_cache_key",PASS,"hook injected a non-empty prompt_cache_key"
+CACHE-006,"Preserves a caller-supplied key",PASS,"existing caller key left unchanged"
+CACHE-007,"Env opt-out disables injection",PASS,"no cache key injected while opt-out env is set"
