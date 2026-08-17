@@ -1,0 +1,28 @@
+{
+  "topic": "How can cli pi (the pi CLI) natively expose Cursor and Devin subscription-backed models in its own /models picker: reusing the operator Cursor (cursor-agent) and Devin OAuth/subscription auth, adding pi provider adapters, or fronting each vendor CLI with a local OpenAI-compatible gateway. Assess technical feasibility and the Terms-of-Service and account-safety boundaries of each path, grounded in the actual pi, cursor-agent, and devin CLI surfaces (config files, auth token stores, model APIs).",
+  "specFolder": "specs/cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": { "convergenceMode": "default", "divergent": {} },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "executionMode": "auto",
+  "stop_policy": "max-iterations",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "fanout": {
+    "executors": [
+      { "kind": "cli-devin", "model": "glm-5-2", "label": "glm-devin", "iterations": 5 },
+      { "kind": "cli-cursor", "model": "cursor-grok-4.6-xhigh", "label": "grok-cursor", "iterations": 5 }
+    ],
+    "concurrency": 1,
+    "maxRetries": 5,
+    "lagCeilingMs": 300000,
+    "progressHeartbeatSeconds": 60
+  },
+  "lineage": { "sessionId": "dr-045-fanout-20260817-122318", "parentSessionId": null, "lineageMode": "new", "generation": 1, "continuedFromRun": null },
+  "createdAt": "2026-08-17T10:23:18Z",
+  "status": "initialized"
+}

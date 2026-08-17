@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/045-cli-pi-bridge-cursor-devin",
+  "description": "`cli pi` ships its own model picker (`/models`) backed by pi's own provider roster",
+  "keywords": [
+    "cli",
+    "ships",
+    "own",
+    "model",
+    "picker",
+    "models",
+    "backed",
+    "provider",
+    "roster"
+  ],
+  "lastUpdated": "2026-08-17T11:48:04.528Z",
+  "specId": "045",
+  "folderSlug": "cli-pi-bridge-cursor-devin",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
