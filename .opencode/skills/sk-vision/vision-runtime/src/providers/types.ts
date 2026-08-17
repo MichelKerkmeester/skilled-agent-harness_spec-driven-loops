@@ -68,6 +68,7 @@ export interface QueryRequest {
   question: string;
   reasoning?: boolean;
   spatialRefs?: SpatialReference[];
+  settings?: Record<string, unknown>;
 }
 
 /** @deprecated use QueryRequest */
@@ -86,6 +87,7 @@ export interface PointRequest {
 export interface OCRRequest {
   source: ImageSource;
   kind?: "all" | "code" | "error";
+  settings?: Record<string, unknown>;
 }
 
 export interface CaptionRequest {

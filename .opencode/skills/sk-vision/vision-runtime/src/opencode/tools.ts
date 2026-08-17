@@ -18,6 +18,16 @@ function sourceLabel(args: { path?: string }): string {
   return args.path ?? "inline-image";
 }
 
+function parseSettings(raw?: string): Record<string, unknown> | undefined {
+  if (!raw) return undefined;
+  try {
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? (parsed as Record<string, unknown>) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 /** Wrap tool errors so the coding model sees structured failures. */
 function fail(err: unknown): string {
   const isSkVision = err instanceof SkVisionError;
@@ -40,19 +50,21 @@ export function skVisionTools(
         path: tool.schema.string().optional().describe("Path to the image file, relative to the current project."),
         image: tool.schema.string().optional().describe("Image as a base64 data URL (data:image/...;base64,...)."),
         question: tool.schema.string().optional().describe("Natural-language question about the image."),
+        settings: tool.schema.string().optional().describe("Optional JSON object of sampling settings, e.g. {\"temperature\":0,\"max_tokens\":256}."),
       },
       execute: async (args) => {
         try {
           const src = makeImageSource(args.path, args.image);
           const label = sourceLabel(args);
+          const settings = parseSettings(args.settings);
           if (args.question) {
-            const res = await provider().query({ source: src, question: args.question });
+            const res = await provider().query({ source: src, question: args.question, settings });
             return contextBuilder.renderQuery(res, { source: label, question: args.question });
           }
           const [cap, scene, ocr, localMatch] = await Promise.all([
             provider().caption({ source: src }),
             provider().scene({ source: src }),
-            provider().ocr({ source: src }),
+            provider().ocr({ source: src, settings }),
             reverseAlways
               ? provider()
                   .hashSearch({ source: src })
@@ -140,12 +152,14 @@ export function skVisionTools(
           .enum(["all", "code", "error"])
           .optional()
           .describe("'all' transcribes everything; 'code' targets code text; 'error' targets error messages."),
+        settings: tool.schema.string().optional().describe("Optional JSON object of sampling settings, e.g. {\"temperature\":0,\"max_tokens\":256}."),
       },
       execute: async (args) => {
         try {
           const src = makeImageSource(args.path, args.image);
           const kindArg = args.kind ?? "all";
-          const res = await provider().ocr({ source: src, kind: kindArg });
+          const settings = parseSettings(args.settings);
+          const res = await provider().ocr({ source: src, kind: kindArg, settings });
           return contextBuilder.renderOCR(res, { source: sourceLabel(args) });
         } catch (err) {
           return fail(err);

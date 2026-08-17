@@ -285,6 +285,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 - **Cursor shares its entire config surface with the Cursor editor** (`.cursor/`/`~/.cursor/`: `mcp.json`, `hooks.json`, `rules/`, `cli-config.json`). A dispatched `cursor-agent` silently inherits the operator's shared hooks/MCP/rules unless a workspace/config-isolation flag is used — see [shared-editor-config.md](./references/shared-editor-config.md).
 - **No `model[effort=...]` bracket support.** Unlike some sibling CLIs' parameterized model syntax, `cursor-agent --model 'cursor-grok-4.6[effort=high]'` is rejected outright ("Cannot use this model") — effort tiers must be selected via an exact enumerated id (`cursor-grok-4.6-high`), never a bracket.
 - **`--auto-review`/`--force` are the write-capable escalation, not `--sandbox`.** `--sandbox enabled|disabled` toggles the OS-level sandbox; the approval decision (whether unattended actions run without a human) is `--auto-review` (Smart Auto) or `--force`/`--yolo` (Run Everything) — omitting both leaves Cursor's own prompt-and-block default in place, which cannot proceed unattended.
+- **Project-scoped MCP servers show `not loaded (needs approval)`** until trusted. For a non-interactive dispatch that needs MCP tools, add `--approve-mcps` to the `cursor-agent -p` command (auto-approves configured MCP servers for that run); for a persistent operator grant use `cursor-agent mcp enable <server>` (a trust mutation the automation itself must never run).
 
 ---
 
