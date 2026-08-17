@@ -1,0 +1,191 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q-pi-models-picker",
+      "text": "How does Pi's /models picker resolve providers and models from config files, models-store, auth.json, and custom providers?",
+      "origin": "analyst-strategy",
+      "source": "init-charter",
+      "resolvedAtIteration": 1,
+      "summary": "Interactive command is /model; CLI dump is --list-models. Roster = built-in catalogs + models-store.json cache + models.json overlay + registerProvider, filtered by auth.json/env/--api-key. No built-in Cursor or Devin provider."
+    },
+    {
+      "id": "q-cursor-auth-reuse",
+      "text": "Can Cursor subscription auth (cursor-agent OAuth, CURSOR_API_KEY, ~/.cursor stores) be reused by a Pi adapter or third-party client without violating ToS or account safety?",
+      "origin": "analyst-strategy",
+      "source": "init-charter",
+      "resolvedAtIteration": 2,
+      "summary": "No for OAuth/access-token reuse against api2.cursor.sh (staff ToS §1.5, ban risk). Official User API keys work only through harness clients (CLI/SDK/Cloud Agents), not raw /v1/chat/completions."
+    },
+    {
+      "id": "q-devin-auth-reuse",
+      "text": "Can Devin OAuth (devin auth login, ~/.local/share/devin/credentials.toml) be reused similarly by a Pi adapter or gateway?",
+      "origin": "analyst-strategy",
+      "source": "init-charter",
+      "resolvedAtIteration": 3,
+      "summary": "credentials.toml holds windsurf_api_key vs server.codeium.com; copying among own machines is documented, feeding it to Pi as HTTP is not. Public API is session REST; ACP is stdio. Cognition ToS 2.3 analog."
+    },
+    {
+      "id": "q-gateway-front",
+      "text": "Can a local OpenAI-compatible gateway front cursor-agent or the Devin CLI so Pi treats it as a custom provider in /models?",
+      "origin": "analyst-strategy",
+      "source": "init-charter",
+      "resolvedAtIteration": 4,
+      "summary": "Yes to list via models.json or streamSimple spawning official CLIs. Nested harness makes it a poor native model. Private-endpoint gateways remain ToS-blocked."
+    },
+    {
+      "id": "q-ranked-verdict",
+      "text": "Which path is technically feasible and account-safe, and how should the three paths be ranked?",
+      "origin": "analyst-strategy",
+      "source": "init-charter",
+      "resolvedAtIteration": 5,
+      "summary": "Do not ship native /model. Keep cli-cursor/cli-devin dispatch. Reject token reuse and private proxies. CLI-front/streamSimple is experiment-only. Official public APIs are session/harness products."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "label": "Picker command is /model; CLI dump is --list-models",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-002",
+      "label": "Three files compose roster: models.json overlay, models-store cache, auth.json credentials",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-005",
+      "label": "Live catalogs are HTTP LLM APIs not sibling-CLI wrappers; no cursor/devin strings",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter002-tos",
+      "label": "Cursor staff: Oh My Pi / private-endpoint OpenAI proxies violate ToS §1.5; ban risk",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-harness",
+      "label": "Official Cursor out-of-IDE surfaces always run the agent harness, not raw completions",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter003-creds",
+      "label": "Devin credentials.toml uses windsurf_api_key against server.codeium.com; public API is session REST",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter004-mount",
+      "label": "Pi models.json can list a localhost OpenAI-compatible CLI-spawn gateway",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-nested",
+      "label": "Nested Pi+vendor harness collapses tool-calling and adds agent-turn latency",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter005-rank",
+      "label": "Do not ship native /model; keep executor dispatch; reject token reuse and private proxies",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-purpose",
+      "label": "Parent purpose cannot be met by a ToS-safe raw /model provider",
+      "iteration": 5
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Assume Pi already ships a built-in Cursor or Devin provider",
+      "reason": "Installed providers.md subscription list and live models-store.json contain neither vendor",
+      "iteration": 1,
+      "evidence": "~/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/providers.md:15-56"
+    },
+    {
+      "approach": "Pi models.json / Oh My Pi-style Cursor provider using login tokens against api2.cursor.sh",
+      "reason": "Staff ToS §1.5; account ban risk; personal/local-only does not change the analysis",
+      "iteration": 2,
+      "evidence": "https://forum.cursor.com/t/does-using-oh-my-pi-s-cursor-provider-or-an-openai-compatible-proxy-to-the-same-endpoints-violate-cursor-s-tos/167778"
+    },
+    {
+      "approach": "Local OpenAI-compatible proxy to private Cursor client endpoints",
+      "reason": "Staff: same case as Oh My Pi",
+      "iteration": 2,
+      "evidence": "https://cursor.com/terms-of-service"
+    },
+    {
+      "approach": "Pi provider copying credentials.toml windsurf_api_key to server.codeium.com",
+      "reason": "Cognition Platform ToS §2.3 analog; not an authorized HTTP client",
+      "iteration": 3,
+      "evidence": "https://cognition.com/legal/platform-terms-of-service"
+    },
+    {
+      "approach": "Treating api.devin.ai as an openai-completions baseUrl",
+      "reason": "Session REST, not chat completions",
+      "iteration": 3,
+      "evidence": "https://cognitionai.mintlify.app/api-reference/overview"
+    },
+    {
+      "approach": "Reverse-engineered protobuf/HTTP2 Cursor-To-OpenAI as the CLI gateway",
+      "reason": "Does not front the CLI; calls private APIs already ToS-blocked",
+      "iteration": 4,
+      "evidence": "https://github.com/timxx/Cursor-To-OpenAI"
+    },
+    {
+      "approach": "Advertise Cursor auto / full 150+ roster via Pi overlay under this repo policy",
+      "reason": "Conflicts with cli-cursor fail-closed 21-id allowlist",
+      "iteration": 4,
+      "evidence": ".opencode/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md"
+    },
+    {
+      "approach": "Ship a native Pi /model Cursor/Devin provider as the next implementation phase",
+      "reason": "Every ToS-safe path is a vendor harness; every raw-completions path is ToS-blocked",
+      "iteration": 5,
+      "evidence": "specs/cli-external-orchestration/045-cli-pi-bridge-cursor-devin/spec.md:71-75"
+    },
+    {
+      "approach": "Treat registerProvider streamSimple as a distinct safe native-model path",
+      "reason": "In-process twin of CLI-spawn gateway; same nested harness",
+      "iteration": 5,
+      "evidence": "~/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/custom-provider.md:655-693"
+    }
+  ],
+  "coverageBySources": {
+    "pi-docs": 8,
+    "live-pi-agent-dir": 4,
+    "cli-pi-skill": 3,
+    "cli-cursor-skill": 4,
+    "cli-devin-skill": 4,
+    "cursor-staff-tos": 3,
+    "cognition-docs-tos": 3,
+    "community-proxies": 3,
+    "parent-spec": 2
+  },
+  "convergenceScore": 0.07,
+  "blockedStopHistory": [],
+  "graphConvergenceScore": null,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 10,
+    "convergenceScore": 0.07,
+    "newInfoRatios": [1.0, 0.85, 0.8, 0.7, 0.55],
+    "coverageBySources": {
+      "pi-docs": 8,
+      "live-pi-agent-dir": 4,
+      "cli-pi-skill": 3,
+      "cli-cursor-skill": 4,
+      "cli-devin-skill": 4,
+      "cursor-staff-tos": 3,
+      "cognition-docs-tos": 3,
+      "community-proxies": 3,
+      "parent-spec": 2
+    }
+  },
+  "sessionId": "fanout-grok-cursor-1786962220632-12nmeb",
+  "generation": 1,
+  "lastUpdated": "2026-08-17T12:10:00Z"
+}

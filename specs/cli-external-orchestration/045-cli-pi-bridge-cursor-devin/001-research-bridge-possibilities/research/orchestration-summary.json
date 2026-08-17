@@ -1,0 +1,28 @@
+{
+  "run_id": "1786965580209-8tztea",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities",
+  "base_artifact_dir": "specs/cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [
+    {
+      "label": "glm-devin",
+      "index": 0,
+      "started_at_iso": "2026-08-17T10:47:44.375Z"
+    }
+  ],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

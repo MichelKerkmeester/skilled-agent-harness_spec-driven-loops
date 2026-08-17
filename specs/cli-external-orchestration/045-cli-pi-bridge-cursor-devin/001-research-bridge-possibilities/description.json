@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities",
+  "description": "`cli pi` lists models in its own `/model` picker from pi's provider roster",
+  "keywords": [
+    "cli",
+    "lists",
+    "models",
+    "own",
+    "model",
+    "picker",
+    "provider",
+    "roster"
+  ],
+  "lastUpdated": "2026-08-17T11:47:01.071Z",
+  "specId": "001",
+  "folderSlug": "research-bridge-possibilities",
+  "parentChain": [
+    "cli-external-orchestration",
+    "045-cli-pi-bridge-cursor-devin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
