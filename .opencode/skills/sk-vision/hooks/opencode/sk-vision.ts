@@ -1,8 +1,17 @@
-// OpenCode plugin adapter for sk-vision. Kept beside the Pi adapter (hooks/pi)
-// so both hosts load from the skill's hooks/ directory. It owns the host-specific
-// glue only — the vision itself lives in the shared vision-runtime core, imported
-// from source below. OpenCode loads a bundled .js, so the build emits the sibling
-// sk-vision.js that .opencode/plugins/sk-vision.js and the hook mirror link to.
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: sk-vision OpenCode Plugin (host adapter)                       ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Register the 13 sk_vision_* tools with OpenCode and auto-inspect ║
+// ║          attached images. Kept beside the Pi adapter under hooks/ so both ║
+// ║          hosts load from the skill; owns host glue only — the vision core ║
+// ║          lives in vision-runtime. OpenCode loads a bundled .js, so the    ║
+// ║          build emits the sibling sk-vision.js the plugin path links to.   ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import type { Plugin } from "@opencode-ai/plugin";
 import type { SkVisionMessage } from "../../vision-runtime/src/runtime/client.js";
 import { RuntimeClient } from "../../vision-runtime/src/runtime/client.js";
@@ -10,6 +19,21 @@ import { PhotonProvider } from "../../vision-runtime/src/providers/photon.js";
 import { skVisionTools } from "../../vision-runtime/src/opencode/tools.js";
 import { AttachmentInjector, isImagePart } from "../../vision-runtime/src/opencode/attachments.js";
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. PLUGIN
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * OpenCode plugin entry point. Opens one runtime client, exposes the 13
+ * `sk_vision_*` tools, and auto-inspects attached images on a 2-second grace so
+ * the model never sees a blind image part. Every hook is fire-and-forget: image
+ * analysis must never block the TUI or raise while the GPU runs.
+ *
+ * @param input - The OpenCode plugin input (client, project directory).
+ * @param options - Optional config: `enabled`, `autoInspect`, `python`,
+ *   `timeoutMs`, `fetchTimeoutMs`, `reverseSearch`.
+ * @returns The plugin hook table (`event`, `chat.message`, `tool`, `dispose`).
+ */
 export const SkVisionPlugin: Plugin = async (input, options) => {
   const opts: {
     enabled?: boolean;
