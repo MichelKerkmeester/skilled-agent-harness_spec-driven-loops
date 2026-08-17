@@ -195,13 +195,15 @@ if [ -z "$BRANCH" ] || [ "$BRANCH" != "$LIVE" ]; then
   exit 0
 fi
 
-# Fetching mutates remote-tracking refs, so the tracked-only dirty check must
-# happen before any network operation. Untracked build output is intentionally
-# ignored because it is normal in the primary checkout.
+# Capture the tracked-only dirty state up front. It does not by itself stop the
+# reconcile: a behind-only fast-forward uses git's own --ff-only, which refuses to
+# overwrite a modified tracked file, so a checkout carrying unrelated work-in-progress
+# still follows for disjoint commits and is never clobbered on a collision. Only the
+# rebase/publish path, which rewrites commits across the working tree, needs a clean
+# tree; it is gated on this flag below. Untracked build output is intentionally ignored.
+TRACKED_DIRTY=0
 if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
-  warn "SKIP: uncommitted tracked changes in the primary checkout; not touching it."
-  record skip "uncommitted tracked changes; checkout untouched"
-  exit 0
+  TRACKED_DIRTY=1
 fi
 
 if ! bounded_run "$NETWORK_TIMEOUT" git fetch --quiet "$REMOTE" "$LIVE"; then
@@ -227,6 +229,9 @@ if git merge-base --is-ancestor "$LOCAL_TIP" "$REMOTE_TIP"; then
   if git merge --ff-only --quiet "$REMOTE_TIP" 2>/dev/null; then
     record advance "fast-forwarded $BEHIND commit(s) to $(git rev-parse --short HEAD 2>/dev/null || true)"
     warn "ADVANCE: fast-forwarded $BRANCH by $BEHIND commit(s)."
+  elif [ "$TRACKED_DIRTY" = "1" ]; then
+    warn "BLOCK: fast-forward would overwrite local changes; checkout remains at $LOCAL_TIP (commit/stash to catch up)."
+    record block "fast-forward refused (dirty collision) from $LOCAL_TIP to $REMOTE_TIP"
   else
     warn "BLOCK: fast-forward was refused; checkout remains at $LOCAL_TIP."
     record block "fast-forward refused from $LOCAL_TIP to $REMOTE_TIP"
@@ -238,6 +243,15 @@ AHEAD="$(git rev-list --count "$REMOTE_TIP..$LOCAL_TIP" 2>/dev/null || printf '%
 if [ "$AHEAD" = "0" ]; then
   warn "BLOCK: live histories cannot be reconciled automatically; no commit was moved or pushed."
   record block "no local commits available to rebase"
+  exit 0
+fi
+
+# Rebasing rewrites commits across the working tree, so unlike the fast-forward
+# above it cannot run over uncommitted tracked changes. Defer it; the local commits
+# stay preserved and unpublished until the tree is clean.
+if [ "$TRACKED_DIRTY" = "1" ]; then
+  warn "SKIP: uncommitted tracked changes; $AHEAD local commit(s) left unpublished (rebase needs a clean tree)."
+  record skip "uncommitted tracked changes; rebase deferred, $AHEAD local commit(s) preserved"
   exit 0
 fi
 
