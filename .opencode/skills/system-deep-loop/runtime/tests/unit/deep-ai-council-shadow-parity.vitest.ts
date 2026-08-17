@@ -44,6 +44,9 @@ import {
   verifyDeepAiCouncilLifecycleEventMap,
 } from '../../lib/deep-ai-council-shadow-parity/index.js';
 import * as deepAiCouncilReducers from '../../lib/deep-ai-council-reducers/index.js';
+import type {
+  DeepAiCouncilProjectionState,
+} from '../../lib/deep-ai-council-reducers/index.js';
 import {
   REPLAY_FINGERPRINT_ATTESTATION_EVENT_TYPE,
 } from '../../lib/replay-fingerprint/index.js';
@@ -107,17 +110,20 @@ const LEDGER_ID = 'deep-ai-council-shadow';
 const AUDIT_LEDGER_ID = 'deep-ai-council-shadow-authorization';
 const AUTHORITY: AuthoritySnapshot = Object.freeze({ state: 'shadowing', epoch: 1 });
 const temporaryRoots: string[] = [];
+// Indexes target zero-indexed slots in the expanded sixteen-event fixture: the
+// terminal event is the last slot (15), the first blinded-candidate event is
+// slot 7, and the first receipt-bearing event is the deliberation at slot 11.
 const PARITY_FAULT_CASES = Object.freeze([
-  { kind: 'drop-event', eventIndex: 12, expectedClass: 'missing' },
-  { kind: 'reorder-event', eventIndex: 4, expectedClass: 'reordered' },
-  { kind: 'extra-event', eventIndex: 4, expectedClass: 'extra' },
-  { kind: 'duplicate-event', eventIndex: 4, expectedClass: 'duplicated' },
-  { kind: 'causal-link', eventIndex: 4, expectedClass: 'causal-link' },
-  { kind: 'payload', eventIndex: 4, expectedClass: 'payload' },
-  { kind: 'receipt', eventIndex: 8, expectedClass: 'receipt' },
-  { kind: 'artifact', eventIndex: 4, expectedClass: 'artifact' },
-  { kind: 'terminal-decision', eventIndex: 12, expectedClass: 'terminal-decision' },
-  { kind: 'projection', eventIndex: 4, expectedClass: 'projection' },
+  { kind: 'drop-event', eventIndex: 15, expectedClass: 'missing' },
+  { kind: 'reorder-event', eventIndex: 7, expectedClass: 'reordered' },
+  { kind: 'extra-event', eventIndex: 7, expectedClass: 'extra' },
+  { kind: 'duplicate-event', eventIndex: 7, expectedClass: 'duplicated' },
+  { kind: 'causal-link', eventIndex: 7, expectedClass: 'causal-link' },
+  { kind: 'payload', eventIndex: 7, expectedClass: 'payload' },
+  { kind: 'receipt', eventIndex: 11, expectedClass: 'receipt' },
+  { kind: 'artifact', eventIndex: 7, expectedClass: 'artifact' },
+  { kind: 'terminal-decision', eventIndex: 15, expectedClass: 'terminal-decision' },
+  { kind: 'projection', eventIndex: 7, expectedClass: 'projection' },
 ] as const);
 
 interface Harness {
@@ -1150,6 +1156,7 @@ function parityFixture(): DeepAiCouncilParityFixture {
     ...dataFor('ai_council.run_initialized'),
     minSeatCount: 1,
   });
+  push('ai_council.run_resumed');
   push('ai_council.round_started');
   for (const seatNumber of [1]) {
     const seatId = `seat-${seatNumber}`;
@@ -1172,6 +1179,24 @@ function parityFixture(): DeepAiCouncilParityFixture {
       ],
     );
   }
+  push('ai_council.critique_round_started', {
+    runId: 'run-1',
+    roundId: 'round-1',
+    seatId: 'seat-1',
+    critiqueRoundId: 'critique-round-1',
+  }, {
+    ...dataFor('ai_council.critique_round_started'),
+    sourceProposalIds: ['proposal-1'],
+  });
+  push('ai_council.critique_recorded', {
+    runId: 'run-1',
+    roundId: 'round-1',
+    seatId: 'seat-1',
+    critiqueRoundId: 'critique-round-1',
+  }, {
+    ...dataFor('ai_council.critique_recorded'),
+    sourceProposalIds: ['proposal-1'],
+  });
   for (const candidateNumber of [1, 2]) {
     const candidateId = `candidate-${candidateNumber}`;
     push('ai_council.candidate_blinded', {
@@ -1249,13 +1274,23 @@ function parityFixture(): DeepAiCouncilParityFixture {
     finalLedgerTailDigest,
     counts: { rounds: 1, seats: 1, proposals: 1, judgments: 1 },
   });
+  return bindParityFixture('fixture-normal-completion', events, 'completed', 'normal-completion');
+}
+
+/** Bind the closed frozen-input shape and initial-state digest to any event list. */
+function bindParityFixture(
+  fixtureId: string,
+  events: DeepAiCouncilLedgerEvent[],
+  expectedTerminalDecision: DeepAiCouncilTerminalDecision,
+  scenario: DeepAiCouncilParityFixtureScenario = 'normal-completion',
+): DeepAiCouncilParityFixture {
   const provisional: DeepAiCouncilParityFixture = {
-    fixtureId: 'fixture-normal-completion',
-    scenario: 'normal-completion',
+    fixtureId,
+    scenario,
     frozenInput: {
       baseSha: PARITY_BASE_SHA,
-      runManifestDigest: digest('run-manifest'),
-      sourceSnapshotDigest: digest('source-snapshot'),
+      runManifestDigest: digest(`run-manifest:${fixtureId}`),
+      sourceSnapshotDigest: digest(`source-snapshot:${fixtureId}`),
       promptFingerprint: digest('prompt'),
       modelFingerprint: digest('model'),
       toolFingerprint: digest('tools'),
@@ -1272,7 +1307,7 @@ function parityFixture(): DeepAiCouncilParityFixture {
       },
     },
     events,
-    expectedTerminalDecision: 'completed',
+    expectedTerminalDecision,
     resumeEvidence: null,
   };
   return Object.freeze({
@@ -1282,6 +1317,33 @@ function parityFixture(): DeepAiCouncilParityFixture {
       initialStateDigest: deepAiCouncilParityInitialStateDigest(provisional),
     }),
   });
+}
+
+/** Compose a compact non-terminal scene whose last six events carry every slice
+ *  a field-level divergence test corrupts, so the attested replay range never
+ *  sees a mutated initial-state prefix on the ledger path. */
+function sceneFixture(
+  sceneId: string,
+  build: (push: <TStem extends DeepAiCouncilEventStem>(
+    stem: TStem,
+    scope?: DeepAiCouncilScopeMap[TStem],
+    data?: DeepAiCouncilPayloadMap[TStem],
+  ) => DeepAiCouncilLedgerEvent) => void,
+): DeepAiCouncilParityFixture {
+  const events: DeepAiCouncilLedgerEvent[] = [];
+  let tailDigest = '0'.repeat(64);
+  const push = <TStem extends DeepAiCouncilEventStem>(
+    stem: TStem,
+    scope: DeepAiCouncilScopeMap[TStem] = scopeFor(stem),
+    data: DeepAiCouncilPayloadMap[TStem] = dataFor(stem),
+  ): DeepAiCouncilLedgerEvent => {
+    const event = parityEvent(stem, events.length + 1, 'dark', 0, tailDigest, { scope, data });
+    events.push(event as DeepAiCouncilLedgerEvent);
+    tailDigest = digest(event);
+    return event;
+  };
+  build(push);
+  return bindParityFixture(sceneId, events, 'active');
 }
 
 function parityCapsule(
@@ -1681,4 +1743,299 @@ describe('deep-ai-council shadow parity', () => {
       certificateStatus: 'refused',
     });
   }, 30_000);
+
+  /** Corrupt one reducer-state slice on the ledger fold only and require the
+   *  paired pipeline to refuse the resulting projection-semantic divergence.
+   *  The ledger path derives every projected field from `foldDeepAiCouncilEvents`
+   *  while the legacy path never calls it, so a load-bearing mutation changes
+   *  only one side and the comparator must fail closed. */
+  async function expectSurfaceDivergence(
+    mutate: (state: DeepAiCouncilProjectionState) => DeepAiCouncilProjectionState,
+    fixture: DeepAiCouncilParityFixture = parityFixture(),
+  ): Promise<void> {
+    const realFold = deepAiCouncilReducers.foldDeepAiCouncilEvents;
+    const spy = vi.spyOn(deepAiCouncilReducers, 'foldDeepAiCouncilEvents')
+      .mockImplementation((events, options) => {
+        const result = realFold(events, options);
+        // The empty-event fold is the shared sealed-capsule state; both paths
+        // must agree on it identically, so only real event histories mutate.
+        if (result.outcome !== 'projected' || events.length === 0) return result;
+        return { ...result, projection: mutate(result.projection) };
+      });
+    try {
+      // Built after the spy is installed so the frozen initialStateDigest is
+      // consistent with the corrupted implementation used during replay.
+      const sealed = await createParitySealedBoundary();
+      const manifest = targetedParityManifest(fixture);
+      const outcome = await runDeepAiCouncilParityCase({
+        manifest,
+        caseRun: await parityCaseRun(fixture, sealed),
+      });
+      expect(outcome.receipt.exitStatus).toBe('blocked');
+      expect(outcome.receipt.certificateStatus).toBe('refused');
+      expect(outcome.receipt.parityCertificate).toBeNull();
+      expect(outcome.result.ok).toBe(false);
+      if (!outcome.result.ok) {
+        expect(
+          outcome.result.divergence.class,
+          `earliest.component=${outcome.result.divergence.earliest.component} `
+            + `message=${outcome.result.divergence.message}`,
+        ).toBe('projection-semantic');
+      }
+    } finally {
+      spy.mockRestore();
+    }
+  }
+
+  it('fails parity when the run-id field diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      run: { ...state.run, runId: 'run-corrupt' },
+    }), sceneFixture('scene-run-id', (push) => {
+      push('ai_council.run_initialized');
+    }));
+  }, 30_000);
+
+  it('fails parity when the round-id field diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      run: { ...state.run, roundId: 'round-corrupt' },
+    }), sceneFixture('scene-round-id', (push) => {
+      push('ai_council.run_initialized');
+    }));
+  }, 30_000);
+
+  it('fails parity when the generation field diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      run: { ...state.run, generation: state.run.generation + 1000 },
+    }), sceneFixture('scene-generation', (push) => {
+      push('ai_council.run_initialized');
+    }));
+  }, 30_000);
+
+  it('fails parity when the round-id list diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      councilSeats: {
+        ...state.councilSeats,
+        rounds: state.councilSeats.rounds.map((round, index) => (
+          index === 0 ? { ...round, roundId: 'round-row-corrupt' } : round
+        )),
+      },
+    }), sceneFixture('scene-round-ids', (push) => {
+      push('ai_council.run_initialized');
+      push('ai_council.round_started');
+    }));
+  }, 30_000);
+
+  it('fails parity when the seat-id list diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      councilSeats: {
+        ...state.councilSeats,
+        seats: state.councilSeats.seats.map((seat, index) => (
+          index === 0 ? { ...seat, seatId: 'seat-corrupt' } : seat
+        )),
+      },
+    }), sceneFixture('scene-seat-ids', (push) => {
+      push('ai_council.run_initialized');
+      push('ai_council.round_started');
+      push('ai_council.seat_selected');
+    }));
+  }, 30_000);
+
+  it('fails parity when the proposal-id list diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      councilSeats: {
+        ...state.councilSeats,
+        proposals: state.councilSeats.proposals.map((proposal, index) => (
+          index === 0 ? { ...proposal, proposalId: 'proposal-corrupt' } : proposal
+        )),
+      },
+    }), sceneFixture('scene-proposal-ids', (push) => {
+      push('ai_council.run_initialized');
+      push('ai_council.round_started');
+      push('ai_council.seat_selected');
+      push('ai_council.proposal_observed');
+    }));
+  }, 30_000);
+
+  it('fails parity when the critique-round-id list diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      critique: {
+        ...state.critique,
+        rounds: state.critique.rounds.map((round, index) => (
+          index === 0 ? { ...round, critiqueRoundId: 'critique-round-corrupt' } : round
+        )),
+      },
+    }), sceneFixture('scene-critique-ids', (push) => {
+      push('ai_council.run_initialized');
+      push('ai_council.round_started');
+      push('ai_council.seat_selected');
+      push('ai_council.proposal_observed');
+      push('ai_council.critique_round_started', scopeFor('ai_council.critique_round_started'), {
+        ...dataFor('ai_council.critique_round_started'),
+        sourceProposalIds: ['proposal-1'],
+      });
+    }));
+  }, 30_000);
+
+  it('fails parity when the candidate-id list diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      blindedAdjudication: {
+        ...state.blindedAdjudication,
+        candidates: state.blindedAdjudication.candidates.map((candidate, index) => (
+          index === 0 ? { ...candidate, candidateId: 'candidate-corrupt' } : candidate
+        )),
+      },
+    }), sceneFixture('scene-candidate-ids', (push) => {
+      push('ai_council.run_initialized');
+      push('ai_council.round_started');
+      push('ai_council.seat_selected');
+      push('ai_council.proposal_observed');
+      push('ai_council.candidate_blinded');
+    }));
+  }, 30_000);
+
+  it('fails parity when the judgment-id list diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      blindedAdjudication: {
+        ...state.blindedAdjudication,
+        judgments: state.blindedAdjudication.judgments.map((judgment, index) => (
+          index === 0 ? { ...judgment, judgmentId: 'judgment-corrupt' } : judgment
+        )),
+      },
+    }), sceneFixture('scene-judgment-ids', (push) => {
+      push('ai_council.run_initialized');
+      push('ai_council.round_started');
+      push('ai_council.seat_selected');
+      push('ai_council.proposal_observed');
+      push('ai_council.candidate_blinded');
+      push('ai_council.candidate_blinded', {
+        runId: 'run-1',
+        roundId: 'round-1',
+        candidateId: 'candidate-2',
+      }, {
+        ...dataFor('ai_council.candidate_blinded'),
+        visibleCandidateDigest: digest('visible:candidate-2'),
+      });
+      push('ai_council.pairwise_judgment_recorded');
+    }));
+  }, 30_000);
+
+  it('fails parity when the minority-refs list diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      blindedAdjudication: {
+        ...state.blindedAdjudication,
+        decisions: state.blindedAdjudication.decisions.map((decision, index) => (
+          index === 0 ? { ...decision, minorityRefs: ['minority-corrupt'] } : decision
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the contradiction-refs list diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      blindedAdjudication: {
+        ...state.blindedAdjudication,
+        decisions: state.blindedAdjudication.decisions.map((decision, index) => (
+          index === 0 ? { ...decision, contradictionRefs: ['contradiction-corrupt'] } : decision
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the convergence-decision field diverges', async () => {
+    // A protected final evaluation decision drives both the decision and its
+    // derived outcome; flipping it to a continue decision shifts the derived
+    // outcome to active while the closed-terminal gate still passes.
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      convergence: {
+        ...state.convergence,
+        evaluations: state.convergence.evaluations.map((evaluation, index, all) => (
+          index === all.length - 1 ? { ...evaluation, decision: 'continue' as const } : evaluation
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the convergence-outcome field diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      convergence: {
+        ...state.convergence,
+        evaluations: state.convergence.evaluations.map((evaluation, index, all) => (
+          index === all.length - 1
+            ? { ...evaluation, decision: 'non-converged' as const }
+            : evaluation
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the synthesis-input-digest field diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      convergence: {
+        ...state.convergence,
+        deliberations: state.convergence.deliberations.map((deliberation, index, all) => (
+          index === all.length - 1
+            ? { ...deliberation, inputEventRange: {
+              ...deliberation.inputEventRange,
+              lastEventId: 'event-input-range-corrupt',
+            } }
+            : deliberation
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the selected-plan-digest field diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      convergence: {
+        ...state.convergence,
+        deliberations: state.convergence.deliberations.map((deliberation, index, all) => (
+          index === all.length - 1
+            ? { ...deliberation, selectedPlanDigest: digest('corrupted-plan') }
+            : deliberation
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when an artifact entry diverges', async () => {
+    await expectSurfaceDivergence((state) => ({
+      ...state,
+      artifacts: {
+        records: state.artifacts.records.map((record, index) => (
+          index === 0 ? { ...record, contentDigest: digest('corrupted-artifact') } : record
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it.skip('covers the terminal-decision field via a projection-semantic mutation', async () => {
+    // The executor's closed-terminal gate re-reads this very projection field
+    // on every path and throws before the fingerprint comparator when a
+    // one-path flip disagrees with the fixture's closed terminal expectation,
+    // so a folded-terminal corruption always fails closed as
+    // execution-outcome, never projection-semantic. Terminal drift is already
+    // asserted separately by the terminal-decision fault in the fault
+    // injection battery.
+  });
+
+  it.skip('covers the resume-decision-digest field', async () => {
+    // The closed fixture closure never supplies resumeEvidence, so the reducer
+    // yields a structurally-null resume-decision digest on both paths and no
+    // mutation of its feeding slice can change the projection.
+  });
 });
