@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/016-cursor-devin-hook-entries"
-    last_updated_at: "2026-08-17T13:42:29.000Z"
+    last_updated_at: "2026-08-17T15:17:23.000Z"
     last_updated_by: "claude"
-    recent_action: "Added hooks/cursor and hooks/devin MCP config entries and a hooks README."
+    recent_action: "Added hooks/cursor and hooks/devin plus their hook-hub mirror symlinks."
     next_safe_action: "Author the phase spec docs and commit the sk-vision-scoped changes on v4."
     blockers: []
     key_files:
@@ -59,7 +59,7 @@ _memory:
 
 - [x] T002 Create `hooks/devin/mcp_config.json` and `hooks/cursor/mcp.json`. Evidence: both present, valid JSON with `mcpServers.sk-vision`.
 - [x] T003 Symlink `.devin/mcp_config.json` to the owned source. Evidence: `readlink` -> `hooks/devin/mcp_config.json`.
-- [x] T004 Add `hooks/README.md` and update SKILL.md / README host-adapter text; bump to 0.1.3.1. Evidence: the sections name all four hosts.
+- [x] T004 Mirror cursor + devin into the hub at `.opencode/hooks/sk-vision/{cursor,devin}`, then add `hooks/README.md` and update SKILL.md / README host-adapter text; bump to 0.1.3.1. Evidence: both hub symlinks resolve back to the sources; the doc sections name all four hosts and the hub mirrors.
 <!-- /ANCHOR:phase-2 -->
 
 ---

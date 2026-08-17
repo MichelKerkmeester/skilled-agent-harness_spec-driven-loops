@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/016-cursor-devin-hook-entries"
-    last_updated_at: "2026-08-17T13:42:29.000Z"
+    last_updated_at: "2026-08-17T15:17:23.000Z"
     last_updated_by: "claude"
-    recent_action: "Added hooks/cursor and hooks/devin MCP config entries and a hooks README."
+    recent_action: "Added hooks/cursor and hooks/devin plus their hook-hub mirror symlinks."
     next_safe_action: "Commit the sk-vision-scoped changes on v4."
     blockers: []
     key_files:
@@ -57,7 +57,8 @@ Cursor and Devin now appear under `hooks/` alongside Pi and OpenCode. Because th
 |------|----------|--------|
 | Devin config owned | `hooks/devin/mcp_config.json` | `.devin/mcp_config.json` symlinks to it |
 | Cursor config | `hooks/cursor/mcp.json` | portable entry; Cursor reaches the server via the shared `.claude/mcp.json` |
-| Four-host doc | `hooks/README.md` | in-process vs MCP model + the Cursor shared-config note |
+| Hub mirrors | `.opencode/hooks/sk-vision/{cursor,devin}` | per-file symlinks back to the sources, matching the `{pi,opencode}` mirrors |
+| Four-host doc | `hooks/README.md` | in-process vs MCP model + the Cursor shared-config note + the hub-mirror note |
 | Host docs | `SKILL.md` §3, `README.md` §7 | name all four hosts; version 0.1.3.1 |
 <!-- /ANCHOR:what-built -->
 
@@ -91,6 +92,7 @@ The two config files were written under `hooks/`, both pointing to the same `dis
 |-------|--------|
 | `hooks/` tree | lists `cursor/mcp.json`, `devin/mcp_config.json`, `opencode/`, `pi/`, `README.md` |
 | `.devin/mcp_config.json` | symlink resolves to `hooks/devin/mcp_config.json` |
+| hub mirrors | `.opencode/hooks/sk-vision/{pi,opencode,cursor,devin}` all four resolve |
 | both configs | valid JSON, `mcpServers.sk-vision` present |
 | MCP `tools/list` | 13 tools |
 | `ci-skill-root-metadata.cjs` | `OK [S] sk-vision` |

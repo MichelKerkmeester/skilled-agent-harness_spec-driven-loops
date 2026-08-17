@@ -9,6 +9,8 @@ The skill drives four coding hosts. Two attach tools **in-process**, two attach 
 | **Devin** | MCP (stdio) | `devin/mcp_config.json` | `.devin/mcp_config.json` → symlink |
 | **Cursor** | MCP (stdio) | `cursor/mcp.json` (portable reference) | `.claude/mcp.json` entry, via the `.cursor/mcp.json → .mcp.json` chain |
 
+All four sources are also mirrored into the shared hook hub at `.opencode/hooks/sk-vision/{pi,opencode,cursor,devin}` (per-file symlinks back to these sources), so the fleet sees every host's entry in one place.
+
 ## Why Cursor and Devin differ from Pi and OpenCode
 
 Cursor and Devin have no in-process plugin API. They attach tools only through the **Model Context Protocol**, so both launch one shared server — `../vision-runtime/src/mcp/server.ts`, built to `../vision-runtime/dist/mcp-server.js` — that exposes the same 13 `sk_vision_*` tools. There is no per-host adapter *code* for them; the "adapter" is the MCP config that names the server.
