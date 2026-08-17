@@ -18,6 +18,7 @@ function sourceLabel(args: { path?: string }): string {
   return args.path ?? "inline-image";
 }
 
+/** Parse the optional JSON-string `settings` arg into an object; malformed input is ignored. */
 function parseSettings(raw?: string): Record<string, unknown> | undefined {
   if (!raw) return undefined;
   try {

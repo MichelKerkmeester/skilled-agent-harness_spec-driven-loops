@@ -1,5 +1,7 @@
 # sk-vision host adapters
 
+## 1. OVERVIEW
+
 The skill drives four coding hosts. Two attach tools **in-process**, two attach them **over MCP** — which is why the layout below is not one-shape-per-host.
 
 | Host | Attach model | Source in `hooks/` | Host load path |
@@ -11,7 +13,9 @@ The skill drives four coding hosts. Two attach tools **in-process**, two attach 
 
 All four sources are also mirrored into the shared hook hub at `.opencode/hooks/sk-vision/{pi,opencode,cursor,devin}` (per-file symlinks back to these sources), so the fleet sees every host's entry in one place.
 
-## Why Cursor and Devin differ from Pi and OpenCode
+---
+
+## 2. WHY CURSOR AND DEVIN DIFFER FROM PI AND OPENCODE
 
 Cursor and Devin have no in-process plugin API. They attach tools only through the **Model Context Protocol**, so both launch one shared server — `../vision-runtime/src/mcp/server.ts`, built to `../vision-runtime/dist/mcp-server.js` — that exposes the same 13 `sk_vision_*` tools. There is no per-host adapter *code* for them; the "adapter" is the MCP config that names the server.
 
@@ -22,6 +26,8 @@ Cursor and Devin have no in-process plugin API. They attach tools only through t
 
 The MCP server stays in `vision-runtime/` rather than under `hooks/` because it needs the MCP SDK dependency, which resolves inside the runtime package.
 
-## Fresh-checkout note
+---
+
+## 3. FRESH-CHECKOUT NOTE
 
 `vision-runtime/dist/mcp-server.js` and `opencode/sk-vision.js` are gitignored build artifacts. Run `bun run build` in `vision-runtime/` before the OpenCode plugin or the Cursor/Devin MCP server can launch.
