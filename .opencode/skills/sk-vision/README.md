@@ -7,7 +7,7 @@ trigger_phrases:
   - "mockup"
   - "error.png"
   - "local vision"
-version: 0.1.3.0
+version: 0.1.3.1
 ---
 
 # sk-vision
@@ -126,7 +126,7 @@ OpenCode and Pi load an in-process adapter from the skill's `hooks/` source; Cur
 
 - **OpenCode** — source `hooks/opencode/sk-vision.js`, loaded via `.opencode/plugins/sk-vision.js`. Auto-inspect uses a 2s grace and never awaits full GPU work.
 - **Pi** — source `hooks/pi/sk-vision.ts`, loaded via `.pi/extensions/sk-vision.ts` (relative symlink). Registers the 13 tools via `pi.registerTool`; `session_shutdown` closes the runtime client.
-- **Cursor & Devin** — no in-process plugin API, so they attach the 13 tools over MCP. A shared stdio server (`vision-runtime/src/mcp/server.ts` → `dist/mcp-server.js`) is launched by Cursor via `.claude/mcp.json` (through the `.cursor/mcp.json` symlink chain) and by Devin via `.devin/mcp_config.json`.
+- **Cursor & Devin** — no in-process plugin API, so they attach the 13 tools over MCP through a shared stdio server (`vision-runtime/src/mcp/server.ts` → `dist/mcp-server.js`). Their MCP configs live under `hooks/`: `hooks/devin/mcp_config.json` (Devin loads it via the `.devin/mcp_config.json` symlink) and `hooks/cursor/mcp.json` (portable; Cursor reaches the server via the shared `.claude/mcp.json` entry). See `hooks/README.md`.
 
 The in-process sources are mirrored to the shared hook fleet at `.opencode/hooks/sk-vision/{pi,opencode}`. Skill owns source; every other path is a symlink, re-export, or MCP config.
 
