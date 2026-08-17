@@ -1,5 +1,0 @@
-Feature: Claude-style rich content blocks — bash Command/Output cards + code/text artifact cards with copy + full-screen
-
-Goal: Render the transcript content pi already sends (tool calls/results, code, long text) as polished Claude-app-grade blocks: a bash Command/Output card, code blocks with syntax + Copy, and a text/prompt "artifact" card with Copy + open-full-screen — reusing the F6 viewer shell.
-
-Desired: Claude-parity content blocks, all READ-ONLY over already-redacted content: a bash/tool Command + Output card that expands to a full-screen modal; fenced code rendered with syntax + a Copy button + open-full-screen; a long-text / goal-prompt "artifact" card (label, preview, Copy, expand). No new mutation; no host-filesystem reads.

@@ -1,8 +1,0 @@
-# Commit the durable review evidence (merged report, findings registry, synthesis,
-# final review, orchestration summary, config) — not the multi-lineage fan-out internals.
-lineages/
-deltas/
-prompts/
-iterations/
-observability-events.jsonl
-orchestration-status.log

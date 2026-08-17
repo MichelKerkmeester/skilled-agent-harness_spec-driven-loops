@@ -1,8 +1,0 @@
-All three phases complete and verified. Final state:
-
-- **phase_init** — config, strategy (8 key questions), state JSONL, findings registry, dashboard, `iterations/` written directly to the lineage dir (artifact bound per instruction; `resolveArtifactRoot` node not run).
-- **phase_main_loop** — 20/20 iterations completed, each with cited research (vendor docs, standards, OWASP/NIST, platform docs, Pi RPC docs, 041 specs), a write-once `iteration-NNN.md`, and a JSONL delta with all required fields. Convergence (newInfoRatio 1.00 → 0.40, last-5 mean ≈ 0.44) treated as telemetry per directive; angles broadened instead of early synthesis.
-- **phase_synthesis** — 8/8 questions resolved, `research.md` compiled (17 sections incl. mandatory Eliminated Alternatives table, 16 entries), config `status: complete`, `synthesis_complete` event appended, dashboard COMPLETE.
-- **Verification** — JSONL: 22 lines, all parse, 20 iteration records with required fields, none missing; 20 non-empty iteration files; all 6 artifacts present; no writes outside the lineage dir (parallel codex lineage untouched).
-
-FANOUT_LINEAGE_COMPLETE:cli-pi-deepseek-v4-flash

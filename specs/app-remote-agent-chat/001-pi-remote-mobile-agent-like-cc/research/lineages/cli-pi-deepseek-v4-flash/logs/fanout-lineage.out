@@ -1,9 +1,0 @@
-Contract check resolved, no action needed on the state log:
-
-- **`convergence_telemetry` is not part of the workflow contract**: `grep convergence_telemetry .opencode/commands/deep/assets/deep-research-auto.yaml` returns zero matches — the YAML phase loop never emits these events. The sibling lineage's per-run telemetry rows (timestamps spread 06:38–07:50Z across its run) were written by the fan-out harness (`fanout-run.cjs`) at each iteration boundary, not by the leaf and not by the workflow.
-- **The authoritative validator requires only**: iteration narrative, canonical state-log record with route-proof (`mode=research`, `target_agent=deep-research`, `agent_definition_loaded=true`, non-empty `resolved_route`), and a delta file with a `type=iteration` record. My lineage passes all three for iterations 1–6 (`verify-iteration.cjs --json` → 6× `{"ok":true}`, exit 0).
-- **Therefore**: appending retroactive run 1–5 telemetry events would fabricate records into an append-only log with no contract basis and could collide with the harness's own post-dispatch provenance/audit patching. The finished log is preserved as-is: 9 records (config, 6 iterations, one `convergence_telemetry` for the terminal run, `synthesis_complete`).
-
-Final state stands verified: 33-check sweep all PASS (exit 0), config `status: complete`, 19 agent-authored artifacts + harness-owned `invocation-metadata.json` inside the lineage dir, no writes outside it, all five goal-objective components (session list, chat bubbles, streaming, tool activity, approvals, push notifications) answered across the six iterations and consolidated in `research.md`.
-
-FANOUT_LINEAGE_COMPLETE:cli-pi-deepseek-v4-flash

@@ -1,1 +1,0 @@
-{"executors":[{"kind":"cli-cursor","model":"cursor-grok-4.5-high","label":"grok45","iterations":5},{"kind":"cli-codex","model":"gpt-5.6-sol","reasoningEffort":"high","label":"gptsol","iterations":5}],"assignment_model":"flat_pool","concurrency":2,"maxRetries":5,"lagCeilingMs":300000,"progressHeartbeatSeconds":60}
