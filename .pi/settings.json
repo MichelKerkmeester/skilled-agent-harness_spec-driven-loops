@@ -12,17 +12,19 @@
   "defaultProjectTrust": "always",
   "treeFilterMode": "default",
   "enabledModels": [
+    "deepseek/deepseek-v4-flash",
+    "deepseek/deepseek-v4-pro",
+    "minimax/MiniMax-M3",
+    "openai-codex/gpt-5.6-luna",
     "openai-codex/gpt-5.6-sol",
     "openai-codex/gpt-5.6-terra",
-    "openai-codex/gpt-5.6-luna",
-    "deepseek/deepseek-v4-pro",
-    "deepseek/deepseek-v4-flash",
-    "opencode-go/deepseek-v4-pro",
     "opencode-go/deepseek-v4-flash",
+    "opencode-go/deepseek-v4-pro",
     "opencode-go/qwen3.8-max",
+    "openrouter/openai/gpt-5.6-luna",
+    "openrouter/~deepseek/deepseek-v4-flash-latest",
     "xiaomi/mimo-v2.5-pro",
-    "xiaomi/mimo-v2.5-pro-ultraspeed",
-    "minimax/MiniMax-M3"
+    "xiaomi/mimo-v2.5-pro-ultraspeed"
   ],
   "packages": [
     "extensions/deep-pi",
