@@ -1,8 +1,8 @@
 {
   "workflowMode": "sk-vision",
   "packet": ".",
-  "leafRoots": ["references"],
+  "leafRoots": ["feature-catalog"],
   "excludeIndexFiles": true,
   "resourceContractVersion": 1,
-  "_note": "Standalone Class S config. references/ is the only routed leaf root. Generate leaf-manifest.json and leaf-aliases.json with ci-skill-root-metadata.cjs --fix. Do not hand-edit those two files."
+  "_note": "Standalone Class S config. feature-catalog/ is the routed deep-detail corpus; the runtime reference was folded into SKILL.md so there is no references/ root. Generate leaf-manifest.json and leaf-aliases.json with ci-skill-root-metadata.cjs --fix. Do not hand-edit those two files."
 }
