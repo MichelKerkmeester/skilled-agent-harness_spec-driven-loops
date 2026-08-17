@@ -11,7 +11,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-follo
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/004-review-containment-exemption"
-    last_updated_at: "2026-08-13T14:27:57.000Z"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "markdown-agent"
     recent_action: "Documented commit 1fb79e0106 and re-ran pinned tsc + the touched test file to confirm both pass"
     next_safe_action: "None; packet complete, no follow-up required"

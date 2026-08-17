@@ -12,8 +12,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-legacy-compat-event-vocabulary"
-    last_updated_at: "2026-08-07T03:06:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Completed six legacy compatibility vocabularies and scoped per-file verification"
     next_safe_action: "Orchestrator reviews and lands the uncommitted candidate"
@@ -66,7 +66,7 @@ Blocker 2 is that the compatibility bridge blocks ordinary live events. Research
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-07-30 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
 | **Wave** | W2 (hard gate on 014) |
 | **Findings in scope** | 6 (0 P0 / 6 P1 / 0 P2), 1 carrying a review `CONFIRMED*` mark |

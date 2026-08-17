@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Fan-out writes iterations and deltas under `research/lineages/<label>/`, while synthesis reads `research/iterations/`, `research/deltas/`, and `research/findings-registry.json`",
     "created_at": "2026-07-25T07:41:55Z",
-    "last_save_at": "2026-08-14T04:28:20.814Z",
+    "last_save_at": "2026-08-17T04:04:10.694Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52cd0a4556ca8c89fcec94c42f31eadc5fe7fedbe52d4e6d5b75f817b35dca71",
+    "source_fingerprint": "sha256:2619c2d892d9e2b8907883dc4c886d52acfe58d3d0d0d7e4a02606ad68bae2a1",
     "source_doc_hashes": {
-      "spec.md": "92dd8077dae09cad402045d034d77e72eda706dff2efdd5e785f4e31af9c7ba7",
-      "plan.md": "16113adfbb6550333e1acf70ce10469842e3cf187459aaf92a67843d42895d55",
-      "tasks.md": "d7eb946618de9477e1044b82eaaa3bdb6e55427b78a4421648ea163b3f177450",
-      "checklist.md": "2c13d70ee460f72b614b0870aa6bef66c70e359447a6a2f3ff7f94595ae99eca",
-      "decision-record.md": "36601d66d235d0375e75c14fa856547e2868fc2bc461dc38809fe0d3992783fe",
-      "implementation-summary.md": "e14bcf862bff364fc37f5762170d202ea21b3c847e867a2ef1427899590c2874"
+      "spec.md": "f09479136c60f71768fc1cdea2e4dc1bbcb82484db317ed7c495defea7b314e2",
+      "plan.md": "da3bcf77c53ac1fe3aa1214d8fbf1c84c90b7fb046c06df796cc44d1217fc740",
+      "tasks.md": "4e96cc83952f5138d77a64244e5968248d7c4b904f875554dbe53a0fda410c41",
+      "checklist.md": "7f080f9bb86881dac22553c68c78614f6803e7dbbf74cf704e847b14e479ae43",
+      "decision-record.md": "5514c3c1ad0180791e14368ca87de42ef660d86f3915a32362ae3d6619123dc4",
+      "implementation-summary.md": "a5ca20d844ebd1f07aaca1bbaf90e06082f1dee75999119d02bbc1e10d2efbd7"
     },
     "last_active_child_id": null,
     "last_active_at": null

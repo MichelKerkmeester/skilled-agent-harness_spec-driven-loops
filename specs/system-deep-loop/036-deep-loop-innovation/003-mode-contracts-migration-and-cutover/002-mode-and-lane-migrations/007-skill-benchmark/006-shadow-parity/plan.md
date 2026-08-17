@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity"
-    last_updated_at: "2026-07-15T21:20:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "opencode"
     recent_action: "Defined paired scenario, scoring, and projection-diff workstreams"
     next_safe_action: "Pin shared shadow interfaces and the Skill Benchmark treatment matrix"

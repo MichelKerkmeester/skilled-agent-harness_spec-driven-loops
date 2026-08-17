@@ -10,8 +10,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts"
-    last_updated_at: "2026-07-29T21:15:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Pre-014 hardening bound run-cert outputs to authorized transitions and ordered provenance"
     next_safe_action: "Validation gate re-checks golden 005 006 007 for the same class"

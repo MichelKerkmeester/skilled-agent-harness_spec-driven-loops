@@ -12,8 +12,8 @@ contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-runtime-mirror-and-routing-parity"
-    last_updated_at: "2026-08-08T01:02:59.445Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Landed 7/8 findings (2f84f78bf7); F-028-01 sync-agents deferred (buggy read-only)"
     next_safe_action: "Regenerate stale Codex review mirror"

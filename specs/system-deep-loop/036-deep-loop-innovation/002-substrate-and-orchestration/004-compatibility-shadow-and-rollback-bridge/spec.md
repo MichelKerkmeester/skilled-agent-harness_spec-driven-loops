@@ -11,7 +11,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestrati
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge"
-    last_updated_at: "2026-08-13T15:02:35.000Z"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Authored the compatibility, shadow-parity, and rollback bridge phase map"
     next_safe_action: "Author the five child contracts without moving runtime authority"
@@ -38,7 +38,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-deep-loop/036-deep-loop-innovation |
 | **Predecessor** | 003-shared-evidence-and-control-services |

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Alignment mode binding for immutable, content-addressed reference artifacts across authority resolution, lane discovery, verify-first findings, conformance convergence, alignment reports, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:43.383Z",
-    "last_save_at": "2026-08-15T16:16:55.105Z",
+    "last_save_at": "2026-08-17T04:03:55.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0448ab1a9bc442c98fcdea35752bad300714fdb48b0728a4a6cba3e309052aa6",
+    "source_fingerprint": "sha256:ac4c736fab167cc2f8893a26fab6ec02648ddce2ca14e83567ea9558a2da1523",
     "source_doc_hashes": {
-      "spec.md": "a948b59fafac1c2bca5ac162ca5e9897370ac6e7e48f8b3b1c8cab1b5f22653e",
-      "plan.md": "fb0eb318a6f1008cf3a9fc689f8d11e919372fbe8dd542ac4d9b2ccca1f59468",
-      "tasks.md": "c02e411dbaa303859a44ed91a26e4720a5b53e93e0facc2b3ce293d136dbc396",
-      "checklist.md": "4311adc7037f103c0eebe1655054bea54c38f58c548b29f249c828e31cfbcba0",
-      "decision-record.md": "feeaf0d76bf032729dff9aa2bf2fdf7d7e31c704d4a56638f3a2750764b75a4f",
-      "implementation-summary.md": "ce78a1f6eb9630cbe7fc8196809b996d946734c3f5f4027274d76fdaee22ac12"
+      "spec.md": "e3ab67565e66b0c7632885a3000d45c9158dfc5b529b1d009fb258789707355d",
+      "plan.md": "d00f8756e4b30a85b5adac153be024f6a6c63396e9f514da3f444e4cfde9d5b2",
+      "tasks.md": "581a1c45041329c8c292626a570ef7837ebbd25c924626e95ba8e93de112bb77",
+      "checklist.md": "cca4247f71039415189e47a39ce3f36e1b033999fd9b08c3ebbb43b277c214b3",
+      "decision-record.md": "06f9d7d26252acfbabb082013f650788c8fbc9f39aded2584179b7e3e801e158",
+      "implementation-summary.md": "a3d492d9bc2cca8f2b3bf3ea1ae0ff755d8e92d6e410091d86e2ea7f4147d046"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -53,7 +53,7 @@
       "variant"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -103,15 +103,15 @@
     ],
     "causal_summary": "Migrate the model-benchmark variant's multi-model runs and scoring matrix onto the typed event-ledger substrate through seven concern children, reusing the deep-improvement-common backbone and ending in an independent mode gate.",
     "created_at": "2026-07-16T03:43:56.321Z",
-    "last_save_at": "2026-08-14T04:28:14.687Z",
+    "last_save_at": "2026-08-17T04:04:07.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:85f70e97e26f307c0c810310f73523dca2ad652df785efe5edfec1423046fce3",
+    "source_fingerprint": "sha256:24d132a8cc33cf5af5d2613f1eb9115ef3a3cadd4ddbdc7592a5f1f1c375523c",
     "source_doc_hashes": {
-      "spec.md": "157b6326115b4b0b60d6e058ec35fed2c765da00866adb47dfa39239a8579b61"
+      "spec.md": "5dfffaf25123f642b4a397a1221eb0f9581549996b0337a61bbd116d930b37ff"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
     "last_active_at": null

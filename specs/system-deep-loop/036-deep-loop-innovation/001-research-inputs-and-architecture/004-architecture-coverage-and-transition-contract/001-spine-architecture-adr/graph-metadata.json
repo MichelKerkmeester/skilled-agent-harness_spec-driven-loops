@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Ratify the single six-primitive cross-mode architecture spine that governs the later 006 implementation phases.",
     "created_at": "2026-07-16T03:43:44.661Z",
-    "last_save_at": "2026-08-14T04:28:28.559Z",
+    "last_save_at": "2026-08-17T04:04:15.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8337ad9017bf4698a37c58c4b5137b7b567885b316983eb847dc87e8a8117247",
+    "source_fingerprint": "sha256:ed939cb6a94f3048d6573ac705e5ca4d5e07f24aec1a2a99dd5757409b7643de",
     "source_doc_hashes": {
-      "spec.md": "c777d46671b658c7748365e96f969b96b1de50af493bafd0ec95d9c4ef8be893",
-      "plan.md": "6015c4404eea42dc9218d528225e9585c36125a4d8f47d4fe986d06e3571fbe4",
-      "tasks.md": "7be0151dc9557126b7b8d0bbea96f512c5cc4268cf296d22c210f99d3a402c57",
-      "checklist.md": "d5b72e0806d5870a33d40ea5b2e82c33406fd096a90e626a1398bdffbd0361f2",
-      "decision-record.md": "d7e07a7c9b2b856310f4330e8e0acaffd1c55943e2393f069922c09423498e55",
-      "implementation-summary.md": "d73eab3cb20bba1f9dc6bf4e3a690e8ae79f550a1b010dfda234bf0d188eed0a"
+      "spec.md": "a3b1329287657421f66216e72c6e50829572319b41a4b5992ab03f577921431d",
+      "plan.md": "8f2efb1a653e7a16e5e5a9dcdc28afeb95b6021806498181415da7ed46a20fe9",
+      "tasks.md": "3adbbcef5eadf19001f810e21e4bf5206985a5e47c9de0ef72fd05897eb3911a",
+      "checklist.md": "b9f12cf522b377a585a81d28438f7916d618cc1430eca71686951f9e9f903980",
+      "decision-record.md": "c47d1643f65c9a4431a5a6b53871a8536dafce5cf0ffdc18902faaaa15912fd9",
+      "implementation-summary.md": "4edc423c1f895a9587acb552d14977bcad86d53969fc3850bd58252e52ee1429"
     },
     "last_active_child_id": null,
     "last_active_at": null

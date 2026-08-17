@@ -11,8 +11,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/003-artifact-certificate-binding"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-artifact-certificate-binding"
-    last_updated_at: "2026-08-10T18:52:07Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Reconciled 025 docs to the landed 12-finding build across 4 commits"
     next_safe_action: "Review resolveLifecycleAuthorization hardening for the F-011-01 residual"

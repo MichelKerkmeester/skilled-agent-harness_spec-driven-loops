@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan stable lineage, claim, candidate, and mode-session identities that persist across resume, handover, replay, and cross-mode boundaries and are recorded on the typed event ledger.",
     "created_at": "2026-07-16T03:43:48.003Z",
-    "last_save_at": "2026-08-14T04:28:24.514Z",
+    "last_save_at": "2026-08-17T04:04:12.611Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55cf684318054edca5766b47f3524c192cf38da20154c3a328e4d8e642fb00de",
+    "source_fingerprint": "sha256:e97c0a5de50e729816c00015c457c5d6d59027adc6d2853cb066dd20c4814b33",
     "source_doc_hashes": {
-      "spec.md": "86863ce68bdbb9cf2bd9e005eef5bad9491f4c1cc07d41805a9a4c8766932693",
-      "plan.md": "81456bd61351d32d7d9889112090fafac986eb274001a5b63cd039a8adb022c6",
-      "tasks.md": "67aa0e293837a44b9d1bfe9664bf3d5a49a16dc6602cc863a296035a96961707",
-      "checklist.md": "b9cfc9f47424722b585b8d440b722b6fb404ce37bb1894296a195c81f2ba8b55",
-      "implementation-summary.md": "f1eeff553daeca7864d40ffc40d2078e0136fdc960ab588efc1ac6e788cc7062"
+      "spec.md": "f6596c3e223c7421aa8c0d00893b103ff1e08b0b95f76c3fa90713a5fff204e2",
+      "plan.md": "ff81f3fb76902e26aded63529c406d31e01d562399bdf328ec7e92373fedd260",
+      "tasks.md": "4ea82f4398e3b146705b421efb4594b916fa263bb03fcaa407776ff4ad00f25e",
+      "checklist.md": "ef64fbac5c796b007bfa6ec89afd5c3534d8450129c87b3d7becc0f46d184551",
+      "implementation-summary.md": "772e2ba5abff0fd4c6b3ad305d841a24488cf84cf5c4b18a80a657837274ce1c"
     },
     "last_active_child_id": null,
     "last_active_at": null

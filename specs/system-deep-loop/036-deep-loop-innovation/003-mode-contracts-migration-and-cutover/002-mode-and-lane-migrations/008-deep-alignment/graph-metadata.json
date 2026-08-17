@@ -52,7 +52,7 @@
       "named-authority"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -102,15 +102,15 @@
     ],
     "causal_summary": "Migrate Deep Alignment's verify-first, named-authority conformance loop to the shared typed event-ledger substrate through seven independently gated concern children. Preserve authority and evidence provenance, replayable findings, explicit non-pass outcomes, and the rollback-guarded mode handoff.",
     "created_at": "2026-07-16T03:43:56.850Z",
-    "last_save_at": "2026-08-14T04:28:14.023Z",
+    "last_save_at": "2026-08-17T04:04:06.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9f75b4a365cd8f59e9d67b84ad889235ad3e4d7a177ec6d05ff5c73a7793e3a2",
+    "source_fingerprint": "sha256:52e3cdaa226eb58940daad750bf7d0330a6384a71f938531bb2c19597c1f40b0",
     "source_doc_hashes": {
-      "spec.md": "ddfb21fdcf19dbf533eca20b202cb5705abe577845b67e5ec20f076ebf2742a4"
+      "spec.md": "22f1ff7eec0a6c131013a8ebda52d7a8f45379e2fd0ed27879d3515529751e1c"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema",
     "last_active_at": null

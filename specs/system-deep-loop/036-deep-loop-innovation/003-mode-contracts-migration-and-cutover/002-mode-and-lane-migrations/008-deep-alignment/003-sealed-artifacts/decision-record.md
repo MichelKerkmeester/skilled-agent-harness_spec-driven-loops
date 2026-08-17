@@ -13,8 +13,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts"
-    last_updated_at: "2026-07-24T04:17:18Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Added the authority-liveness invariant for direct and provenance-bound reads"
     next_safe_action: "Leaf 004 must resolve every deferred plain cross-artifact digest before authority cutover"

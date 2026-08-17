@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The deep-loop codex write-containment guard (`write-containment.ts`) confines a `cli-codex` leaf's writes to its artifact directory by diffing the git working tree after each dispatch: any out-of-scope path that is dirty after the dispatch but was not in the pre-dispatch baseline is treated as a leaf violation, reverted, and used to fail the iteration fail-closed",
     "created_at": "2026-08-06T07:57:25.961Z",
-    "last_save_at": "2026-08-14T04:28:10.567Z",
+    "last_save_at": "2026-08-17T04:04:05.013Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2387afaefc1a7cfe669036e392d78a7c4c8a880c6819ee264b7fd3f71a2afad3",
+    "source_fingerprint": "sha256:86c08428d5a16c0efdb129e3433f310b17d4267991a30f1d83b50f7401919d41",
     "source_doc_hashes": {
-      "spec.md": "8f81cbee02c50082d6c06a2ba98e2b69ab881261a908d3de19174dd93f908a49",
-      "plan.md": "d5faa686d81ce4a0476f5cf75e46ed71d6060eeeb2fe9b9c9467761c163008ee",
-      "tasks.md": "a46adac38fc7c89a329c9ec9cc7929e14d13805b5dddd00e2ad514949c9fcb7a",
-      "checklist.md": "495e2e7bba2d429586458592359cda2cdc7b5e9ed4b94278c4e35ba57eb26196",
-      "implementation-summary.md": "4dc09b3698856e450f0353de3b14ce28f21904481c0c2ea2c978a68d11f6ea60"
+      "spec.md": "206883c27f3cd81a7d16e1d12fc8cd61092bda5d48c43f48d42bf35dfc21a25c",
+      "plan.md": "b0bf7e428d617e65246c82a756d69dbf27e40ec313bb3a57c13be71954a4dec9",
+      "tasks.md": "8a1f2d92c6a576237bd50c95f2ee978dae3b88e4e763e5123134a03d9d102a94",
+      "checklist.md": "757b974fb3ac05378d8671f45619b4b9a795a27806e51a788ed6c1a3192766af",
+      "implementation-summary.md": "5fe5e837fd9c19f72bf2e3f906bf72d2ca4b9916757cd634039e67ae86bbdee4"
     },
     "last_active_child_id": null,
     "last_active_at": null

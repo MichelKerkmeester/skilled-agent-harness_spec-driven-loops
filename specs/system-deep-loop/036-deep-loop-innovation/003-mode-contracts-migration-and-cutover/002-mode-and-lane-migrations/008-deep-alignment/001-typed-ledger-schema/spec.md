@@ -11,8 +11,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T21:30:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "opencode"
     recent_action: "Implemented and verified the additive-dark Deep Alignment typed ledger schema"
     next_safe_action: "Fold DeepAlignmentLedgerEvent in 002-reducers-and-projections"

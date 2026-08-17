@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Two things remain to close the fan-out parity packet",
     "created_at": "2026-07-29T15:59:11.801Z",
-    "last_save_at": "2026-08-14T04:27:48.766Z",
+    "last_save_at": "2026-08-17T04:03:52.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a947d89927505eb3864fa7c8f96219fbdbdce4519935212a5640c138af81157",
+    "source_fingerprint": "sha256:aacdbe3ad0c3c8ca4c6659fa050da41cd23443f8f38acd3b91a1c6c8ef26eaf8",
     "source_doc_hashes": {
-      "spec.md": "5e5be14c9e1c1644c2e4136a39db47b8f60b94ad06aecea402ab01e18d8d9c53",
-      "plan.md": "32ea8786dc02516891dc910b2d8582d6fbd9053b4985067194227a542668c37a",
-      "tasks.md": "2b9ed508b807d342cb61b24f1be41b7e7d88b5ab5c4327b9337bd6a57acaf873",
-      "checklist.md": "d0941312a5d86d987e871dd2a504895f5d8edae1dcefa3113eabf7c08c6ccff7",
-      "implementation-summary.md": "0ef7b7778cdfc32ecb980f83a6679c334695fb9fa73c3c60dd63968ad7a94094"
+      "spec.md": "62b793f254aee9ba4527fb594c712054e325207dd07581d59753bdb3c1d35f59",
+      "plan.md": "5921b7b840884e8b220cc87677b27eedb326c0ecae731f5990195fdc7e62c3ec",
+      "tasks.md": "5deb2223174ce83a31ac1e71e76aaea1466263ea6e265faac8b0caa7dff74121",
+      "checklist.md": "cf155e7aae1097f7fe378efc462dcd8ce8ac17b497a23b3405bcf72a87a25eed",
+      "implementation-summary.md": "e81b57c9d53d40063f4620a986746d23349a14c124efbb26f4b3e188b14b0087"
     },
     "last_active_child_id": null,
     "last_active_at": null

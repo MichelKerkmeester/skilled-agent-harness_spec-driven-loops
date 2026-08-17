@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Define immutable, content-addressed, seal-on-write inputs and outputs for Skill Benchmark scenario runs and scoring",
     "created_at": "2026-07-16T03:43:41.603Z",
-    "last_save_at": "2026-08-15T15:53:26.398Z",
+    "last_save_at": "2026-08-17T04:03:56.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7168487da8e6f993e01a571fe7704daa085e95d7b07fc6d3aa5110705bb6198b",
+    "source_fingerprint": "sha256:c44af15a42aa48224053edfa36a42dd48f592be7af2fd0d1db915d2c30f88baa",
     "source_doc_hashes": {
-      "spec.md": "3be828487b16c7cdd8556b728ab41fa433cee71814a47df238c8ac5b15dbaa2b",
-      "plan.md": "1774abd0f6dfad27fdd6ee840d9bc20c826ddb08ba698a7a5211bb128320ac7a",
-      "tasks.md": "a048214fe0e28dd9577ba9ea8bf0914d26b54c35667e12e22a55d269776b2195",
-      "checklist.md": "52af08e3fbff2bb6a9eda693e3d40593cdb871265486debea967cec7edaa9a03",
-      "decision-record.md": "466a5f61d4dd81925bb371441fb89795b03f0685fc51fe440e7c76b73edfbcd3",
-      "implementation-summary.md": "78f45ce13ab3969d71a3d5f630d2229a40d223a58bde362ac8a0e4841c623637"
+      "spec.md": "7dbc4ea2613fbc141188d5773c8a38771025577a0dd5282a169ff8c4a8142aac",
+      "plan.md": "034c9de91c9993d476648f842dd5dd1f2c23e509b1c1fe318c970fd29488a92b",
+      "tasks.md": "0223b3b89c30ed3b654847e0dd68a51ceb25d78c9894ec2c7e58630c25a0f855",
+      "checklist.md": "a90888545ab9a51e648b6928b22c77a2f142f9a2d4f95d1513248a3e6604a14b",
+      "decision-record.md": "c95466a795d67489807ddecfcec3941dbb500c37b9052453865d60d191062ed8",
+      "implementation-summary.md": "3e0570341293d6c81427301519fb61af6a4b86ce680429039cd9685a7dcdf064"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Agent Improvement resume adapter over the sealed typed event ledger: rebuild agent-loop proposal and scoring state through deterministic reducers, map it onto the continuity ladder, and re-enter idempotently without double-applying events, losing branch evidence, or replaying uncertain effects. Reuse the deep-improvement-common resume, evaluator, canary, certificate, and promotion services.",
     "created_at": "2026-07-16T03:43:38.542Z",
-    "last_save_at": "2026-08-15T14:42:51.558Z",
+    "last_save_at": "2026-08-17T04:03:59.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73686e095c2c82ad00264aeb2574044e54021b92f4fab1c41fe559f8acbd7941",
+    "source_fingerprint": "sha256:4ec8d457dad87d8dc66e4e8637b09e6680117a1996f8752a7e08de9d683f942a",
     "source_doc_hashes": {
-      "spec.md": "5287db5a09ea4922ec24de98f0d2e310d8600ffb7543a25408050e13ca67cff7",
-      "plan.md": "b5797ea5e9e628735f636ec7f0accbff4e63f0dad31eb3d6616984ab741a3d38",
-      "tasks.md": "2a95bfe8404d69b3fe6ae7dcf8430cc468893f87195cd98ed7b617e70fd7b8e1",
-      "checklist.md": "4b752a5d97a6d73b6ee1d881986149d6eddfba10e45220f617a8f9993b93dd84",
-      "implementation-summary.md": "cb39a74d17795a4840ca99d621bfe81ba114cff6c807ab35e205b017e842941f"
+      "spec.md": "73332d59e07270f0c63c98aa92564ba78d2f5e91f6d60e87fecff4b234626e80",
+      "plan.md": "07ce587c7156f3437ed4c6c53b8c4686a2f269bd6feb4ab0ba18dadac67af3ba",
+      "tasks.md": "c255f5752c262d3f0491b84baa6e676d3d4e8cefcb256f4f0ebf83b4ea671c97",
+      "checklist.md": "46fb4ef9fd7795fa82e58d1cccd8f433ae172e38b41c80939af2d6680196af3e",
+      "implementation-summary.md": "059ec249c37de80637a104bc0155170a498889c45fc375b88214618c7f592975"
     },
     "last_active_child_id": null,
     "last_active_at": null

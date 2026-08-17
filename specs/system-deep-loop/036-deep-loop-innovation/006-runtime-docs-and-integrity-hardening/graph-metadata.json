@@ -91,7 +91,7 @@
     ],
     "causal_summary": "Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority, routing-parity, silent-failure, docs-drift, and identity and lock hardening.",
     "created_at": "2026-08-13T09:22:52.476Z",
-    "last_save_at": "2026-08-14T04:28:44.344Z",
+    "last_save_at": "2026-08-17T04:04:23.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -99,7 +99,7 @@
     ],
     "source_fingerprint": "sha256:fa1e0c211d85fa343d7d0aca7198483f351f64ccb5beee06cb500dca558f8bda",
     "source_doc_hashes": {
-      "spec.md": "cead5b73f36f0737fcb3888a6fe5464db6cdebb4a7e79df6e09e4f23020b2f28"
+      "spec.md": "b0b557d681727200aeb29df804c3367fa0068362184256f0f8543fc65e401875"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding",
     "last_active_at": null

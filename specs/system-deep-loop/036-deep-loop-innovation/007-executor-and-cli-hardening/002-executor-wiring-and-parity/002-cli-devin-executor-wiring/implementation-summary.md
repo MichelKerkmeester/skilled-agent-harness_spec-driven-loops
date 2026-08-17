@@ -10,8 +10,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/002-cli-devin-executor-wiring"
-    last_updated_at: "2026-07-27T16:55:59Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude-code"
     recent_action: "Initialized Level 2 template"
     next_safe_action: "Replace continuity placeholders"

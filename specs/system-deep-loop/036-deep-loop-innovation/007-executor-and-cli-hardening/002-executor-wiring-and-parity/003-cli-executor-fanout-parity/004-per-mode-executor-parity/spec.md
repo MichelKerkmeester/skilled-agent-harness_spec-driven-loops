@@ -11,8 +11,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity"
-    last_updated_at: "2026-07-29T13:20:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Consolidated model-benchmark cursor/devin/pi onto the shared builder"
     next_safe_action: "SOL-verify leaf 1, land, then skill-benchmark and ai-council leaves"
@@ -47,7 +47,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | In Progress |
 | **Created** | 2026-07-29 |
-| **Branch** | `system-deep-loop/0125-043-cli-parity` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity` |
 <!-- /ANCHOR:metadata -->
 

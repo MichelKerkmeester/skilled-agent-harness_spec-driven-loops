@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery"
-    last_updated_at: "2026-07-21T00:42:48Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Implemented and verified receipt issuance plus intent-confirm-recover execution"
     next_safe_action: "Consume the service only from a later authority-migration phase"

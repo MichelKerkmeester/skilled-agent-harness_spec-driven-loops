@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Define the pure Agent Improvement fold and its three live projection families: iteration/convergence state, a",
     "created_at": "2026-07-16T03:43:37.764Z",
-    "last_save_at": "2026-08-14T04:27:59.919Z",
+    "last_save_at": "2026-08-17T04:03:59.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4683886df015cef7650d1acae0851981d975fadd170a4f6f94fd677a465c3175",
+    "source_fingerprint": "sha256:2fe70901b3c8f453a545ff088abf145d7b1bdc89a7b12a8e410ab5fa82de5996",
     "source_doc_hashes": {
-      "spec.md": "d17526a95c4e000146f2480600f12870dea8297998748c79872e77caa97336e9",
-      "plan.md": "4c6e849952afc28d247a99221eb620d470efb6eef1cc8655c4d3fa61ea9e08a7",
-      "tasks.md": "5d6b05efcbb54623ed489ee81e2766f763c393c00fa91849d4ab11031df4d706",
-      "checklist.md": "c157a8d46f03946e602a2561c9d0237b741a6a2b53e59e328ded78c989f392aa",
-      "implementation-summary.md": "d3e431798efb4862ca5db25e7bc4c3e5ab0e3d7f70684c425e70c5dbee00dd6f"
+      "spec.md": "b13a9c0fca0c38f8cfeae43e4185c9dfbcac762bf474b0c78144b02a0592e70d",
+      "plan.md": "0ed6631f74c817e0d4e8c96fa26ef4e4aadeeeb35d4716992c99ed22d2a1ca25",
+      "tasks.md": "41b515db5808a9c0ee039565369cedd32539c78425e24a0056bc31c8655f06c7",
+      "checklist.md": "6163a3657ab2999ae9cb0e71d2d6441a808a7570971b49cb7e97c78d8812be19",
+      "implementation-summary.md": "35bae4dd77debb7722b4ece3dbd86d52d149c6b69f1a39274cf547a5c6cda344"
     },
     "last_active_child_id": null,
     "last_active_at": null

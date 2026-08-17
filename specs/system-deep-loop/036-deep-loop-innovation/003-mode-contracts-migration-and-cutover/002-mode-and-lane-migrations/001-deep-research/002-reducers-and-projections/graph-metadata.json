@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the pure reducers and live projections for the deep-research migration: replay the typed event ledger into deterministic iteration/convergence state, an artifact index, and per-mode status without side effects or authority cutover.",
     "created_at": "2026-07-16T03:43:30.675Z",
-    "last_save_at": "2026-08-14T04:28:08.702Z",
+    "last_save_at": "2026-08-17T04:04:04.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1429f6dd241accef54b34b5df0a85c52c74eea1bb9b1244e56fcd5bdb78c82cc",
+    "source_fingerprint": "sha256:0e31244f72b64da3384ea2e8bbede14f672c581f4c514e491863c1f6ebd13135",
     "source_doc_hashes": {
-      "spec.md": "a1450277479f60cb3e611558544822dcaa3dbf8d7e602a27a85c3f61df41e2fe",
-      "plan.md": "7bffd57ab1c6c939a2855d16471683381415717e2dd62c069013486be916057a",
-      "tasks.md": "e3248eec6591c17d5b0a0a74b0eb50c6b9444bcdfdbcc58ee05bca74f957b978",
-      "checklist.md": "d4b19adb49463f22dfeab8fe23ffe727b77629cd03ae9ab3137ef8b793098bf1",
-      "decision-record.md": "1e55f406aa43ade37f6f1b2ab6f52bca05a8ebfce0f39e3f86734eb22d424284",
-      "implementation-summary.md": "51f1a4c1c784f1a0c7e655951a19a0138a1275c4315ae50c1c57f78f03c053a5"
+      "spec.md": "ad8169986551000b2cd1a3f949fa77d457d3692d05a9df0b1af079bc8ff8bb38",
+      "plan.md": "79e14faf94aa6b8af65f3a5413635a3978589791991d44319585255e87d8b0ff",
+      "tasks.md": "d6b7427795a61e11c43827ba48fd519e859f0a6e771912ecbcd5c138ae3792f9",
+      "checklist.md": "e850aa822b0c91f700edf200d0bd37768a837e9c77c9027c48a749aee22dd5e5",
+      "decision-record.md": "a6653e7ca8e39bd3c6f30480c9f3441f52fd86f5d6d5777c071a921901475cb4",
+      "implementation-summary.md": "14ee6bd258216abfc6e10119d14a04cd8ab0db1ac979a9f8084a18c7280216b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

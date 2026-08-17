@@ -9,8 +9,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/005-rollback-drills"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/005-rollback-drills"
-    last_updated_at: "2026-07-21T04:31:14Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/005-rollback-drills"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Replaced theatrical rollback evidence with durable readback and full-tail replay proof"
     next_safe_action: "Hold for later cutover verification"

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the pure deterministic reducers and live projections for the Deep Review migration: replay the typed event ledger into iteration/convergence state, an artifact index, and per-mode status while preserving factored finding evidence and the shared review-loop contract used by Deep Alignment.",
     "created_at": "2026-07-16T03:43:32.465Z",
-    "last_save_at": "2026-08-14T04:28:06.510Z",
+    "last_save_at": "2026-08-17T04:04:03.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b374887e178960f3352a0f9975265a37192a247e5c7b59e7c0881c6665ad4685",
+    "source_fingerprint": "sha256:d499178ebe9cc8435f8c15a2d76018c93ea82c8c406fc2dbf3d8290a9d3e199e",
     "source_doc_hashes": {
-      "spec.md": "20886a973bce4ffb04f2121e32874325a4fa98d34b7cc9ce95f9a21c12db91ef",
-      "plan.md": "c4cfd54b0aff33fc8539c147c913615800ac4b21043258083ad61465fef0b354",
-      "tasks.md": "7cd24050cb8741d591648a71058fce3727a6e7ca4140afe34696f32325526d84",
-      "checklist.md": "6abf999b63f53c9084d12a68b63c88dc61ce372af911c816ee0c2502de852ca2",
-      "decision-record.md": "c2ba4463efa29aca60c418ad22fd27a224e49dccb1407155c55c857a5261748e",
-      "implementation-summary.md": "7c5d6e2244007754efc3ff03da1fde04d066f492417b331fa016c86158f0eec1"
+      "spec.md": "245889494a4f26d159013821e5ceec25607187230a3e6ec89b26d16c051c36c8",
+      "plan.md": "f7b60a83bd2ef79044790e99a84765562a6c4e5e507eb5f4f8dde0238e23c88c",
+      "tasks.md": "e25b16ee3691ce0fbead9609fe271a70443f52ec4ba68905280c8852c8a647e5",
+      "checklist.md": "e3944060439ab16ce6e44ae27fb7298ea7f96fbe48cd69cb5d02c2fd7e0f5c20",
+      "decision-record.md": "71096f789e6c739c8087ce564161d249622b2627e7bb96758a74a2b1ab586867",
+      "implementation-summary.md": "8dd2fcf3622d289b633be52fb8d0239f28714ac220ba49e2f12a25218d37d377"
     },
     "last_active_child_id": null,
     "last_active_at": null

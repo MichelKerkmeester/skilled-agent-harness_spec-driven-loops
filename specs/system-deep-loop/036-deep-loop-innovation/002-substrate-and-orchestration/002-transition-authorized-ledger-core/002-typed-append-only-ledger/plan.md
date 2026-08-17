@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/002-typed-append-only-ledger"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/002-typed-append-only-ledger"
-    last_updated_at: "2026-07-15T13:43:04Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/002-typed-append-only-ledger"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Planned ledger framing, append ordering, verified reads, and dark adapters"
     next_safe_action: "Implement the ledger modules and execute corruption and coexistence fixtures"

@@ -10,8 +10,8 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek"
-    last_updated_at: "2026-07-30T07:45:39.076Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "implementer"
     recent_action: "Record the executed approach"
     next_safe_action: "Commit the runtime change + packet"

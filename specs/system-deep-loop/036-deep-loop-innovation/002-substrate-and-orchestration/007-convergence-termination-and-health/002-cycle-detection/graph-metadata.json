@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated health evidence and no stop authority.",
     "created_at": "2026-07-16T03:43:53.009Z",
-    "last_save_at": "2026-08-14T04:28:18.639Z",
+    "last_save_at": "2026-08-17T04:04:09.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ddcfe1b0c79a9f8f9dbd287326b7d66c6be92273aa614d8738d9cbb345711a4",
+    "source_fingerprint": "sha256:4edb553b4da4c086bf3fa587f5bea493ab47990ba7b468dbbc9fa8bbb614ce15",
     "source_doc_hashes": {
-      "spec.md": "f4c82d3546ebeb320681c6afc00e7fef1e389cfc4a02a50ecc86bc1b221df5a4",
-      "plan.md": "9b51c41a5ab287b2f8e76625ebf1f385047684bc65cd3fd13e30760cb9b6e895",
-      "tasks.md": "49264860799910af3e5f61753c963c285660f65ab5119744ca25f1e879d97721",
-      "checklist.md": "b2369bddf2581c58674f0bce56c57f651664f64adfad8814bfe860ac4e5eae78",
-      "decision-record.md": "1a7fe7240a0a63191a6946efe0f8e44bcc9cf78e2c42ae39c4deac901d2d2bee",
-      "implementation-summary.md": "d8870c2b7b93836c60f92263ff8f19761508ab58d12531fca3dfbe1db1aa526c"
+      "spec.md": "8b65f79ef237978825e34bdfff7137821aaa12a36fbeef0c2783a67ed24326cf",
+      "plan.md": "0c283c6e779ce9709dfe4853cfa40b070389f1590b9d9de8d02dbcbebcc855b5",
+      "tasks.md": "778f15268358a613deabf8182c58100309054936ec0eff169e18b32c05d2b85e",
+      "checklist.md": "02e1654710d19e310cdb7b18541f9b53b906548505789f3b28e6e64ab47dd579",
+      "decision-record.md": "5ca496329483112213239d0112128949a5eef21d6b2e878b691bfac4ad9a7d27",
+      "implementation-summary.md": "01686fc90e3ba405ac8d96539d1a7445beb61d8cbc85a6225d518103e90579d7"
     },
     "last_active_child_id": null,
     "last_active_at": null

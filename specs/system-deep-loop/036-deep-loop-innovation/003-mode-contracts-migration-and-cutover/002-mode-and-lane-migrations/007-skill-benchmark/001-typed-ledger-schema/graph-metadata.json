@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Skill Benchmark event vocabulary over the deep-improvement-common backbone: a typed append-only envelope for paired scenario treatments, progressive skill exposure, trajectory evidence, gold integrity, raw scoring observations, and versioned contribution-certificate lifecycle facts. This phase defines event types and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:41.092Z",
-    "last_save_at": "2026-08-14T04:27:55.771Z",
+    "last_save_at": "2026-08-17T04:03:57.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c6e353d88df55e864d10ce34db70534d31a9e1ed576e523d8fb1c41d160bc52",
+    "source_fingerprint": "sha256:b9082218a945b87710377e102b4a9720671ff4496783c3c720eafb4235e90690",
     "source_doc_hashes": {
-      "spec.md": "7ca94cdf33b87611c2eb6f34d98371b1cfe17fd61940675abd7a70537bd9f73c",
-      "plan.md": "875cb74e6af31d707191460d8286fb37dad53f6a3510e4c08e2bcc8db39ba4eb",
-      "tasks.md": "463b6e3a18ac074f61cc582295f8365675a80dc3a977100a67b6d5a66b7238cc",
-      "checklist.md": "e651bd4136344651e06980ca66fd770d21d0b8cee95d849cf6d29e386ac6e4b3",
-      "decision-record.md": "624549053d58695a6ee759bd13f5cc26d9bdc83bda5aa456f2fa24378b0507b1",
-      "implementation-summary.md": "86891f4cf7b6e85d2da98ec222d502aa1fcd533c24942d8141eae95cab006a0d"
+      "spec.md": "fedd0378317b1a2a61ff4a0e9cd334b4428562cca102d6cd43389f5eb7aa98e4",
+      "plan.md": "90f6e46f687edfc250c13c0340853d28d00cb1315154d05058cc19d8b80c6812",
+      "tasks.md": "2f9b03edd41aa52b48bc0a6798adf018acb78f05ad07e447b9c212c69ad195c5",
+      "checklist.md": "26ce49aa77343ae271c31bfb70c6048c308bb380483a3c8045e3304e9fa55bd2",
+      "decision-record.md": "fb05fe20bb5630d10e9f95527daa6a1ab42df0035f8e317a3ffbf92cb114bfa2",
+      "implementation-summary.md": "b4b1c0e340406d20a0cae0f77dc76f001a4372b0e286b0012050df9c3f3f90a0"
     },
     "last_active_child_id": null,
     "last_active_at": null

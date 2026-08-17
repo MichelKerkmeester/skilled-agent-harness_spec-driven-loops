@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Standalone readiness gates verify sealed bindings and certificates on two independent paths and never compare the sealed digest set with the certificate's `artifactClaims`/`artifactSetDigest` (`F-013-01`)",
     "created_at": "2026-07-31T01:25:20.717Z",
-    "last_save_at": "2026-08-14T04:28:34.250Z",
+    "last_save_at": "2026-08-17T04:04:18.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62a305efcf3d08fae877c95789253401ab79a04dff9200c6968bc3fd2b2d2b79",
+    "source_fingerprint": "sha256:de51919b8770aa7613a38c96a43da26a02fe94089e0b08ce95eee00bc120037e",
     "source_doc_hashes": {
-      "spec.md": "ce7801232d5dc5d2534f9842e71f6ea7af8eb05639ce891139ee38052ca625ff",
-      "plan.md": "328b8cc6ca49a9c7643eb04132188cbcf99dfc7308220153948ce3ed657ad596",
-      "tasks.md": "371159c2f7650f451003468abd7d4db061fe9e9855b6ddaaefed8a4843181eba",
-      "checklist.md": "e49af5b37fa5e5c520087c9f7e4b0c73800af8b6f47f0f8ff18a24107faa2718",
-      "decision-record.md": "ef6c627f50675637bb036e14dd59c007925dc5a0089ca11c823755c73e4fce53",
-      "implementation-summary.md": "0d0cf8c8b96a99a2da8b4a4901dfdfb369b2657bf31705d8ac358fc4d5865409"
+      "spec.md": "fec82d27d4966bbd6638abec00d9d4ffbefe553541a56f0e870a00a9fdf57769",
+      "plan.md": "549ebe208efe26bebd88c7921988962051b8ec2df2749c6d3c81d1f33a70dd6f",
+      "tasks.md": "9eef28d69c5157b4710bc5df8d7a942ebd96db1748bee23439f0daa9830da3a9",
+      "checklist.md": "c39c91c9513b20fff8e8161a803ac9fa0c9590aa71187bcc32b2e1970f9655a8",
+      "decision-record.md": "bc2c8596069820f6962a4c1113f0d08ec24c42e6892e704e87674d4f9e5ad784",
+      "implementation-summary.md": "df8a53114dc18d3dfc327167ad4615650cee7d62d7991e046fef6f87b494ea66"
     },
     "last_active_child_id": null,
     "last_active_at": null

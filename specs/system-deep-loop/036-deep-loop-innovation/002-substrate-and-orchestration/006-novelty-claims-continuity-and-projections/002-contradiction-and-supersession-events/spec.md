@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/006-novelty-claims-continuity-and-projections"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events"
-    last_updated_at: "2026-07-21T08:31:20Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Completed typed relationship events, status fold, audit, replay, and verification"
     next_safe_action: "Consume the exported typed projection from sibling claim-continuity work"

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Define the pure reducers and projections for Deep Improvement Common Services",
     "created_at": "2026-07-16T03:43:35.996Z",
-    "last_save_at": "2026-08-14T04:28:02.060Z",
+    "last_save_at": "2026-08-17T04:04:00.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7de8c441c7e485d2f198762f20809ef19365e807308e20f1c9d890c5b65e744",
+    "source_fingerprint": "sha256:4571fe2417530cf06a42988bb35431c6a3fcec76b00b77913566dbaefd63db93",
     "source_doc_hashes": {
-      "spec.md": "e98d035ddc07f536236730da86a0a3dd91c28016eb15a313f8ff85d62cf24dcc",
-      "plan.md": "0d7211c33a4231effc750baa948188a8100429074e0e69f583990007704afc90",
-      "tasks.md": "f4deabfdb2fd248958c2c6383b6f32b5112c995524f5f2c3f19861de27249e74",
-      "checklist.md": "63bb0f06db8c9c844fdf66c5145cf73985e165ef5261c9d67aa1857185776b67",
-      "implementation-summary.md": "c98f36defa8e2fcc6f57ef8d6fd0b378449935d0359fc7950e8db1f807fab996"
+      "spec.md": "e116ee00f6f9dfd4dcc83229ac00984db51540ce0a6878659bb5afd219294970",
+      "plan.md": "047c16d6d4f68098eec6d2ec796d61febd8c116157c038b7ff410eb4c757c2be",
+      "tasks.md": "02147997d22dd4feb805041b54cbc0390ec9ccae69810e18b838c74960f1b8ae",
+      "checklist.md": "0dc1c8ab0d59a3c44effcfb9e43dec0d864fbd5110e727cc81ebff90e94df2b9",
+      "implementation-summary.md": "ffe02d38bd44b4d8633ffb1838b57723b8d9b319dd424576beb06e55f924f15d"
     },
     "last_active_child_id": null,
     "last_active_at": null

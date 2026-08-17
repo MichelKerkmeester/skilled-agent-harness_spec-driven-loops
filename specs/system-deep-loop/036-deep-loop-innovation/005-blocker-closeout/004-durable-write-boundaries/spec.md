@@ -12,8 +12,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-durable-write-boundaries"
-    last_updated_at: "2026-08-10T10:26:55Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Re-verified Blocker 3 vs HEAD; fencing primitive absent, cited SHA unrelated"
     next_safe_action: "Implement REQ-001/REQ-002 fencing; fix fence_token regression; re-verify"
@@ -67,7 +67,7 @@ Blocker 3 is that the authorized append enforces no fencing. A grep of `append-o
 | **Priority** | P0 |
 | **Status** | Blocker 3 DISCHARGED — the fencing GO-set is BUILT + verified + adversarially clean + landed: B1 append-boundary fence + F-018-03 fence_token (`39015ed14c`), B2 gateway identity fail-closed (`27e6c2b5a9`), B3 policy-identity digest (`5b6d9e86b9`), B4 loop-lock atomic publish (`ff3a574014`). REQ-001/002 met: `appendAuthorized` is hard-private `#appendAuthorized`, reachable only via a coordinator-minted capability re-checked against the durable current lease; a superseded writer is rejected with STALE_FENCE before any frame commits. B5/B6 + F-004-01/02/03 were T001-REFUTED (already remediated — see `t001-disposition.md`). A final independent adversarial pass could not refute B1–B4. **Documented residual (elective):** token-replay — an active in-process actor reading the public current token can mint a matching capability, but it is bounded by the exclusive-lock + prior-head CAS + single-use dedup (no double-commit, no content forgery, out of the stated threat model). **Operator-decision caveat:** B2's new required identity-verified fields with `event_version` unchanged reject pre-existing dark-ledger audit frames (availability, not integrity). See `implementation-summary.md`, `build-spec.md`, `t001-disposition.md`. |
 | **Created** | 2026-07-30 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
 | **Wave** | W2 (hard gate on 014) |
 | **Findings in scope** | 18 (7 P0 / 11 P1 / 0 P2), 1 carrying a review `CONFIRMED*` mark |

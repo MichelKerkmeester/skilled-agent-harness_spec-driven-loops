@@ -84,7 +84,7 @@
     ],
     "causal_summary": "The cutover blocker closeouts: completion-evidence reconcile, shadow-parity independent derivation, legacy-compat event vocabulary, and durable write boundaries.",
     "created_at": "2026-08-13T09:22:51.320Z",
-    "last_save_at": "2026-08-14T04:28:44.679Z",
+    "last_save_at": "2026-08-17T04:04:24.065Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -92,7 +92,7 @@
     ],
     "source_fingerprint": "sha256:8ed7dc2eaf455825e2cac0252d28fa27a07c2003929f64c0c8bbcf8aaa08412d",
     "source_doc_hashes": {
-      "spec.md": "eaac9bbc39cf1ffd3dfb9ac9beeb146f9ea69b3010a324e745722533b338ce5a"
+      "spec.md": "dbddc958d1eb129af55b1dcea083fe1cf21753b4218c5774a584c26de3e3df3e"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries",
     "last_active_at": null

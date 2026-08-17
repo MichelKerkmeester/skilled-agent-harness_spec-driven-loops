@@ -12,8 +12,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-mode-gate-and-contract-binding"
-    last_updated_at: "2026-08-07T07:33:38Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Landed as c6957eac3c on skilled/v4.0.0.0 (9/9 findings)"
     next_safe_action: "None — all findings landed"
@@ -67,7 +67,7 @@ These are the gates `014` reads to decide a flip, and they accept unbound eviden
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-07-30 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
 | **Wave** | W4 |
 | **Findings in scope** | 9 (2 P0 / 7 P1 / 0 P2), 0 carrying a review `CONFIRMED*` mark |

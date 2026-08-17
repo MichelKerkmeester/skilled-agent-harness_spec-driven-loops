@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Research mode certificate and receipt binding over the typed event-ledger substrate: one per-run certificate, per-transition receipts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff, versioned replay-fingerprint inputs, and an independent offline verifier.",
     "created_at": "2026-07-16T03:43:31.211Z",
-    "last_save_at": "2026-08-14T04:28:08.088Z",
+    "last_save_at": "2026-08-17T04:04:04.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30934b3c2b55fcc762955451506e1a9b4e215cd41824ba67692227ac007faab9",
+    "source_fingerprint": "sha256:1b12ce1e81406306878ca3631ec57bd5e828e151f477f560be63d6fb861fa09a",
     "source_doc_hashes": {
-      "spec.md": "8bab453db9996cd934223baa2c6b474efd53563a487bd9fbf17993f379d60f21",
-      "plan.md": "867c3023b7f7f616d291f2352d6b475b7cc6bd78e27b99e51009c4abf6270521",
-      "tasks.md": "b7fc6e0b2ecf8050faf49c276333355689b6a449b3ba7c34a12c90736e8629a8",
-      "checklist.md": "669954b2642d3bb0cbb958dedea354ad55dbd5c31bca9c07ecd71f75287726e9",
-      "decision-record.md": "2e7efe825d205b08f84d0f679c18a94a8ec7a0adba379e0352c8a3a34b04862b",
-      "implementation-summary.md": "c5bc7d3b6d583155d24703b4f4c7ee2686136d53a80245be26bce135db559930"
+      "spec.md": "a32cb99f4d73f0268c1f4ca087158b54f815765c0a3ccbad623ea981d6f26bd4",
+      "plan.md": "f586c8eeb8724885a3faa9f67948440a55725c9d33b2998b6651f93d1026f128",
+      "tasks.md": "76fcad9f11383daae1d3f7e9359b61fbc1a58b29df8dcb0d3052a2bbb8613aef",
+      "checklist.md": "5631c3ee81b2809b702fa8a879fb423b74ce490d4ad05295acb73453a549fe8f",
+      "decision-record.md": "dfa2bc4957fa899d17fe1ae3c86503a0b4744400c7bf765ab8d6c73774e62b5d",
+      "implementation-summary.md": "8463ac92fa393ca55d3d33c4ac8b6eb0109289f9f080bdb2de3c5640717ab625"
     },
     "last_active_child_id": null,
     "last_active_at": null

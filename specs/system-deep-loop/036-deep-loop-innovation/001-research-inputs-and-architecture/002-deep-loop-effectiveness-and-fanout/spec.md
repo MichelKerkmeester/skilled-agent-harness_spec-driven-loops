@@ -11,8 +11,8 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout"
-    last_updated_at: "2026-07-15T19:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude-code"
     recent_action: "Run-2 added: 40/40 per-mode deepening; 163 new repos, 111 recs, 84 contradictions"
     next_safe_action: "Operator review both runs; phase 002 ranking from 001 + run-1 + run-2"

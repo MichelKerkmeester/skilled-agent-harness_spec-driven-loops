@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Model Benchmark variant's shadow-parity harness over the typed event-ledger substrate: run multi-model benchmark executions and scoring-matrix reductions beside the legacy emitter, compare projections event-for-event, and block authority cutover on any unexplained semantic difference while reusing deep-improvement-common services.",
     "created_at": "2026-07-16T03:43:40.543Z",
-    "last_save_at": "2026-08-15T15:08:47.723Z",
+    "last_save_at": "2026-08-17T04:03:57.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:176b84d5e91cce875baca3c9230d0dd2846b0751a41b1e82549663c83dc521ad",
+    "source_fingerprint": "sha256:d36b0868ccf97ba3145893e13f255478f4add3ac98475d969d76c97cdc446f12",
     "source_doc_hashes": {
-      "spec.md": "5eab679515630387ec772252c13fdcd7a3adae2b5de4d08b74f37ebd71148e3d",
-      "plan.md": "5c382c3def2a1d0d8161475a3654da765813c164a4cd91017a8e8eea9023cee7",
-      "tasks.md": "d26ca4fa88169b3937444fb1ff925c05948551611477fef4231aefb348b53ea6",
-      "checklist.md": "adfd19db2be57895cdd2045adbfda599b6aa0c0a50a75c5803ac44fc5601977f",
-      "implementation-summary.md": "4ee671f5c5febc5f66bf14ff81b9e5f9de20f02685095450eaafc7d8114a7947"
+      "spec.md": "77f2d2b35e15eab0503ae8c8543dd109a2834f34f841142e1f77356095742434",
+      "plan.md": "f8db87211faec185eaab1948ca0a827c833509ac92e71a5c3b3ff326a8fdd170",
+      "tasks.md": "7230ffabbcd643c65da8d83cf1d905938f816fad62eb4756ebfe1f0d7012bdb1",
+      "checklist.md": "567b2180590230094eea29f008c171549a3c316435f0b1e369c80a62184e0aa9",
+      "implementation-summary.md": "1e0531962c4fb2117aa27734655105ed0269da7d8190d368593f21584c555c1a"
     },
     "last_active_child_id": null,
     "last_active_at": null

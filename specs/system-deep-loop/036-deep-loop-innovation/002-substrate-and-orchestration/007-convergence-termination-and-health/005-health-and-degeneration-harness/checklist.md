@@ -10,8 +10,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/005-health-and-degeneration-harness"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/005-health-and-degeneration-harness"
-    last_updated_at: "2026-07-21T12:01:05Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/005-health-and-degeneration-harness"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Verified scoped recovery and optional-field fail-closed behavior"
     next_safe_action: "Keep health requests dark until a shared gateway grants authority"

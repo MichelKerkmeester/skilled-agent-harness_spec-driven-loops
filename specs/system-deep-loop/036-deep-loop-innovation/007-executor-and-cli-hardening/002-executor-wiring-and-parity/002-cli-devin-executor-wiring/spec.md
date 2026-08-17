@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/002-cli-devin-executor-wiring"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude-code"
     recent_action: "Wired cli-devin as a deep-loop executor kind"
     next_safe_action: "Smoke-test one cli-devin lineage, then run the research fan-out"
@@ -45,7 +45,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | In Progress |
 | **Created** | 2026-07-27 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity |
 | **Predecessor** | `001-cli-codex-read-only-audit-leaf` |

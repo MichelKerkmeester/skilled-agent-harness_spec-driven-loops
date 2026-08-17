@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the executable dependency and write-set conflict graph for the eight phase-013 mode migrations, including canonical read/write resources, derived conflict edges, hard ordering fences, freshness checks, and orchestrator consumption.",
     "created_at": "2026-07-16T03:43:54.781Z",
-    "last_save_at": "2026-08-15T08:30:24.032Z",
+    "last_save_at": "2026-08-17T04:04:08.188Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
     ],
     "source_fingerprint": "sha256:2728f476212359b2f1f11a61449c2ad7ecebc383432af4706dec96bd29ad6154",
     "source_doc_hashes": {
-      "spec.md": "8c850713a6fd0fef20d8a2db40f3e14964a427a02fdc4ed710af82ad39b33fc5",
-      "plan.md": "80ae327d4df3a18e905bea5f9b2dd93f607a74ced0370e90ac4e54552d256e3b",
-      "tasks.md": "d9430edbbe67d560126f13058ba9548db63f2e8828f8ea917201d8806513d961",
-      "checklist.md": "2e5e1a4f6665e2efc4ba745616257b8a2ff23702aa163fd0c543272b6baffccc",
-      "decision-record.md": "996a39e77b4584c0523fb6a547bd49c0df9a8505661b336691d83993329dee8f",
-      "implementation-summary.md": "0d609cbd4c3d7b005098b6c81e948a7d24e877ac074ef4a77eada225e22500d8"
+      "spec.md": "8b7b4ad45616a8f96358aa33f71f0b64a75d3cf46129f9b6dba262293fceb354",
+      "plan.md": "3bdfd7ec1693b39837b7d775218fbf72861f846fc616214f1b850fca1e5e897a",
+      "tasks.md": "1ce5b2233fd1d6b6666b926305e2b89d3c092c18a09405ffde7ff9ad4a8bcef4",
+      "checklist.md": "0532eec8554b7b96f77b435a1176b9bd883d39f70dc5ebd84f53a6cea29af155",
+      "decision-record.md": "bf06099d4a8105ef4a0de0d05eb451f05330441a54fd52bcd74cc38b90c12012",
+      "implementation-summary.md": "6f465e49ce26ab340f1fe09c3dbe0be6936fbf4be9df0532ddffd5e99bf548c9"
     },
     "last_active_child_id": null,
     "last_active_at": null

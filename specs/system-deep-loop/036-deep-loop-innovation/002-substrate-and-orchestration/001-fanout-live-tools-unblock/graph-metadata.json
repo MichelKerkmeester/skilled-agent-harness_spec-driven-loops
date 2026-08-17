@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Ship the early, backward-compatible fan-out live-tools unblock on fanout-run.cjs: a typed liveTools.webSearch policy, a fail-closed executor capability matrix, per-kind command adapters with invocation fingerprints, and models-by-branches-by-replicas manifest expansion. The phase changes dispatch only and preserves every canonical persisted state and event shape.",
     "created_at": "2026-07-16T03:43:58.400Z",
-    "last_save_at": "2026-08-14T04:28:41.401Z",
+    "last_save_at": "2026-08-17T04:04:22.287Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70d2ab433b1a279c506f66be400054b05cf9e739720d1622cfcbef153ed2474b",
+    "source_fingerprint": "sha256:0aca602f2613541b17dea2a70cf66f6db28000fab20fad58eebd2624c7f891ce",
     "source_doc_hashes": {
-      "spec.md": "7d4fe25a725f2cda26343a31f2397451d680eef4613236a0922eb64619eaf933",
-      "plan.md": "a6742132a97b0b220be3c0cad1e2c25edce4af05e8bec2fdfc712f25e3b796dd",
-      "tasks.md": "79a59ca360ec962c3de01a35480c94ba292b94ca8575c613b43df63420345055",
-      "checklist.md": "b688fc594a8fd655a46848cc3f1565b23f7039feef6991f356c2149572849daf",
-      "implementation-summary.md": "ad86fac1bd166c862186882b48bd69587ac2baa1a836f1f2dbf2d33ac0aef91d"
+      "spec.md": "2abc622d2e664b782723336766ccf2cd446efc21ee329bf79c0c65e2e81cd528",
+      "plan.md": "96b0b52f220c52cb87a37e09309ce9496c638c1edb4ca8e3f7ac9be16279b8c7",
+      "tasks.md": "82570c2320643836ff82feb019b0f175eb14109055717b6145c1cf673f306f12",
+      "checklist.md": "6c6f5cf928573a4908b42ec1edb9379164089f42cd004bb1e0d348f2a06dd504",
+      "implementation-summary.md": "20b75ad2177e355bae61c8e7616cfa01aaa1260e33ae73071d5b5ada1e60a06d"
     },
     "last_active_child_id": null,
     "last_active_at": null

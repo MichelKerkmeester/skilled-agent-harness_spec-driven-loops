@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Two defects, both surfaced by fan-out runs during unrelated work, both costing completed analysis",
     "created_at": "2026-07-27T16:10:09.163Z",
-    "last_save_at": "2026-08-14T04:28:30.761Z",
+    "last_save_at": "2026-08-17T04:04:16.857Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8af1a579a405993b8f226acdf240f3d8230820d9ff2232a345eec04af7d5ea3",
+    "source_fingerprint": "sha256:780d488a69cdd36c9e4c36913fa54d336f252027b79800b24959e3ad44d99e36",
     "source_doc_hashes": {
-      "spec.md": "7f584a0e5882fc158977928cffe000a50be3b521c92cfb0ced49154c90588461",
-      "plan.md": "dd43d6ff350620d03b82bb46a0a2c6e5978d64bdf8b3c3706390aa6fdcae546f",
-      "tasks.md": "1d3a6ca98751365b74e382b3b858ec51c5d56b2604f9c5c3a7d2b33c2b866f89",
-      "checklist.md": "eedc5d494236e905d9a8b94c180dfb56a651359fdaa641df5b49f225844b283c",
-      "implementation-summary.md": "e756f54bce28e688758eb05b4934e835087f33afb4390e99669bba726e1b93a8"
+      "spec.md": "6f299dc437be1ba21144e79e7d85094cafd451369a2a8e425cc10c87511d4264",
+      "plan.md": "5d65ab49e089a048c0fd7605df97ded71af97828cfc7c1790c745317f8645d62",
+      "tasks.md": "68ffedcdf3a8675b4d1f3fe2b7c39c9d1ed72f0b5cf9108bbb1533d6672adeee",
+      "checklist.md": "d64dbd9e6789f22718a426784bf99d3a8c3e6d315a309c64c087adb9c5bbda72",
+      "implementation-summary.md": "c8e8134330108a1753525069b5e81618f53c086d032862c18651b52b91d312bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

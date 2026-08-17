@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/004-devin-fanout-allowlist-parity"
-    last_updated_at: "2026-07-30T03:47:10.019Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/004-devin-fanout-allowlist-parity"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "implementer"
     recent_action: "Author spec for the allowlist parity change"
     next_safe_action: "Implement via dispatched executor; update vitest pins; run unit tests"
@@ -44,7 +44,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-07-29 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/004-devin-fanout-allowlist-parity` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `003-cli-executor-fanout-parity` |
 | **Successor** | `005-devin-allowlist-prune-and-deepseek` |

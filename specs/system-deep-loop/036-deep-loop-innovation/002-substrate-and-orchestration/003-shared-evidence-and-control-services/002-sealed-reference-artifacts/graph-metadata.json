@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan immutable, content-addressed reference artifacts whose bytes are sealed, verified on every read, retained by explicit lifecycle policy, and pinned into replay evidence.",
     "created_at": "2026-07-16T03:43:46.678Z",
-    "last_save_at": "2026-08-14T04:28:26.091Z",
+    "last_save_at": "2026-08-17T04:04:13.693Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbb422e579cce4e4ea7cc83b4aed530964b5dbc78a0fad1c3e55b54f265783de",
+    "source_fingerprint": "sha256:79ac2eb32acb77f8529351f09aa435972dc09ec48cc769d4d2d0c021e18f274a",
     "source_doc_hashes": {
-      "spec.md": "83acb4904149054c1e3c93b862a39d30b8e4b9c4c0ec9cfbcd11b975445ff0e9",
-      "plan.md": "5375507f7c80fff92dabe3c5f974234507f719921540986003240dec382728be",
-      "tasks.md": "ba69463a5cc5d18299e531b036fc594ac15dfb3d4548f512effe54893ba6f858",
-      "checklist.md": "41b57585db2b8f4d4d637737a9a94157b1e6cb2f7421b58cd4ee9af63eded2d2",
-      "implementation-summary.md": "4b720e37864da6276fb31a435394a362905ea934cd63c4adedd84314e567bea8"
+      "spec.md": "98976e07162536c3973f9623748072a837b689c3367b14514ecfb8a1c6ed8b08",
+      "plan.md": "8e8ece753c46b400cbee9db659580912b3913132f125bf93ab1afdce2871d4cd",
+      "tasks.md": "e2ba9359c932682c2aaa1d00f52fc0d279332bb0a50d5b758a3ede1e44824d48",
+      "checklist.md": "f9625de8e628ded940b45df4667bde90bf2485021e247c6fdb5dae344558220e",
+      "implementation-summary.md": "5b99b0f3c2a1d5fb3aabf7c2f5a083ffc3802d2d123f529a43fb596d1471f8f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -52,7 +52,7 @@
       "onto"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -102,15 +102,15 @@
     ],
     "causal_summary": "Migrate the skill-benchmark variant's scenario runs and scoring onto the typed event-ledger substrate while reusing the deep-improvement-common backbone and ending in an independent mode gate.",
     "created_at": "2026-07-16T03:43:56.577Z",
-    "last_save_at": "2026-08-14T04:28:14.356Z",
+    "last_save_at": "2026-08-17T04:04:06.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:66a33159f29248fada1c2121bd3fd1bcd90645520193c3a72220a61c13db4607",
+    "source_fingerprint": "sha256:d628a71d4c4332b2dbc7e36c9c3ef39fef591857a4544edd1382e0d68eb350e0",
     "source_doc_hashes": {
-      "spec.md": "1c6dcbd673f86f8680d1c80ed4e019c7c8be55598292dbd614056787dc629457"
+      "spec.md": "d4a250a3a4e5f4a6e7cccd246f85b4369749055449f0a9e7ef444a754ccde745"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
     "last_active_at": null

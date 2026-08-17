@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Review mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed review lifecycle, scope and dimension passes, candidate findings, adjudication, convergence, and review-report handoff. This phase defines events and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:32.178Z",
-    "last_save_at": "2026-08-14T04:28:06.815Z",
+    "last_save_at": "2026-08-17T04:04:03.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3494c8199abcd4eb7a68d9337721dad7191921420492628401142d2e9e8ba007",
+    "source_fingerprint": "sha256:7e4beeec9ed549a1344f466bb8e08941d3028041e9e30704ecfb27fa8f2e1715",
     "source_doc_hashes": {
-      "spec.md": "5868d18aaf672c17af0797ff9456afbda2812bb131960b1a14c24361b176862b",
-      "plan.md": "7e38dfb3776bb975dd9f7a417e3fa0ae5ce2021057c460a06bd253f16ff71cee",
-      "tasks.md": "1f03b5465c48c81496dc70ca9cf4d6837333d8122915d8fdc3dee34a4effdfd7",
-      "checklist.md": "16e743b42dfa89a45e6cba14e8e846b277587675a98c11a9654a0436953a8099",
-      "decision-record.md": "84617e4ebd75553c7d376ed7135bf7e32efb51f103ed258a30e706d5f131655f",
-      "implementation-summary.md": "426a5e229804f665a84aa4158a02041add853932f621d02817f35c6d09adf52f"
+      "spec.md": "59cc82c08397e52589282cd6f8176ec565f5811a4bd29a2ec686c2117f4c35a9",
+      "plan.md": "d6ef84775fccc29d4c1a7d92e6b54b8a0bc486da81afdf821bf6689ef047d828",
+      "tasks.md": "ca0cb7bc58a48cca2850e36e02f120d2cc81330ca62eaec44e92dc934d186adf",
+      "checklist.md": "62bee20a976c19089b678219b222eefae8b60ed7147858643b630550b5a0da94",
+      "decision-record.md": "dfec5d2e24a45e739656575990137b144a4d1d719bf09cfdc6ac9953e09bd9f7",
+      "implementation-summary.md": "36ea1e82e1ca1f0ced3259808b1a9351dbebb3271fea76bb8141a8d9d5f86673"
     },
     "last_active_child_id": null,
     "last_active_at": null

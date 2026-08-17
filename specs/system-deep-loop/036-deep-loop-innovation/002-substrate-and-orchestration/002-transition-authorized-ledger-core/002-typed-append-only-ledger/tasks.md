@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/002-typed-append-only-ledger"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/002-typed-append-only-ledger"
-    last_updated_at: "2026-07-15T13:43:04Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/002-typed-append-only-ledger"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Broke the ledger core into ordered implementation and verification tasks"
     next_safe_action: "Start with frame interfaces, canonical hash vectors, and failure fixtures"

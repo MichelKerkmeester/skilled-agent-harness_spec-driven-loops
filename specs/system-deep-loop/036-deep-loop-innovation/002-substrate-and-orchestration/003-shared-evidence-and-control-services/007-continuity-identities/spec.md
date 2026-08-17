@@ -10,8 +10,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/007-continuity-identities"
-    last_updated_at: "2026-07-21T00:31:56Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/007-continuity-identities"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Implemented stable continuity identities across resume, handover, and mode boundaries"
     next_safe_action: "Keep the service dark until the planned authority-cutover phase"

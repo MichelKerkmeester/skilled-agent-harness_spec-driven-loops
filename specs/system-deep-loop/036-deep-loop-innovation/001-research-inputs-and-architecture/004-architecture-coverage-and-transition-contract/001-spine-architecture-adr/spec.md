@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr"
-    last_updated_at: "2026-07-15T18:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Ratified the six-primitive spine as the binding architecture contract"
     next_safe_action: "Apply the accepted decision in phases 006, 007, and 008"

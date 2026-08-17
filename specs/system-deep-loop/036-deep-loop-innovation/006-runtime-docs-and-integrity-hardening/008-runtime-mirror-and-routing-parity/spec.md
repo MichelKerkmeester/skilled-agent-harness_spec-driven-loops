@@ -12,8 +12,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-runtime-mirror-and-routing-parity"
-    last_updated_at: "2026-08-07T13:23:26Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Landed 7/8 findings as 2f84f78bf7 on skilled/v4.0.0.0"
     next_safe_action: "Regenerate stale Codex review mirror"
@@ -56,7 +56,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete (7/8 findings landed as `2f84f78bf7`; F-028-01 deferred) |
 | **Created** | 2026-07-30 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
 | **Wave** | W3 |
 | **Findings in scope** | 8 (1 P0 / 7 P1 / 0 P2), 0 carrying a review `CONFIRMED*` mark |

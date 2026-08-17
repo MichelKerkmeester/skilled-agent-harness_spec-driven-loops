@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/005-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves"
-    last_updated_at: "2026-07-21T04:54:46Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Completed branch identity, lease lifecycle, wave scheduling, and resume verification"
     next_safe_action: "Keep the additive path dark pending an explicit authority cutover"

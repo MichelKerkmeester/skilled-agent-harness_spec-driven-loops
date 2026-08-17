@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/006-locks-and-fencing"
-    last_updated_at: "2026-07-15T14:01:58Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/006-locks-and-fencing"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Implemented and verified the additive-dark fenced coordinator and guarded mutation adapters"
     next_safe_action: "Consume the additive adapters from later dark-path wiring without changing legacy authority"

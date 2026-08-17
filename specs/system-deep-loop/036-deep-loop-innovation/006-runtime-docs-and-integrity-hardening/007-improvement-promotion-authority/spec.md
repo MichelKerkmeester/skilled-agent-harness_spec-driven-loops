@@ -13,7 +13,7 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
-    last_updated_at: "2026-08-15T08:00:00Z"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Implemented and regression-tested all 13 findings; accepted ADR-001 through ADR-003"
     next_safe_action: "Independent verification, commit, main validation"
@@ -74,7 +74,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 | **Priority** | P0 |
 | **Status** | In Progress — runtime implementation is complete and all 13 findings have named green probes, but verification closeout remains partial: independent verification, immutable candidate-SHA evidence, and main-checkout strict validation are open. |
 | **Created** | 2026-07-30 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
 | **Wave** | W3 |
 | **Findings in scope** | 13 (8 P0 / 5 P1 / 0 P2), 1 carrying a review `CONFIRMED*` mark |

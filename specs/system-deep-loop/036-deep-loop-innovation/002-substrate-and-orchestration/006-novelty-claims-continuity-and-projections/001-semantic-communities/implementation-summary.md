@@ -9,8 +9,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/006-novelty-claims-continuity-and-projections/001-semantic-communities"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-novelty-claims-continuity-and-projections/001-semantic-communities"
-    last_updated_at: "2026-07-21T08:33:34Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/001-semantic-communities"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Hardened replay-stable edges and bridge-order projection"
     next_safe_action: "Keep the projection shadow-only while calibration evidence accumulates"

@@ -53,7 +53,7 @@
       "migrate"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -103,15 +103,15 @@
     ],
     "causal_summary": "Migrate the agent-improvement variant of the deep-improvement evaluator loop onto the typed event-ledger substrate through seven concern children, reusing the shared evaluator, canary, and promotion backbone and ending in an independent mode gate.",
     "created_at": "2026-07-16T03:43:56.015Z",
-    "last_save_at": "2026-08-14T04:28:14.993Z",
+    "last_save_at": "2026-08-17T04:04:07.193Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:75406e80355deca32593d65d45e87005a0b73711106122815a6af172c4121ee7",
+    "source_fingerprint": "sha256:1330bd3fbf35ab36cde6031fbcc5e895a54a3293babc915f557be5b738f9fc4e",
     "source_doc_hashes": {
-      "spec.md": "078b47d182d974f165e4b2241ff7bdf084764e7cd5dd0f7d6461a075f6ff94ae"
+      "spec.md": "cbd5a73f1e012277d2613e3bd47fb8d99442e99530d1feb341cf920b4de15c37"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema",
     "last_active_at": null

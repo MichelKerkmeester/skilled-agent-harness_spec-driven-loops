@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan token, cost, iteration, and wall-time budgets that nest from program to iteration, reserve atomically, settle against ledgered spend, and fail closed before dispatch when any governing scope is exhausted.",
     "created_at": "2026-07-16T03:43:47.182Z",
-    "last_save_at": "2026-08-14T04:28:25.452Z",
+    "last_save_at": "2026-08-17T04:04:13.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dad44476c9e031593d56c309acefb339da2ed18ecbbcc317637eb6e5addfb4b0",
+    "source_fingerprint": "sha256:72b1d60a2f56cfe7e3bac0210c0b82f3632168c1ef2aba412cad1fa8fc390add",
     "source_doc_hashes": {
-      "spec.md": "70f5d24cc622fad163b9a368e3d03e8ba7e0fa05d7e659f58608247c929abd60",
-      "plan.md": "9b8c469d2a9c8f95ebad07361c9b37447298d4e53c638e90fa0b1e9d736419f6",
-      "tasks.md": "08a5a238aaec411db826953263a2b0e8bd37bda540e1b6efa6ed83c44e32894f",
-      "checklist.md": "9e658458aebd0d78fc823c60687e625926285f1133b17fb23385d571fa48112e",
-      "implementation-summary.md": "5d2d8e7aeddb7b66998cc854eed5c850185049e94d4066a67b37fa72bc2f04c1"
+      "spec.md": "82edf537aba5a303aad93c60cf2b72cf1f9f44c2cc1d9d5388ced8d5df45e42b",
+      "plan.md": "17b5976a09243230cce66ee2d84226d70e8e2f132f701758140b18923a8b5355",
+      "tasks.md": "15cedd8e3affff379f3f95331f30ce593b8e863e61529b2a487ef1aadfdc7e41",
+      "checklist.md": "3ac8d3c615ba7311d62e1d83bb12216adc232b75a491895ab19cc8360c81ba37",
+      "implementation-summary.md": "f98f8eccfc6877b0a28e2a654761aea1ed7837503d9ad46a8616bbc78f2e8266"
     },
     "last_active_child_id": null,
     "last_active_at": null

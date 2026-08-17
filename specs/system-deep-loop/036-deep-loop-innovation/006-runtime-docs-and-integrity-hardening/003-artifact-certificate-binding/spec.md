@@ -12,8 +12,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-artifact-certificate-binding"
-    last_updated_at: "2026-07-30T00:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Authored the remediation child package from the WS1 phase-tree proposal"
     next_safe_action: "Run T001 against the 12 scoped findings before any edit"
@@ -67,7 +67,7 @@ Twelve findings across the sealed-artifact store and four certificate emitters s
 | **Priority** | P0 |
 | **Status** | 12/12 findings BUILT + verified + adversarially clean + landed on `origin/skilled/v4.0.0.0`, across 4 fix commits (`8b2e49931f8` sealed store, `d30321b98e` common certs, `59e0040d33` per-mode emitters, `89067fe46e` reducers) plus a required companion fix (`a232835611`, shadow-parity harness escape-hatch). Final adversarial verdict: 11/12 fully clean; 1 low-sev residual (`F-011-01` restore-authorization under-binds to `qualified_digest` only) + 2 documented scope residuals (`F-015-02` content-digest binds 3 of the relevant kinds; `F-007-02` external-authorship caveat). See `implementation-summary.md`. |
 | **Created** | 2026-07-30 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
 | **Wave** | W3 |
 | **Findings in scope** | 12 (4 P0 / 8 P1 / 0 P2), 0 carrying a review `CONFIRMED*` mark |

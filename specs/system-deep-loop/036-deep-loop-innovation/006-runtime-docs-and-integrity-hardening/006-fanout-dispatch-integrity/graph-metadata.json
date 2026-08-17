@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Fulfillment accepts a lineage when one non-empty top-level report exists, with no validation of state JSONL, iteration records, deltas, findings registry or terminal synthesis (`F-010-01`), and under the max-iterations policy trusts a single synthesis record's self-reported `totalIterations` and `stopReason` over the actual iteration files (`F-010-02`)",
     "created_at": "2026-07-31T01:25:20.924Z",
-    "last_save_at": "2026-08-14T04:28:33.912Z",
+    "last_save_at": "2026-08-17T04:04:18.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +200,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0817eb2166372874949342352527e257506bd2a174740a0ee584ac6c914ce5b6",
+    "source_fingerprint": "sha256:d5dbf00b945da733075534696ed45d521278cb4c96a0f59a76eacc38c05ae277",
     "source_doc_hashes": {
-      "spec.md": "b425ca62a79a07184b884433858eb1f86092edc67c99e906174f11365673383e",
-      "plan.md": "92442b192275949ef8642e7bc8c2f52ba24ede6be1f3f5f6124b34d48364754c",
-      "tasks.md": "54ea3e5df506b70e37ad4304aff9c71adb09e70c498d8e14c4f2a5ae0831e71f",
-      "checklist.md": "4240056ffcde553a3b0c03438cc3c4d3730450fd87371836be799014c1a772dc",
-      "decision-record.md": "d87c30cf00522ef676842c7e89243dae370aa3f5219456492bfaf6cdfad3ce41",
-      "implementation-summary.md": "3a59b4a97e7d3e8ee8bcade889b3e2d32aa1a361483eabb6f55ac8ee0c775b92"
+      "spec.md": "e82658723f677fe51eb4bc1810af3a6a9e64cfc7d8e8ff326c8fcebb84b24902",
+      "plan.md": "57395f6a93a1c986365a398fe1e78855bdc3203841db600cea86185d1b840d30",
+      "tasks.md": "0428186096001694551c4644ed7fbcbaa93ccb9405da0354a1f5ca83ed8fbfdc",
+      "checklist.md": "d2cb3ea45994bb6d6b0c28aac6c2263a35b9aa454d41181685ca39b4d81112b8",
+      "decision-record.md": "a4e84a2543afc73e8209cc55ec89b44ceaf9272c0a6808c1783147103801f10a",
+      "implementation-summary.md": "241ce2298403d868de8c27738dc7214de06a15f203ed074fae7c9ce40dc63a03"
     },
     "last_active_child_id": null,
     "last_active_at": null

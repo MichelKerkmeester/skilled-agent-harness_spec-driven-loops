@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The fan-out worker calls the write-containment guard with `artifactDir` set to the single lineage's own directory, so every sibling lineage's directory is out of scope",
     "created_at": "2026-07-27T18:10:15Z",
-    "last_save_at": "2026-08-14T04:28:10.874Z",
+    "last_save_at": "2026-08-17T04:04:05.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40c00901d9e3f2c3a092422c069b758d5cb478271add5fb14714cb4aa782973a",
+    "source_fingerprint": "sha256:3fe59cf401cacd0288d18e3d861ebd79d6e799dda8bafcc8a586186ef4e08491",
     "source_doc_hashes": {
-      "spec.md": "4d382f88a173b3f4aa542001770b834231b542e566dc873fa5a7a3c8d0cde3e8",
-      "plan.md": "c51dd977296ffb1fdf61d29d7a4cfb6f90b6fa1505b442a7e5cfcfa2a1fbcbd2",
-      "tasks.md": "760032f61e0bb401edcdfa779f025c62900ab11cf0ba6e4ad6e8ba0b16b5e7f3",
-      "checklist.md": "66bd8c30cf7d68fa1a3e66ff03e719c75eda48b1af99ec38ac559952f074841b",
-      "implementation-summary.md": "159472487a44c8879d2c9fbfd14bec86a2a6bdca0b017c32814da31c4719f1ef"
+      "spec.md": "9d8192c66cc207d4c1d3f444da15c8b3320ee1344aff65256d9c1b55e757898a",
+      "plan.md": "f3e48c81010e05e432a5f93cfea99593227a21374ec282c162588e651c861541",
+      "tasks.md": "8703118ee23c0a953fd6fd7f5046dbe8046b0995ba49f528b3f77510a1988f1a",
+      "checklist.md": "ed0f786288eb7f676491d9589880729ff97bc2eb255d52cbab7bffd89ac031f4",
+      "implementation-summary.md": "d20c1ac6bf0d84ded7c40d4d10c9721b698b0f5872e7186c4130e94d24d9e773"
     },
     "last_active_child_id": null,
     "last_active_at": null

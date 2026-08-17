@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Three mechanisms invalidate alignment coverage",
     "created_at": "2026-07-31T01:25:20.480Z",
-    "last_save_at": "2026-08-14T04:28:34.586Z",
+    "last_save_at": "2026-08-17T04:04:18.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73b667d95b736c7c034609546033ab3c1105d5465efdac2ad82fbe5c62100e7d",
+    "source_fingerprint": "sha256:34737fcb59e0f9af5feb284326571eac9fa3016bb15014e6868d92c7e87b1fc6",
     "source_doc_hashes": {
-      "spec.md": "867fae0d11c67865dfde57f11b66f414e69af7296999e926a58eb853a66614ac",
-      "plan.md": "a37107ef2addcbef82e7f5164ff0b155e1c3519fa5d1202fbb9bf0d9b0d09b1a",
-      "tasks.md": "ee656402adf4ee4cd4a28528ee98183adabb5cc015d46c90b936c73c6b5258b1",
-      "checklist.md": "57bd2ce68d05965df4d9ef29a0ba3da4ba01c6c343ebf0cd980ccd7bbf39feef",
-      "decision-record.md": "c6a26bdebdf0cb1eb4bc068f25b2a7d2f72d9646ae21def8ad59c20a86795cc9",
-      "implementation-summary.md": "c319dca9e8615e0dd5e96b3f6c68d510d5bf591d4d7114ce6ef04f2e10f5c265"
+      "spec.md": "97299ab18401d3810055f6c4c43b61cdee8d0511265c8aed7663bfc3d245f88d",
+      "plan.md": "c304faa386773a0ad915edc205507102438162c3e267b8cb64068c0f1390f4bc",
+      "tasks.md": "62b15f50c8f69eb00b66b0e87ef05d76914243565302ad10534430b7106f6399",
+      "checklist.md": "594de1e94e6f596618a397bb3ff781894fd75fcf8b85b88dc2719d05ebec28f2",
+      "decision-record.md": "2504f279a3cc4a60bd072df945df2ee2e68ef8a00510358f773d951d77cb77da",
+      "implementation-summary.md": "1c3a8ad78b3b132796ef652d9050f295b0206afcc740715b69845275c3cac0db"
     },
     "last_active_child_id": null,
     "last_active_at": null

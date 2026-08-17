@@ -9,8 +9,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/006-novelty-claims-continuity-and-projections/003-claim-continuity"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-novelty-claims-continuity-and-projections/003-claim-continuity"
-    last_updated_at: "2026-07-21T09:49:31Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/003-claim-continuity"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Added pre-append domain simulation and adversarial continuity regressions"
     next_safe_action: "Keep legacy authority until a separately scoped cutover is approved"

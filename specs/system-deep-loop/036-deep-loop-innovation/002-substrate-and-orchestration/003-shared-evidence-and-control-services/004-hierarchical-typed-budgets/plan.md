@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/004-hierarchical-typed-budgets"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/004-hierarchical-typed-budgets"
-    last_updated_at: "2026-07-15T13:59:12Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/004-hierarchical-typed-budgets"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Delivered the typed budget architecture, ledger lifecycle, adapters, and focused verification"
     next_safe_action: "Commit the path-scoped candidate when authorized"

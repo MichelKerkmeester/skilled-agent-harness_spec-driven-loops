@@ -5,8 +5,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf"
-    last_updated_at: "2026-08-11T14:05:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Reconciled the moved packet metadata and strict-validation contract"
     next_safe_action: "Run the full-budget alignment gate."

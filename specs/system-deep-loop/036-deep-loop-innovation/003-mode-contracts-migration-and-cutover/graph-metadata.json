@@ -84,7 +84,7 @@
     ],
     "causal_summary": "Shared mode contracts and fixtures, mode and lane migrations, staged state migration and authority cutover, and legacy-writer retirement.",
     "created_at": "2026-08-13T09:22:31.482Z",
-    "last_save_at": "2026-08-14T04:28:45.295Z",
+    "last_save_at": "2026-08-17T04:04:24.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -92,7 +92,7 @@
     ],
     "source_fingerprint": "sha256:9a3e9abf7c0918ab23dd604cd03628c4c42c5c6be0f898b1e994e4112b4baccb",
     "source_doc_hashes": {
-      "spec.md": "639d2f0869b5a979782c2a4505fa8e6a0b092ab5da5ba0800e31a63a8c602a59"
+      "spec.md": "e3fb3fa73755137dce2a0ef99e6f893ad007d36463cf6f680a248f6c0481e4c5"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement",
     "last_active_at": null

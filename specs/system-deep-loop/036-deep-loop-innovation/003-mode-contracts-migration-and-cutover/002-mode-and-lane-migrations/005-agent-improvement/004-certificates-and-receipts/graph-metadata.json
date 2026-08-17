@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Provide a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-007 primitives, preserves deep-improvement-common evaluator/canary/promotion identities, and can be re-verified offline before the mode gate accepts shadow parity",
     "created_at": "2026-07-16T03:43:38.290Z",
-    "last_save_at": "2026-08-15T14:42:51.552Z",
+    "last_save_at": "2026-08-17T04:03:59.403Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62fb147f05afc26f388b38a025c5f3eb47b840f0a7482f4847598ac14949df8c",
+    "source_fingerprint": "sha256:ecf3e316c05077372729569bd6f02f6c2c414f093bb73f131a907831776f1a3f",
     "source_doc_hashes": {
-      "spec.md": "5a1cde3488af4d1659ab5eb8271106871e7d43971ff744c8819e1c1b6f4d201f",
-      "plan.md": "84d431fb0cda498ca5ab0637ed4cf8a5917061e231b8226346b9b6d1022a0c42",
-      "tasks.md": "67d216272e5314351bad495166ff8c3ef6d173082cfcf1dc77ba6e97a9b15442",
-      "checklist.md": "b7d57f6e215031476fd5405314d7a028a228f7fe2b659c5e09a318be711ab416",
-      "implementation-summary.md": "ced18341929ced049c692745e9bf3375fc37f99089a3cff239faed00ecb1dabe"
+      "spec.md": "7f657fcb451db263050e483304b961e27c9b371f8032f558f2be3949c6005661",
+      "plan.md": "2895ea077299cec785af71e098b92a9d3823d589be8a698041bbc820fbfc1f2c",
+      "tasks.md": "62d6345c1a58e142240ade513cb26f1ff309c891b4695d01284d19ff0a84d0bf",
+      "checklist.md": "a50f09aabc20c55a031b969678d6c5eeaa2255634e3663cd11f178ca2c90693d",
+      "implementation-summary.md": "271608a35fea565ea8067b164118cf09f69eeeebd5ed6689b3d964d63c91e8a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

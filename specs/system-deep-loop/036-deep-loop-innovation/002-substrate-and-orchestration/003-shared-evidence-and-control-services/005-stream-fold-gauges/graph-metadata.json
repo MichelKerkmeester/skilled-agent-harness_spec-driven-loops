@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan versioned observability gauges as deterministic folds over the transition-authorized ledger, with reproducible progress, novelty, cost, and health values; disposable incremental checkpoints; and byte-identical full-replay verification.",
     "created_at": "2026-07-16T03:43:47.442Z",
-    "last_save_at": "2026-08-14T04:28:25.144Z",
+    "last_save_at": "2026-08-17T04:04:13.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6cf80ad5ae521adf2ba171b108d776fe129cebf61314daab88acb109eab31e40",
+    "source_fingerprint": "sha256:472f63f455ed8661f8b31d6c87ada469c9a5bc2570cc25d0ae878ccd24302386",
     "source_doc_hashes": {
-      "spec.md": "15094022862cb74c0e33f325b0e9c58560f6e3d5396d0725be6ebcb4329e8821",
-      "plan.md": "4cb2e7b2694e33ecd66a5f53a37c13e1a4b3fb44f715f1c35571aedbc33f2d4d",
-      "tasks.md": "17d265e65276160f405901b1abc5ee695a37cfac120eaffa39a2da6625a6b34b",
-      "checklist.md": "4c396f726de81feb5e6e9ac379dd2933578457f62a9b033337303ab456e6a101",
-      "implementation-summary.md": "107f138bcc8638c80105e42fcaa166c0ee53e0f120716b504b830044cdf07507"
+      "spec.md": "364a96ef18ad179477749279446dafc4503035647a3a213ea5c8d2afbca445d8",
+      "plan.md": "8da5f10fb1c2e3c6c769a706cc2822bb9ac00f8d55d228e64654112c69de29a4",
+      "tasks.md": "07a4a8a2bd56a23904fc3351e8e1aa66589b192048686d5817340bf41b94da29",
+      "checklist.md": "b71931babcbe9304b3292b75627cf1da3847dd500f0b165efe225206213d98d0",
+      "implementation-summary.md": "3ab835232286a377ab8e24f215540c8f83f8994f5bbdb2425d126b6580d39599"
     },
     "last_active_child_id": null,
     "last_active_at": null

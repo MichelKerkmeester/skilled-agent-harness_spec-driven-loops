@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Checked completion items across the 013 migration program cite evidence that cannot be reproduced",
     "created_at": "2026-07-30T19:43:41.044Z",
-    "last_save_at": "2026-08-14T04:28:36.921Z",
+    "last_save_at": "2026-08-17T04:04:20.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edb9cde0859ad84a9bfa49d3d04addff2ca183a446cfa583ff523480e3b12537",
+    "source_fingerprint": "sha256:a20373165dbaadeb1c6a450e16258dde284ae8f5492b86cf5fda19edfa8fa5c1",
     "source_doc_hashes": {
-      "spec.md": "8b9de1cfb6adddc1796860ce63322aac10a22b19b3641bea87ef2b2103aa782b",
-      "plan.md": "4dcca69f2a67eabf935db9132aeacff5c1307d488ca1839339ba9e55433eb157",
-      "tasks.md": "79130bee18a67a649fd415799d6a890fe5b8245e9193ae807e4a591c382099ac",
-      "checklist.md": "0ad1ba4f3a2187ae0d484b425713cde1e7beddd508db8d6f60844ba2d202b853",
-      "decision-record.md": "d51ed272fb18ea40ad01e594b35ed5e8e97b11b0149dce17af3cd1b1423411e9",
-      "implementation-summary.md": "90fc5da2a66a21cba749449cda51c9365f4a2bfbed61142687830c0700171736"
+      "spec.md": "a15061ebf8861485eb1b53ece5757979f1b2c07a85c947008e06c33bd11e4b82",
+      "plan.md": "f1addb1e2d1584de2fcfc77bc35229641dcb8e382e010c1852c8b236b6e42387",
+      "tasks.md": "32c9eed4509f620c1493f13c9363b85cf20f772c16b22ca9b853156cb62aa4d3",
+      "checklist.md": "76852fddb4d69f677fc3d4421e0cb351be47c8dcd416b25065ec013503e560c7",
+      "decision-record.md": "6dc40d7552fd7477529dc4d67aec1d922a291ad2725f27357b7026778b5cb6a1",
+      "implementation-summary.md": "e90b7ba0cafd450066c5da8590be8d1d0e120f1aa409912d410d4e1d5409ebb9"
     },
     "last_active_child_id": null,
     "last_active_at": null

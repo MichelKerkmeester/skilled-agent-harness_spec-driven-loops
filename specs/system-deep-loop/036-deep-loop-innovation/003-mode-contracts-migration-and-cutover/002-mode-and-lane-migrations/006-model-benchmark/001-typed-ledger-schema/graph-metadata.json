@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Implements the Model Benchmark variant's additive-dark typed append-only event vocabulary over the shared deep-improvement-common backbone. The module extends 35 common events with 32 model-benchmark events and stops before reducer, projection, or authority-cutover work.",
     "created_at": "2026-07-16T03:43:39.273Z",
-    "last_save_at": "2026-08-14T04:27:57.967Z",
+    "last_save_at": "2026-08-17T04:03:58.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afb7be9aeab89d1c7135f44fb3bfb7c66d44ef442a3545709fbd22fbb63d0a4f",
+    "source_fingerprint": "sha256:d960703597368a8fad346030f769699b0184f2e97b9723fe6bac3e193a093e98",
     "source_doc_hashes": {
-      "spec.md": "c188bd1b99fa7f227036188b7724933e2657500999d9c66df66b800ca16fa612",
-      "plan.md": "bfab0e1aa8ed8d3670c71f45c678b08209c56c021397447990fb6bf417fb08bd",
-      "tasks.md": "bd139b300cf1fb5a98f08484d1738c21709a00ef2578eaf065670433059c3276",
-      "checklist.md": "3e9c83b872ac942a68a0bb62b0877667f6a0699f28cdd41de50f877d01349274",
-      "decision-record.md": "d481a61ffddd8e2669e1f25701f7a3a0297803abb653117f001b076af8bc848a",
-      "implementation-summary.md": "6215e19d88872ce57ead9266b035f64dc5cd7938eadbcb6f3453c1663925a9ea"
+      "spec.md": "7c70e81be63f0600ad6cf76e622be005830670c1157bd93a9e79b857f739e81c",
+      "plan.md": "a90ee8502405273f2e167288edd5ab1f414351c95153d0efeb3d0b39c77a2e24",
+      "tasks.md": "b215cefb486ac83ed8f906eb5750e2229d5aafd432322418670dd964fe7efa8f",
+      "checklist.md": "aae9af3dc4df489bdf914de34700c87d9dfa2ccd7a5b9215bb1002bc87b5ed3d",
+      "decision-record.md": "acdfa5e049a715c61d90d057cf5e09cef080b6c6f1d9da6b7c787ed4337fd7f7",
+      "implementation-summary.md": "83bf25035b15a3735031634b50044bc9540c3ff932fb6375acac59cb156ff299"
     },
     "last_active_child_id": null,
     "last_active_at": null

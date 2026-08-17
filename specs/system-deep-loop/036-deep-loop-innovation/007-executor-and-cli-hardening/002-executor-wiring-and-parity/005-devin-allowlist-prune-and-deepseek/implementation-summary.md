@@ -10,8 +10,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek"
-    last_updated_at: "2026-08-11T14:03:33Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "implementer"
     recent_action: "Implementation verified; packet docs finalized"
     next_safe_action: "Commit the runtime change + packet to skilled/v4.0.0.0"

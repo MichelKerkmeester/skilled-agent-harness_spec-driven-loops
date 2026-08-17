@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan executable, mode-scoped rollback drills that simulate a test-lane authority flip, detect a controlled regression, restore legacy authority within the phase-004 rollback window, and prove state integrity before phase 014 may attempt a real cutover.",
     "created_at": "2026-07-16T03:43:49.540Z",
-    "last_save_at": "2026-08-14T04:28:22.958Z",
+    "last_save_at": "2026-08-17T04:04:11.815Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d727208b18f4b30ff4d90fdcef7d4f2b27ac241114ac7846578d82d9eca2f9f",
+    "source_fingerprint": "sha256:f436917c4370b3b46ba205f8388df41eb2301a54ceb0759cccd70b3eb67e5259",
     "source_doc_hashes": {
-      "spec.md": "0fee80b978cabeaf38e5981bc5be77b797a1459900f15e75ae6278c03ef37515",
-      "plan.md": "310bf0d29d5b962d308a511ae05a50f6b74672080a697a1427546753e7c71778",
-      "tasks.md": "f123eb99ad0713d4a20866b0ca5e381417c0d3ac3bea46412a26b985ce6acfae",
-      "checklist.md": "49e81d4dcae9877a63648c7efd94460e038ae11f9058dbc625bbcd386405ade9",
-      "implementation-summary.md": "3cb3c89c8d49338786917a16857502a493cb5e2c0935812ead3bb58d2f32a125"
+      "spec.md": "d20f4065c2ce1bf1c49e84405a314b457b67c069ba71edcfd216be0d8a2b169d",
+      "plan.md": "3fe03bb64cfa738eec04f6fc22aa858a57d48604b8bd107c081adda16c8951b8",
+      "tasks.md": "acddbcb81490cd0c1b2a5a80821b84ce00b66221d79921c99482362ec412ee8f",
+      "checklist.md": "d0428df726e193825183adb5424bfd6905d9689a719f8974a1df1d44fe6680d3",
+      "implementation-summary.md": "038253e6a9f6d08fda6f2dbd3aae6c7403c6c3a1238aeae6f71f210ed19629ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

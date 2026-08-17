@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The cli-devin catalog was curated to four families (GLM-5.2, SWE-1.7, Grok 4.5, DeepSeek V4 Pro) with default `swe`, but the deep-loop runtime's enforced allowlist (`DEVINSUPPORTEDMODELS` in `executor-config.ts`) predates that curation",
     "created_at": "2026-07-29T19:35:25Z",
-    "last_save_at": "2026-08-14T04:28:11.822Z",
+    "last_save_at": "2026-08-17T04:04:05.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85d27a391bb44fef678613ee7879d988d07284f3e30dfb48bf523ed5cbdaa8c3",
+    "source_fingerprint": "sha256:89979f6ce5b3ca8b8b5e5591178293f77f3d914a9573d3777c4ba7713699800b",
     "source_doc_hashes": {
-      "spec.md": "df3b706feebec07771987ebc8c6c0fb3b318ea49b56a847752c4dfae025cb3d3",
-      "plan.md": "68f4ee3fe1bcb5b7be6919ae7f648e3a42a2ffd5036d2036a809f903c012bb7f",
-      "tasks.md": "8436dc357cdb7f771a28d8dd8af4dfd92ba32c027b1177cdc730eafe6f5b7666",
-      "checklist.md": "2a7b1ed28bc187a8c09dc11465965ba3d8e32bd001eaf5640040bbd76c4346ee",
-      "implementation-summary.md": "f735b82ec0a5ed2f4956c931b13f3cd033287658ab83a57b4fe2aaa7a2bd67ae"
+      "spec.md": "d9c0030c13a6ae2fdb7bc3ebeb3ec61f3513e6fb32860642890310e388ba118f",
+      "plan.md": "d6fb51e03c951832e79a0d5e295a3bd647cbe1ac4466e8eb2ec4a1177537f87f",
+      "tasks.md": "acb3044d4380d641b2dc1993776bead8f00cb15a7bd15b277c9ceddfb2b02ace",
+      "checklist.md": "80b3ebd97d14dd7e256a3f0648c6142f37aa07212cc512578fc875855e744ae1",
+      "implementation-summary.md": "67162d7018e2b540be1c4dc97a59590124da820c177fb048f99ec5a7b723ff92"
     },
     "last_active_child_id": null,
     "last_active_at": null

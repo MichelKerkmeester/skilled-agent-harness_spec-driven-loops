@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/003-stopping-clocks"
-    last_updated_at: "2026-07-15T15:24:30Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/003-stopping-clocks"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Authored the planned independent stopping-clock arbitration contract"
     next_safe_action: "Implement clock adapters, arbiter ordering, and termination-cause events"
