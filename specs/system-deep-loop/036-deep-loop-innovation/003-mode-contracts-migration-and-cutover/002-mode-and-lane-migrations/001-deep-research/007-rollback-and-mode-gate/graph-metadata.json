@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Implements the Deep Research mode's fail-closed rollback switch and independent migration gate over the typed event-ledger substrate while keeping authority with the legacy path until phase 014.",
     "created_at": "2026-07-16T03:43:31.931Z",
-    "last_save_at": "2026-08-17T04:04:03.558Z",
+    "last_save_at": "2026-08-17T04:33:38.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
     ],
     "source_fingerprint": "sha256:a90397e92c502945e8310b2f4209693db3744b5d1c4509166e337d96704408d7",
     "source_doc_hashes": {
-      "spec.md": "5c506f18a25cc8a38c3b7c5ed0aa32ac6e4db742e1e9632fb23c14d0eb6c1313",
-      "plan.md": "0795179024ad9742d6efebb84c04c112917e19b46ae21d9f9703940d3e35aead",
-      "tasks.md": "0dd1fda0039ceaa885166247bf3479062a46cc5079c7847c3d8995a0ce2fb8cd",
-      "checklist.md": "7155873521ec6c0463e4bf2a3e4a7fbb54ecebda3c98acfb3a5c9ea6a097b21b",
-      "decision-record.md": "eb910c2f793d5faf353ac9855292a1423df3660f1ae6634b960d00ef22cccaf5",
-      "implementation-summary.md": "e97135293375814df863d7425baac5610f6850497c72e4f5db7acaf4195372ba"
+      "spec.md": "d6c71bf586f9a8a9282c016fc8a5491691e902634ac107ddde2c747973adfeb6",
+      "plan.md": "c1a892a30159054a9cf26249a7ecf929929a30ed4510dae7c3392eab18a2d85b",
+      "tasks.md": "39b2c9353f6e5e08522f7afcba2558a9ee44d74a59f3228a7b767d5ab53b79a1",
+      "checklist.md": "3b3809279d1eae9bfb485e355e260840664d809aca8bc9f061542826c3cfcd86",
+      "decision-record.md": "6a388a16f3722d1069fd3937a057efd1dd073cec819b53a0e8e18a1c0b5e6a6d",
+      "implementation-summary.md": "eceef47c4b7ae10792e2fd4d8755017bc3efb916d038057d949fb92ce9b64f18"
     },
     "last_active_child_id": null,
     "last_active_at": null
