@@ -8,8 +8,8 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research"
-    last_updated_at: "2026-07-17T13:30:51Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude-code"
     recent_action: "Packet renumbered 034->036; description.json/graph-metadata.json regenerated"
     next_safe_action: "Operator review + phase-002 ranking/mapping from research.md §17"

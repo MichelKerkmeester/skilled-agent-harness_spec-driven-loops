@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept while legacy graph novelty remains authoritative.",
     "created_at": "2026-07-16T03:43:51.399Z",
-    "last_save_at": "2026-08-14T04:28:20.516Z",
+    "last_save_at": "2026-08-17T04:04:10.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6340d40b884c8045f9fb49009790ae34325892f079bf2b1a203932cda38feb9",
+    "source_fingerprint": "sha256:9e8eaad3c55bb8f0a3bfbb5c4fadbd388ef93434ee4713f5b3f4b142a1102c3e",
     "source_doc_hashes": {
-      "spec.md": "62cdd19088de5f2247dc687ee31bd29eb7fec9b700946f909c16e226aa9dedce",
-      "plan.md": "2b0a85cc79fda70f67da0ff6a2876f808dd8fa6a586fe55ff9ca46dd8c1dfd52",
-      "tasks.md": "deeb56eebff6344349ab2610f20d08a64ebd468cca06407f0a24a8982b35f2af",
-      "checklist.md": "6e4930a949cc3490a85f35c39c79fa49a6bab6753290eb3cd890d966e75761a3",
-      "decision-record.md": "f64bcd5c8b8a61a4a5b6b72f9de1199dfc8226debda35d6a4ce71fda17d2b9ee",
-      "implementation-summary.md": "36e39156883dead537a27d67e03d2814a963a90c75cee1b9d8a7f90e2ddd2ce7"
+      "spec.md": "cc6e14647dd15e5fb2f4975434f7c3f60a2ddf518d0054ac51c3249ffcfcd86e",
+      "plan.md": "7a039ec06739348a079b9be9084ba5a01c4770ddc3fb0e94701044df6aade529",
+      "tasks.md": "c9b5f8242a42f69f580a85a4d75fbd7e9219cfcb037643a6e384a5a15da17b4e",
+      "checklist.md": "e664564562f59a1dd56000ce842f3e0223dc87b007163e0630456db9256a91bf",
+      "decision-record.md": "7749fd5a3dccc769cd8d1c71ca3b8fbdb45c07cad74f393a894023216f8028a3",
+      "implementation-summary.md": "80fbae9abdec005616d2ee277ad07353dc35cfeb11c86011051153d87f605109"
     },
     "last_active_child_id": null,
     "last_active_at": null

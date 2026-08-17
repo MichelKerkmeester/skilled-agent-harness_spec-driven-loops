@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/003-replay-fingerprints"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/003-replay-fingerprints"
-    last_updated_at: "2026-07-20T23:18:42Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/003-replay-fingerprints"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Completed the replay-fingerprint implementation and verification tasks"
     next_safe_action: "Use the verified-result API from later dark consumers"

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Implemented Deep Research shadow parity over the typed event-ledger substrate, with independent legacy and ledger executors, strict event and projection comparison, reproducible receipts, and a fail-closed successor gate input. The legacy path remains authoritative.",
     "created_at": "2026-07-16T03:43:31.690Z",
-    "last_save_at": "2026-08-14T04:28:07.484Z",
+    "last_save_at": "2026-08-17T04:04:03.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc65c6d5fe9d35c307d60e66c1141c6ecc816717e6fa06ffeb1cf72618c887f1",
+    "source_fingerprint": "sha256:7219d7a9401a01baafd12962e1789955cb4813aaf6aca57341da6effae6f7530",
     "source_doc_hashes": {
-      "spec.md": "bfb130cc9e1f0f40aa34078234270e843dc93886a71b9e9bfb824c8b07c32a45",
-      "plan.md": "c6bf9520254f0dbc6dc4dee367f7dfc34d667ae45fa8b4d2a81d69eb81a44fe5",
-      "tasks.md": "2f36741e4efb3bebba3f255ed4a2182f0a05e0407c2408c4a92a81a6bad4da84",
-      "checklist.md": "994f48b79e073f293a14d7eff178210ada80380766fad7d2dbe63a349c5075f1",
-      "decision-record.md": "40e17a56e9462b95d282c3b5276c8c2659a423050ee89b73ce2700417626ef2b",
-      "implementation-summary.md": "15de3407f6aaccf7a2f4ff53c447e7fbc9bd2d370a426f57e3d713565a0e7f15"
+      "spec.md": "5998240956c1dab42c3a2dfa65bb984735027d16157e7787e55a84c40c4e612a",
+      "plan.md": "1741d8ad0096f105295a4c0f12d7c7eebf8edf12a10b02517bdacca776230e38",
+      "tasks.md": "783bae86a0ceaf161a660c8af250c1e29408df89db10dc08dbf3ad7404f9212b",
+      "checklist.md": "e05933f63e26c6a4b0258a66fbba50fc1d936cf76afaafa1be3816c1258340aa",
+      "decision-record.md": "2aa15b7eba246fae6f256b061f350d789904bc2a7673e3e99282453f2a8856be",
+      "implementation-summary.md": "bff5bd5e4d133013b61908737a6f197b0b23157a7f2c8bd6c7a34d9f23494fd9"
     },
     "last_active_child_id": null,
     "last_active_at": null

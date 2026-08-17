@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections"
-    last_updated_at: "2026-07-23T14:30:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Verified composed replay, integrity guards, and common-service delegation"
     next_safe_action: "Retain shadow-only authority until the later mode gate"

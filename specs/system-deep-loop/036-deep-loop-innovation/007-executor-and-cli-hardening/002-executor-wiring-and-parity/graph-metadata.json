@@ -91,15 +91,15 @@
     ],
     "causal_summary": "Group the deep-loop CLI fan-out executor work: wiring individual executor kinds and proving every cli/provider/model combination is reachable end-to-end.",
     "created_at": "2026-08-08T07:14:10.069Z",
-    "last_save_at": "2026-08-14T04:28:31.683Z",
+    "last_save_at": "2026-08-17T04:04:17.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a1f9e239354f8a9c6bb160d0a498f285f5fa568465f7b2e4c4ab70a948e62a07",
+    "source_fingerprint": "sha256:ca7031bdc299af0ba93fc0daa9433046605b62cec603f70ef2e070b0f319ae13",
     "source_doc_hashes": {
-      "spec.md": "f5e90630bf34ed35e966002423c8ab78c2c5d633572681b0a0ef1bee49b64a41"
+      "spec.md": "f5700c4b3068cf01045d14806a0196918b70f1a55e8b92b889090a63618241e5"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek",
     "last_active_at": null

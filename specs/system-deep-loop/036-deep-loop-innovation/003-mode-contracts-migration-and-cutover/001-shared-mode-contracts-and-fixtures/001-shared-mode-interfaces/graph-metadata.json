@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Freeze the typed contract that every phase-013 mode implements against the shared ledger, evidence services, fan-out/fan-in substrate, convergence services, and resume path before any per-mode migration begins.",
     "created_at": "2026-07-16T03:43:53.994Z",
-    "last_save_at": "2026-08-14T04:28:17.420Z",
+    "last_save_at": "2026-08-17T04:04:08.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebd7de14823a02807a18a58120a804e93ef459345d03ddcfcc8dff888c76e1c7",
+    "source_fingerprint": "sha256:e124024e19b83c6095ab8018712d800ccd0923474232b2e107b3750de9775b86",
     "source_doc_hashes": {
-      "spec.md": "815741a82a691e5e95579086b7303ab36e9b04e0ca232a41123fd015c34d9cd0",
-      "plan.md": "858a0afcd1e148272c7ca6e86620af860030c843d3aead13494e087ac90ff313",
-      "tasks.md": "b774ead4814549f08d7fa7a66ea0b824df552f12b13ec15d7ababc07e78c90fe",
-      "checklist.md": "778c26113cf235d7c3f532e65d8b2049a5c9e94296f15db76399108290c120e0",
-      "implementation-summary.md": "11be61a850a5609d1b2d26c6d116eff04c7c2ddd69aab0f13e0eca3099381946"
+      "spec.md": "0c44d12298086dac257bf237b033791c7b8035ee16f076a0f835dcaee9e5cae0",
+      "plan.md": "9d743f6797433f6d62151ff6952e55debac676a8b1352b10051e7ec960af2376",
+      "tasks.md": "2777053ce85c06355a813812a83bad063da5ae7b4799a1f77d494a1e980aff15",
+      "checklist.md": "9ff95151285bc334d5daf7394f5149a98cfc35a03d832e582511f312e115940f",
+      "implementation-summary.md": "c9a546fe27c5c8b2e545a56792c941d0c80b792c737ecd138a21b9619eb52419"
     },
     "last_active_child_id": null,
     "last_active_at": null

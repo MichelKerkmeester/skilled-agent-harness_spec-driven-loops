@@ -10,8 +10,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter"
-    last_updated_at: "2026-08-15T13:39:57Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Reverified the offline council resume adapter at HEAD"
     next_safe_action: "Shadow parity consumes the closed resume decision"

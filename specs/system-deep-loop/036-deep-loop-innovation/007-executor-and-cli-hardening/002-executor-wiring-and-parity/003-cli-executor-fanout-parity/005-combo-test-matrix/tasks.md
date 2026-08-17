@@ -5,8 +5,8 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix"
-    last_updated_at: "2026-08-11T14:03:33Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Reconciled all three built leaves with the strict-validation contract"
     next_safe_action: "Pass strict validation and obtain operator sign-off."

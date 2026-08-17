@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 036 phase must preserve.",
     "created_at": "2026-07-16T03:43:57.879Z",
-    "last_save_at": "2026-08-14T04:28:42.050Z",
+    "last_save_at": "2026-08-17T04:04:22.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:448cdd812fbf164714f967eb2b8ac04a5df0723784ebca7ea1b31c0d5965b1d8",
+    "source_fingerprint": "sha256:f3550bd3de7c281e00ecda7b7aed7fa172be7340c0fc7d1da8da5b8f0bc81dd8",
     "source_doc_hashes": {
-      "spec.md": "6d8c0fc20366095c89540730aa4e490f1a57fb8c67d25bfbef9c086ce8095b48",
-      "plan.md": "a0f0c18ac42ebc8ebff6b9f30ca08fdc349e0de08b6f11697e1104eec91e03b2",
-      "tasks.md": "73c3a9353c5bf90b83b677ab2b91763cb17325d1cd6cc38a14f508f11d4315c6",
-      "checklist.md": "c8f12a051a240d5cfbdd9e68557992f7bd343b53797d0eae8e7b0c3fb7053c23",
-      "implementation-summary.md": "d102545d203d3788d2c65a01a23550f92376e84864f0bd8ae9d172044d48d00f"
+      "spec.md": "581abd6ac938b9f9eba00b945ea231bcad798125affcf6a752c5a5627252bfc0",
+      "plan.md": "539e055472e776aff0c2d2dd8c25d25e5c4d0e0ad9de8818f67a2a3e1703521b",
+      "tasks.md": "939a7607427bb6b5065d1a950ce181d1fa0041453b8287e83aabab506aff7a53",
+      "checklist.md": "86e8065a0387e5182c08441fbc66e80f609664d8a1058e5d8473647147739f81",
+      "implementation-summary.md": "0e03752a4448307cc60290ee4960f4976078131adf450fff7941099030a9304a"
     },
     "last_active_child_id": null,
     "last_active_at": null

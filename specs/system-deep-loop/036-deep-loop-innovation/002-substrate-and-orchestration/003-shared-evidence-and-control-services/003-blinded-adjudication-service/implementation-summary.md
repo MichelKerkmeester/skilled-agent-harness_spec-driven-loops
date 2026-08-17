@@ -9,8 +9,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/003-blinded-adjudication-service"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/003-blinded-adjudication-service"
-    last_updated_at: "2026-07-21T02:07:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/003-blinded-adjudication-service"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Closed adversarial P0/P1 gaps and completed focused verification"
     next_safe_action: "Consume the dark adapter in the later shadow-parity phase"

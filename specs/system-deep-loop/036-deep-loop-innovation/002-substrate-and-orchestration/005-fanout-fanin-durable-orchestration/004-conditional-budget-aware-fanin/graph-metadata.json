@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan replay-stable conditional fan-in that awaits only enough durable results, stops on typed-budget floors or evidence sufficiency, disposes outstanding leaves safely, and records the exact reducer input decision.",
     "created_at": "2026-07-16T03:43:50.574Z",
-    "last_save_at": "2026-08-14T04:28:21.717Z",
+    "last_save_at": "2026-08-17T04:04:11.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e40125e109475f5f6598411fe602be51a50b24776bd078f6294c903ebeff77e8",
+    "source_fingerprint": "sha256:76fd367fc54203844d2dd0fb077c70528542d8b4591246a1059e7bb503c7225b",
     "source_doc_hashes": {
-      "spec.md": "829bf0a3d9184e39e80242f393f9321fe48edb60f5e0a0a36d08852f01553184",
-      "plan.md": "252483daf71408360e8fbf4aca4c991ff748636279bcfd9d2428a9ebf9174104",
-      "tasks.md": "054ed498e75477cf438babf36c703815624d242ca8c25ebd89093588a7246977",
-      "checklist.md": "30ce4b2cea736c8d04cf0f3eef8205689e09c4958d2279d4bacc0e9208546732",
-      "implementation-summary.md": "fed03eb988cf347bef7de035ebcf704c7c0640fba1f68928dcf1ec6400a604c4"
+      "spec.md": "756be5a114a278d8b963b5695562d260a6d8c245d1730facc0a117474f3048b0",
+      "plan.md": "5457fc39a73a7b775726cd7e510b28aea5ae373f5edecd58b9c3e75c31fd1487",
+      "tasks.md": "59737ad23aea7f4afa280b7d7785ee54a47963f1061d2047ceee219e1878e791",
+      "checklist.md": "cb571d7f2a344a687e13615582ffc026aee20eed14416938f13429b525a09135",
+      "implementation-summary.md": "652e0e33a842e90c2468a8bb3a6673750573c4d91a45083c8da95bcac0a35a86"
     },
     "last_active_child_id": null,
     "last_active_at": null

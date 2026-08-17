@@ -12,8 +12,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-fanout-dispatch-integrity"
-    last_updated_at: "2026-08-08T02:30:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Verified REQ-010, F-016-03, and write-containment data-loss fix via code and tests"
     next_safe_action: "Landed as 568aa17a40; QA gaps: baseline, rollback, tests, contract; F-016-01/F-016-06 deferred"
@@ -67,7 +67,7 @@ Fulfillment is the load-bearing half: a lineage is accepted when one non-empty t
 | **Priority** | P0 |
 | **Status** | Complete (10/12 findings landed as d0d8623ddf; REQ-010 uniform containment + F-016-03 rejection + a write-containment data-loss safety fix delivered, code- and test-verified, landed as 568aa17a40 on skilled/v4.0.0.0; F-016-01/F-016-06 deferred; residual QA items open — see checklist) |
 | **Created** | 2026-07-30 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
 | **Wave** | W4 |
 | **Findings in scope** | 12 (5 P0 / 7 P1 / 0 P2), 2 carrying a review `CONFIRMED*` mark |

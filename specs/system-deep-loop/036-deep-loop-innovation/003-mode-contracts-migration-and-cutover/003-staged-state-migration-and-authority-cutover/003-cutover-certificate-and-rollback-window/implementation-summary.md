@@ -10,8 +10,8 @@ contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window"
-    last_updated_at: "2026-08-09T06:40:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Built cutover-certificate lib + rollback-window + 41 tests; dark/additive, nothing wired"
     next_safe_action: "Verify + land 014/003; then build 014/001 migration + 002 flip; 003 needs no further work"

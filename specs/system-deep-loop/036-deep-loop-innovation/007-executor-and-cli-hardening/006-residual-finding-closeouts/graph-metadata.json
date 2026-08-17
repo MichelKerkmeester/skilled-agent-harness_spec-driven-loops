@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Three sibling phases under `036-deep-loop-innovation` landed their primary deliverables but each left one small, explicitly-documented residual open",
     "created_at": "2026-08-12T16:44:22.542Z",
-    "last_save_at": "2026-08-14T04:28:30.455Z",
+    "last_save_at": "2026-08-17T04:04:16.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:32265eab82fb85bc64774b99090191f040fcbbeb3347a5fcf242f95619b1abca",
     "source_doc_hashes": {
-      "spec.md": "c15748517d4775936f203f4ca9eac490f5b826ca51611a224ee34f09b05fdb14",
-      "plan.md": "34cf540ab7f1638e669fdcaf95aeca78d80eff2749c1874b329606c965692745",
-      "tasks.md": "6a9c00bf7708e63b86240c9b800681ed71fcbc530a31d424b637045c7e4562b7",
-      "checklist.md": "77d1c026a0798f1e8188220727c9d431d81d48bce5e47dfcbb69cf74ba289bfb",
-      "implementation-summary.md": "c1406b4b447a5b4a7a574356a942497b1160006f18c07893fc829e0535480ab4"
+      "spec.md": "9ef10fb848a2a7765effe931dc279bddef622fbe4fcb915b1dc78d85ba2a3883",
+      "plan.md": "314bf8f5cc7500e9f3f28b86759ae55429c98786b12f0bac81c325e78a2d6e0d",
+      "tasks.md": "ef247b07ae3363cc61af98775ba91a9bc32910186f295247e8a8352fc7426aeb",
+      "checklist.md": "658a575e099e82b090e60260cdc4e9b946606bd0623d1ce9c76bd51270741812",
+      "implementation-summary.md": "7ad93100ef24349ce6b295c3af55195bf020949ea50a5e1e9f345ee3164067d3"
     },
     "last_active_child_id": null,
     "last_active_at": null

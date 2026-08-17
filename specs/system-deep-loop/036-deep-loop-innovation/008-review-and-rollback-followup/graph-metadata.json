@@ -84,7 +84,7 @@
     ],
     "causal_summary": "Runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption.",
     "created_at": "2026-08-13T09:23:03.369Z",
-    "last_save_at": "2026-08-14T04:28:43.623Z",
+    "last_save_at": "2026-08-17T04:04:23.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -92,7 +92,7 @@
     ],
     "source_fingerprint": "sha256:58de9d8752b3decf29179cc6190045d7dd432ff138fbcc3de5960aacebf2a9ce",
     "source_doc_hashes": {
-      "spec.md": "b57c7c04831ad90a871c184aaa42055fa86a6d3a48613e32026524df114eac8f"
+      "spec.md": "3a9f5b2b15df7e8490796eed317ce14c98d24df9fba0b32d39f3da3357159815"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/004-review-containment-exemption",
     "last_active_at": null

@@ -10,8 +10,8 @@ status: "complete"
 parent: "system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification"
-    last_updated_at: "2026-07-21T03:35:32Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Verified the blocking contract over all 46 frozen census rows"
     next_safe_action: "Require the verified manifest and fresh handling plan before later cutover work"

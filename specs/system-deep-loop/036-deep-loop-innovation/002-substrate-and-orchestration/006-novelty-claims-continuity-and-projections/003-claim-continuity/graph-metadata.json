@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Implements one durable claim identity across iterations so support, contradiction, supersession, lifecycle, and recomputed status accumulate through replay and resume.",
     "created_at": "2026-07-16T03:43:51.906Z",
-    "last_save_at": "2026-08-14T04:28:19.911Z",
+    "last_save_at": "2026-08-17T04:04:10.188Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06f6cec2625d1ad8768edafe93698eb37f37a091fb281c05bd99099e63f69a54",
+    "source_fingerprint": "sha256:e73db8a727f7ce445703df7f07733e8ce1625e122c6c6ac69a9b7ad79fd2b01f",
     "source_doc_hashes": {
-      "spec.md": "e2bd6149b92ee548b5fe0c0f92e27c2e40c62927b7b0fb6f58e882b7fb17b6d1",
-      "plan.md": "03ff13f34cd23814017d8d7a85e3e4cf9db84e2ca45dd12ba6aba3e3cd10f19b",
-      "tasks.md": "591071a3aea5a8fe96010d6dc579a1b1a94dc308794d984d4ddd884f7154c595",
-      "checklist.md": "fd6e79c5b201d00c3a7d8e53dc679b75d6b0828c089ca4e4890c3d1a4b9c065d",
-      "implementation-summary.md": "c19e1434b78f3d329514f12d8f5c7cdf831f65a4123e49e7281e96a8377134c4"
+      "spec.md": "1b2a6b3c331f905ca820412328e6df65408e834cd214a8bc96c6d45a10a4c913",
+      "plan.md": "380aa8f718ebf93f462412152b30b0b80b78d134cf825b48504b8d8dcd4b7912",
+      "tasks.md": "27e5cfb3dad4a41f54ed462f9d933eae1bf0fd1ba367644d57a4e62e59f64efd",
+      "checklist.md": "371544621717eb7e2b04f3205c6a900f9306120b57a63d6a8a0d66ca00c48307",
+      "implementation-summary.md": "2bb523c40de68e5d7b7b513ee334ebd690f17e36adeebda6225ce53b3930bf8b"
     },
     "last_active_child_id": null,
     "last_active_at": null

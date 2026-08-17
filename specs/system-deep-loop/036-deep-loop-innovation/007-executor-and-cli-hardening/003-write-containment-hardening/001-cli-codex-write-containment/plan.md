@@ -10,8 +10,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-write-containment-hardening/001-cli-codex-write-containment"
-    last_updated_at: "2026-08-11T14:05:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/001-cli-codex-write-containment"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Reconciled moved-packet metadata and strict-validation evidence"
     next_safe_action: "None; packet complete."

@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T23:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "opencode"
     recent_action: "Defined Model Benchmark rollback switch and independent gate boundary"
     next_safe_action: "Freeze matrix gate predicates and rollback window evidence"

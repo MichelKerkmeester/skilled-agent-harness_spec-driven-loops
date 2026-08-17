@@ -11,8 +11,8 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-write-containment-hardening/002-fanout-containment-sibling"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/002-fanout-containment-sibling"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude-code"
     recent_action: "Scoped fan-out containment away from sibling lineages"
     next_safe_action: "Re-run the research fan-out now that siblings are protected"
@@ -45,7 +45,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | In Progress |
 | **Created** | 2026-07-27 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/002-fanout-containment-sibling` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-deep-loop/036-deep-loop-innovation/003-write-containment-hardening |
 | **Predecessor** | `001-cli-codex-write-containment` |

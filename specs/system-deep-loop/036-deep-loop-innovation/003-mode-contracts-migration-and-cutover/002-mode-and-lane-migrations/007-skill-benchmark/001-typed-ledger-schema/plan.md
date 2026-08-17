@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T21:12:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "opencode"
     recent_action: "Captured schema boundaries for Skill Benchmark run and scoring facts"
     next_safe_action: "Draft the event registry and validate its field-level invariants"

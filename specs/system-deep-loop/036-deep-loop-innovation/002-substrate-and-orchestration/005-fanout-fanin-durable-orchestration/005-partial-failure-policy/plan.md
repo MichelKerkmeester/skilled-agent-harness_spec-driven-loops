@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/005-fanout-fanin-durable-orchestration/005-partial-failure-policy"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-fanout-fanin-durable-orchestration/005-partial-failure-policy"
-    last_updated_at: "2026-07-21T08:06:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/005-partial-failure-policy"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Delivered the additive-dark implementation plan"
     next_safe_action: "Keep the typed policy dark until compatibility activation"

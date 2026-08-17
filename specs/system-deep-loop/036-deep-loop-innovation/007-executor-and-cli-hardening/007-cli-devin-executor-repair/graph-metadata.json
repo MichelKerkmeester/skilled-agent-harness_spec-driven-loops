@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Primary (systemic): the installed `devin 3000.4.16` added a workspace-trust gate",
     "created_at": "2026-08-12T20:56:31.733Z",
-    "last_save_at": "2026-08-14T04:28:30.146Z",
+    "last_save_at": "2026-08-17T04:04:16.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b5a3e46a93e0c6eadc381d90e4715c1f7a3360caf7a4da48b3927875d547d67",
+    "source_fingerprint": "sha256:0628cc4496db190490bf591ce77ad2e16b4de8a93b76a26967970831a67e6bab",
     "source_doc_hashes": {
-      "spec.md": "d7b568ae752c0376f15f5a128d86b4e13ec24aafaa3e9497cfb06fafdacc10a2",
-      "plan.md": "32f0bd52fa216908963cb04844b06834c10cf783b683b2b70ae007166fe80268",
-      "tasks.md": "0178eda57b4b3b7bcd35b761247003bcf01cd00dacd042fdd460f5f026cf3565",
-      "implementation-summary.md": "0506e8a6ed76c0237a0f28c7b3d5ed186d38402226994c7372d6e6b75d556157"
+      "spec.md": "adeb03d403b26890433824f784ebe59116b8a786e3d119b22e931b5e5d4a15a8",
+      "plan.md": "3fd9adaf58495fe4ea53b5902dcafb263f9ab7fdef8fb8440be4929af0b4c6e1",
+      "tasks.md": "6493090567e7dfe0ac65b1b928935fd1e021f5418ffd8ea244ff14a2d7d13ad3",
+      "implementation-summary.md": "95d073d88a62a40756961b83093268149a6d39fa42eaf2cc480d06a7ef93c931"
     },
     "last_active_child_id": null,
     "last_active_at": null

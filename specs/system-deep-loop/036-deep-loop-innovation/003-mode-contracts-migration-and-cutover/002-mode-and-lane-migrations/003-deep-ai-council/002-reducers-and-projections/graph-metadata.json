@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the pure deterministic reducers and live projections for the Deep AI Council migration: replay the typed deliberation ledger into iteration/convergence state, an immutable artifact index, and per-mode status while preserving independent-seat evidence, minority lineage, and protocol-specific outcomes.",
     "created_at": "2026-07-16T03:43:34.174Z",
-    "last_save_at": "2026-08-14T04:28:04.243Z",
+    "last_save_at": "2026-08-17T04:04:01.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:456e5b6c94eb12e66038570d2bb96482c4a73de5587c06726088792225ff8d70",
+    "source_fingerprint": "sha256:6bdbe2e1e0c575858c401f3572edc586ca7becc033cda73d7d486812062ba74d",
     "source_doc_hashes": {
-      "spec.md": "b58994b4e2eff906cc4d37796ba03fbe26463c1af9f6b5663a0885bb86907377",
-      "plan.md": "7c8f2c9ddfb5e627c112031c7c941ca02f4d6090bf06ee641788cc6f66623ef8",
-      "tasks.md": "d30a37bf006a83c6d0850895b29446520411763cc32c88fc7420d80cd2bc5984",
-      "checklist.md": "0e36907c610cb662bb7c6ddfc729b96ae337a55c0de3a11a6a807d0c08f9cd45",
-      "implementation-summary.md": "fad1e014dca3b0e8b9b32907b6382c569b957a30cd5be8ac157ac4c4138c9204"
+      "spec.md": "6e195439b6916e03c1c461ecf484464365572c71c0e4a68281ba4443edbba52a",
+      "plan.md": "9e8bed29c421487d00290267bac64209c84de225ebbdfc151aea5db80938bb4b",
+      "tasks.md": "a081802e9e093943ae1d537053888cf8a2f8714763169e75c3d7a2b2a2fb5eca",
+      "checklist.md": "a8f7e0ea6dd709547c0719085c08c86dbe760c14fd7137fe96f140deb390dae4",
+      "implementation-summary.md": "5e9aebaf24b5e3988cbc3371f85297fcdca8c48ba6587afaafcc1116212ba814"
     },
     "last_active_child_id": null,
     "last_active_at": null

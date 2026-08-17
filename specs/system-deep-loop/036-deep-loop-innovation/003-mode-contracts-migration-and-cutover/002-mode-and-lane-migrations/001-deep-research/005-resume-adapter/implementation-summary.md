@@ -10,8 +10,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter"
-    last_updated_at: "2026-07-22T08:22:35Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Bound effect confirmations to canonical intent evidence"
     next_safe_action: "Sibling 006-shadow-parity can consume the closed decision and continuity projections"

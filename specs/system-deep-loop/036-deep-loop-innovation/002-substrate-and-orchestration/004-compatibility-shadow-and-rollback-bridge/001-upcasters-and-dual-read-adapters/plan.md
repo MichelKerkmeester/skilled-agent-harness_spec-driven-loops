@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters"
-    last_updated_at: "2026-07-15T14:17:04Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Delivered and verified the additive compatibility seam"
     next_safe_action: "Hand the stable read and mirror contracts to successor leaves"

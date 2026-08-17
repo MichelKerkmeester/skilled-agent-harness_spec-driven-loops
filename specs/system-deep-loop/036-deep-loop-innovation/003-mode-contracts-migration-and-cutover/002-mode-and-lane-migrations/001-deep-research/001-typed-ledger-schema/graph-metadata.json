@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Research mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed run lifecycle, question and branch planning, evidence and claim provenance, convergence decisions, synthesis, and memory-save handoff events. This phase defines events and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:30.422Z",
-    "last_save_at": "2026-08-14T04:28:09.008Z",
+    "last_save_at": "2026-08-17T04:04:04.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e18f0b6f19299aa83933f2cd44058427038caecad7e951f9d5d0c20670f9b23c",
+    "source_fingerprint": "sha256:71cc180c9b5688f186d876cb87f43cac2e84ab11072d05e2cb9fed5ac68a8cf7",
     "source_doc_hashes": {
-      "spec.md": "9559e62f1167beb79a88923a29feacc92cc92bc15fe8bf0168615ba4e77bca4e",
-      "plan.md": "2fa1c9629ac8067b7f12abada2e33da7473263211b616df4653837c70c1af15b",
-      "tasks.md": "6f57d9dcbad9d2b97fb6fd956eb42102b21ff7fbed8b1853b180cfadb53ab985",
-      "checklist.md": "c9dfecfcea6bc4b2fab6e365510066e52e2682694263d3dc96345b025cdfb684",
-      "decision-record.md": "83514678e588f80362c08f7c65a823cc9ca5c00d044aec2fa66d20ab4bd80d34",
-      "implementation-summary.md": "69b0e36fe98ab1fd35ac259ecefc5c47ee34fafafb68b29d89f1f4e67ad0c55f"
+      "spec.md": "36adb384510301f11647749425390fc54ba5fc0a35685118fa398081fee97e4a",
+      "plan.md": "120399d734d4fe6884f2a6fa4b807eb4c2427a7bb9e5e45da794b60053a23346",
+      "tasks.md": "9d4719fabfb10817bba3908f6b75f2af89edd7e74992268657fa6b6c990b3011",
+      "checklist.md": "15037c28afb365a2f016c0ea082af8e14143dc9267b6f4b242bd7d9d262897ec",
+      "decision-record.md": "78e26b975c3d1d821a2e1fedc4f018ce6bd7c8ca6783a6ccaaa202ed8bfaf4b8",
+      "implementation-summary.md": "217d2de666eaca50e0f72f6a0bedd6f3def3ccadc1db5fe7efbca77281688b46"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Defines the additive-dark typed append-only event vocabulary for shared Deep Improvement services: candidate generation, evaluator observations, score normalization, canary analysis, and guarded promotion.",
     "created_at": "2026-07-16T03:43:35.741Z",
-    "last_save_at": "2026-08-14T04:28:02.378Z",
+    "last_save_at": "2026-08-17T04:04:00.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d47057ef8606f01086fa575b40eae83e5df1ac7976b963b1e13ae59c50c96af",
+    "source_fingerprint": "sha256:6f6a7178b5c3c903eba2925ea0f4622c3bf27f01d7c68d8c94c02ba7ff6cec5b",
     "source_doc_hashes": {
-      "spec.md": "2766ab806c099066cadaf1d272f2f003cb00172a1d33eaef82afc441a5856d36",
-      "plan.md": "bfa6a9162b766a832f5e94fb22469399187fb01e9c8f6c94dd84052b0805790f",
-      "tasks.md": "6c29c8b1dfc79e377e8595862bd01964fe8d364679b1e54d0791f84229706853",
-      "checklist.md": "e461b682cfbe104144df6b8bec559894d5a57947cc6150d96a574c7c39c32a86",
-      "decision-record.md": "0e51edfc0e9c6a80bf61cbc1e0dba53f523b53e54e2ea9f298321969e184e95d",
-      "implementation-summary.md": "46f1b559ba77f411c4cb00c79d7d64c94053b92c15af5db8c6726aa0e2f1f6b3"
+      "spec.md": "12043312a2aec143bc6037872e1708dc195d7887317fa18001b7d2f2c1b4cbb5",
+      "plan.md": "00833efccc1cec44450dbd3e10c2914b22e80925a0dcbcbc0b8d461b25f15e45",
+      "tasks.md": "61a756bb40e1c431bf093a372a774ce004b5d49dc9b6150a94cb85f5c3318783",
+      "checklist.md": "ee96b4cf30ee2641bbad70620a94b22d1ab6033ead688131a641e76dc3037e1a",
+      "decision-record.md": "b9e3bfeec3938a4a9d3ac4c2ec777c7ed81e76e6392954d67d316c60471d8a65",
+      "implementation-summary.md": "b387d67622a2eba15daa89d1c9cd1cf3c4f25acb0ba0cf9e30ad05e9a8de877c"
     },
     "last_active_child_id": null,
     "last_active_at": null

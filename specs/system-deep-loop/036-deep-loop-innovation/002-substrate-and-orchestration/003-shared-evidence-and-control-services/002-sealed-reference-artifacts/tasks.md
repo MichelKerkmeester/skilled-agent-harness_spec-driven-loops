@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/002-sealed-reference-artifacts"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/002-sealed-reference-artifacts"
-    last_updated_at: "2026-07-21T01:33:45Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/002-sealed-reference-artifacts"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Closed digest injection, mutable-byte, and unresolved-replay defects"
     next_safe_action: "Preserve the dark boundary and track replay-fingerprint evidence durability"

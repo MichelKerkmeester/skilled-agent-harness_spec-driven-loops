@@ -10,8 +10,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening"
-    last_updated_at: "2026-07-29T11:45:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Implemented and gated the devin and cursor containment re-map"
     next_safe_action: "Fold SOL verdict, validate --strict, land, then phase 004"

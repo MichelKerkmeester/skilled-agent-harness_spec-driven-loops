@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Evidence is accepted on partial or metadata-only correspondence in twelve places",
     "created_at": "2026-07-31T01:25:20.255Z",
-    "last_save_at": "2026-08-14T04:28:34.983Z",
+    "last_save_at": "2026-08-17T04:04:19.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd9cc55e5aef5aa551a760f4548e24507cb993b2162cbac260b5935a6766fa2c",
+    "source_fingerprint": "sha256:e3a45acc9ccad56273c23cfe4fdbda23cfc0bb850c303d092846b7d9791bd294",
     "source_doc_hashes": {
-      "spec.md": "b43d6b2f922e461489003de8fa3b65a88426a7a7168ab26cb50ef3668700ff10",
-      "plan.md": "1044ae9655d76c4806bcd8fc532e72e37e47f42001153a731db76d960bb3ae3e",
-      "tasks.md": "8111e467a89ccf8cfa335a74acc5c0491df5ef6a13314efef5432ea120896a4d",
-      "checklist.md": "12a14a3fbd7c606e4d1c2dbf1b086a85c32289162f22c37ab3a2979ed536f583",
-      "decision-record.md": "19ef210fd5b318edd4ce6a1bc8fa37f2b004fb0c0ddb08c7512fcc5096acc33b",
-      "implementation-summary.md": "385bc2a112434724a34486d425125da6f9c02768df6af40093b3d3395cd47e42"
+      "spec.md": "13fb63b33d26c3328ddcada2a06f387948e89e9b88456453d1607cb3cdcf2da4",
+      "plan.md": "9c9ff62846de1bd4c407b18e4485667eeb0aa1937f082a71c384651774e02b2f",
+      "tasks.md": "df601ae864129fda9769a1de6c603bb7b10e597050f875b0d639b753b307f965",
+      "checklist.md": "dc1ce96748e8741972fc052007135b1b348215cf8566206e460d56f595077fc5",
+      "decision-record.md": "2310d786e0a529f635d78d4919e1da677aff54a9326f9fc8b424cab264e31089",
+      "implementation-summary.md": "2a3e962542f0c3021c12564c781b676856ec88a7a277e97207426a9b9405833e"
     },
     "last_active_child_id": null,
     "last_active_at": null

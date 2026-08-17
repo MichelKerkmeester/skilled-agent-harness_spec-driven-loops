@@ -10,8 +10,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/003-deep-ai-council"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/003-deep-ai-council/002-reducers-and-projections"
-    last_updated_at: "2026-07-23T13:51:04Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/002-reducers-and-projections"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Added reducer-surface and canonical-order verification"
     next_safe_action: "Consume the closed projection types from downstream additive-dark leaves"

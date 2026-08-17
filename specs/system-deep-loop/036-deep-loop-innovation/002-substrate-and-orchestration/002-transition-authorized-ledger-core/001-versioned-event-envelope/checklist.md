@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/001-versioned-event-envelope"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/001-versioned-event-envelope"
-    last_updated_at: "2026-07-20T21:40:26Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/001-versioned-event-envelope"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Verified every blocking envelope and adjacent-upcaster check"
     next_safe_action: "Preserve this evidence while sibling consumers integrate the API"

@@ -10,8 +10,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/001-fanout-live-tools-unblock"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-fanout-live-tools-unblock"
-    last_updated_at: "2026-07-20T19:48:41Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/001-fanout-live-tools-unblock"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Completed and verified the dispatch-only live-tools and Cartesian manifest runtime change"
     next_safe_action: "Use adapter outputs in later durable-receipt work"

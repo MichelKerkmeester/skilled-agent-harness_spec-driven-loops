@@ -10,8 +10,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/006-locks-and-fencing"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/006-locks-and-fencing"
-    last_updated_at: "2026-07-21T01:38:43Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/006-locks-and-fencing"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Closed split-brain and stale-commit gaps with independent-process adversarial coverage"
     next_safe_action: "Consume the new adapters from later dark-path wiring while legacy remains authoritative"

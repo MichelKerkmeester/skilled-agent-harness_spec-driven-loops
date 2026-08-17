@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy"
-    last_updated_at: "2026-07-20T19:09:21Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Verified the ratified policy contract and challenge matrix"
     next_safe_action: "Phase 006 implements the first conforming typed writer"

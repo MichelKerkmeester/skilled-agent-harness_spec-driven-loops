@@ -8,8 +8,8 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout"
-    last_updated_at: "2026-07-15T14:30:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude-code"
     recent_action: "Run-2 rows added: 40/40 verified; 163 repos, 111 recs; guardrail held"
     next_safe_action: "Strict recursive validate; operator review; phase-002 handoff"

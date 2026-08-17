@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-novelty-claims-continuity-and-projections"
-    last_updated_at: "2026-07-15T15:02:15Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Authored the phase-parent purpose and five-child documentation map"
     next_safe_action: "Author the child phase contracts without changing this parent scope"
@@ -38,7 +38,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-deep-loop/036-deep-loop-innovation |
 | **Predecessor** | 005-fanout-fanin-durable-orchestration |

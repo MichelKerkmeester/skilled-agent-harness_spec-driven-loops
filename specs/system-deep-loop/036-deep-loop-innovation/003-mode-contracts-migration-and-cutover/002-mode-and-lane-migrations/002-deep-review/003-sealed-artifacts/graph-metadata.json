@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Review mode binding for immutable, content-addressed reference artifacts across scope, per-dimension passes, convergence, review-report synthesis, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:32.713Z",
-    "last_save_at": "2026-08-15T09:48:05.738Z",
+    "last_save_at": "2026-08-17T04:04:02.813Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6db4b263ac3bdb7d4f9bc6757270bf4f58ada113853482793f71298e334652c5",
+    "source_fingerprint": "sha256:6ffdd3431829355a2a504663f1b973f220413617fa31f3a7b2d492593291b277",
     "source_doc_hashes": {
-      "spec.md": "6c2e7f9d6baf9a5d6ba3270aa5000f0aebc88040b27506f1c649fdc157685579",
-      "plan.md": "08a01fc0e65fd817a4063cf558a337c6736ef69472c8658bb173e9d431f7c546",
-      "tasks.md": "0d02fdf090c98425c2523c6314509276edde2cca227706eb795569e44a8f028a",
-      "checklist.md": "00afce61d9eaef6f7929e9b14eface10388f07937ef396753df23c34c3746435",
-      "decision-record.md": "549fa4bbb8bc33d64ca7782cf41be3cb154a1a207ed7bf76aff1d761bbabd10f",
-      "implementation-summary.md": "fca6debde905933c6a7434b45ee2c90c199f5c83ff73816d8724c96558e8d72b"
+      "spec.md": "5b0d8a52446b75e5ff75331bff62c7f5ab44ec4686106feb6917ec16cb1d96f9",
+      "plan.md": "3bc5bb31f7d00fc0901f418055aa54dcc167730c4132a6828426986324df7554",
+      "tasks.md": "5eb56b7471332cca3caac965c2d78b4791f64059ffa38086e89cedab6a2f67cd",
+      "checklist.md": "ea3b42d3fdb17f6478f12951c046ef1a469b0b3307e33c1f4b55b1149f445ff2",
+      "decision-record.md": "bf9115fb34ff4fe2178f0aff1dd59681820b338960f8c3e5a009b13d8c4feba0",
+      "implementation-summary.md": "75ee86f087d095b6b9897ff313101f8ee5103876a4b0b5a5d58e6e696f1e59c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

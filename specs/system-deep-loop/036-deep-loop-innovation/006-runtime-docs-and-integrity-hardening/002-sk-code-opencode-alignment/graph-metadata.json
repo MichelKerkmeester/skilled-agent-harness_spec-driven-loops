@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A large share of the system-deep-loop runtime was authored across many independent fan-out build sessions, and that code",
     "created_at": "2026-07-29T06:45:18.104Z",
-    "last_save_at": "2026-08-14T04:28:35.307Z",
+    "last_save_at": "2026-08-17T04:04:19.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f97686174d03d9a7e08cba84046f8f2ca8cfca78bf314bc89a8c2bd3b7588841",
+    "source_fingerprint": "sha256:8d2326185ea4eab75f2d87ed59c1851f08fc8c4b1ae9639a855f093146b73b9e",
     "source_doc_hashes": {
-      "spec.md": "16ed2c20b5e0406bfd9ddb22a56d7d77ed4f6c98ab175503b67af8bdd24b17f4",
-      "plan.md": "602c1bdcf9181aadc0ece2d43b0f234d37f8403bb400a060b661bdd526f78fe2",
-      "tasks.md": "8b844da19085722828835e6e4ef5303752e1121dbc449f51638aa8051e1d4147",
-      "checklist.md": "f5ac322238fab4240f0a1a3cfc7311c44fcf3fd742f116c0722e9d461c547e14",
-      "implementation-summary.md": "01642284b767ae976767adeab0d36f7f507ac0264e352270a324752d529e3b89"
+      "spec.md": "d31cfaa8ad73e0822d4080eddc553e12bc95bef4db135b8d6f1170e914068318",
+      "plan.md": "5917e9a619d7da852ff5b94c0b657801d6d984e2622cc3652af556cc6efd73f8",
+      "tasks.md": "f88f29cb7d7b2ef095280eb67952bbf0059bc082233ae755bfccf4151564b6f4",
+      "checklist.md": "512c3f58fe6113a23445ca006122f4a807aed309d646d775745c06d06e062fff",
+      "implementation-summary.md": "09eed9d2d4491fb77db195a87118cb28260be0478a65c81530ca70e96395dda2"
     },
     "last_active_child_id": null,
     "last_active_at": null

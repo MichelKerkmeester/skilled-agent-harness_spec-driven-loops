@@ -12,8 +12,8 @@ contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/008-runtime-mirror-and-routing-parity"
-    last_updated_at: "2026-08-07T13:23:26Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Recorded focused red-to-green receipts and the remaining generated Codex mirror blocker"
     next_safe_action: "Regenerate .codex/agents/review.toml, then rerun CHK-005, CHK-033, and CHK-040"

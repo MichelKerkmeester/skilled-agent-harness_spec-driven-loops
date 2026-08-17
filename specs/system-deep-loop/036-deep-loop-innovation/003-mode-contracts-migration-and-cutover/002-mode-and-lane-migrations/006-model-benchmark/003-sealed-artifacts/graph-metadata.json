@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Define how Model Benchmark seals its reference artifacts over the typed event-ledger substrate",
     "created_at": "2026-07-16T03:43:39.766Z",
-    "last_save_at": "2026-08-15T15:08:30.862Z",
+    "last_save_at": "2026-08-17T04:03:57.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:605fb63c50f27bfa617294198648cfc0dac76085821d992019b7339b3f01a253",
+    "source_fingerprint": "sha256:291e68201c15610c8445028b9f710ceae2cd2020088106ebc945dda1c98c60c3",
     "source_doc_hashes": {
-      "spec.md": "6e3c56340104f02b083f94dcfaecd62bb7528b95a94de7f2cd67f1e7b1d3f9ba",
-      "plan.md": "6745690742b3a0eac8f2ac84a06548629ec37b1a989047d4ea82d185828a2510",
-      "tasks.md": "3b0f44b749b72815b505e9435e4c910ded600e55ccffcf90414e4b7acaf4e52b",
-      "checklist.md": "1ccdab27b53e12a4047e0bb801fbf9441e9ac4d67810c901fd1ae03cbd3b8f88",
-      "implementation-summary.md": "419370d1b7f9b3d3e355546138c70e84831ad31b108e3a31b6c73aa5b407d91c"
+      "spec.md": "d278c69c826aac3797a72ec5dc0ed4153c6b3bcf8bed9b4910770907e25b8a13",
+      "plan.md": "64f2d847afed17942f4e1156f5c238b6bfab9ebdb4666185a5f75a21bb0eda24",
+      "tasks.md": "1725c153859830b25de9db6b030ca05aac5176875598a8004e31a6b6f4d02f79",
+      "checklist.md": "b3217f3a2e3f2a31a0a7b9ba87698a7533a49febf284f733406ed9f69f0cb894",
+      "implementation-summary.md": "edac3b72c65a03c7c5e47cf907cc715beeef0d72af0c2f6ec0636af175783653"
     },
     "last_active_child_id": null,
     "last_active_at": null

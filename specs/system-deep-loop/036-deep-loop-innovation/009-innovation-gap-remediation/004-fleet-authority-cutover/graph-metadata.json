@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Plan the serial cutover of the seven remaining mode roots onto the typed ledger, prove five production boundaries per mode, preserve rollback windows, and retire legacy writers only after mode-scoped zero-use telemetry.",
     "created_at": "2026-08-14T12:47:56.842Z",
-    "last_save_at": "2026-08-14T12:47:56.842Z",
+    "last_save_at": "2026-08-17T04:04:15.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
     ],
     "source_fingerprint": "sha256:c1a45b83438e8ca4cbf240e9cd0b1a4fde2e645a7cc6059373c8cb04a45ab46c",
     "source_doc_hashes": {
-      "spec.md": "d4c5af180c85e5389ff1441db37f2c6ad3009d219c9a5768fa837d5571419a45",
-      "plan.md": "0ec7c6097df257b656c2cc1e9bc0721f37e8f44dd3fa74e03ad9055c5ed1f8cd",
-      "tasks.md": "d52c94b13f139185d0f4e87b425a20743eb930d03fc9f429ef33c1dcd1a044c2",
-      "checklist.md": "cb43c8937e69d25eb7f3ea3d5acc8037f4dcaf897cf5f5c907581a1b2b28789f"
+      "spec.md": "efe7f6a2e48dc0bc4c1d62e42819c5974e606e71ff871ab24fbdad89ca782b7f",
+      "plan.md": "44724bf6743a6459bcb7c03b07641a7333c151458569b59d410af9af4449d258",
+      "tasks.md": "31e69294b74e93e87f184f1d5fae83907645a39bcf92f93e183861519bc9b07f",
+      "checklist.md": "1e694aea980b8c1b00e5eb8c4338ed0232f47f5005dc7e5bf10561149f5f3d8e"
     },
     "last_active_child_id": null,
     "last_active_at": null

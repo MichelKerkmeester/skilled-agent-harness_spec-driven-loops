@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T23:30:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "opencode"
     recent_action: "Bounded Skill Benchmark rollback and gate architecture to shared services"
     next_safe_action: "Freeze mode fingerprints and verifier evidence fields"

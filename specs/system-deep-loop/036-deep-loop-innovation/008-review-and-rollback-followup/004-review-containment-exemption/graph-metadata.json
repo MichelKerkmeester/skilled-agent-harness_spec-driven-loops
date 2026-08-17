@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Fan-out review lineages died because the runtime writes its own git-tracked generated state during a contained lineage: telemetry under `runtime/database/` and the spec memory-index (`descriptions.json` / `description.json`)",
     "created_at": "2026-08-13T06:44:37.562Z",
-    "last_save_at": "2026-08-14T04:28:28.869Z",
+    "last_save_at": "2026-08-17T04:04:15.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b461ce7ffc1ecf2e02ece23ef70a00961b6a0dfdc7949ba619dbc9a53a2cb637",
+    "source_fingerprint": "sha256:9785edaec23950cfa8b139298bb6a81d06c8af4d3beb2656caa3a452021d960c",
     "source_doc_hashes": {
-      "spec.md": "cc5645b853cc7156642c9e9e0d6f500fc098577fe5822814690b0f1ce5560b04",
-      "plan.md": "d4afbf71c99704de6ae09896766878d510f8048454e5244ad4b33926f673db25",
-      "tasks.md": "bf110dd5eee5384cd37a1976761da5a4ecc78a1a6c81c10980fe6b41d717eea5",
-      "implementation-summary.md": "b818986bc2d7a5e43a7bdf2268b27b54978c27be1a719879ded1e7a46cd6c8c6"
+      "spec.md": "1e940f87cc9ad9825e678a09b6c3a702ecc48c84aa92eb5ba06925ca63bb793b",
+      "plan.md": "caa3e3d200b20e9a95880baf4de64719df1dd449d8bda5fa2c0f2224c6ddf2d7",
+      "tasks.md": "e4888e8a394b786331c4512806143534e6784ed9e7b7ea38068414ceee76c4b2",
+      "implementation-summary.md": "7011ef65431de7e591edeb1119372df1491216756bc79524e90be95b6fd1e5c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

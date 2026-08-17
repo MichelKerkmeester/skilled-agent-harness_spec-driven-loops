@@ -12,8 +12,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/010-docs-drift-and-p2-batch"
-    last_updated_at: "2026-08-07T23:00:13Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Landed 27/29 findings as bf4f280ce7 on skilled/v4.0.0.0"
     next_safe_action: "Re-land F-031-01/F-031-02 with a non-regressing rollback-window fix"
@@ -55,7 +55,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-07-30 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
 | **Wave** | W5 (last) |
 | **Findings in scope** | 29 (0 P0 / 3 P1 / 26 P2), 0 carrying a review `CONFIRMED*` mark |

@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/005-fanout-fanin-durable-orchestration"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage"
-    last_updated_at: "2026-07-21T05:09:43Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Implemented and verified additive-dark result, salvage, recovery, and resume contracts"
     next_safe_action: "Preserve legacy authority until a later cutover packet adopts the shadow projection"

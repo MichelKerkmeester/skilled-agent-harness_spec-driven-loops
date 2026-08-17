@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/004-value-of-computation-allocation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/004-value-of-computation-allocation"
-    last_updated_at: "2026-07-21T12:46:24Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/004-value-of-computation-allocation"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Completed implementation and adversarial verification for the VOC allocator"
     next_safe_action: "Retain uniform/static authority pending a later cutover"

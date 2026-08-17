@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window"
-    last_updated_at: "2026-08-09T06:40:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Ratified cert + rollback-window checks vs the built cutover-certificate lib + 41 tests"
     next_safe_action: "None — all P0/P1 checks have evidence; 002/015 wiring is future work, not this child"

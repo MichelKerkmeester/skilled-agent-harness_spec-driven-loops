@@ -52,7 +52,7 @@
       "scope"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -102,15 +102,15 @@
     ],
     "causal_summary": "Migrate Deep Review from its legacy scope, dimension-pass, convergence, and review-report loop to the shared typed event-ledger substrate through seven independently gated concern children.",
     "created_at": "2026-07-16T03:43:55.261Z",
-    "last_save_at": "2026-08-14T04:28:15.902Z",
+    "last_save_at": "2026-08-17T04:04:07.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a87c36b7af2db55f00155130336e406ff8ec8942c66ab9112ed9c12d9378a7d4",
+    "source_fingerprint": "sha256:4a6e5a0e57fde807acf1e81dd0a04b68ee37d8779063cfb73f4eec96820b7018",
     "source_doc_hashes": {
-      "spec.md": "def2a207708dd302931f6f05d7ad4a14ea0e1e25db6bc666352c41419acfd12f"
+      "spec.md": "5228bc2a031b6ec7e649d2c3272f5d3dd83c8af67faa537d16f5a0ba361beda8"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate",
     "last_active_at": null

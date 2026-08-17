@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Delivered the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone without moving authority.",
     "created_at": "2026-07-16T03:43:37.283Z",
-    "last_save_at": "2026-08-15T14:26:06.746Z",
+    "last_save_at": "2026-08-17T04:04:00.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5431b5c855b4aa671c8c519b5909dee789a724ad0645b04ae2e20459efe7af9b",
+    "source_fingerprint": "sha256:0d4b06f1fd8546330d4b8b1ef3016fd4d630775b1842e874fb754af3dda02789",
     "source_doc_hashes": {
-      "spec.md": "ffa757586a20e0ba466836f1a61e8d368b8cac9d6e1b424be2d082fd654f9459",
-      "plan.md": "7c1c0900d6c1f1e26f154df8f8c5c366a11c5a4df29f9db702552802f9e0d0bf",
-      "tasks.md": "f332d334d4279f5f950655ab532cdc0fa61a4c6615136fd48716f9f76cc4caad",
-      "checklist.md": "a8dfadfc2883fca3f5d2786a5157d0192fea146a9cc21c722b1890cdfcc2402f",
-      "decision-record.md": "9db56831ec3b672daaea8b81292b7b24376446182d3ccc6167f782b69d2809bc",
-      "implementation-summary.md": "dc8e5f8b074d1e880c06929af20d3c1fd44f829d7c70e5d9f98bfa945b10f0bd"
+      "spec.md": "ff644e56485c86335dca7a6cedf0d5212505a9f989f020c6c888ec61db4891d9",
+      "plan.md": "19fa13659822b174c126d5ba463fc062b7baa4ab860e2bac5ba1798f981b906c",
+      "tasks.md": "4842e3d31d0ddaef3d590fa8d7b9a0984e84eee3fe2ea2387f4ebc50c5932a2c",
+      "checklist.md": "50f54fecdf66422c86e91c83efc49d96db44d9ed8c87150c01b89c0843ddb4f0",
+      "decision-record.md": "9f5fd50933a307f8086769167207e6b8a97ebc0fc813c553f111ca71f231a678",
+      "implementation-summary.md": "76edc11142e538b63e54a2a35e1697a366d9d7f351622e930a399ab29fef8a31"
     },
     "last_active_child_id": null,
     "last_active_at": null

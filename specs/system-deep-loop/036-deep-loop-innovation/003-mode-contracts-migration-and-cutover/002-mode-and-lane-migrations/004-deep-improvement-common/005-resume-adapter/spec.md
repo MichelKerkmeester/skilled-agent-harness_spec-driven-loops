@@ -11,8 +11,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter"
-    last_updated_at: "2026-07-27T21:56:30Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Implemented the authenticated resume decision adapter"
     next_safe_action: "Consume the frozen contract in shadow parity"

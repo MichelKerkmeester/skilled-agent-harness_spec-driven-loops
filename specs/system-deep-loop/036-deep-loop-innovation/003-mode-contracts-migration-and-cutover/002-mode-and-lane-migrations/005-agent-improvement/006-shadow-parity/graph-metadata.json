@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy agent-loop emitter for proposal generation, candidate evaluation, scoring, frontier selection, resume, and promotion preparation; compares the agent-specific projections event-for-event; and blocks authority cutover on any unexplained semantic difference. It consumes the phase-014 shadow framework and the Deep Improvement Common Services harness rather than reimplementing them.",
     "created_at": "2026-07-16T03:43:38.788Z",
-    "last_save_at": "2026-08-15T14:42:51.552Z",
+    "last_save_at": "2026-08-17T04:03:58.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67a8bc956eca0b2eed075bc54d2d47bfaf5cf3f8cb88d7b86a59f8346587e96e",
+    "source_fingerprint": "sha256:6130dbc6e671397300d664e0f2e5236a58889ea84eb9c87ad5adaf64e5c55652",
     "source_doc_hashes": {
-      "spec.md": "4f4e1dcf09fddb883886cbcf986d4ccdaaf366e26faf38f261f4621a4be14392",
-      "plan.md": "283343047d2867bc31fc4cd8f16065d6dd060119c6fbba32f87d5bdca8ca446f",
-      "tasks.md": "bf503db861bb9137a0aac9c5ab2dae42a254a5aa28ac58cc17d1b3f8e8adae3b",
-      "checklist.md": "653ae955ae6395a8d48a40650abdf006aa36f180b4d61471af01d384fa402866",
-      "implementation-summary.md": "8fe8581a4dd346568ec95be2e29c4bac94ddce37154eab6c7b9a4a2983450e33"
+      "spec.md": "5091621c7364c57f512460ffb3afab849a0fe194e45f6681799b265bf792bab7",
+      "plan.md": "6f9459e1cec131df2ed03be3687822ff23ff16d7f332163f4d4b291c272f2237",
+      "tasks.md": "3ea8fb1712175fa97aeb42059335897528dfcba9eefcc0f54f93b04a5ff1eea8",
+      "checklist.md": "3ffa493f4e4eddd91b9abc8cf11e550ea294bd10c050700729fabdffa712de79",
+      "implementation-summary.md": "6b11d9cd710c86472dec268a7a53f622560efc6d2319a470b9551e782a1bd31d"
     },
     "last_active_child_id": null,
     "last_active_at": null

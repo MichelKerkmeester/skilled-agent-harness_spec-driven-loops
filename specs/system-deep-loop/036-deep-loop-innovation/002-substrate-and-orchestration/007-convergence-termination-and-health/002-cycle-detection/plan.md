@@ -9,8 +9,8 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/002-cycle-detection"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/002-cycle-detection"
-    last_updated_at: "2026-07-21T11:31:40Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/002-cycle-detection"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Verified repetition and watermark hardening"
     next_safe_action: "Keep cycle evidence dark until stopping-clock arbitration"

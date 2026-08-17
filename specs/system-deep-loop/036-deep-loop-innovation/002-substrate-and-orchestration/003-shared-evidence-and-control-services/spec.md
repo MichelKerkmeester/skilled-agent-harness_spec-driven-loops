@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services"
-    last_updated_at: "2026-07-15T13:53:47Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Defined seven shared-service child contracts behind the phase-006 envelope"
     next_safe_action: "Author the seven child service packets without changing legacy authority"
@@ -38,7 +38,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-deep-loop/036-deep-loop-innovation |
 | **Predecessor** | 002-transition-authorized-ledger-core |

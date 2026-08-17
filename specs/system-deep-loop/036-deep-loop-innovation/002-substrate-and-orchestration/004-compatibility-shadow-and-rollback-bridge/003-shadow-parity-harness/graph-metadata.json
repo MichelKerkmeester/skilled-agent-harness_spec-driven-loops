@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan the fail-closed harness that runs legacy and dark deep-loop paths on identical sealed inputs, compares verified replay-fingerprint components and projected legacy bytes, triages every divergence, and emits the parity certificate required before phase-014 authority cutover.",
     "created_at": "2026-07-16T03:43:49.017Z",
-    "last_save_at": "2026-08-15T05:43:47.345Z",
+    "last_save_at": "2026-08-17T04:04:12.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +206,11 @@
     ],
     "source_fingerprint": "sha256:9774fdf68885e731e873ac50ecb0870aa937dbdc082936da638cfdfe7714475e",
     "source_doc_hashes": {
-      "spec.md": "5563a492c5c274026938ea44078c6d0ad3788f2766008386a001bfeea032cc47",
-      "plan.md": "a9f7339841e477bbc576bf1fbc27f7273e258317e130e0afa62b095581bc1420",
-      "tasks.md": "0de193013c729c7cb3959d5e5ee595477b771b562ca130b5bb9d55e3d8057b73",
-      "checklist.md": "a58dafcc9efd7fe379fb3691c6167acad2f16fa739cf8d4e8a356e85e8bde53d",
-      "implementation-summary.md": "e505ff218cc4eafd758314f6f5484bff8843742e546121743fb2b4b17338bd14"
+      "spec.md": "1324534abe8c37322338ad058d0d18ae272966c418961b064f57d4e7cf1861f7",
+      "plan.md": "bfb78b002fd2fe4be82f2fefeb9b24357cf10f4279c376eab0ec578d8aa41d89",
+      "tasks.md": "683e25066cbf7ea80f8247a8cb76b557496f44b2f64d311249f2cb0580916405",
+      "checklist.md": "329fadcb944ff301a9c31a6698233c987ff17fb8e7b489f5d70fc015c67adc56",
+      "implementation-summary.md": "07f54da8e575fec925fdfeb4cd09c65df6cea6af883153de9ebffc3ea66fd957"
     },
     "last_active_child_id": null,
     "last_active_at": null

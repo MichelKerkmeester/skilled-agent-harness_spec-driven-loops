@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the shared concurrency-safety service for ledger append, projections, and per-lineage state: scoped leases allocate durable monotonic fencing tokens, every protected mutation rejects stale holders, and bounded timeout/deadlock policy prevents split-brain across legacy, dark, fan-out, and resumed writers.",
     "created_at": "2026-07-16T03:43:47.704Z",
-    "last_save_at": "2026-08-14T04:28:24.842Z",
+    "last_save_at": "2026-08-17T04:04:12.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcdd1a3c4d8f25629c9cc7c0f46df13d05be282cd577e49acb794a6f677ccb08",
+    "source_fingerprint": "sha256:1ec61eb1b50ffa5751fa90f4e5b53d1a6cf1aad8dfe6e253f49428b03470e407",
     "source_doc_hashes": {
-      "spec.md": "19ba9b1cf6920bf4897763087da06284f8462019eea40322e1752bef8a1cb764",
-      "plan.md": "4167877ee484a77f39515034e4242dbd540516a3d67f2d4391784deaec82da77",
-      "tasks.md": "5e8aba985b56a92209897067aab6b2a7c19fbe59456bca81f56078e005970d0e",
-      "checklist.md": "3beaa7d6696725189f5c40928568397d9e4fda6deb421ac4ab6669649716861a",
-      "implementation-summary.md": "f4e3253d77a2b70de7f0781ad356fe433923c245c79f74543086068811f455af"
+      "spec.md": "fa65ee8dab11c5dd240d65ae46ae1f71dd4d10f4b94fdb2c634add331eea8409",
+      "plan.md": "2c40b1326d9dcadb8002b4f174d9b501c1ba579d4315818e4f8d3f25b15e6b65",
+      "tasks.md": "7e9562843c4f7bdae0c5234f759aa543425688016c8b18dfde126ea35265b6f3",
+      "checklist.md": "5363a64db187fdfb72eeb07d0c6b4621ea6ffce0eee7b4c9db0984c40346bd6b",
+      "implementation-summary.md": "b3f8f26070fc92d7baab85d1df1c8f9f35f4232136551a958f483e267b3eea80"
     },
     "last_active_child_id": null,
     "last_active_at": null

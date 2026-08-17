@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T22:59:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "opencode"
     recent_action: "Implemented and verified the additive-dark Model Benchmark typed ledger vocabulary"
     next_safe_action: "Consume the immutable event union in 002-reducers-and-projections"

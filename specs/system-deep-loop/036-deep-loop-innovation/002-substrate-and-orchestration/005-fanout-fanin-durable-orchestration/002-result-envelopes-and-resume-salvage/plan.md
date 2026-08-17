@@ -9,8 +9,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/005-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage"
-    last_updated_at: "2026-07-21T05:09:43Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Delivered and verified the additive-dark result and resume projection"
     next_safe_action: "Keep the projection dark until later authority cutover is approved"

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep Review per-run certificate and per-transition receipt contract over the typed event-ledger substrate. The phase defines attestation boundaries, replay-fingerprint inputs, receipt coverage, and independent offline verification for scope, per-dimension review passes, P0/P1/P2 finding adjudication, convergence, synthesis, and review-report publication.",
     "created_at": "2026-07-16T03:43:32.955Z",
-    "last_save_at": "2026-08-15T12:32:37.580Z",
+    "last_save_at": "2026-08-17T04:04:02.655Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdcc396841ab8af4411a5352fb9e3555384c910fb31ec970420a2d9cce7ab88f",
+    "source_fingerprint": "sha256:20ecb340fa300d0855648c5db9f1bf78c952b99eced4f72fe8e0dc22187f67e0",
     "source_doc_hashes": {
-      "spec.md": "e3a7cdec4dd3f0690276d0afeec5291cdd35ca0689a8a6411cea97048124e9ed",
-      "plan.md": "ed0c70e106ade853709e5a34965bc29ea5d79e366986f9481ae83e0f6458fc5d",
-      "tasks.md": "0a2380ce06716eaf55c7bff5307e470f784378aeb3389c41721265791212c432",
-      "checklist.md": "e2c7fe4e472990b0f7f31c5dc1d6cd5427949df17a90f397e73b6af704e6cc49",
-      "implementation-summary.md": "9b0774e650e1e78c7e4c49bae86d49166b62c973d656ae8c32b4024df8017ae9"
+      "spec.md": "838c4e5b0901231da0cd2df8817845686403c0deadd396673e2fe1d314e1f027",
+      "plan.md": "194b9abd8e16e83535bab14cdc47d8525b1796b9ebf9716df53f7827f542c611",
+      "tasks.md": "0a982016a0c464b75f5583567f5fe063f120f4d0fbc13b13bfe681481643e76c",
+      "checklist.md": "2cefbae671913ed53cb89ae6ba458d6d3fdaf6eef151ac42670f927b99e8de11",
+      "implementation-summary.md": "81c29bda7a42e83c44ae8b205837de1ba735fcd6fcca789342c74fb47788d4f6"
     },
     "last_active_child_id": null,
     "last_active_at": null

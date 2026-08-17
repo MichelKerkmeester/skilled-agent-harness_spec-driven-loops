@@ -10,8 +10,8 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/001-path-covering-termination"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/001-path-covering-termination"
-    last_updated_at: "2026-07-21T12:31:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/001-path-covering-termination"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
     recent_action: "Verified projection-content trust boundaries"
     next_safe_action: "Retain additive-dark authority until the staged cutover"

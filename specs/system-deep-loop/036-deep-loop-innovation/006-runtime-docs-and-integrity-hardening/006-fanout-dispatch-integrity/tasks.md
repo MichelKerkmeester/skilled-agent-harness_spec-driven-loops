@@ -12,8 +12,8 @@ contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-fanout-dispatch-integrity"
-    last_updated_at: "2026-08-08T00:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity"
+    last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
     recent_action: "Added the AI Execution Protocol section; T005-T020 remain honestly unchecked"
     next_safe_action: "Re-land F-016-01/F-016-06 with runner argv support + env test"
