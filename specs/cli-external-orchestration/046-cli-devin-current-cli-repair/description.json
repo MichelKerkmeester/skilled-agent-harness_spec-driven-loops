@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/046-cli-devin-current-cli-repair",
+  "description": "The installed devin CLI (3000.4.25) breaks non-interactive fan-out lineages in two independent ways",
+  "keywords": [
+    "installed",
+    "devin",
+    "cli",
+    "breaks",
+    "non-interactive",
+    "fan-out",
+    "lineages",
+    "two",
+    "independent",
+    "ways"
+  ],
+  "lastUpdated": "2026-08-17T12:46:27.223Z",
+  "specId": "046",
+  "folderSlug": "cli-devin-current-cli-repair",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

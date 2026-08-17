@@ -1992,27 +1992,31 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
   // flag-support declaration in executor-config.ts.
   //
   // Permission mapping, grounded in the live headless behavior of the installed
-  // devin: --sandbox forces the "autonomous" permission mode and IGNORES
-  // --permission-mode, and without explicitly granted Write(...) scopes (which
-  // the CLI only accepts via --agent-config, not passed here) the sandbox
-  // defaults to a writable working directory. So:
-  //   - read-only uses "auto" WITHOUT --sandbox: in non-interactive mode devin
-  //     cleanly rejects the shell/exec and write tools while still auto-approving
-  //     native file reads, giving genuine read-only. --sandbox must NOT be added
-  //     here — it would flip the leaf to autonomous and let it write to cwd.
-  //   - workspace-write uses "dangerous" WITH --sandbox: --sandbox makes the leaf
-  //     autonomous so it never stalls on a permission prompt, and confines writes
-  //     to the sandbox scope (the working directory) at the OS level; "dangerous"
-  //     is the honest label for that autonomous behavior.
+  // devin CLI. Its --sandbox flag forces an "autonomous" permission mode that
+  // IGNORES --permission-mode dangerous and, in non-interactive print mode, rejects
+  // every write tool call (there is no one to confirm with). A leaf that must write
+  // therefore cannot be given --sandbox. Confinement for write-lineages comes from
+  // the fan-out software write-containment guard — which reverts any out-of-scope
+  // path a lineage touched — not from an OS sandbox. So:
+  //   - read-only uses "auto" WITHOUT --sandbox: non-interactive devin auto-approves
+  //     native file reads while rejecting shell/exec and write tools, giving genuine
+  //     read-only. --sandbox must NOT be added here.
+  //   - workspace-write uses "dangerous" WITHOUT --sandbox: writes must be
+  //     auto-approved, which --sandbox's autonomous mode refuses; the write-containment
+  //     guard confines the leaf to its lineage dir instead.
   //   - full access uses "dangerous" WITHOUT --sandbox: autonomous and unconfined.
   const args = ['-p', prompt, '--model', model];
-  if (resolvedSandbox === 'danger-full-access') {
-    args.push('--permission-mode', 'dangerous');
-  } else if (resolvedSandbox === 'read-only') {
+  if (resolvedSandbox === 'read-only') {
     args.push('--permission-mode', 'auto');
   } else {
-    args.push('--permission-mode', 'dangerous', '--sandbox');
+    // workspace-write and danger-full-access both need auto-approved writes, which
+    // the current devin CLI only grants without --sandbox.
+    args.push('--permission-mode', 'dangerous');
   }
+  // Non-interactive print mode cannot answer the workspace-trust prompt the current
+  // devin CLI shows in untrusted dirs, so fresh dispatch directories otherwise fail
+  // closed (the leaf explores then exits without producing its artifact).
+  args.push('--respect-workspace-trust', 'false');
   return finalizeLineageCommand({
     kind: lineage.kind,
     command: 'devin',

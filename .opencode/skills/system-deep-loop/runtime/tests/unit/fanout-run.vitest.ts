@@ -1147,7 +1147,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     isDevinBinaryAvailable: (env?: NodeJS.ProcessEnv) => boolean;
   };
 
-  it('builds the non-interactive devin command for workspace-write (dangerous with sandbox)', () => {
+  it('builds the non-interactive devin command for workspace-write (dangerous without sandbox)', () => {
     const binDir = makeTempDir('fanout-run-devin-');
     writeStubBinary(binDir, 'devin');
     const command = buildLineageCommand(
@@ -1162,7 +1162,8 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
       args: [
         '-p', 'bounded prompt',
         '--model', 'glm-5-2',
-        '--permission-mode', 'dangerous', '--sandbox',
+        '--permission-mode', 'dangerous',
+        '--respect-workspace-trust', 'false',
       ],
       input: undefined,
     });
@@ -1177,7 +1178,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     expect(command.invocationFingerprint).toMatch(/^inv:[a-f0-9]{64}$/);
   });
 
-  it('maps read-only to permission-mode auto WITHOUT --sandbox, workspace-write to dangerous WITH --sandbox, and danger-full-access to dangerous without --sandbox', () => {
+  it('maps read-only to permission-mode auto, and workspace-write and danger-full-access to dangerous, all WITHOUT --sandbox', () => {
     const binDir = makeTempDir('fanout-run-devin-sandbox-');
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
@@ -1186,14 +1187,15 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     // without granted Write scopes, defaults to a writable cwd, so the leaf could
     // write. "auto" alone cleanly rejects exec/write in non-interactive mode.
     const readOnly = buildLineageCommand({ kind: 'cli-devin', model: 'glm-5-2' }, 'p', 'read-only', 'plan', opts);
-    expect(readOnly.args).toEqual(['-p', 'p', '--model', 'glm-5-2', '--permission-mode', 'auto']);
+    expect(readOnly.args).toEqual(['-p', 'p', '--model', 'glm-5-2', '--permission-mode', 'auto', '--respect-workspace-trust', 'false']);
     expect(readOnly.args).not.toContain('--sandbox');
 
     const workspace = buildLineageCommand({ kind: 'cli-devin', model: 'glm-5-2' }, 'p', 'workspace-write', 'default', opts);
-    expect(workspace.args).toEqual(['-p', 'p', '--model', 'glm-5-2', '--permission-mode', 'dangerous', '--sandbox']);
+    expect(workspace.args).toEqual(['-p', 'p', '--model', 'glm-5-2', '--permission-mode', 'dangerous', '--respect-workspace-trust', 'false']);
+    expect(workspace.args).not.toContain('--sandbox');
 
     const danger = buildLineageCommand({ kind: 'cli-devin', model: 'glm-5-2' }, 'p', 'danger-full-access', 'bypassPermissions', opts);
-    expect(danger.args).toEqual(['-p', 'p', '--model', 'glm-5-2', '--permission-mode', 'dangerous']);
+    expect(danger.args).toEqual(['-p', 'p', '--model', 'glm-5-2', '--permission-mode', 'dangerous', '--respect-workspace-trust', 'false']);
     expect(danger.args).not.toContain('--sandbox');
   });
 
