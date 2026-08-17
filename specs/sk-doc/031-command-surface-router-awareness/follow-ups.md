@@ -43,3 +43,12 @@ Fixed: the three comments now reference `sk-code/ROUTER.md`; `grep -c smart_rout
   - Partial rebuild artifacts were reverted; worktree restored to baseline, `compiled-route-status` unchanged (5/7 compiled, 2/7 legacy), no runtime mutation left behind.
 - **Recommendation:** run this rebuild inside the 015 router-unification program's compiled-routing environment, which holds the complete activation state + retained-rollback closure and the canary/promote/verify flow; fix the `system-deep-loop` owner harness's missing prior-manifest creation first. Confirm the frozen replay/scorer digests stay untouched throughout.
 - **Verify (when done there):** `compiled-route-status.cjs --all` reports all seven hubs `compiled` / `fresh`, or a decision record documents intentional legacy-serving for those two.
+
+## FU-3 — Root ROUTER.md prose-structure drift + no enforcement — DONE (main `3530c221e7`, v4 `1cbe3b2ec5`)
+
+Four class-H hubs had drifted from the canonical root-ROUTER.md section shape the conformant hubs (sk-code, sk-design, sk-prompt) carry: OVERVIEW → INTENT MODEL → MACHINE-READABLE ROUTER → HOW TO READ. sk-doc had lost both OVERVIEW and INTENT MODEL and mis-numbered its sections; cli-external-orchestration, mcp-tooling, and system-deep-loop each lacked OVERVIEW.
+
+- **Root cause:** the parent-skill root-router authoring template never prescribed the prose sections, and `root-router-contract.cjs` validated only the machine block (RRC-001..008), so the drift was invisible to the fleet gate.
+- **Fix (landed on both branches):** added the missing OVERVIEW / INTENT MODEL sections and renumbered the four hubs (every frozen python machine block byte-identical); restructured the authoring template to lead with the four canonical sections (two-state guidance folded into the machine-readable section); added `RRC-009` so an active router missing OVERVIEW or INTENT MODEL now fails the fleet gate (stage1-only stubs exempt; heading match tolerates section numbers and leading glyphs) + a negative test.
+- **Executor:** hub/template prose authored by GLM-5.2 via cli-devin; contract enforcement, verification, and the machine-block byte-identity guard by the orchestrator.
+- **Verify:** `ci-skill-root-metadata.cjs` exit 0 (checked=13 passed=13); `root-router-contract.test.cjs` exit 0 (RRC-009 negative test included); all four hub machine blocks byte-identical pre/post.
