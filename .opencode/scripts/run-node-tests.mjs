@@ -107,7 +107,13 @@ if (all.length === 0) {
 
 let failed = false;
 
-if (nodeFiles.length > 0) {
+if (nodeFiles.length > 0 && !fs.existsSync(path.join(REPO_ROOT, '.opencode', 'node_modules'))) {
+  // Without installed deps every plugin test fails at import with ERR_MODULE_NOT_FOUND;
+  // that noise is environmental, not a regression. Report it skipped -- the same way the
+  // vitest branch treats a missing runner -- instead of dumping false failures.
+  console.log(`node:test — ${nodeFiles.length} files SKIPPED (.opencode/node_modules absent; run "npm install" in .opencode)`);
+  failed = true;
+} else if (nodeFiles.length > 0) {
   // Pin the TAP reporter explicitly. Node's default reporter switched to `spec`
   // (ℹ pass / ✖ fail) for non-TTY output in current releases, whose summary the
   // `# pass`/`# fail` parse below cannot read -- leaving it to the default made
