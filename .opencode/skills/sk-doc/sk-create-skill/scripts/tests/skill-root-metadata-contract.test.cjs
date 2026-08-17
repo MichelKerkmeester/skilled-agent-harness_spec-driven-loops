@@ -135,6 +135,7 @@ function testHubRequiresItsFullSet() {
   const missingDescription = contract.evaluateRoot('some-hub', {
     'mode-registry.json': true,
     'hub-router.json': true,
+    'ROUTER.md': true,
     'graph-metadata.json': true,
     'leaf-manifest.json': true,
     'command-metadata.json': true,
@@ -147,6 +148,7 @@ function testHubRequiresItsFullSet() {
   const noCommands = contract.evaluateRoot('some-hub', {
     'mode-registry.json': true,
     'hub-router.json': true,
+    'ROUTER.md': true,
     'graph-metadata.json': true,
     'description.json': true,
     'leaf-manifest.json': true,
@@ -168,6 +170,7 @@ function testForbiddenFilesAreRejectedPerClass() {
   const hubWithConfig = contract.evaluateRoot('some-hub', {
     'mode-registry.json': true,
     'hub-router.json': true,
+    'ROUTER.md': true,
     'graph-metadata.json': true,
     'description.json': true,
     'leaf-manifest.json': true,
@@ -205,6 +208,7 @@ function testCommandMetadataIsUniformAcrossHubs() {
   const conformingHub = {
     'mode-registry.json': true,
     'hub-router.json': true,
+    'ROUTER.md': true,
     'graph-metadata.json': true,
     'description.json': true,
     'leaf-manifest.json': true,
