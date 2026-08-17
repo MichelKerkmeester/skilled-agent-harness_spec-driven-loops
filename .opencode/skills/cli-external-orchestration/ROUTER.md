@@ -16,6 +16,8 @@ skill_pointer: SKILL.md
 
 # cli-external-orchestration Surface Router — per-mode leaf sets
 
+## 1. OVERVIEW
+
 This is cli-external-orchestration's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub
 selects a workflow mode in [`hub-router.json`](hub-router.json)
@@ -33,7 +35,7 @@ emits leaf paths, and this router never re-decides the mode.
 
 ---
 
-## 1. INTENT MODEL
+## 2. INTENT MODEL
 
 Each mode's first-slice leaf set is its CLI command reference + its
 integration-pattern guide. Each mode ALSO carries a dedicated
@@ -70,7 +72,7 @@ genuine ambiguity.
 
 ---
 
-## 2. MACHINE-READABLE ROUTER (replay / benchmark source)
+## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
 
 The single machine-readable projection of the intent model above. The prose is
 the human-facing contract; this block is the byte-for-byte source the
@@ -123,7 +125,7 @@ RESOURCE_MAP = {
 
 ---
 
-## 3. HOW TO READ THIS
+## 4. HOW TO READ THIS
 
 - One dominant executor intent routes to one mode's leaf set.
 - Two near-tied intents (within the ambiguity delta) route to both leaf sets; the

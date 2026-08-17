@@ -31,7 +31,7 @@
  * defaultResource needs no ROUTER.md entry — it is only ever rejected when it
  * literally names a legacy smart-router path.
  *
- * Failures use one frozen negative code each (RRC-001..RRC-008); an unexpected
+ * Failures use one frozen negative code each (RRC-001..RRC-009); an unexpected
  * internal failure is surfaced by the caller as RRC-UNKNOWN with a nonzero
  * exit, never as a silent pass. RRC-002 covers the whole machine-declaration
  * block, not just the state discriminator: a missing, duplicated, or unreadable
@@ -101,6 +101,7 @@ const CODES = Object.freeze({
   UNRESOLVED_LEAF: 'RRC-006',
   MISSING_SKILL_POINTER: 'RRC-007',
   LEGACY_DEFAULT_RESIDUE: 'RRC-008',
+  MISSING_PROSE_SECTION: 'RRC-009',
   UNKNOWN: 'RRC-UNKNOWN',
 });
 
@@ -680,6 +681,29 @@ function validateRootRouter({
   }
 
   pushLegacyDefaultResidue(violations, hubRouterDefaultResource, parseDefaultResources(routerText));
+
+  // The orienting prose sections are not machine-parsed, so none of the checks
+  // above notices when an active router degrades into a bare machine block a human
+  // can no longer read. An active router owns an OVERVIEW that frames it and an
+  // INTENT MODEL describing the leaves it selects; a stage1-only stub that owns no
+  // leaves is exempt. A heading may carry a section number and/or a leading glyph
+  // before the label, so match the label as a word anywhere on the heading line.
+  if (stateInfo.state === 'active') {
+    const hasHeading = (label) =>
+      new RegExp(`^##[^\\n]*\\b${label.replace(/ /g, '\\s+')}\\b`, 'im').test(routerText);
+    if (!hasHeading('OVERVIEW')) {
+      violations.push({
+        code: CODES.MISSING_PROSE_SECTION,
+        message: 'an active root ROUTER.md is missing its "## OVERVIEW" section',
+      });
+    }
+    if (!hasHeading('INTENT MODEL')) {
+      violations.push({
+        code: CODES.MISSING_PROSE_SECTION,
+        message: 'an active root ROUTER.md is missing its "## INTENT MODEL" section',
+      });
+    }
+  }
 
   return { ok: violations.length === 0, state: stateInfo.state, violations };
 }

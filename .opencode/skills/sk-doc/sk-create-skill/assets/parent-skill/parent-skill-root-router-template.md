@@ -30,9 +30,51 @@ Every `RESOURCE_MAP` path is either packet-qualified (`[packet]/references|asset
 
 ---
 
-## 1. ACTIVE STATE
+## 1. OVERVIEW
 
-Replace `router_state` with `active` only after a concrete leaf map exists. Every path below must resolve on disk and be registered in `leaf-manifest.json` as a typed pair.
+State that this is the hub's second-layer (surface) router, first-class at the
+hub root as `ROUTER.md`. `hub-router.json` selects the workflow mode while this
+document maps a request's intent to the exact packet-local leaf resources that
+mode loads. Routing is two-stage: the hub picks the MODE, this router picks the
+LEAVES within it — the layers stay separate (the hub never emits leaf paths,
+this router never re-decides the mode). Every `RESOURCE_MAP` path is
+packet-qualified (`<packet>/references|assets/…`) or a shared-alias disk path
+(`shared/…` listed in `leaf-aliases.json`), and both convert to the canonical
+`(workflowMode, leafResourceId)` pair at the one contract boundary.
+
+---
+
+## 2. INTENT MODEL
+
+Describe, in prose, each intent/mode and the leaves it loads. Derive this
+STRICTLY from this hub's own `INTENT_SIGNALS` keys and `RESOURCE_MAP` entries in
+the machine block below — do not invent intents or leaves, and use no placeholder
+text like `[INTENT_A]`. Write one bullet per intent, naming the leaf set and the
+request phrasing that fires it. Close with the dominant-axis / two-axis tie rule
+the hub uses (one dominant axis routes to one mode's leaf set; two clearly
+separate axes route to both, deduped by canonical pair).
+
+---
+
+## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
+
+The single machine-readable projection of the intent model above. The prose is
+the human-facing contract; this block is the byte-for-byte source the
+deterministic router-replay parses. Keep them in sync: when a map row changes
+above, update the matching `RESOURCE_MAP` entry here. The router declares exactly
+one of two states:
+
+| State | Meaning | Stage-two content |
+|-------|---------|-------------------|
+| `router_state: active` | The hub owns second-stage leaf selection | Non-empty equal-key `INTENT_SIGNALS` / `RESOURCE_MAP`; `SHARED_CONTROL_RESOURCES` names `shared/…` control documents exempt from typed-pair checks |
+| `router_state: stage1-only` | The hub owns no leaf selection | Empty maps, empty stage-two default, and empty `SHARED_CONTROL_RESOURCES`; routing delegates to `hub-router.json` plus `mode-registry.json` |
+
+### Active state
+
+Replace `router_state` with `active` only after a concrete leaf map exists. Every
+path below must resolve on disk and be registered in `leaf-manifest.json` as a
+typed pair. Keep `INTENT_SIGNALS` and `RESOURCE_MAP` keys aligned. Delete
+`FULL_INVENTORY` if the hub has no show-everything intent.
 
 ```python
 # An always-loaded preamble is optional; [] keeps the default route minimal.
@@ -64,11 +106,10 @@ RESOURCE_MAP = {
 }
 ```
 
----
+### Stage1-only state
 
-## 2. STAGE1-ONLY STATE
-
-A hub with no authored leaf map stays `stage1-only`: all four collections remain empty and the prose delegates routing to stage one.
+A hub with no authored leaf map stays `stage1-only`: all four collections remain
+empty and the prose delegates routing to stage one.
 
 ```python
 DEFAULT_RESOURCE = []
@@ -80,11 +121,12 @@ INTENT_SIGNALS = {}
 RESOURCE_MAP = {}
 ```
 
-Promote to `active` only when the maps carry concrete, resolvable leaf paths — never placeholder intents.
+Promote to `active` only when the maps carry concrete, resolvable leaf paths —
+never placeholder intents.
 
 ---
 
-## 3. HOW TO READ THIS
+## 4. HOW TO READ THIS
 
 - One dominant intent routes to one mode's leaf set.
 - Two near-tied intents (within the router's ambiguity delta) route to both leaf sets. The union is deduped by canonical pair.
@@ -93,7 +135,7 @@ Promote to `active` only when the maps carry concrete, resolvable leaf paths —
 
 ---
 
-## 4. RELATED RESOURCES
+## RELATED RESOURCES
 
 - [`parent-hub-router-schema.md`](../../references/parent-skill/parent-hub-router-schema.md) - The two-axis hub router schema and the path contract these paths obey.
 - [`parent-skill-hub-template.md`](./parent-skill-hub-template.md) - The first-layer hub scaffold this router pairs with.
