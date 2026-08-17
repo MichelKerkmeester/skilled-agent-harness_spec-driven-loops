@@ -12,7 +12,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parit
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening"
-    last_updated_at: "2026-08-17T04:04:40Z"
+    last_updated_at: "2026-08-17T04:33:13Z"
     last_updated_by: "claude"
     recent_action: "Re-mapped devin and cursor builders from live CLI behavior"
     next_safe_action: "Fold in SOL findings, land, then per-mode executor parity (004)"

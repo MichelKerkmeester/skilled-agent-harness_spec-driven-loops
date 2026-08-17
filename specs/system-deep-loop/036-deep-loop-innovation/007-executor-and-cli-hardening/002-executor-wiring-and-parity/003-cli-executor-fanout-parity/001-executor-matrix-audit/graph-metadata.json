@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The fan-out advertises seven executor kinds, but no single document states which (cli, provider, model, mode) combinations",
     "created_at": "2026-07-29T08:25:14.328Z",
-    "last_save_at": "2026-08-17T04:03:54.611Z",
+    "last_save_at": "2026-08-17T04:33:28.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,11 +201,11 @@
     ],
     "source_fingerprint": "sha256:8ef8968b02600a028a6d5c077a59c15e53d048df9cd41d0cbc7575008e82c8f5",
     "source_doc_hashes": {
-      "spec.md": "616fcc10dd4ba7e657dae14b03fdbe64f39ecdfa67f9f3b9749f66a302d5070c",
+      "spec.md": "3716dd3767a943cfcd8bfcf63bf86988f4e62c1d9db54c81f2103b39b018a134",
       "plan.md": "74e6099c06eaab83dee8cae68b471052322dd9a905cf80a90192c0c85f52b0a9",
       "tasks.md": "9898bb6d5292b788ae9ee2be1c0a94caed3782db3c30904f6c67dea089031ceb",
       "checklist.md": "d8e58cf93467aac6e15fab814430c447adcb98fb55b4480ccdb865e040d32a54",
-      "implementation-summary.md": "43acb2c72c716610508d09dc71d0e11fc43a7263f943f32eb1c90e7bb4eeba06"
+      "implementation-summary.md": "e68c738cf1f2a2f4ea3f00e8c7127711b56a0f54467573121eecc0b59cde1b48"
     },
     "last_active_child_id": null,
     "last_active_at": null

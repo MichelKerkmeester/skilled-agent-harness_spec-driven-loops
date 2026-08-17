@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Plan shared-gateway fail-closed identity resolution and rollback-certificate identity verification before any pilot mode cutover.",
     "created_at": "2026-08-14T12:47:55.987Z",
-    "last_save_at": "2026-08-17T04:04:15.639Z",
+    "last_save_at": "2026-08-17T04:33:53.878Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +200,11 @@
     ],
     "source_fingerprint": "sha256:9f66811837c1df97a435955d92b768449a9dccc8b76f02856cd893a19cd1a863",
     "source_doc_hashes": {
-      "spec.md": "a712acaa345ec249feede79aaf7065edece1055b3d1bd37f839ad5dc867fa1bd",
-      "plan.md": "c85030ebf73dc2962725c8eea8e6d60928cb056b475fea1d1a4083d4752b1c8c",
-      "tasks.md": "009fb80d083a03be6dc226df649025043c03d43861a1d48b3b428c4023219ace",
-      "checklist.md": "2cbf99a25ad878c7cae3a9c5594bae42cdaabd01abeaf4681b048126b5b854a0",
-      "implementation-summary.md": "99652eaa30c31b025cece7c8439c5440ff21f3698175d2287b51a1f52044567f"
+      "spec.md": "bd8ecfd637ae5a59605d8c3f7a2695e366418d32a54645e79107d2f77eeae23d",
+      "plan.md": "60fdb379885ec480133c1cbd7864744c8068624143db84e70ffac35f6e48c352",
+      "tasks.md": "f050b6352d1654a302875ccd82f2960331a775932c1d4174cdae9c9bb0244ef8",
+      "checklist.md": "27af40998e0df0d147ffcb3aa3b3118de96a03d1136945974bd19f51779b1e6a",
+      "implementation-summary.md": "82d247d7fae01a2a847c1f37c50b75c0b7dc45c2cd257eeba066d646aa644852"
     },
     "last_active_child_id": null,
     "last_active_at": null

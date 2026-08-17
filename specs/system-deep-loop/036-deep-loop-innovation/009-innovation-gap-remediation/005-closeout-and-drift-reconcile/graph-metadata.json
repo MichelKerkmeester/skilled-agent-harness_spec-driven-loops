@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Plan the final documentation and evidence reconciliation that separates library, shadow, and authority status, joins measured composition into the 178-row recommendation ledger, removes stale claims and paths, and aligns epic completion with the verified production boundary.",
     "created_at": "2026-08-14T12:47:57.211Z",
-    "last_save_at": "2026-08-17T04:04:15.179Z",
+    "last_save_at": "2026-08-17T04:33:45.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
     ],
     "source_fingerprint": "sha256:1da45eac561abeb34021625ac217051eec01a42ddb2608ce60177eeefe6c9b6c",
     "source_doc_hashes": {
-      "spec.md": "a180a4e2d102b1fa7a4791b861296b445c84ba6b58000dde1bda7b4c26ca94e5",
-      "plan.md": "aa61a03a9da492386a59c7242ef6d7a1df07763d7d94a664fa4bf6912dc61609",
-      "tasks.md": "6e2a768be0acf630a686bf958e1624b75c9a52f57caed9449f0d95ef55a070ab",
-      "checklist.md": "60280145abe3d8e091cfc5752f54c4f1a0f2099a9d71c8f16b892a30dd5ed757"
+      "spec.md": "0a96f2ef78d358d8eb8ee145826c1bfc9df4e1ae977df8aeb3dc9adbaaafa38c",
+      "plan.md": "67beb3854985e01394b5d7dee983137ef1513a8662fa4bbe6bf8fc2a0ac6108d",
+      "tasks.md": "38b6fb0d70cc50506f9bd779d8ffd2d63d5604b0307a46b4ce75bb4e69c3f460",
+      "checklist.md": "4594e8d6e4fe6b58bff4971dca8b2151f8cb44b8d8d9ba5ec8911a6486f0adf9"
     },
     "last_active_child_id": null,
     "last_active_at": null

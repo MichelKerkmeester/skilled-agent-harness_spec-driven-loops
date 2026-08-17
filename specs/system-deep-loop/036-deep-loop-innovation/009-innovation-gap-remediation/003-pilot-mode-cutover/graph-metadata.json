@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Plan the deep-research pilot that wires the authority-flip coordinator into its production composition root behind a rollback window, requires shadow parity before cutover, and proves five production boundaries.",
     "created_at": "2026-08-14T12:47:56.429Z",
-    "last_save_at": "2026-08-17T04:04:15.482Z",
+    "last_save_at": "2026-08-17T04:33:49.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
     ],
     "source_fingerprint": "sha256:c4e047354c5ba639adfee4f0cef926b4d2041fa0ef9373dd0951b2dbdcf358b5",
     "source_doc_hashes": {
-      "spec.md": "e0f8571df1a20bc3b41d4d35421faaf022f2844b874d1c9d6a7eace55b92f25f",
-      "plan.md": "f43c1eadc7222fc844decca71eddc7d7208bbe5ee77b94c6629745617099d445",
-      "tasks.md": "be4ec17d9ebdb274605c03819fcb7dbeb11b300ae265801e91b11f93ee9ba821",
-      "checklist.md": "fe8df2d791aabf61fd9c771a8a7cf8e7b363e29d3eeacf4d06e97604b0320d59"
+      "spec.md": "7a8d172b6907598666b1b0bd41673390d526be23f92165e34f344ba99e6d35d8",
+      "plan.md": "45cff12ed56bb5da417dad31f3145e21dcfba28d97b6b32da6164d5b99d3526d",
+      "tasks.md": "ad92e85cd3fba6194b8e884ff9e8168a9f13431b905ea55461e78b1de3c137f6",
+      "checklist.md": "7e0faaeba8cca4399a810e415736cafc294dc38576570ff62bd1f4632d3d9149"
     },
     "last_active_child_id": null,
     "last_active_at": null
