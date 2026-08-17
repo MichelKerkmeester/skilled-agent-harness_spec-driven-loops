@@ -14,6 +14,7 @@ import {
   prepareDeepReviewEvent,
 } from '../../lib/deep-review-ledger-schema/index.js';
 import * as deepReviewReducersModule from '../../lib/deep-review-reducers/index.js';
+import type { DeepReviewProjectionState } from '../../lib/deep-review-reducers/index.js';
 import {
   DEEP_REVIEW_REQUIRED_FIXTURE_SCENARIOS,
   DEEP_REVIEW_VOLATILITY_ALLOWLIST,
@@ -127,6 +128,207 @@ function convergenceSignals(label: string) {
   };
 }
 
+function candidateData(candidateId: string, findingClass: string, evidenceRefs: string[]) {
+  return {
+    targetRefs: ['target:src/review.ts'],
+    evidenceRefs,
+    claimTextDigest: digest(`candidate-claim-${candidateId}`),
+    findingClass,
+    impact: 0.5,
+    rawConfidence: 0.8,
+    rawCandidateScore: 0.7,
+    actionability: 0.8,
+    reachability: 0.8,
+    exploitability: 0.2,
+    evidenceType: 'test' as const,
+    evidenceScope: 'direct' as const,
+    rawObservationDigest: digest(`candidate-observation-${candidateId}`),
+    semanticFingerprint: semanticFingerprint(candidateId),
+    sourcePassEventId: 'event-5',
+  };
+}
+
+function evidenceObservedData() {
+  return {
+    locator: {
+      scheme: 'file',
+      artifactRef: 'artifact:src/review.ts',
+      locatorDigest: digest('locator'),
+      selector: 'function:reviewCandidate',
+      startLine: 20,
+      endLine: 28,
+      revision: 'revision-1',
+    },
+    observationKind: 'test-result' as const,
+    rawResultDigest: digest('test-result'),
+    sourceDigest: digest('evidence-source'),
+    contentDigest: digest('evidence-content'),
+    toolFingerprint: digest('test-tool'),
+    analyzerFingerprint: digest('test-analyzer'),
+    independentEvidenceClass: 'independent-test',
+    causalProximityStatus: 'direct' as const,
+    stabilityStatus: 'stable' as const,
+    relevanceStatus: 'relevant' as const,
+    supersedesEvidenceEventId: null,
+  };
+}
+
+function reconciliationData() {
+  return {
+    ...evidenceObservedData(),
+    contentDigest: digest('evidence-reconciled'),
+    supersedesEvidenceEventId: 'event-7',
+    reconciliationOutcome: 'confirmed' as const,
+    evidenceSetDigest: digest('reconciled-evidence-set'),
+  };
+}
+
+function convergenceData(label: string) {
+  return {
+    rawSignals: convergenceSignals(`${label}-raw`),
+    weightedSignals: convergenceSignals(`${label}-weighted`),
+    dimensionCoverageDigest: digest(`${label}-dimension-coverage`),
+    protocolCoverageDigest: digest(`${label}-protocol-coverage`),
+    findingStability: 'stable' as const,
+    p0p1ResolutionState: 'resolved' as const,
+    evidenceDensity: 1,
+    hotspotSaturation: 1,
+    decision: 'converged' as const,
+    policyFingerprint: digest(`${label}-policy`),
+    blockerIds: [],
+    stopCandidate: true,
+  };
+}
+
+function resumeData() {
+  return {
+    priorTailDigest: digest('prior-tail-resume'),
+    sourceSessionId: 'session-shadow-0',
+    resumeReason: 'Fixture continuation after a pause boundary.',
+    continuedFromRunId: RUN_ID,
+    compatibilityDecision: 'exact' as const,
+    recoveryReceiptRef: 'recovery-receipt-1',
+  };
+}
+
+function restartData() {
+  return {
+    priorTailDigest: digest('prior-tail-restart'),
+    archivedLineageId: 'lineage-archived-1',
+    restartReason: 'Fixture restart for parity coverage.',
+    continuedFromRunId: RUN_ID,
+    compatibilityDecision: 'exact' as const,
+    recoveryReceiptRef: 'recovery-receipt-2',
+  };
+}
+
+function protocolPlanData() {
+  return {
+    coreProtocolIds: ['review-protocol@1'],
+    overlayProtocolIds: [],
+    applicability: 'applicable' as const,
+    gateClass: 'required' as const,
+    contractVersion: 'review-protocol@1',
+    plannedEvidenceSourceRefs: [],
+    protocolPlanDigest: digest('protocol-plan'),
+  };
+}
+
+function findingStateChangedData() {
+  return {
+    priorFingerprint: semanticFingerprint('candidate'),
+    currentFingerprint: semanticFingerprint('dismissed'),
+    priorState: 'accepted' as const,
+    currentState: 'dismissed' as const,
+    priorSeverity: 'P2' as const,
+    currentSeverity: 'none' as const,
+    adjudicationEventId: 'event-8',
+    adjudicationPayloadDigest: digest('adjudication-payload'),
+    changeReason: 'Fixture dismissal of a previously accepted finding.',
+    evidenceSetDigest: digest('state-set'),
+    predecessorEventRef: 'event-9',
+  };
+}
+
+function graphConvergenceData() {
+  return {
+    ...convergenceData('graph'),
+    graphDecision: 'converged' as const,
+    graphDigest: digest('graph'),
+  };
+}
+
+function pauseData() {
+  return {
+    normalizedStopReason: 'fixture-pause',
+    sentinelCause: 'manual',
+    fromIterationId: 'iteration-1',
+    strategy: 'resume-later',
+    targetDimensionId: null,
+    outcome: 'paused' as const,
+    lineageRef: 'lineage:pause',
+    priorTailDigest: digest('pause-tail'),
+  };
+}
+
+function recoveryData() {
+  return {
+    normalizedStopReason: 'fixture-pause',
+    recoveryCause: 'operator-recovered',
+    fromIterationId: 'iteration-1',
+    strategy: 'resume-later',
+    targetDimensionId: 'correctness',
+    outcome: 'recovery-started' as const,
+    lineageRef: 'lineage:recovery',
+    priorTailDigest: digest('recovery-tail'),
+    originatingPauseEventId: 'event-22',
+  };
+}
+
+function blockedStopData() {
+  return {
+    blockedGateIds: ['coverage:correctness'],
+    gateResults: [{
+      gateId: 'coverage:correctness',
+      status: 'fail' as const,
+      reasonCode: 'coverage-incomplete',
+      evidenceDigest: digest('gate-evidence'),
+    }],
+    activeFindingCounts: { candidates: 1, adjudicated: 0, p0: 0, p1: 0, p2: 0 },
+    recoveryStrategy: 'restart',
+    targetDimensionId: 'correctness',
+    originatingConvergenceEventId: 'event-11',
+    appendPosition: 1,
+  };
+}
+
+function continuityRequestedData() {
+  return {
+    targetPacket: 'system-deep-loop/target',
+    continuityPayloadDigest: digest('continuity-payload'),
+    sourceEventRange: { firstEventId: 'event-1', lastEventId: 'event-13' },
+    route: 'implementation-summary',
+    mergeMode: 'update-in-place',
+  };
+}
+
+function continuityCompletedData() {
+  return {
+    ...continuityRequestedData(),
+    sourceEventRange: { firstEventId: 'event-1', lastEventId: 'event-14' },
+    persistenceReceiptRefs: ['continuity-receipt-1'],
+    continuityFingerprint: digest('continuity-fingerprint'),
+  };
+}
+
+function continuityFailedData() {
+  return {
+    ...continuityRequestedData(),
+    retryable: false,
+    failureReasonCode: 'persistence-rejected',
+  };
+}
+
 function replayMetadata() {
   return {
     fingerprint_version: 1,
@@ -180,6 +382,10 @@ function dimensionScope(dimensionId = 'correctness') {
 }
 
 function lifecycleEvents(): DeepReviewLedgerEvent[] {
+  // One realistic, folding-complete run for every stem the adapter's lifecycle
+  // map owns. The two completion-breaking stems (blocked_stop_recorded and
+  // continuity_save_failed) plus run_restarted and the duplicate/secondary
+  // candidate live in the pool so scenarios that need them can select them.
   return [
     event('deep_review.run_initialized', 1, generationScope(), {
       target: {
@@ -195,6 +401,7 @@ function lifecycleEvents(): DeepReviewLedgerEvent[] {
       reviewModeContractDigest: digest('review-contract'),
       initialReleaseReadinessState: 'not-assessed',
     }),
+    event('deep_review.run_resumed', 17, generationScope(), resumeData()),
     event('deep_review.scope_resolved', 2, {
       runId: RUN_ID, sessionId: SESSION_ID,
     }, {
@@ -219,6 +426,9 @@ function lifecycleEvents(): DeepReviewLedgerEvent[] {
       scopeEvidenceRefs: ['scope-evidence-1'],
       orderingPolicyVersion: 'dimension-order@1',
     }),
+    event('deep_review.protocol_plan_recorded', 18, {
+      runId: RUN_ID, sessionId: SESSION_ID, protocolId: 'protocol-1',
+    }, protocolPlanData()),
     event('deep_review.dimension_pass_started', 4, dimensionScope(), {
       passNumber: 1,
       targetRefs: ['target:src/review.ts'],
@@ -238,47 +448,13 @@ function lifecycleEvents(): DeepReviewLedgerEvent[] {
     }),
     event('deep_review.finding_candidate_emitted', 6, {
       ...dimensionScope(), candidateId: 'candidate-1',
-    }, {
-      targetRefs: ['target:src/review.ts'],
-      evidenceRefs: ['evidence-1'],
-      claimTextDigest: digest('candidate-claim'),
-      findingClass: 'correctness-defect',
-      impact: 0.5,
-      rawConfidence: 0.8,
-      rawCandidateScore: 0.7,
-      actionability: 0.8,
-      reachability: 0.8,
-      exploitability: 0.2,
-      evidenceType: 'test',
-      evidenceScope: 'direct',
-      rawObservationDigest: digest('candidate-observation'),
-      semanticFingerprint: semanticFingerprint('candidate'),
-      sourcePassEventId: 'event-5',
-    }),
+    }, candidateData('candidate-1', 'correctness-defect', ['evidence-1'])),
     event('deep_review.evidence_observed', 7, {
       ...dimensionScope(), candidateId: 'candidate-1', evidenceId: 'evidence-1',
-    }, {
-      locator: {
-        scheme: 'file',
-        artifactRef: 'artifact:src/review.ts',
-        locatorDigest: digest('locator'),
-        selector: 'function:reviewCandidate',
-        startLine: 20,
-        endLine: 28,
-        revision: 'revision-1',
-      },
-      observationKind: 'test-result',
-      rawResultDigest: digest('test-result'),
-      sourceDigest: digest('evidence-source'),
-      contentDigest: digest('evidence-content'),
-      toolFingerprint: digest('test-tool'),
-      analyzerFingerprint: digest('test-analyzer'),
-      independentEvidenceClass: 'independent-test',
-      causalProximityStatus: 'direct',
-      stabilityStatus: 'stable',
-      relevanceStatus: 'relevant',
-      supersedesEvidenceEventId: null,
-    }),
+    }, evidenceObservedData()),
+    event('deep_review.evidence_reconciled', 19, {
+      ...dimensionScope(), candidateId: 'candidate-1', evidenceId: 'evidence-1',
+    }, reconciliationData()),
     event('deep_review.claim_adjudication_recorded', 8, {
       ...dimensionScope(), candidateId: 'candidate-1', findingId: 'finding-1',
     }, {
@@ -305,6 +481,9 @@ function lifecycleEvents(): DeepReviewLedgerEvent[] {
       evidenceSetDigest: digest('lineage-evidence'),
       predecessorEventRef: 'event-8',
     }),
+    event('deep_review.finding_state_changed', 20, {
+      ...dimensionScope(), findingId: 'finding-1',
+    }, findingStateChangedData()),
     event('deep_review.review_depth_recorded', 10, iterationScope(), {
       reviewDepthSchemaVersion: 'review-depth@1',
       applicability: 'applicable',
@@ -318,20 +497,16 @@ function lifecycleEvents(): DeepReviewLedgerEvent[] {
       graphStatus: 'available',
       semanticSearchStatus: 'available',
     }),
-    event('deep_review.convergence_evaluated', 11, iterationScope(), {
-      rawSignals: convergenceSignals('raw'),
-      weightedSignals: convergenceSignals('weighted'),
-      dimensionCoverageDigest: digest('dimension-coverage'),
-      protocolCoverageDigest: digest('protocol-coverage'),
-      findingStability: 'stable',
-      p0p1ResolutionState: 'resolved',
-      evidenceDensity: 1,
-      hotspotSaturation: 1,
-      decision: 'converged',
-      policyFingerprint: digest('convergence-policy'),
-      blockerIds: [],
-      stopCandidate: true,
-    }),
+    event('deep_review.finding_candidate_emitted', 21, {
+      ...dimensionScope(), candidateId: 'candidate-2',
+    }, candidateData('candidate-2', 'security', ['evidence-2'])),
+    event('deep_review.evidence_observed', 28, {
+      ...dimensionScope(), candidateId: 'candidate-2', evidenceId: 'evidence-2',
+    }, evidenceObservedData()),
+    event('deep_review.convergence_evaluated', 11, iterationScope(), convergenceData('convergence')),
+    event('deep_review.graph_convergence_evaluated', 22, iterationScope(), graphConvergenceData()),
+    event('deep_review.pause_recorded', 23, iterationScope(), pauseData()),
+    event('deep_review.recovery_started', 24, dimensionScope(), recoveryData()),
     event('deep_review.synthesis_started', 12, {
       runId: RUN_ID, sessionId: SESSION_ID, reportRevisionId: 'report-1',
     }, {
@@ -360,24 +535,15 @@ function lifecycleEvents(): DeepReviewLedgerEvent[] {
     }),
     event('deep_review.continuity_save_requested', 14, {
       runId: RUN_ID, sessionId: SESSION_ID,
-    }, {
-      targetPacket: 'system-deep-loop/target',
-      continuityPayloadDigest: digest('continuity-payload'),
-      sourceEventRange: { firstEventId: 'event-1', lastEventId: 'event-13' },
-      route: 'implementation-summary',
-      mergeMode: 'update-in-place',
-    }),
+    }, continuityRequestedData()),
     event('deep_review.continuity_save_completed', 15, {
       runId: RUN_ID, sessionId: SESSION_ID,
-    }, {
-      targetPacket: 'system-deep-loop/target',
-      continuityPayloadDigest: digest('continuity-payload'),
-      sourceEventRange: { firstEventId: 'event-1', lastEventId: 'event-14' },
-      route: 'implementation-summary',
-      mergeMode: 'update-in-place',
-      persistenceReceiptRefs: ['continuity-receipt-1'],
-      continuityFingerprint: digest('continuity-fingerprint'),
-    }),
+    }, continuityCompletedData()),
+    event('deep_review.blocked_stop_recorded', 25, iterationScope(), blockedStopData()),
+    event('deep_review.run_restarted', 26, generationScope(), restartData()),
+    event('deep_review.continuity_save_failed', 27, {
+      runId: RUN_ID, sessionId: SESSION_ID,
+    }, continuityFailedData()),
     event('deep_review.run_completed', 16, {
       runId: RUN_ID, sessionId: SESSION_ID,
     }, {
@@ -387,7 +553,7 @@ function lifecycleEvents(): DeepReviewLedgerEvent[] {
       reportEventId: 'event-13',
       continuityEventId: 'event-15',
       finalLedgerTailHash: digest('previous:16'),
-      counts: { dimensions: 1, iterations: 1, candidates: 1, findings: 1, evidence: 1 },
+      counts: { dimensions: 1, iterations: 1, candidates: 2, findings: 1, evidence: 2 },
       verdict: 'pass',
       completionReason: 'All required typed gates passed.',
       incompleteReason: null,
@@ -395,48 +561,71 @@ function lifecycleEvents(): DeepReviewLedgerEvent[] {
   ];
 }
 
+/** Renumber a hand-picked selection into a contiguous, causally-chained stream
+ *  the reducer's cursor-gap guard accepts no matter which pool slots it skips. */
+function renumber(selected: readonly DeepReviewLedgerEvent[]): DeepReviewLedgerEvent[] {
+  return selected.map((entry, index, entries) => (
+    Object.freeze({
+      ...entry,
+      stream_sequence: index + 1,
+      causation_id: index === 0 ? null : entries[index - 1].event_id,
+      idempotency_key: `compact-${index + 1}`,
+    })
+  ));
+}
+
 function scenarioSelection(scenario: DeepReviewParityFixtureScenario): Readonly<{
   events: readonly DeepReviewLedgerEvent[];
   terminal: DeepReviewTerminalDecision;
 }> {
   const all = lifecycleEvents();
+  // The harness records a replay fingerprint attestation only for paths of at
+  // most nine events, and both paths must fold to the closed terminal, so
+  // every scene below stays compact. Each divergence test runs the scene that
+  // genuinely populates its field rather than a single omnibus fixture.
+  const pick = (indexes: readonly number[]) => renumber(
+    indexes.map((index) => all[index]),
+  );
   switch (scenario) {
     case 'clean-review':
-      return { events: all.slice(0, 5), terminal: 'active' };
-    case 'multiple-dimensions':
-      return { events: all.slice(0, 10), terminal: 'active' };
-    case 'duplicate-candidates':
-      return { events: all.slice(0, 7), terminal: 'active' };
-    case 'finding-updates':
-    case 'fixed-preexisting-findings':
-      return { events: all.slice(0, 10), terminal: 'active' };
-    case 'inconclusive-validation':
-      return { events: all.slice(0, 8), terminal: 'active' };
-    case 'converged':
-      return { events: all.slice(0, 11), terminal: 'converged' };
+      // The run/scope surface: initializes run identity, resolves a target and
+      // dimension order, and completes one pass, ending active.
+      return { events: pick([0, 2, 3, 5, 6]), terminal: 'active' };
     case 'resumed-run':
-      return { events: all.slice(0, 5), terminal: 'active' };
+      return { events: pick([0, 1, 2, 3, 5, 6]), terminal: 'active' };
+    case 'duplicate-candidates':
+      // The findings/evidence surface: one adjudicated, non-veto finding with
+      // owned evidence and lineage so active ids, lineage, and artifacts are
+      // populated without a convergence evaluation.
+      return { events: pick([0, 3, 6, 7, 8, 10, 11]), terminal: 'active' };
+    case 'multiple-dimensions':
+      // Holds the open hard-veto candidate (security) with no convergence
+      // evaluation after it, so the run stays non-terminal and the hard-veto
+      // slice is genuinely populated on both independent projections.
+      return { events: pick([0, 3, 6, 14, 15]), terminal: 'active' };
+    case 'finding-updates':
+      return { events: pick([0, 3, 6, 7, 8, 9, 10, 11]), terminal: 'active' };
+    case 'fixed-preexisting-findings':
+      return { events: pick([0, 3, 6, 7, 8, 10, 11]), terminal: 'active' };
+    case 'inconclusive-validation':
+      // The two stems no completed run can fold (blocked_stop forces a blocked
+      // outcome while continuity_save_failed forces a blocked status) live in
+      // this blocked-terminal scene.
+      return { events: pick([0, 3, 6, 24, 26]), terminal: 'blocked' };
+    case 'converged':
     case 'deterministic-replay':
-      return { events: all.slice(0, 11), terminal: 'converged' };
+      // The convergence surface: one complete coverage cell plus a stop
+      // eligible evaluation populates decision and outcome on both paths.
+      return { events: pick([0, 3, 6, 16]), terminal: 'converged' };
     case 'review-report':
       // Reaching a real run-completion event requires the events it cites by
-      // id to be present (its evidence, convergence, synthesis, report, and
-      // continuity references), so this compact fixture carries the smallest
-      // event set that keeps the reducer's referential-integrity invariants
-      // satisfied (dimension_pass_completed alone stands in for the pass; no
-      // separate dimension_pass_started record is required for it).
+      // id to be present (evidence, convergence, synthesis, report, and
+      // continuity references), so this compact nine-event scene carries the
+      // smallest event set that keeps the reducer's referential-integrity
+      // invariants satisfied. Any open hard veto would break the completion
+      // eligibility invariant, so none is selected here.
       return {
-        events: [
-          all[0], all[4], all[5], all[6],
-          all[10], all[11], all[12], all[14], all[15],
-        ].map((entry, index, selected) => (
-          Object.freeze({
-            ...entry,
-            stream_sequence: index + 1,
-            causation_id: index === 0 ? null : selected[index - 1].event_id,
-            idempotency_key: `compact-${index + 1}`,
-          })
-        )),
+        events: pick([0, 6, 7, 8, 16, 20, 21, 23, 27]),
         terminal: 'completed',
       };
   }
@@ -893,4 +1082,246 @@ describe('Deep Review shadow parity', () => {
       caseRun: await caseRun(openFixture, sealed),
     })).rejects.toThrow(/fixture must use the closed allowed-key set/);
   });
+
+  /** Corrupt one reducer-state slice on the ledger fold only and require the
+   *  paired pipeline to refuse the resulting projection-semantic divergence.
+   *  The ledger path derives every projected field from `foldDeepReviewEvents`,
+   *  while the legacy path never calls it, so a load-bearing mutation changes
+   *  only one side and the comparator must fail closed. */
+  async function expectSurfaceDivergence(
+    scenario: DeepReviewParityFixtureScenario,
+    mutate: (state: DeepReviewProjectionState) => DeepReviewProjectionState,
+  ): Promise<void> {
+    const realFold = deepReviewReducersModule.foldDeepReviewEvents;
+    const spy = vi.spyOn(deepReviewReducersModule, 'foldDeepReviewEvents')
+      .mockImplementation((events, options) => {
+        const result = realFold(events, options);
+        // The empty-event fold is the shared sealed-capsule state; both paths
+        // must agree on it identically, so only real event histories mutate.
+        if (result.outcome !== 'projected' || events.length === 0) return result;
+        return { ...result, projection: mutate(result.projection) };
+      });
+    try {
+      // Built after the spy is installed so the frozen initialStateDigest is
+      // consistent with the corrupted implementation used during replay.
+      const selected = fixture(scenario);
+      const sealed = await sealedBoundary();
+      const manifest = targetedManifest(selected);
+      const outcome = await runDeepReviewParityCase({
+        manifest,
+        caseRun: await caseRun(selected, sealed),
+      });
+      expect(outcome.receipt.exitStatus).toBe('blocked');
+      expect(outcome.receipt.certificateStatus).toBe('refused');
+      expect(outcome.receipt.parityCertificate).toBeNull();
+      expect(outcome.result.ok).toBe(false);
+      if (!outcome.result.ok) {
+        expect(outcome.result.divergence.class).toBe('projection-semantic');
+      }
+    } finally {
+      spy.mockRestore();
+    }
+  }
+
+  it('fails parity when the findings presentation-severity field diverges', async () => {
+    await expectSurfaceDivergence('duplicate-candidates', (state) => ({
+      ...state,
+      findingLedger: {
+        ...state.findingLedger,
+        findings: state.findingLedger.findings.map((finding, index) => (
+          index === 0 ? { ...finding, presentationSeverity: 'P1' as const } : finding
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the evidence content-digest field diverges', async () => {
+    await expectSurfaceDivergence('duplicate-candidates', (state) => ({
+      ...state,
+      findingLedger: {
+        ...state.findingLedger,
+        evidence: state.findingLedger.evidence.map((entry, index) => (
+          index === 0 ? { ...entry, contentDigest: digest('corrupted-evidence') } : entry
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when a pass search-coverage-digest field diverges', async () => {
+    await expectSurfaceDivergence('clean-review', (state) => ({
+      ...state,
+      reviewLoop: {
+        ...state.reviewLoop,
+        passes: state.reviewLoop.passes.map((pass) => (
+          { ...pass, searchCoverageDigest: digest('corrupted-pass') }
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the report-digest field diverges', async () => {
+    await expectSurfaceDivergence('review-report', (state) => ({
+      ...state,
+      artifactIndex: {
+        artifacts: state.artifactIndex.artifacts.map((artifact) => (
+          artifact.artifactKind === 'review-report'
+            ? { ...artifact, contentDigest: digest('corrupted-report') }
+            : artifact
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the convergence-outcome field diverges', async () => {
+    // On a completed run the terminal decision is pinned by the run-completed
+    // provenance transition, so corrupting only the loop outcome can never
+    // trip the executor's closed-terminal gate and always reaches the
+    // fingerprint comparator.
+    await expectSurfaceDivergence('review-report', (state) => ({
+      ...state,
+      reviewLoop: { ...state.reviewLoop, outcome: 'active' as const },
+    }));
+  }, 30_000);
+
+  it('fails parity when the convergence decision field diverges', async () => {
+    await expectSurfaceDivergence('converged', (state) => ({
+      ...state,
+      reviewLoop: {
+        ...state.reviewLoop,
+        evaluations: state.reviewLoop.evaluations.map((evaluation, index, all) => (
+          index === all.length - 1 ? { ...evaluation, decision: 'continue' as const } : evaluation
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it.skip('covers the terminal-decision field via a projection-semantic mutation', async () => {
+    // The executor's closed-terminal gate re-reads this very projection field
+    // on every path and throws before the fingerprint comparator when a
+    // one-path flip disagrees with the fixture's closed expectation, so a
+    // folded-terminal corruption always fails closed as execution-outcome,
+    // never projection-semantic. Terminal drift is already asserted separately
+    // by the terminal-decision fault in the fault-injection battery.
+  });
+
+  it('fails parity when the active-finding-id list diverges', async () => {
+    await expectSurfaceDivergence('duplicate-candidates', (state) => ({
+      ...state,
+      findingLedger: {
+        ...state.findingLedger,
+        activeFindingIds: [...state.findingLedger.activeFindingIds, 'fabricated-active'],
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the hard-veto finding-id list diverges', async () => {
+    // The completed-run scene must keep zero open hard vetoes for its
+    // completion eligibility invariant, so the open 'security' candidate lives
+    // in the non-terminal multiple-dimensions scene instead.
+    await expectSurfaceDivergence('multiple-dimensions', (state) => ({
+      ...state,
+      findingLedger: {
+        ...state.findingLedger,
+        hardVetoFindingIds: [...state.findingLedger.hardVetoFindingIds, 'fabricated-hard-veto'],
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the target-id set diverges', async () => {
+    await expectSurfaceDivergence('clean-review', (state) => ({
+      ...state,
+      reviewLoop: {
+        ...state.reviewLoop,
+        scope: {
+          ...state.reviewLoop.scope,
+          targets: state.reviewLoop.scope.targets.map((target, index) => (
+            index === 0 ? { ...target, targetId: 'target-file-corrupt' } : target
+          )),
+        },
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the ordered-dimension-id list diverges', async () => {
+    await expectSurfaceDivergence('clean-review', (state) => ({
+      ...state,
+      reviewLoop: {
+        ...state.reviewLoop,
+        scope: {
+          ...state.reviewLoop.scope,
+          orderedDimensionIds: [...state.reviewLoop.scope.orderedDimensionIds, 'security'],
+        },
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the finding-lineage list diverges', async () => {
+    await expectSurfaceDivergence('duplicate-candidates', (state) => ({
+      ...state,
+      findingLedger: {
+        ...state.findingLedger,
+        lineage: state.findingLedger.lineage.map((entry, index) => (
+          index === 0 ? { ...entry, relation: 'introduced' as const } : entry
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the continuity-save state field diverges', async () => {
+    await expectSurfaceDivergence('review-report', (state) => ({
+      ...state,
+      artifactIndex: {
+        artifacts: state.artifactIndex.artifacts.map((artifact) => (
+          artifact.artifactKind === 'continuity-save' && artifact.availability === 'available'
+            ? { ...artifact, availability: 'pending' as const }
+            : artifact
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the continuity-save digest field diverges', async () => {
+    await expectSurfaceDivergence('review-report', (state) => ({
+      ...state,
+      artifactIndex: {
+        artifacts: state.artifactIndex.artifacts.map((artifact) => (
+          artifact.artifactKind === 'continuity-save' && artifact.availability === 'available'
+            ? { ...artifact, contentDigest: digest('corrupted-continuity') }
+            : artifact
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it('fails parity when the session-id field diverges', async () => {
+    await expectSurfaceDivergence('clean-review', (state) => ({
+      ...state,
+      run: { ...state.run, sessionId: 'session-shadow-corrupt' },
+    }));
+  }, 30_000);
+
+  it('fails parity when the run-id field diverges', async () => {
+    await expectSurfaceDivergence('clean-review', (state) => ({
+      ...state,
+      run: { ...state.run, runId: 'run-shadow-corrupt' },
+    }));
+  }, 30_000);
+
+  it('fails parity when an artifact entry diverges', async () => {
+    await expectSurfaceDivergence('duplicate-candidates', (state) => ({
+      ...state,
+      artifactIndex: {
+        artifacts: state.artifactIndex.artifacts.map((artifact, index) => (
+          index === 0 ? { ...artifact, contentDigest: digest('corrupted-artifact') } : artifact
+        )),
+      },
+    }));
+  }, 30_000);
+
+  it.skip('covers the resume-decision-digest field', async () => {
+    // The closed fixture closure never supplies resumeEvidence, so the reducer
+    // yields a structurally-null resume-decision digest on both paths and no
+    // mutation of its feeding slice can change the projection.
+  });
 });
+
