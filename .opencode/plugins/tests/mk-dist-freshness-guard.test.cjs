@@ -77,6 +77,7 @@ function writeCodeModeFixture(dir, stale) {
   writeFileWithMtime(path.join(packageDir, 'tsconfig.json'), '{"include":["index.ts"]}\n', sourceMtime);
   writeFileWithMtime(path.join(packageDir, 'index.ts'), 'export const value = 1;\n', sourceMtime);
   writeFileWithMtime(path.join(packageDir, 'dist', 'index.js'), 'export const value = 1;\n', distMtime);
+  fs.mkdirSync(path.join(packageDir, 'node_modules'), { recursive: true });
   return {
     packageDir,
     sourcePath: path.join(packageDir, 'index.ts'),
@@ -93,6 +94,7 @@ function writeAllPackageFixtures(dir) {
   const distMtime = sourceMtime + 10_000;
   for (const pkg of distFreshness.DIST_PACKAGES) {
     const packageDir = path.join(dir, pkg.root);
+    fs.mkdirSync(path.join(packageDir, 'node_modules'), { recursive: true });
     for (const candidate of pkg.sourceCandidates) {
       const candidatePath = path.resolve(packageDir, candidate);
       const basename = path.basename(candidatePath);

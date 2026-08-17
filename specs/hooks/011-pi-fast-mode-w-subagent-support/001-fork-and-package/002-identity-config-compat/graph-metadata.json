@@ -1,26 +1,215 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-config-and-request-safety",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-config-and-request-safety",
-  "parent_id": null,
+  "packet_id": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat",
+  "spec_folder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat",
+  "parent_id": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 2: config-and-request-safety",
+  "derived": {
+    "trigger_phrases": [
+      "identity-config-compat",
+      "fast-mode config migration",
+      "fast-mode atomic config",
+      "identity-config-compat plan",
+      "config compatibility plan",
+      "identity-config-compat tasks",
+      "identity-config-compat checklist",
+      "identity-config-compat implementation summary"
+    ],
+    "key_topics": [
+      "identity-config-compat",
+      "fast-mode",
+      "config",
+      "migration",
+      "atomic",
+      "plan",
+      "compatibility",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "changing"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Sections",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Changing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Extension",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Start",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Changing the package identity can strand an existing fast-mode configuration if the loader only looks at a new path",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-16T09:08:03Z",
+    "last_save_at": "2026-08-16T12:16:31.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f6bbc573176b154a3cff13ca3fe0c0a0842f8b185b7294ad41eed9d36fb67a10",
+    "source_doc_hashes": {
+      "spec.md": "bf176c8cd0e2d7c830207a27ba483101fe06a30be183d82bbeb32ac307829952",
+      "plan.md": "d79557a5f5296fa0e471342ddb190b7020fbff7ba186ae8f52aafe4395630280",
+      "tasks.md": "01cc659f1477641454187ae722c600beb6d967e80702ea6c339dab685881d38b",
+      "checklist.md": "ffd7f9574a9e593d7bcd4ee408b76b74253c3a4ee440a71d33f5af8232302c15",
+      "implementation-summary.md": "ab94a3c5a39aa41aff550fa3dfeb002257af72d0c2b1ea2cd0ccf33836b83d16"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

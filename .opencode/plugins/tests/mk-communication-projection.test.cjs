@@ -13,6 +13,7 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
 const { pathToFileURL } = require('node:url');
@@ -20,11 +21,24 @@ const { pathToFileURL } = require('node:url');
 const DISABLED_ENV = 'MK_COMMUNICATION_PROJECTION_DISABLED';
 const ENABLE_ENV = 'COMMUNICATION_PROJECTION_ENABLED';
 const pluginUrl = pathToFileURL(path.join(__dirname, '..', 'mk-communication-projection.js')).href;
-const distUrl = pathToFileURL(path.join(
+const distPath = path.join(
   __dirname,
   '..', '..',
   'skills', 'sk-communication', 'cli-communication-projection', 'dist', 'index.js',
-)).href;
+);
+const distUrl = pathToFileURL(distPath).href;
+
+// Fresh clones omit the git-ignored projection CLI dist; skip the suite instead of failing on import.
+if (!fs.existsSync(distPath)) {
+  test.skip(
+    'mk-communication-projection suite',
+    {
+      skip: 'cli-communication-projection dist/index.js is not built — run npm ci && npm run build in .opencode/skills/sk-communication/cli-communication-projection',
+    },
+    () => {},
+  );
+  return;
+}
 
 async function loadPlugin() {
   return import(pluginUrl);

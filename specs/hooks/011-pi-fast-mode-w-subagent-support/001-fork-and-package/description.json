@@ -1,17 +1,20 @@
 {
   "level": "2",
   "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package",
-  "description": "The chosen engine (pi-openai-fast-mode v0.3.0) lacks subagent handoff, which pi-gpt-fast-mode has",
+  "description": "The implementation needs a stable fast-mode extension baseline before handoff behavior and environment installation are added",
   "keywords": [
-    "chosen",
-    "engine",
-    "pi-openai-fast-mode",
-    "lacks",
-    "subagent",
+    "implementation",
+    "needs",
+    "stable",
+    "fast-mode",
+    "extension",
+    "baseline",
     "handoff",
-    "pi-gpt-fast-mode"
+    "behavior",
+    "environment",
+    "installation"
   ],
-  "lastUpdated": "2026-08-16T07:10:55.823Z",
+  "lastUpdated": "2026-08-16T12:33:16.361Z",
   "specId": "001",
   "folderSlug": "fork-and-package",
   "parentChain": [

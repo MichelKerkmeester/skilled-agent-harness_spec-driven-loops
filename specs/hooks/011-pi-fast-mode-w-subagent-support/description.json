@@ -1,19 +1,20 @@
 {
   "level": "2",
   "specFolder": "hooks/011-pi-fast-mode-w-subagent-support",
-  "description": "The two leading pi fast-mode extensions cover complementary halves of the requirement, but neither covers both:",
+  "description": "The fast-mode engine, child-process handoff, and installed-environment proof span separate ownership boundaries",
   "keywords": [
-    "two",
-    "leading",
     "fast-mode",
-    "extensions",
-    "cover",
-    "complementary",
-    "halves",
-    "requirement",
-    "covers"
+    "engine",
+    "child-process",
+    "handoff",
+    "installed-environment",
+    "proof",
+    "span",
+    "separate",
+    "ownership",
+    "boundaries"
   ],
-  "lastUpdated": "2026-08-16T08:44:59.725Z",
+  "lastUpdated": "2026-08-17T03:34:49.032Z",
   "specId": "011",
   "folderSlug": "pi-fast-mode-w-subagent-support",
   "parentChain": [

@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "memory/manage"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-023-memory-manage-health",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-023-memory-manage-health",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "memory_health",
@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `memory_health` | `.opencode/commands/memory/manage.md` | `sha256:8b335eb82985f64eaf35b7693c93157d2dfb0cda4ff4874f197df03aaba6906e` |
-| `health` | `.opencode/commands/memory/manage.md` | `sha256:8b335eb82985f64eaf35b7693c93157d2dfb0cda4ff4874f197df03aaba6906e` |
+| `memory_health` | `.opencode/commands/memory/manage.md` | `sha256:c0136ed22d0f605aef663a6be0ac4ab19211fdf9e1374ebb2b51c71fc904821e` |
+| `health` | `.opencode/commands/memory/manage.md` | `sha256:c0136ed22d0f605aef663a6be0ac4ab19211fdf9e1374ebb2b51c71fc904821e` |

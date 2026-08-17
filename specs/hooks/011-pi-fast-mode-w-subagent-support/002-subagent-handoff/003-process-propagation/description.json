@@ -1,19 +1,32 @@
 {
-  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-child-apply-and-inheritance",
-  "description": "Phase 3: child-apply-and-inheritance",
+  "level": "1",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation",
+  "description": "Unit calls to a parser cannot prove that the actual child process receives the parent's environment or that a child toggle remains local to its copied",
   "keywords": [
-    "phase",
-    "child-apply-and-inheritance"
+    "unit",
+    "calls",
+    "parser",
+    "cannot",
+    "prove",
+    "actual",
+    "child",
+    "process",
+    "receives",
+    "parent",
+    "environment",
+    "toggle",
+    "remains",
+    "local",
+    "copied"
   ],
-  "lastUpdated": "2026-08-16T09:08:05.005Z",
+  "lastUpdated": "2026-08-16T13:54:52.154Z",
   "specId": "003",
-  "folderSlug": "child-apply-and-inheritance",
+  "folderSlug": "process-propagation",
   "parentChain": [
     "hooks",
     "011-pi-fast-mode-w-subagent-support",
     "002-subagent-handoff"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -35,7 +35,7 @@
       "plus"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "implementation-summary.md",
@@ -159,6 +159,18 @@
         "source": "derived"
       },
       {
+        "name": "Current Reality",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -171,18 +183,6 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "sk-vision ships 13 tools plus a runtime and two host adapters, but has no canonical current-state inventory",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-16T09:13:30.591Z",
+    "last_save_at": "2026-08-16T09:54:16.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e0353431aca34ea49384565e06997d976de7c99c19dd0b644e245af0cad86dc",
+    "source_fingerprint": "sha256:c2ccaaaa06ad43b3400e443b6e65c51657a8fad3f5fc9208f6d6e082c86afaec",
     "source_doc_hashes": {
-      "spec.md": "15c2674794b5f73bfa3f964b007aeb322580b12a83d175fd904c67fa09393b7c",
+      "spec.md": "85117a4b9489b6c668c782eee0394ff3e8159895cf1b8d4c5bd5fb3a303eed06",
       "plan.md": "c5afd09533005bef2e387c45599b97c814f02830e43d526b631c5fef6a98e2af",
-      "tasks.md": "65e133553dfdefb8c122dbfcd8fd79f7a87af81b3929da7eb2f375bfcd65b794",
-      "checklist.md": "451a3f9a57848d99455592e3fb051f1c5296cd38161f736b6df7eea802f54330",
-      "implementation-summary.md": "c19fa160455e6fd8db7ad118ee601a3a44fb9fc5198138910711091f31834152"
+      "tasks.md": "edfdebdd9bdc6d9f208fdac716f06093186df426b98f60eaffd620427d2eeb72",
+      "checklist.md": "2c6caca9c1a16d5e498c42866c58753a979b9c64bc570c376bf914671870f468",
+      "implementation-summary.md": "3d7626b48ed5730cea74128ef32ba65082a0fd9280a365b48bb41ac31dd47829"
     },
     "last_active_child_id": null,
     "last_active_at": null

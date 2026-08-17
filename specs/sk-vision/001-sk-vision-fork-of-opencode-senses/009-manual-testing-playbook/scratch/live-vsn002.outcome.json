@@ -1,0 +1,19 @@
+{
+  "scenarioId": "VSN-002",
+  "verdict": "PASS",
+  "reason": "load + ocr over NDJSON on fixture.png: result.type ocr, text 'ERROR' - the visible word is transcribed verbatim by moondream2 (the '42' glyph is not picked up at this font size)",
+  "stage": "routing",
+  "evidence": ["/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/scratch/live-vsn002-transcript.txt"],
+  "executionContext": {
+    "command": "printf '%s\n' '{\"id\":1,\"method\":\"load\",\"params\":{}}' '{\"id\":2,\"method\":\"ocr\",\"params\":{\"source\":{\"type\":\"path\",\"path\":\"<FIXTURE>\"},\"kind\":\"all\"}}' | \/Users/michelkerkmeester/.cache/sk-vision/venv/bin/python .opencode/skills/sk-vision/vision-runtime/python/runtime.py",
+    "runtime": "python",
+    "runtimeVersion": "3.12.11",
+    "evidenceClass": "adapter-driven",
+    "requireDurableEvidence": true,
+    "payloadFixture": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/scratch/fixture.png",
+    "executor": "ndjson-runtime-stdin",
+    "executorObserved": true,
+    "model": "moondream2",
+    "modelObserved": true
+  }
+}

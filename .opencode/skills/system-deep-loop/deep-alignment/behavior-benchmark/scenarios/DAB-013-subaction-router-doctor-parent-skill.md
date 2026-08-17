@@ -9,12 +9,12 @@
   "command_topology": "subaction router",
   "entry_surface": "E1",
   "clarity": "C3",
-  "prompt": "parent-skill --dir=.opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-013-subaction-router/src/parent-skill",
+  "prompt": "parent-skill --dir=.opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/src/parent-skill",
   "invocation": {
     "kind": "command",
     "command": "doctor/speckit"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-013-subaction-router",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "parent-skill",
@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `parent-skill` | `.opencode/commands/doctor/speckit.md` | `sha256:1d22251f9944d7108d4072308549940081284ec414c211cd3e29b5ce0b9197c1` |
-| `doctor-parent-skill.yaml` | `.opencode/commands/doctor/speckit.md` | `sha256:1d22251f9944d7108d4072308549940081284ec414c211cd3e29b5ce0b9197c1` |
+| `parent-skill` | `.opencode/commands/doctor/speckit.md` | `sha256:40c9c35597b393c9a1847bb7d6a0da1e3eb57558ef70c14da8ce52c670c617c8` |
+| `doctor-parent-skill.yaml` | `.opencode/commands/doctor/speckit.md` | `sha256:40c9c35597b393c9a1847bb7d6a0da1e3eb57558ef70c14da8ce52c670c617c8` |

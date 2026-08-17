@@ -35,7 +35,7 @@
       "automated"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "implementation-summary.md",
@@ -171,13 +171,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "run-manual-playbook-scenario.cjs",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The skill has automated tests (8 passing) and a GPU smoke, but no reproducible operator validation: no deterministic prompts, no evidence contract, no place where a release decision can be reviewed",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-16T09:13:30.852Z",
+    "last_save_at": "2026-08-16T10:08:53.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0c96a52802e6e46acacaab8474ed5315067fa9d67c7a61be80e14d3ec7de42e",
+    "source_fingerprint": "sha256:fee0e5481e746834945774650809e0c77eda88fde068fd881a53b78dfac8584a",
     "source_doc_hashes": {
-      "spec.md": "a88b2e055980d505c14de9a12ab14a8049d8b5a6cc612761e3242316bb19b45e",
+      "spec.md": "3fac2308e1c297825c6d1730339299e3262bb3ceb192395e986ccb9ea156132a",
       "plan.md": "75fd06b4269813b8933b6d90adf13e833d39fc551bd1c0b10759687f2ccaf1f0",
-      "tasks.md": "e889b831b2882424397feb0a0fe2d0bfb0e7f1eb6d642f260f9e57238601e03b",
-      "checklist.md": "af85933588b05e151a79f1e7a90af3d54cc955ce585736daee808efc584b7dac",
-      "implementation-summary.md": "aa6c18e5d84b7e5c44c6d2f9bf664bfaccba21c3778b60da2679789d06fb8a44"
+      "tasks.md": "42671ccd7d8e056e243b04366d0635f2c18a8bc716bda48596988e8076b40590",
+      "checklist.md": "bda863cddfe59a18e790781e772a936b45984c23e4a408139014ea4a49cd6162",
+      "implementation-summary.md": "b7d10da4e186ae73898f27f7f7fb44905db58740c6d49833458a552b78bc0bb9"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,26 +1,215 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-and-command-ownership",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-and-command-ownership",
-  "parent_id": null,
+  "packet_id": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition",
+  "spec_folder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition",
+  "parent_id": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 2: install-and-command-ownership",
+  "derived": {
+    "trigger_phrases": [
+      "install-transition",
+      "pi extension replacement",
+      "fast command ownership",
+      "install-transition plan",
+      "pi install remove fast mode",
+      "install-transition tasks",
+      "install-transition checklist",
+      "install-transition implementation summary"
+    ],
+    "key_topics": [
+      "install-transition",
+      "extension",
+      "replacement",
+      "fast",
+      "command",
+      "ownership",
+      "plan",
+      "install",
+      "remove",
+      "mode",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Public",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Installing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Record",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Pre",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Installing the fork beside another extension that registers `/fast` and `--fast` creates load-order ambiguity",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-16T09:08:03Z",
+    "last_save_at": "2026-08-16T18:45:56.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b9f4750cda912e9000bd19a1c54bee899376b3213ebd2e48b14b28f1a9986adf",
+    "source_doc_hashes": {
+      "spec.md": "1eb0a1f3f696075c7b06af51acc88aa43149a445ada41bed84b13b83ef550614",
+      "plan.md": "2bc6ba4234bf1882eacbf5056c6d50c241a0d2214d98d6df465802639ad711f3",
+      "tasks.md": "126203ff67d08ae536180cea3c62c903506e59ccac7e0788a58879bce982ef0f",
+      "checklist.md": "94fe14b66bfe99276288498aaa98241e9e5419598c9ede576618b1a4549d9671",
+      "implementation-summary.md": "abf4d6081e21e5ebcedeecb4e33e1da0d07cdb827a20fdfd03e9814895f581af"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

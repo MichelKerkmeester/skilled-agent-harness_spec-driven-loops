@@ -10,24 +10,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Decomposed the subagent-handoff workstream into contract, precedence, and propagation phases"
-    next_safe_action: "Execute 001-handoff-contract, then 002-session-precedence, then 003-process-propagation"
+    last_updated_at: "2026-08-16T15:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Completed subagent-handoff workstream; 3 children done"
+    next_safe_action: "Execute the 003-integration-and-tests workstream next"
     blockers: []
     key_files:
       - "../spec.md"
-      - "../../research/research.md"
-      - "../../context/pi-gpt-fast-mode/src/handoff.ts"
+      - "../research/research.md"
+      - "../context/pi-gpt-fast-mode/src/handoff.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "How should the implementation distinguish an absent --fast flag from an explicit false default?"
-      - "Which child-process fixture best proves inheritance without coupling tests to pi-subagents internals?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Presence-aware flag detection; an absent/default flag never overrides inherited env."
+      - "An inline spawnSync (node -e) fixture with a copied env; the live pi-subagents probe is deferred to 003."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -96,9 +96,9 @@ Define and verify one environment variable, one writer policy, and one session-s
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-handoff-contract/` | Strict values, namespace, normalized writes, and pure contract tests | draft |
-| 2 | `002-session-precedence/` | Parent export and child session-start precedence with target gating | draft |
-| 3 | `003-process-propagation/` | Deterministic child-process proof, isolation, and final handoff documentation | draft |
+| 1 | `001-handoff-contract/` | Strict values, namespace, normalized writes, and pure contract tests | complete |
+| 2 | `002-session-precedence/` | Parent export and child session-start precedence with target gating | complete |
+| 3 | `003-process-propagation/` | Deterministic child-process proof, isolation, and final handoff documentation | complete |
 
 ### Phase Transition Rules
 
@@ -119,13 +119,13 @@ Define and verify one environment variable, one writer policy, and one session-s
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Should only an explicitly present `--fast` true value override inherited state, with `/fast off` remaining the explicit false path?
-- Should the child fixture invoke the actual pi-subagents spawn helper or use a minimal `spawnSync` contract fixture plus one live probe later?
+- Resolved: only an explicitly present `--fast` true overrides inherited state; `/fast off` is the explicit-false path.
+- Resolved: a minimal inline `spawnSync` (`node -e`) contract fixture is used; the live pi-subagents probe is deferred to `003-integration-and-tests`.
 <!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 
 - **Parent packet:** See `../spec.md`.
-- **Research:** See `../../research/research.md`.
+- **Research:** See `../research/research.md`.
 - **Child phases:** See `001-handoff-contract/`, `002-session-precedence/`, and `003-process-propagation/`.
-- **Handoff reference:** See `../../context/pi-gpt-fast-mode/src/handoff.ts`.
+- **Handoff reference:** See `../context/pi-gpt-fast-mode/src/handoff.ts`.

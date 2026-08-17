@@ -34,7 +34,7 @@
       "file"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "implementation-summary.md",
@@ -163,13 +163,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "inline",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`SKILL.md` still says \"This file only reserves paths and advisor triggers\", \"The runtime and host adapters land in later children\", and \"Reserved package home (leave empty here)\" — every one of those statements is false now",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-16T09:13:29.995Z",
+    "last_save_at": "2026-08-16T09:29:31.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbf161e23505be11e1c14dbee38cdb37accb7ab3e3958c1766d8faeb2e0d1ec0",
+    "source_fingerprint": "sha256:15c7d15c3e4335e8ed5bc665502843f9a010295c133b1018642ea7723370466f",
     "source_doc_hashes": {
-      "spec.md": "a65e157ae8c40786bb147df99d19b097531cccff2d55da4692db800651f3d4b4",
+      "spec.md": "2b23c105fabf183f5f98cb97da618434e50e2d068d180ffffc4573c81e5ba698",
       "plan.md": "22730c24d2839544d36e8205fb3975874cf7e4e010daa82b7d5d1328bdb1ad83",
-      "tasks.md": "d48e2714bbc14ab62d106c1e8117ff0a8e5e484b075262f22287fb53cb7355d9",
-      "implementation-summary.md": "71fbe5d374b3b66daed77ea3a4b49453e61c5f18ae22642b3101c585512a3a57"
+      "tasks.md": "50be202210fc6c2dd1764502ea0bd7e9e4bdf79b299cdba8cbde56acc29c1b90",
+      "implementation-summary.md": "e811fc860acdcb3cee938331f2b730d3b53eb82766c42d0925e82d2a41c8a290"
     },
     "last_active_child_id": null,
     "last_active_at": null

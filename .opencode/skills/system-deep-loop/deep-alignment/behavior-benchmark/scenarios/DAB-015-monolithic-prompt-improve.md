@@ -9,12 +9,12 @@
   "command_topology": "monolithic",
   "entry_surface": "E1",
   "clarity": "C2",
-  "prompt": "$raw \"Improve the prompt in .opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-015-monolithic/src/prompt.txt while preserving PILOT_SENTINEL.\" :auto",
+  "prompt": "$raw \"Improve the prompt in .opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/src/prompt.txt while preserving PILOT_SENTINEL.\" :auto",
   "invocation": {
     "kind": "command",
     "command": "prompt-improve"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-015-monolithic",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic",
   "expected_interaction": "question_halt",
   "expected_presentation_markers": [
     "Q2. Save Location",
@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `Q2. Save Location` | `.opencode/commands/prompt-improve.md` | `sha256:86d9e5e6fd83de393a9518f503e933a698c99de9d57fb85f41b00b3e5e375330` |
-| `Q4. Dispatch Mode` | `.opencode/commands/prompt-improve.md` | `sha256:86d9e5e6fd83de393a9518f503e933a698c99de9d57fb85f41b00b3e5e375330` |
+| `Q2. Save Location` | `.opencode/commands/prompt/assets/prompt_improve_presentation.txt` | `sha256:28b08a6c692a2e706d127446f974f24189d643c36633d8b7545fa3f7085401eb` |
+| `Q4. Dispatch Mode` | `.opencode/commands/prompt/assets/prompt_improve_presentation.txt` | `sha256:28b08a6c692a2e706d127446f974f24189d643c36633d8b7545fa3f7085401eb` |

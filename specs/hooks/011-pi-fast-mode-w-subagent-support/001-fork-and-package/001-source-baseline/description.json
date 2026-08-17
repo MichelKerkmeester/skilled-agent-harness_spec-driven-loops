@@ -1,19 +1,30 @@
 {
-  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-fork-and-identity",
-  "description": "Phase 1: source-fork-and-identity",
+  "level": "1",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline",
+  "description": "Later phases need a stable source boundary so package identity, compatibility, and handoff changes can be reviewed independently",
   "keywords": [
-    "phase",
-    "source-fork-and-identity"
+    "later",
+    "phases",
+    "need",
+    "stable",
+    "source",
+    "boundary",
+    "package",
+    "identity",
+    "compatibility",
+    "handoff",
+    "changes",
+    "reviewed",
+    "independently"
   ],
-  "lastUpdated": "2026-08-16T09:08:02.948Z",
+  "lastUpdated": "2026-08-16T10:55:41.691Z",
   "specId": "001",
-  "folderSlug": "source-fork-and-identity",
+  "folderSlug": "source-baseline",
   "parentChain": [
     "hooks",
     "011-pi-fast-mode-w-subagent-support",
     "001-fork-and-package"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

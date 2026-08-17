@@ -9,12 +9,12 @@
   "command_topology": "workflow router",
   "entry_surface": "E1",
   "clarity": "C3",
-  "prompt": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-016-create-benchmark/src/demo-mode .opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-016-create-benchmark create --family=conformance_benchmark --benchmark-id fixture-command-surface --path .opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-016-create-benchmark/src/demo-mode/assets/conformance-benchmark/fixture-command-surface :auto",
+  "prompt": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/src/demo-mode .opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark create --family=conformance_benchmark --benchmark-id fixture-command-surface --path .opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/src/demo-mode/assets/conformance-benchmark/fixture-command-surface :auto",
   "invocation": {
     "kind": "command",
     "command": "create/benchmark"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-016-create-benchmark",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "create-benchmark-auto.yaml",
@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `create-benchmark-auto.yaml` | `.opencode/commands/create/benchmark.md` | `sha256:93e50ef0b8b57706d12e4fd575f8e00e8b31755a4228655c5b1d0ed4ca9453bd` |
-| `conformance-benchmark` | `.opencode/commands/create/benchmark.md` | `sha256:93e50ef0b8b57706d12e4fd575f8e00e8b31755a4228655c5b1d0ed4ca9453bd` |
+| `create-benchmark-auto.yaml` | `.opencode/commands/create/benchmark.md` | `sha256:7069a4be16388a3e609efc72e4bc48b8663b03261f93a03068dcb716ae18a3c5` |
+| `conformance_benchmark` | `.opencode/commands/create/benchmark.md` | `sha256:7069a4be16388a3e609efc72e4bc48b8663b03261f93a03068dcb716ae18a3c5` |

@@ -1,106 +1,77 @@
 ---
-title: "Tasks: Phase 2: parent-export-and-precedence [template:level-1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 2 session-precedence"
+description: "Task ledger for lifecycle handoff writes and presence-aware state precedence."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "session-precedence tasks"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-parent-export-and-precedence"
-    last_updated_at: "2026-08-16T09:08:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence"
+    last_updated_at: "2026-08-16T15:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Completed precedence tasks; matrix rows verified"
+    next_safe_action: "Continue the 002-subagent-handoff workstream"
     blockers: []
-    key_files: []
+    key_files: ["../../research/research.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-parent-export-and-precedence"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 2: parent-export-and-precedence
+<!-- SPECKIT_LEVEL: 2 -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-
----
+# Tasks: Phase 2 session-precedence
 
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-| Prefix | Meaning |
-|--------|---------|
-| `[ ]` | Pending |
-| `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
+`[ ]` pending · `[x]` complete · `[P]` parallelizable · `[B]` blocked.
 
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
-
----
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
-<!-- /ANCHOR:phase-1 -->
+- [x] T501 Identify and record the Pi flag/argv presence API the wiring depends on — the API that distinguishes an explicitly supplied flag from its boolean default (presence vs value). Evidence: presence via `pi.getFlag("fast")`; wired in `session_start` (`src/index.ts:126-130`).
+- [x] T502 Write the complete flag/env/config precedence matrix in `plan.md`. — precedence matrix authored in `plan.md` (6 rows)
 
----
+<!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
-<!-- /ANCHOR:phase-2 -->
+- [x] T503 Wire normalized env writes after `/fast` and explicit `--fast`/`--no-fast` state changes (single writer). — `writeHandoff(process.env, config.enabled)` after save (`src/index.ts:111-113`)
+- [x] T504 Implement session-start precedence resolution and persist/write ordering; children read only. — `session_start` resolves explicit > `readHandoff` > `config.enabled` (`src/index.ts:126-135`)
+- [x] T505 Keep model/target gating authoritative in the request path. — model/target gate unchanged; `tests/payload-status.test.ts` green
 
----
+<!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
-<!-- /ANCHOR:phase-3 -->
+- [x] T506 Author `tests/precedence.test.ts` exercising every precedence-matrix row (explicit `--fast` true, explicit `/fast off`, inherited `"1"`, inherited `"0"`, invalid env, unset env). — `tests/precedence.test.ts` covers explicit/inherited rows; `npm test` green
+- [x] T507 Run `npm run typecheck` and `npm test`; verify every precedence row, invalid/unset rows, and target-gating negative cases. — `npm run typecheck` exit 0; `npm test` 76 passed
+- [x] T508 Record the explicit-false decision for the process child and README owner. — `/fast off` explicit-false decision recorded in `implementation-summary.md`
 
----
+<!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-<!-- /ANCHOR:completion -->
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remain.
+- [x] Handoff criteria in `spec.md` are evidenced.
 
----
+<!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md`
-- **Plan**: See `plan.md`
+- **Specification**: See `spec.md`.
+- **Plan**: See `plan.md`.
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

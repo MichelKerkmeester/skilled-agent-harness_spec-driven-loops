@@ -1,26 +1,215 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-parent-export-and-precedence",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-parent-export-and-precedence",
-  "parent_id": null,
+  "packet_id": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence",
+  "spec_folder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence",
+  "parent_id": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 2: parent-export-and-precedence",
+  "derived": {
+    "trigger_phrases": [
+      "session-precedence",
+      "fast-mode precedence",
+      "explicit fast flag",
+      "session-precedence plan",
+      "fast-mode lifecycle precedence",
+      "session-precedence tasks",
+      "session-precedence checklist",
+      "session-precedence implementation summary"
+    ],
+    "key_topics": [
+      "session-precedence",
+      "fast-mode",
+      "precedence",
+      "explicit",
+      "fast",
+      "flag",
+      "plan",
+      "lifecycle",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Extension",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Resolve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Pi flag registry exposes a boolean default, so a plain false value cannot prove that the operator explicitly supplied a false flag",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-16T09:08:03Z",
+    "last_save_at": "2026-08-16T13:58:06.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6e9e415875a7ff53881338772f858a7d40b1e845b3a4803ec85aa638ca60fcf0",
+    "source_doc_hashes": {
+      "spec.md": "2339d942c251781c6e037f0dab33a422b0fff224d08281f3c4eb54548a80b45d",
+      "plan.md": "0f790bf461a7115900ad4e856afd0c5ff231569655b9030d10b150ce460281bb",
+      "tasks.md": "38d482fd0b9cb9dca02841fd13ca8d49175235f6a37c65f2e4df4ab5dc7cb7af",
+      "checklist.md": "0039dd2405167d2dcc0908428806aa951d4a2c3e13802ac1d539b039b5e8a9fc",
+      "implementation-summary.md": "b61448e9d9a7c9a6cc2db8eede7b51d2d3e0c65d8ec8fb2f3f8aaa7e73fd8def"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

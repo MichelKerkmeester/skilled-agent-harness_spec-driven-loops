@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-vision",
+    "rootRel": ".opencode/skills/sk-vision"
+  },
+  "executor": "ndjson-runtime-stdin",
+  "model": "moondream2",
+  "variant": "ocr-live-run",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "VSN-002",
+      "verdict": "PASS",
+      "reason": "load + ocr over NDJSON on fixture.png: result.type ocr, text 'ERROR' - the visible word is transcribed verbatim by moondream2 (the '42' glyph is not picked up at this font size)",
+      "stage": "routing",
+      "classKind": "manual",
+      "providerModel": "moondream2",
+      "variant": "ocr-live-run",
+      "evidence": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/scratch/live-vsn002-transcript.txt"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/scratch/live-vsn002-transcript.txt",
+          "status": "verified",
+          "bytes": 118,
+          "sha256": "96905ab534439f38cd88fc97636e3b9fcbb0cc19e423129d01a277ca66e7522f"
+        }
+      ]
+    }
+  ],
+  "supersedes": [],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-16T10:02:20.896Z",
+    "evidenceClass": "adapter-driven",
+    "evidenceArtifacts": [
+      {
+        "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/scratch/live-vsn002-transcript.txt",
+        "status": "verified",
+        "bytes": 118,
+        "sha256": "96905ab534439f38cd88fc97636e3b9fcbb0cc19e423129d01a277ca66e7522f"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "VSN-002",
+    "stage": "routing",
+    "dispatch": "manual",
+    "evidenceClass": "adapter-driven",
+    "executor": "ndjson-runtime-stdin",
+    "model": "moondream2",
+    "requestedExecutorLabel": "ndjson-runtime-stdin",
+    "requestedModelLabel": "moondream2",
+    "variant": "ocr-live-run",
+    "command": "printf '%s\n' '{\"id\":1,\"method\":\"load\",\"params\":{}}' '{\"id\":2,\"method\":\"ocr\",\"params\":{\"source\":{\"type\":\"path\",\"path\":\"<FIXTURE>\"},\"kind\":\"all\"}}' | /Users/michelkerkmeester/.cache/sk-vision/venv/bin/python .opencode/skills/sk-vision/vision-runtime/python/runtime.py",
+    "runtime": "python",
+    "runtimeVersion": "3.12.11",
+    "requireDurableEvidence": true,
+    "payloadFixture": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/scratch/fixture.png",
+    "executorObserved": true,
+    "modelObserved": true
+  }
+}

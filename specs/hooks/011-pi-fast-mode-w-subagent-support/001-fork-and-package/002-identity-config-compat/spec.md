@@ -1,44 +1,37 @@
 ---
-title: "Feature Specification: Phase 2: config-and-request-safety [template:level-1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 2: identity-config-compat"
+description: "Define package/config identity and safe compatibility behavior while preserving the upstream enabled-targets schema."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "identity-config-compat"
+  - "fast-mode config migration"
+  - "fast-mode atomic config"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-config-and-request-safety"
-    last_updated_at: "2026-08-16T09:08:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat"
+    last_updated_at: "2026-08-16T14:15:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Identity/config compat complete; tsc 0, 57 tests green"
+    next_safe_action: "Hand off to 003-package-baseline-gates"
     blockers: []
-    key_files: []
+    key_files:
+      - "../../context/pi-openai-fast-mode/src/config.ts"
+      - "../../context/pi-fast-mode/extensions/openai-codex-fast-mode.ts"
+      - "../../research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-config-and-request-safety"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Compatibility reads the legacy path once then atomic-writes the new path; no continuing fallback."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: config-and-request-safety
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
 
----
+# Feature Specification: Phase 2: identity-config-compat
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -46,137 +39,118 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
-| **Branch** | `scaffold/002-config-and-request-safety` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | `../spec.md` |
 | **Phase** | 2 of 3 |
-| **Predecessor** | 001-source-fork-and-identity |
-| **Successor** | 003-package-and-baseline-verification |
-| **Handoff Criteria** | [To be defined during planning] |
-<!-- /ANCHOR:metadata -->
+| **Predecessor** | 001-source-baseline |
+| **Successor** | 003-package-baseline-gates |
+| **Handoff Criteria** | Identity, compatibility, atomic persistence, invalid-state handling, and request guards have focused tests |
 
----
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the fork and package nested workstreams specification.
-
-**Scope Boundary**: [To be defined during planning]
+This child owns the engine/config boundary. It preserves the `{ enabled, targets }` model, gives the new package an unambiguous identity, and makes path compatibility and persistence safe before packaging gates run.
 
 **Dependencies**:
-- [To be defined during planning]
+- `001-source-baseline/`.
+- Research Sections 4, 7, and 9 in `../../research/research.md`.
 
 **Deliverables**:
-- [To be defined during planning]
+- Package/status/config identity constants.
+- Explicit compatibility policy and tests.
+- Atomic writes, malformed-state fallback, and model/service-tier guards.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Changing the package identity can strand an existing fast-mode configuration if the loader only looks at a new path. The request hook also needs to avoid applying a tier to a different or unsupported model, and state writes must not leave truncated JSON.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
+Preserve user intent while establishing a safe, config-driven engine boundary for later handoff and integration phases.
 
----
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Rename package, status, and config namespaces without copying the divergent `pi-gpt-fast-mode` schema.
+- Read the new config path first, then apply one deliberate legacy-path compatibility policy and atomically write valid normalized state.
+- Add explicit `payload.model`, request-record, and `service_tier` guards using config-driven target matching.
+- Add pure tests for empty targets, malformed JSON, torn-write recovery, and compatibility behavior.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- `PI_FAST_MODE_W_SUBAGENT_SUPPORT` and lifecycle handoff; see `../../002-subagent-handoff/`.
+- Install settings, command ownership, and live UI evidence; see `../../003-integration-and-tests/`.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
+| Fork `src/config.ts` and state helpers | Modify | Implement path policy, normalization, and atomic persistence |
+| Fork `src/payload.ts` and model helpers | Modify | Guard request/model/tier mutation |
+| Fork `src/types.ts` and package metadata | Modify | Establish package-owned identity |
+| Fork `tests/` | Create/Modify | Pin compatibility and defensive behavior |
 
----
+<!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Preserve the `{ enabled, targets }` schema and explicit empty-target opt-out | Config tests pass for normalized targets and empty arrays |
+| REQ-002 | Do not orphan existing configuration when the new path is absent | Legacy-only fixture yields valid new-path state without data loss |
+| REQ-003 | Never mutate a payload for an unsupported model or explicit service tier | Guard tests show unchanged/`undefined` behavior on every negative case |
 
-### P1 - Required (complete OR user-approved deferral)
+### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-004 | State writes are atomic and malformed files fail safe | Temporary-file-plus-rename and invalid JSON tests pass |
+
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
+- **SC-001**: Existing config data survives the chosen compatibility path policy.
+- **SC-002**: The payload hook changes only matching, untiered requests and returns a cloned payload when it changes.
+- **SC-003**: No handoff or install behavior is introduced in this child.
 
----
+<!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+| Risk | Legacy path policy is ambiguous | Users can lose settings or receive duplicate writes | Choose one policy in the child decision record and fixture-test it |
+| Risk | TBG model regex is copied too literally | Configured supported targets stop working | Keep the gate config-driven and test provider/model pairs |
+| Risk | Torn writes leave invalid JSON | Fast mode falls back unpredictably | Use atomic replacement and malformed-state fallback tests |
 
----
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- RESOLVED: migration leaves the legacy file untouched after the atomic new-path write (no completion marker, no fallback read).
+- RESOLVED: project-local config keeps the upstream path-selection behavior even when the file does not yet exist (`selectConfigPath` unchanged, fixture-tested).
+
 <!-- /ANCHOR:questions -->
 
----
+## RELATED DOCUMENTS
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Parent:** `../spec.md`
+- **Research:** `../../research/research.md`
+- **Upstream config:** `../../context/pi-openai-fast-mode/src/config.ts`

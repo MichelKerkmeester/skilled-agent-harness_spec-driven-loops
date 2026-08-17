@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "agent_router"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-027-agent-router-bare",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-027-agent-router-bare",
   "expected_interaction": "question_halt",
   "expected_presentation_markers": [
     "What request would you like to route?",
@@ -67,5 +67,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `What request would you like to route?` | `.opencode/commands/agent_router.md` | `sha256:c117fbfa1f21b11665ae9501df5d92467d27062f3ed0dee2e90e6080bc639dc1` |
-| `Describe my request` | `.opencode/commands/agent_router.md` | `sha256:c117fbfa1f21b11665ae9501df5d92467d27062f3ed0dee2e90e6080bc639dc1` |
+| `What request would you like to route?` | `.opencode/commands/agent-router.md` | `sha256:304e405dc22545d08504d5d9ae47b2af24235d7803625497d04fd0fffaa1079a` |
+| `Describe my request` | `.opencode/commands/agent-router.md` | `sha256:304e405dc22545d08504d5d9ae47b2af24235d7803625497d04fd0fffaa1079a` |

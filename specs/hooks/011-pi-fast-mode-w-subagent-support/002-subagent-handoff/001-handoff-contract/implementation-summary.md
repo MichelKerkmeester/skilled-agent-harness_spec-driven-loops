@@ -1,37 +1,31 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Phase 1 handoff-contract"
+description: "Planned closeout record for the strict handoff environment contract."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "handoff-contract implementation summary"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-handoff-contract"
-    last_updated_at: "2026-08-16T09:08:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract"
+    last_updated_at: "2026-08-16T15:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Recorded handoff contract closeout; 76 tests green"
+    next_safe_action: "Continue the 002-subagent-handoff workstream"
     blockers: []
-    key_files: []
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-handoff-contract"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
----
+# Implementation Summary: Phase 1 handoff-contract
 
 <!-- ANCHOR:metadata -->
 ## Metadata
@@ -39,97 +33,49 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-handoff-contract |
+| **Status** | Complete |
 | **Completed** | 2026-08-16 |
 | **Level** | 1 |
-<!-- /ANCHOR:metadata -->
 
----
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+Added the fork-owned `HANDOFF_ENV = "PI_FAST_MODE_W_SUBAGENT_SUPPORT"` constant and the `FastModePreference` type in `src/types.ts`, plus strict `readHandoff`/`writeHandoff` helpers in `src/handoff.ts`. `readHandoff` maps `"1"` to true, `"0"` to false, and everything else to undefined; `writeHandoff` normalizes a boolean to the exact `"1"`/`"0"` string. The module is pure: no lifecycle wiring and no provider payload. Contract cases live in `tests/handoff.test.ts`.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
 <!-- /ANCHOR:what-built -->
-
----
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
+GPT-5.6-luna authored the code; verified locally. A namespace scan over `PI_*` found no prior `PI_FAST_MODE*`, so the name is collision-free. `npm run typecheck` exits 0 and `npm test` reports 76 tests passed across 7 files (57 before this workstream, plus 19 new).
 
-[How was this tested, verified and shipped? What was the rollout approach?]
 <!-- /ANCHOR:how-delivered -->
-
----
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
-<!-- /ANCHOR:decisions -->
+| Parse only `1` and `0` | Invalid values must not enable priority behavior |
+| Keep one fork-owned name | Aliases create ambiguous ownership |
 
----
+<!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
-<!-- /ANCHOR:verification -->
+| `rg` namespace collision scan | Clean; no prior `PI_FAST_MODE*` |
+| Vitest handoff unit matrix | `tests/handoff.test.ts` green |
+| `npm run typecheck` | Exit 0 |
 
----
+<!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Lifecycle precedence is intentionally deferred to the next child.**
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-

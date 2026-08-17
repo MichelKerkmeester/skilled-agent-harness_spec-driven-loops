@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "memory/search"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-014-direct-tool-router",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "MEMORY:SEARCH",
@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `MEMORY:SEARCH` | `.opencode/commands/memory/search.md` | `sha256:4d18a8b4d92691ecf256cad1a76763e011453e25c6f39d8640652a16462b6877` |
-| `STATUS=OK RESULTS=` | `.opencode/commands/memory/search.md` | `sha256:4d18a8b4d92691ecf256cad1a76763e011453e25c6f39d8640652a16462b6877` |
+| `MEMORY:SEARCH` | `.opencode/commands/memory/search.md` | `sha256:390ee7c3b861f40c1326664cefacdfaef56da1d7175a9c76831ae9719624cc47` |
+| `STATUS=OK RESULTS=` | `.opencode/commands/memory/search.md` | `sha256:390ee7c3b861f40c1326664cefacdfaef56da1d7175a9c76831ae9719624cc47` |

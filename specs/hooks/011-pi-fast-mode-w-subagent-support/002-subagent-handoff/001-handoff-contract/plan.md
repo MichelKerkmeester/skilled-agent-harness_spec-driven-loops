@@ -1,44 +1,31 @@
 ---
-title: "Implementation Plan: Phase 1: handoff-contract [template:level-1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 1 handoff-contract"
+description: "Implement and test the strict fork-owned environment contract."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "handoff-contract plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-handoff-contract"
-    last_updated_at: "2026-08-16T09:08:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract"
+    last_updated_at: "2026-08-16T15:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implemented strict parser/writer; contract tests green"
+    next_safe_action: "Continue the 002-subagent-handoff workstream"
     blockers: []
-    key_files: []
+    key_files: ["../../context/pi-gpt-fast-mode/src/handoff.ts"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-handoff-contract"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: handoff-contract
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
 
----
+# Implementation Plan: Phase 1 handoff-contract
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
@@ -47,124 +34,115 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript |
+| **Framework** | Pi Extension API types |
+| **Storage** | Process environment |
+| **Testing** | Vitest pure tests |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
+Create one constant and two small helpers. `readHandoff` accepts only exact `1`/`0`; `writeHandoff` emits only those strings. Keep the module independent of Pi UI, config, and provider payloads.
 
----
+The strict-parser contract mirrors `context/pi-gpt-fast-mode/src/handoff.ts:1-19`:
+
+| Input | Result |
+|-------|--------|
+| `"1"` | `true` |
+| `"0"` | `false` |
+| unset / any other value | `undefined` (no opinion) |
+
+`writeHandoff` emits only the normalized `"1"` or `"0"` string, so an invalid value can never enable a paid priority tier by accident.
+
+A namespace scan across installed packages, pinned sources, and user `.pi` (research Section 6) found no existing `PI_FAST_MODE*` variable, so `PI_FAST_MODE_W_SUBAGENT_SUPPORT` is collision-free.
+
+
+<!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Namespace is approved and collision scan is planned.
+- [x] Reference handoff behavior is cited.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
+- [x] Read/write and invalid-input tests pass.
+- [x] Parent-only ownership is documented.
+- [x] No runtime dependency is added.
 
----
+
+<!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Pure env adapter with explicit normalization.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- `HANDOFF_ENV`: one stable name.
+- `readHandoff`: `true`, `false`, or `undefined`.
+- `writeHandoff`: normalized in-place write to a supplied env object.
 
 ### Data Flow
-[Brief description of how data moves through the system]
-<!-- /ANCHOR:architecture -->
+Boolean state → normalized env string → child process copy → strict read.
 
----
+
+<!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `src/handoff.ts` | No handoff module in the fork yet | Create strict `readHandoff`/`writeHandoff` helpers | Pure Vitest contract matrix |
+| `src/types.ts` | Shared constants and types | Add the `HANDOFF_ENV` key constant and the `boolean \| undefined` preference type | `npm run typecheck` |
 
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+The parent-only-writer POLICY is documented in this leaf; its wiring (toggle/flag writes and `session_start` reads) is owned by `002-session-precedence`.
+
 <!-- /ANCHOR:affected-surfaces -->
-
----
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Scan existing `PI_*` names and confirm no collision.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Add the constant and helpers.
+- [x] Add pure unit tests.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
-<!-- /ANCHOR:phases -->
+- [x] Run focused handoff tests and typecheck.
+- [x] Record exact parser matrix.
 
----
+
+<!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
-<!-- /ANCHOR:testing -->
+| Unit | `1`, `0`, unset, invalid, round-trip | Vitest |
+| Static | Namespace and ownership | `rg` |
 
----
+
+<!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
-<!-- /ANCHOR:dependencies -->
+| `pi-gpt-fast-mode` handoff reference | Internal snapshot | Green | Contract must be re-derived |
+| Node/Vitest | Toolchain | Green | Unit gate unavailable |
 
----
+
+<!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Parser accepts unexpected values or tests reveal a naming conflict.
+- **Procedure**: Remove the new helper/constant/test and return to the package baseline.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

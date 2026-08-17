@@ -1,19 +1,30 @@
 {
-  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-parent-export-and-precedence",
-  "description": "Phase 2: parent-export-and-precedence",
+  "level": "2",
+  "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence",
+  "description": "The Pi flag registry exposes a boolean default, so a plain false value cannot prove that the operator explicitly supplied a false flag",
   "keywords": [
-    "phase",
-    "parent-export-and-precedence"
+    "flag",
+    "registry",
+    "exposes",
+    "boolean",
+    "default",
+    "plain",
+    "false",
+    "value",
+    "cannot",
+    "prove",
+    "operator",
+    "explicitly",
+    "supplied"
   ],
-  "lastUpdated": "2026-08-16T09:08:03.991Z",
+  "lastUpdated": "2026-08-16T13:57:54.506Z",
   "specId": "002",
-  "folderSlug": "parent-export-and-precedence",
+  "folderSlug": "session-precedence",
   "parentChain": [
     "hooks",
     "011-pi-fast-mode-w-subagent-support",
     "002-subagent-handoff"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

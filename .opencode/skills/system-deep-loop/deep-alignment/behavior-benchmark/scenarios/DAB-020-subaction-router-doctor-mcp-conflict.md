@@ -14,7 +14,7 @@
     "kind": "command",
     "command": "doctor/mcp"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures/dab-020-doctor-mcp-conflict",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-020-doctor-mcp-conflict",
   "expected_interaction": "fail_fast",
   "expected_presentation_markers": [
     "--fix",
@@ -67,5 +67,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `--fix` | `.opencode/commands/doctor/mcp.md` | `sha256:d395c40b32ae2b3f67a6257621639cbf3af7f4467510a20d1a7b1433ee46b0be` |
-| `debug` | `.opencode/commands/doctor/mcp.md` | `sha256:d395c40b32ae2b3f67a6257621639cbf3af7f4467510a20d1a7b1433ee46b0be` |
+| `--fix` | `.opencode/commands/doctor/mcp.md` | `sha256:cf34916ef41a5af6a735e4cbea57a5982efbd298a138b9ee2eeb5e6313402b53` |
+| `debug` | `.opencode/commands/doctor/mcp.md` | `sha256:cf34916ef41a5af6a735e4cbea57a5982efbd298a138b9ee2eeb5e6313402b53` |

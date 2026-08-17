@@ -1,26 +1,214 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract",
-  "parent_id": null,
+  "packet_id": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract",
+  "spec_folder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract",
+  "parent_id": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: handoff-contract",
+  "derived": {
+    "trigger_phrases": [
+      "handoff-contract",
+      "PI_FAST_MODE_W_SUBAGENT_SUPPORT contract",
+      "strict fast-mode env",
+      "handoff-contract plan",
+      "handoff-contract tasks",
+      "handoff-contract checklist",
+      "handoff-contract implementation summary"
+    ],
+    "key_topics": [
+      "handoff-contract",
+      "contract",
+      "strict",
+      "fast-mode",
+      "env",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "child",
+      "processes"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Child Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Extension",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Child Pi processes need a stable representation of the parent's fast-mode preference",
     "created_at": "2026-08-16T09:08:02Z",
-    "last_save_at": "2026-08-16T09:08:02Z",
+    "last_save_at": "2026-08-16T13:55:30.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:33505a3882257d503a7d07a3712119d5a282dbaa005e5cb3a2eca4c7f74754fc",
+    "source_doc_hashes": {
+      "spec.md": "b68769c762bc7c472bf45b21f113c91445d7de72aa42f1a6263ee1048081ec6e",
+      "plan.md": "0441f93fb136f8b6702395c7887ce8b7226b52e8204ca92aa1f730f90a137112",
+      "tasks.md": "fd086abec69b8574b7322a5292be8d079f2dc54d1ae323af4d256d96c676e1dd",
+      "checklist.md": "de31eff8cfafa46484280df88184ab016cd194396e4075a132558e27636ea632",
+      "implementation-summary.md": "7d1d9cc197ccca83dba455f57b7811520e8d6690e512dc94edaf152c6d41d27b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -1,26 +1,215 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-and-baseline-verification",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-and-baseline-verification",
-  "parent_id": null,
+  "packet_id": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates",
+  "spec_folder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates",
+  "parent_id": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 3: package-and-baseline-verification",
+  "derived": {
+    "trigger_phrases": [
+      "package-baseline-gates",
+      "pi extension package manifest",
+      "fast-mode package verification",
+      "package-baseline-gates plan",
+      "raw TypeScript extension package",
+      "package-baseline-gates tasks",
+      "package-baseline-gates checklist",
+      "package-baseline-gates implementation summary"
+    ],
+    "key_topics": [
+      "package-baseline-gates",
+      "extension",
+      "package",
+      "manifest",
+      "fast-mode",
+      "verification",
+      "plan",
+      "raw",
+      "typescript",
+      "tasks",
+      "checklist",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Manifest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Package",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A correct source tree is not enough for Pi to load or discover the extension",
     "created_at": "2026-08-16T09:08:04Z",
-    "last_save_at": "2026-08-16T09:08:04Z",
+    "last_save_at": "2026-08-16T12:34:21.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f8bc18cf496a4693a793c1934c3d84a8f703aad30390c78dd0a25e1e5208876e",
+    "source_doc_hashes": {
+      "spec.md": "d471df6ea766b398ceb3b412f3a7a954409163e9617a0eb8debd282ac25647bc",
+      "plan.md": "092c19fba9fe0d13c326797bc1fdf1d61b19b4affd2dea4057b0919bb56ba3cd",
+      "tasks.md": "7ccc624d5d8e0a78ebb56541756b593f64b4c09ff29625dcb46b4ba8df704fdd",
+      "checklist.md": "be2bcde7cb4cc62b020bee2a09a7d2e08786c00b4b421410398c83bf1e3e133e",
+      "implementation-summary.md": "c42ba8783810dcfd255b41b1d707d18ed167cd8986404784e9dcf97c2476070c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

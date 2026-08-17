@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support"
-    last_updated_at: "2026-08-16T09:20:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Scaffolded phased packet, downloaded context sources, authored parent and child docs"
-    next_safe_action: "Plan and execute phase 001-fork-and-package"
+    last_updated_at: "2026-08-17T03:34:48Z"
+    last_updated_by: "claude-code"
+    recent_action: "All 3 workstreams complete: fork, handoff, integration+live all green"
+    next_safe_action: "Merge worktrees/013-pi-fast-mode to skilled/v4.0.0.0"
     blockers: []
     key_files:
       - "context/pi-openai-fast-mode/"
@@ -24,11 +24,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 5
-    open_questions:
-      - "Publish the fork to the npm registry, or install from a local/git source only?"
-      - "Keep pi-gpt-fast-mode installed alongside during migration, or remove it in phase 003?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Install from the local package path; npm publication stays deferred."
+      - "pi-gpt-fast-mode was removed during the 002 install transition; the fork replaced it."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -53,7 +53,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -70,16 +70,15 @@ _memory:
 
 ### Problem Statement
 
-The two leading pi fast-mode extensions cover complementary halves of the requirement, but neither covers both:
+The fast-mode engine, child-process handoff, and installed-environment proof span separate ownership boundaries. A single packet must coordinate them without letting package, lifecycle, install, or live-runtime concerns drift together.
 
-- `pi-openai-fast-mode` (v0.3.0) has the stronger engine: native GPT-5.6 targets (5.6 / 5.6-sol / 5.6-terra / 5.6-luna for both `openai` and `openai-codex`), per-target `service_tier`, a self-upgrading target list (`syncSupportedTargets`), durable config saves, error notifications, and a widget-based indicator that survives custom footers. It has **no subagent handoff**: child pi processes start with fast mode off regardless of the parent's preference.
-- `pi-gpt-fast-mode` (v0.1.2) is the only one with subagent handoff — the desired preference is exported into the process environment (`PI_GPT_FAST_MODE=1|0`) so spawned child pi processes inherit and confirm it on `session_start` — but its defaults cover GPT-5.4/5.5 only (5.6 requires a manual config override), its indicator is hidden by custom footers, and its config does not self-upgrade.
+The research-selected engine keeps the OpenAI/OpenAI-Codex target and `{ enabled, targets }` configuration contract. The handoff contract uses `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1|0`, strict parsing, and process inheritance. The runtime proof must also cover namespaced `setStatus`, command ownership, package loading, and custom-footer/RPC behavior.
 
-This packet builds a single extension, `pi-fast-mode-w-subagent-support`, that combines the two: the openai-fast-mode engine with the gpt-fast-mode handoff mechanism.
+This packet coordinates a single `pi-fast-mode-w-subagent-support` extension across three top-level workstreams. Each workstream is itself a phase parent with three executable child phases.
 
 ### Purpose
 
-Produce a forked, renamed, tested extension package that behaves exactly like `pi-openai-fast-mode` and additionally hands the fast-mode preference down to subagents, then install it in place of the current `pi-gpt-fast-mode` (which collides on the `/fast` command).
+Produce a tested raw-TypeScript Pi extension that preserves the researched engine/config behavior, adds strict child handoff, and is installed only after package, command ownership, live UI, and rollback gates pass.
 
 ### Phase Decomposition Qualification
 
@@ -95,17 +94,17 @@ Phase complexity score: **40/50** (architectural decisions 10 + file count > 15 
 
 ### In Scope
 
-- Fork of `pi-openai-fast-mode` v0.3.0 (source snapshot in `context/pi-openai-fast-mode/`) renamed to `pi-fast-mode-w-subagent-support`, preserving the config format, `/fast` command, `--fast` flag, and widget indicator.
-- Subagent handoff modeled on `pi-gpt-fast-mode` (reference in `context/pi-gpt-fast-mode/src/handoff.ts`): preference exported via `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1|0`, inherited by child processes, confirmed on `session_start`, applied only when the child's model matches a configured target.
-- Ported and extended vitest suite (upstream tests + handoff propagation tests).
-- Installation in this environment: settings entry, removal of `pi-gpt-fast-mode` (command collision), PLUGINS.md update, sync + commit per the repo's pi sync manifest.
+- A raw-TypeScript fork package with the researched `{ enabled, targets }` engine, config compatibility, atomic persistence, request/model guards, and package provenance.
+- Strict `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1|0` handoff, presence-aware flag precedence, child-process isolation, and target-gated application.
+- Layered Vitest/typecheck coverage, install transition and `get_commands` ownership proof, live namespaced `setStatus`/optional widget checks, and child-session evidence.
+- Canonical settings/PLUGINS.md updates, sync validation, and a documented rollback boundary.
 
 ### Out of Scope
 
 - npm registry publication (open question — local install until decided).
-- New tier-selection UX (tier stays per-target from config, as upstream).
+- New tier-selection UX; service tiers stay per-target and guarded by configuration.
 - Non-OpenAI providers; the fork keeps upstream's `openai` / `openai-codex` target model.
-- The `pi-fast-mode` (TheBinaryGuy) footer-composition approach — retained in `context/` as a considered-and-rejected reference for indicator UX.
+- The `pi-fast-mode` footer-composition approach as the default indicator; research retains it only as a rejected reference. The default contract is namespaced `setStatus`, with an optional widget path.
 
 ### Files to Change
 
@@ -113,12 +112,10 @@ Aggregate scope; per-phase detail lives in child plans.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `src/` (index, config, payload, commands, status, types) | Copy + rename | 1 | Forked engine with new package identity |
-| `src/handoff.ts` (new) | Create | 2 | Env-based preference export/read |
-| `src/index.ts` | Modify | 2 | session_start handoff confirmation, flag + handoff precedence |
-| `tests/` | Copy + extend | 3 | Upstream suite + handoff tests |
-| `package.json`, `README.md`, `tsconfig.json` | Modify | 1 | New package identity and docs |
-| `.pi/settings.json`, `.pi/PLUGINS.md` | Modify | 3 | Install + document the fork, drop pi-gpt-fast-mode |
+| Fork `src/`, config, payload, and package metadata | Create/Modify | 1 | Establish source, compatibility, request safety, and package gates |
+| Fork `src/handoff.ts`, `src/types.ts`, `src/index.ts` | Create/Modify | 2 | Define and wire strict child handoff |
+| Fork `tests/` and live verification fixtures | Modify/Create | 3 | Deterministic suite plus runtime-only proof |
+| `.pi/settings.json`, package scopes, `.pi/PLUGINS.md` | Modify/Verify | 3 | Replace the colliding extension and synchronize docs |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -130,23 +127,24 @@ Aggregate scope; per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-fork-and-package/ | Fork pi-openai-fast-mode source, rename package identity, keep behavior byte-identical | Pending |
-| 2 | 002-subagent-handoff/ | Add env-based handoff (write on toggle/flag, read + apply on child session_start) | Pending |
-| 3 | 003-integration-and-tests/ | Extend test suite, install in settings replacing pi-gpt-fast-mode, verify in-session, update PLUGINS.md + sync/commit | Pending |
+| 1 | `001-fork-and-package/` | Nested parent: source baseline, identity/config compatibility, package baseline gates | complete |
+| 2 | `002-subagent-handoff/` | Nested parent: strict contract, session precedence, process propagation | complete |
+| 3 | `003-integration-and-tests/` | Nested parent: integration suite, install transition, live verification and sync | complete |
 
 ### Phase Transition Rules
 
-- Each phase MUST pass `validate.sh --strict` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/speckit:resume hooks/011-pi-fast-mode-w-subagent-support/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+- Each top-level phase parent and each nested child MUST pass `validate.sh --strict` before its next handoff.
+- Each nested parent owns its own Phase Documentation Map; the root map tracks only the three workstreams.
+- Use `/speckit:resume hooks/011-pi-fast-mode-w-subagent-support/[NNN-phase]/[NNN-child]/` to resume a leaf.
+- Run recursive validation from the root after metadata refresh to validate the integrated tree.
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-fork-and-package | 002-subagent-handoff | Renamed package typechecks; upstream vitest suite passes unmodified; behavior unchanged (no handoff yet) | `npm run typecheck` + `npm test` exit 0; `git diff` vs upstream limited to identity renames |
-| 002-subagent-handoff | 003-integration-and-tests | Handoff unit tests pass; parent → child process preference propagation verified manually | `npm test` exit 0; two-process handoff check in plan.md |
+| `001-fork-and-package/` | `002-subagent-handoff/` | Nested package children pass; config compatibility, atomic writes, request guards, raw packaging, provenance, and baseline gates are recorded | Recursive child validation; `tsc --noEmit`; Vitest; `npm pack --dry-run` |
+| `002-subagent-handoff/` | `003-integration-and-tests/` | Strict contract, explicit-flag precedence, child isolation, and deterministic propagation proof pass | Handoff matrix; child-process test; target-gating regression suite |
+| `003-integration-and-tests/` | Packet closeout | Install ownership, live UI/handoff, PLUGINS.md, sync, and rollback evidence are complete | `get_commands`; live receipts; `sync-pi-configs.sh --check`; final diff |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -154,7 +152,9 @@ Aggregate scope; per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- fork pi-openai-fast-mode into pi-fast-mode-w-subagent-support with subagent handoff everything needed to implement properly pi extension api surface env-inheritance handoff mechanics config compat packaging tests indicator ux under custom footers licensing
+- Which package location and install source should the implementation pin first: local path or git?
+- Which one-time config compatibility policy should preserve existing state without unconditional scope merging?
+- Which live TUI/RPC evidence is available for namespaced `setStatus`, optional widgets, custom footers, and child sessions?
 <!-- /ANCHOR:questions -->
 
 ## RESEARCH CONTEXT
@@ -172,6 +172,6 @@ Deep-research is active for this topic. `research/research.md` remains the canon
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: See sub-folders `001-fork-and-package/`, `002-subagent-handoff/`, and `003-integration-and-tests/` for per-phase specifications.
+- **Top-level phase parents**: See `001-fork-and-package/`, `002-subagent-handoff/`, and `003-integration-and-tests/`; each contains three leaf phase specifications.
 - **Context snapshots**: See `context/README.md` for pinned source provenance.
 - **Research packet**: See `research/` for the workflow-owned state and synthesis artifacts.

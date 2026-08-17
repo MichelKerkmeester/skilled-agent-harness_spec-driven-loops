@@ -41,13 +41,20 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -85,19 +92,51 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Source Serif",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Mobile",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-mode Mobbin",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The secure foundation exists, but the mobile chat UI/UX is not yet at the quality bar of the Claude and GPT mobile apps, and several first-class agent controls that `pi` exposes on the desktop terminal are missing from the phone",
     "created_at": "2026-08-16T06:37:29.320Z",
-    "last_save_at": "2026-08-16T08:24:10.257Z",
+    "last_save_at": "2026-08-16T09:15:26.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:5aec0f146b04a0b792c338c54ca9d1e21055ec055646348c3e1e7e58dba09d91",
+    "source_fingerprint": "sha256:888d891d02818a8b86b95b2ac51b841f8ad37dd06981f157d67b4e54304a4607",
     "source_doc_hashes": {
-      "spec.md": "11df6a0dc2cacfad70869b99cd840eb39fded828e28757f8c6f6045ebafd91fc"
+      "spec.md": "11df6a0dc2cacfad70869b99cd840eb39fded828e28757f8c6f6045ebafd91fc",
+      "handover.md": "c61e2e6e42a0b8de6e0233cfb1f1825be613aa7a68a4344ef6e18c0cd46a5f27"
     },
     "last_active_child_id": "app-remote-agent-chat/002-pi-remote-mobile-ui-ux-features/008-inbound-media",
     "last_active_at": null

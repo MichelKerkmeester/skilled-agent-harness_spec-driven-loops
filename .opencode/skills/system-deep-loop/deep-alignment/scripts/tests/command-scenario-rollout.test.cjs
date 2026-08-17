@@ -26,10 +26,10 @@ const RUNNER_PATH = path.join(
   REPO_ROOT,
   '.opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs',
 );
-const PILOT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures';
-const ROLLOUT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior-benchmark/fixtures';
+const PILOT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures';
+const ROLLOUT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures';
 const PENDING = 'pending (deferred live capture)';
-const EXPECTED_RUNNER_SHA256 = 'f568f79f98c1ccb72924bbee6cb0d742f82bdf34fc65318aff4471148882595b';
+const EXPECTED_RUNNER_SHA256 = 'cc5e0fa8d9e1e7b58c3cd3d24be0d8e936e08e64143b6615bd3ddfe386d38aba';
 const ALLOWED_PROBES = new Set([
   'file_exists',
   'json_field_equals',
@@ -42,7 +42,6 @@ const EXPECTED = [
   ['DAB-014', 'DAB-014-direct-tool-router-memory-search.md', 'direct-tool/plugin router', 'direct_dispatch'],
   ['DAB-015', 'DAB-015-monolithic-prompt-improve.md', 'monolithic', 'task_dispatch'],
   ['DAB-016', 'DAB-016-workflow-router-create-benchmark.md', 'workflow router', 'task_dispatch'],
-  ['DAB-017', 'DAB-017-workflow-router-design-audit.md', 'workflow router', 'task_dispatch'],
   ['DAB-018', 'DAB-018-subaction-router-doctor-mcp-install.md', 'subaction router', 'task_dispatch'],
   ['DAB-019', 'DAB-019-subaction-router-doctor-mcp-debug.md', 'subaction router', 'task_dispatch'],
   ['DAB-020', 'DAB-020-subaction-router-doctor-mcp-conflict.md', 'subaction router', 'task_dispatch'],
@@ -161,8 +160,8 @@ test('command suite is exactly DAB-012 through DAB-027 with valid schema-v2 cont
     assert.ok(baselineCells.slice(2).every((cell) => cell === PENDING));
   }
 
-  assert.equal(ids.size, 16);
-  assert.equal(fixtures.size, 16);
+  assert.equal(ids.size, 15);
+  assert.equal(fixtures.size, 15);
 
   for (const id of ['DAB-018', 'DAB-019', 'DAB-020']) {
     const expected = EXPECTED.find((entry) => entry.id === id);
@@ -225,7 +224,7 @@ test('frozen DAB-001 through DAB-011 scoring still matches the v1 golden', () =>
   }
 });
 
-test('quotable Claude baseline values are present for all sixteen command cells', (t) => {
+test('quotable Claude baseline values are present for all fifteen command cells', (t) => {
   const rows = tableRows(fs.readFileSync(BASELINE_PATH, 'utf8'));
   const pendingIds = EXPECTED
     .filter(({ id }) => rows.get(id).includes(PENDING))

@@ -62,7 +62,6 @@ Their baseline cells remain pending until operator-gated live capture occurs.
 | DAB-014 | Direct-tool router: bounded memory retrieval | E1 | C3 | autonomous | 180000 |
 | DAB-015 | Monolithic command: consolidated prompt-improve setup | E1 | C2 | question_halt | 180000 |
 | DAB-016 | Workflow router: fixture-local benchmark authoring | E1 | C3 | autonomous | 300000 |
-| DAB-017 | Workflow router: bounded design audit | E1 | C3 | autonomous | 180000 |
 | DAB-018 | Subaction router: MCP install approval gate | E1 | C3 | question_halt | 180000 |
 | DAB-019 | Subaction router: diagnostic-only MCP debug | E1 | C3 | autonomous | 180000 |
 | DAB-020 | Subaction router: fail closed on cross-route flag | E1 | C3 | fail_fast | 180000 |
@@ -97,7 +96,7 @@ Boundary coverage: the two crisp boundaries `SKILL.md` §1 draws — against
 structure) — each get a decline cell (DAB-009, DAB-010).
 
 Command-topology coverage spans all four frozen shapes across sixteen cells:
-workflow router x3 (DAB-012, DAB-016, DAB-017), subaction router x4 (DAB-013,
+workflow router x2 (DAB-012, DAB-016), subaction router x4 (DAB-013,
 DAB-018 through DAB-020), direct-tool/plugin router x7 (DAB-014, DAB-021
 through DAB-026), and monolithic x2 (DAB-015, DAB-027). Workflow and subaction
 cells use task-dispatch-shaped setup evidence; direct routers require their

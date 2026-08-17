@@ -1,44 +1,35 @@
 ---
-title: "Feature Specification: Phase 3: child-apply-and-inheritance [template:level-1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 3: process-propagation"
+description: "Prove child-process environment inheritance and one-directional handoff isolation before live integration."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
+  - "process-propagation"
+  - "child process fast-mode handoff"
+  - "spawn environment inheritance"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-child-apply-and-inheritance"
-    last_updated_at: "2026-08-16T09:08:05Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation"
+    last_updated_at: "2026-08-16T15:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Proved child inheritance and isolation; README updated"
+    next_safe_action: "Hand off to the 003-integration-and-tests workstream"
     blockers: []
-    key_files: []
+    key_files:
+      - "../../research/research.md"
+      - "../../context/pi-gpt-fast-mode/src/handoff.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-child-apply-and-inheritance"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 3: child-apply-and-inheritance
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
 
----
+# Feature Specification: Phase 3: process-propagation
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -46,137 +37,111 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
-| **Branch** | `scaffold/003-child-apply-and-inheritance` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | `../spec.md` |
 | **Phase** | 3 of 3 |
-| **Predecessor** | 002-parent-export-and-precedence |
+| **Predecessor** | 002-session-precedence |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
-<!-- /ANCHOR:metadata -->
+| **Handoff Criteria** | Child fixture observes the inherited value and proves child changes do not mutate the parent environment |
 
----
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the subagent handoff nested workstreams specification.
-
-**Scope Boundary**: [To be defined during planning]
+This child proves the process boundary with a deterministic fixture. It documents the final handoff contract and leaves live installed pi-subagents verification to the integration workstream.
 
 **Dependencies**:
-- [To be defined during planning]
+- `002-session-precedence/`.
+- Node child-process environment inheritance and the installed pi-subagents spawn path.
 
 **Deliverables**:
-- [To be defined during planning]
+- A child fixture launched with an explicit copied environment.
+- Assertions for `1`, `0`, invalid/unset, and child-local changes.
+- README handoff wording that matches implementation.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Unit calls to a parser cannot prove that the actual child process receives the parent's environment or that a child toggle remains local to its copied environment. A deterministic process test is needed before the live install probe.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
+Prove the one-directional inheritance contract without coupling the unit suite to a particular pi-subagents binary path.
 
----
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- `spawnSync`/equivalent child fixture with a copied `process.env`.
+- Assertions that strict values arrive and child writes do not affect the parent.
+- README documentation of strict values, precedence, and parent-only ownership.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Changes to pi-subagents or child command resolution.
+- Live TUI/RPC or installed-session checks; see `../../003-integration-and-tests/`.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
+| Fork `tests/` | Create/Modify | Add child-process inheritance fixture |
+| Fork `README.md` | Modify | Document the final handoff contract |
 
----
+<!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Child receives the parent's normalized value at spawn time | Fixture observes exact `1` and `0` values |
+| REQ-002 | Child-local writes cannot mutate the parent env | Parent assertion remains unchanged after child exits |
 
-### P1 - Required (complete OR user-approved deferral)
+### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-003 | README matches the implementation | Strict values, precedence, and one-directional behavior are documented |
+
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
+- **SC-001**: The process test is deterministic and independent of external credentials.
+- **SC-002**: The integration child can reuse the fixture for the live probe.
 
----
+<!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+| Risk | Test replaces env with a fresh object | False green hides real inheritance bugs | Spread `process.env` and assert the spawn call |
+| Risk | Child test couples to a binary path | CI becomes machine-specific | Use a small fixture; reserve actual binary verification for integration |
 
----
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None for the deterministic fixture; live command choice is owned by integration.
+
 <!-- /ANCHOR:questions -->
 
----
+## RELATED DOCUMENTS
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Parent:** `../spec.md`
+- **Precedence:** `../002-session-precedence/spec.md`
+- **Research:** `../../research/research.md`

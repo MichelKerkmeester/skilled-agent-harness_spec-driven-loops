@@ -1,44 +1,37 @@
 ---
-title: "Feature Specification: Phase 1: suite-and-static-gates [template:level-1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 1: extension-integration-suite"
+description: "Add deterministic cross-boundary coverage for the completed fast-mode extension before installation mutates settings."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
+  - "extension-integration-suite"
+  - "fast-mode integration tests"
+  - "get_commands test"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-suite-and-static-gates"
-    last_updated_at: "2026-08-16T09:08:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite"
+    last_updated_at: "2026-08-17T03:34:46Z"
+    last_updated_by: "claude-code"
+    recent_action: "Extension-boundary suite complete: typecheck exit 0, 76 tests passed"
+    next_safe_action: "Continue to 002-install-transition"
     blockers: []
-    key_files: []
+    key_files:
+      - "../../research/research.md"
+      - "../../001-fork-and-package/"
+      - "../../002-subagent-handoff/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-suite-and-static-gates"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "get_commands ownership stays live-only via RPC; the in-process suite covers registration, lifecycle, config, status, and handoff."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: suite-and-static-gates
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
 
----
+# Feature Specification: Phase 1: extension-integration-suite
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -46,137 +39,112 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
-| **Branch** | `scaffold/001-suite-and-static-gates` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | `../spec.md` |
 | **Phase** | 1 of 3 |
 | **Predecessor** | None |
-| **Successor** | 002-install-and-command-ownership |
-| **Handoff Criteria** | [To be defined during planning] |
-<!-- /ANCHOR:metadata -->
+| **Successor** | 002-install-transition |
+| **Handoff Criteria** | Cross-boundary tests, typecheck, and full Vitest suite pass without settings mutation |
 
----
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 1** of the integration and tests nested workstreams specification.
-
-**Scope Boundary**: [To be defined during planning]
+This child owns deterministic integration coverage. It exercises the actual extension factory and fake API boundaries, but does not install packages or perform live UI checks.
 
 **Dependencies**:
-- [To be defined during planning]
+- Completed fork/package and handoff workstreams.
+- Upstream FakePi pattern and research testing strategy.
 
 **Deliverables**:
-- [To be defined during planning]
+- Cross-boundary tests for config scope, model selection, status, handoff, and command ownership.
+- Green typecheck and full Vitest evidence.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Pure helper tests can pass while extension registration, lifecycle ordering, command ownership, or status calls are wired incorrectly. The final package needs a deterministic integration layer before any settings transition.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
+Catch extension-boundary regressions with the smallest structural fake and a complete static/test gate.
 
----
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Mirror the upstream structural FakePi API rather than mocking the entire runtime.
+- Test config scope/migration fixtures, model selection, handoff lifecycle, status calls, and `get_commands`-equivalent registration.
+- Run `npm run typecheck` and the complete Vitest suite.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Installing/removing packages; see `002-install-transition/`.
+- Live TUI/RPC and real child session; see `003-live-verification-and-sync/`.
+- New production behavior outside defects routed to earlier owning children.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
+| Fork `tests/` | Modify/Create | Add cross-boundary cases |
+| Fork test config/scripts | Modify if needed | Keep raw TypeScript execution deterministic |
 
----
+<!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Extension registration and lifecycle are observable through a structural fake | Registration/lifecycle tests pass |
+| REQ-002 | Config, model, handoff, and status boundaries are covered | Focused matrix passes without live settings |
+| REQ-003 | Full static/test gate is green | `npm run typecheck` and `npm test` exit 0 |
 
-### P1 - Required (complete OR user-approved deferral)
+### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-004 | Command ownership can be checked after install | Test helper exposes the source/command assertions used by the live probe |
+
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
+- **SC-001**: The suite fails on a broken lifecycle or ownership boundary, not only on pure helper errors.
+- **SC-002**: No settings or operator npm scope changes occur in this child.
 
----
+<!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+| Risk | Fake diverges from Pi API | False confidence | Mirror the upstream structural FakePi and keep live checks later |
+| Risk | Integration tests reimplement production logic | Tests pass while code is wrong | Assert observable registrations and outputs only |
 
----
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Which `get_commands` assertions can be deterministic in-process, and which must remain live-only?
+
 <!-- /ANCHOR:questions -->
 
----
+## RELATED DOCUMENTS
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Parent:** `../spec.md`
+- **Research:** `../../research/research.md`
+- **Earlier workstreams:** `../../001-fork-and-package/` and `../../002-subagent-handoff/`

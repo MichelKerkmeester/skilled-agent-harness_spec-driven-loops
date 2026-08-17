@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+VSN-012,sk-vision,,routing,manual,,moondream2,status-live-run,,PASS,"load + status over NDJSON: model_loaded true, model_id moondream2, device mps, capabilities query/point/detect/caption/segment/chat"

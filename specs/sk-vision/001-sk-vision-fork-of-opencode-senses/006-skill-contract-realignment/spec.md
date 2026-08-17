@@ -49,14 +49,14 @@ _memory:
 |-------|-------|
 | **Level** | Phase parent |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `sk-vision/001-sk-vision-fork-of-opencode-senses` |
 | **Predecessor** | 005-pi-adapter |
 | **Successor** | 007-pi-input-images |
-| **Handoff Criteria** | Both nested children Complete. SKILL.md passes `validate_document.py --type skill` with zero errors, README is accurate, `references/runtime-reference.md` exists, manifests regenerated, package.json publish/provenance neutralized, `.venv` removed, tests hermetic, rebuild green. Next implementer target is 007-pi-input-images. |
+| **Handoff Criteria** | Both nested children Complete (verified 2026-08-16): SKILL.md passes `validate_document.py --type skill` (exit 0), README accurate, `references/runtime-reference.md` exists, manifests regenerated, package.json publish/provenance neutralized, `.venv` removed, tests hermetic (`bun run build && bun test` exit 0 without `.venv`), rebuild green. Next implementer target is 007-pi-input-images. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -112,14 +112,14 @@ Per-phase detail lives in the nested children. Summary:
 
 | Phase | Folder | Title / Focus | Level | Status |
 |-------|--------|---------------|-------|--------|
-| 1 | `001-skill-md-and-readme/` | SKILL.md contract + README + references corpus | 1 | Planned |
-| 2 | `002-package-hygiene/` | package.json, `.venv`, hermetic tests, rebuild, sweep | 1 | Planned |
+| 1 | `001-skill-md-and-readme/` | SKILL.md contract + README + references corpus | 1 | Complete |
+| 2 | `002-package-hygiene/` | package.json, `.venv`, hermetic tests, rebuild, sweep | 1 | Complete |
 
-### 001-skill-md-and-readme (Planned)
+### 001-skill-md-and-readme (Complete)
 
 **Purpose.** Replace the scaffold stub with the real contract. `SKILL.md` must say what the skill does today: 13 `sk_vision_*` tools, the JSON-RPC runtime lifecycle, `SK_VISION_*` env vars, the OpenCode plugin and Pi extension load paths, WHEN NOT TO USE boundaries, and SUCCESS CRITERIA. `README.md` gets an accurate layout table, quick start, and env-var list. `references/runtime-reference.md` carries the overflow detail (protocol, cache dirs, model, GPU notes, tool semantics table). Regenerate `leaf-manifest.json` and `leaf-aliases.json` after the references corpus changes.
 
-### 002-package-hygiene (Planned)
+### 002-package-hygiene (Complete)
 
 **Purpose.** Make the fork clean and un-publishable by accident. Remove `publishConfig` and the `publish:npm` script, replace the upstream repository/author URLs with fork-appropriate values (or drop them), delete the 22MB `.venv` residue, prove `bun test` passes without it (hermetic), rebuild `dist/` so it matches `src/`, and sweep for residual `opencode-senses` / `SENSES_` strings outside the LICENSE attribution.
 

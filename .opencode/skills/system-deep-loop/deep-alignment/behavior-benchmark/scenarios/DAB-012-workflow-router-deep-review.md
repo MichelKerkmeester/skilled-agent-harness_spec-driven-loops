@@ -9,12 +9,12 @@
   "command_topology": "workflow router",
   "entry_surface": "E1",
   "clarity": "C3",
-  "prompt": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-012-workflow-router :auto --review-target-type=spec-folder --dims=correctness --max-iterations=1 --convergence=0.0 --stop-policy=max-iterations --spec-folder=.opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-012-workflow-router",
+  "prompt": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router :auto --review-target-type=spec-folder --dims=correctness --max-iterations=1 --convergence=0.0 --stop-policy=max-iterations --spec-folder=.opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router",
   "invocation": {
     "kind": "command",
     "command": "deep/review"
   },
-  "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/006-command-topology-pilot/behavior-benchmark/fixtures/dab-012-workflow-router",
+  "fixture": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router",
   "expected_interaction": "autonomous",
   "expected_presentation_markers": [
     "deep-review",
@@ -66,5 +66,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `deep-review` | `.opencode/commands/deep/review.md` | `sha256:2c8049990e2208d377788addbbe0b8658dd78fa92997566c71a0e692cb76fd22` |
-| `review-report.md` | `.opencode/commands/deep/review.md` | `sha256:2c8049990e2208d377788addbbe0b8658dd78fa92997566c71a0e692cb76fd22` |
+| `deep-review` | `.opencode/commands/deep/review.md` | `sha256:f2d5c62a86b012f7f3b1a76617fe5828136305fce7d85f6d18995ceef17958fc` |
+| `review-report.md` | `.opencode/commands/deep/assets/deep-review-presentation.txt` | `sha256:e97412d6af5385efa5c8715ba757d8ea911cad207992e65c96786f8e0cd6626f` |

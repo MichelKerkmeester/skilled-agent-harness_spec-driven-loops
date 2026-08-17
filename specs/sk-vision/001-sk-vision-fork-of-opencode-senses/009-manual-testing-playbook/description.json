@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook",
-  "description": "Operator validation corpus for sk-vision: 16 deterministic scenarios plus the benchmark run-index scaffold",
+  "description": "The skill has automated tests (8 passing) and a GPU smoke, but no reproducible operator validation: no deterministic prompts, no evidence contract, no",
   "keywords": [
     "sk-vision",
     "playbook",

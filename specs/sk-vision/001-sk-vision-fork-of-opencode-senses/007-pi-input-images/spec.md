@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/007-pi-input-images"
     last_updated_at: "2026-08-16T12:00:00.000Z"
     last_updated_by: "pi"
-    recent_action: "Created 007 copy pack."
-    next_safe_action: "Implement File 1 (pi factory input hook) from this spec copy pack."
+    recent_action: "Implemented bounded pi input.images auto-inspect hook."
+    next_safe_action: "Run 010 quality gate after 008/009 complete."
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-vision-007-pi-input-images"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |

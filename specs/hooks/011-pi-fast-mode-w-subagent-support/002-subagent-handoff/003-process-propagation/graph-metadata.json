@@ -1,26 +1,215 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-child-apply-and-inheritance",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-child-apply-and-inheritance",
-  "parent_id": null,
+  "packet_id": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation",
+  "spec_folder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation",
+  "parent_id": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 3: child-apply-and-inheritance",
+  "derived": {
+    "trigger_phrases": [
+      "process-propagation",
+      "child process fast-mode handoff",
+      "spawn environment inheritance",
+      "process-propagation plan",
+      "child process environment test",
+      "process-propagation tasks",
+      "process-propagation checklist",
+      "process-propagation implementation summary"
+    ],
+    "key_topics": [
+      "process-propagation",
+      "child",
+      "process",
+      "fast-mode",
+      "handoff",
+      "spawn",
+      "environment",
+      "inheritance",
+      "plan",
+      "test",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Unit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Prove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Launch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stdout",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "strict",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Unit calls to a parser cannot prove that the actual child process receives the parent's environment or that a child toggle remains local to its copied environment",
     "created_at": "2026-08-16T09:08:04Z",
-    "last_save_at": "2026-08-16T09:08:04Z",
+    "last_save_at": "2026-08-16T13:55:30.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d05e95b9d031a60a21ff1fa3bfc5201568644fa946e4ce20a9de8134743ba711",
+    "source_doc_hashes": {
+      "spec.md": "f9415133cab9f83ac03f90e81e44d4ffa3a4867fdb33dbf390ee34555fa1bb5a",
+      "plan.md": "8efa7675e44f12341801de1ed229821b8b5932407385b50b62709bc01ad07f7d",
+      "tasks.md": "6fd1c4cf0ad327a0ccb2babbea2deba892417a69062779502d4d8f654307fc66",
+      "checklist.md": "f7fb0877bd5cc37fa97b5037a2c740dcfab069608696330af894cba1acc8b2b9",
+      "implementation-summary.md": "5689f5117f9d95f382500957f3f706b8f8850352a732bbdf7c8ce109a8d9c35c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

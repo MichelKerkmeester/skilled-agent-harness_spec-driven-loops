@@ -1,44 +1,36 @@
 ---
-title: "Feature Specification: Phase 1: source-fork-and-identity [template:level-1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 1: source-baseline"
+description: "Establish the pinned upstream source baseline and package location before behavior or identity changes are introduced."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
+  - "source-baseline"
+  - "fast-mode source snapshot"
+  - "upstream package baseline"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-source-fork-and-identity"
-    last_updated_at: "2026-08-16T09:08:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline"
+    last_updated_at: "2026-08-16T12:45:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Source baseline complete: 16-file copy verified, reference unchanged"
+    next_safe_action: "Hand off to 002-identity-config-compat"
     blockers: []
-    key_files: []
+    key_files:
+      - "../../context/pi-openai-fast-mode/"
+      - "../spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-source-fork-and-identity"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Working package location resolved to packages/pi-fast-mode-w-subagent-support (root has no npm workspaces)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: source-fork-and-identity
-
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
 
----
+# Feature Specification: Phase 1: source-baseline
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -46,137 +38,109 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
-| **Branch** | `scaffold/001-source-fork-and-identity` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | `../spec.md` |
 | **Phase** | 1 of 3 |
 | **Predecessor** | None |
-| **Successor** | 002-config-and-request-safety |
-| **Handoff Criteria** | [To be defined during planning] |
-<!-- /ANCHOR:metadata -->
+| **Successor** | 002-identity-config-compat |
+| **Handoff Criteria** | Pinned source inventory and package location are recorded; the reference snapshot remains unchanged |
 
----
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 1** of the fork and package nested workstreams specification.
-
-**Scope Boundary**: [To be defined during planning]
+This child fixes the source boundary for the fork-and-package workstream. It deliberately does not change behavior, package identity, config paths, handoff, or installation.
 
 **Dependencies**:
-- [To be defined during planning]
+- `../../context/pi-openai-fast-mode/` at commit `9b28456`, v0.3.0.
 
 **Deliverables**:
-- [To be defined during planning]
+- A documented working package location.
+- A source inventory showing which upstream files are copied and which reference-only files stay in `context/`.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Later phases need a stable source boundary so package identity, compatibility, and handoff changes can be reviewed independently. Copying or editing the reference snapshot in place would destroy the evidence needed to compare behavior.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
+Create a clean, reproducible source baseline for the new extension without making implementation changes.
 
----
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Decide the working package location using the repository layout and install constraints.
+- Copy the upstream source, tests, TypeScript configuration, package metadata, README, license, and ignore rules into the working package.
+- Record the source inventory and verify that the pinned context snapshot is unchanged.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Package identity or config-path changes; those belong to `002-identity-config-compat/`.
+- Handoff code, installation, or live verification.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
+| Working package directory | Create | Copy the implementation baseline |
+| `context/pi-openai-fast-mode/` | Verify only | Preserve the pinned reference snapshot |
 
----
+<!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | The working package is separate from the pinned source snapshot | A source inventory and clean reference diff are recorded |
+| REQ-002 | The copied tree includes all upstream runtime and test inputs | Required source, tests, manifest, config, README, license, and ignore files exist |
 
-### P1 - Required (complete OR user-approved deferral)
+### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-003 | The package location supports the later local/git install decision | The chosen path and rollback deletion procedure are documented |
+
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
+- **SC-001**: The pinned reference tree has no task-created changes.
+- **SC-002**: The working package has a complete, reviewable source inventory.
 
----
+<!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+| Dependency | Upstream snapshot | Missing files would invalidate later comparisons | Inventory the source before copying |
+| Risk | Copying generated or local install files | Pollutes the baseline | Exclude `.git`, node_modules, and local artifacts |
 
----
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- RESOLVED: the working package lives at `packages/pi-fast-mode-w-subagent-support/` (root has no npm workspaces; smallest rollback surface).
+
 <!-- /ANCHOR:questions -->
 
----
+## RELATED DOCUMENTS
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Parent:** `../spec.md`
+- **Research handoff:** `../../research/research.md`
+- **Source provenance:** `../../context/README.md`

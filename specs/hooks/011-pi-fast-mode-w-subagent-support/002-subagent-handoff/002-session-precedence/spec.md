@@ -1,182 +1,154 @@
 ---
-title: "Feature Specification: Phase 2: parent-export-and-precedence [template:level-1/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 2: session-precedence"
+description: "Wire handoff state into parent changes and child session-start precedence without confusing an absent flag with false."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "session-precedence"
+  - "fast-mode precedence"
+  - "explicit fast flag"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-parent-export-and-precedence"
-    last_updated_at: "2026-08-16T09:08:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence"
+    last_updated_at: "2026-08-16T15:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Wired session precedence; matrix rows verified"
+    next_safe_action: "Continue the 002-subagent-handoff workstream"
     blockers: []
-    key_files: []
+    key_files:
+      - "../../research/research.md"
+      - "../../001-fork-and-package/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-parent-export-and-precedence"
+      session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "/fast off is the explicit-false path; an absent flag never overrides inherited env."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 2: parent-export-and-precedence
+<!-- SPECKIT_LEVEL: 2 -->
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
-
----
+# Feature Specification: Phase 2: session-precedence
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-08-16 |
-| **Branch** | `scaffold/002-parent-export-and-precedence` |
-| **Parent Spec** | ../spec.md |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | `../spec.md` |
 | **Phase** | 2 of 3 |
 | **Predecessor** | 001-handoff-contract |
-| **Successor** | 003-child-apply-and-inheritance |
-| **Handoff Criteria** | [To be defined during planning] |
-<!-- /ANCHOR:metadata -->
+| **Successor** | 003-process-propagation |
+| **Handoff Criteria** | Toggle/flag writes and presence-aware session-start precedence pass their matrix; target gating remains intact |
 
----
+<!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the subagent handoff nested workstreams specification.
-
-**Scope Boundary**: [To be defined during planning]
+This child owns lifecycle wiring. The recommended contract is: explicit `--fast` true when present > inherited `PI_FAST_MODE_W_SUBAGENT_SUPPORT` value > persisted config. The flag's absent/default false value is not treated as an explicit false override; `/fast off` writes the normalized `0` handoff state.
 
 **Dependencies**:
-- [To be defined during planning]
+- `001-handoff-contract/`.
+- The identity/config baseline from `../../001-fork-and-package/`.
 
 **Deliverables**:
-- [To be defined during planning]
+- Parent writes after toggle/flag state changes.
+- Child `session_start` precedence helper with presence detection.
+- Tests for flag/env/config combinations and target-gated payload behavior.
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
 <!-- /ANCHOR:phase-context -->
-
----
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The Pi flag registry exposes a boolean default, so a plain false value cannot prove that the operator explicitly supplied a false flag. If lifecycle code treats every false as explicit, it will erase a parent's inherited true preference.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
+Make lifecycle state transitions deterministic by distinguishing explicit user intent from an absent flag, while leaving provider/model matching authoritative.
 
----
+<!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Write the handoff value after `/fast` changes and explicit `--fast` application.
+- Resolve effective state at `session_start` with presence-aware flag logic.
+- Persist only deliberate effective-state changes and write the normalized value back for later children.
+- Test flag/env/persisted precedence, invalid env fallback, and target gating.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Parser/writer implementation; see `001-handoff-contract/`.
+- Child process fixture and final README section; see `003-process-propagation/`.
+- Changes to service-tier selection or supported-target configuration.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
+| Fork `src/index.ts` | Modify | Wire lifecycle state transitions |
+| Fork `src/commands.ts` or flag helper | Modify if needed | Detect explicit flag presence without changing command semantics |
+| Fork `tests/` | Modify | Pin precedence and target-gating cases |
 
----
+<!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P0 - Blockers (MUST complete)
+### P0 - Blockers
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | An EXPLICITLY PRESENT `--fast` true outranks inherited env and persisted config; an absent or default-false flag does NOT override | Presence-aware test passes; absent/default false does not override env |
+| REQ-002 | Inherited `PI_FAST_MODE_W_SUBAGENT_SUPPORT` = `1`/`0` outranks persisted config only when no explicit flag is present | Matrix tests cover both values and config disagreement |
+| REQ-003 | Invalid or unset inherited env falls through to persisted config | Tests show no guessing; both cases resolve to `config.enabled` |
+| REQ-004 | Handoff never bypasses model/target matching | Existing payload tests remain green and negative cases stay unchanged |
+| REQ-006 | An explicit false (`/fast off`, or `--no-fast` where the flag API exposes the negation token) overrides inherited `1` and persisted config | Matrix test proves explicit false disables fast mode despite inherited enable |
 
-### P1 - Required (complete OR user-approved deferral)
+### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-005 | The effective state is exported to the env after parent toggle/flag changes (one writer); children read it only at `session_start` and never overwrite the parent-owned value | Toggle/session-start tests observe normalized `1`/`0` and no child overwrite |
+
 <!-- /ANCHOR:requirements -->
-
----
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
+- **SC-001**: Every precedence row has one expected state and one objective test.
+- **SC-002**: A child can inherit state without changing the parent process.
 
----
+<!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
+| Risk | Flag default masks explicit presence | Inherited true can be lost | Inspect raw argv/flag presence or equivalent API signal |
+| Risk | State write occurs before config persistence | Child sees a state that cannot be restored | Define write/persist ordering and test it |
 
----
+<!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Resolved: `/fast off` remains the explicit-false path; no `--no-fast` flag was added, and an absent flag never overrides inherited state.
+
 <!-- /ANCHOR:questions -->
 
----
+## RELATED DOCUMENTS
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Parent:** `../spec.md`
+- **Contract:** `../001-handoff-contract/spec.md`
+- **Research:** `../../research/research.md`

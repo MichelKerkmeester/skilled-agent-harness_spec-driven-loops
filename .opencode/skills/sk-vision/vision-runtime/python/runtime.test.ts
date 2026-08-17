@@ -1,13 +1,25 @@
 import { describe, expect, it, afterAll } from "bun:test";
 import { spawn } from "node:child_process";
 import { mkdtempSync, writeFileSync, existsSync } from "node:fs";
-import { tmpdir } from "node:os";
+import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
 import { deflateSync, crc32 } from "node:zlib";
 
 const REPO = join(import.meta.dir, "..");
-const VENV_PYTHON = join(REPO, ".venv", "bin", "python");
 const RUNTIME = join(REPO, "python", "runtime.py");
+
+// The runtime auto-provisions its interpreter under the user cache on first
+// model load. Prefer that provisioned venv, then a developer-local one, then
+// the system python, so the test stays hermetic without a committed venv.
+function resolvePython(): string {
+  const candidates = [
+    join(homedir(), ".cache", "sk-vision", "venv", "bin", "python"),
+    join(REPO, ".venv", "bin", "python"),
+    "python3",
+  ];
+  return candidates.find((c) => c === "python3" || existsSync(c)) ?? "python3";
+}
+const VENV_PYTHON = resolvePython();
 
 function chunk(type: string, data: Buffer): Buffer {
   const c = Buffer.concat([Buffer.from(type, "ascii"), data]);
