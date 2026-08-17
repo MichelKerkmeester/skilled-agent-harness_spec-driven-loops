@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+cache-behavior,pi-cache-optimizer,,routing,manual,,,cache-behavior,,PASS,"All 7 manual-testing-playbook scenarios passed against the real extension. The command surface reported correctly, before_provider_request injected prompt_cache_key on an openai-compatible payload, preserved a caller key, and the env opt-out suppressed injection. Per-scenario verdicts are in results.json."

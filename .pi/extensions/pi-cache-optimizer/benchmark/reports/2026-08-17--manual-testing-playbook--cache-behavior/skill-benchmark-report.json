@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "pi-cache-optimizer",
+    "rootRel": ".pi/extensions/pi-cache-optimizer"
+  },
+  "executor": null,
+  "model": null,
+  "variant": "cache-behavior",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "cache-behavior",
+      "verdict": "PASS",
+      "reason": "All 7 manual-testing-playbook scenarios passed against the real extension. The command surface reported correctly, before_provider_request injected prompt_cache_key on an openai-compatible payload, preserved a caller key, and the env opt-out suppressed injection. Per-scenario verdicts are in results.json.",
+      "stage": "routing",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "cache-behavior",
+      "evidence": [
+        "results.json"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "results.json",
+          "status": "verified",
+          "bytes": 1913,
+          "sha256": "a7f3b444809b6ef66d93161a9a9137242987cb04a5d1ad5a4f6e1a573e60b419"
+        }
+      ]
+    }
+  ],
+  "supersedes": [],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-17T14:03:48.728Z",
+    "evidenceClass": "unit",
+    "evidenceArtifacts": [
+      {
+        "path": "results.json",
+        "status": "verified",
+        "bytes": 1913,
+        "sha256": "a7f3b444809b6ef66d93161a9a9137242987cb04a5d1ad5a4f6e1a573e60b419"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "cache-behavior",
+    "stage": "routing",
+    "dispatch": "manual",
+    "evidenceClass": "unit",
+    "variant": "cache-behavior",
+    "command": "node --import jiti/register --test benchmark/scenario-run.test.ts",
+    "runtime": "node",
+    "nodeVersion": "v25.6.1",
+    "requireDurableEvidence": true,
+    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/pi-cache-optimizer/benchmark/evidence",
+    "payloadFixture": "{\"model\":\"gpt-4o\",\"messages\":[],\"prompt_cache_key\":\"fake-session\"}",
+    "executorNotApplicableReason": "deterministic in-process harness; no external executor",
+    "modelNotApplicableReason": "extension code exercised directly; no model was invoked"
+  }
+}

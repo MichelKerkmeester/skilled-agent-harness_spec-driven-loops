@@ -1,0 +1,59 @@
+{
+  "subject": "pi-cache-optimizer",
+  "variant": "cache-behavior",
+  "date": "2026-08-17",
+  "total": 7,
+  "pass": 7,
+  "fail": 0,
+  "results": [
+    {
+      "id": "CACHE-001",
+      "name": "Enable reports enabled",
+      "verdict": "PASS",
+      "reason": "enable reported at info severity",
+      "evidence": "notify=\"✅ Pi Cache Optimizer enabled for this Pi process. Local footer stats w\" (info)"
+    },
+    {
+      "id": "CACHE-002",
+      "name": "Disable reports disabled",
+      "verdict": "PASS",
+      "reason": "disable reported at warning severity",
+      "evidence": "notify=\"⏸️ Pi Cache Optimizer disabled for this Pi process. Local footer stats\" (warning)"
+    },
+    {
+      "id": "CACHE-003",
+      "name": "Footer mode config persists",
+      "verdict": "PASS",
+      "reason": "footer mode set to session and confirmed",
+      "evidence": "notify=\"✅ Footer mode set to session. Persistent config overrides PI_CACHE_OPT\""
+    },
+    {
+      "id": "CACHE-004",
+      "name": "Invalid footer mode shows usage",
+      "verdict": "PASS",
+      "reason": "usage message shown for invalid mode",
+      "evidence": "notify=\"Usage: /cache-optimizer config footer-mode total|session|process\nCurre\""
+    },
+    {
+      "id": "CACHE-005",
+      "name": "Injects prompt_cache_key",
+      "verdict": "PASS",
+      "reason": "hook injected a non-empty prompt_cache_key",
+      "evidence": "prompt_cache_key=\"fake-session\""
+    },
+    {
+      "id": "CACHE-006",
+      "name": "Preserves a caller-supplied key",
+      "verdict": "PASS",
+      "reason": "existing caller key left unchanged",
+      "evidence": "prompt_cache_key=\"caller-key\""
+    },
+    {
+      "id": "CACHE-007",
+      "name": "Env opt-out disables injection",
+      "verdict": "PASS",
+      "reason": "no cache key injected while opt-out env is set",
+      "evidence": "opt-out set; prompt_cache_key=undefined"
+    }
+  ]
+}
