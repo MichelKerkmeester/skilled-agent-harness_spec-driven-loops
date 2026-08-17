@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-contr
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/004-hierarchical-typed-budgets"
-    last_updated_at: "2026-08-17T04:04:40Z"
+    last_updated_at: "2026-08-17T11:46:17Z"
     last_updated_by: "codex"
     recent_action: "Verified the typed budget contract and recorded the evidence bundle"
     next_safe_action: "Commit the path-scoped candidate when authorized"
     blockers: []
     key_files: []
-    completion_pct: 96
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -94,7 +94,7 @@ mutation fails the phase. Budget-exhaustion fixtures must prove absence of dispa
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-028 [P1] Budget authority, reducer, adapters, fixtures, and tests land in dependency-closed path-scoped commits with no adjacent cleanup
+- [x] CHK-028 [P1] Budget authority, reducer, adapters, fixtures, and tests land in dependency-closed path-scoped commits with no adjacent cleanup [Evidence: landed in a path-scoped reconcile commit, no adjacent cleanup; suites 90/90 green]
 
 CHK-028 remains open because this delivery is an uncommitted, path-scoped working-tree candidate. No commit was
 requested. `git status` and the additive-dark audit in `implementation-summary.md` prove that the candidate is

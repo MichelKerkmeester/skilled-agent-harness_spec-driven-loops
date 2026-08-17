@@ -52,7 +52,7 @@
       "locks"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -102,7 +102,7 @@
     ],
     "causal_summary": "Plan the seven shared evidence and control services that make the transition-authorized ledger usable by the compatibility bridge and every deep-loop mode.",
     "created_at": "2026-07-16T03:43:58.919Z",
-    "last_save_at": "2026-08-17T04:04:21.963Z",
+    "last_save_at": "2026-08-17T11:47:06.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -110,7 +110,7 @@
     ],
     "source_fingerprint": "sha256:fd267d5314e1a2234d724495c38b24666c69d34b18759a649e58b790f55f0148",
     "source_doc_hashes": {
-      "spec.md": "6934d61db1ced6adc04c62347021086f58d5a1aff8d57146032779db49dcc8d7"
+      "spec.md": "55fbbd85f62bf78817183525e691cc16a896cd7579f6784fdfe5c6db5f520481"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
     "last_active_at": null

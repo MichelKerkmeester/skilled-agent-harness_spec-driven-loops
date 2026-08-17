@@ -37,7 +37,7 @@
       "services"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -87,7 +87,7 @@
     ],
     "causal_summary": "Live-tools unblock, authorized-ledger substrate, evidence and control services, compatibility and rollback bridge, durable fan-out orchestration, novelty projections, and convergence and health.",
     "created_at": "2026-08-13T09:22:21.078Z",
-    "last_save_at": "2026-08-17T04:04:24.542Z",
+    "last_save_at": "2026-08-17T11:47:06.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -95,7 +95,7 @@
     ],
     "source_fingerprint": "sha256:2df3f3a414ef2fb8db416cebcbbecfacc1d251d058e6a2588c4c73b652c06b40",
     "source_doc_hashes": {
-      "spec.md": "74428388aa8ecac767d367392367288651c9568171040fc41aae56b510beb2f0"
+      "spec.md": "64fe10ef281e5cab87f686c7c600d4120bc61196014a9707e5c77d1763fa13e3"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration",
     "last_active_at": null

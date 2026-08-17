@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan independent budget, novelty-decay, coverage, wall-time, and cycle clocks whose deterministic earliest firing terminates the loop and records a replayable, typed termination cause.",
     "created_at": "2026-07-16T03:43:53.268Z",
-    "last_save_at": "2026-08-17T04:04:09.383Z",
+    "last_save_at": "2026-08-17T11:46:24.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19c41c819f39e2c0ff989b7358683d91ba74b5edcf16e50a95204464c316853e",
+    "source_fingerprint": "sha256:d60ce9323ddd01b5e95fa1c47c27ac84984dd64dd7de73e86771fd073d3a5f5d",
     "source_doc_hashes": {
-      "spec.md": "a22c156452847ba9ed9e4369f54416a04857fae578aea43598305a6550110ffe",
-      "plan.md": "370e37c815698fc5150a5e78d8e4c7be065b9942f59ae4c720cf278da2f29ca7",
-      "tasks.md": "cf14638a65cf852394e6c5591f3452c8ded6e7c22e66db4fd681a3c9caeb68cf",
-      "checklist.md": "4233c4d2db2127f7d1c3ae0ff1ea6482889bc37cd0168f1327214926a1395f70",
-      "implementation-summary.md": "184dd9430462e61737fdf9df9ce7f0102afbd6d19b20df7e272641e1bdaf6fed"
+      "spec.md": "68ebc8a577fc9ac216d54748d2f6275ff5f4b529a82af1a435dc32624262bfca",
+      "plan.md": "cced373d9db940c716b19c5f7bcef5fa3c3af7f37558e358c8a540bc56b67b89",
+      "tasks.md": "f635c24133041cc7183b15b61c2d46b9561e2823ce17421fc4e218a820e8d1c2",
+      "checklist.md": "502c11de41038e46ac063d6d2bbefb51b021a3b80f983275a66634e297a63bfc",
+      "implementation-summary.md": "5add535080702bf2eaacb83430c9f968b5b3f3dcbab46f1a98dd9702c9fb9fa9"
     },
     "last_active_child_id": null,
     "last_active_at": null
