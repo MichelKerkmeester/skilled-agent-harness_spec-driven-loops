@@ -1,20 +1,20 @@
 ---
 title: "sk-vision"
-description: "Local vision for text-only coding models — grounded OCR, inspect, detect, and pixel analysis from a private Moondream runtime in OpenCode and Pi."
+description: "Local vision for text-only coding models — grounded OCR, inspect, detect, and pixel analysis from a private Moondream runtime in OpenCode, Pi, Cursor, and Devin."
 trigger_phrases:
   - "screenshot OCR"
   - "attached image"
   - "mockup"
   - "error.png"
   - "local vision"
-version: 0.1.2.0
+version: 0.1.3.0
 ---
 
 # sk-vision
 
 > Text-only coding models get to see screenshots, mockups, and error images — grounded OCR, layout, detect, and pixel-analysis evidence from a private Moondream runtime, fully local and free.
 
-Attach an image or name a file path, and the model reads it: exact OCR, structured scene reads, object detection, colors, image diffing, cropping, and more — through 13 `sk_vision_*` tools served to both OpenCode and Pi.
+Attach an image or name a file path, and the model reads it: exact OCR, structured scene reads, object detection, colors, image diffing, cropping, and more — through 13 `sk_vision_*` tools served to OpenCode, Pi, Cursor, and Devin.
 
 ---
 
@@ -122,12 +122,13 @@ The runtime exposes **13** `sk_vision_*` tools: `inspect`, `detect`, `point`, `o
 
 ## 7. HOST ADAPTERS
 
-The skill owns the adapter source under `hooks/`; each host loads it through a symlink or re-export:
+OpenCode and Pi load an in-process adapter from the skill's `hooks/` source; Cursor and Devin are MCP-only and share one MCP server:
 
 - **OpenCode** — source `hooks/opencode/sk-vision.js`, loaded via `.opencode/plugins/sk-vision.js`. Auto-inspect uses a 2s grace and never awaits full GPU work.
 - **Pi** — source `hooks/pi/sk-vision.ts`, loaded via `.pi/extensions/sk-vision.ts` (relative symlink). Registers the 13 tools via `pi.registerTool`; `session_shutdown` closes the runtime client.
+- **Cursor & Devin** — no in-process plugin API, so they attach the 13 tools over MCP. A shared stdio server (`vision-runtime/src/mcp/server.ts` → `dist/mcp-server.js`) is launched by Cursor via `.claude/mcp.json` (through the `.cursor/mcp.json` symlink chain) and by Devin via `.devin/mcp_config.json`.
 
-Both sources are also mirrored to the shared hook fleet at `.opencode/hooks/sk-vision/{pi,opencode}`. Skill owns source; every other path is a symlink or re-export.
+The in-process sources are mirrored to the shared hook fleet at `.opencode/hooks/sk-vision/{pi,opencode}`. Skill owns source; every other path is a symlink, re-export, or MCP config.
 
 ---
 

@@ -19,6 +19,17 @@ await Bun.build({
   },
 });
 
+// Bundle the MCP stdio server so the MCP-only hosts (Cursor, Devin) can launch
+// the 13 tools independently of the in-process plugin. Kept in the package because
+// it needs the MCP SDK dependency that resolves inside vision-runtime.
+await Bun.build({
+  entrypoints: [resolve(root, "src/mcp/server.ts")],
+  outdir: dist,
+  target: "bun",
+  format: "esm",
+  naming: "mcp-server.[ext]",
+});
+
 // Ship the Python runtime alongside so the plugin can find it without the repo.
 const pyDist = resolve(dist, "python");
 await mkdir(pyDist, { recursive: true });
@@ -39,4 +50,4 @@ await Bun.build({
   },
 });
 
-console.log("built dist/plugin.js + dist/python/runtime.py + hooks/opencode/sk-vision.js");
+console.log("built dist/plugin.js + dist/mcp-server.js + dist/python/runtime.py + hooks/opencode/sk-vision.js");
