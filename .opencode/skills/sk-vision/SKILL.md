@@ -2,7 +2,7 @@
 name: sk-vision
 description: "Local vision for text-only models: OCR, inspect, detect, and pixel analysis on screenshots and mockups via a private Moondream runtime in OpenCode, Pi, Cursor, and Devin."
 allowed-tools: [Read, Bash]
-version: 0.1.3.0
+version: 0.1.3.1
 ---
 
 <!-- Keywords: screenshot OCR, attached image, mockup, error.png, local vision, moondream, grounded evidence, sk_vision_ocr, sk_vision_inspect, cursor mcp, devin mcp, sk-vision -->
@@ -165,7 +165,7 @@ OpenCode and Pi expose in-process plugin APIs, so the skill owns their adapter s
 
 - **OpenCode** — `hooks/opencode/sk-vision.js` registers the 13 tools and auto-inspects attached images with a 2-second grace before message submit, injecting a `<SK-VISION>` evidence block without awaiting the full GPU run. Loaded via `.opencode/plugins/sk-vision.js`.
 - **Pi** — `hooks/pi/sk-vision.ts` is a factory default export that registers the 13 tools via `pi.registerTool` and closes the runtime client on `session_shutdown`. Loaded via `.pi/extensions/sk-vision.ts` (relative symlink).
-- **Cursor & Devin (MCP-only)** — a shared MCP stdio server (`vision-runtime/src/mcp/server.ts`, built to `dist/mcp-server.js`) exposes the same 13 tools over the Model Context Protocol. It stays in the runtime package because it needs the MCP SDK dependency. Cursor attaches it through the `.claude/mcp.json` entry (reached via the `.cursor/mcp.json → .mcp.json` symlink chain); Devin attaches it via `.devin/mcp_config.json`. Both launch `node …/dist/mcp-server.js`.
+- **Cursor & Devin (MCP-only)** — no in-process plugin API, so they share one MCP stdio server (`vision-runtime/src/mcp/server.ts`, built to `dist/mcp-server.js`; it stays in the runtime package because it needs the MCP SDK). The per-host MCP configs live under `hooks/` beside the in-process adapters: `hooks/devin/mcp_config.json` (Devin loads it via the `.devin/mcp_config.json` symlink) and `hooks/cursor/mcp.json` (the portable Cursor entry; in this repo Cursor reaches the server through the shared `.claude/mcp.json` entry via the `.cursor/mcp.json → .mcp.json` chain). Both launch `node …/dist/mcp-server.js`. See `hooks/README.md` for the four-host model.
 
 ### Environment variables
 
@@ -255,6 +255,6 @@ The authoritative behavior lives in the code; when this doc and the code disagre
 
 ## 7. INTEGRATION
 
-- **Host load paths** — in-process hosts load from the skill's `hooks/` source: `.opencode/plugins/sk-vision.js` (OpenCode) and `.pi/extensions/sk-vision.ts` (Pi), mirrored to `.opencode/hooks/sk-vision/{pi,opencode}`. MCP-only hosts load the shared server: Cursor via `.claude/mcp.json` (through the `.cursor/mcp.json` symlink chain) and Devin via `.devin/mcp_config.json`, both launching `dist/mcp-server.js`.
+- **Host load paths** — all four hosts source from `hooks/`. In-process: `hooks/pi/` and `hooks/opencode/`, loaded via `.pi/extensions/sk-vision.ts` and `.opencode/plugins/sk-vision.js`, mirrored to `.opencode/hooks/sk-vision/{pi,opencode}`. MCP: `hooks/devin/mcp_config.json` (loaded via the `.devin/mcp_config.json` symlink) and `hooks/cursor/mcp.json` (portable; Cursor reaches it via the `.claude/mcp.json` entry through the `.cursor/mcp.json` chain), both launching `dist/mcp-server.js`.
 - **Related skills** — `sk-code` builds and verifies the runtime package; `sk-doc` / `sk-create-skill` own this SKILL.md and README shape and its validation gate.
 - **Tool usage** — the 13 `sk_vision_*` tools are the public surface; the JSON-RPC methods above are internal and reached only through the adapters, never called directly by the host model.
