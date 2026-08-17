@@ -27,13 +27,12 @@ Fast Mode is off by default and only affects the exact provider/model pairs list
 
 ## 3. INSTALL
 
-This fork is not published to npm. Install it from its local path in this repository:
+This fork is not published to npm. It ships inside this repository under `.pi/extensions/` and loads automatically, because `.pi/settings.json` lists it in the `packages` array as `extensions/pi-fast-mode-w-subagent-support`.
+
+To install it into another Pi setup, run this from the repo root:
 
 ```bash
-# user scope
-pi install ./packages/pi-fast-mode-w-subagent-support
-# or project-local
-pi install -l ./packages/pi-fast-mode-w-subagent-support
+pi install -l .pi/extensions/pi-fast-mode-w-subagent-support
 ```
 
 ---

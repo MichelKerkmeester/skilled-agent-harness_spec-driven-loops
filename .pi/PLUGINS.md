@@ -69,7 +69,7 @@ in `auth.json` / `models-store.json`. The file is a symlinked canonical
 ---
 
 #### pi-fast-mode-w-subagent-support (v0.3.0)
-Local fork at `packages/pi-fast-mode-w-subagent-support` — based on [pi-openai-fast-mode](https://github.com/johncmunson/pi-openai-fast-mode) commit `9b28456`
+Local fork at `.pi/extensions/pi-fast-mode-w-subagent-support` — based on [pi-openai-fast-mode](https://github.com/johncmunson/pi-openai-fast-mode) commit `9b28456`
 
 Toggles OpenAI / OpenAI-Codex priority `service_tier` for the configured GPT-5.4–5.6 targets via `/fast [on|off|toggle]` and the `--fast` startup flag. Propagates the fast-mode preference to child Pi processes through the strict `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1|0` environment handoff. Replaces the former `pi-gpt-fast-mode`.
 
