@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/045-cli-pi-bridge-cursor-devin",
+  "spec_folder": "cli-external-orchestration/045-cli-pi-bridge-cursor-devin",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli pi bridge cursor devin",
+      "pi models cursor devin oauth",
+      "expose cursor devin models in pi",
+      "cli pi native model bridge",
+      "cli pi bridge phase parent 045"
+    ],
+    "key_topics": [
+      "cli",
+      "bridge",
+      "cursor",
+      "devin",
+      "models",
+      "oauth",
+      "expose",
+      "native",
+      "model",
+      "phase",
+      "parent",
+      "ships"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Native Bridge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli pi` ships its own model picker (`/models`) backed by pi's own provider roster",
+    "created_at": "2026-08-17T09:56:22.539Z",
+    "last_save_at": "2026-08-17T11:48:26.031Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:82ff33ade9642e2bfc789cfd31bd71ab617a85510e5720f6abc03ca9f1c31d41",
+    "source_doc_hashes": {
+      "spec.md": "5f41e2fe924ed62af287e8f87d4adbd585a0b53095e829ca0590a2d5eb826920"
+    },
+    "last_active_child_id": "cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities",
+    "last_active_at": null
+  }
+}

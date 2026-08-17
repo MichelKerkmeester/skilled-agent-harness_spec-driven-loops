@@ -1,0 +1,48 @@
+I'll orchestrate this deep-research fan-out lineage. This is an autonomous child-dispatch with bound write authority (the lineage dir), so Gate 3 is pre-resolved per the CLAUDE.md autonomous child-dispatch exemption. Let me start by reading the workflow contract and the spec folder context.Let me read the rest of the SKILL.md and examine the existing lineage structure for reference.Let me examine the reference lineage files and the existing glm-devin metadata to understand the exact formats I need to produce.Let me read the reference lineage files to understand exact formats, plus the state-format and convergence references.Let me read the remaining reference formats and the actual CLI source surfaces I need to research.Let me read the synthesis output format and the actual CLI source surfaces to ground my independent research.I now have a complete understanding of the file formats and the research domain. Let me set up my task plan and begin the actual investigation of the CLI surfaces to ground my independent research.Now let me investigate the actual CLI surfaces. I'll read the repo's CLI reference files and check the live installed surfaces in parallel.Now let me read the Devin CLI reference and check the live installed surfaces (pi docs, devin auth, cursor about) to ground my findings in real evidence.Strong live evidence gathered. Let me check the pi custom-provider docs, devin/cursor auth surfaces, and the auth.json provider keys (keys only, no values).Comprehensive live evidence gathered. Let me read the pi custom-provider and models docs, plus check devin's model/acp surfaces.I have comprehensive independent live evidence. Let me mark investigation complete and begin phase_init. I'll create the directory structure and write the init artifacts.Now let me write the init artifacts: config, state.jsonl, strategy.md, findings-registry.json, and dashboard.md.Now the strategy.md:phase_init complete. Now running the main loop. **Iteration 1: Pi /model picker architecture.** Let me write the iteration findings, delta, and append state records.Now append the iteration record and dashboard_generated event to state.jsonl, then update strategy/registry/dashboard for iteration 1.Now update the strategy.md machine-owned sections for iteration 1:Now update findings-registry.json and dashboard.md for iteration 1:Iteration 1 complete. Now **Iteration 2: Cursor auth, api2.cursor.sh, ToS.** Let me fetch the Cursor ToS and staff forum thread to ground the ToS findings independently.Independent first-hand ToS evidence verified. Now writing iteration 2 findings:Now update strategy/registry/dashboard for iteration 2:Iteration 2 complete. Now **Iteration 3: Devin OAuth, credentials.toml, session REST, ToS.** Let me fetch the Cognition Platform ToS and Devin API docs independently.Independent first-hand Cognition ToS §2.3 and Devin API overview verified. Now writing iteration 3:Now update strategy/registry/dashboard for iteration 3:Iteration 3 complete. Now **Iteration 4: Local OpenAI gateway fronting official CLIs.** Let me fetch the community proxy projects to ground the gateway findings independently.Two distinct proxy architectures verified first-hand. Now writing iteration 4:Continuing the deep-research loop. Writing the iteration 4 delta and state records, then updating strategy/registry/dashboard.Now update strategy/registry/dashboard for iteration 4:Iteration 4 complete. Now **Iteration 5: Ranked verdict and parent-purpose alignment** — the final iteration. Writing it now:All 5 iterations complete. Now updating todos and proceeding to **phase_synthesis**: writing `research/research.md`, `research/resource-map.md`, final dashboard, and final findings-registry.Now the final dashboard and final findings-registry:Now the final findings-registry with all 5 questions resolved and all 27 findings:Now update the strategy.md final state and mark the loop complete in state.jsonl:Now append the synthesis_complete event to state.jsonl and verify the final artifact tree:All artifacts present. Marking synthesis complete and outputting the lineage-complete signal:FANOUT_LINEAGE_COMPLETE:glm-devin
+
+---
+
+## Deep Research Lineage Complete — glm-devin
+
+**Lineage:** `glm-devin` (executor: cli-devin / glm-5-2)
+**Spec folder:** `specs/cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities`
+**Write surface:** `research/lineages/glm-devin/`
+**Iterations:** 5 of 5 (stop policy: max-iterations)
+**Questions answered:** 5/5
+**Key findings:** 27
+**Ruled-out directions:** 6
+**Verdict:** **not-feasible-now**
+
+### Summary
+
+No path to natively expose Cursor and Devin subscription-backed models in Pi's `/model` picker is both technically clean and account-safe as of August 2026:
+
+| Path | Verdict | Evidence |
+|------|---------|----------|
+| P1 Built-in Pi Cursor/Devin provider | Ruled out (iter 1) | No built-in provider in `providers.md` or live `auth.json` |
+| P2 Cursor token-reuse HTTP | Ruled out (iter 2) | Cursor staff ruling + ToS §1.5; account ban risk; `api2.cursor.sh` is private Connect-RPC |
+| P3 Devin token-reuse HTTP | Ruled out (iter 3) | Cognition ToS §2.3 analog; `credentials.toml` is full account credential; `api.devin.ai` v3 is session REST |
+| P4 Reverse-engineered proxy | Ruled out (iter 4) | ToS §1.5(i); exemplar `Cursor-To-OpenAI` uses reverse-engineered protobuf |
+| P5 CLI-spawn gateway | Not recommended (iter 4-5) | Technically feasible but ToS-ambiguous; nested-harness breaks Pi tool loop; duplicates existing `cli-cursor`/`cli-devin` executor |
+
+**Recommendation:** Do not build a native Pi Cursor/Devin bridge now. Keep the existing `cli-cursor`/`cli-devin` executor dispatch as the supported surface. Track two vendor feature requests: (1) Cursor public OpenAI-compatible `/v1/chat/completions`, (2) Devin raw-completions surface. Re-evaluate when either ships.
+
+### Artifacts
+
+| Artifact | Path |
+|----------|------|
+| Config | `deep-research-config.json` |
+| State log | `deep-research-state.jsonl` (15 records) |
+| Strategy | `deep-research-strategy.md` |
+| Dashboard | `deep-research-dashboard.md` |
+| Findings registry | `findings-registry.json` (27 findings, 5 resolved, 6 ruled-out) |
+| Iterations | `iterations/iteration-001.md` through `iteration-005.md` |
+| Deltas | `deltas/iter-001.jsonl` through `iter-005.jsonl` |
+| Research synthesis | `research/research.md` |
+| Resource map | `research/resource-map.md` |
+
+### Residual UNKNOWNs
+
+- Exact Cursor token persistence location (keychain vs Chromium) — not dumped
+- Whether consumer Devin Pro can mint v3 `cog_` service-user keys
+- Whether Cursor staff would explicitly bless CLI-spawn gateways (genuine ToS ambiguity)
