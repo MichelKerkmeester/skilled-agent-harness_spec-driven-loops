@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":9,"run":9,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.45,"status":"complete","focus":"Cross-host generalization & consolidated fixes","findingsCount":4,"keyQuestions":["shared pattern?"],"answeredQuestions":["trust at tool scope; env in host scope; runtime owns guards"],"timestamp":"2026-08-17T18:27:00.000Z","durationMs":35000,"sessionId":"fanout-pi-flash-or-1786990303810-r1u8es","generation":1}
+{"type":"finding","id":"f-it009-001","severity":"P1","label":"4-host matrix: trust at tool/server scope; env in host's own config scope","iteration":9}
+{"type":"finding","id":"f-it009-002","severity":"P1","label":"6-item consolidated fix list: 3 code (runtime+tools) + 3 docs (skills/hooks)","iteration":9}
+{"type":"finding","id":"f-it009-003","severity":"P2","label":"Shared runtime means code fixes propagate to all 4 hosts","iteration":9}
+{"type":"observation","id":"obs-it009-001","classification":"real","label":"Fixes ranked: 1-3 code (low risk, all hosts), 4-6 docs (zero runtime risk)","iteration":9}
+{"type":"ruled_out","direction":"per-host copies of shared runtime logic","reason":"all hosts already share runtime","iteration":9}

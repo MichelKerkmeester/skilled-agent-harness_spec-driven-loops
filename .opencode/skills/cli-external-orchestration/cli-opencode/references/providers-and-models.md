@@ -84,6 +84,15 @@ OpenCode Go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and 
 | `opencode-go/glm-5.3` | — | Z.AI GLM 5.3 via the Go gateway; list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
 | `opencode-go/qwen3.8-max` | — | Qwen 3.8 Max via the Go gateway; a live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
 
+### openrouter
+
+OpenRouter gateway (base `https://openrouter.ai/api/v1`); pass the full three-segment `openrouter/<upstream>/<model-id>` to `--model`. Confirm live slugs via `opencode models openrouter`. The DeepSeek Flash `-latest` variant is a reasoning model and is pinned to `--variant max` by the same policy as the direct and opencode-go flash ids.
+
+| Model id | Default? | Notes |
+|----------|----------|-------|
+| `openrouter/deepseek/deepseek-v4-flash-latest` | — | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--variant max` by policy |
+| `openrouter/openai/gpt-5.6-luna` | — | GPT-5.6 Luna via OpenRouter |
+
 ---
 
 ## 3. DEFAULTS & QUICK INVOCATION

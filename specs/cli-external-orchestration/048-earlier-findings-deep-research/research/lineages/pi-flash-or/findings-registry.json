@@ -1,0 +1,71 @@
+{
+  "openQuestions": [
+    "Implementation follow-up: add settings to all 13 tools or only inspect/ocr first (recommend inspect/ocr)"
+  ],
+  "resolvedQuestions": [
+    "F1: Cursor per-server MCP approval is intended security posture; pre-approve via --approve-mcps (CI) / cursor-agent mcp enable (operator) / ~/.cursor/mcp.json",
+    "F2: Devin MCP tools confirmation-gated; permissions.allow mcp__sk-vision__* in .devin/config.local.json is the least-privileged fix; dangerous too broad",
+    "F3: moondream2 1-token = model-capability gap exposed by unenforced _require_task(ocr); md3 doubling = preview-checkpoint sampling artifact; fix = enforce guard + docs + settings",
+    "F4: Cursor reads own scope (.cursor/mcp.json symlinked); per-server env must live there (env block or envFile), not only .claude/mcp.json",
+    "F5: Incorrect padding = strict b64decode on unpadded/URL-safe data URL in _resolve_image; settings dropped at TS schema boundary; fixes = tolerant decoder + 3-layer settings passthrough"
+  ],
+  "keyFindings": [
+    {
+      "id": "f-f1",
+      "title": "F1: Cursor MCP approval is intended; --approve-mcps / mcp enable / ~/.cursor/mcp.json are the pre-approval paths",
+      "classification": "expected",
+      "fix": "docs change in cli-cursor skill",
+      "iteration": 2
+    },
+    {
+      "id": "f-f2",
+      "title": "F2: Devin MCP allowlist via permissions.allow mcp__server__tool avoids --permission-mode dangerous",
+      "classification": "expected-with-contract-gap",
+      "fix": "docs change in cli-devin skill",
+      "iteration": 3
+    },
+    {
+      "id": "f-f3",
+      "title": "F3: unenforced _require_task(ocr) exposes moondream2 capability gap; md3 doubling is preview sampling artifact",
+      "classification": "bug + expected",
+      "fix": "P0 guard in runtime.py + SKILL.md OCR model docs + settings (F5b) enabler",
+      "iteration": 4
+    },
+    {
+      "id": "f-f4",
+      "title": "F4: Cursor env must be authored in .cursor/mcp.json scope (env block/envFile); chain documented",
+      "classification": "expected-with-docs-gap",
+      "fix": "hooks README + skill docs",
+      "iteration": 6
+    },
+    {
+      "id": "f-f5",
+      "title": "F5: strict b64decode on unpadded data URL + settings dropped at TS schema boundary",
+      "classification": "bug",
+      "fix": "P0 tolerant decoder + P0 3-layer settings passthrough (types/photon/tools)",
+      "iteration": 7
+    }
+  ],
+  "ruledOutDirections": [
+    "Cursor trusted/autoApprove mcp.json fields (unsupported)",
+    "Devin --permission-mode smart (unavailable)",
+    "Devin mcp__* blanket allow (too broad)",
+    "sk-vision 1-token generation cap (settings=None, kestrel 768)",
+    "sk-vision text-doubling synthesis bug (verbatim return)",
+    "env read from .claude/mcp.json as general Cursor mechanism",
+    "TS-side-only base64 fix (Python owns decoder)",
+    "per-host settings plumbing (shared layer)"
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 1,
+    "resolvedQuestions": 5,
+    "keyFindings": 5,
+    "convergenceScore": 0.35,
+    "coverageBySources": {
+      "local-code": 12,
+      "web": 6,
+      "local-docs": 8
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "level": 1,
+  "specFolder": "system-deep-loop/040-deep-research-stop-policy-forwarding",
+  "description": "`/deep:research` documents a `--stop-policy=max-iterations` flag for forced-depth runs, but the flag never reached the runtime",
+  "keywords": [
+    "deep",
+    "research",
+    "documents",
+    "stop-policy",
+    "max-iterations",
+    "flag",
+    "forced-depth",
+    "runs",
+    "never",
+    "reached",
+    "runtime"
+  ],
+  "lastUpdated": "2026-08-17T18:44:46.642Z",
+  "specId": "040",
+  "folderSlug": "deep-research-stop-policy-forwarding",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

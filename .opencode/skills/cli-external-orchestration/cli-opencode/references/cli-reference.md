@@ -260,6 +260,7 @@ No supported providers are configured on this machine. Run one:
   - `opencode auth login`                   (Kimi For Coding plan — Kimi/Moonshot coding subscription; provider kimi-for-coding; model kimi-for-coding/k2p7)
   - `opencode auth login`                   (Z.AI GLM Coding Plan — GLM coding subscription; provider zai-coding-plan; model zai-coding-plan/glm-5.2)
   - `opencode providers login openai`       (OpenAI premium alternative — paid)
+  - `opencode providers login openrouter`   (OpenRouter gateway — model form openrouter/<upstream>/<id>, e.g. openrouter/deepseek/deepseek-v4-flash-latest, openrouter/openai/gpt-5.6-luna)
 Which would you like to set up? Confirm when login finishes; the skill will retry the original dispatch.
 ```
 

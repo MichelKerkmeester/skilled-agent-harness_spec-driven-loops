@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":4,"run":4,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.65,"status":"complete","focus":"F3a moondream2 truncation root cause","findingsCount":3,"keyQuestions":["F3 gen cap or decode?"],"answeredQuestions":["F3 neither: missing guard + wrong default"],"timestamp":"2026-08-17T18:22:00.000Z","durationMs":45000,"sessionId":"fanout-pi-flash-or-1786990303810-r1u8es","generation":1}
+{"type":"finding","id":"f-it004-001","severity":"P0","label":"handle_ocr lacks _require_task(ocr); declared in MOONDREAM3_ONLY_TASKS but unenforced","iteration":4}
+{"type":"finding","id":"f-it004-002","severity":"P1","label":"1-token truncation is model-capability gap (moondream2), not a sk-vision token cap","iteration":4}
+{"type":"finding","id":"f-it004-003","severity":"P1","label":"Durable fix: enforce guard + document SK_VISION_MODEL=moondream3 for ocr","iteration":4}
+{"type":"observation","id":"obs-it004-001","classification":"real","label":"kestrel default AR_DEFAULT_MAX_NEW_TOKENS=768; skill passes settings=None","iteration":4}
+{"type":"ruled_out","direction":"sk-vision 1-token generation cap","reason":"settings=None; kestrel default 768","iteration":4}

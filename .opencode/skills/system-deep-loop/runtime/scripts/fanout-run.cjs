@@ -662,12 +662,17 @@ function findSynthesisRecord(records) {
  * @param {Object} params - Validation inputs.
  * @returns {{complete: boolean, reason: string}} Verdict and, when incomplete, why.
  */
-function completionFromArtifacts({ lineageDir, lineage, records }) {
+function completionFromArtifacts({ lineageDir, lineage, records, loopType }) {
   if (!lineageDir) return { complete: false, reason: 'no lineage artifact directory to check' };
   const dir = lineageDir;
 
-  const reportPath = path.join(dir, 'review-report.md');
-  if (!fs.existsSync(reportPath)) return { complete: false, reason: 'no review-report.md on disk' };
+  // The terminal report artifact differs by loop type: a research lineage leaves research.md,
+  // a review lineage leaves review-report.md. Research also never emits a review-style
+  // synthesis event (its terminal event is maxIterationsReached), so this artifact check is
+  // the authoritative completion signal for a forced-depth research run.
+  const reportName = loopType === 'research' ? 'research.md' : 'review-report.md';
+  const reportPath = path.join(dir, reportName);
+  if (!fs.existsSync(reportPath)) return { complete: false, reason: `no ${reportName} on disk` };
 
   let iterationFiles = 0;
   try {
@@ -683,16 +688,23 @@ function completionFromArtifacts({ lineageDir, lineage, records }) {
 }
 
 function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPolicy, lineageDir }) {
-  if (loopType !== 'review' || stopPolicy !== 'max-iterations') return null;
+  // Forced-depth validation applies to both loop types: stopPolicy=max-iterations means the
+  // lineage must run every iteration and convergence before the cap is telemetry only. The
+  // iteration count is the shared signal, but the terminal completion artifact differs — a
+  // research lineage leaves research.md plus a terminal maxIterationsReached event (no review-
+  // style synthesis event), a review lineage leaves review-report.md — so completion detection
+  // is loop-type-aware below.
+  if ((loopType !== 'review' && loopType !== 'research') || stopPolicy !== 'max-iterations') return null;
   if (typeof lineage.iterations !== 'number' || lineage.iterations <= 0) {
     return 'stopPolicy=max-iterations requires a positive lineage iteration cap';
   }
 
+  const stateFile = lineageStateLogName(loopType) || 'the lineage state log';
   if (!stateRead || stateRead.missing) {
-    return 'missing deep-review-state.jsonl for max-iterations stop-policy validation';
+    return `missing ${stateFile} for max-iterations stop-policy validation`;
   }
   if (stateRead.parseError) {
-    return `could not parse deep-review-state.jsonl: ${stateRead.parseError}`;
+    return `could not parse ${stateFile}: ${stateRead.parseError}`;
   }
 
   const records = stateRead.records;
@@ -705,7 +717,7 @@ function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPo
     // `synthesis`. Discarding a finished review over the word it chose destroys
     // hours of real analysis to enforce a spelling. Fall back to what the lineage
     // actually left on disk, which is the evidence the event was only claiming.
-    const evidence = completionFromArtifacts({ lineageDir, lineage, records });
+    const evidence = completionFromArtifacts({ lineageDir, lineage, records, loopType });
     if (evidence.complete) return null;
     return `missing synthesis event and ${evidence.reason} for max-iterations stop-policy validation`;
   }
@@ -1746,11 +1758,12 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 
 // Mirrors isFlashMaxPinnedModel in executor-config.ts. DeepSeek V4 Flash is a
 // reasoning model pinned to the max thinking tier by operator policy — it is never
-// dispatched below max. Bare on cli-pi, provider-prefixed on cli-opencode; the devin
-// `-max` uid bakes the tier into the id and is intentionally not matched. Duplicated as
-// a plain function so the pin lands inside the synchronous command builders below.
+// dispatched below max. Bare on cli-pi, provider-prefixed on cli-opencode, and the
+// OpenRouter `-latest` variant is the same family and pinned too; the devin `-max` uid
+// bakes the tier into the id and is intentionally not matched. Duplicated as a plain
+// function so the pin lands inside the synchronous command builders below.
 function isFlashMaxPinnedModel(model) {
-  return /(^|\/)deepseek-v4-flash$/.test(model);
+  return /(^|\/)deepseek-v4-flash(-latest)?$/.test(model);
 }
 
 function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
@@ -1845,6 +1858,10 @@ const PI_ALLOWED_MODELS = new Set([
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
+  // OpenRouter-routed variants; the id keeps the upstream provider path so
+  // `${provider}/${model}` composes the full openrouter/<upstream>/<model> selector.
+  'deepseek/deepseek-v4-flash-latest',
+  'openai/gpt-5.6-luna',
 ]);
 const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
 
@@ -2050,6 +2067,11 @@ const PI_MODEL_PROVIDERS = new Map([
   ['mimo-v2.5-pro', 'xiaomi'],
   ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
   ['qwen3.8-max', 'opencode-go'],
+  // OpenRouter fronts these `-latest`/hosted tunes. The model id already carries the
+  // upstream provider path, so `${provider}/${model}` yields the 3-segment
+  // openrouter/<upstream>/<model> selector Pi's OpenRouter roster expects.
+  ['deepseek/deepseek-v4-flash-latest', 'openrouter'],
+  ['openai/gpt-5.6-luna', 'openrouter'],
 ]);
 // Map each shared reasoningEffort level to the name Pi's `--thinking` uses (from the
 // installed `pi --help`): the config's 'none' is Pi's 'off', and the config's 'ultra'

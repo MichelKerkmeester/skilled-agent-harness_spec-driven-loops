@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":1,"run":1,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.95,"status":"complete","focus":"Broad survey & corpus mapping","findingsCount":3,"keyQuestions":["F3 root cause?","F5 root cause?"],"answeredQuestions":["What code does each finding touch?"],"timestamp":"2026-08-17T18:19:30.000Z","durationMs":47000,"sessionId":"fanout-pi-flash-or-1786990303810-r1u8es","generation":1}
+{"type":"observation","id":"obs-it001-001","classification":"real","label":"MCP server reuses shared 13-tool definitions; createSkVisionMcpServer registers tools from skVisionTools()","iteration":1}
+{"type":"observation","id":"obs-it001-002","classification":"real","label":"handle_ocr does not call _require_task; segment does; ocr is in MOONDREAM3_ONLY_TASKS","iteration":1}
+{"type":"observation","id":"obs-it001-003","classification":"real","label":"_resolve_image data path uses strict base64.b64decode; path bypasses decode","iteration":1}
+{"type":"finding","id":"f-it001-001","severity":"P1","label":"MCP schema gaps are host-independent (shared defs)","iteration":1}
+{"type":"ruled_out","direction":"N/A iteration 1","reason":"survey only","iteration":1}
