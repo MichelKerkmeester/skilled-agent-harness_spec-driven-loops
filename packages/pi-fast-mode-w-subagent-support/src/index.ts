@@ -1,3 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Extension
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import type {
@@ -18,6 +26,11 @@ import { getFastModePayload, toModelRef } from "./payload";
 import { clearFastStatus, updateFastStatus } from "./status";
 import type { FastModeConfig, ModelRef } from "./types";
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
+/** Options for creating the Fast Mode extension factory. */
 export type FastModeExtensionOptions = {
   /** Directory containing the extension entry point; used to detect project-local package installs. */
   extensionDir?: string;
@@ -25,7 +38,15 @@ export type FastModeExtensionOptions = {
   agentDir?: string;
 };
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const DEFAULT_EXTENSION_DIR = dirname(fileURLToPath(import.meta.url));
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function notifyError(
   ctx: Pick<ExtensionContext, "hasUI" | "ui">,
@@ -36,6 +57,18 @@ function notifyError(
   ctx.ui.notify(message, "error");
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
+/** Create an extension factory that wires Fast Mode into Pi lifecycle events.
+ *
+ * The session-start wiring resolves the scoped configuration, then applies the
+ * command flag and inherited handoff preference before updating the status.
+ *
+ * @param options - Optional extension and agent-directory overrides.
+ * @returns A factory that registers Fast Mode behavior with Pi.
+ */
 export function createPiFastModeExtension(
   options: FastModeExtensionOptions = {},
 ): ExtensionFactory {
@@ -112,7 +145,7 @@ export function createPiFastModeExtension(
           await saveCurrent(ctx);
           writeHandoff(process.env, config.enabled);
           updateFastStatus(ctx, config, currentModel);
-        } catch (error) {
+        } catch (error: unknown) {
           notifyError(ctx, error);
         }
       },
@@ -135,7 +168,7 @@ export function createPiFastModeExtension(
         writeHandoff(process.env, config.enabled);
 
         updateFastStatus(ctx, config, currentModel);
-      } catch (error) {
+      } catch (error: unknown) {
         notifyError(ctx, error);
       }
     });
@@ -155,7 +188,7 @@ export function createPiFastModeExtension(
         if (configPath) {
           await saveConfigToPath(configPath, config);
         }
-      } catch (error) {
+      } catch (error: unknown) {
         notifyError(ctx, error);
       } finally {
         clearFastStatus(ctx);
@@ -164,6 +197,11 @@ export function createPiFastModeExtension(
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
+
+/** Default Fast Mode extension factory. */
 const piFastModeExtension = createPiFastModeExtension();
 
 export default piFastModeExtension;

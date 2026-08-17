@@ -35,13 +35,13 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
       {
@@ -57,6 +57,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -66,12 +72,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -165,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -172,12 +178,6 @@
       },
       {
         "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Installing the fork beside another extension that registers `/fast` and `--fast` creates load-order ambiguity",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-16T10:22:56.887Z",
+    "last_save_at": "2026-08-16T18:45:56.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4cfa773c2bd9c97084d513b558d1102b8c9c859d5f3a75a11e98dccc03cef50",
+    "source_fingerprint": "sha256:b9f4750cda912e9000bd19a1c54bee899376b3213ebd2e48b14b28f1a9986adf",
     "source_doc_hashes": {
-      "spec.md": "b13156afd647ddc0c08f364acb7f2ac42ce7f75c735af346e21af919e8a77053",
-      "plan.md": "ed51fdcba687bff8baf569a0d02e36ebcdc0a46570df40a4e364d470c3fed53a",
-      "tasks.md": "fb0053aa617a239e5338347c2ea21e1fe66b765373285cf317f6799b9bb9c18b",
-      "checklist.md": "8aedf9e67ad49565ce5c88f69de2ab67e45ae9bfc06c75347139c68f89b6e4a4",
-      "implementation-summary.md": "6e35d620b24d94df338f7e939bd10e943c9aff3d86da674ab541986ef6c79503"
+      "spec.md": "1eb0a1f3f696075c7b06af51acc88aa43149a445ada41bed84b13b83ef550614",
+      "plan.md": "2bc6ba4234bf1882eacbf5056c6d50c241a0d2214d98d6df465802639ad711f3",
+      "tasks.md": "126203ff67d08ae536180cea3c62c903506e59ccac7e0788a58879bce982ef0f",
+      "checklist.md": "94fe14b66bfe99276288498aaa98241e9e5419598c9ede576618b1a4549d9671",
+      "implementation-summary.md": "abf4d6081e21e5ebcedeecb4e33e1da0d07cdb827a20fdfd03e9814895f581af"
     },
     "last_active_child_id": null,
     "last_active_at": null

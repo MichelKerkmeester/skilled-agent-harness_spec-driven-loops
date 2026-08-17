@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition"
-    last_updated_at: "2026-08-16T11:00:00Z"
-    last_updated_by: "pi-coding-agent"
-    recent_action: "Planned install transition"
-    next_safe_action: "Capture pre-state before settings mutation"
+    last_updated_at: "2026-08-16T18:45:28Z"
+    last_updated_by: "claude-code"
+    recent_action: "Install transition done: fork installed, pi-gpt removed, /fast owned"
+    next_safe_action: "Continue to 003-live-verification-and-sync"
     blockers: []
     key_files: ["../../../../../.pi/settings.json", "../../research/research.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-16-pi-fast-mode-w-subagent-support"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,14 +50,14 @@ Record the exact pre-state, remove `pi-gpt-fast-mode`, install the decided fork 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Deterministic suite and typecheck pass.
-- [ ] Rollback snapshot path is writable and excludes secrets.
-- [ ] Install source decision is recorded.
+- [x] Deterministic suite and typecheck pass.
+- [x] Rollback snapshot path is writable and excludes secrets.
+- [x] Install source decision is recorded.
 
 ### Definition of Done
-- [ ] Fork is present and legacy package absent.
-- [ ] Bare `/fast` belongs to the fork.
-- [ ] Settings/npm post-state matches the intended transition.
+- [x] Fork is present and legacy package absent.
+- [x] Bare `/fast` belongs to the fork.
+- [x] Settings/npm post-state matches the intended transition.
 
 
 <!-- /ANCHOR:quality-gates -->
@@ -106,15 +106,15 @@ First install uses a LOCAL PATH source (`pi install -l <local-package-path>`), n
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Capture pre-state (`.pi/settings.json` copy + `pi list` + `npm ls` inventory) and record the local-path source decision.
+- [x] Capture pre-state (`.pi/settings.json` copy + `pi list` + `npm ls` inventory) and record the local-path source decision.
 
 ### Phase 2: Core Implementation
-- [ ] Remove `pi-gpt-fast-mode` and install the fork from the local path as ONE bounded operation.
-- [ ] Reconcile `.pi/settings.json` and npm scopes.
+- [x] Remove `pi-gpt-fast-mode` and install the fork from the local path as ONE bounded operation.
+- [x] Reconcile `.pi/settings.json` and npm scopes.
 
 ### Phase 3: Verification
-- [ ] Run `pi list`, npm inventory, settings inspection, and `get_commands`; assert fork source path and bare `/fast` ownership.
-- [ ] Stop before live checks if bare ownership is wrong.
+- [x] Run `pi list`, npm inventory, settings inspection, and `get_commands`; assert fork source path and bare `/fast` ownership.
+- [x] Stop before live checks if bare ownership is wrong.
 
 
 <!-- /ANCHOR:phases -->

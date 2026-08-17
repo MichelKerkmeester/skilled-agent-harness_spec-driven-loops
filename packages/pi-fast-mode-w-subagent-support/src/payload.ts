@@ -1,3 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Payload Gate
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   DEFAULT_SERVICE_TIER,
   SUPPORTED_PROVIDERS,
@@ -6,12 +14,22 @@ import {
   type ModelRef,
 } from "./types";
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const SUPPORTED_PROVIDER_SET = new Set<string>(SUPPORTED_PROVIDERS);
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
+/** Check whether a value is a non-null object record. */
 export function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
+/** Convert an unknown model value into a provider/model reference. */
 export function toModelRef(model: unknown): ModelRef | undefined {
   if (!isRecord(model)) return undefined;
 
@@ -22,10 +40,12 @@ export function toModelRef(model: unknown): ModelRef | undefined {
   return { provider, id };
 }
 
+/** Check whether a provider is supported by Fast Mode. */
 export function isSupportedProvider(provider: string): boolean {
   return SUPPORTED_PROVIDER_SET.has(provider);
 }
 
+/** Find the configured target matching the active model. */
 export function findMatchingTarget(
   model: ModelRef | undefined,
   targets: FastTarget[],
@@ -40,6 +60,7 @@ export function findMatchingTarget(
   );
 }
 
+/** Add the selected service tier to a provider request payload. */
 export function applyFastModePayload(
   payload: unknown,
   serviceTier: string,
@@ -52,6 +73,13 @@ export function applyFastModePayload(
   };
 }
 
+/** Apply Fast Mode to a compatible provider request payload when eligible.
+ *
+ * @param config - Current Fast Mode configuration.
+ * @param model - Active model reference, if available.
+ * @param payload - Provider request payload to evaluate.
+ * @returns The updated payload when eligible, otherwise `undefined`.
+ */
 export function getFastModePayload(
   config: FastModeConfig,
   model: ModelRef | undefined,
