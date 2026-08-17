@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/016-cursor-devin-hook-entries"
-    last_updated_at: "2026-08-17T13:42:29.000Z"
+    last_updated_at: "2026-08-17T15:17:23.000Z"
     last_updated_by: "claude"
-    recent_action: "Added hooks/cursor and hooks/devin MCP config entries and a hooks README."
+    recent_action: "Added hooks/cursor and hooks/devin plus their hook-hub mirror symlinks."
     next_safe_action: "Author the phase spec docs and commit the sk-vision-scoped changes on v4."
     blockers: []
     key_files:
@@ -94,6 +94,7 @@ Represent Cursor and Devin under `hooks/` alongside Pi and OpenCode, with a READ
 ### In Scope
 - Add `hooks/devin/mcp_config.json` (skill-owned) and symlink `.devin/mcp_config.json` to it.
 - Add `hooks/cursor/mcp.json` as the portable Cursor entry (Cursor reads the shared `.claude/mcp.json` in this repo).
+- Mirror the cursor and devin sources into the shared hook hub at `.opencode/hooks/sk-vision/{cursor,devin}`, matching the existing `{pi,opencode}` mirrors.
 - Add `hooks/README.md` documenting the four-host model.
 - Update SKILL.md/README host-adapter text to point at the new entries.
 
@@ -109,7 +110,8 @@ Represent Cursor and Devin under `hooks/` alongside Pi and OpenCode, with a READ
 | `.opencode/skills/sk-vision/hooks/cursor/mcp.json` | Create | Portable Cursor MCP config entry |
 | `.opencode/skills/sk-vision/hooks/README.md` | Create | Four-host adapter model |
 | `.devin/mcp_config.json` | Update | Now a symlink to the owned source |
-| `.opencode/skills/sk-vision/SKILL.md`, `README.md` | Update | Point host-adapter text at the new entries; version 0.1.3.1 |
+| `.opencode/hooks/sk-vision/{cursor,devin}/` | Create | Hub mirror symlinks back to the two config sources |
+| `.opencode/skills/sk-vision/SKILL.md`, `README.md`, `hooks/README.md` | Update | Point host-adapter text at the new entries + hub mirrors; version 0.1.3.1 |
 
 ### Verification evidence
 
@@ -150,6 +152,7 @@ Represent Cursor and Devin under `hooks/` alongside Pi and OpenCode, with a READ
 - [x] MCP transport unchanged. Evidence: config command MCP `tools/list` returned 13.
 - [x] Skill validates. Evidence: `ci-skill-root-metadata.cjs` `OK [S] sk-vision`; package `--check: PASS`.
 - [x] Four-host model documented. Evidence: `hooks/README.md` plus SKILL.md §3 / README §7.
+- [x] Hub mirrors resolve. Evidence: `.opencode/hooks/sk-vision/{cursor/mcp.json,devin/mcp_config.json}` symlinks resolve back to the sources, alongside the existing `{pi,opencode}` mirrors.
 - [ ] Changes committed on v4. Evidence: pending the commit.
 <!-- /ANCHOR:success-criteria -->
 

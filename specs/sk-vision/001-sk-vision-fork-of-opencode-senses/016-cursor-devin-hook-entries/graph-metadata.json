@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The `hooks/` directory showed only `pi/` and `opencode/`",
     "created_at": "2026-08-17T13:44:41.648Z",
-    "last_save_at": "2026-08-17T13:44:41.648Z",
+    "last_save_at": "2026-08-17T15:19:08.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62d789ec2d66ed0495efa4f9f6551cb7c0db5d61b680dbe8d60cbf9e02d9aa04",
+    "source_fingerprint": "sha256:316d78859bf830f76bcadf81d78135da752e7ec984758e273800b40db6c953a1",
     "source_doc_hashes": {
-      "spec.md": "8d34aac9aced582c982d845de54b3c2e52c8b005ba19f3532b146294bec231d2",
-      "plan.md": "955d43f6334be90cfe9ad704e09de8617ba7ab970d1b6b6233abe8bb5f06ef27",
-      "tasks.md": "226a9282e9180ae58b0022a046894cc557892819fffb8fa5ad6e53fc3ef326b1",
-      "implementation-summary.md": "b97a5d5a2b50e41af7b49c1bf840366386086a27ec83c8a1d9632d16f0f98fb5"
+      "spec.md": "2409a3dc9a5823126545592654d0f7fbc0d7145c6afd996e71d7ca9fd8a25dc7",
+      "plan.md": "8898211a6c7576024a5a1c3830005ed4e45a32a28e52227bd730ff5bf7808af5",
+      "tasks.md": "787228622c72071c345752034f1f087c5ba1d17a517cd0efbf7a1edd8c324c13",
+      "implementation-summary.md": "db6cb67b8900d961a774a9f5d90e4fe9f67855453d3e4e74a3da779895250c68"
     },
     "last_active_child_id": null,
     "last_active_at": null

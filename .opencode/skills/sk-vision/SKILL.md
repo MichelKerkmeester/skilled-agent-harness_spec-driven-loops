@@ -255,6 +255,6 @@ The authoritative behavior lives in the code; when this doc and the code disagre
 
 ## 7. INTEGRATION
 
-- **Host load paths** — all four hosts source from `hooks/`. In-process: `hooks/pi/` and `hooks/opencode/`, loaded via `.pi/extensions/sk-vision.ts` and `.opencode/plugins/sk-vision.js`, mirrored to `.opencode/hooks/sk-vision/{pi,opencode}`. MCP: `hooks/devin/mcp_config.json` (loaded via the `.devin/mcp_config.json` symlink) and `hooks/cursor/mcp.json` (portable; Cursor reaches it via the `.claude/mcp.json` entry through the `.cursor/mcp.json` chain), both launching `dist/mcp-server.js`.
+- **Host load paths** — all four hosts source from `hooks/` and are mirrored into the shared hook hub at `.opencode/hooks/sk-vision/{pi,opencode,cursor,devin}`. In-process: `hooks/pi/` and `hooks/opencode/`, loaded via `.pi/extensions/sk-vision.ts` and `.opencode/plugins/sk-vision.js`. MCP: `hooks/devin/mcp_config.json` (loaded via the `.devin/mcp_config.json` symlink) and `hooks/cursor/mcp.json` (portable; Cursor reaches it via the `.claude/mcp.json` entry through the `.cursor/mcp.json` chain), both launching `dist/mcp-server.js`.
 - **Related skills** — `sk-code` builds and verifies the runtime package; `sk-doc` / `sk-create-skill` own this SKILL.md and README shape and its validation gate.
 - **Tool usage** — the 13 `sk_vision_*` tools are the public surface; the JSON-RPC methods above are internal and reached only through the adapters, never called directly by the host model.
