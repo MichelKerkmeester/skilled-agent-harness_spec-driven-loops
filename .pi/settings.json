@@ -35,7 +35,7 @@
     "npm:pi-statusline",
     "npm:pi-subagents",
     "npm:pi-web-access",
-    "../../MEGA/Development/Code_Environment/Public/packages/pi-fast-mode-w-subagent-support"
+    "extensions/pi-fast-mode-w-subagent-support"
   ],
   "extensions": [],
   "hideThinkingBlock": false,

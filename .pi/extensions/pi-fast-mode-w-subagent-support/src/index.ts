@@ -22,7 +22,7 @@ import {
   syncSupportedTargets,
 } from "./config";
 import { readHandoff, writeHandoff } from "./handoff";
-import { getFastModePayload, toModelRef } from "./payload";
+import { findMatchingTarget, getFastModePayload, toModelRef } from "./payload";
 import { clearFastStatus, updateFastStatus } from "./status";
 import type { FastModeConfig, ModelRef } from "./types";
 
@@ -55,6 +55,29 @@ function notifyError(
   if (!ctx.hasUI) return;
   const message = error instanceof Error ? error.message : String(error);
   ctx.ui.notify(message, "error");
+}
+
+// Confirm the toggle in chat. Enabling on a model that is not a configured
+// target is a no-op for the active request, so warn instead of confirming: the
+// flag is set but nothing changes until the model is an OpenAI target.
+function notifyFastState(
+  ctx: Pick<ExtensionContext, "hasUI" | "ui">,
+  config: FastModeConfig,
+  model: ModelRef | undefined,
+): void {
+  if (!ctx.hasUI) return;
+  if (!config.enabled) {
+    ctx.ui.notify("Fast Mode disabled", "info");
+    return;
+  }
+  if (findMatchingTarget(model, config.targets)) {
+    ctx.ui.notify("Fast Mode enabled", "info");
+    return;
+  }
+  ctx.ui.notify(
+    "Fast Mode has no effect on the current model. It applies only to the configured OpenAI GPT models.",
+    "warning",
+  );
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -145,6 +168,7 @@ export function createPiFastModeExtension(
           await saveCurrent(ctx);
           writeHandoff(process.env, config.enabled);
           updateFastStatus(ctx, config, currentModel);
+          notifyFastState(ctx, config, currentModel);
         } catch (error: unknown) {
           notifyError(ctx, error);
         }
