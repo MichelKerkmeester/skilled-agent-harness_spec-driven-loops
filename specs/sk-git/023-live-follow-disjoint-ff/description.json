@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/023-live-follow-disjoint-ff",
+  "description": "Relax the primary-checkout reconcile and follower so a behind-only checkout fast-forwards through git's own --ff-only even while carrying unrelated work-in-progress; only the rebase/publish path keeps the clean-tree boundary.",
+  "keywords": [
+    "live-sync",
+    "reconcile",
+    "follower",
+    "fast-forward",
+    "ff-only",
+    "dirty",
+    "checkout",
+    "disjoint",
+    "rebase",
+    "primary",
+    "git",
+    "sk-git"
+  ],
+  "lastUpdated": "2026-08-17T00:00:00.000Z",
+  "specId": "023",
+  "folderSlug": "live-follow-disjoint-ff",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
