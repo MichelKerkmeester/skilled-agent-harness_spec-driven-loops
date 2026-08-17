@@ -78,8 +78,8 @@ Fast Mode starts disabled and only applies to exact configured provider/model pa
 }
 ```
 
-User-scoped state is stored under `~/.pi/agent/extensions/pi-fast-mode-w-subagent-support/config.json`.
-Project-scoped state is stored under `./.pi/pi-fast-mode-w-subagent-support/config.json`.
+User-scoped state is stored in `~/.pi/agent/extensions/pi-fast-mode-w-subagent-support-config.json`.
+Project-scoped state is stored in `./.pi/pi-fast-mode-w-subagent-support-config.json`.
 
 ---
 

@@ -259,6 +259,7 @@ describe("piFastModeExtension runtime behavior", () => {
       enabled: true,
     });
     expectFastIndicatorShown(ctx);
+    expect(ctx.ui.notify).toHaveBeenLastCalledWith("Fast Mode enabled", "info");
 
     await commands.get("fast")!.handler("toggle", ctx);
     expect(
@@ -267,6 +268,7 @@ describe("piFastModeExtension runtime behavior", () => {
       enabled: false,
     });
     expectFastIndicatorHidden(ctx);
+    expect(ctx.ui.notify).toHaveBeenLastCalledWith("Fast Mode disabled", "info");
 
     await commands.get("fast")!.handler("on", ctx);
     expect(
@@ -275,6 +277,7 @@ describe("piFastModeExtension runtime behavior", () => {
       enabled: true,
     });
     expectFastIndicatorShown(ctx);
+    expect(ctx.ui.notify).toHaveBeenLastCalledWith("Fast Mode enabled", "info");
   });
 
   it("/fast off persists disabled state and hides status", async () => {
@@ -300,6 +303,7 @@ describe("piFastModeExtension runtime behavior", () => {
     await commands.get("fast")!.handler("off", ctx);
 
     expectFastIndicatorHidden(ctx);
+    expect(ctx.ui.notify).toHaveBeenLastCalledWith("Fast Mode disabled", "info");
     expect(
       JSON.parse(await readFile(getUserConfigPath(agentDir), "utf8")),
     ).toMatchObject({
@@ -314,6 +318,35 @@ describe("piFastModeExtension runtime behavior", () => {
     );
 
     expect(unchanged).toBeUndefined();
+  });
+
+  it("warns when Fast Mode is enabled on a model that is not a configured target", async () => {
+    const root = await makeTempDir();
+    const cwd = join(root, "project");
+    const agentDir = join(root, "agent");
+    await mkdir(cwd, { recursive: true });
+
+    const { pi, handlers, commands } = createFakePi(false);
+    createPiFastModeExtension({
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+      agentDir,
+    })(pi as any);
+
+    const ctx = makeCtx(cwd, { provider: "openai", id: "gpt-4" });
+    await runHandler(
+      handlers,
+      "session_start",
+      { type: "session_start", reason: "startup" },
+      ctx,
+    );
+
+    await commands.get("fast")!.handler("on", ctx);
+
+    expect(ctx.ui.notify).toHaveBeenLastCalledWith(
+      "Fast Mode has no effect on the current model. It applies only to the configured OpenAI GPT-5 models.",
+      "warning",
+    );
+    expectFastIndicatorHidden(ctx);
   });
 
   it("invalid /fast arguments notify usage without changing state", async () => {

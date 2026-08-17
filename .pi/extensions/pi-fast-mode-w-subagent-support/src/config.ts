@@ -229,12 +229,12 @@ export function parseConfigJson(
 
 /** Resolve the user-level configuration path. */
 export function getUserConfigPath(agentDir: string = getAgentDir()): string {
-  return join(agentDir, "extensions", PACKAGE_NAME, "config.json");
+  return join(agentDir, "extensions", `${PACKAGE_NAME}-config.json`);
 }
 
 /** Resolve the project-level configuration path. */
 export function getProjectConfigPath(cwd: string): string {
-  return join(resolve(cwd), ".pi", PACKAGE_NAME, "config.json");
+  return join(resolve(cwd), ".pi", `${PACKAGE_NAME}-config.json`);
 }
 
 /** Resolve the legacy user-level configuration path. */

@@ -269,6 +269,7 @@ _sandbox
 .pi/*.tmp
 .pi/modes.json
 .pi/deep-pi-stats.json*
+.pi/pi-fast-mode-w-subagent-support-config.json
 
 # ───────────────────────────────────────────
 # Project-specific specs (all providers)
