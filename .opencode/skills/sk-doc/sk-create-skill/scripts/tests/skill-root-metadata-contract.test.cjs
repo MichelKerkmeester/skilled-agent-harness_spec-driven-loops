@@ -48,6 +48,8 @@ const EXPECTED_CLASSES = {
   'system-deep-loop': contract.CLASS_HUB,
   'system-skill-advisor': contract.CLASS_STANDALONE,
   'system-spec-kit': contract.CLASS_STANDALONE,
+  'sk-communication': contract.CLASS_STANDALONE,
+  'sk-vision': contract.CLASS_STANDALONE,
 };
 
 let tmpRoot = null;
