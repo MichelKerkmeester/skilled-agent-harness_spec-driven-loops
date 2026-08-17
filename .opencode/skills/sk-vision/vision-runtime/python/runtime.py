@@ -47,6 +47,7 @@ verbatim into the cache before they reach this runtime.
 from __future__ import annotations
 
 import base64
+import binascii
 import hashlib
 import io
 import json
@@ -155,7 +156,17 @@ def _resolve_image(source: dict) -> Image.Image:
         data = source["data"]
         if "," in data:
             data = data.split(",", 1)[1]
-        return Image.open(io.BytesIO(base64.b64decode(data)))
+        # LLM-produced data URLs are frequently unpadded or use the URL-safe
+        # alphabet; normalise whitespace, translate URL-safe chars, and re-pad
+        # before decoding so a valid image is not rejected as "Incorrect padding".
+        data = "".join(data.split())
+        data = data.replace("-", "+").replace("_", "/")
+        data += "=" * (-len(data) % 4)
+        try:
+            raw = base64.b64decode(data)
+        except (binascii.Error, ValueError) as exc:
+            raise ValueError(f"source 'data' is not valid base64: {exc}") from exc
+        return Image.open(io.BytesIO(raw))
     raise ValueError(f"unsupported source type: {kind}")
 
 
@@ -464,6 +475,7 @@ def handle_ocr(params: dict) -> dict:
     prompt = OCR_PROMPTS.get(kind, OCR_PROMPTS["all"])
     image = _resolve_image(params["source"])
     model = _ensure_model(params.get("model"))
+    _require_task("ocr")
     res = _timed(
         model.query, image, question=prompt, settings=params.get("settings") or None
     )

@@ -314,6 +314,12 @@ The full flag glossary, permission modes, unique capabilities (`/handoff`, `run_
 
 - **`devin -p` is non-interactive and exits after one turn** — it prints the response to stdout and exits. For multi-turn work, use `devin -c` (continue) or `devin -r <session-id>` (resume). Do not expect a REPL from `-p`.
 - **`--permission-mode` defaults to `auto` (read-only auto-approve)** — file-modification tasks silently prompt or no-op without elevated mode. Pass `--permission-mode accept-edits` (or `dangerous` for full auto-approve) whenever the task requires edits. The `--sandbox` flag selects `autonomous` mode and is the only mode available in sandbox sessions.
+- **`devin -p` rejects MCP tool calls under `auto`/`accept-edits`** (and `smart` may be unavailable). Rather than `--permission-mode dangerous`, grant a least-privilege MCP allowlist in a machine-local config:
+```json
+// .devin/config.local.json
+{ "permissions": { "allow": ["mcp__<server>__*"] } }
+```
+Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `dangerous` for throwaway isolated runners.
 - **Always pass `--model` explicitly in scripts** — omitting it relies on the caller's `~/.config/devin/config.json` default, which may be a different model. Explicit means reproducible regardless of who runs it.
 - **Use `--` before every print-mode prompt** — `devin -p -- "list all TODO comments"` prevents the prompt from being parsed as CLI flags. The prompt must follow the separator, or load it with `--prompt-file`.
 

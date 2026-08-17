@@ -159,6 +159,8 @@ Runtime methods (the 13 tools map onto these): `ping`, `status`, `load`, `unload
 
 The runtime lazy-loads the model on the first inference request (default `moondream2`), keeps it warm across calls, and can be told to unload so the GPU is released back to the host model. `load` warms it explicitly, `unload` frees it, `status` reports load state, device, VRAM, and request count. `segment`, `reason`, and `ocr` require a Moondream 3.x checkpoint (`moondream2` lacks them — see `MOONDREAM3_ONLY_TASKS` in `runtime.py`).
 
+`sk_vision_ocr` requires a Moondream 3.x checkpoint — the default `moondream2` cannot transcribe text and now fails loudly (the runtime enforces the `ocr` task). Set `SK_VISION_MODEL=moondream3-preview` for OCR, and treat its output as approximately correct (a preview checkpoint can repeat tokens), verifying against ground truth when exactness matters.
+
 ### Host adapters
 
 OpenCode and Pi expose in-process plugin APIs, so the skill owns their adapter source under `hooks/` and each host loads it through a symlink or re-export. Cursor and Devin have no in-process plugin API — they attach tools only over MCP — so they share one MCP stdio server instead of a per-host adapter:

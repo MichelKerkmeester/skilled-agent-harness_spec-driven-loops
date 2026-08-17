@@ -188,6 +188,7 @@ export class PhotonProvider implements VisionProvider {
       question: request.question,
       reasoning: request.reasoning ?? false,
       spatial_refs: request.spatialRefs,
+      settings: request.settings,
     })) as { answer?: string; reasoning?: string };
     if (typeof res["answer"] !== "string") {
       throw new SkVisionError("EMPTY_RESULT", "model returned no answer", true);
@@ -223,6 +224,7 @@ export class PhotonProvider implements VisionProvider {
     const res = (await this.client.request("ocr", {
       source: await this.toSource(request.source),
       kind: request.kind ?? "all",
+      settings: request.settings,
     })) as { text?: string };
     return { text: res["text"] ?? "" };
   }
