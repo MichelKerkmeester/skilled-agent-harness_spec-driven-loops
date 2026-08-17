@@ -13,10 +13,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardenin
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/006-residual-finding-closeouts"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Reconciled to In Progress; REQ-002 closed 484076e32f, 028 test bar met"
-    next_safe_action: "Close 028 packet-hygiene, then REQ-001/REQ-004, or defer per operator"
+    last_updated_at: "2026-08-17T22:30:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed REQ-001 fixtures (6 modes), REQ-004 disposition, 028 hygiene; Complete"
+    next_safe_action: "None; packet Complete — parent 036 metadata reconcile is the epic step"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,21 +24,20 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "implementation-summary.md"
-    completion_pct: 45
-    open_questions:
-      - "Which fixture harness seams are available to emit every shadow-parity event stem without changing reducer behavior?"
-      - "Are the 028 packet-hygiene items in-scope for this closeout or operator-deferred, and is REQ-001 still deprioritized?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "The three source siblings stay landed and are read-only; every fix landed on runtime/test surfaces."
+      - "REQ-001 (022 REQ-005 full-surface fixtures) is closed across all six shadow-parity modes; the deep-alignment finding-chain coverage limit is surfaced as a candidate future harness improvement, not hidden."
       - "The F-011-01 sameReference change landed on this branch as commit 484076e32f with red-before/green-after plus a positive control."
-      - "The 028 substantive per-finding negative-test bar is met with verified commits; F-010-03 is covered by the existing suite and F-020-02 is a dispositioned low-severity item."
+      - "The 028 substantive per-finding negative-test bar plus the packet-hygiene (whole-gate delta 215/0, inventories, rollback, freshness-warning disposition) are closed; REQ-004 deferred items dispositioned."
 ---
 # Feature Specification: Residual Finding Closeouts (022 / 025 / 028)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 
-> This child is In Progress. REQ-002 (025 F-011-01) is closed and the 028 substantive per-finding negative-test bar is met, each with a verified commit on this branch; the closeout fixes landed on runtime/test surfaces, never on the source siblings. REQ-001 (022 REQ-005 fixtures), REQ-004 disposition, and the 028 packet-hygiene bookkeeping remain open. Each residual is still quoted from its source sibling and tracked here without reopening that sibling. See `implementation-summary.md` for the commit-level evidence.
+> This child is Complete. All three sibling residuals are closed: REQ-001 (022 REQ-005 full-surface fixtures) across all six shadow-parity modes with a formal per-mode closeout note, REQ-002 (025 F-011-01), and REQ-003 (028 open QA — substantive negative-test bar plus packet-hygiene). REQ-004 deferred items are dispositioned. Every fix landed on runtime/test surfaces, never on the source siblings, and every mode suite was re-run first-hand before shipping. One documented coverage limitation remains surfaced, not hidden: deep-alignment's six finding-chain fields are covered only by a proven structural-limit skip (`MAX_JSON_NODES = 10_000`), a candidate future harness improvement. See `implementation-summary.md` for the commit-level evidence and the closeout note.
 
 ---
 
@@ -50,10 +49,10 @@ _memory:
 | **Packet** | `system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/006-residual-finding-closeouts` |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-08-12 |
-| **Reconciled** | 2026-08-12 (REQ-002 closed; 028 substantive negative-test bar met; REQ-001/REQ-004 and 028 packet-hygiene open) |
-| **Branch** | Current worktree; no branch created |
+| **Reconciled** | 2026-08-17 (REQ-001 fixtures closed across six modes; REQ-004 dispositioned; 028 packet-hygiene closed) |
+| **Branch** | `skilled/v4.0.0.0` (also cherry-picked to `main`); no branch created |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-deep-loop/036-deep-loop-innovation` |
 | **Source siblings (read-only)** | `002-shadow-parity-independent-derivation`, `003-artifact-certificate-binding`, `006-fanout-dispatch-integrity` |
@@ -71,7 +70,7 @@ Three sibling phases under `036-deep-loop-innovation` landed their primary deliv
 
 The three residuals are:
 
-1. **022 — REQ-005 full-surface fixtures + formal closeout.** Blocker 1 (independent derivation / divergence-detectability) is discharged across all six shadow-parity modes, but REQ-005's full protected-surface fixture coverage remains open across all modes: only the event stems a mode's current fixture emits are empirically diffed field-by-field.
+1. **022 — REQ-005 full-surface fixtures + formal closeout.** Blocker 1 (independent derivation / divergence-detectability) is discharged across all six shadow-parity modes. At intake, REQ-005's full protected-surface fixture coverage was still open across all modes — only the event stems a mode's current fixture emitted were empirically diffed field-by-field. This closeout closed that gap (see the REQ-005 closeout note in `implementation-summary.md`).
 2. **025 — F-011-01 restore-authorization under-binding.** `resolveLifecycleAuthorization` resolves deletion/restoration authorization against `qualified_digest` only, not the full reference (which also carries `artifact_kind`), leaving a low-severity, near-zero-exposure gap that the same file already closes elsewhere with a `sameReference` primitive.
 3. **028 — open QA items.** The fan-out dispatch integrity packet landed its findings but left 21 checklist items unchecked (14 of them P0): a captured pre-edit baseline, per-finding negative tests, per-dispatch-kind containment tests, sink redaction, a rehearsed rollback, and a clean `validate.sh --strict` exit.
 
