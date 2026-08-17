@@ -75,7 +75,7 @@ function notifyFastState(
     return;
   }
   ctx.ui.notify(
-    "Fast Mode has no effect on the current model. It applies only to the configured OpenAI GPT-5 models.",
+    "Fast Mode has no effect on the current model. It applies only to the configured OpenAI GPT models.",
     "warning",
   );
 }

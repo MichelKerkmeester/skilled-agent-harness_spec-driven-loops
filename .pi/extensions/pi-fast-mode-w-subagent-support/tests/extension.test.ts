@@ -343,7 +343,7 @@ describe("piFastModeExtension runtime behavior", () => {
     await commands.get("fast")!.handler("on", ctx);
 
     expect(ctx.ui.notify).toHaveBeenLastCalledWith(
-      "Fast Mode has no effect on the current model. It applies only to the configured OpenAI GPT-5 models.",
+      "Fast Mode has no effect on the current model. It applies only to the configured OpenAI GPT models.",
       "warning",
     );
     expectFastIndicatorHidden(ctx);
