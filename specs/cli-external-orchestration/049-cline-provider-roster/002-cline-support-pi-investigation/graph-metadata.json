@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/048-cline-provider-roster/002-cline-support-pi-investigation",
-  "spec_folder": "cli-external-orchestration/048-cline-provider-roster/002-cline-support-pi-investigation",
-  "parent_id": "cli-external-orchestration/048-cline-provider-roster",
+  "packet_id": "cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation",
+  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation",
+  "parent_id": "cli-external-orchestration/049-cline-provider-roster",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -19,8 +19,9 @@
       "pi provider resolution cline plan",
       "cline pi investigation tasks",
       "pi cline provider tasks",
-      "cline pi investigation summary",
-      "pi cline parity verdict"
+      "cline pi investigation verdict",
+      "pi cline config-only feasible",
+      "add cline-pass to pi models.json"
     ],
     "key_topics": [
       "cline",
@@ -37,24 +38,19 @@
       "resolution"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      "plan.md",
-      "spec.md",
+      "scratch/pi-cline-findings.md",
       "implementation-summary.md",
-      "tasks.md"
+      "plan.md",
+      "tasks.md",
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "plan.md",
+        "name": "pi-cline-findings.md",
         "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "scratch/pi-cline-findings.md",
         "source": "derived"
       },
       {
@@ -64,19 +60,25 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Research Specification",
-        "kind": "proper_noun",
+        "name": "spec.md",
+        "kind": "doc",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Not Started",
+        "name": "Research Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -101,6 +103,12 @@
       },
       {
         "name": "Cline Provider Roster",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,17 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "cli pi's `/login` does not list Cline, so the operator cannot authenticate the Cline provider from pi and cannot select `cline-pass/cline-pass/deepseek-v4-flash` in pi's model picker — even though opencode already dispatches it",
     "created_at": "2026-08-18T08:28:11Z",
-    "last_save_at": "2026-08-18T09:27:23.104Z",
+    "last_save_at": "2026-08-18T13:12:41.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2842c7f8e908d495f2adc9679090da35fe9c660f3483ca7c300186a300b0b30",
+    "source_fingerprint": "sha256:acb36aa210186374bc0610283052c85fc4327a40d4030c0cd4344a32182d18af",
     "source_doc_hashes": {
-      "spec.md": "7c3c94921ef698f8774f69d7ea8a2d5fe6be8baeb3fd68827c07a78c580ea95d",
-      "plan.md": "91bf67ec65b794e11af3efbbde6e3feb88bd2258f12dfc9c71bf62173cd43f62",
-      "tasks.md": "ea33e965d341da7601f1a59835c1b82e70e84e699fdea4108ecf4b46340738c3",
-      "implementation-summary.md": "70eb90516d0d5fff1d078c5fb62aa9beb22f698a2f49577fb2164b75944a65e9"
+      "spec.md": "06fff371098a5c5f86339643b0ac4c9fbae4467132964ca017a3dbb8dd15712a",
+      "plan.md": "a764ee0abb6e43435a9eabf015a8105c8b0558b7bb1ec18eabe7da371ce652d0",
+      "tasks.md": "703e44d1e980ba6c9ee7501c8336c8c346605b4e3134c4f0662c64755324bedd",
+      "implementation-summary.md": "422d0b065022fa1b7f455832938674d8f8f0a9c235b8221b83fd15120060faff"
     },
     "last_active_child_id": null,
     "last_active_at": null

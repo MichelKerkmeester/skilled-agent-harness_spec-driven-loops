@@ -8,8 +8,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/048-cline-provider-roster/001-cline-deepseek-flash-cli-opencode"
-    last_updated_at: "2026-08-18T08:49:05Z"
+    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/001-cline-deepseek-flash-cli-opencode"
+    last_updated_at: "2026-08-18T11:12:25Z"
     last_updated_by: "claude"
     recent_action: "Roster add shipped; validate --strict clean"
     next_safe_action: "Proceed to Phase 2 pi investigation"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "session-048-001"
+      session_id: "session-049-001"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -53,7 +53,7 @@ The cli-opencode roster now documents the Cline provider. Before this, a dispatc
 
 ### Cline provider catalog entry
 
-`providers-and-models.md` gained a `### cline-pass` section describing the provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible), the three-segment model id, and the `cline` vs `cline-pass` naming trap (`opencode models cline` errors "Provider not found"). The entry states the real reasoning behavior taken from live metadata: `reasoning: true`, tiers `none`→`xhigh`, and **no `max` tier**, so the top thinking level is `--variant xhigh`. It also flags that the fan-out `--variant max` auto-pin does not apply — Cline Flash is a direct-dispatch roster entry, not a fan-out executor.
+`providers-and-models.md` gained a `### cline-pass` section describing the provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible), the three-segment model id, and the `cline` vs `cline-pass` naming trap (`opencode models cline` errors "Provider not found"). The entry states the real reasoning behavior taken from live metadata: `reasoning: true`, tiers `none`→`xhigh`, and **no `max` tier**, so the top thinking level is `--variant xhigh`. It also flags that the fan-out `--variant max` auto-pin does not apply — Cline Flash is a direct-dispatch roster entry, not a fan-out executor. Per operator request, the roster pins **`--variant xhigh` as the default effort** for Cline flash (its top thinking tier), stated in the provider prose, the model-row note, and the §4 effort table.
 
 ### Operator entry points
 
@@ -87,6 +87,7 @@ Every fact in the entry came from live `opencode models cline-pass --verbose` ou
 | State `--variant xhigh`, not `--variant max` | Cline's Flash exposes tiers only up to `xhigh`; it has no `max` tier, unlike the direct/opencode-go Flash ids the roster pins to `max` |
 | Keep Cline out of the fan-out executor registry | Its id matches the `deepseek-v4-flash` `--variant max` auto-pin regex, which Cline cannot satisfy; wiring it in is a separate, deliberate change outside this task's scope |
 | List-verify only (no live dispatch) | Matches the evidence bar of prior roster adds; a paid dispatch was not warranted for a catalog entry |
+| Pin default effort to `--variant xhigh` | Operator wants Extra High as the default for Cline flash; xhigh is its top tier (no `max`), matching the DeepSeek Flash top-tier-only policy. opencode has no per-model default-effort config key (schema exposes only agent-level `variant`), so it is a dispatch convention in the roster; the interactive TUI already remembers the effort per model |
 <!-- /ANCHOR:decisions -->
 
 ---

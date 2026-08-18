@@ -1,5 +1,23 @@
 {
   "providers": {
+    "cline-pass": {
+      "name": "Cline (cline.bot)",
+      "api": "openai-completions",
+      "baseUrl": "https://api.cline.bot/api/v1",
+      "apiKey": "{env:CLINE_API_KEY}",
+      "compat": {
+        "thinkingFormat": "deepseek"
+      },
+      "models": [
+        {
+          "id": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "reasoning": true,
+          "contextWindow": 1000000,
+          "maxTokens": 393216
+        }
+      ]
+    },
     "opencode-go": {
       "compat": {
         "sendSessionAffinityHeaders": true

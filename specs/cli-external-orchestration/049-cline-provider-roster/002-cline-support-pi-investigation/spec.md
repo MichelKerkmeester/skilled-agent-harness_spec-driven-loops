@@ -1,6 +1,6 @@
 ---
 title: "Research Specification: Can cli pi reach the Cline provider like opencode does?"
-description: "Investigation phase (not started): determine whether cli pi can register/authenticate the Cline provider (cline-pass) and surface its models in /login and the model picker, to reach opencode parity — read-only until a verdict."
+description: "Investigation phase (complete): determine whether cli pi can register/authenticate the Cline provider (cline-pass) and surface its models in /login and the model picker, to reach opencode parity — read-only until a verdict."
 trigger_phrases:
   - "cline support cli pi investigation"
   - "pi login cline provider parity"
@@ -10,11 +10,11 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/048-cline-provider-roster/002-cline-support-pi-investigation"
-    last_updated_at: "2026-08-18T00:00:00Z"
+    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation"
+    last_updated_at: "2026-08-18T13:09:28Z"
     last_updated_by: "claude"
-    recent_action: "Investigation scoped; not started"
-    next_safe_action: "Run the investigation to map pi provider resolution and test config-only cline-pass registration"
+    recent_action: "Investigation complete; successor 003 built the pi config"
+    next_safe_action: "None; verdict consumed by phase 003"
     blockers: []
     key_files:
       - ".pi/models.json"
@@ -22,9 +22,9 @@ _memory:
       - ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "session-048-002"
+      session_id: "session-049-002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,13 +49,13 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Not Started |
+| **Status** | Complete |
 | **Created** | 2026-08-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 2 |
+| **Phase** | 2 of 3 |
 | **Predecessor** | 001-cline-deepseek-flash-cli-opencode |
-| **Successor** | None (a pi implementation phase opens only if the verdict is feasible) |
+| **Successor** | 003-cline-pi-config-build (the pi config build the config-only-feasible verdict unblocked) |
 | **Handoff Criteria** | An evidence-backed feasibility verdict is recorded; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:metadata -->
 

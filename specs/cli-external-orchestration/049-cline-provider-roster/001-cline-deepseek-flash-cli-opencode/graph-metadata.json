@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/049-cline-provider-roster/001-cline-deepseek-flash-cli-opencode",
+  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/001-cline-deepseek-flash-cli-opencode",
+  "parent_id": "cli-external-orchestration/049-cline-provider-roster",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cline-pass deepseek v4 flash cli-opencode roster",
+      "add cline provider to opencode roster",
+      "cline-pass xhigh no max tier",
+      "opencode cline provider docs",
+      "cline provider roster plan",
+      "cli-opencode cline-pass docs plan",
+      "add cline model roster opencode",
+      "cline provider roster tasks",
+      "cli-opencode cline-pass tasks",
+      "cline provider roster implementation summary",
+      "cli-opencode cline-pass shipped"
+    ],
+    "key_topics": [
+      "cline-pass",
+      "deepseek",
+      "flash",
+      "cli-opencode",
+      "roster",
+      "cline",
+      "provider",
+      "opencode",
+      "xhigh",
+      "max",
+      "tier",
+      "docs"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cline Provider Roster",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Cline",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the Cline",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "opencode has the Cline provider authenticated (registered as `cline-pass`, not `cline`), exposing `cline-pass/cline-pass/deepseek-v4-flash`",
+    "created_at": "2026-08-18T08:28:10Z",
+    "last_save_at": "2026-08-18T11:12:25.698Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:415125aed4c63df779cf44ecc949d170f3a437e5828e0deb36fe95498a07bd81",
+    "source_doc_hashes": {
+      "spec.md": "637387027c0965760433fa135425d7e9459cdb607cbefc267c798042a4109ff5",
+      "plan.md": "443be3079d078533f2c27f06beb1cc64579f3518ff26d8d5df9349431e69a181",
+      "tasks.md": "523ac10a2a5735b8edd113ea26673ee609401c1cd90a77e93baf34619369885c",
+      "implementation-summary.md": "5c05c52c1a970e914c7e8b5a2e7852ba54e77efc99f653436d1166f16aa5e8ff"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

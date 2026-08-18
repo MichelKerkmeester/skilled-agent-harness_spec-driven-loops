@@ -6,16 +6,16 @@ trigger_phrases:
   - "cline-pass deepseek v4 flash opencode"
   - "add cline support to cli pi"
   - "cli pi cline login parity"
-  - "cline provider phase parent 048"
+  - "cline provider phase parent 049"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/048-cline-provider-roster"
-    last_updated_at: "2026-08-18T00:00:00Z"
+    packet_pointer: "cli-external-orchestration/049-cline-provider-roster"
+    last_updated_at: "2026-08-18T13:09:28Z"
     last_updated_by: "claude"
-    recent_action: "Phase 1 roster add shipped; Phase 2 pi investigation scoped"
-    next_safe_action: "Run Phase 2 investigation into cline provider support for cli pi"
+    recent_action: "All three phases complete; Phase 3 wired cline-pass into .pi live"
+    next_safe_action: "Operator supplies CLINE_API_KEY or runs pi login for a live round-trip"
     blockers: []
     key_files:
       - ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md"
@@ -23,9 +23,9 @@ _memory:
       - ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "session-048-phase-parent"
+      session_id: "session-049-phase-parent"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,11 +52,11 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Active |
+| **Status** | Complete |
 | **Created** | 2026-08-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | cli-external-orchestration/048-cline-provider-roster |
+| **Parent Packet** | cli-external-orchestration/049-cline-provider-roster |
 | **Predecessor** | cli-external-orchestration/047-cli-pi-opencode-openrouter-roster (the OpenRouter roster-add precedent this mirrors) |
 | **Successor** | None |
 | **Handoff Criteria** | Each phase passes `validate.sh --strict` independently and `validate.sh --recursive --strict` passes on this parent |
@@ -99,7 +99,10 @@ Aggregate scope; per-phase detail lives in each child plan.
 | `.opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md` | Modify | 001 | New `### cline-pass` provider section + effort-lever row |
 | `.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md` | Modify | 001 | Keywords + model-alternates + honor-overrides examples |
 | `.opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md` | Modify | 001 | Provider login menu entry for Cline |
-| `specs/cli-external-orchestration/048-cline-provider-roster/002-cline-support-pi-investigation/**` | Create | 002 | Investigation findings (runtime pi files unchanged until a verdict lands) |
+| `specs/cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation/**` | Create | 002 | Investigation findings (runtime pi files unchanged until a verdict lands) |
+| `.pi/models.json` | Modify | 003 | Add the `cline-pass` provider block (env-keyed, `openai-completions`) |
+| `.pi/settings.json` | Modify | 003 | Add `cline-pass/deepseek-v4-flash` to `enabledModels` |
+| `.pi/CUSTOM-PROVIDERS.md` | Create | 003 | Document the custom pi provider |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -112,7 +115,8 @@ Aggregate scope; per-phase detail lives in each child plan.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-cline-deepseek-flash-cli-opencode/ | Add `cline-pass/cline-pass/deepseek-v4-flash` to the cli-opencode roster (providers-and-models.md + SKILL.md + cli-reference.md), mirroring the packet-047 OpenRouter add, with the correct no-`max`-tier reasoning behavior. | Complete |
-| 2 | 002-cline-support-pi-investigation/ | Investigate whether cli pi can register/authenticate the Cline provider and expose its models in `/login` + the picker, to reach opencode parity. Read-only until a verdict; runtime pi files unchanged. | Not started |
+| 2 | 002-cline-support-pi-investigation/ | Investigate whether cli pi can register/authenticate the Cline provider and expose its models in `/login` + the picker, to reach opencode parity. Read-only until a verdict; runtime pi files unchanged. | Complete |
+| 3 | 003-cline-pi-config-build/ | Wire the Cline provider into cli pi by config (Phase 2's `config-only-feasible` verdict): `cline-pass` block in `.pi/models.json` + `enabledModels` entry in `.pi/settings.json`, env-keyed, plus `.pi/CUSTOM-PROVIDERS.md`. | Complete |
 
 ### Phase Transition Rules
 
@@ -127,6 +131,7 @@ Aggregate scope; per-phase detail lives in each child plan.
 |------|-----|----------|--------------|
 | 001-cline-deepseek-flash-cli-opencode | 002-cline-support-pi-investigation | Roster entry lands and reflects the live `opencode models cline-pass` metadata (reasoning tiers, no `max`) | `providers-and-models.md` shows the `### cline-pass` section; `validate.sh --strict` exit 0 |
 | 002-cline-support-pi-investigation | (pi implementation phase, TBD) | Investigation reaches an evidence-backed feasibility verdict (a concrete mechanism, or a documented "not feasible / blocked" conclusion) | `implementation-summary.md` records the verdict; `validate.sh --strict` exit 0 |
+| 002-cline-support-pi-investigation | 003-cline-pi-config-build | `cline-pass` surfaces as a live pi provider, env-keyed (no repo secret), with the custom provider documented in `.pi` | `pi --list-models` shows the cline-pass row; `pi auth check` returns `status: ready`; `.pi/CUSTOM-PROVIDERS.md` present; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---
