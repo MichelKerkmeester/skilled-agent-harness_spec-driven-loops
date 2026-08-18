@@ -19,21 +19,30 @@
     "trigger_phrases": [
       "legacy hub compiled routing refresh",
       "stale compiled manifests",
-      "system-deep-loop prior activation manifest",
-      "seven hub compiled fresh status"
+      "system-deep-loop cli-external-orchestration routing",
+      "cli-external-orchestration stale manifest",
+      "compiled-route-status all fresh",
+      "legacy hub refresh plan",
+      "system-deep-loop prior manifest",
+      "compiled-route-sync promotion",
+      "legacy hub refresh tasks",
+      "owner harness prior manifest",
+      "seven hub freshness proof",
+      "legacy hub refresh checklist"
     ],
     "key_topics": [
       "legacy",
       "hub",
       "compiled",
       "routing",
+      "refresh",
       "stale",
+      "manifests",
+      "system-deep-loop",
+      "cli-external-orchestration",
       "manifest",
-      "activation",
-      "promotion",
-      "canary",
-      "rollback",
-      "freshness"
+      "compiled-route-status",
+      "fresh"
     ],
     "importance_tier": "critical",
     "status": "planned",
@@ -46,21 +55,153 @@
     ],
     "entities": [
       {
-        "name": "system-deep-loop owner harness",
-        "kind": "tool",
-        "path": ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "compiled route status",
-        "kind": "tool",
-        "path": ".opencode/bin/compiled-route-status.cjs",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Hub Compiled Routing Refresh",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Repair",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Owner",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "activation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "execution",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Deferred plan to repair the system-deep-loop owner harness, rebuild two stale class-H hubs, promote with retained rollback, and prove all seven hubs compiled and fresh",
+    "causal_summary": "The class-H hubs `system-deep-loop` and `cli-external-orchestration` are serving routing through the legacy path with stale compiled manifests; `sk-prompt`, originally in this set, has since been refreshed to `compiled`/`fresh`",
     "created_at": "2026-08-16T00:00:00Z",
-    "last_save_at": "2026-08-16T00:00:00Z",
+    "last_save_at": "2026-08-18T03:31:16.260Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -70,9 +211,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d840f65f8fb45433d39ace905172102a059fa47c3c837187a09e7058a3ab55dc",
+    "source_fingerprint": "sha256:3b3b68aeb2256c4a5461d480cc158a92af20869c266a0b8a540ff30e675be9f2",
     "source_doc_hashes": {
-      "spec.md": "d3f698a6c5097d1ed44bf638fe9d952f6ba2a9dda847788f8d1422ad2d772a2b",
+      "spec.md": "edb20a9a01f63d9e242283c894864e5f0b333c1eb00bf182d368130a641838cb",
       "plan.md": "1f82500df3000eb1594a30d30d697bcb60bd2458fc9fad0aea8f69b40222d1c3",
       "tasks.md": "438f0922fd83aea4d8f018b3dcd78e262ccfb8260d4a13832e33c5f0b78b7273",
       "checklist.md": "776ecad77ffa8f96f0b8dd0971dc3e4732249af8a83aa7df81f86da79d1c8978",
