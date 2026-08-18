@@ -38,7 +38,7 @@ Routing is a two-stage decision: **surface-first, intent-second**. Surface narro
 
 ### Bundled Evidence Surfaces
 
-Beyond the two code surfaces this router maps, the hub can bundle a read-only **evidence surface** alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. `PI_REMOTE` — the Pi Remote Mobile-CLI app (`apps/pi-remote-web/`) — is one such surface: its detection lives in [`stack-detection.md`](shared/references/stack-detection.md) and its design-system evidence (the `--pi-*` token library, the `@ds` grammar, the browser-free verification gate) in the `sk-code-mobile-cli` packet. Evidence surfaces are registered in `mode-registry.json` and typed in `leaf-manifest.json`, but are **not** part of the machine `RESOURCE_MAP` projection in §11, which covers only the Webflow / OpenCode / Motion.dev code maps.
+Beyond the two code surfaces this router maps by detection, the hub can bundle a read-only **evidence surface** alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. `PI_REMOTE` — the Pi Remote Mobile-CLI app (`apps/pi-remote-web/`) — is one such surface: its detection lives in [`stack-detection.md`](shared/references/stack-detection.md) and its design-system evidence (the `--pi-*` token library, the `@ds` grammar, the browser-free verification gate) in the `sk-code-mobile-cli` packet. Evidence surfaces are registered in `mode-registry.json`, typed in `leaf-manifest.json`, and — like the Webflow and OpenCode surfaces — folded into the machine `RESOURCE_MAP` projection in §11: each surface's packet-local map is re-prefixed and unioned under the shared intent keys, and a drift guard enforces that the parent projection equals the union of all surface maps plus the parent-owned universal/shared tier.
 
 ### Key Sources
 
@@ -382,7 +382,13 @@ RESOURCE_MAP = {
         "shared/assets/patterns/README.md",
         "sk-code-webflow/assets/integrations/README.md",
         "sk-code-webflow/assets/patterns/README.md",
-        "sk-code-webflow/assets/templates/README.md"
+        "sk-code-webflow/assets/templates/README.md",
+        "sk-code-mobile-cli/references/token-library.md",
+        "sk-code-mobile-cli/references/ds-grammar.md",
+        "sk-code-mobile-cli/references/component-tokens.md",
+        "sk-code-mobile-cli/references/retint-recipes.md",
+        "sk-code-mobile-cli/references/theme-remap.md",
+        "sk-code-mobile-cli/assets/token-retint-checklist.md",
     ],
     "CODE_QUALITY": [
         "shared/references/universal/code-quality-standards.md",
@@ -398,7 +404,9 @@ RESOURCE_MAP = {
         "sk-code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
         "sk-code-opencode/assets/checklists/rust-checklist/p1-required.md",
         "sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md",
-        "sk-code-review/assets/code-quality-checklist.md"
+        "sk-code-review/assets/code-quality-checklist.md",
+        "sk-code-mobile-cli/references/editability-guardrails.md",
+        "sk-code-mobile-cli/assets/guardrail-audit-checklist.md",
     ],
     "DEBUGGING": [
         "shared/references/universal/error-recovery.md",
@@ -410,7 +418,9 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md",
         "sk-code-webflow/references/debugging/error-recovery.md",
         "shared/references/universal-debugging-checklist.md",
-        "sk-code-webflow/assets/webflow-debugging-checklist.md"
+        "sk-code-webflow/assets/webflow-debugging-checklist.md",
+        "sk-code-mobile-cli/references/verification.md",
+        "sk-code-mobile-cli/references/component-tokens.md",
     ],
     "VERIFICATION": [
         "sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md",
@@ -418,10 +428,12 @@ RESOURCE_MAP = {
         "sk-code-opencode/references/shared/alignment-verification-automation.md",
         "shared/references/universal-verification-checklist.md",
         "sk-code-webflow/assets/webflow-verification-checklist.md",
-        "sk-code-opencode/assets/scripts/README.md"
+        "sk-code-opencode/assets/scripts/README.md",
+        "sk-code-mobile-cli/references/verification.md",
+        "sk-code-mobile-cli/assets/ds-verification-checklist.md",
     ],
     "TESTING": [
-        "sk-code-webflow/assets/animation/playbook-entries.md"
+        "sk-code-webflow/assets/animation/playbook-entries.md",
     ],
     "DEPLOYMENT": [
         "sk-code-webflow/references/deployment/cdn-deployment.md",
@@ -429,7 +441,7 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/deployment/minification-guide/workflow-verification-and-debugging.md",
         "sk-code-webflow/references/deployment/minification-guide/batch-rules-and-related.md",
         "sk-code-webflow/references/deployment/webflow-staging-production.md",
-        "sk-code-webflow/assets/scripts/README.md"
+        "sk-code-webflow/assets/scripts/README.md",
     ],
     "PERFORMANCE": [
         "sk-code-webflow/references/performance/cwv-remediation.md",
@@ -441,16 +453,16 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md",
         "sk-code-webflow/references/implementation/performance-patterns/budgets-and-anti-patterns.md",
         "sk-code-webflow/references/animation/performance-and-pitfalls.md",
-        "shared/references/performance-loading-checklist.md"
+        "shared/references/performance-loading-checklist.md",
     ],
     "ANIMATION": [
         "sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md",
         "sk-code-webflow/references/implementation/animation-workflows/motion-dev-and-performance.md",
         "sk-code-webflow/references/implementation/animation-workflows/testing-and-common-issues.md",
         "sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md",
-        "sk-code-webflow/references/implementation/swiper-patterns/overview-timeline-and-marquee.md"
-        "sk-code-webflow/references/implementation/swiper-patterns/autoplay-accessibility-and-naming.md"
-        "sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md"
+        "sk-code-webflow/references/implementation/swiper-patterns/overview-timeline-and-marquee.md",
+        "sk-code-webflow/references/implementation/swiper-patterns/autoplay-accessibility-and-naming.md",
+        "sk-code-webflow/references/implementation/swiper-patterns/initialization-and-troubleshooting.md",
     ],
     "MOTION_DEV": [
         "sk-code-webflow/references/animation/quick-start.md",
@@ -462,7 +474,7 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/animation/performance-and-pitfalls.md",
         "sk-code-webflow/assets/animation/install-card.md",
         "sk-code-webflow/assets/animation/snippets/principled-reveal.js",
-        "sk-code-webflow/assets/animation/snippets/README.md"
+        "sk-code-webflow/assets/animation/snippets/README.md",
     ],
     "ACCESSIBILITY": [
         "sk-code-webflow/references/animation/performance-and-pitfalls.md",
@@ -470,30 +482,32 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/implementation/animation-workflows/motion-dev-and-performance.md",
         "sk-code-webflow/references/implementation/animation-workflows/testing-and-common-issues.md",
         "sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md",
-        "sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md"
-        "sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md"
+        "sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md",
+        "sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md",
+        "sk-code-mobile-cli/references/editability-guardrails.md",
+        "sk-code-mobile-cli/references/verification.md",
     ],
     "FORMS": [
         "sk-code-webflow/references/implementation/form-upload-workflows/overview-architecture-and-filepond.md",
         "sk-code-webflow/references/implementation/form-upload-workflows/state-machine-worker-and-forms.md",
         "sk-code-webflow/references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md",
-        "sk-code-webflow/references/implementation/focus-management/selector-and-focus-trap.md"
-        "sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md"
+        "sk-code-webflow/references/implementation/focus-management/selector-and-focus-trap.md",
+        "sk-code-webflow/references/implementation/focus-management/restoration-touch-and-anti-patterns.md",
     ],
     "VIDEO": [
-        "sk-code-webflow/references/implementation/third-party-integrations/overview-hls-and-lenis.md"
-        "sk-code-webflow/references/implementation/third-party-integrations/botpoison-and-finsweet.md"
-        "sk-code-webflow/references/implementation/third-party-integrations/filepond.md"
-        "sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md"
+        "sk-code-webflow/references/implementation/third-party-integrations/overview-hls-and-lenis.md",
+        "sk-code-webflow/references/implementation/third-party-integrations/botpoison-and-finsweet.md",
+        "sk-code-webflow/references/implementation/third-party-integrations/filepond.md",
+        "sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md",
     ],
     "HOOKS": [
-        "sk-code-opencode/references/shared/hooks.md"
+        "sk-code-opencode/references/shared/hooks.md",
     ],
     "CONFIG": [
         "sk-code-opencode/references/config/style-guide.md",
         "sk-code-opencode/references/config/quality-standards.md",
         "sk-code-opencode/references/config/quick-reference.md",
-        "sk-code-opencode/assets/checklists/config-checklist.md"
+        "sk-code-opencode/assets/checklists/config-checklist.md",
     ],
     "LANGUAGE_STANDARDS": [
         "sk-code-webflow/references/css/style-guide.md",
@@ -516,13 +530,16 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/javascript/quality-standards/state-and-cleanup.md",
         "sk-code-webflow/references/javascript/quality-standards/shared-listener-and-weakmap.md",
         "sk-code-webflow/references/javascript/quality-standards/enforcement-and-quick-reference.md",
-        "sk-code-webflow/references/javascript/quick-reference.md"
+        "sk-code-webflow/references/javascript/quick-reference.md",
+        "sk-code-mobile-cli/references/token-library.md",
+        "sk-code-mobile-cli/references/component-tokens.md",
+        "sk-code-mobile-cli/references/theme-remap.md",
     ],
     "JAVASCRIPT": [
         "sk-code-opencode/references/javascript/style-guide.md",
         "sk-code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md",
         "sk-code-opencode/references/javascript/quality-standards/security-testing-and-exemptions.md",
-        "sk-code-opencode/references/javascript/quick-reference.md"
+        "sk-code-opencode/references/javascript/quick-reference.md",
     ],
     "TYPESCRIPT": [
         "sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md",
@@ -530,21 +547,21 @@ RESOURCE_MAP = {
         "sk-code-opencode/references/typescript/quality-standards/overview-and-type-system.md",
         "sk-code-opencode/references/typescript/quality-standards/tsdoc-errors-and-async.md",
         "sk-code-opencode/references/typescript/quality-standards/tsconfig-and-modules.md",
-        "sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md"
-        "sk-code-opencode/references/typescript/quick-reference/imports-errors-and-tsconfig.md"
+        "sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md",
+        "sk-code-opencode/references/typescript/quick-reference/imports-errors-and-tsconfig.md",
     ],
     "PYTHON": [
         "sk-code-opencode/references/python/style-guide.md",
         "sk-code-opencode/references/python/quality-standards.md",
-        "sk-code-opencode/references/python/quick-reference.md"
+        "sk-code-opencode/references/python/quick-reference.md",
     ],
     "SHELL": [
         "sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md",
         "sk-code-opencode/references/shell/style-guide/variables-functions-and-output.md",
         "sk-code-opencode/references/shell/quality-standards/overview-and-priority-blockers.md",
         "sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md",
-        "sk-code-opencode/references/shell/quick-reference/template-variables-and-loops.md"
-        "sk-code-opencode/references/shell/quick-reference/functions-strings-and-checklist.md"
+        "sk-code-opencode/references/shell/quick-reference/template-variables-and-loops.md",
+        "sk-code-opencode/references/shell/quick-reference/functions-strings-and-checklist.md",
     ],
     "RUST": [
         "sk-code-opencode/references/rust/style-guide/overview-and-file-header.md",
@@ -563,7 +580,7 @@ RESOURCE_MAP = {
         "sk-code-opencode/references/rust/quick-reference/naming-ordering-and-signatures.md",
         "sk-code-opencode/references/rust/quick-reference/collections-imports-and-errors.md",
         "sk-code-opencode/references/rust/quick-reference/rustdoc-and-cargo.md",
-        "sk-code-opencode/references/rust/quick-reference/determinism-parity-and-related.md"
+        "sk-code-opencode/references/rust/quick-reference/determinism-parity-and-related.md",
     ],
 }
 

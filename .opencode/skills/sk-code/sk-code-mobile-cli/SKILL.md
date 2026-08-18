@@ -1,12 +1,16 @@
 ---
 name: sk-code-mobile-cli
-description: Read-only design-system evidence for the Pi Remote Mobile-CLI app — the primitive→semantic→component token library, the @ds editability grammar, the guardrails, and the browser-free verification gate.
+description: "Read-only design-system evidence for the Pi Remote Mobile-CLI app — the primitive→semantic→component token library, the @ds editability grammar, the guardrails, and the browser-free verification gate."
 allowed-tools: [Read, Bash, Grep, Glob]
 version: 1.0.0.0
+metadata:
+  author: OpenCode
+  family: sk-code
+  packetKind: surface
 ---
 
-<!-- Keywords: pi-remote, mobile-cli, apps/pi-remote-web, design-system, token-library, ds-grammar, designer-editability, ink-on-parchment, primitive-semantic-component, browser-free-resolver -->
-<!-- Owns: pi remote app / mobile cli app / pi-remote-web / design system code / @ds grammar / token library edit / designer-editable frontend. Does NOT own: routing (parent sk-code hub), code implementation lifecycle (workflow modes), app source values (frozen). -->
+<!-- Keywords: pi-remote, mobile-cli, apps/pi-remote-web, design-system, token-library, component-tokens, retint-recipes, theme-remap, ds-grammar, designer-editability, ink-on-parchment, primitive-semantic-component, model-sheet, slash-panel, diff-add, diff-remove, browser-free-resolver -->
+<!-- Owns: pi remote app / mobile cli app / pi-remote-web / design system code / @ds grammar / token library edit / component-token retint / theme remap / designer-editable frontend. Does NOT own: routing (parent sk-code hub), code implementation lifecycle (workflow modes), app source values (frozen). -->
 
 # mobile-cli Surface — Pi Remote Design-System Evidence
 
@@ -20,12 +24,15 @@ verification gate this codebase actually uses.
 
 ## 1. WHEN THE HUB BUNDLES THIS
 
-The parent `sk-code` hub bundles this surface (via `routerPolicy.outcomes.surfaceBundle`) alongside a
-workflow mode whenever the detected surface is **PI_REMOTE** — code work whose CWD or changed/target
-files sit under `apps/pi-remote-web/`, `apps/pi-remote-relay/`, or a `packages/pi-*` / `@pi-remote/*`
-workspace. A typical resolution is `[sk-code-quality, sk-code-mobile-cli]` or
-`[sk-code-review, sk-code-mobile-cli]`: the workflow mode acts, this surface supplies the design-system
-rules it must honor.
+- The task's CWD or changed/target files sit under `apps/pi-remote-web/`, `apps/pi-remote-relay/`, or a
+  `packages/pi-*` / `@pi-remote/*` workspace — the hub's surface detection resolves **PI_REMOTE**.
+- The active workflow phase needs the app's design-system evidence: the primitive → semantic →
+  component token model, the `@ds` inline-comment editability grammar, the `@ds guardrail: do-not-edit`
+  fences, or the browser-free verification gate.
+- This surface never owns edits, tests, or verification itself — the bundled workflow mode does the
+  work (e.g. `sk-code-quality`, `sk-code-review`), and this packet supplies the design-system rules it
+  must honor. A typical resolution is `[sk-code-quality, sk-code-mobile-cli]` or
+  `[sk-code-review, sk-code-mobile-cli]`.
 
 This packet is **advisor-invisible** (`routingClass: metadata`) and **read-only** — it never routes as a
 primary and mutates nothing. It supplies evidence; the acting workflow applies it.
@@ -37,10 +44,22 @@ primary and mutates nothing. It supplies evidence; the acting workflow applies i
 | Reference | What it carries |
 | --- | --- |
 | [`references/token-library.md`](references/token-library.md) | The three-layer model — primitive (`--pi-*`, 8 frozen values) → semantic role → component token — with the frozen ink-on-parchment values and how a retint propagates. |
+| [`references/component-tokens.md`](references/component-tokens.md) | The Layer-3 per-surface component token families (`--model-sheet-*`, `--slash-*`, `--diff-*`): what each alias resolves to, per theme, and the blast radius of retinting one. |
+| [`references/retint-recipes.md`](references/retint-recipes.md) | Two worked, step-by-step retint recipes — a semantic-role retint (system-wide) and a component-token retint (one surface) — each with the browser-free resolver proof steps. |
+| [`references/theme-remap.md`](references/theme-remap.md) | The light / dark / system-dark `@ds theme:` semantic remap: which role reads which primitive per theme, and which roles stay literal. |
 | [`references/ds-grammar.md`](references/ds-grammar.md) | The `@ds` inline-comment grammar: `surface / slot / state / variant / edit / guardrail / catalog / theme`, and how to read each seam. |
 | [`references/editability-guardrails.md`](references/editability-guardrails.md) | The `@ds guardrail: do-not-edit` fences and the architectural reason a CSS/token edit cannot reach logic or the security boundary. |
 | [`references/verification.md`](references/verification.md) | The verification command set + the browser-free resolver method (the app's CSP renders it unstyled headless, so selector→value resolution — not screenshots — is the authoritative value-preservation gate). |
 | [`references/workflow-implement.md`](references/workflow-implement.md) · [`workflow-debug.md`](references/workflow-debug.md) · [`workflow-verify.md`](references/workflow-verify.md) | The shared implement → debug → verify doctrine (symlinked from `../../shared/references/`). |
+
+Checklists (`assets/`): `assets/token-retint-checklist.md`, `assets/guardrail-audit-checklist.md`,
+`assets/ds-verification-checklist.md` — see §4.
+
+App documentation (`references/app-guide/`): the full Pi Remote app documentation set — operations,
+setup, security, rollback, release-verification, incident playbooks, platform support, code standards,
+install/onboarding, the `feature-catalog/` (auth-and-boundary, approval-and-mutation, command-and-push,
+transport-and-state, pwa, release), `quality/` baselines, and `design-reference/` (UI teardown, map,
+research, and screens). This surface is the single source for Pi Remote app documentation.
 
 The live evidence lives in the app repo, not in this packet — this surface points at it:
 `apps/pi-remote-web/src/design-system/tokens.md` (token catalogue),
@@ -51,25 +70,59 @@ The live evidence lives in the app repo, not in this packet — this surface poi
 
 ## 2b. SMART ROUTING (machine-readable)
 
+This block is the deterministic projection of code-mobile-cli's own intent -> reference/asset routing,
+consumed by the skill-benchmark router-replay; keep it in sync with the parent hub union.
+
 ```python
-# code-mobile-cli owns its intent -> reference routing. Paths are relative to this
-# skill root. The hub reaches this map by bundling the packet as read-only evidence
-# (hub-router.json routerPolicy.outcomes.surfaceBundle), and the packet's references
-# are typed into the hub's leaf-manifest.json — the sk-create-skill typed-leaf
-# contract. This design-system map is intentionally NOT folded into the hub ROUTER.md
-# machine block, which projects the Webflow / OpenCode / Motion.dev surfaces only.
+# code-mobile-cli owns its intent -> reference/asset routing. Paths are relative to
+# this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
+# (re-prefixed with sk-code-mobile-cli/) and the sibling surface maps (code-webflow,
+# code-opencode) plus the parent-owned universal/shared tier; a drift guard enforces
+# that equality.
+DEFAULT_RESOURCE = [
+    "references/token-library.md",
+    "references/ds-grammar.md",
+]
+
 INTENT_SIGNALS = {
-    "TOKEN_EDIT":   ["retint", "token", "--pi-", "semantic role", "component token", "color", "theme"],
-    "DS_GRAMMAR":   ["@ds", "slot", "state", "variant", "edit here", "catalog", "seam"],
-    "GUARDRAIL":    ["guardrail", "do-not-edit", "focus ring", "reduced-motion", "redaction", "a11y", "wcag"],
-    "VERIFY":       ["verify", "resolver", "value-preservation", "contrast", "390px", "mount check"],
+    "IMPLEMENTATION":     {"weight": 1, "keywords": ["retint", "token edit", "component token", "semantic role", "@ds edit", "css custom property", "implement", "build", "primitive", "theme remap"]},
+    "CODE_QUALITY":       {"weight": 1, "keywords": ["guardrail", "do-not-edit", "lint", "quality gate", "frozen value", "code smell", "naming"]},
+    "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "regression", "wrong theme", "unexpected color", "leaking retint", "orphaned reference"]},
+    "VERIFICATION":       {"weight": 1, "keywords": ["verify", "resolver", "value-preservation", "contrast", "wcag", "type-check", "test:web", "completion claim", "browser-free"]},
+    "LANGUAGE_STANDARDS": {"weight": 1, "keywords": ["css variable", "css custom property", "typescript", ".tsx", "style.css", "tailwind", "token naming"]},
+    "ACCESSIBILITY":      {"weight": 1, "keywords": ["a11y", "accessibility", "reduced motion", "prefers-contrast", "forced-colors", "focus ring", "target size", "44px", "wcag aa"]},
 }
+
 RESOURCE_MAP = {
-    "TOKEN_EDIT": ["references/token-library.md"],
-    "DS_GRAMMAR": ["references/ds-grammar.md"],
-    "GUARDRAIL":  ["references/editability-guardrails.md"],
-    "VERIFY":     ["references/verification.md",
-                   "references/workflow-verify.md"],
+    "IMPLEMENTATION": [
+        "references/token-library.md",
+        "references/ds-grammar.md",
+        "references/component-tokens.md",
+        "references/retint-recipes.md",
+        "references/theme-remap.md",
+        "assets/token-retint-checklist.md",
+    ],
+    "CODE_QUALITY": [
+        "references/editability-guardrails.md",
+        "assets/guardrail-audit-checklist.md",
+    ],
+    "DEBUGGING": [
+        "references/verification.md",
+        "references/component-tokens.md",
+    ],
+    "VERIFICATION": [
+        "references/verification.md",
+        "assets/ds-verification-checklist.md",
+    ],
+    "LANGUAGE_STANDARDS": [
+        "references/token-library.md",
+        "references/component-tokens.md",
+        "references/theme-remap.md",
+    ],
+    "ACCESSIBILITY": [
+        "references/editability-guardrails.md",
+        "references/verification.md",
+    ],
 }
 ```
 
@@ -96,7 +149,17 @@ surface MUST honor them:
 
 ---
 
-## 4. RULES
+## 4. ASSETS (on-demand, deferred from the first slice)
+
+- Retint pre-flight + proof checklist — `assets/token-retint-checklist.md`
+- Guardrail-fence audit checklist — `assets/guardrail-audit-checklist.md`
+- Verification-gate checklist — `assets/ds-verification-checklist.md`
+
+Assets are pulled on demand by the active workflow phase; they are not part of the initial evidence slice.
+
+---
+
+## 5. RULES
 
 ### ✅ ALWAYS
 - Follow the parent hub's selected workflow mode; apply this surface's standards as read-only evidence.
@@ -114,7 +177,7 @@ surface MUST honor them:
 
 ---
 
-## 5. INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 - **Input:** requests routed to `sk-code` whose surface detects as PI_REMOTE; the hub bundles this
   surface behind the chosen workflow mode.

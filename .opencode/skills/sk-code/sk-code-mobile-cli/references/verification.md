@@ -61,3 +61,10 @@ raced by a synchronous assertion) — it is not a design-system signal.
 A change is "done" only when: `typecheck`, `build`, and `test:web` pass; the resolver shows the intended
 value delta and nothing more; `contrast.test.tsx` is green in both themes; and no `--pi-*` value,
 security boundary, or `@ds guardrail: do-not-edit` fence changed.
+
+---
+
+## 6. RELATED REFERENCES
+
+- `retint-recipes.md` — applies this resolver method to two worked, step-by-step recipes.
+- `assets/ds-verification-checklist.md` — this gate as a checklist.
