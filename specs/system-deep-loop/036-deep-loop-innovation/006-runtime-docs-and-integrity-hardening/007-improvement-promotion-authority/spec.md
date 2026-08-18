@@ -13,26 +13,23 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Implemented and regression-tested all 13 findings; accepted ADR-001 through ADR-003"
-    next_safe_action: "Independent verification, commit, main validation"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to the landed additive-dark state under 0d1827eef50"
+    next_safe_action: "Pass the additive-dark acceptance review and independent adversarial verification"
     blockers:
-      - "Independent verifier not available in this single-actor session"
-      - "Sandbox cannot write the shared git index, so no candidate commit SHA can be created"
-      - "Worktree strict validation cannot complete its command-tree environment check"
+      - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
+      - "Independent adversarial verification pending (CHK-005)"
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 88
-    open_questions:
-      - "REQ-U04 still requires an adversarial pass by a different actor"
-      - "REQ-U05 still requires an immutable candidate commit SHA"
-      - "REQ-U06 still requires strict validation from a complete main-checkout environment"
+    completion_pct: 90
+    open_questions: []
     answered_questions:
+      - "All 13 findings landed additive-dark under 0d1827eef50, f6cdf604a25 and a28a39354b7; reconciled ab6aae0a714"
       - "CALIBRATION: these eight P0s are severity-inflated. The actor is the operator or a stale local file, not a remote attacker. Read them as cutover-readiness and robustness risk."
       - "The receipt format and approval model are a design decision requiring a decision record, not a patch"
       - "Promotion copies bytes into canonical targets, so a mistake here overwrites shipped files"
@@ -72,7 +69,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress — runtime implementation is complete and all 13 findings have named green probes, but verification closeout remains partial: independent verification, immutable candidate-SHA evidence, and main-checkout strict validation are open. |
+| **Status** | In Progress — code landed additive-dark; go-live gated behind acceptance review. All 13 findings landed under `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`), with promotion enforcement kept dark until the additive-dark acceptance review (CHK-018) and independent adversarial verification (CHK-005) pass. |
 | **Created** | 2026-07-30 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

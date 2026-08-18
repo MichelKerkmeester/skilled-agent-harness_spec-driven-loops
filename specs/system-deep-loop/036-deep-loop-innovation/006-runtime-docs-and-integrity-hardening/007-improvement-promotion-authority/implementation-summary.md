@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 007-improvement-promotion-authority"
-description: "All 13 promotion-authority findings are implemented or confirmed with named regression probes; formal packet closeout remains partial pending immutable-SHA evidence, independent verification, and main-checkout strict validation."
+description: "All 13 promotion-authority findings landed additive-dark under 0d1827eef50, f6cdf604a25 and a28a39354b7 with named regression probes; go-live stays gated behind the additive-dark acceptance review and independent adversarial verification."
 trigger_phrases:
   - "improvement promotion authority implementation"
   - "acceptance receipt binding evidence"
@@ -11,23 +11,22 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Implemented and verified the full 13-finding runtime scope; accepted ADR-001 through ADR-003"
-    next_safe_action: "Commit, independent verification, main validation"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to the landed additive-dark state under 0d1827eef50"
+    next_safe_action: "Pass the additive-dark acceptance review and independent adversarial verification"
     blockers:
-      - "Sandbox cannot write the shared Git index, so no candidate commit SHA exists"
-      - "REQ-U04 requires a different actor"
-      - "Worktree strict validation cannot complete its command-tree environment check"
+      - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
+      - "Independent adversarial verification pending (CHK-005)"
     key_files:
       - "implementation-summary.md"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promotion-receipts.cjs"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs"
       - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs"
-    completion_pct: 88
-    open_questions:
-      - "Who will perform the independent adversarial pass?"
+    completion_pct: 90
+    open_questions: []
     answered_questions:
+      - "All 13 findings landed additive-dark under 0d1827eef50, f6cdf604a25 and a28a39354b7; reconciled ab6aae0a714"
       - "Autonomous mode is advisory-only under the operator's no-dark-to-live-authority-flip constraint"
       - "Evaluator authority comes from the target manifest, never candidate frontmatter"
 ---
@@ -45,7 +44,7 @@ _memory:
 | **Spec Folder** | 007-improvement-promotion-authority |
 | **Base HEAD** | `149742c46260277ae26df6fe6cfe582a9d02454d` |
 | **Level** | 3 |
-| **Status** | **In Progress — runtime implementation complete; verification closeout partial.** All 13 findings have green named probes and ADR-001 through ADR-003 are Accepted, but immutable candidate-SHA evidence, an independent actor, and main-checkout strict validation remain open. |
+| **Status** | **In Progress — code landed additive-dark; go-live gated behind acceptance review.** All 13 findings landed under `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (reconciled `ab6aae0a714`) with green named probes, and ADR-001 through ADR-004 are terminal. Promotion enforcement stays dark until the additive-dark acceptance review (CHK-018) and independent adversarial verification (CHK-005) pass; the full improvement-project baseline and its whole-gate delta also remain open. |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
@@ -121,11 +120,21 @@ The reserved autonomous-mode decision is also terminal: ADR-004 is **Accepted, a
 | TypeScript | `npx --no-install tsc --noEmit --ignoreDeprecations 6.0`, exit 0 |
 | Receipt write-cost probe | 100 writes, 485.381 ms total, 4.854 ms mean, exit 0 (current cost only; no before/after claim) |
 | Full improvement project | 52 files; 530 passed, 45 failed, exit 1. The failures point at paths outside this packet, but their pre-existence was not proven against a full base run; no no-regression claim is made. |
-| Strict packet validator | Packet-local `Errors: 0`, `Warnings: 0`, `RESULT: PASSED`; process exit 2. The output does not identify a packet-local failure, but T022 remains open because its literal exit-0 criterion was not met. |
+| Strict packet validator | Packet-local `Errors: 0` from the reconciled final state, with a single benign `CONTINUITY_FRESHNESS` `dirty_tree` warning that clears once the orchestrator commits this packet. T022's literal exit-0 criterion remains open until that commit, so the item is not marked done. |
+| Landed commits | Findings shipped additive-dark under `0d1827eef50` (promotion/rollback/council receipt binding), `f6cdf604a25` (final 3: rollback-hash forgery + council path/symlink) and `a28a39354b7` (completes findings + ADRs); status reconciled `ab6aae0a714`. |
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:files -->
 ## Files Changed
+
+All runtime changes below landed additive-dark; the following commits are reachable from `HEAD`:
+
+| Commit | Landed change |
+|--------|---------------|
+| `0d1827eef50` | Bind promotion/rollback/council to authenticated receipts and authorized roots (receipt module `promotion-receipts.cjs`, promote/ship/rollback consumers, evaluator authority, containment, council roots, fail-closed gates) |
+| `f6cdf604a25` | Close the final 3 findings — rollback-hash forgery (`F-017-04`) plus council path/symlink escapes (`F-019-01`, `F-019-02`) |
+| `a28a39354b7` | Complete the 13-finding runtime scope and accept ADR-001..ADR-003 (`promotion-receipts.cjs` last touched here) |
+| `ab6aae0a714` | Reconcile packet status to 13/13 landed |
 
 - Promotion authority: shared receipt module, promote/rollback scripts, direct score/rollback scripts, autonomous YAML, sweep parser, and their packet-scoped tests.
 - Council authority: persistence, topic/session orchestration, graph replay, council test configuration, stale CLI expectation, and their tests.
@@ -138,9 +147,9 @@ No package manifest or lockfile changed. The test-mutated `council-graph.sqlite`
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Immutable candidate SHA**: the sandbox cannot create the shared Git index lock (`Operation not permitted`), so the implementation remains an uncommitted working-tree candidate. REQ-U05 and every checklist checkbox remain open rather than citing the unchanged base SHA falsely.
+1. **Go-live gate (additive-dark)**: the runtime landed additive-dark under `0d1827eef50`, `f6cdf604a25` and `a28a39354b7`, so REQ-U05's immutable candidate-SHA evidence now exists and the earlier "uncommitted working-tree candidate" limitation no longer holds. Promotion enforcement stays dark and does not go live until the additive-dark acceptance review (CHK-018) passes. That review is an external sign-off this session cannot produce, so CHK-018 remains open.
 2. **Independent actor**: this was a single-builder session and sub-agent delegation was not authorized. REQ-U04/T021/CHK-005 remain open.
 3. **Full improvement baseline**: only the packet-selected improvement baseline was captured before edits; the entire 52-file project was not. T002/T020 and the whole-project delta claim remain open.
-4. **Strict validation environment**: the required worktree run is recorded after reconciliation. Any command-tree/tsx/level-contract environment failure will remain open and must be repeated from main; packet-local `Errors: 0` alone is not represented as exit-0 completion.
+4. **Strict validation residual**: the reconciled packet validates with `Errors: 0` and a single benign `CONTINUITY_FRESHNESS` `dirty_tree` warning, because the packet is intentionally left uncommitted for the orchestrator to land. That warning clears on commit; until then T022's literal exit-0 criterion stays open and packet-local `Errors: 0` is not represented as exit-0 completion.
 5. **Per-finding red proof**: every finding has a final named green probe, but not every probe was executed against the untouched base revision. CHK-003 remains open rather than retroactively claiming a red-before observation.
 <!-- /ANCHOR:limitations -->

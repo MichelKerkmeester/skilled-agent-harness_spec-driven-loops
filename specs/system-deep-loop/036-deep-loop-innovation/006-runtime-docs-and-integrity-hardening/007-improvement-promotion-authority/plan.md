@@ -13,17 +13,16 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Completed phases 2 through 5 and accepted the three implementation ADRs"
-    next_safe_action: "Independent verification, commit, main validation"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to the landed additive-dark state under 0d1827eef50"
+    next_safe_action: "Pass the additive-dark acceptance review and independent adversarial verification"
     blockers:
-      - "No independent verifier in this single-actor session"
-      - "Sandbox cannot write the shared git index"
-      - "Strict validator command-tree environment is incomplete in this worktree"
+      - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
+      - "Independent adversarial verification pending (CHK-005)"
     key_files:
       - "plan.md"
-    completion_pct: 88
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +48,7 @@ _memory:
 ### Overview
 Design the acceptance receipt before touching promotion, because everything else binds to it. Capture baselines for both vitest projects first, since a red baseline is known to be possible in this area. Then bind promotion, ship and rollback to the receipt, replace candidate-controlled evaluator identity, contain every write boundary, and confine council persistence.
 
-**Current state (2026-08-15)**: Phases 2-5 are implemented and their affected suites are green. Phase 6 remains partial because the original full improvement-project baseline was not captured, an independent actor has not verified the result, the sandbox cannot create an immutable candidate commit, and strict validation must be repeated from a complete main checkout.
+**Current state (2026-08-18)**: Phases 2-5 are implemented and landed additive-dark under commits `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`), and their affected suites are green. Phase 6 remains partial and go-live stays gated: the original full improvement-project baseline was not captured, the additive-dark acceptance review (CHK-018) has not passed, and an independent actor has not run the adversarial verification (CHK-005). The immutable candidate-SHA evidence that was previously pending now exists in those landed commits.
 <!-- /ANCHOR:summary -->
 
 ---

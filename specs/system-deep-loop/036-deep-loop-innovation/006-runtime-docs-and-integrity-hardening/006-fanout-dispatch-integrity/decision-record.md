@@ -13,10 +13,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Added ADR-004 (Accepted); corrected ADR-003's closeout note superseded by new work"
-    next_safe_action: "Landed as 568aa17a40; QA gaps: baseline, rollback, tests, contract; F-016-01/F-016-06 deferred"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet to Complete with residuals dispositioned in sibling 007/006"
+    next_safe_action: "Packet Complete, dirty_tree freshness warning clears on commit"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -228,7 +228,7 @@ _memory:
 
 **How to roll back**: Revert the argv commit per wrapper; shell interpolation returns for that wrapper only.
 
-**Closeout note (2026-08-08)**: The decision is Accepted; the wrapper-side attempt was reverted, not the decision. `fanout-run-wrapper.cjs` plus 4 yaml edits could not remove shell interpolation at the yaml `command:` layer — the fix needs command-runner argv support beneath the wrapper. `F-016-01` stays open as a deferred finding; see `implementation-summary.md` Known Limitations.
+**Closeout note (2026-08-08, disposition finalized 2026-08-17)**: The decision is Accepted; the wrapper-side attempt was reverted, not the decision. `fanout-run-wrapper.cjs` plus 4 yaml edits could not remove shell interpolation at the yaml `command:` layer — the fix needs command-runner argv support beneath the wrapper. `F-016-01` is now recorded as an accepted deferral in sibling packet `007/006` REQ-004 (calibrated low-severity, operator/config-authored value); see `implementation-summary.md` Known Limitations.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -331,7 +331,7 @@ Containment is kind-specific and blunt. Native dispatch hardcodes permission byp
 
 **How to roll back**: Revert the containment commit; kind-specific containment returns. Record that `F-016-02` through `F-016-05` re-open, and note that the live incident this addressed becomes possible again.
 
-**Closeout note (2026-08-08, superseded in part by ADR-004):** At the `d0d8623ddf` landing, delivery was partial: `F-016-04` (content-identity dirty-path detection) and `F-016-05` (out-of-worktree hard failure) landed in `write-containment.ts`, but the "uniform across dispatch kinds" half of this ADR had NOT landed (`fanout-run.cjs` still gated post-dispatch containment on `lineage.kind === 'cli-codex'` only) and `F-016-03`'s fix only labeled an unenforceable `cli-opencode` sandbox mode `advisory-<mode>` and still dispatched, rather than rejecting as this ADR's Decision states. **A later work session (landed as `568aa17a40`, documented in ADR-004) closed both gaps**: `containmentEnabled` is now unconditionally `true`, and `finalizeLineageCommand()` now throws for an explicit unenforceable `cli-opencode` sandbox mode. See ADR-004 for the design that made uniform containment safe to deliver, and `checklist.md` CHK-021/CHK-FIX-004 for the code- and test-evidence citations. `checklist.md` CHK-032 records the residual gap: containment now runs for every kind, but no dedicated per-kind dispatch test exists yet.
+**Closeout note (2026-08-08, superseded in part by ADR-004):** At the `d0d8623ddf` landing, delivery was partial: `F-016-04` (content-identity dirty-path detection) and `F-016-05` (out-of-worktree hard failure) landed in `write-containment.ts`, but the "uniform across dispatch kinds" half of this ADR had NOT landed (`fanout-run.cjs` still gated post-dispatch containment on `lineage.kind === 'cli-codex'` only) and `F-016-03`'s fix only labeled an unenforceable `cli-opencode` sandbox mode `advisory-<mode>` and still dispatched, rather than rejecting as this ADR's Decision states. **A later work session (landed as `568aa17a40`, documented in ADR-004) closed both gaps**: `containmentEnabled` is now unconditionally `true`, and `finalizeLineageCommand()` now throws for an explicit unenforceable `cli-opencode` sandbox mode. See ADR-004 for the design that made uniform containment safe to deliver, and `checklist.md` CHK-021/CHK-FIX-004 for the code- and test-evidence citations. The residual CHK-032 gap (a dedicated per-kind dispatch test) was subsequently closed: per-kind containment for all 7 executor kinds plus a matrix-alignment guard landed as `f48b50be79` in sibling packet `007/006` (Complete).
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
 

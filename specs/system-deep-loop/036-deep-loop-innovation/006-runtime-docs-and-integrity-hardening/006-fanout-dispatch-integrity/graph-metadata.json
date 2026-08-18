@@ -32,7 +32,7 @@
       "audit"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "checklist.md",
@@ -103,13 +103,13 @@
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "Packet Complete",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Critical Dependencies",
+        "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -124,18 +124,6 @@
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Define",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -163,12 +151,6 @@
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -181,15 +163,33 @@
         "source": "derived"
       },
       {
-        "name": "Five Checks Evaluation",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "decision-record.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Fan",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Fulfillment accepts a lineage when one non-empty top-level report exists, with no validation of state JSONL, iteration records, deltas, findings registry or terminal synthesis (`F-010-01`), and under the max-iterations policy trusts a single synthesis record's self-reported `totalIterations` and `stopReason` over the actual iteration files (`F-010-02`)",
     "created_at": "2026-07-31T01:25:20.924Z",
-    "last_save_at": "2026-08-17T04:04:18.597Z",
+    "last_save_at": "2026-08-18T04:43:53.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +200,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5dbf00b945da733075534696ed45d521278cb4c96a0f59a76eacc38c05ae277",
+    "source_fingerprint": "sha256:3772de45e343ecfb5a4425786e44c055e21ff0e4a3c21b496eb63aa907a40156",
     "source_doc_hashes": {
-      "spec.md": "e82658723f677fe51eb4bc1810af3a6a9e64cfc7d8e8ff326c8fcebb84b24902",
-      "plan.md": "57395f6a93a1c986365a398fe1e78855bdc3203841db600cea86185d1b840d30",
-      "tasks.md": "0428186096001694551c4644ed7fbcbaa93ccb9405da0354a1f5ca83ed8fbfdc",
-      "checklist.md": "d2cb3ea45994bb6d6b0c28aac6c2263a35b9aa454d41181685ca39b4d81112b8",
-      "decision-record.md": "a4e84a2543afc73e8209cc55ec89b44ceaf9272c0a6808c1783147103801f10a",
-      "implementation-summary.md": "241ce2298403d868de8c27738dc7214de06a15f203ed074fae7c9ce40dc63a03"
+      "spec.md": "e44a6d5d6c89cdd3860e629ec44865330953fc3986b89e654ea872b71d2edb06",
+      "plan.md": "84a5f4931d29ddc0d80e154aa7a3d93d8652db8108b8bbd60ceae738b4d842a2",
+      "tasks.md": "ccc54a2ac68876a654940361b9cf3c859e1ec6f6f2d9faa46687f73d15a81f5a",
+      "checklist.md": "996c8a70198b82672febd35909e1c33bab95f0b31c6684910709fe3d1287f90a",
+      "decision-record.md": "c9989a3dae5eb2c5bfffcd44f7f4c6dc9e77074761c8e55fae9e8f9f2b9ff0ff",
+      "implementation-summary.md": "afb23dc80edaeeefb6805be2727cc08e575129bdda2051e65275764da9891db6"
     },
     "last_active_child_id": null,
     "last_active_at": null

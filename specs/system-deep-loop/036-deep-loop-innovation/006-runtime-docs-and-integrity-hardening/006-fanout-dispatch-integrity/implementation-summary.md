@@ -13,20 +13,19 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Landed 10/12 findings as d0d8623ddf; second pass delivered REQ-010, F-016-03, data-loss fix"
-    next_safe_action: "Landed as 568aa17a40; QA gaps: baseline, rollback, tests, contract; F-016-01/F-016-06 deferred"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet to Complete with residuals dispositioned in sibling 007/006"
+    next_safe_action: "Packet Complete, dirty_tree freshness warning clears on commit"
     blockers: []
     key_files:
       - "implementation-summary.md"
-    completion_pct: 86
-    open_questions:
-      - "F-016-01 fix requires command-runner argv support (shell interpolation is at the yaml layer)"
-      - "F-016-06 codex env allowlist needs a live-codex validation + test before re-land"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "REQ-010 (code): containmentEnabled is unconditionally true, made safe by the paired data-loss preserve-as-advisory fix"
-      - "REQ-003: cli-opencode now throws for an explicit unenforceable sandbox mode instead of labeling it advisory-<mode> and dispatching"
+      - "REQ-010: containmentEnabled is unconditionally true, and the per-kind containment test for all 7 kinds landed at f48b50be79 (sibling 007/006)"
+      - "REQ-003: cli-opencode throws for an explicit unenforceable sandbox mode instead of labeling it advisory-<mode> and dispatching"
+      - "RESIDUALS: 028 open QA and deferred items dispositioned in sibling 007/006 (Complete); F-016-01/F-016-06/per-mode contract are accepted deferrals"
 ---
 
 <!-- SPECKIT_LEVEL: 3 -->
@@ -40,8 +39,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-fanout-dispatch-integrity |
-| **Status** | Complete (10/12 findings landed as d0d8623ddf; REQ-010 uniform containment + F-016-03 rejection + a write-containment data-loss safety fix delivered this pass, code- and test-verified, landed as 568aa17a40 on skilled/v4.0.0.0; F-016-01/F-016-06 deferred) |
-| **Completed** | 2026-08-07 (containment overhaul verified 2026-08-08, landed as 568aa17a40) |
+| **Status** | Complete — 100% (10/12 findings landed as `d0d8623ddf`; REQ-010 uniform containment + F-016-03 rejection + a write-containment data-loss safety fix landed as `568aa17a40` on skilled/v4.0.0.0; residual 028 QA and deferred items dispositioned in sibling `007/006` (Complete); F-016-01/F-016-06/per-mode artifact contract are accepted deferrals) |
+| **Completed** | 2026-08-07 (containment overhaul verified 2026-08-08 as `568aa17a40`; residuals dispositioned in sibling `007/006` 2026-08-17) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -192,6 +191,25 @@ Re-run this pass: `write-containment.vitest.ts` 18/18, `fanout-run.vitest.ts` 10
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`F-016-01` DEFERRED (not landed)** — the attempted `fanout-run-wrapper.cjs` plus 4 yaml edits was reverted; the fix cannot live below the yaml shell-interpolation layer. Needs command-runner argv support.
-2. **`F-016-06` DEFERRED (not landed)** — the attempted `codex-dispatch.cjs` env allowlist was reverted; untested and it dropped the forced `AI_SESSION_CHILD='1'` marker. Needs a preserved marker plus a test plus live-codex validation.
+1. **`F-016-01` accepted deferral** — the attempted `fanout-run-wrapper.cjs` plus 4 yaml edits was reverted; the fix cannot live below the yaml shell-interpolation layer, and the value is operator/config-authored (calibrated low-severity). Recorded as an accepted deferral in sibling `007/006` REQ-004; needs command-runner argv support to re-land.
+2. **`F-016-06` accepted deferral** — the attempted `codex-dispatch.cjs` env allowlist was reverted; untested and it dropped the forced `AI_SESSION_CHILD='1'` marker. The substantive per-kind sandbox enforcement (F-016-02/03) is already tested at `a20833dacb`, so this residual carries no active exposure. Recorded as an accepted deferral in sibling `007/006` REQ-004.
+3. **Per-mode artifact contract accepted deferral** — 028 `tasks.md` T005/T006 (contract design + location) were never built; a per-mode artifact-contract surface is a separate design effort, not a closeout of a landed finding. Recorded as an accepted deferral in sibling `007/006` REQ-004.
+
+### Residual closeout (dispositioned in sibling `007/006`, Complete)
+
+The 028 open-QA and deferred items this packet surfaced were carried into and closed by sibling packet `system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/006-residual-finding-closeouts` (Complete, 2026-08-17). That packet's REQ-003/REQ-004 dispositions, verified there first-hand and landed on `skilled/v4.0.0.0`:
+
+| 028 residual | Disposition in sibling `007/006` | Evidence |
+|--------------|----------------------------------|----------|
+| F-010-01 / F-010-02 fulfillment (report-only + self-reported counters rejected) | Negative tests added | `90121aeed6` |
+| F-010-03 provenance (`effectiveConfig` + `invocationFingerprint`) | Covered by existing suite | `fanout-run.vitest.ts:872-1008` |
+| F-010-04 audit-record distinguishability | Negative test added | `888fab793a` |
+| F-016-02 / F-016-03 sandbox enforcement | Per-kind tests added | `a20833dacb` |
+| F-016-04 / F-016-05 containment (truncation + out-of-worktree hard-fail) | Negative tests added | `ed26cf274b` |
+| F-020-01 nested sink redaction | Negative test added | `52da064126` |
+| REQ-010 per-kind containment (all 7 executor kinds + matrix guard) | Test added | `f48b50be79` |
+| F-020-02 raw lineage label | Accepted low-severity disposition (code fix already present at `observability-events.cjs:162-176`; no dedicated negative test) | operator/config-authored |
+| Whole-gate delta (CHK-002/004/110) | Closed as packet-hygiene | 5 surface suites, 215 tests, 0 failed |
+| Producer/consumer inventories (CHK-FIX-002/003), rehearsed rollback (CHK-120) | Closed as packet-hygiene | test-only, `git revert <sha>` per commit |
+| F-016-01 / F-016-06 / per-mode artifact contract | Accepted deferrals | `007/006` REQ-004 disposition table |
 <!-- /ANCHOR:limitations -->
