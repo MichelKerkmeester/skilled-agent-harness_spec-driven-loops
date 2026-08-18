@@ -215,18 +215,22 @@ export class AttachmentInjector {
     key: string,
   ): Promise<InjectedEvidence | undefined> {
     try {
-      const [cap, scene, ocr] = await Promise.all([
+      // Each analyzer is independent: a failure in one (e.g. OCR on a model that
+      // cannot do it) must not discard the evidence the others produced.
+      const [capR, sceneR, ocrR] = await Promise.allSettled([
         this.provider().caption({ source }),
         this.provider().scene({ source }),
         this.provider().ocr({ source }),
       ]);
       const label = source.type === "path" ? source.path : "inline-image";
-      const text = [
-        contextBuilder.renderScene(scene, { source: label }),
-        contextBuilder.renderCaption(cap, { source: label }),
-        contextBuilder.renderOCR(ocr, { source: label }),
-      ].join("\n");
-      return { text, at: Date.now() };
+      const parts: string[] = [];
+      if (sceneR.status === "fulfilled") parts.push(contextBuilder.renderScene(sceneR.value, { source: label }));
+      if (capR.status === "fulfilled") parts.push(contextBuilder.renderCaption(capR.value, { source: label }));
+      if (ocrR.status === "fulfilled") parts.push(contextBuilder.renderOCR(ocrR.value, { source: label }));
+      if (parts.length === 0) {
+        throw ocrR.status === "rejected" ? ocrR.reason : new Error("all vision analyzers failed");
+      }
+      return { text: parts.join("\n"), at: Date.now() };
     } catch (err) {
       if (process.env.SK_VISION_DEBUG === "1") {
         process.stderr.write(`[sk-vision] auto-inject failed (${key}): ${(err as Error).message}\n`);

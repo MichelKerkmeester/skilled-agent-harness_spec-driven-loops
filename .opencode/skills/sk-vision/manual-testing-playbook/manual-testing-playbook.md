@@ -7,7 +7,7 @@ trigger_phrases:
   - "sk-vision release validation"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # sk-vision: Manual Testing Playbook
@@ -37,7 +37,7 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 
 This playbook provides a derived census of deterministic scenarios across categories validating the `sk-vision` skill surface. The operator validator computes those counts from the walked tree; do not hand-maintain them. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-08-16): 16 operator scenarios across 5 categories cover the 13 shipped `sk_vision_*` tools, the two host adapters (OpenCode plugin and Pi extension), and the JSON-RPC runtime lifecycle. Every scenario is executable against the local fork with the default `moondream2` model; nothing requires a network connection after the first model load.
+Coverage note (2026-08-17): 24 operator scenarios across 6 categories cover the 13 shipped `sk_vision_*` tools, all four host adapters (in-process OpenCode plugin and Pi extension; MCP Cursor and Devin), the standalone MCP server, an end-to-end vision-blind-model scenario (a text-only model such as GLM gaining sight through the tools), the guaranteed-vision feature for text-only models (VSN-021..024), and the JSON-RPC runtime lifecycle. The tool, pixel, and runtime scenarios run against the local fork with the default `moondream2` model and no network after the first load; the Cursor/Devin attachment (VSN-018/019), the vision-blind scenario (VSN-020), and the rule-driven guaranteed-vision scenarios (VSN-022/023) additionally require the host with `sk-vision` attached.
 
 ### Realistic Test Model
 
@@ -410,7 +410,9 @@ Desired user-visible outcome: a list of visually similar local images, or an exp
 
 ---
 
-## 10. HOST ADAPTERS (`VSN-014..VSN-015`)
+## 10. HOST ADAPTERS (`VSN-014, VSN-015, VSN-017..VSN-020`)
+
+OpenCode and Pi attach in-process (VSN-014, VSN-015). Cursor and Devin are MCP-only, so they share one MCP stdio server (VSN-017) attached via config (VSN-018 Cursor, VSN-019 Devin); VSN-020 proves a text-only model like GLM reads an image through those tools.
 
 ### VSN-014 | OpenCode plugin
 
@@ -444,9 +446,123 @@ Desired user-visible outcome: the 13 `sk_vision_*` tools available in a Pi sessi
 > **Feature File:** [VSN-015](host-adapters/pi-extension.md)
 > **Catalog:** [pi-extension](../feature-catalog/host-adapters/pi-extension.md)
 
+### VSN-017 | Standalone MCP server
+
+#### Description
+Verify the built MCP stdio server starts under Node and advertises exactly 13 tools. Cursor and Devin both depend on this one process, so a direct protocol check separates transport failures from host-config failures.
+
+#### Scenario Contract
+Prompt: `Launch the sk-vision MCP server directly and confirm it advertises all 13 tools.`
+
+Desired user-visible outcome: a healthy, complete standalone server (`count: 13`).
+
+#### Test Execution
+> **Feature File:** [VSN-017](host-adapters/mcp-standalone.md)
+> **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
+
+### VSN-018 | Cursor MCP attachment
+
+#### Description
+Verify Cursor attaches the shared sk-vision MCP server through the merged `.claude/mcp.json` (via the `.cursor/mcp.json` chain) without dropping other servers, and can call `sk_vision_status`.
+
+#### Scenario Contract
+Prompt: `Confirm Cursor attaches the repository's sk-vision MCP server and can call its status tool.`
+
+Desired user-visible outcome: a text-only Cursor model (e.g. GLM) can reach the shared vision tools.
+
+#### Test Execution
+> **Feature File:** [VSN-018](host-adapters/cursor-mcp.md)
+> **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
+
+### VSN-019 | Devin MCP attachment
+
+#### Description
+Verify Devin loads `.devin/mcp_config.json`, attaches sk-vision, and can call the namespaced `mcp__sk-vision__sk_vision_status`.
+
+#### Scenario Contract
+Prompt: `Confirm Devin attaches the repository's sk-vision MCP server and can call its namespaced status tool.`
+
+Desired user-visible outcome: a text-only Devin model (e.g. GLM) can reach the shared vision tools through the documented namespace.
+
+#### Test Execution
+> **Feature File:** [VSN-019](host-adapters/devin-mcp.md)
+> **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
+
+### VSN-020 | Vision-blind model gains sight
+
+#### Description
+Verify the end-to-end value: a text-only model such as GLM, in Cursor or Devin, reads an image it cannot natively see by calling `sk_vision_ocr` / `sk_vision_inspect` instead of hallucinating or refusing.
+
+#### Scenario Contract
+Prompt: `Read the exact text in this image and quote it. You have no native vision — use the available sk-vision tools.`
+
+Desired user-visible outcome: the vision-blind model answers correctly about an image via a tool call.
+
+#### Test Execution
+> **Feature File:** [VSN-020](host-adapters/vision-blind-model.md)
+> **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
+
 ---
 
-## 11. RUNTIME CORE (`VSN-016`)
+## 11. GUARANTEED VISION FOR TEXT-ONLY MODELS (`VSN-021..VSN-024`)
+
+A text-only model cannot see an attached image, so the auto-inspect is made a guarantee for it: the two in-process hosts (OpenCode, Pi) await the full analysis before the model reads the message, and the two MCP-only hosts (Cursor, Devin) ship a best-effort rule that tells the model to inspect the image itself.
+
+### VSN-021 | Guaranteed auto-inspect for a text-only model
+
+#### Description
+For a text-only model in an in-process host (OpenCode or Pi), the adapter awaits the full image analysis and auto-injects the `<SK-VISION>` evidence block, so the evidence is guaranteed present even when the first cold analysis is slower than the 2-second grace.
+
+#### Scenario Contract
+Prompt: `What does this screenshot say?`
+
+Desired user-visible outcome: a text-only model answers from an auto-injected `<SK-VISION>` block it never had to ask for.
+
+#### Test Execution
+> **Feature File:** [VSN-021](guaranteed-vision/auto-inspect-guarantee.md)
+
+### VSN-022 | Rule-driven vision in Cursor
+
+#### Description
+With the always-on Cursor rule active, a text-only model calls a `sk_vision_*` tool on an attached image unprompted (the prompt never mentions vision) and reports the real content.
+
+#### Scenario Contract
+Prompt: `What is the status message in this image?`
+
+Desired user-visible outcome: the Cursor rule drives a vision-blind model to read the image without being told to.
+
+#### Test Execution
+> **Feature File:** [VSN-022](guaranteed-vision/cursor-rule.md)
+
+### VSN-023 | Rule-driven vision in Devin
+
+#### Description
+With the Devin drop-in note supplied as session guidance, a text-only Devin model calls a `sk_vision_*` tool on an attached image unprompted and reports the real content.
+
+#### Scenario Contract
+Prompt: `What is the status message in this image?`
+
+Desired user-visible outcome: the Devin note drives a vision-blind model to read the image without being told to.
+
+#### Test Execution
+> **Feature File:** [VSN-023](guaranteed-vision/devin-note.md)
+
+### VSN-024 | Text-only classifier and env overrides
+
+#### Description
+The shared classifier identifies text-only models by the built-in allowlist, `SK_VISION_TEXT_ONLY_MODELS`, `SK_VISION_FORCE=1`, and a host-declared non-image input modality; a multimodal or unlisted model keeps the non-blocking grace so submission never stalls.
+
+#### Scenario Contract
+Command: `bun test src/model-modality.test.ts` and `bun test src/opencode/attachments.test.ts` in `vision-runtime/`.
+
+Desired user-visible outcome: the classifier and await-vs-race behaviour are proven green (6/0 and 2/0).
+
+#### Test Execution
+> **Feature File:** [VSN-024](guaranteed-vision/classifier-and-env.md)
+
+---
+
+## 12. RUNTIME CORE (`VSN-016`)
 
 ### VSN-016 | Runtime lifecycle
 
@@ -466,7 +582,7 @@ Desired user-visible outcome: the GPU is claimed and released on demand.
 
 ---
 
-## 12. AUTOMATED TEST CROSS-REFERENCE
+## 13. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
@@ -477,7 +593,7 @@ The automated suite runs with `bun test` inside `vision-runtime/` (8 tests, 27 e
 
 ---
 
-## 13. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 14. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -497,3 +613,7 @@ The automated suite runs with `bun test` inside `vision-runtime/` (8 tests, 27 e
 | VSN-014 | OpenCode plugin | Host adapters | [VSN-014](host-adapters/opencode-plugin.md) |
 | VSN-015 | Pi extension | Host adapters | [VSN-015](host-adapters/pi-extension.md) |
 | VSN-016 | Runtime lifecycle | Runtime core | [VSN-016](runtime-core/runtime-lifecycle.md) |
+| VSN-021 | Guaranteed auto-inspect | Guaranteed vision | [VSN-021](guaranteed-vision/auto-inspect-guarantee.md) |
+| VSN-022 | Rule-driven vision in Cursor | Guaranteed vision | [VSN-022](guaranteed-vision/cursor-rule.md) |
+| VSN-023 | Rule-driven vision in Devin | Guaranteed vision | [VSN-023](guaranteed-vision/devin-note.md) |
+| VSN-024 | Text-only classifier and env overrides | Guaranteed vision | [VSN-024](guaranteed-vision/classifier-and-env.md) |
