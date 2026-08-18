@@ -46,3 +46,10 @@ The app ships read-only by default; mutations are one-use, ticketed, revision-ch
 redaction is allowlist-based and structural; plan mode is host-enforced; pushes are content-free;
 `--full-access` is operator-only and the phone cannot enable it. A design-system edit touches none of
 this — but a workflow bundling this surface must never let a presentation change become a path into it.
+
+---
+
+## 4. RELATED REFERENCES
+
+- `assets/guardrail-audit-checklist.md` — a checklist to confirm no fence in §1 moved after a
+  design-system change.

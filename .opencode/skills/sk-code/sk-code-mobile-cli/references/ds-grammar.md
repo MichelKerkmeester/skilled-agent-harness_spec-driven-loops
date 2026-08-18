@@ -48,3 +48,11 @@ moved only where intended. If it is `@ds guardrail: do-not-edit`, stop — that 
 guarantee, a security boundary, or logic, and the reason is stated in the comment. The full designer
 walkthrough with worked examples is `apps/pi-remote-web/src/design-system/designer-guide.md`; the live
 index is `catalog.html`.
+
+---
+
+## 4. RELATED REFERENCES
+
+- `theme-remap.md` — how the `@ds theme:` light / dark / system-dark remap blocks work, role by role.
+- `component-tokens.md` — the component-layer tokens an `@ds edit: tokens` seam most often targets.
+- `retint-recipes.md` — the worked recipes for a token-class edit end to end.

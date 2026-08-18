@@ -75,3 +75,13 @@ These two ends of the seam are the model: pick the layer whose blast radius matc
   and after; every intended declaration changes and nothing else does.
 - Keep WCAG AA in both themes — the `contrast.test.tsx` suite enforces it; a retint that drops a pair
   below AA fails the gate.
+
+---
+
+## 4. RELATED REFERENCES
+
+- `component-tokens.md` — the Layer-3 `--model-sheet-*` / `--slash-*` / `--diff-*` families in full,
+  with the exact blast radius of retinting each.
+- `retint-recipes.md` — worked, step-by-step recipes for a semantic-layer retint and a component-layer
+  retint, each with the resolver proof steps.
+- `theme-remap.md` — which semantic role reads which primitive per theme, and which roles stay literal.

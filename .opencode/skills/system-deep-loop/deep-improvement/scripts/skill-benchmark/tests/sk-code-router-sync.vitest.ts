@@ -110,13 +110,13 @@ describe('sk-code router sync — machine block vs filesystem and prose', () => 
   });
 });
 
-// Decentralization guard: the two surface children now each own an inline
+// Decentralization guard: the surface children each own an inline
 // INTENT_SIGNALS/RESOURCE_MAP router over their own references/assets. The parent
 // surface RESOURCE_MAP must stay EXACTLY the union of those children (each path
 // re-prefixed with its surface folder) plus a fixed parent-owned tier that no
 // single surface child owns. This makes the children the single source of truth
 // and fails closed if the parent projection or a child slice drifts apart.
-const SURFACES = ['sk-code-webflow', 'sk-code-opencode'];
+const SURFACES = ['sk-code-webflow', 'sk-code-opencode', 'sk-code-mobile-cli'];
 
 // The universal/shared tier the parent surface map owns directly (belongs to no
 // single surface child): the surface-agnostic quality/error/checklist docs, the
