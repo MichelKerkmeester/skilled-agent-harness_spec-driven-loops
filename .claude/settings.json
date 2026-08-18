@@ -11,6 +11,8 @@
     "command": "bash .claude/statusline-command.sh"
   },
   "skillListingBudgetFraction": 0.02,
+  "autoCompactEnabled": true,
+  "autoCompactWindow": 500000,
   "hooks": {
     "PreToolUse": [
       {
