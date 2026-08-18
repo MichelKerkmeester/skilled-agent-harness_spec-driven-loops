@@ -79,3 +79,22 @@ Also still open in the broader program (sk-doc, not runtime): 022/003 (full stru
 
 ## 6. Session ledger (what landed to origin/skilled/v4.0.0.0 THIS session)
 All adversarially verified pre-land: 025/002 `c6a07b226c` · 022/001 `98f2e639b3` · 022/002 `07e008dee9` · 025/003 `65db3ed73c` · 025/004 `0df71a042d` (025 skill-doc-currency family COMPLETE). Plus the standing goal prompt was rewritten to drop the stale STEP 0 (scaffold is done).
+
+---
+
+## 7. Current deferred residuals (2026-08-18) — the continue list for THIS packet
+
+Sections 1–6 above are the landing history. The packet's code is landed and hardened; the two items below are the **accepted, open deferrals** that remain — these are the "continue" ends for `005/004-durable-write-boundaries`.
+
+### 7A. Aggregate-gate whole-suite delta — CHK-004 / CHK-110 [P0]
+- **State:** deferred. The serial `runtime` suite is `fileParallelism:false` by config and a full run takes hours (it hangs the aggregate); parallel runs are invalid (shared-graph-DB + fence-lock contention → spurious failures).
+- **Resume:** follow the ordered strategy in **§2A** exactly — (1) `cd runtime && npm rebuild better-sqlite3` first (binding version drift stalls every DB test); (2) re-run the migrated-caller files in **isolation** in small serial batches (the real regression risk); (3) capture the whole-suite aggregate serially in file-group batches and sum, confirming the only failures are the 4 pre-existing files in **§2B**. A "no new failures vs the 021 baseline" claim = the final failing set is exactly those 4 files.
+
+### 7B. F-002-01 torn-tail quarantine — T015 [P0] NEEDS-DESIGN
+- **State:** deferred, `NEEDS-DESIGN`. Byte-precise ordering of the torn-tail quarantine *after* a durable recovery marker (depends on T007).
+- **Resume:** complete the F-002-01 design (define the byte-precise ordering guarantee relative to the durable recovery marker), then implement T015 and add a crash-injection negative test proving a torn tail is quarantined only after the marker is durable.
+
+### 7C. Verification handoffs — T022 / T024
+- **T022:** re-run `cd .opencode/skills/system-deep-loop/runtime && npm run typecheck && npm test`; report the delta against the `021` baseline (blocked by 7A's aggregate strategy).
+- **T024:** run strict validation, record the Blocker 3 discharge in the `014` unblock table, and hand the receipt + parser primitives to `025`/`026`/`027`.
+

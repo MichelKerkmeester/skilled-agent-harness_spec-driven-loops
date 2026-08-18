@@ -39,7 +39,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -70,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -179,17 +186,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The roster drift is one fact repeated in five places: three READMEs advertise a pre-alignment four-family roster and four improvement lanes against a registry with five families and three lanes",
     "created_at": "2026-07-31T01:25:21.765Z",
-    "last_save_at": "2026-08-18T03:51:08.861Z",
+    "last_save_at": "2026-08-18T12:32:52.540Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,15 +198,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:2a3d5d2482c80d9df77ed784d880406723c4faf0b4c3963b70f80636704d8265",
+    "source_fingerprint": "sha256:0771c2699f03a4cf78cc26b291bec17ff94f39c03106f071b6979a97dd397a75",
     "source_doc_hashes": {
       "spec.md": "0275000df0cf9b2b0ae75df01b5e52bedc3d285348de6880f087392606baacf9",
       "plan.md": "05063eff1d743c9cab73afbfbe93edf6c4316af996df808f8361994ef8d2aede",
       "tasks.md": "fe8efb728cb7f7f65595b7483c9fe8adfcac9e4e792bd185e6d24ce06b0f5feb",
       "checklist.md": "7c52d791680bbd133af121d34f09814d498688bcd7d6f95f369ee38e6707db63",
-      "implementation-summary.md": "0ad7e4c3e24660db45225b666e2bf81ea3da031bd81cb674832e17aa0b8238ce"
+      "implementation-summary.md": "0ad7e4c3e24660db45225b666e2bf81ea3da031bd81cb674832e17aa0b8238ce",
+      "handover.md": "074c5350d6d41c965c51008c1f5ab24872bfcde86bb4b0034b5666253e400aa1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -42,7 +42,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -79,6 +80,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -182,17 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built Promotion",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier revision can authorize promotion of a newer unscored candidate (`F-017-01`, CONFIRMED-WITH-MITIGATION: the benchmark report is target-bound, which mitigates but does not close it)",
     "created_at": "2026-07-31T01:25:21.136Z",
-    "last_save_at": "2026-08-18T06:35:24.999Z",
+    "last_save_at": "2026-08-18T12:32:46.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,16 +202,18 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:1d3886ea394a6602622fc711b64aba2b922ff29c3d20fba30ddf60bed38778cf",
+    "source_fingerprint": "sha256:b26798b9d0d1ec65d140881ae6357216dfed4f646f9d5c351a487f919f4754cb",
     "source_doc_hashes": {
       "spec.md": "8ab82992a5515af6ee0b1fff6f9accb92873ad65fca92928994fe05057d1ae45",
       "plan.md": "8c06d98745d84f98e2fb294224f3689ef82b052a182fce06aac6e2e65ee1a5cf",
       "tasks.md": "c67360c1dae56a251bc232178288183c28e761e196f180d0df4f3240400d37b9",
       "checklist.md": "00e8719fb736b19576c23782a8308ddf9f3544d7d1507a3d64e73daaae781303",
       "decision-record.md": "30c29d558005a45efc6b872f1a167985bc5bb152e078123d9458d539acab9f21",
-      "implementation-summary.md": "a9fe264689699c6100ad6c0a7b3d4c757380b8a11468f1e1df99cba081021059"
+      "implementation-summary.md": "a9fe264689699c6100ad6c0a7b3d4c757380b8a11468f1e1df99cba081021059",
+      "handover.md": "9b69d5eb396f20df34a76d1aaa8b246aacca0b54a80c008934ea5a13c4b2e60d"
     },
     "last_active_child_id": null,
     "last_active_at": null
