@@ -16,13 +16,13 @@ This document combines the current feature inventory for the `runtime/` skill in
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 50 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 51 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
 | [executor](executor/) | 4 features | `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `lib/deep-loop/fallback-router.ts` |
 | [prompt-rendering](../feature-catalog/prompt-rendering) | 1 features | `lib/deep-loop/prompt-pack.ts` |
-| [validation](validation/) | 3 features | `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/plugins/mk-deep-loop-guard.js` |
+| [validation](validation/) | 4 features | `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/plugins/mk-deep-loop-guard.js`, `lib/mode-contracts/strict-gate-validator.ts` |
 | [state-safety](../feature-catalog/state-safety) | 10 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
 | [scoring](scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
 | [coverage-graph](../feature-catalog/coverage-graph) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
@@ -174,6 +174,22 @@ A `tool.execute.before` hook resolves the real target agent (`orchestrate` alway
 #### Source Files
 
 See [`validation/mk-deep-loop-guard.md`](../feature-catalog/validation/mk-deep-loop-guard.md) for full implementation and validation file listings.
+
+---
+
+### Rollback-gate shared strict validator
+
+#### Description
+
+Deep-research and deep-review rollback mode gates stopped carrying their own hand-copied `hasExactKeys` helper and now consume the shared strict validator (`hasExactKeys`, `validateRows`) exported from `lib/mode-contracts/index.js`.
+
+#### How It Works
+
+`evaluateDeepReviewRollbackWindow` / `evaluateDeepResearchRollbackWindow` split one row predicate that used to filter structural validity, success selection, and (review gate only) authentication membership together: structural validity now rejects the whole evidence set through `validateRows` on a malformed row, while success/authentication selection stays a `.filter(...)` with unchanged semantics.
+
+#### Source Files
+
+See [`validation/rollback-gate-shared-strict-validator.md`](../feature-catalog/validation/rollback-gate-shared-strict-validator.md) for full implementation and validation file listings.
 
 ---
 
