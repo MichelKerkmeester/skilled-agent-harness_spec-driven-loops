@@ -13,17 +13,17 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Implemented and verified the 13-finding runtime scope; 18 of 22 tasks are complete"
-    next_safe_action: "Full baseline, independent verification, main validation"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to the landed additive-dark state under 0d1827eef50"
+    next_safe_action: "Pass the additive-dark acceptance review and independent adversarial verification"
     blockers:
-      - "T002 baseline was not captured for the entire improvement project before edits"
-      - "T021 requires a different actor"
-      - "T022 requires a complete main-checkout validator environment"
+      - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
+      - "Independent adversarial verification pending (T021 / CHK-005)"
+      - "T002/T020 full improvement-project baseline and whole-gate delta not captured"
     key_files:
       - "tasks.md"
-    completion_pct: 82
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -144,7 +144,7 @@ Promotion copies bytes into canonical targets. Every test in this child runs aga
 
 ### T001 Finding Classification and Probe Ledger
 
-Severity remains calibrated as an operator/stale-local-file robustness risk, not a remote-attacker incident. `HEAD` before this task was `149742c46260277ae26df6fe6cfe582a9d02454d`. The affected-test aggregate suite-content SHA-256 is `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`. The sandbox denied writes to the shared Git index, so these working-tree changes do not yet have a candidate commit SHA; checklist items that require one remain open.
+Severity remains calibrated as an operator/stale-local-file robustness risk, not a remote-attacker incident. `HEAD` before this task was `149742c46260277ae26df6fe6cfe582a9d02454d`. The affected-test aggregate suite-content SHA-256 is `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`. These changes landed additive-dark under commits `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`), so the candidate-SHA evidence that was previously pending now exists. Go-live stays gated: promotion enforcement is dark until the additive-dark acceptance review (CHK-018) and independent adversarial verification (T021 / CHK-005) pass.
 
 | Finding | HEAD classification | Final disposition | Named probe |
 |---------|---------------------|-------------------|-------------|

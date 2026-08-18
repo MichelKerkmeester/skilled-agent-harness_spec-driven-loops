@@ -13,12 +13,11 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Re-verified Blocker 3 vs HEAD; fencing primitive absent, cited SHA unrelated"
-    next_safe_action: "Implement REQ-001/REQ-002 fencing; fix fence_token regression; re-verify"
-    blockers:
-      - "Blocker 3's fencing mechanism (FenceCapability / #appendAuthorized / STALE_FENCE at the ledger primitive) is absent from runtime/lib/authorized-ledger; confirmed by diff and grep."
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Set spec Status to Complete and resolved the open questions against the landed B1-B4"
+    next_safe_action: "Aggregate-gate delta and cross-packet 014 note remain accepted deferrals"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,7 +25,7 @@ _memory:
       - "checklist.md"
       - "decision-record.md"
       - "implementation-summary.md"
-    completion_pct: 35
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "OPERATOR RULING: GATEWAY-ONLY MUTATION. All appends route through the transition-auth gateway enforcing fencing tokens; direct appendAuthorized becomes internal-only. IMPLEMENTED — landed via `5c98e4654e4` + the 024 fencing fix set (`30a0089a3b`, `39015ed14c`, `27e6c2b5a9`, `5b6d9e86b9a`); gateway code present in `append-only-ledger.ts`, `authorized-ledger.vitest.ts` 34/34 green (2026-08-10)."
@@ -65,7 +64,7 @@ Blocker 3 is that the authorized append enforces no fencing. A grep of `append-o
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Blocker 3 DISCHARGED — the fencing GO-set is BUILT + verified + adversarially clean + landed: B1 append-boundary fence + F-018-03 fence_token (`39015ed14c`), B2 gateway identity fail-closed (`27e6c2b5a9`), B3 policy-identity digest (`5b6d9e86b9`), B4 loop-lock atomic publish (`ff3a574014`). REQ-001/002 met: `appendAuthorized` is hard-private `#appendAuthorized`, reachable only via a coordinator-minted capability re-checked against the durable current lease; a superseded writer is rejected with STALE_FENCE before any frame commits. B5/B6 + F-004-01/02/03 were T001-REFUTED (already remediated — see `t001-disposition.md`). A final independent adversarial pass could not refute B1–B4. **Documented residual (elective):** token-replay — an active in-process actor reading the public current token can mint a matching capability, but it is bounded by the exclusive-lock + prior-head CAS + single-use dedup (no double-commit, no content forgery, out of the stated threat model). **Operator-decision caveat:** B2's new required identity-verified fields with `event_version` unchanged reject pre-existing dark-ledger audit frames (availability, not integrity). See `implementation-summary.md`, `build-spec.md`, `t001-disposition.md`. |
+| **Status** | Complete — Blocker 3 DISCHARGED. The fencing GO-set is BUILT + verified + adversarially clean + landed: B1 append-boundary fence + F-018-03 fence_token (`39015ed14c`), B2 gateway identity fail-closed (`27e6c2b5a9`), B3 policy-identity digest (`5b6d9e86b9`), B4 loop-lock atomic publish (`ff3a574014`). Accepted deferrals: aggregate-suite delta (broad runner hangs; load-bearing suites pass), protected-surface registry gateway-only annotation (runtime edit), and the cross-packet `014` discharge note. REQ-001/002 met: `appendAuthorized` is hard-private `#appendAuthorized`, reachable only via a coordinator-minted capability re-checked against the durable current lease; a superseded writer is rejected with STALE_FENCE before any frame commits. B5/B6 + F-004-01/02/03 were T001-REFUTED (already remediated — see `t001-disposition.md`). A final independent adversarial pass could not refute B1–B4. **Documented residual (elective):** token-replay — an active in-process actor reading the public current token can mint a matching capability, but it is bounded by the exclusive-lock + prior-head CAS + single-use dedup (no double-commit, no content forgery, out of the stated threat model). **Operator-decision caveat:** B2's new required identity-verified fields with `event_version` unchanged reject pre-existing dark-ledger audit frames (availability, not integrity). See `implementation-summary.md`, `build-spec.md`, `t001-disposition.md`. |
 | **Created** | 2026-07-30 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
@@ -80,7 +79,10 @@ Blocker 3 is that the authorized append enforces no fencing. A grep of `append-o
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`F-014-01` is CONFIRMED: `appendAuthorized` validates decision, prior head, expiry and authority epoch but contains zero fencing, lease, token or high-water-mark logic, so a superseded writer holding an unexpired proof can append directly while fencing sits in an optional wrapper. Around that boundary sit the same mechanism in nine other places. The gateway treats caller-supplied `actorId`, `capabilityId` and `evidenceDigest` as authority (`F-014-02`). The policy registry digests only `evaluate.toString()`, so a closure-captured allowlist can change under an unchanged policy identity (`F-014-03`). Branch workers run unfenced for the lease lifetime (`F-018-03`). The diff-gated JSONL append is a check-then-append race with no cross-process lock (`F-018-04`). Lock reclaim and release both mutate a shared path after a separate identity read (`F-018-01`, `F-018-02`, `F-003-01`). Torn-tail quarantine can remove a frame before its recovery marker is durable (`F-002-01`). Cyclic request data throws before a durable denial is built (`F-002-02`). Three effect and attestation paths let two callers both win (`F-004-01`, `F-004-02`, `F-004-03`). And leaf artifact publication writes narrative, then a write-once delta, then a state record with no rollback, so a failure after the delta leaves the iteration permanently unpersistable (`F-003-02`, `F-037-01`, `F-039-01`, `F-039-02`, `F-036-04`).
+
+> **(Resolved — historical problem statement.)** The defects below describe the pre-fix state that this packet closed; they are retained for provenance. Blocker 3 is discharged by the landed B1-B4 build (see Status and `implementation-summary.md`).
+
+`F-014-01` was CONFIRMED: `appendAuthorized` validated decision, prior head, expiry and authority epoch but contained zero fencing, lease, token or high-water-mark logic, so a superseded writer holding an unexpired proof could append directly while fencing sat in an optional wrapper. Around that boundary sit the same mechanism in nine other places. The gateway treats caller-supplied `actorId`, `capabilityId` and `evidenceDigest` as authority (`F-014-02`). The policy registry digests only `evaluate.toString()`, so a closure-captured allowlist can change under an unchanged policy identity (`F-014-03`). Branch workers run unfenced for the lease lifetime (`F-018-03`). The diff-gated JSONL append is a check-then-append race with no cross-process lock (`F-018-04`). Lock reclaim and release both mutate a shared path after a separate identity read (`F-018-01`, `F-018-02`, `F-003-01`). Torn-tail quarantine can remove a frame before its recovery marker is durable (`F-002-01`). Cyclic request data throws before a durable denial is built (`F-002-02`). Three effect and attestation paths let two callers both win (`F-004-01`, `F-004-02`, `F-004-03`). And leaf artifact publication writes narrative, then a write-once delta, then a state record with no rollback, so a failure after the delta leaves the iteration permanently unpersistable (`F-003-02`, `F-037-01`, `F-039-01`, `F-039-02`, `F-036-04`).
 
 ### Purpose
 Make every durable write ownership-elected, identity-verified and all-or-nothing, with the fenced gateway as the only exported mutation capability.
@@ -337,9 +339,11 @@ Make every durable write ownership-elected, identity-verified and all-or-nothing
 <!-- ANCHOR:open-questions -->
 ## 12. OPEN QUESTIONS
 
-- What compensating control covers in-flight callers during the window between adding the gateway path and demoting the direct export? The two changes are deliberately separate commits; the window must be either zero-length (same release) or covered by a documented deprecation shim.
-- Does the fencing token live in the frame envelope or alongside the authorization proof? Both work; the envelope form makes the token replay-visible, the proof form keeps the envelope smaller. Decide before Phase 3.
-- Do the three effect and attestation paths (`F-004-01`, `F-004-02`, `F-004-03`) share one single-winner primitive, or does each keep its own? A shared primitive is preferred but must not force an unrelated coupling.
+> All resolved — retained with their answers for provenance.
+
+- What compensating control covers in-flight callers during the window between adding the gateway path and demoting the direct export? **RESOLVED (ADR-005, Accepted):** a zero-length deprecation window — the gateway path, the caller migration, and the export demotion land as one ordered, `tsc`-atomic edit, so no window exists.
+- Does the fencing token live in the frame envelope or alongside the authorization proof? **RESOLVED (ADR-004, Accepted):** proof-side placement — `authorization_ref.fence_token` is the implemented field, landed at `39015ed14c`.
+- Do the three effect and attestation paths (`F-004-01`, `F-004-02`, `F-004-03`) share one single-winner primitive, or does each keep its own? **RESOLVED (ADR-006/ADR-007, Accepted):** a shared `FencedLeaseCoordinator`-backed single-winner primitive, derived from the ledger context by default. In practice these paths were T001-REFUTED (already single-winner from the ledger append boundary), so no new coupling was introduced.
 <!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 

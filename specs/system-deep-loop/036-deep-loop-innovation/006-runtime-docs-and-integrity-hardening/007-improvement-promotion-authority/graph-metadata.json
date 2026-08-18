@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier revision can authorize promotion of a newer unscored candidate (`F-017-01`, CONFIRMED-WITH-MITIGATION: the benchmark report is target-bound, which mitigates but does not close it)",
     "created_at": "2026-07-31T01:25:21.136Z",
-    "last_save_at": "2026-08-17T04:04:18.432Z",
+    "last_save_at": "2026-08-18T04:40:10.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d12e0d4af4731a7d65bd1449b94401910de9e6a172db9fce9042ac56b5e5d717",
+    "source_fingerprint": "sha256:6acee098995297896156b74dd899d3e9164d0467b3b60b6bb6ed3a931c81ee55",
     "source_doc_hashes": {
-      "spec.md": "b8f012d77b987a9025008d7380ab9a7be44cce3da173f70ff41ab424a9f1db2b",
-      "plan.md": "2daedbb1c28fe895f7b8aca105f9e6807f5efcaeff2b1026c28b1395603fe3b2",
-      "tasks.md": "c239a49392716619b4874c1720e6870b377290c7e98b26d7df50c4150c5c43ff",
-      "checklist.md": "888c0f85b698124fb40c9cfc79a41f675359f4db6c34561c3fe2604066f35a49",
-      "decision-record.md": "392b41c67d1ca79f53ff0f9d357cd43d34acb05d60f8584b84a65d9b36c2d001",
-      "implementation-summary.md": "fa4f494c97d0fe0d967c1291fe58a88a4742472a144a6ae662a1b92537b5b0d6"
+      "spec.md": "8bcf331352ce014f45968563638899b9107a2ca1bcb500e1911c5cecd0a97b02",
+      "plan.md": "1b6f3e3e7c8c09008ba8d37cf8ee1b9c08ef6d01aefddcfc3d8147ccf996a643",
+      "tasks.md": "b2aefc9c6950bff82102bb18316556fc5c145d4be3574264ccdcedb11cef080a",
+      "checklist.md": "259d622fcb0bebade415a9d18d3f617f9a514a43cf68698da420f63c2ce48868",
+      "decision-record.md": "791bf3c4119ea1a9e569736f5697185a50fcddb4a21c3b2ad8c8e4bdb1e3dcee",
+      "implementation-summary.md": "411c9458e0a8fb6d50dfe4797361f937fe8983be28b20a8a15a2242ce78486ed"
     },
     "last_active_child_id": null,
     "last_active_at": null

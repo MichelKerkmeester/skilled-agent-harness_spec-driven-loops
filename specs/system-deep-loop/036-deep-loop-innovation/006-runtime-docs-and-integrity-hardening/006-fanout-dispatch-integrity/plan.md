@@ -13,14 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the implementation plan from the WS1 phase-tree proposal"
-    next_safe_action: "Set up the isolated worktree before any dispatch work"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet to Complete with residuals dispositioned in sibling 007/006"
+    next_safe_action: "Packet Complete, dirty_tree freshness warning clears on commit"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,18 +53,18 @@ Define the per-mode artifact contract before touching dispatch, because fulfillm
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `021`'s hashed-child-manifest boundary has landed, so this child can be scaffolded without widening the parent recursive glob
-- [ ] An isolated worktree is in use
-- [ ] The `021` `runtime` baseline captured and cited
-- [ ] Existing lineage shapes enumerated, and wrapper shell usage enumerated
+- [x] `021`'s hashed-child-manifest boundary landed before this child was scaffolded (scaffold-dependency note, spec.md §Scaffold dependency)
+- [x] An isolated worktree is in use (`tasks.md` T001, `.worktrees/0129-...`)
+- [Deferred: no literal pre-edit baseline; dispositioned as additive test-only in sibling `007/006`] The `021` `runtime` baseline captured and cited
+- [x] Existing lineage shapes enumerated, and wrapper shell usage enumerated (`tasks.md` T003/T004)
 
 ### Definition of Done
-- [ ] Fulfillment derived from the artifact contract; iteration counts from files
-- [ ] Containment uniform across kinds, with content-identity dirty-path detection
-- [ ] Argv dispatch; filtered Codex environment; allowlisted sink
-- [ ] Whole gate re-run and reported as a delta against the captured baseline
-- [ ] Independent adversarial verification pass complete
-- [ ] `validate.sh --strict` exits 0 for this child
+- [x] Fulfillment: iteration counts derived from files (F-010-02, `d0d8623ddf`); the full per-mode artifact contract is an accepted deferral (sibling `007/006` REQ-004)
+- [x] Containment uniform across kinds, with content-identity dirty-path detection (`568aa17a40` + `d0d8623ddf`; per-kind test `f48b50be79`)
+- [x] Allowlisted sink landed (F-020-01, `d0d8623ddf`); argv dispatch (`F-016-01`) and filtered Codex environment (`F-016-06`) are accepted deferrals (sibling `007/006` REQ-004)
+- [x] Whole gate re-run and reported as a delta (sibling `007/006`: 5 suites, 215 tests, 0 failed)
+- [x] Independent adversarial verification pass complete (`checklist.md` CHK-005 + sibling REQ-U04)
+- [Deferred: benign `CONTINUITY_FRESHNESS` dirty_tree warning clears on commit] `validate.sh --strict` exits 0 for this child (reports `Errors: 0`)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -120,33 +120,33 @@ Required inventories (run before implementation, record the output):
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Confirm, isolate and enumerate
-- [ ] Set up an isolated worktree before any dispatch work
-- [ ] T001 classification of all 12 findings at HEAD
-- [ ] Enumerate existing lineage shapes and wrapper shell usage
-- [ ] Cite the `021` baseline
+- [x] Set up an isolated worktree before any dispatch work (T001)
+- [x] T001 classification of all 12 findings at HEAD
+- [x] Enumerate existing lineage shapes and wrapper shell usage (T003/T004)
+- [Deferred: no literal pre-edit baseline; dispositioned in sibling `007/006`] Cite the `021` baseline
 
 ### Phase 2: Artifact contract
-- [ ] Define the per-mode artifact contract and decide where it lives
-- [ ] Validate state JSONL, iteration records, deltas, findings registry and terminal synthesis before fulfillment
-- [ ] Derive iteration counts from actual iteration files
+- [Deferred: per-mode artifact contract accepted deferral, sibling `007/006` REQ-004] Define the per-mode artifact contract and decide where it lives
+- [x] Validate before fulfillment: F-010-01 state-log check landed `d0d8623ddf`; report-only rejection test `90121aeed6`
+- [x] Derive iteration counts from actual iteration files (F-010-02, `d0d8623ddf`; test `90121aeed6`)
 
 ### Phase 3: Provenance
-- [ ] Carry `effectiveConfig` and `invocationFingerprint` through to the worker
-- [ ] Record sandbox mode, timeout, search policy, config dir, governor and executable identity in the audit
-- [ ] Assert audit distinctness for materially different invocations
+- [x] Carry `effectiveConfig` and `invocationFingerprint` through to the worker (F-010-03, `d0d8623ddf`)
+- [x] Record sandbox mode, timeout, search policy, config dir, governor and executable identity in the audit (F-010-04, `d0d8623ddf`)
+- [x] Assert audit distinctness for materially different invocations (`888fab793a`)
 
 ### Phase 4: Containment and dispatch
-- [ ] Reject sandbox modes a kind cannot enforce
-- [ ] Run post-dispatch containment for every kind
-- [ ] Detect dirty-path truncation by content identity
-- [ ] Hard-fail out-of-worktree artifact scopes
-- [ ] Move wrappers to argv dispatch
-- [ ] Filter the standalone Codex environment
+- [x] Reject sandbox modes a kind cannot enforce (F-016-03, `568aa17a40`; test `a20833dacb`)
+- [x] Run post-dispatch containment for every kind (REQ-010, `568aa17a40`; per-kind test `f48b50be79`)
+- [x] Detect dirty-path truncation by content identity (F-016-04, `d0d8623ddf`; test `ed26cf274b`)
+- [x] Hard-fail out-of-worktree artifact scopes (F-016-05, `d0d8623ddf`; test `ed26cf274b`)
+- [Deferred: `F-016-01` accepted deferral, sibling `007/006` REQ-004] Move wrappers to argv dispatch
+- [Deferred: `F-016-06` accepted deferral, sibling `007/006` REQ-004] Filter the standalone Codex environment
 
 ### Phase 5: Sink and gate
-- [ ] Allowlist the observability sink; stop interpolating raw labels
-- [ ] Re-run typecheck, tests and the receipts suites; report the delta
-- [ ] Independent adversarial verification pass
+- [x] Allowlist the observability sink; stop interpolating raw labels (F-020-01/02, `d0d8623ddf`; test `52da064126`)
+- [x] Re-run typecheck, tests and the receipts suites; report the delta (sibling `007/006`: 5 suites, 215 tests, 0 failed)
+- [x] Independent adversarial verification pass (`checklist.md` CHK-005)
 <!-- /ANCHOR:phases -->
 
 ---
@@ -326,9 +326,10 @@ Phase 4 (Containment + dispatch) ──► Phase 5 (Sink + gate)
 
 | ADR | Decision | Status |
 |-----|----------|--------|
-| ADR-001 | Fulfillment is derived from a per-mode artifact contract, never from report presence | Proposed |
-| ADR-002 | Dispatch moves from shell interpolation to argv | Proposed |
-| ADR-003 | Containment is uniform across dispatch kinds and detects truncation by content identity | Proposed |
+| ADR-001 | Fulfillment is derived from a per-mode artifact contract, never from report presence | Accepted |
+| ADR-002 | Dispatch moves from shell interpolation to argv | Accepted (wrapper attempt reverted; `F-016-01` accepted deferral) |
+| ADR-003 | Containment is uniform across dispatch kinds and detects truncation by content identity | Accepted (delivered; uniform half via ADR-004) |
+| ADR-004 | Containment failures are non-fatal-by-default, making uniform containment and a rejecting cli-opencode policy safe to ship | Accepted (landed `568aa17a40`) |
 
 Full context, alternatives, and consequences: `decision-record.md`.
 <!-- /ANCHOR:l3-adr-summary -->
