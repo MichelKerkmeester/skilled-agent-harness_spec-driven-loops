@@ -437,4 +437,40 @@ Routing every append through the fenced writer regressed idempotent replay. The 
 - Return the receipt from the writer on any committed digest match: the same consumer breakage, with a result that depends on audit-append interleaving timing.
 
 **Consequences**: Replaying a committed resume or an exact relationship retry returns the original receipt instead of failing with `HEAD_CONFLICT`. The fenced writer is untouched, so the fence keeps rejecting a genuinely new event racing an advanced head and a stale, superseded, or forged writer, and the digest and original-decision guards at each caller still run. `durableReceipt` joins the authorized-ledger public surface. Known separate blocker: the deep-ai-council resume adapter suite is masked by an unrelated pre-existing failure — its test harness holds a never-released council-ledger fence lease, so the adapter's own fenced append times out on lease acquisition before any idempotency or security assertion runs; this reproduces with the fix reverted and is out of scope for the idempotency remediation. Rollback is a code-only revert.
+
+### ADR-010: Make the torn-tail recovery marker durable before the quarantined bytes move
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted (ruling) — closes the `F-002-01` NEEDS-DESIGN item; implements T015 |
+| **Date** | 2026-08-18 |
+| **Deciders** | Packet owner (operator-elected; `t001-disposition.md` graded the ordering an operator call, not a durability breach) |
+
+**Context**: `quarantineTornTailUnlocked` renames the torn final frame into `quarantine/` and only then writes the `O_EXCL` recovery marker. `t001-disposition.md` confirmed this is **not** a data-loss defect — the rename is byte-preserving and atomic and the head stays at the prior verified frame — so it was held as NEEDS-DESIGN. What it does cost is auditability: a crash between the rename and the marker write leaves a quarantined file that no durable record explains, and the loader has no way to tell that state apart from stray content.
+
+**Decision**: Invert the order so the marker is durable no later than the moment the bytes leave `frames/`. The byte-precise sequence becomes:
+
+1. Compute `quarantined_digest` from the candidate bytes already in memory.
+2. Build the complete `TornTailRecoveryRecord`, including `quarantined_file`, `quarantined_digest`, and `recovery_hash`.
+3. `openSync(recoveryPath, O_CREAT|O_EXCL|O_WRONLY|O_NOFOLLOW)` → `writeFileSync` → `fsyncSync(fd)` → `closeSync`.
+4. `fsyncDirectory(recoveriesDirectory)` — **the marker is durable from here on**.
+5. `renameSync(candidate.path, quarantinedPath)` → `chmodSync` → `fsyncDirectory(framesDirectory)` → `fsyncDirectory(quarantineDirectory)`.
+
+The pre-existing `existsSync(quarantinedPath) || existsSync(recoveryPath)` guard keeps the operation single-shot.
+
+**Recovery contract**: `readRecoveryEvidenceUnlocked` gains exactly one new branch. When a valid marker exists but its quarantine file does not, the store looks for the still-unmoved frame at that sequence and compares its bytes to `quarantined_digest`. On an exact match it completes the interrupted rename (replay) and continues; on any mismatch, or when neither file is present, it raises the existing byte-preservation integrity error. The digest pins exactly which bytes may be moved, so replay can never quarantine the wrong frame.
+
+| Crash point | `frames/` | `quarantine/` | `recoveries/` | Loader behaviour |
+|---|---|---|---|---|
+| before step 4 completes | frame present | absent | absent | No marker: the torn tail is simply re-detected and quarantined afresh. |
+| between steps 4 and 5 | frame present | absent | marker durable | **Replay**: digest-matched rename is completed, then normal validation. |
+| after step 5 | absent | present | marker durable | Unchanged from today. |
+
+**Alternatives rejected**:
+
+- *Keep quarantine-first and widen the loader to tolerate unexplained quarantine files*: makes stray or hostile content in `quarantine/` indistinguishable from real recovery evidence, which is the opposite of the packet's fail-closed direction.
+- *Publish the marker through a staged temp file renamed into `recoveries/`*: would additionally remove the partial-marker window, but that window is unchanged by this ADR (a crash mid-marker-write is equally possible under the current ordering and already raises `FRAME_MALFORMED`). Expanding the diff inside the ledger primitive that ADR-008 just hardened is not justified by a failure mode this decision neither creates nor worsens.
+
+**Consequences**: The audit trail gains a hard invariant — a file in `quarantine/` always has a durable marker explaining it. A crash between marker and rename is now a recoverable, digest-verified replay instead of an unexplained state. Residual, explicitly unchanged: a crash *during* the marker write still leaves a partial marker that fails the trailing-newline and `recovery_hash` checks, exactly as it does today. Rollback is a code-only revert of `immutable-frame-store.ts`.
+
 <!-- /ANCHOR:derived-adrs -->
