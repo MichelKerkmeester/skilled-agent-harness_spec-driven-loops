@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix"
-    last_updated_at: "2026-08-18T17:51:54Z"
+    last_updated_at: "2026-08-18T18:42:01Z"
     last_updated_by: "claude"
     recent_action: "Slashed cline-pass ids restored; live pi dispatch to both models verified"
-    next_safe_action: "Commit and push to v4 and main"
+    next_safe_action: "Phase 7 adds the cline playbook scenario; then commit and push"
     blockers: []
     key_files:
       - ".pi/models.json"

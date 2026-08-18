@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix"
-    last_updated_at: "2026-08-18T17:51:54Z"
+    last_updated_at: "2026-08-18T18:42:01Z"
     last_updated_by: "claude"
     recent_action: "Restored slashed cline-pass model ids and updated pi config + both doc surfaces"
     next_safe_action: "Commit and push to v4 and main"
@@ -54,9 +54,9 @@ FAILURE MODES:
 | **Created** | 2026-08-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 6 |
+| **Phase** | 6 of 7 |
 | **Predecessor** | 005-cline-pro-and-pi-default |
-| **Successor** | None |
+| **Successor** | 007-cline-model-dispatch-playbook-scenario |
 | **Handoff Criteria** | A live pi dispatch to both cline models returns a model reply (no `400 invalid model format`); every cline-pass surface shows the slashed id; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:metadata -->
 
