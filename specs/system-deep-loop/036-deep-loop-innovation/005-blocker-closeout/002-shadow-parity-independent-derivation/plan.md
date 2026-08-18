@@ -13,14 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the implementation plan from the WS1 phase-tree proposal"
-    next_safe_action: "Enumerate the six protected semantic surfaces before any code"
+    last_updated_at: "2026-08-18T12:00:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled plan to Complete and set both ADRs to terminal status"
+    next_safe_action: "No plan phases remain open after the six adapters landed"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -341,8 +341,8 @@ Phase 1 (Confirm + enumerate) ──► Phase 2 (Comparator core) ──► Phas
 
 | ADR | Decision | Status |
 |-----|----------|--------|
-| ADR-001 | One comparator pattern applied six times, not six bespoke harnesses | Proposed |
-| ADR-002 | Absorb the existing partial oracle instead of duplicating it | Proposed |
+| ADR-001 | One comparator pattern applied six times, not six bespoke harnesses | Accepted |
+| ADR-002 | Absorb the existing partial oracle instead of duplicating it | Superseded |
 
-Full context, alternatives, and consequences: `decision-record.md`.
+Full context, alternatives, and consequences: `decision-record.md`. As-built: the independent-derivation pattern shipped as six per-mode converters (ADR-001 Accepted); the shared-oracle absorption was replaced by per-mode independent oracles, so `assertLegacyProjectionMatchesCurrentState` is unreferenced in `runtime/lib` (ADR-002 Superseded).
 <!-- /ANCHOR:l3-adr-summary -->

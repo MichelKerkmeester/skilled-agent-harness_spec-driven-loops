@@ -10,10 +10,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-an
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Verified all checklist items against 42/42 green dark unit tests"
-    next_safe_action: "None -- operator-gated wiring/execution is a separate follow-up"
+    last_updated_at: "2026-08-18T03:28:18Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled machine metadata to Complete for dark per-mode authority-flip library"
+    next_safe_action: "Operator-gated live wiring and per-mode flip are a separate follow-up"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/cutover-coordinator.ts"
@@ -106,7 +106,7 @@ mutation, or evidence drift fails the gate. No parity or rollback proof means no
 ## File Organization
 
 - [x] CHK-036 [P0] Only the approved Level 2 Markdown files are authored in this target folder and deterministic metadata is not hand-written — `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` (Level 2 required set) plus `t001-disposition.md` (the same confirm-first convention siblings 001/003 already use); `description.json`/`graph-metadata.json` were pre-existing and untouched
-- [ ] CHK-037 [P1] Strict validation reports no issue other than expected missing `description.json` and `graph-metadata.json` — NOT satisfied in this worktree as literally worded: `description.json`/`graph-metadata.json` already exist (not missing), and 8 rules fail with `TS rule bridge failed`/`tsx runtime missing`, byte-for-byte the same 8 that fail identically on the untouched, already-shipped sibling `001-inflight-state-migration` (confirmed by running the same command against both); the orchestrator validates `--strict` from a toolchain-capable worktree per the dispatch brief
+- [x] CHK-037 [P1] Strict validation is clean from the toolchain-capable orchestrator worktree — `validate.sh --strict` reports `Errors: 0  Warnings: 0` / `RESULT: PASSED`, and `description.json`/`graph-metadata.json` are present and reconciled (`derived.status` re-derived to `complete` by `backfill-graph-metadata.js`) [evidence: validate.sh --strict; Errors: 0 Warnings: 0; graph-metadata.json derived.status complete]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

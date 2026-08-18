@@ -39,7 +39,7 @@
       "tree"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -97,12 +97,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,6 +104,12 @@
       },
       {
         "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -157,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop codex write-containment guard (`write-containment.ts`) confines a `cli-codex` leaf's writes to its artifact directory by diffing the git working tree after each dispatch: any out-of-scope path that is dirty after the dispatch but was not in the pre-dispatch baseline is treated as a leaf violation, reverted, and used to fail the iteration fail-closed",
     "created_at": "2026-08-06T07:57:25.961Z",
-    "last_save_at": "2026-08-17T04:04:05.013Z",
+    "last_save_at": "2026-08-18T03:41:40.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86c08428d5a16c0efdb129e3433f310b17d4267991a30f1d83b50f7401919d41",
+    "source_fingerprint": "sha256:81f0ac74a476445316ce2df8db43aac4f9eca1ad35cdfd0b01609bc99cad8d0c",
     "source_doc_hashes": {
-      "spec.md": "206883c27f3cd81a7d16e1d12fc8cd61092bda5d48c43f48d42bf35dfc21a25c",
-      "plan.md": "b0bf7e428d617e65246c82a756d69dbf27e40ec313bb3a57c13be71954a4dec9",
-      "tasks.md": "8a1f2d92c6a576237bd50c95f2ee978dae3b88e4e763e5123134a03d9d102a94",
-      "checklist.md": "757b974fb3ac05378d8671f45619b4b9a795a27806e51a788ed6c1a3192766af",
-      "implementation-summary.md": "5fe5e837fd9c19f72bf2e3f906bf72d2ca4b9916757cd634039e67ae86bbdee4"
+      "spec.md": "823fb3a0bf399de0727fa74a822affb4e647c2aee2dfc634f499f9dfb6e82567",
+      "plan.md": "2cba656a7f25684198d38a3296b92e10bd8cf609068f9028b894b82df2dc9bdc",
+      "tasks.md": "fd2f64715a295f1f4cd3ac462e5c6d939de667764be4391a91976d9bab2b6a67",
+      "checklist.md": "88f557d0b03fd9ce4459e6b1dc7f07e75b0e3a05e57cfc93e543cf9bc7045bb1",
+      "implementation-summary.md": "7a85005237770a432d033bf267b2a2a000ec0f85e930a1c792211b711a58c492"
     },
     "last_active_child_id": null,
     "last_active_at": null
