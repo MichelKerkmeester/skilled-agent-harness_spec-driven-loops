@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models"
-    last_updated_at: "2026-08-18T11:00:00.000Z"
+    last_updated_at: "2026-08-18T13:00:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Shipped Pi per-model gate + Cursor/Devin best-effort rules; commit pending."
-    next_safe_action: "Commit packet on v4 (and main) once the operator approves."
+    recent_action: "Fixed a P0 OCR-guard regression; live GLM Cursor/Devin tests PASS."
+    next_safe_action: "Push the fix + playbook to v4 and main."
     blockers: []
     key_files:
       - "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/implementation-summary.md"
@@ -111,6 +111,30 @@ Pi then reused the same classifier. Its `input` hook exposes `ctx.model` as `{pr
 
 - Cursor/Devin cannot be hard-guaranteed — MCP cannot see the model or force a tool call — so their rule/note is best-effort by design; a text-only model that ignores the rule still gets no evidence there.
 - The allowlist is an explicit list: an unlisted text-only model whose host does not declare its input modality stays best-effort until added (by design). On Pi, a declared non-image `input` is covered automatically.
-- The OpenCode guarantee is proven at the unit level with a mock provider; the Pi gate is type-sound and parses clean but is verified at runtime by pi (no repo-level tsc covers pi extensions). A live session on each host with a real text-only model and an image is the end-to-end confirmation.
-- Changes are uncommitted pending an explicit commit instruction.
+- The OpenCode guarantee is proven at the unit level with a mock provider; the Pi gate is type-sound and parses clean but is verified at runtime by pi (no repo-level tsc covers pi extensions).
+- Setting `SK_VISION_MODEL` as a shell-env prefix on a cli dispatch does not reach the host-spawned MCP server; reliable moondream3 selection needs the `env` block inside `.mcp.json` / `.devin/mcp_config.json`. On moondream3 the dedicated OCR prompt also under-reads some fixtures (returns a truncated span) while `caption`/`scene` read the full text — a model/prompt-quality matter, not a crash.
 <!-- /ANCHOR:limitations -->
+
+---
+
+<!-- ANCHOR:regression-and-tests -->
+## POST-SHIP REGRESSION FIX & LIVE TESTS
+
+Manual testing surfaced a P0 regression in the runtime (from the predecessor packet): `handle_ocr` called `_require_task("ocr")`, but OCR is implemented via the model's general `query` path — no model advertises a task named `ocr` — so the guard threw on every real model. That broke the `sk_vision_ocr` tool and, because the auto-inject ran `Promise.all([caption, scene, ocr])`, it collapsed the whole guaranteed auto-inject on real models. Unit tests missed it (a mocked provider reports no capabilities, so the guard passed).
+
+| Fix | Artifact | Result |
+|-----|----------|--------|
+| Drop the phantom task guard | `python/runtime.py` `handle_ocr` | OCR runs via `query` again; the failing NDJSON call now returns text |
+| Make analyzers independent | `attachments.ts`, `hooks/pi/sk-vision.ts` | `Promise.all` → `Promise.allSettled`; one failed analyzer no longer discards the others' evidence |
+
+Live end-to-end tests with GLM (a text-only model), and the classifier unit run:
+
+| Scenario | Host / model | Verdict | Evidence |
+|----------|--------------|---------|----------|
+| VSN-022 rule-driven vision | cli-cursor · glm-5.2-high | PASS | neutral prompt; the auto-loaded `.cursor/rules/sk-vision.md` drove an unprompted read returning `DEPLOYOK7391` — the exact scene read incl. the unguessable code |
+| VSN-023 note-driven vision | cli-devin · glm-5-2 (dangerous) | PASS | note-as-guidance drove `inspect`+`ocr`+`zoom`; reported ground truth `DEPLOY OK 7391`; the `ocr` call ran without the old crash |
+| VSN-024 classifier + env | local `bun test` | PASS | `model-modality.test.ts` 6/0; `attachments.test.ts` 2/0 |
+| VSN-021 in-process guarantee | OpenCode / Pi | unit-proven | needs a live OpenCode/Pi session for the end-to-end run |
+
+Post-fix gate: `tsc --noEmit` exit 0; full suite 17/17; `bun run build` OK; the exact OCR NDJSON call that threw before now returns text.
+<!-- /ANCHOR:regression-and-tests -->

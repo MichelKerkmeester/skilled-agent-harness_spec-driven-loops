@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models"
-    last_updated_at: "2026-08-18T11:00:00.000Z"
+    last_updated_at: "2026-08-18T13:00:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Shipped Pi per-model gate + Cursor/Devin best-effort rules; commit pending."
-    next_safe_action: "Commit packet on v4 (and main) once the operator approves."
+    recent_action: "Fixed a P0 OCR-guard regression; live GLM Cursor/Devin tests PASS."
+    next_safe_action: "Push the fix + playbook to v4 and main."
     blockers: []
     key_files:
       - "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/tasks.md"
@@ -68,10 +68,13 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T005 Classifier tests pass. Evidence: `model-modality.test.ts` 5/5.
+- [x] T005 Classifier tests pass. Evidence: `model-modality.test.ts` 6/6.
 - [x] T006 Guarantee test proves await-vs-race. Evidence: `attachments.test.ts` 2/2.
-- [x] T007 Types + full suite + build green. Evidence: `tsc` 0; 16/16; `bun run build` OK.
-- [ ] T008 Commit the packet on v4. Evidence: pending.
+- [x] T007 Types + full suite + build green. Evidence: `tsc` 0; 17/17; `bun run build` OK.
+- [x] T008 Commit + push the packet on v4 and main. Evidence: `3cbc6ad331` (v4), `69934cd6b6` (main).
+- [x] T009 Fix the P0 OCR-guard regression + make analyzers independent. Evidence: `runtime.py`, `attachments.ts`, `sk-vision.ts` `allSettled`; OCR NDJSON returns text.
+- [x] T010 Author guaranteed-vision playbook scenarios + run live GLM tests. Evidence: `guaranteed-vision/` VSN-021..024; VSN-022/023/024 PASS.
+- [ ] T011 Push the regression fix + playbook to v4 and main. Evidence: pending.
 <!-- /ANCHOR:phase-3 -->
 
 ---
