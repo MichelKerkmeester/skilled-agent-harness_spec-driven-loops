@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/020-cursor-mcp-decoupling",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/020-cursor-mcp-decoupling",
+  "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision cursor mcp decoupling",
+      "remove sk-vision from claude mcp",
+      "sk-vision host registration scope",
+      "sk-vision cursor mcp decoupling plan",
+      "sk-vision cursor mcp decoupling tasks",
+      "sk-vision cursor mcp decoupling summary"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "cursor",
+      "mcp",
+      "decoupling",
+      "remove",
+      "claude",
+      "host",
+      "registration",
+      "scope",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decouple Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Give Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decoupled Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Break",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.cursor/mcp.json → .mcp.json → .claude/mcp.json` all resolve to one inode, so Cursor reads Claude's MCP config",
+    "created_at": "2026-08-18T08:32:15.883Z",
+    "last_save_at": "2026-08-18T08:33:25.476Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:58213fabb528c83290822a380b3dbc3da34aaa8be310ee82788cd53676d41a04",
+    "source_doc_hashes": {
+      "spec.md": "9be673f7fa66d1f4006b80e61741d35b5e5abfe2a901793fe478116c755fbcf7",
+      "plan.md": "0e76e4a30ef3b5be8a37fa3abc9f3acf9c5c26d7beeaf07001883a9889e93549",
+      "tasks.md": "858adaab9a2457606658990ada65c510005b13d6f1335d5f30fb4cae361aa74e",
+      "implementation-summary.md": "f32753773267cb722f8846eb3ff5c229e78250e47dc36f1db8276f3770baa236"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
