@@ -424,16 +424,18 @@ export default function skVision(pi: ExtensionAPI): void {
           try {
             const source = makeImageSource(undefined, img.data);
             const p = provider(ctx);
-            const [cap, scene, ocr] = await Promise.all([
+            // Each analyzer is independent: a failure in one (e.g. OCR on a model
+            // that cannot do it) must not discard the evidence the others produced.
+            const [capR, sceneR, ocrR] = await Promise.allSettled([
               p.caption({ source }),
               p.scene({ source }),
               p.ocr({ source }),
             ]);
-            return [
-              contextBuilder.renderScene(scene, { source: "inline-image" }),
-              contextBuilder.renderCaption(cap, { source: "inline-image" }),
-              contextBuilder.renderOCR(ocr, { source: "inline-image" }),
-            ].join("\n");
+            const parts: string[] = [];
+            if (sceneR.status === "fulfilled") parts.push(contextBuilder.renderScene(sceneR.value, { source: "inline-image" }));
+            if (capR.status === "fulfilled") parts.push(contextBuilder.renderCaption(capR.value, { source: "inline-image" }));
+            if (ocrR.status === "fulfilled") parts.push(contextBuilder.renderOCR(ocrR.value, { source: "inline-image" }));
+            return parts.length > 0 ? parts.join("\n") : undefined;
           } catch {
             return undefined;
           }

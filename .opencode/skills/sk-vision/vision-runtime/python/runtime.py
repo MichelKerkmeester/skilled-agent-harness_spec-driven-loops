@@ -475,7 +475,8 @@ def handle_ocr(params: dict) -> dict:
     prompt = OCR_PROMPTS.get(kind, OCR_PROMPTS["all"])
     image = _resolve_image(params["source"])
     model = _ensure_model(params.get("model"))
-    _require_task("ocr")
+    # OCR runs through the model's general query path, so there is no separate
+    # "ocr" task to gate on; read quality is a function of the loaded model.
     res = _timed(
         model.query, image, question=prompt, settings=params.get("settings") or None
     )
