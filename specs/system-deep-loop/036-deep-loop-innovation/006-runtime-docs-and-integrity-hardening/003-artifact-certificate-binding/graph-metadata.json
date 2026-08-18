@@ -36,7 +36,7 @@
       "certificates"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Evidence is accepted on partial or metadata-only correspondence in twelve places",
     "created_at": "2026-07-31T01:25:20.255Z",
-    "last_save_at": "2026-08-17T04:04:19.091Z",
+    "last_save_at": "2026-08-18T04:00:31.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3a45acc9ccad56273c23cfe4fdbda23cfc0bb850c303d092846b7d9791bd294",
+    "source_fingerprint": "sha256:a1085730929488ad3bc780d9be61a7db473f0c27a6c54b0b3d00086b40a4ad41",
     "source_doc_hashes": {
-      "spec.md": "13fb63b33d26c3328ddcada2a06f387948e89e9b88456453d1607cb3cdcf2da4",
-      "plan.md": "9c9ff62846de1bd4c407b18e4485667eeb0aa1937f082a71c384651774e02b2f",
-      "tasks.md": "df601ae864129fda9769a1de6c603bb7b10e597050f875b0d639b753b307f965",
-      "checklist.md": "dc1ce96748e8741972fc052007135b1b348215cf8566206e460d56f595077fc5",
-      "decision-record.md": "2310d786e0a529f635d78d4919e1da677aff54a9326f9fc8b424cab264e31089",
-      "implementation-summary.md": "2a3e962542f0c3021c12564c781b676856ec88a7a277e97207426a9b9405833e"
+      "spec.md": "46f054acfad9f4ac1e42ddb6bb42bc3896f79af3f90d227c92989e8e2285297e",
+      "plan.md": "72d51f9909d64704fcf83de45d9d17139c9a31b0b29f0e29f34263dc9ef519f6",
+      "tasks.md": "6ca8db2a736a27d697b90cfced02ed18b5ad179784472297b86b6352dfcb20ba",
+      "checklist.md": "95992ce48633c98e7e379ead1b2ed212faa4696a1d92d43fb796c0a9063792e1",
+      "decision-record.md": "47dd75fb0f5171354a5b30f505b7fb0226ade240279e6df9a88fadbd5fbfabdf",
+      "implementation-summary.md": "a3181102ef2a779ba036cc1c8eed6d3ced013b9b036f3ea205888ce957020315"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,10 +13,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Implemented both lanes and recorded verification evidence"
-    next_safe_action: "Orchestrator reviews the uncommitted change set"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to Complete against landed commit bf4f280ce7"
+    next_safe_action: "Re-land F-031-01/F-031-02 with a non-regressing rollback-window fix"
     blockers: []
     key_files:
       - "plan.md"
@@ -61,7 +61,7 @@ Collapse the four merge groups first so the same fix is not made twice. Then Lan
 ### Definition of Done
 - [x] Every duplicated fact stated once and linked elsewhere
 - [x] Drift check fails on a deliberately mismatched roster
-- [x] Lane B adopts the shared validator; digests are locale-independent
+- [x] Lane B digests are locale-independent (shared-validator adoption DEFERRED — not landed; see checklist CHK-021)
 - [x] Whole gate re-run and reported as a delta against the captured baseline
 - [x] Independent adversarial verification pass complete
 - [x] `validate.sh --strict` exits 0 for this child
@@ -136,7 +136,7 @@ Required inventories (run before implementation, record the output):
 ### Phase 4: Lane B, code hygiene
 - [x] Locale-independent policy digest ordering
 - [x] Readonly wave collections
-- [x] Adopt `027`'s shared strict validator in the legacy gates
+- [ ] Adopt `027`'s shared strict validator in the legacy gates — DEFERRED (not landed); adoption regressed 2 deep-review rollback-window tests and was reverted, so `bf4f280ce7` touches no `mode-gate.ts`
 - [x] Persist convergence snapshots
 
 ### Phase 5: Delta and gate
@@ -173,10 +173,10 @@ Required inventories (run before implementation, record the output):
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `027` shared strict validator | Internal | Red (not started) | REQ-008 becomes a local patch, which is the outcome this child avoids |
-| `024` policy registry | Internal | Red (not started) | REQ-006 conflicts on the same file |
-| `021` honest baselines | Internal | Red (not started) | Evidence issued against dishonest counts |
-| `031` count reconciliation | Internal | Red (not started) | Runs last; the counts should be settled first |
+| `027` shared strict validator | Internal | Green (landed) | REQ-008 adoption DEFERRED (not landed); the shared validator exists but the legacy gates do not yet consume it |
+| `024` policy registry | Internal | Green (landed) | REQ-006 conflicts on the same file |
+| `021` honest baselines | Internal | Green (landed) | Evidence issued against dishonest counts |
+| `031` count reconciliation | Internal | Green (landed) | Runs last; the counts should be settled first |
 <!-- /ANCHOR:dependencies -->
 
 ---

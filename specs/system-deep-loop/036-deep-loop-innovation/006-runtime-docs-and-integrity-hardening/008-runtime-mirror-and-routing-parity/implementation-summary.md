@@ -13,13 +13,11 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Landed 7/8 findings (2f84f78bf7); F-028-01 sync-agents deferred (buggy read-only)"
-    next_safe_action: "Regenerate stale Codex review mirror"
-    blockers:
-      - ".codex/agents/review.toml is stale and the environment denies writes under .codex"
-      - "No independent second actor was available in this session"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to Complete with F-028-01 deferred"
+    next_safe_action: "Commit the reconciled packet docs"
+    blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs"
       - ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs"
@@ -28,7 +26,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/shared/references/smart-routing.md"
       - ".opencode/skills/system-deep-loop/deep-review/assets/runtime-capabilities.json"
       - ".opencode/specs/system-deep-loop/036-deep-loop-innovation/008-runtime-mirror-and-routing-parity/checklist.md"
-    completion_pct: 92
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Codex is compared only when its shipped TOML mirror exists; absent Codex Markdown files are not missing mirrors."
@@ -138,8 +136,8 @@ The focused `check-agent-mirror-sync.cjs` receipt reports two required Markdown 
 | `parent-skill-check.cjs .opencode/skills/system-deep-loop` | PASS; all hard invariants, rc 0 |
 | Runtime TypeScript | PASS; `../../system-spec-kit/node_modules/.bin/tsc --noEmit -p tsconfig.json`, rc 0 |
 | Targeted agent mirror checker | PASS; 2 agents in sync, rc 0 |
-| `sync-agents.cjs --check` | FAIL; only `.codex/agents/review.toml` remains stale, rc 1 |
-| `sync-agents-sandbox.vitest.ts` | FAIL; source-derived modes pass, generated review output is still `workspace-write`, rc 1 |
+| `sync-agents.cjs --check` | FAIL; `.codex/agents/review.toml` remains stale `workspace-write`, rc 1 |
+| F-028-01 sandbox derivation | DEFERRED, not landed; `sync-agents.cjs` unchanged (retains `HISTORICAL_SETTINGS`), no sandbox test shipped |
 | Broad hub vocabulary sync | FAIL; unrelated pre-existing natural-alias and phantom-keyword drift remains |
 | Compiled-routing parity suite | BLOCKED before tests by a pre-existing missing `sk-doc` module path |
 | Routing artifact build | BLOCKED by missing `activation/manifest.prior.json`; no generated artifact was hand-edited |

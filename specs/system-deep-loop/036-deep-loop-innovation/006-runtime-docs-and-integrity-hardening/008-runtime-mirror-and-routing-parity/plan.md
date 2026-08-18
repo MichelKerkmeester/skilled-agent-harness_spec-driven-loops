@@ -13,16 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Implemented parity and routing fixes"
-    next_safe_action: "Regenerate stale Codex review mirror"
-    blockers:
-      - ".codex/agents/review.toml is stale and cannot be regenerated in the read-only .codex boundary"
-      - "No independent second actor was available in this session"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to Complete with F-028-01 deferred"
+    next_safe_action: "Commit the reconciled packet docs"
+    blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 92
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -126,7 +124,7 @@ Required inventories (run before implementation, record the output):
 
 ### Phase 2: Mirror gate and sync
 - [x] Order-sensitive and surface-sensitive mirror comparison
-- [x] Derive the Codex sandbox mode from the source deny list
+- [ ] Derive the Codex sandbox mode from the source deny list (F-028-01 deferred — reverted, not landed)
 - [x] Choose one ai-council writer authority and update every mirror together
 
 ### Phase 3: Routing

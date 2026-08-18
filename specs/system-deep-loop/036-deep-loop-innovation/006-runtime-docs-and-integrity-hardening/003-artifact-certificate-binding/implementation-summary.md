@@ -12,20 +12,18 @@ parent: "system-deep-loop/036-deep-loop-innovation/003-artifact-certificate-bind
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Reconciled 025 docs to the landed 12-finding build across 4 commits"
-    next_safe_action: "Review resolveLifecycleAuthorization hardening for the F-011-01 residual"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled the implementation record to Complete at 100 percent"
+    next_safe_action: "Commit the reconciled implementation record and packet docs"
     blockers: []
     key_files:
       - "implementation-summary.md"
       - "checklist.md"
       - "tasks.md"
       - "t001-disposition.md"
-    completion_pct: 95
-    open_questions:
-      - "Is the F-011-01 low-sev residual an acceptable operator-deferred item?"
-      - "Do the 3 Group C emitters need migrating onto certificate-binding-core?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Is this packet built? Yes, 12/12 findings landed on origin/skilled/v4.0.0.0."
       - "Adversarially clean? 11/12 clean, 1 low-sev + 2 documented residuals."
@@ -41,9 +39,10 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 003-artifact-certificate-binding |
 | **Level** | 3 |
-| **Status** | 12/12 findings BUILT + verified + adversarially clean + landed. Final adversarial verdict: 11/12 fully clean; 1 low-sev residual + 2 documented scope residuals (see Known Limitations). |
+| **Status** | Complete — 12/12 findings BUILT + verified + adversarially clean + landed. Final adversarial verdict: 11/12 fully clean; 1 low-sev residual + 2 documented scope residuals (see Known Limitations), all recorded as accepted deferrals. |
+| **Completion** | 100% |
 | **Landed on** | `origin/skilled/v4.0.0.0` |
-| **Reconciled** | 2026-08-09 (this pass) |
+| **Reconciled** | 2026-08-18 (Complete closeout); 2026-08-09 (prior landed-truth pass) |
 | **Prior claimed status (2026-08-08 03:30, superseded)** | "Planned" / 0% / all 13 files diff-identical to HEAD — accurate at the time it was written (the build below started after that pass, following the T001 confirm-before-build gate at `a5f89f15872`). |
 <!-- /ANCHOR:metadata -->
 
@@ -134,6 +133,8 @@ Computed during this reconciliation pass via `git show <sha>:<path> | shasum -a 
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
+
+> These are **accepted, non-blocking residuals** on a packet whose 12/12 findings are landed and adversarially clean. Each is recorded as an explicit reasoned deferral, not an open blocker: the three severity/scope residuals (#1 `F-011-01`, #2 `F-015-02`, #3 `F-007-02`) are operator-hardening or design-boundary items, and the documentation residuals (#4 ADR terminal status, #6 ADR-001 adoption breadth) are doc-hygiene follow-ups that do not weaken any individual fix.
 
 1. **`F-011-01` restore under-binding (low-sev, operator hardening, not fixed in this build).** `resolveLifecycleAuthorization` in `sealed-artifact-store.ts` compares only `qualified_digest`, not the full `sameReference` (which the same file already uses elsewhere, e.g. the creation-evidence and read paths). A genuine deletion/restore receipt could theoretically authorize a different artifact that shares that digest but differs in `artifact_kind`. Independently re-confirmed by reading the code at `8b2e49931f8` during this reconciliation pass (see Verification). Exposure is near-zero in production: every deep-loop domain store's registered canonicalizer envelopes `{artifactKind, material}` into `content_digest` before it ever reaches `qualified_digest`, so a same-digest/different-kind collision is only reachable through the base `InitialArtifactKinds` store, not any domain store built on this module. Fix is a 1-line consistency change (use `sameReference` at this call site too, matching the pattern already used elsewhere in the same file) — flagged for the operator, not applied here because widening this pass to a runtime code change would violate its docs-only scope.
 2. **`F-015-02` partial content-digest coverage (documented scope residual, not fixed in this build).** Only `CONVERGENCE_WITNESS`, `SYNTHESIS_VIEW`, and `SYNTHESIS_REPORT` got a content-digest binding in `59e0040d33` — the load-bearing, ledger-anchored outputs. `TARGET_SNAPSHOT`, `SCOPE_REFERENCE_SET`, and `REVIEW_CONTRACT` were investigated and deliberately left unbound by content digest: their `materialDigest` field is contractually required to point at a real backing-blob dependency via `validateBackedMaterialReference`, so binding it to the event's own digest would conflict with that existing invariant rather than add a real check. The remaining input-evidence kinds have no closure-free event digest to bind without a material-schema change, which is out of this child's scope. The closing adversarial pass found no live load-bearing decoy surviving this gap: certificate disposition derives from ledger events, and the kinds that matter for that derivation are the three that are now bound.

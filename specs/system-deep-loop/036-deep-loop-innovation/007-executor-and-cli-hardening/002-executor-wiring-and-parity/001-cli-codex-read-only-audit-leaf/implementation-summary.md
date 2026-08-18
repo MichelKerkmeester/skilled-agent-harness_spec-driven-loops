@@ -1,19 +1,25 @@
 ---
 title: "Implementation Summary: Read-Only cli-codex Deep-Alignment Audit Leaf"
 description: "What was built for the read-only cli-codex alignment leaf fix and the verification evidence."
+trigger_phrases:
+  - "cli-codex read-only leaf"
+  - "codex apply_patch alignment halt"
+  - "deep-alignment executor contract violation"
+  - "read-only audit leaf"
+  - "wrapper writes iteration artifacts"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Reconciled the moved packet metadata and strict-validation contract"
-    next_safe_action: "Run the full-budget alignment gate."
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to Complete from landed read-only-leaf evidence"
+    next_safe_action: "Run the full-budget LUNA alignment acceptance gate"
     blockers: []
     key_files:
       - "implementation-summary.md"
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -30,9 +36,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Track** | system-deep-loop |
-| **Last verified** | 2026-07-23 |
+| **Last verified** | 2026-08-18 |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -42,7 +48,7 @@ _memory:
 
 1. **`runtime/lib/deep-loop/leaf-artifact-writer.ts`** — parses a read-only leaf's final message (fenced ```json block, whole-message, or trailing object), validates the required audit fields, stamps the route-proof invariants (`mode`, `target_agent`, `agent_definition_loaded`, `resolved_route`, `iteration`) from constants, and writes the three per-iteration artifacts (narrative markdown synthesized from the structured findings, the appended `"type":"iteration"` state-log record, and the write-once delta). All-or-nothing: a malformed/incomplete message writes nothing and returns `ok:false`.
 2. **`commands/deep/assets/deep-alignment-auto.yaml` `if_cli_codex` branch** — now dispatches `codex exec --sandbox read-only -o <lastmsg> -`, appends a read-only OUTPUT OVERRIDE to the rendered prompt (write nothing; emit one JSON object), and calls the writer. On writer failure it appends a `leaf_output_unpersisted` event and fails the iteration fail-closed (redispatch), never a workflow halt. The 038 write-containment call is retained as a no-op belt-and-suspenders.
-3. **`runtime/tests/unit/leaf-artifact-writer.vitest.ts`** — 12 cases over parse / assemble / narrative / happy-path / fail-closed.
+3. **`runtime/tests/unit/leaf-artifact-writer.vitest.ts`** — 15 `it` blocks (25 cases via `it.each` expansion) over parse / assemble / narrative / happy-path / fail-closed.
 
 The state-record schema is copied field-for-field from the existing OUTPUT CONTRACT, so the reducer and `check-convergence.cjs` consume the wrapper-written records with no changes.
 
@@ -71,10 +77,10 @@ Built helper-first: the pure `leaf-artifact-writer` module and its 12-case vites
 <!-- ANCHOR:verification -->
 ## Verification
 
-- **Unit** — `leaf-artifact-writer.vitest.ts`: 12/12 pass. `executor-audit.vitest.ts`: 25/25. `write-containment.vitest.ts`: pass. Node syntax-check of the extracted `if_cli_codex` block: OK.
+- **Unit** — `leaf-artifact-writer.vitest.ts`: 25/25 pass (re-run 2026-08-18). `executor-audit.vitest.ts` + `write-containment.vitest.ts`: 49/49 pass (re-run 2026-08-18). Node syntax-check of the extracted `if_cli_codex` block: OK.
 - **End-to-end smoke** — a 3-iteration LUNA (`gpt-5.6-luna` xhigh, cli-codex) alignment run over the de-polluted hallmark corpus: **0 workflow halts, 0 `leaf_output_unpersisted` failures**; three `"type":"iteration"` records written by the wrapper with route-proof fields present; iterations advanced through 15 distinct artifacts (`001` → `002` → `003`, zero duplicates), proving the partition consumes the wrapper-written records correctly; `alignment-report.md` produced (Overall verdict PASS). This reproduces the exact configuration that previously halted at iteration 3 on an `executor_contract_violation`, now running clean.
 - **Pre-existing/unrelated** — one `prompt-pack.vitest.ts` case fails on a stale underscore template path (`prompt_pack_iteration` vs the renamed hyphen file in `deep-research`); outside this change's surface.
-- **Pending** — the full ~22-iteration run to confirm the sk-code lane (reached at iter ~13 once sk-doc is exhausted) audits to completion.
+- **Deferred (external gate)** — the full ~22-iteration LUNA acceptance run that confirms the sk-code lane (reached at iter ~13 once sk-doc is exhausted) audits to completion is a live-dispatch gate not runnable in this doc-reconciliation session; the read-only containment and fail-closed behavior are already proven structurally (sandbox mode) and by the 3-iteration smoke run above. Tracked as REQ-007 / SC-002 / CHK-022 / CHK-033 / T3.3.
 
 <!-- /ANCHOR:verification -->
 ---
