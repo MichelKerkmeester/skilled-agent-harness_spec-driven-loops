@@ -15,18 +15,17 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Reconciled packet docs to the landed additive-dark state under 0d1827eef50"
-    next_safe_action: "Pass the additive-dark acceptance review and independent adversarial verification"
+    recent_action: "Recorded adversarial TOCTOU fix c897dcf294 re-binding candidate to approval at consumption"
+    next_safe_action: "Pass the additive-dark acceptance review before promotion enforcement goes live"
     blockers:
       - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
-      - "Independent adversarial verification pending (CHK-005)"
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 90
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "All 13 findings landed additive-dark under 0d1827eef50, f6cdf604a25 and a28a39354b7; reconciled ab6aae0a714"
@@ -69,7 +68,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress — code landed additive-dark; go-live gated behind acceptance review. All 13 findings landed under `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`), with promotion enforcement kept dark until the additive-dark acceptance review (CHK-018) and independent adversarial verification (CHK-005) pass. |
+| **Status** | In Progress — code landed additive-dark + adversarially hardened; go-live gated behind acceptance review. All 13 findings landed under `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`), and an independent adversarial pass then found and fixed a Medium candidate-rebind TOCTOU gap under `c897dcf294` (CHK-005). Promotion enforcement stays dark until the additive-dark acceptance review (CHK-018) passes. |
 | **Created** | 2026-07-30 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
