@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".pi/models.json"
       - ".pi/settings.json"
-      - ".pi/CUSTOM-PROVIDERS.md"
+      - ".pi/custom-providers.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-049-003"
@@ -54,7 +54,7 @@ FAILURE MODES:
 | **Testing** | `pi --list-models`, `pi auth check`, JSON parse, `validate.sh --strict` |
 
 ### Overview
-Turn Phase 2's `config-only-feasible` verdict into live config. Add a `cline-pass` provider block to `.pi/models.json`, enable `cline-pass/deepseek-v4-flash` in `.pi/settings.json`, and document the custom provider in `.pi/CUSTOM-PROVIDERS.md`. No pi code, no extension, no secret committed.
+Turn Phase 2's `config-only-feasible` verdict into live config. Add a `cline-pass` provider block to `.pi/models.json`, enable `cline-pass/deepseek-v4-flash` in `.pi/settings.json`, and document the custom provider in `.pi/custom-providers.md`. No pi code, no extension, no secret committed.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -71,7 +71,7 @@ Turn Phase 2's `config-only-feasible` verdict into live config. Add a `cline-pas
 - [x] All acceptance criteria met (REQ-001..004)
 - [x] `pi --list-models` shows `cline-pass  deepseek-v4-flash`
 - [x] `pi auth check` returns `status: ready`
-- [x] `.pi/CUSTOM-PROVIDERS.md` present
+- [x] `.pi/custom-providers.md` present
 - [x] `validate.sh --strict` exit 0
 <!-- /ANCHOR:quality-gates -->
 
@@ -86,7 +86,7 @@ Config-only provider registration — pi unions `.pi/models.json` `providers.*` 
 ### Key Components
 - **`.pi/models.json`**: the custom-provider source of truth. `providers["cline-pass"]` declares api/baseUrl/apiKey/compat + one model.
 - **`.pi/settings.json`**: `enabledModels` gates which models the picker shows; the list unions, so existing models are preserved.
-- **`.pi/CUSTOM-PROVIDERS.md`**: durable operator doc — what/why/key/verify/remove, including the `openai-completions` trap.
+- **`.pi/custom-providers.md`**: durable operator doc — what/why/key/verify/remove, including the `openai-completions` trap.
 
 ### Data Flow
 Operator selects `cline-pass/deepseek-v4-flash` in pi → pi resolves the `cline-pass` provider block → attaches `CLINE_API_KEY` (env or pi-login) → streams against `https://api.cline.bot/api/v1` via the OpenAI-completions path. Reasoning defaults to Extra High from the global `defaultThinkingLevel: "xhigh"`.
@@ -117,7 +117,7 @@ Not a bug fix, but the change touches live runtime config, so one same-class inv
 ### Phase 2: Core Implementation
 - [x] Add `cline-pass` provider block to `.pi/models.json` (`api: openai-completions`, env-keyed)
 - [x] Add `cline-pass/deepseek-v4-flash` to `.pi/settings.json` `enabledModels`
-- [x] Create `.pi/CUSTOM-PROVIDERS.md`
+- [x] Create `.pi/custom-providers.md`
 
 ### Phase 3: Verification
 - [x] `pi --list-models` shows the cline-pass row

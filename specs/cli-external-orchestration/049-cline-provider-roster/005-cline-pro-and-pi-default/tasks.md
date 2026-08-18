@@ -1,14 +1,14 @@
 ---
-title: "Tasks: Add the Cline provider to the cli-pi skill roster (xhigh-only)"
+title: "Tasks: Add cline DeepSeek V4 Pro and make cline the pi default"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "cline cli-pi roster tasks"
-  - "cli-pi cline-pass tasks"
+  - "cline pro pi tasks"
+  - "cline-pass deepseek-v4-pro tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster"
+    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default"
     last_updated_at: "2026-08-18T14:15:43Z"
     last_updated_by: "claude"
     recent_action: "All tasks complete"
@@ -17,14 +17,14 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "session-049-004"
+      session_id: "session-049-005"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Add the Cline provider to the cli-pi skill roster (xhigh-only)
+# Tasks: Add cline DeepSeek V4 Pro and make cline the pi default
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -48,8 +48,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read the cli-pi roster §2/§4 structure (`cli-pi/references/providers-and-models.md`)
-- [x] T002 Confirm model id `cline-pass/deepseek-v4-flash` + xhigh-only tier from Phase 3 config and `pi --list-models`
+- [x] T001 Confirm `cline-pass/cline-pass/deepseek-v4-pro` live + limits via `opencode models cline-pass --verbose` (context 1M, output 384K, no `max` tier)
+- [x] T002 Confirm the operator's `.pi/settings.json` target order and default fields
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -57,7 +57,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T003 Add `### cline-pass` section: description, config-only note, dispatch form, xhigh-only policy, model row (`cli-pi/references/providers-and-models.md` §2)
+- [x] T003 Add `deepseek-v4-pro` to the cline-pass models array (`.pi/models.json`)
+- [x] T004 Add `cline-pass/deepseek-v4-pro` to `enabledModels`; set `defaultProvider` cline-pass + `defaultModel` deepseek-v4-flash (`.pi/settings.json`)
+- [x] T005 Cover both models + the default in `.pi/custom-providers.md`
+- [x] T006 Add the pro roster row + §4 lever (`cli-opencode/.../providers-and-models.md`)
+- [x] T007 Add the pro roster row (`cli-pi/.../providers-and-models.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -65,9 +69,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T004 Grep confirms the section and the xhigh-only wording (`rg '### cline-pass' ... && rg 'only at .--thinking xhigh'`)
-- [x] T005 Cross-link to `.pi/custom-providers.md` resolves (`ls` on the relative path)
-- [x] T006 `validate.sh 049-cline-provider-roster --recursive --strict` exit 0
+- [x] T008 `pi --list-models` shows `cline-pass deepseek-v4-flash` and `cline-pass deepseek-v4-pro`
+- [x] T009 `pi auth check --provider cline-pass --model cline-pass/deepseek-v4-pro --json` → `status: ready`
+- [x] T010 `.pi` JSON parses; `defaultProvider: cline-pass`, `defaultModel: deepseek-v4-flash`
+- [x] T011 `validate.sh 049-cline-provider-roster --recursive --strict` exit 0
 <!-- /ANCHOR:phase-3 -->
 
 ---

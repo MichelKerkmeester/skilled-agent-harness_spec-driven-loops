@@ -15,6 +15,13 @@
           "reasoning": true,
           "contextWindow": 1000000,
           "maxTokens": 393216
+        },
+        {
+          "id": "deepseek-v4-pro",
+          "name": "DeepSeek V4 Pro",
+          "reasoning": true,
+          "contextWindow": 1000000,
+          "maxTokens": 384000
         }
       ]
     },

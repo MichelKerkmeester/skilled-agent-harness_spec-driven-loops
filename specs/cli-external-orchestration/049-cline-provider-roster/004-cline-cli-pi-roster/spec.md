@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster"
-    last_updated_at: "2026-08-18T13:43:20Z"
+    last_updated_at: "2026-08-18T14:15:43Z"
     last_updated_by: "claude"
     recent_action: "Added cline-pass section to the cli-pi roster, xhigh-only"
     next_safe_action: "Validate and close phase"
@@ -51,9 +51,9 @@ FAILURE MODES:
 | **Created** | 2026-08-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 4 |
+| **Phase** | 4 of 5 |
 | **Predecessor** | 003-cline-pi-config-build |
-| **Successor** | None |
+| **Successor** | 005-cline-pro-and-pi-default (adds the Pro model and the pi cline default) |
 | **Handoff Criteria** | cli-pi roster shows the `### cline-pass` section, xhigh-only; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:metadata -->
 
@@ -125,7 +125,7 @@ Add a `### cline-pass` roster section to the cli-pi mode so the provider is docu
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Cross-link to setup | The section links to `.pi/CUSTOM-PROVIDERS.md` for config/removal |
+| REQ-004 | Cross-link to setup | The section links to `.pi/custom-providers.md` for config/removal |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -145,7 +145,7 @@ Add a `### cline-pass` roster section to the cli-pi mode so the provider is docu
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Roster drifts from the live `.pi` config | Docs mislead a dispatcher | Model id and tier mirror the Phase 3 config and live `pi --list-models`; cross-linked to `.pi/CUSTOM-PROVIDERS.md` |
+| Risk | Roster drifts from the live `.pi` config | Docs mislead a dispatcher | Model id and tier mirror the Phase 3 config and live `pi --list-models`; cross-linked to `.pi/custom-providers.md` |
 | Dependency | Phase 3 config | Docs describe a real provider | Phase 3 Complete; `pi --list-models` shows the row |
 <!-- /ANCHOR:risks -->
 
