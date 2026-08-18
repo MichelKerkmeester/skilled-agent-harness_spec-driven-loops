@@ -12,9 +12,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster"
-    last_updated_at: "2026-08-18T14:01:37Z"
+    last_updated_at: "2026-08-18T14:15:43Z"
     last_updated_by: "claude"
-    recent_action: "All four phases complete; Phase 4 added cline-pass to the cli-pi roster"
+    recent_action: "All five phases complete; Phase 5 added cline pro and the pi cline default"
     next_safe_action: "Operator supplies CLINE_API_KEY or runs pi login for a live round-trip"
     blockers: []
     key_files:
@@ -104,6 +104,9 @@ Aggregate scope; per-phase detail lives in each child plan.
 | `.pi/settings.json` | Modify | 003 | Add `cline-pass/deepseek-v4-flash` to `enabledModels` |
 | `.pi/custom-providers.md` | Create | 003 | Document the custom pi provider |
 | `.opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md` | Modify | 004 | New `### cline-pass` roster section, xhigh-only (no lower thinking tiers) |
+| `.pi/models.json` | Modify | 005 | Add the `deepseek-v4-pro` cline-pass model |
+| `.pi/settings.json` | Modify | 005 | Enable pro; set default provider cline-pass / model deepseek-v4-flash |
+| `.pi/custom-providers.md`, both cli rosters | Modify | 005 | Document the pro model, xhigh-only |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -119,6 +122,7 @@ Aggregate scope; per-phase detail lives in each child plan.
 | 2 | 002-cline-support-pi-investigation/ | Investigate whether cli pi can register/authenticate the Cline provider and expose its models in `/login` + the picker, to reach opencode parity. Read-only until a verdict; runtime pi files unchanged. | Complete |
 | 3 | 003-cline-pi-config-build/ | Wire the Cline provider into cli pi by config (Phase 2's `config-only-feasible` verdict): `cline-pass` block in `.pi/models.json` + `enabledModels` entry in `.pi/settings.json`, env-keyed, plus `.pi/custom-providers.md`. | Complete |
 | 4 | 004-cline-cli-pi-roster/ | Add the `cline-pass` DeepSeek V4 Flash entry to the cli-pi skill roster (`references/providers-and-models.md` §2), xhigh-only (no lower thinking tiers), so the mode's provider catalog documents the config-wired provider. | Complete |
+| 5 | 005-cline-pro-and-pi-default/ | Add DeepSeek V4 Pro through the Cline provider across `.pi` config and both cli rosters (xhigh-only), and set pi's default provider to `cline-pass` with `deepseek-v4-flash`. | Complete |
 
 ### Phase Transition Rules
 
@@ -135,6 +139,7 @@ Aggregate scope; per-phase detail lives in each child plan.
 | 002-cline-support-pi-investigation | (pi implementation phase, TBD) | Investigation reaches an evidence-backed feasibility verdict (a concrete mechanism, or a documented "not feasible / blocked" conclusion) | `implementation-summary.md` records the verdict; `validate.sh --strict` exit 0 |
 | 002-cline-support-pi-investigation | 003-cline-pi-config-build | `cline-pass` surfaces as a live pi provider, env-keyed (no repo secret), with the custom provider documented in `.pi` | `pi --list-models` shows the cline-pass row; `pi auth check` returns `status: ready`; `.pi/custom-providers.md` present; `validate.sh --strict` exit 0 |
 | 003-cline-pi-config-build | 004-cline-cli-pi-roster | The cli-pi skill roster documents `cline-pass/deepseek-v4-flash` at xhigh-only (no lower thinking tiers) | `cli-pi/references/providers-and-models.md` shows the `### cline-pass` section; `validate.sh --strict` exit 0 |
+| 004-cline-cli-pi-roster | 005-cline-pro-and-pi-default | DeepSeek V4 Pro is live on every cline-pass surface at xhigh-only, and pi's default provider is cline-pass | `pi --list-models` shows both cline models; `pi auth check` on pro returns `status: ready`; both rosters show the pro row; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

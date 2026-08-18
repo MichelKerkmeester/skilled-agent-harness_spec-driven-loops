@@ -96,11 +96,12 @@ OpenRouter gateway (base `https://openrouter.ai/api/v1`); pass the full three-se
 
 ### cline-pass
 
-Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible); pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow) — the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. DeepSeek V4 Flash here reports `reasoning: true`, but its thinking tiers run `none`→`xhigh` with **no `max` tier**. **Default effort: `--variant xhigh`** — dispatch cline-pass DeepSeek V4 Flash at its top thinking tier by default, following the DeepSeek Flash family's top-tier-only policy (the direct/opencode-go flash `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). cline-pass flash is a direct-dispatch roster entry only; it is not wired into the fan-out executor registry (which would force the unsupported `--variant max`). Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here — the interactive TUI picker remembers the effort per model on its own.
+Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible); pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow) — the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. DeepSeek V4 Flash and DeepSeek V4 Pro here both report `reasoning: true`, but their thinking tiers run `none`→`xhigh` with **no `max` tier**. **Default effort: `--variant xhigh`** — dispatch either cline-pass DeepSeek model at its top thinking tier by default, following the DeepSeek family's top-tier-only policy (the direct/opencode-go `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). The cline-pass DeepSeek entries are direct-dispatch roster entries only; they are not wired into the fan-out executor registry (which would force the unsupported `--variant max`). Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here — the interactive TUI picker remembers the effort per model on its own.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `cline-pass/cline-pass/deepseek-v4-flash` | — | DeepSeek V4 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier); list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested). cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.5`/`mimo-v2.5-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope |
+| `cline-pass/cline-pass/deepseek-v4-flash` | — | DeepSeek V4 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier); list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested) |
+| `cline-pass/cline-pass/deepseek-v4-pro` | — | DeepSeek V4 Pro via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier); context 1M, output 384K; list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested). cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.5`/`mimo-v2.5-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope |
 
 ---
 
@@ -138,7 +139,7 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 | `minimax` (MiniMax-M3) | behavior unverified — omitted by default; confirm before relying |
 | `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
 | `openai` GPT-5.6 | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
-| `cline-pass` (deepseek-v4-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
+| `cline-pass` (deepseek-v4-flash, deepseek-v4-pro) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) for both models |
 
 ---
 

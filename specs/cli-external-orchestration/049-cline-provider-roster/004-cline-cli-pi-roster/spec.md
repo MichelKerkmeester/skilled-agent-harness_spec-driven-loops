@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster"
-    last_updated_at: "2026-08-18T14:01:37Z"
+    last_updated_at: "2026-08-18T14:15:43Z"
     last_updated_by: "claude"
     recent_action: "Added cline-pass section to the cli-pi roster, xhigh-only"
     next_safe_action: "Validate and close phase"
@@ -51,9 +51,9 @@ FAILURE MODES:
 | **Created** | 2026-08-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 4 |
+| **Phase** | 4 of 5 |
 | **Predecessor** | 003-cline-pi-config-build |
-| **Successor** | None |
+| **Successor** | 005-cline-pro-and-pi-default (adds the Pro model and the pi cline default) |
 | **Handoff Criteria** | cli-pi roster shows the `### cline-pass` section, xhigh-only; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:metadata -->
 

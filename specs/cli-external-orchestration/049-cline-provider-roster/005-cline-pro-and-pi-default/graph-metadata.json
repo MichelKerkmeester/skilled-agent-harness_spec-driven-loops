@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster",
-  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster",
+  "packet_id": "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default",
+  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default",
   "parent_id": "cli-external-orchestration/049-cline-provider-roster",
   "children_ids": [],
   "manual": {
@@ -11,29 +11,29 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cline in cli-pi roster",
-      "cli-pi providers-and-models cline-pass",
-      "add cline to cli pi skill",
-      "cline-pass xhigh only pi roster",
-      "cline cli-pi roster plan",
-      "cli-pi cline-pass docs plan",
-      "cline cli-pi roster tasks",
-      "cli-pi cline-pass tasks",
-      "cline cli-pi roster done",
-      "cli-pi cline-pass documented"
+      "add cline deepseek v4 pro",
+      "cline-pass deepseek-v4-pro roster",
+      "pi default provider cline",
+      "cline pi default model flash",
+      "cline pro pi plan",
+      "cline-pass deepseek-v4-pro plan",
+      "cline pro pi tasks",
+      "cline-pass deepseek-v4-pro tasks",
+      "cline pro added done",
+      "pi default cline live"
     ],
     "key_topics": [
       "cline",
-      "cli-pi",
-      "roster",
-      "providers-and-models",
+      "deepseek",
+      "pro",
       "cline-pass",
-      "cli",
-      "skill",
-      "xhigh",
-      "only",
+      "deepseek-v4-pro",
+      "roster",
+      "default",
+      "provider",
+      "model",
+      "flash",
       "plan",
-      "docs",
       "tasks"
     ],
     "importance_tier": "normal",
@@ -124,19 +124,19 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Documentation",
+        "name": "Cline Pro",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 3 made `cline-pass/deepseek-v4-flash` a live pi provider, but the cli-pi skill's provider roster (`references/providers-and-models.md`) still listed only the six prior providers",
-    "created_at": "2026-08-18T13:41:52Z",
-    "last_save_at": "2026-08-18T14:19:31.760Z",
+    "causal_summary": "The cline-pass provider carried only DeepSeek V4 Flash, but Cline also fronts DeepSeek V4 Pro (`cline-pass/cline-pass/deepseek-v4-pro`, list-verified)",
+    "created_at": "2026-08-18T14:19:31.420Z",
+    "last_save_at": "2026-08-18T14:19:31.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0022e2c348751f574c34ce741ae2121dfa1e3420dd38815dd27611f81cad2377",
+    "source_fingerprint": "sha256:d7a4458579af84468126c45f0f48655325dfd45a050bc579f4d4db8af1521249",
     "source_doc_hashes": {
-      "spec.md": "e4c42c6706b21f30de093ffa6d20ddbe15a715195541a267e8d5cb66eb61c714",
-      "plan.md": "52fd6e327b1828a9ccc3c5a001a9977cc84a7b9ece8138faa45a6994b0dc84d9",
-      "tasks.md": "834f7de5dc22276ef575ec9973f5c057a3643ab73a1eb77883cce39427a8ca62",
-      "implementation-summary.md": "96b45e6a5b12c9ce4101a2bf33a588687b3afcf31ebc33d25aef9d537b373bf5"
+      "spec.md": "b1af4b4c5454eda7ed5d336385c7c217fb4e9ec0991ec5ed84ef7b584cb7e0a0",
+      "plan.md": "72be2fb93dbe729b0f6687fc63141f35b1a76e2edd559a9cb69cc4606fd57939",
+      "tasks.md": "00261cd3a1f5e435efa5d33cc8c9236b77b1043b1c86d19872c2cc69e3172e3e",
+      "implementation-summary.md": "cb25747ba6dca88fed110abec1df5cf5a8437973b20d44d165665800999f2d65"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default",
+  "description": "The cline-pass provider carried only DeepSeek V4 Flash, but Cline also fronts DeepSeek V4 Pro (`cline-pass/cline-pass/deepseek-v4-pro`, list-verified)",
+  "keywords": [
+    "cline-pass",
+    "provider",
+    "carried",
+    "only",
+    "deepseek",
+    "flash",
+    "cline",
+    "also",
+    "fronts",
+    "pro",
+    "deepseek-v4-pro",
+    "list-verified"
+  ],
+  "lastUpdated": "2026-08-18T14:17:44.071Z",
+  "specId": "005",
+  "folderSlug": "cline-pro-and-pi-default",
+  "parentChain": [
+    "cli-external-orchestration",
+    "049-cline-provider-roster"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
