@@ -29,6 +29,8 @@ Cursor starts the process from `.cursor/mcp.json` under the server key `sk-visio
 
 Both repository configs use `node` with one absolute argument to the built server. Moving the checkout requires updating that path. MCP hosts support explicit tool calls but do not receive the native OpenCode/Pi image-attachment hooks.
 
+The server is bound to its host's lifetime so it never lingers as an orphaned process. A single idempotent shutdown — close the runtime client (which reaps the Python child), then exit — is wired to every teardown path: the MCP transport closing, stdin reaching `end` or `close`, and `SIGTERM`/`SIGINT`/`SIGHUP`. Because a `SIGKILL`ed host delivers no signal and no clean end-of-input, a watchdog also polls for reparent-to-init (`process.ppid === 1`) and self-terminates when that is observed. The watchdog timer is unref'd, so it never keeps an otherwise-idle server alive.
+
 ---
 
 ## 3. SOURCE FILES
@@ -37,7 +39,7 @@ Both repository configs use `node` with one absolute argument to the built serve
 
 | File | Layer | Role |
 |---|---|---|
-| `vision-runtime/src/mcp/server.ts` | Handler | MCP registration, text-result framing, stdio lifecycle, and runtime cleanup |
+| `vision-runtime/src/mcp/server.ts` | Handler | MCP registration, text-result framing, and the process-lifecycle guards (`installMcpLifecycleGuards`: multi-path idempotent shutdown plus the reparent watchdog) that close the runtime and exit |
 | `vision-runtime/package.json` | Script | `sk-vision-mcp` bin metadata and MCP dependency |
 | `.cursor/mcp.json` | Script | Cursor repository registration for the built stdio server |
 | `.devin/mcp_config.json` | Script | Devin repository registration for the built stdio server |
@@ -46,8 +48,9 @@ Both repository configs use `node` with one absolute argument to the built serve
 
 | File | Type | Role |
 |---|---|---|
-| `vision-runtime/src/mcp/server.test.ts` | MCP integration test | Initializes the server, asserts 13 tools, and calls status without model weights |
+| `vision-runtime/src/mcp/server.test.ts` | MCP integration test | Initializes the server, asserts 13 tools, calls status without model weights, and unit-tests the lifecycle guards (stdin-end shutdown, idempotency, reparent watchdog) |
 | `manual-testing-playbook/host-adapters/mcp-standalone.md` | Manual playbook | Validates direct Node launch and `tools/list` |
+| `manual-testing-playbook/host-adapters/mcp-lifecycle.md` | Manual playbook | Validates the server self-terminates on stdin EOF and never orphans |
 | `manual-testing-playbook/host-adapters/cursor-mcp.md` | Manual playbook | Validates Cursor config and host attach |
 | `manual-testing-playbook/host-adapters/devin-mcp.md` | Manual playbook | Validates Devin config, attach, and namespacing |
 

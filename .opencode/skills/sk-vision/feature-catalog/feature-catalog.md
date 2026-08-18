@@ -269,6 +269,22 @@ See [`host-adapters/pi-extension.md`](host-adapters/pi-extension.md) for full im
 
 ---
 
+### MCP stdio transport (sk-vision-mcp)
+
+#### Description
+
+Exposes all 13 sk-vision tools through one shared MCP stdio server used by Cursor and Devin.
+
+#### Current Reality
+
+The built `vision-runtime/dist/mcp-server.js` registers the 13 tools over MCP stdio and delegates through the shared provider and runtime client. Cursor starts it from `.cursor/mcp.json` and Devin from `.devin/mcp_config.json`. The server binds to its host's lifetime — an idempotent shutdown on transport close, stdin EOF, and signals, plus a reparent-to-init watchdog for the `SIGKILL` case — so it never lingers as an orphaned process.
+
+#### Source Files
+
+See [`host-adapters/mcp-transport.md`](host-adapters/mcp-transport.md) for full implementation and test file listings.
+
+---
+
 ## 6. RUNTIME CORE
 
 ### JSON-RPC runtime (python/runtime.py)

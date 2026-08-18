@@ -26,6 +26,8 @@ Cursor and Devin have no in-process plugin API. They attach tools only through t
 
 The MCP server stays in `vision-runtime/` rather than under `hooks/` because it needs the MCP SDK dependency, which resolves inside the runtime package.
 
+Because Cursor and Devin launch that server as a child process, it is bound to its host's lifetime so it never lingers as an orphan. One idempotent shutdown — close the runtime client (which reaps the Python child), then exit — runs on every teardown path: the MCP transport closing, stdin reaching `end`/`close`, and `SIGTERM`/`SIGINT`/`SIGHUP`. A `SIGKILL`ed host delivers no signal and no clean EOF, so a watchdog also self-terminates on reparent-to-init (`process.ppid === 1`); its timer is unref'd so it never keeps an idle server alive.
+
 ---
 
 ## 3. GUARANTEED VISION FOR TEXT-ONLY MODELS

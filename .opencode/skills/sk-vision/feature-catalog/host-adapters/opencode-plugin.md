@@ -17,13 +17,13 @@ version: 1.0.0.0
 
 Loads the vision runtime and 13 tools into OpenCode, with automatic inspection of attached images.
 
-`.opencode/plugins/sk-vision.js` is the OpenCode load path: a real file that re-exports the built runtime plugin from the skill package.
+`.opencode/plugins/sk-vision.js` is the OpenCode load path: a symlink that resolves to the built runtime plugin in the skill package.
 
 ---
 
 ## 2. HOW IT WORKS
 
-The load-path file re-exports the built plugin from `vision-runtime/dist/plugin.js`. The plugin itself constructs the runtime client and provider, registers all 13 `sk_vision_*` tools, and wires toast notifications for runtime messages.
+The load-path symlink resolves to the built plugin at `vision-runtime/dist/plugin.js`; that entry lives inside the runtime package so it resolves `python/runtime.py` when it spawns the runtime. The plugin itself constructs the runtime client and provider, registers all 13 `sk_vision_*` tools, and wires toast notifications for runtime messages.
 
 Attached images get automatic inspection: a paste-time `event` hook preloads analysis as soon as an image part appears, and a `chat.message` handler injects the evidence plus a note that clipboard images were materialized to disk for direct inspection. Both paths are fire-and-forget with a 2s bounded grace — the hook never blocks message submission while GPU analysis runs.
 
@@ -39,7 +39,7 @@ The plugin honors `enabled` (disable entirely), `autoInspect` (turn auto-inspect
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/plugins/sk-vision.js` | Script | OpenCode load path re-exporting the built plugin |
+| `.opencode/plugins/sk-vision.js` | Script | OpenCode load path: symlink to the built plugin |
 | `vision-runtime/src/plugin.ts` | Handler | Plugin bootstrap, tool registration, event and chat hooks |
 | `vision-runtime/src/opencode/tools.ts` | Handler | The 13 tool definitions for OpenCode |
 | `vision-runtime/src/opencode/attachments.ts` | Handler | AttachmentInjector: preload, 2s grace, materialization |

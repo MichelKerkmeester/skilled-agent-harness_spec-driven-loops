@@ -4,6 +4,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+import { installMcpLifecycleGuards } from "./server.js";
 
 const ROOT = join(import.meta.dir, "..", "..");
 const SERVER = join(ROOT, "src", "mcp", "server.ts");
@@ -60,5 +61,100 @@ describe("sk-vision MCP stdio transport", () => {
     expect(typeof content.text).toBe("string");
     expect(content.text).toContain("provider: photon");
     expect(content.text).toContain("loaded: false");
+  });
+});
+
+function deferred<T>(): { promise: Promise<T>; resolve: (v: T) => void } {
+  let resolve!: (v: T) => void;
+  const promise = new Promise<T>((res) => {
+    resolve = res;
+  });
+  return { promise, resolve };
+}
+
+describe("installMcpLifecycleGuards", () => {
+  it("shuts down on stdin end", async () => {
+    const server = { server: { onclose: undefined as (() => void) | undefined } };
+    const close = deferred<void>();
+    let closeCalls = 0;
+    const client = {
+      close: () => {
+        closeCalls += 1;
+        return close.promise;
+      },
+    };
+    const exits: number[] = [];
+    const handle = installMcpLifecycleGuards({
+      server: server as unknown as Parameters<typeof installMcpLifecycleGuards>[0]["server"],
+      client: client as unknown as Parameters<typeof installMcpLifecycleGuards>[0]["client"],
+      exit: (code) => exits.push(code),
+    });
+    process.stdin.emit("end");
+    expect(closeCalls).toBe(1);
+    close.resolve();
+    await close.promise;
+    expect(exits).toEqual([0]);
+    handle.dispose();
+    process.stdin.removeAllListeners("end");
+    process.stdin.removeAllListeners("close");
+  });
+
+  it("is idempotent across multiple shutdown events", async () => {
+    const server = { server: { onclose: undefined as (() => void) | undefined } };
+    const close = deferred<void>();
+    let closeCalls = 0;
+    const client = {
+      close: () => {
+        closeCalls += 1;
+        return close.promise;
+      },
+    };
+    const exits: number[] = [];
+    const handle = installMcpLifecycleGuards({
+      server: server as unknown as Parameters<typeof installMcpLifecycleGuards>[0]["server"],
+      client: client as unknown as Parameters<typeof installMcpLifecycleGuards>[0]["client"],
+      exit: (code) => exits.push(code),
+    });
+    process.stdin.emit("end");
+    process.emit("SIGTERM" as NodeJS.Signals);
+    if (server.server.onclose !== undefined) server.server.onclose();
+    expect(closeCalls).toBe(1);
+    expect(exits).toEqual([]);
+    close.resolve();
+    await close.promise;
+    expect(exits).toEqual([0]);
+    handle.dispose();
+    process.stdin.removeAllListeners("end");
+    process.stdin.removeAllListeners("close");
+  });
+
+  it("exits when reparented to init", async () => {
+    const server = { server: { onclose: undefined as (() => void) | undefined } };
+    const close = deferred<void>();
+    let closeCalls = 0;
+    const client = {
+      close: () => {
+        closeCalls += 1;
+        return close.promise;
+      },
+    };
+    const exits: number[] = [];
+    const handle = installMcpLifecycleGuards({
+      server: server as unknown as Parameters<typeof installMcpLifecycleGuards>[0]["server"],
+      client: client as unknown as Parameters<typeof installMcpLifecycleGuards>[0]["client"],
+      getParentPid: () => 1,
+      watchIntervalMs: 5,
+      exit: (code) => exits.push(code),
+    });
+    await new Promise((res) => setTimeout(res, 40));
+    // The watchdog fired (client.close ran) and stays idempotent despite
+    // repeated ticks; exit is gated behind the close promise, like the paths above.
+    expect(closeCalls).toBe(1);
+    close.resolve();
+    await close.promise;
+    expect(exits).toEqual([0]);
+    handle.dispose();
+    process.stdin.removeAllListeners("end");
+    process.stdin.removeAllListeners("close");
   });
 });
