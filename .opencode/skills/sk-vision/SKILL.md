@@ -165,9 +165,9 @@ The runtime lazy-loads the model on the first inference request (default `moondr
 
 OpenCode and Pi expose in-process plugin APIs, so the skill owns their adapter source under `hooks/` and each host loads it through a symlink or re-export. Cursor and Devin have no in-process plugin API — they attach tools only over MCP — so they share one MCP stdio server instead of a per-host adapter:
 
-- **OpenCode** — `hooks/opencode/sk-vision.js` registers the 13 tools and auto-inspects attached images with a 2-second grace before message submit, injecting a `<SK-VISION>` evidence block without awaiting the full GPU run. Loaded via `.opencode/plugins/sk-vision.js`.
+- **OpenCode** — the built plugin `vision-runtime/dist/plugin.js` registers the 13 tools and auto-inspects attached images with a 2-second grace before message submit, injecting a `<SK-VISION>` evidence block without awaiting the full GPU run. Loaded via `.opencode/plugins/sk-vision.js`, a symlink to that built entry — which must live inside the runtime package so it resolves `python/runtime.py` when it spawns the runtime.
 - **Pi** — `hooks/pi/sk-vision.ts` is a factory default export that registers the 13 tools via `pi.registerTool` and closes the runtime client on `session_shutdown`. Loaded via `.pi/extensions/sk-vision.ts` (relative symlink).
-- **Cursor & Devin (MCP-only)** — no in-process plugin API, so they share one MCP stdio server (`vision-runtime/src/mcp/server.ts`, built to `dist/mcp-server.js`; it stays in the runtime package because it needs the MCP SDK). The per-host MCP configs live under `hooks/` beside the in-process adapters: `hooks/devin/mcp_config.json` (Devin loads it via the `.devin/mcp_config.json` symlink) and `hooks/cursor/mcp.json` (the portable Cursor entry; in this repo Cursor reads its own real `.cursor/mcp.json`, which carries sk-vision and is deliberately kept out of Claude Code's `.claude/mcp.json`). Both launch `node …/dist/mcp-server.js`. See `hooks/README.md` for the four-host model.
+- **Cursor & Devin (MCP-only)** — no in-process plugin API, so they share one MCP stdio server (`vision-runtime/src/mcp/server.ts`, built to `dist/mcp-server.js`; it stays in the runtime package because it needs the MCP SDK). The per-host MCP configs live under `hooks/` beside the in-process adapters: `hooks/devin/mcp_config.json` (Devin loads it via the `.devin/mcp_config.json` symlink) and `hooks/cursor/mcp.json` (the portable Cursor entry; in this repo Cursor reads its own real `.cursor/mcp.json`, which carries sk-vision and is deliberately kept out of Claude Code's `.claude/mcp.json`). Both launch `node …/dist/mcp-server.js`. That server binds to its host's lifetime — an idempotent shutdown on transport close, stdin EOF, and `SIGTERM`/`SIGINT`/`SIGHUP`, plus a reparent-to-init watchdog for the `SIGKILL` case that emits no signal — so it never lingers as an orphaned process. See `hooks/README.md` for the four-host model.
 
 ### Environment variables
 
@@ -205,7 +205,7 @@ Requires an NVIDIA Ampere-or-newer GPU or Apple Silicon (M-series); ~6 GB VRAM i
 ### ALWAYS
 
 1. Author `graph-metadata.json` and `leaf-manifest.config.json`; generate `leaf-manifest.json` and `leaf-aliases.json` with `ci-skill-root-metadata.cjs --fix`.
-2. Keep the skill source of truth under `hooks/` — each host loads it through a symlink or re-export, never a hand-copied duplicate.
+2. Keep the skill source of truth in the runtime package — each host loads it through a symlink, re-export, or config, never a hand-copied duplicate.
 3. Keep `bun run build` and `bun test` in `vision-runtime/` green before any completion claim.
 4. Surface the first-load download and VRAM cost to the user.
 
@@ -232,7 +232,7 @@ Requires an NVIDIA Ampere-or-newer GPU or Apple Silicon (M-series); ~6 GB VRAM i
 | Skill package validates | `validate_skill_package.py .opencode/skills/sk-vision` PASS |
 | Runtime builds and tests | `bun run build && bun test` in `vision-runtime/` exit 0 |
 | 13 tools register on both hosts | `rg -c 'pi\.registerTool' hooks/pi/sk-vision.ts` = 13; the OpenCode plugin lists the same names |
-| OpenCode adapter loads | `.opencode/plugins/sk-vision.js` resolves to `hooks/opencode/sk-vision.js` |
+| OpenCode adapter loads | `.opencode/plugins/sk-vision.js` resolves to `vision-runtime/dist/plugin.js` |
 | Pi adapter loads | `.pi/extensions/sk-vision.ts` resolves to `hooks/pi/sk-vision.ts`; `pi --offline --approve` starts without a fail-closed extension |
 | No accidental publishing | no `publishConfig` / `publish:npm` in `vision-runtime/package.json` |
 | Docs describe shipped behavior | no scaffold-stub language in `SKILL.md` / `README.md` |
@@ -247,7 +247,7 @@ The authoritative behavior lives in the code; when this doc and the code disagre
 |--------|----------------------|
 | RPC handlers, defaults, model lifecycle | `vision-runtime/python/runtime.py` |
 | Provider method contracts, cache dirs | `vision-runtime/src/providers/photon.ts`, `src/providers/types.ts` |
-| OpenCode plugin hooks, auto-inspect grace | `hooks/opencode/sk-vision.js`, `vision-runtime/src/opencode/attachments.ts` |
+| OpenCode plugin hooks, auto-inspect grace | `vision-runtime/src/plugin.ts`, `vision-runtime/src/opencode/attachments.ts` |
 | Pi tool registrations and parameter shapes | `hooks/pi/sk-vision.ts` |
 | Evidence rendering | `vision-runtime/src/core/context-builder.ts` |
 | Per-tool deep behavior and measured results | `feature-catalog/`, `manual-testing-playbook/`, `benchmark/` |
@@ -257,6 +257,6 @@ The authoritative behavior lives in the code; when this doc and the code disagre
 
 ## 7. INTEGRATION
 
-- **Host load paths** — all four hosts source from `hooks/` and are mirrored into the shared hook hub at `.opencode/hooks/sk-vision/{pi,opencode,cursor,devin}`. In-process: `hooks/pi/` and `hooks/opencode/`, loaded via `.pi/extensions/sk-vision.ts` and `.opencode/plugins/sk-vision.js`. MCP: `hooks/devin/mcp_config.json` (loaded via the `.devin/mcp_config.json` symlink) and `hooks/cursor/mcp.json` (portable; Cursor reads its own real `.cursor/mcp.json`, which includes sk-vision and is decoupled from `.claude/mcp.json`), both launching `dist/mcp-server.js`.
+- **Host load paths** — the host-adapter sources live under `hooks/` and are mirrored into the shared hook hub at `.opencode/hooks/sk-vision/{pi,opencode,cursor,devin}`. In-process: Pi loads `hooks/pi/` as source via `.pi/extensions/sk-vision.ts`; OpenCode loads the built package plugin, so `.opencode/plugins/sk-vision.js` symlinks to `vision-runtime/dist/plugin.js` (the entry must sit inside the runtime package to resolve `python/runtime.py`). MCP: `hooks/devin/mcp_config.json` (loaded via the `.devin/mcp_config.json` symlink) and `hooks/cursor/mcp.json` (portable; Cursor reads its own real `.cursor/mcp.json`, which includes sk-vision and is decoupled from `.claude/mcp.json`), both launching `dist/mcp-server.js`.
 - **Related skills** — `sk-code` builds and verifies the runtime package; `sk-doc` / `sk-create-skill` own this SKILL.md and README shape and its validation gate.
 - **Tool usage** — the 13 `sk_vision_*` tools are the public surface; the JSON-RPC methods above are internal and reached only through the adapters, never called directly by the host model.

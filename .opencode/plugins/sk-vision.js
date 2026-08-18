@@ -1,1 +1,1 @@
-../skills/sk-vision/hooks/opencode/sk-vision.js
+../skills/sk-vision/vision-runtime/dist/plugin.js

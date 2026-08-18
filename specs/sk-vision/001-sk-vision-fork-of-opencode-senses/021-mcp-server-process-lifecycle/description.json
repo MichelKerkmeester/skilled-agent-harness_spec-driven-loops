@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/021-mcp-server-process-lifecycle",
+  "description": "The MCP server installed no lifecycle hardening",
+  "keywords": [
+    "mcp",
+    "server",
+    "installed",
+    "lifecycle",
+    "hardening"
+  ],
+  "lastUpdated": "2026-08-18T13:11:13.899Z",
+  "specId": "021",
+  "folderSlug": "mcp-server-process-lifecycle",
+  "parentChain": [
+    "sk-vision",
+    "001-sk-vision-fork-of-opencode-senses"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

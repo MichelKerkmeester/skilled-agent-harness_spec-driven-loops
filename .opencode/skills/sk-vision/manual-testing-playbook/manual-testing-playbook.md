@@ -37,7 +37,7 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 
 This playbook provides a derived census of deterministic scenarios across categories validating the `sk-vision` skill surface. The operator validator computes those counts from the walked tree; do not hand-maintain them. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-08-17): 24 operator scenarios across 6 categories cover the 13 shipped `sk_vision_*` tools, all four host adapters (in-process OpenCode plugin and Pi extension; MCP Cursor and Devin), the standalone MCP server, an end-to-end vision-blind-model scenario (a text-only model such as GLM gaining sight through the tools), the guaranteed-vision feature for text-only models (VSN-021..024), and the JSON-RPC runtime lifecycle. The tool, pixel, and runtime scenarios run against the local fork with the default `moondream2` model and no network after the first load; the Cursor/Devin attachment (VSN-018/019), the vision-blind scenario (VSN-020), and the rule-driven guaranteed-vision scenarios (VSN-022/023) additionally require the host with `sk-vision` attached.
+Coverage note (2026-08-18): 25 operator scenarios across 6 categories cover the 13 shipped `sk_vision_*` tools, all four host adapters (in-process OpenCode plugin and Pi extension; MCP Cursor and Devin), the standalone MCP server and its process lifecycle (VSN-025), an end-to-end vision-blind-model scenario (a text-only model such as GLM gaining sight through the tools), the guaranteed-vision feature for text-only models (VSN-021..024), and the JSON-RPC runtime lifecycle. The tool, pixel, and runtime scenarios run against the local fork with the default `moondream2` model and no network after the first load; the Cursor/Devin attachment (VSN-018/019), the vision-blind scenario (VSN-020), and the rule-driven guaranteed-vision scenarios (VSN-022/023) additionally require the host with `sk-vision` attached.
 
 ### Realistic Test Model
 
@@ -410,9 +410,9 @@ Desired user-visible outcome: a list of visually similar local images, or an exp
 
 ---
 
-## 10. HOST ADAPTERS (`VSN-014, VSN-015, VSN-017..VSN-020`)
+## 10. HOST ADAPTERS (`VSN-014, VSN-015, VSN-017..VSN-020, VSN-025`)
 
-OpenCode and Pi attach in-process (VSN-014, VSN-015). Cursor and Devin are MCP-only, so they share one MCP stdio server (VSN-017) attached via config (VSN-018 Cursor, VSN-019 Devin); VSN-020 proves a text-only model like GLM reads an image through those tools.
+OpenCode and Pi attach in-process (VSN-014, VSN-015). Cursor and Devin are MCP-only, so they share one MCP stdio server (VSN-017) attached via config (VSN-018 Cursor, VSN-019 Devin); VSN-020 proves a text-only model like GLM reads an image through those tools. VSN-025 proves that shared server self-terminates when its host goes away, so it never leaves an orphaned process behind.
 
 ### VSN-014 | OpenCode plugin
 
@@ -500,6 +500,20 @@ Desired user-visible outcome: the vision-blind model answers correctly about an 
 
 #### Test Execution
 > **Feature File:** [VSN-020](host-adapters/vision-blind-model.md)
+> **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
+
+### VSN-025 | MCP server process lifecycle
+
+#### Description
+Verify the shared MCP stdio server self-terminates when its host goes away instead of lingering as an orphaned `node` process. Cursor and Devin launch it as a child; an idempotent shutdown is wired to every teardown path (transport close, stdin `end`/`close`, `SIGTERM`/`SIGINT`/`SIGHUP`) plus a reparent-to-init watchdog for the `SIGKILL` case that emits no signal. This scenario drives the stdin-EOF path deterministically.
+
+#### Scenario Contract
+Prompt: `Launch the sk-vision MCP server with its input closed and confirm the process exits on its own without leaving an orphan.`
+
+Desired user-visible outcome: the server exits on its own and no `mcp-server.js` process is left behind.
+
+#### Test Execution
+> **Feature File:** [VSN-025](host-adapters/mcp-lifecycle.md)
 > **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
 
 ---

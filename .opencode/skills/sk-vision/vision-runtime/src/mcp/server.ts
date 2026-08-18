@@ -111,13 +111,51 @@ export function createSkVisionMcpServer(client: RuntimeClient): McpServer {
   return server;
 }
 
+/**
+ * Install every self-termination guard a stdio MCP child needs so it never
+ * outlives its host. A SIGKILLed host delivers no signal and no clean EOF, so
+ * the only universal orphan signal is being reparented to init (ppid 1); the
+ * other paths (transport close, stdin end/close, SIGTERM/SIGINT/SIGHUP) cover
+ * graceful teardown. Every path runs the same idempotent shutdown: close the
+ * runtime client (which reaps the python child) then exit.
+ *
+ * `exit` and `getParentPid` are injectable so the guards are unit-testable
+ * without terminating the test runner.
+ */
+export function installMcpLifecycleGuards(opts: {
+  server: McpServer;
+  client: RuntimeClient;
+  exit?: (code: number) => void;
+  getParentPid?: () => number;
+  watchIntervalMs?: number;
+}): { dispose: () => void } {
+  const exit = opts.exit ?? ((code: number) => process.exit(code));
+  const getParentPid = opts.getParentPid ?? (() => process.ppid);
+  let closing = false;
+  const shutdown = (code = 0): void => {
+    if (closing) return;
+    closing = true;
+    void opts.client.close().finally(() => exit(code));
+  };
+  opts.server.server.onclose = () => shutdown();
+  process.stdin.on("end", () => shutdown());
+  process.stdin.on("close", () => shutdown());
+  for (const signal of ["SIGTERM", "SIGINT", "SIGHUP"] as const) {
+    process.on(signal, () => shutdown());
+  }
+  const orphanWatch = setInterval(() => {
+    if (getParentPid() === 1) shutdown();
+  }, opts.watchIntervalMs ?? 5_000);
+  // Never let the watchdog timer itself keep the event loop alive.
+  orphanWatch.unref();
+  return { dispose: () => clearInterval(orphanWatch) };
+}
+
 /** Run sk-vision as an MCP stdio server until the host closes the session. */
 export async function runSkVisionMcpServer(): Promise<void> {
   const client = new RuntimeClient();
   const server = createSkVisionMcpServer(client);
-  server.server.onclose = () => {
-    void client.close();
-  };
+  installMcpLifecycleGuards({ server, client });
   await server.connect(new StdioServerTransport());
 }
 
