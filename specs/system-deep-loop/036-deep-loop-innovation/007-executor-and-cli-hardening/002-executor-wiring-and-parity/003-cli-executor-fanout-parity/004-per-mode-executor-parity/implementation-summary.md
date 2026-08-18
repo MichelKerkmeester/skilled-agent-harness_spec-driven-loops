@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Per-Mode Executor Parity"
-description: "Consolidating the three deep modes that run their own dispatch (model-benchmark, skill-benchmark, ai-council) onto the shared buildLineageCommand for cli-cursor/cli-devin/cli-pi, so they inherit the fan-out's hardened flags instead of forking or stubbing them. Leaf 1 (model-benchmark) is built and baseline-verified; leaves 2-3 pending."
+description: "Consolidating the three deep modes that run their own dispatch (model-benchmark, skill-benchmark, ai-council) onto the shared buildLineageCommand for cli-cursor/cli-devin/cli-pi, so they inherit the fan-out's hardened flags instead of forking or stubbing them. Leaf 1 (model-benchmark) and leaf 3 (ai-council) are built and baseline-verified; leaf 2 (skill-benchmark) is a documented design exemption."
 trigger_phrases:
   - "per-mode executor parity progress"
   - "model-benchmark shared builder delegation"
@@ -11,19 +11,19 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parit
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity"
-    last_updated_at: "2026-08-17T04:33:13Z"
-    last_updated_by: "claude"
-    recent_action: "Built ai-council parity leaf; documented skill-benchmark exemption"
-    next_safe_action: "SOL-verify leaf 3, land leaf 2 doc + leaf 3, close 004"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled the per-mode parity implementation to Complete with model-benchmark and ai-council"
+    next_safe_action: "Await SOL verdicts and operator review before the combo-matrix phase"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs"
       - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs"
-    completion_pct: 80
-    open_questions:
-      - "Whether model-benchmark/skill-benchmark should also gain native/codex parity or keep cursor/devin/pi scope"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
+      - "cursor/devin/pi is the intended scope; native/codex parity for model-benchmark and skill-benchmark stays out of scope"
       - "buildLineageCommand fits cursor/devin/pi with no mode-specific arg divergence"
       - "fanout-run.cjs main() is require-guarded, so modes can require it side-effect-free"
       - "the removed local model-benchmark allowlists are identical to the shared builder's"
@@ -40,9 +40,9 @@ _memory:
 | Field | Value |
 |---|---|
 | **Spec Folder** | 004-per-mode-executor-parity |
-| **Completed** | In progress (leaf 1 of 3 built) |
+| **Completed** | 100% (leaf 1 + leaf 3 built; leaf 2 exempt-by-design) |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Posture** | Reuse the shared fan-out builder from three modes' own dispatch; fan-out builders untouched |
 <!-- /ANCHOR:metadata -->
 
@@ -102,7 +102,7 @@ Leaf 1 was authored via the cli-pi LUNA primary builder against a precise brief,
 | `dispatch-model.cjs` require smoke test | PASS — resolves and loads, 14 exports |
 | Leaf 1 SOL cross-verify (cli-opencode GPT-5.6-SOL, high) | REQUESTED_CHANGES, 0 P0 / 3 P1 — all fixed and re-verified (see below) |
 | Leaf 1 re-gate after fixes | Targeted 35/35 (3 new scenario tests); full suite 28 failed / 570 passed; zero new regressions vs baseline; tsc 0 |
-| `validate.sh --strict` | Errors 0 (5 tolerated warnings, sibling-phase baseline) |
+| `validate.sh --strict` | Errors 0 (only the benign uncommitted dirty_tree freshness warning) |
 
 The 28 post-change lane failures are all pre-existing and unrelated to executor dispatch (benchmark fixtures, scorer wiring, report snapshots, compiled-routing parity, design-token lint, command recipes); the baseline delta confirms this leaf added none of them.
 
@@ -144,7 +144,7 @@ SOL found three real P1s — all consequences of enabling the pi path and delega
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-Leaves 2 (skill-benchmark) and 3 (ai-council) are not yet built. model-benchmark's native and cli-codex dispatch remain absent (out of this phase's cursor/devin/pi scope; native-static and codex-via-helper are pre-existing design choices). The lane's own pre-existing failing tests are untouched by this phase.
+Leaf 2 (skill-benchmark) is a documented design exemption, not a shared-builder delegate: its live score signal needs a structured tool-use stream that only opencode and codex emit, so an executor-agnostic observation model is a separate change. model-benchmark's native and cli-codex dispatch remain absent (out of this phase's cursor/devin/pi scope; native-static and codex-via-helper are pre-existing design choices). The lane's own pre-existing failing tests are untouched by this phase. External SOL sign-off and the operator review before the combo-matrix phase (005) remain pending as non-blocking gates.
 <!-- /ANCHOR:limitations -->
 
 <!-- ANCHOR:deviations -->

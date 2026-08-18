@@ -13,12 +13,11 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/001-completion-evidence-reconcile"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Closed out 021: ADRs accepted, checklist reconciled, 016 fixed"
-    next_safe_action: "None; monitor 031 Lane B for the alignment RED-anchor re-verify"
-    blockers:
-      - "OPERATOR-DECISION OD-1: relocate the 016 pre-cutover validation artifacts to their own packet, or formally re-scope 016"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled checklist to Complete with evidence"
+    next_safe_action: "Monitor 031 Lane B for the alignment RED-anchor re-verify"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,9 +25,7 @@ _memory:
       - "checklist.md"
       - "decision-record.md"
     completion_pct: 100
-    open_questions:
-      - "Does the 016 disposition relocate the borrowed review/ and alignment/ artifacts, or re-scope 016 around them?"
-      - "Does the bounded child manifest live in validate.sh or in the parent graph-metadata.json?"
+    open_questions: []
     answered_questions:
       - "Children 021-033 nest as flat siblings under 036, conditional on this child landing the hashed-child-manifest fix first"
       - "Phase 015 is reopened and stated honestly here; it is not remediated by this tree"

@@ -1,3 +1,26 @@
+---
+title: "Implementation Plan: cli-pi Fan-out Lineage Wiring"
+description: "Replace the throwing buildPiLineageCommand stub with a real headless pi command builder, map each allowlisted pi model to its provider, and add reasoningEffort to the cli-pi flag table, verified by command-construction unit tests plus a live end-to-end dispatch."
+trigger_phrases:
+  - "cli-pi fanout wiring plan"
+  - "buildPiLineageCommand plan"
+  - "pi provider model mapping plan"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/002-cli-pi-fanout-wiring"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled cli-pi fanout packet docs to Complete"
+    next_safe_action: "Commit the reconciled cli-pi packet docs"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+    completion_pct: 100
+    open_questions: []
+---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
@@ -28,9 +51,15 @@ construction stays synchronous and unit-testable, matching the file's per-kind c
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Capture the per-model provider map from `pi --list-models`.
-2. Implement `buildPiLineageCommand` (offline, provider-prefixed model, `--thinking`, read-only tool allowlist) and add the cli-pi `reasoningEffort` flag.
-3. Update the stub-behavior tests to command-construction tests, add `--thinking`/read-only/invalid-level coverage, and run a live end-to-end dispatch.
+
+### Phase 1: Capture the provider map
+Capture the per-model provider map from `pi --list-models`.
+
+### Phase 2: Build the lineage command
+Implement `buildPiLineageCommand` (offline, provider-prefixed model, `--thinking`, read-only tool allowlist) and add the cli-pi `reasoningEffort` flag.
+
+### Phase 3: Test and dispatch
+Update the stub-behavior tests to command-construction tests, add `--thinking`/read-only/invalid-level coverage, and run a live end-to-end dispatch.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

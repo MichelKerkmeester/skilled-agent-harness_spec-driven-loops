@@ -12,19 +12,18 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parit
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening"
-    last_updated_at: "2026-08-17T04:33:13Z"
-    last_updated_by: "claude"
-    recent_action: "Re-mapped devin and cursor builders from live CLI behavior"
-    next_safe_action: "Fold in SOL findings, land, then per-mode executor parity (004)"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled devin+cursor exec-hardening docs to Complete"
+    next_safe_action: "Proceed to per-mode executor parity phase 004"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts"
-    completion_pct: 90
-    open_questions:
-      - "How to isolate cursor ambient repo config (write-capable hooks + unapproved MCP) for fan-out leaves; deferred to combo-matrix phase"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "devin --sandbox forces autonomous mode and ignores --permission-mode; read-only must drop --sandbox"
       - "cursor -p is trust-gated in untrusted dirs; read-only + workspace-write must pass --trust"
@@ -46,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity` |
@@ -92,12 +91,12 @@ Re-map both builders from live-verified CLI behavior so that, for every sandbox 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- **R1 (devin read-only)** — A read-only devin leaf emits `--permission-mode auto` and NO `--sandbox`; it allows native file reads and cleanly rejects shell-exec and writes in non-interactive mode.
-- **R2 (devin workspace-write)** — A workspace-write devin leaf emits `--permission-mode dangerous --sandbox`; it runs autonomously (never stalls) with writes confined to the working directory.
-- **R3 (cursor trust)** — Every non-`danger-full-access` cursor leaf passes `--trust` so it is not blocked by the untrusted-directory gate; `danger-full-access` relies on `--force` (which already implies trust).
-- **R4 (cursor read-only)** — A read-only cursor leaf emits `--mode plan --trust` and NO `--sandbox`/`--force`/`--auto-review`; plan mode allows reads and blocks edits/shell writes.
-- **R5 (cursor workspace-write)** — A workspace-write cursor leaf emits `--force --sandbox enabled` (autonomous so it never stalls, writes OS-confined to the working directory); `--auto-review` is not used because it can block non-interactively.
-- **R6 (no regression)** — No other executor kind (codex, claude-code, opencode, pi) and no fan-out worker path changes behavior.
+- **REQ-01 (devin read-only)** — A read-only devin leaf emits `--permission-mode auto` and NO `--sandbox`; it allows native file reads and cleanly rejects shell-exec and writes in non-interactive mode.
+- **REQ-02 (devin workspace-write)** — A workspace-write devin leaf emits `--permission-mode dangerous --sandbox`; it runs autonomously (never stalls) with writes confined to the working directory.
+- **REQ-03 (cursor trust)** — Every non-`danger-full-access` cursor leaf passes `--trust` so it is not blocked by the untrusted-directory gate; `danger-full-access` relies on `--force` (which already implies trust).
+- **REQ-04 (cursor read-only)** — A read-only cursor leaf emits `--mode plan --trust` and NO `--sandbox`/`--force`/`--auto-review`; plan mode allows reads and blocks edits/shell writes.
+- **REQ-05 (cursor workspace-write)** — A workspace-write cursor leaf emits `--force --sandbox enabled` (autonomous so it never stalls, writes OS-confined to the working directory); `--auto-review` is not used because it can block non-interactively.
+- **REQ-06 (no regression)** — No other executor kind (codex, claude-code, opencode, pi) and no fan-out worker path changes behavior.
 <!-- /ANCHOR:requirements -->
 
 ---

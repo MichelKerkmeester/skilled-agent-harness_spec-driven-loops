@@ -1,3 +1,23 @@
+---
+title: "Tasks: devin + cursor Fan-out Exec Hardening"
+description: "Task tracker for the devin and cursor fan-out lineage builder re-map: live-probe both CLIs, re-map both builders and the cursor resolver, lock unit tests, verify with vitest plus live probes and a SOL review, landed in commit b1d36b1741."
+trigger_phrases:
+  - "devin cursor exec hardening tasks"
+  - "fanout builder re-map tasks"
+importance_tier: "high"
+contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled task tracker to Complete"
+    next_safe_action: "Proceed to per-mode executor parity phase 004"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
@@ -5,7 +25,7 @@
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-`[ ]` open · `[x]` done. Status: In Progress — code implemented, gated, and SOL-reviewed (P1-002 fixed; two ambient-config P1s tracked forward); landing pending.
+`[ ]` open · `[x]` done. Status: Complete — code implemented, gated, and SOL-reviewed (P1-002 fixed; two ambient-config P1s tracked forward), landed in `b1d36b1741`.
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
@@ -27,14 +47,14 @@
 - [x] Live: devin read-only (`auto`) blocks writes, allows native reads; cursor read-only (`--mode plan --trust`) blocks writes, allows reads.
 - [x] Live: cursor workspace-write (`--force --sandbox enabled`) writes without stalling; devin workspace-write (`dangerous --sandbox`) writes without stalling.
 - [x] cli-opencode GPT-5.6-SOL cross-verify: 0 P0 / 3 P1 — P1-002 (Smart Auto stall) fixed via `--force --sandbox enabled`; two pre-existing ambient-config P1s tracked to the combo-matrix phase.
-- [ ] `validate.sh --strict` passes for this phase.
+- [x] `validate.sh --strict` passes for this phase (Errors: 0).
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 - [x] Read-only leaves of both kinds are genuinely read-only.
 - [x] Workspace-write leaves of both kinds never stall on a permission/trust prompt.
-- [ ] SOL review clean and landed on origin with strict validation.
+- [x] SOL review dispositioned (P1-002 fixed; P1-001/P1-003 tracked forward) and landed in `b1d36b1741` with strict validation.
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

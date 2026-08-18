@@ -12,15 +12,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parit
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Hardened read-only pi to disable auto-loaded extensions and skills"
-    next_safe_action: "Build the combo coverage matrix and the cursor/devin/MCP isolation"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled docs to Complete and passed strict validation"
+    next_safe_action: "Await external operator review of the combo-matrix leaves"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
-    completion_pct: 25
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "read-only pi never invokes skills, so --no-extensions/--no-skills/--no-prompt-templates is behavior-preserving"
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity` |
@@ -54,7 +54,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Two things remain to close the fan-out parity packet. First, no single test exercises every (executor kind × provider/model × mode) combination end-to-end, so parity is proven per-phase but not as a whole — and credentials-gated combinations must be logged, never silently skipped. Second, the SOL reviews of phases 003 and 004 surfaced a cross-cutting ambient-config isolation boundary that was verified non-reproducing today but not hard-closed: a read-only executor leaf or seat runs in the repo cwd and inherits ambient config (cursor `.cursor/hooks.json`, devin config allow-rules, pi auto-loaded `.pi/` extensions/skills, unapproved MCP), whose lifecycle code could write or hang independent of the read-only tool flags.
+Two things needed to close the fan-out parity packet. First, no single test exercised every (executor kind × provider/model × mode) combination end-to-end, so parity was proven per-phase but not as a whole — and credentials-gated combinations had to be logged, never silently skipped. Second, the SOL reviews of phases 003 and 004 surfaced a cross-cutting ambient-config isolation boundary that was verified non-reproducing but not hard-closed: a read-only executor leaf or seat runs in the repo cwd and inherits ambient config (cursor `.cursor/hooks.json`, devin config allow-rules, pi auto-loaded `.pi/` extensions/skills, unapproved MCP), whose lifecycle code could write or hang independent of the read-only tool flags.
 
 ### Purpose
 Assemble the end-to-end combo coverage matrix (log every skip) and close the ambient-config isolation so a read-only invocation cannot write via ambient config. The pi extension-lifecycle vector — the one live-substantive residual (pi auto-loads `.pi/` and supports `--no-extensions`/`--no-skills`/`--no-prompt-templates`) — is closed first.
