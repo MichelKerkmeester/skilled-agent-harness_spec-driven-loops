@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Replay-stable value-of-computation scoring and additive-dark adaptive allocation over typed budget pressure.",
     "created_at": "2026-07-16T03:43:53.514Z",
-    "last_save_at": "2026-08-17T04:04:09.220Z",
+    "last_save_at": "2026-08-18T11:07:34.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:864f3f27d976f3c5254eb07dc333f12cb4b03ab8e701ada1b3bdb6387c3de703",
     "source_doc_hashes": {
-      "spec.md": "f934889acc38535e3b50ca28531a327fd99e2e517370bd4cb80879b3978b63a5",
-      "plan.md": "42d553d545886b9cd00fd83fc7349d0d1f285b5b6253fdf49cac05b7145f8898",
-      "tasks.md": "d3b6fd7c23e59a99dabb296890a5728f46383e99f8098ac374bd7077d0b49825",
-      "checklist.md": "161f935f3bf2bb0f2865ddbf42aadc06bdf1294e61d80239d0638feb31f88677",
-      "implementation-summary.md": "9920049dd3e603c95ce31c1db214d71a3cae2bfb3bff476b7d61efee9f41af34"
+      "spec.md": "2365d52af0203409e062c2a948f993e3c0397e1dc6fb8cdcc53b00c74a5cf414",
+      "plan.md": "1b269345106152aa7a15a943b9ab009e872ddabeaffcbce9e592d76a8b81670e",
+      "tasks.md": "5db991e97f2475b65068cf865493f1fefd9f395df602f61c9360bbe88b49f723",
+      "checklist.md": "b296217640f7d890c0b4d16cc6d0062bd1331938c15623ff182fabe9ba6061e9",
+      "implementation-summary.md": "a09917f6655b0453805aee32f9407a2c8e32f2121aff5c1b2356ce98838fdcb3"
     },
     "last_active_child_id": null,
     "last_active_at": null

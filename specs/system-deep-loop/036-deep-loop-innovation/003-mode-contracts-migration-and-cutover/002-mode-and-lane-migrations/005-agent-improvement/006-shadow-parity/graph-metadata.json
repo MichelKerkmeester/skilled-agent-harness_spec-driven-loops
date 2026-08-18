@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy agent-loop emitter for proposal generation, candidate evaluation, scoring, frontier selection, resume, and promotion preparation; compares the agent-specific projections event-for-event; and blocks authority cutover on any unexplained semantic difference. It consumes the phase-014 shadow framework and the Deep Improvement Common Services harness rather than reimplementing them.",
     "created_at": "2026-07-16T03:43:38.788Z",
-    "last_save_at": "2026-08-17T04:03:58.948Z",
+    "last_save_at": "2026-08-18T11:07:16.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:6130dbc6e671397300d664e0f2e5236a58889ea84eb9c87ad5adaf64e5c55652",
     "source_doc_hashes": {
-      "spec.md": "5091621c7364c57f512460ffb3afab849a0fe194e45f6681799b265bf792bab7",
-      "plan.md": "6f9459e1cec131df2ed03be3687822ff23ff16d7f332163f4d4b291c272f2237",
-      "tasks.md": "3ea8fb1712175fa97aeb42059335897528dfcba9eefcc0f54f93b04a5ff1eea8",
-      "checklist.md": "3ffa493f4e4eddd91b9abc8cf11e550ea294bd10c050700729fabdffa712de79",
-      "implementation-summary.md": "6b11d9cd710c86472dec268a7a53f622560efc6d2319a470b9551e782a1bd31d"
+      "spec.md": "37419fa02d77e27691023cdc4296aa080c4dc1ec91ee63b5aef2910d57f320dd",
+      "plan.md": "e849527e045df3b9101aeea80dca03cd37e00cd467ea1d718a91042e537b6e48",
+      "tasks.md": "373946debad2f3f62b09a93f1465dfb72b029dcc822aae0b74ba6769d30e441b",
+      "checklist.md": "c7fab920eb35abd54e8268f71df2476beac41e8d0b86d79a21212b3814bf83e4",
+      "implementation-summary.md": "489864acad849ced4807420c263a4a60d698d9f0ee6dce7e649099d6f6cfd009"
     },
     "last_active_child_id": null,
     "last_active_at": null

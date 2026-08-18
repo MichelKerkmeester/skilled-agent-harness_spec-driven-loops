@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep Alignment resume adapter for interruption-safe recovery from the sealed typed event ledger. The adapter folds shared reducers, rebuilds the continuity ladder for authority-bound per-lane conformance, and defines idempotent re-entry without double-applying, losing, or replaying events.",
     "created_at": "2026-07-16T03:43:43.893Z",
-    "last_save_at": "2026-08-17T04:03:55.375Z",
+    "last_save_at": "2026-08-18T11:07:11.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:fbc7ff98c88d5e9eaf0993940141f7e83fd1d719c9fec8aa1e9a9b5d1c08aa8b",
     "source_doc_hashes": {
-      "spec.md": "8717bd8481f6a1e15795e7715ae92985c2fe8ae411f577f99f9659669e06860e",
-      "plan.md": "a21643c26b6fe505e12fa2d8b15d5b2550981f324fd5616662b57dc9773028fc",
-      "tasks.md": "17b9ffba26dad2526559aca9dade6e219b657fe9307f95fdfc02bbec98fd30cc",
-      "checklist.md": "e967ffb32e6ea0c74f37d1e5bb2b6200280c84d681537dc42602aa001a7e1006",
-      "implementation-summary.md": "deb2f4423fd8e7802d7248c25badac18f1f5880d18353d02138490549b9ef337"
+      "spec.md": "c9a343cd63ca880a6cede9bffbfcf6acd702ecb2f1bb941eab7c9c122bbcf92b",
+      "plan.md": "3667a3df2ffdab0e9d348992c177a499e0c33ef0f1f185b67334a5bd81afbeb3",
+      "tasks.md": "97c7532b2e81544fcae3a224ca2f781af3d94a606c0635997b26ef3379d3de99",
+      "checklist.md": "5be90f68630d65af85c2addd36938150f05719d6104c48dd2454b45d8ab5e48f",
+      "implementation-summary.md": "2c9795fa1ce2d7fef85171e0e44db70c16ff325675357bcdf5da51bb33697c05"
     },
     "last_active_child_id": null,
     "last_active_at": null

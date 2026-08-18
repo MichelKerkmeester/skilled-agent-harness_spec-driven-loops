@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Promote each phase-005 resolved leaf invocation into a canonical, authorized, durable pre-spawn ledger receipt so resume can detect prior dispatch intent without duplicating work.",
     "created_at": "2026-07-16T03:43:49.798Z",
-    "last_save_at": "2026-08-17T04:04:11.658Z",
+    "last_save_at": "2026-08-18T11:07:38.934Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:25c02ed7fe5df657c332f4082fb8d3e3f6e1493f2a9c0557cf6ba0d65268d4c9",
     "source_doc_hashes": {
-      "spec.md": "7fa001440e635d10ff8a790403c806faab8e904ea9d5603e7f9e6692287c0a12",
-      "plan.md": "88578f7a1c7370eadb3ce57eeb8a522e655d717e813bdedc68b1b1673fbd8777",
-      "tasks.md": "25b2d07dca4045faf393bb4f5cd936d7591b08d1555ab1087d04cf2377bb6019",
-      "checklist.md": "b569e505306499684c7a3503c5adc5a5b6b5ac347d3012f3ecac87ebd24a26f0",
-      "implementation-summary.md": "3564639a44db923425a963d9c435afbec9232dd6cfabf622d7fe1652aff8b674"
+      "spec.md": "fbacf5022a099411c1dadfc9d55bd2d4afd764a574780d907ec2358f8fd66593",
+      "plan.md": "1f090694d1d51943b5b5fcee3e4127229091d1c43a4129ad22cfd5f4b338f882",
+      "tasks.md": "958ad4d516a52ea9a4f10baa84bec539100dd613c8e5cedde4cbee84fea5e8d3",
+      "checklist.md": "0003053e3a8cab37a8a2a436a0bf214696ea658ccb077dccb285f68936c91473",
+      "implementation-summary.md": "59f16401111a3d3a7f5ff21b8cf172eb2e28ea3031ae8ee59b8f1f4e6de79bca"
     },
     "last_active_child_id": null,
     "last_active_at": null

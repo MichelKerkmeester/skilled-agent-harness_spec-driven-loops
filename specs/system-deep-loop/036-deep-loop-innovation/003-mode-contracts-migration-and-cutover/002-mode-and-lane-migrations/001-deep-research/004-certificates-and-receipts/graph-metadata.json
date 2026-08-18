@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Research mode certificate and receipt binding over the typed event-ledger substrate: one per-run certificate, per-transition receipts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff, versioned replay-fingerprint inputs, and an independent offline verifier.",
     "created_at": "2026-07-16T03:43:31.211Z",
-    "last_save_at": "2026-08-17T04:04:04.077Z",
+    "last_save_at": "2026-08-18T11:07:25.813Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
     ],
     "source_fingerprint": "sha256:1b12ce1e81406306878ca3631ec57bd5e828e151f477f560be63d6fb861fa09a",
     "source_doc_hashes": {
-      "spec.md": "a32cb99f4d73f0268c1f4ca087158b54f815765c0a3ccbad623ea981d6f26bd4",
-      "plan.md": "f586c8eeb8724885a3faa9f67948440a55725c9d33b2998b6651f93d1026f128",
-      "tasks.md": "76fcad9f11383daae1d3f7e9359b61fbc1a58b29df8dcb0d3052a2bbb8613aef",
-      "checklist.md": "5631c3ee81b2809b702fa8a879fb423b74ce490d4ad05295acb73453a549fe8f",
-      "decision-record.md": "dfa2bc4957fa899d17fe1ae3c86503a0b4744400c7bf765ab8d6c73774e62b5d",
-      "implementation-summary.md": "8463ac92fa393ca55d3d33c4ac8b6eb0109289f9f080bdb2de3c5640717ab625"
+      "spec.md": "0e8d56c8a75dd7db0b0381e1e515d4a5cc2e291a80348b5ed0964edacbf6e90f",
+      "plan.md": "a3c1d5bc73d000cdb417be126366af0ab86e82b00c205213f830f4e16299dec0",
+      "tasks.md": "13876d569a99f523f30e8113f476337de003eaf02a78c50b9ba2619364859571",
+      "checklist.md": "df47bd447b3245c249093ae930081bb49e0b4f07e2790b8ed4597b773153bd49",
+      "decision-record.md": "888fc3c4dc16103d71cb5745aaefa704ca996f3183a0af3b0708f8d07cebb9ec",
+      "implementation-summary.md": "f8a9f700b5bcc5f530cfea6e64326c21640e769bb5fe8b5a3bdf36d45f131b2d"
     },
     "last_active_child_id": null,
     "last_active_at": null

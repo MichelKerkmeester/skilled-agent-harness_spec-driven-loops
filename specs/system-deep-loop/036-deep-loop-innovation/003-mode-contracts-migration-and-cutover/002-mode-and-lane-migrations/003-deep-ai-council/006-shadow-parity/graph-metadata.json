@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Implemented the dark shadow-parity harness for the Deep AI Council migration. The harness runs the typed event-ledger path beside the legacy council emitter against the same frozen execution, compares canonical behavior projections event-for-event, and blocks authority cutover on any unexplained mismatch.",
     "created_at": "2026-07-16T03:43:35.238Z",
-    "last_save_at": "2026-08-17T04:04:01.252Z",
+    "last_save_at": "2026-08-18T11:07:20.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:bd8fea403a7b9b9e1a3afdfcd61904363dec2a1341adaeacb410a33051f77c1a",
     "source_doc_hashes": {
-      "spec.md": "18b9211ff81f49b65c2020b72f29c4321957b9b131178ccd66c0a512d388fbb0",
-      "plan.md": "21e5207f30b89dfe76dc23105b8d8682cd6db7493ec289f52d18e21310598fc3",
-      "tasks.md": "b0dff2d032079fe3da0b4c9da2316cac689b95affbc67c3fe3980149a00cd1ea",
-      "checklist.md": "a2dd5c834e94397c4bcb25872e60aa1b85502fd7224405b25dfaa733539b295d",
-      "implementation-summary.md": "d2a7cadf140d1cc8c1fa311e2c43b8b3c388ac04cf3d5caf3b612fea359b046d"
+      "spec.md": "b3c9c0f91ef5cc2f5ad4e13fb77cb87b5369bf697bdd221215646da4093fab60",
+      "plan.md": "1610f180b0b4e50fd10fdd07e468206c3bacfde2152908fbf62530aa2055a2f3",
+      "tasks.md": "2e790f63f564da694af4b4aa3492e84bdbc2292461aeb8ac8d9559e7686e187e",
+      "checklist.md": "b4b4ebf361941f4cbde93315f6584c7242f5796d86469a5e53b3baf470e3f7b4",
+      "implementation-summary.md": "f9d3b2ba9c1cc053de16f3f2fd86e77b775ebe08a4525a852afde086c2d50601"
     },
     "last_active_child_id": null,
     "last_active_at": null

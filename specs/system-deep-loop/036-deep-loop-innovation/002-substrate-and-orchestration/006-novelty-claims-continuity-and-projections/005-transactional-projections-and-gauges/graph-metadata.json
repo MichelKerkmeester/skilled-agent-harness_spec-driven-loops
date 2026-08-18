@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan deterministic transactional projections that apply each verified ledger event atomically across dashboards, registries, claim tables, and stream-fold gauges, with idempotent resume and isolated replay rebuilds.",
     "created_at": "2026-07-16T03:43:52.461Z",
-    "last_save_at": "2026-08-17T04:04:09.864Z",
+    "last_save_at": "2026-08-18T11:07:36.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:12a45a3784afbfa3121edfbe6a44751bb2300899692712a922a921f58e74a9b7",
     "source_doc_hashes": {
-      "spec.md": "75604bee044a530c01750af15fca013ebadbbe34ec273e8ecfde3991d2230dcd",
-      "plan.md": "4800e504aed86022d326a2e241e6c31b55cb2b4437b882dd2afcd5ce614451fc",
-      "tasks.md": "18df3f742f511d614eb171df4e0d54e028ad7155eb17cbde4daca62b0a87ddca",
-      "checklist.md": "526f4fd43936504ec75bccf3723fea750cba9235fcf97e4bd7648a1f6d0e4518",
-      "implementation-summary.md": "f4092ec84c9fffbf77142792eaaa9663dfba39b5aab2fa8a3f121d4c988e8d52"
+      "spec.md": "72253dd88dad422e7c3dd14f127d9719f0ad4ba402b0700943ba8d65bf27705e",
+      "plan.md": "db549b597a42e456b2a5ce3ddcbbfdba99aa6ab9a9a17b62ae295aa7c6ed44b4",
+      "tasks.md": "c9f7378eb4b6e9dd705f0d60eeea99eb696796e2caafe102376cca762947836e",
+      "checklist.md": "4a10e07615fd304b21744f1e1a285e4fc85fcfc51afdf45246997d705368d790",
+      "implementation-summary.md": "29aff8439535d6409da229dc44d2196b9f52c4b91312d18ec95cb1952b8ca216"
     },
     "last_active_child_id": null,
     "last_active_at": null

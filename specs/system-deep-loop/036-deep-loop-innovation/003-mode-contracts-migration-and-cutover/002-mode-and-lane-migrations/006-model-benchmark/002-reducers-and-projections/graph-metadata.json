@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Define the model-benchmark reducers and projections on top of the deep-improvement-common services from mode 004",
     "created_at": "2026-07-16T03:43:39.522Z",
-    "last_save_at": "2026-08-17T04:03:58.153Z",
+    "last_save_at": "2026-08-18T11:07:15.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
     ],
     "source_fingerprint": "sha256:44ec5ea64c8996fa8aa97d510a5b381838cd55fc5584403c16d761f0fe4eab6b",
     "source_doc_hashes": {
-      "spec.md": "2751c897721f862d125b9ea666396c71bab491df71ec5b287d3b165a1224ac76",
-      "plan.md": "7b09a01af0e8f1add68692ab10e687a2adc6cb9ef65d2b41ace37a27eefbf9e5",
-      "tasks.md": "68353267772e1bd1219214077503369942125ec6b0c8cfb114f31b79c1d7c9e0",
-      "checklist.md": "9750943d1ce96c99a7c78c07446ed890ad095de9c1ae0f19c0d92b6144483ba3",
-      "decision-record.md": "e062c5fe4afdcf67298832d2da419db74bb27a2c71d1a7a7877a3325561a1485",
-      "implementation-summary.md": "fee4a8f0ae79cc7084dfc91bc1a641ff0071dd8e3b2c409c00d867255b0ec0be"
+      "spec.md": "a5425615005fb82303f057b589a66cc0d48564cdb1ad68d724cc15ea3e8cad27",
+      "plan.md": "ade5869bf9979528c55bd1c569dabd84f39ec644992b368b74e0c71ede65cc69",
+      "tasks.md": "0685c01011d9a5c0dba8d62cd4d02b66ea066951c3500ff276e39ed5a96d4182",
+      "checklist.md": "4e30889e559dc47069d663b5bda82295325977e5550ef49ea3939c70a763444a",
+      "decision-record.md": "f9588d8635c0bfc239d2e064589a92cca88e43db1f6712bd09b6051ff0810a49",
+      "implementation-summary.md": "72f1e0fdf364128809c10a8c8dff14ac06c2a4aa55cb6ba9900a3b84f69858f9"
     },
     "last_active_child_id": null,
     "last_active_at": null

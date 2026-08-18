@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Define the immutable typed ledger writer and reader over versioned envelope events, including monotonic ordering, idempotent append, hash-chain integrity, deterministic reduction, and additive-dark coexistence with the authoritative legacy JSONL path.",
     "created_at": "2026-07-16T03:43:45.608Z",
-    "last_save_at": "2026-08-17T04:04:14.396Z",
+    "last_save_at": "2026-08-18T11:07:42.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:68c4f6b65894a8c43b2b6da360fe57e5133b2e877569f4bc6be2de3a8227406f",
     "source_doc_hashes": {
-      "spec.md": "ed496b07c08bf39c4dd4d77cdf74a63dc85409467f8cf0924b89b7e3c9840118",
-      "plan.md": "af80a8522e022bdc7f2a3f7dd1bdb9fa090e4e20b1092aeff0ca5f635889d87c",
-      "tasks.md": "e18b79a28a507045dfba3c6de8294c8ec9494463bf54709c652b9bbed8539d95",
-      "checklist.md": "d47ac4a1302708ae5bcd732f7b6f9484c8ea5e880afbc20268cacddfc27ae980",
-      "implementation-summary.md": "868c312174ffd94bf49799a6e24ac0586f63bca854abc71c7abee37a1458c7ae"
+      "spec.md": "8bb9c6204853567c76d938c37266feda089b120dc7d66416846ecdf481fedddf",
+      "plan.md": "37e3d5fb6dcc8cb802195ad42477b0513b9170e553424a1398cdbffa3cd3e18b",
+      "tasks.md": "6d796874469e3433b02a60c24a9bfe6586e15d1ce9d31649e10828d9c0efd721",
+      "checklist.md": "d3228dede92cc609c1989decb14724f515538211708e201696dd43add70e60e0",
+      "implementation-summary.md": "4a4f704d7d0e96ab6088e8ddeff003b3700a384939cb0885b5d61068362a9f8d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan durable boundary receipts and an effect-recovery gateway that records intent before execution, confirms observed outcomes, and reconciles interrupted external effects without unsafe replay.",
     "created_at": "2026-07-16T03:43:46.431Z",
-    "last_save_at": "2026-08-17T04:04:13.865Z",
+    "last_save_at": "2026-08-18T11:07:41.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +206,11 @@
     ],
     "source_fingerprint": "sha256:55206ffd2c84b22e1417341c14eb03e03937bdfec2eee84805f15f1631d87f03",
     "source_doc_hashes": {
-      "spec.md": "b436edb5af579bb3feb57cd993990ae8f28c108a1de00593e46b7fb4c7a1bbf0",
-      "plan.md": "9fb3ca131452df01addefd06ac2062738b4a6caa373bd549f08cbb0f1910f70b",
-      "tasks.md": "8e6acea47b2e718c213ba888f7a63f3eb16b639a2f010242c205fa5a98a4b0f8",
-      "checklist.md": "7211a4be335a1447c851515ba6bdee24a227ec377d6889c24276c8e8ad280497",
-      "implementation-summary.md": "4aa8d5611b212b91c9bb6231df5113976d596bf285356babe70860d884341dee"
+      "spec.md": "a4a3708717bfc748e06a419d6be3160638989c5fe511a903a4373f99d8fe64f2",
+      "plan.md": "983e73002b03457357a8df321cd98001dcf539e2cbf07db06aabe29d7d15be38",
+      "tasks.md": "fa43132e795f0a3087284cff74e9ccb419a381954f22bdafe17e40e6357bd2d1",
+      "checklist.md": "4ef419a0575931abe6fb47861f4368f60776d0918db6646e7573423f8574212c",
+      "implementation-summary.md": "d16ca019bcb5585e939e482ab08d87d3671060a1464f44ae7de343c3b3acf373"
     },
     "last_active_child_id": null,
     "last_active_at": null

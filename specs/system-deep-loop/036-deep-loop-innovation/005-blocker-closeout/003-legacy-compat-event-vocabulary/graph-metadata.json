@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Five per-mode upcasters plus skill-benchmark reject ordinary lifecycle records",
     "created_at": "2026-07-31T01:25:19.803Z",
-    "last_save_at": "2026-08-17T04:04:19.715Z",
+    "last_save_at": "2026-08-18T11:07:51.816Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
     ],
     "source_fingerprint": "sha256:91d80128acc861e8aaeedad4a1725e49b1e8db62db898d0312371072ecd1d0a0",
     "source_doc_hashes": {
-      "spec.md": "5534ef9d382ee61d4eb37092e2220400a5edcbf4b1f0cfbfdae3939a2afa8b08",
-      "plan.md": "d18e5eb2607b53f2379b7955e4a1b40715ccef355a865faf2186dcea3223449b",
-      "tasks.md": "646c633340a8601d92801d6c5a9ac33771411038c49a333c3dddada115a8c8b5",
-      "checklist.md": "01b832d5b2daf40419f11b04805685cb9fab82aadad9dc21987e207d2d243264",
-      "decision-record.md": "744f9fd4ccbde44add3e3a05c806b97e5b930a0cc2e16f147490b1c6d007577a",
-      "implementation-summary.md": "306a27614992d871cefc017042ce9a6472157d911b94e05be3a044d426abdfa6"
+      "spec.md": "cb5b3c8deda70f56e075d92b835ac0a288ab0016fbcc66dc12edfe3849d4cc65",
+      "plan.md": "5dcf2c2ed598d2920bf1c279d37e35aa9437d8d4e16351ab1822f61332cb2fe5",
+      "tasks.md": "7d9d7efb8d618a8b37c73283839bdac1478e7674c34466a271ef8ff7fb10b4ad",
+      "checklist.md": "4f97e0972c0b0161698b0400aacd56f5d2ec4db4e2716ea0b216f78470c0835e",
+      "decision-record.md": "5e7d0023376c4ca49d122724dec68e7e0797718216274cd512d73ae0380f601d",
+      "implementation-summary.md": "0f21c3e4ff16815506b7cb98ab76047bba7f671f7ad98224c5e86a76eb916736"
     },
     "last_active_child_id": null,
     "last_active_at": null
