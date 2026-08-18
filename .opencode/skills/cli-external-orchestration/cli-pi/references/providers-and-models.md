@@ -100,7 +100,7 @@ OpenRouter passthrough (base `https://openrouter.ai/api/v1`). Select with `--pro
 
 ### cline-pass
 
-Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible), added to Pi **by config** — a `providers.cline-pass` block in `.pi/models.json` (`api: openai-completions`, env-keyed `CLINE_API_KEY`) plus an `enabledModels` entry in `.pi/settings.json`. It is not a Pi builtin; full setup and removal live in [.pi/CUSTOM-PROVIDERS.md](../../../../../.pi/CUSTOM-PROVIDERS.md). Select with `--provider cline-pass --model cline-pass/deepseek-v4-flash`.
+Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible), added to Pi **by config** — a `providers.cline-pass` block in `.pi/models.json` (`api: openai-completions`, env-keyed `CLINE_API_KEY`) plus an `enabledModels` entry in `.pi/settings.json`. It is not a Pi builtin; full setup and removal live in [.pi/custom-providers.md](../../../../../.pi/custom-providers.md). Select with `--provider cline-pass --model cline-pass/deepseek-v4-flash`.
 
 Policy: DeepSeek V4 Flash here is a reasoning model whose Cline thinking tiers top out at `xhigh` — there is **no `max` tier** on this provider. Dispatch it **only at `--thinking xhigh`**; lower thinking levels are not supported for this entry. Pi's global `defaultThinkingLevel` is already `xhigh`, so an unqualified dispatch lands on the correct tier, but pass `--thinking xhigh` explicitly in fan-out for clarity.
 

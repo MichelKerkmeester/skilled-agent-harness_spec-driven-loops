@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster"
-    last_updated_at: "2026-08-18T13:43:20Z"
+    last_updated_at: "2026-08-18T14:01:37Z"
     last_updated_by: "claude"
     recent_action: "cline-pass documented in the cli-pi roster, xhigh-only"
     next_safe_action: "None; packet complete pending operator key for a live dispatch"
@@ -51,7 +51,7 @@ The cli-pi mode now documents the Cline provider in its own catalog. Phase 3 mad
 
 ### The cline-pass roster section
 
-`cli-pi/references/providers-and-models.md` §2 gained a `### cline-pass` section built on the same shape as the existing `### deepseek` entry: a one-line provider description, a note that it is a config-only provider (not a Pi builtin) cross-linked to `.pi/CUSTOM-PROVIDERS.md`, the dispatch form `--provider cline-pass --model cline-pass/deepseek-v4-flash`, and a model row. The tier policy is the operator's constraint: DeepSeek V4 Flash here is dispatched **only at `--thinking xhigh`** — its top tier, with no `max` on this provider — and lower thinking levels are not supported for the entry. Since Pi's global `defaultThinkingLevel` is already `xhigh`, an unqualified dispatch lands on the right tier anyway.
+`cli-pi/references/providers-and-models.md` §2 gained a `### cline-pass` section built on the same shape as the existing `### deepseek` entry: a one-line provider description, a note that it is a config-only provider (not a Pi builtin) cross-linked to `.pi/custom-providers.md`, the dispatch form `--provider cline-pass --model cline-pass/deepseek-v4-flash`, and a model row. The tier policy is the operator's constraint: DeepSeek V4 Flash here is dispatched **only at `--thinking xhigh`** — its top tier, with no `max` on this provider — and lower thinking levels are not supported for the entry. Since Pi's global `defaultThinkingLevel` is already `xhigh`, an unqualified dispatch lands on the right tier anyway.
 
 ### Files Changed
 
@@ -90,7 +90,7 @@ Edited the roster doc directly, mirroring the neighboring `### deepseek` policy-
 | `rg '### cline-pass'` in the cli-pi roster | PASS (section present) |
 | xhigh-only wording present | PASS (`only at --thinking xhigh`; no lower tiers) |
 | Dispatch form present | PASS (`--provider cline-pass --model cline-pass/deepseek-v4-flash`) |
-| Cross-link to `.pi/CUSTOM-PROVIDERS.md` resolves | PASS (relative path checked with `ls`) |
+| Cross-link to `.pi/custom-providers.md` resolves | PASS (relative path checked with `ls`) |
 | `validate.sh 049-cline-provider-roster --recursive --strict` | PASS (exit 0) |
 <!-- /ANCHOR:verification -->
 

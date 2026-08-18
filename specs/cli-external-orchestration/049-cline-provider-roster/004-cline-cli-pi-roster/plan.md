@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster"
-    last_updated_at: "2026-08-18T13:43:20Z"
+    last_updated_at: "2026-08-18T14:01:37Z"
     last_updated_by: "claude"
     recent_action: "Plan authored; roster edit applied"
     next_safe_action: "Validate and close phase"
@@ -110,7 +110,7 @@ Not a bug fix. One same-class inventory confirmed the roster is the only cli-pi 
 
 ### Phase 3: Verification
 - [x] Grep confirms the section and the xhigh-only wording
-- [x] Cross-link to `.pi/CUSTOM-PROVIDERS.md` resolves
+- [x] Cross-link to `.pi/custom-providers.md` resolves
 - [x] `validate.sh --strict` exit 0
 <!-- /ANCHOR:phases -->
 

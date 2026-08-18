@@ -59,7 +59,7 @@ _memory:
 
 - [x] T003 Add `cline-pass` provider block, `api: "openai-completions"`, `apiKey: "{env:CLINE_API_KEY}"` (`.pi/models.json`)
 - [x] T004 Add `"cline-pass/deepseek-v4-flash"` to `enabledModels`, existing entries preserved (`.pi/settings.json`)
-- [x] T005 Create custom-provider doc with gotcha + key + verify + remove (`.pi/CUSTOM-PROVIDERS.md`)
+- [x] T005 Create custom-provider doc with gotcha + key + verify + remove (`.pi/custom-providers.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

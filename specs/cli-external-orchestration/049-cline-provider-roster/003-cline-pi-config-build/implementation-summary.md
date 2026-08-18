@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Cline provider wired into cli pi by config"
-description: "cline-pass is now a live pi provider. Added a config block to .pi/models.json (api openai-completions, env-keyed), enabled cline-pass/deepseek-v4-flash in .pi/settings.json, and documented it in .pi/CUSTOM-PROVIDERS.md. Proven via pi --list-models and pi auth check."
+description: "cline-pass is now a live pi provider. Added a config block to .pi/models.json (api openai-completions, env-keyed), enabled cline-pass/deepseek-v4-flash in .pi/settings.json, and documented it in .pi/custom-providers.md. Proven via pi --list-models and pi auth check."
 trigger_phrases:
   - "cline pi config done"
   - "pi cline-pass live"
@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build"
-    last_updated_at: "2026-08-18T13:43:20Z"
+    last_updated_at: "2026-08-18T14:01:37Z"
     last_updated_by: "claude"
     recent_action: "cline-pass wired into .pi and verified live via pi --list-models"
     next_safe_action: "Operator supplies CLINE_API_KEY or runs pi login for a live chat round-trip"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".pi/models.json"
       - ".pi/settings.json"
-      - ".pi/CUSTOM-PROVIDERS.md"
+      - ".pi/custom-providers.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-049-003"
@@ -62,7 +62,7 @@ Cline is now a first-class provider inside cli pi. Phase 2 proved this was reach
 
 ### The .pi documentation
 
-`.pi/CUSTOM-PROVIDERS.md` is a new operator doc for providers added to pi by config rather than shipped in its builtin catalog. It covers what cline-pass is and why it is config-wired, where the two edits live, the `openai-completions` trap, both key paths (`CLINE_API_KEY` env or `pi /login cline-pass`), the fact that pi keeps its own auth store and does not import opencode's key, and how to verify or remove the provider.
+`.pi/custom-providers.md` is a new operator doc for providers added to pi by config rather than shipped in its builtin catalog. It covers what cline-pass is and why it is config-wired, where the two edits live, the `openai-completions` trap, both key paths (`CLINE_API_KEY` env or `pi /login cline-pass`), the fact that pi keeps its own auth store and does not import opencode's key, and how to verify or remove the provider.
 
 ### Files Changed
 
@@ -70,7 +70,7 @@ Cline is now a first-class provider inside cli pi. Phase 2 proved this was reach
 |------|--------|---------|
 | `.pi/models.json` | Modified | Added the `cline-pass` provider block (env-keyed, `openai-completions`) |
 | `.pi/settings.json` | Modified | Added `cline-pass/deepseek-v4-flash` to `enabledModels` |
-| `.pi/CUSTOM-PROVIDERS.md` | Created | Durable doc for the custom provider (what/why/key/verify/remove) |
+| `.pi/custom-providers.md` | Created | Durable doc for the custom provider (what/why/key/verify/remove) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -91,7 +91,7 @@ Edited the two `.pi` JSON files directly against the live config, then verified 
 | `api: "openai-completions"`, not bare `openai` | A bare `openai` passes listing and auth-check but throws `No API provider registered for api: openai` at stream time (Phase 2 finding) |
 | `apiKey: "{env:CLINE_API_KEY}"`, no literal key | Keeps the secret out of the repo; the key comes from the env or a one-time `pi /login cline-pass` |
 | Do not import opencode's Cline key | pi keeps its own auth store (`~/.pi/agent/auth.json`); sharing opencode's credential would be surprising and cross-tool coupling |
-| Add `.pi/CUSTOM-PROVIDERS.md` | The provider is custom (not a pi builtin); a future reader needs the why, the gotcha, and the removal steps recorded next to the config |
+| Add `.pi/custom-providers.md` | The provider is custom (not a pi builtin); a future reader needs the why, the gotcha, and the removal steps recorded next to the config |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -105,7 +105,7 @@ Edited the two `.pi` JSON files directly against the live config, then verified 
 | `pi auth check --provider cline-pass --model cline-pass/deepseek-v4-flash --json` | PASS (`{"status":"ready","provider":"cline-pass","authType":"api_key"}`) |
 | No secret committed | PASS (`apiKey: "{env:CLINE_API_KEY}"` in `.pi/models.json`) |
 | `enabledModels` union preserved prior models | PASS (12 prior entries intact, cline-pass prepended) |
-| `.pi/CUSTOM-PROVIDERS.md` present | PASS (created) |
+| `.pi/custom-providers.md` present | PASS (created) |
 | `validate.sh 049-cline-provider-roster --recursive --strict` | PASS (exit 0) |
 <!-- /ANCHOR:verification -->
 

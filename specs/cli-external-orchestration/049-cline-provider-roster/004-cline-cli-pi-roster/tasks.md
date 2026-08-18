@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster"
-    last_updated_at: "2026-08-18T13:43:20Z"
+    last_updated_at: "2026-08-18T14:01:37Z"
     last_updated_by: "claude"
     recent_action: "All tasks complete"
     next_safe_action: "Close phase"
@@ -66,7 +66,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T004 Grep confirms the section and the xhigh-only wording (`rg '### cline-pass' ... && rg 'only at .--thinking xhigh'`)
-- [x] T005 Cross-link to `.pi/CUSTOM-PROVIDERS.md` resolves (`ls` on the relative path)
+- [x] T005 Cross-link to `.pi/custom-providers.md` resolves (`ls` on the relative path)
 - [x] T006 `validate.sh 049-cline-provider-roster --recursive --strict` exit 0
 <!-- /ANCHOR:phase-3 -->
 

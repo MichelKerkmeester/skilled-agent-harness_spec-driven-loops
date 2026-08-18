@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 2 proved cli pi can reach Cline config-only, but pi still had no `cline-pass` provider — `/login` and the model picker omitted it, so DeepSeek V4 Flash via Cline was unusable from pi even though opencode dispatches it",
     "created_at": "2026-08-18T13:02:37Z",
-    "last_save_at": "2026-08-18T13:46:26.457Z",
+    "last_save_at": "2026-08-18T14:02:53.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09e792f41c167aeab73a569e569f0601525a4e1feb6362e5431f1ddce9486c34",
+    "source_fingerprint": "sha256:4882536e1386139193b983a6d7d503db14439f355351253088fc2972ad7f5edb",
     "source_doc_hashes": {
-      "spec.md": "6e1ccf2280fd4e9cf7e70b9ee3b559919c16897aa8c841f35e6d16d32dd97f8f",
-      "plan.md": "e4bc3b6934411e783da8e0776ab24e2dbbb0da85e5fcfd4883b21f60c861cf42",
-      "tasks.md": "7358dca93a71191175d1873535162f56b807e4f3b446618021289ec9c171df76",
-      "implementation-summary.md": "f1fef12340a5b5a8b164dd97acfe71d4975ac4e8d86767b42884d5fdb33022cc"
+      "spec.md": "5f3ceadf708fc264af3651d659beae490950ef79f4c2efbbc6c23c64a09301b5",
+      "plan.md": "c0f97da86296f0937907edd7d365000c7d0cd1b8526f526664750467c9119ac5",
+      "tasks.md": "53b125586bac857b47b07be7d4180c7930f159f748b7ab5bffb8f9af1a3ab27d",
+      "implementation-summary.md": "ea3eb9eb70d831c5342df37a3f41f50a17c1c0c202273c2dca0c32c14663f4fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

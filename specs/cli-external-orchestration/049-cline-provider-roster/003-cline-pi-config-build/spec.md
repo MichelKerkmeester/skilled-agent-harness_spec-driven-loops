@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build"
-    last_updated_at: "2026-08-18T13:43:20Z"
+    last_updated_at: "2026-08-18T14:01:37Z"
     last_updated_by: "claude"
     recent_action: "cline-pass wired into .pi config; pi --list-models shows it live"
     next_safe_action: "Operator supplies CLINE_API_KEY or runs pi /login cline-pass for a live round-trip"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".pi/models.json"
       - ".pi/settings.json"
-      - ".pi/CUSTOM-PROVIDERS.md"
+      - ".pi/custom-providers.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-049-003"
@@ -72,7 +72,7 @@ This is **Phase 3** of the Cline Provider Roster specification — the implement
 - Phase 2 verdict `config-only-feasible` and its exact mechanism (`api: openai-completions`, env-keyed).
 
 **Deliverables**:
-- `cline-pass` provider block in `.pi/models.json`; `enabledModels` entry in `.pi/settings.json`; `.pi/CUSTOM-PROVIDERS.md`.
+- `cline-pass` provider block in `.pi/models.json`; `enabledModels` entry in `.pi/settings.json`; `.pi/custom-providers.md`.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -98,7 +98,7 @@ Wire `cline-pass` into pi's live config so it appears in `pi --list-models`/`/lo
 ### In Scope
 - `providers["cline-pass"]` block in `.pi/models.json` (`api: openai-completions`, `baseUrl`, `apiKey: {env:CLINE_API_KEY}`, `compat.thinkingFormat: deepseek`, one model `deepseek-v4-flash`).
 - `"cline-pass/deepseek-v4-flash"` in `.pi/settings.json` `enabledModels`.
-- `.pi/CUSTOM-PROVIDERS.md` documenting the custom provider.
+- `.pi/custom-providers.md` documenting the custom provider.
 
 ### Out of Scope
 - Storing a real Cline key in the repo — the key is env-sourced or supplied via `pi /login`.
@@ -111,7 +111,7 @@ Wire `cline-pass` into pi's live config so it appears in `pi --list-models`/`/lo
 |-----------|-------------|-------------|
 | `.pi/models.json` | Modify | Add `cline-pass` provider block |
 | `.pi/settings.json` | Modify | Add `cline-pass/deepseek-v4-flash` to `enabledModels` |
-| `.pi/CUSTOM-PROVIDERS.md` | Create | Document the custom provider (what/why/key/verify/remove) |
+| `.pi/custom-providers.md` | Create | Document the custom provider (what/why/key/verify/remove) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -131,7 +131,7 @@ Wire `cline-pass` into pi's live config so it appears in `pi --list-models`/`/lo
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Durable `.pi` documentation | `.pi/CUSTOM-PROVIDERS.md` exists and covers the `openai-completions` gotcha, key handling, verify, and removal |
+| REQ-004 | Durable `.pi` documentation | `.pi/custom-providers.md` exists and covers the `openai-completions` gotcha, key handling, verify, and removal |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -141,7 +141,7 @@ Wire `cline-pass` into pi's live config so it appears in `pi --list-models`/`/lo
 
 - **SC-001**: `pi --list-models | grep cline` returns the `cline-pass  deepseek-v4-flash` row (live config).
 - **SC-002**: `pi auth check --provider cline-pass --model cline-pass/deepseek-v4-flash --json` returns `status: ready`.
-- **SC-003**: `.pi/CUSTOM-PROVIDERS.md` documents the provider; `validate.sh --strict` on this phase exits 0.
+- **SC-003**: `.pi/custom-providers.md` documents the provider; `validate.sh --strict` on this phase exits 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---
