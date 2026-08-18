@@ -88,10 +88,19 @@ OpenCode Go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and 
 
 OpenRouter gateway (base `https://openrouter.ai/api/v1`); pass the full three-segment `openrouter/<upstream>/<model-id>` to `--model`. Confirm live slugs via `opencode models openrouter`. The DeepSeek Flash `-latest` variant is a reasoning model and is pinned to `--variant max` by the same policy as the direct and opencode-go flash ids.
 
+> **OpenRouter is currently restricted to a single model: DeepSeek V4 Flash (`openrouter/deepseek/deepseek-v4-flash-latest`).** Do not route any other model (e.g. GPT-5.6 Luna/Sol) through OpenRouter here — use their own providers (`openai`, etc.) instead.
+
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `openrouter/deepseek/deepseek-v4-flash-latest` | — | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--variant max` by policy |
-| `openrouter/openai/gpt-5.6-luna` | — | GPT-5.6 Luna via OpenRouter |
+| `openrouter/deepseek/deepseek-v4-flash-latest` | — | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--variant max` by policy. The ONLY OpenRouter-routed model. |
+
+### cline-pass
+
+Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible); pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow) — the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. DeepSeek V4 Flash here reports `reasoning: true`, but its thinking tiers run `none`→`xhigh` with **no `max` tier**, so its top thinking level is `--variant xhigh` — the direct/opencode-go flash `--variant max` pin does NOT apply. cline-pass flash is a direct-dispatch roster entry only; it is not wired into the fan-out executor registry (which would force the unsupported `--variant max`).
+
+| Model id | Default? | Notes |
+|----------|----------|-------|
+| `cline-pass/cline-pass/deepseek-v4-flash` | — | DeepSeek V4 Flash via the Cline provider; reasoning model, top thinking tier `--variant xhigh` (no `max` tier); list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested). cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.5`/`mimo-v2.5-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope |
 
 ---
 
@@ -129,6 +138,7 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 | `minimax` (MiniMax-M3) | behavior unverified — omitted by default; confirm before relying |
 | `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
 | `openai` GPT-5.6 | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
+| `cline-pass` (deepseek-v4-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max` tier**, so use `--variant xhigh` for top thinking |
 
 ---
 

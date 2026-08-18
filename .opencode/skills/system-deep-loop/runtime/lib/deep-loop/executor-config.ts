@@ -164,13 +164,12 @@ export const PI_SUPPORTED_MODELS = [
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
-  // OpenRouter-routed variants. The id keeps the upstream provider path so that
-  // `${provider}/${model}` composes to the full OpenRouter selector
-  // (openrouter/deepseek/deepseek-v4-flash-latest, openrouter/openai/gpt-5.6-luna).
-  // They are distinct entries from the bare deepseek-v4-flash / gpt-5.6-luna ids,
-  // which route through opencode-go / openai-codex respectively.
+  // OpenRouter is currently restricted to DeepSeek V4 Flash only — no other model is
+  // routed through it. The id keeps the upstream provider path so `${provider}/${model}`
+  // composes to the full OpenRouter selector (openrouter/deepseek/deepseek-v4-flash-latest).
+  // It is a distinct entry from the bare deepseek-v4-flash id, which routes through
+  // opencode-go.
   'deepseek/deepseek-v4-flash-latest',
-  'openai/gpt-5.6-luna',
 ] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 

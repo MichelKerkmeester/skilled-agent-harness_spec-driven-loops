@@ -92,10 +92,11 @@ OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--pro
 
 OpenRouter passthrough (base `https://openrouter.ai/api/v1`). Select with `--provider openrouter --model <upstream>/<id>`; the deep-loop fan-out composes the full `openrouter/<upstream>/<id>` selector from the allowlisted model literal (the literal keeps its upstream provider path, so `${provider}/${model}` is three segments here). The DeepSeek Flash `-latest` variant is a reasoning model and is pinned to `--thinking max` by the same policy as the bare id.
 
+> **OpenRouter is currently restricted to a single model: DeepSeek V4 Flash (`deepseek/deepseek-v4-flash-latest`).** No other model may be routed through OpenRouter here — it is the only entry in the Pi OpenRouter allowlist. Other models (e.g. GPT-5.6 Luna/Sol) must go through their own providers (openai-codex, etc.), never OpenRouter.
+
 | Model id | Notes |
 |----------|-------|
-| `deepseek/deepseek-v4-flash-latest` | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--thinking max`. Distinct from the opencode-go-routed bare `deepseek-v4-flash`. Dispatched as `openrouter/deepseek/deepseek-v4-flash-latest` |
-| `openai/gpt-5.6-luna` | GPT-5.6 Luna via OpenRouter. Distinct from the openai-codex-routed bare `gpt-5.6-luna`. Dispatched as `openrouter/openai/gpt-5.6-luna` |
+| `deepseek/deepseek-v4-flash-latest` | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--thinking max`. The ONLY OpenRouter-routed model. Distinct from the opencode-go-routed bare `deepseek-v4-flash`. Dispatched as `openrouter/deepseek/deepseek-v4-flash-latest` |
 
 Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the six authenticated providers above have a confirmed installed catalog.
 

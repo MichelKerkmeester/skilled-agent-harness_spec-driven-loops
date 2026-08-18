@@ -189,7 +189,7 @@
     ],
     "causal_summary": "DeepSeek V4 Flash and GPT-5.6 Luna already exist in both rosters, but only via non-OpenRouter providers (`opencode-go`, `openai-codex`, `openai`)",
     "created_at": "2026-08-17T17:46:03.046Z",
-    "last_save_at": "2026-08-17T17:53:49.091Z",
+    "last_save_at": "2026-08-18T09:41:52.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b98a502e8470b4ac6ac33098555f2f4e25932b0dcc5c9e09fd4367db1a0cf21e",
+    "source_fingerprint": "sha256:4ce01661cd0275707a691d8834b86a8109e30043c4d73df8b9fca242e2d04483",
     "source_doc_hashes": {
       "spec.md": "d2066df590a90649863c5a9544b62981f6acf7a4673d9662428b11648af95ac6",
       "plan.md": "084feee1052ca8830e3cf0af6cf730bdb4e618df248cc8116fe934b1458384b5",
       "tasks.md": "42bd78f300b8079563f3bc31c6758107e86ed2940c2ef3e6e37ae6a1ab1e85e8",
-      "implementation-summary.md": "2c50a5bf1dd353a73aa01bb4d4ae57ca8d279fffdaf251240c7053dd2fda770a"
+      "implementation-summary.md": "b6c7272c13f161448fa72e36f8d0718119664c3d5725558234f6692d1fdabbd3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -784,7 +784,6 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'mimo-v2.5-pro',
       'mimo-v2.5-pro-ultraspeed',
       'minimax-m3',
-      'openai/gpt-5.6-luna',
       'qwen3.8-max',
     ]);
   });
@@ -817,11 +816,10 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash-latest')).toBe(true);
   });
 
-  it('does not match the devin -max uid, the OpenRouter Luna, or other models', () => {
+  it('does not match the devin -max uid or other models', () => {
     expect(isFlashMaxPinnedModel('deepseek-v4-flash-max')).toBe(false);
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash-max')).toBe(false);
     expect(isFlashMaxPinnedModel('deepseek-v4-pro')).toBe(false);
-    expect(isFlashMaxPinnedModel('openai/gpt-5.6-luna')).toBe(false);
   });
 
   it('pins Flash effort to max and leaves other models unchanged', () => {

@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "specs/cli-external-orchestration/047-cli-pi-opencode-openrouter-roster"
-    last_updated_at: "2026-08-17T18:00:00.000Z"
+    last_updated_at: "2026-08-18T16:00:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Added both OpenRouter ids to cli-pi runtime and both skills' rosters."
-    next_safe_action: "Generate metadata and validate; then Packet B (forced-depth wiring fix)."
+    recent_action: "Post-ship: pulled the OpenRouter GPT-5.6 Luna entry; OpenRouter is now DeepSeek-Flash-only."
+    next_safe_action: "Commit + push the OpenRouter restriction once the operator approves."
     blockers: []
     key_files:
       - "specs/cli-external-orchestration/047-cli-pi-opencode-openrouter-roster/implementation-summary.md"
@@ -107,5 +107,22 @@ cli-pi enforces its roster in three synchronized spots; both OpenRouter ids were
 - The two ids are validated at the command-builder layer, not by a live OpenRouter dispatch in this packet (a live dispatch happens in the follow-on deep-research run).
 - One unrelated runtime test (`combo-matrix.vitest.ts` cli-devin representative args) fails pre-existing; out of scope for this roster change.
 - `description.json` / `graph-metadata.json` are conductor-generated, not hand-authored.
-- The changes are uncommitted pending an explicit commit instruction.
 <!-- /ANCHOR:limitations -->
+
+---
+
+<!-- ANCHOR:post-ship-restriction -->
+## POST-SHIP RESTRICTION
+
+After a cost review flagged unexpected GPT-5.6 Luna/Sol spend, the operator restricted OpenRouter to a single model: **DeepSeek V4 Flash only**. The OpenRouter-routed GPT-5.6 Luna entry this packet added was pulled everywhere it lived, so no dispatch can select it via OpenRouter again:
+
+| Surface | Change |
+|---------|--------|
+| `executor-config.ts` `PI_SUPPORTED_MODELS` | removed `openai/gpt-5.6-luna`; only `deepseek/deepseek-v4-flash-latest` remains OpenRouter-routed |
+| `fanout-run.cjs` `PI_ALLOWED_MODELS` + `PI_MODEL_PROVIDERS` | removed the Luna allowlist entry and its `→ openrouter` mapping |
+| `.pi/settings.json` `enabledModels` | removed `openrouter/openai/gpt-5.6-luna` (the Codex-routed `openai-codex/gpt-5.6-luna` is kept) |
+| cli-pi + cli-opencode docs | Luna OpenRouter rows/examples removed; both `providers-and-models.md`, the cli-opencode `SKILL.md`, and `cli-reference.md` now state OpenRouter routes DeepSeek V4 Flash only |
+| runtime tests | `executor-config.vitest.ts` + `fanout-run.vitest.ts` fixtures drop the Luna assertions; 198/198 pass |
+
+The non-OpenRouter GPT-5.6 Luna paths (openai / openai-codex providers) are unchanged — only the OpenRouter route was removed.
+<!-- /ANCHOR:post-ship-restriction -->
