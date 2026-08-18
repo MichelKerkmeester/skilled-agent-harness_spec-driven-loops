@@ -12,9 +12,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster"
-    last_updated_at: "2026-08-18T17:51:54Z"
+    last_updated_at: "2026-08-18T18:42:01Z"
     last_updated_by: "claude"
-    recent_action: "All six phases complete; phase 6 fixed the cline model id format"
+    recent_action: "All seven phases complete; phase 7 added the cline testing playbook scenario"
     next_safe_action: "Commit and push to v4 and main"
     blockers: []
     key_files:
@@ -110,6 +110,8 @@ Aggregate scope; per-phase detail lives in each child plan.
 | `.pi/models.json` | Modify | 006 | Restore the slashed `cline-pass/<model>` id for both models |
 | `.pi/settings.json` | Modify | 006 | Three-segment `enabledModels`; `defaultModel` to `cline-pass/deepseek-v4-flash` |
 | `.pi/custom-providers.md`, cli-pi roster | Modify | 006 | Corrected forms + the slashed-id gotcha |
+| `.opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/cline-provider-id-format-dispatch.md` | Create | 007 | The PI-023 cline model-dispatch scenario |
+| `.opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md` | Modify | 007 | Index count, Model Dispatch group, cross-reference |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -127,6 +129,7 @@ Aggregate scope; per-phase detail lives in each child plan.
 | 4 | 004-cline-cli-pi-roster/ | Add the `cline-pass` DeepSeek V4 Flash entry to the cli-pi skill roster (`references/providers-and-models.md` §2), xhigh-only (no lower thinking tiers), so the mode's provider catalog documents the config-wired provider. | Complete |
 | 5 | 005-cline-pro-and-pi-default/ | Add DeepSeek V4 Pro through the Cline provider across `.pi` config and both cli rosters (xhigh-only), and set pi's default provider to `cline-pass` with `deepseek-v4-flash`. | Complete |
 | 6 | 006-cline-pi-model-id-format-fix/ | Fix the cline-pass model id format: the ids were bare, so pi sent a bare `model` and the Cline API returned `400 invalid model format`. Restore the slashed `cline-pass/<model>` id across `.pi` config and both pi doc surfaces, and document the slashed-id gotcha. | Complete |
+| 7 | 007-cline-model-dispatch-playbook-scenario/ | Add PI-023 to the cli-pi manual testing playbook: a Model Dispatch scenario for the config-wired cline-pass provider's slashed model-id contract, plus its index wiring. | Complete |
 
 ### Phase Transition Rules
 
@@ -145,6 +148,7 @@ Aggregate scope; per-phase detail lives in each child plan.
 | 003-cline-pi-config-build | 004-cline-cli-pi-roster | The cli-pi skill roster documents `cline-pass/deepseek-v4-flash` at xhigh-only (no lower thinking tiers) | `cli-pi/references/providers-and-models.md` shows the `### cline-pass` section; `validate.sh --strict` exit 0 |
 | 004-cline-cli-pi-roster | 005-cline-pro-and-pi-default | DeepSeek V4 Pro is live on every cline-pass surface at xhigh-only, and pi's default provider is cline-pass | `pi --list-models` shows both cline models; `pi auth check` on pro returns `status: ready`; both rosters show the pro row; `validate.sh --strict` exit 0 |
 | 005-cline-pro-and-pi-default | 006-cline-pi-model-id-format-fix | A live pi dispatch to both cline models returns a model reply with no `400 invalid model format`; every cline-pass surface shows the slashed id | Live `pi --provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash` returns a reply; `.pi/models.json` ids are slashed; `validate.sh --strict` exit 0 |
+| 006-cline-pi-model-id-format-fix | 007-cline-model-dispatch-playbook-scenario | The cli-pi testing playbook has a cline Model Dispatch scenario (PI-023), indexed and sk-doc VALID | `model-dispatch/cline-provider-id-format-dispatch.md` exists; the index lists PI-023; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

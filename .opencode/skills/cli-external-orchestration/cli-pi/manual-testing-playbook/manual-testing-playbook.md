@@ -33,7 +33,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 22 deterministic scenarios across 10 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier and links to one dedicated file with the complete execution contract.
+This playbook provides 23 deterministic scenarios across 10 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier and links to one dedicated file with the complete execution contract.
 
 Coverage note (2026-08-10): the package covers Pi version/help, settings, extension lifecycle, dispatch controls, providers, prompt quality, and goal isolation. `PI-021` validates the native registered `/goal-pi` command, two-session scoped state, lifecycle identity binding, resume/new-session behavior, explicit legacy migration, and disabled fallback. Native commands short-circuit before a model turn, so the core isolation proof does not require provider credentials.
 
@@ -236,12 +236,13 @@ This category validates project-local extension auto-discovery, registration aga
 
 ---
 
-## 13. MODEL DISPATCH (`PI-017..PI-018`)
+## 13. MODEL DISPATCH (`PI-017..PI-018`, `PI-023`)
 
-This category checks the seven-model allowlist and the settings/provider interaction without inventing an `auto` default or claiming a provider-backed turn without credentials.
+This category checks the model allowlist and the settings/provider interaction without inventing an `auto` default or claiming a provider-backed turn without credentials, and it proves the config-wired cline-pass provider's slashed model-id dispatch contract.
 
 - `PI-017`: [Supported-model allowlist smoke](model-dispatch/supported-model-allowlist-smoke.md)
 - `PI-018`: [Provider and settings merge](model-dispatch/provider-settings-merge.md)
+- `PI-023`: [Cline provider model-id format dispatch](model-dispatch/cline-provider-id-format-dispatch.md)
 
 ---
 
@@ -287,6 +288,7 @@ The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community
 | `.opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-009`, `PI-010` |
 | `.pi/extensions/*.ts` and the installed Pi extension declarations | Extension factories, event registration, guard-core, session-lifecycle bridge behavior, and paired advisory delivery | `PI-014`, `PI-015`, `PI-016`, `PI-020`, `PI-022` |
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Pi model allowlist and default | `PI-017` |
+| `.pi/models.json`, `.pi/settings.json`, and `.pi/custom-providers.md` | Config-wired cline-pass provider block, three-segment references, and the slashed model-id contract | `PI-023` |
 | `.opencode/hooks/goal/pi/goal-pi.test.mjs` | Native command, A/B lifecycle, resume/new-id, turn-end isolation, and missing-identity contracts | `PI-021` |
 | `.opencode/hooks/goal/lib/goal-core.test.cjs` | Session-scoped state, legacy quarantine, rendering, and hardening | `PI-021` |
 | `.opencode/skills/sk-doc/shared/scripts/validate_document.py` | Root markdown structure validation | This root playbook |

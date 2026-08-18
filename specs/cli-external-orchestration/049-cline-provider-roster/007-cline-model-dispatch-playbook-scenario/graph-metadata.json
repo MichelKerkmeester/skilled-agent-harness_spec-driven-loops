@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
-  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
+  "packet_id": "cli-external-orchestration/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
+  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
   "parent_id": "cli-external-orchestration/049-cline-provider-roster",
   "children_ids": [],
   "manual": {
@@ -11,28 +11,28 @@
   },
   "derived": {
     "trigger_phrases": [
-      "pi cline invalid model format 400",
-      "cline-pass model id slashed fix",
-      "cline pi deepseek-v4-flash 400",
-      "pi models.json cline id prefix",
-      "cline model id format plan",
-      "pi cline 400 fix plan",
-      "cline model id format tasks",
-      "pi cline 400 fix tasks",
-      "cline pi 400 fixed slashed id",
-      "pi cline dispatch works done"
+      "cline pi testing playbook scenario",
+      "PI-023 cline model dispatch",
+      "cli-pi playbook cline coverage",
+      "cline slashed id playbook",
+      "cline playbook scenario plan",
+      "PI-023 plan",
+      "cline playbook scenario tasks",
+      "PI-023 tasks",
+      "PI-023 cline scenario done",
+      "cli-pi cline playbook coverage added"
     ],
     "key_topics": [
       "cline",
-      "invalid",
+      "testing",
+      "playbook",
+      "scenario",
+      "pi-023",
       "model",
-      "format",
-      "cline-pass",
+      "dispatch",
+      "cli-pi",
+      "coverage",
       "slashed",
-      "deepseek-v4-flash",
-      "models",
-      "json",
-      "prefix",
       "plan",
       "tasks"
     ],
@@ -88,6 +88,12 @@
         "source": "derived"
       },
       {
+        "name": "Model Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -95,12 +101,6 @@
       },
       {
         "name": "Cline Provider Roster",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -118,25 +118,19 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Single",
+        "name": "Overview Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Type",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,19 +154,13 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "no",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -188,11 +176,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Phases 3 and 5 declared the cline-pass models in `.pi/models.json` with bare ids (`deepseek-v4-flash`, `deepseek-v4-pro`)",
-    "created_at": "2026-08-18T17:42:19.098Z",
-    "last_save_at": "2026-08-18T18:42:02.359Z",
+    "causal_summary": "cli-pi's manual testing playbook has a Model Dispatch group (PI-017, PI-018), but neither scenario mentions the cline provider — the only cli-pi file that referenced cline was the provider roster",
+    "created_at": "2026-08-18T18:42:01.971Z",
+    "last_save_at": "2026-08-18T18:42:01.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5843bfa3afe300a78deee08dd68112c45351809293a0bd36c2cd98a49228026d",
+    "source_fingerprint": "sha256:acdba44b26e893b7a1a273c5970e14f94acead6e2b506e60059cf631640cf8d6",
     "source_doc_hashes": {
-      "spec.md": "0dfbf4e146fbebe741c14d7ea88b379a64467c3161f370617fb0783068241ea7",
-      "plan.md": "4e204e73234d07720fd91e35db5016c53f049226e098a0a90cf16aceb8047740",
-      "tasks.md": "6431162adc009fd09471f841f910e8442f074600bc3a179568239f7afddfea12",
-      "implementation-summary.md": "222d012acef35d4f65f103365e2375bc807f0f8bc2b9cf926314b4d95f4f474b"
+      "spec.md": "4d83ee45cfc5b622eec2c254292918dfed3fdfac06b28202127960671965a746",
+      "plan.md": "3a692ea45ccfaff00b0a1e39e3ea068aa0343ae7d2cfe2ea8714c4cef21a7d2f",
+      "tasks.md": "e9c1ac507e9b7f5a2786cb01206c0260b282495d67f3dfd63238ceaa2b7125a5",
+      "implementation-summary.md": "c2d0cf9eb5729ccc6f33789fa6696112cc80e75783b17a64aab999afb7509c82"
     },
     "last_active_child_id": null,
     "last_active_at": null
