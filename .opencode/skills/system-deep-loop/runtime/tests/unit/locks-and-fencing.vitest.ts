@@ -448,6 +448,17 @@ describe('protected resource registry', () => {
     expect(protectedWriteSurfaceManifestDigest()).toMatch(/^[a-f0-9]{64}$/u);
     expect(protectedWriteSurfaceManifestDigest()).toBe(protectedWriteSurfaceManifestDigest());
   });
+
+  it('points the ledger append surface at the gateway seam, not a direct writer call', () => {
+    const ledgerAppend = PROTECTED_WRITE_SURFACE_MANIFEST
+      .find((entry) => entry.surfaceId === 'authorized-ledger-append');
+    expect(ledgerAppend).toBeDefined();
+    // The gateway-only ruling made the writer unreachable without a capability,
+    // so advertising a bare writer method would send a reader to a seam that
+    // rejects them. Only the gateway helper is callable from outside.
+    expect(ledgerAppend?.replacementSeam).toBe('appendAuthorizedThroughFence');
+    expect(ledgerAppend?.replacementSeam).not.toMatch(/FencedLedgerWriter/u);
+  });
 });
 
 describe('durable fencing leases', () => {
