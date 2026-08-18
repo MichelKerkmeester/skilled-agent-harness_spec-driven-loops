@@ -11,12 +11,11 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-shadow-parity-independent
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Built+verified deep-review converter; 6/6 modes, Blocker 1 discharged"
-    next_safe_action: "Blocker 1 done; 014 still blocked on 024 (Blocker 3, unbuilt)"
-    blockers:
-      - "Blocker 1 DISCHARGED (6/6 modes); 014 still blocked on 024 (Blocker 3, unbuilt) + REQ-005 fixtures open"
+    last_updated_at: "2026-08-18T12:00:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Marked all six shadow-parity modes Complete with Blocker 1 verified"
+    next_safe_action: "REQ-005 fixtures landed in sibling 006-residual-finding-closeouts"
+    blockers: []
     key_files:
       - "implementation-summary.md"
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts"
@@ -36,8 +35,8 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 002-shadow-parity-independent-derivation |
 | **Level** | 3 |
-| **Status** | Blocker 1 DISCHARGED — all 6 modes built + verified + landed (council, agent-improvement, model-benchmark, skill-benchmark, deep-alignment, deep-review). Residual: REQ-005 full-surface fixtures + formal closeout docs |
-| **Updated** | 2026-08-08 |
+| **Status** | Complete — Blocker 1 discharged across all six modes; REQ-005 full-surface fixtures satisfied in sibling `007-executor-and-cli-hardening/006-residual-finding-closeouts` |
+| **Updated** | 2026-08-18 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -117,5 +116,5 @@ The deep-ai-council mode was delivered T001-confirm-first, red-before → green-
    - **agent-improvement — done.** Honest residual: three fields (`causalEvidence.locusIds` for intervention entries, `ablationDigests`, `blockingVetoCodes` from `promotion_denied`) are unrecoverable from the reducer's current schema and left empty; closing them needs a reducer-schema change (broader blast radius), not a harness change.
    - **deep-alignment — done.** Needed a from-scratch legacy oracle (`deepAlignmentLegacyOracleProjection`, a switch-fold over all 40 event stems) because both sides previously shared `foldProjection`. Honest residual: empirical field-by-field verification covers only the 9 stems the current fixture emits; the other ~31 use the same direct-mapping method but are not fixture-diffed (the REQ-005 surface-coverage gap shared across all modes).
    - **deep-review — done.** Removed both the reducer-exception-laundering and the success-path laundering; built `deepReviewProjectionFromReducerState`; strengthened the legacy oracle to a complete independent implementation; deleted ~230 lines of wrong-schema dead code. Design fork (resolved scope-out): `receiptRefs`/`reportOrder` are not persisted by the reducer's artifact record — incidental (receipt-forgery detection lives at the untouched observation layer, and the trust-critical `reportDigest` is fully recoverable), normalized to `[]` on BOTH paths so the reducer's lossiness isn't hidden by one side faking a value.
-2. **REQ-005 (full surface-to-test fixture mapping) remains open across all 6 modes.** Each mode's independent derivation + divergence test is proven, but only the fixture-emitted event stems are empirically diffed field-by-field (deep-review: 9 stems run the full pipeline; the rest are mapped by the same method but not fixture-diffed). Closing REQ-005 means adding fixtures that emit every stem. This is a thoroughness gap, not a divergence-detectability gap — Blocker 1's cutover-gating deliverable (a planted divergence fails the harness) holds for all 6.
+2. **REQ-005 (full surface-to-test fixture mapping) is now satisfied in the sibling closeout.** The full-surface fixtures that emit every event stem per mode landed in `007-executor-and-cli-hardening/006-residual-finding-closeouts` (now Complete): deep-review `e69bbd1150`, deep-ai-council `e0b4e902c5`, agent-improvement `a9dbf88154`, model-benchmark `46310b9c45`, skill-benchmark `7ec622f1be`, deep-alignment `1109a40925`. One honest coverage-limit surfaced there: deep-alignment's 6 finding-chain fields are provable only through a structural-limit skip (canonical-JSON `MAX_JSON_NODES=10000`), documented in that closeout as a candidate future harness improvement rather than a blocking gap. Blocker 1's cutover-gating deliverable (a planted divergence fails the harness) holds for all six modes independently of the fixture work.
 <!-- /ANCHOR:limitations -->

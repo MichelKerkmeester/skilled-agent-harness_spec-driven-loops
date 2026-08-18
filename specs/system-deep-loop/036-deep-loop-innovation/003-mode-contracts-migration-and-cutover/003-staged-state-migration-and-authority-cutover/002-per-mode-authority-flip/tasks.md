@@ -10,10 +10,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-an
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Built and verified all 30 tasks; 42/42 tests green, tsc clean"
-    next_safe_action: "None -- operator-gated wiring/execution is a separate follow-up"
+    last_updated_at: "2026-08-18T03:28:18Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled machine metadata to Complete for dark per-mode authority-flip library"
+    next_safe_action: "Operator-gated live wiring and per-mode flip are a separate follow-up"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/cutover-coordinator.ts"
@@ -89,7 +89,7 @@ _memory:
 - [x] All requirements in spec.md are met with mode-scoped evidence — see `implementation-summary.md`
 - [x] Every mode flip is represented by an authorized ledger event and leaves non-selected modes on legacy — `AuthorityRegistry` records are file-scoped per mode; only the requested mode's file is touched by a CAS
 - [x] Every selected mode retains a valid rollback window and handoff evidence — `AuthorityTransitionFacts` binds the rollback-window minimums and the migration handoff digest
-- [ ] Strict validation has no error except expected missing `description.json` and `graph-metadata.json` — deferred to the orchestrator's toolchain-capable worktree per the dispatch brief (this worktree's `tsx` runtime gap reproduces identically on the untouched sibling packets)
+- [x] Strict validation passes from the toolchain-capable orchestrator worktree — `validate.sh --strict` reports `Errors: 0  Warnings: 0`; `description.json`/`graph-metadata.json` present and reconciled to `complete`
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

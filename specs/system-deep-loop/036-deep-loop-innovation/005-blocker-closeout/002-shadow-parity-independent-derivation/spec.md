@@ -13,10 +13,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the remediation child package from the WS1 phase-tree proposal"
-    next_safe_action: "Run T001 against the 6 scoped findings before any edit"
+    last_updated_at: "2026-08-18T12:00:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled the packet to Complete with Blocker 1 discharged across all six modes"
+    next_safe_action: "Authority cutover remains deferred to the later cutover packet"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,11 +24,11 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 95
-    open_questions:
-      - "Does `assertLegacyProjectionMatchesCurrentState` become the shared comparator core, or does each mode keep its own oracle?"
-      - "What is the complete protected semantic surface per mode that the comparator must cover?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
+      - "Each mode keeps its own independent oracle; `assertLegacyProjectionMatchesCurrentState` was not adopted as a shared comparator core"
+      - "The protected semantic surface per mode is proven by fold-mutation divergence tests and full-surface fixtures in the sibling closeout"
       - "The fix is one pattern applied six times, not six bespoke rebuilds"
       - "Per-mode acceptance is a divergence-injection test, not a green suite"
 ---
@@ -65,7 +65,7 @@ Blocker 1 is that shadow parity, the named precondition for every authority cuto
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Blocker 1 DISCHARGED — all 6 modes built + verified + landed (council, agent-improvement, model-benchmark, skill-benchmark, deep-alignment, deep-review). Residual: REQ-005 full-surface fixtures + formal closeout |
+| **Status** | Complete — Blocker 1 discharged across all six modes; REQ-005 full-surface fixtures satisfied in sibling `007-executor-and-cli-hardening/006-residual-finding-closeouts` |
 | **Created** | 2026-07-30 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
@@ -304,6 +304,8 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 
 <!-- ANCHOR:open-questions -->
 ## 12. OPEN QUESTIONS
+
+> **Resolved at close.** The build answered all three below. Each mode keeps a local independent oracle rather than a shared comparator core; the per-mode protected surface is proven by fold-mutation divergence tests plus the sibling full-surface fixtures; genuine field-fidelity gaps found during the build were fixed rather than deferred (see `implementation-summary.md`).
 
 - Does `assertLegacyProjectionMatchesCurrentState` become the shared comparator core for all six modes, or does each mode keep a local oracle with a shared surface list? ADR-002 proposes the former; the alternative is recorded there.
 - What is the complete protected semantic surface per mode? Enumerating it is the first task of Phase 2 and must be reviewed before the comparators are written, or the rebuild reproduces the original defect at a different granularity.

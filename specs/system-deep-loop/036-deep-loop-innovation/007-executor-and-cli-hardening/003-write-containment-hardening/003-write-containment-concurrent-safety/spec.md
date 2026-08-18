@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: Write-Containment Concurrent-Writer Safety"
 description: "Stop the deep-loop write-containment guard from irreversibly deleting untracked out-of-scope files it cannot attribute to the leaf, so deep-loop fan-out can run safely on a dirty, multi-actor working tree."
-status: in_progress
-completion_pct: 95
+status: complete
+completion_pct: 100
 trigger_phrases:
   - "write containment deletes untracked files"
   - "deep-loop containment data loss"
@@ -12,20 +12,20 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/003-write-containment-concurrent-safety"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Preserved the shipped fix while reopening moved-packet metadata closeout"
-    next_safe_action: "Refresh continuity after packet paths are clean."
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled spec to Complete after write-containment fix 6d762f4393 landed"
+    next_safe_action: "No further action required for this completed packet"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:c710b86e29dd49d5f705fa5cf1e50a658d8b6a618b1d8cabf51aa124f50f988c"
+      fingerprint: "sha256:edd0ec9c96342c7c3ba1e8e653376448de9adf863a93052d4292100eb1e32569"
       session_id: "2026-08-06-deep-loop-046"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Not-in-HEAD (untracked) out-of-scope paths are now preserved, never deleted; in-HEAD out-of-scope paths are still reverted from HEAD and remain fatal"
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress — code landed; moved-packet metadata closeout is open |
+| **Status** | Complete |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` (recorded directly; no dedicated packet branch was created for this doc-only pass) |
 | **Parent Spec** | `../spec.md` |
