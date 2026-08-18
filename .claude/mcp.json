@@ -57,12 +57,6 @@
       "env": {
         "UTCP_CONFIG_FILE": ".utcp_config.json"
       }
-    },
-    "sk-vision": {
-      "command": "node",
-      "args": [
-        ".opencode/skills/sk-vision/vision-runtime/dist/mcp-server.js"
-      ]
     }
   }
 }
