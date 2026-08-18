@@ -1,0 +1,147 @@
+// TEMPORARY measurement harness. Not part of the shipped suite.
+// Measures per-append cost through the gateway fence seam against the same
+// append performed under an already-held lease, so the delta isolates the
+// acquire/validate/release work the fencing design adds.
+
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
+import { describe, expect, it } from 'vitest';
+
+import {
+  AppendOnlyLedger,
+  TransitionAuthorizationGateway,
+} from '../../lib/authorized-ledger/index.js';
+import {
+  AtomicityDomains,
+  FencedLeaseCoordinator,
+  ProtectedResourceKinds,
+  appendAuthorizedThroughFence,
+} from '../../lib/locks-and-fencing/index.js';
+import {
+  FIXTURE_AUDIT_LEDGER_ID,
+  FIXTURE_AUTHORITY,
+  FIXTURE_LEDGER_ID,
+  createFixtureEvent,
+  createFixtureEventRegistry,
+  createFixturePolicyRegistry,
+  createFixtureRequest,
+} from '../fixtures/authorized-ledger-fixtures.js';
+import { appendAuthorizedWithCapabilityForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
+import type { PolicyEvaluationInput } from '../../lib/authorized-ledger/index.js';
+
+const SAMPLES = 40;
+const WARMUP = 5;
+
+function pinRequestIdentity(context: Readonly<{ evaluationInput: PolicyEvaluationInput }>): {
+  actorId: string; capabilityId: string; evidenceDigest: string;
+} {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
+function createHarness(rootDirectory: string) {
+  const registry = createFixtureEventRegistry();
+  const policies = createFixturePolicyRegistry();
+  const authorityProvider = () => FIXTURE_AUTHORITY;
+  const ledger = new AppendOnlyLedger({
+    rootDirectory,
+    ledgerId: FIXTURE_LEDGER_ID,
+    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+    authorityProvider,
+  }, registry);
+  const gateway = new TransitionAuthorizationGateway({
+    rootDirectory,
+    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+    authorityProvider,
+    identityResolver: pinRequestIdentity,
+  }, ledger, policies);
+  return { registry, policies, ledger, gateway };
+}
+
+function summarize(samples: number[]): { mean: number; median: number; p95: number } {
+  const sorted = [...samples].sort((a, b) => a - b);
+  return {
+    mean: sorted.reduce((sum, value) => sum + value, 0) / sorted.length,
+    median: sorted[Math.floor(sorted.length / 2)],
+    p95: sorted[Math.floor(sorted.length * 0.95)],
+  };
+}
+
+describe('append fence overhead measurement', () => {
+  it('measures the gateway seam against a held-lease append', async () => {
+    const roots: string[] = [];
+    const newRoot = (label: string): string => {
+      const root = mkdtempSync(join(tmpdir(), `fence-overhead-${label}-`));
+      roots.push(root);
+      return root;
+    };
+
+    // Arm A: the shipped caller path. One short-lived fence per append.
+    const armARoot = newRoot('gateway');
+    const armA = createHarness(armARoot);
+    const gatewaySamples: number[] = [];
+    for (let index = 1; index <= SAMPLES + WARMUP; index += 1) {
+      const event = createFixtureEvent(armA.registry, index);
+      const request = await createFixtureRequest(armA.ledger, event, armA.policies, `a-${index}`);
+      const authorization = await armA.gateway.authorize(request);
+      if (authorization.verdict !== 'allow') throw new Error('expected allow');
+      const started = process.hrtime.bigint();
+      await appendAuthorizedThroughFence(armA.ledger, event, authorization.proof);
+      const elapsedMs = Number(process.hrtime.bigint() - started) / 1e6;
+      if (index > WARMUP) gatewaySamples.push(elapsedMs);
+    }
+
+    // Arm B: identical append, but the lease is acquired once up front, so the
+    // per-append acquire/release cost is removed while capability validation
+    // and the commit path stay exactly the same.
+    const armBRoot = newRoot('held');
+    const armB = createHarness(armBRoot);
+    const coordinator = new FencedLeaseCoordinator({ rootDirectory: armBRoot, retryIntervalMs: 1 });
+    const lease = await coordinator.acquire({
+      resource: {
+        kind: ProtectedResourceKinds.LEDGER,
+        atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
+        components: { ledgerId: FIXTURE_LEDGER_ID },
+      },
+      ownerId: 'bench-writer',
+      correlationId: 'bench',
+      ttlMs: 600_000,
+    });
+    const heldSamples: number[] = [];
+    for (let index = 1; index <= SAMPLES + WARMUP; index += 1) {
+      const event = createFixtureEvent(armB.registry, index);
+      const request = await createFixtureRequest(armB.ledger, event, armB.policies, `b-${index}`);
+      const authorization = await armB.gateway.authorize(request);
+      if (authorization.verdict !== 'allow') throw new Error('expected allow');
+      const started = process.hrtime.bigint();
+      await appendAuthorizedWithCapabilityForTest(armB.ledger, event, authorization.proof, lease);
+      const elapsedMs = Number(process.hrtime.bigint() - started) / 1e6;
+      if (index > WARMUP) heldSamples.push(elapsedMs);
+    }
+
+    const gateway = summarize(gatewaySamples);
+    const held = summarize(heldSamples);
+    /* eslint-disable no-console */
+    console.log(JSON.stringify({
+      samples: SAMPLES,
+      gatewaySeamMs: gateway,
+      heldLeaseMs: held,
+      fenceOverheadMs: {
+        mean: gateway.mean - held.mean,
+        median: gateway.median - held.median,
+      },
+      overheadShareOfGatewayAppend: (gateway.mean - held.mean) / gateway.mean,
+    }, null, 2));
+    /* eslint-enable no-console */
+
+    expect(gatewaySamples).toHaveLength(SAMPLES);
+    expect(heldSamples).toHaveLength(SAMPLES);
+    for (const root of roots) rmSync(root, { recursive: true, force: true });
+  }, 300_000);
+});
