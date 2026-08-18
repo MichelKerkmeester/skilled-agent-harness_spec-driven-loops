@@ -2,6 +2,16 @@
   "modes": [
     {
       "leaves": [
+        "references/ds-grammar.md",
+        "references/editability-guardrails.md",
+        "references/token-library.md",
+        "references/verification.md"
+      ],
+      "packet": "sk-code-mobile-cli",
+      "workflowMode": "sk-code-mobile-cli"
+    },
+    {
+      "leaves": [
         "assets/checklists/agent-authoring.md",
         "assets/checklists/command-authoring.md",
         "assets/checklists/config-checklist.md",

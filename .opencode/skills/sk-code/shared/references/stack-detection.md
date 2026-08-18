@@ -1,6 +1,6 @@
 ---
 title: Stack & Surface Detection
-description: Surface detection (WEBFLOW/OPENCODE/UNKNOWN) and OPENCODE language sub-detection. Primary routing key for sk-code.
+description: Surface detection (WEBFLOW/OPENCODE/PI_REMOTE/UNKNOWN) and OPENCODE language sub-detection. Primary routing key for sk-code.
 trigger_phrases:
   - "sk-code surface detection"
   - "webflow opencode detection"
@@ -8,7 +8,7 @@ trigger_phrases:
   - "language sub detection"
 importance_tier: important
 contextType: general
-version: 4.1.0.9
+version: 4.1.0.10
 ---
 
 # Router Reference - Code Surface Detection
@@ -27,6 +27,7 @@ Detect **where the work is happening** before deciding which standards apply.
 | --- | --- | --- |
 | WEBFLOW | Webflow / vanilla HTML, CSS, JavaScript, animation libraries, CDN/minification, browser behavior | `.opencode/` system code |
 | OPENCODE | `.opencode/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
+| PI_REMOTE | The Pi Remote Mobile-CLI app family (`apps/pi-remote-web/` — React 19 + Vite + Tailwind 4 PWA — plus `apps/pi-remote-relay/` and `packages/pi-*` / `@pi-remote/*`) and its formalized design system (`--pi-*` tokens, `@ds` grammar, browser-free verification) | `.opencode/` system code; Webflow browser artifacts |
 | UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
 
 `motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses WEBFLOW, OPENCODE, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
@@ -35,13 +36,18 @@ Detect **where the work is happening** before deciding which standards apply.
 
 ## 2. DETECTION ORDER
 
-**Precedence**: OPENCODE target/CWD wins over WEBFLOW markers. WEBFLOW wins over UNKNOWN. Use early-return logic — later branches must not overwrite earlier matches.
+**Precedence**: OPENCODE target/CWD wins over PI_REMOTE and WEBFLOW markers. PI_REMOTE (the Pi Remote app workspaces) wins over WEBFLOW. WEBFLOW wins over UNKNOWN. Use early-return logic — later branches must not overwrite earlier matches.
 
 ```bash
 # 1. OPENCODE (highest precedence — disambiguates mixed-marker workspaces)
 # CWD under .opencode/ OR any changed/target file under .opencode/
 
-# 2. WEBFLOW
+# 2. PI_REMOTE (the Pi Remote Mobile-CLI app family)
+# CWD or any changed/target file under apps/pi-remote-web/, apps/pi-remote-relay/,
+# or a packages/pi-* / @pi-remote/* workspace. The design-system evidence
+# (--pi-* tokens, @ds grammar, browser-free verification) lives in apps/pi-remote-web/.
+
+# 3. WEBFLOW
 [ -d "src/2_javascript" ]
 ls *.webflow.js 2>/dev/null | head -1
 grep -lq "Webflow\.push\|--vw-" src/**/*.{js,css,html} 2>/dev/null
@@ -49,11 +55,13 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
   src/**/*.{js,mjs,ts,html} *.{js,mjs,ts,html} 2>/dev/null
 [ -f "wrangler.toml" ]
 
-# 3. UNKNOWN
+# 4. UNKNOWN
 # Ask which surface and verification commands apply.
 ```
 
 **Why OPENCODE wins precedence**: `.opencode/` system tools (e.g. preview servers, mock fixtures, animation demos under `.opencode/skills/sk-doc/scripts/`) may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts. A first-match-WEBFLOW order would mis-route this work to the wrong standards. The target/CWD path is the strongest unambiguous signal of which surface owns the work.
+
+**Why PI_REMOTE sits above WEBFLOW**: the Pi Remote web app is React 19 + Vite + Tailwind, not a Webflow project. Scoping it by its workspace paths keeps a stray vanilla-web or animation marker from mis-routing app work to Webflow standards. `.opencode/` targets still win over it, so editing a skill, agent, or command inside the repo stays OPENCODE. When PI_REMOTE is the surface, the hub bundles the read-only `sk-code-mobile-cli` evidence packet behind the chosen workflow mode.
 
 **Generic-Node guard**: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.opencode/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
 
@@ -109,6 +117,8 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 | HTML/CSS/JS with GSAP or Lenis | WEBFLOW | Vanilla animation web signal |
 | CWD `.opencode/skills/sk-code` | OPENCODE | Skill/system code context |
 | Changed `.opencode/agents/code.md` | OPENCODE | Target file under `.opencode/` |
+| CWD or target under `apps/pi-remote-web/` (React + Vite + Tailwind) | PI_REMOTE | Pi Remote app workspace; the design-system evidence surface is bundled behind the workflow mode |
+| Changed `apps/pi-remote-web/src/style.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins even inside the Pi Remote repo |
 | WEBFLOW marker (Lenis, GSAP) AND changed `.opencode/skills/sk-doc/scripts/preview-server.js` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
 | Prompt says `NOT Webflow no Webflow Designer` and asks for Motion.dev guidance | **UNKNOWN/N/A** | Explicit non-Webflow guard blocks WEBFLOW promotion |
 | Root `package.json` with no `.opencode/` target | UNKNOWN | Generic Node.js is not owned |
