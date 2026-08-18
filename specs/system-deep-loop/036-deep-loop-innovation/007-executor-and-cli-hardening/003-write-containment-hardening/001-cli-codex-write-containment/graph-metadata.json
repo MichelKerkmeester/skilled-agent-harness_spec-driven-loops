@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The deep-loop runtime dispatches `codex exec` review/research/alignment iterations with `--sandbox workspace-write` and NO structural write-containment",
     "created_at": "2026-07-22T20:18:47.356Z",
-    "last_save_at": "2026-08-17T04:04:05.323Z",
+    "last_save_at": "2026-08-18T11:07:28.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:c121dd0e1ee8c8feac38ec7fffea3ad9d701cd84880e1270e11c09c9adb4329f",
     "source_doc_hashes": {
-      "spec.md": "464bea56f893297c48ee18d1991eb7709d56da9f578ae4acbcdda0b0954fd7d6",
-      "plan.md": "e73d427ee6f9c506e79467bd6a484f747892e351afcd6801f55f2023d86e29fd",
-      "tasks.md": "78143211afac9aabefb5e60df6f462a0cb8e69a376065238fc2e0b34610c06b0",
-      "checklist.md": "6d641783b51fbf5a50a4c729b58051a2cfb428cf66157f8508e494bb1c5b77ea",
-      "implementation-summary.md": "e5cfc62762746d2eaceecc4066658ace868fb319abe783ed7e501f0b7b356390"
+      "spec.md": "493a2b85e528da30b90e8ffa769f566cde3cf134a13d2ffdad6c23c642b246e0",
+      "plan.md": "d3585ade6e4f1169f580e23659599407dcda70f1049e3c068c72f24bad2107b8",
+      "tasks.md": "15fd23728fd537e6ec2ec8701af4c422a5ee930015a25be663b1f18369283b61",
+      "checklist.md": "2cbca26d1e247141ab9233800d73c2e23b99234d4455260c25c4df6a09cf3953",
+      "implementation-summary.md": "3eddcf7420d6c83a0ce0e1963f99849ba6fdace3c175a13798438fb0034b5f25"
     },
     "last_active_child_id": null,
     "last_active_at": null

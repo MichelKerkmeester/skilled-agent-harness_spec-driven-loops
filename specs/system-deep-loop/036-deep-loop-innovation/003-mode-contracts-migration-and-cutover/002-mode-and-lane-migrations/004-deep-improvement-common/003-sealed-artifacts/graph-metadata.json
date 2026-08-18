@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Define the sealed reference-artifact contract for Deep Improvement Common Services",
     "created_at": "2026-07-16T03:43:36.310Z",
-    "last_save_at": "2026-08-17T04:04:00.633Z",
+    "last_save_at": "2026-08-18T11:07:19.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
     ],
     "source_fingerprint": "sha256:15b959672efce0d6577fca2f8b8d19473c15a4e1e20ea52b9afaba6e90de1ed1",
     "source_doc_hashes": {
-      "spec.md": "3f0d37386f311251074215e4fdb5f992f39b1449ad9271e56434eb25128e84e3",
-      "plan.md": "08387843dac39c06ea36f501a804261b372386a768f199c4bbfc668318434b49",
-      "tasks.md": "35a1b9c9cb6f3ed609d87f4542b3051fc11318eca4ac596fd8f30b6d51ba2c06",
-      "checklist.md": "f3fe6269ceb992be62dc1645f0647b26867fd8e7c434c1d6159e63dfa9acc35a",
-      "decision-record.md": "9b113d0cc5a3801b0add34bad95e588fcdf5b034cd67f15cc4897f0d97472ab5",
-      "implementation-summary.md": "cf67a8e2a341a6471720f3aaa4f4902eca9f9ff32774b61dbaf946849559640b"
+      "spec.md": "d40e27004454115d76971ecaa2567ade1a93e5a106081e862ce0824d474a8f49",
+      "plan.md": "0882247885460fdc0a983fbbbc4cedfa8c846b034e6cfb10c57a5bc62552f56e",
+      "tasks.md": "f85d8cd01ae0b8d3d3a52ff1539536107329d7e2ed6f4ab834035b290f3c2a57",
+      "checklist.md": "95555d84cc09359045dd89b873783c88148155205c62ac2d6a8d5bff2599e271",
+      "decision-record.md": "e7c7d2002fbc7626bdb668b781f018e97bfc5528684641dff64c1e1f99259ccb",
+      "implementation-summary.md": "9aff1021879f49401aba30480a1d64cb0acc4801043c8ea89c782aee6a8b9ee0"
     },
     "last_active_child_id": null,
     "last_active_at": null

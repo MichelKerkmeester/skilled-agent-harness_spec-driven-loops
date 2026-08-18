@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Define independently versioned replay fingerprints over closed typed-ledger ranges, canonical replay dependencies, and byte-stable outputs, with immutable attestation storage and fail-closed mismatch detection for shadow parity and whole-system verification.",
     "created_at": "2026-07-16T03:43:45.873Z",
-    "last_save_at": "2026-08-17T04:04:14.237Z",
+    "last_save_at": "2026-08-18T11:07:42.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +206,11 @@
     ],
     "source_fingerprint": "sha256:cbe0501e6f03f505911e3975dca6e06094664fdb8641e69b94edfae7cfac3b37",
     "source_doc_hashes": {
-      "spec.md": "311534c6abb128edcf413396c8e5ba6e2096b86b67ef3eb97dfe3eff12a4b84d",
-      "plan.md": "e0efb8009a060243bf2a7175d4140b8e4d3f98f05dca6069f235b03b1c222c83",
-      "tasks.md": "0f6c4b666342a38962c7fe5c9de13a3fc0fd84262d8e80cc96839632615db556",
-      "checklist.md": "7e171196adcb092f9e3bc091a306ffedd011d8f286646b13491a54d5e104606d",
-      "implementation-summary.md": "0128c23f85313f8a17989dbbc7aa47f12036e9c68ff950e63f097b77c62473c4"
+      "spec.md": "911886d9569bc3811b19aff7f81d019a19b44109ed3fc6b1f7b07bf25d29d649",
+      "plan.md": "1372d1cf25f37c2f5aebcf42ea718fb44f439ba470a46bd187bca5afebadb4b5",
+      "tasks.md": "030ea2b7a0d2031c0e89ef206eb002aec2c3ca89467458dbcd8fbea9e0e7d47b",
+      "checklist.md": "9bdb535eef175175898a3c115ae0085f56123b8bd3109d7b6ec4cd4dffc19427",
+      "implementation-summary.md": "6a0a4a4379a9dd08eabfb7ecf863c8cb4d1a488d0213674cf8382ed722385bf0"
     },
     "last_active_child_id": null,
     "last_active_at": null

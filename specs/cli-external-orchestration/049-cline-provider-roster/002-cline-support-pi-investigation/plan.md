@@ -8,20 +8,20 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/048-cline-provider-roster/002-cline-support-pi-investigation"
-    last_updated_at: "2026-08-18T00:00:00Z"
+    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation"
+    last_updated_at: "2026-08-18T12:45:30Z"
     last_updated_by: "claude"
-    recent_action: "Investigation plan authored"
-    next_safe_action: "Execute step 1 to map pi provider resolution"
+    recent_action: "Investigation executed; verdict config-only-feasible"
+    next_safe_action: "Phase complete"
     blockers: []
     key_files:
       - ".pi/models.json"
       - ".pi/settings.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "session-048-002"
+      session_id: "session-049-002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -62,11 +62,11 @@ Determine feasibility, cheapest-first. Inspect how pi resolves providers and wha
 
 ### Definition of Ready
 - [x] Phase 1 confirmed the Cline provider facts (id, base URL, model, tiers)
-- [ ] pi provider-resolution source identified
+- [x] pi provider-resolution source identified
 
 ### Definition of Done
-- [ ] A feasibility verdict recorded with evidence
-- [ ] No `.pi` runtime file changed during the investigation
+- [x] A feasibility verdict recorded with evidence
+- [x] No `.pi` runtime file changed during the investigation
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -100,17 +100,17 @@ Not applicable during the investigation — no runtime surface is modified. A fo
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Read `.pi/models.json`, `.pi/settings.json`, and the cli-pi provider reference doc
-- [ ] Observe the live `/login` provider list and current `pi` provider/model listing
+- [x] Read `.pi/models.json`, `.pi/settings.json`, and the cli-pi provider reference doc
+- [x] Observe the live `/login` provider list and current `pi` provider/model listing
 
 ### Phase 2: Core Investigation
-- [ ] Determine whether pi shares opencode's models.dev provider registry or a pi-specific list
-- [ ] Test (read-only / sandboxed) whether a `cline-pass` provider block in `.pi/models.json` + `enabledModels` would resolve
-- [ ] Resolve the auth path (reuse opencode's Cline credential vs a pi login)
+- [x] Determine whether pi shares opencode's models.dev provider registry or a pi-specific list
+- [x] Test (read-only / sandboxed) whether a `cline-pass` provider block in `.pi/models.json` + `enabledModels` would resolve
+- [x] Resolve the auth path (reuse opencode's Cline credential vs a pi login)
 
 ### Phase 3: Verdict
-- [ ] Record: config-only feasible / extension-required / not feasible, with evidence
-- [ ] If feasible, name the exact mechanism for a follow-on implementation phase
+- [x] Record: config-only feasible / extension-required / not feasible, with evidence
+- [x] If feasible, name the exact mechanism for a follow-on implementation phase
 <!-- /ANCHOR:phases -->
 
 ---

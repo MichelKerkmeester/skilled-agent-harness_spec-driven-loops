@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Research mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed run lifecycle, question and branch planning, evidence and claim provenance, convergence decisions, synthesis, and memory-save handoff events. This phase defines events and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:30.422Z",
-    "last_save_at": "2026-08-17T04:04:04.545Z",
+    "last_save_at": "2026-08-18T11:07:26.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
     ],
     "source_fingerprint": "sha256:71cc180c9b5688f186d876cb87f43cac2e84ab11072d05e2cb9fed5ac68a8cf7",
     "source_doc_hashes": {
-      "spec.md": "36adb384510301f11647749425390fc54ba5fc0a35685118fa398081fee97e4a",
-      "plan.md": "120399d734d4fe6884f2a6fa4b807eb4c2427a7bb9e5e45da794b60053a23346",
-      "tasks.md": "9d4719fabfb10817bba3908f6b75f2af89edd7e74992268657fa6b6c990b3011",
-      "checklist.md": "15037c28afb365a2f016c0ea082af8e14143dc9267b6f4b242bd7d9d262897ec",
-      "decision-record.md": "78e26b975c3d1d821a2e1fedc4f018ce6bd7c8ca6783a6ccaaa202ed8bfaf4b8",
-      "implementation-summary.md": "217d2de666eaca50e0f72f6a0bedd6f3def3ccadc1db5fe7efbca77281688b46"
+      "spec.md": "f6c51444489d0865fdf97d99edb83ea0e6cb5ea3065475259599000e84de2368",
+      "plan.md": "8cba8d3c66e0bcb2e66a9bc2287c425d3dee6112d922224a3463b4f04e28dd4a",
+      "tasks.md": "dcf6e417b62866ca020e36def27024e5c7e1afeb2b5028f6d70e26d1e9850c0f",
+      "checklist.md": "e13b4da468ebdf08f6af5b20d4bb11c27a17f6b3b1f42e9b11ec037d7f5d4325",
+      "decision-record.md": "4bc8e93e907c7b6d8ab276a0031dc6d0535a1531351a526a85b0e96b6f3fad18",
+      "implementation-summary.md": "5b446c2f3c1f9795135b212f76648b7f526779d1cc89f352ac3c562b8f161ace"
     },
     "last_active_child_id": null,
     "last_active_at": null

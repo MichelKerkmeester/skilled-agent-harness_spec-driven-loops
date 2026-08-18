@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Defines the delivered mode-agnostic health harness that turns degeneration and unusable telemetry into typed signals and bounded requests without taking stop authority.",
     "created_at": "2026-07-16T03:43:53.754Z",
-    "last_save_at": "2026-08-17T04:04:09.057Z",
+    "last_save_at": "2026-08-18T11:07:34.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:78d75e671eb58f1c48b19359f13b7a1fa71ed5260102c2895c84a56e6769ac6a",
     "source_doc_hashes": {
-      "spec.md": "2fbc08af8e0d7f249c561c6516d282cfe3caf2fb37cde461d637a36a0022851f",
-      "plan.md": "06621f282bf90fc137bff483c90326359fa324acebd34de6b7f7f93c9e8b2d2b",
-      "tasks.md": "3594a4be2333c7b694e131274fdd0e085a85b62c209fd0fe2d9ee7b00c049f6a",
-      "checklist.md": "86aefdcaa749ed27e050c4814e753cac904941e255823d07e14d04bcc93adf65",
-      "implementation-summary.md": "423b1e32ecf9e3db958fe3605fd001eb21a57d8f4fae2c06f431df08ad6377b4"
+      "spec.md": "7c020874d5f91dcd1f7ab9d7f3cc73627b40c52e6f1cb6ebc8636e200c49e513",
+      "plan.md": "ef88e155948f7781692bd669d62a10e9fb9e6ff9c5b2b91dd1523f8c107ae546",
+      "tasks.md": "2f213e703af3b20ee82a2b970cda04a6a065b4db3c6b8c231678262ff4df02b6",
+      "checklist.md": "514941e88c4408e7b9f052935668b0e46362046dd019fd3ba652e69d64dcfc56",
+      "implementation-summary.md": "cba647842d8e98c52b0865e7afd6568beb8a860fff68484578121eecea6f472b"
     },
     "last_active_child_id": null,
     "last_active_at": null

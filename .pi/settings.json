@@ -12,6 +12,7 @@
   "defaultProjectTrust": "always",
   "treeFilterMode": "default",
   "enabledModels": [
+    "cline-pass/deepseek-v4-flash",
     "deepseek/deepseek-v4-flash",
     "deepseek/deepseek-v4-pro",
     "minimax/MiniMax-M3",

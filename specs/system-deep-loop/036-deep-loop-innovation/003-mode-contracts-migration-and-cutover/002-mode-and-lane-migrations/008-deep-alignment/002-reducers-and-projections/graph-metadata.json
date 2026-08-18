@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the pure deterministic reducers and live projections for the Deep Alignment migration: replay the typed event ledger into lane, authority, artifact, finding, convergence, and per-mode status state while preserving verify-first evidence and the shared review-loop contract used by Deep Review.",
     "created_at": "2026-07-16T03:43:43.138Z",
-    "last_save_at": "2026-08-17T04:03:55.912Z",
+    "last_save_at": "2026-08-18T11:07:12.353Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:53fd2e1dd81d363b58223951848b6546501bac1b7ccba4ebe00eef3791bb4777",
     "source_doc_hashes": {
-      "spec.md": "382e812bc7c5b8e1b4283db295407c52b3cf79438cf5a28879a261dead107cf8",
-      "plan.md": "535439c84c36f84ea41cb3066258857886393f215868da2c77978abdeee32bde",
-      "tasks.md": "8ca33ba8ccad8c72c5768136ab40de0d8d863f5cb9b30037f321af3490cff4db",
-      "checklist.md": "2b5c390680bf06702eda86ef6c23d09661969b52dea2c8dc069372c7ff9ca682",
-      "implementation-summary.md": "51432b12868fde7835946ffffe966db9074563df92e233a5a8964b1c79e0dbfd"
+      "spec.md": "4d895910e6ecd800da5cfec1adac34026287686f7da55ddf0e26dfc3f31d7f5e",
+      "plan.md": "e0e6ac0fd9b32c7ee021567af815089ef0b8f26b3db6ccce867a2342fcbfa728",
+      "tasks.md": "efb258d538453ce7c4fe5ee8edcc078c3128821db6985b7e513b64e1dc63afc1",
+      "checklist.md": "1943d5a4d65b69488b93b6a526824cf9158411be45ec533582ef46bb761b3fff",
+      "implementation-summary.md": "b5c297fab24179f2dce8bdb03a86553f7fba5d9ca6e897fb4d29553c5453cbb4"
     },
     "last_active_child_id": null,
     "last_active_at": null

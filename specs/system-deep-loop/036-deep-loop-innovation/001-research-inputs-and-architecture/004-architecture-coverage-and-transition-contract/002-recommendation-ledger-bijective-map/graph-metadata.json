@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Freeze the 178 deep-loop recommendations into one immutable classified ledger with stable IDs, normalized taxonomy targets, exactly one disposition per source recommendation, and machine-verifiable corpus and phase coverage.",
     "created_at": "2026-07-16T03:43:44.897Z",
-    "last_save_at": "2026-08-17T04:04:14.873Z",
+    "last_save_at": "2026-08-18T11:07:43.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +206,11 @@
     ],
     "source_fingerprint": "sha256:edf4045ee528174ddf46f3325a6e5751e9005ff03eae689305c703a5bfecccb4",
     "source_doc_hashes": {
-      "spec.md": "9a13f4ad4f597f04d3089733fc9e5625435a6d7723743d64790c958da59d2f45",
-      "plan.md": "4a267e75fdb0ada69fdfb7577986a90a90bd3387dbee9f45efb2efbc14f13e6b",
-      "tasks.md": "a03d08b32118302ca7eea2825e5e2406ca0ae411898b740f105ca237577ba8a5",
-      "checklist.md": "1bd231b9d761d2e4cfcfe62517ebafd1a9eec95616286526d7016ccfed244dbf",
-      "implementation-summary.md": "50b1c2cdfb87ad823cf7d24d7a6630d5e888d3c6f8c98b4dede89c94b8dac903"
+      "spec.md": "dbfd66eb089f8b097d0bf93baeff4456b29c3e3deeceacde8a77b643ee0e72f2",
+      "plan.md": "7029cce3692875023291e0231d2901034e7e3a9338feb8e4ce26ef89475da1a1",
+      "tasks.md": "6d6e1fae3aa0d57a00d6b496daf5722ab3e0c4cbb71c458b8e15d23ff15efc17",
+      "checklist.md": "7838842898d7e598aefd72827a0dcca95e4923d31fcf21423dd5c818f16a9981",
+      "implementation-summary.md": "5f0d7164e2c5885e1d3699985c1f1a0e3f9fe166e7b189b1445fcae13fce2a99"
     },
     "last_active_child_id": null,
     "last_active_at": null

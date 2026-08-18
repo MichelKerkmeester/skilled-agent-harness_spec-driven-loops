@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Implement a total, fail-closed classification of every frozen phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover.",
     "created_at": "2026-07-16T03:43:49.300Z",
-    "last_save_at": "2026-08-17T04:04:11.977Z",
+    "last_save_at": "2026-08-18T11:07:39.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:98fa0a2a7fd3248cc4b9adbdf7dd46e2b453aa0def04fe0e66fff1a15359f6b8",
     "source_doc_hashes": {
-      "spec.md": "38973ed887d455b100189607adc8b942813d79688c95dcd420e7df2372e91560",
-      "plan.md": "45184fffc023725f957ecaab3952eb920ec61f014673dc25784c1c459a39176e",
-      "tasks.md": "d211a9e98b59107e2620a0ed74f3965cfc2a2ea621ca51ca6add1bd271db9d54",
-      "checklist.md": "5c94145aaf4ab7f35c1396773ca2a802923d575c370753fcd89040dc4a52844a",
-      "implementation-summary.md": "349c3ca1dd0e3c5f1e935a436e6a86ea3d3fc78349d35bf075755c37fcf07e8c"
+      "spec.md": "35e8b3f3aaf63f76b1b8ce8af0ab2881733d62a1bffbb6823dc5d0d56d5a84dc",
+      "plan.md": "a3eb36eba65f74c16a3a36f373bbf0f3be52ea7183ee8376a518c6d4d38271e0",
+      "tasks.md": "95dc5accc8caecf2e97daef0418fe6aec383fa0b5293f73490fe03721582bbf4",
+      "checklist.md": "15bad49ee90fd688311308ec9f25a930ceb9596f1288d91988c7b910b6144958",
+      "implementation-summary.md": "ae5666af4fc97b555a662c6b528cffae195bf1f86ba5d099c55f436910d8fa07"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "cli-external-orchestration/048-cline-provider-roster",
+  "specFolder": "cli-external-orchestration/049-cline-provider-roster",
   "description": "The operator authenticated the Cline provider inside opencode (it registers as `cline-pass`, not `cline`), which exposes",
   "keywords": [
     "operator",
@@ -13,8 +13,8 @@
     "cline-pass",
     "exposes"
   ],
-  "lastUpdated": "2026-08-18T08:48:34.168Z",
-  "specId": "048",
+  "lastUpdated": "2026-08-18T13:43:45.081Z",
+  "specId": "049",
   "folderSlug": "cline-provider-roster",
   "parentChain": [
     "cli-external-orchestration"

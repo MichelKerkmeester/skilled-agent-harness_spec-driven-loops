@@ -42,7 +42,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -79,6 +80,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -182,17 +189,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
     "created_at": "2026-07-31T01:25:19.594Z",
-    "last_save_at": "2026-08-18T03:36:24.484Z",
+    "last_save_at": "2026-08-18T12:34:50.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,16 +202,18 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:67226eea5dd38ea1e45ee1171d5db69c3458e0ccfb8c8b8bae810e20eb807382",
+    "source_fingerprint": "sha256:fb2a244a6dbe62a603a1bc9dc5a90bd36eca8eed6fbae55fdf2743ed36b53c98",
     "source_doc_hashes": {
       "spec.md": "80eee5a939a12e8070f565650ba806ca0a1b97670c4ba66266bb9e8b10f8bcd4",
       "plan.md": "94057419be24abe2e98849e21410f2ff7f171fe6a2206447c817f6aba8ccf36d",
       "tasks.md": "2cdb3953bf02e99f5f0fc204b779940c9bc0e297d1d2e9ef0e855560c155b4f5",
       "checklist.md": "6ec4e410742452a278a402c10f74ff61f8b7da9915fe0f1615f42ee0682d5ad6",
       "decision-record.md": "5de85c7542278719126505ab9be14017e0dd7723c0d85a9d9aa7a4f193f622e1",
-      "implementation-summary.md": "cb324f895261e6cce39cd3b6c27424a70e201d1127c2ccd3393e3a32d30cc44e"
+      "implementation-summary.md": "7289dc6e877960e9c358da097761c9583e42b162eddea10565f19d8d9edd382c",
+      "handover.md": "684c0a54202ed3c1ca1f7146395e96c6ffbf7376fad5996545e81b9a65d47a25"
     },
     "last_active_child_id": null,
     "last_active_at": null

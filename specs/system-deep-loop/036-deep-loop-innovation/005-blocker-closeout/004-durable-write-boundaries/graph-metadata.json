@@ -194,7 +194,7 @@
     ],
     "causal_summary": "(Resolved — historical problem statement.) The defects below describe the pre-fix state that this packet closed; they are retained for provenance",
     "created_at": "2026-07-31T01:25:20.017Z",
-    "last_save_at": "2026-08-18T04:41:58.434Z",
+    "last_save_at": "2026-08-18T12:32:40.521Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:001434af600a9782e2bafae0600eb96a644ea7f35d03e039fabe764e5df0879e",
+    "source_fingerprint": "sha256:1a820e471d60691262253111d67e22c379a99cac906d93bd1eb87731080d865a",
     "source_doc_hashes": {
       "spec.md": "ad330f381bb969c3a5737a381747c6f8f3004e02e981398d1062132c61432eba",
       "plan.md": "d2f27eb2fd2fff95f1a8214fb428b5aa6e18115058c368d6eb25171e00c9722e",
@@ -214,7 +214,7 @@
       "checklist.md": "308e4451b11d4429f7b621327280c2ab0fe71e995fcc468ce2e5d369981680c9",
       "decision-record.md": "f85d0f08028f3993b98afb648456d12c57545b0ea121042e7daec2120c1ad1ee",
       "implementation-summary.md": "5f2704acf570f14d7b7c16e33ddcb6475fd95371a39610f17de8e685fa918869",
-      "handover.md": "09b6648ba5f7b745a2d3a20802a1d85e1b3380a93e622b4b5006e3aeb4885fd2"
+      "handover.md": "128d12cc0a91a99174dc36616c0daa63abcfa40c643e87bda0ff9dc81eca2979"
     },
     "last_active_child_id": null,
     "last_active_at": null

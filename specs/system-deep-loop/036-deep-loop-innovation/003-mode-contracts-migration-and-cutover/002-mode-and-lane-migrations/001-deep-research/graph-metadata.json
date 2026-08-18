@@ -104,7 +104,7 @@
     ],
     "causal_summary": "Migrate the autonomous Deep Research loop from initialization through iterative evidence gathering, convergence, synthesis, and memory-save handoff onto the typed event-ledger substrate through seven concern children and an independent mode gate.",
     "created_at": "2026-07-16T03:43:55.017Z",
-    "last_save_at": "2026-08-17T04:04:07.841Z",
+    "last_save_at": "2026-08-18T11:07:33.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -112,7 +112,7 @@
     ],
     "source_fingerprint": "sha256:40cde6fcfa52fb9b5a72389f9c4cdabbb6859252d57ff50bce75077fb3896474",
     "source_doc_hashes": {
-      "spec.md": "3f5265dc8bcde348945598475e5f4e4e8fee0706dac691f18d124534840f2274"
+      "spec.md": "9b49b945221cc1de48a48c837a22052fb69a27cf9af3f22c3d6cb0e64012c2d7"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
     "last_active_at": "2026-07-27T21:40:58.074Z"

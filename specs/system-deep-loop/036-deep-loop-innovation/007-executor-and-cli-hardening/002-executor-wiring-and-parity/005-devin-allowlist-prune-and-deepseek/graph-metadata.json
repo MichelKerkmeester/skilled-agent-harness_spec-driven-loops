@@ -195,7 +195,7 @@
     ],
     "causal_summary": "After the additive parity packet, three gaps remained: nine curated-out aliases (`adaptive`, `opus`, `sonnet`, `claude`, `haiku`, `gpt`, `gemini`, `codex`, `swe-1-6`) were still dispatchable via devin fan-out; the catalog-featured DeepSeek family had NO id in the devin allowlist at all (a dispatch naming `deepseek-v4-pro` was hard-rejected); and the duplicated CJS allowlist in `fanout-run.cjs` could silently drift from the TS source",
     "created_at": "2026-07-30T05:41:05Z",
-    "last_save_at": "2026-08-17T04:04:05.479Z",
+    "last_save_at": "2026-08-18T11:07:28.708Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:ea2502f8a8d40b192d11b02658fe3fe15cefd43ea32cc5608d8ecfcf296d844e",
     "source_doc_hashes": {
-      "spec.md": "055939258ba3c5714835cb51d9fe6577561e9070d1d439bd2b0a0aa69ea7be1b",
-      "plan.md": "1e4dc98956f75ff637478617c15fd3d66dca5fc7e46604a231cf5446929b9faa",
-      "tasks.md": "93f8ae22b4704d428659dfc8239ba693c6a180a46bd6ec74aa43e9f39292a555",
-      "checklist.md": "29167a5d7cee187ed11ff958cbc6323c2761da5c55adadc6d7ff1838be0281da",
-      "implementation-summary.md": "a4433ce17054b8f37863a0b89cb22d550a2391eff3ff95cd3e22c8f987a5991d"
+      "spec.md": "d08fdc396e83099daaa6e1248ff401bf2529c4f8f3a16dc721bafe69ccba05af",
+      "plan.md": "f0cea9673318b746a620efb9b59ff47dceb8f89a53745c54e76b9e4f924bf389",
+      "tasks.md": "989c1e50b3fb63197ec4121bae18f00ba597208bb5ba7e150fa7e00fd499eb78",
+      "checklist.md": "7180c45a06f4eab45b2c0f8cb89ced0b53c42ea503180beca533c502cda21402",
+      "implementation-summary.md": "ae1e5898d677e68ac7ddbcebe7d704e52e80538d9262499e26ca09d1f98efc05"
     },
     "last_active_child_id": null,
     "last_active_at": null

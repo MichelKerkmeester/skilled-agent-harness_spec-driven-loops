@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan typed per-leaf result envelopes and ledger-fold resume/salvage that preserves completed work, recovers partial evidence, and never re-runs a durably completed leaf.",
     "created_at": "2026-07-16T03:43:50.033Z",
-    "last_save_at": "2026-08-17T04:04:11.502Z",
+    "last_save_at": "2026-08-18T11:07:38.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +206,11 @@
     ],
     "source_fingerprint": "sha256:d2a5cb28c0a7052bc607925b29254574c0047ca0a5bec9d49679bf3239164ffe",
     "source_doc_hashes": {
-      "spec.md": "e99c09f4f1a99f1c43f3bea8242c006ce013f02dad1d00dde37ffbf742596ae3",
-      "plan.md": "1a767fead6ad623b7eb47e52203a488a955c3ab2940d757a3be05b7be8ec2cfd",
-      "tasks.md": "825dff9d75153b53589b37133f1c07271dc4b82d3a382a52779415602acab1fc",
-      "checklist.md": "1953fac9117879ca6f7adce0a05148b5400701ee03128529f206d9453239367a",
-      "implementation-summary.md": "6ad9da79ea2bc9591ca82efeb1678fee9df5e34fb711c7c1be04925a69b42967"
+      "spec.md": "c87589dd3a0d46c3f9b4a5477fc07abd0ed6cf8b927016f6c9910de4ed45ed3e",
+      "plan.md": "ed7fc480050eda90a09deda8437bee8f2cf491ccffaa6b412ffba5da3f049c56",
+      "tasks.md": "370b1b7a84e9a4e01626b2e6e06849b1d38257cd22167cc73fe38314c81c3604",
+      "checklist.md": "8c233895ac7fdec699e7c83c8af61090d47ac65a03682e3164f3eb55afa84e06",
+      "implementation-summary.md": "ab5bbd8c55bf16e051d9b8cc6a6518d2ee86c259f0d06628fb5cb60970c7ff9f"
     },
     "last_active_child_id": null,
     "last_active_at": null

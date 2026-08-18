@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`assertRollbackHashGuard` in `rollback-candidate.cjs` accepted either the pre-acceptance target hash OR the promoted-candidate hash as a valid current-target state before authorizing rollback",
     "created_at": "2026-08-13T06:44:37.411Z",
-    "last_save_at": "2026-08-17T04:04:16.091Z",
+    "last_save_at": "2026-08-18T11:07:45.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
     ],
     "source_fingerprint": "sha256:f395b755aee3cf7885d35d575aeae8372bcfd71678784aa4640f038bb474466b",
     "source_doc_hashes": {
-      "spec.md": "e69c991ef7355d7914341d484ce755ec60911cd97202f997e14ec891101788bf",
-      "plan.md": "563b00520c7cfcdf298c319a58812f04e2ea57d2ea4a84bfab10f242defc398f",
-      "tasks.md": "00d9f21e5e08946fca5d9809c56210d9845b528cdd6e45e86877ebed6ec54402",
-      "implementation-summary.md": "91e0378da9630b5a607201bd5ef896ba336515f6b6e95b3c3d010327258d3a92"
+      "spec.md": "881839a1f7140838bdd08d1641afa6c054d2d95965ad96a5bc54e0e58ef50f3f",
+      "plan.md": "5ed50bbb8359bfc0b4cf9f8dde81da60c42528f24f5f3b7b6ad040b7f82f15ee",
+      "tasks.md": "710225ed0d2a35fda04fd06c7c0ac3631ca2f28dd52fd3674ab4ab4bfe2825bc",
+      "implementation-summary.md": "951a4fda85da85ab77abd2907a97066136467815b1937a765e5cf23b182173d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

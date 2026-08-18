@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build",
+  "description": "Phase 2 proved cli pi can reach Cline config-only, but pi still had no `cline-pass` provider — `/login` and the model picker omitted it, so DeepSeek",
+  "keywords": [
+    "phase",
+    "proved",
+    "cli",
+    "reach",
+    "cline",
+    "config-only",
+    "still",
+    "cline-pass",
+    "provider",
+    "login",
+    "model",
+    "picker",
+    "omitted",
+    "deepseek"
+  ],
+  "lastUpdated": "2026-08-18T13:46:11.481Z",
+  "specId": "003",
+  "folderSlug": "cline-pi-config-build",
+  "parentChain": [
+    "cli-external-orchestration",
+    "049-cline-provider-roster"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

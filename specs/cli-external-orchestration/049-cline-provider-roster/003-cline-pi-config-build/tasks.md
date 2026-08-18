@@ -1,15 +1,15 @@
 ---
-title: "Tasks: Add DeepSeek V4 Flash via the Cline provider to the cli-opencode roster"
+title: "Tasks: Wire the Cline provider into cli pi by config"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "cline provider roster tasks"
-  - "cli-opencode cline-pass tasks"
+  - "cline pi config tasks"
+  - "pi cline-pass tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/048-cline-provider-roster/001-cline-deepseek-flash-cli-opencode"
-    last_updated_at: "2026-08-18T08:49:05Z"
+    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build"
+    last_updated_at: "2026-08-18T13:09:28Z"
     last_updated_by: "claude"
     recent_action: "All tasks complete"
     next_safe_action: "Close phase"
@@ -17,14 +17,14 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "session-048-001"
+      session_id: "session-049-003"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Add DeepSeek V4 Flash via the Cline provider to the cli-opencode roster
+# Tasks: Wire the Cline provider into cli pi by config
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -48,9 +48,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm `cline-pass` authenticated and model id via `opencode models cline-pass`
-- [x] T002 Confirm reasoning tiers (none→xhigh, no max) via `opencode models cline-pass --verbose`
-- [x] T003 Read packet-047 OpenRouter diff to locate exact edit points (`git show 621f8276ad`)
+- [x] T001 Confirm `.pi/models.json` + `.pi/settings.json` clean post-merge (`git status .pi/`)
+- [x] T002 Confirm pi model-id form `cline-pass/deepseek-v4-flash` and the `openai-completions` requirement (Phase 2 `implementation-summary.md`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,10 +57,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Add `### cline-pass` section + model row (`providers-and-models.md` §2)
-- [x] T005 Add effort-lever row for cline-pass Flash (`providers-and-models.md` §4)
-- [x] T006 Add keywords + Common alternates + honor-overrides (`SKILL.md`)
-- [x] T007 Add Cline login-menu entry (`cli-reference.md`)
+- [x] T003 Add `cline-pass` provider block, `api: "openai-completions"`, `apiKey: "{env:CLINE_API_KEY}"` (`.pi/models.json`)
+- [x] T004 Add `"cline-pass/deepseek-v4-flash"` to `enabledModels`, existing entries preserved (`.pi/settings.json`)
+- [x] T005 Create custom-provider doc with gotcha + key + verify + remove (`.pi/CUSTOM-PROVIDERS.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,9 +67,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Grep the model id across roster surfaces (`rg cline-pass/cline-pass/deepseek-v4-flash`)
-- [x] T009 Confirm docs match live `--verbose` tiers (no `max`)
-- [x] T010 `validate.sh --strict` exit 0
+- [x] T006 `pi --list-models` shows `cline-pass  deepseek-v4-flash  1M  393.2K  yes  no`
+- [x] T007 `pi auth check --provider cline-pass --model cline-pass/deepseek-v4-flash --json` → `{"status":"ready","authType":"api_key"}`
+- [x] T008 Both `.pi` JSON files parse; no secret committed (`apiKey: "{env:CLINE_API_KEY}"`)
+- [x] T009 `validate.sh 049-cline-provider-roster --recursive --strict` exit 0
 <!-- /ANCHOR:phase-3 -->
 
 ---

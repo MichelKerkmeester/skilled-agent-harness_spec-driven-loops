@@ -210,7 +210,7 @@
     ],
     "causal_summary": "001 produced a broad landscape and 8 ranked recommendations, but at survey depth: one-line lessons per repo, not mechanisms or reference implementations",
     "created_at": "2026-07-15T19:00:46.270Z",
-    "last_save_at": "2026-08-17T04:04:22.762Z",
+    "last_save_at": "2026-08-18T11:07:57.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,12 +224,12 @@
     ],
     "source_fingerprint": "sha256:9a950307c3425fd4575e6923fff9cc367776de7a43bba1ee42ad6c6380e6629f",
     "source_doc_hashes": {
-      "spec.md": "597d7f1e8c9adcada6b699732799eb9fe4333bf0908dbca1e0eb10c76da8eadc",
-      "plan.md": "f1fc84133f5d7da6793991ef11d2cd2a15fc34a05e734d44a81862e8e6dea76e",
-      "tasks.md": "a7d021be0367a7955e6bcc95cd5d8676271818b60ccf3d1813892f4697eafa84",
-      "checklist.md": "d8b020a9e0609b26ba3c539ef2349131ab146ba25d3d61e47c9aed21faf68ae7",
-      "decision-record.md": "7253fb2d202a29a1f6a74da5c8132d23ef75b948fdf13c3b891ec6fd23527f1e",
-      "implementation-summary.md": "aaceb0d4482587a25106f4c72a9340f39faf4a62158efa036d537b8c3d442ec5",
+      "spec.md": "8630b46a6f86f5fedbd7b4b441bf5a96e50c20b78eaf4cf0ba2b8c1ed42f056e",
+      "plan.md": "c4aeac331bf8fe50883f0aa5cfc09bd9fd0f642c63f37013dcfa4c4f0b3a4a4d",
+      "tasks.md": "d656c11296af02e883a47a1aa1a9fe35266a593d8a78f7612892f83ecaf942de",
+      "checklist.md": "456583bdb46bc82a757823049f3540f38946d204632cabf23214f46c83711cf2",
+      "decision-record.md": "19ab660d31381cb8ea6ce1256eb70a64301f0ec9d90b0cbc2ed3aeb4990ba6d5",
+      "implementation-summary.md": "d13696f16943ee90446974f098018fde29a26f3d7dcfea954728fd567b184665",
       "research/research.md": "b63142e8fe392350dd862612244f26561afc79351e5d67135473fc19c9c98e0b"
     },
     "last_active_child_id": null,

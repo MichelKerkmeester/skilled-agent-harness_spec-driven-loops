@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Implements the additive-dark Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate.",
     "created_at": "2026-07-16T03:43:35.476Z",
-    "last_save_at": "2026-08-17T04:04:01.097Z",
+    "last_save_at": "2026-08-18T11:07:20.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
     ],
     "source_fingerprint": "sha256:af9e71765bb36fde4a44ca9eabcbc2456de894132dc8987f950e5b8715abc675",
     "source_doc_hashes": {
-      "spec.md": "151ad3efb5c3ce12d8e3ad25aea470e673df620625aef34c0d204908005b8246",
-      "plan.md": "572f639adc424d547193fe1a6e7b27e18391ec6b20e3fd66682f37e5a2280c97",
-      "tasks.md": "5fdb9bafa2885f7a6a3599674b20533bce5e4af157ea27b056a102f881b71d49",
-      "checklist.md": "34102ec1d089c9a262b8ba29ddb21f950f8a129fc6a4cb6adbae08d739c527b0",
-      "decision-record.md": "7118366286ff39275e20efff13dd09bf7d56fc0ad2469afec09396773ca6ba0b",
-      "implementation-summary.md": "2f1a687466e5f7e367b7f0536804a424e48fa5b7c41a64b092ddb9877f4251db"
+      "spec.md": "a0f5fe81fac2a7caeb324ec0e35d6250e8d8ac7dd8b4d6eb83557df4fdca869d",
+      "plan.md": "48ac393cf8f620f5e23790a080adcbd64c47d6804ef91ae91175ff30bdd6060e",
+      "tasks.md": "780ff40ee5a0db78a857ae8d1eae0a0773f26837763e7e15d147c38a71ec17cf",
+      "checklist.md": "7be40646a1298fd33f1ae4be79dcf35e290004eed378a2e270138b2f771abca4",
+      "decision-record.md": "2280d54ec4a3073a4e7d139bec5b4a8483e571e0cb450d6c59c3a3445f4d7fbf",
+      "implementation-summary.md": "3257b68685e12da0e4ab0ed3d3e0309d87a3a1f37817e6c4622ddf5bba7f34a1"
     },
     "last_active_child_id": null,
     "last_active_at": null
