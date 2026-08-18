@@ -142,7 +142,7 @@ This child owns `leaf-artifact-writer.ts` structurally. Land the closed parser e
 - [x] No `[B]` blocked tasks remaining — no task in this file carries a `[B]` marker
 - [x] Every scoped finding ID resolved to a fix, a `REFUTED` rationale, or an `ALREADY-FIXED` commit citation — `t001-disposition.md` covers all 18
 - [x] Every confirmed finding carries a negative test that was red pre-fix — B1 forgery hole and B4 loop-lock via the commit's own `git stash` RED run; B2/B3 landed with passing tests, red-before inferred from the commit diffs
-- [ ] Whole gate re-run and reported as a delta against the captured baseline — [Deferred: broad aggregate suite hangs; load-bearing suites pass individually] (T022, CHK-004/CHK-110)
+- [x] Whole gate re-run and reported as a delta against the captured baseline — full serial `runtime` suite completed in 108.6 min (179 files; 23 failed | 156 passed) with every failure attributed and none traced to this build; delta in `scratch/chk-110-aggregate-delta.md` (T022, CHK-004/CHK-110)
 - [x] Independent adversarial verification pass recorded — see T023
 - [x] `checklist.md` reconciled with test-name + SHA evidence — every completed item carries a test name plus commit SHA or a named suite count; the six unverified items are recorded as accepted `[Deferred: …]` residuals
 - [x] All ADRs have a terminal status (Accepted or Superseded) — `decision-record.md` carries ADR-001 through ADR-009, all terminal (see CHK-100/CHK-101)

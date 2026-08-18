@@ -16,14 +16,14 @@ This document combines the current feature inventory for the `runtime/` skill in
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 50 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 51 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
 | [executor](executor/) | 4 features | `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `lib/deep-loop/fallback-router.ts` |
 | [prompt-rendering](../feature-catalog/prompt-rendering) | 1 features | `lib/deep-loop/prompt-pack.ts` |
 | [validation](validation/) | 3 features | `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/plugins/mk-deep-loop-guard.js` |
-| [state-safety](../feature-catalog/state-safety) | 10 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
+| [state-safety](../feature-catalog/state-safety) | 11 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
 | [scoring](scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
 | [coverage-graph](../feature-catalog/coverage-graph) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
 | [script-entry-points](../feature-catalog/script-entry-points) | 4 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
@@ -338,6 +338,22 @@ Adds opt-in host-local single-flight acquisition so concurrent acquire attempts 
 #### Source Files
 
 See [`state-safety/loop-lock-single-flight-decision.md`](../feature-catalog/state-safety/loop-lock-single-flight-decision.md) for full implementation and validation file listings.
+
+---
+
+### Torn-tail recovery marker ordering
+
+#### Description
+
+Writes the durable torn-tail recovery marker before renaming the torn frame into quarantine, and replays an interrupted move by digest match on restart.
+
+#### How It Works
+
+`quarantineTornTailUnlocked()` now writes and fsyncs the `O_EXCL` recovery marker before `renameSync` moves the torn frame into `quarantine/`, and `readRecoveryEvidenceUnlocked()` replays an interrupted move by matching the still-unmoved frame's digest against the durable marker.
+
+#### Source Files
+
+See [`state-safety/torn-tail-recovery-marker-ordering.md`](../feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md) for full implementation and validation file listings.
 
 ---
 

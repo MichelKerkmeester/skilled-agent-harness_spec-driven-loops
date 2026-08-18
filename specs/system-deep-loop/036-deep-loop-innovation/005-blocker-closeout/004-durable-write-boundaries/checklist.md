@@ -273,15 +273,15 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 31 | 27/31 |
+| P0 Items | 31 | 29/31 |
 | P1 Items | 23 | 21/23 |
 | P2 Items | 2 | 1/2 |
 
-Note: the four unverified P0 items (CHK-004, CHK-110, CHK-120, CHK-122) and the two unverified P1 items (CHK-022, CHK-111) are recorded as accepted `[Deferred: …]` residuals, not silent gaps. None is load-bearing for the core B1-B4 fencing mechanism, which is landed and adversarially clean.
+Note: the two unverified P0 items (CHK-120, CHK-122) and the two unverified P1 items (CHK-022, CHK-111) are recorded as accepted `[Deferred: …]` residuals, not silent gaps. None is load-bearing for the core B1-B4 fencing mechanism, which is landed and adversarially clean.
 
 **Verification Date**: 2026-08-18
 **Verified By**: orchestrator (doc-closeout reconciliation from landed evidence — the four B1-B4 commits, `t001-disposition.md`, and the recorded independent adversarial pass).
-**Status**: Complete — Blocker 3 discharged and adversarially clean for the confirmed GO-to-build set (B1-B4). Accepted deferrals: CHK-004/CHK-110 (broad aggregate suite hangs; load-bearing suites pass individually), CHK-022 (protected-surface manifest gateway-only annotation is a runtime edit, out of doc-closeout scope), CHK-122 (Blocker 3 discharge note belongs in the sibling `014` unblock table, external to this folder), plus CHK-120 (rollback rehearsal), CHK-111 (append-path perf), and CHK-132 (P2 cross-sibling sweep). Every completed item carries a test name plus commit SHA or a named suite count.
+**Status**: Complete — Blocker 3 discharged and adversarially clean for the confirmed GO-to-build set (B1-B4). Accepted deferrals: CHK-022 (protected-surface manifest gateway-only annotation is a runtime edit, out of doc-closeout scope), CHK-122 (Blocker 3 discharge note belongs in the sibling `014` unblock table, external to this folder), plus CHK-120 (rollback rehearsal), CHK-111 (append-path perf), and CHK-132 (P2 cross-sibling sweep). CHK-004/CHK-110 are no longer deferred: the aggregate was blocked by a `better-sqlite3` ABI mismatch, not a hang, and the whole serial suite has since completed with its delta captured in `scratch/chk-110-aggregate-delta.md`. Every completed item carries a test name plus commit SHA or a named suite count.
 <!-- /ANCHOR:summary -->
 
 ---
