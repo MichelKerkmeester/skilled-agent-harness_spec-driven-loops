@@ -44,6 +44,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      "scratch/t015-verification-evidence.md",
+      "scratch/chk-110-aggregate-delta.md",
       "handover.md"
     ],
     "entities": [
@@ -81,6 +83,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "t015-verification-evidence.md",
+        "kind": "doc",
+        "path": "scratch/t015-verification-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "chk-110-aggregate-delta.md",
+        "kind": "doc",
+        "path": "scratch/chk-110-aggregate-delta.md",
         "source": "derived"
       },
       {
@@ -178,23 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Context Report",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "(Resolved — historical problem statement.) The defects below describe the pre-fix state that this packet closed; they are retained for provenance",
     "created_at": "2026-07-31T01:25:20.017Z",
-    "last_save_at": "2026-08-18T12:32:40.521Z",
+    "last_save_at": "2026-08-18T18:14:15.979Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +208,13 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1a820e471d60691262253111d67e22c379a99cac906d93bd1eb87731080d865a",
+    "source_fingerprint": "sha256:e6c4afba1365748cd5a77b68b8ec39dfb63a236b8aa3295f3a9eb95690941655",
     "source_doc_hashes": {
       "spec.md": "ad330f381bb969c3a5737a381747c6f8f3004e02e981398d1062132c61432eba",
       "plan.md": "d2f27eb2fd2fff95f1a8214fb428b5aa6e18115058c368d6eb25171e00c9722e",
-      "tasks.md": "974b1e5020443c0802148e3594247c81e73a59be213eeb48cefde49025503f2f",
-      "checklist.md": "308e4451b11d4429f7b621327280c2ab0fe71e995fcc468ce2e5d369981680c9",
-      "decision-record.md": "f85d0f08028f3993b98afb648456d12c57545b0ea121042e7daec2120c1ad1ee",
+      "tasks.md": "c82bc1b91e338888f8d2044b2957881df232d95fde2035352ef54d89ff357501",
+      "checklist.md": "0027bb6d147153d5ffcdd533ce77badae12856a3dac79fcdec4569576cc30ad6",
+      "decision-record.md": "4a3f267522520f46a690a420402a3158ec15a662194e3a23bd5044c70482fbe6",
       "implementation-summary.md": "5f2704acf570f14d7b7c16e33ddcb6475fd95371a39610f17de8e685fa918869",
       "handover.md": "128d12cc0a91a99174dc36616c0daa63abcfa40c643e87bda0ff9dc81eca2979"
     },

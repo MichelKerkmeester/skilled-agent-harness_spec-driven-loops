@@ -324,6 +324,9 @@ export class ImmutableFrameStore {
 
   /** Read every committed frame in filename order without acquiring another lock. */
   public readFrameFilesUnlocked(): readonly StoredFrameFile[] {
+    // Reconcile any interrupted quarantine first, so the frame list never
+    // presents bytes the ledger has already recorded as byte-preserved.
+    this.readRecoveryEvidenceUnlocked();
     const fileNames = readdirSync(this.framesDirectory).sort();
     const seenSequences = new Set<number>();
     return Object.freeze(fileNames.map((fileName) => {
@@ -382,9 +385,32 @@ export class ImmutableFrameStore {
       }
       const quarantinedPath = join(this.quarantineDirectory, parsed.quarantined_file);
       assertContained(this.quarantineDirectory, quarantinedPath);
+      if (basename(quarantinedPath) !== parsed.quarantined_file) {
+        throw new AuthorizedLedgerError(
+          AuthorizedLedgerErrorCodes.FRAME_HASH_MISMATCH,
+          'integrity',
+          'Recovery marker does not match its byte-preserved quarantine file',
+          { fileName, sequence },
+        );
+      }
+      if (!existsSync(quarantinedPath)) {
+        // The marker became durable before the torn bytes moved, so the frame
+        // may still sit in frames. The digest pins exactly which bytes may move,
+        // and replay can only ever quarantine that same frame.
+        const framePath = join(this.framesDirectory, frameFileName(sequence));
+        assertContained(this.framesDirectory, framePath);
+        if (
+          existsSync(framePath)
+          && sha256Bytes(readPrivateFile(framePath)) === parsed.quarantined_digest
+        ) {
+          renameSync(framePath, quarantinedPath);
+          chmodSync(quarantinedPath, FILE_MODE);
+          fsyncDirectory(this.framesDirectory);
+          fsyncDirectory(this.quarantineDirectory);
+        }
+      }
       if (
-        basename(quarantinedPath) !== parsed.quarantined_file
-        || !existsSync(quarantinedPath)
+        !existsSync(quarantinedPath)
         || sha256Bytes(readPrivateFile(quarantinedPath)) !== parsed.quarantined_digest
       ) {
         throw new AuthorizedLedgerError(
@@ -499,11 +525,9 @@ export class ImmutableFrameStore {
       );
     }
 
-    renameSync(candidate.path, quarantinedPath);
-    chmodSync(quarantinedPath, FILE_MODE);
-    fsyncDirectory(this.framesDirectory);
-    fsyncDirectory(this.quarantineDirectory);
-
+    // The marker must be durable no later than the moment the bytes leave the
+    // frames directory, so a quarantined file can never exist without a record
+    // explaining it.
     const hashInput: Omit<TornTailRecoveryRecord, 'recovery_hash'> = {
       recovery_version: RECOVERY_VERSION,
       ledger_id: this.ledgerId,
@@ -530,6 +554,11 @@ export class ImmutableFrameStore {
       closeSync(descriptor);
     }
     fsyncDirectory(this.recoveriesDirectory);
+
+    renameSync(candidate.path, quarantinedPath);
+    chmodSync(quarantinedPath, FILE_MODE);
+    fsyncDirectory(this.framesDirectory);
+    fsyncDirectory(this.quarantineDirectory);
     return record;
   }
 

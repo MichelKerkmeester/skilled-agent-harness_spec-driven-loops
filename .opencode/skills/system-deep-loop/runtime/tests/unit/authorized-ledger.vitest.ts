@@ -8,6 +8,7 @@ import {
   mkdtempSync,
   readFileSync,
   readdirSync,
+  renameSync,
   rmSync,
   statSync,
   unlinkSync,
@@ -970,6 +971,45 @@ describe('locked ordering and immutable integrity', () => {
     const receipt = await appendAuthorizedForTest(harness.ledger, appends[2].event, appends[2].proof);
     expect(receipt.sequence).toBe(3);
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 3 });
+  });
+
+  it('completes an interrupted quarantine when the recovery marker is already durable', async () => {
+    const { harness } = await committedHarness();
+    const lastPath = framePath(harness.rootDirectory, 3);
+    const original = readFileSync(lastPath);
+    const torn = original.subarray(0, Math.floor(original.length / 2));
+    writeFileSync(lastPath, torn, { mode: FILE_MODE });
+    chmodSync(lastPath, FILE_MODE);
+
+    await expect(harness.ledger.getVerifiedHead()).rejects.toMatchObject({
+      code: AuthorizedLedgerErrorCodes.TORN_TAIL,
+    });
+    const recoveredHead = await harness.ledger.recoverTornTail();
+    expect(recoveredHead.sequence).toBe(2);
+
+    const rootDirectory = harness.rootDirectory;
+    const quarantineDirectory = join(rootDirectory, FIXTURE_LEDGER_ID, 'quarantine');
+    const tornQuarantined = readdirSync(quarantineDirectory);
+    expect(tornQuarantined).toHaveLength(1);
+    const tornBytes = readFileSync(join(quarantineDirectory, tornQuarantined[0]));
+    const recoveryMarkers = readdirSync(join(rootDirectory, FIXTURE_LEDGER_ID, 'recoveries'));
+    expect(recoveryMarkers).toHaveLength(1);
+
+    // Simulate the crash between marker-write and byte-move: send the bytes
+    // back to their original frames path and leave the durable marker behind.
+    const framePath3 = framePath(rootDirectory, 3);
+    renameSync(join(quarantineDirectory, tornQuarantined[0]), framePath3);
+    expect(readdirSync(quarantineDirectory)).toHaveLength(0);
+
+    const fresh = createHarness(rootDirectory);
+    const head = await fresh.ledger.getVerifiedHead();
+    expect(head.sequence).toBe(2);
+
+    const after = readdirSync(quarantineDirectory);
+    expect(after).toHaveLength(1);
+    expect(sha256Bytes(readFileSync(join(quarantineDirectory, after[0]))))
+      .toBe(sha256Bytes(torn));
+    expect(readdirSync(join(rootDirectory, FIXTURE_LEDGER_ID, 'recoveries'))).toHaveLength(1);
   });
 
   it('rejects a recomputed frame carrying an unknown event type or altered authorization link', async () => {

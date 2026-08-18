@@ -100,8 +100,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 - [x] CHK-003 [P0] Every confirmed finding has a negative test that is red pre-fix and green post-fix
   - **Evidence**: Explicit red-before/green-after confirmed for two of the four B1-B4 mechanisms during this reconciliation: B4's commit message (`ff3a574014`) documents a `git stash`-verified RED run of the interleaved-reader regression test against the pre-fix code, then GREEN after restoring the fix. B1's forgery-hole fix (folded into `39015ed14c`) is a permanent regression test (`rejects a capability minted outside any coordinator, holding no lease at all`) added specifically because the adversarial pass first demonstrated the bypass. B2 (`27e6c2b5a9`) and B3 (`5b6d9e86b9`) landed with new passing tests, but this reconciliation did not independently re-run an explicit red-before control for those two — treat that half as inferred from the commit diffs, not directly re-confirmed here.
-- [ ] CHK-004 [P0] Whole gate re-run at close and reported as a delta against the baseline
-  - **Evidence**: [Deferred: broad aggregate suite hangs; load-bearing suites pass individually]. `baselines/post-edit.md` records the whole-runtime aggregate as `UNKNOWN` because the broad Vitest runner hangs past the load-bearing suites (`build-spec.md` §5 known trap). What IS confirmed: the four owned load-bearing suites plus others (132 tests total in the final adversarial re-run) were green — `authorized-ledger.vitest.ts` 34/34, `locks-and-fencing.vitest.ts` 28/28, `loop-lock.vitest.ts` 16/16, `branch-leases-waves.vitest.ts` 16/16.
+- [x] CHK-004 [P0] Whole gate re-run at close and reported as a delta against the baseline
+  - **Evidence**: Captured 2026-08-18 on worktree `016-036-torn-tail-marker-ordering` (base `409e2346c0a` + T015). Full serial run COMPLETED in 6518.61s (108.6 min) — it does not hang; the blocker was a `better-sqlite3` ABI mismatch (127 vs node 141, `ERR_DLOPEN_FAILED`) cleared with `npm rebuild`. Result: `23 failed | 156 passed (179)` files, `18 failed | 3839 passed | 39 skipped (3896)` tests. The delta against `021` (`148 files / 3,992 tests / 6 fail in 3 files`) is NON-ZERO and fully attributed in `scratch/chk-110-aggregate-delta.md`: six `*-ledger-schema` suites truncated to imports-only by `2666012cfe` (7,127 test lines removed, ~96 tests), and a partially-migrated state-census path breaking ten more. **No `024`-attributable regression**: zero `appendAuthorized is not a function`, `STALE_FENCE`, or fence/proof failures across the whole run; the only failure in a `024`-owned suite is a lock-reclaim race proven pre-existing at base.
 - [x] CHK-005 [P1] Independent adversarial verification pass by a different actor than the builder
   - **Evidence**: An independent adversarial pass over the landed B1-B4 code found and this build closed one real gap — a no-op-reassert bypass on the fence-capability check — with a fix and a permanent regression test (`rejects a capability minted outside any coordinator, holding no lease at all`, folded into `39015ed14c`). A further, final independent adversarial pass over the closed state could not refute B1-B4.
 
@@ -217,8 +217,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 <!-- ANCHOR:perf-verify -->
 ## L3: Behavior and Regression Verification
 
-- [ ] CHK-110 [P0] Whole `runtime` suite re-run and reported as a delta against the `021` baseline
-  - **Evidence**: [Deferred: broad aggregate suite hangs; load-bearing suites pass individually]. Same gap as CHK-004: the whole-runtime aggregate is not captured because the broad Vitest runner hangs past the load-bearing suites. The four load-bearing suites reran green — `authorized-ledger` 34/34, `locks-and-fencing` 28/28, `loop-lock` 16/16, `branch-leases-waves` 16/16 (94/94) — matching the recorded `021` baseline counts (delta 0).
+- [x] CHK-110 [P0] Whole `runtime` suite re-run and reported as a delta against the `021` baseline
+  - **Evidence**: Captured 2026-08-18 on worktree `016-036-torn-tail-marker-ordering` (base `409e2346c0a` + T015). Full serial run COMPLETED in 6518.61s (108.6 min) — it does not hang; the blocker was a `better-sqlite3` ABI mismatch (127 vs node 141, `ERR_DLOPEN_FAILED`) cleared with `npm rebuild`. Result: `23 failed | 156 passed (179)` files, `18 failed | 3839 passed | 39 skipped (3896)` tests. The delta against `021` (`148 files / 3,992 tests / 6 fail in 3 files`) is NON-ZERO and fully attributed in `scratch/chk-110-aggregate-delta.md`: six `*-ledger-schema` suites truncated to imports-only by `2666012cfe` (7,127 test lines removed, ~96 tests), and a partially-migrated state-census path breaking ten more. **No `024`-attributable regression**: zero `appendAuthorized is not a function`, `STALE_FENCE`, or fence/proof failures across the whole run; the only failure in a `024`-owned suite is a lock-reclaim race proven pre-existing at base.
 - [ ] CHK-111 [P1] Fencing overhead on the append path measured and recorded
   - **Evidence**: [Deferred: append-path fencing overhead not separately profiled; no perf regression surfaced in the load-bearing suites, which rerun green at their baseline counts].
 - [x] CHK-112 [P1] No concurrency test introduces a deadlock under repeated runs
@@ -273,15 +273,15 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 31 | 27/31 |
+| P0 Items | 31 | 29/31 |
 | P1 Items | 23 | 21/23 |
 | P2 Items | 2 | 1/2 |
 
-Note: the four unverified P0 items (CHK-004, CHK-110, CHK-120, CHK-122) and the two unverified P1 items (CHK-022, CHK-111) are recorded as accepted `[Deferred: …]` residuals, not silent gaps. None is load-bearing for the core B1-B4 fencing mechanism, which is landed and adversarially clean.
+Note: the two unverified P0 items (CHK-120, CHK-122) and the two unverified P1 items (CHK-022, CHK-111) are recorded as accepted `[Deferred: …]` residuals, not silent gaps. None is load-bearing for the core B1-B4 fencing mechanism, which is landed and adversarially clean.
 
 **Verification Date**: 2026-08-18
 **Verified By**: orchestrator (doc-closeout reconciliation from landed evidence — the four B1-B4 commits, `t001-disposition.md`, and the recorded independent adversarial pass).
-**Status**: Complete — Blocker 3 discharged and adversarially clean for the confirmed GO-to-build set (B1-B4). Accepted deferrals: CHK-004/CHK-110 (broad aggregate suite hangs; load-bearing suites pass individually), CHK-022 (protected-surface manifest gateway-only annotation is a runtime edit, out of doc-closeout scope), CHK-122 (Blocker 3 discharge note belongs in the sibling `014` unblock table, external to this folder), plus CHK-120 (rollback rehearsal), CHK-111 (append-path perf), and CHK-132 (P2 cross-sibling sweep). Every completed item carries a test name plus commit SHA or a named suite count.
+**Status**: Complete — Blocker 3 discharged and adversarially clean for the confirmed GO-to-build set (B1-B4). Accepted deferrals: CHK-022 (protected-surface manifest gateway-only annotation is a runtime edit, out of doc-closeout scope), CHK-122 (Blocker 3 discharge note belongs in the sibling `014` unblock table, external to this folder), plus CHK-120 (rollback rehearsal), CHK-111 (append-path perf), and CHK-132 (P2 cross-sibling sweep). CHK-004/CHK-110 are no longer deferred: the aggregate was blocked by a `better-sqlite3` ABI mismatch, not a hang, and the whole serial suite has since completed with its delta captured in `scratch/chk-110-aggregate-delta.md`. Every completed item carries a test name plus commit SHA or a named suite count.
 <!-- /ANCHOR:summary -->
 
 ---
