@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build"
-    last_updated_at: "2026-08-18T13:09:28Z"
+    last_updated_at: "2026-08-18T13:43:20Z"
     last_updated_by: "claude"
     recent_action: "cline-pass wired into .pi config; pi --list-models shows it live"
     next_safe_action: "Operator supplies CLINE_API_KEY or runs pi /login cline-pass for a live round-trip"
@@ -53,9 +53,9 @@ FAILURE MODES:
 | **Created** | 2026-08-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 3 |
+| **Phase** | 3 of 4 |
 | **Predecessor** | 002-cline-support-pi-investigation |
-| **Successor** | None |
+| **Successor** | 004-cline-cli-pi-roster (documents the config-wired provider in the cli-pi roster) |
 | **Handoff Criteria** | `pi --list-models` shows `cline-pass`; `.pi` JSON valid; custom-provider doc present; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:metadata -->
 

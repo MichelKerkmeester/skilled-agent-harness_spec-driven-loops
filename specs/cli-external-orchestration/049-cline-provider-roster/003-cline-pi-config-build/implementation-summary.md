@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build"
-    last_updated_at: "2026-08-18T13:09:28Z"
+    last_updated_at: "2026-08-18T13:43:20Z"
     last_updated_by: "claude"
     recent_action: "cline-pass wired into .pi and verified live via pi --list-models"
     next_safe_action: "Operator supplies CLINE_API_KEY or runs pi login for a live chat round-trip"

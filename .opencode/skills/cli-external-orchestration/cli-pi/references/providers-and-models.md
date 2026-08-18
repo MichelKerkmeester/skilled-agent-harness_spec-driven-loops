@@ -98,6 +98,16 @@ OpenRouter passthrough (base `https://openrouter.ai/api/v1`). Select with `--pro
 |----------|-------|
 | `deepseek/deepseek-v4-flash-latest` | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--thinking max`. The ONLY OpenRouter-routed model. Distinct from the opencode-go-routed bare `deepseek-v4-flash`. Dispatched as `openrouter/deepseek/deepseek-v4-flash-latest` |
 
+### cline-pass
+
+Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible), added to Pi **by config** — a `providers.cline-pass` block in `.pi/models.json` (`api: openai-completions`, env-keyed `CLINE_API_KEY`) plus an `enabledModels` entry in `.pi/settings.json`. It is not a Pi builtin; full setup and removal live in [.pi/CUSTOM-PROVIDERS.md](../../../../../.pi/CUSTOM-PROVIDERS.md). Select with `--provider cline-pass --model cline-pass/deepseek-v4-flash`.
+
+Policy: DeepSeek V4 Flash here is a reasoning model whose Cline thinking tiers top out at `xhigh` — there is **no `max` tier** on this provider. Dispatch it **only at `--thinking xhigh`**; lower thinking levels are not supported for this entry. Pi's global `defaultThinkingLevel` is already `xhigh`, so an unqualified dispatch lands on the correct tier, but pass `--thinking xhigh` explicitly in fan-out for clarity.
+
+| Model id | Notes |
+|----------|-------|
+| `cline-pass/deepseek-v4-flash` | DeepSeek V4 Flash via the Cline provider; reasoning model dispatched **only at `--thinking xhigh`** (its top tier; no `max` here). Config-only provider, not a Pi builtin; list-verified via `pi --list-models` and `pi auth check` on 2026-08-18 (not dispatch-tested — needs a live `CLINE_API_KEY`). Distinct from the deepseek / opencode-go / openrouter Flash routes above |
+
 Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the six authenticated providers above have a confirmed installed catalog.
 
 ---

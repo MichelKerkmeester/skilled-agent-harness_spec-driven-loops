@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build",
-  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build",
+  "packet_id": "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster",
+  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster",
   "parent_id": "cli-external-orchestration/049-cline-provider-roster",
   "children_ids": [],
   "manual": {
@@ -11,31 +11,29 @@
   },
   "derived": {
     "trigger_phrases": [
-      "wire cline into pi config",
-      "add cline-pass to .pi models.json build",
-      "pi cline provider implementation",
-      "cline-pass enabledModels pi settings",
-      "cline pi config plan",
-      "pi cline-pass models.json plan",
-      "wire cline into pi plan",
-      "cline pi config tasks",
-      "pi cline-pass tasks",
-      "cline pi config done",
-      "pi cline-pass live",
-      "cline provider wired into pi"
+      "cline in cli-pi roster",
+      "cli-pi providers-and-models cline-pass",
+      "add cline to cli pi skill",
+      "cline-pass xhigh only pi roster",
+      "cline cli-pi roster plan",
+      "cli-pi cline-pass docs plan",
+      "cline cli-pi roster tasks",
+      "cli-pi cline-pass tasks",
+      "cline cli-pi roster done",
+      "cli-pi cline-pass documented"
     ],
     "key_topics": [
-      "wire",
       "cline",
-      "config",
+      "cli-pi",
+      "roster",
+      "providers-and-models",
       "cline-pass",
-      "models",
-      "json",
-      "provider",
-      "implementation",
-      "enabledmodels",
-      "settings",
+      "cli",
+      "skill",
+      "xhigh",
+      "only",
       "plan",
+      "docs",
       "tasks"
     ],
     "importance_tier": "normal",
@@ -120,13 +118,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Turn Phase",
+        "name": "Overview Add",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Config",
+        "name": "Pattern Documentation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -138,7 +136,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Operator",
+        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -162,12 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "gotcha",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -175,6 +167,12 @@
       },
       {
         "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -192,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 2 proved cli pi can reach Cline config-only, but pi still had no `cline-pass` provider — `/login` and the model picker omitted it, so DeepSeek V4 Flash via Cline was unusable from pi even though opencode dispatches it",
-    "created_at": "2026-08-18T13:02:37Z",
-    "last_save_at": "2026-08-18T13:46:26.457Z",
+    "causal_summary": "Phase 3 made `cline-pass/deepseek-v4-flash` a live pi provider, but the cli-pi skill's provider roster (`references/providers-and-models.md`) still listed only the six prior providers",
+    "created_at": "2026-08-18T13:41:52Z",
+    "last_save_at": "2026-08-18T13:46:25.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09e792f41c167aeab73a569e569f0601525a4e1feb6362e5431f1ddce9486c34",
+    "source_fingerprint": "sha256:e51d0468dd533b85d29d6a94b898dc4d9403acd818f1b1a185ba84ac1abdbeb4",
     "source_doc_hashes": {
-      "spec.md": "6e1ccf2280fd4e9cf7e70b9ee3b559919c16897aa8c841f35e6d16d32dd97f8f",
-      "plan.md": "e4bc3b6934411e783da8e0776ab24e2dbbb0da85e5fcfd4883b21f60c861cf42",
-      "tasks.md": "7358dca93a71191175d1873535162f56b807e4f3b446618021289ec9c171df76",
-      "implementation-summary.md": "f1fef12340a5b5a8b164dd97acfe71d4975ac4e8d86767b42884d5fdb33022cc"
+      "spec.md": "75ff67d2976969ddecae4a4e7b5179d47245dd853ca32554cc00d993c342031a",
+      "plan.md": "6e85d869fd85d3ff9b81f0e49e25da2e998157a2d3c8dbfa4eb0aacd436a453b",
+      "tasks.md": "bbcb06af57010dd58c81aa08c8720bc54144d7fdec5a650b480f15e07bfe0951",
+      "implementation-summary.md": "bcdeef080d0906ec9d2350b2d933a0f89e99b8bb2748083aa28f09039d53efbc"
     },
     "last_active_child_id": null,
     "last_active_at": null
