@@ -9,13 +9,13 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude-opus"
-    recent_action: "Authored the census task breakdown"
-    next_safe_action: "Execute T001-T003, then launch the loop"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed census tasks and recorded the 009-vs-004 supersession verdict"
+    next_safe_action: "Commit the reconciled packet and run 016 whole-system gate fed by the 009 path"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -68,9 +68,9 @@ _memory:
 - [x] T013 Verify: the census independently rediscovered the confirmed phase-003 path breakage [evidence: both lineages, `cc77a1e550a`]
 - [x] T014 Verify: at least one phase came back genuinely clean, proving the census discriminates [evidence: phase 004 locked by both — zero `runtime/` citations, all 3 children resolve at HEAD]
 - [x] T015 Reconcile the two lineages and surface disagreements rather than averaging them [evidence: `research/research.md` §3 adjudication]
-- [ ] T016 Verify: strict validation on this folder reports Errors 0
-- [ ] T017 Verify: the 036 parent still validates after 018 registration
-- [ ] T018 Save continuity through the canonical generator
+- [x] T016 Verify: strict validation on this folder reports Errors 0 [evidence: reconciliation `validate.sh <folder> --strict` → `Errors: 0`]
+- [x] T017 Verify: the 036 parent still validates after 018 registration [evidence: `validate.sh 036 --strict` → `Errors: 0` on every surface; only benign uncommitted `dirty_tree` residuals on dirty siblings]
+- [~] T018 Save continuity through the canonical generator [Deferred: canonical `generate-context.js` save owned by the orchestrator commit step; continuity refreshed in-doc per ADR-004]
 <!-- /ANCHOR:phase-3 -->
 
 ---

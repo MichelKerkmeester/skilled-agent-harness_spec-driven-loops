@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "opencode"
-    recent_action: "Established zero-use, retire-order, archival-reader, and rollback evidence gates"
-    next_safe_action: "Author the retirement matrix and zero-use evidence contract"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Marked phase-015 packet superseded by 009/004 fleet-authority-cutover"
+    next_safe_action: "Defer legacy retirement to 009/004 after per-mode zero-use telemetry"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -28,6 +28,8 @@ _memory:
 
 # Feature Specification: Legacy Writer Retirement
 
+> **SUPERSEDED** by `009-innovation-gap-remediation/004-fleet-authority-cutover` (operator decision 2026-08-18; recorded authoritatively in the `004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation` verdict). This phase-015 legacy-writer-retirement plan is retained for design context and will not be executed as a standalone phase; 009/004 performs legacy retirement after per-mode zero-use telemetry.
+
 > Phase adjacency under the 036 parent (navigation order, not a hard runtime dependency): predecessor `003-staged-state-migration-and-authority-cutover`; successor `001-whole-system-gate`.
 
 <!-- ANCHOR:metadata -->
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/004-legacy-writer-retirement |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Planned (Superseded by 009/004) |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Phase 015 leaf in `manifest/phase-tree.json`; the last and only legacy-writer deletion phase |

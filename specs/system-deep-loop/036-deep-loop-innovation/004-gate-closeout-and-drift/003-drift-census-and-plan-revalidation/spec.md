@@ -13,23 +13,22 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude-opus"
-    recent_action: "Ran the census, merged both lineages, applied Tier-1 repairs"
-    next_safe_action: "Decide Tier-2/Tier-3 handling"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Recorded the 009-vs-004 supersession verdict and reconciled the census to Complete"
+    next_safe_action: "Commit the reconciled packet and run 016 whole-system gate fed by the 009 path"
     blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
-    completion_pct: 0
-    open_questions:
-      - "Does the packet-033 benchmark dependency survive its renumber, or must the 003 baseline be rebased onto z_archive/027?"
-      - "Did the defaultMode routing flip change the registered-mode count that phase 013's eight workstreams assume?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Baseline = 0ce43ff589 (2026-07-16), the merge that landed the normalized packet on v4"
       - "Placement = a new additive phase child 018 under 036; additive numbering cannot re-trigger the renumber-corruption class"
       - "Method = /deep:research, 20 iterations, two independent lineages split 50/50, forced depth"
+      - "Q3 resolved: no phase is fully redundant, but the 009 cutover path supersedes abstract phases 015 and 017; 016 whole-system gate is kept"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -47,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-19 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
@@ -200,7 +199,23 @@ carrying the specific commit and `path:line` that justifies it.
 
 ## 10. OPEN QUESTIONS
 
-- Does the `packet-033` benchmark dependency survive its renumber, or must the 003 baseline rebase onto `z_archive/027-deep-loop-behavior-benchmarks`?
-- Did the defaultMode routing flip (`908efde8d8f`) or the mode-routing fix (`6cd8ab14e4e`) change the registered-mode count that phase 013's eight workstreams assume?
-- Has any shipped work since the baseline already delivered part of a planned phase, making that phase partly redundant?
+- **RESOLVED (Q-A).** The `packet-033` benchmark dependency survives its renumber under `z_archive/027-deep-loop-behavior-benchmarks` as provenance authority; active execution rebases onto `shared/behavior-benchmark/`. Phase 003's literal "Packet 033" string now resolves to an unrelated packet (`7f3216fc502`). Detail in `research/research.md` §5-B.
+- **RESOLVED (Q-B).** The routing commits (`908efde8d8f`, `6cd8ab14e4e`) did NOT change the registered-mode count. It stays at 7 routing modes at both baseline and HEAD (`mode-registry.json:1-22`); phase 013's "eight" is 7 routing modes + 1 shared backbone. Detail in `research/research.md` §5-A.
+- **RESOLVED (Q-C).** No planned phase is fully redundant, but shipped substrate shrinks the remaining work of five phases (006, 007, 010, 011, 016 — second-order). The operator additionally resolved a structural overlap the in-tree plans never stated: two phase paths both claimed legacy-writer retirement plus final acceptance. See §11 SUPERSESSION VERDICT.
+
+---
+
+## 11. SUPERSESSION VERDICT — the 009 cutover path supersedes the abstract cutover phases
+
+Q-C surfaced an overlap the in-tree plans never stated: two different phase paths each claimed to own legacy-writer retirement AND final acceptance. The operator has resolved it. The `009-innovation-gap-remediation` track (`009/003-pilot-mode-cutover` → `009/004-fleet-authority-cutover` → `009/005-closeout-and-drift-reconcile`) is the CHOSEN execution track for the live authority cutover, legacy-writer retirement, and final closeout. It supersedes the older abstract cutover phases. The whole-system gate is KEPT as the terminal blocking gate the 009 track feeds.
+
+**Reasoning.** Both paths claimed legacy-retirement plus final-acceptance authority; the overlap was unstated in-tree; `009` is the evidence-grounded re-execution track — it retires legacy writers only after per-mode zero-use telemetry, and it runs closeout against the live tree the census confirmed keeps moving (`research/research.md` §7).
+
+| Superseded abstract phase (path) | Program phase | Successor (009 track) | Disposition |
+|----------------------------------|---------------|-----------------------|-------------|
+| `036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement` | 015 | `036-deep-loop-innovation/009-innovation-gap-remediation/004-fleet-authority-cutover` | **SUPERSEDED** — legacy retirement now runs after per-mode zero-use telemetry |
+| `036-deep-loop-innovation/004-gate-closeout-and-drift/002-integrate-latest-and-closeout` | 017 | `036-deep-loop-innovation/009-innovation-gap-remediation/005-closeout-and-drift-reconcile` | **SUPERSEDED** — final closeout + drift reconcile moves to the 009 track |
+| `036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate` | 016 | — | **KEPT** — terminal whole-system blocking gate the 009 track feeds; NOT superseded |
+
+The live flips remain operator-gated, irreversible, and unbuilt: `009/003-pilot-mode-cutover` (pilot flip) and `009/004-fleet-authority-cutover` (fleet flip + legacy-writer retirement). All six packet paths were verified on disk at reconciliation time. This verdict records the operator decision only; it executes nothing and edits no superseded phase.
 <!-- /ANCHOR:questions -->

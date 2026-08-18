@@ -10,22 +10,21 @@ parent: "system-deep-loop/036-deep-loop-innovation/003-drift-census-and-plan-rev
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude-opus"
-    recent_action: "Ran the census, merged both lineages, applied Tier-1 repairs"
-    next_safe_action: "Decide Tier-2/Tier-3 handling"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Recorded the 009-vs-004 supersession verdict and reconciled the census to Complete"
+    next_safe_action: "Commit the reconciled packet and run 016 whole-system gate fed by the 009 path"
     blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
       - "checklist.md"
-    completion_pct: 85
-    open_questions:
-      - "Does the packet-033 benchmark dependency survive its renumber?"
-      - "Did the routing commits change the registered-mode count phase 013 assumes?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Baseline = 0ce43ff589 (2026-07-16)"
       - "Forced depth is expressed as stop-policy max-iterations, not a lowered threshold"
+      - "009 cutover path supersedes abstract phases 015 and 017; 016 whole-system gate kept"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
@@ -37,8 +36,8 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | In Progress |
-| **Stage** | Census done; Tier-1 + Tier-2 reference repairs applied (2026-07-19, 380 audited); Tier-3 plan amendments deferred to a scoped operator planning pass |
+| **Status** | Complete |
+| **Stage** | Census done; Tier-1 + Tier-2 reference repairs applied (2026-07-19, 380 audited); Q-C supersession verdict recorded (009 track supersedes abstract phases 015/017, 016 kept); Tier-3 plan amendments recorded as an out-of-scope deferral to a scoped operator planning pass |
 | **Level** | 2 |
 | **Started** | 2026-07-19 |
 | **Baseline** | `0ce43ff589` (2026-07-16) |
@@ -76,8 +75,18 @@ _memory:
   for 017) were written into `003/spec.md` §6. The analysis also refuted three plausible couplings — most notably
   the `executor-config.ts` path (nonexistent), clearing 036/005 and 009.
 
-**Pending:**
-- Tier-3 items below — deliberately not attempted (Tier-2 references completed 2026-07-19).
+- **Q-C supersession verdict recorded** (operator decision, this reconciliation): the
+  `009-innovation-gap-remediation` cutover track (`009/003-pilot-mode-cutover` → `009/004-fleet-authority-cutover`
+  → `009/005-closeout-and-drift-reconcile`) is the chosen execution path for the live authority cutover,
+  legacy-writer retirement, and final closeout. It supersedes abstract phase 015
+  (`003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement`, via `009/004`) and phase 017
+  (`004-gate-closeout-and-drift/002-integrate-latest-and-closeout`, via `009/005`); phase 016
+  (`004-gate-closeout-and-drift/001-whole-system-gate`) is kept as the terminal gate the 009 track feeds. Full
+  mapping and reasoning in `spec.md` §11.
+
+**Deferred (out of scope — follow-on work, not this census):**
+- Tier-3 plan amendments below — deliberately not attempted. They change what the phases *do* and belong to a
+  scoped operator planning pass, which `spec.md` §3 Out of Scope assigns to follow-on work.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -115,9 +124,10 @@ afterward.
 |-------|--------|
 | Both executors dispatch | Confirmed — both returned their expected sentinel |
 | Fan-out spec-gate injection present | Confirmed at `fanout-run.cjs:1789-1790` |
-| Folder validates strict | PASS — errors=0 warnings=0 |
-| Parent validates after registration | PASS — full-tree sweep 125/125 clean |
+| Folder validates strict | PASS — reconciliation `validate.sh --strict` Errors: 0 |
+| Parent validates after registration | PASS at census (full-tree 125/125); reconciliation re-run of `036` Errors: 0, only the benign uncommitted `dirty_tree` residual on dirty siblings |
 | Per-phase verdicts complete | PASS — 15/15, no "unknown"; both controls passed |
+| Q-C supersession verdict recorded | PASS — `spec.md` §11; 6/6 cited packet paths verified on disk |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -140,9 +150,11 @@ afterward.
   parent directory really is `006-model-benchmark`, a mode, not program phase 006. Residual by design:
   `002-deep-loop-effectiveness-and-fanout` keeps its stale refs as a frozen read-only research input.
 
-- **Tier 3 — planning work, not adjustment.** The `016` exact-SHA gate redesign, the `007`/`010`/`011` amendments
-  to start from shipped substrate, and the `012`/`013` scope extensions. These change what the phases *do*, and
-  belong in a scoped planning pass with the operator, not in a repair sweep.
+- **Tier 3 — [Deferred: out-of-scope follow-on; scoped operator planning pass].** The `016` exact-SHA gate
+  redesign, the `007`/`010`/`011` amendments to start from shipped substrate, and the `012`/`013` scope
+  extensions. These change what the phases *do*, and belong in a scoped planning pass with the operator, not in a
+  repair sweep. Out of scope for this census per `spec.md` §3; the phase-016 gate is the KEPT successor of the §11
+  supersession verdict and its redesign is tracked there, not blocked here.
 - Five phases (`006`, `007`, `010`, `011`, `016`) rest on an adjudicated reading rather than unanimous agreement;
   a corrected-depth GLM re-run would settle them on evidence.
 <!-- /ANCHOR:limitations -->

@@ -12,10 +12,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined the exact-SHA whole-system acceptance gate contract"
-    next_safe_action: "Execute the frozen-SHA gate only after 015 writer retirement lands (0/29 now)"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Retained phase-016 as the final whole-system gate under the 009 cutover path"
+    next_safe_action: "Execute the frozen-SHA gate only after the 009/004 fleet cutover lands"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -28,6 +28,8 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Feature Specification: Whole-System Gate
+
+> **RETAINED as the final whole-system gate.** Under the operator's 2026-08-18 cutover-path decision (recorded in the `004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation` verdict), the live authority cutover + legacy retirement now run via the `009-innovation-gap-remediation` path (pilot 009/003 -> fleet 009/004 -> closeout 009/005), which supersedes phases 015/017. This phase-016 gate is unchanged in purpose: it remains the final exact-SHA whole-system acceptance gate, now fed by the 009 path (its prerequisite is the 009 fleet cutover + legacy retirement, not the retired standalone phase-015).
 
 > Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `004-legacy-writer-retirement`; successor `002-integrate-latest-and-closeout`.
 
@@ -163,8 +165,8 @@ fixtures, disposable backends, phase-007 effect recovery, and phase-011 health c
 Dependencies are the phase-003 baseline manifest and replay/rollback corpus, the phase-008 `003-shadow-parity-harness`,
 the phase-007 `001-receipts-and-effect-recovery` and `003-blinded-adjudication-service` contracts, the phase-011
 `005-health-and-degeneration-harness`, the phase-012 `003-mixed-version-fixtures`, all eight mode-gate outputs from
-phase 013, phase-014 cutover certificates, phase-015 zero-use and archival-reader evidence, the parent
-`manifest/phase-tree.json`, and `execution-sequencing-strategy.md`.
+phase 013, phase-014 cutover certificates, the `009-innovation-gap-remediation` fleet cutover and legacy-retirement
+evidence (009/004), the parent `manifest/phase-tree.json`, and `execution-sequencing-strategy.md`.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

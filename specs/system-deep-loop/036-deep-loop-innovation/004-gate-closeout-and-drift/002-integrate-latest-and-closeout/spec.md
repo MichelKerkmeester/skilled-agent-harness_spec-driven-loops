@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/002-integrate-latest-and-closeout"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "opencode"
-    recent_action: "Read the parent, manifest, sequencing strategy, and phase-016 outcome"
-    next_safe_action: "Build the final-SHA integrate-and-recensus closeout contract"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Recorded packet SUPERSEDED by 009/005 closeout-and-drift-reconcile"
+    next_safe_action: "Leave phase-017 unexecuted while 009/005 performs integrate and closeout"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -28,6 +28,8 @@ _memory:
 
 # Feature Specification: Integrate Latest & Closeout
 
+> **SUPERSEDED** by `009-innovation-gap-remediation/005-closeout-and-drift-reconcile` (operator decision 2026-08-18; recorded authoritatively in the `004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation` verdict). This phase-017 integrate-and-closeout plan will not be executed as a standalone phase; 009/005 performs the integrate/re-census/epic-completion reconcile. The whole-system gate (`001-whole-system-gate`, phase 016) is retained as the final gate.
+
 > Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `001-whole-system-gate`; successor `003-drift-census-and-plan-revalidation`.
 
 <!-- ANCHOR:metadata -->
@@ -38,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-integrate-latest-and-closeout |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Planned (Superseded by 009/005) |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Phase 017 of the 036 recommendations implementation program; final integration and closeout contract |
