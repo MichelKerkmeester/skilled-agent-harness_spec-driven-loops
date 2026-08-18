@@ -15,14 +15,13 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Reconciled packet docs to the landed additive-dark state under 0d1827eef50"
-    next_safe_action: "Pass the additive-dark acceptance review and independent adversarial verification"
+    recent_action: "Recorded adversarial TOCTOU fix c897dcf294 re-binding candidate to approval at consumption"
+    next_safe_action: "Pass the additive-dark acceptance review before promotion enforcement goes live"
     blockers:
       - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
-      - "Independent adversarial verification pending (CHK-005)"
     key_files:
       - "decision-record.md"
-    completion_pct: 90
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---

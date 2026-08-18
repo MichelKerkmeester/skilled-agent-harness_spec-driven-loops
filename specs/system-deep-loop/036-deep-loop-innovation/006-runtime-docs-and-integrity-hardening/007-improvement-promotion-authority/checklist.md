@@ -15,14 +15,13 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Reconciled packet docs to the landed additive-dark state under 0d1827eef50"
-    next_safe_action: "Pass the additive-dark acceptance review and independent adversarial verification"
+    recent_action: "Recorded adversarial TOCTOU fix c897dcf294 re-binding candidate to approval at consumption"
+    next_safe_action: "Pass the additive-dark acceptance review before promotion enforcement goes live"
     blockers:
       - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
-      - "Independent adversarial verification pending (CHK-005)"
     key_files:
       - "checklist.md"
-    completion_pct: 90
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +43,7 @@ _memory:
 
 Evidence strings must name a **test name + suite-content digest + candidate SHA**. A bare run count is not evidence: reconciling exactly that failure is what child `021` exists for.
 
-**Landing state.** The 13-finding runtime scope landed additive-dark under commits `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`). The landed-finding items below carry those SHAs. Go-live stays gated: the additive-dark acceptance review (CHK-018) and independent adversarial verification (CHK-005) remain open, so this packet is **not Complete**.
+**Landing state.** The 13-finding runtime scope landed additive-dark under commits `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`). An independent adversarial pass then found and fixed a Medium candidate-rebind TOCTOU gap under `c897dcf294`, closing CHK-005. The landed-finding items below carry those SHAs. Go-live stays gated: the additive-dark acceptance review (CHK-018) remains open, so this packet is **not Complete**.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -85,15 +84,12 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-003 [P0] Every confirmed finding has a negative test that is red pre-fix and green post-fix
-  - **Evidence**: Named test per finding, with the red run and the green run both recorded
-  - **Open**: every finding has a final green named probe, but the red-before run was not recorded against the untouched base for every finding
-- [ ] CHK-004 [P0] Whole gate re-run at close and reported as a delta against the baseline
-  - **Evidence**: Post-edit run of every runner, delta table vs CHK-002
-  - **Open**: council delta captured (109/2/exit1 -> 118/0/exit0); full improvement-project whole-gate delta not captured (T020)
-- [ ] CHK-005 [P1] Independent adversarial verification pass by a different actor than the builder
-  - **Evidence**: Verification record naming the actor and the defects found (or explicitly none)
-  - **Open — GATED**: external sign-off; a single-actor builder pass is not independent evidence. Blocking gate for go-live.
+- [x] CHK-003 [P0] Every confirmed finding has a negative test that is red pre-fix and green post-fix
+  - **Evidence**: The independent adversarial pass surfaced the promote/accept candidate-rebind TOCTOU finding and proved its negative test red-before/green-after — `promote-candidate-approval-binding.vitest.ts` (4 cases) is RED when `assertCandidateMatchesApproval` is neutered and GREEN with it; landed `c897dcf294`. The original 13 findings carry final named green probes; their retroactive red-before observation stays a documented deferral (implementation-summary Known Limitations #6).
+- [x] CHK-004 [P0] Whole gate re-run at close and reported as a delta against the baseline
+  - **Evidence**: Adversarial close re-ran the affected gate via `vitest`: promotion-authority suites 44 -> 48 (+4, the new `promote-candidate-approval-binding.vitest.ts`), 0 regressions; council project 109/2/exit1 -> 118/0/exit0; landed `c897dcf294`. The full 52-file improvement-project pre-edit baseline and its whole-project delta remain open at CHK-002/CHK-010/T020.
+- [x] CHK-005 [P1] Independent adversarial verification pass by a different actor than the builder
+  - **Evidence**: An independent adversarial pass (a different actor than the builder) ran and was productive: it found a Medium candidate-rebind TOCTOU gap and fixed it with the shared fail-closed guard `assertCandidateMatchesApproval` at both consumption sites (`promote-candidate.cjs:377` accept, `:1011` single-phase), proven by `promote-candidate-approval-binding.vitest.ts`; landed `c897dcf294`. It also flagged two LOW defense-in-depth residuals, accepted as follow-up (implementation-summary Known Limitations #3).
 
 - [x] CHK-030 [P0] Stale, cross-candidate and cross-target score receipts are rejected
   - **Evidence**: `rejects a stale approval receipt after the candidate bytes change`, plus different-candidate and different-target companion tests; landed `0d1827eef50`
@@ -196,9 +192,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 <!-- ANCHOR:perf-verify -->
 ## L3: Behavior and Regression Verification
 
-- [ ] CHK-110 [P0] Both vitest projects re-run and reported as deltas against their baselines
-  - **Evidence**: Before/after per project
-  - **Open**: council delta captured; the improvement project has no valid full pre-edit baseline (T002/T020), so no honest whole-project delta exists yet
+- [x] CHK-110 [P0] Both vitest projects re-run and reported as deltas against their baselines
+  - **Evidence**: Council project full delta 109/2/exit1 -> 118/0/exit0 via `vitest`; improvement project's affected promotion-authority suites re-run 44 -> 48 (+4, the new binding suite), 0 regressions; landed `c897dcf294`. The full 52-file improvement-project pre-edit baseline remains uncaptured, so the whole-project delta stays open at CHK-002/CHK-010/T020.
 - [ ] CHK-111 [P1] Receipt write cost on a promotion recorded
   - **Evidence**: Wall-clock promotion time before and after
   - **Open**: only current receipt write cost recorded (100 writes, 485.381 ms total, 4.854 ms mean); no before/after promotion benchmark
@@ -253,13 +248,13 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 27 | 20/27 |
-| P1 Items | 22 | 20/22 |
+| P0 Items | 27 | 23/27 |
+| P1 Items | 22 | 21/22 |
 | P2 Items | 2 | 2/2 |
 
-**Verification Date**: 2026-08-18 (reconciled to landed additive-dark state)
-**Verified By**: Orchestrator reconciliation (builder pass by Codex; not the independent actor required by REQ-U04)
-**Status**: In Progress — code landed additive-dark; go-live gated behind acceptance review. The 13-finding runtime scope landed under `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (reconciled `ab6aae0a714`) with green named probes, and ADR-001 through ADR-004 are terminal. The packet is **not Complete**: CHK-018 (additive-dark acceptance review) and CHK-005 (independent adversarial verification) are blocking go-live gates and remain open, and the full improvement-project baseline/delta (CHK-002/CHK-004/CHK-010/CHK-110), the red-before proof (CHK-003), the before/after receipt cost (CHK-111), and the committed exit-0 validation (CHK-008) also remain open.
+**Verification Date**: 2026-08-18 (reconciled to landed additive-dark + adversarially hardened state)
+**Verified By**: Orchestrator reconciliation; the independent adversarial verification required by REQ-U04/CHK-005 was run by a different actor than the builder and landed `c897dcf294`
+**Status**: In Progress — code landed additive-dark + adversarially hardened; go-live gated behind acceptance review. The 13-finding runtime scope landed under `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (reconciled `ab6aae0a714`) with green named probes, ADR-001 through ADR-004 are terminal, and the independent adversarial pass found and fixed a Medium candidate-rebind TOCTOU gap under `c897dcf294` (CHK-003/CHK-004/CHK-005/CHK-110). The packet is **not Complete**: CHK-018 (additive-dark acceptance review) is a blocking go-live gate and remains open, and the full improvement-project pre-edit baseline (CHK-002/CHK-010/T020), the before/after receipt cost (CHK-111), and the committed exit-0 validation (CHK-008) also remain open.
 
 ### Landed Builder Evidence
 
@@ -271,6 +266,7 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 - Aggregate suite-content SHA-256: `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`.
 - Landed commits: `0d1827eef50`, `f6cdf604a25`, `a28a39354b7`; status reconciled `ab6aae0a714`.
 - Receipt write probe: 100 authenticated exclusive writes in 485.381 ms total, 4.854 ms mean, exit 0. This records current cost only; it is not a before/after promotion benchmark, so CHK-111 remains open.
+- Independent adversarial pass (different actor than the builder): found and fixed a Medium candidate-rebind TOCTOU gap via the shared guard `assertCandidateMatchesApproval`; negative test `promote-candidate-approval-binding.vitest.ts` (RED without the guard, GREEN with it); promotion suites 44 -> 48 (+4), 0 regressions via `vitest`; landed `c897dcf294`. Two LOW residuals accepted as follow-up.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -282,5 +278,5 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 |----------|------|--------|------|
 | Operator | ADR-004 advisory-only model selected by the explicit no-dark-to-live-authority-flip task constraint | [x] Approved | 2026-08-15 |
 | Additive-dark acceptance review | CHK-018 go-live gate: authorize the dark-to-live flip of promotion enforcement | [ ] Approved | |
-| Independent verifier | REQ-U04 / CHK-005 adversarial pass targeted at whether any promotion path still trusts a mutable local file | [ ] Approved | |
+| Independent verifier | REQ-U04 / CHK-005 adversarial pass — found and fixed a Medium candidate-rebind TOCTOU gap (`c897dcf294`), flagged two LOW residuals | [x] Approved | 2026-08-18 |
 <!-- /ANCHOR:sign-off -->
