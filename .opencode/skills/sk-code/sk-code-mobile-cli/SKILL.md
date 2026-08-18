@@ -55,11 +55,15 @@ primary and mutates nothing. It supplies evidence; the acting workflow applies i
 Checklists (`assets/`): `assets/token-retint-checklist.md`, `assets/guardrail-audit-checklist.md`,
 `assets/ds-verification-checklist.md` — see §4.
 
-App documentation (`references/app-guide/`): the full Pi Remote app documentation set — operations,
+App documentation (`references/app-guide/`): the Pi Remote app documentation set — operations,
 setup, security, rollback, release-verification, incident playbooks, platform support, code standards,
-install/onboarding, the `feature-catalog/` (auth-and-boundary, approval-and-mutation, command-and-push,
-transport-and-state, pwa, release), `quality/` baselines, and `design-reference/` (UI teardown, map,
-research, and screens). This surface is the single source for Pi Remote app documentation.
+install/onboarding, `quality/` baselines, and `design-reference/` (UI teardown, map, research, and
+screens). The **feature catalog** (every shipped capability) and the **manual testing playbook** (a
+deterministic scenario per feature) are now maintained as the single source of truth at the **app
+repository root** (`feature-catalog/` and `manual-testing-playbook/`); this surface keeps only pointers
+to them ([`references/app-guide/feature-catalog.md`](references/app-guide/feature-catalog.md),
+[`references/app-guide/manual-testing-playbook.md`](references/app-guide/manual-testing-playbook.md)) so
+they cannot drift.
 
 The live evidence lives in the app repo, not in this packet — this surface points at it:
 `apps/pi-remote-web/src/design-system/tokens.md` (token catalogue),
