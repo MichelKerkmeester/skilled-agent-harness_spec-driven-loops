@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default",
-  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default",
+  "packet_id": "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
+  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
   "parent_id": "cli-external-orchestration/049-cline-provider-roster",
   "children_ids": [],
   "manual": {
@@ -11,28 +11,28 @@
   },
   "derived": {
     "trigger_phrases": [
-      "add cline deepseek v4 pro",
-      "cline-pass deepseek-v4-pro roster",
-      "pi default provider cline",
-      "cline pi default model flash",
-      "cline pro pi plan",
-      "cline-pass deepseek-v4-pro plan",
-      "cline pro pi tasks",
-      "cline-pass deepseek-v4-pro tasks",
-      "cline pro added done",
-      "pi default cline live"
+      "pi cline invalid model format 400",
+      "cline-pass model id slashed fix",
+      "cline pi deepseek-v4-flash 400",
+      "pi models.json cline id prefix",
+      "cline model id format plan",
+      "pi cline 400 fix plan",
+      "cline model id format tasks",
+      "pi cline 400 fix tasks",
+      "cline pi 400 fixed slashed id",
+      "pi cline dispatch works done"
     ],
     "key_topics": [
       "cline",
-      "deepseek",
-      "pro",
-      "cline-pass",
-      "deepseek-v4-pro",
-      "roster",
-      "default",
-      "provider",
+      "invalid",
       "model",
-      "flash",
+      "format",
+      "cline-pass",
+      "slashed",
+      "deepseek-v4-flash",
+      "models",
+      "json",
+      "prefix",
       "plan",
       "tasks"
     ],
@@ -118,25 +118,25 @@
         "source": "derived"
       },
       {
-        "name": "Overview Add",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Cline Pro",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Additive",
+        "name": "Pattern Single",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -167,12 +173,6 @@
       },
       {
         "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The cline-pass provider carried only DeepSeek V4 Flash, but Cline also fronts DeepSeek V4 Pro (`cline-pass/cline-pass/deepseek-v4-pro`, list-verified)",
-    "created_at": "2026-08-18T14:19:31.420Z",
-    "last_save_at": "2026-08-18T17:52:06.619Z",
+    "causal_summary": "Phases 3 and 5 declared the cline-pass models in `.pi/models.json` with bare ids (`deepseek-v4-flash`, `deepseek-v4-pro`)",
+    "created_at": "2026-08-18T17:42:19.098Z",
+    "last_save_at": "2026-08-18T17:52:06.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4789222512ea7b20f2f6d03fd43fece425c7b6715af1f7d3f123d6fe37f54bd1",
+    "source_fingerprint": "sha256:1ce325d81a38898800dd5d071e0716ec0954b39c4a8da49ca54ef140cad817bf",
     "source_doc_hashes": {
-      "spec.md": "e9145107eef4745fb87674cf408fa077d619837870a94424194f0ecfc876be2e",
-      "plan.md": "4640dc691dafd0059fb64d5e14c66d8b32e6574fe9fd97734c55e682e2fb3e93",
-      "tasks.md": "aa63d1b1c4d05a786b3f96ea3ad15e6d31493723e1f9fc347aecb17a7fa0adca",
-      "implementation-summary.md": "69f1ba73579125221a3b7d0c1cb37c670d37046636cb75d1a0c5d61764851c14"
+      "spec.md": "d5c0f2869ef2518440c02efce2f37d4a9d9b677c2030535607c6352144311ae4",
+      "plan.md": "4e204e73234d07720fd91e35db5016c53f049226e098a0a90cf16aceb8047740",
+      "tasks.md": "6431162adc009fd09471f841f910e8442f074600bc3a179568239f7afddfea12",
+      "implementation-summary.md": "ba5a499dc2af82edc3697bfff833c12327ae511b4f8746e70d2e9cb9b618e9bf"
     },
     "last_active_child_id": null,
     "last_active_at": null
