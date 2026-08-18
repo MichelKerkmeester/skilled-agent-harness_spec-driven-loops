@@ -12,10 +12,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parit
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/002-cli-pi-fanout-wiring"
-    last_updated_at: "2026-08-17T04:33:13Z"
-    last_updated_by: "claude"
-    recent_action: "Implemented and verified the cli-pi fan-out lineage builder"
-    next_safe_action: "Land the cli-pi wiring then harden devin and cursor exec"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled cli-pi fanout packet docs to Complete"
+    next_safe_action: "Commit the reconciled cli-pi packet docs"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
@@ -90,11 +90,11 @@ executor for every model in its allowlist.
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- **R1** — The builder constructs `pi -p --offline --model <provider>/<id> [--thinking <effort>] [--tools read,grep,find,ls] <prompt>` for every allowlisted model, with the correct provider prefix.
-- **R2** — `--offline` is always present; the prompt is the final positional argument; exit code is never treated as a success or auth signal (documented for callers).
-- **R3** — `reasoningEffort` is forwarded as `--thinking` and validated against pi's level set; an invalid level fails closed.
-- **R4** — A read-only leaf restricts the tool allowlist to reads; a write leaf is unrestricted.
-- **R5** — `reasoningEffort` is a supported cli-pi config field; sandboxMode and serviceTier remain unsupported.
+- **R1** (REQ-FUNC-001) — The builder constructs `pi -p --offline --model <provider>/<id> [--thinking <effort>] [--tools read,grep,find,ls] <prompt>` for every allowlisted model, with the correct provider prefix.
+- **R2** (REQ-FUNC-002) — `--offline` is always present; the prompt is the final positional argument; exit code is never treated as a success or auth signal (documented for callers).
+- **R3** (REQ-FUNC-003) — `reasoningEffort` is forwarded as `--thinking` and validated against pi's level set; an invalid level fails closed.
+- **R4** (REQ-FUNC-004) — A read-only leaf restricts the tool allowlist to reads; a write leaf is unrestricted.
+- **R5** (REQ-FUNC-005) — `reasoningEffort` is a supported cli-pi config field; sandboxMode and serviceTier remain unsupported.
 <!-- /ANCHOR:requirements -->
 
 ---

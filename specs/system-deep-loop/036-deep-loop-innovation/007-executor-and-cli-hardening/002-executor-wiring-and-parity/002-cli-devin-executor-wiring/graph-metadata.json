@@ -20,9 +20,9 @@
       "devin executor implementation",
       "devin adapter plan",
       "041 plan",
-      "tasks",
-      "name",
-      "template"
+      "cli-devin executor tasks",
+      "devin executor task list",
+      "tasks core"
     ],
     "key_topics": [
       "cli-devin",
@@ -85,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,6 +104,12 @@
       },
       {
         "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -157,12 +157,6 @@
         "source": "derived"
       },
       {
-        "name": "Initialized Level",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -171,6 +165,12 @@
       {
         "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "binary",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`EXECUTORKINDS` in `runtime/lib/deep-loop/executor-config.ts` shipped five kinds — `native`, `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor` — with no `cli-devin`",
     "created_at": "2026-07-27T16:55:59Z",
-    "last_save_at": "2026-08-17T04:04:05.945Z",
+    "last_save_at": "2026-08-18T04:21:25.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c487236196f2347c7181be34b07b40149e2d97d380b7f81c4b48c4f3faf21cc",
+    "source_fingerprint": "sha256:24303b401ab1511eaf75d7b9ce6d948ea1f3c0d9cc9b0bce590555c5aca2f27c",
     "source_doc_hashes": {
-      "spec.md": "6ecc06e92f514474c8156c7772dc6448c8b47c5aaf211748f62fad717fd05dd5",
-      "plan.md": "1e368955a9537afcab68fda210f8aee6b9de4d1fa17523b7defbc829cd41205b",
-      "tasks.md": "a27b990026b081ea74d1b019739cd61a20694f9991528150812016368fb8fa21",
-      "checklist.md": "1301cffbe71c9d3e9735ac456f75e4a80bb75c94768e050474cf266f8c405e9a",
-      "implementation-summary.md": "2629145f7485a6371bb16736e4e73e04611baad2998967ce0798249ceb1733a2"
+      "spec.md": "dc16916878c45752fda75541a7d4117bba3f495e5bcc0a614cace6cf9357ce44",
+      "plan.md": "55abde007af5e2ccdc3d9e555431923c46d91c862b3fea976d60f35275e92f24",
+      "tasks.md": "70db9814fbfe632b1045546ef09986d3d7bbbe8c5984da17a66bb995d58275c3",
+      "checklist.md": "64f752cee00d279bd98fb77af575df69b5e3f0fb86f3f70542a1f38e296310aa",
+      "implementation-summary.md": "e0f8762f524c8fbc56d7b852c2f28bb432552fb293a61e9fd5b48b66c927ffdb"
     },
     "last_active_child_id": null,
     "last_active_at": null

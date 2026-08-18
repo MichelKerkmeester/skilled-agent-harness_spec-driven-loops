@@ -15,9 +15,14 @@
       "model-benchmark cursor devin pi dispatch",
       "reuse buildLineageCommand in benchmark modes",
       "skill-benchmark ai-council executor parity",
-      "per-mode executor parity progress",
-      "model-benchmark shared builder delegation",
-      "buildLineageCommand reuse benchmark council"
+      "per-mode executor parity plan",
+      "model-benchmark cursor devin pi plan",
+      "buildLineageCommand delegation plan",
+      "per-mode executor parity tasks",
+      "model-benchmark cursor devin pi tasks",
+      "buildLineageCommand delegation tasks",
+      "per-mode executor parity checklist",
+      "model-benchmark cursor devin pi checklist"
     ],
     "key_topics": [
       "per-mode",
@@ -34,7 +39,7 @@
       "skill-benchmark"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -86,12 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement An",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,7 +109,19 @@
         "source": "derived"
       },
       {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Audit",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -129,12 +140,6 @@
       },
       {
         "name": "it",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "all",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -164,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Per",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -180,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An audit of every deep mode's executor coverage found that the fan-out modes (deep-research, deep-review, deep-alignment) already dispatch all seven executor kinds through the shared `fanout-run.cjs` builders, but three modes run their OWN dispatch scripts and cover only a subset:",
     "created_at": "2026-07-29T14:09:11.129Z",
-    "last_save_at": "2026-08-17T04:33:18.021Z",
+    "last_save_at": "2026-08-18T04:21:57.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:804400c88f4a2e9d532577b5410629e7d6c00af9687ce1052648ba7b6afcf480",
+    "source_fingerprint": "sha256:5dded1fb57aa8d5a193dca25bae4b01fdaf19cd125e320493a18d327065bbfd5",
     "source_doc_hashes": {
-      "spec.md": "6c075311a2e9aa9f4bcc11e03b7575b17832dd99803f060f018e5ee070c047a3",
-      "plan.md": "246e2b70a90773eb22a8edab513194246187b851bd79a5e36b51b17e564a4d5b",
-      "tasks.md": "4741f9f171c3c5d37da91fdf0af717602adaa7e60e1f4b1a34d8e328b3a92db7",
-      "checklist.md": "046fd93cc89977bce28cba64bdddf584dc473ae8d6d43af6853603949d07ed4e",
-      "implementation-summary.md": "0268e8620ddb2f133aa00a2489bc5c843664f81a79b7f9e933b3e5ac8da933df"
+      "spec.md": "d00327fd6f8f77eba32517c51acd21d5ec07d8ca245ac22b1ba24de295d8497d",
+      "plan.md": "10b3db3ab01d288e73830aee38369cd9baf08c643a15d0cf648136eb8b05a944",
+      "tasks.md": "0fb4221ec40f955b4803bb89cd9f42368ac2e0ff8ff1773e13fb2822a0fe4453",
+      "checklist.md": "296f7850a78164c94a2be8921a7c14fe3e319776021c30e1537db95e96b2771c",
+      "implementation-summary.md": "545bf4741dd2c7c9b2370111a37427d22d2e59505977fd6d63eda92ad59400c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

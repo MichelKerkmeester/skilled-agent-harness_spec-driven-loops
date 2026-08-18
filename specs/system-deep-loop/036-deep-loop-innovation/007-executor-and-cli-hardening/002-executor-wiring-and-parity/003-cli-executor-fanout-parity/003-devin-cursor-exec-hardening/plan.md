@@ -1,3 +1,23 @@
+---
+title: "Implementation Plan: devin + cursor Fan-out Exec Hardening"
+description: "Plan to re-map the devin and cursor fan-out lineage builders from live CLI behavior so read-only leaves are genuinely read-only, workspace-write leaves never stall and stay write-confined, and every non-interactive leaf clears its trust gate; verified by unit tests over exact arg-vectors plus live probes, landed in commit b1d36b1741."
+trigger_phrases:
+  - "devin cursor exec hardening plan"
+  - "fanout builder re-map plan"
+importance_tier: "high"
+contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled implementation plan to Complete"
+    next_safe_action: "Proceed to per-mode executor parity phase 004"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
@@ -29,10 +49,18 @@ Each executor kind maps a generic sandbox mode to CLI flags inside `fanout-run.c
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Live-probe both CLIs across the three sandbox modes to establish the real permission/trust/sandbox contract.
-2. Re-map `buildDevinLineageCommand` (read-only drops `--sandbox`) and rewrite its permission-mapping comment.
-3. Re-map `buildCursorLineageCommand` (read-only → `--mode plan --trust`; workspace-write adds `--trust`), rewrite its comment, and update `CursorApprovalMode`/`resolveCursorApprovalMode`.
-4. Update all devin/cursor adapter unit tests to lock the exact new arg-vectors and not-contains guards.
+
+### Phase 1: Live-probe both CLIs
+Live-probe both CLIs across the three sandbox modes to establish the real permission/trust/sandbox contract.
+
+### Phase 2: Re-map the devin builder
+Re-map `buildDevinLineageCommand` (read-only drops `--sandbox`) and rewrite its permission-mapping comment.
+
+### Phase 3: Re-map the cursor builder and resolver
+Re-map `buildCursorLineageCommand` (read-only → `--mode plan --trust`; workspace-write adds `--trust`), rewrite its comment, and update `CursorApprovalMode`/`resolveCursorApprovalMode`.
+
+### Phase 4: Lock the unit tests
+Update all devin/cursor adapter unit tests to lock the exact new arg-vectors and not-contains guards.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

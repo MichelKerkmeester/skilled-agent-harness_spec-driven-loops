@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Combo Test Matrix + Ambient-Config Isolation"
-description: "All three executor-parity leaves are built: read-only pi disables ambient extensions, the combo matrix covers 117 combinations, and cursor uses a fail-closed neutral workspace. Strict closeout and operator sign-off remain."
+description: "All three executor-parity leaves are built: read-only pi disables ambient extensions, the combo matrix covers 117 combinations, and cursor uses a fail-closed neutral workspace. Strict validation passes; external operator review is the only deferred gate."
 trigger_phrases:
   - "combo matrix ambient isolation progress"
   - "pi no-extensions read-only builder"
@@ -11,17 +11,17 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parit
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Fixed the two SOL P1s on the cursor isolation leaf"
-    next_safe_action: "Pass strict validation and obtain operator sign-off."
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled docs to Complete and passed strict validation"
+    next_safe_action: "Await external operator review of the combo-matrix leaves"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts"
       - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/orchestrate-session-cli.vitest.ts"
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "read-only pi is text-analysis-only, so --no-extensions/--no-skills/--no-prompt-templates is behavior-preserving"
@@ -39,9 +39,9 @@ _memory:
 | Field | Value |
 |---|---|
 | **Spec Folder** | 005-combo-test-matrix |
-| **Delivery status** | All three leaves built; strict closeout and operator sign-off remain |
+| **Delivery status** | All three leaves built and strict validation passing; external operator review deferred |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Posture** | Layered read-only containment: tool allowlist + disable write-capable ambient lifecycle |
 <!-- /ANCHOR:metadata -->
 
@@ -105,7 +105,7 @@ The change is confined to the read-only branch of `buildPiLineageCommand`; works
 | Leaf 3 all four suites | PASS — fan-out 93, combo-matrix 2, model-benchmark 35, ai-council 106; tsc 0 |
 | Leaf 3 end-to-end isolation probe | PASS — with the exact builder args in a repo carrying a sessionStart hook: the hook did NOT fire, the repo read succeeded via `--add-dir`, the neutral workspace stayed empty of `.cursor/` |
 | Leaf 3 SOL cross-verify (cli-opencode GPT-5.6-SOL, high) | REQUESTED_CHANGES, 0 P0 / 2 P1 — both fixed + tested (see below); re-gate fan-out 94, combo 2, model-benchmark 35, ai-council 106, tsc 0 |
-| `validate.sh --strict` | Errors 0 (tolerated warnings, sibling-phase baseline) |
+| `validate.sh --strict` | PASS — `Errors: 0`, `Warnings: 0` |
 
 ### SOL review disposition (leaf 3)
 
@@ -130,7 +130,7 @@ Leaf 1 is a small, exact-arg-test-guarded shared-builder change, verified inline
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-Live provider/model dispatch remains credentials-gated, so the 117-cell matrix proves command construction and records explicit live skips rather than claiming every provider was contacted. Strict packet validation and operator sign-off remain open closeout gates.
+Live provider/model dispatch remains credentials-gated, so the 117-cell matrix proves command construction and records explicit live skips rather than claiming every provider was contacted. Strict packet validation passes; external operator review is the sole deferred (non-blocking) closeout gate.
 <!-- /ANCHOR:limitations -->
 
 <!-- ANCHOR:deviations -->

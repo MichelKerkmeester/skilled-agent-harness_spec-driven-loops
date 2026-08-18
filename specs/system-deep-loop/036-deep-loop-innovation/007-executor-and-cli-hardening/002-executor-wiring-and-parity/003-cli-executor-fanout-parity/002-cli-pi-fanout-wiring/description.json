@@ -15,6 +15,7 @@
     "headless"
   ],
   "lastUpdated": "2026-08-14T04:24:16.133Z",
+  "level": "2",
   "specId": "002",
   "folderSlug": "cli-pi-fanout-wiring",
   "parentChain": [
