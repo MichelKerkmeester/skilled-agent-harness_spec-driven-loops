@@ -28,6 +28,15 @@ The MCP server stays in `vision-runtime/` rather than under `hooks/` because it 
 
 ---
 
-## 3. FRESH-CHECKOUT NOTE
+## 3. GUARANTEED VISION FOR TEXT-ONLY MODELS
+
+A text-only model cannot see an attached image, so sk-vision makes the read a guarantee for those models — but only the two in-process hosts can enforce it.
+
+- **OpenCode & Pi (in-process, enforced).** The auto-inspect hook classifies the active model with the shared `../vision-runtime/src/model-modality.ts` allowlist, plus any model whose host-declared input modality omits `image` (Pi exposes that via `ctx.model.input`; a model that declares no image input is authoritatively blind). For a text-only model it **awaits the full analysis** before the model reads the message; every other model keeps the non-blocking grace so submission never stalls on the GPU. Extend the list without a rebuild via `SK_VISION_TEXT_ONLY_MODELS` (comma-separated substrings), or force it for every model with `SK_VISION_FORCE=1`.
+- **Cursor & Devin (MCP, best-effort).** MCP cannot see the active model or force a tool call, so there is no hard guarantee here — only a rule telling the model to inspect images itself. The skill owns the rule text: `cursor/vision-rule.md` is wired as an always-on Cursor rule through the `.cursor/rules/sk-vision.md` symlink, and `devin/vision-rule.md` is a drop-in for Devin Knowledge, because Devin has no repo-owned always-on rule slot the skill can symlink into.
+
+---
+
+## 4. FRESH-CHECKOUT NOTE
 
 `vision-runtime/dist/mcp-server.js` and `opencode/sk-vision.js` are gitignored build artifacts. Run `bun run build` in `vision-runtime/` before the OpenCode plugin or the Cursor/Devin MCP server can launch.

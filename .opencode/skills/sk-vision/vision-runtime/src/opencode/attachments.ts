@@ -6,8 +6,9 @@ import type { Part, FilePart, UserMessage } from "@opencode-ai/sdk";
 import type { PhotonProvider } from "../providers/photon.js";
 import type { ImageSource } from "../providers/types.js";
 import contextBuilder from "../core/context-builder.js";
+import { isTextOnlyModel, type ActiveModel } from "../model-modality.js";
 
-interface ChatMessageInput {
+export interface ChatMessageInput {
   sessionID: string;
   agent?: string;
   model?: unknown;
@@ -17,7 +18,7 @@ interface ChatMessageInput {
   variant?: string;
 }
 
-interface ChatMessageOutput {
+export interface ChatMessageOutput {
   message: UserMessage;
   parts: Part[];
 }
@@ -41,18 +42,22 @@ export class AttachmentInjector {
   private readonly cache = new Map<string, InjectedEvidence>();
   private readonly inflight = new Map<string, Promise<InjectedEvidence | undefined>>();
   private readonly maxCache = 32;
+  private readonly graceMs: number;
 
-  constructor(provider: () => PhotonProvider) {
+  constructor(provider: () => PhotonProvider, graceMs = 2_000) {
     this.provider = provider;
+    this.graceMs = graceMs;
   }
 
   async handle(input: ChatMessageInput, output: ChatMessageOutput): Promise<void> {
     const images = (output.parts ?? []).filter(isImageFilePart);
     if (images.length === 0) return;
 
-    // Never block message submission on the GPU. Use cached evidence if the
-    // paste-time preload already finished; otherwise kick it off and inject
-    // whatever is available now (path hint + any partial evidence).
+    // A text-only model cannot see the image at all, so best-effort is not enough: for a
+    // listed model we AWAIT the full analysis so the evidence is guaranteed present before
+    // the model reads the message. Every other model keeps the cheap bounded grace so a
+    // multimodal (or unknown) model never blocks submission on the GPU.
+    const guaranteed = isTextOnlyModel(input.model as ActiveModel | undefined);
     const blocks: string[] = [];
     const notes: string[] = [];
     const warnings: string[] = [];
@@ -60,13 +65,16 @@ export class AttachmentInjector {
       const key = this.keyFor(img);
       let record = this.cache.get(key) ?? undefined;
       if (!record) {
-        // The paste-time preload (`event` hook) usually has analysis in flight
-        // by the time the user submits. Give it a short bounded grace period so
-        // fast submitters still get real evidence; never await the full GPU run.
-        record = await Promise.race([
-          this.readiness(img),
-          new Promise<undefined>((resolve) => setTimeout(() => resolve(undefined), 2_000)),
-        ]);
+        // The paste-time preload (`event` hook) usually has analysis in flight by the time
+        // the user submits. For a text-only model, wait for it to finish — the first cold
+        // load can be slow, but a blind model has no other source of truth; otherwise give
+        // it a short bounded grace so a fast submitter still gets real evidence.
+        record = guaranteed
+          ? await this.readiness(img)
+          : await Promise.race([
+              this.readiness(img),
+              new Promise<undefined>((resolve) => setTimeout(() => resolve(undefined), this.graceMs)),
+            ]);
         if (record) {
           this.cache.set(key, record);
           if (this.cache.size >= this.maxCache) {

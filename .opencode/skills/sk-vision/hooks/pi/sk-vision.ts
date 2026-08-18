@@ -17,6 +17,7 @@ import { RuntimeClient, SkVisionError } from "../../.opencode/skills/sk-vision/v
 import { PhotonProvider } from "../../.opencode/skills/sk-vision/vision-runtime/src/providers/photon.ts";
 import contextBuilder from "../../.opencode/skills/sk-vision/vision-runtime/src/core/context-builder.ts";
 import type { BBox, ImageSource, VisionHealth } from "../../.opencode/skills/sk-vision/vision-runtime/src/providers/types.ts";
+import { isTextOnlyModel, type ActiveModel } from "../../.opencode/skills/sk-vision/vision-runtime/src/model-modality.ts";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. SHARED HELPERS
@@ -498,6 +499,7 @@ export default function skVision(pi: ExtensionAPI): void {
   async function inspectAttachedImages(
     images: Array<{ data: string; mimeType: string }>,
     ctx: ExtensionContext,
+    guaranteed: boolean,
   ): Promise<string | undefined> {
     const blocks: string[] = [];
     for (const img of images) {
@@ -524,10 +526,16 @@ export default function skVision(pi: ExtensionAPI): void {
             return undefined;
           }
         })();
-        const ready = await Promise.race([
-          pending,
-          new Promise<undefined>((resolve) => setTimeout(() => resolve(undefined), 2_000)),
-        ]);
+        // A text-only model is blind to the image, so best-effort is not enough: await the
+        // full analysis so the <SK-VISION> evidence is guaranteed present before the model
+        // reads the message. Every other model keeps the 2-second grace so submission never
+        // blocks on the GPU.
+        const ready = guaranteed
+          ? await pending
+          : await Promise.race([
+              pending,
+              new Promise<undefined>((resolve) => setTimeout(() => resolve(undefined), 2_000)),
+            ]);
         if (ready !== undefined) {
           inputEvidenceCache.set(key, ready);
           if (inputEvidenceCache.size > maxInputEvidenceEntries) {
@@ -568,7 +576,14 @@ export default function skVision(pi: ExtensionAPI): void {
       if (event.streamingBehavior === "steer") return { action: "continue" as const };
       const images = event.images ?? [];
       if (images.length === 0) return { action: "continue" as const };
-      const evidence = await inspectAttachedImages(images, ctx);
+      // The active model decides the wait policy: a text-only model (by declared input
+      // modality or the operator allowlist) gets a guaranteed, fully-awaited analysis; any
+      // other model keeps the non-blocking grace.
+      const active: ActiveModel | undefined = ctx.model
+        ? { providerID: ctx.model.provider, modelID: ctx.model.id, input: ctx.model.input }
+        : undefined;
+      const guaranteed = isTextOnlyModel(active);
+      const evidence = await inspectAttachedImages(images, ctx, guaranteed);
       if (!evidence) return { action: "continue" as const };
       return {
         action: "transform" as const,
