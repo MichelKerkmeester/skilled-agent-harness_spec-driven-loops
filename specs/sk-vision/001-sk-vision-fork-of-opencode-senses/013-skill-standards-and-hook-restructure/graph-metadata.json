@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/013-skill-standards-and-hook-restructure",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/013-skill-standards-and-hook-restructure",
+  "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision skill standards",
+      "sk-vision hooks restructure",
+      "sk-vision opencode plugin hooks",
+      "sk-vision restructure plan",
+      "sk-vision hooks plan",
+      "sk-vision restructure tasks",
+      "sk-vision restructure checklist",
+      "sk-vision restructure summary"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "skill",
+      "standards",
+      "hooks",
+      "restructure",
+      "opencode",
+      "plugin",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "shipped"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Deliver",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Skill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Skill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped sk-vision skill did not meet `sk-create-skill` standards and its adapters were inconsistently placed",
+    "created_at": "2026-08-17T10:31:57.840Z",
+    "last_save_at": "2026-08-17T10:36:36.040Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d4f7d573fdb6e2ea73116699481352f0245ba8914c449644eb126b3034c88941",
+    "source_doc_hashes": {
+      "spec.md": "db4e402093bc91da0e3581544fb51dece737e54debc504695e17f6ce23fed84c",
+      "plan.md": "19fb733708078566ac937c7ebcfc3d71e32e1a852d5423db48694ec6edfd4cd9",
+      "tasks.md": "039333b80236b56da9d2034cf6a8886f0f1616bd325e4a0e58b972c8f95e1f3b",
+      "checklist.md": "8048570b1f2d57a71c7ca746c64b1dc30fda5a4df062f08da4d6d58061799cf4",
+      "implementation-summary.md": "c1036d7264266d66131acc9f02840804f9aa2bef4b33405ee65165b8c9ae5f20"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

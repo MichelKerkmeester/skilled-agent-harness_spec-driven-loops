@@ -1,0 +1,17 @@
+{
+  "executionContext": {
+    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17",
+    "evidenceClass": "native-host-delivered",
+    "requireDurableEvidence": true,
+    "command": "AI_SESSION_CHILD=1 devin -p --model glm-5-2 --permission-mode dangerous -- '<call mcp__sk-vision__sk_vision_status>'",
+    "runtime": "devin",
+    "runtimeVersion": "(7e8e528a)",
+    "executor": "cli-devin",
+    "executorObserved": true,
+    "model": "glm-5-2",
+    "modelObserved": true,
+    "payloadNotApplicableReason": "sk_vision_status takes no arguments; no image payload applies",
+    "supersedes": [".opencode/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status"]
+  },
+  "evidence": ["vsn-019-devin-status-dangerous.log"]
+}

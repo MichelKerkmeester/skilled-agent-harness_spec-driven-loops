@@ -1,5 +1,0 @@
-Feature: Change the effort / reasoning level from within the app
-
-Goal: A flawless in-app effort switcher.
-
-Desired: Hardened: legible labels + what each level means, switch-mid-turn behavior, disabled/unavailable handling, a11y, and how it reads next to the model control.

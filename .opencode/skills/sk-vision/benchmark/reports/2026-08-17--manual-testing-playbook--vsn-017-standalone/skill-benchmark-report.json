@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-vision",
+    "rootRel": ".opencode/skills/sk-vision"
+  },
+  "executor": null,
+  "model": null,
+  "variant": "vsn-017-standalone",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "VSN-017",
+      "verdict": "PASS",
+      "reason": "Built dist mcp-server initialized as sk-vision v0.2.0; tools/list returned exactly 13 sk_vision_* tools; sk_vision_status returned provider: photon (vsn-017-standalone.json).",
+      "stage": "host-adapters",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "vsn-017-standalone",
+      "evidence": [
+        "vsn-017-standalone.json"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "vsn-017-standalone.json",
+          "status": "verified",
+          "bytes": 1501,
+          "sha256": "8a67982bc81e38ab23b8fb288969d6d7dc25a16f1b0f4bddbf887621dd629460"
+        }
+      ]
+    }
+  ],
+  "supersedes": [],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-17T16:25:34.707Z",
+    "evidenceClass": "registered-path",
+    "evidenceArtifacts": [
+      {
+        "path": "vsn-017-standalone.json",
+        "status": "verified",
+        "bytes": 1501,
+        "sha256": "8a67982bc81e38ab23b8fb288969d6d7dc25a16f1b0f4bddbf887621dd629460"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "VSN-017",
+    "stage": "host-adapters",
+    "dispatch": "manual",
+    "evidenceClass": "registered-path",
+    "requestedExecutorLabel": "none",
+    "requestedModelLabel": "none",
+    "variant": "vsn-017-standalone",
+    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17",
+    "requireDurableEvidence": true,
+    "command": "node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17/mcp-probe.cjs",
+    "runtime": "node",
+    "nodeVersion": "v25.6.1",
+    "payloadNotApplicableReason": "sk_vision_status and tools/list take no image payload; standalone JSON-RPC protocol probe against the built dist server",
+    "executorNotApplicableReason": "standalone MCP protocol probe; no external CLI executor is involved in VSN-017",
+    "modelNotApplicableReason": "server advertises tools and status without loading a vision model (status returns model: not loaded)"
+  }
+}

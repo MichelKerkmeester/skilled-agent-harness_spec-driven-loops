@@ -1,0 +1,81 @@
+{
+  "subject": "pi-fast-mode-w-subagent-support",
+  "variant": "fast-mode-usage",
+  "date": "2026-08-17",
+  "total": 10,
+  "pass": 10,
+  "fail": 0,
+  "skip": 0,
+  "results": [
+    {
+      "id": "FAST-001",
+      "name": "LUNA priority-tier activation",
+      "verdict": "PASS",
+      "reason": "before_provider_request injected service_tier=priority for openai-codex/gpt-5.6-luna",
+      "evidence": "payload={\"model\":\"gpt-5.6-luna\",\"messages\":[],\"service_tier\":\"priority\"}"
+    },
+    {
+      "id": "FAST-002",
+      "name": "TERRA priority-tier activation",
+      "verdict": "PASS",
+      "reason": "before_provider_request injected service_tier=priority for openai-codex/gpt-5.6-terra",
+      "evidence": "payload={\"model\":\"gpt-5.6-terra\",\"messages\":[],\"service_tier\":\"priority\"}"
+    },
+    {
+      "id": "FAST-003",
+      "name": "SOL priority-tier activation",
+      "verdict": "PASS",
+      "reason": "before_provider_request injected service_tier=priority for openai-codex/gpt-5.6-sol",
+      "evidence": "payload={\"model\":\"gpt-5.6-sol\",\"messages\":[],\"service_tier\":\"priority\"}"
+    },
+    {
+      "id": "FAST-004",
+      "name": "Off-target model stays inactive",
+      "verdict": "PASS",
+      "reason": "no injection on deepseek and a warning notification was shown",
+      "evidence": "mutated=undefined; notify=\"Fast Mode has no effect on the current model. It applies only to the configured OpenAI GPT models.\" (warning)"
+    },
+    {
+      "id": "FAST-005",
+      "name": "Toggle cycles state",
+      "verdict": "PASS",
+      "reason": "bare /fast alternated enabled then disabled",
+      "evidence": "notify1=\"Fast Mode enabled\"; notify2=\"Fast Mode disabled\""
+    },
+    {
+      "id": "FAST-006",
+      "name": "Explicit on then off",
+      "verdict": "PASS",
+      "reason": "explicit on/off reported correctly",
+      "evidence": "on=\"Fast Mode enabled\"; off=\"Fast Mode disabled\""
+    },
+    {
+      "id": "FAST-007",
+      "name": "Invalid argument shows usage",
+      "verdict": "PASS",
+      "reason": "usage error shown and state unchanged",
+      "evidence": "notify=\"Usage: /fast [on|off|toggle]\" (error); enabled=false"
+    },
+    {
+      "id": "FAST-008",
+      "name": "Fast startup flag",
+      "verdict": "PASS",
+      "reason": "--fast persisted enabled at session start",
+      "evidence": "enabled=true"
+    },
+    {
+      "id": "FAST-009",
+      "name": "State persists across restart",
+      "verdict": "PASS",
+      "reason": "second session read persisted enabled state",
+      "evidence": "enabled after reload=true"
+    },
+    {
+      "id": "FAST-010",
+      "name": "Child inherits the preference",
+      "verdict": "PASS",
+      "reason": "child enabled via PI_FAST_MODE_W_SUBAGENT_SUPPORT=1 over persisted-off",
+      "evidence": "persisted-before=false; env=1; enabled-after=true"
+    }
+  ]
+}

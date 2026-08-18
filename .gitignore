@@ -21,10 +21,10 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 .env
 .env.*
-!.env.example
 .env.*.local
 .env.local
 .env.pre-pat-removal.bak
+!.env.example
 .local/
 .spec-kit
 *.local
@@ -38,22 +38,24 @@
 *.pem
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# Dependencies
+# ═══════════════════════════════════════════════════════════════════════════════
+node_modules/
+**/node_modules
+**/seed/package-lock.json
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # Build output & compiled artifacts
 # ═══════════════════════════════════════════════════════════════════════════════
 build/
 dist/
-
-# The patched image parser is installed with lifecycle scripts disabled, so its
-# prebuilt runtime output must remain versioned with the vendored package.
-!specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist/
-!specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist/**
 .opencode/output/
 
-# Command-contract render manifest (runtime render evidence, not source)
-.opencode/commands/deep/assets/compiled/manifest.jsonl
-
-# Generated lane-weight-sweep diagnostic reports (test artifacts)
-sweep-reports/
+# ───────────────────────────────────────────
+# Exceptions: vendored prebuilt artifacts
+# ───────────────────────────────────────────
+!specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist/
+!specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist/**
 
 # ───────────────────────────────────────────
 # TypeScript compiler output: system-skill-advisor
@@ -82,17 +84,6 @@ sweep-reports/
 .opencode/skills/system-spec-kit/scripts/tests/*.vitest.js.map
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Dependencies
-# ═══════════════════════════════════════════════════════════════════════════════
-node_modules/
-**/node_modules
-
-# Benchmark/eval fixture-seed lockfiles are install artifacts (their package.json +
-# node_modules are ignored too); keep them untracked so dependabot does not scan
-# stale fixture deps. Real MCP-server lockfiles elsewhere stay tracked + scanned.
-**/seed/package-lock.json
-
-# ═══════════════════════════════════════════════════════════════════════════════
 # Database files
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -107,23 +98,39 @@ node_modules/
 # ───────────────────────────────────────────
 # Runtime state folders (plugin / tooling state)
 # ───────────────────────────────────────────
-# Publish each folder and its README to external users, but ignore the
-# machine-specific runtime data inside. The contents-glob (…/**) ignores the data
-# WITHOUT excluding the directory, so the README negations below are honored. A
-# bare directory-exclude (trailing slash) would block descent and hide the README.
-# The **/ prefix also covers nested runtime-mirror copies of these folders.
 **/.advisor-state/**
-**/.smart-router-telemetry/**
 **/.completion-sentinel-state/**
 **/.goal-state/**
 **/.loop-guard-state/**
+**/.smart-router-telemetry/**
 **/.spec-gate-state/**
 !.opencode/skills/.advisor-state/README.md
-!.opencode/skills/.smart-router-telemetry/README.md
 !.opencode/skills/.completion-sentinel-state/README.md
 !.opencode/skills/.goal-state/README.md
 !.opencode/skills/.loop-guard-state/README.md
+!.opencode/skills/.smart-router-telemetry/README.md
 !.opencode/skills/.spec-gate-state/README.md
+
+# ───────────────────────────────────────────
+# Database: system-deep-loop/runtime
+# ───────────────────────────────────────────
+.opencode/skills/system-deep-loop/runtime/database/*.sqlite
+.opencode/skills/system-deep-loop/runtime/database/*.sqlite-shm
+.opencode/skills/system-deep-loop/runtime/database/*.sqlite-wal
+.opencode/skills/system-deep-loop/runtime/database/*.sqlite.bak*
+
+# ───────────────────────────────────────────
+# Database: system-skill-advisor
+# ───────────────────────────────────────────
+.opencode/skills/system-skill-advisor/mcp-server/database/*.db
+.opencode/skills/system-skill-advisor/mcp-server/database/*.db-*
+.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite
+.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite-*
+.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite.bak*
+.opencode/skills/system-skill-advisor/mcp-server/database/.mk-skill-advisor-launcher.json
+.opencode/skills/system-skill-advisor/mcp-server/database/.mk-skill-advisor-launcher.lockdir/
+.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.json
+.opencode/skills/system-skill-advisor/mcp_server/
 
 # ───────────────────────────────────────────
 # Database: system-spec-kit
@@ -137,12 +144,12 @@ node_modules/
 .opencode/skills/system-spec-kit/mcp-server/database/.db-updated
 .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.flock
 .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.last-run.json
-.opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.json
-.opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.lockdir/
-.opencode/skills/system-spec-kit/mcp-server/database/.unclean-shutdown
 .opencode/skills/system-spec-kit/mcp-server/database/.maintenance-active.json
 .opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json
 .opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json.processing-*
+.opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.json
+.opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.lockdir/
+.opencode/skills/system-spec-kit/mcp-server/database/.unclean-shutdown
 .opencode/skills/system-spec-kit/mcp-server/dist/database/
 .opencode/skills/system-spec-kit/shared/mcp-server/database/*.sqlite
 .opencode/skills/system-spec-kit/shared/mcp-server/database/*.sqlite-shm
@@ -150,65 +157,66 @@ node_modules/
 .opencode/skills/system-spec-kit/shared/mcp-server/database/.db-updated
 
 # ───────────────────────────────────────────
-# Database: system-skill-advisor
+# Daemon ownership/lease files
 # ───────────────────────────────────────────
-.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite
-# The pre-kebab spelling is retired. It survived only as two committed sqlite
-# files, so every checkout recreated the directory long after the rename.
-.opencode/skills/system-skill-advisor/mcp_server/
-.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite-*
-.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite.bak*
-.opencode/skills/system-skill-advisor/mcp-server/database/*.db
-.opencode/skills/system-skill-advisor/mcp-server/database/*.db-*
-.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.json
-.opencode/skills/system-skill-advisor/mcp-server/database/.mk-skill-advisor-launcher.json
-.opencode/skills/system-skill-advisor/mcp-server/database/.mk-skill-advisor-launcher.lockdir/
-
-# ───────────────────────────────────────────
-# ───────────────────────────────────────────
-# Local activation symlink for the Barter Copywriter skill. The real source lives in the
-# Barter repo at Copywriter/barter-copywriter/; this is a machine-local discovery pointer.
-.opencode/skills/barter-copywriter
-
-specs/anobel.com
-.claude/specs/anobel.com
-.codex/specs/anobel.com
-.agents/specs/anobel.com
-
-# Apply-pipeline runtime artifacts (audit journals, known-good/bad-apply snapshots,
-# quarantine/recovery triplets) — generated per apply run, database-local only.
-
-# ───────────────────────────────────────────
-# Database: system-deep-loop/runtime
-# ───────────────────────────────────────────
-.opencode/skills/system-deep-loop/runtime/database/*.sqlite
-.opencode/skills/system-deep-loop/runtime/database/*.sqlite-shm
-.opencode/skills/system-deep-loop/runtime/database/*.sqlite-wal
-.opencode/skills/system-deep-loop/runtime/database/*.sqlite.bak*
+.opencode/skills/*/mcp-server/database/.*-owner.json
+**/database/.crash-probe-receipt
+**/database/.spec-memory-owner.json
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Runtime artifacts & data files
 # ═══════════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────
+# Command-contract render manifest
+# ───────────────────────────────────────────
+.opencode/commands/deep/assets/compiled/manifest.jsonl
+
+# ───────────────────────────────────────────
+# Generated diagnostic reports
+# ───────────────────────────────────────────
+sweep-reports/
+
+# ───────────────────────────────────────────
 # Runtime: system-skill-advisor
 # ───────────────────────────────────────────
+.opencode/skills/system-skill-advisor/mcp-server/config/route-exclusions.local.json
 .opencode/skills/system-skill-advisor/mcp-server/data/shadow-deltas.jsonl
 .opencode/skills/system-skill-advisor/mcp-server/data/shadow-deltas.jsonl.*
-# Machine-local routing-exclusion override; fully replaces the committed
-# config/route-exclusions.json denylist. Copy route-exclusions.local.json.example
-# to route-exclusions.local.json to customize privately. Never commit the override.
-.opencode/skills/system-skill-advisor/mcp-server/config/route-exclusions.local.json
 
 # ───────────────────────────────────────────
 # Runtime: system-spec-kit
 # ───────────────────────────────────────────
 .opencode/skills/system-spec-kit/mcp-server/.opencode/
-.opencode/skills/system-spec-kit/mcp-server/skill_advisor/scripts/out/*.json
-.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl
-.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl.*
 .opencode/skills/system-spec-kit/mcp-server/.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl
 .opencode/skills/system-spec-kit/mcp-server/.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl.*
+.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl
+.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl.*
+.opencode/skills/system-spec-kit/mcp-server/skill_advisor/scripts/out/*.json
+
+# ───────────────────────────────────────────
+# Runtime state leaked into nested trees
+# ───────────────────────────────────────────
+/*/**/.opencode/logs/
+/*/**/.opencode/skills/.advisor-state/
+/*/**/.opencode/skills/.spec-gate-state/
+
+# ───────────────────────────────────────────
+# Routing test sandboxes
+# ───────────────────────────────────────────
+.opencode/bin/lib/compiled-routing/*/activation/manifest-race-*/
+.opencode/bin/lib/compiled-routing/*/activation/manifest-test-*/
+.opencode/bin/tests/.sandboxes/
+
+# ───────────────────────────────────────────
+# Native-module markers
+# ───────────────────────────────────────────
+**/.node-version-marker
+
+# ───────────────────────────────────────────
+# Per-run temp workspaces
+# ───────────────────────────────────────────
+**/tests/.tmp-*/
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Logs
@@ -229,6 +237,7 @@ __pycache__/
 # ═══════════════════════════════════════════════════════════════════════════════
 # Temporary files & caches
 # ═══════════════════════════════════════════════════════════════════════════════
+_sandbox
 backup/
 external/
 tmp/
@@ -236,17 +245,12 @@ tmp/
 .worktrees/
 **/node-compile-cache/
 **/vitest-tmp/
-_sandbox
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Archive & testing fixtures
 # ═══════════════════════════════════════════════════════════════════════════════
 .opencode/agents/.provider-backups/
 .opencode/skills/system-spec-kit/manual-testing-playbook/_sandbox/*/fixtures/states/*.tar.gz
-
-# ───────────────────────────────────────────
-# Eval-rig runtime materialization
-# ───────────────────────────────────────────
 /fixtures/
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -259,6 +263,7 @@ _sandbox
 /a_nobel_en_zn
 /ai_systems
 /barter
+/BARTER.md
 .pi-subagents
 
 # ───────────────────────────────────────────
@@ -267,12 +272,22 @@ _sandbox
 .claude/scheduled_tasks.lock
 .claude/settings.local.json
 .pi/*.tmp
-.pi/modes.json
 .pi/deep-pi-stats.json*
+.pi/pi-fast-mode-w-subagent-support-config.json
+.pi/modes.json
 
 # ───────────────────────────────────────────
 # Project-specific specs (all providers)
 # ───────────────────────────────────────────
+.agents/specs/ai-systems
+.agents/specs/anobel.com
+.agents/specs/barter
+.claude/specs/ai-systems
+.claude/specs/anobel.com
+.claude/specs/barter
+.codex/specs/ai-systems
+.codex/specs/anobel.com
+.codex/specs/barter
 .opencode/barter
 specs/ai-systems
 specs/anobel.com
@@ -280,55 +295,7 @@ specs/apps
 specs/barter
 specs/z-future
 
-.claude/specs/ai-systems
-.claude/specs/anobel.com
-.claude/specs/barter
-
-.codex/specs/ai-systems
-.codex/specs/anobel.com
-.codex/specs/barter
-
-.agents/specs/ai-systems
-.agents/specs/anobel.com
-.agents/specs/barter
-
 # ───────────────────────────────────────────
-# Project-specific documentation
+# Hook configuration
 # ───────────────────────────────────────────
-AGENTS_Barter.md
-# Daemon ownership/lease files (ephemeral runtime state, never tracked)
-.opencode/skills/*/mcp-server/database/.*-owner.json
-
-# Daemon crash-probe receipts (ephemeral per-machine runtime state)
-**/database/.crash-probe-receipt
-**/database/.spec-memory-owner.json
-
-# Native-module node/ABI version markers (regenerated per machine, never tracked)
-**/.node-version-marker
-
-# Routing test sandboxes: kept in-repo because the promoted harness resolves the
-# skill tree by walking up to the repo root, but never committed.
-.opencode/bin/tests/.sandboxes/
-
-# Runtime state leaked into a nested .opencode tree. A writer that resolves its
-# state root from the working directory instead of the repo root plants these
-# wherever it happened to run. The leading segment keeps the legitimate root
-# .opencode/ tracked, and targeting the state dirs rather than .opencode itself
-# leaves deliberate fixture command-trees alone.
-/*/**/.opencode/skills/.advisor-state/
-/*/**/.opencode/skills/.spec-gate-state/
-/*/**/.opencode/logs/
-
-# Per-run temp workspaces created by the advisor's resident-service tests. The
-# suite names them with a pid and timestamp, so a committed one is always stale.
-**/tests/.tmp-*/
-
-# Local Barter framework export/scratch at the repo root; not part of this repo.
-/BARTER.md
-
-# Compiled-routing live-activation test scratch (per-PID manifest dirs, never tracked)
-.opencode/bin/lib/compiled-routing/*/activation/manifest-race-*/
-.opencode/bin/lib/compiled-routing/*/activation/manifest-test-*/
-
-# Operator's local hook kill-switch config (personal; hook-flags.env.example is committed)
 .opencode/hooks/hook-flags.env

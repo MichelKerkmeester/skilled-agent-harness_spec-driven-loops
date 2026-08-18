@@ -1,0 +1,350 @@
+// One-off deterministic runner for the manual-testing-playbook scenarios.
+// It drives the real extension (factory + lifecycle handlers) with in-process
+// fakes and records PASS/FAIL per scenario. The load-bearing proof is the exact
+// payload the real before_provider_request hands back: service_tier "priority"
+// on configured GPT targets, nothing on off-target models.
+
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterAll, expect, it, vi } from "vitest";
+import { createPiFastModeExtension } from "../src/index";
+import { getUserConfigPath } from "../src/config";
+import { HANDOFF_ENV, PACKAGE_NAME } from "../src/types";
+
+const RUN_DIR = join(
+  "benchmark",
+  "reports",
+  "2026-08-17--manual-testing-playbook--fast-mode-usage",
+);
+
+type Verdict = "PASS" | "FAIL" | "SKIP";
+type Result = {
+  id: string;
+  name: string;
+  verdict: Verdict;
+  reason: string;
+  evidence: string;
+};
+const results: Result[] = [];
+const record = (r: Result) => results.push(r);
+
+function fakePi(fastFlag = false) {
+  const handlers = new Map<string, Function[]>();
+  const commands = new Map<string, { handler: Function }>();
+  const pi = {
+    registerFlag: vi.fn(),
+    registerCommand: vi.fn((n: string, o: { handler: Function }) =>
+      commands.set(n, o),
+    ),
+    getFlag: vi.fn((n: string) => (n === "fast" ? fastFlag : undefined)),
+    on: vi.fn((e: string, h: Function) =>
+      handlers.set(e, [...(handlers.get(e) ?? []), h]),
+    ),
+  };
+  return { pi, handlers, commands };
+}
+
+function makeCtx(cwd: string, model?: { provider: string; id: string }) {
+  return {
+    cwd,
+    model,
+    hasUI: true,
+    mode: "tui",
+    ui: { notify: vi.fn(), setStatus: vi.fn(), setWidget: vi.fn() },
+  };
+}
+
+const tmp = () => mkdtempSync(join(tmpdir(), "fastmode-bench-"));
+const run = (h: Map<string, Function[]>, e: string, ev: unknown, ctx: unknown) =>
+  h.get(e)![0](ev, ctx);
+const lastNotify = (ctx: ReturnType<typeof makeCtx>) =>
+  ctx.ui.notify.mock.calls.at(-1) ?? [];
+
+// A configured GPT target: enabling then a matching request must inject the tier.
+async function target(id: string, name: string) {
+  const root = tmp();
+  const agentDir = join(root, "agent");
+  const { pi, handlers, commands } = fakePi(false);
+  createPiFastModeExtension({
+    extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+    agentDir,
+  })(pi as any);
+  const ctx = makeCtx(join(root, "project"), { provider: "openai-codex", id });
+  await run(handlers, "session_start", { reason: "startup" }, ctx);
+  await commands.get("fast")!.handler("on", ctx);
+  const mutated: any = await run(
+    handlers,
+    "before_provider_request",
+    { payload: { model: id, messages: [] } },
+    ctx,
+  );
+  const injected = mutated?.service_tier === "priority";
+  record({
+    id: name.split(" ")[0],
+    name: name.slice(name.indexOf(" ") + 1),
+    verdict: injected ? "PASS" : "FAIL",
+    reason: injected
+      ? `before_provider_request injected service_tier=priority for openai-codex/${id}`
+      : `no service_tier injected for openai-codex/${id}`,
+    evidence: `payload=${JSON.stringify(mutated)}`,
+  });
+}
+
+it("runs the fast-mode-usage scenarios against the real extension", async () => {
+  delete process.env[HANDOFF_ENV];
+
+  // FAST-001/002/003 — the core "do we truly use fast mode" proof.
+  await target("gpt-5.6-luna", "FAST-001 LUNA priority-tier activation");
+  await target("gpt-5.6-terra", "FAST-002 TERRA priority-tier activation");
+  await target("gpt-5.6-sol", "FAST-003 SOL priority-tier activation");
+
+  // FAST-004 — off-target must NOT inject, and must warn.
+  {
+    const root = tmp();
+    const { pi, handlers, commands } = fakePi(false);
+    createPiFastModeExtension({
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+      agentDir: join(root, "agent"),
+    })(pi as any);
+    const ctx = makeCtx(join(root, "project"), {
+      provider: "opencode-go",
+      id: "deepseek-v4-flash",
+    });
+    await run(handlers, "session_start", { reason: "startup" }, ctx);
+    await commands.get("fast")!.handler("on", ctx);
+    const mutated = await run(
+      handlers,
+      "before_provider_request",
+      { payload: { model: "deepseek-v4-flash", messages: [] } },
+      ctx,
+    );
+    const [msg, level] = lastNotify(ctx);
+    const ok =
+      mutated === undefined &&
+      level === "warning" &&
+      String(msg).includes("has no effect");
+    record({
+      id: "FAST-004",
+      name: "Off-target model stays inactive",
+      verdict: ok ? "PASS" : "FAIL",
+      reason: ok
+        ? "no injection on deepseek and a warning notification was shown"
+        : `mutated=${JSON.stringify(mutated)} notify=${String(msg)}/${String(level)}`,
+      evidence: `mutated=${JSON.stringify(mutated)}; notify="${String(msg)}" (${String(level)})`,
+    });
+  }
+
+  // FAST-005 — bare toggle alternates state and notification.
+  {
+    const root = tmp();
+    const { pi, handlers, commands } = fakePi(false);
+    createPiFastModeExtension({
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+      agentDir: join(root, "agent"),
+    })(pi as any);
+    const ctx = makeCtx(join(root, "project"), {
+      provider: "openai-codex",
+      id: "gpt-5.6-luna",
+    });
+    await run(handlers, "session_start", { reason: "startup" }, ctx);
+    await commands.get("fast")!.handler("off", ctx);
+    await commands.get("fast")!.handler("", ctx);
+    const a = lastNotify(ctx);
+    await commands.get("fast")!.handler("", ctx);
+    const b = lastNotify(ctx);
+    const ok = a[0] === "Fast Mode enabled" && b[0] === "Fast Mode disabled";
+    record({
+      id: "FAST-005",
+      name: "Toggle cycles state",
+      verdict: ok ? "PASS" : "FAIL",
+      reason: ok
+        ? "bare /fast alternated enabled then disabled"
+        : `got ${String(a[0])} then ${String(b[0])}`,
+      evidence: `notify1="${String(a[0])}"; notify2="${String(b[0])}"`,
+    });
+  }
+
+  // FAST-006 — explicit on then off.
+  {
+    const root = tmp();
+    const { pi, handlers, commands } = fakePi(false);
+    createPiFastModeExtension({
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+      agentDir: join(root, "agent"),
+    })(pi as any);
+    const ctx = makeCtx(join(root, "project"), {
+      provider: "openai-codex",
+      id: "gpt-5.6-luna",
+    });
+    await run(handlers, "session_start", { reason: "startup" }, ctx);
+    await commands.get("fast")!.handler("on", ctx);
+    const on = lastNotify(ctx);
+    await commands.get("fast")!.handler("off", ctx);
+    const off = lastNotify(ctx);
+    const ok = on[0] === "Fast Mode enabled" && off[0] === "Fast Mode disabled";
+    record({
+      id: "FAST-006",
+      name: "Explicit on then off",
+      verdict: ok ? "PASS" : "FAIL",
+      reason: ok ? "explicit on/off reported correctly" : "wrong notifications",
+      evidence: `on="${String(on[0])}"; off="${String(off[0])}"`,
+    });
+  }
+
+  // FAST-007 — invalid argument shows usage, no state change.
+  {
+    const root = tmp();
+    const agentDir = join(root, "agent");
+    const { pi, handlers, commands } = fakePi(false);
+    createPiFastModeExtension({
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+      agentDir,
+    })(pi as any);
+    const ctx = makeCtx(join(root, "project"), {
+      provider: "openai-codex",
+      id: "gpt-5.6-luna",
+    });
+    await run(handlers, "session_start", { reason: "startup" }, ctx);
+    await commands.get("fast")!.handler("off", ctx);
+    await commands.get("fast")!.handler("status", ctx);
+    const [msg, level] = lastNotify(ctx);
+    const cfg = JSON.parse(readFileSync(getUserConfigPath(agentDir), "utf8"));
+    const ok =
+      msg === "Usage: /fast [on|off|toggle]" &&
+      level === "error" &&
+      cfg.enabled === false;
+    record({
+      id: "FAST-007",
+      name: "Invalid argument shows usage",
+      verdict: ok ? "PASS" : "FAIL",
+      reason: ok
+        ? "usage error shown and state unchanged"
+        : `notify=${String(msg)}/${String(level)} enabled=${cfg.enabled}`,
+      evidence: `notify="${String(msg)}" (${String(level)}); enabled=${cfg.enabled}`,
+    });
+  }
+
+  // FAST-008 — --fast enables at session start.
+  {
+    const root = tmp();
+    const agentDir = join(root, "agent");
+    const { pi, handlers } = fakePi(true);
+    createPiFastModeExtension({
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+      agentDir,
+    })(pi as any);
+    const ctx = makeCtx(join(root, "project"), {
+      provider: "openai-codex",
+      id: "gpt-5.6-luna",
+    });
+    await run(handlers, "session_start", { reason: "startup" }, ctx);
+    const cfg = JSON.parse(readFileSync(getUserConfigPath(agentDir), "utf8"));
+    record({
+      id: "FAST-008",
+      name: "Fast startup flag",
+      verdict: cfg.enabled === true ? "PASS" : "FAIL",
+      reason:
+        cfg.enabled === true
+          ? "--fast persisted enabled at session start"
+          : "startup flag did not enable",
+      evidence: `enabled=${cfg.enabled}`,
+    });
+  }
+
+  // FAST-009 — state persists across a simulated restart.
+  {
+    const root = tmp();
+    const agentDir = join(root, "agent");
+    const cwd = join(root, "project");
+    const first = fakePi(false);
+    createPiFastModeExtension({
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+      agentDir,
+    })(first.pi as any);
+    const ctxA = makeCtx(cwd, { provider: "openai-codex", id: "gpt-5.6-luna" });
+    await run(first.handlers, "session_start", { reason: "startup" }, ctxA);
+    await first.commands.get("fast")!.handler("on", ctxA);
+    // Fresh instance, no --fast: must read persisted enabled.
+    const second = fakePi(false);
+    createPiFastModeExtension({
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+      agentDir,
+    })(second.pi as any);
+    const ctxB = makeCtx(cwd, { provider: "openai-codex", id: "gpt-5.6-luna" });
+    await run(second.handlers, "session_start", { reason: "startup" }, ctxB);
+    const cfg = JSON.parse(readFileSync(getUserConfigPath(agentDir), "utf8"));
+    record({
+      id: "FAST-009",
+      name: "State persists across restart",
+      verdict: cfg.enabled === true ? "PASS" : "FAIL",
+      reason:
+        cfg.enabled === true
+          ? "second session read persisted enabled state"
+          : "state did not persist",
+      evidence: `enabled after reload=${cfg.enabled}`,
+    });
+  }
+
+  // FAST-010 — child inherits via the handoff env var over persisted-off.
+  {
+    const root = tmp();
+    const agentDir = join(root, "agent");
+    const cwd = join(root, "project");
+    // Persist disabled first.
+    const seed = fakePi(false);
+    createPiFastModeExtension({
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+      agentDir,
+    })(seed.pi as any);
+    const ctxS = makeCtx(cwd, { provider: "openai-codex", id: "gpt-5.6-luna" });
+    await run(seed.handlers, "session_start", { reason: "startup" }, ctxS);
+    await seed.commands.get("fast")!.handler("off", ctxS);
+    // Child launch with the handoff variable set to 1.
+    process.env[HANDOFF_ENV] = "1";
+    const child = fakePi(false);
+    createPiFastModeExtension({
+      extensionDir: join(root, "global", PACKAGE_NAME, "src"),
+      agentDir,
+    })(child.pi as any);
+    const ctxC = makeCtx(cwd, { provider: "openai-codex", id: "gpt-5.6-luna" });
+    await run(child.handlers, "session_start", { reason: "startup" }, ctxC);
+    const cfg = JSON.parse(readFileSync(getUserConfigPath(agentDir), "utf8"));
+    delete process.env[HANDOFF_ENV];
+    record({
+      id: "FAST-010",
+      name: "Child inherits the preference",
+      verdict: cfg.enabled === true ? "PASS" : "FAIL",
+      reason:
+        cfg.enabled === true
+          ? "child enabled via PI_FAST_MODE_W_SUBAGENT_SUPPORT=1 over persisted-off"
+          : "child did not inherit the enabled preference",
+      evidence: `persisted-before=false; env=1; enabled-after=${cfg.enabled}`,
+    });
+  }
+
+  expect(results.length).toBe(10);
+});
+
+afterAll(() => {
+  mkdirSync(RUN_DIR, { recursive: true });
+  const pass = results.filter((r) => r.verdict === "PASS").length;
+  const summary = {
+    subject: "pi-fast-mode-w-subagent-support",
+    variant: "fast-mode-usage",
+    date: "2026-08-17",
+    total: results.length,
+    pass,
+    fail: results.filter((r) => r.verdict === "FAIL").length,
+    skip: results.filter((r) => r.verdict === "SKIP").length,
+    results,
+  };
+  writeFileSync(join(RUN_DIR, "results.json"), JSON.stringify(summary, null, 2));
+  const csv = [
+    "id,name,verdict,reason",
+    ...results.map(
+      (r) => `${r.id},"${r.name}",${r.verdict},"${r.reason.replace(/"/g, "'")}"`,
+    ),
+  ].join("\n");
+  writeFileSync(join(RUN_DIR, "results.csv"), `${csv}\n`);
+});

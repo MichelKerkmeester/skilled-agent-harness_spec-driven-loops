@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/048-cline-provider-roster/002-cline-support-pi-investigation",
+  "spec_folder": "cli-external-orchestration/048-cline-provider-roster/002-cline-support-pi-investigation",
+  "parent_id": "cli-external-orchestration/048-cline-provider-roster",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cline support cli pi investigation",
+      "pi login cline provider parity",
+      "add cline-pass to pi models",
+      "pi provider registration cline",
+      "cline pi investigation plan",
+      "pi provider resolution cline plan",
+      "cline pi investigation tasks",
+      "pi cline provider tasks",
+      "cline pi investigation summary",
+      "pi cline parity verdict"
+    ],
+    "key_topics": [
+      "cline",
+      "support",
+      "cli",
+      "investigation",
+      "login",
+      "provider",
+      "parity",
+      "cline-pass",
+      "models",
+      "registration",
+      "plan",
+      "resolution"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "spec.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cline Provider Roster",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Investigation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Determine",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli pi's `/login` does not list Cline, so the operator cannot authenticate the Cline provider from pi and cannot select `cline-pass/cline-pass/deepseek-v4-flash` in pi's model picker — even though opencode already dispatches it",
+    "created_at": "2026-08-18T08:28:11Z",
+    "last_save_at": "2026-08-18T09:27:23.104Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f2842c7f8e908d495f2adc9679090da35fe9c660f3483ca7c300186a300b0b30",
+    "source_doc_hashes": {
+      "spec.md": "7c3c94921ef698f8774f69d7ea8a2d5fe6be8baeb3fd68827c07a78c580ea95d",
+      "plan.md": "91bf67ec65b794e11af3efbbde6e3feb88bd2258f12dfc9c71bf62173cd43f62",
+      "tasks.md": "ea33e965d341da7601f1a59835c1b82e70e84e699fdea4108ecf4b46340738c3",
+      "implementation-summary.md": "70eb90516d0d5fff1d078c5fb62aa9beb22f698a2f49577fb2164b75944a65e9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

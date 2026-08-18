@@ -1,0 +1,20 @@
+{
+  "level": 2,
+  "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/014-cursor-devin-mcp-adapters",
+  "description": "On v4, sk-vision only worked in OpenCode and Pi",
+  "keywords": [
+    "sk-vision",
+    "only",
+    "worked",
+    "opencode"
+  ],
+  "lastUpdated": "2026-08-17T12:13:51.235Z",
+  "specId": "014",
+  "folderSlug": "cursor-devin-mcp-adapters",
+  "parentChain": [
+    "sk-vision",
+    "001-sk-vision-fork-of-opencode-senses"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

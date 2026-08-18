@@ -1,9 +1,9 @@
 {
   "lastChangelogVersion": "0.84.2",
   "theme": "dark",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-flash",
-  "defaultThinkingLevel": "max",
+  "defaultProvider": "openrouter",
+  "defaultModel": "~deepseek/deepseek-v4-flash-latest",
+  "defaultThinkingLevel": "xhigh",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
   "steeringMode": "one-at-a-time",
@@ -21,7 +21,6 @@
     "opencode-go/deepseek-v4-flash",
     "opencode-go/deepseek-v4-pro",
     "opencode-go/qwen3.8-max",
-    "openrouter/openai/gpt-5.6-luna",
     "openrouter/~deepseek/deepseek-v4-flash-latest",
     "xiaomi/mimo-v2.5-pro",
     "xiaomi/mimo-v2.5-pro-ultraspeed"

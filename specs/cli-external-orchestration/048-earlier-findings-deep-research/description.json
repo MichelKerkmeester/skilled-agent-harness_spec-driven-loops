@@ -1,0 +1,29 @@
+{
+  "level": 1,
+  "specFolder": "cli-external-orchestration/048-earlier-findings-deep-research",
+  "description": "Running the sk-vision manual-testing-playbook across Cursor and Devin surfaced five host-adapter findings (Cursor MCP approval, Devin `dangerous`-only",
+  "keywords": [
+    "running",
+    "sk-vision",
+    "manual-testing-playbook",
+    "across",
+    "cursor",
+    "devin",
+    "surfaced",
+    "five",
+    "host-adapter",
+    "findings",
+    "mcp",
+    "approval",
+    "dangerous",
+    "only"
+  ],
+  "lastUpdated": "2026-08-17T18:46:19.393Z",
+  "specId": "048",
+  "folderSlug": "earlier-findings-deep-research",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-vision",
+    "rootRel": ".opencode/skills/sk-vision"
+  },
+  "executor": null,
+  "model": null,
+  "variant": "vsn-019-devin-status",
+  "verdict": "SKIP",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "VSN-019",
+      "verdict": "SKIP",
+      "reason": "Devin non-interactive (-p) rejects the sk-vision MCP tool call under auto/accept-edits ('rejected a tool call that requires confirmation'); 'smart' mode is unavailable on this build and falls back to normal; only --permission-mode dangerous auto-approves MCP tools, which the cli-devin contract requires explicit operator approval to use (pending) (vsn-019-devin-status.log).",
+      "stage": "host-adapters",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "vsn-019-devin-status",
+      "evidence": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17/vsn-019-devin-status.log"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17/vsn-019-devin-status.log",
+          "status": "verified",
+          "bytes": 223,
+          "sha256": "3b6c36cbcc4eb34b4086358c3e44a07053fa23f3173b6c7dccef19e7fa23fc73"
+        }
+      ]
+    }
+  ],
+  "supersedes": [],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-17T16:28:03.305Z",
+    "evidenceClass": null,
+    "evidenceArtifacts": [
+      {
+        "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17/vsn-019-devin-status.log",
+        "status": "verified",
+        "bytes": 223,
+        "sha256": "3b6c36cbcc4eb34b4086358c3e44a07053fa23f3173b6c7dccef19e7fa23fc73"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "VSN-019",
+    "stage": "host-adapters",
+    "dispatch": "none",
+    "evidenceClass": null,
+    "requestedExecutorLabel": "cli-devin",
+    "requestedModelLabel": "glm-5-2",
+    "variant": "vsn-019-devin-status"
+  }
+}

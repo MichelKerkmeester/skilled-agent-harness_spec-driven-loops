@@ -1,8 +1,8 @@
 # Test Results: Composite Scoring & Search (Spec 070 - Part 2)
 
 > **Spec:** 070-memory-ranking
-> **Run Date:** 2026-06-19T22:16:58.546Z
-> **Duration:** 15ms
+> **Run Date:** 2026-08-16T16:34:06.213Z
+> **Duration:** 33ms
 
 ---
 
@@ -25,7 +25,7 @@
 
 | Test | Status | Duration | Error |
 |------|--------|----------|-------|
-| should have correct default weights defined | FAIL | 3ms | Cannot read properties of undefined (reading 'DEFAULT_WEIGHT |
+| should have correct default weights defined | FAIL | 5ms | Cannot read properties of undefined (reading 'DEFAULT_WEIGHT |
 | should have weights that sum to 1.0 | FAIL | 0ms | Cannot read properties of undefined (reading 'DEFAULT_WEIGHT |
 
 ### FAIL - Composite Scoring - calculate_recency_score()
@@ -36,7 +36,7 @@
 |------|--------|----------|-------|
 | should return ~1.0 for just-updated memories | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_rece |
 | should return ~0.5 for 10-day-old memories (decay rate 0.10) | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_rece |
-| should return 1.0 for constitutional tier (exempt from decay) | FAIL | 1ms | Cannot read properties of undefined (reading 'calculate_rece |
+| should return 1.0 for constitutional tier (exempt from decay) | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_rece |
 | should apply normal decay for other tiers | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_rece |
 
 ### FAIL - Composite Scoring - get_tier_boost()
@@ -46,7 +46,7 @@
 | Test | Status | Duration | Error |
 |------|--------|----------|-------|
 | should return 1.0 for constitutional tier | FAIL | 0ms | Cannot read properties of undefined (reading 'get_tier_boost |
-| should return 1.0 for critical tier | FAIL | 0ms | Cannot read properties of undefined (reading 'get_tier_boost |
+| should return 1.0 for critical tier | FAIL | 1ms | Cannot read properties of undefined (reading 'get_tier_boost |
 | should return 0.8 for important tier | FAIL | 0ms | Cannot read properties of undefined (reading 'get_tier_boost |
 | should return 0.5 for normal tier | FAIL | 0ms | Cannot read properties of undefined (reading 'get_tier_boost |
 | should return 0.3 for temporary tier | FAIL | 0ms | Cannot read properties of undefined (reading 'get_tier_boost |
@@ -60,10 +60,10 @@
 | Test | Status | Duration | Error |
 |------|--------|----------|-------|
 | should return score in 0-1 range | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_comp |
-| should calculate score using all factors | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_comp |
+| should calculate score using all factors | FAIL | 1ms | Cannot read properties of undefined (reading 'calculate_comp |
 | should cap score at 1.0 | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_comp |
 | should produce equal scores for deprecated and normal tier (implementation quirk) | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_comp |
-| should accept custom weights | FAIL | 1ms | Cannot read properties of undefined (reading 'calculate_comp |
+| should accept custom weights | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_comp |
 | should handle missing fields gracefully | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_comp |
 
 ### FAIL - Composite Scoring - apply_composite_scoring()
@@ -75,7 +75,7 @@
 | should add composite_score to each result | FAIL | 0ms | Cannot read properties of undefined (reading 'apply_composit |
 | should sort results by composite_score descending | FAIL | 0ms | Cannot read properties of undefined (reading 'apply_composit |
 | should include _scoring breakdown | FAIL | 0ms | Cannot read properties of undefined (reading 'apply_composit |
-| should return empty array for empty input | FAIL | 0ms | Cannot read properties of undefined (reading 'apply_composit |
+| should return empty array for empty input | FAIL | 1ms | Cannot read properties of undefined (reading 'apply_composit |
 
 ### FAIL - Composite Scoring - get_score_breakdown()
 
@@ -83,7 +83,7 @@
 
 | Test | Status | Duration | Error |
 |------|--------|----------|-------|
-| should return detailed factor breakdown | FAIL | 0ms | Cannot read properties of undefined (reading 'get_score_brea |
+| should return detailed factor breakdown | FAIL | 1ms | Cannot read properties of undefined (reading 'get_score_brea |
 | should have contributions that sum to total | FAIL | 0ms | Cannot read properties of undefined (reading 'get_score_brea |
 
 ### FAIL - RRF Fusion - Constants
@@ -102,11 +102,11 @@
 | Test | Status | Duration | Error |
 |------|--------|----------|-------|
 | should combine vector and FTS results | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
-| should add rrf_score to each result | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
-| should mark results with in_vector and in_fts flags | FAIL | 1ms | Cannot read properties of undefined (reading 'fuse_results') |
+| should add rrf_score to each result | FAIL | 2ms | Cannot read properties of undefined (reading 'fuse_results') |
+| should mark results with in_vector and in_fts flags | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
 | should apply convergence bonus for dual-method matches | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
 | should calculate correct RRF score formula | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
-| should respect limit parameter | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
+| should respect limit parameter | FAIL | 1ms | Cannot read properties of undefined (reading 'fuse_results') |
 | should include vector_rank and fts_rank | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
 | should sort by rrf_score descending | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
 | should handle empty vector results | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
@@ -118,7 +118,7 @@
 
 | Test | Status | Duration | Error |
 |------|--------|----------|-------|
-| should return base score as max of semantic and keyword | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_scores_ad |
+| should return base score as max of semantic and keyword | FAIL | 1ms | Cannot read properties of undefined (reading 'fuse_scores_ad |
 | should add convergence bonus when both scores > 0 | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_scores_ad |
 | should add original term bonus | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_scores_ad |
 | should cap score at 1.0 | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_scores_ad |
@@ -131,7 +131,7 @@
 | Test | Status | Duration | Error |
 |------|--------|----------|-------|
 | should count terms > 3 chars appearing in content | FAIL | 0ms | Cannot read properties of undefined (reading 'count_original |
-| should ignore terms <= 3 chars | FAIL | 1ms | Cannot read properties of undefined (reading 'count_original |
+| should ignore terms <= 3 chars | FAIL | 0ms | Cannot read properties of undefined (reading 'count_original |
 | should be case insensitive | FAIL | 0ms | Cannot read properties of undefined (reading 'count_original |
 | should return 0 for no matches | FAIL | 0ms | Cannot read properties of undefined (reading 'count_original |
 
@@ -142,9 +142,9 @@
 | Test | Status | Duration | Error |
 |------|--------|----------|-------|
 | should export init function | FAIL | 0ms | Cannot read properties of undefined (reading 'init') |
-| should export is_fts_available function | FAIL | 0ms | Cannot read properties of undefined (reading 'is_fts_availab |
+| should export is_fts_available function | FAIL | 1ms | Cannot read properties of undefined (reading 'is_fts_availab |
 | should export hybrid_search function | FAIL | 0ms | Cannot read properties of undefined (reading 'hybrid_search' |
-| should export search_with_fallback function | FAIL | 0ms | Cannot read properties of undefined (reading 'search_with_fa |
+| should export search_with_fallback function | FAIL | 4ms | Cannot read properties of undefined (reading 'search_with_fa |
 | should export legacy camelCase aliases | FAIL | 0ms | Cannot read properties of undefined (reading 'isFtsAvailable |
 
 ### FAIL - Hybrid Search - is_fts_available() (without DB)
@@ -171,7 +171,7 @@
 |------|--------|----------|-------|
 | should integrate folder scoring with composite scoring | FAIL | 0ms | Cannot read properties of undefined (reading 'compute_folder |
 | should apply composite scoring to search results | FAIL | 0ms | Cannot read properties of undefined (reading 'apply_composit |
-| should combine RRF fusion with composite scoring | FAIL | 1ms | Cannot read properties of undefined (reading 'fuse_results') |
+| should combine RRF fusion with composite scoring | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
 
 ### FAIL - Smart Ranking Integration - Result Ordering
 
@@ -180,7 +180,7 @@
 | Test | Status | Duration | Error |
 |------|--------|----------|-------|
 | should prioritize constitutional tier memories | FAIL | 0ms | Cannot read properties of undefined (reading 'apply_composit |
-| should give deprecated same tier_boost as normal (implementation quirk) | FAIL | 0ms | Cannot read properties of undefined (reading 'apply_composit |
+| should give deprecated same tier_boost as normal (implementation quirk) | FAIL | 1ms | Cannot read properties of undefined (reading 'apply_composit |
 
 ### FAIL - Smart Ranking Integration - Limit/Offset Behavior
 
@@ -200,7 +200,7 @@
 | should return 0 for 0 accesses | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_popu |
 | should return ~0.1 for 1 access | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_popu |
 | should return ~0.33 for 10 accesses | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_popu |
-| should return ~0.67 for 100 accesses | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_popu |
+| should return ~0.67 for 100 accesses | FAIL | 1ms | Cannot read properties of undefined (reading 'calculate_popu |
 | should cap at 1.0 for very high access counts | FAIL | 0ms | Cannot read properties of undefined (reading 'calculate_popu |
 
 ### FAIL - Edge Cases - Composite Scoring
@@ -223,7 +223,7 @@
 | should handle both empty result sets | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
 | should handle duplicate IDs in same result set | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
 | should handle custom k parameter | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
-| should preserve original result properties | FAIL | 1ms | Cannot read properties of undefined (reading 'fuse_results') |
+| should preserve original result properties | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
 
 ### FAIL - Edge Cases - Importance Tiers
 
@@ -241,9 +241,9 @@
 
 | Test | Status | Duration | Error |
 |------|--------|----------|-------|
-| should score 1000 memories in under 50ms | FAIL | 1ms | Cannot read properties of undefined (reading 'apply_composit |
+| should score 1000 memories in under 50ms | FAIL | 3ms | Cannot read properties of undefined (reading 'apply_composit |
 | should fuse 500+500 results in under 50ms | FAIL | 0ms | Cannot read properties of undefined (reading 'fuse_results') |
-| should compute folder scores for 200 folders in under 20ms | FAIL | 1ms | Cannot read properties of undefined (reading 'compute_folder |
+| should compute folder scores for 200 folders in under 20ms | FAIL | 5ms | Cannot read properties of undefined (reading 'compute_folder |
 
 ---
 

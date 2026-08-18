@@ -1,0 +1,14 @@
+{
+  "executionContext": {
+    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17",
+    "evidenceClass": "registered-path",
+    "requireDurableEvidence": true,
+    "command": "node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17/mcp-probe.cjs",
+    "runtime": "node",
+    "nodeVersion": "v25.6.1",
+    "payloadNotApplicableReason": "sk_vision_status and tools/list take no image payload; standalone JSON-RPC protocol probe against the built dist server",
+    "executorNotApplicableReason": "standalone MCP protocol probe; no external CLI executor is involved in VSN-017",
+    "modelNotApplicableReason": "server advertises tools and status without loading a vision model (status returns model: not loaded)"
+  },
+  "evidence": ["vsn-017-standalone.json"]
+}

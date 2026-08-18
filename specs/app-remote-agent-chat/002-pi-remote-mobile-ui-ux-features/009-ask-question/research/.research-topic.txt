@@ -1,5 +1,0 @@
-Feature: Support pi’s ask-question extension in the PWA
-
-Goal: Render pi’s ask-question prompts inline in the mobile chat with a terminal-style, keyboard-friendly question card — the way OpenCode, Claude, and Codex present agent questions.
-
-Desired: An inline question card (prompt + selectable options + free-text where allowed), keyboard/great-thumb navigation, host-confirmed answer submission, in the fixed ink-on-parchment system — UX on par with OpenCode / Claude / Codex ask-question prompts.

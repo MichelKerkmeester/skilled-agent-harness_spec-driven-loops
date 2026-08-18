@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+VSN-020,sk-vision,,host-adapters,manual,,glm-5-2,vsn-020-devin-vision-blind,,PASS,"GLM-5.2-High via cli-devin (dangerous) called mcp__sk-vision__sk_vision_ocr on the fixture (server on moondream3-preview) and returned 'CODE 4 4218' — ground-truth CODE and 4218 recovered, no hallucination; minor spacing artifact. Supersedes prior SKIP (vsn-020-devin-ocr-md3.log)."

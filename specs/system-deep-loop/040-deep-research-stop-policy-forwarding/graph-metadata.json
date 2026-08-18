@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/040-deep-research-stop-policy-forwarding",
+  "spec_folder": "system-deep-loop/040-deep-research-stop-policy-forwarding",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research stop-policy forwarding",
+      "forced iterations deep research",
+      "max-iterations research fanout",
+      "deep-research stop-policy forwarding plan",
+      "deep-research stop-policy forwarding tasks",
+      "deep-research stop-policy forwarding summary"
+    ],
+    "key_topics": [
+      "deep-research",
+      "stop-policy",
+      "forwarding",
+      "forced",
+      "iterations",
+      "deep",
+      "research",
+      "max-iterations",
+      "fanout",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "implementation-summary.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Thread",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Setup",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-type-aware",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/deep:research` documents a `--stop-policy=max-iterations` flag for forced-depth runs, but the flag never reached the runtime",
+    "created_at": "2026-08-17T18:04:07.784Z",
+    "last_save_at": "2026-08-17T18:45:48.931Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:108af4b75b785920b0ae54a6e0f1c3be3f94cfccd953b916af8fcff1298f4d0d",
+    "source_doc_hashes": {
+      "spec.md": "8a346dd4982cc4ec81a304ec64f3eeb740d134d19d6e9fe997cfe07e945dc811",
+      "plan.md": "025a538fb7649a69956fb4f6736f5e3b778c2cab6371b555d2f4c1d1176c2767",
+      "tasks.md": "df5cb1b4ad60861399dc23acf64f3fb61af51a2cc8db025026180d54d462c2c2",
+      "implementation-summary.md": "beaabd9adb99bb1e41f2932376d87812eb0504f2a22066a64b37f168cb05acb7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

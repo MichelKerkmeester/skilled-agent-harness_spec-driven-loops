@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-vision",
+    "rootRel": ".opencode/skills/sk-vision"
+  },
+  "executor": null,
+  "model": null,
+  "variant": "vsn-020-devin-vision-blind",
+  "verdict": "SKIP",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "VSN-020",
+      "verdict": "SKIP",
+      "reason": "Not run on Devin: same non-interactive MCP-approval blocker as VSN-019 (needs --permission-mode dangerous, pending operator approval). Devin OCR would also require SK_VISION_MODEL=moondream3-preview in the server env.",
+      "stage": "host-adapters",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "vsn-020-devin-vision-blind",
+      "evidence": [],
+      "evidenceArtifacts": []
+    }
+  ],
+  "supersedes": [],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-17T16:28:03.358Z",
+    "evidenceClass": null,
+    "evidenceArtifacts": []
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "VSN-020",
+    "stage": "host-adapters",
+    "dispatch": "none",
+    "evidenceClass": null,
+    "requestedExecutorLabel": "cli-devin",
+    "requestedModelLabel": "glm-5-2",
+    "variant": "vsn-020-devin-vision-blind"
+  }
+}

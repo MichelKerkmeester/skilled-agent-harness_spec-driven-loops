@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":10,"run":10,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.35,"status":"complete","focus":"Final verification vs evidence","findingsCount":5,"keyQuestions":["all F verified?"],"answeredQuestions":["All F1-F5 verified; 3 P0 code fixes + 3 doc fixes"],"timestamp":"2026-08-17T18:28:00.000Z","durationMs":40000,"sessionId":"fanout-pi-flash-or-1786990303810-r1u8es","generation":1}
+{"type":"finding","id":"f-it010-001","severity":"P1","label":"3 P0 code fixes in shared layer; 3 doc/contract fixes; no per-host code needed","iteration":10}
+{"type":"finding","id":"f-it010-002","severity":"P2","label":"MCP server reuses shared defs; settings fix propagates to Cursor+Devin","iteration":10}
+{"type":"observation","id":"obs-it010-001","classification":"real","label":"Direct re-read confirmed handle_ocr guard gap + strict b64decode","iteration":10}
+{"type":"ruled_out","direction":"per-host adapter code changes","reason":"shared layer covers all hosts","iteration":10}

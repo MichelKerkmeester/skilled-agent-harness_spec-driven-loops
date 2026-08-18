@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook",
+  "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision cursor devin testing playbook",
+      "sk-vision vision-blind model scenario",
+      "sk-vision playbook four hosts",
+      "sk-vision cursor devin testing playbook plan",
+      "sk-vision cursor devin testing playbook tasks",
+      "sk-vision cursor devin testing playbook summary"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "cursor",
+      "devin",
+      "testing",
+      "playbook",
+      "vision-blind",
+      "model",
+      "scenario",
+      "four",
+      "hosts",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "implementation-summary.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Matters",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the GLM",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The manual-testing-playbook documented only the OpenCode plugin and Pi extension host adapters",
+    "created_at": "2026-08-17T15:53:01.280Z",
+    "last_save_at": "2026-08-17T15:54:42.552Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7ce15f70376257ec5923341b5145bef33d48c0a60dfaed7e904a307124641b81",
+    "source_doc_hashes": {
+      "spec.md": "5ea8122f3c4747787ebbc88c23bcec503caaf2c349d563df6371d0d26c60ea1b",
+      "plan.md": "e3b388c6cc0076c88785b4af0cb9cb16ab58ad4e26a4c4b484eb56609595326c",
+      "tasks.md": "b0a27c92523599c198227179f4e1a78f5afcad8edd7fc06e13363a7c7c7f11b1",
+      "implementation-summary.md": "77fec2b36fa30ec5fdd8bac638001e5b04608fa17709f4fb92049a42ede56637"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

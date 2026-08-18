@@ -25,6 +25,14 @@ Each row below is one immutable run folder. Rows are appended by the benchmark h
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-17 | [`2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind-pass/`](./2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind-pass/) | cli-devin glm-5-2 vsn-020-devin-vision-blind | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-17 | [`2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind-pass/`](./2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind-pass/) | cli-cursor glm-5.2-high vsn-020-cursor-vision-blind | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-17 | [`2026-08-17--manual-testing-playbook--vsn-019-devin-status-pass/`](./2026-08-17--manual-testing-playbook--vsn-019-devin-status-pass/) | cli-devin glm-5-2 vsn-019-devin-status | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-17 | [`2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind/`](./2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind/) | vsn-020-devin-vision-blind | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-17 | [`2026-08-17--manual-testing-playbook--vsn-019-devin-status/`](./2026-08-17--manual-testing-playbook--vsn-019-devin-status/) | vsn-019-devin-status | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-17 | [`2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind/`](./2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind/) | vsn-020-cursor-vision-blind | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-17 | [`2026-08-17--manual-testing-playbook--vsn-018-cursor-status/`](./2026-08-17--manual-testing-playbook--vsn-018-cursor-status/) | cli-cursor glm-5.2-high vsn-018-cursor-status | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-17 | [`2026-08-17--manual-testing-playbook--vsn-017-standalone/`](./2026-08-17--manual-testing-playbook--vsn-017-standalone/) | vsn-017-standalone | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-16 | [`2026-08-16--manual-testing-playbook--ocr-live-run/`](./2026-08-16--manual-testing-playbook--ocr-live-run/) | ndjson-runtime-stdin moondream2 ocr-live-run | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-16 | [`2026-08-16--manual-testing-playbook--status-live-run/`](./2026-08-16--manual-testing-playbook--status-live-run/) | ndjson-runtime-stdin moondream2 status-live-run | 1 PASS | **PASS** | `manual-testing-playbook` |
 

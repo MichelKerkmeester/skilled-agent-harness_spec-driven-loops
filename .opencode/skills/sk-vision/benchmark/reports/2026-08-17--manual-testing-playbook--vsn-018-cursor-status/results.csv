@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+VSN-018,sk-vision,,host-adapters,manual,,glm-5.2-high,vsn-018-cursor-status,,PASS,"GLM-5.2-High via cli-cursor invoked sk_vision_status and returned the exact provider: photon status block; cursor-agent mcp list-tools sk-vision showed 13 tools, status ready (vsn-018-cursor-status.log)."

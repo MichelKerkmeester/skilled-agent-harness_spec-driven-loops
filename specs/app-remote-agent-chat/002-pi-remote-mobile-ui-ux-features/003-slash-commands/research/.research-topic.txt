@@ -1,5 +1,0 @@
-Feature: Typed "/" commands with the real host command list, inline like a terminal
-
-Goal: Type "/" in the composer and get a live, filterable list of the ACTUAL available host commands with descriptions and argument hints.
-
-Desired: Terminal-style inline trigger: "/" as first char opens a list above the composer; fuzzy filter as you type; descriptions + arg hints; keyboard + touch selection; never auto-submits.
