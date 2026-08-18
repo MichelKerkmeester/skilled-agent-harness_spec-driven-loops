@@ -1,21 +1,21 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/022-legacy-hub-compiled-routing-refresh",
-  "description": "Plan the deferred refresh of stale compiled routing for sk-prompt and system-deep-loop while preserving frozen replay and scorer artifacts",
+  "description": "The class-H hubs `system-deep-loop` and `cli-external-orchestration` are serving routing through the legacy path with stale compiled manifests;",
   "keywords": [
-    "legacy",
-    "hub",
-    "compiled",
-    "routing",
-    "stale",
-    "manifest",
-    "sk-prompt",
+    "class-h",
+    "hubs",
     "system-deep-loop",
-    "activation",
-    "canary",
-    "rollback",
-    "freshness"
+    "cli-external-orchestration",
+    "serving",
+    "routing",
+    "legacy",
+    "path",
+    "stale",
+    "compiled",
+    "manifests"
   ],
-  "lastUpdated": "2026-08-16T00:00:00.000Z",
+  "lastUpdated": "2026-08-18T03:31:01.446Z",
   "specId": "022",
   "folderSlug": "legacy-hub-compiled-routing-refresh",
   "parentChain": [
@@ -24,6 +24,5 @@
     "015-router-unification-program"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }
