@@ -92,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "Decide Tier",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Drift Census",
         "kind": "proper_noun",
         "path": "research/research.md",
@@ -110,13 +104,19 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Problem Statement Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Packet",
+        "name": "Purpose Pull",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has",
     "created_at": "2026-07-19T12:13:37.963Z",
-    "last_save_at": "2026-08-17T04:04:20.187Z",
+    "last_save_at": "2026-08-18T05:01:18.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9b76cf35e9115626ee0a26ffeffa0bb14b883109e125036c03d5f24fcdf2274b",
+    "source_fingerprint": "sha256:20836b5d11f2e943126e29308ff2ca403ff4b7a06ac22ebe3e8737cfbde67c66",
     "source_doc_hashes": {
-      "spec.md": "a5b0b50afe7520affa86fd40b44aa67c1e8750ff84a79bf0dc075ced2f22c219",
-      "plan.md": "5b1bd7b4abdbd1aa8e323d89318e7618f4c0c4c00445449670eed3b46dcc2e46",
-      "tasks.md": "c27f917ab7e8b6c5bf6424b671a7c17ad1b38b49503fa2d363a3235291928792",
-      "checklist.md": "a73765db86e018b917d7953ea48c3934f2cddb6967c617bda6973bfe206dd435",
-      "implementation-summary.md": "245cbe6b643ac0be46518d22033d26065e20049afe87783ae5eb33b37dd569ec",
+      "spec.md": "5a9be1a25d5ec0f4b7c14fdaf4adec586dba4400760b45ff94c523b157b16d13",
+      "plan.md": "594e88673ab215a297101370e2d209e2908a7d68afe329c85a13ac78ba5dcaf7",
+      "tasks.md": "d75a96a79eb8e7f0fe7c921aef947053224182dbba93546cb6365051399b7c05",
+      "checklist.md": "b299bd91a7000dc3cc080dd1d1559335bded321eff10cc624d8fa6045d5db0c7",
+      "implementation-summary.md": "dd8bc7d195272cbb71a43c7eafeab48a8e807a8052a63ff850123a6ee419b8ed",
       "research/research.md": "8073db4c48fe39ab285c07c591112032f6f95342b8e12641f8e5ac940cff0b1f"
     },
     "last_active_child_id": null,

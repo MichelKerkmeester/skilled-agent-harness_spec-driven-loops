@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/003-drift-census-and-plan-rev
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude-opus"
-    recent_action: "Defined the blocking census verification contract"
-    next_safe_action: "Run the loop, then check items"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the census verification contract and recorded the supersession verdict"
+    next_safe_action: "Commit the reconciled packet and run 016 whole-system gate fed by the 009 path"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -116,9 +116,9 @@ valid census regardless of how many findings it produced.
 
 | Gate | Command | Result |
 |------|---------|--------|
-| This folder validates | `validate.sh <018> --strict` | Pending re-run |
-| Parent still validates | `validate.sh 036 --strict` | Pending re-run |
+| This folder validates | `validate.sh <folder> --strict` | **PASS** — `Errors: 0` |
+| Parent still validates | `validate.sh 036 --strict` | **PASS** — `Errors: 0`; only benign uncommitted `dirty_tree` residuals on dirty siblings |
 | Census run | All 14 P0 items checked with evidence | **PASS** — 14/14 P0 |
-| Forced depth | CHK-017 | **FAIL** — recorded, not smoothed over; sol unaffected, glm's stop unverifiable |
-| Operator decision | Per-phase actions decided from the verdict table | Pending |
+| Forced depth | CHK-017 | **FAIL** — recorded, not smoothed over; sol unaffected, glm's stop unverifiable (permanent run-integrity defect, not closeable without a re-run) |
+| Operator decision | Per-phase actions decided from the verdict table | **RESOLVED** — Q-C 009-vs-004 supersession verdict recorded in `spec.md` §11 |
 <!-- /ANCHOR:summary -->
