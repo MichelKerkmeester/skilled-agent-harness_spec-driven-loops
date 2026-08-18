@@ -25,7 +25,12 @@ import {
 import { canonicalBytes, CURRENT_ENVELOPE_VERSION, sha256Bytes } from '../event-envelope/index.js';
 import { HealthAggregateStates } from '../health-degeneration-harness/index.js';
 import { verifyClassificationManifest } from '../inflight-state-classification/index.js';
-import { matchesArtifactClaimSet, matchesInstalledVersionBindings } from '../mode-contracts/index.js';
+import {
+  hasExactKeys,
+  matchesArtifactClaimSet,
+  matchesInstalledVersionBindings,
+  validateRows,
+} from '../mode-contracts/index.js';
 import { verifyPhase014RollbackEvidence } from '../rollback-drills/index.js';
 
 import {
@@ -125,6 +130,16 @@ const SAFE_RESUME_PASS_DISPOSITIONS = new Set<
 const SAFE_RESUME_EFFECT_DISPOSITIONS = new Set<
   DeepReviewResumeDecision['effects'][number]['disposition']
 >(['reuse', 'reexecute', 'reconcile']);
+// A row that violates its declared type is malformed evidence and must reject
+// the set, while a well-formed row that simply did not succeed or was not
+// authenticated is a legitimate outcome that is excluded from the count.
+const ROLLBACK_WINDOW_AUTHORITY_STATES: ReadonlySet<string> = new Set([
+  'legacy_authoritative', 'shadowing', 'cutover_ready',
+  'new_authoritative_reversible', 'rollback_pending', 'new_authoritative_final',
+]);
+const ROLLBACK_WINDOW_EXECUTION_RESULTS: ReadonlySet<string> = new Set([
+  'trusted-completion', 'blocked', 'failed', 'incomplete', 'abstained',
+]);
 
 function digest(value: unknown): string {
   return sha256Bytes(canonicalBytes(value as JsonObject));
@@ -142,13 +157,6 @@ function isPlainRecord<T>(value: T): value is T & Record<string, unknown> {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
   const prototype = Object.getPrototypeOf(value);
   return prototype === Object.prototype || prototype === null;
-}
-
-function hasExactKeys(value: object, keys: readonly string[]): boolean {
-  if (Object.getPrototypeOf(value) !== Object.prototype) return false;
-  const actual = Object.keys(value);
-  const expected = new Set(keys);
-  return actual.length === keys.length && actual.every((key) => expected.has(key));
 }
 
 function sortCanonicalViews(values: readonly JsonObject[]): readonly JsonObject[] {
@@ -664,13 +672,19 @@ export function evaluateDeepReviewRollbackWindow(
   const authenticatedExecutionKeys = new Set(
     input.authenticatedExecutions.map((entry) => digest(entry)),
   );
-  const validExecutions = input.executions.filter((entry) => (
+  if (!validateRows(input.executions, (entry) => (
     isToken(entry.executionId)
-    && entry.authorityState === 'new_authoritative_reversible'
     && Number.isSafeInteger(entry.authorityEpoch)
     && entry.authorityEpoch > 0
-    && entry.result === 'trusted-completion'
     && isDigest(entry.certificateDigest)
+    && ROLLBACK_WINDOW_AUTHORITY_STATES.has(entry.authorityState)
+    && ROLLBACK_WINDOW_EXECUTION_RESULTS.has(entry.result)
+  ))) {
+    throw new TypeError('Rollback window input is malformed');
+  }
+  const validExecutions = input.executions.filter((entry) => (
+    entry.authorityState === 'new_authoritative_reversible'
+    && entry.result === 'trusted-completion'
     && authenticatedExecutionKeys.has(digest(entry))
   ));
   const executionIdsByCertificate = new Map<string, Set<string>>();

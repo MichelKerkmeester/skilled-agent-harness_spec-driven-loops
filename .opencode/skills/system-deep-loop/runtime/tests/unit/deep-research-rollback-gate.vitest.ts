@@ -1438,6 +1438,39 @@ describe('rollback window', () => {
     });
   });
 
+  it('rejects the evidence set when a rollback row violates its declared type', () => {
+    const [valid] = successfulWindowExecutions(1);
+    const executions = [{ ...valid!, certificateDigest: 'not-a-sha256-digest' }];
+
+    expect(() => evaluateDeepResearchRollbackWindow({
+      openedAt: '2026-07-01T00:00:00Z',
+      evaluatedAt: '2026-07-15T00:00:00Z',
+      executions,
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    } as never)).toThrow(TypeError);
+  });
+
+  it('rejects an out-of-contract result while still counting legitimate unsuccessful rows', () => {
+    const [valid] = successfulWindowExecutions(1);
+
+    expect(() => evaluateDeepResearchRollbackWindow({
+      openedAt: '2026-07-01T00:00:00Z',
+      evaluatedAt: '2026-07-15T00:00:00Z',
+      executions: [{ ...valid!, result: 'not-a-declared-result' }],
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    } as never)).toThrow(TypeError);
+
+    expect(evaluateDeepResearchRollbackWindow({
+      openedAt: '2026-07-01T00:00:00Z',
+      evaluatedAt: '2026-07-15T00:00:00Z',
+      executions: [{ ...valid!, result: 'abstained' as const }],
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    } as never)).toMatchObject({ successfulAuthoritativeExecutions: 0, state: 'open' });
+  });
+
   it('counts one shared certificate digest once across five execution ids', () => {
     const sharedCertificateDigest = hash('shared-successful-certificate');
     const executions = successfulWindowExecutions().map((entry) => ({

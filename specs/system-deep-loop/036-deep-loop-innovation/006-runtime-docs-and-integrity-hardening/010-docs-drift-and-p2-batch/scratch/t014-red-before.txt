@@ -1,0 +1,6 @@
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/unit/deep-review-rollback-gate.vitest.ts > rollback window > requires both minimums and excludes incomplete or abstained executions
+ FAIL  tests/unit/deep-review-rollback-gate.vitest.ts > rollback window > does not count execution rows without matching authenticated evidence
+ FAIL  tests/unit/deep-review-rollback-gate.vitest.ts > independent parity authentication > does not adopt the authenticated parity handoff exit status as authority
+ Test Files  1 failed (1)
+      Tests  3 failed | 81 passed (84)

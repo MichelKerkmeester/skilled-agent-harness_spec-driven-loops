@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch"
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Reconciled packet docs to Complete against landed commit bf4f280ce7"
-    next_safe_action: "Re-land F-031-01/F-031-02 with a non-regressing rollback-window fix"
+    recent_action: "Re-landed T014 shared strict-validator adoption with a malformed-vs-selection split"
+    next_safe_action: "None — T014 re-landed; packet deferrals closed"
     blockers: []
     key_files:
       - "tasks.md"
@@ -117,7 +117,7 @@ T001 confirms 25 findings, moves 1 path, and records 3 already-fixed findings. T
 
 - [x] T012 [P] Locale-independent policy digest ordering (`F-002-03`) (`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts`, after `024`) [4h] {deps: T001} Evidence: authorized-ledger focused suite and code-unit comparator inspection; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
 - [x] T013 [P] Type frozen wave collections as readonly and remove the mutable-array casts (`F-036-05`) (`.opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/wave-plan.ts`) [3h] {deps: T001} Evidence: wave immutability test passes, unsafe casts absent, tsc rc 0; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [ ] T014 DEFERRED (not landed) — Adopt `027`'s shared strict validator in the research and review mode gates rather than patching them locally (`F-031-01`, `F-031-02`) (`.opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/mode-gate.ts`, `deep-review-rollback-gate/mode-gate.ts`) [5h] {deps: T001} Attempted and reverted: adopting the shared validator broke 2 deep-review rollback-window evidence-counting tests (83 pass at origin, 2 fail with the change). Both mode-gates were reverted to origin pending a non-regressing adoption; the shared `hasExactKeys`/`validateRows` primitives landed in `mode-contracts/strict-gate-validator.ts` but are not yet consumed by the legacy gates. Landed commit `bf4f280ce7` does not touch either `mode-gate.ts` file.
+- [x] T014 Adopt `027`'s shared strict validator in the research and review mode gates rather than patching them locally (`F-031-01`, `F-031-02`) (`.opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/mode-gate.ts`, `deep-review-rollback-gate/mode-gate.ts`) [5h] {deps: T001} Re-landed 2026-08-18. The first attempt flipped the whole row predicate from filter to reject, which regressed the rollback-window evidence count; that regression was reproduced first as a negative control (3 failing tests). Root cause: the predicate conflated structural row validity with success and authentication selection. The adoption now splits them — structural validity rejects the evidence set through the shared `validateRows`, while selection stays a filter, so legal `incomplete`/`abstained`/unauthenticated rows are excluded from the count rather than rejected. Evidence: `tsc --noEmit` exit 0; review suite 86/86; research suite 81/81; four added negative tests red-before/green-after (`scratch/t014-verification-evidence.md`).
 - [x] T015 [P] Persist convergence snapshots so a sliding-window baseline accumulates (`F-003-04`) (`.opencode/commands/deep/assets/deep-research-auto.yaml`) [4h] {deps: T001} Evidence: convergence step includes `--persist-snapshot --iteration`; YAML anchor inspection and drift probe pass; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
 <!-- /ANCHOR:phase-2 -->
 
