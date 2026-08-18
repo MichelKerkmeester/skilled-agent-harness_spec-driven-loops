@@ -1,0 +1,7 @@
+id,name,verdict,reason
+DEEP-001,"Active on deepseek-v4-flash",PASS,"edit_lines active and footer warming on flash"
+DEEP-002,"Active on deepseek-v4-pro",PASS,"edit_lines active and footer warming on pro"
+DEEP-003,"Dormant on a proxy route",PASS,"no footer and no edit_lines on proxy route"
+DEEP-004,"Warns on an unrecognized DeepSeek id",PASS,"warned once and stayed dormant on unrecognized id"
+DEEP-005,"/deeppi reports the cache hit rate",PASS,"/deeppi report includes the measured 80.0% cache hit rate"
+DEEP-006,"Footer shows the measured cache percent",PASS,"footer moved from warming to 80% cache"

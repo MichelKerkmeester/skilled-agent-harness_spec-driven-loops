@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+deeppi-behavior,deep-pi,,routing,manual,,,deeppi-behavior,,PASS,"All 6 manual-testing-playbook scenarios passed against the real extension. DeepPi activates on the two supported DeepSeek models, stays dormant on a proxy route, warns on an unrecognized id, and /deeppi plus the footer report the measured 80% cache hit rate. Per-scenario verdicts are in results.json."

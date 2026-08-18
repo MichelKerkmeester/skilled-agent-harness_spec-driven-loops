@@ -4,6 +4,16 @@
       "compat": {
         "sendSessionAffinityHeaders": true
       }
+    },
+    "openrouter": {
+      "modelOverrides": {
+        "~deepseek/deepseek-v4-flash-latest": {
+          "compat": {
+            "sendSessionAffinityHeaders": true,
+            "thinkingFormat": "deepseek"
+          }
+        }
+      }
     }
   }
 }

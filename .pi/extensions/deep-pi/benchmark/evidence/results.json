@@ -1,0 +1,52 @@
+{
+  "subject": "deep-pi",
+  "variant": "deeppi-behavior",
+  "date": "2026-08-17",
+  "total": 6,
+  "pass": 6,
+  "fail": 0,
+  "results": [
+    {
+      "id": "DEEP-001",
+      "name": "Active on deepseek-v4-flash",
+      "verdict": "PASS",
+      "reason": "edit_lines active and footer warming on flash",
+      "evidence": "isDeepPiModel=true; footer=\"DeepPi · warming\"; edit_lines=true"
+    },
+    {
+      "id": "DEEP-002",
+      "name": "Active on deepseek-v4-pro",
+      "verdict": "PASS",
+      "reason": "edit_lines active and footer warming on pro",
+      "evidence": "isDeepPiModel=true; footer=\"DeepPi · warming\"; edit_lines=true"
+    },
+    {
+      "id": "DEEP-003",
+      "name": "Dormant on a proxy route",
+      "verdict": "PASS",
+      "reason": "no footer and no edit_lines on proxy route",
+      "evidence": "isDeepPiModel=false; footer=undefined; tools=[\"read\",\"edit\",\"bash\"]"
+    },
+    {
+      "id": "DEEP-004",
+      "name": "Warns on an unrecognized DeepSeek id",
+      "verdict": "PASS",
+      "reason": "warned once and stayed dormant on unrecognized id",
+      "evidence": "warned=true; footer=undefined"
+    },
+    {
+      "id": "DEEP-005",
+      "name": "/deeppi reports the cache hit rate",
+      "verdict": "PASS",
+      "reason": "/deeppi report includes the measured 80.0% cache hit rate",
+      "evidence": "report-includes-hit-rate=true"
+    },
+    {
+      "id": "DEEP-006",
+      "name": "Footer shows the measured cache percent",
+      "verdict": "PASS",
+      "reason": "footer moved from warming to 80% cache",
+      "evidence": "before=\"DeepPi · warming\"; after=\"DeepPi · 80% cache\""
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "deep-pi",
+    "rootRel": ".pi/extensions/deep-pi"
+  },
+  "executor": null,
+  "model": null,
+  "variant": "deeppi-behavior",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "deeppi-behavior",
+      "verdict": "PASS",
+      "reason": "All 6 manual-testing-playbook scenarios passed against the real extension. DeepPi activates on the two supported DeepSeek models, stays dormant on a proxy route, warns on an unrecognized id, and /deeppi plus the footer report the measured 80% cache hit rate. Per-scenario verdicts are in results.json.",
+      "stage": "routing",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "deeppi-behavior",
+      "evidence": [
+        "results.json"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "results.json",
+          "status": "verified",
+          "bytes": 1646,
+          "sha256": "9b97ef7056416cc070394f676670ca1cce104281bd62ed08cfd6174dc0b1da03"
+        }
+      ]
+    }
+  ],
+  "supersedes": [],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-17T14:10:23.916Z",
+    "evidenceClass": "unit",
+    "evidenceArtifacts": [
+      {
+        "path": "results.json",
+        "status": "verified",
+        "bytes": 1646,
+        "sha256": "9b97ef7056416cc070394f676670ca1cce104281bd62ed08cfd6174dc0b1da03"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "deeppi-behavior",
+    "stage": "routing",
+    "dispatch": "manual",
+    "evidenceClass": "unit",
+    "variant": "deeppi-behavior",
+    "command": "npx vitest run benchmark/scenario-run.test.ts",
+    "runtime": "node",
+    "nodeVersion": "v25.6.1",
+    "requireDurableEvidence": true,
+    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/deep-pi/benchmark/evidence",
+    "payloadFixture": "{\"usage\":{\"input\":20000,\"cacheRead\":80000},\"expected\":\"Cache hit rate: 80.0%\"}",
+    "executorNotApplicableReason": "deterministic in-process harness; no external executor",
+    "modelNotApplicableReason": "extension code exercised directly; no model was invoked"
+  }
+}

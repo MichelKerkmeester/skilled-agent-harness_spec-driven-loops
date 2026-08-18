@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "hooks/012-pi-extension-playbooks/001-cache-optimizer-playbook",
+  "description": "`pi-cache-optimizer` has 53 unit tests but no operator-facing manual-testing playbook, so there is no reproducible way to validate its",
+  "keywords": [
+    "pi-cache-optimizer",
+    "unit",
+    "tests",
+    "operator-facing",
+    "manual-testing",
+    "playbook",
+    "reproducible",
+    "way",
+    "validate"
+  ],
+  "lastUpdated": "2026-08-17T15:47:54.769Z",
+  "specId": "001",
+  "folderSlug": "cache-optimizer-playbook",
+  "parentChain": [
+    "hooks",
+    "012-pi-extension-playbooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
