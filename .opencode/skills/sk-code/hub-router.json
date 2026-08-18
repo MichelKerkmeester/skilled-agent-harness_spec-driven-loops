@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-opencode"],
+    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-opencode", "sk-code-mobile-cli"],
     "outcomes": {
       "single": "one dominant code intent routes to one workflow mode",
       "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",
@@ -33,6 +33,11 @@
       "weight": 4,
       "classes": ["code-opencode-aliases", "code-opencode-runtime", "code-opencode-authoring", "hub-identity"],
       "resources": ["sk-code-opencode/SKILL.md"]
+    },
+    "sk-code-mobile-cli": {
+      "weight": 4,
+      "classes": ["code-mobile-cli-aliases", "code-mobile-cli-runtime", "hub-identity"],
+      "resources": ["sk-code-mobile-cli/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -71,6 +76,12 @@
     },
     "code-opencode-authoring": {
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
+    },
+    "code-mobile-cli-aliases": {
+      "keywords": ["pi remote mobile ui", "pi-remote-web design system", "mobile cli design tokens", "ink-on-parchment tokens", "ds grammar editability", "design-system tokens", "apps/pi-remote-web"]
+    },
+    "code-mobile-cli-runtime": {
+      "keywords": ["react", "vite", "tailwind", "style.css", "--pi-clay", "@ds", "design tokens", "wcag aa", "light dark theme", "css custom properties"]
     }
   }
 }

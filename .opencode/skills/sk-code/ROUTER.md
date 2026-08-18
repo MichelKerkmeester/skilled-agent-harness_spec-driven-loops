@@ -36,6 +36,10 @@ The smart router maps a detected surface (WEBFLOW / OPENCODE / UNKNOWN) plus a c
 
 Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (Webflow vs OpenCode vs UNKNOWN); intent narrows the specific files within that family. Motion.dev resources are a **peer category** loaded after either surface, not a third surface.
 
+### Bundled Evidence Surfaces
+
+Beyond the two code surfaces this router maps, the hub can bundle a read-only **evidence surface** alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. `PI_REMOTE` — the Pi Remote Mobile-CLI app (`apps/pi-remote-web/`) — is one such surface: its detection lives in [`stack-detection.md`](shared/references/stack-detection.md) and its design-system evidence (the `--pi-*` token library, the `@ds` grammar, the browser-free verification gate) in the `sk-code-mobile-cli` packet. Evidence surfaces are registered in `mode-registry.json` and typed in `leaf-manifest.json`, but are **not** part of the machine `RESOURCE_MAP` projection in §11, which covers only the Webflow / OpenCode / Motion.dev code maps.
+
 ### Key Sources
 
 - [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (WEBFLOW/OPENCODE/UNKNOWN) and OpenCode language sub-detection
