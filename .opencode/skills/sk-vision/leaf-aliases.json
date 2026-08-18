@@ -1,6 +1,11 @@
 [
   {
     "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/host-adapters/mcp-transport.md",
+    "diskPath": "feature-catalog/host-adapters/mcp-transport.md"
+  },
+  {
+    "workflowMode": "sk-vision",
     "leafResourceId": "feature-catalog/host-adapters/opencode-plugin.md",
     "diskPath": "feature-catalog/host-adapters/opencode-plugin.md"
   },

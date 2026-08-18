@@ -2,6 +2,7 @@
   "modes": [
     {
       "leaves": [
+        "feature-catalog/host-adapters/mcp-transport.md",
         "feature-catalog/host-adapters/opencode-plugin.md",
         "feature-catalog/host-adapters/pi-extension.md",
         "feature-catalog/pixel-analysis/annotate.md",

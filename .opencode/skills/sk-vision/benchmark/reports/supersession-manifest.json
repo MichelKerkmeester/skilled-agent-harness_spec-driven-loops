@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "mappings": [
+    {
+      "superseded": ".opencode/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status",
+      "replacement": "2026-08-17--manual-testing-playbook--vsn-019-devin-status-pass",
+      "capturedAt": "2026-08-17T16:36:35.391Z",
+      "scenarioId": "VSN-019"
+    },
+    {
+      "superseded": ".opencode/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind",
+      "replacement": "2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind-pass",
+      "capturedAt": "2026-08-17T16:36:35.448Z",
+      "scenarioId": "VSN-020"
+    },
+    {
+      "superseded": ".opencode/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind",
+      "replacement": "2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind-pass",
+      "capturedAt": "2026-08-17T16:36:35.513Z",
+      "scenarioId": "VSN-020"
+    }
+  ]
+}

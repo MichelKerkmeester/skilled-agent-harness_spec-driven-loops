@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+VSN-020,sk-vision,,host-adapters,manual,,,vsn-020-devin-vision-blind,,SKIP,"Not run on Devin: same non-interactive MCP-approval blocker as VSN-019 (needs --permission-mode dangerous, pending operator approval). Devin OCR would also require SK_VISION_MODEL=moondream3-preview in the server env."

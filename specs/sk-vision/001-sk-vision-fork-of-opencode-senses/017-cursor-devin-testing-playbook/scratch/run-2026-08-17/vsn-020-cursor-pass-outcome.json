@@ -1,0 +1,17 @@
+{
+  "executionContext": {
+    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17",
+    "evidenceClass": "native-host-delivered",
+    "requireDurableEvidence": true,
+    "command": "AI_SESSION_CHILD=1 cursor-agent -p '<sk_vision_ocr on fixture>' --model glm-5.2-high --auto-review --sandbox enabled (sk-vision server env SK_VISION_MODEL=moondream3-preview)",
+    "runtime": "cursor-agent",
+    "runtimeVersion": "2026.08.11-e8db854",
+    "executor": "cli-cursor",
+    "executorObserved": true,
+    "model": "glm-5.2-high",
+    "modelObserved": true,
+    "payloadFixture": "ocr-fixture.png sha256:a294cf816323eeb0194bdb21ec66c7c1f184cb2dadf04075cee892fd9d35a560 ground-truth 'CODE 4218'",
+    "supersedes": [".opencode/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-cursor-vision-blind"]
+  },
+  "evidence": ["vsn-020-cursor-ocr-md3.log", "ocr-fixture.png", "ocr-ground-truth.txt"]
+}

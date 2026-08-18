@@ -1,0 +1,20 @@
+const { spawn } = require('node:child_process');
+const path = require('node:path');
+const REPO = path.resolve(__dirname, '../../../../../..');
+const SERVER = path.join(REPO, '.opencode/skills/sk-vision/vision-runtime/dist/mcp-server.js');
+const IMG = path.join(__dirname, 'ocr-fixture.png');
+const proc = spawn('node', [SERVER], { cwd: REPO, stdio: ['pipe','pipe','pipe'] });
+let buf=''; const pending=new Map(); let id=1;
+proc.stdout.on('data',d=>{buf+=d;let i;while((i=buf.indexOf('\n'))>=0){const l=buf.slice(0,i).trim();buf=buf.slice(i+1);if(!l)continue;let m;try{m=JSON.parse(l)}catch{continue}if(m.id&&pending.has(m.id)){pending.get(m.id)(m);pending.delete(m.id)}}});
+proc.stderr.on('data',()=>{});
+const rpc=(method,params,t=180000)=>{const i=id++;proc.stdin.write(JSON.stringify({jsonrpc:'2.0',id:i,method,params})+'\n');return new Promise((res,rej)=>{const to=setTimeout(()=>rej(new Error('timeout '+method)),t);pending.set(i,m=>{clearTimeout(to);res(m)})})};
+const notify=(method,params)=>proc.stdin.write(JSON.stringify({jsonrpc:'2.0',method,params})+'\n');
+const textOf=m=>{const c=m.result?.content;if(Array.isArray(c))return c.map(x=>x.text||'').join('\n');if(m.error)return 'ERROR: '+JSON.stringify(m.error);return JSON.stringify(m.result)};
+(async()=>{try{
+  await rpc('initialize',{protocolVersion:'2024-11-05',capabilities:{},clientInfo:{name:'p',version:'1'}});
+  notify('notifications/initialized',{});
+  const q='Read every line of text in this image and quote it exactly, preserving numbers and words.';
+  const ins=await rpc('tools/call',{name:'sk_vision_inspect',arguments:{path:IMG,question:q}});
+  console.log('INSPECT:\n'+textOf(ins));
+  proc.kill('SIGKILL');process.exit(0);
+}catch(e){console.log('ERR '+e.message);proc.kill('SIGKILL');process.exit(1)}})();

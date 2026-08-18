@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-vision",
+    "rootRel": ".opencode/skills/sk-vision"
+  },
+  "executor": null,
+  "model": null,
+  "variant": "vsn-020-cursor-vision-blind",
+  "verdict": "FAIL",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "VSN-020",
+      "verdict": "FAIL",
+      "reason": "GLM-5.2-High via cli-cursor called sk_vision_inspect and sk_vision_ocr (no hallucination) and recovered the unguessable ground-truth tokens CODE and 4218 via inspect ('CODE DE DE 4218'); but exact-quote match to 'CODE 4218' failed — ocr returned only 'CO' and inspect carried a model repetition artifact. Root cause: default moondream2 truncates text reads and OCR is moondream3-only; moondream3 reads content but with a token-doubling artifact (vsn-020-cursor-ocr.log).",
+      "stage": "host-adapters",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "vsn-020-cursor-vision-blind",
+      "evidence": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17/vsn-020-cursor-ocr.log"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17/vsn-020-cursor-ocr.log",
+          "status": "verified",
+          "bytes": 812,
+          "sha256": "7302aae9bf6d74eb13b8e5f88b19a129339bc5c61193fd76a9584e57894de51e"
+        }
+      ]
+    }
+  ],
+  "supersedes": [],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-17T16:28:03.252Z",
+    "evidenceClass": null,
+    "evidenceArtifacts": [
+      {
+        "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17/vsn-020-cursor-ocr.log",
+        "status": "verified",
+        "bytes": 812,
+        "sha256": "7302aae9bf6d74eb13b8e5f88b19a129339bc5c61193fd76a9584e57894de51e"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "VSN-020",
+    "stage": "host-adapters",
+    "dispatch": "manual",
+    "evidenceClass": null,
+    "requestedExecutorLabel": "cli-cursor",
+    "requestedModelLabel": "glm-5.2-high",
+    "variant": "vsn-020-cursor-vision-blind"
+  }
+}

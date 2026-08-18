@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+VSN-019,sk-vision,,host-adapters,manual,,,vsn-019-devin-status,,SKIP,"Devin non-interactive (-p) rejects the sk-vision MCP tool call under auto/accept-edits ('rejected a tool call that requires confirmation'); 'smart' mode is unavailable on this build and falls back to normal; only --permission-mode dangerous auto-approves MCP tools, which the cli-devin contract requires explicit operator approval to use (pending) (vsn-019-devin-status.log)."

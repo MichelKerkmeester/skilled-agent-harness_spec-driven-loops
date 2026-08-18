@@ -1,0 +1,3 @@
+MOONDREAM_API_KEY is not set. Finetune inference is disabled. Set MOONDREAM_API_KEY to enable finetune inference.
+Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<PhotonReporter._telemetry_loop() running at /Users/michelkerkmeester/.cache/sk-vision/venv/lib/python3.12/site-packages/kestrel/photon.py:158> wait_for=<Future pending cb=[Task.task_wakeup()]>>

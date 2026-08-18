@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-vision",
+    "rootRel": ".opencode/skills/sk-vision"
+  },
+  "executor": "cli-devin",
+  "model": "glm-5-2",
+  "variant": "vsn-019-devin-status",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "VSN-019",
+      "verdict": "PASS",
+      "reason": "GLM-5.2-High via cli-devin (--permission-mode dangerous) invoked mcp__sk-vision__sk_vision_status and returned the exact provider: photon status block. Supersedes prior SKIP; operator approved dangerous mode to clear the MCP-approval blocker (vsn-019-devin-status-dangerous.log).",
+      "stage": "host-adapters",
+      "classKind": "manual",
+      "providerModel": "glm-5-2",
+      "variant": "vsn-019-devin-status",
+      "evidence": [
+        "vsn-019-devin-status-dangerous.log"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "vsn-019-devin-status-dangerous.log",
+          "status": "verified",
+          "bytes": 397,
+          "sha256": "fc936a45da4d4f8b20f2526899242c410e929de0c2339c909e9f7bc46e980cfb"
+        }
+      ]
+    }
+  ],
+  "supersedes": [
+    ".opencode/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status"
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-17T16:36:35.391Z",
+    "evidenceClass": "native-host-delivered",
+    "evidenceArtifacts": [
+      {
+        "path": "vsn-019-devin-status-dangerous.log",
+        "status": "verified",
+        "bytes": 397,
+        "sha256": "fc936a45da4d4f8b20f2526899242c410e929de0c2339c909e9f7bc46e980cfb"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "VSN-019",
+    "stage": "host-adapters",
+    "dispatch": "manual",
+    "evidenceClass": "native-host-delivered",
+    "executor": "cli-devin",
+    "model": "glm-5-2",
+    "requestedExecutorLabel": "cli-devin",
+    "requestedModelLabel": "glm-5-2",
+    "variant": "vsn-019-devin-status",
+    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17",
+    "requireDurableEvidence": true,
+    "command": "AI_SESSION_CHILD=1 devin -p --model glm-5-2 --permission-mode dangerous -- '<call mcp__sk-vision__sk_vision_status>'",
+    "runtime": "devin",
+    "runtimeVersion": "(7e8e528a)",
+    "executorObserved": true,
+    "modelObserved": true,
+    "payloadNotApplicableReason": "sk_vision_status takes no arguments; no image payload applies",
+    "supersedes": [
+      ".opencode/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-019-devin-status"
+    ]
+  }
+}
