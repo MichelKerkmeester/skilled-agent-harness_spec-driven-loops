@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default"
-    last_updated_at: "2026-08-18T14:15:43Z"
+    last_updated_at: "2026-08-18T17:51:54Z"
     last_updated_by: "claude"
     recent_action: "Added cline pro across config and rosters; pi default set to cline"
     next_safe_action: "Operator supplies CLINE_API_KEY for a live pro dispatch"
@@ -54,9 +54,9 @@ FAILURE MODES:
 | **Created** | 2026-08-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 5 |
+| **Phase** | 5 of 6 |
 | **Predecessor** | 004-cline-cli-pi-roster |
-| **Successor** | None |
+| **Successor** | 006-cline-pi-model-id-format-fix |
 | **Handoff Criteria** | Both cline models live in `pi --list-models`; pi default is cline-pass/flash; both rosters show the pro entry; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:metadata -->
 

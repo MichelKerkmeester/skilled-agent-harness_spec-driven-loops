@@ -24,27 +24,29 @@ This file documents each custom provider: what it is, why it is wired by config 
 
 ## 2. CLINE-PASS (CLINE.BOT)
 
-Routes DeepSeek V4 Flash and DeepSeek V4 Pro through the Cline account (`https://api.cline.bot/api/v1`, OpenAI-compatible), giving pi parity with opencode, which already reaches the same provider. Cline is not a pi builtin, so without this block pi's `/login` and model picker never show it. Flash is pi's default model here (`defaultProvider: "cline-pass"`, `defaultModel: "deepseek-v4-flash"`).
+Routes DeepSeek V4 Flash and DeepSeek V4 Pro through the Cline account (`https://api.cline.bot/api/v1`, OpenAI-compatible), giving pi parity with opencode, which already reaches the same provider. Cline is not a pi builtin, so without this block pi's `/login` and model picker never show it. Flash is pi's default model here (`defaultProvider: "cline-pass"`, `defaultModel: "cline-pass/deepseek-v4-flash"`).
 
 ### Where It Lives
 
 - Provider block: `.pi/models.json` under `providers["cline-pass"]`, with two models
-- Enabled in the picker: `.pi/settings.json` under `enabledModels`, entries `"cline-pass/deepseek-v4-flash"` and `"cline-pass/deepseek-v4-pro"`
-- Default: `.pi/settings.json` `defaultProvider` is `"cline-pass"` and `defaultModel` is `"deepseek-v4-flash"`
+- Enabled in the picker: `.pi/settings.json` under `enabledModels`, entries `"cline-pass/cline-pass/deepseek-v4-flash"` and `"cline-pass/cline-pass/deepseek-v4-pro"`
+- Default: `.pi/settings.json` `defaultProvider` is `"cline-pass"` and `defaultModel` is `"cline-pass/deepseek-v4-flash"`
 
-**Model ids**: `cline-pass/deepseek-v4-flash` and `cline-pass/deepseek-v4-pro` (pi's flat `provider/modelId`). These are pi's equivalents of opencode's three-segment `cline-pass/cline-pass/deepseek-v4-flash` and `cline-pass/cline-pass/deepseek-v4-pro`.
+**Model ids**: the pi reference is the three-segment `cline-pass/cline-pass/deepseek-v4-flash` (and `cline-pass/cline-pass/deepseek-v4-pro`) — provider `cline-pass` plus the model id `cline-pass/deepseek-v4-flash`, matching opencode's form. The model id keeps its `cline-pass/` prefix on purpose (see the model-id gotcha below).
 
 ### Dispatch
 
-Select flash with `--provider cline-pass --model cline-pass/deepseek-v4-flash`, or pro with `--model cline-pass/deepseek-v4-pro`. The cli-pi skill roster documents the same forms under its `### cline-pass` section.
+Select flash with `--provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash`, or pro with `--model cline-pass/cline-pass/deepseek-v4-pro`. The cli-pi skill roster documents the same forms under its `### cline-pass` section.
 
 ### Thinking And Effort
 
 Both are reasoning models (`reasoning: true`) and inherit the global `defaultThinkingLevel: "xhigh"` from `.pi/settings.json`, so they run at Extra High by default. The Cline provider has no `max` tier for either, so `xhigh` is the top thinking level and the only one these entries use. The `compat.thinkingFormat: "deepseek"` hint matches how the DeepSeek Flash sibling is configured for the OpenRouter route, so thinking tokens parse correctly.
 
-### The Gotcha That Silently Breaks It
+### Two Gotchas That Silently Break It
 
 The provider `api` MUST be `"openai-completions"`, never a bare `"openai"`. A bare `openai` passes `pi auth check` and `--list-models` but throws at stream time (`No API provider registered for api: openai`). Every builtin OpenAI-compatible model, for example deepseek, uses `openai-completions`.
+
+The model `id` MUST keep the `cline-pass/` prefix (`cline-pass/deepseek-v4-flash`, not bare `deepseek-v4-flash`). The Cline API rejects a bare id at request time with `400 "invalid model format. Expected format: modelType/model"`. That failure hides from `pi --list-models` and `pi auth check`, which never send a completion, so it only surfaces on the first real dispatch. opencode uses the same slashed id.
 
 ---
 
@@ -65,13 +67,15 @@ pi keeps its own auth store. Opencode's existing `cline-pass` credential (`~/.lo
 
 ```bash
 pi --list-models | grep cline
-pi auth check --provider cline-pass --model cline-pass/deepseek-v4-flash --json
+pi auth check --provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash --json
+# real round-trip (needs a key) — proves the model id is accepted:
+pi -p "reply OK" --provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash --thinking xhigh --mode text
 ```
 
-Expected: the list shows the `cline-pass  deepseek-v4-flash` row, and `pi auth check` returns `{"status":"ready"}` once a key is set.
+Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash` row, `pi auth check` returns `{"status":"ready"}`, and the dispatch returns a model reply rather than a `400 invalid model format`.
 
 ---
 
 ## 5. REMOVE
 
-Delete the `providers["cline-pass"]` block from `.pi/models.json` and the `"cline-pass/deepseek-v4-flash"` and `"cline-pass/deepseek-v4-pro"` lines from `.pi/settings.json` `enabledModels`. If `defaultProvider` still points at `cline-pass`, reset it to another authenticated provider so an unqualified dispatch still resolves. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.
+Delete the `providers["cline-pass"]` block from `.pi/models.json` and the `"cline-pass/cline-pass/deepseek-v4-flash"` and `"cline-pass/cline-pass/deepseek-v4-pro"` lines from `.pi/settings.json` `enabledModels`. If `defaultProvider` still points at `cline-pass`, reset it to another authenticated provider so an unqualified dispatch still resolves. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.

@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default"
-    last_updated_at: "2026-08-18T14:15:43Z"
+    last_updated_at: "2026-08-18T17:51:54Z"
     last_updated_by: "claude"
-    recent_action: "cline pro live in pi; default provider set to cline-pass"
-    next_safe_action: "Operator supplies CLINE_API_KEY for a live pro round-trip"
+    recent_action: "cline pro live in pi; pi default cline-pass; phase 6 fixed model id"
+    next_safe_action: "Commit and push; see phase 006 for the id fix"
     blockers: []
     key_files:
       - ".pi/models.json"

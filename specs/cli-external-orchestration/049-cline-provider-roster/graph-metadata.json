@@ -8,7 +8,8 @@
     "cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation",
     "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build",
     "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster",
-    "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default"
+    "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default",
+    "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix"
   ],
   "manual": {
     "depends_on": [],
@@ -88,15 +89,15 @@
     ],
     "causal_summary": "The operator authenticated the Cline provider inside opencode (it registers as `cline-pass`, not `cline`), which exposes `cline-pass/cline-pass/deepseek-v4-flash`",
     "created_at": "2026-08-18T08:28:10Z",
-    "last_save_at": "2026-08-18T14:19:32.191Z",
+    "last_save_at": "2026-08-18T17:52:06.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c4dfcaced3acbdb2ae61a54551da3d9faa9690c4a73aea565a3020e7465446e0",
+    "source_fingerprint": "sha256:35a6365ba12332641536fe29b3e3d64f412a6ac309cbcb5aa7cad159de62b537",
     "source_doc_hashes": {
-      "spec.md": "5f3ba792cb87763c9e60a5bb7c7cd0c759d06af0c2dd187da13b28351397b21f"
+      "spec.md": "a0646ed19d07885c70cc18896cf593b94a9a39af178d87719e9f37ff7c8cdbaa"
     },
     "last_active_child_id": "cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation",
     "last_active_at": null
