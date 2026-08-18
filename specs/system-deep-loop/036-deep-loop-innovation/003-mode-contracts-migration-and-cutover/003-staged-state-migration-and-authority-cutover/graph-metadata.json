@@ -40,7 +40,7 @@
       "classify"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -90,7 +90,7 @@
     ],
     "causal_summary": "Classify and migrate eligible in-flight state, then cut authority per mode under shadow-parity, rollback, and certificate gates.",
     "created_at": "2026-07-16T03:44:00.676Z",
-    "last_save_at": "2026-08-17T04:04:20.799Z",
+    "last_save_at": "2026-08-18T05:05:10.270Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -98,7 +98,7 @@
     ],
     "source_fingerprint": "sha256:3748aa504193e19a5c23b2562a7af2e15bc30e1f573f91c1a4e235a68c463272",
     "source_doc_hashes": {
-      "spec.md": "3daf5a65345c3b72087e409e5f868f301efd3a449d2639d4915c02e394322ec5"
+      "spec.md": "16bb761f82c2885c2f6214f733291d1ce7f4d87620de4c2c2b81aa79558aa5c0"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/001-inflight-state-migration",
     "last_active_at": null
