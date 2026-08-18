@@ -53,13 +53,11 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 - [x] CHK-001 [P0] All scoped finding IDs classified by T001 before any edit
   - **Evidence**: T001 ledger in `tasks.md` lists all 13 IDs with a `CONFIRMED` / `ALREADY-FIXED` class and a cited probe; landed `a28a39354b7`
-- [ ] CHK-002 [P0] Pre-edit baseline captured for every runner this child touches
-  - **Evidence**: Recorded discovered-test count, pass/fail/skip, and exit code per runner, at a named SHA
-  - **Open**: only the council runner baseline (`vitest`, 10 files / 109 passed / 2 failed / exit 1) was captured; the full improvement-project pre-edit baseline (T002) was not
+- [x] CHK-002 [P0] Pre-edit baseline captured for every runner this child touches
+  - **Evidence**: Pre-edit baseline captured at `d0d8623ddf` (parent of the first landing commit) in a throwaway worktree, then re-run post-landing — a real before/after, not a relabelled current run. Full project: 17 -> 13 failing files, 54 -> 49 failing tests, 478 -> 542 passing, 547 -> 591 discovered, exit non-zero both sides. Per lane: `agent-improvement` 60 -> 63 passed with zero failures throughout; `shared` 124 passed/1 failed -> 159 passed/0 failed. All residual red sits in the `model-benchmark` and `skill-benchmark` sibling lanes and decreased across this change. Detail: `scratch/improvement-project-baseline.md`.
 
-- [ ] CHK-010 [P0] Both vitest project baselines captured before any change
-  - **Evidence**: Discovered, pass, fail, skip, exit code and SHA per project
-  - **Open**: council project captured; full improvement project baseline not captured (couples to T002/T020)
+- [x] CHK-010 [P0] Both vitest project baselines captured before any change
+  - **Evidence**: Both vitest project baselines are now captured. The council runner was already recorded (10 files / 109 passed / 2 failed / exit 1). The improvement project is captured here at pre-edit SHA `d0d8623ddf` and post-landing: 48 -> 53 files discovered, 17 -> 13 failing, 547 -> 591 tests discovered, 54 -> 49 failing, 478 -> 542 passing. Detail: `scratch/improvement-project-baseline.md`.
 - [x] CHK-011 [P0] Fixture target trees in place; no test writes to a real canonical target
   - **Evidence**: Promotion/rollback tests run against fixture target trees only; no real canonical target path appears in any test; landed `0d1827eef50`
 - [x] CHK-012 [P0] The acceptance receipt contents fixed in ADR-001 before implementation
@@ -148,9 +146,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 - [x] CHK-006 [P0] No evidence string cites a bare run count or raw line number
   - **Evidence**: Evidence strings carry a named test plus the aggregate suite-content digest `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265` and a landing SHA
-- [ ] CHK-008 [P0] `validate.sh --strict` exits 0 for this child
-  - **Evidence**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <child> --strict` -> exit 0
-  - **Open**: reconciled state validates `Errors: 0` with a single benign `CONTINUITY_FRESHNESS` `dirty_tree` warning; literal exit 0 clears only after the orchestrator commits this packet
+- [x] CHK-008 [P0] `validate.sh --strict` exits 0 for this child
+  - **Evidence**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-child> --strict` re-run 2026-08-18 from the final state: Errors 0, Warnings 0, RESULT PASSED.
 
 - [x] CHK-050 [P0] The severity calibration is carried and not escalated
   - **Evidence**: `spec.md` §2 states the operator or stale-local-file actor
