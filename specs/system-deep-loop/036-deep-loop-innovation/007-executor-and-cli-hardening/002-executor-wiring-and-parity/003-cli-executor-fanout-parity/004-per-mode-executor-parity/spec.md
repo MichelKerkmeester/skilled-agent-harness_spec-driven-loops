@@ -12,17 +12,17 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parit
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity"
-    last_updated_at: "2026-08-17T04:33:13Z"
-    last_updated_by: "claude"
-    recent_action: "Consolidated model-benchmark cursor/devin/pi onto the shared builder"
-    next_safe_action: "SOL-verify leaf 1, land, then skill-benchmark and ai-council leaves"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Set per-mode executor parity spec to Complete after model-benchmark and ai-council landed"
+    next_safe_action: "Await SOL verdicts and operator review before the combo-matrix phase"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs"
       - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs"
-    completion_pct: 35
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "deep-research/review/alignment already have full 7-executor parity via the shared fan-out"
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity` |
@@ -92,11 +92,11 @@ Give these three modes cli-cursor/cli-devin/cli-pi parity by delegating command 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- **R1** — In each of the three modes, a cli-cursor/cli-devin/cli-pi dispatch produces the same hardened command the fan-out produces (read-only genuinely read-only; workspace-write stall-free and confined).
-- **R2** — Command construction for those three kinds is delegated to the shared `buildLineageCommand`, not duplicated; the fan-out builders are reused unchanged.
-- **R3** — Each mode's read-only-by-default posture is preserved: write-capable is the explicit opt-in that maps to `workspace-write`.
-- **R4** — No regression to that mode's existing cli-opencode/cli-claude-code/cli-codex dispatch, envelope parsing, or test suite (verified by a stash-baseline delta with zero new failures).
-- **R5** — Model allowlists remain equivalent (the removed local lists match the shared builder's), so no previously-valid model is rejected and no invalid model accepted.
+- **REQ-001** — In each covered mode, a cli-cursor/cli-devin/cli-pi dispatch produces the same hardened command the fan-out produces (read-only genuinely read-only; workspace-write stall-free and confined).
+- **REQ-002** — Command construction for those three kinds is delegated to the shared `buildLineageCommand`, not duplicated; the fan-out builders are reused unchanged.
+- **REQ-003** — Each mode's read-only-by-default posture is preserved: write-capable is the explicit opt-in that maps to `workspace-write`.
+- **REQ-004** — No regression to that mode's existing cli-opencode/cli-claude-code/cli-codex dispatch, envelope parsing, or test suite (verified by a stash-baseline delta with zero new failures).
+- **REQ-005** — Model allowlists remain equivalent (the removed local lists match the shared builder's), so no previously-valid model is rejected and no invalid model accepted.
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -126,5 +126,5 @@ Give these three modes cli-cursor/cli-devin/cli-pi parity by delegating command 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should model-benchmark and skill-benchmark also gain native/cli-codex dispatch parity, or is cursor/devin/pi the intended scope for this phase (native-static and codex-via-helper are pre-existing design choices)?
+- RESOLVED: cursor/devin/pi is the intended scope for this phase; native-static and codex-via-helper stay as pre-existing design choices, and native/cli-codex parity for model-benchmark and skill-benchmark is out of scope here.
 <!-- /ANCHOR:questions -->

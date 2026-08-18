@@ -64,7 +64,7 @@ CSS) route to both.
 
 ---
 
-## 3. MACHINE-READABLE ROUTER (REPLAY / BENCHMARK SOURCE)
+## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
 
 The single machine-readable projection of the intent model above. The prose is the
 human-facing contract; this block is the byte-for-byte source the deterministic

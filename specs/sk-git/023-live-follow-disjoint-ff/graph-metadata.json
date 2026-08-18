@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/023-live-follow-disjoint-ff",
+  "spec_folder": "sk-git/023-live-follow-disjoint-ff",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live sync dirty checkout",
+      "primary reconcile disjoint fast forward",
+      "checkout not following live branch",
+      "auto follow skips dirty tree"
+    ],
+    "key_topics": [
+      "live-sync",
+      "reconcile",
+      "follower",
+      "fast-forward",
+      "dirty",
+      "checkout",
+      "rebase",
+      "sk-git"
+    ],
+    "status": "complete",
+    "last_active_child_id": null
+  }
+}

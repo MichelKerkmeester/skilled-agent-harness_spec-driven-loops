@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude-code"
-    recent_action: "Wired cli-devin as a deep-loop executor kind"
-    next_safe_action: "Smoke-test one cli-devin lineage, then run the research fan-out"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Set cli-devin executor spec status to Complete"
+    next_safe_action: "Commit the reconciled packet docs"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-27-041-cli-devin-executor-wiring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring` |
 | **Parent Spec** | `../spec.md` |
@@ -147,8 +147,8 @@ Make `cli-devin` a first-class fan-out executor with the same shape as the other
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the allowlist grow to cover the full 37-family roster, or stay curated to ids with known prompt-craft behaviour?
-- Does Devin expose a session identifier that could be captured for audit receipts?
+- Resolved: the allowlist stays curated to vetted ids rather than the full 37-family roster; it is plain data and extends later without touching the adapter.
+- Resolved: Devin exposes no session identifier in `devin --help`, so receipts carry the invocation fingerprint only and none was fabricated.
 <!-- /ANCHOR:questions -->
 
 ---

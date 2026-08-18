@@ -589,3 +589,12 @@ The router does NOT load the whole matched-intent union. After surface detection
 - the Motion.dev overlay (`sk-code-webflow/references/animation/*`) when a `MOTION_DEV` intent fires.
 
 It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within OpenCode it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-opencode/references/typescript/*` plus the language-agnostic `sk-code-opencode/references/shared/*`, not the Python, shell, config, or JavaScript folders. Webflow has no language sub-slice — a frontend task legitimately spans CSS, HTML, and JavaScript together. A task that genuinely spans both surfaces (mixed `.opencode/` and Webflow markers) keeps both surface slices; an `UNKNOWN` surface falls back to the preamble plus the universal tier and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
+
+---
+
+## 12. HOW TO READ THIS
+
+- Every code task first loads the always-on preamble (stack + phase detection and the universal quality baseline); routing then narrows to the detected surface's slice for the matched intents.
+- One dominant intent on one surface loads that surface's slice; two near-tied intents (within the router's ambiguity delta) load both intent sets, deduped by canonical pair.
+- A task that genuinely spans both surfaces (mixed markers) keeps both surface slices; a single-surface task never pulls the other surface's resources.
+- No keyword match, or an `UNKNOWN` surface, falls back to the preamble plus the universal tier and the Motion overlay only — confirm the surface and intent before loading more. See §8 (UNKNOWN FALLBACK) and §9 (LOADING DISCIPLINE) for the full rules.

@@ -13,9 +13,9 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Landed 27/29 findings as bf4f280ce7 on skilled/v4.0.0.0"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to Complete against landed commit bf4f280ce7"
     next_safe_action: "Re-land F-031-01/F-031-02 with a non-regressing rollback-window fix"
     blockers: []
     key_files:
@@ -171,5 +171,5 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 **Verification Date**: 2026-08-07
 **Verified By**: Codex focused verification pass
-**Status**: Verified — evidence names the check, suite digest, and candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+**Status**: Complete — all P0 (16/16) and P2 (1/1) verified with test-name + suite-digest + candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`; 11/14 P1 verified and CHK-021 / CHK-033 / CHK-FIX-006 recorded as accepted deferrals (the `027` shared-validator adoption in the legacy rollback gates regressed 2 deep-review evidence-counting tests and was reverted; landed commit `bf4f280ce7` touches no `mode-gate.ts`).
 <!-- /ANCHOR:summary -->

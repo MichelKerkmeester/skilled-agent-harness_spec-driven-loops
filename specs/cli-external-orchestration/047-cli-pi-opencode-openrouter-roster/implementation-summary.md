@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "specs/cli-external-orchestration/047-cli-pi-opencode-openrouter-roster"
     last_updated_at: "2026-08-18T16:00:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Post-ship: pulled the OpenRouter GPT-5.6 Luna entry; OpenRouter is now DeepSeek-Flash-only."
-    next_safe_action: "Commit + push the OpenRouter restriction once the operator approves."
+    recent_action: "Post-ship: pulled the OpenRouter GPT-5.6 Luna entry; OpenRouter is now DeepSeek-Flash-only. Reconciled with origin/v4 via merge."
+    next_safe_action: "Push the merged v4 line."
     blockers: []
     key_files:
       - "specs/cli-external-orchestration/047-cli-pi-opencode-openrouter-roster/implementation-summary.md"

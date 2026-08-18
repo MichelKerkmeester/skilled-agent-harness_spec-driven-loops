@@ -39,12 +39,13 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md",
+      "scratch/.gitkeep",
       "implementation-summary.md"
     ],
     "entities": [
@@ -73,6 +74,12 @@
         "source": "derived"
       },
       {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": "scratch/.gitkeep",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -80,12 +87,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -115,13 +116,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Purpose Confine",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Initialized Level",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,7 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Teach",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -145,7 +152,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -169,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -179,23 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The fan-out worker calls the write-containment guard with `artifactDir` set to the single lineage's own directory, so every sibling lineage's directory is out of scope",
     "created_at": "2026-07-27T18:10:15Z",
-    "last_save_at": "2026-08-17T04:04:05.168Z",
+    "last_save_at": "2026-08-18T03:58:07.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fe59cf401cacd0288d18e3d861ebd79d6e799dda8bafcc8a586186ef4e08491",
+    "source_fingerprint": "sha256:696d81cbd93e88a03cb8caed38f861d313d3aae7e6880c6afcf23e2c1b9a0249",
     "source_doc_hashes": {
-      "spec.md": "9d8192c66cc207d4c1d3f444da15c8b3320ee1344aff65256d9c1b55e757898a",
-      "plan.md": "f3e48c81010e05e432a5f93cfea99593227a21374ec282c162588e651c861541",
-      "tasks.md": "8703118ee23c0a953fd6fd7f5046dbe8046b0995ba49f528b3f77510a1988f1a",
-      "checklist.md": "ed0f786288eb7f676491d9589880729ff97bc2eb255d52cbab7bffd89ac031f4",
-      "implementation-summary.md": "d20c1ac6bf0d84ded7c40d4d10c9721b698b0f5872e7186c4130e94d24d9e773"
+      "spec.md": "ff92852e1bfc41412c355c5682459b04360594f0196cf7c80a0cb80d7c145446",
+      "plan.md": "e2cb47666edeb6260cb88642a2936f04f0a41db0a5ac0925eefc5a140c3a656f",
+      "tasks.md": "e7d10f4402d348c1f3911bf156b09d8ed92c902db2c71d8a14e70593d5767721",
+      "checklist.md": "666c7fc642d4c464d385973e399e27308ec7b082d52929c8ca3c075b8ae4596a",
+      "implementation-summary.md": "083e7d5f64b2d84661d1bc8a25c14b178d4e23774ce9e010dc8517b0216ddee8"
     },
     "last_active_child_id": null,
     "last_active_at": null

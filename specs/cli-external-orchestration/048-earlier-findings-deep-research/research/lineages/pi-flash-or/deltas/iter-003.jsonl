@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":3,"run":3,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.7,"status":"complete","focus":"F2 Devin MCP rejection/allowlist","findingsCount":3,"keyQuestions":["F2 allowlist exists?"],"answeredQuestions":["F2 allowlist exists? Yes permissions.allow"],"timestamp":"2026-08-17T18:21:00.000Z","durationMs":40000,"sessionId":"fanout-pi-flash-or-1786990303810-r1u8es","generation":1}
+{"type":"finding","id":"f-it003-001","severity":"P1","label":"Devin MCP tools are confirmation-gated; -p cannot answer prompts; dangerous too broad","iteration":3}
+{"type":"finding","id":"f-it003-002","severity":"P1","label":"permissions.allow mcp__server__tool is the least-privileged fix","iteration":3}
+{"type":"observation","id":"obs-it003-001","classification":"real","label":"smart permission mode unavailable - falls back to normal (vsn-019)","iteration":3}
+{"type":"ruled_out","direction":"permission-mode smart","reason":"unavailable on install","iteration":3}
+{"type":"ruled_out","direction":"mcp__* blanket allow","reason":"too broad, documented high-risk","iteration":3}

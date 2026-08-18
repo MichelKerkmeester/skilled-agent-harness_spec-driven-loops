@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: fanout containment sibling lineage scope"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Add an unattributableDirs option to the write-containment guard and wire the fan-out worker to pass sibling lineage dirs, so a leaf tripping containment never reverts a sibling's concurrent artifacts."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/002-fanout-containment-sibling"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude-code"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Filled plan with the landed sibling-exclusion approach"
+    next_safe_action: "Commit the packet doc closeout"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-27-042-fanout-containment-sibling"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (deep-loop runtime lib) + Node CJS (fan-out worker) |
+| **Framework** | None; plain modules under `runtime/lib/deep-loop` and `runtime/scripts` |
+| **Storage** | None; git working-tree state is the only source read |
+| **Testing** | Vitest (`runtime/tests/unit/write-containment.vitest.ts`) |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Teach the write-containment guard to treat sibling lineage directories as unattributable, so a leaf that trips the guard under a concurrent fan-out no longer reverts a sibling's in-flight artifacts. The containment surface gains an `unattributableDirs` option resolved with the same repo-relative rules as `artifactDir`; the fan-out worker computes its sibling lineage dirs and passes them on both the pre-dispatch snapshot and the post-dispatch enforce call.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (`vitest` 22/22)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +78,15 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Pure functions over git working-tree state; the worker owns orchestration, the lib owns attribution.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`resolveArtifactScope` (`write-containment.ts:264`)**: Resolves the leaf's artifact dir and each `unattributableDirs` entry to repo-relative POSIX subpaths, dropping anything outside the worktree.
+- **`snapshotOutOfScopeDirtyPaths` / `detectNewOutOfScopeViolations`**: Skip any path under an unattributable dir before comparing against the pre-dispatch baseline.
+- **`fanout-run.cjs` worker (`fanout-run.cjs:2605`)**: Computes `siblingLineageDirs` and passes the exclusion set on both containment calls.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The worker snapshots out-of-scope dirty paths before dispatch, runs the leaf, then enforces containment against the same baseline. Both the snapshot and the enforce receive `unattributableDirs`, so sibling writes never enter detection and are never reverted; genuine repository writes outside every excluded dir are still caught and restored from HEAD.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,8 +98,9 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `write-containment.ts` (helper) | Owns attribution and revert | Update: add `unattributableDirs` scope + exclusion | `write-containment.ts:264-293`; `vitest` 22/22 |
+| `fanout-run.cjs` (sole consumer) | Calls snapshot + enforce | Update: compute + pass sibling dirs | `fanout-run.cjs:2605-2669` |
+| `write-containment.vitest.ts` (tests) | Regression coverage | Update: concurrent-sibling block | `write-containment.vitest.ts:459` |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -113,19 +115,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Attribution bug reproduced from the three-lane fan-out failure
+- [x] Sole containment consumer confirmed (`fanout-run.cjs`)
+- [x] `unattributableDirs` contract defined
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] `unattributableDirs` option + repo-relative resolution
+- [x] Exclusion applied in snapshot and detect
+- [x] Worker computes sibling dirs and passes on both calls
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Concurrent-sibling regression block added
+- [x] Edge cases handled (outside-root, no-op, genuine-repo)
+- [x] Documentation updated (spec/plan/tasks/summary)
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +137,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Containment attribution + exclusion resolution | Vitest |
+| Regression | Concurrent sibling lineages survive a leaf breach | Vitest (`write-containment.vitest.ts:459`) |
+| Manual | Original three-lane fan-out failure observation | Live fan-out run (pre-fix) |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +149,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| write-containment guard | Internal | Green | None; option is additive and default-off when unset |
+| Vitest runner | Internal | Green | Cannot verify regression coverage |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +158,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A genuine repository write escapes detection, or a real sibling regression appears.
+- **Procedure**: Revert `a3c9f03c51` and `568aa17a40`; the option is additive so removal restores prior behavior.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -188,10 +191,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | ~1 hour |
+| Core Implementation | Medium | ~3 hours |
+| Verification | Low | ~1 hour |
+| **Total** | | **~5 hours** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -200,19 +203,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] No data changes; backup not required
+- [x] Option is additive and default-off when unset
+- [x] Containment advisories logged to the fan-out status ledger
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Stop passing `unattributableDirs` from the worker (removes the exclusion).
+2. Revert `a3c9f03c51` and `568aa17a40` if the guard behavior itself must be restored.
+3. Re-run `vitest run tests/unit/write-containment.vitest.ts` to confirm state.
+4. No user-facing surface; no stakeholder notification needed.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---

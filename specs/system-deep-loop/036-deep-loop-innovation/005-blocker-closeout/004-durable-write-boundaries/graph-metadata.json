@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`F-014-01` is CONFIRMED: `appendAuthorized` validates decision, prior head, expiry and authority epoch but contains zero fencing, lease, token or high-water-mark logic, so a superseded writer holding an unexpired proof can append directly while fencing sits in an optional wrapper",
+    "causal_summary": "(Resolved — historical problem statement.) The defects below describe the pre-fix state that this packet closed; they are retained for provenance",
     "created_at": "2026-07-31T01:25:20.017Z",
-    "last_save_at": "2026-08-17T04:04:19.558Z",
+    "last_save_at": "2026-08-18T04:41:58.434Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:b1c51730801af9b70d58d105b7406da22f472472098bcab4a5aca1e7919d4269",
+    "source_fingerprint": "sha256:001434af600a9782e2bafae0600eb96a644ea7f35d03e039fabe764e5df0879e",
     "source_doc_hashes": {
-      "spec.md": "55f05dee8bfb3832dafa8aa0e2e190eef9ea048d31cb40f7ba320763523757c6",
-      "plan.md": "063125c7caf2a63b4d67a23f0f4370305268f9ac2c04227b0aef6c3e605f1607",
-      "tasks.md": "fa4bd2e8f0aed810bebdc8f5bdbc7d35096761dc84658ccfe2dacbc212ebb1a1",
-      "checklist.md": "e324258de66c9718202df687c69f934d55a7c0f2a273c68e3c39f7bc9dc69e43",
-      "decision-record.md": "206e33ad38d3d01d5192d93c9c40b7988c5c52b06d1a05978190c7580fdd4484",
-      "implementation-summary.md": "cbd66526f1df9629123bf4c3fcb8be2fbc9c7056b44db7e14db1793e1b1fecf6",
+      "spec.md": "ad330f381bb969c3a5737a381747c6f8f3004e02e981398d1062132c61432eba",
+      "plan.md": "d2f27eb2fd2fff95f1a8214fb428b5aa6e18115058c368d6eb25171e00c9722e",
+      "tasks.md": "974b1e5020443c0802148e3594247c81e73a59be213eeb48cefde49025503f2f",
+      "checklist.md": "308e4451b11d4429f7b621327280c2ab0fe71e995fcc468ce2e5d369981680c9",
+      "decision-record.md": "f85d0f08028f3993b98afb648456d12c57545b0ea121042e7daec2120c1ad1ee",
+      "implementation-summary.md": "5f2704acf570f14d7b7c16e33ddcb6475fd95371a39610f17de8e685fa918869",
       "handover.md": "09b6648ba5f7b745a2d3a20802a1d85e1b3380a93e622b4b5006e3aeb4885fd2"
     },
     "last_active_child_id": null,

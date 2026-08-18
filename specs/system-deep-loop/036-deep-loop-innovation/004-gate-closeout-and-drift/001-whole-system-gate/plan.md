@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/001-whole-system-gate"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "opencode"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
     recent_action: "Mapped whole-system evidence to exact-SHA gate stages"
-    next_safe_action: "Assemble the immutable gate manifest after phase 015"
+    next_safe_action: "Assemble the immutable gate manifest after the 009/004 fleet cutover"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -142,7 +142,8 @@ The gate inherits the ordering and per-phase contract in `execution-sequencing-s
 `manifest/phase-tree.json`. It depends on the phase-003 baseline and state census, phase-008
 `003-shadow-parity-harness`, phase-007 `001-receipts-and-effect-recovery` and `003-blinded-adjudication-service`,
 phase-011 `005-health-and-degeneration-harness`, phase-012 `003-mixed-version-fixtures`, the eight phase-013 mode
-gates, phase-014 cutover certificates, and phase-015 writer-retirement evidence. Phase 017 is downstream and may not
+gates, phase-014 cutover certificates, and the `009-innovation-gap-remediation` fleet cutover and legacy-retirement
+evidence (009/004). Phase 017 is downstream and may not
 integrate or close out until this gate has a green exact-SHA result.
 <!-- /ANCHOR:dependencies -->
 

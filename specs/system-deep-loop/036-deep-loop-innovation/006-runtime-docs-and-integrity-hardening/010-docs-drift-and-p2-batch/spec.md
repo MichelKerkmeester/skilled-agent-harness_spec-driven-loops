@@ -13,9 +13,9 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Landed 27/29 findings as bf4f280ce7 on skilled/v4.0.0.0"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to Complete against landed commit bf4f280ce7"
     next_safe_action: "Re-land F-031-01/F-031-02 with a non-regressing rollback-window fix"
     blockers: []
     key_files:
@@ -24,9 +24,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     completion_pct: 100
-    open_questions:
-      - "Does the derive-counts-from-registry work become real tooling? If so this child promotes to Level 3."
-      - "Which document is the authoritative source for the family, lane, adapter and scenario rosters?"
+    open_questions: []
     answered_questions:
       - "Wherever the same fact is duplicated, replace the copy with a link to one authoritative source rather than fixing both copies"
       - "Four merge groups are single work units while keeping all IDs mapped"

@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/002-fanout-containment-sibling"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude-code"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Marked landed containment tasks complete with evidence"
+    next_safe_action: "Commit the packet doc closeout"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-27-042-fanout-containment-sibling"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,9 +50,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Reproduce attribution bug from three-lane fan-out failure (`spec.md` §2)
+- [x] T002 Confirm sole containment consumer is `fanout-run.cjs:2238`
+- [x] T003 [P] Define `unattributableDirs` contract `write-containment.ts:56`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +60,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add `unattributableDirs` option and repo-relative resolution `write-containment.ts:264`
+- [x] T005 Exclude unattributable dirs from snapshot and detect `write-containment.ts:328`
+- [x] T006 Compute `siblingLineageDirs` and pass on both worker calls `fanout-run.cjs:2605`
+- [x] T007 Drop non-repo-relative and leaf-own-dir exclusions `write-containment.ts:282`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Add concurrent-sibling regression block `write-containment.vitest.ts:459`
+- [x] T009 Cover outside-root, no-op, and genuine-repo cases `write-containment.vitest.ts:523`
+- [x] T010 Run suite green — `vitest` 22/22 passing
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

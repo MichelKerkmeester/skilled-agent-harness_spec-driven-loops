@@ -13,14 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "Authored ADR-001 and ADR-002 from the WS1 phase-tree proposal"
-    next_safe_action: "Operator accepts or rejects ADR-001 and ADR-002"
+    last_updated_at: "2026-08-18T12:00:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Set ADR-001 Accepted and ADR-002 Superseded to match the as-built modes"
+    next_safe_action: "No architecture decisions remain open for this child"
     blockers: []
     key_files:
       - "decision-record.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
 | **Deciders** | Packet owner, independent verifier |
+
+> **As-built (2026-08-18).** The independent-derivation pattern was adopted and shipped in all six adapters as per-mode converters (`councilProjectionFromReducerState`, `agentImprovementProjectionFromReducerState`, `modelBenchmarkProjectionFromReducerState`, `skillBenchmarkProjectionFromReducerState`, `deepAlignmentLegacyOracleProjection`, `deepReviewProjectionFromReducerState`). The mechanism differed from the proposal: independence is realized and proven per mode (fold-mutation divergence tests plus a `legacyOracleKind: 'independent-legacy-model'` assertion) rather than through a single shared comparator-core module.
 
 ---
 
@@ -143,9 +145,11 @@ Six adapters exhibit the same defect in six shapes: the harness compares a proje
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Superseded |
 | **Date** | 2026-07-30 |
 | **Deciders** | Packet owner |
+
+> **Superseded (2026-08-18)** by the as-built per-mode independent-oracle implementation. The plan to absorb `assertLegacyProjectionMatchesCurrentState` into a shared comparator core was not taken; each mode ships its own independent oracle instead, and `assertLegacyProjectionMatchesCurrentState` has zero call sites in `runtime/lib`. The independent-derivation intent this ADR served is preserved and delivered per mode.
 
 ---
 

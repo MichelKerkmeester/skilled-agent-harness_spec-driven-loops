@@ -13,16 +13,15 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Accepted ADR-001 through ADR-003 after implementation and regression verification"
-    next_safe_action: "Independent verification and main validation"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Recorded adversarial TOCTOU fix c897dcf294 re-binding candidate to approval at consumption"
+    next_safe_action: "Pass the additive-dark acceptance review before promotion enforcement goes live"
     blockers:
-      - "Independent verifier not available in this single-actor session"
-      - "Worktree strict validator environment cannot complete its command-tree check"
+      - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
     key_files:
       - "decision-record.md"
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---

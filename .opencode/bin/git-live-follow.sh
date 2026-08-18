@@ -154,21 +154,16 @@ check_once() {
   [ -z "$remote_tip" ] && return 0
   [ "$remote_tip" = "$local_tip" ] && return 0
 
-  # Behind and clean fast-forward: the local tip is an ancestor of the remote tip.
+  # Behind fast-forward: the local tip is an ancestor of the remote tip. Let git's
+  # own --ff-only decide — it refuses to overwrite a modified tracked file, so an
+  # unrelated dirty tree still follows for disjoint commits and a colliding change is
+  # reported, never clobbered. Untracked scratch and build output never block it.
   if git merge-base --is-ancestor "$local_tip" "$remote_tip"; then
-    # Tracked-only cleanliness: untracked scratch and build output must never
-    # refuse a fast-forward, or a real checkout silently drifts behind. Only a
-    # modified or staged TRACKED file counts as dirty, matching git-sync.sh.
-    if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
-      local n; n="$(git rev-list --count "$local_tip..$remote_tip" 2>/dev/null || echo '?')"
-      echo "[live-follow] $n new commit(s) on $LIVE, but tracked files are dirty — not pulling (commit/stash to catch up)" >&2
-      return 0
-    fi
     local n; n="$(git rev-list --count "$local_tip..$remote_tip" 2>/dev/null || echo '?')"
     if git merge --ff-only --quiet "$remote_tip" 2>/dev/null; then
       echo "[live-follow] ↑ pulled $n commit(s) — now at $(git rev-parse --short HEAD)" >&2
     else
-      echo "[live-follow] fast-forward refused unexpectedly; leaving tree untouched" >&2
+      echo "[live-follow] $n new commit(s) on $LIVE, but a fast-forward would overwrite local changes — not pulling (commit/stash to catch up)" >&2
     fi
     return 0
   fi

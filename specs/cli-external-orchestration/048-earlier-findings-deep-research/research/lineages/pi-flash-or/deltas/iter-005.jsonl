@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":5,"run":5,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.55,"status":"complete","focus":"F3b moondream3 doubling + default","findingsCount":3,"keyQuestions":["F3b doubling cause?"],"answeredQuestions":["F3b preview checkpoint sampling artifact"],"timestamp":"2026-08-17T18:23:00.000Z","durationMs":45000,"sessionId":"fanout-pi-flash-or-1786990303810-r1u8es","generation":1}
+{"type":"finding","id":"f-it005-001","severity":"P2","label":"moondream3 doubling is a preview-checkpoint repetition/sampling artifact, host-independent","iteration":5}
+{"type":"finding","id":"f-it005-002","severity":"P1","label":"Correct default: moondream2 for scene/caption; moondream3 explicit for OCR; doc it","iteration":5}
+{"type":"finding","id":"f-it005-003","severity":"P1","label":"F5 settings passthrough is the lever to reduce md3 sampling doubling (temp 0)","iteration":5}
+{"type":"observation","id":"obs-it005-001","classification":"real","label":"MD3 base query template single answer_prefix [3], no suppressed ids; MD2 declares [3,3]","iteration":5}
+{"type":"ruled_out","direction":"sk-vision text-doubling synthesis bug","reason":"handle_ocr returns verbatim; renderOCR trims only","iteration":5}

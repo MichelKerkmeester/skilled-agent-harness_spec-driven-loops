@@ -166,14 +166,14 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Landing Readiness",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
     "created_at": "2026-07-31T01:25:19.594Z",
-    "last_save_at": "2026-08-17T04:04:19.871Z",
+    "last_save_at": "2026-08-18T03:36:24.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4531f41679f7bb39909bbc282bd8dc376701eed1305611e2e6f542758ba032cf",
+    "source_fingerprint": "sha256:67226eea5dd38ea1e45ee1171d5db69c3458e0ccfb8c8b8bae810e20eb807382",
     "source_doc_hashes": {
-      "spec.md": "1de2c662b80f08063d1368b00a4d4c8b1ee96d779f6359e2737d5d6d8105af0e",
-      "plan.md": "a1710184f1aede7691c61a6264ee7061e7df0def4bbb4ffdee46b3cd1482df35",
-      "tasks.md": "7817e32ae10cba288894b59b1fdd41b8f1c1dbfabdc7728561941dce5f3614c5",
-      "checklist.md": "b5d6940635dbade658c52804325b75ac536caabc309e4e23fc3552dcba4ca757",
-      "decision-record.md": "5cf3145b93ed8c6ddcf13d75a7c3c4bd644cee8f86ddf425be343831fc45cdc4",
-      "implementation-summary.md": "9029538ccef6d22ed43a0cdd4fe4721e110ffaa08b0f2d33b2c84d45e3717967"
+      "spec.md": "80eee5a939a12e8070f565650ba806ca0a1b97670c4ba66266bb9e8b10f8bcd4",
+      "plan.md": "94057419be24abe2e98849e21410f2ff7f171fe6a2206447c817f6aba8ccf36d",
+      "tasks.md": "2cdb3953bf02e99f5f0fc204b779940c9bc0e297d1d2e9ef0e855560c155b4f5",
+      "checklist.md": "6ec4e410742452a278a402c10f74ff61f8b7da9915fe0f1615f42ee0682d5ad6",
+      "decision-record.md": "5de85c7542278719126505ab9be14017e0dd7723c0d85a9d9aa7a4f193f622e1",
+      "implementation-summary.md": "cb324f895261e6cce39cd3b6c27424a70e201d1127c2ccd3393e3a32d30cc44e"
     },
     "last_active_child_id": null,
     "last_active_at": null

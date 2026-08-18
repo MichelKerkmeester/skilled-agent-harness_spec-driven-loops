@@ -96,7 +96,7 @@
     ],
     "causal_summary": "Define the five compatibility, shadow-parity, in-flight-state, and rollback child contracts that make the dark deep-loop substrate provably safe for a later authority cutover without moving authority in this phase.",
     "created_at": "2026-07-16T03:43:59.162Z",
-    "last_save_at": "2026-08-17T04:04:21.752Z",
+    "last_save_at": "2026-08-17T11:47:06.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -104,7 +104,7 @@
     ],
     "source_fingerprint": "sha256:cc5bb99c52683e63c51c1cd71baf772ddf813ec4602cb33c235db262ee038e12",
     "source_doc_hashes": {
-      "spec.md": "35fe0e5273bc6e311141fd1f78d6c8efd7134c7bf015c95c8594a5c003da25f8"
+      "spec.md": "c20c6fd7d3acf6be87b0c86caa10ebbe80b06e6d7bdea250e7ff363efde55633"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters",
     "last_active_at": null

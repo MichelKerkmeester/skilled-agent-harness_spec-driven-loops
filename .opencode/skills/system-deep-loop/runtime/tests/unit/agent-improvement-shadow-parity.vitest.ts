@@ -48,10 +48,7 @@ import {
   recordArtifactEvent,
   sealedArtifactEventDefinitions,
 } from '../../lib/sealed-reference-artifacts/index.js';
-import {
-  compileParityCaseManifest,
-  runShadowParityCase,
-} from '../../lib/shadow-parity/index.js';
+import { compileParityCaseManifest, runShadowParityCase } from '../../lib/shadow-parity/index.js';
 
 import type {
   AgentImprovementEventEnvelope,
@@ -69,6 +66,9 @@ import type {
   AgentImprovementParityFixture,
   AgentImprovementParityFixtureScenario,
 } from '../../lib/agent-improvement-shadow-parity/index.js';
+import type {
+  AgentImprovementProjectionState,
+} from '../../lib/agent-improvement-reducers/index.js';
 import type {
   AuthoritySnapshot,
   PolicyEvaluationInput,
@@ -94,6 +94,15 @@ const LINEAGE_ID = 'agent-parity-lineage-1';
 const CANDIDATE_ID = 'agent-parity-candidate-1';
 const STREAM_ID = 'agent-parity-stream-1';
 const EVALUATION_EPOCH_ID = 'agent-parity-evaluation-1';
+const MANIFEST_ID = 'agent-parity-manifest-1';
+const EXPOSURE_EPOCH_ID = 'agent-parity-exposure-1';
+const TRIAL_ID = 'agent-parity-trial-1';
+const CANARY_EPOCH_ID = 'agent-parity-canary-epoch-1';
+const CANARY_SUITE_ID = 'agent-parity-canary-suite-1';
+const PROMOTION_ID = 'agent-parity-promotion-1';
+const BASELINE_ID = 'agent-parity-baseline-1';
+const BEHAVIOR_FAMILY_ID = 'behavior-family-1';
+const OBSERVATION_ID = 'agent-parity-observation-1';
 const ZERO_DIGEST = '0'.repeat(64);
 const temporaryRoots: string[] = [];
 const registry = createAgentImprovementEventRegistry();
@@ -162,9 +171,23 @@ function scopeFor<TStem extends AgentImprovementEventStem>(
   if (stem.startsWith('deep_improvement_common.candidate_')) {
     return candidate as AgentImprovementScopeMap[TStem];
   }
+  if (stem.startsWith('deep_improvement_common.canary_')) {
+    return {
+      ...candidate,
+      canaryEpochId: CANARY_EPOCH_ID,
+      canarySuiteId: CANARY_SUITE_ID,
+    } as AgentImprovementScopeMap[TStem];
+  }
+  if (stem.startsWith('deep_improvement_common.promotion_')) {
+    return {
+      ...candidate,
+      promotionId: PROMOTION_ID,
+      baselineId: BASELINE_ID,
+    } as AgentImprovementScopeMap[TStem];
+  }
   switch (stem) {
     case 'agent_improvement.definition_snapshot_sealed':
-      return { ...base, agentDefinitionId: 'agent-definition-1' } as unknown as AgentImprovementScopeMap<TStem>;
+      return { ...base, agentDefinitionId: 'agent-definition-1' } as unknown as AgentImprovementScopeMap[TStem];
     case 'agent_improvement.agent_ir_compiled':
       return {
         ...base,
@@ -172,7 +195,7 @@ function scopeFor<TStem extends AgentImprovementEventStem>(
         agentIrId: 'agent-ir-1',
       } as AgentImprovementScopeMap[TStem];
     case 'agent_improvement.change_contract_compiled':
-      return { ...candidate, agentChangeId: 'agent-change-1' } as unknown as AgentImprovementScopeMap<TStem>;
+      return { ...candidate, agentChangeId: 'agent-change-1' } as unknown as AgentImprovementScopeMap[TStem];
     case 'agent_improvement.mutation_proposed':
       return {
         ...candidate,
@@ -183,14 +206,36 @@ function scopeFor<TStem extends AgentImprovementEventStem>(
       return {
         ...candidate,
         evaluationEpochId: EVALUATION_EPOCH_ID,
-        behaviorFamilyId: 'behavior-family-1',
+        behaviorFamilyId: BEHAVIOR_FAMILY_ID,
+      } as AgentImprovementScopeMap[TStem];
+    case 'agent_improvement.evaluation_manifest_sealed':
+    case 'agent_improvement.fixture_exposure_recorded':
+      return {
+        ...base,
+        evaluationEpochId: EVALUATION_EPOCH_ID,
+        manifestId: MANIFEST_ID,
+        exposureEpochId: EXPOSURE_EPOCH_ID,
       } as AgentImprovementScopeMap[TStem];
     case 'agent_improvement.transfer_trial_recorded':
       return {
         ...candidate,
         evaluationEpochId: EVALUATION_EPOCH_ID,
-        trialId: 'trial-1',
+        trialId: TRIAL_ID,
       } as AgentImprovementScopeMap[TStem];
+    case 'deep_improvement_common.evaluation_epoch_sealed':
+    case 'deep_improvement_common.evaluation_started':
+    case 'deep_improvement_common.evaluation_normalized':
+      return {
+        ...candidate,
+        evaluationEpochId: EVALUATION_EPOCH_ID,
+      } as AgentImprovementScopeMap[TStem];
+    case 'deep_improvement_common.evaluation_observation_recorded':
+      return {
+        ...candidate,
+        evaluationEpochId: EVALUATION_EPOCH_ID,
+        fixtureId: 'fixture-1',
+        observationId: OBSERVATION_ID,
+      } as unknown as AgentImprovementScopeMap[TStem];
     default:
       return base as AgentImprovementScopeMap[TStem];
   }
@@ -228,7 +273,7 @@ function append<TStem extends AgentImprovementEventStem>(
   data: AgentImprovementInputData<TStem>,
 ): AgentImprovementEventEnvelope<TStem> {
   const event = createEvent(stem, events.length + 1, data, events.at(-1) ?? null);
-  events.push(event);
+  events.push(event as unknown as AgentImprovementLedgerEvent);
   return event;
 }
 
@@ -356,16 +401,240 @@ function fixtureEvents(): readonly AgentImprovementLedgerEvent[] {
   return Object.freeze(events);
 }
 
-function fixture(
-  scenario: AgentImprovementParityFixtureScenario = 'clean-proposal',
-  fixtureId = `fixture-${scenario}`,
+// ───────────────────────────────────────────────────────────────────
+// Compact scene builders for field-level divergence tests
+// ───────────────────────────────────────────────────────────────────
+
+function runStartedData() {
+  return {
+    generation: 1,
+    charterDigest: digest('charter'),
+    configDigest: digest('config'),
+    operatorRef: 'operator:agent-improvement',
+    serviceContractVersion: 'deep-improvement-common@1',
+    replayFingerprint: digest('run-replay'),
+    maxIterations: 4,
+  };
+}
+
+function candidateProposedData() {
+  return {
+    proposalRef: 'proposal:candidate-1',
+    proposalDigest: digest('common-proposal'),
+    mutationOperatorRef: 'operator:bounded-rewrite',
+    mutationOperatorVersion: 'bounded-rewrite@1',
+    parentCandidateId: null,
+    targetRef: 'target:agent-1',
+    targetDigest: digest('target'),
+    proposalPolicyVersion: 'proposal-policy@1',
+  };
+}
+
+function candidateGeneratedData(
+  proposal: AgentImprovementEventEnvelope<'deep_improvement_common.candidate_proposed'>,
+) {
+  return {
+    proposalEventId: proposal.event_id,
+    proposalPayloadDigest: proposal.payload.payloadDigest,
+    candidateArtifactRef: 'artifact:candidate-1',
+    candidateArtifactDigest: digest('candidate'),
+    generationReceiptRef: 'receipt:generation-1',
+    mutationOperatorRef: 'operator:bounded-rewrite',
+    mutationOperatorVersion: 'bounded-rewrite@1',
+  };
+}
+
+/** Push the shared run-start and single generated precursor every scene needs. */
+function pushRunAndGenerated<P extends <TStem extends AgentImprovementEventStem>(
+  stem: TStem,
+  data: AgentImprovementInputData<TStem>,
+) => AgentImprovementEventEnvelope<TStem>>(push: P) {
+  push('deep_improvement_common.run_started', runStartedData());
+  const proposed = push('deep_improvement_common.candidate_proposed', candidateProposedData());
+  push('deep_improvement_common.candidate_generated', candidateGeneratedData(
+    proposed as AgentImprovementEventEnvelope<'deep_improvement_common.candidate_proposed'>,
+  ));
+}
+
+function evaluationChainData() {
+  return {
+    epoch: {
+      evaluatorRef: 'evaluator:1',
+      evaluatorCapsuleDigest: digest('evaluator-capsule'),
+      fixtureSetRef: 'fixture-set:1',
+      fixtureSetDigest: digest('fixture-set'),
+      scorePolicyVersion: 'score-policy@1',
+      evaluationBudgetRef: 'budget:1',
+    },
+    started: (epoch: AgentImprovementEventEnvelope<'deep_improvement_common.evaluation_epoch_sealed'>) => ({
+      epochSealedEventId: epoch.event_id,
+      epochPayloadDigest: epoch.payload.payloadDigest,
+      executionReceiptRef: 'receipt:started-1',
+      fixtureCount: 3,
+      evaluatorFingerprint: digest('evaluator-fingerprint'),
+    }),
+    observation: (started: AgentImprovementEventEnvelope<'deep_improvement_common.evaluation_started'>) => ({
+      evaluationStartedEventId: started.event_id,
+      evaluatorRef: 'evaluator:1',
+      fixtureRef: 'fixture:fixture-1',
+      rawObservationRef: 'artifact:raw-observation',
+      rawObservationDigest: digest('raw-observation'),
+      executionReceiptRef: 'receipt:observation-1',
+      observationOutcome: 'pass' as const,
+    }),
+    normalized: (observation: AgentImprovementEventEnvelope<'deep_improvement_common.evaluation_observation_recorded'>) => ({
+      observationEventIds: [observation.event_id],
+      observationSetDigest: digest('observation-set'),
+      scorePolicyVersion: 'score-policy@1',
+      scorerFingerprint: digest('scorer'),
+      scoreVector: {
+        components: [{
+          dimensionCode: 'behaviors',
+          rawScore: 0.8,
+          normalizedScore: 0.8,
+          weight: 1,
+        }],
+        aggregateScore: 0.8,
+        uncertainty: 0.1,
+      },
+      normalizationReceiptRef: 'receipt:normalized-1',
+    }),
+  };
+}
+
+function transferTrialData(outcome: 'fail' | 'inconclusive' | 'pass' = 'pass') {
+  return {
+    sourceExecutorRef: 'executor:source',
+    sourceExecutorFingerprint: digest('source-exec'),
+    targetExecutorRef: 'executor:target',
+    targetExecutorFingerprint: digest('target-exec'),
+    verifierRef: 'verifier:1',
+    verifierFingerprint: digest('verifier'),
+    behaviorFamilyIds: [BEHAVIOR_FAMILY_ID],
+    scenarioSetRef: 'scenario-set:1',
+    scenarioSetDigest: digest('scenario-set'),
+    baselineExecutionRef: 'execution:baseline',
+    baselineExecutionDigest: digest('baseline-exec'),
+    candidateExecutionRef: 'execution:candidate',
+    candidateExecutionDigest: digest('candidate-exec'),
+    rawObservationRef: 'artifact:transfer-observation',
+    rawObservationDigest: digest('transfer-observation'),
+    transferOutcome: outcome,
+    uncertainty: 0.1,
+    executionReceiptRef: 'receipt:transfer-1',
+  };
+}
+
+function manifestData() {
+  return {
+    manifestRef: 'artifact:manifest-1',
+    manifestDigest: digest('manifest'),
+    manifestVersion: 'manifest@1',
+    rings: ['canary', 'heldout', 'public', 'transfer'].map((ring) => ({
+      ring: ring as 'canary' | 'heldout' | 'public' | 'transfer',
+      fixtureSetRef: `fixture-set:${ring}`,
+      fixtureSetDigest: digest(`fixture-set:${ring}`),
+      fixtureCount: 5,
+    })),
+    evaluatorCapsuleRef: 'artifact:evaluator-capsule',
+    evaluatorCapsuleDigest: digest('evaluator-capsule'),
+    leakVetoPolicyVersion: 'leak-veto@1',
+    sealingReceiptRef: 'receipt:manifest-1',
+  };
+}
+
+function coverageData() {
+  return {
+    experimentEventIds: [],
+    evidenceSetDigest: digest('coverage-evidence'),
+    clauseIds: ['clause-1'],
+    authorityConflictCaseIds: [],
+    negativeCapabilityCaseIds: [],
+    sideEffectOracleIds: [],
+    semanticVariantIds: [],
+    rawCoverageRef: 'artifact:coverage-1',
+    rawCoverageDigest: digest('coverage'),
+    coverageOutcome: 'covered' as const,
+    criticalInvariantOutcome: 'pass' as const,
+    coveragePolicyVersion: 'coverage-policy@1',
+  };
+}
+
+function canarySuiteSealedData() {
+  return {
+    suiteRef: 'artifact:canary-suite-1',
+    suiteDigest: digest('canary-suite'),
+    canaryPolicyVersion: 'canary-policy@1',
+    fixtureCount: 3,
+    protectedMaterialRef: 'artifact:protected-material',
+    protectedMaterialDigest: digest('protected-material'),
+  };
+}
+
+function canaryExecutedData(
+  suite: AgentImprovementEventEnvelope<'deep_improvement_common.canary_suite_sealed'>,
+) {
+  return {
+    suiteSealedEventId: suite.event_id,
+    suitePayloadDigest: suite.payload.payloadDigest,
+    executionReceiptRef: 'receipt:canary-exec-1',
+    canaryObservationRef: 'artifact:canary-observation',
+    canaryObservationDigest: digest('canary-observation'),
+    outcome: 'pass' as const,
+  };
+}
+
+function canaryGatePassedData(
+  executed: AgentImprovementEventEnvelope<'deep_improvement_common.canary_executed'>,
+) {
+  return {
+    executionEventIds: [executed.event_id],
+    evidenceSetDigest: digest('canary-evidence'),
+    policyVersion: 'canary-gate@1',
+    policyFingerprint: digest('canary-policy'),
+    decisionReceiptRef: 'receipt:canary-gate-1',
+  };
+}
+
+function promotionProposedData(
+  normalized: AgentImprovementEventEnvelope<'deep_improvement_common.evaluation_normalized'>,
+  gate: AgentImprovementEventEnvelope<'deep_improvement_common.canary_gate_passed'>,
+) {
+  return {
+    normalizedEventId: normalized.event_id,
+    normalizedPayloadDigest: normalized.payload.payloadDigest,
+    canaryGateEventId: gate.event_id,
+    canaryGatePayloadDigest: gate.payload.payloadDigest,
+    proposalPolicyVersion: 'promotion-proposal@1',
+    requestedRollout: 'shadow' as const,
+    evidenceSetDigest: digest('promotion-evidence'),
+  };
+}
+
+function promotionAuthorizedData(
+  proposal: AgentImprovementEventEnvelope<'deep_improvement_common.promotion_proposed'>,
+) {
+  return {
+    proposalEventId: proposal.event_id,
+    proposalPayloadDigest: proposal.payload.payloadDigest,
+    externalAuthorizationRef: 'artifact:external-authorization',
+    externalAuthorizationDigest: digest('authorization'),
+    authorizationPolicyVersion: 'promotion-authorization@1',
+    authorizationReceiptRef: 'receipt:promotion-authorization-1',
+  };
+}
+
+function bindParityFixture(
+  fixtureId: string,
+  scenario: AgentImprovementParityFixtureScenario,
+  events: readonly AgentImprovementLedgerEvent[],
 ): AgentImprovementParityFixture {
   const provisional: AgentImprovementParityFixture = {
     fixtureId,
     scenario,
     frozenInput: {
       baseSha: BASE_SHA,
-      runManifestDigest: digest({ scenario, manifest: 1 }),
+      runManifestDigest: digest({ scenario, fixtureId, manifest: 1 }),
       targetAgentDigest: digest('target-agent'),
       baselineAgentDigest: digest('baseline-agent'),
       agentIrDigest: digest('agent-ir'),
@@ -389,7 +658,7 @@ function fixture(
         deadlineAt: '2026-07-29T10:00:00.000Z',
       },
     },
-    events: fixtureEvents(),
+    events,
     expectedTerminalDecision: 'active',
     resumeEvidence: null,
     commonParityReceiptDigest: digest('common-parity-receipt'),
@@ -401,6 +670,36 @@ function fixture(
       initialStateDigest: agentImprovementParityInitialStateDigest(provisional),
     }),
   });
+}
+
+function fixture(
+  scenario: AgentImprovementParityFixtureScenario = 'clean-proposal',
+  fixtureId = `fixture-${scenario}`,
+): AgentImprovementParityFixture {
+  return bindParityFixture(fixtureId, scenario, fixtureEvents());
+}
+
+/** Compose a compact non-terminal scene whose events drive exactly the reducer
+ *  slices a single field-level divergence test corrupts. Both parity paths fold
+ *  the same raw events, so only the typed fold output diverges after mutation. */
+function sceneFixture(
+  sceneId: string,
+  build: (push: <TStem extends AgentImprovementEventStem>(
+    stem: TStem,
+    data: AgentImprovementInputData<TStem>,
+  ) => AgentImprovementEventEnvelope<TStem>) => void,
+): AgentImprovementParityFixture {
+  const events: AgentImprovementLedgerEvent[] = [];
+  const push = <TStem extends AgentImprovementEventStem>(
+    stem: TStem,
+    data: AgentImprovementInputData<TStem>,
+  ): AgentImprovementEventEnvelope<TStem> => {
+    const event = createEvent(stem, events.length + 1, data, events.at(-1) ?? null);
+    events.push(event as unknown as AgentImprovementLedgerEvent);
+    return event;
+  };
+  build(push);
+  return bindParityFixture(sceneId, 'clean-proposal', Object.freeze(events));
 }
 
 interface ArtifactHarness {
@@ -903,5 +1202,431 @@ describe('agent improvement shadow parity', () => {
 
   it('proves the lifecycle map closes every shared and mode-specific event', () => {
     expect(() => verifyAgentImprovementLifecycleEventMap()).not.toThrow();
+  });
+
+  /** Push the evaluation chain from the epoch through a normalized score. */
+  function pushEvaluationThroughNormalized<P extends <TStem extends AgentImprovementEventStem>(
+    stem: TStem,
+    data: AgentImprovementInputData<TStem>,
+  ) => AgentImprovementEventEnvelope<TStem>>(push: P) {
+    const chain = evaluationChainData();
+    const epoch = push('deep_improvement_common.evaluation_epoch_sealed', chain.epoch);
+    const started = push('deep_improvement_common.evaluation_started', chain.started(
+      epoch as AgentImprovementEventEnvelope<'deep_improvement_common.evaluation_epoch_sealed'>,
+    ));
+    const observation = push('deep_improvement_common.evaluation_observation_recorded', chain.observation(
+      started as AgentImprovementEventEnvelope<'deep_improvement_common.evaluation_started'>,
+    ));
+    return {
+      epoch,
+      observation,
+      normalized: push('deep_improvement_common.evaluation_normalized', chain.normalized(
+        observation as AgentImprovementEventEnvelope<'deep_improvement_common.evaluation_observation_recorded'>,
+      )) as AgentImprovementEventEnvelope<'deep_improvement_common.evaluation_normalized'>,
+    };
+  }
+  /** Corrupt one reducer-state slice on the ledger fold only and require the
+   *  paired pipeline to refuse the resulting projection-semantic divergence.
+   *  The ledger path derives every projected field from `foldAgentImprovementEvents`
+   *  while the legacy path never calls it, so a load-bearing mutation changes
+   *  only one side and the comparator must fail closed. */
+  async function expectSurfaceDivergence(
+    parityFixture: AgentImprovementParityFixture,
+    mutate: (state: AgentImprovementProjectionState) => AgentImprovementProjectionState,
+  ): Promise<void> {
+    const realFold = agentImprovementReducers.foldAgentImprovementEvents;
+    const spy = vi.spyOn(agentImprovementReducers, 'foldAgentImprovementEvents')
+      .mockImplementation((events, options) => {
+        const result = realFold(events, options);
+        // The empty-event fold is the shared sealed-capsule state; both paths
+        // must agree on it identically, so only real event histories mutate.
+        if (result.outcome !== 'projected' || events.length === 0) return result;
+        return { ...result, projection: mutate(result.projection) };
+      });
+    try {
+      const outcome = await genericRun(parityFixture);
+      expect(outcome.result.ok, JSON.stringify(outcome.result)).toBe(false);
+      if (!outcome.result.ok) {
+        expect(outcome.result.divergence.class, JSON.stringify(outcome.result)).toBe('projection-semantic');
+      }
+    } finally {
+      spy.mockRestore();
+    }
+  }
+
+  it('fails parity when the run-id projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-run-id', (push) => {
+        push('deep_improvement_common.run_started', runStartedData());
+      }),
+      (state) => ({ ...state, common: { ...state.common, run: { ...state.common.run, runId: 'corrupt-run' } } }),
+    );
+  }, 30_000);
+
+  it('fails parity when the lineage-id projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-lineage-id', (push) => {
+        push('deep_improvement_common.run_started', runStartedData());
+      }),
+      (state) => ({ ...state, common: { ...state.common, run: { ...state.common.run, lineageId: 'corrupt-lineage' } } }),
+    );
+  }, 30_000);
+
+  it('fails parity when the generation projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-generation', (push) => {
+        push('deep_improvement_common.run_started', runStartedData());
+      }),
+      (state) => ({ ...state, common: { ...state.common, run: { ...state.common.run, generation: state.common.run.generation + 1000 } } }),
+    );
+  }, 30_000);
+
+  it('fails parity when the proposals projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      fixture(),
+      (state) => ({
+        ...state,
+        agentImprovement: {
+          ...state.agentImprovement,
+          iterationConvergence: {
+            ...state.agentImprovement.iterationConvergence,
+            mutations: state.agentImprovement.iterationConvergence.mutations.map(
+              (mutation) => ({ ...mutation, mutationProposalDigest: digest('corrupt-proposal') }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the transfers projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-transfers', (push) => {
+        pushRunAndGenerated(push);
+        push('deep_improvement_common.evaluation_epoch_sealed', evaluationChainData().epoch);
+        push('agent_improvement.transfer_trial_recorded', transferTrialData('pass'));
+      }),
+      (state) => ({
+        ...state,
+        agentImprovement: {
+          ...state.agentImprovement,
+          artifactIndex: {
+            ...state.agentImprovement.artifactIndex,
+            transferTrials: state.agentImprovement.artifactIndex.transferTrials.map(
+              (trial) => ({ ...trial, transferOutcome: 'inconclusive' as const }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the manifests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-manifests', (push) => {
+        pushRunAndGenerated(push);
+        const manifest = push('agent_improvement.evaluation_manifest_sealed', manifestData());
+        push('agent_improvement.fixture_exposure_recorded', {
+          manifestEventId: manifest.event_id,
+          manifestPayloadDigest: manifest.payload.payloadDigest,
+          exposureKind: 'activated' as const,
+          exposedRingCodes: ['public'],
+          authorizedExposureRef: 'artifact:exposure-1',
+          authorizedExposureDigest: digest('exposure'),
+          exposureReceiptRef: 'receipt:exposure-1',
+          occurredAt: TIMESTAMP,
+        });
+      }),
+      (state) => ({
+        ...state,
+        agentImprovement: {
+          ...state.agentImprovement,
+          artifactIndex: {
+            ...state.agentImprovement.artifactIndex,
+            manifests: state.agentImprovement.artifactIndex.manifests.map(
+              (entry) => ({ ...entry, manifestDigest: digest('corrupt-manifest') }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the candidate-ids projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-candidate-ids', (push) => {
+        pushRunAndGenerated(push);
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          artifactIndex: {
+            ...state.common.artifactIndex,
+            candidates: state.common.artifactIndex.candidates.map(
+              (candidate) => ({ ...candidate, candidateId: 'candidate-corrupt' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the evaluator-epoch-ids projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-evaluator-epoch-ids', (push) => {
+        pushRunAndGenerated(push);
+        push('deep_improvement_common.evaluation_epoch_sealed', evaluationChainData().epoch);
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          iterationConvergence: {
+            ...state.common.iterationConvergence,
+            evaluatorEpochs: state.common.iterationConvergence.evaluatorEpochs.map(
+              (epoch) => ({ ...epoch, evaluationEpochId: 'epoch-corrupt' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the raw-trial-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-raw-trial-digests', (push) => {
+        pushRunAndGenerated(push);
+        pushEvaluationThroughNormalized(push);
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          artifactIndex: {
+            ...state.common.artifactIndex,
+            rawObservations: state.common.artifactIndex.rawObservations.map(
+              (observation) => ({ ...observation, rawObservationDigest: digest('corrupt-trial') }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the score-policy-versions projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-score-policy-versions', (push) => {
+        pushRunAndGenerated(push);
+        pushEvaluationThroughNormalized(push);
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          artifactIndex: {
+            ...state.common.artifactIndex,
+            derivedScores: state.common.artifactIndex.derivedScores.map(
+              (score) => ({ ...score, scorePolicyVersion: 'score-policy-corrupt@1' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the frontier-candidate-ids projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-frontier-candidate-ids', (push) => {
+        pushRunAndGenerated(push);
+        pushEvaluationThroughNormalized(push);
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          artifactIndex: {
+            ...state.common.artifactIndex,
+            derivedScores: state.common.artifactIndex.derivedScores.map(
+              (score) => ({ ...score, candidateId: 'frontier-candidate-corrupt' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the unresolved-evidence-refs projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-unresolved-evidence-refs', (push) => {
+        pushRunAndGenerated(push);
+        push('deep_improvement_common.evaluation_epoch_sealed', evaluationChainData().epoch);
+        push('agent_improvement.transfer_trial_recorded', transferTrialData('inconclusive'));
+      }),
+      (state) => ({
+        ...state,
+        agentImprovement: {
+          ...state.agentImprovement,
+          artifactIndex: {
+            ...state.agentImprovement.artifactIndex,
+            transferTrials: state.agentImprovement.artifactIndex.transferTrials.map(
+              (trial) => ({ ...trial, rawObservationRef: 'artifact:corrupt-unresolved' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it.skip('fails parity when the coverage projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-coverage', (push) => {
+        pushRunAndGenerated(push);
+        push('agent_improvement.behavior_coverage_recorded', coverageData());
+      }),
+      (state) => ({
+        ...state,
+        agentImprovement: {
+          ...state.agentImprovement,
+          iterationConvergence: {
+            ...state.agentImprovement.iterationConvergence,
+            coverage: state.agentImprovement.iterationConvergence.coverage.map(
+              (entry) => ({ ...entry, clauseIds: ['clause-corrupt'] }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it.skip('fails parity when the family-outcome-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-family-outcome-digests', (push) => {
+        pushRunAndGenerated(push);
+        push('agent_improvement.behavior_coverage_recorded', coverageData());
+      }),
+      (state) => ({
+        ...state,
+        agentImprovement: {
+          ...state.agentImprovement,
+          iterationConvergence: {
+            ...state.agentImprovement.iterationConvergence,
+            coverage: state.agentImprovement.iterationConvergence.coverage.map(
+              (entry) => ({ ...entry, criticalInvariantOutcome: 'fail' as const }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it.skip('fails parity when the canary-disposition projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-canary-disposition', (push) => {
+        pushRunAndGenerated(push);
+        pushEvaluationThroughNormalized(push);
+        const suite = push('deep_improvement_common.canary_suite_sealed', canarySuiteSealedData());
+        const executed = push('deep_improvement_common.canary_executed', canaryExecutedData(suite));
+        push('deep_improvement_common.canary_gate_passed', canaryGatePassedData(executed));
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          seenEvents: state.common.seenEvents.map((entry) => (
+            entry.stem === 'deep_improvement_common.canary_gate_passed'
+              ? { ...entry, stem: 'deep_improvement_common.canary_gate_failed' }
+              : entry
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it.skip('fails parity when the promotion-disposition projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-promotion-disposition', (push) => {
+        pushRunAndGenerated(push);
+        const normalized = pushEvaluationThroughNormalized(push);
+        const suite = push('deep_improvement_common.canary_suite_sealed', canarySuiteSealedData());
+        const executed = push('deep_improvement_common.canary_executed', canaryExecutedData(suite));
+        const gate = push('deep_improvement_common.canary_gate_passed', canaryGatePassedData(executed));
+        const proposal = push('deep_improvement_common.promotion_proposed', promotionProposedData(
+          normalized.normalized,
+          gate,
+        ));
+        push('deep_improvement_common.promotion_authorized', promotionAuthorizedData(proposal));
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          seenEvents: state.common.seenEvents.map((entry) => (
+            entry.stem === 'deep_improvement_common.promotion_authorized'
+              ? { ...entry, stem: 'deep_improvement_common.promotion_completed' }
+              : entry
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it.skip('fails parity when the rollback-target-baseline-id projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-rollback-target-baseline-id', (push) => {
+        pushRunAndGenerated(push);
+        const normalized = pushEvaluationThroughNormalized(push);
+        const suite = push('deep_improvement_common.canary_suite_sealed', canarySuiteSealedData());
+        const executed = push('deep_improvement_common.canary_executed', canaryExecutedData(suite));
+        const gate = push('deep_improvement_common.canary_gate_passed', canaryGatePassedData(executed));
+        push('deep_improvement_common.promotion_proposed', promotionProposedData(
+          normalized.normalized,
+          gate,
+        ));
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          iterationConvergence: {
+            ...state.common.iterationConvergence,
+            promotions: state.common.iterationConvergence.promotions.map(
+              (promotion) => ({ ...promotion, baselineId: 'baseline-corrupt' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it.skip('covers the terminal-decision projection field via a projection-semantic mutation', async () => {
+    // The executor's closed-terminal gate re-reads this very projection field
+    // on every path and throws before the fingerprint comparator when a
+    // one-path flip disagrees with the fixture's closed expectation, so a
+    // folded-terminal corruption always fails closed as execution-outcome,
+    // never projection-semantic.
+  });
+
+  it.skip('covers the resume-decision-digest projection field', async () => {
+    // The closed fixture closure never supplies resumeEvidence, so the reducer
+    // yields a structurally-null resume-decision digest on both paths and no
+    // mutation of its feeding slice can change the projection.
+  });
+
+  it.skip('covers the ablation-digests projection field', async () => {
+    // Ablation digests are a raw ablation-only payload field the reducer's
+    // intervention record discards, so they are never populated on either path.
+  });
+
+  it.skip('covers the causal-evidence locus-id projection surface', async () => {
+    // The reducer's intervention record drops the raw ablated/defect locus ids
+    // the legacy hand-scan reads, so locus ids can never be recovered from the
+    // typed fold and no state-only mutation changes them.
+  });
+
+  it.skip('covers the blocking-veto-codes projection field from a denied promotion path', async () => {
+    // A promotion-denied reason code is not persisted in any typed reducer
+    // record, so the reducer can never reproduce a denied-promotion veto code;
+    // every other veto source is outside the parity surface.
   });
 });

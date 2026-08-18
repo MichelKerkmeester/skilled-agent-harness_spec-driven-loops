@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":8,"run":8,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.55,"status":"complete","focus":"F5b settings passthrough","findingsCount":3,"keyQuestions":["F5b forward settings?"],"answeredQuestions":["F5b yes: schema+provider drop it; runtime supports it"],"timestamp":"2026-08-17T18:26:00.000Z","durationMs":40000,"sessionId":"fanout-pi-flash-or-1786990303810-r1u8es","generation":1}
+{"type":"finding","id":"f-it008-001","severity":"P0","label":"settings dropped at TS schema boundary (tools.ts/types.ts/photon.ts); runtime ready","iteration":8}
+{"type":"finding","id":"f-it008-002","severity":"P1","label":"3-layer shared fix: types.ts + photon.ts + tools.ts settings arg","iteration":8}
+{"type":"finding","id":"f-it008-003","severity":"P1","label":"settings passthrough is the F3b sampling-mitigation enabler (temp 0)","iteration":8}
+{"type":"observation","id":"obs-it008-001","classification":"real","label":"runtime forwards settings on query/caption/ocr/detect/point/segment; moondream SamplingSettings supports max_tokens/temperature","iteration":8}
+{"type":"ruled_out","direction":"per-host settings plumbing","reason":"shared definitions make it one change for all hosts","iteration":8}

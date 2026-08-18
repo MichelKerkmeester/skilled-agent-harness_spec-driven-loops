@@ -111,6 +111,19 @@ function sha256File(filePath) {
   return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
 }
 
+function assertCandidateMatchesApproval(consumedCandidateHash, approvalReceipt, failGate) {
+  // The approval receipt binds the exact candidate bytes that were scored and approved. Every
+  // consumption boundary re-derives the hash of the bytes it is about to consume and compares it
+  // here, because the initial approval check runs before the gate, git and mirror-sync I/O, leaving
+  // a window in which a concurrent writer could swap the candidate bytes into a protected target.
+  // Fail closed on any mismatch or a missing binding.
+  if (approvalReceipt?.binding?.candidate?.hash !== consumedCandidateHash) {
+    failGate('Cannot promote: candidate bytes changed after approval; consumed candidate no longer matches the approved candidate binding', {
+      errorType: 'approved_candidate_changed',
+    });
+  }
+}
+
 function safeTimestamp() {
   return new Date().toISOString().replace(/[:]/g, '-');
 }
@@ -357,6 +370,12 @@ function createAcceptanceState(context) {
   fs.copyFileSync(context.target, preAcceptBackupPath, fs.constants.COPYFILE_EXCL);
   fs.copyFileSync(context.candidate, candidateSnapshotPath, fs.constants.COPYFILE_EXCL);
 
+  // Bind the accepted snapshot to the approval before it becomes the shippable artifact: the
+  // snapshot is taken after the approval check, so a candidate swapped in between would otherwise
+  // be captured as the accepted bytes and later shipped as authentic against its own snapshot hash.
+  const candidateSnapshotHash = sha256File(candidateSnapshotPath);
+  assertCandidateMatchesApproval(candidateSnapshotHash, context.approvalReceipt, context.failGate);
+
   const acceptedState = {
     status: 'accepted',
     phase: PROMOTION_PHASES.accept,
@@ -365,7 +384,7 @@ function createAcceptanceState(context) {
     candidateSnapshotPath,
     preAcceptBackupPath,
     preAcceptTargetHash: sha256File(preAcceptBackupPath),
-    candidateHash: sha256File(candidateSnapshotPath),
+    candidateHash: candidateSnapshotHash,
     preservedBranch: context.preservedBranch || null,
     branchPreservationPolicy: context.branchPreservationPolicy,
     archiveDir: context.archiveDir,
@@ -942,6 +961,7 @@ function main() {
       preservedBranch,
       branchPreservationPolicy,
       approvalReceipt,
+      failGate,
     });
     const result = {
       status: 'accepted',
@@ -988,6 +1008,7 @@ function main() {
       });
     }
   } else {
+    assertCandidateMatchesApproval(sha256File(candidate), approvalReceipt, failGate);
     fs.copyFileSync(target, backupPath);
     fs.copyFileSync(candidate, target);
   }
@@ -1047,4 +1068,8 @@ function main() {
   process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = { assertCandidateMatchesApproval };

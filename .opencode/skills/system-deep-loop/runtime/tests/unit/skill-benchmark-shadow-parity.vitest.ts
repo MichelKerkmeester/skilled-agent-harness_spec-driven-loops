@@ -67,6 +67,9 @@ import type {
   DeepImprovementCommonPayloadMap,
   DeepImprovementCommonScopeMap,
 } from '../../lib/deep-improvement-common-ledger-schema/index.js';
+import {
+  DEEP_IMPROVEMENT_COMMON_SCORE_WRITE_BACKEND_REF,
+} from '../../lib/deep-improvement-common-ledger-schema/index.js';
 import type {
   JsonObject,
 } from '../../lib/event-envelope/index.js';
@@ -88,11 +91,15 @@ import type {
   SkillBenchmarkSpecificEventStem,
 } from '../../lib/skill-benchmark-ledger-schema/index.js';
 import type {
+  SkillBenchmarkProjectionState,
+} from '../../lib/skill-benchmark-reducers/index.js';
+import type {
   SkillBenchmarkParityCaseRun,
   SkillBenchmarkParityDiffClass,
   SkillBenchmarkParityFaultKind,
   SkillBenchmarkParityFixture,
   SkillBenchmarkParityFixtureScenario,
+  SkillBenchmarkTerminalDecision,
 } from '../../lib/skill-benchmark-shadow-parity/index.js';
 import type {
   ParityCaseCapsule,
@@ -200,12 +207,13 @@ function appendCommon<TStem extends DeepImprovementCommonEventStem>(
   events: SkillBenchmarkLedgerEvent[],
   stem: TStem,
   data: DeepImprovementCommonPayloadMap[TStem],
+  scope?: DeepImprovementCommonScopeMap[TStem],
 ): SkillBenchmarkEventEnvelope<TStem> {
   const prior = events.at(-1) ?? null;
   const sequence = events.length + 1;
   const event = prepareSkillBenchmarkEvent({
     stem,
-    scope: commonScope(stem),
+    scope: scope ?? commonScope(stem),
     data,
     prevEventHash: prior === null ? ZERO_DIGEST : digest(prior),
     replay: replayMetadata(),
@@ -228,12 +236,13 @@ function appendSkill<TStem extends SkillBenchmarkSpecificEventStem>(
   events: SkillBenchmarkLedgerEvent[],
   stem: TStem,
   data: SkillBenchmarkPayloadMap[TStem],
+  scope?: SkillBenchmarkScopeMap[TStem],
 ): SkillBenchmarkEventEnvelope<TStem> {
   const prior = events.at(-1) ?? null;
   const sequence = events.length + 1;
   const input: SkillBenchmarkEventInput<TStem> = {
     stem,
-    scope: skillScope(stem),
+    scope: scope ?? skillScope(stem),
     data,
     prevEventHash: prior === null ? ZERO_DIGEST : digest(prior),
     replay: replayMetadata(),
@@ -527,9 +536,11 @@ function executionFixtureEvents(): readonly SkillBenchmarkLedgerEvent[] {
   return Object.freeze(output);
 }
 
-function fixture(
-  scenario: SkillBenchmarkParityFixtureScenario = 'full-skill',
-  fixtureId = `fixture-${scenario}`,
+function bindParityFixture(
+  fixtureId: string,
+  scenario: SkillBenchmarkParityFixtureScenario,
+  events: readonly SkillBenchmarkLedgerEvent[],
+  expectedTerminalDecision: SkillBenchmarkTerminalDecision,
 ): SkillBenchmarkParityFixture {
   const provisional: SkillBenchmarkParityFixture = {
     fixtureId,
@@ -567,8 +578,8 @@ function fixture(
         deadlineAt: '2026-07-29T10:00:00.000Z',
       },
     },
-    events: executionFixtureEvents(),
-    expectedTerminalDecision: 'completed',
+    events,
+    expectedTerminalDecision,
     resumeEvidence: null,
     commonParityReceiptDigest: digest('common-parity-receipt'),
   };
@@ -579,6 +590,465 @@ function fixture(
       initialStateDigest: skillBenchmarkParityInitialStateDigest(provisional),
     }),
   });
+}
+
+function fixture(
+  scenario: SkillBenchmarkParityFixtureScenario = 'full-skill',
+  fixtureId = `fixture-${scenario}`,
+): SkillBenchmarkParityFixture {
+  return bindParityFixture(fixtureId, scenario, executionFixtureEvents(), 'completed');
+}
+
+// ───────────────────────────────────────────────────────────────────
+// Compact scene builders for field-level divergence tests
+// ───────────────────────────────────────────────────────────────────
+
+type CommonScenePush = <TStem extends DeepImprovementCommonEventStem>(
+  stem: TStem,
+  data: DeepImprovementCommonPayloadMap[TStem],
+  scope?: DeepImprovementCommonScopeMap[TStem],
+) => SkillBenchmarkEventEnvelope<TStem>;
+
+type SkillScenePush = <TStem extends SkillBenchmarkSpecificEventStem>(
+  stem: TStem,
+  data: SkillBenchmarkPayloadMap[TStem],
+  scope?: SkillBenchmarkScopeMap[TStem],
+) => SkillBenchmarkEventEnvelope<TStem>;
+
+function runStartedSceneData(): DeepImprovementCommonPayloadMap['deep_improvement_common.run_started'] {
+  return {
+    generation: 1,
+    charterDigest: digest('charter'),
+    configDigest: digest('config'),
+    operatorRef: 'operator:skill-benchmark',
+    serviceContractVersion: 'deep-improvement-common@1',
+    replayFingerprint: digest('run-replay'),
+    maxIterations: 4,
+  };
+}
+
+function runPlannedSceneData(): SkillBenchmarkPayloadMap['skill_benchmark.run_planned'] {
+  return {
+    designRef: 'design:benchmark-1',
+    designDigest: digest('design'),
+    taskSetRef: 'task-set:paired-1',
+    taskSetDigest: digest('task-set'),
+    skillBundleRef: 'skill-bundle:1',
+    skillBundleDigest: digest('skill-bundle'),
+    registryDigest: digest('registry'),
+    executorDescriptorRef: 'executor:descriptor-1',
+    executorDescriptorDigest: digest('executor'),
+    environmentDigest: digest('environment'),
+    dependencyDigest: digest('dependency'),
+    workloadDigest: digest('workload'),
+    randomizationSeed: 42,
+    replicateCount: 1,
+    designPolicyVersion: 'benchmark-design@1',
+  };
+}
+
+function treatmentAssignedSceneData(
+  planned: SkillBenchmarkEventEnvelope<'skill_benchmark.run_planned'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.treatment_assigned'] {
+  return {
+    designEventId: planned.event_id,
+    designPayloadDigest: planned.payload.payloadDigest,
+    treatmentArm: 'auto-route',
+    randomizationSeed: 42,
+    propensity: 0.5,
+    replicateIndex: 1,
+    pairedReplicateId: 'pair-1',
+    designCellId: 'cell-auto-route-1',
+    taskRef: 'task:scenario-1',
+    taskDigest: digest('task'),
+    skillBundleRef: 'skill-bundle:1',
+    skillBundleDigest: digest('skill-bundle'),
+    executorDescriptorRef: 'executor:descriptor-1',
+    executorDescriptorDigest: digest('executor'),
+    environmentDigest: digest('environment'),
+    assignmentReceiptRef: 'receipt:assignment-1',
+  };
+}
+
+function scenarioStartedSceneData(
+  assigned: SkillBenchmarkEventEnvelope<'skill_benchmark.treatment_assigned'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.scenario_started'] {
+  return {
+    assignmentEventId: assigned.event_id,
+    assignmentPayloadDigest: assigned.payload.payloadDigest,
+    taskRef: 'task:scenario-1',
+    taskDigest: digest('task'),
+    environmentRef: 'environment:snapshot-1',
+    environmentDigest: digest('environment'),
+    executorDescriptorRef: 'executor:descriptor-1',
+    executorDescriptorDigest: digest('executor'),
+    toolDigest: digest('tool'),
+    permissionDigest: digest('permission'),
+    dependencyDigest: digest('dependency'),
+    workloadDigest: digest('workload'),
+    executionReceiptRef: 'receipt:execution-start-1',
+    startedAt: TIMESTAMP,
+  };
+}
+
+function scenarioFinishedSceneData(
+  started: SkillBenchmarkEventEnvelope<'skill_benchmark.scenario_started'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.scenario_finished'] {
+  return {
+    startedEventId: started.event_id,
+    startedPayloadDigest: started.payload.payloadDigest,
+    outcomeRef: 'outcome:scenario-1',
+    outcomeDigest: digest('scenario-outcome'),
+    finalStateDigest: digest('final-state'),
+    executionReceiptRef: 'receipt:execution-finish-1',
+    terminalOutcome: 'pass',
+    finishedAt: TIMESTAMP,
+  };
+}
+
+function skillDiscoveredSceneData(
+  started: SkillBenchmarkEventEnvelope<'skill_benchmark.scenario_started'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.skill_discovered'] {
+  return {
+    scenarioStartedEventId: started.event_id,
+    skillBundleRef: 'skill-bundle:1',
+    skillBundleDigest: digest('skill-bundle'),
+    registryDigest: digest('registry'),
+    discoveryMethod: 'auto-route',
+    availabilityStatus: 'available',
+    discoveryEvidenceRef: 'evidence:discovery-1',
+    discoveryEvidenceDigest: digest('discovery'),
+  };
+}
+
+function skillLoadedSceneData(
+  discovered: SkillBenchmarkEventEnvelope<'skill_benchmark.skill_discovered'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.skill_loaded'] {
+  return {
+    discoveredEventId: discovered.event_id,
+    discoveredPayloadDigest: discovered.payload.payloadDigest,
+    disclosureStage: 'instructions',
+    skillBundleRef: 'skill-bundle:1',
+    skillBundleDigest: digest('skill-bundle'),
+    loadedResourceClasses: ['instructions'],
+    loaderReceiptRef: 'receipt:loader-1',
+    loadStatus: 'loaded',
+  };
+}
+
+function skillInvokedSceneData(
+  loaded: SkillBenchmarkEventEnvelope<'skill_benchmark.skill_loaded'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.skill_invoked'] {
+  return {
+    loadedEventId: loaded.event_id,
+    loadedPayloadDigest: loaded.payload.payloadDigest,
+    invocationMode: 'auto',
+    activationRef: 'activation:skill-1',
+    activationDigest: digest('activation'),
+    invocationReceiptRef: 'receipt:invocation-1',
+    invocationStatus: 'invoked',
+    failureReasonCode: null,
+  };
+}
+
+function resourceExposedSceneData(
+  loaded: SkillBenchmarkEventEnvelope<'skill_benchmark.skill_loaded'>,
+  canaryStatus: 'clean' | 'triggered' = 'clean',
+): SkillBenchmarkPayloadMap['skill_benchmark.resource_exposed'] {
+  return {
+    skillLoadedEventId: loaded.event_id,
+    resourceRef: 'resource:reference-1',
+    resourceDigest: digest('resource'),
+    resourceClass: 'reference',
+    exposureStage: 'resources',
+    canaryRef: 'canary:resource-1',
+    canaryDigest: digest('canary'),
+    exposureReceiptRef: 'receipt:exposure-1',
+    canaryStatus,
+  };
+}
+
+function milestoneObservedSceneData(
+  started: SkillBenchmarkEventEnvelope<'skill_benchmark.scenario_started'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.milestone_observed'] {
+  return {
+    scenarioStartedEventId: started.event_id,
+    milestoneCode: 'validated-output',
+    ordinal: 1,
+    milestoneState: 'reached',
+    observationRef: 'observation:milestone-1',
+    observationDigest: digest('milestone'),
+    complianceStatus: 'compliant',
+  };
+}
+
+function trajectoryRecordedSceneData(
+  started: SkillBenchmarkEventEnvelope<'skill_benchmark.scenario_started'>,
+  milestone: SkillBenchmarkEventEnvelope<'skill_benchmark.milestone_observed'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.trajectory_recorded'] {
+  return {
+    scenarioStartedEventId: started.event_id,
+    milestoneEventIds: [milestone.event_id],
+    orderedKeyPointCodes: ['discover', 'load', 'invoke', 'validate'],
+    intermediateStateDigest: digest('intermediate'),
+    traceRef: 'trace:trajectory-1',
+    traceDigest: digest('trajectory'),
+    complianceObservationRef: 'observation:compliance-1',
+    complianceObservationDigest: digest('compliance'),
+  };
+}
+
+function outcomeRecordedSceneData(
+  finished: SkillBenchmarkEventEnvelope<'skill_benchmark.scenario_finished'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.outcome_recorded'] {
+  return {
+    scenarioTerminalEventId: finished.event_id,
+    finalStateRef: 'state:final-1',
+    finalStateDigest: digest('final-state'),
+    deterministicCheckSetRef: 'checks:deterministic-1',
+    deterministicCheckSetDigest: digest('deterministic-checks'),
+    dynamicReferenceSetRef: 'checks:dynamic-1',
+    dynamicReferenceSetDigest: digest('dynamic-checks'),
+    constraintCoverageRef: 'coverage:constraints-1',
+    constraintCoverageDigest: digest('constraint-coverage'),
+    outcomeStatus: 'pass',
+  };
+}
+
+function goldIntegritySceneData(): SkillBenchmarkPayloadMap['skill_benchmark.gold_integrity_recorded'] {
+  return {
+    goldRef: 'gold:scenario-1',
+    goldDigest: digest('gold'),
+    goldPolicy: 'scored',
+    provenanceRef: 'provenance:gold-1',
+    provenanceDigest: digest('gold-provenance'),
+    coverageRatio: 1,
+    integrityStatus: 'accepted',
+    reasonCode: 'gold-verified',
+    evaluatorRef: 'evaluator:gold-integrity-1',
+    evaluatorFingerprint: digest('gold-evaluator'),
+  };
+}
+
+function scoreObservedSceneData(
+  outcome: SkillBenchmarkEventEnvelope<'skill_benchmark.outcome_recorded'>,
+  gold: SkillBenchmarkEventEnvelope<'skill_benchmark.gold_integrity_recorded'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.score_observed'] {
+  return {
+    outcomeEventId: outcome.event_id,
+    evaluatorRef: 'evaluator:skill-benchmark-1',
+    evaluatorVersion: 'evaluator@1',
+    evaluatorFingerprint: digest('skill-evaluator'),
+    deterministicResultsRef: 'results:deterministic-1',
+    deterministicResultsDigest: digest('deterministic-results'),
+    dynamicReferenceResultsRef: 'results:dynamic-1',
+    dynamicReferenceResultsDigest: digest('dynamic-results'),
+    rawScoreAxes: [{
+      dimensionCode: 'correctness',
+      rawScore: 0.8,
+      measurementRef: 'measurement:correctness-1',
+      measurementDigest: digest('raw-correctness'),
+    }],
+    constraintCoverageRef: 'coverage:constraints-1',
+    constraintCoverageDigest: digest('constraint-coverage'),
+    tokenCount: 500,
+    latencyMs: 1_200,
+    costMicrounits: 25,
+    workloadDigest: digest('workload'),
+    goldIntegrityEventId: gold.event_id,
+    goldIntegrityPayloadDigest: gold.payload.payloadDigest,
+    goldPolicy: 'scored',
+    numeratorEligible: true,
+    scoreWriteBackendRef: SKILL_BENCHMARK_SCORE_WRITE_BACKEND_REF,
+  };
+}
+
+function compatibilitySceneData(
+  started: SkillBenchmarkEventEnvelope<'skill_benchmark.scenario_started'>,
+): SkillBenchmarkPayloadMap['skill_benchmark.compatibility_observed'] {
+  return {
+    scenarioStartedEventId: started.event_id,
+    taskDigest: digest('task'),
+    skillBundleDigest: digest('skill-bundle'),
+    registryDigest: digest('registry'),
+    executorDigest: digest('executor'),
+    toolDigest: digest('tool'),
+    permissionDigest: digest('permission'),
+    environmentDigest: digest('environment'),
+    dependencyDigest: digest('dependency'),
+    workloadDigest: digest('workload'),
+    compatibilityStatus: 'compatible',
+    evidenceRef: 'evidence:compatibility-1',
+    evidenceDigest: digest('compatibility'),
+  };
+}
+
+function securityProbeSceneData(
+  started: SkillBenchmarkEventEnvelope<'skill_benchmark.scenario_started'>,
+  probeOutcome: 'fail' | 'pass' = 'pass',
+): SkillBenchmarkPayloadMap['skill_benchmark.security_probe_recorded'] {
+  return {
+    scenarioStartedEventId: started.event_id,
+    probeRef: 'probe:controlled-1',
+    probeDigest: digest('probe'),
+    compositionPathDigest: digest('composition'),
+    probeOutcome,
+    evidenceRef: 'evidence:probe-1',
+    evidenceDigest: digest('probe-evidence'),
+    refusalObserved: true,
+    policyVersion: 'probe@1',
+  };
+}
+
+function candidateProposedSceneData(): DeepImprovementCommonPayloadMap['deep_improvement_common.candidate_proposed'] {
+  return {
+    proposalRef: 'proposal:candidate-1',
+    proposalDigest: digest('common-proposal'),
+    mutationOperatorRef: 'operator:bounded-rewrite',
+    mutationOperatorVersion: 'bounded-rewrite@1',
+    parentCandidateId: null,
+    targetRef: 'target:benchmark-1',
+    targetDigest: digest('target'),
+    proposalPolicyVersion: 'proposal-policy@1',
+  };
+}
+
+function candidateGeneratedSceneData(
+  proposed: SkillBenchmarkEventEnvelope<'deep_improvement_common.candidate_proposed'>,
+): DeepImprovementCommonPayloadMap['deep_improvement_common.candidate_generated'] {
+  return {
+    proposalEventId: proposed.event_id,
+    proposalPayloadDigest: proposed.payload.payloadDigest,
+    candidateArtifactRef: 'artifact:candidate-1',
+    candidateArtifactDigest: digest('candidate'),
+    generationReceiptRef: 'receipt:generation-1',
+    mutationOperatorRef: 'operator:bounded-rewrite',
+    mutationOperatorVersion: 'bounded-rewrite@1',
+  };
+}
+
+function evaluationEpochSealedSceneData(): DeepImprovementCommonPayloadMap['deep_improvement_common.evaluation_epoch_sealed'] {
+  return {
+    evaluatorRef: 'evaluator:1',
+    evaluatorCapsuleDigest: digest('evaluator-capsule'),
+    fixtureSetRef: 'fixture-set:1',
+    fixtureSetDigest: digest('fixture-set'),
+    scorePolicyVersion: 'score-policy@1',
+    scoreWriteBackendRef: DEEP_IMPROVEMENT_COMMON_SCORE_WRITE_BACKEND_REF,
+    evaluationBudgetRef: 'budget:1',
+  };
+}
+
+function evaluationStartedSceneData(
+  epoch: SkillBenchmarkEventEnvelope<'deep_improvement_common.evaluation_epoch_sealed'>,
+): DeepImprovementCommonPayloadMap['deep_improvement_common.evaluation_started'] {
+  return {
+    epochSealedEventId: epoch.event_id,
+    epochPayloadDigest: epoch.payload.payloadDigest,
+    executionReceiptRef: 'receipt:started-1',
+    fixtureCount: 3,
+    evaluatorFingerprint: digest('evaluator-fingerprint'),
+  };
+}
+
+function evaluationObservationSceneData(
+  started: SkillBenchmarkEventEnvelope<'deep_improvement_common.evaluation_started'>,
+): DeepImprovementCommonPayloadMap['deep_improvement_common.evaluation_observation_recorded'] {
+  return {
+    evaluationStartedEventId: started.event_id,
+    evaluatorRef: 'evaluator:1',
+    fixtureRef: 'fixture:fixture-1',
+    rawObservationRef: 'artifact:raw-observation',
+    rawObservationDigest: digest('raw-observation'),
+    executionReceiptRef: 'receipt:observation-1',
+    observationOutcome: 'pass',
+  };
+}
+
+/** Push the shared candidate evaluation chain through one raw observation so a
+ *  later evaluation-inconclusive scan has a genuine resolved event to cite. */
+function pushEvaluationObservation(
+  push: CommonScenePush,
+): SkillBenchmarkEventEnvelope<'deep_improvement_common.evaluation_observation_recorded'> {
+  pushRunStarted(push);
+  const candidateScope = {
+    runId: RUN_ID,
+    lineageId: LINEAGE_ID,
+    variant: 'skill-benchmark' as const,
+    candidateId: 'candidate-1',
+  };
+  const evaluationScope = { ...candidateScope, evaluationEpochId: 'epoch-1' };
+  const observationScope = { ...evaluationScope, fixtureId: 'fixture-1', observationId: 'observation-2' };
+  const proposed = push('deep_improvement_common.candidate_proposed', candidateProposedSceneData(), candidateScope);
+  const generated = push('deep_improvement_common.candidate_generated', candidateGeneratedSceneData(proposed), candidateScope);
+  const epoch = push('deep_improvement_common.evaluation_epoch_sealed', evaluationEpochSealedSceneData(), evaluationScope);
+  const started = push('deep_improvement_common.evaluation_started', evaluationStartedSceneData(epoch), evaluationScope);
+  return push('deep_improvement_common.evaluation_observation_recorded', evaluationObservationSceneData(started), observationScope);
+}
+
+function evaluationInconclusiveSceneData(
+  observation: SkillBenchmarkEventEnvelope<'deep_improvement_common.evaluation_observation_recorded'>,
+): DeepImprovementCommonPayloadMap['deep_improvement_common.evaluation_inconclusive'] {
+  return {
+    relatedEventIds: [observation.event_id],
+    reasonCode: 'evidence-gap',
+    uncertainty: 0.6,
+    evidenceRefs: ['evidence:unresolved-1'],
+    evidenceSetDigest: digest('inconclusive-set'),
+  };
+}
+
+/** Push the shared run-start every scene needs. */
+function pushRunStarted(push: CommonScenePush): void {
+  push('deep_improvement_common.run_started', runStartedSceneData());
+}
+
+/** Push shared run-start plus the skill run and one running scenario cell. */
+function pushScenarioRunning(
+  push: CommonScenePush,
+  pushSkill: SkillScenePush,
+): SkillBenchmarkEventEnvelope<'skill_benchmark.scenario_started'> {
+  pushRunStarted(push);
+  const planned = pushSkill('skill_benchmark.run_planned', runPlannedSceneData());
+  const assigned = pushSkill('skill_benchmark.treatment_assigned', treatmentAssignedSceneData(planned));
+  return pushSkill('skill_benchmark.scenario_started', scenarioStartedSceneData(assigned));
+}
+
+/** Push the discovery/load/invoke chain onto a running scenario. */
+function pushDiscoveryLoadedInvoked(
+  pushSkill: SkillScenePush,
+  started: SkillBenchmarkEventEnvelope<'skill_benchmark.scenario_started'>,
+): SkillBenchmarkEventEnvelope<'skill_benchmark.skill_invoked'> {
+  const discovered = pushSkill('skill_benchmark.skill_discovered', skillDiscoveredSceneData(started));
+  const loaded = pushSkill('skill_benchmark.skill_loaded', skillLoadedSceneData(discovered));
+  return pushSkill('skill_benchmark.skill_invoked', skillInvokedSceneData(loaded));
+}
+
+/** Push the running scenario to a finished terminal then a raw score record. */
+function pushScoredScenario(
+  push: CommonScenePush,
+  pushSkill: SkillScenePush,
+): SkillBenchmarkEventEnvelope<'skill_benchmark.score_observed'> {
+  const started = pushScenarioRunning(push, pushSkill);
+  const finished = pushSkill('skill_benchmark.scenario_finished', scenarioFinishedSceneData(started));
+  const outcome = pushSkill('skill_benchmark.outcome_recorded', outcomeRecordedSceneData(finished));
+  const gold = pushSkill('skill_benchmark.gold_integrity_recorded', goldIntegritySceneData());
+  return pushSkill('skill_benchmark.score_observed', scoreObservedSceneData(outcome, gold));
+}
+
+/** Compose a compact non-terminal scene whose events drive exactly the reducer
+ *  slices a single field-level divergence test corrupts. Both parity paths fold
+ *  the same raw events, so only the typed fold output diverges after mutation. */
+function sceneFixture(
+  sceneId: string,
+  expectedTerminalDecision: SkillBenchmarkTerminalDecision,
+  build: (push: CommonScenePush, pushSkill: SkillScenePush) => void,
+): SkillBenchmarkParityFixture {
+  const events: SkillBenchmarkLedgerEvent[] = [];
+  const pushCommon: CommonScenePush = (stem, data, scope) => appendCommon(events, stem, data, scope);
+  const pushSkill: SkillScenePush = (stem, data, scope) => appendSkill(events, stem, data, scope);
+  build(pushCommon, pushSkill);
+  return bindParityFixture(sceneId, 'full-skill', Object.freeze(events), expectedTerminalDecision);
 }
 
 interface ArtifactHarness {
@@ -1063,5 +1533,545 @@ describe('skill benchmark shadow parity', () => {
   it('proves the lifecycle map closes shared and skill-specific events', () => {
     expect(DeepImprovementCommonEventStems.length).toBeGreaterThan(0);
     expect(() => verifySkillBenchmarkLifecycleEventMap()).not.toThrow();
+  });
+
+  /** Corrupt one reducer-state slice on the ledger fold only and require the
+   *  paired pipeline to refuse the resulting projection-semantic divergence.
+   *  The ledger path derives every projected field from
+   *  `foldSkillBenchmarkEvents` while the legacy path never calls it, so a
+   *  load-bearing mutation changes only one side and the comparator must fail
+   *  closed. The empty-event fold is the shared sealed-capsule state both
+   *  paths need to agree on identically, so only real event histories mutate. */
+  async function expectSurfaceDivergence(
+    parityFixture: SkillBenchmarkParityFixture,
+    mutate: (state: SkillBenchmarkProjectionState) => SkillBenchmarkProjectionState,
+  ): Promise<void> {
+    const realFold = skillBenchmarkReducers.foldSkillBenchmarkEvents;
+    const spy = vi.spyOn(skillBenchmarkReducers, 'foldSkillBenchmarkEvents')
+      .mockImplementation((events, options) => {
+        const result = realFold(events, options);
+        if (result.outcome !== 'projected' || events.length === 0) return result;
+        return { ...result, projection: mutate(result.projection) };
+      });
+    try {
+      const outcome = await genericRun(parityFixture);
+      expect(outcome.result.ok, JSON.stringify(outcome.result)).toBe(false);
+      if (!outcome.result.ok) {
+        expect(
+          outcome.result.divergence.class,
+          `message=${outcome.result.divergence.message}`,
+        ).toBe('projection-semantic');
+      }
+    } finally {
+      spy.mockRestore();
+    }
+  }
+
+  it('fails parity when the run-id projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-run-id', 'active', (push) => {
+        push('deep_improvement_common.run_started', runStartedSceneData());
+      }),
+      (state) => ({
+        ...state,
+        common: { ...state.common, run: { ...state.common.run, runId: 'run-shadow-corrupt' } },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the lineage-id projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-lineage-id', 'active', (push) => {
+        push('deep_improvement_common.run_started', runStartedSceneData());
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          run: { ...state.common.run, lineageId: 'lineage-shadow-corrupt' },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the run-state projection field diverges', async () => {
+    // The reducer's run state reader turns a scenario-started marker into the
+    // 'active' run state, so the ledger path mutates the persisted seenEvents
+    // slice into fabricating a marker that never produced a scenario object;
+    // the legacy hand-scan keeps reading 'planned' off the raw run-start.
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-run-state', 'active', (push) => {
+        push('deep_improvement_common.run_started', runStartedSceneData());
+      }),
+      (state) => ({
+        ...state,
+        seenEvents: [...state.seenEvents, {
+          eventId: 'fabricated-scenario-started',
+          eventDigest: ZERO_DIGEST,
+          payloadDigest: digest('fabricated-scenario-started'),
+          stem: 'skill_benchmark.scenario_started',
+          streamId: STREAM_ID,
+          streamSequence: 900,
+          scenarioId: 'scenario-1',
+          assignmentId: 'assignment-1',
+          executionId: 'execution-1',
+          observationId: null,
+          candidateId: null,
+          benchmarkDesignId: null,
+          certificateId: null,
+        }],
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the design-ids projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-design-ids', 'active', (push, pushSkill) => {
+        pushRunStarted(push);
+        pushSkill('skill_benchmark.run_planned', runPlannedSceneData());
+      }),
+      (state) => ({
+        ...state,
+        run: { ...state.run, benchmarkDesignId: 'design-shadow-corrupt' },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the availability-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-availability', 'active', (push, pushSkill) => {
+        const started = pushScenarioRunning(push, pushSkill);
+        pushSkill('skill_benchmark.skill_discovered', skillDiscoveredSceneData(started));
+      }),
+      (state) => ({
+        ...state,
+        iterationConvergence: {
+          ...state.iterationConvergence,
+          scenarios: state.iterationConvergence.scenarios.map(
+            (scenario) => ({ ...scenario, availabilityEvidenceDigests: ['corrupt-availability'] }),
+          ),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the invocation-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-invocation', 'active', (push, pushSkill) => {
+        const started = pushScenarioRunning(push, pushSkill);
+        pushDiscoveryLoadedInvoked(pushSkill, started);
+      }),
+      (state) => ({
+        ...state,
+        iterationConvergence: {
+          ...state.iterationConvergence,
+          scenarios: state.iterationConvergence.scenarios.map(
+            (scenario) => ({ ...scenario, invocationEvidenceDigests: ['corrupt-invocation'] }),
+          ),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the exposure-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-exposure', 'active', (push, pushSkill) => {
+        const started = pushScenarioRunning(push, pushSkill);
+        const discovered = pushSkill('skill_benchmark.skill_discovered', skillDiscoveredSceneData(started));
+        const loaded = pushSkill('skill_benchmark.skill_loaded', skillLoadedSceneData(discovered));
+        pushSkill('skill_benchmark.resource_exposed', resourceExposedSceneData(loaded));
+      }),
+      (state) => ({
+        ...state,
+        iterationConvergence: {
+          ...state.iterationConvergence,
+          scenarios: state.iterationConvergence.scenarios.map(
+            (scenario) => ({ ...scenario, exposureEvidenceDigests: ['corrupt-exposure'] }),
+          ),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the milestone-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-milestone', 'active', (push, pushSkill) => {
+        const started = pushScenarioRunning(push, pushSkill);
+        pushSkill('skill_benchmark.milestone_observed', milestoneObservedSceneData(started));
+      }),
+      (state) => ({
+        ...state,
+        artifactIndex: {
+          ...state.artifactIndex,
+          artifacts: state.artifactIndex.artifacts.map((artifact) => (
+            artifact.artifactKind === 'milestone'
+              ? { ...artifact, digest: digest('corrupt-milestone') }
+              : artifact
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the trajectory-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-trajectory', 'active', (push, pushSkill) => {
+        const started = pushScenarioRunning(push, pushSkill);
+        const milestone = pushSkill('skill_benchmark.milestone_observed', milestoneObservedSceneData(started));
+        pushSkill('skill_benchmark.trajectory_recorded', trajectoryRecordedSceneData(started, milestone));
+      }),
+      (state) => ({
+        ...state,
+        artifactIndex: {
+          ...state.artifactIndex,
+          artifacts: state.artifactIndex.artifacts.map((artifact) => (
+            artifact.artifactKind === 'trajectory'
+              ? { ...artifact, digest: digest('corrupt-trajectory') }
+              : artifact
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the outcome-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-outcome', 'active', (push, pushSkill) => {
+        const started = pushScenarioRunning(push, pushSkill);
+        const finished = pushSkill('skill_benchmark.scenario_finished', scenarioFinishedSceneData(started));
+        pushSkill('skill_benchmark.outcome_recorded', outcomeRecordedSceneData(finished));
+      }),
+      (state) => ({
+        ...state,
+        artifactIndex: {
+          ...state.artifactIndex,
+          artifacts: state.artifactIndex.artifacts.map((artifact) => (
+            artifact.artifactKind === 'outcome'
+              ? { ...artifact, digest: digest('corrupt-outcome') }
+              : artifact
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the gold-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-gold', 'active', (push, pushSkill) => {
+        pushRunStarted(push);
+        const planned = pushSkill('skill_benchmark.run_planned', runPlannedSceneData());
+        pushSkill('skill_benchmark.treatment_assigned', treatmentAssignedSceneData(planned));
+        pushSkill('skill_benchmark.gold_integrity_recorded', goldIntegritySceneData());
+      }),
+      (state) => ({
+        ...state,
+        iterationConvergence: {
+          ...state.iterationConvergence,
+          scenarios: state.iterationConvergence.scenarios.map(
+            (scenario) => ({ ...scenario, goldEvidenceDigests: ['corrupt-gold'] }),
+          ),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the score-policy-versions projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-score-policy', 'active', (push, pushSkill) => {
+        pushScoredScenario(push, pushSkill);
+      }),
+      (state) => ({
+        ...state,
+        artifactIndex: {
+          ...state.artifactIndex,
+          rawMeasurements: state.artifactIndex.rawMeasurements.map(
+            (measurement) => ({ ...measurement, evaluatorVersion: 'score@corrupt' }),
+          ),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the score-vector-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-score-vector', 'active', (push, pushSkill) => {
+        pushScoredScenario(push, pushSkill);
+      }),
+      (state) => ({
+        ...state,
+        artifactIndex: {
+          ...state.artifactIndex,
+          rawMeasurements: state.artifactIndex.rawMeasurements.map((measurement) => ({
+            ...measurement,
+            rawScoreAxes: measurement.rawScoreAxes.map((axis) => ({ ...axis, rawScore: 0.99 })),
+          })),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the cost-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-cost', 'active', (push, pushSkill) => {
+        pushScoredScenario(push, pushSkill);
+      }),
+      (state) => ({
+        ...state,
+        artifactIndex: {
+          ...state.artifactIndex,
+          rawMeasurements: state.artifactIndex.rawMeasurements.map(
+            (measurement) => ({ ...measurement, latencyMs: 9_999 }),
+          ),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the compatibility-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-compatibility', 'active', (push, pushSkill) => {
+        const started = pushScenarioRunning(push, pushSkill);
+        pushSkill('skill_benchmark.compatibility_observed', compatibilitySceneData(started));
+      }),
+      (state) => ({
+        ...state,
+        artifactIndex: {
+          ...state.artifactIndex,
+          artifacts: state.artifactIndex.artifacts.map((artifact) => (
+            artifact.artifactKind === 'compatibility'
+              ? { ...artifact, digest: digest('corrupt-compatibility') }
+              : artifact
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it.skip('covers the negative-transfer-evidence-digests projection field', async () => {
+    // Populating the field requires the baseline and treated assignment chains
+    // with independent scenario identities plus both terminal outcome records
+    // (an 11-event stream). Running that scene fails the parity path with
+    // divergence.class 'execution-outcome' and "JSON value exceeds structural
+    // limits", so the field cannot be projection-semantic-tested through the
+    // real substrate and no passing test is possible.
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-negative-transfer', 'active', (push, pushSkill) => {
+        pushRunStarted(push);
+        const planned = pushSkill('skill_benchmark.run_planned', runPlannedSceneData());
+        const assigned1 = pushSkill('skill_benchmark.treatment_assigned', treatmentAssignedSceneData(planned));
+        const started1 = pushSkill('skill_benchmark.scenario_started', scenarioStartedSceneData(assigned1));
+        const finished1 = pushSkill('skill_benchmark.scenario_finished', scenarioFinishedSceneData(started1));
+        const outcome1 = pushSkill('skill_benchmark.outcome_recorded', outcomeRecordedSceneData(finished1));
+        const scenarioTwoScope = {
+          runId: RUN_ID,
+          lineageId: LINEAGE_ID,
+          variant: 'skill-benchmark' as const,
+          benchmarkDesignId: 'design-1',
+          scenarioId: 'scenario-2',
+          assignmentId: 'assignment-2',
+        };
+        const assigned2 = pushSkill(
+          'skill_benchmark.treatment_assigned',
+          treatmentAssignedSceneData(planned),
+          scenarioTwoScope,
+        );
+        const started2 = pushSkill(
+          'skill_benchmark.scenario_started',
+          scenarioStartedSceneData(assigned2),
+          { ...scenarioTwoScope, executionId: 'execution-2' },
+        );
+        const finished2 = pushSkill(
+          'skill_benchmark.scenario_finished',
+          scenarioFinishedSceneData(started2),
+          { ...scenarioTwoScope, executionId: 'execution-2' },
+        );
+        const outcome2 = pushSkill(
+          'skill_benchmark.outcome_recorded',
+          outcomeRecordedSceneData(finished2),
+          { ...scenarioTwoScope, executionId: 'execution-2', observationId: 'observation-2' },
+        );
+        pushSkill('skill_benchmark.negative_transfer_observed', {
+          baselineAssignmentEventId: assigned1.event_id,
+          treatedAssignmentEventId: assigned2.event_id,
+          baselineOutcomeEventId: outcome1.event_id,
+          treatedOutcomeEventId: outcome2.event_id,
+          axisCode: 'speed',
+          rawDelta: -0.5,
+          transferStatus: 'no-negative-transfer',
+          evidenceRef: 'evidence:negative-transfer-1',
+          evidenceDigest: digest('negative-transfer'),
+        });
+      }),
+      (state) => ({
+        ...state,
+        artifactIndex: {
+          ...state.artifactIndex,
+          artifacts: state.artifactIndex.artifacts.map((artifact) => (
+            artifact.artifactKind === 'negative-transfer'
+              ? { ...artifact, digest: digest('corrupt-negative-transfer') }
+              : artifact
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the security-probe-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-security-probe', 'active', (push, pushSkill) => {
+        const started = pushScenarioRunning(push, pushSkill);
+        pushSkill('skill_benchmark.security_probe_recorded', securityProbeSceneData(started));
+      }),
+      (state) => ({
+        ...state,
+        artifactIndex: {
+          ...state.artifactIndex,
+          artifacts: state.artifactIndex.artifacts.map((artifact) => (
+            artifact.artifactKind === 'security-probe'
+              ? { ...artifact, digest: digest('corrupt-security-probe') }
+              : artifact
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the shared-service-refs projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-shared-service-refs', 'active', (push) => {
+        pushRunStarted(push);
+        push('deep_improvement_common.candidate_proposed', candidateProposedSceneData(), {
+          runId: RUN_ID,
+          lineageId: LINEAGE_ID,
+          variant: 'skill-benchmark',
+          candidateId: 'candidate-1',
+        });
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          seenEvents: state.common.seenEvents.map((entry) => (
+            entry.stem === 'deep_improvement_common.candidate_proposed'
+              ? { ...entry, candidateId: 'candidate-shadow-corrupt' }
+              : entry
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the unresolved-evidence-refs projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-unresolved-evidence-refs', 'inconclusive', (push) => {
+        const observation = pushEvaluationObservation(push);
+        push('deep_improvement_common.evaluation_inconclusive', evaluationInconclusiveSceneData(observation), {
+          runId: RUN_ID,
+          lineageId: LINEAGE_ID,
+          variant: 'skill-benchmark',
+          candidateId: 'candidate-1',
+          evaluationEpochId: 'epoch-1',
+        });
+      }),
+      (state) => ({
+        ...state,
+        common: {
+          ...state.common,
+          iterationConvergence: {
+            ...state.common.iterationConvergence,
+            unresolvedEvidenceRefs: ['evidence:corrupt-unresolved'],
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the blocking-veto-codes projection field diverges', async () => {
+    // The scene keeps one hard veto already, so flipping only the veto source
+    // never changes the closed-blocked terminal and reaches the comparator
+    // with a genuine projection-semantic drift rather than tripping the
+    // closed-terminal gate.
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-blocking-veto-codes', 'blocked', (push, pushSkill) => {
+        const started = pushScenarioRunning(push, pushSkill);
+        pushSkill('skill_benchmark.security_probe_recorded', securityProbeSceneData(started, 'fail'));
+      }),
+      (state) => ({
+        ...state,
+        iterationConvergence: {
+          ...state.iterationConvergence,
+          hardVetoes: state.iterationConvergence.hardVetoes.map((veto) => (
+            veto.source === 'security-probe'
+              ? { ...veto, source: 'compatibility' as const }
+              : veto
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the treatment-coverage projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-treatment-coverage', 'active', (push, pushSkill) => {
+        const started = pushScenarioRunning(push, pushSkill);
+        pushSkill('skill_benchmark.scenario_finished', scenarioFinishedSceneData(started));
+      }),
+      (state) => ({
+        ...state,
+        iterationConvergence: {
+          ...state.iterationConvergence,
+          scenarios: state.iterationConvergence.scenarios.map((scenario) => (
+            { ...scenario, state: 'aborted' }
+          )),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the scoring-state projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-skill-scoring-state', 'active', (push, pushSkill) => {
+        pushScoredScenario(push, pushSkill);
+      }),
+      (state) => ({
+        ...state,
+        artifactIndex: {
+          ...state.artifactIndex,
+          rawMeasurements: state.artifactIndex.rawMeasurements.map(
+            (measurement) => ({ ...measurement, numeratorEligible: false }),
+          ),
+        },
+      }),
+    );
+  }, 30_000);
+
+  it.skip('covers the generation projection field via a projection-semantic mutation', async () => {
+    // The legacy oracle never reads a generation field off any skill-benchmark
+    // or shared event, so its scan output is always the constant 0; the
+    // reducer projection mirrors that constant on every path and no state
+    // mutation can make the two paths disagree.
+  });
+
+  it.skip('covers the certificate-evidence-digests projection field', async () => {
+    // The effect-certificate evidenceSetDigest exists only in the raw payload
+    // and is never written into any typed reducer collection, so the reducer
+    // projection structurally yields an empty list on both paths and there is
+    // no slice to corrupt.
+  });
+
+  it.skip('covers the terminal-decision projection field via a projection-semantic mutation', async () => {
+    // The executor's closed-terminal gate re-reads this very projection field
+    // on every path and throws before the fingerprint comparator when a
+    // one-path flip disagrees with the fixture's closed-terminal expectation,
+    // so a folded-terminal corruption always fails closed as execution-outcome,
+    // never projection-semantic. Terminal drift is already asserted separately
+    // by the terminal-decision fault in the fault-injection battery.
+  });
+
+  it.skip('covers the resume-decision-digest projection field', async () => {
+    // The closed fixture closure never supplies resumeEvidence and no scene in
+    // this surface folds a run-resumed event, so the reducer yields a
+    // structurally-null resume-decision digest on both paths and no mutation
+    // of its feeding slice can change the projection.
   });
 });

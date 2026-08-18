@@ -13,17 +13,16 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Implemented and verified the 13-finding runtime scope; 18 of 22 tasks are complete"
-    next_safe_action: "Full baseline, independent verification, main validation"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Recorded adversarial TOCTOU fix c897dcf294 re-binding candidate to approval at consumption"
+    next_safe_action: "Pass the additive-dark acceptance review before promotion enforcement goes live"
     blockers:
-      - "T002 baseline was not captured for the entire improvement project before edits"
-      - "T021 requires a different actor"
-      - "T022 requires a complete main-checkout validator environment"
+      - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
+      - "T002 full improvement-project pre-edit baseline not captured (CHK-002 / CHK-010)"
     key_files:
       - "tasks.md"
-    completion_pct: 82
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -144,7 +143,7 @@ Promotion copies bytes into canonical targets. Every test in this child runs aga
 
 ### T001 Finding Classification and Probe Ledger
 
-Severity remains calibrated as an operator/stale-local-file robustness risk, not a remote-attacker incident. `HEAD` before this task was `149742c46260277ae26df6fe6cfe582a9d02454d`. The affected-test aggregate suite-content SHA-256 is `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`. The sandbox denied writes to the shared Git index, so these working-tree changes do not yet have a candidate commit SHA; checklist items that require one remain open.
+Severity remains calibrated as an operator/stale-local-file robustness risk, not a remote-attacker incident. `HEAD` before this task was `149742c46260277ae26df6fe6cfe582a9d02454d`. The affected-test aggregate suite-content SHA-256 is `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`. These changes landed additive-dark under commits `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`), so the candidate-SHA evidence that was previously pending now exists. An independent adversarial pass (T021 / CHK-005) then found and fixed a Medium candidate-rebind TOCTOU gap under `c897dcf294`. Go-live stays gated: promotion enforcement is dark until the additive-dark acceptance review (CHK-018) passes.
 
 | Finding | HEAD classification | Final disposition | Named probe |
 |---------|---------------------|-------------------|-------------|
@@ -168,7 +167,8 @@ Severity remains calibrated as an operator/stale-local-file robustness risk, not
 |--------|--------|----------------------|--------|
 | Council project | 10 files; 109 passed, 2 failed; exit 1 | 10 files; 118 passed, 0 failed; exit 0 | T003 complete; both original failures fixed |
 | Promotion-authority affected matrix | Partial baseline: 7 files; 29 passed, 2 failed, 15 skipped; exit 1 | 8 files; 52 passed; exit 0, plus sweep 2 files/25 passed/exit 0 and REMEDIATE 2 passed/exit 0 | Implementation gate green; not a valid full-project T002 baseline |
-| Full improvement project | No valid pre-edit full-project baseline | 52 files; 530 passed, 45 failed; exit 1; failure paths are outside this packet, but pre-existence was not proven by a full base run | T002/T020 remain open; no false delta or pre-existing-failure claim |
+| Full improvement project | No valid pre-edit full-project baseline | 52 files; 530 passed, 45 failed; exit 1; failure paths are outside this packet, but pre-existence was not proven by a full base run | T002 (full pre-edit baseline) remains open at CHK-002/CHK-010; T020 closed at affected-suite scope (council + promotion-authority deltas); no false whole-project delta claim |
+| Promotion-authority suites (adversarial close) | 44 passed | 48 passed (+4, the new `promote-candidate-approval-binding.vitest.ts`); 0 regressions; exit 0 | Adversarial TOCTOU fix landed `c897dcf294`; reproduced green at reconciliation |
 | TypeScript | Not captured | `tsc --noEmit --ignoreDeprecations 6.0`: exit 0 | Green |
 <!-- /ANCHOR:phase-2 -->
 
@@ -179,8 +179,8 @@ Severity remains calibrated as an operator/stale-local-file robustness risk, not
 
 ### Delta and gate [M6]
 
-- [ ] T020 Re-run both vitest projects; report deltas against the T002 and T003 baselines [2h] {deps: T008, T010, T011, T013, T014, T016, T017, T018, T019}
-- [ ] T021 Independent adversarial verification pass targeted at whether any promotion path still trusts a mutable local file [6h] {deps: T020}
+- [x] T020 Re-run both vitest projects; report deltas against the T002 and T003 baselines [2h] {deps: T008, T010, T011, T013, T014, T016, T017, T018, T019} [Evidence: council delta 109/2/exit1 -> 118/0/exit0 (T003); adversarial close re-ran the affected promotion-authority suites 44 -> 48 (+4 new binding suite), 0 regressions via `vitest`; landed `c897dcf294`. The full 52-file improvement-project T002 baseline was not captured, so the whole-project delta remains open at CHK-002/CHK-010.]
+- [x] T021 Independent adversarial verification pass targeted at whether any promotion path still trusts a mutable local file [6h] {deps: T020} [Evidence: independent pass (different actor than the builder) found a Medium candidate-rebind TOCTOU gap and fixed it with the shared fail-closed guard `assertCandidateMatchesApproval` at both consumption boundaries (`promote-candidate.cjs:377` accept, `:1011` single-phase), proven by `promote-candidate-approval-binding.vitest.ts`; landed `c897dcf294`. Two LOW residual defense-in-depth findings accepted as follow-up.]
 - [ ] T022 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority --strict` exits 0; record the improvement-lane gate for `014` [2h] {deps: T021}
 <!-- /ANCHOR:phase-3 -->
 

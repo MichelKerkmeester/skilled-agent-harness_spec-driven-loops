@@ -1,0 +1,13 @@
+All three phases complete. Every write landed inside `specs/cli-external-orchestration/048-earlier-findings-deep-research/research/lineages/pi-flash-or`; containment sweep confirms no out-of-lineage writes.
+
+**Summary of the run (10/10 iterations, stopPolicy=max-iterations):**
+
+- **F1 (Cursor approval):** intended security posture — `--approve-mcps` (CI), `cursor-agent mcp enable` (operator), or `~/.cursor/mcp.json`; `trusted/autoApprove` JSON fields are unsupported.
+- **F2 (Devin dangerous-only):** MCP tools are confirmation-gated and `-p` can't answer prompts; `smart` unavailable. Least-privilege fix: `permissions.allow: ["mcp__sk-vision__*"]` in `.devin/config.local.json`.
+- **F3 (moondream2 1-token / md3 doubling):** not a token cap (settings=None, kestrel 768) — unenforced `_require_task("ocr")` in `handle_ocr` (P0 fix) + moondream2 capability gap; md3 doubling is a preview-checkpoint sampling artifact, mitigable via the F5b settings lever.
+- **F4 (Cursor .mcp.json chain):** Cursor reads its own scope (`.cursor/mcp.json` symlinked to `.mcp.json`/`.claude/mcp.json`); per-server env must be authored there (env block or envFile).
+- **F5 (base64 padding + settings):** strict `base64.b64decode` on unpadded/URL-safe data URLs in `_resolve_image` (verified locally) + settings dropped at the TS schema boundary — both P0 fixes, both host-independent via the shared layer.
+
+Artifacts: `deep-research-config.json` (status=complete), `deep-research-state.jsonl` (13 records, 10 iterations, all required fields), 10 `iterations/iteration-*.md`, 10 `deltas/iter-*.jsonl`, strategy/registry/dashboard, `research.md` (12 sections + convergence report), `resource-map.md`.
+
+FANOUT_LINEAGE_COMPLETE:pi-flash-or

@@ -76,7 +76,11 @@ import type {
   ModelBenchmarkParityFaultKind,
   ModelBenchmarkParityFixture,
   ModelBenchmarkParityFixtureScenario,
+  ModelBenchmarkTerminalDecision,
 } from '../../lib/model-benchmark-shadow-parity/index.js';
+import type {
+  ModelBenchmarkProjectionState,
+} from '../../lib/model-benchmark-reducers/index.js';
 import type {
   ArtifactAuthorizationContext,
   ArtifactEventMetadata,
@@ -222,7 +226,8 @@ function scopeFor<TStem extends ModelBenchmarkSpecificEventStem>(
       pairedBlockId: key.pairedBlockId,
     } as ModelBenchmarkScopeMap[TStem];
   }
-  if (stem === 'model_benchmark.contamination_evidence_recorded') {
+  if (stem === 'model_benchmark.contamination_evidence_recorded'
+    || stem === 'model_benchmark.exposure_recorded') {
     return {
       ...base,
       caseId: 'case-1',
@@ -542,16 +547,18 @@ function fixtureEvents(): readonly ModelBenchmarkLedgerEvent[] {
   return Object.freeze(events);
 }
 
-function fixture(
-  scenario: ModelBenchmarkParityFixtureScenario = 'healthy-multi-model',
-  fixtureId = `fixture-${scenario}`,
+function bindParityFixture(
+  fixtureId: string,
+  scenario: ModelBenchmarkParityFixtureScenario,
+  events: readonly ModelBenchmarkLedgerEvent[],
+  expectedTerminalDecision: ModelBenchmarkTerminalDecision,
 ): ModelBenchmarkParityFixture {
   const provisional: ModelBenchmarkParityFixture = {
     fixtureId,
     scenario,
     frozenInput: {
       baseSha: BASE_SHA,
-      runManifestDigest: digest({ scenario, manifest: 1 }),
+      runManifestDigest: digest({ scenario, fixtureId, manifest: 1 }),
       benchmarkRecipeDigest: digest('benchmark-recipe'),
       modelExecutorMatrixDigest: digest('model-executor-matrix'),
       taskFixtureSetDigest: digest('task-fixture-set'),
@@ -579,8 +586,8 @@ function fixture(
         deadlineAt: '2026-07-29T10:00:00.000Z',
       },
     },
-    events: fixtureEvents(),
-    expectedTerminalDecision: 'completed',
+    events,
+    expectedTerminalDecision,
     resumeEvidence: null,
     commonParityReceiptDigest: digest('common-parity-receipt'),
   };
@@ -591,6 +598,423 @@ function fixture(
       initialStateDigest: modelBenchmarkParityInitialStateDigest(provisional),
     }),
   });
+}
+
+function fixture(
+  scenario: ModelBenchmarkParityFixtureScenario = 'healthy-multi-model',
+  fixtureId = `fixture-${scenario}`,
+): ModelBenchmarkParityFixture {
+  return bindParityFixture(fixtureId, scenario, fixtureEvents(), 'completed');
+}
+
+// ───────────────────────────────────────────────────────────────────
+// Compact scene builders for field-level divergence tests
+// ───────────────────────────────────────────────────────────────────
+
+type ModelBenchmarkScenePush = <TStem extends ModelBenchmarkSpecificEventStem>(
+  stem: TStem,
+  data: ModelBenchmarkPayloadMap[TStem],
+) => ModelBenchmarkEventEnvelope<TStem>;
+
+function runDeclaredData(): ModelBenchmarkPayloadMap['model_benchmark.run_declared'] {
+  return {
+    generation: 1,
+    benchmarkRecipeRef: 'benchmark-recipe:1',
+    benchmarkRecipeDigest: digest('model-fixture'),
+    evaluatorServiceRef: 'service:evaluator',
+    canaryServiceRef: 'service:canary',
+    promotionServiceRef: 'service:promotion',
+    sharedServiceContractVersion: 'deep-improvement-common@1',
+    replayFingerprint: digest('model-fixture'),
+  };
+}
+
+function capsuleData(): ModelBenchmarkPayloadMap['model_benchmark.benchmark_capsule_sealed'] {
+  return {
+    capsuleRef: 'capsule:1',
+    capsuleDigest: digest('model-fixture'),
+    taskSetDigest: digest('model-fixture'),
+    taskLineage: taskLineage(),
+    canarySuiteRef: 'canary:1',
+    canarySuiteDigest: digest('model-fixture'),
+    sealReceiptRef: 'receipt:capsule',
+  };
+}
+
+function workloadData(): ModelBenchmarkPayloadMap['model_benchmark.workload_snapshot_sealed'] {
+  return {
+    workloadSnapshotRef: 'workload:1',
+    workloadSnapshotDigest: digest('model-fixture'),
+    taskFamilyIds: ['family-1'],
+    caseCount: 1,
+    workloadProfileVersion: 'workload@1',
+    snapshotAt: TIMESTAMP,
+    sealReceiptRef: 'receipt:workload',
+  };
+}
+
+function runStartedSceneData(
+  declared: ModelBenchmarkEventEnvelope<'model_benchmark.run_declared'>,
+  capsule: ModelBenchmarkEventEnvelope<'model_benchmark.benchmark_capsule_sealed'>,
+  workload: ModelBenchmarkEventEnvelope<'model_benchmark.workload_snapshot_sealed'>,
+): ModelBenchmarkPayloadMap['model_benchmark.run_started'] {
+  return {
+    declarationEventId: declared.event_id,
+    declarationPayloadDigest: declared.payload.payloadDigest,
+    capsuleEventId: capsule.event_id,
+    capsulePayloadDigest: capsule.payload.payloadDigest,
+    workloadEventId: workload.event_id,
+    workloadPayloadDigest: workload.payload.payloadDigest,
+    executionReceiptRef: 'receipt:start',
+    startedAt: TIMESTAMP,
+  };
+}
+
+function trialBlockData(): ModelBenchmarkPayloadMap['model_benchmark.trial_block_declared'] {
+  return {
+    taskFamilyId: 'family-1',
+    candidateIds: [CANDIDATE_ID],
+    modelFingerprints: [trialMatrixKey().modelFingerprint],
+    executionPaths: [trialMatrixKey().executionPath],
+    pairedBlockIds: [trialMatrixKey().pairedBlockId],
+    protocolVariants: [trialMatrixKey().protocolVariant],
+    seed: trialMatrixKey().seed,
+    perturbationId: trialMatrixKey().perturbationId,
+    workloadProfileId: trialMatrixKey().workloadProfileId,
+    blockDigest: digest('model-fixture'),
+  };
+}
+
+function caseAdmittedData(): ModelBenchmarkPayloadMap['model_benchmark.trial_case_admitted'] {
+  return {
+    trialMatrixKey: trialMatrixKey(),
+    caseRef: 'case:1',
+    caseDigest: digest('model-fixture'),
+    taskLineage: taskLineage(),
+    admissionPolicyVersion: 'admission@1',
+    admissionReasonCode: 'eligible',
+  };
+}
+
+function trialDispatchedData(): ModelBenchmarkPayloadMap['model_benchmark.trial_dispatched'] {
+  return {
+    trialMatrixKey: trialMatrixKey(),
+    inputRef: 'input:1',
+    inputDigest: digest('model-fixture'),
+    dispatchReceiptRef: 'receipt:dispatch',
+    dispatchReceiptDigest: digest('model-fixture'),
+    dispatchedAt: TIMESTAMP,
+  };
+}
+
+function trialCompletedSceneData(
+  dispatched: ModelBenchmarkEventEnvelope<'model_benchmark.trial_dispatched'>,
+): ModelBenchmarkPayloadMap['model_benchmark.trial_completed'] {
+  return {
+    trialMatrixKey: trialMatrixKey(),
+    dispatchedEventId: dispatched.event_id,
+    dispatchedPayloadDigest: dispatched.payload.payloadDigest,
+    rawResultRef: 'raw-result:1',
+    rawResultDigest: digest('raw-result'),
+    inputDigest: digest('model-fixture'),
+    outputDigest: digest('raw-output'),
+    completionReceiptRef: 'receipt:complete',
+    completedAt: TIMESTAMP,
+  };
+}
+
+function trialObservationSceneData(
+  completed: ModelBenchmarkEventEnvelope<'model_benchmark.trial_completed'>,
+): ModelBenchmarkPayloadMap['model_benchmark.trial_observation_recorded'] {
+  return {
+    trialMatrixKey: trialMatrixKey(),
+    completedEventId: completed.event_id,
+    completedPayloadDigest: completed.payload.payloadDigest,
+    inputDigest: digest('model-fixture'),
+    rawOutputRef: 'raw-output:1',
+    rawOutputDigest: digest('raw-output'),
+    evaluatorObservationRef: 'observation:1',
+    evaluatorObservationDigest: digest('observation'),
+    executionReceiptRef: 'receipt:observation',
+  };
+}
+
+function scoreSceneData(
+  observation: ModelBenchmarkEventEnvelope<'model_benchmark.trial_observation_recorded'>,
+): ModelBenchmarkPayloadMap['model_benchmark.score_vector_observed'] {
+  return {
+    trialMatrixKey: trialMatrixKey(),
+    observationEventId: observation.event_id,
+    observationPayloadDigest: observation.payload.payloadDigest,
+    scorePolicyVersion: 'score@1',
+    scoreWriteBackendRef: MODEL_BENCHMARK_SCORE_WRITE_BACKEND_REF,
+    scoreVector: {
+      components: [{
+        dimensionCode: 'quality',
+        rawScore: 0.95,
+        hardFloorStatus: 'pass',
+        measurementStatus: 'observed',
+        uncertainty: 0.05,
+        observationRef: 'observation:quality',
+        observationDigest: digest('quality'),
+      }],
+      evaluatorContractHash: digest('evaluator-contract'),
+      evaluatorFingerprint: digest('evaluator'),
+    },
+    scoringReceiptRef: 'receipt:score',
+  };
+}
+
+function usageSceneData(
+  observation: ModelBenchmarkEventEnvelope<'model_benchmark.trial_observation_recorded'>,
+): ModelBenchmarkPayloadMap['model_benchmark.usage_observed'] {
+  return {
+    trialMatrixKey: trialMatrixKey(),
+    observationEventId: observation.event_id,
+    usage: {
+      inputTokens: 10,
+      outputTokens: 20,
+      reasoningTokens: 5,
+      cacheReadTokens: 1,
+      cacheWriteTokens: 1,
+      retryCount: 0,
+      realizedCostMicrounits: 100,
+      currencyCode: 'USD',
+    },
+    latency: { ttftMs: 10, interTokenP50Ms: 2, endToEndMs: 100, tailP95Ms: 150 },
+    usageReceiptRef: 'receipt:usage',
+    usageReceiptDigest: digest('usage'),
+  };
+}
+
+function judgeSceneData(
+  score: ModelBenchmarkEventEnvelope<'model_benchmark.score_vector_observed'>,
+): ModelBenchmarkPayloadMap['model_benchmark.judge_observation_recorded'] {
+  return {
+    trialMatrixKey: trialMatrixKey(),
+    scoreEventId: score.event_id,
+    scorePayloadDigest: score.payload.payloadDigest,
+    blindedJudgeRef: 'judge:blind-1',
+    judgeFamilyCode: 'quality',
+    judgeBuildFingerprint: digest('judge-build'),
+    promptDigest: digest('judge-prompt'),
+    contextDigest: digest('judge-context'),
+    toolDigest: digest('judge-tools'),
+    calibrationSliceId: 'calibration-slice-1',
+    orderProbeOutcome: 'pass',
+    styleProbeOutcome: 'pass',
+    confidence: 0.9,
+    uncertainty: 0.1,
+    abstained: false,
+    disagreementState: 'resolved',
+    observationRef: 'judge-observation:1',
+    observationDigest: digest('judge-observation'),
+  };
+}
+
+function contaminationData(): ModelBenchmarkPayloadMap['model_benchmark.contamination_evidence_recorded'] {
+  return {
+    contaminationStatus: 'clean',
+    detectorFingerprint: digest('contamination-detector'),
+    evidenceRef: 'contamination-evidence:1',
+    evidenceDigest: digest('contamination-evidence'),
+    exposureEventIds: [],
+    reasonCode: 'checked',
+  };
+}
+
+function designData(): ModelBenchmarkPayloadMap['model_benchmark.benchmark_design_declared'] {
+  return {
+    designRef: 'design:1',
+    designDigest: digest('matrix'),
+    candidateIds: [CANDIDATE_ID],
+    taskFamilyIds: ['family-1'],
+    pairedBlockIds: ['pair-1'],
+    protocolVariants: ['standard'],
+    familyQuotaPolicyVersion: 'quota@1',
+    designPolicyVersion: 'design@1',
+  };
+}
+
+function exposureData(): ModelBenchmarkPayloadMap['model_benchmark.exposure_recorded'] {
+  return {
+    exposureClass: 'public',
+    exposedActorRef: 'actor:leak',
+    firstExposedAt: TIMESTAMP,
+    evidenceRef: 'exposure-evidence:1',
+    evidenceDigest: digest('exposure-evidence'),
+  };
+}
+
+function validityPlanData(): ModelBenchmarkPayloadMap['model_benchmark.validity_plan_sealed'] {
+  return {
+    validityPlanRef: 'validity-plan:1',
+    validityPlanDigest: digest('validity-plan'),
+    requiredEvidenceCodes: ['score', 'judge', 'contamination'],
+    hardBlockerCodes: ['hard-floor', 'contamination'],
+    validityPolicyVersion: 'validity@1',
+    sealReceiptRef: 'receipt:validity-plan',
+  };
+}
+
+function validityCardSceneData(
+  evidenceEventIds: readonly string[],
+): ModelBenchmarkPayloadMap['model_benchmark.validity_card_derived'] {
+  return {
+    state: 'valid',
+    evidenceEventIds: [...evidenceEventIds],
+    evidenceSetDigest: digest('validity-evidence'),
+    blockerCodes: [],
+    uncertainty: 0.05,
+    derivationPolicyVersion: 'validity@1',
+    derivationReceiptRef: 'receipt:validity',
+  };
+}
+
+function validityUnknownSceneData(
+  blocker: boolean,
+  unknownCode = 'missing-score',
+): ModelBenchmarkPayloadMap['model_benchmark.validity_unknown_recorded'] {
+  return {
+    unknownCode,
+    requiredEvidenceRefs: ['artifact:evidence:score'],
+    evidenceSetDigest: digest('validity-unknown-evidence'),
+    blocker,
+    recordedAt: TIMESTAMP,
+  };
+}
+
+function selectionSceneData(
+  evidenceEventIds: readonly string[],
+  validityCardEventIds: readonly string[],
+): ModelBenchmarkPayloadMap['model_benchmark.selection_evidence_sealed'] {
+  return {
+    evidenceEventIds: [...evidenceEventIds],
+    evidenceSetDigest: digest('selection-evidence'),
+    manifestRef: 'manifest:selection',
+    manifestDigest: digest('selection-manifest'),
+    validityCardEventIds: [...validityCardEventIds],
+    sealedAt: TIMESTAMP,
+    sealReceiptRef: 'receipt:selection',
+  };
+}
+
+function reductionSceneData(
+  selection: ModelBenchmarkEventEnvelope<'model_benchmark.selection_evidence_sealed'>,
+): ModelBenchmarkPayloadMap['model_benchmark.selection_reduction_requested'] {
+  return {
+    sealedEvidenceEventId: selection.event_id,
+    sealedEvidencePayloadDigest: selection.payload.payloadDigest,
+    reducerContractVersion: 'model-benchmark-reducer@1',
+    requestReceiptRef: 'receipt:reduction',
+    requestedAt: TIMESTAMP,
+  };
+}
+
+function runClosedSceneData(
+  prior: ModelBenchmarkLedgerEvent,
+  terminalOutcome: 'completed' | 'quarantined',
+): ModelBenchmarkPayloadMap['model_benchmark.run_closed'] {
+  return {
+    terminalOutcome,
+    finalLedgerTailHash: digest(prior),
+    counts: {
+      admittedTrials: 1,
+      completedTrials: 1,
+      failedTrials: 0,
+      unknownTrials: 0,
+      invalidatedTrials: 0,
+    },
+    completionEvidenceRefs: ['evidence:completion'],
+    closedAt: TIMESTAMP,
+  };
+}
+
+/** Push the run-declare trio and start the run so run-state is genuinely populated. */
+function pushRunStarted(push: ModelBenchmarkScenePush): void {
+  const declared = push('model_benchmark.run_declared', runDeclaredData());
+  const capsule = push('model_benchmark.benchmark_capsule_sealed', capsuleData());
+  const workload = push('model_benchmark.workload_snapshot_sealed', workloadData());
+  push('model_benchmark.run_started', runStartedSceneData(declared, capsule, workload));
+}
+
+/** Push one admitted trial so a typed matrix cell exists on both projection paths. */
+function pushTrialCell(push: ModelBenchmarkScenePush): void {
+  push('model_benchmark.trial_block_declared', trialBlockData());
+  push('model_benchmark.trial_case_admitted', caseAdmittedData());
+}
+
+/** Push the full single-trial chain ending at a recorded observation. */
+function pushTrialObservationChain(
+  push: ModelBenchmarkScenePush,
+): ModelBenchmarkEventEnvelope<'model_benchmark.trial_observation_recorded'> {
+  push('model_benchmark.trial_block_declared', trialBlockData());
+  push('model_benchmark.trial_case_admitted', caseAdmittedData());
+  const dispatched = push('model_benchmark.trial_dispatched', trialDispatchedData());
+  const completed = push('model_benchmark.trial_completed', trialCompletedSceneData(dispatched));
+  return push('model_benchmark.trial_observation_recorded', trialObservationSceneData(completed));
+}
+
+/** Push the single-trial chain plus a scored vector for the scoring surface. */
+function pushScoredTrial(
+  push: ModelBenchmarkScenePush,
+): ModelBenchmarkEventEnvelope<'model_benchmark.score_vector_observed'> {
+  const observation = pushTrialObservationChain(push);
+  return push('model_benchmark.score_vector_observed', scoreSceneData(observation));
+}
+
+/** Push the single-trial chain plus a judged, scored vector. */
+function pushJudgedTrial(
+  push: ModelBenchmarkScenePush,
+): ModelBenchmarkEventEnvelope<'model_benchmark.judge_observation_recorded'> {
+  const score = pushScoredTrial(push);
+  return push('model_benchmark.judge_observation_recorded', judgeSceneData(score));
+}
+
+/** Push the single-trial chain plus its usage/cost slice. */
+function pushUsageTrial(
+  push: ModelBenchmarkScenePush,
+): ModelBenchmarkEventEnvelope<'model_benchmark.usage_observed'> {
+  const observation = pushTrialObservationChain(push);
+  return push('model_benchmark.usage_observed', usageSceneData(observation));
+}
+
+/** Push a neutral contamination evidence and a valid card citing it. */
+function pushValidityCard(
+  push: ModelBenchmarkScenePush,
+): Readonly<{
+  contamination: ModelBenchmarkEventEnvelope<'model_benchmark.contamination_evidence_recorded'>;
+  card: ModelBenchmarkEventEnvelope<'model_benchmark.validity_card_derived'>;
+}> {
+  const contamination = push(
+    'model_benchmark.contamination_evidence_recorded',
+    contaminationData(),
+  );
+  push('model_benchmark.validity_plan_sealed', validityPlanData());
+  const card = push(
+    'model_benchmark.validity_card_derived',
+    validityCardSceneData([contamination.event_id]),
+  );
+  return Object.freeze({ contamination, card });
+}
+
+/** Compose a compact non-terminal scene whose events drive exactly the reducer
+ *  slices a single field-level divergence test corrupts. Both parity paths fold
+ *  the same raw events, so only the typed fold output diverges after mutation. */
+function sceneFixture(
+  sceneId: string,
+  expectedTerminalDecision: ModelBenchmarkTerminalDecision,
+  build: (push: ModelBenchmarkScenePush) => void,
+): ModelBenchmarkParityFixture {
+  const events: ModelBenchmarkLedgerEvent[] = [];
+  const push: ModelBenchmarkScenePush = (stem, data) => append(events, stem, data);
+  build(push);
+  return bindParityFixture(
+    sceneId,
+    'healthy-multi-model',
+    Object.freeze(events),
+    expectedTerminalDecision,
+  );
 }
 
 interface ArtifactHarness {
@@ -1089,5 +1513,554 @@ describe('model benchmark shadow parity', () => {
 
   it('proves the lifecycle map closes every shared and mode-specific event', () => {
     expect(() => verifyModelBenchmarkLifecycleEventMap()).not.toThrow();
+  });
+
+  /** Corrupt one reducer-state slice on the ledger fold only and require the
+   *  paired pipeline to refuse the resulting projection-semantic divergence.
+   *  The ledger path derives every projected field from `foldModelBenchmarkEvents`
+   *  while the legacy path never calls it, so a load-bearing mutation changes
+   *  only one side and the comparator must fail closed. The empty-event fold is
+   *  the shared sealed-capsule state both paths need to agree on identically,
+   *  so only real event histories mutate. */
+  async function expectSurfaceDivergence(
+    parityFixture: ModelBenchmarkParityFixture,
+    mutate: (state: ModelBenchmarkProjectionState) => ModelBenchmarkProjectionState,
+  ): Promise<void> {
+    const realFold = modelBenchmarkReducers.foldModelBenchmarkEvents;
+    const spy = vi.spyOn(modelBenchmarkReducers, 'foldModelBenchmarkEvents')
+      .mockImplementation((events, options) => {
+        const result = realFold(events, options);
+        if (result.outcome !== 'projected' || events.length === 0) return result;
+        return { ...result, projection: mutate(result.projection) };
+      });
+    try {
+      const outcome = await genericRun(parityFixture);
+      expect(outcome.result.ok, JSON.stringify(outcome.result)).toBe(false);
+      if (!outcome.result.ok) {
+        expect(
+          outcome.result.divergence.class,
+          `message=${outcome.result.divergence.message}`,
+        ).toBe('projection-semantic');
+      }
+    } finally {
+      spy.mockRestore();
+    }
+  }
+
+  it('fails parity when the run-id projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-run-id', 'active', (push) => {
+        push('model_benchmark.run_declared', runDeclaredData());
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          run: { ...state.modelBenchmark.run, runId: 'run-shadow-corrupt' },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the lineage-id projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-lineage-id', 'active', (push) => {
+        push('model_benchmark.run_declared', runDeclaredData());
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          run: { ...state.modelBenchmark.run, lineageId: 'lineage-shadow-corrupt' },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the generation projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-generation', 'active', (push) => {
+        push('model_benchmark.run_declared', runDeclaredData());
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          run: {
+            ...state.modelBenchmark.run,
+            generation: (state.modelBenchmark.run.generation ?? 0) + 1000,
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the run-state projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-run-state', 'active', (push) => {
+        pushRunStarted(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          run: { ...state.modelBenchmark.run, state: 'paused' },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the design-ids projection field diverges', async () => {
+    // benchmark_design_declared is the only source of design ids, and it also
+    // carries a quota-suffixed field the legacy scan reads but the typed fold
+    // discards (documented in the harness adapter), so this scene already
+    // carries a background adaptive-diagnostic drift on top of the design-ids
+    // mutation below; the comparator still fails closed as projection-semantic.
+    await expectSurfaceDivergence(
+      sceneFixture('scene-design-ids', 'active', (push) => {
+        push('model_benchmark.run_declared', runDeclaredData());
+        push('model_benchmark.benchmark_design_declared', designData());
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          iterationConvergence: {
+            ...state.modelBenchmark.iterationConvergence,
+            designIds: [...state.modelBenchmark.iterationConvergence.designIds, 'design-shadow-corrupt'],
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the trial-block-ids projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-trial-block-ids', 'active', (push) => {
+        push('model_benchmark.trial_block_declared', trialBlockData());
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          iterationConvergence: {
+            ...state.modelBenchmark.iterationConvergence,
+            trialBlockIds: [
+              ...state.modelBenchmark.iterationConvergence.trialBlockIds,
+              'block-shadow-corrupt',
+            ],
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the cells projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-cells', 'active', (push) => {
+        pushTrialCell(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          iterationConvergence: {
+            ...state.modelBenchmark.iterationConvergence,
+            cells: state.modelBenchmark.iterationConvergence.cells.map(
+              (cell) => ({ ...cell, trialId: 'trial-shadow-corrupt' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the raw-observation-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-raw-observation-digests', 'active', (push) => {
+        pushTrialObservationChain(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            rawObservations: state.modelBenchmark.scoringMatrix.rawObservations.map(
+              (observation) => ({ ...observation, rawOutputDigest: digest('corrupt-observation') }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the score-policy-versions projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-score-policy-versions', 'active', (push) => {
+        pushScoredTrial(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            scores: state.modelBenchmark.scoringMatrix.scores.map(
+              (score) => ({ ...score, scorePolicyVersion: 'score@corrupt' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the score-vector-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-score-vector-digests', 'active', (push) => {
+        pushScoredTrial(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            scores: state.modelBenchmark.scoringMatrix.scores.map((score) => ({
+              ...score,
+              scoreVector: {
+                ...score.scoreVector,
+                components: score.scoreVector.components.map((component) => (
+                  { ...component, rawScore: 0.99 }
+                )),
+              },
+            })),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the uncertainty-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-uncertainty-digests', 'active', (push) => {
+        pushScoredTrial(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            scores: state.modelBenchmark.scoringMatrix.scores.map((score) => ({
+              ...score,
+              scoreVector: {
+                ...score.scoreVector,
+                components: score.scoreVector.components.map((component) => (
+                  { ...component, uncertainty: 0.5 }
+                )),
+              },
+            })),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the judge-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-judge-evidence-digests', 'active', (push) => {
+        pushJudgedTrial(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            judgeObservations: state.modelBenchmark.scoringMatrix.judgeObservations.map(
+              (judge) => ({ ...judge, observationDigest: digest('corrupt-judge') }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the contamination-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-contamination-evidence-digests', 'active', (push) => {
+        push('model_benchmark.contamination_evidence_recorded', contaminationData());
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            contaminationEvidence:
+              state.modelBenchmark.scoringMatrix.contaminationEvidence.map(
+                (entry) => ({ ...entry, evidenceDigest: digest('corrupt-contamination') }),
+              ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the exposure-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-exposure-evidence-digests', 'active', (push) => {
+        push('model_benchmark.exposure_recorded', exposureData());
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            exposures: state.modelBenchmark.scoringMatrix.exposures.map(
+              (entry) => ({ ...entry, evidenceDigest: digest('corrupt-exposure') }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the validity-states projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-validity-states', 'active', (push) => {
+        pushValidityCard(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            validity: state.modelBenchmark.scoringMatrix.validity.map(
+              (entry) => ({ ...entry, state: 'invalid' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the validity-unknown-codes projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-validity-unknown-codes', 'active', (push) => {
+        push('model_benchmark.validity_unknown_recorded', validityUnknownSceneData(false));
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            validityUnknowns: state.modelBenchmark.scoringMatrix.validityUnknowns.map(
+              (entry) => ({ ...entry, unknownCode: 'unknown-shadow-corrupt' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the usage-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-usage-evidence-digests', 'active', (push) => {
+        pushUsageTrial(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            costLatencySlices: state.modelBenchmark.scoringMatrix.costLatencySlices.map(
+              (slice) => ({ ...slice, usage: { ...slice.usage, inputTokens: 999 } }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the latency-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-latency-evidence-digests', 'active', (push) => {
+        pushUsageTrial(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            costLatencySlices: state.modelBenchmark.scoringMatrix.costLatencySlices.map(
+              (slice) => ({ ...slice, latency: { ...slice.latency, ttftMs: 999 } }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the selection-evidence-digests projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-selection-evidence-digests', 'active', (push) => {
+        const { contamination, card } = pushValidityCard(push);
+        push(
+          'model_benchmark.selection_evidence_sealed',
+          selectionSceneData([contamination.event_id], [card.event_id]),
+        );
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            selectionEvidence: state.modelBenchmark.scoringMatrix.selectionEvidence.map(
+              (entry) => ({ ...entry, evidenceSetDigest: digest('corrupt-selection') }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the unresolved-evidence-refs projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-unresolved-evidence-refs', 'active', (push) => {
+        push('model_benchmark.validity_unknown_recorded', validityUnknownSceneData(false));
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            validityUnknowns: state.modelBenchmark.scoringMatrix.validityUnknowns.map(
+              (entry) => ({ ...entry, requiredEvidenceRefs: ['artifact:corrupt-unresolved'] }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the blocking-veto-codes projection field diverges', async () => {
+    // The scene keeps one blocker veto already, so flipping only the veto code
+    // never changes the closed-blocked terminal and reaches the comparator with
+    // a genuine slash-level drift rather than tripping the closed-terminal gate.
+    await expectSurfaceDivergence(
+      sceneFixture('scene-blocking-veto-codes', 'blocked', (push) => {
+        push('model_benchmark.validity_unknown_recorded', validityUnknownSceneData(true));
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            validityUnknowns: state.modelBenchmark.scoringMatrix.validityUnknowns.map(
+              (entry) => ({ ...entry, unknownCode: 'blocker-shadow-corrupt' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the matrix-coverage projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-matrix-coverage', 'active', (push) => {
+        pushScoredTrial(push);
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          iterationConvergence: {
+            ...state.modelBenchmark.iterationConvergence,
+            cells: state.modelBenchmark.iterationConvergence.cells.map(
+              (cell) => ({ ...cell, disposition: 'admitted' }),
+            ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it('fails parity when the ranking-state projection field diverges', async () => {
+    await expectSurfaceDivergence(
+      sceneFixture('scene-ranking-state', 'quarantined', (push) => {
+        push('model_benchmark.run_declared', runDeclaredData());
+        const { contamination, card } = pushValidityCard(push);
+        const selection = push(
+          'model_benchmark.selection_evidence_sealed',
+          selectionSceneData([contamination.event_id], [card.event_id]),
+        );
+        const reduction = push(
+          'model_benchmark.selection_reduction_requested',
+          reductionSceneData(selection),
+        );
+        push('model_benchmark.run_closed', runClosedSceneData(
+          reduction as ModelBenchmarkLedgerEvent,
+          'quarantined',
+        ));
+      }),
+      (state) => ({
+        ...state,
+        modelBenchmark: {
+          ...state.modelBenchmark,
+          scoringMatrix: {
+            ...state.modelBenchmark.scoringMatrix,
+            contaminationEvidence:
+              state.modelBenchmark.scoringMatrix.contaminationEvidence.map(
+                (entry) => ({ ...entry, contaminationStatus: 'suspected' }),
+              ),
+          },
+        },
+      }),
+    );
+  }, 30_000);
+
+  it.skip('covers the terminal-decision projection field via a projection-semantic mutation', async () => {
+    // The executor's closed-terminal gate re-reads this very projection field
+    // on every path and throws before the fingerprint comparator when a
+    // one-path flip disagrees with the fixture's closed-terminal expectation,
+    // so a folded-terminal corruption always fails closed as execution-outcome,
+    // never projection-semantic. Terminal drift is already asserted separately
+    // by the terminal-decision fault in the fault-injection battery.
+  });
+
+  it.skip('covers the resume-decision-digest projection field', async () => {
+    // The closed fixture closure never supplies resumeEvidence, so the reducer
+    // yields a structurally-null resume-decision digest on both paths and no
+    // mutation of its feeding slice can change the projection.
+  });
+
+  it.skip('covers the common-anchor-refs projection surface', async () => {
+    // No model-benchmark or deep-improvement-common event carries an anchor-
+    // suffixed payload field, so the reducer state never has a slice to corrupt
+    // and both projections are structurally empty by design.
+  });
+
+  it.skip('covers the adaptive-diagnostic-refs projection surface', async () => {
+    // The typed fold discards quota/propensity/diagnostic-suffixed payload
+    // fields, so the reducer state holds nothing to corrupt; the legacy scan
+    // reads them from raw payload only, and this field is empty on the ledger
+    // path for every real scene.
+  });
+
+  it.skip('covers the shared-service-refs projection surface', async () => {
+    // No scene supplies a deep_improvement_common.* shared-service event whose
+    // scope carries candidate/evaluation/canary/promotion/baseline identity, so
+    // both the legacy scan and the typed reducer return an empty set on every
+    // exercised path and there is no populated slice to corrupt.
   });
 });

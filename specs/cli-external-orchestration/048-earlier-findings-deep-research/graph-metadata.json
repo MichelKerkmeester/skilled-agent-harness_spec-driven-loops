@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/048-earlier-findings-deep-research",
+  "spec_folder": "cli-external-orchestration/048-earlier-findings-deep-research",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision findings deep research",
+      "cli-pi deepseek flash openrouter research run",
+      "sk-vision findings deep research plan",
+      "sk-vision findings deep research tasks",
+      "sk-vision findings deep research summary"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "findings",
+      "deep",
+      "research",
+      "cli-pi",
+      "deepseek",
+      "flash",
+      "openrouter",
+      "run",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "resource-map.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Running",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Investigate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Seed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Running the sk-vision manual-testing-playbook across Cursor and Devin surfaced five host-adapter findings (Cursor MCP approval, Devin `dangerous`-only MCP, moondream2 text truncation, Cursor `.mcp.json` chain, base64 padding + `settings` passthrough)",
+    "created_at": "2026-08-17T18:11:01.051Z",
+    "last_save_at": "2026-08-17T18:46:19.769Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:03ab0e3f0b976af68605ec821bd666239e6dfedc14199de69db3cdb439820adc",
+    "source_doc_hashes": {
+      "spec.md": "609f0bc331a9e67c12e1271c826da31fafd0605b7ed9ebcfe4726c9ddf0f27c6",
+      "plan.md": "b453a65e59d0337548a8414f6cbf8ed399401adad8cf61d5955ad576b7778ff3",
+      "tasks.md": "65e34ed46732d85bb756d0669e28cb45799169bf351471886728362be9f80bfc",
+      "implementation-summary.md": "0067d65da603d4c4724247f3303f3c6a02979b36a786450571200c31c26a96b7",
+      "resource-map.md": "a8ce3f1832039e59046c77ff503c5ae00d7ab00987e6ede1be315bc38aa81741"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

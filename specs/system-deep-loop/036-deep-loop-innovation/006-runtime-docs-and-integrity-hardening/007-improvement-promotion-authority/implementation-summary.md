@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 007-improvement-promotion-authority"
-description: "All 13 promotion-authority findings are implemented or confirmed with named regression probes; formal packet closeout remains partial pending immutable-SHA evidence, independent verification, and main-checkout strict validation."
+description: "All 13 promotion-authority findings landed additive-dark under 0d1827eef50, f6cdf604a25 and a28a39354b7 with named regression probes, then an independent adversarial pass found and fixed a Medium candidate-rebind TOCTOU gap under c897dcf294; go-live stays gated behind the additive-dark acceptance review (CHK-018)."
 trigger_phrases:
   - "improvement promotion authority implementation"
   - "acceptance receipt binding evidence"
@@ -11,23 +11,22 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Implemented and verified the full 13-finding runtime scope; accepted ADR-001 through ADR-003"
-    next_safe_action: "Commit, independent verification, main validation"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Recorded adversarial TOCTOU fix c897dcf294 re-binding candidate to approval at consumption"
+    next_safe_action: "Pass the additive-dark acceptance review before promotion enforcement goes live"
     blockers:
-      - "Sandbox cannot write the shared Git index, so no candidate commit SHA exists"
-      - "REQ-U04 requires a different actor"
-      - "Worktree strict validation cannot complete its command-tree environment check"
+      - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
     key_files:
       - "implementation-summary.md"
-      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promotion-receipts.cjs"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-approval-binding.vitest.ts"
       - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs"
-    completion_pct: 88
-    open_questions:
-      - "Who will perform the independent adversarial pass?"
+    completion_pct: 95
+    open_questions: []
     answered_questions:
+      - "All 13 findings landed additive-dark under 0d1827eef50, f6cdf604a25 and a28a39354b7; reconciled ab6aae0a714"
+      - "Independent adversarial pass found and fixed a Medium candidate-rebind TOCTOU gap under c897dcf294 (CHK-005 done)"
       - "Autonomous mode is advisory-only under the operator's no-dark-to-live-authority-flip constraint"
       - "Evaluator authority comes from the target manifest, never candidate frontmatter"
 ---
@@ -45,7 +44,7 @@ _memory:
 | **Spec Folder** | 007-improvement-promotion-authority |
 | **Base HEAD** | `149742c46260277ae26df6fe6cfe582a9d02454d` |
 | **Level** | 3 |
-| **Status** | **In Progress — runtime implementation complete; verification closeout partial.** All 13 findings have green named probes and ADR-001 through ADR-003 are Accepted, but immutable candidate-SHA evidence, an independent actor, and main-checkout strict validation remain open. |
+| **Status** | **In Progress — code landed additive-dark + adversarially hardened; go-live gated behind acceptance review.** All 13 findings landed under `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (reconciled `ab6aae0a714`) with green named probes, and ADR-001 through ADR-004 are terminal. An independent adversarial pass then found and fixed a Medium candidate-rebind TOCTOU gap under `c897dcf294` (CHK-005). Promotion enforcement stays dark until the additive-dark acceptance review (CHK-018) passes; the full improvement-project pre-edit baseline and its whole-project delta also remain open. |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
@@ -121,11 +120,40 @@ The reserved autonomous-mode decision is also terminal: ADR-004 is **Accepted, a
 | TypeScript | `npx --no-install tsc --noEmit --ignoreDeprecations 6.0`, exit 0 |
 | Receipt write-cost probe | 100 writes, 485.381 ms total, 4.854 ms mean, exit 0 (current cost only; no before/after claim) |
 | Full improvement project | 52 files; 530 passed, 45 failed, exit 1. The failures point at paths outside this packet, but their pre-existence was not proven against a full base run; no no-regression claim is made. |
-| Strict packet validator | Packet-local `Errors: 0`, `Warnings: 0`, `RESULT: PASSED`; process exit 2. The output does not identify a packet-local failure, but T022 remains open because its literal exit-0 criterion was not met. |
+| Strict packet validator | Packet-local `Errors: 0` from the reconciled final state, with a single benign `CONTINUITY_FRESHNESS` `dirty_tree` warning that clears once the orchestrator commits this packet. T022's literal exit-0 criterion remains open until that commit, so the item is not marked done. |
+| Landed commits | Findings shipped additive-dark under `0d1827eef50` (promotion/rollback/council receipt binding), `f6cdf604a25` (final 3: rollback-hash forgery + council path/symlink) and `a28a39354b7` (completes findings + ADRs); status reconciled `ab6aae0a714`. |
 <!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:adversarial -->
+## Independent Adversarial Verification and Hardening
+
+An independent adversarial pass — a different actor than the builder — re-audited the promotion authority and was productive: it found and fixed a real security gap before go-live.
+
+**Finding (Medium, TOCTOU).** The approval receipt binds the approved candidate bytes, and `requireApprovalReceipt` checked that hash once. The check was not re-run at the byte-consuming boundaries. The single-phase promote copied the live candidate and the two-phase accept snapshotted it, both trusting the stale check across the intervening gate, git and mirror-sync I/O window. A concurrent writer with candidate-file access but not the signing key could swap bytes into a protected target after approval. The ship path already re-hashed; promote and accept did not, and that asymmetry was the gap.
+
+**Fix.** One shared fail-closed guard, `assertCandidateMatchesApproval`, was added to `promote-candidate.cjs` (defined line 114). It re-derives the consumed bytes' hash and compares it to the approval binding, failing closed on mismatch or a missing binding. It is called when the accepted snapshot is taken (line 377) and immediately before the single-phase copy (line 1011), closing the promote/accept asymmetry against the already-hardened ship path. Landed `c897dcf294`.
+
+**Negative test (red-before / green-after).** `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-approval-binding.vitest.ts` (4 cases) is RED when the guard is neutered and GREEN with it: a matching hash passes, a swapped hash fails closed with `approved_candidate_changed`, a missing binding fails closed, and a null receipt throws. Landed `c897dcf294`.
+
+**Suites.** All six promotion suites pass — the adversarial pass reported 48 tests (up 4 from the prior 44), no regression, via `vitest`. Reproduced green at reconciliation: the promotion-authority suites run with 0 failures and the new binding suite contributes 4 passing cases.
+
+**Residual findings (accepted deferrals, non-blocking).** Two LOW defense-in-depth items were flagged for follow-up, not for go-live:
+1. `deep-ai-council/scripts/lib/persist-artifacts.cjs` `writeFileScoped` (line 511) does not `lstat` the final path component before `writeFileSync`, so a pre-existing symlink at that leaf inside an already-authorized council root would be followed (fixed content). `[Deferred: Low defense-in-depth, follow-up]`
+2. `shared/rollback-candidate.cjs` (line 203) binds the receipt to `acceptedState.target` rather than the effective `args.target`; other gates throttle this to a byte-identical no-op, and the sibling `agent-improvement` rollback is the stricter pattern to mirror. `[Deferred: Low defense-in-depth, follow-up]`
+<!-- /ANCHOR:adversarial -->
 
 <!-- ANCHOR:files -->
 ## Files Changed
+
+All runtime changes below landed additive-dark; the following commits are reachable from `HEAD`:
+
+| Commit | Landed change |
+|--------|---------------|
+| `0d1827eef50` | Bind promotion/rollback/council to authenticated receipts and authorized roots (receipt module `promotion-receipts.cjs`, promote/ship/rollback consumers, evaluator authority, containment, council roots, fail-closed gates) |
+| `f6cdf604a25` | Close the final 3 findings — rollback-hash forgery (`F-017-04`) plus council path/symlink escapes (`F-019-01`, `F-019-02`) |
+| `a28a39354b7` | Complete the 13-finding runtime scope and accept ADR-001..ADR-003 (`promotion-receipts.cjs` last touched here) |
+| `ab6aae0a714` | Reconcile packet status to 13/13 landed |
+| `c897dcf294` | Adversarial hardening — re-bind candidate to approval at every consumption boundary (`assertCandidateMatchesApproval` in `promote-candidate.cjs` plus its negative test) |
 
 - Promotion authority: shared receipt module, promote/rollback scripts, direct score/rollback scripts, autonomous YAML, sweep parser, and their packet-scoped tests.
 - Council authority: persistence, topic/session orchestration, graph replay, council test configuration, stale CLI expectation, and their tests.
@@ -138,9 +166,10 @@ No package manifest or lockfile changed. The test-mutated `council-graph.sqlite`
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Immutable candidate SHA**: the sandbox cannot create the shared Git index lock (`Operation not permitted`), so the implementation remains an uncommitted working-tree candidate. REQ-U05 and every checklist checkbox remain open rather than citing the unchanged base SHA falsely.
-2. **Independent actor**: this was a single-builder session and sub-agent delegation was not authorized. REQ-U04/T021/CHK-005 remain open.
-3. **Full improvement baseline**: only the packet-selected improvement baseline was captured before edits; the entire 52-file project was not. T002/T020 and the whole-project delta claim remain open.
-4. **Strict validation environment**: the required worktree run is recorded after reconciliation. Any command-tree/tsx/level-contract environment failure will remain open and must be repeated from main; packet-local `Errors: 0` alone is not represented as exit-0 completion.
-5. **Per-finding red proof**: every finding has a final named green probe, but not every probe was executed against the untouched base revision. CHK-003 remains open rather than retroactively claiming a red-before observation.
+1. **Go-live gate (additive-dark)**: the runtime landed additive-dark under `0d1827eef50`, `f6cdf604a25`, `a28a39354b7` and `c897dcf294`, so REQ-U05's immutable candidate-SHA evidence now exists and the earlier "uncommitted working-tree candidate" limitation no longer holds. Promotion enforcement stays dark and does not go live until the additive-dark acceptance review (CHK-018) passes. That review is an external sign-off this session cannot produce, so CHK-018 remains open.
+2. **Operator advisory — root of trust and delta-less promotion**: the target manifest is the un-authenticated root of trust for evaluator identity (profile, agent, epoch, canonical source); authenticating or protecting the manifest is recommended before go-live. Separately, a benchmark report that carries no delta contract promotes on recommendation plus aggregate plus repeatability without regression evidence — this is by design for baseline-less runs, but the operator should weigh it before the dark-to-live flip.
+3. **Residual defense-in-depth deferrals**: two LOW items are accepted as follow-up, not blocking (see Independent Adversarial Verification and Hardening): `persist-artifacts.cjs` `writeFileScoped` does not `lstat` the final path component, and `rollback-candidate.cjs` binds the receipt to `acceptedState.target` rather than the effective `args.target`. `[Deferred: Low defense-in-depth, follow-up]`
+4. **Full improvement baseline**: only the packet-selected improvement baseline was captured before edits; the entire 52-file project was not. The adversarial close re-ran and delta'd the affected promotion suites (44 -> 48, +4, no regression) and the council project (109/2 -> 118/0), but the full-project pre-edit baseline (T002) and its whole-project delta remain open at CHK-002/CHK-010/T020.
+5. **Strict validation residual**: the reconciled packet validates with `Errors: 0` and a single benign `CONTINUITY_FRESHNESS` `dirty_tree` warning, because the packet is intentionally left uncommitted for the orchestrator to land. That warning clears on commit; until then T022's literal exit-0 criterion stays open and packet-local `Errors: 0` is not represented as exit-0 completion.
+6. **Per-finding red proof**: the adversarial TOCTOU finding carries a genuine red-before/green-after negative test (`promote-candidate-approval-binding.vitest.ts`, landed `c897dcf294`). The original 13 findings carry final named green probes, but not every probe was executed against the untouched base revision, so their retroactive red-before observation stays a documented deferral.
 <!-- /ANCHOR:limitations -->

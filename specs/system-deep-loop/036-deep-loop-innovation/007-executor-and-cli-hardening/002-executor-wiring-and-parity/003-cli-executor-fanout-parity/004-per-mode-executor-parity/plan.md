@@ -1,3 +1,29 @@
+---
+title: "Implementation Plan: Per-Mode Executor Parity"
+description: "Implementation plan for giving model-benchmark, skill-benchmark, and ai-council cli-cursor/cli-devin/cli-pi parity by delegating those kinds' command construction to the shared buildLineageCommand."
+trigger_phrases:
+  - "per-mode executor parity plan"
+  - "model-benchmark cursor devin pi plan"
+  - "buildLineageCommand delegation plan"
+importance_tier: "high"
+contextType: "planning"
+parent: "system-deep-loop/036-deep-loop-innovation/002-executor-wiring-and-parity/003-cli-executor-fanout-parity"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Confirmed the three-leaf parity plan landed for model-benchmark and ai-council"
+    next_safe_action: "Await SOL verdicts and operator review before the combo-matrix phase"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs"
+      - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
@@ -24,10 +50,18 @@ The fan-out builders in `fanout-run.cjs` are the single source of the hardened p
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. Audit per-mode executor coverage; confirm the shared builder fits cursor/devin/pi (no mode divergence) but not opencode.
-2. Leaf 1 — model-benchmark: delegate cursor/devin/pi; register cli-devin; drop stale local allowlists.
-3. Leaf 2 — skill-benchmark: route cursor/devin/pi/claude-code through the shared builder instead of the opencode-nailed branch.
-4. Leaf 3 — ai-council: shared-builder seat spawn for cursor/devin/pi; extend the allowlist (keep the deliberate codex exclusion).
+
+### Phase 1: Audit
+Audit per-mode executor coverage; confirm the shared builder fits cursor/devin/pi (no mode divergence) but not opencode.
+
+### Phase 2: Leaf 1 — model-benchmark
+Delegate cursor/devin/pi to `buildLineageCommand`; register cli-devin; drop the stale local allowlists.
+
+### Phase 3: Leaf 2 — skill-benchmark
+Document the observation-model exemption at the dispatch branch: text-only executors emit no structured tool-use trace, so routing them would score every run as no-activation. No parity build; opencode and codex stay the live transports.
+
+### Phase 4: Leaf 3 — ai-council
+Shared-builder read-only seat spawn for cursor/devin/pi; extend the allowlist (keep the deliberate codex exclusion).
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

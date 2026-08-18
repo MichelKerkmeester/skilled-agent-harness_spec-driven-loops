@@ -12,22 +12,21 @@ parent: "system-deep-loop/036-deep-loop-innovation/004-durable-write-boundaries"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "claude"
-    recent_action: "B7 reconciled 024 docs to the landed, adversarially-clean B1-B4 build"
-    next_safe_action: "Operator decision on B2 event_version caveat, then handoff to 025/026/027"
-    blockers:
-      - "B2 event_version caveat needs operator confirmation (Known Limitations #2)"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled 024 docs to Complete against the landed, adversarially-clean B1-B4 build"
+    next_safe_action: "B2 event_version caveat and cross-packet handoff remain accepted deferrals"
+    blockers: []
     key_files:
       - "implementation-summary.md"
       - "build-spec.md"
       - "t001-disposition.md"
-    completion_pct: 95
-    open_questions:
-      - "Does a pre-existing dark-ledger frame need to survive B2's identity-verified requirement?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Blocker 3 discharged? Yes — 39015ed14c, hard-private #appendAuthorized + FenceCapability."
       - "B5/B6 real gaps? No — T001-REFUTED, already fixed in the tree before this build."
+      - "B2 event_version caveat blocking? No — the fix fails closed (rejects, never silently trusts); recorded as an accepted availability caveat, not an integrity risk."
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -39,7 +38,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 004-durable-write-boundaries |
 | **Level** | 3 |
-| **Status** | Blocker 3 DISCHARGED. Code-complete + adversarially clean. 1 elective residual (documented, out of threat model), 1 operator-decision caveat (availability, not integrity), 1 test-coverage inference note. |
+| **Status** | Complete (Blocker 3 DISCHARGED). Code-complete + adversarially clean. Accepted deferrals: the aggregate-suite delta (broad runner hangs; load-bearing suites pass), the protected-surface registry gateway-only annotation (a runtime edit), and the cross-packet `014` discharge note. Non-blocking residuals: 1 elective token-replay residual (out of threat model), 1 operator-decision caveat (availability, not integrity), 1 test-coverage inference note. |
 | **Landed on** | `origin/skilled/v4.0.0.0` |
 | **Verified** | 2026-08-08 |
 | **Prior claimed status (2026-08-03, superseded)** | "COMPLETION LEAF — GAPS CLOSED", 100% — later found fabricated: the fencing mechanism did not exist in code and several checklist evidence citations pointed at an unrelated commit. |

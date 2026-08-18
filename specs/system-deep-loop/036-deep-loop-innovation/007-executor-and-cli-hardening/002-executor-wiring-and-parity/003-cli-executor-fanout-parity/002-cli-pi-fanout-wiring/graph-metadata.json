@@ -15,9 +15,14 @@
       "buildPiLineageCommand implementation",
       "pi provider model mapping fanout",
       "reasoningEffort to thinking cli-pi",
-      "cli-pi fanout wiring implementation",
-      "buildPiLineageCommand done",
-      "pi provider map thinking flag"
+      "cli-pi fanout wiring plan",
+      "buildPiLineageCommand plan",
+      "pi provider model mapping plan",
+      "cli-pi fanout wiring tasks",
+      "buildPiLineageCommand tasks",
+      "pi provider map tasks",
+      "cli-pi fanout wiring checklist",
+      "buildPiLineageCommand checklist"
     ],
     "key_topics": [
       "cli-pi",
@@ -30,19 +35,25 @@
       "mapping",
       "reasoningeffort",
       "thinking",
-      "done",
-      "map"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,12 +76,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -146,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "reasoningEffort",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "strict",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -158,13 +169,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Command",
+        "name": "Completion Impact",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -180,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`buildPiLineageCommand` in `fanout-run.cjs` was a hard stub that threw (\"command construction is unavailable until its headless",
     "created_at": "2026-07-29T09:17:18.172Z",
-    "last_save_at": "2026-08-17T04:33:25.466Z",
+    "last_save_at": "2026-08-18T04:19:07.931Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6f2c03a048ba11ae8ff4c0aa7df158de898df9105050594a185ad37e005fb11",
+    "source_fingerprint": "sha256:fc74ae86a2357d5e8aeae521abe7f430593188fcadee6768741789b9fc92ca64",
     "source_doc_hashes": {
-      "spec.md": "465785c9fbf162ec68b9642541e1a83fd7215eeec5da7184ee61dcedb7d2cfef",
-      "plan.md": "1f1fc056e60248289ea0a7cf40c4194ad0c8b020bcb448c5af797f97079e1e73",
-      "tasks.md": "b9ce08ee806f114df93a4286291820417e72c1736e0bbd89e2745626fcd0be38",
-      "checklist.md": "2e401df26be7286943eedece1155fb653382fa46086731beeba22ec20479387c",
-      "implementation-summary.md": "863ccbe0f12a4fee2ae23ce208b31c8b9cd1864f80935c148198e2b07f7fb0c5"
+      "spec.md": "50766a039d02bdbc6f784af3cff48c7bd9814b7f6173fb32128b2c8b049d7424",
+      "plan.md": "38f71d63c50cfebeb714eb4edaeccf7784010f68919e8b27b3dc034f66b00d29",
+      "tasks.md": "3b5f575282d00db44a259037c1f4837c1d66dfa9e14434edaa4a6162816c555f",
+      "checklist.md": "10cb36475e9b11b2a407dab5dbc7212b97e3e133ddad5869944738b6f7ca9973",
+      "implementation-summary.md": "7c0c45050e54ca1c18d7efa2726b451af6beca321723a7f85a34d62bb47b468e"
     },
     "last_active_child_id": null,
     "last_active_at": null

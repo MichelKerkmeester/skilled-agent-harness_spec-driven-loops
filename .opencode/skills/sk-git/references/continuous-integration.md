@@ -64,13 +64,13 @@ It resolves the live branch (`--live`, else `$SPECKIT_LIVE_BRANCH`) and the remo
 git-live-follow.sh [--live <branch>] [--interval <sec>] [--once]
 ```
 
-Polls the live branch and fast-forwards the checkout **only** when the local tip is an ancestor of the remote tip and the working tree is clean. A diverged branch or a dirty tree is reported, never overwritten — an in-progress edit in the IDE is never clobbered by an incoming commit. Run it once per IDE session (e.g. backgrounded), or `--once` for a manual "catch me up."
+Polls the live branch and fast-forwards the checkout when the local tip is an ancestor of the remote tip, through git's own `--ff-only`. That primitive refuses to overwrite a modified tracked file, so a checkout carrying unrelated work-in-progress still follows for disjoint commits, while a commit that would touch a locally-edited file is reported and left for the operator — an in-progress edit in the IDE is never clobbered. A diverged branch is likewise reported, never overwritten. Run it once per IDE session (e.g. backgrounded), or `--once` for a manual "catch me up."
 
 ### `git-primary-reconcile.sh` - the SessionStart convergence step
 
 Every runtime backgrounds the same script at SessionStart, so primary-checkout correctness does not depend on a long-running follower surviving between sessions. The script acts only when `git-dir` and `git-common-dir` resolve to the same path and the checkout is on the resolved live branch. Linked worktrees, detached HEADs, and intentional feature branches are zero-exit no-ops.
 
-Tracked changes are the hard safety boundary. If either the working tree or index contains tracked changes, the script logs one loud skip before fetch and never merges, rebases, or pushes. Untracked build output is intentionally ignored. A clean behind-only checkout fast-forwards without pushing. Clean unpublished local commits are rebased onto `origin/<live>` and published through the normal non-force push plus existing pre-push gates. A conflict aborts and asserts the original HEAD and clean tracked state; a rejected push classifies the stable `[gate:<name>]` marker and leaves the local commit preserved but unpublished.
+A behind-only checkout fast-forwards through git's own `--ff-only`, which refuses to overwrite a modified tracked file — so a checkout carrying unrelated work-in-progress still follows for disjoint commits and is never clobbered on a collision. Untracked build output is intentionally ignored. Rebasing is the hard clean-tree boundary: because it rewrites commits across the working tree, unpublished local commits are rebased onto `origin/<live>` and published only when the tracked tree is clean; otherwise they are left preserved and unpublished. A conflict aborts and asserts the original HEAD and clean tracked state; a rejected push classifies the stable `[gate:<name>]` marker and leaves the local commit preserved but unpublished.
 
 The common-dir single-flight lock prevents concurrent SessionStarts from racing and treats a short-TTL stale lock as free. Fetch and push are time-bounded. Skips, advances, publications, and blocks append to `git-primary-reconcile.log`; every internal outcome exits zero so SessionStart cannot be blocked.
 
@@ -132,7 +132,7 @@ The naming and remote-permission helpers are one shared dependency. If that help
 | A conflicting commit never half-applies | Any rebase conflict aborts cleanly, restoring the exact pre-sync branch and tree; the commit stays local |
 | Autosync never breaks a commit | `--auto` returns `0` on every path; the hook is non-fatal |
 | The primary checkout never autosyncs | The triple gate is satisfied only by wrapper-launched sessions in a linked worktree |
-| Un-committed work is never touched | The publish and reconcile paths require clean tracked files; the reconciler checks before fetch; the follower is fast-forward-only and skips a dirty tree |
+| Un-committed work is never touched | Fast-forward follow uses git's own `--ff-only`, which refuses to overwrite a modified tracked file; the rebase/publish paths still require a clean tracked tree; untracked build output is ignored |
 | No `--autostash` orphan risk | The rebase runs only on a clean tracked tree, so nothing is autostashed (see [SKILL.md](../SKILL.md) ALWAYS #14) |
 | Autosync keeps publishing even when the live branch isn't on the remote allowlist | The pre-push permission gate ([remote-branch-policy.md](remote-branch-policy.md)) exempts exactly `$SPECKIT_LIVE_BRANCH` when `SPECKIT_AUTOSYNC=1` — scoped to that one branch, never a blanket bypass |
 | A pre-push rejection cannot look like a push race | Stable gate markers are captured, replayed, classified, and appended to `git-sync.log` before autosync stops retrying |

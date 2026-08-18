@@ -39,7 +39,7 @@
       "iterations"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`/deep:alignment` has a working cli-codex leaf but no cli-opencode branch, even though the shared executor runtime already supports cli-opencode",
+    "causal_summary": "`/deep:alignment` had a working cli-codex leaf but no cli-opencode branch, even though the shared executor runtime already supported cli-opencode",
     "created_at": "2026-07-23T04:55:05.803Z",
-    "last_save_at": "2026-08-17T04:04:04.701Z",
+    "last_save_at": "2026-08-18T04:16:24.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38549af98c0230b3e88f24a9ffc22289d1a66ca2846c6e8aedf443ac7ece9486",
+    "source_fingerprint": "sha256:072b5dda21f756eedc500863c4a8e8172382784b782a8d805d4473199558f6b9",
     "source_doc_hashes": {
-      "spec.md": "78b4f5317a1aabde817f82fe115b208bda46705705fe8728cc91cc6637d1a68e",
-      "plan.md": "77bc1f7de181e8c82252b10992fe2255b14ad049dc8e742a8d17ad10844e0ba0",
-      "tasks.md": "acef0237a58fcd5715c03fee67cf6140771ce9fa7e9756849f8081451efd0cb2",
-      "checklist.md": "2649f4e8a54b1ef10b5c1cde5912469a67f9753a99dce137bbc4c58b61086df6",
-      "implementation-summary.md": "451309e0a4dc1a0fef47eac33261da25bf78f3a8466fc60bc9298ef87d055a64"
+      "spec.md": "d2dc3342b3c5f3adfb61c81201f89d45767899529494ba9ef91d76384ed71eda",
+      "plan.md": "580bf74ae5fef8abf555b19353ff7ae95e4026c28f95c0441987abae0035ef94",
+      "tasks.md": "87c54328c03e47692ae4061d1a85670d062d6c954f061e9cf9d3eca33feb593c",
+      "checklist.md": "7fc3b6c0645324af3f308f7dfc28f3ef1745bd09f84e43edb4b1fa90677a8463",
+      "implementation-summary.md": "6854c537271a18108d9f2a2922d14c48517c5f080a9b7031280135d0f0e890de"
     },
     "last_active_child_id": null,
     "last_active_at": null

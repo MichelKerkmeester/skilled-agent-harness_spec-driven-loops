@@ -39,7 +39,7 @@
       "migrations"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the executable dependency and write-set conflict graph for the eight phase-013 mode migrations, including canonical read/write resources, derived conflict edges, hard ordering fences, freshness checks, and orchestrator consumption.",
     "created_at": "2026-07-16T03:43:54.781Z",
-    "last_save_at": "2026-08-17T04:04:08.188Z",
+    "last_save_at": "2026-08-18T03:27:49.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2728f476212359b2f1f11a61449c2ad7ecebc383432af4706dec96bd29ad6154",
+    "source_fingerprint": "sha256:74a2f9507e712408f61e703f1d237a4de55a95829fa2b5655577e5530dca5442",
     "source_doc_hashes": {
-      "spec.md": "8b7b4ad45616a8f96358aa33f71f0b64a75d3cf46129f9b6dba262293fceb354",
-      "plan.md": "3bdfd7ec1693b39837b7d775218fbf72861f846fc616214f1b850fca1e5e897a",
-      "tasks.md": "1ce5b2233fd1d6b6666b926305e2b89d3c092c18a09405ffde7ff9ad4a8bcef4",
-      "checklist.md": "0532eec8554b7b96f77b435a1176b9bd883d39f70dc5ebd84f53a6cea29af155",
-      "decision-record.md": "bf06099d4a8105ef4a0de0d05eb451f05330441a54fd52bcd74cc38b90c12012",
-      "implementation-summary.md": "6f465e49ce26ab340f1fe09c3dbe0be6936fbf4be9df0532ddffd5e99bf548c9"
+      "spec.md": "b8b379df800a9fdd82cffdc3d713e8985d6950504c89bec810ec272e9e55ac8c",
+      "plan.md": "b1ce63ca2e19d6a00f9dd9418e5b9d1bb0085058414901b249e77b6e1a235326",
+      "tasks.md": "ae09b54df028bd6b31cf31a9f7afcdd5b57533a479c3bd66f85632d253162c63",
+      "checklist.md": "511b1d9e558b47c9208cf69aeb488095f050441bf2fe959a572b3d1b57201b7a",
+      "decision-record.md": "11e66bd72da927fbaae82a889d4801a223cafcab5ac730ab3db34bde3674fd5b",
+      "implementation-summary.md": "c384c1fcb44f40fc2fa2b790a5805e89d774ddc9555eda8d18b7854fc188fd54"
     },
     "last_active_child_id": null,
     "last_active_at": null

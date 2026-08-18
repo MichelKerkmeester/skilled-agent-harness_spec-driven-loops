@@ -15,9 +15,14 @@
       "fanout read-only containment devin cursor",
       "cursor trust gate mode plan fanout",
       "devin sandbox ignores permission-mode",
+      "devin cursor exec hardening plan",
+      "fanout builder re-map plan",
+      "devin cursor exec hardening tasks",
+      "fanout builder re-map tasks",
+      "devin cursor exec hardening checklist",
+      "fanout read-only containment qa",
       "devin cursor exec hardening done",
-      "cursor mode plan trust fanout",
-      "devin read-only auto no sandbox"
+      "cursor mode plan trust fanout"
     ],
     "key_topics": [
       "devin",
@@ -34,15 +39,21 @@
       "sandbox"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -68,12 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -81,12 +86,6 @@
       },
       {
         "name": "Exec Hardening",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -106,6 +105,12 @@
       {
         "name": "In Scope",
         "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -190,7 +195,7 @@
     ],
     "causal_summary": "The devin and cursor fan-out lineage builders mapped the generic sandbox modes (`read-only`, `workspace-write`, `danger-full-access`) to CLI flags that live testing of the installed binaries proved incorrect:",
     "created_at": "2026-07-29T12:31:59.435Z",
-    "last_save_at": "2026-08-17T04:33:21.648Z",
+    "last_save_at": "2026-08-18T04:23:41.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e752acd7a06cc647667e1c3f896a6a641e102458930861b66c2f686975dd94fb",
+    "source_fingerprint": "sha256:3c47081c344f2c57ed6ee81e5ab1f4cc436f8befe26873b4c824d9b0af339d8b",
     "source_doc_hashes": {
-      "spec.md": "7efaa7b1641b5216e97a28284d7a3c38a17359f18ab20277225999af180f5ff5",
-      "plan.md": "dc98bc24bfdee0f730c2e56aea917d81c113dd48b9a12759581139fe04eb8647",
-      "tasks.md": "2f896e90906b0230c998eef90a733765b4e9a82f0b669ce745f6805d0b6b021c",
-      "checklist.md": "2fb92b17556dc77640aef81fd85cbbdc86320be50bfe1ea78bd9c901e0731718",
-      "implementation-summary.md": "c25353e705614e0cd757a15f5bacf25d9589c768735cebaa859dcd920e74c69f"
+      "spec.md": "139cd67c9e7bfa89dea5652c8f386218cb1fa66dd3f90ba67125c0ac6c47a217",
+      "plan.md": "dbf3d640aeebac66d7b362ee0a18d7da684c2d2042c5a81990c3676575914bb0",
+      "tasks.md": "ba6f82cf0ae4af6a3e51c907667beb81a9db22224c32f9e9fb7d8ee72eb7505f",
+      "checklist.md": "e34f41a9b38d20c1694eed2e04511534038975feb62ba40360d2c412fb8634a0",
+      "implementation-summary.md": "b48715c7904dde3daad82d5a80fc359ed029cb0d41aa7ecab619df79aa0dfac2"
     },
     "last_active_child_id": null,
     "last_active_at": null
