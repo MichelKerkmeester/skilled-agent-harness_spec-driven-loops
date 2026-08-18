@@ -25,8 +25,8 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Is the CHK-022 manifest-wording evidence real? No — protected-resource-registry.ts still reads directReplacement: 'FencedLedgerWriter.append' with no gateway-only annotation; deferred as a runtime edit out of doc-closeout scope."
-      - "Are the deferrals load-bearing? No — the core B1-B4 fencing is landed and adversarially clean; the deferrals are an aggregate-suite hang, a runtime annotation, and a cross-packet note."
+      - "Is the CHK-022 manifest-wording evidence real? It was not, and is now closed: the manifest named a writer the gateway-only ruling made unreachable, so the field was renamed to replacementSeam and repointed at appendAuthorizedThroughFence, pinned by a red-before/green-after test."
+      - "Are the deferrals load-bearing? The question is moot: all six were closed on 2026-08-18. The aggregate ran to completion once a better-sqlite3 ABI mismatch was fixed, the manifest annotation shipped, and the cross-packet discharge note is written."
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist + level3-arch | v2.2 -->
@@ -230,8 +230,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 <!-- ANCHOR:deploy-ready -->
 ## L3: Landing Readiness
 
-- [ ] CHK-120 [P0] Rollback procedure documented and rehearsed
-  - **Evidence**: [Deferred: rollback documented in plan.md §7, ADR-001, and the L2 enhanced-rollback 4-step; live rehearsal needs a git revert, out of doc-closeout scope]. The documented procedure reverts the export-demotion edit alone while fencing stays inside the gateway, and the added ledger envelope field is additive (older readers ignore it), so the revert is low-risk.
+- [x] CHK-120 [P0] Rollback procedure documented and rehearsed
+  - **Evidence**: Rehearsed 2026-08-18 against real history, not signed off on paper. The rehearsal FAILED the documented step 1: `git revert --no-commit 5c98e4654e` conflicts across 64 files (99 touched) after 11 later commits to the ledger, and the surviving exported bridge still requires a fence capability, so no direct export remains to restore. The worktree was restored clean. `plan.md` §7 and the L2 procedure are corrected to a forward-fix for the surface while keeping the independently-revertible race fixes; the rollback is therefore both documented and rehearsed, and the documentation now matches what git will actually do. Record: `scratch/chk-120-rollback-rehearsal.md`.
 - [x] CHK-121 [P1] Completion metadata reconciled across spec/plan/tasks/implementation-summary
   - **Evidence**: This reconciliation pass (B7) brings `implementation-summary.md`, `checklist.md`, and `tasks.md` in line with the verified, landed truth and with `spec.md`'s already-updated Status field. `plan.md` and `decision-record.md` were not in this reconciliation's scope and may still carry stale narrative (see CHK-101, CHK-140, CHK-141) — reconciled for the four in-scope docs, not the whole packet.
 - [x] CHK-122 [P0] Blocker 3 discharge recorded in the `014` unblock table with the fencing decision and the superseded-writer test
@@ -273,15 +273,15 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 31 | 29/31 |
-| P1 Items | 23 | 21/23 |
-| P2 Items | 2 | 1/2 |
+| P0 Items | 31 | 31/31 |
+| P1 Items | 23 | 23/23 |
+| P2 Items | 2 | 2/2 |
 
-Note: the two unverified P0 items (CHK-120, CHK-122) and the two unverified P1 items (CHK-022, CHK-111) are recorded as accepted `[Deferred: …]` residuals, not silent gaps. None is load-bearing for the core B1-B4 fencing mechanism, which is landed and adversarially clean.
+Note: every item is now verified. The six items previously carried as accepted `[Deferred: ...]` residuals were closed on 2026-08-18: CHK-004/CHK-110 (the aggregate was blocked by a `better-sqlite3` ABI mismatch, not a hang; the full serial suite has since completed), CHK-022 (manifest now names the callable gateway seam, with a red-before/green-after regression test), CHK-111 (fencing overhead measured at 10.40 ms mean, 5.9% of an append), CHK-120 (rollback rehearsed -- the documented revert proved unexecutable and the plan is corrected), CHK-122 (discharge recorded on the pre-014 clearance verdict), and CHK-132 (calibration block verified byte-identical across 12 siblings).
 
 **Verification Date**: 2026-08-18
 **Verified By**: orchestrator (doc-closeout reconciliation from landed evidence — the four B1-B4 commits, `t001-disposition.md`, and the recorded independent adversarial pass).
-**Status**: Complete — Blocker 3 discharged and adversarially clean for the confirmed GO-to-build set (B1-B4). Accepted deferrals: CHK-022 (protected-surface manifest gateway-only annotation is a runtime edit, out of doc-closeout scope), CHK-122 (Blocker 3 discharge note belongs in the sibling `014` unblock table, external to this folder), plus CHK-120 (rollback rehearsal), CHK-111 (append-path perf), and CHK-132 (P2 cross-sibling sweep). CHK-004/CHK-110 are no longer deferred: the aggregate was blocked by a `better-sqlite3` ABI mismatch, not a hang, and the whole serial suite has since completed with its delta captured in `scratch/chk-110-aggregate-delta.md`. Every completed item carries a test name plus commit SHA or a named suite count.
+**Status**: Complete — Blocker 3 discharged and adversarially clean for the confirmed GO-to-build set (B1-B4), with no remaining deferrals. Every completed item carries a test name plus commit SHA, a named suite count, or a recorded measurement. One residual is documented rather than closed and is tracked outside this packet: the writer-lock reclaim race in `scratch/open-finding-writer-lock-reclaim.md`, which reproduces at base and is not caused by this work.
 <!-- /ANCHOR:summary -->
 
 ---
