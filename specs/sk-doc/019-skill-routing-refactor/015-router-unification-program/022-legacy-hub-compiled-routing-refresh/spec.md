@@ -1,10 +1,11 @@
 ---
 title: "Feature Specification: Legacy Hub Compiled Routing Refresh"
-description: "Plan the deferred refresh of stale compiled routing for sk-prompt and system-deep-loop while preserving frozen replay and scorer artifacts"
+description: "Plan the deferred refresh of stale compiled routing for system-deep-loop and cli-external-orchestration while preserving frozen replay and scorer artifacts"
 trigger_phrases:
   - "legacy hub compiled routing refresh"
   - "stale compiled manifests"
-  - "sk-prompt system-deep-loop routing"
+  - "system-deep-loop cli-external-orchestration routing"
+  - "cli-external-orchestration stale manifest"
   - "compiled-route-status all fresh"
 importance_tier: "critical"
 contextType: "implementation"
@@ -51,9 +52,11 @@ _memory:
 
 ### Problem Statement
 
-The class-H hubs `sk-prompt` and `system-deep-loop` are still serving routing through the legacy path with stale compiled manifests. `node .opencode/bin/compiled-route-status.cjs --all` reports both hubs as `servingAuthority: legacy`, `fresh: false`, and `causeCode: stale-manifest`, while the other five hubs are compiled and fresh. Routing still works through legacy, so this is a degradation rather than a break.
+The class-H hubs `system-deep-loop` and `cli-external-orchestration` are serving routing through the legacy path with stale compiled manifests; `sk-prompt`, originally in this set, has since been refreshed to `compiled`/`fresh`. `node .opencode/bin/compiled-route-status.cjs --all` reports both stale hubs as `servingAuthority: legacy`, `fresh: false`, and `causeCode: stale-manifest`, while the other five hubs are compiled and fresh. Routing still works through legacy, so this is a degradation rather than a break.
 
 The attempted refresh found a second blocker on 2026-08-16. The `sk-prompt` owner harness rebuilt cleanly and matched the target `currentPolicyHash` beginning `19ffb85d`, but the `system-deep-loop` owner harness crashed with `ENOENT` for `activation/manifest.prior.json`. Its harness reads a prior activation manifest it does not create, while the working `sk-prompt` harness creates its own. The required activation state is untracked, runtime-generated, and incomplete in this bare worktree, so it cannot be safely seeded. The partial rebuild was reverted and left no runtime mutation.
+
+Update 2026-08-18: the two hubs folded into this same refresh are `system-deep-loop` (generation 4, selected hash `0854f3ec` versus current `18efd2b2`) and `cli-external-orchestration` (generation 5, selected hash `9d92aa12` versus current `5f36508`), which drifted after this packet was authored. The all-seven-fresh route-status gate in the requirements already binds both.
 
 ### Purpose
 
@@ -70,6 +73,7 @@ Plan the safe completion of both hub refreshes inside the 015 program's full com
 - Refresh activation manifests and promote through `compiled-route-sync` with the retained-rollback closure.
 - Run the program canary and confirm all seven hubs report compiled and fresh through `compiled-route-status.cjs --all`.
 - Keep frozen replay/scorer files and their protected digests byte-identical throughout execution.
+- Extend the same rebuild-and-refresh to `cli-external-orchestration`, which drifted to `stale-manifest` after this packet was authored; it follows the identical harness, activation, and promotion path as `system-deep-loop`.
 
 ### Out of Scope
 
@@ -83,8 +87,8 @@ Plan the safe completion of both hub refreshes inside the 015 program's full com
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs` | Modify during deferred execution | Create or remove the unsafe requirement for the prior activation manifest |
-| Owner harness outputs for `sk-prompt` and `system-deep-loop` | Regenerate during deferred execution | Compile both hubs from their current `ROUTER.md` files |
-| Two hubs' activation manifests and `compiled-route-sync` promotion state | Refresh during deferred execution | Promote only with retained rollback and complete activation state |
+| Owner harness outputs for the stale hubs (`system-deep-loop`, `cli-external-orchestration`) | Regenerate during deferred execution | Compile each stale hub from its current `ROUTER.md` files |
+| Each stale hub's activation manifests and `compiled-route-sync` promotion state | Refresh during deferred execution | Promote only with retained rollback and complete activation state |
 | Frozen replay/scorer files and protected digests | Verify unchanged | Preserve byte identity; do not edit |
 <!-- /ANCHOR:scope -->
 

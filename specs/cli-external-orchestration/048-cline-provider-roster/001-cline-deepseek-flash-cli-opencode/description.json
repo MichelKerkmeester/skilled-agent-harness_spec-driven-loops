@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/048-cline-provider-roster/001-cline-deepseek-flash-cli-opencode",
+  "description": "opencode has the Cline provider authenticated (registered as `cline-pass`, not `cline`), exposing `cline-pass/cline-pass/deepseek-v4-flash`",
+  "keywords": [
+    "opencode",
+    "cline",
+    "provider",
+    "authenticated",
+    "registered",
+    "cline-pass",
+    "exposing",
+    "deepseek-v4-flash"
+  ],
+  "lastUpdated": "2026-08-18T08:49:05.956Z",
+  "specId": "001",
+  "folderSlug": "cline-deepseek-flash-cli-opencode",
+  "parentChain": [
+    "cli-external-orchestration",
+    "048-cline-provider-roster"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

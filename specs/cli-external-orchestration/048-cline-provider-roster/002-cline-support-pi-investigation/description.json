@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/048-cline-provider-roster/002-cline-support-pi-investigation",
+  "description": "cli pi's `/login` does not list Cline, so the operator cannot authenticate the Cline provider from pi and cannot select",
+  "keywords": [
+    "cli",
+    "login",
+    "list",
+    "cline",
+    "operator",
+    "cannot",
+    "authenticate",
+    "provider",
+    "select"
+  ],
+  "lastUpdated": "2026-08-18T09:27:12.729Z",
+  "specId": "002",
+  "folderSlug": "cline-support-pi-investigation",
+  "parentChain": [
+    "cli-external-orchestration",
+    "048-cline-provider-roster"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
