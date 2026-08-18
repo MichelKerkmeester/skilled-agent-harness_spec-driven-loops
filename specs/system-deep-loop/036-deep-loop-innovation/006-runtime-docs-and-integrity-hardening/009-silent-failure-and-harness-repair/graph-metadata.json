@@ -35,7 +35,7 @@
       "suite"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -100,12 +100,6 @@
         "source": "derived"
       },
       {
-        "name": "Does Lane",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -113,6 +107,12 @@
       },
       {
         "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Twenty",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Twenty-three findings in three lanes share one shape",
     "created_at": "2026-07-31T01:25:21.556Z",
-    "last_save_at": "2026-08-17T04:04:18.072Z",
+    "last_save_at": "2026-08-18T04:04:02.480Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70e77e486cb22d4292c096dc2342866eb5094e11cc7a39afa73033d59b36daee",
+    "source_fingerprint": "sha256:c7b265b87d6b580cf0d285d28b6d29325746c1f734dec550a36f54bee65f4ac9",
     "source_doc_hashes": {
-      "spec.md": "e351ce04797b09392b1bf5900f567387340ac979e79daf532b017a06968b13d4",
-      "plan.md": "dc737883a56fa9c4b030a2b53265a3d632223407cc746d3848e9e74d35880f47",
-      "tasks.md": "81b069a1e7fa96643b139f9b66a226eeb7fa380e8397a95ec5993e681ce80570",
-      "checklist.md": "6a0cb23c254a874a98e1212e0d85a8564c4c6d11d901e0cfc34b55d549f55972",
-      "decision-record.md": "b95029c0f0a01a376c8dff357b60ed5f998d3f8f8bf9dcb8adb0c4f58f95ddce",
-      "implementation-summary.md": "d8791f1fa2e25792b825902e81612e880215e5d17d11a59b17830218ff32a5fb"
+      "spec.md": "8283ace2429c3d9b8fdabce7d475b90b60e85167c1f7321fc98fe186bcc06933",
+      "plan.md": "62dd8dcb4ce30bd090a52509f1b6f6035c7729b3b300dd2714069ab719f8c922",
+      "tasks.md": "8bce0f4ac814e706ac6385688f1193f38c37e02355317f9bce1f7060ebec1c78",
+      "checklist.md": "1468ccb99e4674493670167c5fff6c81c5f10e46f28311c47aa51f111274fa1b",
+      "decision-record.md": "d3b20a64db573eece0604bd1fdb216b361bcbdae118778293cc3e8fb2fd467e0",
+      "implementation-summary.md": "bae1f2fb2de01fd5eae4d476ec443ba02d92d76b83b645e323d19522e95e2573"
     },
     "last_active_child_id": null,
     "last_active_at": null

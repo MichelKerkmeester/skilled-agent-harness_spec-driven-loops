@@ -32,7 +32,7 @@
       "wrapper"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "implementation-summary.md",
@@ -91,12 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,6 +104,12 @@
       },
       {
         "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -175,13 +175,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Mark",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol Mark",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The single-executor deep-alignment loop dispatches its `cli-codex` leaf with `--sandbox workspace-write` because the leaf is required to Bash-write its three per-iteration artifacts (the iteration narrative, the appended `deep-alignment-state.jsonl` record, and the write-once delta file) — the native `@deep-alignment` agent deliberately has no Write/Edit tool",
     "created_at": "2026-07-23T12:49:06.629Z",
-    "last_save_at": "2026-08-17T04:04:06.100Z",
+    "last_save_at": "2026-08-18T03:59:28.893Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +200,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce8a2b6c82c47460fe448f4e1a69a789f69af07825c57a4e847f3a13554ffab7",
+    "source_fingerprint": "sha256:4e544b9b5025c5cf027e3f916067754c218d40149dead1d10bdf63be6ca97154",
     "source_doc_hashes": {
-      "spec.md": "a42818281d96dc3b711cafbf8f2fe8ceb64047f0554e5d8c6c5181b75af54e59",
-      "plan.md": "9195d4673843caf7059c878394cb212b6ddcd306066bfb4bae77c6e27a1da212",
-      "tasks.md": "0726702693bf80a9192a5a1486a4d00df136dc17c55eafbfc37a40a6c98dca1b",
-      "checklist.md": "c9075f1d6670141ce331e8ec84a0caa03dece121867586235a91566593dbeecb",
-      "decision-record.md": "7402cb9d56f2384c1751471725a8de1fc1434d31dd66f296836f3a126ba4903f",
-      "implementation-summary.md": "2149221ff4a4b3da3aa31983bfa18cd5c4c1132166ffcb33409c41ce2366940f"
+      "spec.md": "10c698544ce6ff24df8ae6f6adef04b772eb574aca2a28a0175bad6777c8a5f9",
+      "plan.md": "757f2753737d10a6f0c476803f95d533979ecc0abce194a8ea64d06856948dcc",
+      "tasks.md": "4ec83d82d97818a3fe8432e569d890dedfa2bd114a3edf9fa3c1d8142aae14b2",
+      "checklist.md": "b4df2c6584a1395e34ea943f055537ca70937d44ad28ddca73fd01f290bf1172",
+      "decision-record.md": "26ffa4acfc2849045830580a7abb5d66523518f74a311ec1e267c0d86ca011a3",
+      "implementation-summary.md": "b616549859afd72c06478ff6852c0b6475c250c446b37e8f66d0e9a497fde1f3"
     },
     "last_active_child_id": null,
     "last_active_at": null

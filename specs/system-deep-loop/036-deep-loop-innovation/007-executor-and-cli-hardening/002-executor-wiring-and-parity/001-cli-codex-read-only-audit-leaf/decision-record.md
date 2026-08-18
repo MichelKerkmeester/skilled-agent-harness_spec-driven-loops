@@ -1,6 +1,12 @@
 ---
 title: "Decision Record: Read-Only cli-codex Deep-Alignment Audit Leaf"
 description: "Architecture decisions and codex probe evidence behind running the cli-codex alignment leaf read-only with wrapper-authored state."
+trigger_phrases:
+  - "cli-codex read-only leaf"
+  - "codex apply_patch alignment halt"
+  - "deep-alignment executor contract violation"
+  - "read-only audit leaf"
+  - "wrapper writes iteration artifacts"
 importance_tier: "important"
 contextType: "general"
 ---

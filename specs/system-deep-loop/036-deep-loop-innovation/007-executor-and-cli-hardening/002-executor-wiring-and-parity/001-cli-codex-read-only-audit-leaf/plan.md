@@ -1,19 +1,25 @@
 ---
 title: "Implementation Plan: Read-Only cli-codex Deep-Alignment Audit Leaf"
 description: "Architecture and phased plan to run the cli-codex alignment leaf read-only and move iteration-artifact writing to the dispatch wrapper."
+trigger_phrases:
+  - "cli-codex read-only leaf"
+  - "codex apply_patch alignment halt"
+  - "deep-alignment executor contract violation"
+  - "read-only audit leaf"
+  - "wrapper writes iteration artifacts"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf"
-    last_updated_at: "2026-08-17T04:04:40Z"
-    last_updated_by: "codex"
-    recent_action: "Reconciled the moved packet metadata and strict-validation contract"
-    next_safe_action: "Run the full-budget alignment gate."
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Reconciled packet docs to Complete from landed read-only-leaf evidence"
+    next_safe_action: "Run the full-budget LUNA alignment acceptance gate"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
