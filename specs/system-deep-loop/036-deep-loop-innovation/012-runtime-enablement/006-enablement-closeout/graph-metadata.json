@@ -16,7 +16,10 @@
       "document the enabled system",
       "enablement closeout plan",
       "enablement closeout tasks",
-      "enablement closeout checklist"
+      "enablement closeout checklist",
+      "enablement closeout summary",
+      "claim sweep results",
+      "unreachable authority flip"
     ],
     "key_topics": [
       "enablement",
@@ -30,17 +33,38 @@
       "plan",
       "tasks",
       "checklist",
-      "documentation"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "scratch/probe-reachability.mjs",
+      "scratch/claim-sweep.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "probe-reachability.mjs",
+        "kind": "file",
+        "path": "scratch/probe-reachability.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "claim-sweep.md",
+        "kind": "doc",
+        "path": "scratch/claim-sweep.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -162,25 +186,7 @@
         "source": "derived"
       },
       {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary",
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -188,21 +194,23 @@
     ],
     "causal_summary": "After enablement, the epic's documentation describes a system that no longer exists",
     "created_at": "2026-08-19T06:57:08.525Z",
-    "last_save_at": "2026-08-19T06:57:08.525Z",
+    "last_save_at": "2026-08-19T20:10:36.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61443a188f05e511c183213890ea47d6ac18c3779b31c3e924a39f42a6cc02c8",
+    "source_fingerprint": "sha256:d57761d57df941944864dd2dddbfae3c0490aa445454d7d5c6114331ef8e33ff",
     "source_doc_hashes": {
       "spec.md": "22311f7beb64951acee75867685150c71991b0fc101e4bf7a4a7c75d8b674e45",
       "plan.md": "580d1f46cee9dc9230b049bf4899d159cc172a6bc7cf17a8e5ebffb6ca412297",
-      "tasks.md": "9260ef23ce2d98091d23fbe70a21de41d91e663001648f32949cc844bbbaec49",
-      "checklist.md": "3c6d5038ccc34a5f5baa9fade013c8c9d6a768b2b3e1c2846d7a1f234bd7db70"
+      "tasks.md": "fe4519df13cacd61ee704e7d11ebcdf5a22277a7f79611a6fbcfb850cde0bc40",
+      "checklist.md": "77e693159399f451d3c6acc44a8da44cf5d43fe3f7997a07e9ac71330a907f3c",
+      "implementation-summary.md": "76fc98a8283687d09a7868fc0c1cbd88b8cd5c04d928721ce411e97b5abf2ad9"
     },
     "last_active_child_id": null,
     "last_active_at": null
