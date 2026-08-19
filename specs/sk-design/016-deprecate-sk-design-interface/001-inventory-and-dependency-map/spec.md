@@ -118,3 +118,13 @@ _memory:
 
 - None blocking. Bucket boundaries are fixed by the operator's Q2 decision (live-contracts + regenerate; leave frozen evidence). Ambiguous single hits are recorded in the map with a noted default, not escalated.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:phase-navigation -->
+## PHASE NAVIGATION
+
+- **Parent:** `../spec.md`
+- **Predecessor:** — (first phase)
+- **Successor:** `../002-extract-md-generator-and-styles/spec.md`
+<!-- /ANCHOR:phase-navigation -->

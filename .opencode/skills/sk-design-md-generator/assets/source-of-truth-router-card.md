@@ -91,4 +91,4 @@ If the last box fails, this is forward-authoring. It is out of scope for this mo
 
 - [`../references/authoring-boundary.md`](../references/authoring-boundary.md) - the four origins, the source-of-truth labels and why forward-authoring stays out of scope.
 - [`cardinal-rules-card.md`](cardinal-rules-card.md) - the pre-validate fidelity checklist.
-- [`../../shared/assets/register-card.md`](../../shared/assets/register-card.md) - the Brand-vs-Product register card. This mode records the extracted surface's register.
+- [`../references/design-knowledge/register-card.md`](../references/design-knowledge/register-card.md) - the Brand-vs-Product register card. This mode records the extracted surface's register.

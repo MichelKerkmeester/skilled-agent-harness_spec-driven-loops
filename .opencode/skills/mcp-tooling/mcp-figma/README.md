@@ -36,7 +36,7 @@ Figma's natural home is its own canvas. Reaching it from a coding agent is awkwa
 
 ### What It Does
 
-The skill drives Figma in two directions. The **CLI direction** is the primary surface and does the bulk of the work: it connects to Figma Desktop, brings up the daemon, inspects and exports content read-only and authors or modifies frames, components, tokens and variables behind gates. The **optional MCP direction** runs the other way. It pulls design context out of Figma into the agent as model input through Code Mode. It is opt-in rather than required. The skill works fully with the CLI alone. Throughout, the design judgment itself belongs to `sk-design`: this skill owns the transport and that skill owns the taste. Any read or export that feeds a design decision is run through the design skill before deciding.
+The skill drives Figma in two directions. The **CLI direction** is the primary surface and does the bulk of the work: it connects to Figma Desktop, brings up the daemon, inspects and exports content read-only and authors or modifies frames, components, tokens and variables behind gates. The **optional MCP direction** runs the other way. It pulls design context out of Figma into the agent as model input through Code Mode. It is opt-in rather than required. The skill works fully with the CLI alone. Throughout, the measured design reference belongs to `sk-design-md-generator`: this skill owns the transport and that skill produces a Style Reference (extracted design tokens). Any read or export that feeds a design decision is grounded in that measured reference before deciding.
 
 This is a CLI-primary surface with an optional MCP, not the reverse. The binary is the silships tool published to npm as `figma-ds-cli`, the daemon is a local HTTP server and the optional MCP is a community Framelink manual already registered in this repo's Code Mode. The skill reaches for whichever face fits the step.
 
@@ -122,13 +122,13 @@ The skill is complete with the CLI alone. When the agent needs to pull design co
 
 ### When To Use This Skill
 
-Reach for this skill whenever a user wants to drive Figma Desktop from the terminal: creating and rendering frames and components, working a design system of tokens and variables, inspecting and exporting content, importing a design system into Figma and setting up or troubleshooting the connection and daemon. Use it also when the agent needs to pull design context out of Figma through the optional Code Mode MCP. Skip it when the work is generic app coding with no Figma input, in which case use `sk-code`. Skip it when the work is the design judgment itself, the palette, the type, the anti-default critique, which belongs to `sk-design` while this skill stays the transport. Skip it for a last-mile browser preview of a built page, which is `mcp-chrome-devtools`. Skip it entirely when Figma Desktop is not installed or not open, since the CLI cannot work without the live session.
+Reach for this skill whenever a user wants to drive Figma Desktop from the terminal: creating and rendering frames and components, working a design system of tokens and variables, inspecting and exporting content, importing a design system into Figma and setting up or troubleshooting the connection and daemon. Use it also when the agent needs to pull design context out of Figma through the optional Code Mode MCP. Skip it when the work is generic app coding with no Figma input, in which case use `sk-code`. Skip it when the work is extracting a measured Style Reference (design tokens) from a live website's real CSS, which belongs to `sk-design-md-generator` while this skill stays the Figma transport. Skip it for a last-mile browser preview of a built page, which is `mcp-chrome-devtools`. Skip it entirely when Figma Desktop is not installed or not open, since the CLI cannot work without the live session.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-design` | Owns the design judgment and is applied whenever a Figma read or export feeds a design decision. This skill is the transport, that skill is the taste. |
+| `sk-design-md-generator` | Produces a measured Style Reference (extracted design tokens) and is applied whenever a Figma read or export feeds a design decision. This skill is the transport, that skill produces the measured reference. |
 | `sk-code` | Owns application-code standards for adapting extracted tokens, a DESIGN.md or exported code into a real app and verifying the result. |
 | `mcp-code-mode` | The transport for the optional Figma MCP. The Framelink `figma` manual is called through Code Mode's `call_tool_chain()`. |
 | `mcp-chrome-devtools` | A real-browser surface for a last-mile visual preview only. It is never the way to operate Figma. |
@@ -170,9 +170,9 @@ A: No. The skill works fully with the CLI alone. The optional Figma MCP runs the
 
 A: Safe connect, `figma-ds-cli connect --safe`, runs the FigCli plugin bridge and patches nothing, so it is the default. Yolo connect, `figma-ds-cli connect` with no flag, patches Figma's `app.asar`, opens a CDP debug port and breaks on Figma updates, so the skill runs it only with explicit consent and a stated `figma-ds-cli unpatch` rollback.
 
-**Q: How does this relate to `sk-design`?**
+**Q: How does this relate to `sk-design-md-generator`?**
 
-A: This skill is the transport that reads and writes Figma content. `sk-design` is the judgment that decides what good design looks like. Whenever a Figma read or export feeds a design decision, the design skill is applied. It reaches Figma only through this skill.
+A: This skill is the transport that reads and writes Figma content. `sk-design-md-generator` produces a measured Style Reference (extracted design tokens) from a live site's real CSS. Whenever a Figma read or export feeds a design decision, that measured reference grounds it. It reaches Figma only through this skill.
 
 ---
 

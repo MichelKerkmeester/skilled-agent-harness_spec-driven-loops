@@ -39,7 +39,7 @@ Operators run the exact sequence for `PLATFORM-001` and confirm the expected sig
 ### Recommended Orchestration Process
 
 1. Restate the user request in plain user language.
-2. Decide whether the scenario should stay local or delegate. Retrieval stays local; judgment (if requested) routes to `sk-design`.
+2. Decide whether the scenario should stay local or delegate. Retrieval stays local; a measured Style Reference (if requested) is `sk-design-md-generator`'s.
 3. Execute the deterministic steps exactly as written.
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.

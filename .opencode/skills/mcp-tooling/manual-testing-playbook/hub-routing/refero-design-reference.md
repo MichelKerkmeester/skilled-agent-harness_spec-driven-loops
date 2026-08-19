@@ -23,7 +23,7 @@ Prompt: Search Refero for real-app checkout flow screens and pull style referenc
 
 ## Expected Behavior
 
-Strong `refero-aliases`/`design-reference-research` signal (Refero, real-app screens, style references) resolves `workflowMode: mcp-refero`; the hub loads `mcp-refero/SKILL.md`, not `mcp-figma` (which owns Figma Desktop operations) and not the hub's own thin `SKILL.md`. The transport pairing rule still applies: any design DECISION taken from the references loads `sk-design` first.
+Strong `refero-aliases`/`design-reference-research` signal (Refero, real-app screens, style references) resolves `workflowMode: mcp-refero`; the hub loads `mcp-refero/SKILL.md`, not `mcp-figma` (which owns Figma Desktop operations) and not the hub's own thin `SKILL.md`. The transport pairing rule still applies: to turn the references into a measured Style Reference (design tokens), pair `sk-design-md-generator` to extract from a live source.
 
 ## Success Criteria
 

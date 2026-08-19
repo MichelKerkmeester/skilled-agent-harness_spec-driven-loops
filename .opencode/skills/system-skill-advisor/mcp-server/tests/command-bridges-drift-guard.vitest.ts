@@ -126,7 +126,7 @@ describe('command-bridges drift guard', () => {
     expect(typescriptActive).toEqual(handAuthored);
     expect(generated.entries.filter((entry) => entry.runtime?.typescript.enabled)).toHaveLength(6);
     expect(generated.entries.filter((entry) => entry.runtime?.python.enabled)).toHaveLength(16);
-    expect([6, 30]).toContain(COMMAND_BRIDGES.length);
+    expect([6, 28]).toContain(COMMAND_BRIDGES.length);
   });
 
   it('preserves the Python bridge records, order, and owner normalization byte-for-byte', () => {

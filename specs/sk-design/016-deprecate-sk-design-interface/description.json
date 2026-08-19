@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/016-deprecate-sk-design-interface",
   "description": "The `sk-design` parent hub currently routes exactly two workflow modes through `mode-registry.json`: `sk-design-interface` (invents new visual",
   "keywords": [
@@ -18,17 +19,20 @@
     "new",
     "visual"
   ],
-  "lastUpdated": "2026-08-19T04:27:40.951Z",
+  "lastUpdated": "2026-08-19T11:27:01.722Z",
   "specId": "016",
   "folderSlug": "deprecate-sk-design-interface",
   "parentChain": [
     "sk-design"
   ],
-  "memorySequence": 3,
+  "memorySequence": 7,
   "memoryNameHistory": [
     "19-08-26_05-18__phase-parent-deprecate-the-sk-design-hub.md",
     "19-08-26_05-26__phase-parent-deprecating-sk-design-hub-interface.md",
-    "19-08-26_05-27__phase-parent-deprecating-sk-design-hub-interface.md"
-  ],
-  "level": "2"
+    "19-08-26_05-27__phase-parent-deprecating-sk-design-hub-interface.md",
+    "19-08-26_07-43__i-ve-reached-the-end-of-what-i-can-safely-do.md",
+    "19-08-26_07-53__context-was-just-compacted-per-your-global.md",
+    "19-08-26_07-54__three-more-phase-006-reconciles-landed-and.md",
+    "19-08-26_08-14__six-agents-are-now-working-in-parallel-nothing.md"
+  ]
 }

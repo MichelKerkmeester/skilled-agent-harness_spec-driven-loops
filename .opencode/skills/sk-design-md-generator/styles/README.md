@@ -17,8 +17,8 @@ original style. The extraction harness + crawl state live in [`scripts/`](script
 The engine supplies evidence, not taste. Downstream work keeps this order: user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output. Corpus evidence is advisory-only and `CORPUS_USE_PROOF v1` must bind any claimed influence to the checked manifest.
 
 ```bash
-node .opencode/skills/sk-design/styles/lib/engine/style-library.mjs build --check
-node .opencode/skills/sk-design/styles/lib/engine/style-library.mjs query --request '{"text":"product interface restrained motion","useFts":false,"limit":2}'
+node .opencode/skills/sk-design-md-generator/styles/lib/engine/style-library.mjs build --check
+node .opencode/skills/sk-design-md-generator/styles/lib/engine/style-library.mjs query --request '{"text":"product interface restrained motion","useFts":false,"limit":2}'
 ```
 
 **Extracted: 1290 of 1,290 styles** (0 errors).

@@ -44,7 +44,7 @@ _memory:
 | **Level** | 2 |
 | **Structure** | Phase Parent lean trio (program umbrella over six numbered children) |
 | **Priority** | P1 |
-| **Status** | In progress — parent authored; 6 children Planned |
+| **Status** | Complete — all 6 children shipped; scoped commit operator-gated |
 | **Created** | 2026-08-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None; root packet under the design track |
@@ -136,12 +136,12 @@ Most execution work is delegated to **`cli-devin` running `gemini-3-7-flash-high
 
 | Phase | Folder | Focus | Mutation Class | Status |
 |-------|--------|-------|----------------|--------|
-| 1 | `001-inventory-and-dependency-map/` | Grep the whole repo for `sk-design` / `interface:`; classify every hit as live-contract / frozen-evidence / generated-artifact; produce the authoritative reconcile map that 002-006 consume | read-only | **Planned** |
-| 2 | `002-extract-md-generator-and-styles/` | `git mv` `sk-design-md-generator/` + `styles/` to the new top-level skill root; move nothing else | add-only (move) | **Planned** |
-| 3 | `003-standalone-rewire-and-metadata/` | Rewire the one styles import + any internal paths; add root `graph-metadata.json`/README/INSTALL/changelog; **prove** the DB loads, extraction runs, and `validate.sh --strict` passes on the new root | mutates | **Planned** |
-| 4 | `004-fold-condensed-design-knowledge/` | Distill the salvage set (`shared/` principles + `interface/references` digest) into a condensed `references/design-knowledge/` layer in the standalone skill | add-only | **Planned** |
-| 5 | `005-delete-hub-and-interface-commands/` | Delete the `sk-design` hub + `sk-design-interface` mode + `.opencode/commands/interface/` (after rebinding `/…design-reference`) | **destructive — operator gate** | **Planned** |
-| 6 | `006-reference-cleanup-and-reconcile/` | Repo-wide live-ref cleanup + repoint `cli-*`/deep-alignment/mcp-tooling contracts + regenerate advisor graph + compiled routing; `validate.sh --recursive --strict`; closeout | mutates | **Planned** |
+| 1 | `001-inventory-and-dependency-map/` | Grep the whole repo for `sk-design` / `interface:`; classify every hit as live-contract / frozen-evidence / generated-artifact; produce the authoritative reconcile map that 002-006 consume | read-only | **Complete** |
+| 2 | `002-extract-md-generator-and-styles/` | `git mv` `sk-design-md-generator/` + `styles/` to the new top-level skill root; move nothing else | add-only (move) | **Complete** |
+| 3 | `003-standalone-rewire-and-metadata/` | Rewire the one styles import + any internal paths; add root `graph-metadata.json`/README/INSTALL/changelog; **prove** the DB loads, extraction runs, and `validate.sh --strict` passes on the new root | mutates | **Complete** |
+| 4 | `004-fold-design-knowledge/` | Distill the salvage set (`shared/` principles + `interface/references` digest) into a condensed `references/design-knowledge/` layer in the standalone skill | add-only | **Complete** |
+| 5 | `005-delete-hub-and-interface-commands/` | Delete the `sk-design` hub + `sk-design-interface` mode + `.opencode/commands/interface/` (after rebinding `/…design-reference`) | **destructive — operator gate** | **Complete** |
+| 6 | `006-reference-cleanup-and-reconcile/` | Repo-wide live-ref cleanup + repoint `cli-*`/deep-alignment/mcp-tooling contracts + regenerate advisor graph + compiled routing; `validate.sh --recursive --strict`; closeout | mutates | **Complete** |
 
 ### Phase Transition Rules
 

@@ -1,6 +1,6 @@
 ---
 title: mcp-mobbin
-description: Search Mobbin's library of real app UI screenshots from your agent as read-only design-research evidence, with sk-design owning every taste verdict.
+description: Search Mobbin's library of real app UI screenshots from your agent as read-only design-research evidence; pair with sk-design-md-generator for a measured Style Reference (extracted design tokens).
 trigger_phrases:
   - "mobbin"
   - "mobbin mcp"
@@ -12,7 +12,7 @@ version: 1.1.0.0
 
 # mcp-mobbin
 
-> Search Mobbin's library of real app UI screenshots from your agent as read-only design-research evidence, with `sk-design` owning every taste verdict.
+> Search Mobbin's library of real app UI screenshots from your agent as read-only design-research evidence; pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens).
 
 ---
 
@@ -31,11 +31,11 @@ version: 1.1.0.0
 
 ### Why This Skill Exists
 
-Mobbin holds one of the largest libraries of real app UI screenshots. It exposes that library through a paid hosted MCP. Reaching it from a coding agent without a written contract is risky in specific, documented ways. Live pre-auth discovery on 2026-07-16 listed exactly three read-only search tools, so an agent that guesses beyond them invents tools that do not exist. The auth model invites a worse guess: there is no API key, only browser OAuth, so a helper that wires a `MOBBIN_API_KEY` env var fabricates a credential path the provider never published. This README records the wiring truth, the three-tool contract, the auth expectations and the boundary that `sk-design` owns every taste verdict.
+Mobbin holds one of the largest libraries of real app UI screenshots. It exposes that library through a paid hosted MCP. Reaching it from a coding agent without a written contract is risky in specific, documented ways. Live pre-auth discovery on 2026-07-16 listed exactly three read-only search tools, so an agent that guesses beyond them invents tools that do not exist. The auth model invites a worse guess: there is no API key, only browser OAuth, so a helper that wires a `MOBBIN_API_KEY` env var fabricates a credential path the provider never published. This README records the wiring truth, the three-tool contract, the auth expectations and the boundary that this transport produces no design tokens or Style Reference of its own — `sk-design-md-generator` is the measured-extraction companion for that.
 
 ### What It Does
 
-This packet is a read-only TRANSPORT in the `mcp-tooling` hub (`packetKind: transport`, `mutatesWorkspace: false`). It reports the `mobbin` manual's registration state honestly, carries the registered manual's reference shape, mandates discovery-first callable confirmation before any call and runs the research workflows: intent-shaped queries over `search_screens`, `limit` starting at 5, platform inferred or asked, every reference cited by `mobbin_url` and `failed[]` reported as partial success. Every call happens against the external Mobbin service and nothing in this repo changes: the transport is read-only, never changes a file and never dispatches another agent. Whenever retrieved evidence feeds a design decision, `sk-design` loads first and owns the judgment. This transport supplies metadata and cited images, with every claim sourced from the provider response, Its output never satisfies a taste or readiness gate by itself.
+This packet is a read-only TRANSPORT in the `mcp-tooling` hub (`packetKind: transport`, `mutatesWorkspace: false`). It reports the `mobbin` manual's registration state honestly, carries the registered manual's reference shape, mandates discovery-first callable confirmation before any call and runs the research workflows: intent-shaped queries over `search_screens`, `limit` starting at 5, platform inferred or asked, every reference cited by `mobbin_url` and `failed[]` reported as partial success. Every call happens against the external Mobbin service and nothing in this repo changes: the transport is read-only, never changes a file and never dispatches another agent. Whenever a measured Style Reference of real, extracted design tokens is also wanted, `sk-design-md-generator` produces it from a live site. This transport supplies metadata and cited images, with every claim sourced from the provider response; its output is never a design-token set or Style Reference by itself.
 
 ### The Three-Tool Search Surface
 
@@ -91,9 +91,9 @@ call_tool_chain({
 });
 ```
 
-**Step 4: Hand the evidence to the judgment owner.**
+**Step 4: Pair for a measured Style Reference (optional).**
 
-Any design-affecting use routes through `sk-design`. Cite every selected screen by its `mobbin_url` and report `failed[]` entries and missing images as partial success.
+For a measured Style Reference of real, extracted design tokens, pair `sk-design-md-generator`. Cite every selected screen by its `mobbin_url` and report `failed[]` entries and missing images as partial success.
 
 ---
 
@@ -111,14 +111,14 @@ The provider is a hosted remote server over Streamable HTTP at `api.mobbin.com/m
 
 Mobbin MCP auth is browser OAuth only: protected-resource discovery, Dynamic Client Registration (RFC 7591), authorization code with PKCE S256 and the `openid` scope, revocable from Account Settings. A live unauthenticated probe returned HTTP 401 with a `WWW-Authenticate` pointer to the protected-resource metadata. That challenge is the expected shape, not a missing-key error. No static API key exists for MCP. The API-key Bearer model belongs to the separate Team and Enterprise REST API, so the manual `env` stays empty and no `.env` line is ever added. Adapter auth state under `~/.mcp-auth` is operator-owned. End-to-end OAuth through the local bridge is Inferred, not verified. Plan gating is hard: MCP access starts at Pro or higher. Free has no MCP access. The service enforces 60 requests per 60 seconds per user. On HTTP 429, honor `Retry-After` and back off with jitter.
 
-### The Judgment Boundary
+### The Transport Boundary
 
-The transport allows breadth while researching: apps, screens, flows and intents compared through metadata and images. But design-affecting use is governed by the `sk-design` contract. A transport response is untrusted reference evidence.
+The transport allows breadth while researching: apps, screens, flows and intents compared through metadata and images. But it produces no design tokens or Style Reference of its own. A transport response is untrusted reference evidence.
 
-- Any design-affecting use loads `sk-design` first.
-- The design skill owns intake, mode selection and every verdict on taste, accessibility and readiness.
-- Search rank is not taste. An appealing screenshot is not approval.
-- Evidence is cited, critiqued through `sk-design` and never copied wholesale.
+- A measured Style Reference of real, extracted design tokens is `sk-design-md-generator`'s output, not the transport's.
+- That companion skill measures a live website's real CSS into named tokens, a type scale, components and Quick-Start CSS/Tailwind.
+- Search rank is not a verdict. An appealing screenshot is not a measured token.
+- Evidence is cited and never copied wholesale.
 
 ---
 
@@ -126,7 +126,7 @@ The transport allows breadth while researching: apps, screens, flows and intents
 
 ### When To Use This Skill
 
-Reach for this packet when a user wants Mobbin evidence: real-app screens for a UI pattern or state, app-category comparison, flow research reconstructed from screens or element behavior in context. Reach for it too when the `mobbin` wiring state or its auth expectations need reporting. Skip it when the work is the design judgment itself, which belongs to `sk-design` while this packet stays the transport. Skip it for Refero research (`mcp-refero`, the sibling transport), for Figma work (`mcp-figma`), for browser automation or previews (`mcp-chrome-devtools`) and for generic app coding (`sk-code`). Skip it for Mobbin's documentation search too: `docs.mobbin.com/mcp` is a separate docs-search MCP, not this packet's server. And never use it to change files: it is a read-only transport that never writes or edits files and never runs the Task tool. It never registers or edits the `.utcp_config.json` manual.
+Reach for this packet when a user wants Mobbin evidence: real-app screens for a UI pattern or state, app-category comparison, flow research reconstructed from screens or element behavior in context. Reach for it too when the `mobbin` wiring state or its auth expectations need reporting. Skip it when the work is measured design-reference extraction (a live site's real CSS to a Style Reference DESIGN.md of named tokens), which belongs to `sk-design-md-generator` while this packet stays the transport. Skip it for Refero research (`mcp-refero`, the sibling transport), for Figma work (`mcp-figma`), for browser automation or previews (`mcp-chrome-devtools`) and for generic app coding (`sk-code`). Skip it for Mobbin's documentation search too: `docs.mobbin.com/mcp` is a separate docs-search MCP, not this packet's server. And never use it to change files: it is a read-only transport that never writes or edits files and never runs the Task tool. It never registers or edits the `.utcp_config.json` manual.
 
 ### Related Skills
 
@@ -134,7 +134,7 @@ The packet is the hub's third transport. Its closest structural sibling is `mcp-
 
 | Skill | Relationship |
 |---|---|
-| `sk-design` | The mandatory judgment pairing. Every design-affecting use loads it first. It owns every taste, accessibility and readiness verdict. This packet is the transport, that skill is the taste |
+| `sk-design-md-generator` | The measured-extraction companion. It turns a live website's real CSS into a Style Reference DESIGN.md of named design tokens. This packet retrieves Mobbin screenshot evidence; that skill produces the measured Style Reference |
 | `mcp-code-mode` | The substrate. Manuals, `{manual}.{manual}_{tool}` naming, discovery and error-envelope discipline all come from Code Mode |
 | `mcp-refero` | The closest sibling: another remote-MCP-via-`mcp-remote`, read-only, OAuth-gated design-research transport. Refero covers styles, screens and flows with 8 tools. Mobbin covers screens, flows and sections with 3 |
 | `mcp-figma` | The hub's original Figma transport (CLI-primary with optional MCP). No surface overlap with Mobbin |

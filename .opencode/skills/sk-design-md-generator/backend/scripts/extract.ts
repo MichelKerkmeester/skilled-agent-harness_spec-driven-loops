@@ -210,7 +210,7 @@ function parseArgs(argv: string[]): ExtractOptions {
 function printUsage(): void {
   console.log(`
 Usage (run from the repo root):
-  npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url1> [url2] ...
+  npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts <url1> [url2] ...
 
 Options:
   --output <dir>         Output directory (REQUIRED; must resolve to a spec folder

@@ -130,4 +130,4 @@ Run this before writing any value into a Style Reference.
 - [design-md-format.md](design-md-format.md) - the Style Reference section specification and the Section 0 cardinal rules this boundary protects.
 - [../assets/source-of-truth-router-card.md](../assets/source-of-truth-router-card.md) - the fill-in card that sorts each value into measured, brief-provided, inferred or absent before writing.
 - [../assets/cardinal-rules-card.md](../assets/cardinal-rules-card.md) - the pre-validate fidelity checklist.
-- [../../shared/register.md](../../shared/register.md) - the Brand-vs-Product register. This mode records the extracted surface's register, it does not author one from a brief.
+- [design-knowledge/register.md](design-knowledge/register.md) - the Brand-vs-Product register. This mode records the extracted surface's register, it does not author one from a brief.

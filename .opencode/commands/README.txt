@@ -173,14 +173,13 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
 | Skill Benchmark | `/deep:skill-benchmark <skill> [:auto\|:confirm]` | Benchmark a skill routing, discovery, efficiency and usefulness |
 
-### Interface Commands
+### Design Commands
 
-Design and validate interface systems using the `sk-design` skill.
+Extract a measured Style Reference from a live site using the `sk-design-md-generator` skill.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Design | `/interface:design <target> [:auto\|:confirm]` | Create or reshape a distinctive interface direction (incl. motion, transitions, reduced-motion) |
-| Design Reference | `/interface:design-reference <live-url> --output <dir> [:auto\|:confirm]` | Extract a measured Style Reference DESIGN.md |
+| Design Reference | `/design:design-reference <live-url> --output <dir> [:auto\|:confirm]` | Extract a measured Style Reference DESIGN.md |
 
 ### Root Commands
 

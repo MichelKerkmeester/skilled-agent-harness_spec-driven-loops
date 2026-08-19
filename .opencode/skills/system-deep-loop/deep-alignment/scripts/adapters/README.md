@@ -9,7 +9,7 @@ description: "One adapter per registered standard authority, each implementing d
 
 ## 1. OVERVIEW
 
-Adapters translate a deep-alignment lane into calls against one named authority (sk-doc, sk-git, sk-design, sk-code). Every adapter implements the same three-method contract, `discover(scope)`, `standardSource(authority)` and `check(artifact, rules, options)`, so the state machine in `../` never branches on which authority a lane names.
+Adapters translate a deep-alignment lane into calls against one named authority (sk-doc, sk-git, sk-code). Every adapter implements the same three-method contract, `discover(scope)`, `standardSource(authority)` and `check(artifact, rules, options)`, so the state machine in `../` never branches on which authority a lane names.
 
 ---
 
@@ -20,7 +20,6 @@ Adapters translate a deep-alignment lane into calls against one named authority 
 | `sk-doc.cjs` | Reference adapter. Wraps `validate_document.py` and `extract_structure.py` behind the adapter contract |
 | `sk-git.cjs` | Wraps `git log`, `git show`, `git diff-tree`, `git branch`, `git worktree` plus commit-message grammar and branch-naming checks |
 | `sk-code.cjs` | Two-layer adapter: deterministic surface detection plus `verify_alignment_drift.py` and a reasoning-agent dispatch packet for pattern-conformance judgment |
-| `sk-design.cjs` | Static-only adapter. Reads `DESIGN.md` and `tokens.json`, never renders and never drives Playwright or chrome-devtools |
 | `sk-doc-command.cjs` | Checks cross-artifact integrity for canonical OpenCode command documents |
 
 ---

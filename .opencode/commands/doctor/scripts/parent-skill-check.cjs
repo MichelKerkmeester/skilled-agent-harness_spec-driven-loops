@@ -396,7 +396,7 @@ function main() {
           discriminatorOk = false;
         }
         // backendKind is presence-checked only — hub families name their own
-        // descriptive backends (sk-design's reference-base, playwright-extract);
+        // descriptive backends (sk-code's surface-router, sk-doc's template-scaffold);
         // the one constrained case is a surface packet, enforced in 3g.
         if (typeof mode.backendKind !== 'string' || mode.backendKind.length === 0) {
           fail(`3d: mode "${label}" is missing backendKind`);

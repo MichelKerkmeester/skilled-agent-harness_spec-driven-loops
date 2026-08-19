@@ -61,7 +61,6 @@ One or more of the currently registered authorities, presented as a **multi-sele
 |---|---|---|
 | `sk-doc` | `docs` | Reference, most deterministic |
 | `sk-git` | `git-history` | Deterministic |
-| `sk-design` | `designs` (static only) | Audit-rubric |
 | `sk-code` | `code` | Hybrid (ADR-008), hardest, least deterministic |
 
 The set is **extensible**: a fifth authority registers by adding one entry to the `AUTHORITY_ARTIFACT_CLASSES` map in `scripts/scoping.cjs`, plus the short adapter decision-record ADR-012 requires. No change to this tree's shape is needed, only to the options it offers. In v1 each authority maps to exactly one artifact-class. The map itself supports an authority covering more than one class, and an artifact-class being covered by more than one authority, once a later authority actually needs that (the multi-select exists in this tree for that future case, not because v1 needs it: v1's per-class authority lists are always singletons).
@@ -89,7 +88,7 @@ walk = (artifactClass, [authority_1, authority_2, ...], scope)
 lanes += [(authority_1, artifactClass, scope), (authority_2, artifactClass, scope), ...]
 ```
 
-A single interactive session repeats this walk as many times as the operator wants (once per artifact-class/authority-set they care about), accumulating lanes across walks. This is how "sk-code and sk-git and/or sk-design in one pass," the multi-authority precedent from `002-architecture-decision`, resolves: three separate walks (`code`/`sk-code`, `git-history`/`sk-git`, `designs`/`sk-design`), each contributing one lane, all inside one session. It is **not** a full cross-product of every artifact-class against every authority. Only the combinations the operator actually names become lanes (REQ-002).
+A single interactive session repeats this walk as many times as the operator wants (once per artifact-class/authority-set they care about), accumulating lanes across walks. This is how "sk-code and sk-git and/or sk-doc in one pass," the multi-authority precedent from `002-architecture-decision`, resolves: three separate walks (`code`/`sk-code`, `git-history`/`sk-git`, `docs`/`sk-doc`), each contributing one lane, all inside one session. It is **not** a full cross-product of every artifact-class against every authority. Only the combinations the operator actually names become lanes (REQ-002).
 
 Lane count is unbounded by this phase's contract (SC-002). No hard-coded authority ceiling exists in the tree or in `scripts/scoping.cjs`. A per-run lane cap, if one is ever adopted, is corpus-partitioning territory the `ITERATE` state (phase 008) owns, not a restriction this phase's engine enforces.
 

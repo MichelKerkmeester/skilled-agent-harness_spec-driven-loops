@@ -11,7 +11,7 @@ version: 1.0.2.0
 
 Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a v3 **Style Reference**: a named, role-driven, ship-ready design-system handoff (named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start CSS + Tailwind) that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through an embedded Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`references/`](references/).
 
-> **Family boundary.** This skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `interface` invents **new** distinctive direction (palette, type, anti-default critique). The transport — `mcp-figma` — moves design data; this skill produces the authoritative reference that transport and `interface` consume.
+> **Boundary.** This skill is the **extraction and format-fidelity engine** for design references. It captures what already exists — it does not invent **new** distinctive direction (palette, type, anti-default critique), which is out of scope. The transport — `mcp-figma` — moves design data; this skill produces the authoritative measured reference that transport and downstream implementers (`sk-code`) consume.
 
 ---
 
@@ -42,7 +42,7 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 ### When NOT to Use
 
 **Skip this skill when:**
-- The task is **inventing a new design direction** (palette, type scale, the anti-default critique). That is `interface`. This skill captures; that skill creates.
+- The task is **inventing a new design direction** (palette, type scale, the anti-default critique). That is out of scope — this skill captures measured reality, it does not create new direction.
 - The task is **authoring a Style Reference from a brief alone** with no live site to measure. That is forward-authoring, and it is OUT OF SCOPE for this mode. This mode reports what is measurably there. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here. The line between measured values and a brief's stated intent is drawn in `references/authoring-boundary.md`.
 - The target is a **Figma file**, not a live website. Use `mcp-figma` to extract from Figma Desktop.
 - The user only wants a **screenshot or visual preview** of a page. Use `mcp-chrome-devtools`.
@@ -56,7 +56,7 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 
 Detect the **pipeline phase** first. The three phases are sequential and each has a distinct surface: EXTRACT hits the live URL, WRITE produces the markdown, VALIDATE checks fidelity. A fourth path — REPORT — renders visual artifacts from an existing pair.
 
-Route here when `DESIGN.md`, `tokens.json`, style reference, CSS capture, validation, report generation, or source-of-truth provenance are measured artifacts from a live site or an existing extraction pair. **Route here too, even with no live URL present, whenever the request explicitly names the `DESIGN.md`/"style reference" artifact this mode owns** (e.g. "generate a DESIGN.md style reference for X from this brief") — resolving elsewhere on a brief-only technicality would skip this mode's own authoring-boundary refusal (`references/authoring-boundary.md`), the exact check that request needs. Route generic brief-only token-system authoring that never names `DESIGN.md`/style-reference/`tokens.json` as the target artifact to `sk-design-interface` (e.g. "design a color and type token system for X"). Do not route new visual direction from an extracted reference here; the extraction can ground `sk-design-interface`, but this mode only captures and validates measured values.
+Route here when `DESIGN.md`, `tokens.json`, style reference, CSS capture, validation, report generation, or source-of-truth provenance are measured artifacts from a live site or an existing extraction pair. **Route here too, even with no live URL present, whenever the request explicitly names the `DESIGN.md`/"style reference" artifact this mode owns** (e.g. "generate a DESIGN.md style reference for X from this brief") — resolving elsewhere on a brief-only technicality would skip this mode's own authoring-boundary refusal (`references/authoring-boundary.md`), the exact check that request needs. Generic brief-only token-system authoring that never names `DESIGN.md`/style-reference/`tokens.json` as the target artifact (e.g. "design a color and type token system for X") is out of scope for this skill — it invents rather than measures. Do not produce new visual direction from an extracted reference here; this skill only captures and validates measured values.
 
 ```bash
 # Phase detection (pseudo)
@@ -242,7 +242,7 @@ If the card does not match, state `Procedure applied: none - baseline md-generat
 
 Procedure support does not replace or generalize the extraction backend. `design-md-generator` remains the only mutating `sk-design` mode, with `backendKind: playwright-extract`, Write/Edit/Bash permission, and the embedded TypeScript pipeline under `backend/scripts/`. The protected entrypoints are `extract.ts`, `build-write-prompt.ts`, `validate.ts`, `report-gen.ts`, `preview-gen.ts`, and `proof.ts`; package-level verification remains `npm run typecheck`, `npm run build`, and `npm test` from `backend/` when operator policy allows those commands.
 
-The procedure card can shape planning and proof, but it must not flatten this mode into read-only guidance or grant Write, Edit, or Bash to the read-only `sk-design-interface` mode.
+The procedure card can shape planning and proof, but it must not flatten this skill into read-only guidance or alter its owned extract-write-validate write boundary.
 
 ### Context, Proof, And Direct Fallback
 
@@ -278,16 +278,16 @@ The cardinal rule stays enforceable by inspection because every value has a legi
 
 ```bash
 # One-time setup
-cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm install && npx playwright install chromium
+cd .opencode/skills/sk-design-md-generator/backend && npm install && npx playwright install chromium
 
 # Phase 1 — extract (writes tokens.json to --output)
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output
 
 # Phase 2 — pre-render value tables + FACTS block, then write DESIGN.md prose
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/build-write-prompt.ts .opencode/specs/<track>/<packet>/output/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/build-write-prompt.ts .opencode/specs/<track>/<packet>/output/tokens.json
 
 # Phase 3 — validate (DESIGN.md first, tokens.json second)
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts <DESIGN.md> .opencode/specs/<track>/<packet>/output/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts <DESIGN.md> .opencode/specs/<track>/<packet>/output/tokens.json
 ```
 
 Optional Phase 4 (from the repo root, tokens.json first): `proof.ts <url> <tokens.json>`, `report-gen.ts <tokens.json> <dir> <DESIGN.md>`, `preview-gen.ts <tokens.json> <dir>`. Interaction capture is **default-on**; opt out with `--no-interaction` or `--fast-no-interaction`.
@@ -311,13 +311,13 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 7. **ALWAYS include an accessibility section** drawn from the `tokens.json` a11y data (contrast ratios, focus ring styles, minimum touch-target sizes). If the extractor captured no a11y data, note the absence rather than inventing values.
 8. **ALWAYS confirm tool readiness** before any extract/validate/report invocation: `cd backend && npm install && npx playwright install chromium`. The embedded tool requires Node.js and a Playwright Chromium binary.
 9. **ALWAYS cite `procedures/design-system-extraction.md` or the no-procedure fallback** before substantial extraction planning, generation, validation, or report output.
-10. **ALWAYS, on a brief-only request with no live URL, STOP before producing any Style Reference content.** The entire response is text only: either (a) a request for the live URL to crawl, or (b) an explicit statement, citing `references/authoring-boundary.md` by path, that brief-only authoring is out of scope for this mode and naming where it routes instead (a separate design-spec decision, or `sk-design-interface`). Cite both `references/authoring-boundary.md` and `assets/source-of-truth-router-card.md` by their file paths in the response text — reading them via a tool call is not a substitute for naming them in what the user sees. **NEVER produce a partial or full DESIGN.md artifact as a byproduct of this decision** — no Tokens table, no Surfaces, no Quick Start — even with a disclaimer sentence attached or brief values Origin-labeled. A labeled or disclaimed artifact is still forward-authoring; the boundary forbids the artifact itself, not just unlabeled values inside it. There is no third option and no "boundary exception" framing that produces output anyway.
+10. **ALWAYS, on a brief-only request with no live URL, STOP before producing any Style Reference content.** The entire response is text only: either (a) a request for the live URL to crawl, or (b) an explicit statement, citing `references/authoring-boundary.md` by path, that brief-only authoring is out of scope for this mode and naming where it routes instead (a separate design-spec decision; there is no design-direction skill to route to). Cite both `references/authoring-boundary.md` and `assets/source-of-truth-router-card.md` by their file paths in the response text — reading them via a tool call is not a substitute for naming them in what the user sees. **NEVER produce a partial or full DESIGN.md artifact as a byproduct of this decision** — no Tokens table, no Surfaces, no Quick Start — even with a disclaimer sentence attached or brief values Origin-labeled. A labeled or disclaimed artifact is still forward-authoring; the boundary forbids the artifact itself, not just unlabeled values inside it. There is no third option and no "boundary exception" framing that produces output anyway.
 
 ### ⛔ NEVER
 
 1. **NEVER estimate, round, or invent a hex, pixel, font-weight, shadow, or radius value in DESIGN.md.** Every value must trace back to a token in `tokens.json`. Even trivial-looking values like `1px` borders or `0.25rem` spacing must be confirmed.
 2. **NEVER include L4 (content) tokens in DESIGN.md.** These are image-derived or one-off values that do not represent the design system.
-3. **NEVER replace the v3 Style Reference format with a freeform structure.** The named sections (Tokens — Colors/Typography/Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Layout, Agent Prompt Guide, Similar Brands, Quick Start) are part of the contract that downstream consumers — `interface`, `sk-code`, and AI coding agents — depend on. Never assert a false system (gradient-as-depth, focus-consistent) the tokens contradict.
+3. **NEVER replace the v3 Style Reference format with a freeform structure.** The named sections (Tokens — Colors/Typography/Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Layout, Agent Prompt Guide, Similar Brands, Quick Start) are part of the contract that downstream consumers — `sk-code` and AI coding agents — depend on. Never assert a false system (gradient-as-depth, focus-consistent) the tokens contradict.
 4. **NEVER skip validation before claiming a DESIGN.md is complete.** An unvalidated DESIGN.md is a draft. Validation errors must be resolved before completion.
 5. **NEVER write DESIGN.md without reading `tokens.json` first.** The markdown exists only as a faithful rendering of the token data; writing without the source data guarantees hallucination.
 6. **NEVER produce any Tokens table (Colors, Typography, Spacing & Shapes, Border Radius, or any other) when the request is brief-only with no live URL to crawl** — not even with an Origin/brief-provided label or a disclaimer sentence attached. The correct response for that condition contains zero token tables: either a URL request or an explicit out-of-scope statement per ALWAYS rule #10. Outside that specific no-live-URL condition, a brief-provided value must never appear inside an actual Tokens table row, even when a separate Provenance/source-of-truth table also exists elsewhere in the response. A separate labeling table does not cure an unlabeled value sitting in the real Tokens table — brief-provided values stay in prose only, per `references/authoring-boundary.md`'s measured/brief-provided/inferred/absent line (Section 3, "Only measured values enter the token tables, and they enter unlabeled").
@@ -360,9 +360,9 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 - [references/guided-run.md](references/guided-run.md) - Guided wrapper behavior and stop conditions for smoke runs and operator handoff.
 - [procedures/design-system-extraction.md](procedures/design-system-extraction.md) - Private measured-extraction procedure support for source evidence, gaps, inconsistencies, and next steps inside this existing mode.
 
-### Shared
+### Design Knowledge
 
-- [../shared/register.md](../shared/register.md) — The Brand-vs-Product operating register. This mode records the extracted surface's register so a captured Style Reference carries the posture forward. It does not author a register from a brief.
+- [references/design-knowledge/README.md](references/design-knowledge/README.md) — Condensed general design-knowledge layer: the Brand-vs-Product operating register (and its six dials), anti-slop principles, cognitive and numeric design laws, token vocabulary, and a design-principles digest. It lets this skill read design intent off a surface, not only CSS. This mode records the extracted surface's register so a captured Style Reference carries the posture forward; it does not author a register from a brief.
 
 ### Assets
 
@@ -407,7 +407,7 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 
 ## 7. INTEGRATION POINTS
 
-- `interface` owns new direction (palette, type, anti-default critique); this skill supplies the measured ground truth it builds on.
+- New visual direction (palette, type, anti-default critique) is out of scope; this skill supplies the measured ground truth such work would build on.
 - `sk-code` implements against `DESIGN.md` as the hallucination-proof source of truth for colors, fonts, spacing, shadows, and radii.
 - `mcp-figma` is the Figma-file alternative to a live-URL extraction.
 - `system-spec-kit` applies when the extraction is part of a larger spec-tracked feature and packet documentation is required.

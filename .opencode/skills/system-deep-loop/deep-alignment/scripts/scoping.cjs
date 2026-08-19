@@ -34,9 +34,9 @@ const { validateNamespaceValue, classifyExitCode } = require('../../runtime/scri
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The four ARTIFACT-CLASS values. Declaration order matches the documented
+// The ARTIFACT-CLASS values. Declaration order matches the documented
 // axis order; validation does not depend on it.
-const ARTIFACT_CLASSES = Object.freeze(['docs', 'code', 'designs', 'git-history']);
+const ARTIFACT_CLASSES = Object.freeze(['docs', 'code', 'git-history']);
 
 // The three SCOPE shapes a lane may carry.
 const SCOPE_TYPES = Object.freeze(['paths', 'globs', 'branchRange']);
@@ -44,26 +44,25 @@ const SCOPE_TYPES = Object.freeze(['paths', 'globs', 'branchRange']);
 // AUTHORITY -> allowed ARTIFACT-CLASS registry. A new authority registers by
 // adding one entry here -- no other change to this module or the loop that
 // calls it is required. Values are arrays so a future authority may cover
-// more than one artifact-class; v1's four authorities each cover exactly one.
+// more than one artifact-class; each registered authority covers exactly one.
 const AUTHORITY_ARTIFACT_CLASSES = Object.freeze({
   'sk-doc': Object.freeze(['docs']),
   'sk-git': Object.freeze(['git-history']),
-  'sk-design': Object.freeze(['designs']),
   'sk-code': Object.freeze(['code']),
 });
 
 // AUTHORITY -> allowed ADAPTER MODULE registry. An authority resolves to its own
 // adapter module (adapters/<authority>.cjs) by default; a lane MAY carry an
 // optional `adapter` discriminator to select a peer adapter variant for the same
-// authority. sk-design ships two adapter shapes over the same `designs` class --
-// the static rubric adapter (sk-design) -- so without an adapter selector a designs lane could
-// never reach a peer adapter. Discovery/check load
-// adapters/<adapter-or-authority>.cjs; the loop still never branches on which
-// authority produced a finding, it only loads the module the lane names.
+// authority. sk-doc ships two adapter shapes over the same `docs` class --
+// the skill-doc adapter (sk-doc) and the command-doc adapter (sk-doc-command) --
+// so without an adapter selector a docs lane could never reach the peer adapter.
+// Discovery/check load adapters/<adapter-or-authority>.cjs; the loop still never
+// branches on which authority produced a finding, it only loads the module the
+// lane names.
 const AUTHORITY_ADAPTERS = Object.freeze({
   'sk-doc': Object.freeze(['sk-doc', 'sk-doc-command']),
   'sk-git': Object.freeze(['sk-git']),
-  'sk-design': Object.freeze(['sk-design']),
   'sk-code': Object.freeze(['sk-code']),
 });
 

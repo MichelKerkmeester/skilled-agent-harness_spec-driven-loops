@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "skill_id": "sk-design-md-generator",
-  "family": "sk-design",
+  "family": "sk-util",
   "category": "design",
   "importance_tier": "important",
   "edges": {

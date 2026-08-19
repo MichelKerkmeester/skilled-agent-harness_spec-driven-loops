@@ -28,7 +28,6 @@ const WARN_PACKAGE_IDS = Object.freeze([
   'mcp-code-mode',
   'mcp-tooling',
   'sk-code',
-  'sk-design',
   'sk-doc',
   'sk-git',
   'sk-prompt',

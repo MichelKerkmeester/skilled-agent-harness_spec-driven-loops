@@ -63,10 +63,10 @@ Operators run the exact command sequence for `CLUSTER-001` and confirm the expec
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: Wave 1 (SETUP-001) must be PASS. The `backend/node_modules/` directory must exist and the vitest runner must be available. A prior extraction must have produced `<--output>/tokens.json`; if none exists, run `npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output` first.
+PRE: Wave 1 (SETUP-001) must be PASS. The `backend/node_modules/` directory must exist and the vitest runner must be available. A prior extraction must have produced `<--output>/tokens.json`; if none exists, run `npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output` first.
 
 1. verify tool readiness: `bash: node --version`, glob `backend/node_modules/`  # -> Node 20+, node_modules exists
-2. `cd .opencode/skills/sk-design/sk-design-md-generator/backend && npx vitest run cluster`  # -> exits 0, all cluster tests pass
+2. `cd .opencode/skills/sk-design-md-generator/backend && npx vitest run cluster`  # -> exits 0, all cluster tests pass
 3. `bash: ls <--output>/tokens.json` (run from the repo root)  # -> file exists
 4. `bash: node -e "const t = require('./<--output>/tokens.json'); const layers = t.colorTokens.map(c => c.stability?.layer); console.log('total colors:', t.colorTokens.length, '| L1:', layers.filter(l => l === 'infrastructure').length, 'L2:', layers.filter(l => l === 'system').length, 'L3:', layers.filter(l => l === 'campaign').length, 'L4:', layers.filter(l => l === 'content').length, '| missing stability:', layers.filter(l => !l).length)"` (run from the repo root)  # -> all tokens have stability.layer, L1/L2 present
 5. agent reports cluster test pass and stability distribution

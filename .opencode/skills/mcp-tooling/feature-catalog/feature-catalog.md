@@ -32,7 +32,7 @@ Use this catalog as the current-state inventory for the `mcp-tooling` hub. The h
 
 #### Current Reality
 
-Workflow packets mutate this repository's workspace; transport packets bridge to an external tool and never mutate this workspace, with each transport packet carrying a mandatory cross-hub judgment pairing to `sk-design`. `routerPolicy.tieBreak` scores workflow packets before transport packets when both signal.
+Workflow packets mutate this repository's workspace; transport packets bridge to an external tool and never mutate this workspace, with each transport packet carrying a mandatory cross-hub pairing to `sk-design-md-generator` for a measured Style Reference (extracted design tokens). `routerPolicy.tieBreak` scores workflow packets before transport packets when both signal.
 
 #### Source Files
 

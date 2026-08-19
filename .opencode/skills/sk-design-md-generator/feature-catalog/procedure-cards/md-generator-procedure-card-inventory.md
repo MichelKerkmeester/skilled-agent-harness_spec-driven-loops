@@ -37,14 +37,13 @@ The card grants no additional permission beyond the mode's existing extraction p
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/sk-design-md-generator/procedures/design-system-extraction.md` | Shared | Design-system-extraction card: purpose, tool boundary, procedure, and conflict rule. |
-| `.opencode/skills/sk-design/shared/procedure-card-schema.md` | Shared | Defines the required-field schema this card follows. |
+| `.opencode/skills/sk-design-md-generator/procedures/design-system-extraction.md` | Shared | Design-system-extraction card: purpose, tool boundary, procedure, and conflict rule. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Exercises measured extraction scenarios against the live mode. |
+| `.opencode/skills/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Exercises measured extraction scenarios against the live mode. |
 
 ---
 

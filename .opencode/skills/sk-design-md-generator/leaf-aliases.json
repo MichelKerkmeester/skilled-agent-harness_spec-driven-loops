@@ -166,6 +166,51 @@
   },
   {
     "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/creation-contract.md",
+    "diskPath": "references/creation-contract.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/design-knowledge/README.md",
+    "diskPath": "references/design-knowledge/README.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/design-knowledge/anti-slop-principles.md",
+    "diskPath": "references/design-knowledge/anti-slop-principles.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/design-knowledge/cognitive-laws.md",
+    "diskPath": "references/design-knowledge/cognitive-laws.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/design-knowledge/design-principles-digest.md",
+    "diskPath": "references/design-knowledge/design-principles-digest.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/design-knowledge/design-token-vocabulary.md",
+    "diskPath": "references/design-knowledge/design-token-vocabulary.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/design-knowledge/numeric-design-laws.md",
+    "diskPath": "references/design-knowledge/numeric-design-laws.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/design-knowledge/register-card.md",
+    "diskPath": "references/design-knowledge/register-card.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/design-knowledge/register.md",
+    "diskPath": "references/design-knowledge/register.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
     "leafResourceId": "references/design-md-format.md",
     "diskPath": "references/design-md-format.md"
   },
@@ -253,6 +298,11 @@
     "workflowMode": "sk-design-md-generator",
     "leafResourceId": "references/quality-checklist.md",
     "diskPath": "references/quality-checklist.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/sk-code-handoff.md",
+    "diskPath": "references/sk-code-handoff.md"
   },
   {
     "workflowMode": "sk-design-md-generator",

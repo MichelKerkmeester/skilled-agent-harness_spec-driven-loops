@@ -6,7 +6,10 @@
   "children_ids": [
     "sk-design/016-deprecate-sk-design-interface/001-inventory-and-dependency-map",
     "sk-design/016-deprecate-sk-design-interface/002-extract-md-generator-and-styles",
-    "sk-design/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata"
+    "sk-design/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata",
+    "sk-design/016-deprecate-sk-design-interface/004-fold-design-knowledge",
+    "sk-design/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands",
+    "sk-design/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile"
   ],
   "manual": {
     "depends_on": [],
@@ -35,7 +38,7 @@
       "currently"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -85,17 +88,17 @@
     ],
     "causal_summary": "The `sk-design` parent hub currently routes exactly two workflow modes through `mode-registry.json`: `sk-design-interface` (invents new visual direction — palette, type, layout, motion, anti-slop critique; the design taste authority) and `sk-design-md-generator` (extracts a live website's real CSS into a v3 Style Reference `DESIGN.md`; the extraction fidelity engine)",
     "created_at": "2026-08-19T04:18:51.559Z",
-    "last_save_at": "2026-08-19T05:52:34.892Z",
+    "last_save_at": "2026-08-19T11:27:20.174Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:15d8eb052170a25ead079ff040b10e87851639abee66cde9810ad56411868dd7",
+    "source_fingerprint": "sha256:e4e243235e04b7b573c95aad90c0f349179196533d32941a340d8bb6084a080b",
     "source_doc_hashes": {
-      "spec.md": "3f4fe74fca2636f5ed48d3d138482f365b366c9d195ed024b6e66038080e25c7"
+      "spec.md": "93591873798cb87a89024598b53db832e1b1aa6d3c69b04162def875984760fe"
     },
-    "last_active_child_id": "sk-design/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata",
-    "last_active_at": "2026-08-19T05:52:34.892Z"
+    "last_active_child_id": "sk-design/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile",
+    "last_active_at": "2026-08-19T07:14:54.600Z"
   }
 }

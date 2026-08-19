@@ -212,8 +212,6 @@
         "assets/deep-alignment-config-template.json",
         "references/adapters/sk-code-adapter.md",
         "references/adapters/sk-code-known-deviations.md",
-        "references/adapters/sk-design-adapter.md",
-        "references/adapters/sk-design-known-deviations.md",
         "references/adapters/sk-doc-adapter.md",
         "references/adapters/sk-doc-command-adapter.md",
         "references/adapters/sk-doc-command-known-deviations.md",

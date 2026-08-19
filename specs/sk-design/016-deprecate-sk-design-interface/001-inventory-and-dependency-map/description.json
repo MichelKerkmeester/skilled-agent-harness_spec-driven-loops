@@ -1,14 +1,23 @@
 {
   "level": "1",
   "specFolder": "sk-design/016-deprecate-sk-design-interface/001-inventory-and-dependency-map",
-  "description": "`sk-design` is referenced across ~180 files",
+  "description": "sk-design is referenced across ~180 files; this read-only phase classifies every reference into reconcile buckets and produces dependency-map.md for",
   "keywords": [
     "sk-design",
     "referenced",
     "across",
-    "files"
+    "files",
+    "read-only",
+    "phase",
+    "classifies",
+    "every",
+    "reference",
+    "reconcile",
+    "buckets",
+    "produces",
+    "dependency-map"
   ],
-  "lastUpdated": "2026-08-19T04:57:58.402Z",
+  "lastUpdated": "2026-08-19T11:43:20.557Z",
   "specId": "001",
   "folderSlug": "inventory-and-dependency-map",
   "parentChain": [

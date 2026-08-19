@@ -794,6 +794,16 @@
       "nativeTop": "mcp-code-mode",
       "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
       "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-iter3-146",
+      "corpus": "labeled",
+      "promptHash": "sha256:4997d16b31b16f980b11bf5d691a2260b4c810431ed4397337edbe527c1c700e",
+      "gold": "sk-code",
+      "localTop": "sk-code",
+      "nativeTop": "sk-doc",
+      "reason": "divergence surfaced 2026-08-19 when the retired sk-design hub left the routing graph: on this 0.022-margin mixed-ambiguous review prompt the native/TS scorer ties to sk-doc while the local/Python reference keeps sk-code (gold); accepted rather than retuning tie-break for one synthetic-edge prompt",
+      "approvedAt": "2026-08-19"
     }
   ]
 }

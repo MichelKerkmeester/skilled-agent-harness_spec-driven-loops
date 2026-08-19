@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 22,
+    "commandMetadata": 20,
     "allowList": 8,
-    "generated": 30,
+    "generated": 28,
     "typescriptActive": 6,
     "pythonActive": 16
   },
@@ -432,36 +432,6 @@
       "skillId": "system-deep-loop",
       "ownerMode": "skill-benchmark",
       "source": ".opencode/skills/system-deep-loop/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
-      "id": "command-interface-design",
-      "command": "/interface:design",
-      "skillId": "sk-design",
-      "ownerMode": "sk-design-interface",
-      "source": ".opencode/skills/sk-design/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
-      "id": "command-interface-design-reference",
-      "command": "/interface:design-reference",
-      "skillId": "sk-design",
-      "ownerMode": "sk-design-md-generator",
-      "source": ".opencode/skills/sk-design/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false

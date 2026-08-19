@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate deep-alignment authority/artifact-class registry enforcement: unknown authority and unsupported pairing both fail fast with named values.`
 - Expected execution process: Read `AUTHORITY_ARTIFACT_CLASSES` and `validateLane`, then call `resolveLanesFromConfig` with an unknown authority and with a valid-authority/invalid-class pairing, confirming each throws an input-validation error naming the offending values.
 - Desired user-facing outcome: The user is told the four v1 authorities and their classes, and that a bad lane fails immediately with a message naming what was wrong.
-- Expected signals: `AUTHORITY_ARTIFACT_CLASSES` maps `sk-doc->docs`, `sk-git->git-history`, `sk-design->designs`, `sk-code->code`; `validateLane` rejects an unknown authority listing the registered set, and rejects a valid-authority/invalid-class pairing naming both values and the authority's supported class(es).
+- Expected signals: `AUTHORITY_ARTIFACT_CLASSES` maps `sk-doc->docs`, `sk-git->git-history`, `sk-code->code`; `validateLane` rejects an unknown authority listing the registered set, and rejects a valid-authority/invalid-class pairing naming both values and the authority's supported class(es).
 - Pass/fail posture: PASS if both malformed lanes throw with named values and the registry is the single source. FAIL if either is silently accepted or the error omits the offending values.
 
 ---
@@ -49,7 +49,7 @@ Validate deep-alignment authority/artifact-class registry enforcement: unknown a
 2. `bash: node -e "const s=require('./.opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs'); try{s.resolveLanesFromConfig([{authority:'sk-frobnicate',artifactClass:'docs',scope:{type:'paths',values:['docs/']}}]);}catch(e){console.log('UNKNOWN_AUTHORITY:',e.message);}"`
 3. `bash: node -e "const s=require('./.opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs'); try{s.resolveLanesFromConfig([{authority:'sk-git',artifactClass:'docs',scope:{type:'paths',values:['docs/']}}]);}catch(e){console.log('BAD_PAIR:',e.message);}"`
 ### Expected
-`AUTHORITY_ARTIFACT_CLASSES` maps the four authorities to their classes. The unknown-authority call throws naming `sk-frobnicate` and the registered set (`sk-doc, sk-git, sk-design, sk-code`). The `sk-git`+`docs` call throws naming both `sk-git` and `docs` and the supported class (`git-history`).
+`AUTHORITY_ARTIFACT_CLASSES` maps the three authorities to their classes. The unknown-authority call throws naming `sk-frobnicate` and the registered set (`sk-doc, sk-git, sk-code`). The `sk-git`+`docs` call throws naming both `sk-git` and `docs` and the supported class (`git-history`).
 ### Evidence
 Capture the registry constant and both thrown messages verbatim.
 ### Pass/Fail

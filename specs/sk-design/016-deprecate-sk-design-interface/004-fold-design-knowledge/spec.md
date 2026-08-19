@@ -9,10 +9,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/016-deprecate-sk-design-interface/004-fold-design-knowledge"
-    last_updated_at: "2026-08-19T05:55:00Z"
+    last_updated_at: "2026-08-19T06:07:13Z"
     last_updated_by: "spec-author"
-    recent_action: "Authored the fold spec; dispatched cli-devin gemini-3-7-flash-high to author the layer"
-    next_safe_action: "Verify the folded files against sources, repair links, validate --strict"
+    recent_action: "Authored 8 design-knowledge files, repointed 3 links, verified zero ../shared refs"
+    next_safe_action: "Phase 005: delete hub + interface commands (operator-gated hard stop)"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design-md-generator/references/design-knowledge/"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Level** | 1 |
 | **Structure** | Phase child of `016-deprecate-sk-design-interface` |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/016-deprecate-sk-design-interface` |
@@ -113,3 +113,13 @@ The extraction skill graduated out of a hub that also owned a shared design-know
 
 - None blocking. The digest's exact length is a judgment call bounded by "condensed" (target 70-90 lines); the main agent trims if the model overshoots.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:phase-navigation -->
+## PHASE NAVIGATION
+
+- **Parent:** `../spec.md`
+- **Predecessor:** `../003-standalone-rewire-and-metadata/spec.md`
+- **Successor:** `../005-delete-hub-and-interface-commands/spec.md`
+<!-- /ANCHOR:phase-navigation -->

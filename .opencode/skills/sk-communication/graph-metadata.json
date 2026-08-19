@@ -14,9 +14,9 @@
         "context": "sk-code builds and verifies integration code against the communication-projection package"
       },
       {
-        "target": "sk-design",
+        "target": "sk-design-md-generator",
         "weight": 0.3,
-        "context": "sk-design owns any companion UI that renders a full-projection view"
+        "context": "sk-design-md-generator extracts a measured Style Reference from a live source"
       },
       {
         "target": "sk-doc",

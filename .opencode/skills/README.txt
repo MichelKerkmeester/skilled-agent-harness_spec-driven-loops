@@ -58,7 +58,7 @@ Each skill name links to its own README. One-line descriptions reflect current b
 | [`sk-code`](sk-code/README.md) | Unified two-axis code skill: two WORKFLOW modes (`sk-code-quality`, `sk-code-review`) plus read-only SURFACE evidence packets (`sk-code-webflow`, `sk-code-opencode`), each carrying implement/debug/verify workflow and verification gates |
 | [`sk-doc`](sk-doc/README.md) | Documentation and component-authoring parent hub: workflow packets for skills, hubs, READMEs/install-guides, agents, commands, catalogs and playbooks, plus deterministic validation and DQI scoring |
 | [`sk-git`](sk-git/README.md) | Git workflow in one skill: numbered worktrees, Conventional Commits, PRs, merge/rebase and finish |
-| [`sk-design`](sk-design/README.md) | Distinctive, intentional UI design across the full surface: visual direction, color, typography, layout, spacing, hierarchy, tokens, animation and accessibility — grounded against real design systems, then handed to sk-code to build |
+| [`sk-design-md-generator`](sk-design-md-generator/README.md) | Extracts a live website's real, measured CSS into a v3 Style Reference DESIGN.md (named tokens, type scale, components, Quick Start CSS/Tailwind) — measured ground truth for sk-code to build against, plus a condensed general design-knowledge layer |
 | [`sk-prompt`](sk-prompt/README.md) | Prompt engineering parent hub: routes by `workflowMode` to `prompt-improve` (7-framework, DEPTH-thinking, CLEAR-scored prompt enhancement) and `prompt-models` (read-only per-model prompt-craft profiles) — packets housed at `sk-prompt-improve/` and `sk-prompt-models/` |
 
 ### system-*: Deep Loops and the Runtime Foundation

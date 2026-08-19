@@ -15,11 +15,6 @@
     ],
     "siblings": [
       {
-        "target": "sk-design-md-generator",
-        "weight": 0.4,
-        "context": "design-reference-and-build pair: sk-design-md-generator extracts a measured Style Reference, sk-code owns the implementation"
-      },
-      {
         "target": "sk-prompt",
         "weight": 0.4,
         "context": "prompt-craft pairs with code standards on dispatched work"

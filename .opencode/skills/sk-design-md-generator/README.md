@@ -67,7 +67,7 @@ A value can have one of four origins: measured (read off the page and present in
 **Step 1: Install dependencies.** From the skill root, run:
 
 ```bash
-cd .opencode/skills/sk-design/sk-design-md-generator/backend
+cd .opencode/skills/sk-design-md-generator/backend
 npm install
 npx playwright install chromium   # ~500 MB, one-time
 ```
@@ -77,7 +77,7 @@ npx playwright install chromium   # ~500 MB, one-time
 **Step 2: Extract tokens from a live site.** Run this from the repo root, not from `backend/`. `extract.ts` refuses any `--output` that resolves inside the skill, so a relative spec-folder path resolves correctly only from the repo root.
 
 ```bash
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output specs/<track>/<packet>/output
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output specs/<track>/<packet>/output
 # --fast crawls 5 pages at 8 concurrency. tokens.json is written to <--output>/.
 ```
 
@@ -88,7 +88,7 @@ Success means `tokens.json` exists under the output directory with the measured 
 **Step 4: Validate before claiming completion.** Run from the repo root with the full script path:
 
 ```bash
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md specs/<track>/<packet>/output/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md specs/<track>/<packet>/output/tokens.json
 ```
 
 Expected: zero hex mismatches, all required v3 sections present and the Quick-Start fidelity check passing (every Quick Start hex traces to tokens, with `--page-max-width` matching tokens).
@@ -153,7 +153,7 @@ The maintainer-facing card in [`procedures/design-system-extraction.md`](./proce
 Run from the repo root with the full script path so a relative `--output` resolves outside the skill:
 
 ```
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url> [options] --output specs/<track>/<packet>/output
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts <url> [options] --output specs/<track>/<packet>/output
 
   --fast                 5 pages, 8 concurrency (still captures interaction, recommended)
   --max-pages <n>        Max pages to crawl (default: 8)
@@ -175,10 +175,10 @@ npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/ex
 Run these from the repo root as well (or pass absolute paths):
 
 ```bash
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts <DESIGN.md> <tokens.json>      # Phase 3: validate
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/proof.ts <url> <tokens.json>                # Fidelity proof
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/report-gen.ts <tokens.json> <dir> <DESIGN.md>  # HTML report
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/preview-gen.ts <tokens.json> <dir>          # Visual preview
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts <DESIGN.md> <tokens.json>      # Phase 3: validate
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/proof.ts <url> <tokens.json>                # Fidelity proof
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/report-gen.ts <tokens.json> <dir> <DESIGN.md>  # HTML report
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/preview-gen.ts <tokens.json> <dir>          # Visual preview
 ```
 
 ---
@@ -254,7 +254,7 @@ A: This skill captures what exists on a live site. `interface` invents new direc
 | Tool dependencies installed | `ls backend/node_modules/playwright` returns a directory |
 | Chromium available | `npx playwright install --dry-run chromium` from `backend/` shows installed |
 | Test suite passes | `npx vitest run` from `backend/` exits 0 |
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/sk-design-md-generator/README.md --type readme` reports zero issues |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design-md-generator/README.md --type readme` reports zero issues |
 
 ---
 

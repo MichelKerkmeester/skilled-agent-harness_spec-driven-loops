@@ -12,9 +12,9 @@
  *
  * Usage (run from the repo root; --output is REQUIRED and must resolve to a spec
  * folder outside the skill):
- *   npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url> --output <spec-folder>/output [options]
- *   npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --max-pages 10 --output .opencode/specs/<track>/<packet>/output
- *   npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://example.com --output .opencode/specs/<track>/<packet>/output --wait-for css
+ *   npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts <url> --output <spec-folder>/output [options]
+ *   npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --max-pages 10 --output .opencode/specs/<track>/<packet>/output
+ *   npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://example.com --output .opencode/specs/<track>/<packet>/output --wait-for css
  */
 
 // ────────────────────────────────────────────────────────────────

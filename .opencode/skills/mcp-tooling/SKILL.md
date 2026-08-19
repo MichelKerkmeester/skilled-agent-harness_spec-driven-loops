@@ -26,14 +26,14 @@ Use this skill (through the hub) for any MCP tool-bridge workflow. Invoke it as 
 | **mcp-click-up** | workflow | ClickUp task management: daily ops via `cupt` CLI, documents/goals/bulk ops via the official MCP | `mcp-tooling/mcp-click-up/` |
 | **mcp-obsidian** | workflow | Obsidian vault and note management plus Iconic `data.json` rulebook automation: headless `notesmd-cli`, app-backed `obsidian` CLI, and the cyanheads MCP | `mcp-tooling/mcp-obsidian/` |
 | **mcp-aside-devtools** | workflow | AI-browser automation via the Aside browser: agentic `aside` CLI tasks, deterministic `aside repl` evidence capture, `aside mcp` via Code Mode fallback | `mcp-tooling/mcp-aside-devtools/` |
-| **mcp-figma** _(transport)_ | transport | Drive Figma Desktop from the terminal via `figma-ds-cli` — document mutation lands in Figma Desktop (local writes limited to explicit-path exports per the registry's workspaceWrites clarifier), always paired with `sk-design` for design judgment | `mcp-tooling/mcp-figma/` |
-| **mcp-refero** _(transport)_ | transport | Search real-app UI design references via the Refero MCP (Code Mode, read-only) — screens, flows, styles; always paired with `sk-design` for design judgment | `mcp-tooling/mcp-refero/` |
-| **mcp-mobbin** _(transport)_ | transport | App/screen/flow design research via the Mobbin MCP (Code Mode, read-only) — mobile UX patterns from real apps; always paired with `sk-design` for design judgment | `mcp-tooling/mcp-mobbin/` |
+| **mcp-figma** _(transport)_ | transport | Drive Figma Desktop from the terminal via `figma-ds-cli` — document mutation lands in Figma Desktop (local writes limited to explicit-path exports per the registry's workspaceWrites clarifier), always paired with `sk-design-md-generator` for a measured Style Reference | `mcp-tooling/mcp-figma/` |
+| **mcp-refero** _(transport)_ | transport | Search real-app UI design references via the Refero MCP (Code Mode, read-only) — screens, flows, styles; always paired with `sk-design-md-generator` for a measured Style Reference | `mcp-tooling/mcp-refero/` |
+| **mcp-mobbin** _(transport)_ | transport | App/screen/flow design research via the Mobbin MCP (Code Mode, read-only) — mobile UX patterns from real apps; always paired with `sk-design-md-generator` for a measured Style Reference | `mcp-tooling/mcp-mobbin/` |
 
 ### When NOT to Use
 
 - A single quick read/edit with no MCP tool-bridge need — use the relevant skill directly.
-- Design judgment itself — `mcp-figma`, `mcp-refero`, and `mcp-mobbin` are transports, never the taste authority; load `sk-design` first (mandatory cross-hub pairing, ADR-002).
+- A measured Style Reference (extracted design tokens) — `mcp-figma`, `mcp-refero`, and `mcp-mobbin` are transports that surface or drive reference material, never a source of measured tokens; use `sk-design-md-generator` to extract a Style Reference from a live source (mandatory cross-hub pairing).
 - Shared MCP orchestration infrastructure beyond these bridges — use `mcp-code-mode` directly; it is excluded from this hub and stays flat (ADR-005).
 
 ---
@@ -51,7 +51,7 @@ Routing is two-stage. Stage 1 (hub → mode): the compiled router / `hub-router.
 ### Two-Axis Model
 
 - `packetKind: "workflow"` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, and `mcp-aside-devtools` mutate this repo's workspace (`mutatesWorkspace:true`).
-- `packetKind: "transport"` — `mcp-figma` (Figma Desktop), `mcp-refero` (Refero remote MCP via Code Mode), `mcp-mobbin` (Mobbin remote MCP via Code Mode) bridge to external tools and never mutate this workspace (`mutatesWorkspace:false`); declared on the `transport-axis` extension with a cross-hub judgment pairing to `sk-design` (mandatory for the design transports).
+- `packetKind: "transport"` — `mcp-figma` (Figma Desktop), `mcp-refero` (Refero remote MCP via Code Mode), `mcp-mobbin` (Mobbin remote MCP via Code Mode) bridge to external tools and never mutate this workspace (`mutatesWorkspace:false`); declared on the `transport-axis` extension with a cross-hub pairing to `sk-design-md-generator` for measured design-reference extraction (mandatory for the design transports).
 
 ### Routing Rule
 
@@ -139,11 +139,11 @@ mcp-tooling/
 - `mode-registry.json` owns `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, packet folder identity, alias phrases, and `advisorRouting`.
 - `hub-router.json` owns `routerPolicy`, `routerSignals`, `vocabularyClasses`.
 - `description.json` owns advisor-facing summary fields.
-- `graph-metadata.json` owns the one skill-graph identity node for the whole hub (`family: mcp`), unioning the member packets' intent signals and outward edges (`mcp-figma depends_on sk-design`, the union of `enhances sk-code`), and recording `mcp-code-mode` as an external cross-skill dependency.
+- `graph-metadata.json` owns the one skill-graph identity node for the whole hub (`family: mcp`), unioning the member packets' intent signals and outward edges (`mcp-figma depends_on sk-design-md-generator`, the union of `enhances sk-code`), and recording `mcp-code-mode` as an external cross-skill dependency.
 
 ### Transport Cross-Hub Pairing
 
-`mcp-figma`, `mcp-refero`, and `mcp-mobbin` never perform design judgment themselves. Their mandatory judgment partner is `sk-design` — a DIFFERENT hub — licensed by the `transport-axis` extension's `crossHubPairing` field (ADR-002). Load `sk-design`'s own workflow modes before any design-affecting Figma operation or Refero-grounded design decision; the transports never decide taste.
+`mcp-figma`, `mcp-refero`, and `mcp-mobbin` never produce a measured design reference themselves. Their cross-hub pairing is `sk-design-md-generator` — a DIFFERENT skill — licensed by the `transport-axis` extension's `crossHubPairing` field. Use `sk-design-md-generator` to extract a measured Style Reference (design tokens) from a live source when a design-affecting Figma operation or a Refero/Mobbin-grounded design decision needs measured ground truth; the transports themselves never decide taste or emit a Style Reference.
 
 ---
 
@@ -154,7 +154,7 @@ mcp-tooling/
 - Resolve packets through `mode-registry.json`; never hardcode packet roots in prose-only logic.
 - Keep `SKILL.md` thin: routing, invariants, and navigation only.
 - Keep every packet in `modes[]` and give every packet a `packetKind`.
-- Keep every transport (`mcp-figma`, `mcp-refero`, `mcp-mobbin`) read-only in this workspace (`mutatesWorkspace:false`), paired with `sk-design` for judgment.
+- Keep every transport (`mcp-figma`, `mcp-refero`, `mcp-mobbin`) read-only in this workspace (`mutatesWorkspace:false`), paired with `sk-design-md-generator` for measured design-reference extraction.
 - Keep exactly one `graph-metadata.json`, at the hub root.
 - Keep `hub-router.json` signal keys and registry `workflowMode` values bidirectionally aligned.
 - Keep the surface router's `RESOURCE_MAP` in sync with `leaf-manifest.json` — the leaf sets dual-read to canonical typed pairs at the one contract boundary (`sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`).
@@ -166,12 +166,12 @@ mcp-tooling/
 - Never grant a transport (`mcp-figma`, `mcp-refero`, `mcp-mobbin`) `Write`/`Edit`/`Task` — they forbid all three.
 - Never add packet-local `graph-metadata.json` files.
 - Never move `mcp-code-mode` into this hub — it is shared infrastructure serving consumers beyond these bridges (ADR-005).
-- Never let a transport make a design decision without `sk-design`'s judgment.
+- Never treat a transport's output as a measured Style Reference or a taste verdict — extract measured tokens with `sk-design-md-generator` from a live source instead.
 
 ### ⚠️ ESCALATE IF
 
 - A packet cannot be classified as `workflow` or `transport`.
-- A transport needs a design decision with no `sk-design` pairing available.
+- A transport's reference material needs measured tokens but no live source is available for `sk-design-md-generator` to extract.
 - Router signals, vocabulary classes, and registry modes cannot be made bidirectionally consistent.
 
 ---
@@ -185,5 +185,5 @@ mcp-tooling/
 - Skill graph identity: `graph-metadata.json`.
 - Workflow packets: `mcp-chrome-devtools/SKILL.md`, `mcp-click-up/SKILL.md`, `mcp-obsidian/SKILL.md`, `mcp-aside-devtools/SKILL.md`.
 - Transport packets: `mcp-figma/SKILL.md`, `mcp-refero/SKILL.md`, `mcp-mobbin/SKILL.md`.
-- Judgment partner for the transports: `../sk-design/SKILL.md`.
+- Measured design-reference partner for the transports: `../sk-design-md-generator/SKILL.md`.
 - Shared MCP execution substrate (external, not a hub member): `../mcp-code-mode/SKILL.md`.

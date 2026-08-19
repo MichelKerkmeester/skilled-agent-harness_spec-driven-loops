@@ -113,3 +113,13 @@ The 002 move relocated the skill one directory level shallower, breaking two cod
 
 - The advisor trigger-phrase set authored here reflects the skill's final identity (extraction + condensed design knowledge). It is re-scanned/finalized by the advisor in 006 once 004's folded content lands.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:phase-navigation -->
+## PHASE NAVIGATION
+
+- **Parent:** `../spec.md`
+- **Predecessor:** `../002-extract-md-generator-and-styles/spec.md`
+- **Successor:** `../004-fold-design-knowledge/spec.md`
+<!-- /ANCHOR:phase-navigation -->

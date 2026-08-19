@@ -656,19 +656,19 @@ Desired user-visible outcome: A consolidated multi-file analysis demonstrating K
 
 > **Feature File:** [CO-036](../manual-testing-playbook/prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md)
 
-### CO-037 | MiniMax design dispatch carries context manifest and proof cards
+### CO-037 | MiniMax design build dispatch carries a measured Style Reference
 
 #### Description
 
-Verify a MiniMax-M3 design/UI dispatch is not sent with thin generic context: the dispatched prompt uses the MiniMax profile shape, embeds the sk-design context manifest, and requires Context Loaded and Proof Of Application cards.
+Verify a MiniMax-M3 design/UI build dispatch is not sent with thin generic context: the dispatched prompt uses the MiniMax profile shape, embeds the measured Style Reference extracted via `sk-design-md-generator`, and requires the child to build against the measured tokens and return fidelity proof.
 
 #### Scenario Contract
 
-Prompt: `Use MiniMax-M3 to review a SaaS onboarding redesign direction. Dispatch it with the sk-design context manifest, register/dials, contrast-pair, pre-flight, and audit-evidence proof requirements.`
+Prompt: `Use MiniMax-M3 to build a SaaS onboarding UI against a measured Style Reference. Dispatch it with the sk-design-md-generator Style Reference manifest (measured DESIGN.md tokens), the build-against-measured requirements, and the validate + sk-code-handoff proof requirements.`
 
-Expected signals: Advisor or operator consults `sk-prompt/sk-prompt-models` for MiniMax-M3. The composed prompt uses TIDD-EC plus dense pre-plan, names `sk-design/shared/context-loading-contract.md`, carries the Context Loaded card and Proof Of Application card requirements, and blocks accessibility, ready, or release claims when proof fields are incomplete.
+Expected signals: Advisor or operator consults `sk-prompt/sk-prompt-models` for MiniMax-M3. The composed prompt uses TIDD-EC plus dense pre-plan, names `sk-design-md-generator/references/creation-contract.md`, carries the measured-token manifest and fidelity-proof requirements, and blocks ready or handoff claims when the validate result or locked-value trace is incomplete.
 
-Desired user-visible outcome: A MiniMax dispatch packet whose child output can echo loaded context and proof-of-application sections, rather than a generic design-review prompt that omits the manifest.
+Desired user-visible outcome: A MiniMax dispatch packet whose child output can echo the loaded measured tokens and the fidelity/validation proof, rather than a generic design prompt that omits the Style Reference.
 
 #### Test Execution
 

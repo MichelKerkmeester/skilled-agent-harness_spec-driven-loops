@@ -74,11 +74,11 @@ to at most 256 KiB; validation occurs before request fingerprinting or database 
 on invalid input or a failed operation:
 
 ```bash
-node .opencode/skills/sk-design/styles/lib/database/operator.mjs status --database /path/style.sqlite
-node .opencode/skills/sk-design/styles/lib/database/operator.mjs build --corpus /path/styles --database /path/style.sqlite
-node .opencode/skills/sk-design/styles/lib/database/operator.mjs cutover --database /path/style.sqlite --generation /path/retained.sqlite
-node .opencode/skills/sk-design/styles/lib/database/operator.mjs rollback --database /path/style.sqlite
-node .opencode/skills/sk-design/styles/lib/database/operator.mjs repair --database /path/style.sqlite --profile style-default-v1
+node .opencode/skills/sk-design-md-generator/styles/lib/database/operator.mjs status --database /path/style.sqlite
+node .opencode/skills/sk-design-md-generator/styles/lib/database/operator.mjs build --corpus /path/styles --database /path/style.sqlite
+node .opencode/skills/sk-design-md-generator/styles/lib/database/operator.mjs cutover --database /path/style.sqlite --generation /path/retained.sqlite
+node .opencode/skills/sk-design-md-generator/styles/lib/database/operator.mjs rollback --database /path/style.sqlite
+node .opencode/skills/sk-design-md-generator/styles/lib/database/operator.mjs repair --database /path/style.sqlite --profile style-default-v1
 ```
 
 `status` reports the published generation, rollback candidate, retained files, and vector-job

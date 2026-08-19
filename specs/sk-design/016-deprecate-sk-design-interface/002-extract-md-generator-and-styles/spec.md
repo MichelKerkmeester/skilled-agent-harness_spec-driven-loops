@@ -113,3 +113,13 @@ The surviving DESIGN.md extraction engine (`sk-design-md-generator`) and its `st
 
 - None blocking. The nesting choice (styles as a subdir of the new skill root) is fixed by the dependency-map and the goal.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:phase-navigation -->
+## PHASE NAVIGATION
+
+- **Parent:** `../spec.md`
+- **Predecessor:** `../001-inventory-and-dependency-map/spec.md`
+- **Successor:** `../003-standalone-rewire-and-metadata/spec.md`
+<!-- /ANCHOR:phase-navigation -->

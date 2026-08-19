@@ -6,7 +6,7 @@ trigger_phrases:
   - "AUTHORITY_ARTIFACT_CLASSES"
   - "registered authorities"
   - "new authority registration"
-  - "sk-doc sk-git sk-design sk-code authority"
+  - "sk-doc sk-git sk-code authority"
 version: 1.0.0.1
 ---
 
@@ -24,7 +24,7 @@ A standard authority is the owner whose own creation standards a lane audits aga
 
 ## 2. HOW IT WORKS
 
-`AUTHORITY_ARTIFACT_CLASSES` is a frozen map: `sk-doc -> [docs]`, `sk-git -> [git-history]`, `sk-design -> [designs]`, `sk-code -> [code]`. `validateLane()` reads it twice — once to confirm the authority is registered at all (naming the full registered set in the error if not), and once to confirm the requested artifact-class is one that authority supports. The values are arrays deliberately: a future authority may cover more than one class, and a class may be covered by more than one authority, even though every v1 authority-to-class mapping is a singleton. `registeredAuthorities()` returns the keys in registration order for the interactive tree's multi-select and for error messages.
+`AUTHORITY_ARTIFACT_CLASSES` is a frozen map: `sk-doc -> [docs]`, `sk-git -> [git-history]`, `sk-code -> [code]`. `validateLane()` reads it twice — once to confirm the authority is registered at all (naming the full registered set in the error if not), and once to confirm the requested artifact-class is one that authority supports. The values are arrays deliberately: a future authority may cover more than one class, and a class may be covered by more than one authority, even though every registered authority-to-class mapping is a singleton. `registeredAuthorities()` returns the keys in registration order for the interactive tree's multi-select and for error messages.
 
 The set is extensible by design: a fifth authority registers by adding one entry here plus the short adapter decision-record ADR-012 requires — no change to the scoping tree's shape, to `discover-contract.md`, or to the loop. This is the concrete mechanism behind ADR-003's "do NOT hard-wire only 4" constraint.
 

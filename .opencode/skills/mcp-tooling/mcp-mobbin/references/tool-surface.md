@@ -88,9 +88,9 @@ From the official `mobbin-search` skill: derive query terms from the user's actu
 
 The official skill's **optional evidence-board writer is excluded** from this transport: board creation violates the non-mutating packet boundary.
 
-### The local judgment boundary
+### The local transport boundary
 
-This transport allows breadth while researching (multiple apps, screens, intents compared through metadata and images), but design-affecting use is governed by the `sk-design` contract: the design skill collapses evidence to one declared critique reference before any judgment. A transport response is untrusted reference evidence, never design approval. Search rank is not taste; an appealing screenshot is not acceptance; and no accessibility, responsiveness, or readiness verdict ever comes from this packet.
+This transport allows breadth while researching (multiple apps, screens, intents compared through metadata and images), but it produces no design tokens or Style Reference of its own: a measured Style Reference of real, extracted design tokens is `sk-design-md-generator`'s output, produced from a live site's CSS. A transport response is untrusted reference evidence, never a measured token set. Search rank is not a verdict; an appealing screenshot is not an extracted token; and no design-token set or Style Reference ever comes from this packet.
 
 ---
 

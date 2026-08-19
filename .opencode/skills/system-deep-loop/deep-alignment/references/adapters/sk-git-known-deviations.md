@@ -87,7 +87,7 @@ Unlike sk-doc's known-deviation list (`sk-doc-known-deviations.md`), which suppr
 
 ## 5. SCOPE OF THIS LIST
 
-**In scope**: sk-git authority only. Each other authority adapter (sk-doc, sk-design, sk-code) owns its own known-deviation list under its own `standardSource`, per ADR-005's per-authority requirement. This document does not attempt to anticipate their conventions.
+**In scope**: sk-git authority only. Each other authority adapter (sk-doc, sk-code) owns its own known-deviation list under its own `standardSource`, per ADR-005's per-authority requirement. This document does not attempt to anticipate their conventions.
 
 **Not a dumping ground**: every entry here traces to a real, live-re-probed piece of evidence gathered while this adapter was authored, per `spec.md` REQ-004's VERIFY-FIRST requirement, not a hypothetical convention. The Section 4 honest-scope-limit paragraph is itself an example of that discipline: a candidate piece of evidence that did not clear the verification bar was named and excluded, not silently folded in to make the deviation look more solid than it is.
 

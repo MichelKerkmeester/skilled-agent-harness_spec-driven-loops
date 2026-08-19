@@ -60,7 +60,7 @@ It can run:
 ## 4. NORMAL RUN SHAPE
 
 ```bash
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --design-md .opencode/specs/<track>/<packet>/output/DESIGN.md --fast
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --design-md .opencode/specs/<track>/<packet>/output/DESIGN.md --fast
 ```
 
 Expected phases:

@@ -16,7 +16,7 @@ This scenario validates the read-only search contract for `SCREENS-001`. It focu
 
 ### Why This Matters
 
-The bounded surface invites over-reach: an agent that fabricates `search_apps` or an undeclared parameter has left the fixture record (the `deep` mode, by contrast, is now a confirmed input to use deliberately). And citation discipline is what makes transport output usable as evidence downstream — an uncited screen cannot anchor an `sk-design` critique.
+The bounded surface invites over-reach: an agent that fabricates `search_apps` or an undeclared parameter has left the fixture record (the `deep` mode, by contrast, is now a confirmed input to use deliberately). And citation discipline is what makes transport output usable as evidence downstream — an uncited screen cannot serve as traceable reference evidence.
 
 ---
 
@@ -27,7 +27,7 @@ Operators run the exact sequence for `SCREENS-001` and confirm the expected sign
 - Objective: confirm the single-tool search contract and citation discipline
 - Real user request: `Find real iOS banking onboarding screens with identity verification.`
 - Prompt: `Find real iOS banking onboarding screens with identity verification.`
-- Expected execution process: confirmed callable (DISCOVER-001 live PASS) -> one `search_screens` call with `query`, `platform: "ios"`, `limit: 5` -> visual inspection of the returned references (content, structure, styling, interaction) -> evidence returned with `mobbin_url` citations and the `failed[]` report; if design-affecting, routed onward through `sk-design`
+- Expected execution process: confirmed callable (DISCOVER-001 live PASS) -> one `search_screens` call with `query`, `platform: "ios"`, `limit: 5` -> visual inspection of the returned references (content, structure, styling, interaction) -> evidence returned with `mobbin_url` citations and the `failed[]` report; if a measured Style Reference is needed, routed onward to `sk-design-md-generator` for extracted design tokens
 - Expected signals: `screens[]` records with the fixture-declared fields (`id`, `app_name`, `mobbin_url`, `image_url`, `platform`); inline images examined; only declared parameters used (`mode` allowed, deliberately); no widening beyond ~15 without asking; unknown fields preserved
 - Desired user-visible outcome: cited screen evidence (or a session/auth SKIP), never a design decision
 - Pass/fail: PASS if the input contract held AND all evidence was cited AND partial success was reported honestly AND nothing was invented; FAIL if an undeclared parameter was used, a tool was invented, or a design verdict came from the transport; SKIP with the session/auth blocker documented
@@ -39,7 +39,7 @@ Operators run the exact sequence for `SCREENS-001` and confirm the expected sign
 ### Recommended Orchestration Process
 
 1. Restate the user request in plain user language.
-2. Decide whether the scenario should stay local or delegate. Retrieval stays local; judgment (if requested) routes to `sk-design`.
+2. Decide whether the scenario should stay local or delegate. Retrieval stays local; a measured Style Reference (if requested) is `sk-design-md-generator`'s.
 3. Execute the deterministic steps exactly as written.
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.

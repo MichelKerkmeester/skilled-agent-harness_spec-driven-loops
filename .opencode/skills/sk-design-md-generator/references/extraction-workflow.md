@@ -45,7 +45,7 @@ You MUST complete each phase before proceeding to the next; VALIDATE and REPORT 
 #### Phase 1: EXTRACT
 
 **Actions**:
-1. Run from the **repo root** (a one-time `cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm install && npx playwright install chromium` handles setup): `npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output`. `extract.ts` refuses any `--output` that resolves inside the skill, so the relative spec-folder path must resolve from the repo root.
+1. Run from the **repo root** (a one-time `cd .opencode/skills/sk-design-md-generator/backend && npm install && npx playwright install chromium` handles setup): `npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output`. `extract.ts` refuses any `--output` that resolves inside the skill, so the relative spec-folder path must resolve from the repo root.
 2. Playwright crawls five viewports and writes `<--output>/tokens.json` plus screenshots and an extraction report.
 3. `--fast` means 5 pages at 8 concurrency. Interaction capture (hover/focus/active states) runs by **default**, including under `--fast`; drop `--fast` (or set `--max-pages 10`) for a deeper crawl. To opt out of interaction capture pass `--no-interaction`, or `--fast-no-interaction` for a fast crawl that also skips it (the old `--fast` behavior).
 4. Per-page async accessibility is captured alongside the crawl: page language, skip-link presence, tab order, alt-text coverage, and reduced-motion support populate the a11y tokens.
@@ -55,7 +55,7 @@ You MUST complete each phase before proceeding to the next; VALIDATE and REPORT 
 #### Phase 2: WRITE
 
 **Actions**:
-1. Run `npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/build-write-prompt.ts <--output>/tokens.json` first. It pre-renders the value-bearing token sections — Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and the Quick Start CSS + Tailwind — deterministically from the tokens (via `formatters-v3.ts`), and emits a FACTS block of locked values (type scale, shadow/gradient counts, dark-mode/motion/icon/focus state) for the prose phase.
+1. Run `npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/build-write-prompt.ts <--output>/tokens.json` first. It pre-renders the value-bearing token sections — Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and the Quick Start CSS + Tailwind — deterministically from the tokens (via `formatters-v3.ts`), and emits a FACTS block of locked values (type scale, shadow/gradient counts, dark-mode/motion/icon/focus state) for the prose phase.
 2. Read `references/design-md-format.md` and `references/writing-style-guide.md`.
 3. Paste the pre-rendered value sections unchanged; author the prose sections (intro, Tokens — Typography, Components, Do's and Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands), taking every hex, pixel, font-weight, shadow, and radius from a pre-rendered section or the FACTS block — never by hand.
 4. Conditional sections follow the FACTS: when the data is present, write from it; when it is absent (e.g. no dark palette, zero shadows, no motion), state the absence honestly rather than inventing. Interpretive claims cite a token or are labelled `[INFERRED]`.
@@ -66,7 +66,7 @@ You MUST complete each phase before proceeding to the next; VALIDATE and REPORT 
 #### Phase 3: VALIDATE
 
 **Actions**:
-1. `npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts <DESIGN.md> <--output>/tokens.json` (from the repo root).
+1. `npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts <DESIGN.md> <--output>/tokens.json` (from the repo root).
 2. Resolve every hex mismatch and missing section before claiming completion.
 3. Optional visual artifacts (also from the repo root, full script path): `proof.ts <url> <tokens.json>`, `report-gen.ts <tokens.json> <dir> <DESIGN.md>`, `preview-gen.ts <tokens.json> <dir>`.
 

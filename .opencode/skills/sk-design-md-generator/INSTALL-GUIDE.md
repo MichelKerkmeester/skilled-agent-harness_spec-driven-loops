@@ -21,7 +21,7 @@ macOS, Linux, and Windows (WSL) are supported. The Playwright installer handles 
 **Step 1: Install Node dependencies.**
 
 ```bash
-cd .opencode/skills/sk-design/sk-design-md-generator/backend
+cd .opencode/skills/sk-design-md-generator/backend
 npm install
 ```
 
@@ -53,7 +53,7 @@ any `--output` that resolves inside the skill, so a relative spec-folder path on
 correctly from the repo root.
 
 ```bash
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
 ```
 
 Expected output:
@@ -65,7 +65,7 @@ Expected output:
 Validate a `DESIGN.md` against the extracted tokens (also from the repo root):
 
 ```bash
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md .opencode/specs/<track>/<packet>/output/tokens.json
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md .opencode/specs/<track>/<packet>/output/tokens.json
 ```
 
 Expected: zero hex mismatches, zero missing sections.
@@ -93,7 +93,7 @@ If the install fails, check your network connection and proxy settings. Playwrig
 **Fix:** Try adjusting the wait strategy (run from the repo root):
 
 ```bash
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://example.com --fast --wait-for networkidle --output .opencode/specs/<track>/<packet>/output
+npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/extract.ts https://example.com --fast --wait-for networkidle --output .opencode/specs/<track>/<packet>/output
 ```
 
 If the site requires authentication, it is out of scope. The tool only works on publicly accessible URLs that render JavaScript.
@@ -129,7 +129,7 @@ npx playwright install chromium
 To remove the tool's dependencies and cached Chromium binary:
 
 ```bash
-cd .opencode/skills/sk-design/sk-design-md-generator/backend
+cd .opencode/skills/sk-design-md-generator/backend
 rm -rf node_modules
 npx playwright uninstall chromium
 ```

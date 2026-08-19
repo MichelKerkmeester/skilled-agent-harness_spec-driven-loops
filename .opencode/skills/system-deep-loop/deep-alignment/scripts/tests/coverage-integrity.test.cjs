@@ -489,7 +489,7 @@ test('lane identity separates adapter, scope type, and comma-containing values',
 
 function resolveLanesFromDescriptorsForIdentity() {
   return resolveLanesFromConfig([
-    { authority: 'sk-design', artifactClass: 'designs', scope: { type: 'paths', values: ['docs/'] } },
+    { authority: 'sk-code', artifactClass: 'code', scope: { type: 'paths', values: ['docs/'] } },
     { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/a', 'docs/b'] } },
     { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/a, docs/b'] } },
     { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'globs', values: ['docs/'] } },

@@ -28,7 +28,7 @@ describe('guided-run wrapper', () => {
   });
 
   it('reports output paths inside the skill as unsafe', () => {
-    const checks = runPreflight({ url: 'https://example.com', output: '.opencode/skills/sk-design/sk-design-md-generator/output', fast: false, report: false, dryRun: true });
+    const checks = runPreflight({ url: 'https://example.com', output: '.opencode/skills/sk-design-md-generator/output', fast: false, report: false, dryRun: true });
     const outputCheck = checks.find((check) => check.name === 'output-path');
     expect(outputCheck?.ok).toBe(false);
   });
