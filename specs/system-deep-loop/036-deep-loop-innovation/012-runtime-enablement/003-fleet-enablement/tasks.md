@@ -72,8 +72,8 @@ _memory:
 ## Completion Criteria
 
 - [x] **T-014** Confirm the completed run required no operator input. [EVIDENCE: every dispatch and run in this phase completed without an operator prompt]
-- [ ] **T-015** Full suite re-run and reported as a delta against a captured baseline.
-- [ ] **T-016** `validate.sh` on this folder with `--strict`; Errors: 0.
+- [x] **T-015** Full suite re-run and reported as a delta against a captured baseline. [EVIDENCE: baseline `17 failed / 4111 passed / 39 skipped (4165)` in 7894s -> after `17 failed / 4152 passed / 39 skipped (4206)` in 7486s; +2 files and +41 tests, all passing and all this phase's; failing-file set diffed IDENTICAL, so no regression and no swap hiding behind an unchanged count]
+- [x] **T-016** `validate.sh` on this folder with `--strict`; Errors: 0. [EVIDENCE: run from the final state after regenerating both metadata files; Errors: 0]
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

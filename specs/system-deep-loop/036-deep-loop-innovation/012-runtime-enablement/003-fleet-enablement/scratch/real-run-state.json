@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "completedModes": [],
+  "failure": {
+    "mode": "deep-review",
+    "check": "flip",
+    "reason": "Mode 'deep-review' is 'legacy_authoritative', but authority compare-and-swap requires 'cutover_ready'"
+  },
+  "updatedAt": "2026-08-19T16:58:30.319Z"
+}

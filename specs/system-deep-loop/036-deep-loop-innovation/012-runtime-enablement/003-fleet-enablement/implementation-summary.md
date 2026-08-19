@@ -139,6 +139,8 @@ sha256 `3728804f`.
 **Real run stops where it must.** Exit `2` at `deep-review` on check `flip`, with the six later
 modes reported untouched and no `authority-*.json` written for any mode.
 
+**Full suite, as a delta.** Baseline before any edit: `17 failed / 4111 passed / 39 skipped (4165)`, 7894s. After: `17 failed / 4152 passed / 39 skipped (4206)`, 7486s. The gain is exactly this phase's 2 files and 41 tests. The failing-file sets from the two runs diff identical, which is the part that matters — an unchanged failure count can hide a swap, and this one does not.
+
 **Targeted suites.** 41 tests across `enable-modes-cli.vitest.ts` and `fleet-enablement.vitest.ts`,
 vitest exit `0`, re-run green from the restored tree after every control pass.
 <!-- /ANCHOR:verification -->

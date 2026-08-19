@@ -63,7 +63,7 @@ another.
 - [x] CHK-011 [P0] An injected failure stops the driver and names both the mode and the failing check (REQ-004, SC-002) [EVIDENCE: injected failure stops at the named mode and names the check — asserted by `stops at the first failing mode and names the failing check`; the real run stops identically, `scratch/realrun.json` naming `deep-review` and check `flip`]
 - [x] CHK-012 [P0] After the injected stop, later modes' records are byte-identical to the pre-run capture (SC-002) [EVIDENCE: no `authority-*.json` exists after the stop, asserted by `writes no authority record when a step fails`; the step refuses on the read path so no compare-and-swap is reached]
 - [ ] CHK-013 [P0] Resume enables the remaining modes without re-flipping earlier ones (REQ-005, SC-003) [PARTIAL: resume is proven at the driver across runs — a completed mode survives a later run's write and is never re-planned, asserted by two tests proven red by NC-M, after the review found the opposite behaviour shipping. End-to-end resume across a real flip is untestable while no mode can be enabled]
-- [ ] CHK-014 [P1] Full suite re-run and reported as a delta against a captured baseline
+- [x] CHK-014 [P1] Full suite re-run and reported as a delta against a captured baseline [EVIDENCE: baseline `17 failed / 4111 passed / 39 skipped (4165)` in 7894s -> after `17 failed / 4152 passed / 39 skipped (4206)` in 7486s; +2 files and +41 tests, all passing and all this phase's; failing-file set diffed IDENTICAL, so no regression and no swap hiding behind an unchanged count]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -100,7 +100,7 @@ another.
 ## Verification Summary
 
 - [ ] CHK-025 [P0] The completed run required no operator input after it started (REQ-007, SC-006) [BLOCKED: no run completed. The runs that did execute needed no operator input at any point]
-- [ ] CHK-026 [P0] `validate.sh` on this folder with `--strict` reports Errors: 0
+- [x] CHK-026 [P0] `validate.sh` on this folder with `--strict` reports Errors: 0 [EVIDENCE: run from the final state after both generators; Errors: 0]
 - [ ] CHK-027 [P0] Every item above is `[x]` with evidence, or the phase is not complete [BLOCKED: 8 items remain open — 1 predecessor, 5 blocked on the missing flip transitions, 2 partial]
 <!-- /ANCHOR:summary -->
 
