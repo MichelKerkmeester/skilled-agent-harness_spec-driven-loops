@@ -45,6 +45,8 @@
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/seam-executed.md",
+      "scratch/seam-execution-receipt.json",
       "tasks.md"
     ],
     "entities": [
@@ -70,6 +72,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "seam-executed.md",
+        "kind": "doc",
+        "path": "scratch/seam-executed.md",
+        "source": "derived"
+      },
+      {
+        "name": "seam-execution-receipt.json",
+        "kind": "config",
+        "path": "scratch/seam-execution-receipt.json",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "How Records Get Written",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Deep-research state is produced by agents following prose",
     "created_at": "2026-08-19T06:57:07.880Z",
-    "last_save_at": "2026-08-19T13:34:54.749Z",
+    "last_save_at": "2026-08-19T21:01:04.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf0f5aa3f4eb266ec27fd9a919c296812a9591a0b66ee435f6dd97b5b2921731",
+    "source_fingerprint": "sha256:ac7fe7ded3e437af4f8401ecff4befe5f30db8371d6d91ba6cfc2be1494fe1e4",
     "source_doc_hashes": {
       "spec.md": "aa7305d8347d7b7b7ec3b0746fb1c9cc8a64e91d13eea4f0ed1c5ad14c483e15",
       "plan.md": "6b5a5c48fcec891c8cdc1ef1bbeec86cd83ca63260904abdda3ef0fbf3434a44",
       "tasks.md": "efc52c900dfdd83c9b2d08b2e894718408a1317ce192591988f42de3db585984",
-      "checklist.md": "6ff1484bb444adea541cd8502280c96b5ef4838ac16446f7cb8c0ad77f324da3",
-      "implementation-summary.md": "10aa51aca0b6a04e97376f3ee8b5735717a7475f006907932f8f6efbd52ec398"
+      "checklist.md": "ac5e5e5a07f34cd52b22fcf5514f0f43846f8dcb197786d529f08fd701401e7e",
+      "implementation-summary.md": "818260c2638db5363c2ad377990379bd82fad1cdb05e7b45b8b020f4d58e1204"
     },
     "last_active_child_id": null,
     "last_active_at": null
