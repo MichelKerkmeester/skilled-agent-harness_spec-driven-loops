@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/019-split-doc-template-alignment"
-    last_updated_at: "2026-08-19T05:00:55Z"
+    last_updated_at: "2026-08-19T08:29:06Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Conformed sk-code-mobile-cli surface to templates (10 ref/asset files)"
     next_safe_action: "Commit + push (main + v4)"
@@ -115,3 +115,27 @@ The `sk-code-mobile-cli` surface was created after this packet's original run, s
 | Cross-file `§N` refs resolving to the intended target section | 22/22 |
 | leaf-manifest freshness | OK (no drift) |
 | trigger_phrases per file within 3–8 | 10/10 |
+
+---
+
+## Increment 2: sk-code-mobile-cli App-Doc Restructure + Parent Hub Freshness (2026-08-19)
+
+The `sk-code-mobile-cli` surface carried its relocated Pi Remote app documentation in one flat `references/app-guide/` bucket, and the parent `sk-code` advisor artifacts predated the surface's addition. This increment reorganizes the app docs for first-glance legibility and brings the parent hub's advisor metadata current. Documentation/metadata only — no app code, no routing-behavior change.
+
+**App-doc restructure (surface):** `references/app-guide/` was dissolved into six purpose-named folders — `operations/` (operations, incident-playbooks, rollback), `release/` (ai-deploy-playbook, release-verification), `setup/` (setup, install-and-onboarding), `standards/` (code-standards, security, platform-support), `design-reference/` (the `mobile-chat-apps/` teardown, UI map, research, screens), and `quality/` (DQI + full-access-runtime baselines). File contents moved verbatim; only paths changed. The two single-source pointer files (`feature-catalog.md`, `manual-testing-playbook.md`) were removed — the catalog and playbook remain canonical at the app repository root, and the surface no longer mirrors them even as pointers, so they cannot drift.
+
+**Reference integrity:** the four sibling cross-links broken by the relocation (`security.md`, `setup.md`, `platform-support.md`, `release-verification.md`, which had assumed a flat directory) were repaired to their new subfolder-relative paths across `operations/operations.md`, `setup/setup.md`, and `setup/install-and-onboarding.md`. SKILL.md §2 was rewritten to describe the six folders and drop the pointer links; its `version` bumped 1.0.0.0→1.1.0.0 with a new `changelog/v1.1.0.0.md`. The README gained a "Mobile CLI App Repository" subsection locating the app repo as a distinct source-of-truth repository. `---` dividers were inserted between the numbered sections of every relocated app doc and the three asset checklists.
+
+**Parent hub freshness:** `leaf-manifest.json` was regenerated (`generate-leaf-manifest.cjs --write`) to re-type the relocated leaves and drop the two removed pointers. The advisor artifacts that had never received the mobile-cli surface were de-staled: `description.json` (description text + keywords) and `graph-metadata.json` (`intent_signals`, `derived.trigger_phrases`, `key_topics`, `derived.intent_signals`) gained mobile-cli/Pi Remote signals, and the `causal_summary` was corrected from "two surface evidence packets" to three. This additive edit also cleared the fleet gate's `INTENT_SIGNALS_TRIGGER_RECONCILIATION` NOTE on sk-code (Jaccard 0.037 → resolved).
+
+**Validator-gap root cause (the "why weren't dividers there" question):** `validate_document.py` gates `---` dividers behind the per-doc-type `h2DividerRequired` flag, set only for `readme`/`general` doc types — **not** for the skill `reference`/`asset` types. The create-skill templates prescribe dividers, but the validator never enforced them for ref/asset docs, so the surface's original authoring passed without them. Left as a flagged follow-up (a one-line sk-doc rule change), out of this increment's scope.
+
+| Check | Result |
+|---|---|
+| Broken relative .md links in the references tree | 10/10 resolve; 1 pre-existing `../ARCHITECTURE.md` dangling (was dangling before the move — out of scope) |
+| `general_h2_separator` issues across all authored refs+assets | 0 |
+| `app-guide` references outside the changelogs | 0 |
+| Parent `leaf-manifest.json --check` | OK (0 app-guide paths; 6 subfolders typed; −2 pointers) |
+| Parent JSON validity + `regenerate-skill-derived` structural check | all valid; unchanged |
+| `ci-skill-root-metadata` on sk-code | OK [H]; trigger-reconciliation NOTE cleared |
+| validate_document issues introduced by this increment | 0 (3 pre-existing `missing overview` on relocated app docs unchanged) |

@@ -46,6 +46,8 @@ Loopback-only relay plus Tailscale Serve ingress equals a private, tailnet-only 
 
 The relay supports three host-selected postures. By default it starts `pi --mode rpc --no-session --no-tools --no-extensions`; this steering slice disables all built-in, extension, and custom tools at the Pi process boundary. The allowlisted mutation posture (`PI_REMOTE_MUTATION_ENABLED=1` with one family) instead exposes a small tool family behind the approval extension. The operator-only full-access posture (`--full-access` / `PI_REMOTE_FULL_ACCESS=1`) starts `pi --mode rpc --no-session --approve` with every built-in tool and no approval extension — desktop parity, host-selected only, never enableable from the phone. In every posture the relay does not attach to an already-running Pi process, expose Pi session files, or check the Pi version. If `pi` cannot be started because the executable is absent, the relay replays its bundled fixture. The current health response does not distinguish live and fixture supervisor states.
 
+---
+
 ## 2. INSTALL AND BUILD
 
 Run from the Pi Remote directory:
@@ -56,6 +58,8 @@ npm run build
 ```
 
 `npm run build` builds the protocol package, relay, PWA, and approval extension in dependency order.
+
+---
 
 ## 3. CONFIGURE TAILSCALE SERVE
 
@@ -91,6 +95,8 @@ tailscale funnel status
 
 Serve must show only the intended HTTPS routes for `/`, `/api`, and `/health`. Funnel must show no public listener. A direct request to the relay or a request through another proxy must remain forbidden.
 
+---
+
 ## 4. ENROLL THE PHONE
 
 The repository emits enrollment JSON. It does not render a QR image. Transfer that exact one-time JSON through an operator-controlled path:
@@ -105,19 +111,25 @@ The phone generates a non-extractable P-256 private key. The private key and opa
 
 If enrollment fails, generate a fresh payload by restarting the foreground deployment. Reusing or editing a payload is rejected.
 
+---
+
 ## 5. INSTALL THE PWA
 
 - iPhone or iPad: open the HTTPS origin in Safari, use **Add to Home Screen**, then launch the installed app.
 - Android: open the HTTPS origin in Chrome or a compatible browser and use its install action if offered.
 - Desktop: use the browser install action if available, or keep using the HTTPS site.
 
-The service worker is registered only in production builds. The Tailscale deployment uses the built PWA preview and therefore enables the installable shell. See [Platform Support](platform-support.md) for notification and offline limits.
+The service worker is registered only in production builds. The Tailscale deployment uses the built PWA preview and therefore enables the installable shell. See [Platform Support](../standards/platform-support.md) for notification and offline limits.
+
+---
 
 ## 6. OPTIONAL PUSH
 
 Push remains disabled unless all four relay variables are present: `PI_REMOTE_PUSH_ENCRYPTION_KEY`, `PI_REMOTE_VAPID_PUBLIC_KEY`, `PI_REMOTE_VAPID_PRIVATE_KEY`, and `PI_REMOTE_VAPID_SUBJECT`. The setup script does not create them.
 
 When push is configured, open **Attention hints** in the PWA and choose **Enable notifications**. The browser creates the subscription only after notification permission is granted. The Attention Inbox remains authoritative when push is disabled, denied, delayed, or lost.
+
+---
 
 ## 7. OPERATOR-VERIFIED BOUNDARIES
 

@@ -37,6 +37,8 @@ Preserve uncertainty. Never retry a protected action merely because the PWA did 
 - The PWA stalls at the reconciliation barrier
 - A push notification never arrives
 
+---
+
 ## 2. INDETERMINATE MUTATION
 
 ### Detect
@@ -60,6 +62,8 @@ The recovery tests name this state `indeterminate`. They prove the durable lease
 
 Escalate whenever the side effect cannot be established independently. Pi Remote deliberately has no automatic retry for consumed authority.
 
+---
+
 ## 3. LEASE EXPIRY MID-FLIGHT
 
 ### Detect
@@ -77,6 +81,8 @@ Escalate whenever the side effect cannot be established independently. Pi Remote
 ### Operator-Verified Boundary
 
 The service and tests emit the abort signal, but the production entrypoint does not launch a contained protected runner. Verify termination behavior in the real extension and runner integration before enabling mutation.
+
+---
 
 ## 4. DEVICE LOCKOUT OR LOST KEY
 
@@ -96,6 +102,8 @@ The service and tests emit the abort signal, but the production entrypoint does 
 
 Restart clears every device, not only the lost one. The current implementation has no persistent device registry, recovery key, or remote administrator revocation endpoint.
 
+---
+
 ## 5. SYNC-BARRIER STALL
 
 ### Detect
@@ -113,6 +121,8 @@ Restart clears every device, not only the lost one. The current implementation h
 5. Re-enroll, open the same opaque session, and confirm a snapshot or an explicit unknown-session result.
 
 The server queues live events above a frozen barrier and normally sends a gap followed immediately by a snapshot. A persistent stall therefore indicates transport, authentication, database, or client-state failure and should not be bypassed with deltas.
+
+---
 
 ## 6. PUSH DELIVERY FAILURE
 

@@ -24,6 +24,8 @@ Pi Remote runs a loopback relay that supervises one `pi --mode rpc` child, plus 
 
 Core principle: fail closed. If any preflight check, posture assertion, or readiness signal fails, boot stops with a named cause and a remediation hint. Nothing else runs.
 
+---
+
 ## 2. WHEN TO USE
 
 - First deployment on a Mac
@@ -32,6 +34,8 @@ Core principle: fail closed. If any preflight check, posture assertion, or readi
 - Any time an AI agent is asked to make Pi Remote reachable
 
 Do not use boot to change app behavior, auth, mutation policy, or push. Those are separate operator concerns.
+
+---
 
 ## 3. PREFLIGHT DECISION POINTS
 
@@ -51,6 +55,8 @@ Decision points:
 - Tailscale is not logged in. Run `tailscale up` or sign in through the Tailscale app, confirm `tailscale status` shows the host, then re-run boot.
 - The tailnet is down. `tailscale status` fails or shows no host. Bring the tailnet back before booting. Boot does not guess.
 - `deploy/serve.env` is missing. Copy `deploy/serve.env.example` to `deploy/serve.env` and set `PI_REMOTE_PUBLIC_ORIGIN` to the exact HTTPS origin shown by `tailscale serve status`.
+
+---
 
 ## 4. ONE-COMMAND BOOT
 
@@ -86,6 +92,8 @@ PI REMOTE BOOT COMPLETE
 
 The boot process stays in the foreground and supervises the deployment. The relay, the web preview, and the Serve routes stay up until you stop the process with Ctrl-C.
 
+---
+
 ## 5. STAGES AND EXPECTED OUTPUT
 
 ### 5.1 Preflight
@@ -120,6 +128,8 @@ Boot captures the one-time enrollment payload the relay prints at startup. The p
 
 Boot prints the tailnet HTTPS URL, the enrollment QR when the optional `qrencode` tool is installed, the enrollment code otherwise, and the copy-paste user instructions.
 
+---
+
 ## 6. DECISION POINTS
 
 | Situation                                       | Boot behavior                                                     | Action                                                                                        |
@@ -135,6 +145,8 @@ Boot prints the tailnet HTTPS URL, the enrollment QR when the optional `qrencode
 | The tailnet is down                             | Boot stops at preflight                                           | Bring up the tailnet, re-run boot                                                             |
 | Enrollment expired                              | The phone rejects the payload                                     | Stop with Ctrl-C and re-run boot to mint a fresh payload                                      |
 | The deployment script exits before readiness    | Boot stops with the exit code                                     | Inspect the relay and web logs in the output, free the ports, re-run boot                     |
+
+---
 
 ## 7. USER HANDOFF MESSAGE
 
@@ -154,6 +166,8 @@ COPY-PASTE USER INSTRUCTIONS
 ================================================================
 ```
 
+---
+
 ## 8. OPERATOR-ONLY CAVEATS
 
 Boot asserts what it can verify from the host. The following stay operator-verified on the target environment and are never machine claims:
@@ -163,15 +177,21 @@ Boot asserts what it can verify from the host. The following stay operator-verif
 - `sandbox-exec` containment. The macOS sandbox escape suite must pass on the deployment OS before relying on the approval boundary.
 - Live Pi. The relay falls back to its recorded fixture when the pi child fails to start. Confirm the pi child is live and, for mutation, that the approval extension loads on pi 0.84.1 and is the final `tool_call` handler.
 
+---
+
 ## 9. IDEMPOTENCY AND CONVERGENCE
 
 A second boot run on a live deployment detects the open relay port and the matching Serve routes, skips duplicate start and duplicate configuration, re-asserts posture, and prints the handoff again. Enrollment payloads are minted only at relay startup, so a fresh one-time code requires a stop and a re-run. Boot never creates duplicate relays, duplicate Serve routes, or duplicate enrollments.
+
+---
 
 ## 10. STOP AND ROLLBACK
 
 Stop the supervised deployment with Ctrl-C on the boot process. The deployment script removes the Serve routes and stops the relay and web preview. Boot never rewrites or deletes Pi native session history. The relay ledger and the pi child sessions are separate, and rollback touches neither.
 
 To rebuild after a source change, stop the deployment, run `npm run boot` again, and hand over the fresh URL and payload.
+
+---
 
 ## 11. REFERENCE
 

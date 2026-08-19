@@ -40,7 +40,7 @@ The **implement → debug → verify** phases are not standalone modes. Their su
 - Documentation-only changes with no code-work contract - use `sk-doc`.
 - Git workflow, branch, commit, PR, merge, or release work - use `sk-git`.
 - Pure browser inspection or external MCP transport work - use the relevant MCP skill.
-- Design judgment, visual direction, motion taste, or UI audit - use `sk-design` first.
+- For a measured Style Reference (design tokens extracted from a live source), use `sk-design-md-generator` first.
 - Backend support primitives in `shared/` - they are consumed by the modes, not invoked as a user workflow.
 
 ---
@@ -192,4 +192,4 @@ The `surface-router` backend is the shared surface-detection router under `share
 - Hub router signals + surface bundling: `hub-router.json`.
 - Surface router and shared controls: `ROUTER.md`.
 - Parent-skill pattern: `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
-- Sibling example: `.opencode/skills/sk-design/`.
+- Sibling example: `.opencode/skills/sk-prompt/`.

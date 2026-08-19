@@ -36,6 +36,8 @@ The Attention Inbox is the authoritative fallback on every platform. Opening any
 - Push is an optional, lossy attention signal.
 - Notification text never includes transcript, tool, approval, workspace, path, result, or decision content.
 
+---
+
 ## 2. PLATFORM SUPPORT MATRIX
 
 | Platform                               | Install prerequisites                                                       | Delivery limits                                                                                             | Kill and restart                                                                                          | Stale hints                                                               | Permission and Focus states                                                   | Fallback        |
@@ -43,6 +45,8 @@ The Attention Inbox is the authoritative fallback on every platform. Opening any
 | iOS 16.4+ Home Screen                  | Safari, Add to Home Screen, then grant notifications from the installed app | Installed Home Screen web apps only. Delivery timing is controlled by iOS. No notification actions are used | The installed app may be killed. A notification opens the app, which reauthenticates before loading state | Expired, revoked, or prior-epoch hints show as stale and expose no action | Denied permission or Focus may suppress delivery without changing relay state | Attention Inbox |
 | Android Chrome and compatible browsers | HTTPS origin, service worker, install optional, grant notifications         | Browser and OS battery policy may delay or suppress delivery                                                | Browser process may be killed. Notification click opens or focuses the PWA, then reauthenticates          | Expired, revoked, or prior-epoch hints show as stale and expose no action | Denied permission, Do Not Disturb, or site settings may suppress delivery     | Attention Inbox |
 | Desktop Chromium-compatible browser    | HTTPS origin, service worker, grant notifications                           | Browser must retain push capability. OS notification settings apply                                         | Browser restart restores subscription when the endpoint remains valid                                     | Same epoch and revocation checks as mobile                                | Site permission and OS Focus may suppress delivery                            | Attention Inbox |
+
+---
 
 ## 3. ENROLLMENT AND INSTALLATION LIMITS
 
@@ -52,6 +56,8 @@ The Attention Inbox is the authoritative fallback on every platform. Opening any
 - The PWA private key is non-extractable and stored in IndexedDB. Clearing site data requires fresh enrollment.
 - iOS push requires installation to the Home Screen before notification permission is requested.
 - The service worker is registered only in a production build, not the Vite development server.
+
+---
 
 ## 4. OPERATOR-VERIFIED ITEMS
 

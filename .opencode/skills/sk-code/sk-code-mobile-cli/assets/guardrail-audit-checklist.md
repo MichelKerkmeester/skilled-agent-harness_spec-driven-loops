@@ -15,6 +15,8 @@ version: 1.0.0.0
 
 Use this checklist after any change to `apps/pi-remote-web/` presentation code, before claiming the change is complete.
 
+---
+
 ## 1. OVERVIEW
 
 ### Purpose

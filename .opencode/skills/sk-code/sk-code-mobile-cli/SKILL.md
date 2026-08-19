@@ -2,7 +2,7 @@
 name: sk-code-mobile-cli
 description: "Read-only design-system evidence for the Pi Remote Mobile-CLI app — the primitive→semantic→component token library, the @ds editability grammar, the guardrails, and the browser-free verification gate."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.1.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -55,15 +55,19 @@ primary and mutates nothing. It supplies evidence; the acting workflow applies i
 Checklists (`assets/`): `assets/token-retint-checklist.md`, `assets/guardrail-audit-checklist.md`,
 `assets/ds-verification-checklist.md` — see §4.
 
-App documentation (`references/app-guide/`): the Pi Remote app documentation set — operations,
-setup, security, rollback, release-verification, incident playbooks, platform support, code standards,
-install/onboarding, `quality/` baselines, and `design-reference/` (UI teardown, map, research, and
-screens). The **feature catalog** (every shipped capability) and the **manual testing playbook** (a
-deterministic scenario per feature) are now maintained as the single source of truth at the **app
-repository root** (`feature-catalog/` and `manual-testing-playbook/`); this surface keeps only pointers
-to them ([`references/app-guide/feature-catalog.md`](references/app-guide/feature-catalog.md),
-[`references/app-guide/manual-testing-playbook.md`](references/app-guide/manual-testing-playbook.md)) so
-they cannot drift.
+App documentation lives under `references/` in six purpose-named folders, each grouping one concern so the set reads by intent:
+
+- `references/operations/` — running the live relay: `operations.md`, `incident-playbooks.md`, `rollback.md`.
+- `references/release/` — shipping a build: `ai-deploy-playbook.md`, `release-verification.md`.
+- `references/setup/` — first run: `setup.md`, `install-and-onboarding.md`.
+- `references/standards/` — the rules a change must hold: `code-standards.md`, `security.md`, `platform-support.md`.
+- `references/design-reference/` — the `mobile-chat-apps/` UI teardown, current-UI map, competitor research, and screens.
+- `references/quality/` — the DQI and full-access-runtime baselines.
+
+The **feature catalog** (every shipped capability) and the **manual testing playbook** (a deterministic
+scenario per feature) are the single source of truth at the **app repository root** (`feature-catalog/`,
+`manual-testing-playbook/`). This surface no longer mirrors them — not even as pointer files — so they
+cannot drift.
 
 The live evidence lives in the app repo, not in this packet — this surface points at it:
 `apps/pi-remote-web/src/design-system/tokens.md` (token catalogue),

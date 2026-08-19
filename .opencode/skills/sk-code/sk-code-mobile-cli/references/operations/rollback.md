@@ -34,6 +34,8 @@ The current runtime does not expose a live mutation switch, approval-drain endpo
 
 Stop everything first, preserve the database and Pi files, and never retry a consumed lease automatically.
 
+---
+
 ## 2. EXECUTED DRILL EVIDENCE
 
 The automated drill is part of `npm test` and has a standalone entrypoint:
@@ -57,6 +59,8 @@ npm run rollback:drill
 ### What The Drill Does Not Claim
 
 The executable drill uses only app-local disposable state. It verifies the machinery without claiming that a target-host database, live Pi process, or real Pi session store has been rolled back. Production restore remains stop-first and operator-controlled.
+
+---
 
 ## 3. DEPLOYED ROLLBACK PROCEDURE
 
@@ -113,6 +117,8 @@ Enroll a device with the fresh startup payload. Confirm session catalog access, 
 **Operator-verified:** prove that the target host has the intended Pi 0.84.1 executable and that the PWA receives a new live Pi event from the owned RPC child. The current `/health` response does not expose supervisor state, and absence of the executable activates fixture fallback, so relay startup alone is not proof of a live Pi connection.
 
 If the live check fails, keep mutation disabled. Read-only fixture behavior may be used for diagnostics, but it must be labeled fixture data.
+
+---
 
 ## 4. ROLL-FORWARD STOP CONDITIONS
 
