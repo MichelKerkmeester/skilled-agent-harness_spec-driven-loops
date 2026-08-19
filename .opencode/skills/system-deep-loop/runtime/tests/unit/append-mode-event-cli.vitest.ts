@@ -285,6 +285,31 @@ describe('append-mode-event CLI subprocess execution', () => {
     expect(existsSync(join(runDir, 'ledger'))).toBe(false);
   });
 
+  it('names the frozen order when a mode is outside it, rather than blaming the record', () => {
+    // A mode with no entry in the frozen order has no authority record to read,
+    // and the selector reports that absence as a malformed record. Reporting the
+    // real cause keeps an operator from hunting a corrupt file that never existed.
+    const runDir = createTempDir('unknown-mode');
+    const authorityRoot = createTempDir('unknown-mode-root');
+    const eventJsonPath = join(runDir, 'event.json');
+    writeFileSync(eventJsonPath, JSON.stringify(sampleRunInitializedEvent()), 'utf8');
+
+    const result = runCli([
+      '--mode',
+      'deep-improvement',
+      '--run-directory',
+      runDir,
+      '--event-json',
+      eventJsonPath,
+    ], { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.json.phase).toBe('authority');
+    expect(result.json.code).toBe('AUTHORITY_DENIED');
+    expect(String(result.json.reason)).toContain('not in the frozen authority order');
+    expect(String(result.json.reason)).not.toContain('RECORD_MALFORMED');
+  });
+
   it('does not treat the run directory as the authority root', () => {
     // A per-run authority root would let two runs disagree about which writer
     // is canonical. Poison the run directory exactly the way a per-run

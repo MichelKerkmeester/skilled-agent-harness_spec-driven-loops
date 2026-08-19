@@ -227,6 +227,7 @@ async function main() {
   const { resolveCutoverBinding } = await import('../lib/cutover-binding/index.ts');
   const { resolveAuthorityRoot } = await import('../lib/authority-root/index.ts');
   const { admitCanonicalWrite } = await import('../lib/deep-research-authority/index.ts');
+  const { AUTHORITY_FLIP_MODE_ORDER } = await import('../lib/per-mode-authority-flip/index.ts');
 
   const adapter = await resolveModeAdapter(modeRaw);
   const normalizedMode = adapter.normalizedMode;
@@ -237,6 +238,18 @@ async function main() {
   // gateway exists to remove, so a refusal here must happen before a ledger,
   // a policy registry, or a run directory is touched.
   const authorityRoot = resolveAuthorityRoot();
+  // A mode outside the frozen flip order has no authority record to read, and
+  // the selector reports that as a malformed record. Naming the real cause here
+  // keeps an operator from hunting a corrupt file that does not exist.
+  if (!AUTHORITY_FLIP_MODE_ORDER.includes(normalizedMode)) {
+    jsonOut({
+      ok: false,
+      phase: 'authority',
+      reason: `Mode '${normalizedMode}' is not in the frozen authority order: ${AUTHORITY_FLIP_MODE_ORDER.join(', ')}`,
+      code: 'AUTHORITY_DENIED',
+    });
+    process.exit(2);
+  }
   let admission;
   try {
     admission = admitCanonicalWrite(normalizedMode, { authorityRoot });

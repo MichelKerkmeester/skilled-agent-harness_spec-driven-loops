@@ -140,8 +140,11 @@ non-pilot byte diff all presuppose a flip that cannot happen.
 the gateway's path to the seam is proven by running it. The manifest-to-gateway link itself is
 proven by declaration only, because a YAML workflow is executed by an agent, not by a test.
 
-**A mode name will deny in the next phase.** `normalizeMode` maps to `deep-improvement`;
-`AUTHORITY_FLIP_MODE_ORDER` contains `deep-improvement-common`.
+**A mode name denies in the next phase, and used to lie about why.** `normalizeMode` maps to
+`deep-improvement`; `AUTHORITY_FLIP_MODE_ORDER` contains `deep-improvement-common`. Confirmed by
+running the CLI: the mismatch surfaced as `RECORD_MALFORMED`, which would send an operator hunting
+a corrupt file that never existed. The CLI now names the frozen order instead. The underlying
+name mismatch is real and still belongs to the fleet phase.
 
 **One refusal branch is untested.** The `outcome === 'denied'` path needs a record that is valid
 but denied on state — `rollback_pending` is the reachable case.
