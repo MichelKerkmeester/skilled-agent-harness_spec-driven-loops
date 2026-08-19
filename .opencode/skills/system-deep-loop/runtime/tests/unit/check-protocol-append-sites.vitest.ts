@@ -115,7 +115,7 @@ describe('check-protocol-append-sites', () => {
     expect(r.payload.violations[0].rule).toBe('UNDECLARED_DIRECT_APPEND');
   });
 
-  it('case 5: literal shell append + migration_exception declared -> status 0', () => {
+  it('case 5: literal shell append + migration_exception + exempt_append_sites -> status 0', () => {
     const yaml = [
       'name: legacy-one-shot',
       'steps:',
@@ -123,6 +123,7 @@ describe('check-protocol-append-sites', () => {
       'state_write_protocol:',
       '  mechanism: append-gateway',
       '  migration_exception: "legacy one-shot"',
+      '  exempt_append_sites: 1',
       '',
     ].join('\n');
     const r = runWithFixture({ 'legacy-one-shot.yaml': yaml });
@@ -192,7 +193,7 @@ describe('check-protocol-append-sites', () => {
     expect(r.payload.violations[0].file).toBe('js-append.yaml');
   });
 
-  it('case 9: embedded appendFileSync to stateLog + migration_exception -> status 0', () => {
+  it('case 9: embedded appendFileSync to stateLog + migration_exception + exempt_append_sites -> status 0', () => {
     const yaml = [
       'name: js-append-legacy',
       'steps:',
@@ -200,6 +201,7 @@ describe('check-protocol-append-sites', () => {
       'state_write_protocol:',
       '  mechanism: append-gateway',
       '  migration_exception: "legacy one-shot"',
+      '  exempt_append_sites: 1',
       "            appendFileSync(paths.stateLog, JSON.stringify(e) + '\\n', 'utf8');",
       '',
     ].join('\n');
@@ -244,5 +246,96 @@ describe('check-protocol-append-sites', () => {
     expect(r.status).toBe(0);
     expect(r.payload.ok).toBe(true);
     expect(r.payload.violations).toEqual([]);
+  });
+
+  it('case 12: migration_exception present, exempt_append_sites missing -> status 2, UNCOUNTED_EXEMPTION', () => {
+    const yaml = [
+      'name: uncounted',
+      'steps:',
+      "  - run: printf '{}' >> {state_paths.state_log}",
+      'state_write_protocol:',
+      '  mechanism: append-gateway',
+      '  migration_exception: "legacy one-shot"',
+      '',
+    ].join('\n');
+    const r = runWithFixture({ 'uncounted.yaml': yaml });
+    expect(r.status).toBe(2);
+    expect(r.payload.ok).toBe(false);
+    expect(r.payload.violations).toHaveLength(1);
+    expect(r.payload.violations[0].rule).toBe('UNCOUNTED_EXEMPTION');
+    expect(r.payload.violations[0].file).toBe('uncounted.yaml');
+  });
+
+  it('case 13: exempt_append_sites: 1 but two append sites present -> status 2, EXEMPTION_COUNT_MISMATCH', () => {
+    const yaml = [
+      'name: mismatch',
+      'steps:',
+      "  - run: printf '{}' >> {state_paths.state_log}",
+      "  - run: printf '{}' >> {state_paths.state_log}",
+      'state_write_protocol:',
+      '  mechanism: append-gateway',
+      '  migration_exception: "legacy one-shot"',
+      '  exempt_append_sites: 1',
+      '',
+    ].join('\n');
+    const r = runWithFixture({ 'mismatch.yaml': yaml });
+    expect(r.status).toBe(2);
+    expect(r.payload.ok).toBe(false);
+    expect(r.payload.violations).toHaveLength(1);
+    expect(r.payload.violations[0].rule).toBe('EXEMPTION_COUNT_MISMATCH');
+    expect(r.payload.violations[0].file).toBe('mismatch.yaml');
+  });
+
+  it('case 14: exempt_append_sites matching the real count -> status 0', () => {
+    const yaml = [
+      'name: counted',
+      'steps:',
+      "  - run: printf '{}' >> {state_paths.state_log}",
+      'state_write_protocol:',
+      '  mechanism: append-gateway',
+      '  migration_exception: "legacy one-shot"',
+      '  exempt_append_sites: 1',
+      '',
+    ].join('\n');
+    const r = runWithFixture({ 'counted.yaml': yaml });
+    expect(r.status).toBe(0);
+    expect(r.payload.ok).toBe(true);
+    expect(r.payload.violations).toEqual([]);
+  });
+
+  it('case 15: appendFileSync to a non-log target, no exception -> status 2, UNDECLARED_DIRECT_APPEND (target-independent)', () => {
+    const yaml = [
+      'name: non-log-target',
+      'steps:',
+      '  - run: node script.js',
+      'state_write_protocol:',
+      '  mechanism: append-gateway',
+      "            appendFileSync('/tmp/scratch.txt', data);",
+      '',
+    ].join('\n');
+    const r = runWithFixture({ 'non-log-target.yaml': yaml });
+    expect(r.status).toBe(2);
+    expect(r.payload.ok).toBe(false);
+    expect(r.payload.violations).toHaveLength(1);
+    expect(r.payload.violations[0].rule).toBe('UNDECLARED_DIRECT_APPEND');
+    expect(r.payload.violations[0].file).toBe('non-log-target.yaml');
+  });
+
+  it('case 16: helper wrapper calling appendFileSync, no exception -> status 2, UNDECLARED_DIRECT_APPEND', () => {
+    const yaml = [
+      'name: helper-wrapper',
+      'steps:',
+      '  - run: node script.js',
+      'state_write_protocol:',
+      '  mechanism: append-gateway',
+      "            function write(p, d) { appendFileSync(p, d); }",
+      '',
+    ].join('\n');
+    const r = runWithFixture({ 'helper-wrapper.yaml': yaml });
+    expect(r.status).toBe(2);
+    expect(r.payload.ok).toBe(false);
+    expect(r.payload.violations).toHaveLength(1);
+    expect(r.payload.violations[0].rule).toBe('UNDECLARED_DIRECT_APPEND');
+    expect(r.payload.violations[0].file).toBe('helper-wrapper.yaml');
   });
 });

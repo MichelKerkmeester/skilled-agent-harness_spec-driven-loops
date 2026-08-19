@@ -46,8 +46,8 @@
       "spec.md",
       "plan.md",
       "checklist.md",
-      "scratch/protocol-retirement-baseline.md",
       "scratch/append-site-conformance.md",
+      "scratch/protocol-retirement-baseline.md",
       "scratch/guard-probe.mjs",
       "tasks.md"
     ],
@@ -89,15 +89,15 @@
         "source": "derived"
       },
       {
-        "name": "protocol-retirement-baseline.md",
-        "kind": "doc",
-        "path": "scratch/protocol-retirement-baseline.md",
-        "source": "derived"
-      },
-      {
         "name": "append-site-conformance.md",
         "kind": "doc",
         "path": "scratch/append-site-conformance.md",
+        "source": "derived"
+      },
+      {
+        "name": "protocol-retirement-baseline.md",
+        "kind": "doc",
+        "path": "scratch/protocol-retirement-baseline.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After the fleet is enabled, every mode's canonical writes go through the gateway, but the direct-append paths still",
     "created_at": "2026-08-19T06:57:08.198Z",
-    "last_save_at": "2026-08-19T20:44:52.082Z",
+    "last_save_at": "2026-08-19T20:56:35.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62afe9314dff559a3c2ae0ba9e717dea12f7e9ee3c4c1ff86fc284bf89ac613a",
+    "source_fingerprint": "sha256:7e5e69c6b36257fcbe035f1ad38398317724e8ee4173dcd9f99e506f5f665e60",
     "source_doc_hashes": {
       "spec.md": "9316737a64709732d753fadfb436a01008c28de54cd4915808d223c760defd76",
       "plan.md": "06b0381329b8b98bd4e36a5ea2100989dc9f9635d2582ba08dc70c177d547798",
       "tasks.md": "83965280f4bd6fbf30544372dbcb5ba7b99b0a509ef71645a9da52aef3c27cd7",
-      "checklist.md": "c07f225776ddcd550ba29ae38c355bf07c11de85d6b1c6a170f5fc3202b4739d",
+      "checklist.md": "316f72026cdee6d2bc55873e97f191329b985ca6cd636d534f3444993dc49e93",
       "implementation-summary.md": "a990948fd5c15f8103455c1ce886686f44ebe279cfde7d5024bc8ba34f7a90e7"
     },
     "last_active_child_id": null,

@@ -102,6 +102,7 @@ state_write_protocol:
   applies_to: "append_jsonl"
   refusal_handling: "halt on exit 2; never fall back to a direct file write"
   migration_exception: "Two embedded executor branches (cli-codex leaf_output_unpersisted fail-event and cli-opencode recovery_baseline) call appendFileSync on {state_paths.state_log} directly; pre-existing, to be migrated to the gateway separately."
+  exempt_append_sites: 2
   contract: |
     Every canonical record named by an append_jsonl directive below is
     written by invoking the command above with that record as the event JSON. Those directives
@@ -122,6 +123,10 @@ state_write_protocol:
     inside the cli-codex and cli-opencode executor branches. It is not sanctioned by this
     protocol and is tracked for migration to the gateway; until then it remains a known
     deviation, not a pattern to copy.
+
+    The exempt_append_sites figure is the precise tally of direct-append call sites this
+    exception shields; adding one more breaks the conformance check until that new site is
+    reviewed and the count is bumped to match.
 state_paths:
   # Root specs keep alignment/ directly; child phases keep a local packet dir inside
   # that same target's alignment/ folder, mirroring deep-review's own root-vs-child rule.

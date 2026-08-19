@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Protocol Append-Site Conformance                     ║
+// ║ Deep-Loop Runtime — Append-Site Declaration Coverage                     ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ Input:  CLI args (--dir).                                                ║
 // ║ Output: JSON to stdout.                                                  ║
@@ -12,9 +12,13 @@
 
 // A declared write mechanism that nothing checks is advisory only: a workflow can
 // ignore it and no gate notices, so the declaration becomes decorative. This
-// checker turns the declaration into something a run can actually fail on by
-// scanning command YAML for append directives and verifying each one is backed by
-// either an append-gateway protocol mechanism or an explicit migration exception.
+// checker turns the declaration into a declaration-coverage gate: it scans
+// command YAML for append directives and direct filesystem appends and verifies
+// each direct append is both declared (via migration_exception) and counted
+// (via exempt_append_sites). A clean result means every direct append in these
+// assets is declared and counted — NOT that the appends are correct or
+// justified. Whether a declared exception deserves to exist is a human review
+// decision, not something this checker can decide.
 
 const fs = require('fs');
 const path = require('path');
@@ -55,6 +59,7 @@ function inspectFile(file, lines) {
     hasProtocolBlock: false,
     mechanismAppendGateway: false,
     hasMigrationException: false,
+    exemptAppendSites: null,
     literalShellAppends: 0,
     literalJsAppends: 0,
   };
@@ -94,33 +99,36 @@ function inspectFile(file, lines) {
         if (/^\s*migration_exception\s*:/.test(line)) {
           findings.hasMigrationException = true;
         }
+        // exempt_append_sites is expected directly after migration_exception
+        // and states how many direct-append sites the exception covers.
+        const exm = line.match(/^\s*exempt_append_sites\s*:\s*(\d+)\s*$/);
+        if (exm) {
+          findings.exemptAppendSites = parseInt(exm[1], 10);
+        }
       }
     }
 
     // A direct append is a direct append whether it is written as a shell
     // redirect or as an embedded filesystem call: recognising only one
-    // spelling would let the other pass unnoticed. The shell form writes
-    // straight to the state log via `>>`; the embedded-JS form calls
-    // appendFileSync(...) on a state-log path. Both bypass the append
-    // gateway, so both must trip the same direct-append rule.
+    // spelling would let the other pass unnoticed. A workflow asset has no
+    // business performing a raw filesystem append at all, so the target no
+    // longer needs to be guessed — every appendFileSync(...) call is flagged
+    // regardless of what it writes to, and every `>>` redirect whose target
+    // is a {...} path placeholder or contains "log" is flagged. The call-shape
+    // test /\bappendFileSync\s*\(/ still excludes a bare import/destructure
+    // that never calls.
     const gtIdx = line.indexOf('>>');
     if (gtIdx !== -1) {
       const after = line.slice(gtIdx + 2);
-      if (after.includes('state_log')) {
+      if (/\{[^}]*\}/.test(after) || /log/i.test(after)) {
         findings.literalShellAppends++;
       }
     }
 
-    // Embedded JS append: a call (not a bare import/require) whose target,
-    // possibly on a following line, names the state log. Requiring the call
-    // shape /\bappendFileSync\s*\(/ excludes `import { appendFileSync }`.
+    // Embedded JS append: flag every call regardless of target. Requiring the
+    // call shape /\bappendFileSync\s*\(/ excludes `import { appendFileSync }`.
     if (/\bappendFileSync\s*\(/.test(line)) {
-      const joined = [line]
-        .concat(lines.slice(i + 1, i + 4).map((l) => l.replace(/\r?\n$/, '')))
-        .join('\n');
-      if (/stateLog|state_log|state-log/.test(joined)) {
-        findings.literalJsAppends++;
-      }
+      findings.literalJsAppends++;
     }
   }
 
@@ -143,15 +151,34 @@ function evaluate(file, f) {
     });
   }
 
-  // R2: literal direct append into state_log without a migration exception.
-  // Covers both the shell `>>` form and the embedded appendFileSync(...) form.
+  // R2: direct appends must be both declared (migration_exception) and counted
+  // (exempt_append_sites). A single exception used to cover every append in a
+  // file, so a new site added later inherited an exception nobody reviewed it
+  // against. Requiring an explicit count forces the author to re-declare on
+  // every change. Covers both the shell `>>` form and the embedded
+  // appendFileSync(...) form.
   const directAppends = f.literalShellAppends + f.literalJsAppends;
-  if (directAppends >= 1 && !f.hasMigrationException) {
-    violations.push({
-      file,
-      rule: 'UNDECLARED_DIRECT_APPEND',
-      detail: 'literal direct append into state_log without a migration_exception',
-    });
+  const siteWord = directAppends === 1 ? 'site' : 'sites';
+  if (directAppends >= 1) {
+    if (!f.hasMigrationException) {
+      violations.push({
+        file,
+        rule: 'UNDECLARED_DIRECT_APPEND',
+        detail: `direct append without a migration_exception (${directAppends} ${siteWord} found)`,
+      });
+    } else if (f.exemptAppendSites === null) {
+      violations.push({
+        file,
+        rule: 'UNCOUNTED_EXEMPTION',
+        detail: `migration_exception present but exempt_append_sites missing (${directAppends} ${siteWord} found)`,
+      });
+    } else if (f.exemptAppendSites !== directAppends) {
+      violations.push({
+        file,
+        rule: 'EXEMPTION_COUNT_MISMATCH',
+        detail: `exempt_append_sites=${f.exemptAppendSites} but ${directAppends} ${siteWord} found`,
+      });
+    }
   }
 
   // R3: protocol block with zero append directives -> info only, never a violation.
