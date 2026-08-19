@@ -38,6 +38,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `codex-dispatch.cjs` | Runs the Codex executor dispatch boundary and records its result. |
 | `compile-command-contracts.cjs` | Compiles command contract inputs into the runtime validation surface. |
 | `convergence.cjs` | Computes typed convergence decisions from graph state. |
+| `enable-modes.cjs` | Enables modes serially from the frozen order, with a dry run and a resumable state file. |
 | `fanout-merge.cjs` | Merges fan-out lineage outputs into deterministic consolidated artifacts. |
 | `fanout-pool.cjs` | Provides the concurrency-capped fan-out worker pool and status ledger. |
 | `fanout-run.cjs` | Runs research or review fan-out lineages through CLI subprocesses. |
