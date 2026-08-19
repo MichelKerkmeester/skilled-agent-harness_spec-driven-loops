@@ -37,6 +37,7 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "scratch/dispatch-point-inventory.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -44,6 +45,12 @@
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "dispatch-point-inventory.md",
+        "kind": "doc",
+        "path": "scratch/dispatch-point-inventory.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -147,6 +154,12 @@
         "source": "derived"
       },
       {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -165,25 +178,13 @@
         "source": "derived"
       },
       {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built This",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -191,7 +192,7 @@
     ],
     "causal_summary": "Before any enforcement rule can be written, the packet needs a precise, evidence-backed map of WHERE personas are (or are not) attached today",
     "created_at": "2026-08-19T06:31:07.889Z",
-    "last_save_at": "2026-08-19T06:41:30.148Z",
+    "last_save_at": "2026-08-19T09:27:03.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d80483beda9afa72d054b8963be70c849ebbcd0c33c2ec5c942e205b3721a71",
+    "source_fingerprint": "sha256:52ffafba401b2d1295a817cad2f8f1bd43741ec50d6997e7db435cba2681fd92",
     "source_doc_hashes": {
       "spec.md": "6dde143010b55ea2d9a2fd67dfa30d1953aec100abe803c42e93e2683a02118e",
       "plan.md": "9a2ff9ae96cd1d9e4c40b9e752ffd3702af95c9689dadf5bdb29b60ed54d5219",
-      "tasks.md": "7e9163846968edee9a898cfef50d68175eba75dc0d2285d25516b114875f8ad2",
-      "checklist.md": "dc4fb645306e7d336e3802002c4227e28c80090d2cf29581b6c22d817edd2cb0",
-      "implementation-summary.md": "28ba4aa9ac4bb0eb86810ffb12a3d21e177ed9be1b0c2ea17b2199c6a43e5e9c"
+      "tasks.md": "4493213452bd79da4d62ddb1cc35a1d8d60aa8f35687617eee598c7e96542a78",
+      "checklist.md": "085c323f8b7660efb35fcd7e52e6e3d39fd8f888873e1261f1a12f22dca6f737",
+      "implementation-summary.md": "01a0cbc266177f1100c73099359d282551fad800172997b0ef7e6320f3721c28"
     },
     "last_active_child_id": null,
     "last_active_at": null
