@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -19,9 +19,10 @@ type CliResult = {
   stderr: string;
 };
 
-function runCli(args: string[]): CliResult {
+function runCli(args: string[], environmentOverlay: NodeJS.ProcessEnv = {}): CliResult {
   const result = spawnSync(process.execPath, [CLI_PATH, ...args], {
     encoding: 'utf8',
+    env: { ...process.env, ...environmentOverlay },
   });
   const stdout = (result.stdout ?? '').trim();
   const lastLine = stdout.split(/\r?\n/).filter(Boolean).at(-1) ?? '{}';
@@ -36,6 +37,23 @@ function runCli(args: string[]): CliResult {
     json,
     rawStdout: stdout,
     stderr: result.stderr ?? '',
+  };
+}
+
+function sampleRunInitializedEvent(): Record<string, unknown> {
+  const digest = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+  return {
+    stem: 'deep_research.run_initialized',
+    scope: { runId: 'run-authority-001', lineageId: 'lineage-authority-001' },
+    data: {
+      generation: 1,
+      charterDigest: digest,
+      configDigest: digest,
+      executorFingerprint: digest,
+      replayFingerprint: digest,
+      maxIterations: 10,
+      convergencePolicyVersion: '1.0.0',
+    },
   };
 }
 
@@ -237,5 +255,60 @@ describe('append-mode-event CLI subprocess execution', () => {
     expect(result.exitCode).toBe(1);
     expect(result.json.ok).toBe(false);
     expect(result.json.code).toBe('INPUT_ERROR');
+  });
+
+  // Authority is one durable fact per deployment. These two tests pin the
+  // direction it is read from, because a gate aimed at the wrong directory
+  // passes every test that only ever supplies one directory.
+  it('refuses before any ledger write when the durable authority record is malformed', () => {
+    const runDir = createTempDir('authority-denied');
+    const authorityRoot = createTempDir('authority-denied-root');
+    writeFileSync(join(authorityRoot, 'authority-deep-research.json'), '{ not valid json', 'utf8');
+
+    const eventJsonPath = join(runDir, 'event.json');
+    writeFileSync(eventJsonPath, JSON.stringify(sampleRunInitializedEvent()), 'utf8');
+
+    const result = runCli([
+      '--mode',
+      'deep-research',
+      '--run-directory',
+      runDir,
+      '--event-json',
+      eventJsonPath,
+    ], { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.json.ok).toBe(false);
+    expect(result.json.phase).toBe('authority');
+    expect(result.json.code).toBe('AUTHORITY_DENIED');
+    // The refusal must precede the write, not follow it.
+    expect(existsSync(join(runDir, 'ledger'))).toBe(false);
+  });
+
+  it('does not treat the run directory as the authority root', () => {
+    // A per-run authority root would let two runs disagree about which writer
+    // is canonical. Poison the run directory exactly the way a per-run
+    // resolver would read it, and deliberately leave the environment override
+    // unset so the default resolution path is the one under test: the append
+    // must still succeed, because the run directory is not the root.
+    const runDir = createTempDir('runroot-not-authority');
+    const decoy = join(runDir, '.opencode', 'skills', '.authority-state');
+    mkdirSync(decoy, { recursive: true });
+    writeFileSync(join(decoy, 'authority-deep-research.json'), '{ not valid json', 'utf8');
+
+    const eventJsonPath = join(runDir, 'event.json');
+    writeFileSync(eventJsonPath, JSON.stringify(sampleRunInitializedEvent()), 'utf8');
+
+    const result = runCli([
+      '--mode',
+      'deep-research',
+      '--run-directory',
+      runDir,
+      '--event-json',
+      eventJsonPath,
+    ], { DEEP_LOOP_AUTHORITY_ROOT: '' });
+
+    expect(result.exitCode).toBe(0);
+    expect(result.json.ok).toBe(true);
   });
 });

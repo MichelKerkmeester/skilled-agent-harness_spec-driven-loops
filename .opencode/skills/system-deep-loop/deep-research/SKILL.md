@@ -269,7 +269,7 @@ The YAML workflow owns executor selection (native `@deep-research` by default, o
 Executor invariants:
 
 1. Produce a non-empty iteration markdown file at `{state_paths.iteration_pattern}`.
-2. Append a JSONL delta record to `{state_paths.state_log}` with required fields: `type`, `iteration`, `newInfoRatio`, `status`, and `focus`.
+2. Record a JSONL delta through the append gateway (`runtime/scripts/append-mode-event.cjs --mode research --run-directory <spec folder> --event-json <file>`) with required fields: `type`, `iteration`, `newInfoRatio`, `status`, and `focus`. The gateway authorizes, fences, and receipts the write, then refreshes `{state_paths.state_log}` from the ledger; do not write that file directly.
 3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops, and max 12 tool calls per iteration.
 
 Failure modes include `iteration_file_missing`, `iteration_file_empty`, `jsonl_not_appended`, `jsonl_missing_fields`, and `jsonl_parse_error`. Three consecutive failures route to stuck recovery.
@@ -436,7 +436,7 @@ Key integrations:
 
 ### Continuity Integration
 
-Before research: recover context via `/speckit:resume` (`handover.md -> _memory.continuity -> spec docs`). During each iteration: write `iterations/iteration-NNN.md`, append JSONL, let the reducer refresh strategy/registry/dashboard. After research: save continuity via `generate-context.js`.
+Before research: recover context via `/speckit:resume` (`handover.md -> _memory.continuity -> spec docs`). During each iteration: write `iterations/iteration-NNN.md`, record the JSONL delta through the append gateway, let the reducer refresh strategy/registry/dashboard. After research: save continuity via `generate-context.js`.
 
 ### Command Integration
 

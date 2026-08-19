@@ -6,9 +6,9 @@
 // write path for mode state. The gateway validates, authorizes, fences,
 // and projects each event.
 
-import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
@@ -17,6 +17,7 @@ import { TransitionAuthorizationGateway } from '../../lib/authorized-ledger/inde
 import { TransitionPolicyRegistry } from '../../lib/authorized-ledger/index.js';
 import { AuthorizationVerdicts, AuthorizationReasonCodes } from '../../lib/authorized-ledger/index.js';
 import { appendModeEvent, ModeAppendGatewayErrorCodes } from '../../lib/mode-append-gateway/index.js';
+import { resolveAuthorityRoot } from '../../lib/authority-root/index.js';
 import { createFixtureEventRegistry, createFixturePolicyRegistry } from '../fixtures/authorized-ledger-fixtures.js';
 import { prepareEventWrite } from '../../lib/event-envelope/index.js';
 import {
@@ -134,6 +135,7 @@ afterEach(() => {
 describe('mode append gateway', () => {
   it('happy path: append and read the event back through the ledger', async () => {
     const rootDirectory = temporaryRoot('happy-path');
+    const authorityRoot = temporaryRoot('happy-path-auth');
     const { ledger, gateway, policies, registry } = createTestHarness(rootDirectory);
 
     const event = createTestEvent(registry, 1);
@@ -141,7 +143,7 @@ describe('mode append gateway', () => {
       mode: 'deep-research',
       runDirectory: rootDirectory,
       eventRecord: event,
-      authority: FIXTURE_AUTHORITY,
+      authorityRoot,
       policy: {
         policyId: 'fixture-capability-policy',
         policyVersion: 1,
@@ -171,6 +173,7 @@ describe('mode append gateway', () => {
 
   it('refusal: malformed envelope is rejected by authorization', async () => {
     const rootDirectory = temporaryRoot('malformed-envelope');
+    const authorityRoot = temporaryRoot('malformed-auth');
     const { ledger, gateway, policies } = createTestHarness(rootDirectory);
 
     // Create an event with invalid structure - we'll manually construct
@@ -208,7 +211,7 @@ describe('mode append gateway', () => {
       mode: 'deep-research',
       runDirectory: rootDirectory,
       eventRecord: malformedEvent,
-      authority: FIXTURE_AUTHORITY,
+      authorityRoot,
       policy: {
         policyId: 'fixture-capability-policy',
         policyVersion: 1,
@@ -229,6 +232,7 @@ describe('mode append gateway', () => {
 
   it('refusal: authorization denied returns named reason', async () => {
     const rootDirectory = temporaryRoot('auth-denied');
+    const authorityRoot = temporaryRoot('auth-denied-auth');
     const { ledger, gateway, policies, registry } = createTestHarness(rootDirectory);
 
     // Create a policy that denies
@@ -251,7 +255,7 @@ describe('mode append gateway', () => {
       mode: 'deep-research',
       runDirectory: rootDirectory,
       eventRecord: event,
-      authority: FIXTURE_AUTHORITY,
+      authorityRoot,
       policy: {
         policyId: 'deny-policy',
         policyVersion: 1,
@@ -273,6 +277,7 @@ describe('mode append gateway', () => {
 
   it('concurrency: two racing appends both succeed with total order', async () => {
     const rootDirectory = temporaryRoot('concurrency');
+    const authorityRoot = temporaryRoot('concurrency-auth');
     const { ledger, gateway, policies, registry } = createTestHarness(rootDirectory);
 
     const event1 = createTestEvent(registry, 1);
@@ -284,7 +289,7 @@ describe('mode append gateway', () => {
         mode: 'deep-research',
         runDirectory: rootDirectory,
         eventRecord: event1,
-        authority: FIXTURE_AUTHORITY,
+        authorityRoot,
         policy: {
           policyId: 'fixture-capability-policy',
           policyVersion: 1,
@@ -299,7 +304,7 @@ describe('mode append gateway', () => {
         mode: 'deep-research',
         runDirectory: rootDirectory,
         eventRecord: event2,
-        authority: FIXTURE_AUTHORITY,
+        authorityRoot,
         policy: {
           policyId: 'fixture-capability-policy',
           policyVersion: 1,
@@ -343,6 +348,7 @@ describe('mode append gateway', () => {
 
   it('projection failure: succeeds with stale projection marker and explicit error', async () => {
     const rootDirectory = temporaryRoot('projection-failure');
+    const authorityRoot = temporaryRoot('proj-failure-auth');
     const { ledger, gateway, policies, registry } = createTestHarness(rootDirectory);
 
     const event = createTestEvent(registry, 1);
@@ -350,7 +356,7 @@ describe('mode append gateway', () => {
       mode: 'deep-research',
       runDirectory: rootDirectory,
       eventRecord: event,
-      authority: FIXTURE_AUTHORITY,
+      authorityRoot,
       policy: {
         policyId: 'fixture-capability-policy',
         policyVersion: 1,
@@ -380,6 +386,7 @@ describe('mode append gateway', () => {
 
   it('projection success: projects legacy JSONL state file when appending deep-research event', async () => {
     const rootDirectory = temporaryRoot('projection-success');
+    const authorityRoot = temporaryRoot('proj-success-auth');
     const registry = createDeepResearchEventRegistry();
     const authorityProvider = () => FIXTURE_AUTHORITY;
 
@@ -457,7 +464,7 @@ describe('mode append gateway', () => {
       mode: 'deep-research',
       runDirectory: rootDirectory,
       eventRecord,
-      authority: FIXTURE_AUTHORITY,
+      authorityRoot,
       policy: {
         policyId: 'deep-research-policy',
         policyVersion: 1,
@@ -488,6 +495,7 @@ describe('mode append gateway', () => {
 
   it('binding failure: returns named phase and reason', async () => {
     const rootDirectory = temporaryRoot('binding-failure');
+    const authorityRoot = temporaryRoot('binding-failure-auth');
     const { ledger, gateway, policies, registry } = createTestHarness(rootDirectory);
 
     // Use a non-existent directory to trigger binding failure
@@ -495,7 +503,7 @@ describe('mode append gateway', () => {
       mode: 'deep-research',
       runDirectory: '/nonexistent/path/that/does/not/exist',
       eventRecord: createTestEvent(registry, 1),
-      authority: FIXTURE_AUTHORITY,
+      authorityRoot,
       policy: {
         policyId: 'fixture-capability-policy',
         policyVersion: 1,
@@ -512,5 +520,133 @@ describe('mode append gateway', () => {
       expect(result.code).toBe(ModeAppendGatewayErrorCodes.BINDING_FAILED);
       expect(result.reason).toBeTruthy();
     }
+  });
+
+  it('admission: fresh empty authority root succeeds and produces receipt', async () => {
+    const rootDirectory = temporaryRoot('empty-authority-root');
+    const authorityRoot = temporaryRoot('fresh-authority-root');
+    const { ledger, gateway, policies, registry } = createTestHarness(rootDirectory);
+
+    const event = createTestEvent(registry, 1);
+    const result = await appendModeEvent({
+      mode: 'deep-research',
+      runDirectory: rootDirectory,
+      eventRecord: event,
+      authorityRoot,
+      policy: {
+        policyId: 'fixture-capability-policy',
+        policyVersion: 1,
+        policyDigest: '0'.repeat(64),
+      },
+      policyRegistry: policies,
+      authorizationGateway: gateway,
+      ledger,
+      binding: createTestBinding(),
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.receipt.ledgerId).toBe(FIXTURE_LEDGER_ID);
+      expect(result.receipt.sequence).toBe(1);
+    }
+  });
+
+  it('admission: malformed authority record fails with AUTHORITY_DENIED and leaves ledger unchanged', async () => {
+    const rootDirectory = temporaryRoot('malformed-authority-run');
+    const authorityRoot = temporaryRoot('malformed-authority-root');
+    const { ledger, gateway, policies, registry } = createTestHarness(rootDirectory);
+
+    writeFileSync(join(authorityRoot, 'authority-deep-research.json'), '{ not valid json');
+    const initialHead = await ledger.getVerifiedHead();
+
+    const event = createTestEvent(registry, 1);
+    const result = await appendModeEvent({
+      mode: 'deep-research',
+      runDirectory: rootDirectory,
+      eventRecord: event,
+      authorityRoot,
+      policy: {
+        policyId: 'fixture-capability-policy',
+        policyVersion: 1,
+        policyDigest: '0'.repeat(64),
+      },
+      policyRegistry: policies,
+      authorizationGateway: gateway,
+      ledger,
+      binding: createTestBinding(),
+    });
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.phase).toBe('authority');
+      expect(result.code).toBe(ModeAppendGatewayErrorCodes.AUTHORITY_DENIED);
+    }
+
+    const currentHead = await ledger.getVerifiedHead();
+    expect(currentHead).toEqual(initialHead);
+  });
+
+  it('admission: mode name not in AUTHORITY_FLIP_MODE_ORDER fails with AUTHORITY_DENIED', async () => {
+    const rootDirectory = temporaryRoot('unknown-mode-run');
+    const authorityRoot = temporaryRoot('unknown-mode-authority');
+    const { ledger, gateway, policies, registry } = createTestHarness(rootDirectory);
+
+    const event = createTestEvent(registry, 1);
+    const result = await appendModeEvent({
+      mode: 'unsupported-unknown-mode',
+      runDirectory: rootDirectory,
+      eventRecord: event,
+      authorityRoot,
+      policy: {
+        policyId: 'fixture-capability-policy',
+        policyVersion: 1,
+        policyDigest: '0'.repeat(64),
+      },
+      policyRegistry: policies,
+      authorizationGateway: gateway,
+      ledger,
+      binding: createTestBinding(),
+    });
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.phase).toBe('authority');
+      expect(result.code).toBe(ModeAppendGatewayErrorCodes.AUTHORITY_DENIED);
+    }
+  });
+
+  it('resolveAuthorityRoot honours DEEP_LOOP_AUTHORITY_ROOT and falls back to default', () => {
+    const explicitPath = resolve(tmpdir(), 'explicit-authority-state');
+    expect(resolveAuthorityRoot({
+      environment: { DEEP_LOOP_AUTHORITY_ROOT: explicitPath },
+    })).toBe(explicitPath);
+
+    const customRepo = resolve(tmpdir(), 'custom-repo-root');
+    expect(resolveAuthorityRoot({
+      repositoryRoot: customRepo,
+      environment: { DEEP_LOOP_AUTHORITY_ROOT: 'relative-state' },
+    })).toBe(join(customRepo, 'relative-state'));
+
+    expect(resolveAuthorityRoot({
+      repositoryRoot: customRepo,
+      environment: {},
+    })).toBe(join(customRepo, '.opencode/skills/.authority-state'));
+
+    // With no repository root supplied the resolver must DISCOVER the
+    // checkout rather than trust the working directory, because callers near
+    // the write boundary hold per-run paths.
+    const discovered = resolve(tmpdir(), 'discovered-repo-root');
+    expect(resolveAuthorityRoot({
+      environment: {},
+      discoverRepositoryRoot: () => discovered,
+    })).toBe(join(discovered, '.opencode/skills/.authority-state'));
+
+    // Discovery failing is the only case that may fall back to the working
+    // directory; it must still return an absolute root rather than throw at a
+    // write boundary.
+    expect(resolveAuthorityRoot({
+      environment: {},
+      discoverRepositoryRoot: () => null,
+    })).toBe(join(process.cwd(), '.opencode/skills/.authority-state'));
   });
 });

@@ -26,6 +26,11 @@ import {
   appendAuthorizedThroughFence,
 } from '../locks-and-fencing/index.js';
 import { resolveCutoverBinding } from '../cutover-binding/index.js';
+import { resolveAuthorityRoot } from '../authority-root/index.js';
+import { admitCanonicalWrite } from '../deep-research-authority/index.js';
+import {
+  AUTHORITY_FLIP_MODE_ORDER,
+} from '../per-mode-authority-flip/index.js';
 import {
   LEGACY_PROJECTION_MANIFEST,
   LegacyProjectionEngine,
@@ -58,6 +63,10 @@ import type {
   LegacyProjectionRefreshBoundary,
 } from '../legacy-projections/index.js';
 import type { CutoverBindingEnvironment, ResolvedCutoverBinding } from '../cutover-binding/index.js';
+import type {
+  AuthoritySelectorResult,
+  CutoverCertificateMode,
+} from '../per-mode-authority-flip/index.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -70,8 +79,12 @@ export interface AppendModeEventOptions {
   readonly runDirectory: string;
   /** Event record prepared by the mode's ledger schema. */
   readonly eventRecord: EventWritePreflight;
-  /** Current authority snapshot for the mode. */
-  readonly authority: { state: string; epoch: number };
+  /**
+   * Durable mode-global authority root. Deliberately NOT derived from
+   * `runDirectory`: that is a per-run path, and deriving the root from it
+   * would give every run its own authority record.
+   */
+  readonly authorityRoot?: string;
   /** Transition policy to evaluate against. */
   readonly policy: {
     readonly policyId: string;
@@ -119,7 +132,7 @@ export interface AppendModeEventResult {
 
 export interface AppendModeEventError {
   readonly ok: false;
-  readonly phase: 'binding' | 'envelope' | 'authorization' | 'append' | 'projection';
+  readonly phase: 'binding' | 'authority' | 'envelope' | 'authorization' | 'append' | 'projection';
   readonly reason: string;
   readonly code: string;
 }
@@ -133,6 +146,8 @@ export type AppendModeEventOutcome = AppendModeEventResult | AppendModeEventErro
 export const ModeAppendGatewayErrorCodes = Object.freeze({
   /** Cutover binding could not resolve actor, capability, or commit. */
   BINDING_FAILED: 'BINDING_FAILED',
+  /** Authority admission denied or unresolvable. */
+  AUTHORITY_DENIED: 'AUTHORITY_DENIED',
   /** Event record does not match the mode's ledger schema. */
   ENVELOPE_INVALID: 'ENVELOPE_INVALID',
   /** Transition authorization denied the request. */
@@ -203,10 +218,11 @@ function resolveModeEventRegistry(
  *
  * The pipeline executes in this order:
  * 1. Bind: resolve actor, capability, and commit from the environment
- * 2. Envelope: validate event preflight structure
- * 3. Authorize: transition gateway evaluates policy and issues allow proof
- * 4. Append: fenced writer commits event to append-only ledger
- * 5. Project: refresh legacy projection at declared boundary
+ * 2. Authority: admit canonical write via durable authority root
+ * 3. Envelope: validate event preflight structure
+ * 4. Authorize: transition gateway evaluates policy and issues allow proof
+ * 5. Append: fenced writer commits event to append-only ledger
+ * 6. Project: refresh legacy projection at declared boundary
  */
 export async function appendModeEvent(
   options: AppendModeEventOptions,
@@ -231,7 +247,52 @@ export async function appendModeEvent(
     };
   }
 
-  // Phase 2: Event Preflight / Envelope verification
+  // Phase 2: Resolve and verify authority admission from the durable root
+  const authorityRoot = options.authorityRoot ?? resolveAuthorityRoot();
+
+  if (!AUTHORITY_FLIP_MODE_ORDER.includes(options.mode as CutoverCertificateMode)) {
+    return {
+      ok: false,
+      phase: 'authority',
+      reason: `Unknown mode: ${options.mode}`,
+      code: ModeAppendGatewayErrorCodes.AUTHORITY_DENIED,
+    };
+  }
+
+  let admission: AuthoritySelectorResult;
+  try {
+    admission = admitCanonicalWrite(options.mode as CutoverCertificateMode, {
+      authorityRoot,
+      now,
+    });
+  } catch (error) {
+    return {
+      ok: false,
+      phase: 'authority',
+      reason: error instanceof Error ? error.message : String(error),
+      code: ModeAppendGatewayErrorCodes.AUTHORITY_DENIED,
+    };
+  }
+
+  if (admission.outcome === 'denied') {
+    return {
+      ok: false,
+      phase: 'authority',
+      reason: `Authority admission denied: ${admission.reasonCode}`,
+      code: ModeAppendGatewayErrorCodes.AUTHORITY_DENIED,
+    };
+  }
+
+  if (admission.admissionOpen === false) {
+    return {
+      ok: false,
+      phase: 'authority',
+      reason: 'Authority admission closed',
+      code: ModeAppendGatewayErrorCodes.AUTHORITY_DENIED,
+    };
+  }
+
+  // Phase 3: Event Preflight / Envelope verification
   const event = options.eventRecord;
 
   // Resolve exact registered policy digest if available from policy registry
@@ -250,7 +311,7 @@ export async function appendModeEvent(
     // If not found in registry, retain caller-provided policy reference to fail closed
   }
 
-  // Phase 3 & 4: Authorize and Append with bounded retry for concurrent writers
+  // Phase 4 & 5: Authorize and Append with bounded retry for concurrent writers
   const maxRetries = 10;
   let receipt: DurableAppendReceipt | null = null;
 
@@ -281,7 +342,7 @@ export async function appendModeEvent(
       priorStateFingerprint: priorHead.recordHash,
       actorId: binding.actorId,
       capabilityId: binding.capabilityId,
-      authorityEpoch: options.authority.epoch,
+      authorityEpoch: admission.epoch,
       policy,
       evidenceDigest,
     };

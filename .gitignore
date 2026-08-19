@@ -99,12 +99,14 @@ dist/
 # Runtime state folders (plugin / tooling state)
 # ───────────────────────────────────────────
 **/.advisor-state/**
+**/.authority-state/**
 **/.completion-sentinel-state/**
 **/.goal-state/**
 **/.loop-guard-state/**
 **/.smart-router-telemetry/**
 **/.spec-gate-state/**
 !.opencode/skills/.advisor-state/README.md
+!.opencode/skills/.authority-state/README.md
 !.opencode/skills/.completion-sentinel-state/README.md
 !.opencode/skills/.goal-state/README.md
 !.opencode/skills/.loop-guard-state/README.md

@@ -19,7 +19,10 @@
       "deep-research enablement tasks",
       "pilot flip tasks",
       "deep-research enablement checklist",
-      "pilot flip verification"
+      "pilot flip verification",
+      "deep-research enablement summary",
+      "pilot flip blocked",
+      "authority flip edge missing"
     ],
     "key_topics": [
       "deep-research",
@@ -36,14 +39,21 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "blocked",
     "key_files": [
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -153,8 +163,8 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "empty",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -177,13 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary",
+        "name": "How Records Get Written",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,21 +195,23 @@
     ],
     "causal_summary": "Deep-research state is produced by agents following prose",
     "created_at": "2026-08-19T06:57:07.880Z",
-    "last_save_at": "2026-08-19T06:57:07.880Z",
+    "last_save_at": "2026-08-19T13:25:27.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c774df62df44a1046ee13cc7cbf62a4f5e39a4b69ec3d1ae57b0c5ca0e26069a",
+    "source_fingerprint": "sha256:3fed4da5cc1249f90c57d5c39a5b5e8ab058af161b4d8bebe039f5a4bf2b1cf9",
     "source_doc_hashes": {
-      "spec.md": "9b118a0ab06f9fc3c8e1bff998da47e4cde60fe7d324e4866f68c7cf89ffc025",
-      "plan.md": "060edf6464e6fc201a6941db99d3ee3abbddcb3221a71d1ef38920266249585d",
-      "tasks.md": "b6f6c3d79165a35de8e8b6f516fa6fe628854038c382913a8b3165a515dff69d",
-      "checklist.md": "3422a58442f54811773d79bb19fa563b454a5d4a1da5f7dc9a380cfb87c8ff0c"
+      "spec.md": "aa7305d8347d7b7b7ec3b0746fb1c9cc8a64e91d13eea4f0ed1c5ad14c483e15",
+      "plan.md": "6b5a5c48fcec891c8cdc1ef1bbeec86cd83ca63260904abdda3ef0fbf3434a44",
+      "tasks.md": "efc52c900dfdd83c9b2d08b2e894718408a1317ce192591988f42de3db585984",
+      "checklist.md": "6ff1484bb444adea541cd8502280c96b5ef4838ac16446f7cb8c0ad77f324da3",
+      "implementation-summary.md": "6f6bdf0abb40001de17077b144f9e755619cd6e7922e15ede1576596c96846e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -225,12 +225,44 @@ async function main() {
   } = await import('../lib/authorized-ledger/index.ts');
   const { prepareEventWrite } = await import('../lib/event-envelope/index.ts');
   const { resolveCutoverBinding } = await import('../lib/cutover-binding/index.ts');
+  const { resolveAuthorityRoot } = await import('../lib/authority-root/index.ts');
+  const { admitCanonicalWrite } = await import('../lib/deep-research-authority/index.ts');
 
   const adapter = await resolveModeAdapter(modeRaw);
   const normalizedMode = adapter.normalizedMode;
   const registry = adapter.createRegistry();
 
-  const authority = { state: 'legacy_authoritative', epoch: 1 };
+  // Read the durable authority record before anything is constructed. A CLI
+  // that asserts its own authority is exactly the private write path the
+  // gateway exists to remove, so a refusal here must happen before a ledger,
+  // a policy registry, or a run directory is touched.
+  const authorityRoot = resolveAuthorityRoot();
+  let admission;
+  try {
+    admission = admitCanonicalWrite(normalizedMode, { authorityRoot });
+  } catch (error) {
+    jsonOut({
+      ok: false,
+      phase: 'authority',
+      reason: error instanceof Error ? error.message : String(error),
+      code: 'AUTHORITY_DENIED',
+    });
+    process.exit(2);
+  }
+  if (admission.outcome === 'denied') {
+    jsonOut({
+      ok: false,
+      phase: 'authority',
+      reason: `Authority admission denied: ${admission.reasonCode}`,
+      code: 'AUTHORITY_DENIED',
+    });
+    process.exit(2);
+  }
+  if (admission.admissionOpen === false) {
+    jsonOut({ ok: false, phase: 'authority', reason: 'Authority admission closed', code: 'AUTHORITY_DENIED' });
+    process.exit(2);
+  }
+  const authority = { state: admission.state, epoch: admission.epoch };
   const policyId = typeof args.policyId === 'string' ? args.policyId : `${normalizedMode}-append-policy`;
   const policyVersion = 1;
   const ruleId = 'mode-event-append';
@@ -368,7 +400,7 @@ async function main() {
     mode: normalizedMode,
     runDirectory,
     eventRecord,
-    authority,
+    authorityRoot,
     policy: {
       policyId: resolvedPolicy.policyId,
       policyVersion: resolvedPolicy.policyVersion,
