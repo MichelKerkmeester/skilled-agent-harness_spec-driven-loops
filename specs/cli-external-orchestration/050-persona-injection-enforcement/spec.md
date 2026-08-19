@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement"
-    last_updated_at: "2026-08-19T11:32:00Z"
+    last_updated_at: "2026-08-19T11:39:00Z"
     last_updated_by: "claude"
-    recent_action: "P4 complete: canonical Persona Injection section installed in the card; validated"
-    next_safe_action: "Author P5 verification sweep (005-verification)"
+    recent_action: "All 5 phases complete; sweep 5/5 + recursive validate 5/5 Errors:0"
+    next_safe_action: "Operator review of shipped-skill edits, then merge worktree to v4"
     blockers: []
     key_files:
       - ".opencode/skills/cli-external-orchestration/SKILL.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "impl-050-persona-injection"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions:
       - "Where native --agent loading is verified to work (cli-claude-code, cli-cursor), is native loading sufficient or must the persona ALSO be inlined for reproducibility?"
     answered_questions: []
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 (phase parent) |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-08-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` (track: cli-external-orchestration) |
@@ -112,7 +112,7 @@ Make agent-persona injection a documented, enforced rule across every external-C
 | P2 | `002-persona-injection-contract/` | Design the shared persona-injection contract: dispatch-block format, runtime path resolution (AGENTS.md §7), native-vs-inline decision rule, explicit exceptions | Complete |
 | P3 | `003-cli-mode-enforcement/` | Apply the contract to all 6 mode SKILLs + hub SKILL ALWAYS/NEVER rules | Complete |
 | P4 | `004-sk-prompt-alignment/` | Carry the persona-injection step into sk-prompt prompt-craft references | Complete |
-| P5 | `005-verification/` | Objective grep/audit sweep + `validate.sh --strict` across touched packets + regression delta | Planned |
+| P5 | `005-verification/` | Objective grep/audit sweep + `validate.sh --strict` across touched packets + regression delta | Complete |
 
 ### Phase Transition Rules
 

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/050-persona-injection-enforcement/005-verification",
+  "spec_folder": "cli-external-orchestration/050-persona-injection-enforcement/005-verification",
+  "parent_id": "cli-external-orchestration/050-persona-injection-enforcement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "persona injection verification sweep",
+      "cli dispatch persona audit",
+      "persona enforcement final gate",
+      "persona injection verification plan",
+      "final sweep gate plan",
+      "persona injection verification tasks",
+      "persona injection verification checklist",
+      "persona injection verification implementation summary"
+    ],
+    "key_topics": [
+      "persona",
+      "injection",
+      "verification",
+      "sweep",
+      "cli",
+      "dispatch",
+      "audit",
+      "enforcement",
+      "final",
+      "gate",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scratch/persona-injection-sweep.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "persona-injection-sweep.md",
+        "kind": "doc",
+        "path": "scratch/persona-injection-sweep.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Injection Enforcement Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Persona Injection",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "P3 and P4 added the persona-injection enforcement rule to the six mode SKILLs, the hub, and the canonical card",
+    "created_at": "2026-08-19T11:41:31.457Z",
+    "last_save_at": "2026-08-19T11:43:07.257Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:afd2ce2658c8af172addf63024c40fd8391c6aa1a33207099c0b13c603fa6ca9",
+    "source_doc_hashes": {
+      "spec.md": "3061540967b997f18a11fa1416c18ffdab9efe4c9bdddb80f9025cacb8e24608",
+      "plan.md": "f931efba5b4918a813bb26c628bab5b3826a642efb43c774d8f733c3aba6f4f3",
+      "tasks.md": "f6594fec1f825547416d996f4aef8277c903b16151737d842c1736cc562c85bd",
+      "checklist.md": "a0bf6961da24e6905406eb0d3ed1d5f18ade67d5af8d1551b86d8fc94a5e471a",
+      "implementation-summary.md": "6a83e067e47a8ce232308158f7bc7ce7b221e18971b6ef7068d88e5306f0f96e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
