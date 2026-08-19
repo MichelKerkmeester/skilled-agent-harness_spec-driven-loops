@@ -40,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-08-19 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Census finding: no code-level write path exists for mode state |

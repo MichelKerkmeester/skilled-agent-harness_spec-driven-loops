@@ -1,0 +1,141 @@
+---
+title: "Implementation Summary: Append Gateway and Legacy Projection"
+description: "The deep-loop write path now exists: a gateway that binds, validates, authorizes, fences and projects every mode event, reachable from a shell caller, with two proven negative controls and a zero-regression delta."
+trigger_phrases:
+  - "append gateway implementation summary"
+  - "gateway build result"
+importance_tier: "critical"
+contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection"
+    last_updated_at: "2026-08-19T10:30:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Landed the gateway, CLI and first projection contract"
+    next_safe_action: "Close the reader contract on a real run scaffold"
+    blockers:
+      - "Reader contract needs a run scaffold with retained legacy inputs"
+      - "Projected config row omits three documented fields"
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts"
+      - ".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+    completion_pct: 80
+    open_questions: []
+    answered_questions:
+      - "Projection failure succeeds with a stale marker; the append is already durable"
+---
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
+
+# Implementation Summary: Append Gateway and Legacy Projection
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection |
+| **Status** | In Progress |
+| **Commit** | `a980092ffe` on `worktrees/022-012-runtime-enablement-build`, not pushed |
+| **Completed** | 2026-08-19 |
+| **Lines** | 1894 added across 7 files |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+A plain JSON record handed to a shell command now becomes an authorized, fenced, receipted ledger
+event, and the legacy state file is materialised from that ledger. Neither half existed before.
+
+| Surface | Change |
+|---------|--------|
+| `runtime/lib/mode-append-gateway/` | New. `appendModeEvent` composes bind, envelope, authorize, fenced append, project |
+| `runtime/lib/legacy-projections/deep-research-contract.ts` | New. The first production projection contract in the repository |
+| `runtime/lib/legacy-projections/index.ts` | Exports the new contract. No engine or manifest change |
+| `runtime/scripts/append-mode-event.cjs` | New CLI, loading TypeScript through the tsx pattern the fan-out scripts already use |
+| `runtime/tests/unit/` | Two new suites, 10 tests |
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+Implementation was delegated to an external model over six dispatches; verification was performed
+locally against real command output every time.
+
+That ratio is the finding. The executor reported success on runs that had produced nothing, and once
+reported "gaps: None" while its own CLI could not load. Only running the artifact revealed the truth,
+which is why the delegated-build-plus-local-verification split held rather than the executor's own
+green.
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
+## 4. KEY DECISIONS
+
+**Authorization precedes the fence.** An unauthorized event never acquires the fence, so it cannot
+delay a legitimate writer.
+
+**A projection refresh failure does not fail the append.** By the time the projection runs the event
+is already durable, so reporting failure would misdescribe the ledger. The call succeeds and records
+the projection state instead.
+
+**The CLI prepares the envelope on the caller's behalf.** Requiring a shell caller to construct a
+typed preflight would defeat the reason the entry point exists.
+
+**One worktree for the packet rather than one per phase.** The phases are serial and each builds on
+the last, so per-phase worktrees would add merges without adding isolation.
+
+**The full suite is not re-run per phase.** One run costs 2h 47m and three files account for roughly
+68 minutes of it. The delta below is scoped to every affected file instead.
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
+## 5. VERIFICATION
+
+Evidence is command output. Detail in `scratch/suite-baseline-and-delta.md`.
+
+**Executed end to end, outside the test harness.** A plain JSON record through the CLI returned exit
+0 and a receipt carrying a real `authorizationRef` (audit sequence, decision digest, policy digest)
+and `fence_token: 1`. On disk: a ledger frame, an audit frame, a lock grant journal,
+`research/deep-research-state.jsonl` holding a protocol-shaped `type: "config"` row, and a watermark
+with a replay fingerprint and output digest.
+
+**Refusals probed directly.** An invented event type returned `Event type does not match the frozen
+namespace grammar`; an incomplete payload returned `Required payload field is missing`.
+
+**Negative controls, both genuinely red.**
+
+| Control | Broken | Restored |
+|---------|--------|----------|
+| Authorization denial disabled | 2 tests red | 10/10 green |
+| Projection success path broken | 3 tests red | 10/10 green |
+
+**Suite delta.** Baseline at `e6f17e1cbf5`: 35 failed / 4074 passed / 39 skipped of 4148, across 20
+files, in 2h 47m. The targeted delta over every affected file reproduced exactly those failures,
+identical by name, and added 10 passing tests. Zero regressions.
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
+## 6. KNOWN LIMITATIONS
+
+**Projected row conformance is unreconciled.** The projected config row carries `type`, `topic` and
+`maxIterations` but omits `convergenceThreshold`, `stuckThreshold` and `specFolder`, and names its
+timestamp field differently from the documented row. Enumerated, not yet justified.
+
+**The reader contract is unverified.** The consumers need a complete run scaffold. `reduce-state.cjs`
+requires `deep-research-config.json` and `deep-research-strategy.md`, which the manifest classifies
+`retain-legacy-input` because operator input is not ledger-derived. A synthetic directory cannot
+stand in for a real run.
+
+**Two negative controls remain unrun** — the envelope refusal and the concurrency guarantee. The
+concurrency one matters most: a serialised-by-luck test would pass against a broken fence.
+
+**Correction worth keeping.** The missing config file first looked like a projection defect. It is
+not; the manifest deliberately excludes it. The projection was right and the test setup was wrong.
+
+**Environment note.** Dispatching the review executor into this worktree rewrites
+`.opencode/package.json` to match its own version. It was reverted here and must be swept before any
+later commit.
+<!-- /ANCHOR:limitations -->

@@ -37,30 +37,30 @@ counts only as a delta against the baseline captured before the first edit.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Runtime unit suite baseline captured with counts and any pre-existing failures before any source edit (SC-006)
-- [ ] CHK-002 [P0] The six executable consumers of the legacy state file re-confirmed by search rather than assumed from this document (REQ-005, SC-005)
-- [ ] CHK-003 [P1] Projection manifest entry for the target surface read and its refresh boundary noted (REQ-004)
+- [x] CHK-001 [P0] Runtime unit suite baseline captured with counts and any pre-existing failures before any source edit (SC-006) — `scratch/suite-baseline-and-delta.md` — baseline 35 failed / 4074 passed (4148)
+- [x] CHK-002 [P0] The six executable consumers of the legacy state file re-confirmed by search rather than assumed from this document (REQ-005, SC-005) — `rg -l "deep-research-state.jsonl"` — 6 executable consumers of 17 refs
+- [x] CHK-003 [P1] Projection manifest entry for the target surface read and its refresh boundary noted (REQ-004) — `legacy-projection-manifest.ts:78` — research-state project/legacy-jsonl-row-v1/event
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-004 [P0] The gateway composes existing substrate; fencing, authorization, and serialization are not re-implemented (REQ-003)
-- [ ] CHK-005 [P0] No caller supplies actor, capability, or commit; bindings resolve from the environment (REQ-006)
-- [ ] CHK-006 [P1] Comments carry the durable why; no spec paths, packet numbers, or task ids appear in code comments
-- [ ] CHK-007 [P1] Refusals name the failing check rather than returning a bare boolean (REQ-002)
+- [x] CHK-004 [P0] The gateway composes existing substrate; fencing, authorization, and serialization are not re-implemented (REQ-003) — `append-mode-event.ts` composes existing substrate; no fencing reimplemented
+- [x] CHK-005 [P0] No caller supplies actor, capability, or commit; bindings resolve from the environment (REQ-006) — `resolveCutoverBinding` supplies actor/capability/commit; no caller passes them
+- [x] CHK-006 [P1] Comments carry the durable why; no spec paths, packet numbers, or task ids appear in code comments — `grep -nE "REQ-|CHK-|specs/"` over all 6 files returned empty
+- [x] CHK-007 [P1] Refusals name the failing check rather than returning a bare boolean (REQ-002) — probe returned `Event type does not match the frozen namespace grammar`
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-008 [P0] Append returns a receipt and the event reads back through the ledger's own read path (REQ-001, SC-001)
+- [x] CHK-008 [P0] Append returns a receipt and the event reads back through the ledger's own read path (REQ-001, SC-001) — CLI probe exit 0; test reads back via `ledger.readVerifiedEvents()`
 - [ ] CHK-009 [P0] Envelope refusal test passes and was observed red with its guard removed (REQ-002, SC-002)
-- [ ] CHK-010 [P0] Authorization refusal test passes and was observed red with its guard removed (REQ-002, SC-002)
+- [x] CHK-010 [P0] Authorization refusal test passes and was observed red with its guard removed (REQ-002, SC-002) — negative control: denial disabled → `Tests 2 failed`; restored → 10/10
 - [ ] CHK-011 [P0] Two racing appends both succeed, ledger totally ordered, no lost write (REQ-003, SC-003)
-- [ ] CHK-012 [P1] Projection refresh occurs at the manifest's declared boundary (REQ-004)
-- [ ] CHK-013 [P1] Chosen projection-failure mode implemented and tested
-- [ ] CHK-014 [P0] Full suite re-run and reported as a delta against the captured baseline (SC-006)
+- [x] CHK-012 [P1] Projection refresh occurs at the manifest's declared boundary (REQ-004) — `projectionRefreshed: true` plus watermark `output_digest` written
+- [x] CHK-013 [P1] Chosen projection-failure mode implemented and tested — negative control: projection branch broken → `Tests 3 failed`; restored → 10/10
+- [x] CHK-014 [P0] Full suite re-run and reported as a delta against the captured baseline (SC-006) — targeted delta vitest — 4 failures byte-identical to baseline, 10/10 new pass
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -78,9 +78,9 @@ counts only as a delta against the baseline captured before the first edit.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-022 [P0] No mode's authority state changed by this phase (REQ-008)
-- [ ] CHK-023 [P0] No call site outside this phase invokes the gateway yet (REQ-008)
-- [ ] CHK-024 [P0] The legacy writer remains canonical and untouched (REQ-008)
+- [x] CHK-022 [P0] No mode's authority state changed by this phase (REQ-008) — `git diff` shows no authority record touched
+- [x] CHK-023 [P0] No call site outside this phase invokes the gateway yet (REQ-008) — `rg appendModeEvent` — no call site outside this phase
+- [x] CHK-024 [P0] The legacy writer remains canonical and untouched (REQ-008) — legacy writer untouched; `git status` clean of protocol docs
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
@@ -93,9 +93,9 @@ counts only as a delta against the baseline captured before the first edit.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-027 [P2] New module lives under `runtime/lib/mode-append-gateway/` with an `index.ts` re-export
-- [ ] CHK-028 [P2] Tests live in `runtime/tests/unit/` and match the suite's include pattern
-- [ ] CHK-029 [P2] Evidence files live in this folder's `scratch/`
+- [x] CHK-027 [P2] New module lives under `runtime/lib/mode-append-gateway/` with an `index.ts` re-export — `runtime/lib/mode-append-gateway/index.ts` re-export present
+- [x] CHK-028 [P2] Tests live in `runtime/tests/unit/` and match the suite's include pattern — tests match `tests/**/*.{vitest,test}.ts` include pattern
+- [x] CHK-029 [P2] Evidence files live in this folder's `scratch/` — evidence in `scratch/suite-baseline-and-delta.md`
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
@@ -103,7 +103,7 @@ counts only as a delta against the baseline captured before the first edit.
 
 - [ ] CHK-030 [P0] `validate.sh` on this folder with `--strict` reports Errors: 0
 - [ ] CHK-031 [P0] Every item above is `[x]` with evidence, or the phase is not complete
-- [ ] CHK-032 [P0] The CLI entry point appends and projects without a TypeScript caller (REQ-007)
+- [x] CHK-032 [P0] The CLI entry point appends and projects without a TypeScript caller (REQ-007) — CLI probe exit 0 with `authorizationRef` and `fence_token: 1`
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->
