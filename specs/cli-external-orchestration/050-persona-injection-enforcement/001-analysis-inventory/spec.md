@@ -172,3 +172,4 @@ Medium. Read-heavy across ~8-10 packets and their references. No code execution.
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Parent**: See `../spec.md`
+- **Next phase**: See `../002-persona-injection-contract/spec.md`
