@@ -96,6 +96,32 @@ agent_config:
 # ─────────────────────────────────────────────────────────────────
 # STATE FILE PATHS
 # ─────────────────────────────────────────────────────────────────
+state_write_protocol:
+  mechanism: "append-gateway"
+  command: "node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode alignment --run-directory {artifact_dir} --event-json <record file>"
+  applies_to: "append_jsonl"
+  refusal_handling: "halt on exit 2; never fall back to a direct file write"
+  migration_exception: "Two embedded executor branches (cli-codex leaf_output_unpersisted fail-event and cli-opencode recovery_baseline) call appendFileSync on {state_paths.state_log} directly; pre-existing, to be migrated to the gateway separately."
+  contract: |
+    Every canonical record named by an append_jsonl directive below is
+    written by invoking the command above with that record as the event JSON. Those directives
+    specify WHAT to record; this block specifies HOW every record reaches the log, so the
+    mechanism is stated once rather than repeated at each site where it could drift.
+
+    The gateway authorizes the write against the mode's durable authority record, serialises it
+    behind the ledger fence, returns a receipt, and refreshes state_log from the ledger. Exit 0
+    means the record is durable. Exit 2 means it was refused, and the refusal names the check
+    that failed.
+
+    Writing state_log directly bypasses ordering, authorization, and the receipt. Two writers
+    can then interleave with no shared ordering, and a record nobody authorized carries no
+    receipt, so a later reader cannot tell an accepted record from an invented one. A refusal
+    is a halt, never a reason to write the file directly.
+
+    The migration_exception above names a pre-existing direct appendFileSync to state_log
+    inside the cli-codex and cli-opencode executor branches. It is not sanctioned by this
+    protocol and is tracked for migration to the gateway; until then it remains a known
+    deviation, not a pattern to copy.
 state_paths:
   # Root specs keep alignment/ directly; child phases keep a local packet dir inside
   # that same target's alignment/ folder, mirroring deep-review's own root-vs-child rule.
