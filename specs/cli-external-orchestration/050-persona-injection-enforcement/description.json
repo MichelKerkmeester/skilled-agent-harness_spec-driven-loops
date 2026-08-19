@@ -1,0 +1,38 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/050-persona-injection-enforcement",
+  "description": "When an orchestrator delegates work through an external CLI skill under `cli-external-orchestration` (cli-devin, cli-codex, cli-opencode, cli-cursor,",
+  "keywords": [
+    "orchestrator",
+    "delegates",
+    "work",
+    "external",
+    "cli",
+    "skill",
+    "cli-external-orchestration",
+    "cli-devin",
+    "cli-codex",
+    "cli-opencode",
+    "cli-cursor"
+  ],
+  "lastUpdated": "2026-08-19T07:11:33.653Z",
+  "specId": "050",
+  "folderSlug": "persona-injection-enforcement",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 11,
+  "memoryNameHistory": [
+    "19-08-26_08-06__i-m-intentionally-holding-here-this-isn-t.md",
+    "19-08-26_08-07__the-updated-goal-is-sent-that-was-your-explicit.md",
+    "19-08-26_08-09__read-only-recon-done-and-it-surfaced-a-real-plan.md",
+    "19-08-26_08-09__holding-for-your-decision-i-won-t-overwrite-6.md",
+    "19-08-26_08-10__i-ve-explained-the-hold-three-times-i-won-t.md",
+    "19-08-26_08-10__waiting-on-you-nothing-further-from-me-until-you.md",
+    "19-08-26_08-10__waiting-on-your-reply-go-to-execute-or-your.md",
+    "19-08-26_08-10__waiting-on-your-reply.md",
+    "19-08-26_08-11__holding-for-your-go.md",
+    "19-08-26_08-11__holding-for-your-go.md",
+    "19-08-26_08-11__holding-for-your-go.md"
+  ]
+}
