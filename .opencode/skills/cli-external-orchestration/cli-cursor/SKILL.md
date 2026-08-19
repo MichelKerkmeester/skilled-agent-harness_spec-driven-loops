@@ -226,6 +226,7 @@ cursor-agent -p "<prompt>" \
 | (nothing specified) | `--model composer-2.5 --auto-review --sandbox enabled` |
 | "Use Composer" | `--model composer-2.5 --auto-review --sandbox enabled` |
 | "Use Composer fast" | `--model composer-2.5-fast --auto-review --sandbox enabled` |
+| "Use Composer max" / "Composer Max Mode" | Composer has no `-max` (1M "Max Mode") tier — only `composer-2.5`/`composer-2.5-fast`. Tell the user; do not substitute another model's `-max`. |
 | "Use Grok" / "Grok high" | `--model cursor-grok-4.6-high --auto-review --sandbox enabled` |
 | "Use GLM" / "GLM max" | `--model glm-5.2-max --auto-review --sandbox enabled` |
 | "Just plan it, don't write anything" | `--model composer-2.5 --mode plan` (read-only; approval flags do not apply in plan mode) |

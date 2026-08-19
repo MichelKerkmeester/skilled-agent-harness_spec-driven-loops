@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/051-cli-cursor-max-mode-doc",
+  "description": "A request to define \"Composer 2.5 Max Mode\" in the cli-cursor model roster surfaced a documentation gap",
+  "keywords": [
+    "request",
+    "define",
+    "composer",
+    "max",
+    "mode",
+    "cli-cursor",
+    "model",
+    "roster",
+    "surfaced",
+    "documentation",
+    "gap"
+  ],
+  "lastUpdated": "2026-08-19T19:22:01.434Z",
+  "specId": "051",
+  "folderSlug": "cli-cursor-max-mode-doc",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

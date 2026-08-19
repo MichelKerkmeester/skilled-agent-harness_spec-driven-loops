@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/051-cli-cursor-max-mode-doc",
+  "spec_folder": "cli-external-orchestration/051-cli-cursor-max-mode-doc",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cursor composer max mode",
+      "composer-2.5-max cli-cursor",
+      "cursor cli max mode toggle",
+      "cursor -max 1m context model id",
+      "cursor composer max mode plan",
+      "cursor composer max mode tasks",
+      "cursor composer max mode summary"
+    ],
+    "key_topics": [
+      "cursor",
+      "composer",
+      "max",
+      "mode",
+      "composer-2",
+      "5-max",
+      "cli-cursor",
+      "cli",
+      "toggle",
+      "context",
+      "model",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Document Composer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Absence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Max Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cursor Max Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documented Composer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Composer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A request to define \"Composer 2.5 Max Mode\" in the cli-cursor model roster surfaced a documentation gap",
+    "created_at": "2026-08-19T19:18:37.096Z",
+    "last_save_at": "2026-08-19T19:25:45.235Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6df106b67fa6227e24201eaaa6a784e6aadb784e10aa25ff90a561df8d388eb8",
+    "source_doc_hashes": {
+      "spec.md": "4ce931349c1e8424c1d59fb95798bc01994587c38d06c23ca6a6acd61430112c",
+      "plan.md": "6a6a6ee5a227a005846d9ed16949383c73350986a91cd68ea74d4b9aad85a066",
+      "tasks.md": "bcb0abeffb68777468106d14e055a9e2f9c09e5a7623a6014b1b60777baa716c",
+      "implementation-summary.md": "fe39da1a867d0fdb8bc399ab8266761fea6aefe565cbde6d4ca83b2a151808db"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
