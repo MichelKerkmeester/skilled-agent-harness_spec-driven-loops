@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/050-persona-injection-enforcement/001-analysis-inventory",
+  "description": "Before any enforcement rule can be written, the packet needs a precise, evidence-backed map of WHERE personas are (or are not) attached today",
+  "keywords": [
+    "enforcement",
+    "rule",
+    "written",
+    "packet",
+    "needs",
+    "precise",
+    "evidence-backed",
+    "map",
+    "personas",
+    "attached",
+    "today"
+  ],
+  "lastUpdated": "2026-08-19T06:41:15.097Z",
+  "specId": "001",
+  "folderSlug": "analysis-inventory",
+  "parentChain": [
+    "cli-external-orchestration",
+    "050-persona-injection-enforcement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
