@@ -10,14 +10,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-le
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement"
-    last_updated_at: "2026-08-19T07:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Planned retirement in three phases"
-    next_safe_action: "Inventory every direct-append path across the tree"
+    last_updated_at: "2026-08-19T22:05:00Z"
+    last_updated_by: "claude"
+    recent_action: "Inventoried direct-append paths and built the detection guard, proven on a real append"
+    next_safe_action: "Operator decision on the missing flip transitions"
     blockers:
-      - "Predecessor 003-fleet-enablement must pass first"
-    key_files: []
-    completion_pct: 0
+      - "Removing the write instruction now would leave agents no sanctioned path"
+      - "No mode is on ledger authority, so the guard stays inert"
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/scripts/check-direct-append.cjs"
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---

@@ -10,15 +10,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement"
-    last_updated_at: "2026-08-19T07:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Authored the retirement contract"
-    next_safe_action: "Wait for the fleet phase to complete"
+    last_updated_at: "2026-08-19T22:05:00Z"
+    last_updated_by: "claude"
+    recent_action: "Inventoried direct-append paths and built the detection guard, proven on a real append"
+    next_safe_action: "Operator decision on the missing flip transitions"
     blockers:
-      - "Predecessor 003-fleet-enablement must pass first"
+      - "Removing the write instruction now would leave agents no sanctioned path"
+      - "No mode is on ledger authority, so the guard stays inert"
     key_files:
-      - ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts"
-    completion_pct: 0
+      - ".opencode/skills/system-deep-loop/runtime/scripts/check-direct-append.cjs"
+    completion_pct: 50
     open_questions: []
     answered_questions:
       - "Retiring a writer is not deleting a file; the projection keeps the file current"
@@ -37,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Blocked |
 | **Created** | 2026-08-19 |
 | **Owner skill** | system-deep-loop |
 | **Authority posture** | No authority moves; the losing writer is removed |

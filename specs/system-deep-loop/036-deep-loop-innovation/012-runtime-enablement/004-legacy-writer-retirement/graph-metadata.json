@@ -18,7 +18,10 @@
       "legacy writer retirement tasks",
       "direct append removal tasks",
       "legacy writer retirement checklist",
-      "direct append guard verification"
+      "direct append guard verification",
+      "legacy writer retirement summary",
+      "direct append guard",
+      "direct append inventory"
     ],
     "key_topics": [
       "legacy",
@@ -32,17 +35,39 @@
       "checklist",
       "guard",
       "verification",
-      "fleet"
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "blocked",
     "key_files": [
+      "scratch/inventory.md",
+      "scratch/authority-unchanged.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/guard-probe.mjs",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "scratch/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "authority-unchanged.md",
+        "kind": "doc",
+        "path": "scratch/authority-unchanged.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -59,6 +84,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "guard-probe.mjs",
+        "kind": "file",
+        "path": "scratch/guard-probe.mjs",
         "source": "derived"
       },
       {
@@ -146,6 +177,12 @@
         "source": "derived"
       },
       {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -156,55 +193,27 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Two",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After the fleet is enabled, every mode's canonical writes go through the gateway, but the direct-append paths still",
     "created_at": "2026-08-19T06:57:08.198Z",
-    "last_save_at": "2026-08-19T06:57:08.198Z",
+    "last_save_at": "2026-08-19T19:55:56.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6dfa02f307c21361e3f429d7c3eedfdb2c2ec2aeaa86521bc1888116e526aae1",
+    "source_fingerprint": "sha256:1b5935c1c8217fa032724484fa380a6d777e8e5dd0c63f01b3402a0757f41a3b",
     "source_doc_hashes": {
-      "spec.md": "3bf32662ab8b7e0d6f36238d7dc5bc703d7d5252e11f6f291b6e16d4300fd6e8",
-      "plan.md": "bfaf7d722552dbf625a626d4fd56445458db17d830e9152d19fa2f7fc60823b8",
-      "tasks.md": "6dbcb1cb1b744da46916b4bbbda90bbf7c81c07b7144c9a54087632db8b9a103",
-      "checklist.md": "d7cd1108f9ce46f014b633ebcf1c9e01825fa40b6e2aa1de9590660ff874f26b"
+      "spec.md": "9316737a64709732d753fadfb436a01008c28de54cd4915808d223c760defd76",
+      "plan.md": "06b0381329b8b98bd4e36a5ea2100989dc9f9635d2582ba08dc70c177d547798",
+      "tasks.md": "83965280f4bd6fbf30544372dbcb5ba7b99b0a509ef71645a9da52aef3c27cd7",
+      "checklist.md": "d43ba6952334bfa17af7b010f496ab1ecc014d2480509f6b4cb89338abceb39f",
+      "implementation-summary.md": "a990948fd5c15f8103455c1ce886686f44ebe279cfde7d5024bc8ba34f7a90e7"
     },
     "last_active_child_id": null,
     "last_active_at": null
