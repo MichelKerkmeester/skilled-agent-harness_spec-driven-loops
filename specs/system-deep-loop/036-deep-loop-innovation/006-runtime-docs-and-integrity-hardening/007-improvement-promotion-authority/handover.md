@@ -20,7 +20,7 @@
    `npx vitest run --config .opencode/skills/system-deep-loop/deep-improvement/scripts/vitest.config.*` (both projects).
 2. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority --strict` → exit 0 (CHK-008).
 3. **Acceptance review:** prove (a) in dark mode the guard is a no-op on a matching candidate, and (b) with enforcement on, a *swapped* candidate is rejected with `errorType: 'approved_candidate_changed'` (the negative test in `promote-candidate-approval-binding.vitest.ts` already asserts this) at every consumption site — single-phase copy, accept snapshot, and ship.
-4. Get sign-off, record the receipt-write cost (CHK-111), then flip enforcement live.
+4. Get sign-off, then flip enforcement live. CHK-111 is already closed: receipts cost about 4.3 ms per promotion and whole-promotion wall clock did not regress against the pre-binding baseline (`scratch/chk-111-promotion-receipt-cost.md`).
 
 ## 3. Epic tie-in
 This is one of the "turn the feature on" gates for the deep-loop-innovation epic. It is independent of the `009` live-authority cutover chain but shares the same discipline: ship dark → acceptance review → flip. Do not enable enforcement until CHK-018 passes.

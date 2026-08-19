@@ -191,9 +191,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 - [x] CHK-110 [P0] Both vitest projects re-run and reported as deltas against their baselines
   - **Evidence**: Council project full delta 109/2/exit1 -> 118/0/exit0 via `vitest`; improvement project's affected promotion-authority suites re-run 44 -> 48 (+4, the new binding suite), 0 regressions; landed `c897dcf294`. The full 52-file improvement-project pre-edit baseline remains uncaptured, so the whole-project delta stays open at CHK-002/CHK-010/T020.
-- [ ] CHK-111 [P1] Receipt write cost on a promotion recorded
-  - **Evidence**: Wall-clock promotion time before and after
-  - **Open**: only current receipt write cost recorded (100 writes, 485.381 ms total, 4.854 ms mean); no before/after promotion benchmark
+- [x] CHK-111 [P1] Receipt write cost on a promotion recorded
+  - **Evidence**: `scratch/chk-111-promotion-receipt-cost.md`. Receipt operations isolated in-process, 100 samples over two runs: issue 4.56 / 4.17 ms mean, verify 0.078 / 0.082 ms mean, so roughly 4.3 ms attributable to receipts per promotion. Whole-promotion wall clock, 40 samples over two alternating passes: 86.31 / 90.22 ms with the pre-binding bare `--approve` at `d0d8623ddf`, against 64.07 / 66.59 ms with the authenticated receipt at HEAD. Both arms were confirmed to actually promote. No regression; the ~20 ms improvement spans every commit between the two arms and is deliberately not credited to receipts.
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -246,7 +245,7 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 27 | 23/27 |
-| P1 Items | 22 | 21/22 |
+| P1 Items | 22 | 22/22 |
 | P2 Items | 2 | 2/2 |
 
 **Verification Date**: 2026-08-18 (reconciled to landed additive-dark + adversarially hardened state)
@@ -262,7 +261,7 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 - TypeScript: `tsc --noEmit --ignoreDeprecations 6.0`, exit 0.
 - Aggregate suite-content SHA-256: `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`.
 - Landed commits: `0d1827eef50`, `f6cdf604a25`, `a28a39354b7`; status reconciled `ab6aae0a714`.
-- Receipt write probe: 100 authenticated exclusive writes in 485.381 ms total, 4.854 ms mean, exit 0. This records current cost only; it is not a before/after promotion benchmark, so CHK-111 remains open.
+- Receipt cost: isolated operations measured in-process (issue 4.56 / 4.17 ms mean, verify 0.078 / 0.082 ms mean over 100 samples x2), corroborating the earlier probe's 4.854 ms mean write from a separate implementation. Whole-promotion before/after added at 40 samples x2 alternating passes: 86.31 / 90.22 ms pre-binding at `d0d8623ddf` against 64.07 / 66.59 ms at HEAD. CHK-111 closed; see `scratch/chk-111-promotion-receipt-cost.md`.
 - Independent adversarial pass (different actor than the builder): found and fixed a Medium candidate-rebind TOCTOU gap via the shared guard `assertCandidateMatchesApproval`; negative test `promote-candidate-approval-binding.vitest.ts` (RED without the guard, GREEN with it); promotion suites 44 -> 48 (+4), 0 regressions via `vitest`; landed `c897dcf294`. Two LOW residuals accepted as follow-up.
 <!-- /ANCHOR:summary -->
 

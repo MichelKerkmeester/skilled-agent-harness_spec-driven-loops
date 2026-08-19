@@ -118,7 +118,8 @@ The reserved autonomous-mode decision is also terminal: ADR-004 is **Accepted, a
 | Council project | 10 files, 118 tests passed, exit 0 |
 | REMEDIATE authorization + state-machine wiring | 2 tests passed, exit 0 |
 | TypeScript | `npx --no-install tsc --noEmit --ignoreDeprecations 6.0`, exit 0 |
-| Receipt write-cost probe | 100 writes, 485.381 ms total, 4.854 ms mean, exit 0 (current cost only; no before/after claim) |
+| Receipt write-cost probe | 100 writes, 485.381 ms total, 4.854 ms mean, exit 0 |
+| Receipt cost before and after | Receipt operations isolated in-process: issue 4.56 / 4.17 ms mean, verify 0.078 / 0.082 ms mean (100 samples x2), so about 4.3 ms per promotion. Whole promotion 86.31 / 90.22 ms with the pre-binding bare `--approve` at `d0d8623ddf` against 64.07 / 66.59 ms at HEAD (40 samples x2, alternating). No regression; the ~20 ms gain spans every intervening commit and is not credited to receipts |
 | Full improvement project | 52 files; 530 passed, 45 failed, exit 1. The failures point at paths outside this packet, but their pre-existence was not proven against a full base run; no no-regression claim is made. |
 | Strict packet validator | Packet-local `Errors: 0` from the reconciled final state, with a single benign `CONTINUITY_FRESHNESS` `dirty_tree` warning that clears once the orchestrator commits this packet. T022's literal exit-0 criterion remains open until that commit, so the item is not marked done. |
 | Landed commits | Findings shipped additive-dark under `0d1827eef50` (promotion/rollback/council receipt binding), `f6cdf604a25` (final 3: rollback-hash forgery + council path/symlink) and `a28a39354b7` (completes findings + ADRs); status reconciled `ab6aae0a714`. |

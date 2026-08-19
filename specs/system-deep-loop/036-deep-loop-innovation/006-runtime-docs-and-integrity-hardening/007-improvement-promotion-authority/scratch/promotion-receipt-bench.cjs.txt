@@ -1,0 +1,171 @@
+#!/usr/bin/env node
+// Measures the wall-clock cost a promotion pays for approval receipts.
+//
+// Two arms, each running the real promote-candidate.cjs as a subprocess against
+// a hermetic fixture:
+//   bare    -- `--approve` as a bare boolean flag (pre-receipt behaviour)
+//   receipt -- an HMAC-authenticated receipt issued, then verified by promote
+//
+// Only the promote subprocess is timed. Fixture construction happens outside the
+// timed region, and receipt issuance is timed separately so the write cost and
+// the verification cost can be told apart.
+
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const { spawnSync } = require('node:child_process');
+
+const mode = process.argv[2];
+const workspaceRoot = process.argv[3];
+const samples = Number(process.argv[4] || 30);
+const warmup = Number(process.argv[5] || 3);
+
+if (!['bare', 'receipt'].includes(mode) || !workspaceRoot) {
+  process.stderr.write('usage: promotion-receipt-bench.cjs <bare|receipt> <workspace-root> [samples] [warmup]\n');
+  process.exit(2);
+}
+
+const SCRIPTS = path.join(workspaceRoot, '.opencode/skills/system-deep-loop/deep-improvement/scripts');
+const PROMOTE = path.join(SCRIPTS, 'shared/promote-candidate.cjs');
+const RECEIPT_KEY = 'test-only-promotion-authority-key-32-bytes-minimum';
+
+let issueApprovalReceipt = null;
+if (mode === 'receipt') {
+  ({ issueApprovalReceipt } = require(path.join(SCRIPTS, 'shared/promotion-receipts.cjs')));
+  process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY = RECEIPT_KEY;
+  process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY_ID = 'bench-authority';
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+}
+
+// Mirrors the benchmark-lane fixture the promotion suite already uses: a
+// non-agent target in a hermetic tmpdir, explicitly allowlisted so the
+// write-boundary check passes without touching the repo tree.
+function buildFixture() {
+  const work = fs.mkdtempSync(path.join(os.tmpdir(), 'promo-bench-'));
+  const candidate = path.join(work, 'candidate.txt');
+  const target = path.join(work, 'canonical-target.txt');
+  const benchmarkReport = path.join(work, 'benchmark-outputs/report.json');
+  const repeatability = path.join(work, 'benchmark-outputs/repeatability.json');
+  const config = path.join(work, 'model-benchmark-config.json');
+  const manifest = path.join(work, 'target-manifest.jsonc');
+  const archiveDir = path.join(work, 'archive');
+
+  fs.writeFileSync(candidate, 'CANDIDATE BODY\n', 'utf8');
+  fs.writeFileSync(target, 'ORIGINAL TARGET BODY\n', 'utf8');
+
+  writeJson(benchmarkReport, {
+    status: 'benchmark-complete',
+    scoringMethod: 'pattern',
+    grader: 'noop',
+    profileId: 'demo-profile',
+    family: 'test',
+    target,
+    aggregateScore: 92,
+    maxScore: 100,
+    totals: { score: 92, delta: 0.05, pass_rate: 1, fixtures: 2, passed: 2 },
+    recommendation: 'benchmark-pass',
+  });
+  writeJson(repeatability, { profileId: 'demo-profile', passed: true });
+  writeJson(config, {
+    target,
+    targetProfile: 'demo-profile',
+    proposalOnly: false,
+    promotionEnabled: true,
+    branchPreservationPolicy: 'preserve-on-failure',
+    scoring: { thresholdDelta: 1 },
+    promotion: { allowedTargetRoots: [work] },
+  });
+  fs.writeFileSync(
+    manifest,
+    `// benchmark target manifest\n${JSON.stringify({ targets: [{ path: target, classification: 'canonical' }] }, null, 2)}\n`,
+    'utf8',
+  );
+
+  return { work, candidate, target, benchmarkReport, repeatability, config, manifest, archiveDir };
+}
+
+function promoteArgs(f, approveArg) {
+  return [
+    PROMOTE,
+    `--candidate=${f.candidate}`,
+    `--target=${f.target}`,
+    `--benchmark-report=${f.benchmarkReport}`,
+    `--config=${f.config}`,
+    `--manifest=${f.manifest}`,
+    `--archive-dir=${f.archiveDir}`,
+    approveArg,
+  ];
+}
+
+function runOnce() {
+  const f = buildFixture();
+  let issueMs = 0;
+  let approveArg = '--approve';
+
+  if (mode === 'receipt') {
+    const receiptPath = path.join(f.work, 'approval-receipt.json');
+    const t0 = process.hrtime.bigint();
+    issueApprovalReceipt(receiptPath, {
+      candidatePath: f.candidate,
+      targetPath: f.target,
+      benchmarkReportPath: f.benchmarkReport,
+      repeatabilityReportPath: f.repeatability,
+      configPath: f.config,
+      manifestPath: f.manifest,
+      approvalIdentity: 'operator:bench',
+      evaluatorProfileId: 'demo-profile',
+      evaluatorAgentName: 'model-benchmark',
+      evaluatorEpoch: 'bench-epoch',
+    });
+    issueMs = Number(process.hrtime.bigint() - t0) / 1e6;
+    approveArg = `--approve=${receiptPath}`;
+  }
+
+  const t1 = process.hrtime.bigint();
+  const result = spawnSync('node', promoteArgs(f, approveArg), { encoding: 'utf8', cwd: workspaceRoot });
+  const promoteMs = Number(process.hrtime.bigint() - t1) / 1e6;
+
+  const promoted = result.status === 0 && fs.readFileSync(f.target, 'utf8') === 'CANDIDATE BODY\n';
+  fs.rmSync(f.work, { recursive: true, force: true });
+
+  return { promoteMs, issueMs, promoted, status: result.status, stderr: (result.stderr || '').trim().slice(0, 400) };
+}
+
+function stats(values) {
+  const s = [...values].sort((a, b) => a - b);
+  const sum = s.reduce((a, b) => a + b, 0);
+  const p = (q) => s[Math.min(s.length - 1, Math.floor(q * s.length))];
+  return { n: s.length, mean: sum / s.length, median: p(0.5), p95: p(0.95), min: s[0], max: s[s.length - 1] };
+}
+
+const first = runOnce();
+if (!first.promoted) {
+  process.stderr.write(`ARM ${mode} DID NOT PROMOTE: status=${first.status}\n${first.stderr}\n`);
+  process.exit(1);
+}
+for (let i = 1; i < warmup; i += 1) runOnce();
+
+const promoteTimes = [];
+const issueTimes = [];
+let failures = 0;
+for (let i = 0; i < samples; i += 1) {
+  const r = runOnce();
+  if (!r.promoted) { failures += 1; continue; }
+  promoteTimes.push(r.promoteMs);
+  if (mode === 'receipt') issueTimes.push(r.issueMs);
+}
+
+const out = {
+  mode,
+  workspaceRoot,
+  samples,
+  warmup,
+  failures,
+  promote: stats(promoteTimes),
+  ...(mode === 'receipt' ? { receiptIssue: stats(issueTimes) } : {}),
+};
+process.stdout.write(`${JSON.stringify(out, null, 2)}\n`);

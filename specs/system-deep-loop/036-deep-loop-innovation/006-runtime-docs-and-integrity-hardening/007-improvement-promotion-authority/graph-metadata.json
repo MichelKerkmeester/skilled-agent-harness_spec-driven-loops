@@ -44,6 +44,7 @@
       "decision-record.md",
       "implementation-summary.md",
       "scratch/improvement-project-baseline.md",
+      "scratch/chk-111-promotion-receipt-cost.md",
       "handover.md"
     ],
     "entities": [
@@ -87,6 +88,12 @@
         "name": "improvement-project-baseline.md",
         "kind": "doc",
         "path": "scratch/improvement-project-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "chk-111-promotion-receipt-cost.md",
+        "kind": "doc",
+        "path": "scratch/chk-111-promotion-receipt-cost.md",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier revision can authorize promotion of a newer unscored candidate (`F-017-01`, CONFIRMED-WITH-MITIGATION: the benchmark report is target-bound, which mitigates but does not close it)",
     "created_at": "2026-07-31T01:25:21.136Z",
-    "last_save_at": "2026-08-18T20:26:57.675Z",
+    "last_save_at": "2026-08-19T04:41:20.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,15 +207,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1f5c6787d7dd25930127652f77a1f487c87af33b1a631a48bbab4221dff73f61",
+    "source_fingerprint": "sha256:66c1d51ec38897f96b7f755465a98b49e61de7d25d60edb7e1aa9d5c201ff56b",
     "source_doc_hashes": {
       "spec.md": "8ab82992a5515af6ee0b1fff6f9accb92873ad65fca92928994fe05057d1ae45",
       "plan.md": "8c06d98745d84f98e2fb294224f3689ef82b052a182fce06aac6e2e65ee1a5cf",
       "tasks.md": "a887733be4754d5de4dc9ee0885fb7a3bbf01d6e7f432b237a77122ba3eb5bca",
-      "checklist.md": "0a9f5da08dc80c98e35c0777a18797af2ab20836037c7162b1c052652c39e5c3",
+      "checklist.md": "413236eb813065280338ef21bdf65a4225370acd15003a42d5e641d4f00c8b8d",
       "decision-record.md": "30c29d558005a45efc6b872f1a167985bc5bb152e078123d9458d539acab9f21",
-      "implementation-summary.md": "a9fe264689699c6100ad6c0a7b3d4c757380b8a11468f1e1df99cba081021059",
-      "handover.md": "9b69d5eb396f20df34a76d1aaa8b246aacca0b54a80c008934ea5a13c4b2e60d"
+      "implementation-summary.md": "c7c0eed82d36d63fdde773e43bd517dd3120ee7df18b749fbd447b0170695ae3",
+      "handover.md": "d81129d0799e0a916d92287f1e916417b74e7fee7501b655f1bab4d01e1aacba"
     },
     "last_active_child_id": null,
     "last_active_at": null
