@@ -35,13 +35,14 @@
       "test"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "scratch/independent-adversarial-verification.md",
       "implementation-summary.md",
       "handover.md"
     ],
@@ -74,6 +75,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "independent-adversarial-verification.md",
+        "kind": "doc",
+        "path": "scratch/independent-adversarial-verification.md",
         "source": "derived"
       },
       {
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
     "created_at": "2026-07-31T01:25:19.594Z",
-    "last_save_at": "2026-08-18T12:34:50.973Z",
+    "last_save_at": "2026-08-19T05:49:26.436Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +206,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:fb2a244a6dbe62a603a1bc9dc5a90bd36eca8eed6fbae55fdf2743ed36b53c98",
+    "source_fingerprint": "sha256:aafea1f8c8f175f4b5173aff325d8f0fe00ad41fa7adbbf92c203dcf3a480449",
     "source_doc_hashes": {
       "spec.md": "80eee5a939a12e8070f565650ba806ca0a1b97670c4ba66266bb9e8b10f8bcd4",
       "plan.md": "94057419be24abe2e98849e21410f2ff7f171fe6a2206447c817f6aba8ccf36d",
       "tasks.md": "2cdb3953bf02e99f5f0fc204b779940c9bc0e297d1d2e9ef0e855560c155b4f5",
-      "checklist.md": "6ec4e410742452a278a402c10f74ff61f8b7da9915fe0f1615f42ee0682d5ad6",
+      "checklist.md": "f9eb651b65f314e5a2f2f6bbed77ee2cfa4f5cfa315bd486dd22290b06cea2b8",
       "decision-record.md": "5de85c7542278719126505ab9be14017e0dd7723c0d85a9d9aa7a4f193f622e1",
-      "implementation-summary.md": "7289dc6e877960e9c358da097761c9583e42b162eddea10565f19d8d9edd382c",
+      "implementation-summary.md": "4c9a0777ed4561d06a5310fc015e6893675fad87e967f6e855d9fc8d3cf0a821",
       "handover.md": "684c0a54202ed3c1ca1f7146395e96c6ffbf7376fad5996545e81b9a65d47a25"
     },
     "last_active_child_id": null,

@@ -81,8 +81,9 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
   - **Evidence**: red-before/green-after per mode in `implementation-summary.md`; suites 41/41, 35/35, 39/39, 19/19, 10/10, 10/10
 - [x] CHK-004 [P0] Whole gate re-run at close and reported as a delta against the baseline
   - **Evidence**: post-edit per-mode suites green and `authorized-ledger.vitest.ts` 28/28 no regression; `tsc --noEmit` rc 0
-- [ ] CHK-005 [P1] Independent adversarial verification pass by a different actor than the builder
-  - **Evidence**: [Deferred: independent adversarial verification is an external sign-off pending; builder-authored red-before/green-after divergence tests are not independent evidence per REQ-U04]
+- [x] CHK-005 [P1] Independent adversarial verification pass by a different actor than the builder
+  - **Evidence**: `scratch/independent-adversarial-verification.md`, performed 2026-08-19 by an actor other than the builder, refutation-posture. The independence claim HOLDS on all six modes under two independent attacks: an in-file call-graph reachability audit and a cross-file import-laundering audit, each with a negative control proving the instrument fires (the reachability audit reports `REFUTED` against the pre-fix council adapter at `8b6b7b1f7e^`, naming `councilProjectionFromEvents` — exactly the `F-006-01` defect). Behavioural gate re-run at HEAD: 6 files, 266 passed, 32 skipped, exit 0.
+  - **Findings raised, none a refutation**: (1) surface narrowness — on the two modes measurable exactly, deep-alignment compares 20 of 41 handled stems and deep-review 18 of 19; the other four have floors of >=6, >=3, >=3 and >=0. (2) Ten bodied tests are disabled, seven with no recorded reason; all ten were re-enabled and run. The five in agent-improvement fail in 1-3 ms with `EnvelopeValidationError` (their fixtures build events the schema rejects, never worked, authored already-skipped in `a9dbf88154`); the five in deep-alignment run for real and fail `expected 'execution-outcome' to be 'projection-semantic'` — the harness *does* catch the corruption, under the fail-closed class other modes document in comments. No planted divergence went undetected.
 
 - [x] CHK-030 [P0] Six divergence injections proven: PASS pre-fix, FAIL post-fix
   - **Evidence**: both runs recorded per mode across `deep-ai-council-shadow-parity.vitest.ts`, `deep-alignment-shadow-parity.vitest.ts`, `agent-improvement-shadow-parity.vitest.ts`, `model-benchmark-shadow-parity.vitest.ts`, `skill-benchmark-shadow-parity.vitest.ts`, `deep-review-shadow-parity.vitest.ts`
@@ -199,8 +200,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
   - **Evidence**: `rg "fetch\(|https?://|net\.|http\." runtime/lib/*-shadow-parity/harness-adapter.ts` returns 0; converters are pure functions over the event log
 - [x] CHK-131 [P1] No fixture, surface list, or divergence-injection test embeds a credential, token, or absolute machine-local path
   - **Evidence**: `rg "/Users/|/home/" tests/unit/*-shadow-parity.vitest.ts` returns 0; only synthetic identifiers and repo-relative paths present
-- [ ] CHK-132 [P2] The severity calibration block (`spec.md` §2) is carried verbatim wherever this child's findings are cited by a sibling child
-  - **Evidence**: P2 optional; the calibration block is present in `spec.md` §2, but the cross-sibling verbatim sweep across `021`, `023`-`032` was not run during this reconciliation
+- [x] CHK-132 [P2] The severity calibration block (`spec.md` §2) is carried verbatim wherever this child's findings are cited by a sibling child
+  - **Evidence**: Sweep run across the epic. Every sibling child spec that carries the block carries it byte-identically: 12 files, 366 characters each, SHA-256 prefix `7c7c5d0fd8b5` — the four `005-blocker-closeout` children and the eight `006-runtime-docs-and-integrity-hardening` children `003`-`010`. No sibling child cites this child's findings without it: the only other references to `F-006-01`/`F-006-02`/`F-012-01`-`04` in the epic are the review run's own artifacts under `004-gate-closeout-and-drift/001-whole-system-gate/review/`, which produced the findings rather than citing them. One non-verbatim occurrence exists, a paraphrase in `scratch/handover.md` scoped to `024`; it is a scratch note, not a sibling child spec, so it is outside this item's stated scope and was left alone
 <!-- /ANCHOR:compliance-verify -->
 
 ---
