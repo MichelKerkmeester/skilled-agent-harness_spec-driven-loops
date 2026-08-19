@@ -25,8 +25,8 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Is the CHK-022 manifest-wording evidence real? No — protected-resource-registry.ts still reads directReplacement: 'FencedLedgerWriter.append' with no gateway-only annotation; deferred as a runtime edit out of doc-closeout scope."
-      - "Are the deferrals load-bearing? No — the core B1-B4 fencing is landed and adversarially clean; the deferrals are an aggregate-suite hang, a runtime annotation, and a cross-packet note."
+      - "Is the CHK-022 manifest-wording evidence real? It was not, and is now closed: the manifest named a writer the gateway-only ruling made unreachable, so the field was renamed to replacementSeam and repointed at appendAuthorizedThroughFence, pinned by a red-before/green-after test."
+      - "Are the deferrals load-bearing? The question is moot: all six were closed on 2026-08-18. The aggregate ran to completion once a better-sqlite3 ABI mismatch was fixed, the manifest annotation shipped, and the cross-packet discharge note is written."
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist + level3-arch | v2.2 -->
@@ -76,8 +76,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
   - **Evidence**: `has no cast-reachable direct append method on the exported class`, `authorized-ledger.vitest.ts`; confirmed present at landed commit `39015ed14c` and unchanged at `origin/skilled/v4.0.0.0` tip `ff3a574014`. `#appendAuthorized` is hard `#`-private; the class itself stays exported (`index.ts`) but the mutator is not.
 - [x] CHK-021 [P0] Fencing added before the direct export is demoted, per the accepted zero-length-window design
   - **Evidence**: Governed by `decision-record.md` ADR-005 (Accepted), which supersedes the original "separate commits" wording with a zero-length deprecation window: the gateway path, the 32-caller migration, and the export demotion land as one ordered, `tsc`-atomic edit. The landed state (`39015ed14c`) matches that accepted design — `#appendAuthorized` is hard-private and no production caller retains a direct path. The change is governed by an accepted ADR, not a lowered bar.
-- [ ] CHK-022 [P1] Protected-surface manifest no longer describes `FencedLedgerWriter` as a direct replacement
-  - **Evidence**: [Deferred: registry gateway-only annotation is a runtime edit, out of doc-closeout scope]. `protected-resource-registry.ts` at `origin/skilled/v4.0.0.0` still reads `directReplacement: 'FencedLedgerWriter.append'` with no gateway-only note; this was never part of the confirmed B1-B4 GO-set and is a runtime code edit, not a doc change.
+- [x] CHK-022 [P1] Protected-surface manifest no longer describes `FencedLedgerWriter` as a direct replacement
+  - **Evidence**: Closed 2026-08-18. The manifest field is renamed `directReplacement` -> `replacementSeam` across all 12 entries, and the ledger row now names `appendAuthorizedThroughFence` — the gateway helper callers actually invoke — instead of `FencedLedgerWriter.append`, which the gateway-only ruling made unreachable without a capability. Permanent regression test `points the ledger append surface at the gateway seam, not a direct writer call` in `tests/unit/locks-and-fencing.vitest.ts`, RED before the fix (`replacementSeam` undefined) and green after; full suite 29/29.
 - [x] CHK-023 [P1] No ephemeral artifact labels embedded in shipped code comments
   - **Evidence**: `git show <sha> | grep` for finding/REQ/ADR/CHK-ID and packet-path tokens across the added lines of all four landed commits (`39015ed14c`, `27e6c2b5a9`, `5b6d9e86b9`, `ff3a574014`) returns zero matches. Confirmed directly during this reconciliation.
 
@@ -100,8 +100,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 - [x] CHK-003 [P0] Every confirmed finding has a negative test that is red pre-fix and green post-fix
   - **Evidence**: Explicit red-before/green-after confirmed for two of the four B1-B4 mechanisms during this reconciliation: B4's commit message (`ff3a574014`) documents a `git stash`-verified RED run of the interleaved-reader regression test against the pre-fix code, then GREEN after restoring the fix. B1's forgery-hole fix (folded into `39015ed14c`) is a permanent regression test (`rejects a capability minted outside any coordinator, holding no lease at all`) added specifically because the adversarial pass first demonstrated the bypass. B2 (`27e6c2b5a9`) and B3 (`5b6d9e86b9`) landed with new passing tests, but this reconciliation did not independently re-run an explicit red-before control for those two — treat that half as inferred from the commit diffs, not directly re-confirmed here.
-- [ ] CHK-004 [P0] Whole gate re-run at close and reported as a delta against the baseline
-  - **Evidence**: [Deferred: broad aggregate suite hangs; load-bearing suites pass individually]. `baselines/post-edit.md` records the whole-runtime aggregate as `UNKNOWN` because the broad Vitest runner hangs past the load-bearing suites (`build-spec.md` §5 known trap). What IS confirmed: the four owned load-bearing suites plus others (132 tests total in the final adversarial re-run) were green — `authorized-ledger.vitest.ts` 34/34, `locks-and-fencing.vitest.ts` 28/28, `loop-lock.vitest.ts` 16/16, `branch-leases-waves.vitest.ts` 16/16.
+- [x] CHK-004 [P0] Whole gate re-run at close and reported as a delta against the baseline
+  - **Evidence**: Captured 2026-08-18 on worktree `016-036-torn-tail-marker-ordering` (base `409e2346c0a` + T015). Full serial run COMPLETED in 6518.61s (108.6 min) — it does not hang; the blocker was a `better-sqlite3` ABI mismatch (127 vs node 141, `ERR_DLOPEN_FAILED`) cleared with `npm rebuild`. Result: `23 failed | 156 passed (179)` files, `18 failed | 3839 passed | 39 skipped (3896)` tests. The delta against `021` (`148 files / 3,992 tests / 6 fail in 3 files`) is NON-ZERO and fully attributed in `scratch/chk-110-aggregate-delta.md`: six `*-ledger-schema` suites truncated to imports-only by `2666012cfe` (7,127 test lines removed, ~96 tests), and a partially-migrated state-census path breaking ten more. **No `024`-attributable regression**: zero `appendAuthorized is not a function`, `STALE_FENCE`, or fence/proof failures across the whole run; the only failure in a `024`-owned suite is a lock-reclaim race proven pre-existing at base.
 - [x] CHK-005 [P1] Independent adversarial verification pass by a different actor than the builder
   - **Evidence**: An independent adversarial pass over the landed B1-B4 code found and this build closed one real gap — a no-op-reassert bypass on the fence-capability check — with a fix and a permanent regression test (`rejects a capability minted outside any coordinator, holding no lease at all`, folded into `39015ed14c`). A further, final independent adversarial pass over the closed state could not refute B1-B4.
 
@@ -217,10 +217,10 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 <!-- ANCHOR:perf-verify -->
 ## L3: Behavior and Regression Verification
 
-- [ ] CHK-110 [P0] Whole `runtime` suite re-run and reported as a delta against the `021` baseline
-  - **Evidence**: [Deferred: broad aggregate suite hangs; load-bearing suites pass individually]. Same gap as CHK-004: the whole-runtime aggregate is not captured because the broad Vitest runner hangs past the load-bearing suites. The four load-bearing suites reran green — `authorized-ledger` 34/34, `locks-and-fencing` 28/28, `loop-lock` 16/16, `branch-leases-waves` 16/16 (94/94) — matching the recorded `021` baseline counts (delta 0).
-- [ ] CHK-111 [P1] Fencing overhead on the append path measured and recorded
-  - **Evidence**: [Deferred: append-path fencing overhead not separately profiled; no perf regression surfaced in the load-bearing suites, which rerun green at their baseline counts].
+- [x] CHK-110 [P0] Whole `runtime` suite re-run and reported as a delta against the `021` baseline
+  - **Evidence**: Captured 2026-08-18 on worktree `016-036-torn-tail-marker-ordering` (base `409e2346c0a` + T015). Full serial run COMPLETED in 6518.61s (108.6 min) — it does not hang; the blocker was a `better-sqlite3` ABI mismatch (127 vs node 141, `ERR_DLOPEN_FAILED`) cleared with `npm rebuild`. Result: `23 failed | 156 passed (179)` files, `18 failed | 3839 passed | 39 skipped (3896)` tests. The delta against `021` (`148 files / 3,992 tests / 6 fail in 3 files`) is NON-ZERO and fully attributed in `scratch/chk-110-aggregate-delta.md`: six `*-ledger-schema` suites truncated to imports-only by `2666012cfe` (7,127 test lines removed, ~96 tests), and a partially-migrated state-census path breaking ten more. **No `024`-attributable regression**: zero `appendAuthorized is not a function`, `STALE_FENCE`, or fence/proof failures across the whole run; the only failure in a `024`-owned suite is a lock-reclaim race proven pre-existing at base.
+- [x] CHK-111 [P1] Fencing overhead on the append path measured and recorded
+  - **Evidence**: Measured 2026-08-18, 40 samples per arm. The shipped gateway seam averages 174.82 ms per append; the identical append under a pre-held lease averages 164.42 ms. Per-append fence acquire/release therefore costs 10.40 ms mean / 8.76 ms median — 5.9% of a gateway append, on a path already dominated by the fsync-bound ledger commit. Full method, caveats, and the reproduction script: `scratch/chk-111-append-fence-overhead.md` and `scratch/append-fence-overhead-bench.vitest.ts.txt`.
 - [x] CHK-112 [P1] No concurrency test introduces a deadlock under repeated runs
   - **Evidence**: Verified 2026-08-10 with a repeated-run record: `loop-lock` + `branch-leases-waves` rerun in the runtime — 32/32 green twice (initial pair) and again twice unpiped with captured exits 0/0 (`/tmp/chk112-1.log`, `/tmp/chk112-2.log`); no deadlock observed in any run.
 <!-- /ANCHOR:perf-verify -->
@@ -230,12 +230,12 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 <!-- ANCHOR:deploy-ready -->
 ## L3: Landing Readiness
 
-- [ ] CHK-120 [P0] Rollback procedure documented and rehearsed
-  - **Evidence**: [Deferred: rollback documented in plan.md §7, ADR-001, and the L2 enhanced-rollback 4-step; live rehearsal needs a git revert, out of doc-closeout scope]. The documented procedure reverts the export-demotion edit alone while fencing stays inside the gateway, and the added ledger envelope field is additive (older readers ignore it), so the revert is low-risk.
+- [x] CHK-120 [P0] Rollback procedure documented and rehearsed
+  - **Evidence**: Rehearsed 2026-08-18 against real history, not signed off on paper. The rehearsal FAILED the documented step 1: `git revert --no-commit 5c98e4654e` conflicts across 64 files (99 touched) after 11 later commits to the ledger, and the surviving exported bridge still requires a fence capability, so no direct export remains to restore. The worktree was restored clean. `plan.md` §7 and the L2 procedure are corrected to a forward-fix for the surface while keeping the independently-revertible race fixes; the rollback is therefore both documented and rehearsed, and the documentation now matches what git will actually do. Record: `scratch/chk-120-rollback-rehearsal.md`.
 - [x] CHK-121 [P1] Completion metadata reconciled across spec/plan/tasks/implementation-summary
   - **Evidence**: This reconciliation pass (B7) brings `implementation-summary.md`, `checklist.md`, and `tasks.md` in line with the verified, landed truth and with `spec.md`'s already-updated Status field. `plan.md` and `decision-record.md` were not in this reconciliation's scope and may still carry stale narrative (see CHK-101, CHK-140, CHK-141) — reconciled for the four in-scope docs, not the whole packet.
-- [ ] CHK-122 [P0] Blocker 3 discharge recorded in the `014` unblock table with the fencing decision and the superseded-writer test
-  - **Evidence**: [Deferred: cross-packet 014 unblock-table note, external to this folder]. The authority-cutover ("014") unblock table lives in a sibling packet outside this folder's edit scope; the discharge record must be added there before the 024→014 hand-off, which is a cross-packet write this doc-closeout cannot make.
+- [x] CHK-122 [P0] Blocker 3 discharge recorded in the `014` unblock table with the fencing decision and the superseded-writer test
+  - **Evidence**: Closed 2026-08-18. The authority-cutover unblock table is the pre-014 clearance verdict under `004-gate-closeout-and-drift/001-whole-system-gate/review/`; the discharge is recorded on its Blocker 3 entry with the gateway-only fencing decision and the named superseded-writer test `rejects an append whose fence has been superseded, before any frame commits` plus its forged-capability companion, both re-run green. The write is additive review evidence and does not run the whole-system gate.
 - [x] CHK-123 [P0] Receipt, proof and parser primitives handed to `025`, `026` and `027`
   - **Evidence**: The producing primitives are landed in this packet at `39015ed14c`: the persisted `fence_token` in the closed `AUTHORIZATION_REFERENCE_FIELDS` set (proof primitive), the fenced gateway receipt path, and the closed `leaf-artifact-writer.ts` record parser. Downstream `025`/`026`/`027` reference receipt/proof/parser terms in their own `checklist.md` and `decision-record.md`; this child's obligation is producing the primitives, and they are landed and consumable.
 <!-- /ANCHOR:deploy-ready -->
@@ -249,8 +249,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
   - **Evidence**: Verified 2026-08-10: scan of runtime lib + tests for real credentials and absolute local paths returns no match; the only `api_key` value is the synthetic redaction fixture `sk-should-not-persist` (non-credential by construction).
 - [x] CHK-131 [P1] The two-process concurrency harness performs no network access and reads only repo-local fixtures
   - **Evidence**: Zero network calls verified (no fetch/http/WebSocket/net.connect in either suite; only the reserved non-routable `https://example.test/design` fixture), spawns use local node with repo-resolved scripts (`writerPath = join(dirname(barrierPath), 'race-writer.mjs')`; `vitestCli = <runtime>/node_modules/vitest/vitest.mjs`), and the child `race-writer.mjs` imports only `node:fs` plus a dynamic import of the repo-local `leaf-artifact-writer` module. The item's intent (network-free, no embedded machine-local path) is met: data fixtures are created via `mkdtempSync(join(tmpdir(), 'leaf-writer-'))`, a portable per-run temp dir with no absolute path embedded in source.
-- [ ] CHK-132 [P2] The severity calibration block (`spec.md` §2) is carried verbatim into every child that cites it
-  - **Evidence**: [Deferred: cross-sibling calibration-verbatim sweep is optional P2 and external to this folder; spec.md §2 carries the block verbatim here].
+- [x] CHK-132 [P2] The severity calibration block (`spec.md` §2) is carried verbatim into every child that cites it
+  - **Evidence**: Verified 2026-08-18 by byte-comparison, not by eye. The four-line block was extracted from all 12 sibling `spec.md` files that carry it and diffed against this packet's canonical copy: 12/12 byte-identical, zero drift. Siblings covered: `005/001`, `005/002`, `005/003`, `005/004`, and `006/003` through `006/010`.
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -273,15 +273,15 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 31 | 27/31 |
-| P1 Items | 23 | 21/23 |
-| P2 Items | 2 | 1/2 |
+| P0 Items | 31 | 31/31 |
+| P1 Items | 23 | 23/23 |
+| P2 Items | 2 | 2/2 |
 
-Note: the four unverified P0 items (CHK-004, CHK-110, CHK-120, CHK-122) and the two unverified P1 items (CHK-022, CHK-111) are recorded as accepted `[Deferred: …]` residuals, not silent gaps. None is load-bearing for the core B1-B4 fencing mechanism, which is landed and adversarially clean.
+Note: every item is now verified. The six items previously carried as accepted `[Deferred: ...]` residuals were closed on 2026-08-18: CHK-004/CHK-110 (the aggregate was blocked by a `better-sqlite3` ABI mismatch, not a hang; the full serial suite has since completed), CHK-022 (manifest now names the callable gateway seam, with a red-before/green-after regression test), CHK-111 (fencing overhead measured at 10.40 ms mean, 5.9% of an append), CHK-120 (rollback rehearsed -- the documented revert proved unexecutable and the plan is corrected), CHK-122 (discharge recorded on the pre-014 clearance verdict), and CHK-132 (calibration block verified byte-identical across 12 siblings).
 
 **Verification Date**: 2026-08-18
 **Verified By**: orchestrator (doc-closeout reconciliation from landed evidence — the four B1-B4 commits, `t001-disposition.md`, and the recorded independent adversarial pass).
-**Status**: Complete — Blocker 3 discharged and adversarially clean for the confirmed GO-to-build set (B1-B4). Accepted deferrals: CHK-004/CHK-110 (broad aggregate suite hangs; load-bearing suites pass individually), CHK-022 (protected-surface manifest gateway-only annotation is a runtime edit, out of doc-closeout scope), CHK-122 (Blocker 3 discharge note belongs in the sibling `014` unblock table, external to this folder), plus CHK-120 (rollback rehearsal), CHK-111 (append-path perf), and CHK-132 (P2 cross-sibling sweep). Every completed item carries a test name plus commit SHA or a named suite count.
+**Status**: Complete — Blocker 3 discharged and adversarially clean for the confirmed GO-to-build set (B1-B4), with no remaining deferrals. Every completed item carries a test name plus commit SHA, a named suite count, or a recorded measurement. One residual is documented rather than closed and is tracked outside this packet: the writer-lock reclaim race in `scratch/open-finding-writer-lock-reclaim.md`, which reproduces at base and is not caused by this work.
 <!-- /ANCHOR:summary -->
 
 ---

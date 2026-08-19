@@ -76,7 +76,8 @@ FAILURE MODES:
 ## Testing
 
 - [x] CHK-020 [P0] All acceptance criteria met: REQ-001..009 covered by `fanout-run.vitest.ts`
-- [ ] CHK-021 [P0] Manual testing complete [Deferred: live `glm-5-2` smoke dispatch needs an authenticated Devin account, exercised by `88ffed2893`, external re-run pending]
+- [x] CHK-021 [P0] Manual testing complete
+  - **Evidence**: Live `glm-5-2` dispatch on the operator's authenticated account 2026-08-18, `devin 3000.4.25`, exit 0, output matched the requested string exactly. Red-before control recorded (untrusted-workspace gate). See `scratch/t011-live-smoke-evidence.md`.
 - [x] CHK-022 [P1] Edge cases tested: disallowed model and omitted-model default in `fanout-run.vitest.ts`
 - [x] CHK-023 [P1] Error scenarios validated: absent-binary PATH preflight at `fanout-run.cjs:2193`
 <!-- /ANCHOR:testing -->
@@ -135,7 +136,7 @@ FAILURE MODES:
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Status**: Complete. One P0 (CHK-021 live smoke dispatch) is deferred to an authenticated Devin account; all other items verified against landed code and green tests.
+**Status**: Complete. Every item is verified against landed code and green tests, including the CHK-021 live `glm-5-2` smoke dispatch, which ran on the operator's authenticated Devin account on 2026-08-18 and returned exit 0.
 
 **Verification Date**: 2026-08-18
 <!-- /ANCHOR:summary -->

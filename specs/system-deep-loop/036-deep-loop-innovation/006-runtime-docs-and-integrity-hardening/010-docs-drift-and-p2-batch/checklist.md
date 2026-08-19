@@ -66,8 +66,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 - [x] CHK-020 [P0] No duplicated fact is fixed in two places instead of being single-sourced
   - **Evidence**: Grep for the duplicated roster strings returns exactly one authoritative statement each. Test receipt: `check-documentation-drift.cjs`; suite digest `b226ec6512d99db37398499c`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [ ] CHK-021 [P1] Lane B adopts `027`'s validator rather than patching the legacy gates locally
-  - **DEFERRED (not landed)**: attempted adoption broke 2 deep-review rollback-window evidence-counting tests (83 pass at origin, 2 fail with the change); both mode-gates reverted to origin. Landed commit `bf4f280ce7` does not touch either `mode-gate.ts` file. The shared `hasExactKeys`/`validateRows` primitives did land in `mode-contracts/strict-gate-validator.ts`, unconsumed.
+- [x] CHK-021 [P1] Lane B adopts `027`'s validator rather than patching the legacy gates locally
+  - **Evidence**: Both `mode-gate.ts` files now import `hasExactKeys` and `validateRows` from `../mode-contracts/index.js` and their local `hasExactKeys` copies are deleted — no local reimplementation remains. Adopted via a malformed-vs-selection split: structural row validity now rejects the evidence set through the shared `validateRows`, while success/authentication selection stays a filter so legal `incomplete`/`abstained`/unauthenticated rows are excluded from the count rather than rejected. Evidence: `tsc --noEmit` exit 0; `deep-review-rollback-gate.vitest.ts` 86/86 pass; `deep-research-rollback-gate.vitest.ts` 81/81 pass; four added negative tests fail against the unfixed lib (red-before) and pass after (see `scratch/t014-verification-evidence.md`).
 - [x] CHK-022 [P1] No ephemeral artifact labels embedded in shipped code comments
   - **Evidence**: Comment hygiene review of the diff. Test receipt: comment-hygiene validator; suite digest `10b8ed302a94ff9a47f2a263`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
 <!-- /ANCHOR:code-quality -->
@@ -90,8 +90,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
   - **Evidence**: Named negative run: `check-documentation-drift.cjs --report-mismatch`; suite digest `b226ec6512d99db37398499c`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
 - [x] CHK-032 [P1] A hostile-locale determinism test produces stable policy digests
   - **Evidence**: Named test across two collations: authorized-ledger digest inspection; suite digest `a976f1f940a1f77d359fa8ec`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [ ] CHK-033 [P1] Unknown top-level keys and malformed rollback-window rows are rejected in the legacy gates
-  - **DEFERRED (not landed)**: see CHK-021. The negative-test attempt regressed 2 deep-review rollback-window evidence-counting tests; the change was reverted rather than shipped with a known regression.
+- [x] CHK-033 [P1] Unknown top-level keys and malformed rollback-window rows are rejected in the legacy gates
+  - **Evidence**: Unknown top-level keys were already rejected by the exact-key check, now sourced from the shared validator. Malformed rollback-window rows now reject the whole evidence set instead of being silently filtered. Named negative tests: `rejects the evidence set when a rollback row violates its declared type` and `rejects an out-of-contract result while still counting legitimate unsuccessful rows`, added to both gate suites; each fails against the unfixed lib and passes after.
 - [x] CHK-034 [P1] A run persists convergence snapshots and accumulates a baseline
   - **Evidence**: Recorded run with the snapshot flags present in the live YAML; suite digest `c2b18b96d9c96d6d9630b946`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
 <!-- /ANCHOR:testing -->
@@ -111,8 +111,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
   - **Evidence**: Negative test run: a deliberately mismatched roster makes the check fail, not warn-and-continue. Test receipt: `check-documentation-drift.cjs --mismatch`; suite digest `b226ec6512d99db37398499c`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
 - [x] CHK-FIX-005 [P1] The {29 findings} x {fixed, `REFUTED`, `ALREADY-FIXED`} matrix, with the four merge groups shown as collapsed single work units, is listed before completion is claimed
   - **Evidence**: T001 classification table cross-tabulated against the T002 merge-group collapse in `tasks.md`. Test receipt: packet reconciliation; suite digest `252afbc700e983281ce13d85`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [ ] CHK-FIX-006 [P1] Lane B's mode-gate fix adopts `027`'s shared strict validator against the same file `027` touches, not a local reimplementation
-  - **DEFERRED (not landed)**: see CHK-021. `mode-gate.ts` in both research and review rollback gates was reverted to origin; the shared validator adoption is not in the landed commit `bf4f280ce7`.
+- [x] CHK-FIX-006 [P1] Lane B's mode-gate fix adopts `027`'s shared strict validator against the same file `027` touches, not a local reimplementation
+  - **Evidence**: The adoption edits the same `deep-research-rollback-gate/mode-gate.ts` and `deep-review-rollback-gate/mode-gate.ts` files `027` owns, consuming `mode-contracts/strict-gate-validator.ts` rather than copying it. Grep confirms zero surviving local `function hasExactKeys` definitions in either gate.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -169,7 +169,7 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 | P1 Items | 14 | 11/14 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-08-07
-**Verified By**: Codex focused verification pass
-**Status**: Complete — all P0 (16/16) and P2 (1/1) verified with test-name + suite-digest + candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`; 11/14 P1 verified and CHK-021 / CHK-033 / CHK-FIX-006 recorded as accepted deferrals (the `027` shared-validator adoption in the legacy rollback gates regressed 2 deep-review evidence-counting tests and was reverted; landed commit `bf4f280ce7` touches no `mode-gate.ts`).
+**Verification Date**: 2026-08-18
+**Verified By**: Codex focused verification pass (2026-08-07); orchestrator re-land verification of the `027` adoption (2026-08-18)
+**Status**: Complete — all P0 (16/16), P1 (14/14) and P2 (1/1) verified. The three former deferrals CHK-021 / CHK-033 / CHK-FIX-006 are now closed: the `027` shared-validator adoption was re-landed with a malformed-vs-selection split that keeps the rollback-window evidence count intact. The earlier regression was reproduced first as a negative control (3 failing tests), then fixed at the root rather than by loosening tests.
 <!-- /ANCHOR:summary -->

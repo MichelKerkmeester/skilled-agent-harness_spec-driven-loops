@@ -33,6 +33,7 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `deep-loop/` | Atomic state, loop locking, JSONL repair and executor config for the deep-loop runtime backend. |
 | `dispatch-receipts/` | Records a durable integrity-checked receipt before a dispatch crosses the process-spawn boundary, so a resumed session recognizes an already-launched run. |
 | `event-envelope/` | Foundational canonical-serialization and event-schema registry substrate underneath most domains, excluding `council/`, `coverage-graph/` and `write-set-conflict-graph/`. |
+| `fleet-enablement/` | Derives each mode's projected surfaces from the shared manifest and drives the remaining modes through enablement one at a time, stopping at the first failure with resumable state. |
 | `health-degeneration-harness/` | Turns normalized budget, cycle and coverage signals into a per-mode health state and a recommended response action. |
 | `hierarchical-budgets/` | Reserves, settles and replays token, cost, iteration and wall-time budgets across a four-level scope hierarchy. |
 | `inflight-state-classification/` | Classifies in-flight legacy state rows against a frozen census into upcast, pin, fork, migrate or block dispositions. |

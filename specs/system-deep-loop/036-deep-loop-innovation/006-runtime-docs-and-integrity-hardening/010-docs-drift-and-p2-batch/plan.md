@@ -16,7 +16,7 @@ _memory:
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Reconciled packet docs to Complete against landed commit bf4f280ce7"
-    next_safe_action: "Re-land F-031-01/F-031-02 with a non-regressing rollback-window fix"
+    next_safe_action: "None — T014 re-landed; packet deferrals closed"
     blockers: []
     key_files:
       - "plan.md"
@@ -136,7 +136,7 @@ Required inventories (run before implementation, record the output):
 ### Phase 4: Lane B, code hygiene
 - [x] Locale-independent policy digest ordering
 - [x] Readonly wave collections
-- [ ] Adopt `027`'s shared strict validator in the legacy gates — DEFERRED (not landed); adoption regressed 2 deep-review rollback-window tests and was reverted, so `bf4f280ce7` touches no `mode-gate.ts`
+- [x] Adopt `027`'s shared strict validator in the legacy gates — re-landed 2026-08-18 with a malformed-vs-selection split; review suite 86/86, research suite 81/81, `tsc` exit 0
 - [x] Persist convergence snapshots
 
 ### Phase 5: Delta and gate
@@ -173,7 +173,7 @@ Required inventories (run before implementation, record the output):
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `027` shared strict validator | Internal | Green (landed) | REQ-008 adoption DEFERRED (not landed); the shared validator exists but the legacy gates do not yet consume it |
+| `027` shared strict validator | Internal | Green (landed) | REQ-008 adoption COMPLETE; both legacy gates now consume `hasExactKeys` and `validateRows` from `mode-contracts` |
 | `024` policy registry | Internal | Green (landed) | REQ-006 conflicts on the same file |
 | `021` honest baselines | Internal | Green (landed) | Evidence issued against dishonest counts |
 | `031` count reconciliation | Internal | Green (landed) | Runs last; the counts should be settled first |

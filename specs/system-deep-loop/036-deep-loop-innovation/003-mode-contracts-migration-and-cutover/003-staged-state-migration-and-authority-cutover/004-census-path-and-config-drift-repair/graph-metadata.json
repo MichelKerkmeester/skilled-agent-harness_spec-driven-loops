@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "census path and config drift repair",
+      "deep-loop stale state census path",
+      "fan-out stop policy smuggled config",
+      "census path and config drift repair implementation plan",
+      "deep-loop stale census path fix plan",
+      "fan-out stop policy schema fix plan",
+      "census path and config drift repair tasks",
+      "deep-loop stale census path fix tasks",
+      "fan-out stop policy schema fix tasks",
+      "census path and config drift repair checklist",
+      "deep-loop stale census path fix verification",
+      "fan-out stop policy schema fix gate"
+    ],
+    "key_topics": [
+      "census",
+      "path",
+      "config",
+      "drift",
+      "repair",
+      "deep-loop",
+      "stale",
+      "state",
+      "fan-out",
+      "stop",
+      "policy",
+      "smuggled"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Census Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Config Drift Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "that",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "measured",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Repair seven stale state-census path references that made five runtime test files ENOENT-uncollectable, and close a fan-out config schema gap that let a stopPolicy value be silently dropped instead of read.",
+    "created_at": "2026-08-19T04:17:23.144Z",
+    "last_save_at": "2026-08-19T04:32:35.160Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3cfeb42fb2b3d92439a555a12fdc81228ebcbe6be52fc6d3e40df663158273e0",
+    "source_doc_hashes": {
+      "spec.md": "94aa86d8e3b39beaf533a6ece69f0c2c2a820f1b68e13ee28155f761b71feffc",
+      "plan.md": "c1068575c39409ab9aec8c365cb342a260b39ed99729ccda6ccf2cb73b14fb4b",
+      "tasks.md": "90519941c1af607d31b3bef2630fb957964f716f5a3bc80453342b76bc5fcd31",
+      "checklist.md": "49ce72ea51509e33c9fdb8a981d0543872e4470125bd9d049946b7763169b5d5",
+      "implementation-summary.md": "ab2244406921a347ae3501b20eb8a15dd46a1c84d8311e45ca38337d9f9c2260"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

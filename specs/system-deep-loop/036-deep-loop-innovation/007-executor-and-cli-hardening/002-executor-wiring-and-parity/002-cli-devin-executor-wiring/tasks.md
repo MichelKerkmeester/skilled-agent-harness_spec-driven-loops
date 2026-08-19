@@ -74,7 +74,7 @@ _memory:
 
 - [x] T009 Add cli-devin unit coverage; `vitest run -t "devin"` reports 9 passed
 - [x] T010 Run both adapter test files; `vitest run` reports 198 passed (198)
-- [ ] T011 Live `devin -p` smoke dispatch on `glm-5-2` [Deferred: needs an authenticated Devin account, external run pending]
+- [x] T011 Live `devin -p` smoke dispatch on `glm-5-2` Done 2026-08-18. `devin auth status` reported logged in; `devin -p --respect-workspace-trust false --model glm-5-2 --permission-mode accept-edits` returned the exact requested string with exit 0 in 2.26s on `devin 3000.4.25`. Run from a scratch directory outside the repo. Red-before control: the same dispatch without `--respect-workspace-trust false` fails closed on the untrusted-workspace gate. Evidence: `scratch/t011-live-smoke-evidence.md`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -82,9 +82,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All landed tasks marked `[x]`; live smoke `T011` deferred to an authenticated account
+- [x] All tasks marked `[x]`, including the `T011` live smoke dispatch
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed [Deferred: live smoke dispatch pending]
+- [x] Manual verification passed — live `glm-5-2` smoke dispatch returned exit 0 (T011, CHK-021)
 <!-- /ANCHOR:completion -->
 
 ---

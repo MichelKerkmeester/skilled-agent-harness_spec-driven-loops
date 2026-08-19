@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+"""Adversarial independence audit for the shadow-parity harness adapters.
+
+The claim under attack: each mode's ledger side and legacy side derive their
+projection by genuinely different code paths, so the harness can actually fail.
+
+The refutation this looks for is the original defect shape -- the legacy side
+reaching the reducer fold, or the ledger side reaching back into the raw-event
+scan. Both are computed by transitive reachability over the file's own call
+graph, not by reading imports.
+"""
+import re
+import sys
+import os
+
+MODES = [
+    'deep-ai-council', 'agent-improvement', 'model-benchmark',
+    'skill-benchmark', 'deep-alignment', 'deep-review',
+]
+
+DEF_RE = re.compile(
+    r'^(?:export\s+)?(?:async\s+)?function\s+([A-Za-z_$][\w$]*)\s*[(<]'
+    r'|^(?:export\s+)?const\s+([A-Za-z_$][\w$]*)\s*=\s*(?:async\s*)?[(<]',
+    re.M)
+CALL_RE = re.compile(r'\b([A-Za-z_$][\w$]*)\s*\(')
+
+def parse(path):
+    src = open(path, encoding='utf-8').read()
+    lines = src.split('\n')
+    defs = []
+    for m in DEF_RE.finditer(src):
+        name = m.group(1) or m.group(2)
+        line = src[:m.start()].count('\n')
+        defs.append((line, name))
+    defs.sort()
+    bodies = {}
+    for i, (line, name) in enumerate(defs):
+        end = defs[i + 1][0] if i + 1 < len(defs) else len(lines)
+        bodies.setdefault(name, []).append('\n'.join(lines[line:end]))
+    graph = {n: set(CALL_RE.findall('\n'.join(b))) for n, b in bodies.items()}
+    return src, graph
+
+def reach(graph, start):
+    seen, stack = set(), [start]
+    while stack:
+        cur = stack.pop()
+        for callee in graph.get(cur, ()):
+            if callee not in seen:
+                seen.add(callee)
+                stack.append(callee)
+    return seen
+
+def audit(root):
+    verdicts = []
+    for mode in MODES:
+        path = os.path.join(root, f'lib/{mode}-shadow-parity/harness-adapter.ts')
+        src, graph = parse(path)
+        names = set(graph)
+
+        legacy = next((n for n in ('legacyProjection', 'councilLegacyProjection') if n in names), None)
+        ledger = next((n for n in ('ledgerProjection', 'councilLedgerProjection') if n in names), None)
+        if not legacy or not ledger:
+            verdicts.append((mode, 'INCONCLUSIVE', f'entry points not found (legacy={legacy}, ledger={ledger})'))
+            continue
+
+        folds = {n for n in re.findall(r'\b(fold[A-Z][\w$]*Events)\b', src)}
+        legacy_reach = reach(graph, legacy)
+        ledger_reach = reach(graph, ledger)
+
+        legacy_folds = sorted(folds & legacy_reach)
+        # The scan the ledger side must not fall back into: the legacy entry
+        # itself, or the shared raw-event scan the pre-fix code returned.
+        raw_scans = {legacy} | {n for n in names if re.search(r'ProjectionFromEvents$', n)}
+        ledger_scans = sorted(raw_scans & ledger_reach)
+        ledger_folds = sorted(folds & ledger_reach)
+
+        problems = []
+        if legacy_folds:
+            problems.append(f'legacy side reaches reducer fold: {legacy_folds}')
+        if ledger_scans:
+            problems.append(f'ledger side reaches raw-event scan: {ledger_scans}')
+        if not ledger_folds:
+            problems.append('ledger side reaches NO reducer fold (it may not be deriving from the reducer at all)')
+
+        verdicts.append((mode, 'REFUTED' if problems else 'HOLDS',
+                         '; '.join(problems) if problems else
+                         f'legacy avoids {sorted(folds)}; ledger folds via {ledger_folds} and never re-enters {sorted(raw_scans)}'))
+    return verdicts
+
+if __name__ == '__main__':
+    root = sys.argv[1]
+    worst = 0
+    for mode, verdict, detail in audit(root):
+        print(f'{verdict:12} {mode:20} {detail}')
+        if verdict != 'HOLDS':
+            worst = 1
+    sys.exit(worst)

@@ -33,9 +33,9 @@ _memory:
 | **Spec Folder** | 002-legacy-projections |
 | **Completed** | 2026-07-21 |
 | **Level** | 2 |
-| **Status** | Implemented and verified in the working tree |
+| **Status** | Implemented and verified (additive-dark); landed in branch history at `012652b479` |
 | **Phase-003 BASE SHA** | `fe6ca3030917073f3b478bc044e10034dcc4394b` |
-| **Worktree HEAD** | `012652b479dee08455de574574c5e7a8971a8b0b` |
+| **Landed at** | `012652b479dee08455de574574c5e7a8971a8b0b` (confirmed an ancestor of the branch HEAD) |
 | **Authority posture** | Dark and disposable; legacy writers, files, readers, and control flow remain canonical |
 <!-- /ANCHOR:metadata -->
 
@@ -123,7 +123,7 @@ restores it.
 ## Known Limitations
 
 1. **Dark only.** Projection parity cannot move read or write authority. Phase 014 owns any authority switch.
-2. **Full-suite baseline is not this leaf's gate.** The repository-wide runtime suite was not run because the user-pinned baseline has roughly 100 known failures from missing `better-sqlite3` and kebab-case fixture names. The focused 15-test suite and runtime typecheck are green.
+2. **Full-suite baseline is not this leaf's gate.** The repository-wide runtime suite was not run because the user-pinned baseline has roughly 100 known failures from missing `better-sqlite3` and kebab-case fixture names. The focused suite was 15/15 green when this leaf landed. It now runs 14/15: `closes every JSON-bearing state census row with one owned disposition` fails because the frozen census and the live runtime manifest disagree on one row (`sk-prompt/prompt-models/` versus the `sk-prompt/sk-prompt-models/` that actually exists on disk). Root-caused and tracked under `003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair`; the census bytes are load-bearing evidence for other suites, so correcting them is that contract owner's call, not this leaf's.
 3. **Shared worktree activity is visible.** A concurrent sibling `001-upcasters-and-dual-read-adapters` candidate is also present in the worktree. This leaf did not read as authority from, edit, or include those sibling files; scope proof is path-filtered.
-4. **No commit was created.** The user requested implementation and verification, not a commit or push.
+4. **Resolved: the leaf is committed.** It was implemented and verified without a commit at authoring time; the work has since landed and `012652b479` is an ancestor of the branch HEAD.
 <!-- /ANCHOR:limitations -->

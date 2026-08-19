@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
+  "description": "The authority selector is defined as \"the one route decision a mode adapter would consult at its canonical",
+  "keywords": [
+    "authority",
+    "selector",
+    "defined",
+    "one",
+    "route",
+    "decision",
+    "mode",
+    "adapter",
+    "consult",
+    "canonical"
+  ],
+  "lastUpdated": "2026-08-19T10:27:21.283Z",
+  "specId": "001",
+  "folderSlug": "append-gateway-and-projection",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

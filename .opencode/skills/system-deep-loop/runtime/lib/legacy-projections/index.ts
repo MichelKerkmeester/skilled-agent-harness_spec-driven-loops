@@ -7,6 +7,9 @@
 // ───────────────────────────────────────────────────────────────────
 
 export {
+  createDeepResearchProjectionContract,
+} from './deep-research-contract.js';
+export {
   LegacyProjectionError,
   LegacyProjectionErrorCodes,
 } from './legacy-projection-errors.js';
@@ -24,6 +27,11 @@ export {
 } from './legacy-projection-manifest.js';
 export { LegacyProjectionEngine } from './legacy-projection-engine.js';
 export { ShadowProjectionStore } from './shadow-projection-store.js';
+
+export type {
+  CreateDeepResearchProjectionContractOptions,
+  DeepResearchProjectionState,
+} from './deep-research-contract.js';
 
 export type {
   LegacyCensusDisposition,

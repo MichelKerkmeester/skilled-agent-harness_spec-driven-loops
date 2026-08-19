@@ -1,0 +1,87 @@
+#!/usr/bin/env node
+// Times the two receipt operations a promotion actually performs, in-process:
+//   issue  -- issueApprovalReceipt: hash the bound artifacts, sign, exclusive write
+//   verify -- readVerifiedReceipt: read, authenticate the HMAC, check the type
+// Everything else a promotion does is excluded, so these are the receipt-
+// attributable costs rather than a whole-promotion figure.
+
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+
+const workspaceRoot = process.argv[2];
+const samples = Number(process.argv[3] || 100);
+const warmup = Number(process.argv[4] || 10);
+
+const SCRIPTS = path.join(workspaceRoot, '.opencode/skills/system-deep-loop/deep-improvement/scripts');
+const { issueApprovalReceipt, readVerifiedReceipt } = require(path.join(SCRIPTS, 'shared/promotion-receipts.cjs'));
+
+process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY = 'test-only-promotion-authority-key-32-bytes-minimum';
+process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY_ID = 'bench-authority';
+
+const work = fs.mkdtempSync(path.join(os.tmpdir(), 'receipt-ops-'));
+function writeJson(p, v) { fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, `${JSON.stringify(v, null, 2)}\n`, 'utf8'); }
+
+const candidate = path.join(work, 'candidate.txt');
+const target = path.join(work, 'canonical-target.txt');
+const benchmarkReport = path.join(work, 'report.json');
+const repeatability = path.join(work, 'repeatability.json');
+const config = path.join(work, 'config.json');
+const manifest = path.join(work, 'manifest.jsonc');
+fs.writeFileSync(candidate, 'CANDIDATE BODY\n', 'utf8');
+fs.writeFileSync(target, 'ORIGINAL TARGET BODY\n', 'utf8');
+writeJson(benchmarkReport, { status: 'benchmark-complete', profileId: 'demo-profile', aggregateScore: 92, recommendation: 'benchmark-pass', target });
+writeJson(repeatability, { profileId: 'demo-profile', passed: true });
+writeJson(config, { target, targetProfile: 'demo-profile', promotionEnabled: true });
+fs.writeFileSync(manifest, `${JSON.stringify({ targets: [{ path: target, classification: 'canonical' }] }, null, 2)}\n`, 'utf8');
+
+const opts = {
+  candidatePath: candidate,
+  targetPath: target,
+  benchmarkReportPath: benchmarkReport,
+  repeatabilityReportPath: repeatability,
+  configPath: config,
+  manifestPath: manifest,
+  approvalIdentity: 'operator:bench',
+  evaluatorProfileId: 'demo-profile',
+  evaluatorAgentName: 'model-benchmark',
+  evaluatorEpoch: 'bench-epoch',
+};
+
+// The writer refuses to replace an existing receipt, so every issue needs a
+// fresh path; the timed region covers only the call itself.
+let seq = 0;
+function timeIssue() {
+  const p = path.join(work, `receipt-${seq += 1}.json`);
+  const t0 = process.hrtime.bigint();
+  issueApprovalReceipt(p, opts);
+  const ms = Number(process.hrtime.bigint() - t0) / 1e6;
+  return { ms, p };
+}
+function timeVerify(p) {
+  const t0 = process.hrtime.bigint();
+  const r = readVerifiedReceipt(p, 'promotion-approval');
+  const ms = Number(process.hrtime.bigint() - t0) / 1e6;
+  if (!r) throw new Error('verify returned nothing');
+  return ms;
+}
+
+for (let i = 0; i < warmup; i += 1) timeVerify(timeIssue().p);
+
+const issueMs = [];
+const verifyMs = [];
+for (let i = 0; i < samples; i += 1) {
+  const { ms, p } = timeIssue();
+  issueMs.push(ms);
+  verifyMs.push(timeVerify(p));
+}
+
+function stats(v) {
+  const s = [...v].sort((a, b) => a - b);
+  const sum = s.reduce((a, b) => a + b, 0);
+  const q = (x) => s[Math.min(s.length - 1, Math.floor(x * s.length))];
+  return { n: s.length, mean: sum / s.length, median: q(0.5), p95: q(0.95), total: sum };
+}
+
+fs.rmSync(work, { recursive: true, force: true });
+process.stdout.write(`${JSON.stringify({ samples, issue: stats(issueMs), verify: stats(verifyMs) }, null, 2)}\n`);

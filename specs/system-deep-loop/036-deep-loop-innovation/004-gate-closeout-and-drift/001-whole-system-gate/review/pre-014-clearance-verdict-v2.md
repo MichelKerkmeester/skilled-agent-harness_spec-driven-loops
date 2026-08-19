@@ -62,6 +62,24 @@ residuals the prior verdict left conditionally-open were closed by newer commits
 - **F002** — captured authorization state folded into the implementation digest unconditionally, so
   identical evaluator source with divergent captured state no longer collides.
 
+**Discharge (recorded 2026-08-18).** Blocker 3 is discharged. The fencing decision is the
+gateway-only mutation ruling: the ledger append seam is reachable only through
+`appendAuthorizedThroughFence`, which mints a short-lived fence per append and derives the expected
+head from the proof's own recorded prior head, so ordinary single-writer semantics are unchanged
+while an unfenced caller has no path in at all. The write-surface manifest now names that callable
+seam rather than the writer class behind it, so the inventory cannot send a reader to a rejecting
+entry point.
+
+The superseded-writer case is pinned by a named regression test rather than by argument:
+`rejects an append whose fence has been superseded, before any frame commits`
+(`runtime/tests/unit/authorized-ledger.vitest.ts`) — a writer holding an unexpired proof whose lease
+has since moved is rejected with `STALE_FENCE` *before any frame commits*, which is the property the
+review said was missing. Its companion,
+`rejects a capability minted outside any coordinator, holding no lease at all`, closes the forged
+capability variant found during the independent adversarial pass. Both re-run green on 2026-08-18.
+
+Status: Complete.
+
 **Blocker 4 — 021.** The mechanism (suite-sha256 evidence reconciliation) is done at HEAD: the
 reopened completion checklists carry the citation format on every reinstated item, and the
 `015` reopen is stated honestly. **But** 021's own `spec.md` Status and `graph-metadata.json` still

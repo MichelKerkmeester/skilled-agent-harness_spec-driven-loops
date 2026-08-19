@@ -71,7 +71,7 @@ const REPOSITORY_ROOT = resolve(TEST_DIRECTORY, '../../../../../..');
 const CENSUS_BYTES = readFileSync(join(
   REPOSITORY_ROOT,
   '.opencode/specs/system-deep-loop/036-deep-loop-innovation',
-  '003-baseline-taxonomy-and-state-census/state-backend-census.json',
+  '001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json',
 ));
 const CENSUS = JSON.parse(CENSUS_BYTES.toString('utf8')) as StateBackendCensus;
 

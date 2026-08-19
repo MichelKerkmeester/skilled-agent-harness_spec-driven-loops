@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
+  "description": "Turn the dark deep-loop substrate on: build the append gateway and legacy projection the modes lack, migrate each mode's write protocol onto it, flip",
+  "keywords": [
+    "turn",
+    "dark",
+    "deep-loop",
+    "substrate",
+    "append",
+    "gateway",
+    "legacy",
+    "projection",
+    "modes",
+    "lack",
+    "migrate",
+    "mode",
+    "write",
+    "protocol",
+    "onto",
+    "flip"
+  ],
+  "lastUpdated": "2026-08-19T06:59:39.008Z",
+  "specId": "012",
+  "folderSlug": "runtime-enablement",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

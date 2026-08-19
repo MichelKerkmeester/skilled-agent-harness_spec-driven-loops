@@ -198,7 +198,7 @@ Required inventories (run before implementation, record the output):
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The exported-surface change breaks a caller that cannot be migrated within the child, or a concurrency fix introduces a deadlock under the two-process harness.
-- **Procedure**: The surface change and the race fixes are separate commits by design. Revert the surface demotion first, restoring the direct export while keeping fencing enforced inside the gateway; that alone preserves most of the safety gain. If a specific race fix deadlocks, revert that mechanism's commit and re-run its two-process test to confirm the prior behavior returns.
+- **Procedure**: Forward-fix the surface; revert only the race fixes. Rehearsal on 2026-08-18 established that reverting the surface demotion is no longer possible — `git revert 5c98e4654e` conflicts across 64 files after eleven subsequent commits to the ledger, and there is no dormant direct export left to restore, since the surviving bridge still requires a fence capability. If the gateway-only surface blocks a caller, add a narrowly-scoped exported wrapper taking the capability that caller can obtain, keeping fencing enforced inside the gateway. The race fixes remain independently revertible as originally designed: revert that mechanism's commit alone and re-run its two-process test to confirm the prior behavior returns. Full rehearsal record: `scratch/chk-120-rollback-rehearsal.md`.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -258,10 +258,16 @@ Phase 4 (Concurrency family) ──────► Phase 5 (Leaf publication)
 - [ ] Isolated worktree confirmed: this child has the widest blast radius in the tree
 
 ### Rollback Procedure
-1. Revert the export demotion commit, restoring the direct export while keeping fencing inside the gateway.
-2. If a race fix deadlocks, revert that mechanism's commit only; each is independent.
+
+Rehearsed 2026-08-18. Step 1 below replaces an earlier instruction to revert the
+export demotion, which the rehearsal proved is no longer executable: the revert
+conflicts across 64 files, and the surviving exported bridge still demands a
+fence capability, so there is no direct export left to restore.
+
+1. Forward-fix the surface: add a narrowly-scoped exported wrapper taking the capability the blocked caller can obtain. Do not attempt to revert the export demotion.
+2. If a race fix deadlocks, revert that mechanism's commit only; each is independent and this half of the plan is intact.
 3. Re-run the two-process test for the reverted mechanism to confirm the prior behavior returns.
-4. Record which mechanisms reverted; Blocker 3 stays open for those.
+4. Record which mechanisms were relaxed or reverted; Blocker 3 stays open for those.
 
 ### Data Reversal
 - **Has data migrations?** No — but the ledger frame envelope may gain a fencing field, which is additive and readable by older readers.

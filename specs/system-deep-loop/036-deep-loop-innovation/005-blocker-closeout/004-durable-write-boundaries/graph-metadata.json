@@ -36,7 +36,7 @@
       "appendauthorized"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,6 +44,12 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      "scratch/chk-120-rollback-rehearsal.md",
+      "scratch/t015-verification-evidence.md",
+      "scratch/chk-110-aggregate-delta.md",
+      "scratch/chk-111-append-fence-overhead.md",
+      "scratch/append-fence-overhead-bench.vitest.ts.txt",
+      "scratch/open-finding-writer-lock-reclaim.md",
       "handover.md"
     ],
     "entities": [
@@ -81,6 +87,42 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "chk-120-rollback-rehearsal.md",
+        "kind": "doc",
+        "path": "scratch/chk-120-rollback-rehearsal.md",
+        "source": "derived"
+      },
+      {
+        "name": "t015-verification-evidence.md",
+        "kind": "doc",
+        "path": "scratch/t015-verification-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "chk-110-aggregate-delta.md",
+        "kind": "doc",
+        "path": "scratch/chk-110-aggregate-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "chk-111-append-fence-overhead.md",
+        "kind": "doc",
+        "path": "scratch/chk-111-append-fence-overhead.md",
+        "source": "derived"
+      },
+      {
+        "name": "append-fence-overhead-bench.vitest.ts.txt",
+        "kind": "file",
+        "path": "scratch/append-fence-overhead-bench.vitest.ts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "open-finding-writer-lock-reclaim.md",
+        "kind": "doc",
+        "path": "scratch/open-finding-writer-lock-reclaim.md",
         "source": "derived"
       },
       {
@@ -154,47 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Milestone Reference",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Context Report",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "(Resolved — historical problem statement.) The defects below describe the pre-fix state that this packet closed; they are retained for provenance",
     "created_at": "2026-07-31T01:25:20.017Z",
-    "last_save_at": "2026-08-18T12:32:40.521Z",
+    "last_save_at": "2026-08-18T20:22:22.011Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,15 +212,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1a820e471d60691262253111d67e22c379a99cac906d93bd1eb87731080d865a",
+    "source_fingerprint": "sha256:4f6224d0dfbf50a45dc1afb39b8e43cc653dafd06110297794217288a80fbdb6",
     "source_doc_hashes": {
-      "spec.md": "ad330f381bb969c3a5737a381747c6f8f3004e02e981398d1062132c61432eba",
-      "plan.md": "d2f27eb2fd2fff95f1a8214fb428b5aa6e18115058c368d6eb25171e00c9722e",
-      "tasks.md": "974b1e5020443c0802148e3594247c81e73a59be213eeb48cefde49025503f2f",
-      "checklist.md": "308e4451b11d4429f7b621327280c2ab0fe71e995fcc468ce2e5d369981680c9",
-      "decision-record.md": "f85d0f08028f3993b98afb648456d12c57545b0ea121042e7daec2120c1ad1ee",
-      "implementation-summary.md": "5f2704acf570f14d7b7c16e33ddcb6475fd95371a39610f17de8e685fa918869",
-      "handover.md": "128d12cc0a91a99174dc36616c0daa63abcfa40c643e87bda0ff9dc81eca2979"
+      "spec.md": "cafaddc540e78e29593c987003b54ce62a1c3183cc2f88cc48f22d33388e21f7",
+      "plan.md": "1e66c89dc94dec605d18e207fb8c67d47fd6d3d90449e15ea0f19789682ce7d5",
+      "tasks.md": "de9a5ed315bdb8c31cb56f259be428a578675e6de2507201d9e1af89f2368f6c",
+      "checklist.md": "a1ea28183f7b73c8a64e4218733db8b23aeaf68cfa81b22b1a8bf00cdbb7ca6e",
+      "decision-record.md": "4a3f267522520f46a690a420402a3158ec15a662194e3a23bd5044c70482fbe6",
+      "implementation-summary.md": "d7274620ad58dfba974820123c3c34bd55757c45f90de678b92542280929c0fa",
+      "handover.md": "02901e6d6e4fc1c76d519c6d213a06140dcadc90bdb2944514753f9e95c992b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

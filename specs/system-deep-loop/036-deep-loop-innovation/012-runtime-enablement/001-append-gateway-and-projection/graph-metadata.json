@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "append gateway",
+      "mode event gateway",
+      "legacy projection service",
+      "append gateway plan",
+      "legacy projection plan",
+      "append gateway tasks",
+      "reader contract tasks",
+      "append gateway checklist",
+      "reader contract verification",
+      "append gateway implementation summary",
+      "gateway build result"
+    ],
+    "key_topics": [
+      "append",
+      "gateway",
+      "mode",
+      "event",
+      "legacy",
+      "projection",
+      "service",
+      "plan",
+      "tasks",
+      "reader",
+      "contract",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scratch/suite-baseline-and-delta.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "suite-baseline-and-delta.md",
+        "kind": "doc",
+        "path": "scratch/suite-baseline-and-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Append Gateway",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Projection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The authority selector is defined as \"the one route decision a mode adapter would consult at its canonical",
+    "created_at": "2026-08-19T06:57:07.715Z",
+    "last_save_at": "2026-08-19T10:27:21.796Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1d245b7c881ef980dfb38281ff0a2ea6b11d4456b65836a83e91c89a608b9492",
+    "source_doc_hashes": {
+      "spec.md": "f86512e47845337641e3561c4ae46b26ed6ec61a617c51b14b464b3832170bb4",
+      "plan.md": "264a726d33d330621ef45f754af5b0e64d307faba44090e79349d041705e5992",
+      "tasks.md": "8d73457ac11c03648c3d06846d08b354d263feb48563bd35e159529b29b7b617",
+      "checklist.md": "8e9bdb3ab1f6fdd43f627858c4c7d30c45e898890e6bbb342e0d7ca278b1a0b6",
+      "implementation-summary.md": "c08e861910cedbca1869a68fc76989c281af965399b821e5f0e475799a59801d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

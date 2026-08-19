@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Cutover Certificate & Rollback Window
 
-> Phase adjacency under `003-staged-state-migration-and-authority-cutover` (navigation, not a hard runtime dependency): predecessor `002-per-mode-authority-flip`; successor: none (last sibling).
+> Phase adjacency under `003-staged-state-migration-and-authority-cutover` (navigation, not a hard runtime dependency): predecessor `002-per-mode-authority-flip`; successor `004-census-path-and-config-drift-repair`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair",
+  "description": "Repair seven stale state-census path references that made five runtime test files ENOENT-uncollectable, and close a fan-out config schema gap that let",
+  "keywords": [
+    "repair",
+    "seven",
+    "stale",
+    "state-census",
+    "path",
+    "references",
+    "five",
+    "runtime",
+    "test",
+    "files",
+    "enoent-uncollectable",
+    "close",
+    "fan-out",
+    "config",
+    "schema",
+    "gap",
+    "let"
+  ],
+  "lastUpdated": "2026-08-19T04:32:28.598Z",
+  "specId": "004",
+  "folderSlug": "census-path-and-config-drift-repair",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "003-staged-state-migration-and-authority-cutover"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

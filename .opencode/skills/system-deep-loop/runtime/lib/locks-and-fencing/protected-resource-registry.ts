@@ -191,7 +191,14 @@ export interface ProtectedWriteSurfaceManifestEntry {
   readonly operation: string;
   readonly resourceKind: ProtectedResourceKind;
   readonly atomicityDomain: AtomicityDomain;
-  readonly directReplacement: string;
+  /**
+   * The seam a caller actually invokes to perform this write. The gateway-only
+   * mutation ruling made some underlying writer classes unreachable without a
+   * capability, so this names the callable entry point rather than the class
+   * behind it -- naming the class would send a reader to a seam that rejects
+   * them.
+   */
+  readonly replacementSeam: string;
 }
 
 /** Frozen inventory used to prove that every shipped writer has one dark replacement seam. */
@@ -203,7 +210,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'append authorized immutable frame',
       resourceKind: ProtectedResourceKinds.LEDGER,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedLedgerWriter.append',
+      replacementSeam: 'appendAuthorizedThroughFence',
     },
     {
       surfaceId: 'authorized-ledger-projection',
@@ -211,7 +218,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'replace or compare-and-swap named projection',
       resourceKind: ProtectedResourceKinds.PROJECTION,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedStateStore.replace',
+      replacementSeam: 'FencedStateStore.replace',
     },
     {
       surfaceId: 'loop-lock-owner',
@@ -219,7 +226,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'serialize loop ownership and heartbeat mutation',
       resourceKind: ProtectedResourceKinds.WRITER,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedLeaseCoordinator.acquire',
+      replacementSeam: 'FencedLeaseCoordinator.acquire',
     },
     {
       surfaceId: 'cli-graph-writer',
@@ -227,7 +234,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'serialize graph and repair writer mutation',
       resourceKind: ProtectedResourceKinds.WRITER,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedLeaseCoordinator.withFence',
+      replacementSeam: 'FencedLeaseCoordinator.withFence',
     },
     {
       surfaceId: 'council-round-state',
@@ -235,7 +242,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'repair and append council round state',
       resourceKind: ProtectedResourceKinds.COUNCIL_ROUND,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedStateStore.replace',
+      replacementSeam: 'FencedStateStore.replace',
     },
     {
       surfaceId: 'jsonl-repair-merge',
@@ -243,7 +250,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'merge repaired JSONL records',
       resourceKind: ProtectedResourceKinds.MERGE_TARGET,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedStateStore.replace',
+      replacementSeam: 'FencedStateStore.replace',
     },
     {
       surfaceId: 'fanout-status-stream',
@@ -251,7 +258,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'append fan-out orchestration status',
       resourceKind: ProtectedResourceKinds.FANOUT_STATUS,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedStateStore.replace',
+      replacementSeam: 'FencedStateStore.replace',
     },
     {
       surfaceId: 'fanout-wait-checkpoint',
@@ -259,7 +266,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'persist or clear wait checkpoint',
       resourceKind: ProtectedResourceKinds.WAIT_CHECKPOINT,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedStateStore.replace',
+      replacementSeam: 'FencedStateStore.replace',
     },
     {
       surfaceId: 'fanout-salvage-merge',
@@ -267,7 +274,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'merge lineage salvage into synthesis target',
       resourceKind: ProtectedResourceKinds.MERGE_TARGET,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedStateStore.replace',
+      replacementSeam: 'FencedStateStore.replace',
     },
     {
       surfaceId: 'lineage-atomic-state',
@@ -275,7 +282,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'replace per-lineage state snapshot',
       resourceKind: ProtectedResourceKinds.LINEAGE_STATE,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedStateStore.replace',
+      replacementSeam: 'FencedStateStore.replace',
     },
     {
       surfaceId: 'pause-resume-transition',
@@ -283,7 +290,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'dispatch pause or resume transition',
       resourceKind: ProtectedResourceKinds.PAUSE_RESUME,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedStateStore.replace',
+      replacementSeam: 'FencedStateStore.replace',
     },
     {
       surfaceId: 'runtime-observability-stream',
@@ -291,7 +298,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'append runtime observability event',
       resourceKind: ProtectedResourceKinds.FANOUT_STATUS,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'recordLockLifecycleEvidence',
+      replacementSeam: 'recordLockLifecycleEvidence',
     },
   ]);
 

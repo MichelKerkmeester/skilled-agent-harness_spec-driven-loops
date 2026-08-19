@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement",
+  "description": "After the fleet is enabled, every mode's canonical writes go through the gateway, but the direct-append paths still",
+  "keywords": [
+    "fleet",
+    "enabled",
+    "every",
+    "mode",
+    "canonical",
+    "writes",
+    "gateway",
+    "direct-append",
+    "paths",
+    "still"
+  ],
+  "lastUpdated": "2026-08-19T06:52:58.863Z",
+  "specId": "004",
+  "folderSlug": "legacy-writer-retirement",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -31,7 +31,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 52 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 54 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -99,7 +99,7 @@ Scenario verdict:
 - `FAIL`: expected behavior missing, contradictory output, or critical check failed
 - `SKIP`: concrete sandbox blocker prevents execution and is documented
 
-Release is `READY` only when all 52 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
+Release is `READY` only when all 54 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
 
 ---
 
@@ -184,7 +184,7 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 
 ## 8. VALIDATION
 
-This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 4 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-005 | Post-dispatch validate
 
@@ -231,9 +231,24 @@ Expected signals: Hook fires and logs a warning on mismatch or loop-repeat (defa
 
 ---
 
+### DLR-053 | Rollback-gate shared strict validator adoption
+
+#### Description
+Deep-research and deep-review rollback mode gates stopped carrying their own hand-copied `hasExactKeys` helper and now consume the shared strict validator (`hasExactKeys`, `validateRows`) exported from `lib/mode-contracts/index.js`.
+
+#### Scenario Contract
+Prompt: `Validate Rollback-gate shared strict validator adoption and report whether the current source, script surface, and tests agree with the runtime/ contract.`
+
+Expected signals: A rollback row that violates its declared type rejects the whole evidence set with a `TypeError`; a well-formed but legitimately incomplete/abstained/unauthenticated row is excluded from the successful-execution count instead of rejecting the set; neither gate defines a local `hasExactKeys` anymore.
+
+#### Test Execution
+> **Feature File:** [DLR-053](../manual-testing-playbook/validation/rollback-gate-shared-strict-validator.md)
+
+---
+
 ## 9. STATE SAFETY
 
-This category covers 10 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 11 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-006 | Atomic state
 
@@ -366,6 +381,19 @@ Expected signals: Default file-lock behavior remains unchanged while opt-in host
 
 #### Test Execution
 > **Feature File:** [DLR-037](../manual-testing-playbook/state-safety/loop-lock-single-flight-decision.md)
+
+### DLR-054 | Torn-tail recovery marker ordering
+
+#### Description
+Writes the durable torn-tail recovery marker before renaming the torn frame into quarantine, and replays an interrupted move by digest match on restart.
+
+#### Scenario Contract
+Prompt: `Validate Torn-tail recovery marker ordering and report whether the current source, script surface, and tests agree with the runtime/ contract.`
+
+Expected signals: Recovery marker durable (fsynced) before the torn frame is renamed into quarantine, and a digest-verified replay completes an interrupted move on restart.
+
+#### Test Execution
+> **Feature File:** [DLR-054](../manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md)
 
 ---
 
@@ -918,3 +946,4 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-050 | [F048 Hermetic test isolation](../feature-catalog/testing/hermetic-test-isolation.md) | [testing/hermetic-test-isolation.md](../manual-testing-playbook/testing/hermetic-test-isolation.md) |
 | DLR-051 | [F049 Record-replay cassette harness](../feature-catalog/testing/record-replay-cassette-harness.md) | [testing/record-replay-cassette-harness.md](../manual-testing-playbook/testing/record-replay-cassette-harness.md) |
 | DLR-052 | [F050 mk-deep-loop-guard](../feature-catalog/validation/mk-deep-loop-guard.md) | [validation/mk-deep-loop-guard.md](../manual-testing-playbook/validation/mk-deep-loop-guard.md) |
+| DLR-054 | [F052 Torn-tail recovery marker ordering](../feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md) | [state-safety/torn-tail-recovery-marker-ordering.md](../manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md) |

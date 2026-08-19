@@ -412,7 +412,7 @@ When agent dispatch fails after the earlier recovery tiers are exhausted:
    - Execute 3-5 research actions directly
    - Write `research/iterations/iteration-NNN.md`
    - Update strategy.md
-   - Append iteration record to JSONL
+   - Record the iteration through the append gateway
 4. Continue loop normally after direct-mode iteration completes
 5. If direct mode also fails, escalate to the final user-escalation tier
 
