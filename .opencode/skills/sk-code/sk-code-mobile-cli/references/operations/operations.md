@@ -38,6 +38,8 @@ Operate the relay after deployment: configuration, start and stop, migrations, r
 
 Startup configuration plus restart-scrubbed memory state means operators plan relay restarts deliberately.
 
+---
+
 ## 2. RUNTIME CONFIGURATION
 
 The relay reads these variables at startup:
@@ -57,6 +59,8 @@ The relay reads these variables at startup:
 
 Do not persist actual values in runbooks or incident notes.
 
+---
+
 ## 3. START AND STOP
 
 Use the foreground deployment:
@@ -68,6 +72,8 @@ sh deploy/setup-tailscale-serve.sh
 Interrupt the script to remove its Serve routes and stop the relay and PWA. The relay handles `SIGINT` and `SIGTERM` by stopping its owned Pi child, closing the approval service, terminating sockets, closing HTTP, and then closing SQLite.
 
 The authenticated `POST /health` response reports process status, read-only mode, and authentication counters. It does not report Pi supervisor state, migration version, database size, push delivery totals, or mutation-policy state.
+
+---
 
 ## 4. DATABASE MIGRATIONS
 
@@ -81,6 +87,8 @@ Every migration has a paired down file, and the internal `MigrationRunner.migrat
 
 Before upgrade or restore, stop the relay cleanly and take a SQLite-consistent backup, including WAL state when applicable. The repository does not provide a backup, integrity-check, restore, or schema-inspection command.
 
+---
+
 ## 5. RETENTION
 
 - Redacted envelopes: newest 1,000 per stream epoch by default. The class accepts 1 through 10,000, but the production entrypoint exposes no configuration variable.
@@ -91,6 +99,8 @@ Before upgrade or restore, stop the relay cleanly and take a SQLite-consistent b
 
 When a cursor falls below the envelope floor, the relay sends a retention gap followed by the retained authoritative snapshot.
 
+---
+
 ## 6. DEVICE AND SESSION MANAGEMENT
 
 The PWA supports two current-device actions:
@@ -99,6 +109,8 @@ The PWA supports two current-device actions:
 - **Revoke this device:** revoke the current in-memory device and clear the browser's stored device record.
 
 There is no device inventory, named devices, remote revocation of another device, or persistent device registry. Relay restart clears all enrolled-device and session state. Generate a new startup enrollment payload and enroll each intended device again after restart.
+
+---
 
 ## 7. MUTATION KILL SWITCH
 
@@ -110,7 +122,9 @@ Keep `PI_REMOTE_MUTATION_ENABLED` unset or set to a value other than `1` for nor
 4. Re-enroll the device because authentication state is not persistent.
 5. Treat all prior pending or approved leases as invalid.
 
-The component service drains leases when its live policy is disabled. A graceful relay stop also closes the service and revokes outstanding leases. Startup environment enablement activates the authenticated extension transport, but it is not proof that the installed Pi version loaded the final handler or that protected execution is contained. Keep the switch off until the operator checks in [Security](security.md) pass.
+The component service drains leases when its live policy is disabled. A graceful relay stop also closes the service and revokes outstanding leases. Startup environment enablement activates the authenticated extension transport, but it is not proof that the installed Pi version loaded the final handler or that protected execution is contained. Keep the switch off until the operator checks in [Security](../standards/security.md) pass.
+
+---
 
 ## 8. PUSH SUBSCRIPTION LIFECYCLE
 
@@ -126,6 +140,8 @@ Push is optional and per-device:
 
 Other push-provider failures are swallowed and are not exposed through health metrics. The Attention Inbox is the operational fallback. Preserve the push encryption key with any database backup. Changing it leaves existing ciphertext unreadable, and no key-rotation workflow is implemented.
 
+---
+
 ## 9. ROUTINE VERIFICATION
 
 Use the repository gates after code or configuration changes:
@@ -136,4 +152,4 @@ npm test
 npm run build -w @pi-remote/web
 ```
 
-Then perform the environment-specific checks listed in [Setup](setup.md) and [Platform Support](platform-support.md).
+Then perform the environment-specific checks listed in [Setup](../setup/setup.md) and [Platform Support](../standards/platform-support.md).

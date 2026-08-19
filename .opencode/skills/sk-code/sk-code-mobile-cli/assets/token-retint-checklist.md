@@ -17,6 +17,8 @@ Use this checklist before, during, and before claiming completion of any `--pi-*
 component-token change in `apps/pi-remote-web/`. Pair with `references/retint-recipes.md` for the full
 worked steps.
 
+---
+
 ## 1. OVERVIEW
 
 ### Purpose

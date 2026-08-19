@@ -92,7 +92,7 @@ Reach for sk-code when the task is code work and the next step is implementation
 
 | Skill | Relationship |
 |---|---|
-| `sk-design` | Designs UI direction, systems, motion and design audits that sk-code may implement |
+| `sk-design-md-generator` | Extracts a measured Style Reference (design tokens from a live source) that sk-code may implement |
 | `sk-doc` | Owns markdown and documentation quality |
 | `sk-git` | Owns branches, commits, PRs and the finish workflow |
 | `system-spec-kit` | Owns spec folders, memory, continuity and packet validation |

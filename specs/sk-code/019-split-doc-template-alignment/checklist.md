@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/019-split-doc-template-alignment"
-    last_updated_at: "2026-08-19T05:00:55Z"
+    last_updated_at: "2026-08-19T08:29:06Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Added sk-code-mobile-cli surface increment checklist (10 files, all verified)"
+    recent_action: "Added mobile-cli app-doc restructure + parent hub freshness increment (verified)"
     next_safe_action: "Commit + push (main + v4)"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
@@ -111,3 +111,19 @@ Every item carries a command + result. Deterministic checkers only.
 - [x] `validate_document.py` 10/10 VALID [Test: `validate_document 10 passed, 0 failed`]
 - [x] Documentation-only; no `apps/`/`packages/`/tooling changes [Source: `diff scoped to sk-code-mobile-cli/{references,assets}`]
 <!-- /ANCHOR:increment-mobile-cli -->
+
+---
+
+<!-- ANCHOR:increment-restructure -->
+## Increment 2: App-Doc Restructure + Parent Hub Freshness (2026-08-19)
+- [x] `app-guide/` dissolved into 6 purpose-named folders; contents moved verbatim [Test: `find references shows operations/ release/ setup/ standards/ design-reference/ quality/`]
+- [x] 2 single-source pointer files removed; catalog+playbook stay canonical at app root [Test: `feature-catalog.md/manual-testing-playbook.md refs in leaf-manifest = 0`]
+- [x] 4 relocation-broken sibling cross-links repaired to subfolder-relative paths [Test: `broken-link scan = 10/10 resolve; 1 pre-existing ARCHITECTURE.md out of scope`]
+- [x] `---` dividers between numbered sections across relocated app docs + asset checklists [Test: `general_h2_separator issues = 0 across all authored refs+assets`]
+- [x] SKILL.md §2 rewritten to 6 folders, pointer links dropped, version 1.0.0.0→1.1.0.0 [Test: `changelog/v1.1.0.0.md present; validate_document SKILL non-authoritative flags pre-existing on HEAD`]
+- [x] README gains "Mobile CLI App Repository" subsection locating the app repo [Test: `validate_document README = 0 issues`]
+- [x] Parent `leaf-manifest.json` regenerated for relocated leaves + pointer removal [Test: `generate-leaf-manifest.cjs --check = OK; 0 app-guide paths`]
+- [x] Parent `description.json` + `graph-metadata.json` de-staled with mobile-cli signals; causal_summary 2→3 surfaces [Test: `ci-skill-root-metadata sk-code = OK [H]; Jaccard NOTE cleared`]
+- [x] No app/tooling change; routing behavior unchanged [Source: `diff scoped to sk-code/ metadata + sk-code-mobile-cli/ docs; regenerate-skill-derived unchanged`]
+- [x] Validator divider-gap root-caused (validate_document h2DividerRequired not set for ref/asset types) [Source: `validate_document.py:553`]
+<!-- /ANCHOR:increment-restructure -->

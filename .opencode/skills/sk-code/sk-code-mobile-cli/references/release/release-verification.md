@@ -35,6 +35,8 @@ Pi Remote separates reproducible checks on this machine from evidence that only 
 - `scripts/check-thresholds.mjs`
 - `scripts/check-rollout.mjs`
 
+---
+
 ## 2. RUN THE WHOLE GATE
 
 Run from the Pi Remote app directory:
@@ -48,6 +50,8 @@ The command runs the existing typecheck, the lint gate, the format-check gate, e
 Each run writes `release/evidence/release-verify-v1-<timestamp>.json`. The document records schema version, sanitized command output, output hash, exact command, tool versions, exit status, measured threshold results, rollback results, and rollout readiness. Its top-level `machineStatus` reports whether the executable machine gates passed. The separate `stageReadiness` summary lists ready and not-ready rollout stages, while `rollout.stages` retains the evidence details for each stage. Absolute app and home paths are replaced with placeholders.
 
 The command exits non-zero when a runnable gate fails. Pending operator evidence does not falsify a machine failure. It keeps the dependent stage `NOT-READY`.
+
+---
 
 ## 3. NUMERIC THRESHOLDS
 
@@ -72,6 +76,8 @@ npm run release:thresholds
 ```
 
 An optional operator measurement JSON can be supplied with `node scripts/check-thresholds.mjs --measurements <relative-file>`. Its keys must match declared metrics and each value must have the shape `{ "value": number }`. A measured key without a declaration, a missing machine measurement, or a threshold violation fails the checker. Missing operator measurements remain `PENDING`. No number is synthesized.
+
+---
 
 ## 4. STAGE READINESS
 
@@ -101,6 +107,8 @@ npm run release:verify -- --measurements release/operator-measurements.json --op
 
 The measurements file uses metric keys with `{ "value": number }`. The operator evidence file uses `schemaVersion: 1` and an `evidence` object keyed by the exact `operator:*` ids in `release/rollout.json`. Each passing row must include `status: "PASS"`, an ISO `verifiedAt`, a non-empty `reviewer`, and an app-relative `artifact` path.
 
+---
+
 ## 5. SUPPORTED MATRIX AND LIMITATIONS
 
 | Boundary                                                                                | Machine status                           | Operator status                             | Release effect            |
@@ -116,6 +124,8 @@ The measurements file uses metric keys with `{ "value": number }`. The operator 
 | Push subscription and content-free hint logic                                           | Component-tested                         | **PENDING** on physical iOS and Android     | Blocks optional push      |
 
 The production relay wires approval request and lease consumption through a per-process authenticated loopback channel when mutation is explicitly enabled. Protected mutation remains not ready until an operator proves the built extension loads last in the target Pi process and actual tool execution stays inside `deploy/containment/pi-remote.sb`. Push has no live administrative toggle. Omitting all four push configuration values and restarting keeps `PushService` absent.
+
+---
 
 ## 6. ROLLBACK EVIDENCE
 

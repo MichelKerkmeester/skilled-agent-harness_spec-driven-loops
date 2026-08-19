@@ -124,9 +124,14 @@ This paragraph is the intro. It states the scope in ten words or more.
 Numbered ALL-CAPS H2 sections:
 
 ```
+
+---
+
 ## 1. OVERVIEW
 
 Body content for the first section.
+
+---
 
 ## 2. PROCEDURE
 

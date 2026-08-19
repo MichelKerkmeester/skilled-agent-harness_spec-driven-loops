@@ -105,7 +105,7 @@ Pi Remote is a loopback relay plus an installable PWA. The relay runs next to Pi
    # → 0.84.1
    ```
 
-   The relay does not enforce the version. When `pi` is unavailable the relay replays its recorded fixture instead. Load the extension in a live Pi for the mutation boundary to be operator-verified. The relay runs one of three host-selected postures — fail-closed steering-only default, allowlisted mutation family, or operator-only full access (`--full-access` / `PI_REMOTE_FULL_ACCESS=1`, desktop parity, never enableable from the phone); see [Security](security.md).
+   The relay does not enforce the version. When `pi` is unavailable the relay replays its recorded fixture instead. Load the extension in a live Pi for the mutation boundary to be operator-verified. The relay runs one of three host-selected postures — fail-closed steering-only default, allowlisted mutation family, or operator-only full access (`--full-access` / `PI_REMOTE_FULL_ACCESS=1`, desktop parity, never enableable from the phone); see [Security](../standards/security.md).
 
 3. **A Tailscale tailnet with Serve permission on the host**
 
@@ -461,9 +461,9 @@ npm test -w @pi-remote/approval-extension
 ### Related Documents
 
 - [Setup](setup.md) for the detailed setup runbook
-- [Security](security.md) for the posture boundaries
+- [Security](../standards/security.md) for the posture boundaries
 - [Architecture](../ARCHITECTURE.md) for the system reference
-- [Release Verification](release-verification.md) for machine gates and staged readiness
+- [Release Verification](../release/release-verification.md) for machine gates and staged readiness
 
 ---
 

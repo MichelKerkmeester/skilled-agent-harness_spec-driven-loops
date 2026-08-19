@@ -16,6 +16,8 @@ version: 1.0.0.0
 Use this checklist BEFORE claiming any design-system change to `apps/pi-remote-web/` is complete, fixed,
 or working. See `references/verification.md` for why this gate is browser-free and the full method.
 
+---
+
 ## 1. OVERVIEW
 
 ### Purpose
