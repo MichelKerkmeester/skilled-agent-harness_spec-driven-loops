@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/019-split-doc-template-alignment"
-    last_updated_at: "2026-07-13T07:19:48Z"
-    last_updated_by: "claude-code"
-    recent_action: "xHigh verification remediation: 4 structural fixes"
-    next_safe_action: "Commit + push"
+    last_updated_at: "2026-08-19T05:00:55Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Conformed sk-code-mobile-cli surface to templates (10 ref/asset files)"
+    next_safe_action: "Commit + push (main + v4)"
     blockers: []
     completion_pct: 100
     status: "Complete"
@@ -93,3 +93,25 @@ Commands: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folde
 ## Post-Completion Follow-Up
 - Sibling `sk-doc/017-smart-routing-mechanism-notes` completes Request 2.
 - **Content follow-ups surfaced by the xHigh verification review — ADDRESSED by sibling `sk-code/020-content-quality-remediation`.** The security-cookie contradiction, the unvalidated `script.src` loader, and the ~19 generic When-to-Use sections were content defects outside this packet's structural scope; they are now fixed in packet 020. A later xHigh confirmation round additionally cleaned 8 files with content before `## 1. OVERVIEW` and 6 over-long intros (structural, folded back into this packet).
+
+---
+
+## Increment: sk-code-mobile-cli Surface Alignment (2026-08-19)
+
+The `sk-code-mobile-cli` surface was created after this packet's original run, so its hand-authored reference/asset docs were never conformed to the create-skill templates: they opened at an inherited content section with no `## 1. OVERVIEW`, and the seven design-system references carried only `title/description/version` frontmatter (missing the routing triad). This increment conforms them, extending 019's template-alignment mandate to the new surface.
+
+**Scope (10 files, no renames):** 7 references (`component-tokens`, `ds-grammar`, `editability-guardrails`, `retint-recipes`, `theme-remap`, `token-library`, `verification`) and 3 asset checklists (`ds-verification-checklist`, `guardrail-audit-checklist`, `token-retint-checklist`) under `sk-code/sk-code-mobile-cli/{references,assets}/`. The three `workflow-*.md` references are symlinks to `shared/` and were already compliant — excluded. Filenames stayed kebab-case (the canonical convention for hand-authored files, unlike the mechanically-sliced snake_case files 019 originally renamed), so there is no in-hub reference or leaf-manifest churn.
+
+**Each file:** added `## 1. OVERVIEW` as the first numbered section (Core Principle / When to Use / Key Sources for references; Purpose / Usage for assets), completed the 5-field frontmatter (added `trigger_phrases` 3–8, `importance_tier: normal`, `contextType: implementation` to the seven references), compressed the intro to a 1–2 sentence hook with no subsections, and renumbered every content section +1 with the body preserved verbatim.
+
+**Pipeline:** ten Sonnet-5 (high) markdown agents, one per file, in parallel. The orchestrator then repaired a coordination gap the single-file agents could not see: because every file gained an OVERVIEW at §1, all cross-file `X.md §N` references were off-by-one — bumped deterministically (+1), leaving `SKILL.md §N` (not realigned) and the already-correct intra-file refs untouched.
+
+| Check | Result |
+|---|---|
+| First numbered section == `## 1. OVERVIEW` (structural sweep) | 10/10 |
+| 5-field frontmatter + 4-part version | 10/10 |
+| `validate_document.py` | 10/10 VALID |
+| Non-heading body content lines deleted (content preservation) | 0 |
+| Cross-file `§N` refs resolving to the intended target section | 22/22 |
+| leaf-manifest freshness | OK (no drift) |
+| trigger_phrases per file within 3–8 | 10/10 |
