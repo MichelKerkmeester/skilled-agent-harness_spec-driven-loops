@@ -645,6 +645,12 @@ const fanoutControlShape = {
   // timeout. Capped at 5 minutes; zero (the old opt-out) is now rejected, not accepted.
   lagCeilingMs: z.number().int().positive().max(300000).default(300000),
   progressHeartbeatSeconds: z.number().nonnegative().default(60),
+  // The stop policy is a dispatch-level directive carried by the CLI flag, not
+  // config data. Object parsing drops unknown keys silently, so a caller who put
+  // it here would believe forced depth was pinned while the run stopped on
+  // convergence instead -- and the artifacts would read as a legitimate
+  // convergence, making the mistake invisible after the fact. Reject it loudly.
+  stopPolicy: z.never().optional(),
 };
 
 export const legacyFanoutConfigSchema = z.object({

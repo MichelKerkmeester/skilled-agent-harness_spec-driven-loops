@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
-  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover",
   "children_ids": [],
   "manual": {
@@ -11,43 +11,55 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cutover certificate rollback window",
-      "deep-loop authority flip certificate",
-      "per-mode rollback window enforcement",
-      "cutover certificate implementation plan",
-      "rollback window monitoring plan",
-      "deep-loop certificate verification",
-      "cutover certificate rollback tasks",
-      "rollback window enforcement tasks",
-      "deep-loop authority evidence tasks",
-      "cutover certificate rollback checklist",
-      "rollback window verification",
-      "authority cutover evidence checklist"
+      "census path and config drift repair",
+      "deep-loop stale state census path",
+      "fan-out stop policy smuggled config",
+      "census path and config drift repair implementation plan",
+      "deep-loop stale census path fix plan",
+      "fan-out stop policy schema fix plan",
+      "census path and config drift repair tasks",
+      "deep-loop stale census path fix tasks",
+      "fan-out stop policy schema fix tasks",
+      "census path and config drift repair checklist",
+      "deep-loop stale census path fix verification",
+      "fan-out stop policy schema fix gate"
     ],
     "key_topics": [
-      "cutover",
-      "certificate",
-      "rollback",
-      "window",
+      "census",
+      "path",
+      "config",
+      "drift",
+      "repair",
       "deep-loop",
-      "authority",
-      "flip",
-      "per-mode",
-      "enforcement",
-      "implementation",
-      "plan",
-      "monitoring"
+      "stale",
+      "state",
+      "fan-out",
+      "stop",
+      "policy",
+      "smuggled"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "implementation-summary.md",
+      "checklist.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -58,18 +70,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -85,13 +85,13 @@
         "source": "derived"
       },
       {
-        "name": "Cutover Certificate",
+        "name": "Census Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Rollback Window",
+        "name": "Config Drift Repair",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,7 +109,7 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "that",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -121,19 +121,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview This",
+        "name": "Overview Two",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "five",
+        "name": "measured",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "missing",
+        "name": "no",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -151,14 +151,14 @@
         "source": "derived"
       },
       {
-        "name": "traceable",
-        "kind": "key_phrase",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -187,15 +187,15 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan the signed evidence bundle that authorizes a per-mode authority flip and the monitored rollback window that keeps the flip reversible until clean closure. The certificate is a ledger event binding parity, rollback, migration, and policy evidence.",
-    "created_at": "2026-07-16T03:43:57.641Z",
-    "last_save_at": "2026-08-19T04:25:29.998Z",
+    "causal_summary": "Repair seven stale state-census path references that made five runtime test files ENOENT-uncollectable, and close a fan-out config schema gap that let a stopPolicy value be silently dropped instead of read.",
+    "created_at": "2026-08-19T04:17:23.144Z",
+    "last_save_at": "2026-08-19T04:32:35.160Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:99de07e7e4911bc4fc5393e11a5bc8f96dfffc08bb20cfacb2baf458b4a7d84f",
+    "source_fingerprint": "sha256:3cfeb42fb2b3d92439a555a12fdc81228ebcbe6be52fc6d3e40df663158273e0",
     "source_doc_hashes": {
-      "spec.md": "c361c3cbc6327f3e3dfd580a0d1bab2b4796d1957d29893b288cba1a6b0addac",
-      "plan.md": "ae51d3b1ff943a1e73e5cc133b3df39e0e9a92e95fa315e8702208a586ffaac5",
-      "tasks.md": "8e3dee62bc4cf14596d33d29c2def90944a84a6b6d3264eccb7883d6196f94f9",
-      "checklist.md": "d371137f86a66a13a2b0442f3f31ff83edc7b5e246390dacfe09b932d0e8e4f2",
-      "implementation-summary.md": "02d8f219ae5bd07b59f1cc84ef1f22616302474f2b4faf7262960c8491893d13"
+      "spec.md": "94aa86d8e3b39beaf533a6ece69f0c2c2a820f1b68e13ee28155f761b71feffc",
+      "plan.md": "c1068575c39409ab9aec8c365cb342a260b39ed99729ccda6ccf2cb73b14fb4b",
+      "tasks.md": "90519941c1af607d31b3bef2630fb957964f716f5a3bc80453342b76bc5fcd31",
+      "checklist.md": "49ce72ea51509e33c9fdb8a981d0543872e4470125bd9d049946b7763169b5d5",
+      "implementation-summary.md": "ab2244406921a347ae3501b20eb8a15dd46a1c84d8311e45ca38337d9f9c2260"
     },
     "last_active_child_id": null,
     "last_active_at": null
