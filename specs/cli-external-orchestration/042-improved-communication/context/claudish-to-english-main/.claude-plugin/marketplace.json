@@ -1,0 +1,17 @@
+{
+  "name": "gvzdv-plugins",
+  "owner": {
+    "name": "Mike Gvozdev",
+    "email": "mv.gvozdev@gmail.com",
+    "url": "https://github.com/gvzdv"
+  },
+  "description": "Mike Gvozdev's Claude Code plugins.",
+  "plugins": [
+    {
+      "name": "claudish-to-english",
+      "source": "./",
+      "description": "Shows a plain-English rewrite of each Claude Code assistant message, produced by a local LLM (ollama). Display-only.",
+      "category": "productivity"
+    }
+  ]
+}
