@@ -1,26 +1,51 @@
 ---
 title: Pi Remote Retint Recipes
 description: Two worked, step-by-step retint recipes — a semantic-role retint and a component-token retint — each with the browser-free resolver proof steps.
+trigger_phrases:
+  - "retint recipes"
+  - "semantic role retint"
+  - "component token retint"
+  - "browser-free resolver proof"
+  - "retint one surface"
+  - "resolver diff verification"
+importance_tier: normal
+contextType: implementation
 version: 1.0.0.0
 ---
 
 # Pi Remote Retint Recipes
 
-`token-library.md` gives the model; `component-tokens.md` and `theme-remap.md` give the exact token
-inventory. This reference is the two worked recipes: pick (a) when you want a role to move everywhere it
-is used, (b) when you want exactly one surface to move.
-
-Both recipes end the same way: prove the change with the browser-free resolver method
-(`verification.md` §2), because the app's strict CSP renders it unstyled under headless CDP —
-screenshots prove nothing about colour here.
+This reference gives two worked retint recipes: a semantic-role retint and a component-token retint. Each ends with the browser-free resolver proof required because the app's strict CSP renders it unstyled under headless CDP.
 
 ---
 
-## 1. WHY NOT JUST RETINT THE PRIMITIVE
+## 1. OVERVIEW
+
+### Core Principle
+
+Retint at the semantic-role or component-token layer — never the frozen primitive — and prove the change with the browser-free resolver diff, since screenshots prove nothing about colour here.
+
+### When to Use
+
+- Deciding whether a retint should move every surface using a role, or exactly one surface
+- Retinting a semantic role system-wide (e.g. `--accent-ink`)
+- Retinting a single component token scoped to one surface (e.g. `--model-sheet-accent`, `--slash-*`)
+- Running the resolver-diff proof steps and command gate before claiming a retint is done
+
+### Key Sources
+
+- `token-library.md` — token model and the 45-declaration primitive propagation measurement
+- `component-tokens.md` — component token inventory and per-surface scoping
+- `theme-remap.md` — semantic role declarations and their theme blocks
+- `verification.md` (`references/verification.md`) — browser-free resolver method and surface standards
+
+---
+
+## 2. WHY NOT JUST RETINT THE PRIMITIVE
 
 The single largest measured propagation in this codebase is retinting the frozen primitive `--pi-clay`:
 it cascades to **45 rendered declarations** across light, dark, and system — every accent fill, accent
-text, and even `color-mix()`-derived accent border moves in lockstep (`token-library.md` §2). That number
+text, and even `color-mix()`-derived accent border moves in lockstep (`token-library.md` §3). That number
 is the ceiling for "how big can a retint get", and it is a fact about the **primitive** layer, not
 something a workflow may reproduce by editing `--pi-clay` — the 8 `--pi-*` values are the frozen palette
 contract (`references/verification.md`, surface standards). Both recipes below perform the same *shape*
@@ -29,21 +54,21 @@ component token for a surface-scoped move.
 
 ---
 
-## 2. RECIPE A — RETINT A SEMANTIC ROLE, SYSTEM-WIDE
+## 3. RECIPE A — RETINT A SEMANTIC ROLE, SYSTEM-WIDE
 
 **When:** you want every surface that plays a role to move together (e.g. every place reading the AA
 text-accent role should shift).
 
 **Worked example:** retint `--accent-ink`. It is read directly by declarations throughout `style.css`
 and it is also the source every `-accent` component token in both component families aliases
-(`--model-sheet-accent`, `--slash-accent` — see `component-tokens.md` §1–2), so a role-level edit here
+(`--model-sheet-accent`, `--slash-accent` — see `component-tokens.md` §2–3), so a role-level edit here
 moves the component surfaces too, without touching their own blocks.
 
 1. **Locate every declaration.** `--accent-ink` is declared three times — `:root` (light), light value
    `#8a452f`; `:root[data-theme='dark']`, dark value `#f0b19a`; and the `prefers-color-scheme: dark`
    `:root[data-theme='system']` block, same dark value. All three currently read
-   `var(--pi-accent-txt)` (`theme-remap.md` §1).
-2. **Copy `style.css` to a scratch copy.** Never experiment on the real file — `verification.md` §2.
+   `var(--pi-accent-txt)` (`theme-remap.md` §2).
+2. **Copy `style.css` to a scratch copy.** Never experiment on the real file — `verification.md` §3.
 3. **Resolve BEFORE.** Resolve every custom property and declaration to its final value, per theme
    (light / dark / system), following `var()` chains from the copy.
 4. **Apply the edit** to all three blocks (or to the value each aliases, if you are re-pointing the role
@@ -54,25 +79,25 @@ moves the component surfaces too, without touching their own blocks.
    existence, only its value. `CHANGED` must cover exactly the declarations that read `--accent-ink`
    directly, plus `--model-sheet-accent` and `--slash-accent` (which alias it) in both themes — nothing
    in `--warning` (a sibling role that happens to share the same primitive source, but is a separate
-   declaration; see `theme-remap.md` §1) should appear in the diff unless you also edited it.
+   declaration; see `theme-remap.md` §2) should appear in the diff unless you also edited it.
 7. **Run the command gate.** `npm run typecheck && npm run build && npm run test:web` — `contrast.test.tsx`
    must stay green in both themes.
 
 ---
 
-## 3. RECIPE B — RETINT ONE COMPONENT TOKEN, ONE SURFACE
+## 4. RECIPE B — RETINT ONE COMPONENT TOKEN, ONE SURFACE
 
 **When:** you want exactly one surface retinted and nothing else.
 
 **Worked, measured example:** retinting the component token `--model-sheet-accent` changes only the
 model-effort-sheet surface — its rows, nav buttons, policy/mutation rows, search-clear, reconcile button,
 and unavailable state. There is **zero leak** into the slash panel, the diff view, artifacts, or the
-composer (`token-library.md` §2, `component-tokens.md` §1).
+composer (`token-library.md` §3, `component-tokens.md` §2).
 
 1. **Locate the three blocks.** `--model-sheet-accent` is declared inside `.model-sheet-overlay` three
    times: the default (light) block, `:root[data-theme='dark'] .model-sheet-overlay`, and the
    `prefers-color-scheme: dark` `:root[data-theme='system'] .model-sheet-overlay` block
-   (`component-tokens.md` §1).
+   (`component-tokens.md` §2).
 2. **Copy `style.css` to a scratch copy**, same as recipe A.
 3. **Resolve BEFORE**, per theme.
 4. **Apply the edit** to the token inside `.model-sheet-overlay` in each of the three blocks you intend
@@ -94,7 +119,7 @@ the expected zero-leak surfaces for "everything except the slash panel".
 
 ---
 
-## 4. HOW TO TELL WHICH RECIPE YOU NEED
+## 5. HOW TO TELL WHICH RECIPE YOU NEED
 
 | You want… | Recipe | Edit point |
 | --- | --- | --- |
@@ -104,4 +129,4 @@ the expected zero-leak surfaces for "everything except the slash panel".
 
 Both recipes are proof-gated the same way: the resolver diff shows exactly the intended `CHANGED` set
 and `VANISHED` / `ADDED` at zero, and `npm run typecheck` / `build` / `test:web` all pass before any
-"done" claim (`verification.md` §5).
+"done" claim (`verification.md` §6).
