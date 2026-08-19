@@ -10,14 +10,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-19T07:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Planned the gate run"
-    next_safe_action: "Freeze the candidate and baseline"
+    last_updated_at: "2026-08-19T21:50:00Z"
+    last_updated_by: "claude"
+    recent_action: "Ran the whole-system gate; verdict FAIL, falsifiability proven twice"
+    next_safe_action: "Operator decision on the missing flip transitions"
     blockers:
-      - "Predecessor 004-legacy-writer-retirement must pass first"
-    key_files: []
-    completion_pct: 0
+      - "8 of 8 modes read legacy_authoritative, so the gate cannot pass"
+      - "Predecessor 004 unbuilt; retiring legacy writers now would stop writes"
+    key_files:
+      - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
+    completion_pct: 70
     open_questions: []
     answered_questions: []
 ---

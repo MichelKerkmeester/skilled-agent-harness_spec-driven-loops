@@ -11,14 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-19T07:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Authored the whole-system gate contract"
-    next_safe_action: "Wait for retirement to complete"
+    last_updated_at: "2026-08-19T21:50:00Z"
+    last_updated_by: "claude"
+    recent_action: "Ran the whole-system gate; verdict FAIL, falsifiability proven twice"
+    next_safe_action: "Operator decision on the missing flip transitions"
     blockers:
-      - "Predecessor 004-legacy-writer-retirement must pass first"
-    key_files: []
-    completion_pct: 0
+      - "8 of 8 modes read legacy_authoritative, so the gate cannot pass"
+      - "Predecessor 004 unbuilt; retiring legacy writers now would stop writes"
+    key_files:
+      - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
+    completion_pct: 70
     open_questions: []
     answered_questions:
       - "Bindings resolve from the environment; no SHA is typed by hand"
@@ -37,7 +39,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Blocked |
 | **Created** | 2026-08-19 |
 | **Owner skill** | system-deep-loop |
 | **Authority posture** | No authority moves; this phase measures the enabled system |
