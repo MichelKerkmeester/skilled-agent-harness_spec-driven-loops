@@ -52,8 +52,8 @@ system; a procedure counts as working when it has been followed literally.
 ## Testing
 
 - [ ] CHK-007 [P0] The second `036` sweep returns an empty list (REQ-001, SC-001) — NOT MET: the invalidated claim is the unreachable flip itself, which this phase cannot fix
-- [ ] CHK-008 [P0] Catalog claims spot-checked against named symbols in the code (REQ-003, SC-003) — NOT DONE: depends on T-006, refused as unwritable
-- [ ] CHK-009 [P0] One playbook procedure followed literally exercises the gateway (REQ-004, SC-004) — NOT DONE: depends on T-007, refused as unwritable
+- [ ] CHK-008 [P0] Catalog claims spot-checked against named symbols in the code (REQ-003, SC-003) — PARTIAL: the new F055 entry's anchors (`scripts/append-mode-event.cjs`, `tests/unit/mode-append-gateway.vitest.ts`, `scripts/check-protocol-append-sites.cjs`) were verified against the code, but the catalog as a whole is not spot-checked because CHK-017 remains unmet
+- [x] CHK-009 [P0] One playbook procedure followed literally exercises the gateway (REQ-004, SC-004) — DLR-055 was followed step by step from a clean directory: exit 0, a receipt with an `authorizationRef`, a ledger frame, an audit frame, the projected legacy file, and a watermark at `ledger_sequence` 1. Following it also falsified two of its own failure-mode claims, which were corrected against measured output. Evidence: `scratch/playbook-walkthrough.md`
 - [x] CHK-010 [P0] A search finds no mode-facing document presenting a direct append as normal (REQ-005, SC-005) — 2 docs reference `append-mode-event`, both also reference the gateway; `profiling-audit-log.md:112` uses `appendFileSync` but writes `profile-selection.log`, a profiling log rather than a mode ledger surface
 <!-- /ANCHOR:testing -->
 
@@ -77,7 +77,7 @@ system; a procedure counts as working when it has been followed literally.
 ## Documentation
 
 - [ ] CHK-017 [P0] The feature catalog describes the gateway, the projection, and ledger authority (REQ-003) — NOT DONE: would require describing an enabled runtime
-- [ ] CHK-018 [P0] The manual-testing playbook's procedures exercise the gateway path (REQ-004) — NOT DONE: same reason
+- [x] CHK-018 [P0] The manual-testing playbook's procedures exercise the gateway path (REQ-004) — the playbook mentioned the gateway zero times across 55 files; `script-entry-points/append-mode-event-script.md` (DLR-055) now documents the gateway command with its paired `feature-catalog` entry, and its procedure is executable rather than a direct file write
 - [x] CHK-019 [P1] `implementation-summary.md` records the sweep results and the supersession list — written, `validate.sh --strict` reports Errors: 0
 <!-- /ANCHOR:docs -->
 

@@ -46,6 +46,7 @@
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/playbook-walkthrough.md",
       "tasks.md"
     ],
     "entities": [
@@ -95,6 +96,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-walkthrough.md",
+        "kind": "doc",
+        "path": "scratch/playbook-walkthrough.md",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After enablement, the epic's documentation describes a system that no longer exists",
     "created_at": "2026-08-19T06:57:08.525Z",
-    "last_save_at": "2026-08-19T20:14:40.819Z",
+    "last_save_at": "2026-08-19T23:12:41.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c469e8c2462b298205d2959b6121a7b583942516392e683eee14ccfd058432c8",
+    "source_fingerprint": "sha256:d4bdd60ff489faa6072ad2736d95de334511844d9bbd65ac74db22a202d499e1",
     "source_doc_hashes": {
       "spec.md": "22311f7beb64951acee75867685150c71991b0fc101e4bf7a4a7c75d8b674e45",
       "plan.md": "580d1f46cee9dc9230b049bf4899d159cc172a6bc7cf17a8e5ebffb6ca412297",
       "tasks.md": "fe4519df13cacd61ee704e7d11ebcdf5a22277a7f79611a6fbcfb850cde0bc40",
-      "checklist.md": "1e8d83bdd9bd052e646a8c0ca40fd7323bc28f016a0bbbc94286bae890a5a2fc",
-      "implementation-summary.md": "454d748249d471d1c5da3867a969fcb9edac129a4fc1d184d5bb5c4dd3bab0e1"
+      "checklist.md": "71aa13358086c48f96e9d35a677c3d54bae8a1839e78918af21f962f7aca139f",
+      "implementation-summary.md": "e770bbeb209d9d53321b126960d9ebac7e42c7dfbbe8e947b56717d2ebbfd1da"
     },
     "last_active_child_id": null,
     "last_active_at": null
