@@ -6,7 +6,8 @@
   "children_ids": [
     "cli-external-orchestration/050-persona-injection-enforcement/001-analysis-inventory",
     "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
-    "cli-external-orchestration/050-persona-injection-enforcement/003-cli-mode-enforcement"
+    "cli-external-orchestration/050-persona-injection-enforcement/003-cli-mode-enforcement",
+    "cli-external-orchestration/050-persona-injection-enforcement/004-sk-prompt-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -85,15 +86,15 @@
     ],
     "causal_summary": "When an orchestrator delegates work through an external CLI skill under `cli-external-orchestration` (cli-devin, cli-codex, cli-opencode, cli-cursor, cli-pi, cli-claude-code), it commonly sends only the task prompt to the dispatched model — without the target agent's persona/identity from the runtime agent directory (`.opencode/agents/.md`, `.claude/agents/.md`, etc.)",
     "created_at": "2026-08-19T06:31:08.040Z",
-    "last_save_at": "2026-08-19T11:19:41.596Z",
+    "last_save_at": "2026-08-19T11:36:15.260Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5c64029ee831fa3849c8d60138ca0777f2edcd778b18344ef7d21baa8417c987",
+    "source_fingerprint": "sha256:9749723d1ae90fb85d7466f2dd5c4bd8185e4e666027bf508d08ce24513ba3e2",
     "source_doc_hashes": {
-      "spec.md": "d3f226e4cb658675076b04645d514ae762108c7b0a5069f57686be05c980cad3"
+      "spec.md": "20c85f4d7a729764fa263376b19be64341e825c3eb2dd36c5cf81c43fc8b1305"
     },
     "last_active_child_id": "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
     "last_active_at": "2026-08-19T07:11:35.574Z"
