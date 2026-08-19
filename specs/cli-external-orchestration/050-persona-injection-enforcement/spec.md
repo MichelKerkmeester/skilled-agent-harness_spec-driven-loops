@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement"
-    last_updated_at: "2026-08-19T11:12:00Z"
+    last_updated_at: "2026-08-19T11:32:00Z"
     last_updated_by: "claude"
-    recent_action: "P3 complete: 6 modes + hub carry persona rule; validated --strict"
-    next_safe_action: "Author P4 sk-prompt alignment (004-sk-prompt-alignment)"
+    recent_action: "P4 complete: canonical Persona Injection section installed in the card; validated"
+    next_safe_action: "Author P5 verification sweep (005-verification)"
     blockers: []
     key_files:
       - ".opencode/skills/cli-external-orchestration/SKILL.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "impl-050-persona-injection"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 80
     open_questions:
       - "Where native --agent loading is verified to work (cli-claude-code, cli-cursor), is native loading sufficient or must the persona ALSO be inlined for reproducibility?"
     answered_questions: []
@@ -111,7 +111,7 @@ Make agent-persona injection a documented, enforced rule across every external-C
 | P1 | `001-analysis-inventory/` | Inventory every agent persona + every CLI dispatch/prompt-composition point across the 6 modes, the hub, and sk-prompt; classify native-load-vs-inline per mode; confirm the gap with evidence | Complete |
 | P2 | `002-persona-injection-contract/` | Design the shared persona-injection contract: dispatch-block format, runtime path resolution (AGENTS.md §7), native-vs-inline decision rule, explicit exceptions | Complete |
 | P3 | `003-cli-mode-enforcement/` | Apply the contract to all 6 mode SKILLs + hub SKILL ALWAYS/NEVER rules | Complete |
-| P4 | `004-sk-prompt-alignment/` | Carry the persona-injection step into sk-prompt prompt-craft references | Planned |
+| P4 | `004-sk-prompt-alignment/` | Carry the persona-injection step into sk-prompt prompt-craft references | Complete |
 | P5 | `005-verification/` | Objective grep/audit sweep + `validate.sh --strict` across touched packets + regression delta | Planned |
 
 ### Phase Transition Rules

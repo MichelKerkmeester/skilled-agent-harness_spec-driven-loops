@@ -109,7 +109,68 @@ ESCALATION_NOTES: <open ambiguity or risk>
 
 ---
 
-## 6. COMMON CLI PROMPT FAILURE PATTERNS
+## 6. PERSONA INJECTION
+
+Every external-CLI dispatch MUST compose `{resolved agent persona + task prompt}` — never a bare task. A persona-less dispatch runs the leaf model as a generic assistant: it silently loses the agent's tool-scope, verification gates, output contract, and safety framing, so results drift from what the orchestrator expects. This mirrors the native-dispatch precedent in `orchestrate.md` "Agent Loading Protocol (MANDATORY)" (READ the agent definition → INCLUDE it in the prompt → dispatch) and extends that discipline to the external-CLI path. Each cli-* mode `SKILL.md` carries a persona-injection ALWAYS rule that points here; this section is the canonical source.
+
+### 6.1 Resolve the persona (runtime-aware — AGENTS.md §7; never hardcode one runtime)
+
+Resolve the agent `.md` from the ACTIVE runtime's agent directory:
+
+| Runtime | Agent directory |
+|---------|-----------------|
+| Opencode | `.opencode/agents/<name>.md` |
+| Claude Code | `.claude/agents/<name>.md` |
+| Codex CLI | `.codex/agents/<name>.md` |
+| Cursor | `.cursor/agents/<name>.md` |
+| Pi | `.pi/agents/<name>.md` |
+| Devin | `.devin/agents/<name>/AGENT.md` |
+
+Map each subtask to the RIGHT persona, not one default: `code → code` · `review → review` · `design → design` · research → `deep-research` · exploration/context → `context` · debugging → `debug` · docs/markdown → `markdown` · planning/architecture → `ai-council` · coordination → `orchestrate`.
+
+### 6.2 Attach it — native surface vs inline (per mode)
+
+Attach the resolved persona via the mode's native surface where the CLI loads it on the dispatch path; INLINE is the universal fallback, REQUIRED on any bare top-level dispatch that names no native subagent.
+
+| Mode | How to attach the resolved persona |
+|------|------------------------------------|
+| `cli-claude-code` | NATIVE: `claude -p --agent <name>` resolves `.claude/agents/<name>.md`. INLINE on a bare `-p`. |
+| `cli-cursor` | NATIVE: name the resolved subagent (`.cursor/agents` + `.claude/agents` mirror all 13 agents). INLINE on a bare `cursor-agent -p`. |
+| `cli-devin` | NATIVE: `run_subagent` naming the resolved profile (`.devin/agents/<name>/AGENT.md`). INLINE on a bare `devin -p`. |
+| `cli-opencode` | PARTIAL: route `--agent orchestrate` → Task subagent (`mode: subagent` personas are rejected at top-level `--agent`). Else INLINE. |
+| `cli-codex` | INLINE (mandatory): `.codex/agents/*.toml` is TUI-only; `codex exec` / `-p` load config, not a persona. |
+| `cli-pi` | INLINE (mandatory): core Pi has no persona surface on `pi -p`. |
+| fanout runtime | INLINE into the composed prompt string (`fanout-run.cjs` has no persona slot). |
+
+### 6.3 Inline block format
+
+The persona travels IN the payload because the child cannot resolve agent paths by reference — the same reason `DESIGN_DISPATCH_MANIFEST` is inlined, not linked:
+
+```
+=== BEGIN AGENT PERSONA (resolved runtime path: <dir>/<name>.md — Devin: <name>/AGENT.md, per the §6.1 table) ===
+<full agent .md content — OR a focused persona summary for large files / small-context models>
+=== END AGENT PERSONA (resolved persona: <name>) ===
+You are dispatched AS the @<name> agent defined above. Obey its role, tool-scope,
+verification gates, and output contract.
+
+<task prompt>
+```
+
+### 6.4 Consistency guard + exceptions
+
+Before dispatch, confirm the inlined (or `--agent`-named) persona MATCHES the subtask's intent — the persona named in the block, the resolved definition, and the task body must be the same agent (mirrors `orchestrate.md`'s "Prompt/Agent Consistency Guard").
+
+Default is always-attach. The only sanctioned exceptions, each DECLARED at the dispatch site:
+
+1. **Native surface used** (claude-code `--agent`; cursor / devin / opencode dispatched by naming the resolved subagent) — native resolution satisfies the rule; a redundant inline copy is not required.
+2. **Small-context model** — substitute a focused persona summary (role + tool-scope + output contract + verification gates) for the full `.md`.
+3. **Pure-mechanical command** with no agent semantics — the persona MAY be omitted, but the omission MUST be stated at the dispatch site.
+
+Silence is never an exception.
+
+---
+
+## 7. COMMON CLI PROMPT FAILURE PATTERNS
 
 - Missing output format or success criteria
 - Unbounded scope that lets the delegated CLI wander
@@ -122,7 +183,7 @@ ESCALATION_NOTES: <open ambiguity or risk>
 
 ---
 
-## 7. MIRROR SYNC
+## 8. MIRROR SYNC
 
 All three cli-* cards (`cli-claude-code`, `cli-opencode`, `cli-opencode`) are THIN DELEGATING mirrors: they link to this card as the authoritative source and do not copy the framework table or CLEAR scoring table. Each card contains a short header, a link here, and any model-specific addenda — nothing more.
 
@@ -138,7 +199,7 @@ When editing this file, no mirroring step is required — the delegating cards r
 
 ---
 
-## 8. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 - `../SKILL.md`
 - `../../sk-prompt-improve/references/patterns-evaluation.md`

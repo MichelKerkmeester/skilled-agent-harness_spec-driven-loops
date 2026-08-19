@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/050-persona-injection-enforcement/004-sk-prompt-alignment",
+  "spec_folder": "cli-external-orchestration/050-persona-injection-enforcement/004-sk-prompt-alignment",
+  "parent_id": "cli-external-orchestration/050-persona-injection-enforcement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt persona injection alignment",
+      "cli-prompt-quality-card persona section",
+      "canonical persona injection home",
+      "sk-prompt alignment plan",
+      "canonical persona section install plan",
+      "sk-prompt alignment tasks",
+      "sk-prompt alignment checklist",
+      "sk-prompt alignment implementation summary"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "persona",
+      "injection",
+      "alignment",
+      "cli-prompt-quality-card",
+      "section",
+      "canonical",
+      "home",
+      "plan",
+      "install",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Injection Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Persona Injection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Install",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prompt Quality Card",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The six mode `SKILL.md` persona rules added in P3 each reference a canonical \"Persona Injection\" section in `sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md`, but that section did not yet exist — the references were forward-looking",
+    "created_at": "2026-08-19T11:34:03.325Z",
+    "last_save_at": "2026-08-19T11:35:25.539Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d584d13f00671b42939e399758ddbbe95f7904fb6d3cb2f9fd899c118ce7480a",
+    "source_doc_hashes": {
+      "spec.md": "1f085a78ed5bfa61d460f56fe36cf4a6cbf08ba355f12f07b9db68e54d86211f",
+      "plan.md": "a6e172f35d2106fcd9da9e0af6bf740a6a40115b235da3675e6c8ea32e128f3d",
+      "tasks.md": "bfe4195b4ef0b9980bab8801dab7d512a3425c3b7d45d03d327d87311323f8e1",
+      "checklist.md": "0bbfacab7867a95a98997ca496de59f46abb9bae8a6f702457a0037c8b2ea1a5",
+      "implementation-summary.md": "9f5692a41bdf189881f249d7411a1087ffbf9befa9a8576cdb2f19217059f522"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
