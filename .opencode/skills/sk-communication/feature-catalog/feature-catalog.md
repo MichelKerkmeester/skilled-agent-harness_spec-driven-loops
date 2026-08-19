@@ -124,6 +124,22 @@ See [`provider-and-privacy/provider-adapters-and-execution.md`](provider-and-pri
 
 ---
 
+### External CLI agent provider
+
+#### Description
+
+Routes an external CLI agent as a first-class hosted-retained provider so the cli-* projection path runs through the same privacy, fidelity, and exact-original fallback as every other provider.
+
+#### Current Reality
+
+`createExternalCliModelRecord` and `createExternalCliTransport` add an `external-cli` family that reuses the OpenAI-chat adapter and dispatches the rewrite to an installed CLI agent through an injected subprocess boundary. The engine selector lives in the provider id, the endpoint is a non-resolving sentinel, and the CLI binary owns its own credentials. The provider is inert unless explicitly selected; any unknown engine, aborted request, timeout, empty output, or failed dispatch returns the exact original.
+
+#### Source Files
+
+See [`provider-and-privacy/external-cli-provider.md`](provider-and-privacy/external-cli-provider.md) for full implementation and test file listings.
+
+---
+
 ## 5. RUNTIME ADAPTERS
 
 ### Six-runtime adapter matrix

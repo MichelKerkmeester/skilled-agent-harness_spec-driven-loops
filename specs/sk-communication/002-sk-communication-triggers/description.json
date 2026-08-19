@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/002-sk-communication-triggers",
+  "description": "The sk-communication projection layer ships as a package that is off by default and invoked by hand",
+  "keywords": [
+    "sk-communication",
+    "projection",
+    "layer",
+    "ships",
+    "package",
+    "default",
+    "invoked",
+    "hand"
+  ],
+  "lastUpdated": "2026-08-19T07:27:32.137Z",
+  "specId": "002",
+  "folderSlug": "sk-communication-triggers",
+  "parentChain": [
+    "sk-communication"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-08-26_05-28__good-checkpoint-here-s-where-things-stand-done.md",
+    "19-08-26_05-45__command-2-is-now-being-authored-via-the-no.md"
+  ]
+}

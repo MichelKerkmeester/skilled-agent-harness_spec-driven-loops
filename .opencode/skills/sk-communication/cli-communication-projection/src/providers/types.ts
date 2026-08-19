@@ -19,6 +19,7 @@ import type { ProviderTerminalState, ProtectedDocument } from '../fidelity/types
 
 /** Adapter families with deliberately distinct wire behavior. */
 export const ProviderFamilies = {
+  EXTERNAL_CLI: 'external-cli',
   GENERIC_HOSTED: 'generic-hosted',
   LLAMA_CPP: 'llama-cpp',
   OLLAMA: 'ollama',

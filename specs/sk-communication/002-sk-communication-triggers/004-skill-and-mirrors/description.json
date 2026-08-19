@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-communication/002-sk-communication-triggers/004-skill-and-mirrors",
+  "description": "The two commands existed under `.opencode/commands/` but were undocumented in the skill and unmirrored, so operators had no in-skill pointer to the",
+  "keywords": [
+    "two",
+    "commands",
+    "existed",
+    "opencode",
+    "undocumented",
+    "skill",
+    "unmirrored",
+    "operators",
+    "in-skill",
+    "pointer"
+  ],
+  "lastUpdated": "2026-08-19T06:35:13.097Z",
+  "specId": "004",
+  "folderSlug": "skill-and-mirrors",
+  "parentChain": [
+    "sk-communication",
+    "002-sk-communication-triggers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
