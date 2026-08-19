@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "cli-external-orchestration/050-persona-injection-enforcement/001-analysis-inventory",
-    "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract"
+    "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
+    "cli-external-orchestration/050-persona-injection-enforcement/003-cli-mode-enforcement"
   ],
   "manual": {
     "depends_on": [],
@@ -64,12 +65,6 @@
         "source": "derived"
       },
       {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -80,19 +75,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When an orchestrator delegates work through an external CLI skill under `cli-external-orchestration` (cli-devin, cli-codex, cli-opencode, cli-cursor, cli-pi, cli-claude-code), it commonly sends only the task prompt to the dispatched model — without the target agent's persona/identity from the runtime agent directory (`.opencode/agents/.md`, `.claude/agents/.md`, etc.)",
     "created_at": "2026-08-19T06:31:08.040Z",
-    "last_save_at": "2026-08-19T09:41:26.241Z",
+    "last_save_at": "2026-08-19T11:19:41.596Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e37208ffbbdfe6ee428aa93eba995c8b58f67a0a22788a48d5ee1431c44cf3e1",
+    "source_fingerprint": "sha256:5c64029ee831fa3849c8d60138ca0777f2edcd778b18344ef7d21baa8417c987",
     "source_doc_hashes": {
-      "spec.md": "2a22379300cfd549cbc1e745787e1599e6b4fc27574054f2b0b15a59c532ae68"
+      "spec.md": "d3f226e4cb658675076b04645d514ae762108c7b0a5069f57686be05c980cad3"
     },
     "last_active_child_id": "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
     "last_active_at": "2026-08-19T07:11:35.574Z"
