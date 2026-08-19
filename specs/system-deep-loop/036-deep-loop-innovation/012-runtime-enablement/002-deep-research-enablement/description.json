@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement",
+  "description": "Deep-research state is produced by agents following prose",
+  "keywords": [
+    "deep-research",
+    "state",
+    "produced",
+    "agents",
+    "following",
+    "prose"
+  ],
+  "lastUpdated": "2026-08-19T06:49:10.570Z",
+  "specId": "002",
+  "folderSlug": "deep-research-enablement",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

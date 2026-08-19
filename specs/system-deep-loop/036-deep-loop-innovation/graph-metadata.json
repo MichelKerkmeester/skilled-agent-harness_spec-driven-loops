@@ -14,7 +14,8 @@
     "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
     "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation",
     "system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence",
-    "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution"
+    "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution",
+    "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
   ],
   "manual": {
     "depends_on": [],
@@ -94,15 +95,15 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-17T04:35:03.216Z",
+    "last_save_at": "2026-08-19T06:59:01.896Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a185f3199ef6e29657598537d15c7f14fb9d050d19d2e3c40b09151e850850e3",
+    "source_fingerprint": "sha256:44b8dad0b82eaba4d83780ab2b2f4ca97d0364978a6d95de4bc1f24e5299bb35",
     "source_doc_hashes": {
-      "spec.md": "d2b45f9231fc3f5a9723e336aad141078dcc304544928f0837c5b27296f4cd0a"
+      "spec.md": "142bac69ce7d45ca9826f8486ddf9bab853a2614e55fedc5a52555bf6835cae2"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration",
     "last_active_at": "2026-08-12T15:23:08.017Z"

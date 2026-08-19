@@ -182,7 +182,7 @@ Deferred to the phase that owns the decision (per the SOL review):
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-Direct children after grouping: eight thematic group parents. The root also holds two host packets — 057 (the grouping research) and 058 (this migration phase) — and the loose dispositions.md file. Each group's own children and the full lineage are in the group parents and `timeline.md`.
+Direct children after grouping: eight thematic group parents plus the later closeout and enablement packets. The root also holds two host packets — 057 (the grouping research) and 058 (this migration phase) — and the loose dispositions.md file. Each group's own children and the full lineage are in the group parents and `timeline.md`.
 
 | # | Group parent | Status |
 |---|--------------|--------|
@@ -195,5 +195,8 @@ Direct children after grouping: eight thematic group parents. The root also hold
 | 7 | `007-executor-and-cli-hardening/` | in_progress |
 | 8 | `008-review-and-rollback-followup/` | complete |
 | 9 | `009-innovation-gap-remediation/` | planned |
+| 10 | `010-weak-model-loop-adherence/` | complete |
+| 11 | `011-cli-pi-fanout-execution/` | complete |
+| 12 | `012-runtime-enablement/` | planned |
 
 <!-- /ANCHOR:phase-map -->
