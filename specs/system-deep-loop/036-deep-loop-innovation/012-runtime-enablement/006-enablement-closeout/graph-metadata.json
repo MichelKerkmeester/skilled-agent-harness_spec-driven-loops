@@ -46,6 +46,7 @@
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/catalog-spot-check.md",
       "scratch/playbook-walkthrough.md",
       "tasks.md"
     ],
@@ -96,6 +97,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalog-spot-check.md",
+        "kind": "doc",
+        "path": "scratch/catalog-spot-check.md",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After enablement, the epic's documentation describes a system that no longer exists",
     "created_at": "2026-08-19T06:57:08.525Z",
-    "last_save_at": "2026-08-19T23:12:41.873Z",
+    "last_save_at": "2026-08-19T23:39:16.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +208,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4bdd60ff489faa6072ad2736d95de334511844d9bbd65ac74db22a202d499e1",
+    "source_fingerprint": "sha256:d4cc1b251fac9fd224c3688bbebfd451136911e20462f20226c4a41d0001e5a9",
     "source_doc_hashes": {
       "spec.md": "22311f7beb64951acee75867685150c71991b0fc101e4bf7a4a7c75d8b674e45",
       "plan.md": "580d1f46cee9dc9230b049bf4899d159cc172a6bc7cf17a8e5ebffb6ca412297",
       "tasks.md": "fe4519df13cacd61ee704e7d11ebcdf5a22277a7f79611a6fbcfb850cde0bc40",
-      "checklist.md": "71aa13358086c48f96e9d35a677c3d54bae8a1839e78918af21f962f7aca139f",
+      "checklist.md": "7de6b87e5b4d3551a6f3b940a443028f78ccaa3cef055513eec6460184d8a4f2",
       "implementation-summary.md": "e770bbeb209d9d53321b126960d9ebac7e42c7dfbbe8e947b56717d2ebbfd1da"
     },
     "last_active_child_id": null,
