@@ -39,6 +39,8 @@
     "status": "planned",
     "key_files": [
       "scratch/probe-reachability.mjs",
+      "scratch/probe-pending-transition.mjs",
+      "scratch/adversarial-refutation.md",
       "scratch/claim-sweep.md",
       "implementation-summary.md",
       "spec.md",
@@ -51,6 +53,18 @@
         "name": "probe-reachability.mjs",
         "kind": "file",
         "path": "scratch/probe-reachability.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "probe-pending-transition.mjs",
+        "kind": "file",
+        "path": "scratch/probe-pending-transition.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial-refutation.md",
+        "kind": "doc",
+        "path": "scratch/adversarial-refutation.md",
         "source": "derived"
       },
       {
@@ -178,23 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Documentation",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Known Limitations",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After enablement, the epic's documentation describes a system that no longer exists",
     "created_at": "2026-08-19T06:57:08.525Z",
-    "last_save_at": "2026-08-19T20:10:36.014Z",
+    "last_save_at": "2026-08-19T20:14:40.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d57761d57df941944864dd2dddbfae3c0490aa445454d7d5c6114331ef8e33ff",
+    "source_fingerprint": "sha256:c469e8c2462b298205d2959b6121a7b583942516392e683eee14ccfd058432c8",
     "source_doc_hashes": {
       "spec.md": "22311f7beb64951acee75867685150c71991b0fc101e4bf7a4a7c75d8b674e45",
       "plan.md": "580d1f46cee9dc9230b049bf4899d159cc172a6bc7cf17a8e5ebffb6ca412297",
       "tasks.md": "fe4519df13cacd61ee704e7d11ebcdf5a22277a7f79611a6fbcfb850cde0bc40",
-      "checklist.md": "77e693159399f451d3c6acc44a8da44cf5d43fe3f7997a07e9ac71330a907f3c",
-      "implementation-summary.md": "76fc98a8283687d09a7868fc0c1cbd88b8cd5c04d928721ce411e97b5abf2ad9"
+      "checklist.md": "1e8d83bdd9bd052e646a8c0ca40fd7323bc28f016a0bbbc94286bae890a5a2fc",
+      "implementation-summary.md": "454d748249d471d1c5da3867a969fcb9edac129a4fc1d184d5bb5c4dd3bab0e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

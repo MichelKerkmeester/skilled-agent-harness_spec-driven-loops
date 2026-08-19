@@ -17,7 +17,8 @@ state, not authority records:
 | `lib/deep-loop/leaf-artifact-writer.ts` | 0 |
 | `lib/fleet-enablement/enablement-driver.ts` | 0 |
 
-The registry's four writes, by line:
+The registry's four writes of the record's state field, by line (the record path
+is constructed in exactly one place, `authority-registry.ts:140`):
 
 | Line | State written | Edge |
 |------|---------------|------|
@@ -26,7 +27,12 @@ The registry's four writes, by line:
 | `authority-registry.ts:386` | `rollback_pending` | rollback begin |
 | `authority-registry.ts:414` | `legacy_authoritative` | rollback restore |
 
-**No production writer ever persists `shadowing` or `cutover_ready`.**
+**No production writer ever persists `shadowing` or `cutover_ready` as an
+authority record's state.** That precise wording matters: `preparePendingTransition`
+does write the string `cutover_ready` to a sidecar at
+`authority-flip-prepare-<mode>.json`, via `Object.freeze({ ...input, preparedAt })`.
+It never reaches the record, and the flip reads the record. See
+`scratch/adversarial-refutation.md`.
 
 The forward flip requires the record to already be in `cutover_ready` —
 `authority-registry.ts:80` types its input as `readonly expectedState: 'cutover_ready'`.

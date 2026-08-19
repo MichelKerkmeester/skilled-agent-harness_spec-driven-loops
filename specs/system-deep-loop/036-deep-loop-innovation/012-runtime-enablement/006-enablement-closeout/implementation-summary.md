@@ -86,7 +86,8 @@ records; `fenced-lease-coordinator.ts`, `leaf-artifact-writer.ts`, and
 `authority-registry.ts:308` (`new_authoritative_reversible`),
 `authority-registry.ts:386` (`rollback_pending`), and
 `authority-registry.ts:414` (`legacy_authoritative`, restore).
-Neither `shadowing` nor `cutover_ready` is ever written.
+Neither `shadowing` nor `cutover_ready` is ever written as a record state. The
+record path is constructed in exactly one place, `authority-registry.ts:140`.
 
 **The precondition.** `authority-registry.ts:80` types the flip input as
 `readonly expectedState: 'cutover_ready'`.
@@ -98,6 +99,16 @@ root. The public surface is seven methods; only `compareAndSwap` and
 and left `(no record)` on disk. `compareAndSwapRollback` requires
 `new_authoritative_reversible`, reachable only through the refused flip, so the
 mutation graph past the seed is entirely dead.
+
+**Adversarially tested.** The claim was dispatched read-free to DeepSeek V4 Flash
+with instructions to refute it. It returned REFUTED, arguing that an audit of
+literal `state:` assignments could miss a spread or sidecar. It was right about
+the mechanism: `preparePendingTransition` persists `cutover_ready` through
+`Object.freeze({ ...input, preparedAt })`. `scratch/probe-pending-transition.mjs`
+then tested whether that makes the flip reachable — it does not. The string lands
+in `authority-flip-prepare-<mode>.json`, the record stays `legacy_authoritative`,
+and `compareAndSwap` is still refused after a prepare. The claim's wording was
+corrected; the claim stands. Recorded in `scratch/adversarial-refutation.md`.
 
 **Corroboration.** The gate receipt at `005-whole-system-gate/scratch/receipt.json`
 independently measured `read 8 modes; 8 on legacy_authoritative`.

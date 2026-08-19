@@ -63,7 +63,7 @@ system; a procedure counts as working when it has been followed literally.
 - [x] CHK-011 [P0] Every superseded packet carries a pointer to what superseded it (REQ-002, SC-002) — no packet was superseded; the one corrected packet carries an additive pointer to `scratch/claim-sweep.md`
 - [x] CHK-012 [P0] Superseded packets retain their original content; none were rewritten (REQ-002) — the correction is an appended item 4 plus an appended `answered_questions` entry; the original grading text is left in place
 - [x] CHK-013 [P1] The closeout points at the gate receipt rather than restating it (REQ-006) — cited as `005-whole-system-gate/scratch/receipt.json`
-- [x] CHK-014 [P1] Every updated claim was checked against the built system, not the plan (REQ-008) — census over `authority-registry.ts` plus a live-registry probe; `compareAndSwap` was driven and refused
+- [x] CHK-014 [P1] Every updated claim was checked against the built system, not the plan (REQ-008) — census over `authority-registry.ts` plus a live-registry probe; `compareAndSwap` was driven and refused, then the claim was dispatched for adversarial refutation and its wording corrected (`scratch/adversarial-refutation.md`)
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
