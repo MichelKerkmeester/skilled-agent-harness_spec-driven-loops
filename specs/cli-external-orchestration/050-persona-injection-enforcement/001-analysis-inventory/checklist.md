@@ -124,5 +124,5 @@ _memory:
 
 **Verification Date**: 2026-08-19
 
-**Verification note**: P1 correctness rests on deterministic orchestrator source-verification of the cited `file:line` claims. The planned independent cli-opencode/cline (DeepSeek V4 Flash @ xhigh) cross-check was attempted twice and did not complete — first on an invalid `--format text` flag (fixed), then an early exit with DeepSeek-Flash tool-call markup leaking as text (a cline-pass/opencode harness incompatibility, not an inventory defect). Flagged to the operator as an open decision for the verify leg across all phases.
+**Verification note**: P1 verified two ways — deterministic orchestrator source-verification of the cited `file:line` claims, AND an independent cli-opencode/cline (DeepSeek V4 Flash @ xhigh, `review` persona) cross-check (evidence: `scratch/p1-verification-cline-deepseek.md`). Earlier cline attempts failed on an invalid `--format` flag then a cline-pass tool-call-format leak; running **tool-free** (inline source, no Read/Grep) resolved it. The cross-check returned REQUEST CHANGES and caught a real P0 the deterministic pass missed — `cli-cursor` mischaracterized as inline-only — now corrected in the inventory and the P2 contract.
 <!-- /ANCHOR:summary -->

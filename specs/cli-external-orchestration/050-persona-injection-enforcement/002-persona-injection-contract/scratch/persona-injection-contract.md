@@ -25,19 +25,21 @@ Map each subtask to the RIGHT persona — not one default:
 
 `code → code` · `review → review` · `design → design` · `research → deep-research` · `exploration/context → context` · `debugging → debug` · `docs/markdown → markdown` · `planning/architecture → ai-council` · `coordination → orchestrate`.
 
-## 3. MECHANISM — NATIVE vs INLINE (per dispatch surface; verdicts from P1 §C)
+## 3. MECHANISM — NATIVE SURFACE vs INLINE (per mode; corrected after independent verification)
 
-| Mode | Non-interactive dispatch surface | Mechanism |
-|------|----------------------------------|-----------|
-| `cli-claude-code` | `claude -p --agent <name>` | **NATIVE** — the CLI resolves `.claude/agents/<name>.md`. Native load satisfies the rule; inline only when the target persona is not `--agent`-loadable. |
-| `cli-opencode` | `opencode run` | **INLINE** — `mode: subagent` personas are rejected at top-level `--agent` (only `orchestrate`/`plan` are primary). Inline the persona block, or route `--agent orchestrate` for orchestrated sub-dispatch. |
-| `cli-codex` | `codex exec` (incl. `-p <profile>`) | **INLINE** — `.codex/agents/*.toml` is read only by the interactive TUI; `-p` loads sandbox/effort config, not a persona. |
-| `cli-cursor` | `cursor-agent -p` | **INLINE** — auto-imports general workspace rules only (`.cursor/rules`, `AGENTS.md`), never role personas. |
-| `cli-devin` | `devin -p -- ` | **INLINE** — no persona flag; the `.claude/agents` auto-import claim is a doc-vs-installed mismatch on the current CLI. |
-| `cli-pi` | `pi -p` | **INLINE** — core Pi has no persona system; `pi-subagents` / `.pi/agents` are non-core / uninstalled. |
-| shared runtime | `system-deep-loop/runtime/scripts/fanout-run.cjs` | **INLINE** — no separate persona slot; the persona travels in the composed prompt string. |
+> **Correction (independent cline/DeepSeek verification of P1):** the P1 inventory under-counted native surfaces. It is NOT "only cli-claude-code native, 5 inline uniformly." Cursor and Devin carry native persona-file surfaces (roster mirrors of the canonical `.claude/agents/`), and opencode reaches subagents via a primary. The accurate split is below.
 
-**Rule of thumb:** inline the persona UNLESS the CLI is verified to natively load the resolved persona on the actual `-p` / `exec` / `run` path.
+| Mode | Native persona surface | How the orchestrator attaches the resolved persona |
+|------|------------------------|----------------------------------------------------|
+| `cli-claude-code` | **YES — top-level flag.** `claude -p --agent <name>` resolves `.claude/agents/<name>.md`. | Pass `--agent <name>`. Native load satisfies the rule. |
+| `cli-cursor` | **YES — file-convention subagent surface.** `.cursor/agents/*.md` + `.claude/agents/*.md` mirror all 13 canonical agents (symlinked); no `--agent` selector on `-p`. | Dispatch by naming the resolved subagent (discovery-based). **INLINE fallback on a bare `cursor-agent -p`.** |
+| `cli-devin` | **YES — `run_subagent` surface.** `.devin/agents/<name>/AGENT.md` mirrors all 13 canonical agents (symlinked); the `.claude/agents` auto-import is broken on the installed CLI. | Dispatch via `run_subagent` naming the resolved profile. **INLINE fallback on a bare top-level `devin -p`.** |
+| `cli-opencode` | **PARTIAL — via a primary.** `mode: subagent` personas are rejected at top-level `--agent`; only `orchestrate`/`plan` are primary. | Route `--agent orchestrate` → Task subagent for the resolved persona. **Else INLINE.** |
+| `cli-codex` | **NO.** `.codex/agents/*.toml` is TUI-only; `codex exec` / `-p <profile>` load sandbox/effort config, not a persona. | **INLINE (mandatory).** |
+| `cli-pi` | **NO.** Core Pi has no persona system; `pi-subagents` / `.pi/agents` are non-core / uninstalled. | **INLINE (mandatory).** |
+| shared runtime | **NO separate slot.** `system-deep-loop/runtime/scripts/fanout-run.cjs`. | **INLINE** into the composed prompt string. |
+
+**Rule of thumb:** attach the resolved persona via the mode's native surface where the CLI loads it on the dispatch path (claude-code `--agent`; cursor/devin/opencode by naming the resolved subagent). **INLINE is the universal fallback and is REQUIRED on any bare top-level dispatch that does not name a native subagent** — this is the actual gap the enforcement closes.
 
 ## 4. INLINE BLOCK FORMAT (reuse the `DESIGN_DISPATCH_MANIFEST v1` inline-payload pattern)
 
@@ -59,7 +61,7 @@ Before every dispatch, confirm the inlined (or `--agent`-named) persona MATCHES 
 
 ## 6. RARE, EXPLICIT EXCEPTIONS (default is ALWAYS attach)
 
-1. **Native load available** (`cli-claude-code --agent`): native resolution satisfies the rule; a redundant inline copy is not required.
+1. **Native surface used** (claude-code `--agent`; cursor/devin/opencode dispatched by naming the resolved subagent per §3): native resolution satisfies the rule; a redundant inline copy is not required.
 2. **Small-context model**: substitute a *focused persona summary* (role + tool-scope + output contract + verification gates) for the full `.md`, per `orchestrate.md`'s "or a focused summary for large files".
 3. **Pure mechanical command** with no agent semantics (e.g. "run exactly `<cmd>`"): the persona MAY be omitted, but the omission MUST be stated at the dispatch site.
 
@@ -75,4 +77,4 @@ Any exception is declared at the dispatch site; silence is never an exception.
 
 ## 8. TRACEABILITY
 
-Every §3 verdict traces to the P1 inventory `§C` table in `../001-analysis-inventory/scratch/dispatch-point-inventory.md`. The two reuse precedents are `orchestrate.md` "Agent Loading Protocol (MANDATORY)" and each mode's Rule 14 `DESIGN_DISPATCH_MANIFEST v1`.
+The §3 table was CORRECTED after an independent cli-opencode/cline (DeepSeek V4 Flash @ xhigh, `review` persona) verification of P1 found that the inventory under-counted native surfaces — it wrongly claimed cursor "cannot load role-specific personas." Corrected verdicts trace to source: cursor `cli-cursor/SKILL.md` "Custom Subagents" (`.cursor/agents` + `.claude/agents` mirror, 13 agents); devin `cli-devin/SKILL.md` "Agent Roster Parity" (`run_subagent` + `.devin/agents/<name>/AGENT.md`). The two reuse precedents are `orchestrate.md` "Agent Loading Protocol (MANDATORY)" and each mode's Rule 14 `DESIGN_DISPATCH_MANIFEST v1`. Verification evidence: `../001-analysis-inventory/scratch/p1-verification-cline-deepseek.md`.

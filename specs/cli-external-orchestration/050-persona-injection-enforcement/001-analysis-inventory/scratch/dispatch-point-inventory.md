@@ -218,3 +218,16 @@ The prompt construction pipeline is owned hierarchically by the following assets
 - **Suggested next**: Proceed to planning the persona-injection enforcement mechanism, anchoring the prompt-construction step in `sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md` and standardizing inline persona wrappers across all cli-* dispatchers.
 
 INVENTORY_COMPLETE
+
+---
+
+## INDEPENDENT VERIFICATION CORRECTIONS (cline / DeepSeek V4 Flash @ xhigh, review persona)
+
+An independent tool-free verification pass (evidence: `p1-verification-cline-deepseek.md`) found and source-confirmed the following corrections to the inventory above. These supersede the corresponding original claims:
+
+- **cli-cursor is NOT inline-only (P0 correction).** §C wrongly stated cursor "cannot load role-specific agent personas (@review, @debug)". Source `cli-cursor/SKILL.md` "#### Custom Subagents (CORRECTION -- earlier claim was wrong)": Cursor loads custom subagents from `.cursor/agents/*.md` + `.claude/agents/*.md` (project), all 13 canonical agents (symlinked), live-probed via `cursor-agent --force -p`. Cursor therefore HAS a native persona surface. Nuance: bare `cursor-agent -p` (no `--agent` selector) still runs the default agent, so INLINE remains the fallback on a bare `-p`.
+- **cli-devin has a native `run_subagent` surface (already YES in §C for that row, but the "5 modes inline uniformly" recommendation was wrong).** Source `cli-devin/SKILL.md` "Agent Roster Parity": all 13 canonical agents dispatch through `run_subagent` via `.devin/agents/<name>/AGENT.md` symlinks. (The separate `.claude/agents` auto-import IS broken on the installed CLI — that part of §C stands.)
+- **Recommendation "close this gap uniformly [inline]" is corrected to mode-split:** native surface where the CLI loads it (claude-code `--agent`; cursor/devin/opencode by naming the resolved subagent), INLINE elsewhere and as the universal fallback. See the corrected mechanism table in `../002-persona-injection-contract/scratch/persona-injection-contract.md` §3.
+- **Minor (P1/P2):** §B does not surface `codex exec review` / `codex --search exec` as explicit dispatch rows (though §D names `codex exec review`); §F correctly lists six cli-* cards while the canonical card's own "MIRROR SYNC" text is stale ("three") — flag it in P4.
+
+Verdict: inventory core sound (opencode/codex/devin/pi flag-level verdicts confirmed); REQUEST CHANGES resolved by the corrections above. The corrected native-surface map is authoritative in the P2 contract.
