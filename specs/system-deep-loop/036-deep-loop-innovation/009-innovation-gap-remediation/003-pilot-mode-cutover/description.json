@@ -17,7 +17,8 @@
     "requires",
     "shadow"
   ],
-  "lastUpdated": "2026-08-14T12:45:46.442Z",
+  "lastUpdated": "2026-08-19T06:20:17.086Z",
+  "level": "2",
   "specId": "003",
   "folderSlug": "pilot-mode-cutover",
   "parentChain": [

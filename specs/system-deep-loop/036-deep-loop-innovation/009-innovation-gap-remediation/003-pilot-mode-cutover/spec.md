@@ -212,12 +212,24 @@ matrix and rollback evidence; this phase does not authorize fleet execution.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-1. Which current module should own the one shared deep-research production dependency graph used by both auto and
-   confirm command manifests? The manifests and reducer are confirmed surfaces, but no live coordinator construction
-   symbol exists yet. A fresh import/write-path census must answer this before implementation.
-2. What rollback-window duration, restoration-time objective, health thresholds, and maximum number of simultaneously
-   open windows will the operator approve for the pilot? The safe default remains one open window, but the phase cannot
-   claim acceptance until the concrete policy is declared.
+1. **ANSWERED 2026-08-19 by census — the premise was wrong.** The question assumed a live coordinator construction
+   symbol was merely missing. There is no code-level write path for deep-research raw state at all: every executable
+   reference under `deep-research/` is either the derived-file reducer (`scripts/reduce-state.cjs`) or a pivot helper
+   (`scripts/divergent-research-pivot.ts`), and the raw append-only evidence is written by agents following prose
+   protocol — `references/state/state-jsonl.md` instructs leaf agents to append records directly. The authority
+   selector was designed to be consulted by a mode adapter at a canonical persistence boundary; for this mode no such
+   boundary exists in code. Implementation must therefore create the boundary (an append gateway agents call) before
+   authority can move, rather than wire an existing one. Confirmed by call-site search: `CutoverCoordinator` and
+   `selectCanonicalAuthority` have no consumer outside `lib/per-mode-authority-flip/`.
+2. **RATIFIED 2026-08-19 by the operator: no rollback window.** The cutover is a direct flip, not a staged or
+   dual-write transition, and legacy writers are retired at flip time rather than after an observation period. The
+   phase's rollback-window machinery is therefore out of scope for this cutover path. The operator was shown the
+   measured consequence and accepted it: this epic's documented rollback procedure was rehearsed on 2026-08-18 and did
+   not survive contact — `git revert` of the export-demotion commit produced 64 conflicted files across 11 intervening
+   commits. Without a window, recovery from a bad flip means restoring retired code under incident pressure, not
+   changing a selector record. Recorded here so the accepted risk is legible to whoever reads this next, not to
+   reopen the decision.
 3. Which exact candidate SHA, BASE SHA, operator identity, and deployment-resolved actor/capability values will bind the
-   pilot request? These are execution-time facts and must be frozen immediately before the approval stop.
+   pilot request? These are execution-time facts and must be frozen immediately before the flip. Still open: they
+   cannot be defaulted or derived, and the flip cannot be requested without them.
 <!-- /ANCHOR:questions -->
