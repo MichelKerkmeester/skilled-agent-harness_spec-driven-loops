@@ -221,6 +221,20 @@ matrix and rollback evidence; this phase does not authorize fleet execution.
    boundary exists in code. Implementation must therefore create the boundary (an append gateway agents call) before
    authority can move, rather than wire an existing one. Confirmed by call-site search: `CutoverCoordinator` and
    `selectCanonicalAuthority` have no consumer outside `lib/per-mode-authority-flip/`.
+
+   **Read-compat is already specified and is not a rollback window.** The projection manifest declares the
+   `research-state` surface as `disposition: 'project'`, `serializerId: 'legacy-jsonl-row-v1'`,
+   `refreshBoundary: 'event'`, so the intended shape is: authorized ledger canonical, legacy JSONL materialized from
+   it per event. The direct flip therefore retires the legacy *writer* while keeping the legacy *file* readable.
+
+   **Defect in the cutover input — the manifest under-counts readers.** That entry records
+   `readers: ['deep-research reducer']`, but a census of executable consumers finds six:
+   `deep-research/scripts/reduce-state.cjs`, `deep-research/scripts/divergent-research-pivot.ts`,
+   `runtime/scripts/fanout-run.cjs`, `runtime/scripts/fanout-merge.cjs`, `runtime/scripts/fanout-salvage.cjs`, and
+   `runtime/scripts/verify-iteration.cjs`. Twenty-four executable readers of mode state files exist across the
+   runtime overall. The projection's shape and refresh boundary must satisfy every one of them, not the reducer
+   alone, and `fanout-run.cjs` drives live multi-model runs — so an under-specified projection breaks orchestration
+   rather than a single derived file.
 2. **RATIFIED 2026-08-19 by the operator: no rollback window.** The cutover is a direct flip, not a staged or
    dual-write transition, and legacy writers are retired at flip time rather than after an observation period. The
    phase's rollback-window machinery is therefore out of scope for this cutover path. The operator was shown the

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/003-pilot-mode-cutover",
   "description": "Plan the deep-research pilot that wires the authority-flip coordinator into its production composition root behind a rollback window, requires shadow",
   "keywords": [
@@ -17,8 +18,7 @@
     "requires",
     "shadow"
   ],
-  "lastUpdated": "2026-08-19T06:20:17.086Z",
-  "level": "2",
+  "lastUpdated": "2026-08-19T06:22:42.230Z",
   "specId": "003",
   "folderSlug": "pilot-mode-cutover",
   "parentChain": [
