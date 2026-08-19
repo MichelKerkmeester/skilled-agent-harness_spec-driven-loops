@@ -1,0 +1,8 @@
+{
+  "workflowMode": "sk-design-md-generator",
+  "packet": ".",
+  "leafRoots": ["references", "assets", "feature-catalog", "manual-testing-playbook"],
+  "excludeIndexFiles": true,
+  "resourceContractVersion": 1,
+  "_note": "Standalone single-mode manifest config. sk-design-md-generator is a normal skill (no mode-registry.json / hub-router.json); its references/assets/feature-catalog/manual-testing-playbook docs are the routed leaves that the in-SKILL.md INTENT_SIGNALS + RESOURCE_MAP router selects. backend/ (the Playwright extract-write-validate pipeline), styles/ (the style corpus + database), procedures/, changelog/, and benchmark/ are not routable leaves and sit outside leafRoots. Consumed by generate-leaf-manifest.cjs to emit leaf-manifest.json; leaf-aliases.json is the derived identity projection, so regenerate both together via ci-skill-root-metadata.cjs --fix."
+}

@@ -1,0 +1,34 @@
+{
+  "specFolder": "sk-design/016-deprecate-sk-design-interface",
+  "description": "The `sk-design` parent hub currently routes exactly two workflow modes through `mode-registry.json`: `sk-design-interface` (invents new visual",
+  "keywords": [
+    "sk-design",
+    "parent",
+    "hub",
+    "currently",
+    "routes",
+    "exactly",
+    "two",
+    "workflow",
+    "modes",
+    "mode-registry",
+    "json",
+    "sk-design-interface",
+    "invents",
+    "new",
+    "visual"
+  ],
+  "lastUpdated": "2026-08-19T04:27:40.951Z",
+  "specId": "016",
+  "folderSlug": "deprecate-sk-design-interface",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "19-08-26_05-18__phase-parent-deprecate-the-sk-design-hub.md",
+    "19-08-26_05-26__phase-parent-deprecating-sk-design-hub-interface.md",
+    "19-08-26_05-27__phase-parent-deprecating-sk-design-hub-interface.md"
+  ],
+  "level": "2"
+}

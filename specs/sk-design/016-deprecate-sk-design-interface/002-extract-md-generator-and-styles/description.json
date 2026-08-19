@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/016-deprecate-sk-design-interface/002-extract-md-generator-and-styles",
+  "description": "Phase 002 moves sk-design-md-generator (120 tracked) and styles (7,812 tracked) out of the doomed hub into a new top-level skill root via directory",
+  "keywords": [
+    "phase",
+    "moves",
+    "sk-design-md-generator",
+    "tracked",
+    "styles",
+    "doomed",
+    "hub",
+    "new",
+    "top-level",
+    "skill",
+    "root",
+    "via",
+    "directory"
+  ],
+  "lastUpdated": "2026-08-19T05:04:09.404Z",
+  "specId": "002",
+  "folderSlug": "extract-md-generator-and-styles",
+  "parentChain": [
+    "sk-design",
+    "016-deprecate-sk-design-interface"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-08-26_06-03__extraction-complete-7-932-clean-git-mv-renames.md",
+    "19-08-26_06-04__extraction-complete-7-932-clean-git-mv-renames.md"
+  ]
+}

@@ -1,0 +1,18 @@
+You are an investigation worker running inside the full OpenCode runtime for this repository. Spec folder: specs/cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation (pre-approved, skip Gate 3). Work at maximum reasoning effort.
+
+TASK: Determine whether the `pi` CLI (its config lives under .pi/) can register and authenticate the Cline provider — provider id `cline-pass`, base URL https://api.cline.bot/api/v1, OpenAI-compatible — and surface its models (especially deepseek-v4-flash) in pi's `/login` provider list and its model picker, to reach parity with opencode. opencode already dispatches `cline-pass/cline-pass/deepseek-v4-flash`; pi's `/login` currently does NOT offer Cline.
+
+HARD CONSTRAINTS:
+- READ-ONLY on every .pi file. Do NOT modify, create, or delete any file under .pi/. To test a hypothetical config change, reason about it or copy a file to /tmp — never mutate the live .pi config.
+- Ground EVERY load-bearing claim in real evidence: a file excerpt with path and line, or a command's actual output. Never present speculation as fact. Mark anything you cannot verify as UNKNOWN.
+- Do not dispatch any `opencode run` / cli-* sub-session. Investigate directly with Read/Grep/Bash.
+
+INVESTIGATE — answer each with evidence:
+1. PROVIDER RESOLUTION: How does pi resolve providers and models? What backs pi's `/login` provider list and its model picker — a fixed built-in provider set compiled into pi, or the same models.dev registry opencode uses (where `cline-pass` is defined)? Inspect .pi/settings.json, .pi/models.json, .pi/PLUGINS.md, .pi/SYNC.md. Run `pi --help` and every pi subcommand that reveals providers/models/auth/login (try: `pi models`, `pi providers`, `pi auth`, `pi login --help`, `pi --version`). Report exactly which commands exist and their real output. If `pi` is not on PATH, say so and how it is invoked.
+2. CONFIG-ONLY FEASIBILITY: Could adding a `cline-pass` provider block to .pi/models.json (provider + base URL + key/auth) plus an `enabledModels` entry in .pi/settings.json make `cline-pass/cline-pass/deepseek-v4-flash` selectable in pi WITHOUT any code change? Base this on how pi actually reads .pi/models.json `providers` — study the existing openrouter and opencode-go blocks in that file for the accepted shape, and whether custom OpenAI-compatible providers (base URL + key) are supported there.
+3. AUTH PATH: Can pi reuse opencode's existing Cline credential (~/.local/share/opencode/auth.json contains a `cline-pass` entry), or does pi need its own login/key? Where does pi store provider auth (path)? Does pi share opencode's auth store or keep its own?
+4. WHY OMITTED: Confirm pi's `/login` omits Cline today and explain the mechanism (fixed built-in list vs registry gap vs missing auth).
+
+DELIVERABLE: Write your full findings to specs/cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation/scratch/pi-cline-findings.md as a structured report. End the report with a line exactly of the form:
+VERDICT: <config-only-feasible | extension-required | not-feasible> — <one-sentence cheapest concrete mechanism, or why not>
+Also print that same VERDICT line to stdout as your final output. Do not modify any file other than that one scratch findings file.

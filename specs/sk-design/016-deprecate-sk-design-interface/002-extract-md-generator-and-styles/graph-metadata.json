@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/016-deprecate-sk-design-interface/002-extract-md-generator-and-styles",
+  "spec_folder": "sk-design/016-deprecate-sk-design-interface/002-extract-md-generator-and-styles",
+  "parent_id": "sk-design/016-deprecate-sk-design-interface",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "extract md-generator standalone",
+      "git mv sk-design-md-generator",
+      "extract md-generator plan",
+      "extract md-generator tasks",
+      "extract md-generator summary"
+    ],
+    "key_topics": [
+      "extract",
+      "md-generator",
+      "standalone",
+      "git",
+      "sk-design-md-generator",
+      "plan",
+      "tasks",
+      "summary",
+      "phase",
+      "moves",
+      "tracked",
+      "styles"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mutation Class",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "directory",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Move",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 moves sk-design-md-generator (120 tracked) and styles (7,812 tracked) out of the doomed hub into a new top-level skill root via directory git mv, preserving build artifacts and the style corpus, leaving a transiently unwired tree that phase 003 repairs.",
+    "created_at": "2026-08-19T05:03:10.568Z",
+    "last_save_at": "2026-08-19T05:04:09.404Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:11eba629b18b05c039b0c1952f0fcedd533283a389c09a6118542c919e525f11",
+    "source_doc_hashes": {
+      "spec.md": "96e6963644f21aca7aafef27111f95d1c81c3ce96227dcb3c8205cb2f7e4c87d",
+      "plan.md": "b57c7263b8ee4f81d7bf979b6e312d1629abdedeecd8b8177f935cc9e596f654",
+      "tasks.md": "378c5c1a4978b17ed7c3c5b8d141b78eab537159b7864a688e722e3589a11773",
+      "implementation-summary.md": "cece3d7bed3a4b6da2775438900967449c76aaa89ef1234427b3c8fa61865417"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

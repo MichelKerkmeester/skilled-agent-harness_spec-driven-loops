@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-communication/002-sk-communication-triggers/002-rewrite-response",
+  "description": "The sk-communication projection layer rewrites CLI output through a model, but a user has no way to ask the active AI to re-render its own reply in",
+  "keywords": [
+    "sk-communication",
+    "projection",
+    "layer",
+    "rewrites",
+    "cli",
+    "output",
+    "model",
+    "user",
+    "way",
+    "ask",
+    "active",
+    "re-render",
+    "own",
+    "reply"
+  ],
+  "lastUpdated": "2026-08-19T04:41:42.349Z",
+  "specId": "002",
+  "folderSlug": "rewrite-response",
+  "parentChain": [
+    "sk-communication",
+    "002-sk-communication-triggers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

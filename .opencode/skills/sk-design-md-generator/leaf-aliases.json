@@ -1,0 +1,267 @@
+[
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "assets/cardinal-rules-card.md",
+    "diskPath": "assets/cardinal-rules-card.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "assets/design-md-prompt-template.md",
+    "diskPath": "assets/design-md-prompt-template.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "assets/source-of-truth-router-card.md",
+    "diskPath": "assets/source-of-truth-router-card.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "feature-catalog/cluster-classify/cluster-classify.md",
+    "diskPath": "feature-catalog/cluster-classify/cluster-classify.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "feature-catalog/extract/extract.md",
+    "diskPath": "feature-catalog/extract/extract.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "feature-catalog/feature-extractors/feature-extractors.md",
+    "diskPath": "feature-catalog/feature-extractors/feature-extractors.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "feature-catalog/interaction-capture/interaction-capture.md",
+    "diskPath": "feature-catalog/interaction-capture/interaction-capture.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "feature-catalog/procedure-cards/md-generator-procedure-card-inventory.md",
+    "diskPath": "feature-catalog/procedure-cards/md-generator-procedure-card-inventory.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "feature-catalog/report-preview/report-preview.md",
+    "diskPath": "feature-catalog/report-preview/report-preview.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "feature-catalog/validate/validate.md",
+    "diskPath": "feature-catalog/validate/validate.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "feature-catalog/write-design-md/write-design-md.md",
+    "diskPath": "feature-catalog/write-design-md/write-design-md.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/accessibility/accessibility-section.md",
+    "diskPath": "manual-testing-playbook/accessibility/accessibility-section.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/authoring-boundary/authoring-boundary.md",
+    "diskPath": "manual-testing-playbook/authoring-boundary/authoring-boundary.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/cluster/oklch-clustering.md",
+    "diskPath": "manual-testing-playbook/cluster/oklch-clustering.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/dark-mode/dark-mode-gate.md",
+    "diskPath": "manual-testing-playbook/dark-mode/dark-mode-gate.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/detectors/framework-icon-motion-detection.md",
+    "diskPath": "manual-testing-playbook/detectors/framework-icon-motion-detection.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/escalation/anti-bot-escalation.md",
+    "diskPath": "manual-testing-playbook/escalation/anti-bot-escalation.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/extract/live-extraction.md",
+    "diskPath": "manual-testing-playbook/extract/live-extraction.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/fidelity/verbatim-value-fidelity.md",
+    "diskPath": "manual-testing-playbook/fidelity/verbatim-value-fidelity.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/guided-run/guided-run-smoke-lane.md",
+    "diskPath": "manual-testing-playbook/guided-run/guided-run-smoke-lane.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/interaction/interaction-state-matrix.md",
+    "diskPath": "manual-testing-playbook/interaction/interaction-state-matrix.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md",
+    "diskPath": "manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/procedure-card-contract/card-selection-proof.md",
+    "diskPath": "manual-testing-playbook/procedure-card-contract/card-selection-proof.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/procedure-card-contract/no-card-fallback.md",
+    "diskPath": "manual-testing-playbook/procedure-card-contract/no-card-fallback.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/report/report-generation.md",
+    "diskPath": "manual-testing-playbook/report/report-generation.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/setup/tool-readiness.md",
+    "diskPath": "manual-testing-playbook/setup/tool-readiness.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/source-of-truth/source-of-truth-card.md",
+    "diskPath": "manual-testing-playbook/source-of-truth/source-of-truth-card.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/study/editorial-exemplar-study.md",
+    "diskPath": "manual-testing-playbook/study/editorial-exemplar-study.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "manual-testing-playbook/validate/phantom-hex-detection.md",
+    "diskPath": "manual-testing-playbook/validate/phantom-hex-detection.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/anti-patterns.md",
+    "diskPath": "references/anti-patterns.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/authoring-boundary.md",
+    "diskPath": "references/authoring-boundary.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/color-role-taxonomy.md",
+    "diskPath": "references/color-role-taxonomy.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/component-taxonomy.md",
+    "diskPath": "references/component-taxonomy.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/design-md-format.md",
+    "diskPath": "references/design-md-format.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/README.md",
+    "diskPath": "references/examples/README.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/editorial-exemplar.md",
+    "diskPath": "references/examples/editorial-exemplar.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/linear/DESIGN.md",
+    "diskPath": "references/examples/linear/DESIGN.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/linear/tokens.json",
+    "diskPath": "references/examples/linear/tokens.json"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/linear/writing-notes.md",
+    "diskPath": "references/examples/linear/writing-notes.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/stripe/DESIGN.md",
+    "diskPath": "references/examples/stripe/DESIGN.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/stripe/tokens.json",
+    "diskPath": "references/examples/stripe/tokens.json"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/stripe/writing-notes.md",
+    "diskPath": "references/examples/stripe/writing-notes.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/supabase/DESIGN.md",
+    "diskPath": "references/examples/supabase/DESIGN.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/supabase/tokens.json",
+    "diskPath": "references/examples/supabase/tokens.json"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/supabase/writing-notes.md",
+    "diskPath": "references/examples/supabase/writing-notes.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/vercel/DESIGN.md",
+    "diskPath": "references/examples/vercel/DESIGN.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/vercel/tokens.json",
+    "diskPath": "references/examples/vercel/tokens.json"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/examples/vercel/writing-notes.md",
+    "diskPath": "references/examples/vercel/writing-notes.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/extraction-workflow.md",
+    "diskPath": "references/extraction-workflow.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/guided-run.md",
+    "diskPath": "references/guided-run.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/quality-checklist.md",
+    "diskPath": "references/quality-checklist.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/troubleshooting.md",
+    "diskPath": "references/troubleshooting.md"
+  },
+  {
+    "workflowMode": "sk-design-md-generator",
+    "leafResourceId": "references/writing-style-guide.md",
+    "diskPath": "references/writing-style-guide.md"
+  }
+]
