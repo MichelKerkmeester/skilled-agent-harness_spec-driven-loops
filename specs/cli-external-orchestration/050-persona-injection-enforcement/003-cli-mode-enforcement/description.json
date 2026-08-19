@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/050-persona-injection-enforcement/003-cli-mode-enforcement",
+  "description": "P2 produced the shared `persona-injection-contract.md`, but the six external-CLI mode SKILL.md files and the hub SKILL.md still document dispatch",
+  "keywords": [
+    "produced",
+    "shared",
+    "persona-injection-contract",
+    "six",
+    "external-cli",
+    "mode",
+    "skill",
+    "files",
+    "hub",
+    "still",
+    "document",
+    "dispatch"
+  ],
+  "lastUpdated": "2026-08-19T11:14:09.161Z",
+  "specId": "003",
+  "folderSlug": "cli-mode-enforcement",
+  "parentChain": [
+    "cli-external-orchestration",
+    "050-persona-injection-enforcement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

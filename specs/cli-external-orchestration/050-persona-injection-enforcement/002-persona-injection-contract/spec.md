@@ -170,4 +170,6 @@ Medium. The design is synthesis from the verified P1 inventory plus two existing
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Parent**: See `../spec.md`
+- **Previous phase**: See `../001-analysis-inventory/spec.md`
+- **Next phase**: See `../003-cli-mode-enforcement/spec.md`
 - **Inventory (input)**: See `../001-analysis-inventory/scratch/dispatch-point-inventory.md`

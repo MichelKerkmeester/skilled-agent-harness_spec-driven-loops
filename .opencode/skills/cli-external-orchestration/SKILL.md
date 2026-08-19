@@ -167,6 +167,7 @@ Each mode's self-invocation guard is runtime-signal-based (env var / process anc
 - Keep the surface router's `RESOURCE_MAP` in sync with `leaf-manifest.json` — the leaf sets dual-read to canonical typed pairs at the one contract boundary (`sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`).
 - Keep every `RESOURCE_MAP` path packet-qualified (`<packet>/references|assets/…`) and resolving on disk.
 - Read the target mode's `SKILL.md` before composing any dispatch prompt (constitutional cli-dispatch-skill-preload rule) — the advisor recommendation alone does not waive this.
+- Attach the resolved agent persona to every external-CLI dispatch (AGENTS.md §7 runtime agent dir; the right agent per subtask, never a bare task) — each mode's `SKILL.md` carries the native-surface-vs-inline mechanic, and the canonical contract is `../sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md` "Persona Injection".
 
 ### ⛔ NEVER
 
@@ -194,3 +195,4 @@ Each mode's self-invocation guard is runtime-signal-based (env var / process anc
 - Per-mode provider/model/invocation catalogs: each mode's `references/providers-and-models.md` is the dedicated single-source index of that mode's providers, model ids, personas/effort tiers, and dispatch shapes.
 - Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts`.
 - Constitutional CLI dispatch skill-preload rule: `../system-spec-kit/constitutional/cli-dispatch-skill-preload.md`.
+- Persona-injection contract (canonical): `../sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md` "Persona Injection" — every mode attaches the resolved agent persona on dispatch.
