@@ -59,7 +59,7 @@ parity result counts only when a perturbed run has been shown to make the same o
 - [ ] CHK-011 [P0] A divergent or stale parity result is shown to block the flip rather than warn (REQ-004) [DEFERRED: the flip cannot be requested, so a stale-parity block is untestable; `evaluateCutoverPreflight` is never reached from `legacy_authoritative`]
 - [ ] CHK-012 [P0] The transition produced one event, one epoch, one canonical route (SC-003) [DEFERRED: `AuthorityCompareAndSwapInput.expectedState` is the literal `'cutover_ready'` at `authority-registry.ts:80`; a never-flipped mode reads `legacy_authoritative` at `authority-registry.ts:66` and no code path connects them]
 - [ ] CHK-013 [P0] A real multi-leaf fan-out completes after the flip (REQ-006, SC-004) [DEFERRED: presupposes a flip that cannot execute; `cutover-coordinator.ts:171` requires `cutover_ready` and no mode can reach it]
-- [ ] CHK-014 [P1] Full suite re-run and reported as a delta against the baseline [DEFERRED: the whole-suite re-run costs 7895s and would measure a phase that is not finished; the targeted suite is 19/19 exit 0 and parity is 49/49 exit 0]
+- [x] CHK-014 [P1] Full suite re-run and reported as a delta against the baseline [EVIDENCE: `npx vitest run` over the whole suite at `b3a9b1e2e4`, `7405.77s`. Baseline 15 failed / 4111 passed / 4165 total / 182 files -> final 14 failed / 4175 passed / 4228 total / 186 files. The failing-file set is a strict subset of baseline, so no regression; the four new files and `+63` tests account for the growth exactly. The `-1` is a load-sensitive timeout (`model-benchmark-ledger-schema`) that still fails standalone, reported as noise rather than a fix. See `scratch/full-suite-delta.md`]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

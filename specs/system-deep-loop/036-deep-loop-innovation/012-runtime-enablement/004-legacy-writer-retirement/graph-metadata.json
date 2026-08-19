@@ -48,6 +48,7 @@
       "checklist.md",
       "scratch/append-site-conformance.md",
       "scratch/protocol-retirement-baseline.md",
+      "scratch/full-suite-delta.md",
       "scratch/guard-probe.mjs",
       "tasks.md"
     ],
@@ -98,6 +99,12 @@
         "name": "protocol-retirement-baseline.md",
         "kind": "doc",
         "path": "scratch/protocol-retirement-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "full-suite-delta.md",
+        "kind": "doc",
+        "path": "scratch/full-suite-delta.md",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After the fleet is enabled, every mode's canonical writes go through the gateway, but the direct-append paths still",
     "created_at": "2026-08-19T06:57:08.198Z",
-    "last_save_at": "2026-08-19T20:56:35.583Z",
+    "last_save_at": "2026-08-19T23:04:15.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e5e69c6b36257fcbe035f1ad38398317724e8ee4173dcd9f99e506f5f665e60",
+    "source_fingerprint": "sha256:dfa70e800b936b005e62257dfe7891e6eef5a21d77b04bfb567099f949d8dec4",
     "source_doc_hashes": {
       "spec.md": "9316737a64709732d753fadfb436a01008c28de54cd4915808d223c760defd76",
       "plan.md": "06b0381329b8b98bd4e36a5ea2100989dc9f9635d2582ba08dc70c177d547798",
       "tasks.md": "83965280f4bd6fbf30544372dbcb5ba7b99b0a509ef71645a9da52aef3c27cd7",
-      "checklist.md": "316f72026cdee6d2bc55873e97f191329b985ca6cd636d534f3444993dc49e93",
-      "implementation-summary.md": "a990948fd5c15f8103455c1ce886686f44ebe279cfde7d5024bc8ba34f7a90e7"
+      "checklist.md": "ce48deaf0c8083fbe4f18353a29745a0556ae63d9f858ab7148c6527d7d46be2",
+      "implementation-summary.md": "0f42cc48bfdd529077bbfdd093cf599b01ddcb55d632f9ae462ba5a2d0a925a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

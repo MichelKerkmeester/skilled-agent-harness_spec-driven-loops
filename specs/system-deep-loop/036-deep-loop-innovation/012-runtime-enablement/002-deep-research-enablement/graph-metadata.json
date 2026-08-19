@@ -47,6 +47,7 @@
       "checklist.md",
       "scratch/seam-executed.md",
       "scratch/seam-execution-receipt.json",
+      "scratch/full-suite-delta.md",
       "tasks.md"
     ],
     "entities": [
@@ -84,6 +85,12 @@
         "name": "seam-execution-receipt.json",
         "kind": "config",
         "path": "scratch/seam-execution-receipt.json",
+        "source": "derived"
+      },
+      {
+        "name": "full-suite-delta.md",
+        "kind": "doc",
+        "path": "scratch/full-suite-delta.md",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Deep-research state is produced by agents following prose",
     "created_at": "2026-08-19T06:57:07.880Z",
-    "last_save_at": "2026-08-19T21:01:04.260Z",
+    "last_save_at": "2026-08-19T23:04:17.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac7fe7ded3e437af4f8401ecff4befe5f30db8371d6d91ba6cfc2be1494fe1e4",
+    "source_fingerprint": "sha256:908aa0a8226495088836efa86c17d27ef15cc24eb5e7cd918676ae1bf7624bd8",
     "source_doc_hashes": {
       "spec.md": "aa7305d8347d7b7b7ec3b0746fb1c9cc8a64e91d13eea4f0ed1c5ad14c483e15",
       "plan.md": "6b5a5c48fcec891c8cdc1ef1bbeec86cd83ca63260904abdda3ef0fbf3434a44",
       "tasks.md": "efc52c900dfdd83c9b2d08b2e894718408a1317ce192591988f42de3db585984",
-      "checklist.md": "ac5e5e5a07f34cd52b22fcf5514f0f43846f8dcb197786d529f08fd701401e7e",
-      "implementation-summary.md": "818260c2638db5363c2ad377990379bd82fad1cdb05e7b45b8b020f4d58e1204"
+      "checklist.md": "c31d8e07e8e2989416e519406d43204199b57deb912f8568b5c1c02984e64b13",
+      "implementation-summary.md": "5ac9c89dd895fb861911f3bef13a3be9ef6cd552d72fede8078cfc3a8f37e459"
     },
     "last_active_child_id": null,
     "last_active_at": null
