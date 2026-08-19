@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The P1 inventory confirmed the gap: only `cli-claude-code` `--agent` loads a resolved persona natively on the non-interactive path; the other five modes and the `fanout-run.cjs` runtime dispatch persona-less",
     "created_at": "2026-08-19T09:34:02.744Z",
-    "last_save_at": "2026-08-19T09:39:45.245Z",
+    "last_save_at": "2026-08-19T10:49:39.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5bc347927c429a494b99077953ebdfdb4f1c9da6701f98d25b32c59df2909e15",
+    "source_fingerprint": "sha256:4eb249407615e4d83746b04ecbd80fb804ab33471b0c7e240574e9a2e74469d1",
     "source_doc_hashes": {
       "spec.md": "22822efe4f2d0be3fc687e6a7535745fd5191ddbb0ca0e8dc19e25321041fa56",
       "plan.md": "9c693cabcc30866a8e4c0b05a19b6c3a68506c9d5283788f94b1b870cb3a8b8b",
       "tasks.md": "04dc54593c4be9c8226ec1ee0e7400a69669be3d333b47b11e87b605fd33dcb2",
       "checklist.md": "36c8113432a94caf7d7a7cadb2964a3eb03683abc7841f491dd53f07509071fe",
-      "implementation-summary.md": "10dbe1e86b91ac22056967b8b66429c0e3d066d04ae73f2f7dbcf2bc7decfd67"
+      "implementation-summary.md": "2ec617ed0db00f09abf1898e72bbfd973c39f0c3b83c45e1b0ca188703f9e687"
     },
     "last_active_child_id": null,
     "last_active_at": null

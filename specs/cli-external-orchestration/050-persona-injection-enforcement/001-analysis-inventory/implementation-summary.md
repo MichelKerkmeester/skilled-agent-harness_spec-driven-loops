@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement/001-analysis-inventory"
-    last_updated_at: "2026-08-19T09:42:00Z"
+    last_updated_at: "2026-08-19T10:48:00Z"
     last_updated_by: "claude"
-    recent_action: "Inventory produced + verified; cline check inconclusive; P1 docs closed"
+    recent_action: "cline verified tool-free; cursor P0 correction reconciled into inventory + contract"
     next_safe_action: "Author P2 persona-injection contract (002-persona-injection-contract)"
     blockers: []
     key_files:
@@ -90,7 +90,7 @@ A single read-only cli-devin dispatch (Gemini 3.7 Flash @ high, `context` agent 
 | cli-devin analysis produced | PASS — 28 KB, all 6 sections, `INVENTORY_COMPLETE` |
 | Cited file:line claims spot-verified (deterministic) | PASS — orchestrate.md protocol, cli-devin invocation + Rules 12–14, sync guard, claude-code `--agent`, opencode subagent rejection, 6-card count |
 | All 6 modes + hub + sk-prompt covered | PASS — completeness sweep + mode-registry.json cross-check |
-| Independent cline/DeepSeek-Flash cross-check | INCONCLUSIVE — 2 attempts; harness tool-call incompatibility (documented, flagged to operator) |
+| Independent cline/DeepSeek-Flash cross-check | PASS (tool-free) — REQUEST CHANGES: found + source-confirmed the cli-cursor native-surface P0 correction; reconciled into the inventory + contract |
 | `validate.sh --strict` | see below |
 <!-- /ANCHOR:verification -->
 
@@ -99,6 +99,7 @@ A single read-only cli-devin dispatch (Gemini 3.7 Flash @ high, `context` agent 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Independent verify leg inconclusive.** The cli-opencode/cline (DeepSeek V4 Flash @ xhigh) cross-check the operator specified did not complete across two attempts — first an invalid `--format text` flag (opencode only accepts `default`/`json`), then an early exit with DeepSeek-Flash tool-call markup (`<｜DSML｜tool …`) leaking as literal text just before the report step. Root cause is a cline-pass/opencode tool-call-format incompatibility, not a defect in the inventory. This affects the verify leg for **all** phases; flagged to the operator to decide (accept deterministic verification / retry with a focused-summary persona / switch verify model or provider).
-2. **Source-drift finding (out of P1 scope to fix):** 6 real `cli-*/assets/prompt-quality-card.md` files exist, but the canonical `cli-prompt-quality-card.md` "MIRROR SYNC" section says "three cli-* cards" and the sync-guard header says "4 cli-* executors". Recorded for P4 consideration.
+1. **Independent verify leg now working (tool-free).** The cli-opencode/cline (DeepSeek V4 Flash @ xhigh) cross-check first failed on an invalid `--format text` flag, then on DeepSeek-Flash tool-call markup (`<｜DSML｜…`) leaking on the cline-pass transport. Root cause: the cline-pass endpoint does not parse DeepSeek's tool-call format. Fix: dispatch **tool-free** (inline the inventory + source; no Read/Grep needed). A minimal probe confirmed the model responds cleanly; the tool-free verification then completed and returned a full adversarial review (evidence: `scratch/p1-verification-cline-deepseek.md`).
+2. **The verification caught a real P0 the deterministic pass missed:** the inventory wrongly classed `cli-cursor` as inline-only; source confirms cursor has a native subagent surface. Corrected in the inventory's appended "INDEPENDENT VERIFICATION CORRECTIONS" section and in the P2 contract `§3`.
+3. **Source-drift finding (P4):** 6 real `cli-*/assets/prompt-quality-card.md` files exist, but the canonical `cli-prompt-quality-card.md` "MIRROR SYNC" section says "three" and the sync-guard header says "4 executors". Recorded for P4.
 <!-- /ANCHOR:limitations -->

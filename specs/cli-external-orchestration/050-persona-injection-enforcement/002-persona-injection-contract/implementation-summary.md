@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract"
-    last_updated_at: "2026-08-19T09:30:00Z"
+    last_updated_at: "2026-08-19T10:48:00Z"
     last_updated_by: "claude"
-    recent_action: "Contract authored + verified; P2 docs closed"
+    recent_action: "Contract §3 corrected via cline verification (cursor/devin native surfaces)"
     next_safe_action: "Begin P3 mode SKILL + hub enforcement edits"
     blockers: []
     key_files:
@@ -91,8 +91,9 @@ Authored by the orchestrator as a synthesis (reduce) of the verified P1 inventor
 | Check | Result |
 |-------|--------|
 | Contract covers all 7 required sections | PASS |
-| Every `§3` verdict traces to P1 `§C` | PASS — deterministic cross-read |
+| Every `§3` verdict traces to source | PASS — deterministic cross-read; `§3` CORRECTED after independent cline/DeepSeek verification (cursor/devin native surfaces) |
 | Precedents confirmed present | PASS — `orchestrate.md:138`, Rule 14 per mode |
+| Independent cline/DeepSeek cross-check (tool-free) | PASS — drove the `§3` native-surface correction |
 | `validate.sh --strict` | see below |
 <!-- /ANCHOR:verification -->
 
@@ -101,6 +102,6 @@ Authored by the orchestrator as a synthesis (reduce) of the verified P1 inventor
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Independent verify leg still inconclusive.** As in P1, the operator-specified cli-opencode/cline (DeepSeek V4 Flash) cross-check is non-functional (harness tool-call incompatibility); this phase rests on deterministic verification. Flagged for an operator decision.
+1. **Contract `§3` was corrected by the independent verification.** The cli-opencode/cline (DeepSeek V4 Flash @ xhigh) cross-check — once run tool-free (inline source, no tool calls) — found that P1 under-counted native persona surfaces (`cli-cursor` and `cli-devin` have native subagent surfaces, not inline-only). `§3` now reflects the corrected native-surface-vs-inline split. Verify leg is working, not inconclusive.
 2. **P2 authored by orchestrator, not cli-devin.** Minor allocation choice: contract design is reduce/synthesis of P1's verified output, so it was authored directly; cli-devin is reserved for the P3/P4 fan-out builds. Recorded for operator awareness.
 <!-- /ANCHOR:limitations -->
