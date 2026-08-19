@@ -82,6 +82,36 @@ agent_config:
 # ─────────────────────────────────────────────────────────────────
 # STATE FILE PATHS
 # ─────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
+# CANONICAL STATE WRITE MECHANISM
+# ─────────────────────────────────────────────────────────────────
+state_write_protocol:
+  mechanism: "append-gateway"
+  command: "node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode review --run-directory {artifact_dir} --event-json <record file>"
+  applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
+  refusal_handling: "halt on exit 2; never fall back to a direct file write"
+  migration_exception: "the one-shot legacy-state migration command appends a legacy-shaped migration marker directly; it predates the canonical log and is not a workflow record"
+  contract: |
+    Every canonical record named by an append_to_jsonl or append_jsonl directive below is
+    written by invoking the command above with that record as the event JSON. Those directives
+    specify WHAT to record; this block specifies HOW every record reaches the log, so the
+    mechanism is stated once rather than repeated at each site where it could drift.
+
+    The gateway authorizes the write against the mode's durable authority record, serialises it
+    behind the ledger fence, returns a receipt, and refreshes state_log from the ledger. Exit 0
+    means the record is durable. Exit 2 means it was refused, and the refusal names the check
+    that failed.
+
+    Writing state_log directly bypasses ordering, authorization, and the receipt. Two writers
+    can then interleave with no shared ordering, and a record nobody authorized carries no
+    receipt, so a later reader cannot tell an accepted record from an invented one. A refusal
+    is a halt, never a reason to write the file directly.
+
+    One exception exists and is deliberate. The legacy-state migration command appends a
+    legacy-shaped migration marker directly, because it runs before a canonical log exists and
+    records that the move happened rather than recording workflow progress. Every record the
+    workflow itself produces goes through the gateway.
+
 state_paths:
   # Template paths document the canonical packet layout. Runtime resolution happens via
   # step_resolve_artifact_root plus the shared resolver, so root specs keep
