@@ -210,7 +210,10 @@ function validateFamilyCompatibility(
   provider: ProviderModelRecord['provider'],
   issues: ValidationIssue[],
 ): void {
-  const compatible = (input.family === ProviderFamilies.OPENCODE_GO
+  const compatible = (input.family === ProviderFamilies.EXTERNAL_CLI
+      && provider.deploymentMode === 'hosted'
+      && provider.protocol === ProviderProtocols.OPENAI_CHAT_COMPLETIONS)
+    || (input.family === ProviderFamilies.OPENCODE_GO
       && provider.deploymentMode === 'hosted'
       && provider.protocol === ProviderProtocols.OPENAI_CHAT_COMPLETIONS)
     || (input.family === ProviderFamilies.GENERIC_HOSTED

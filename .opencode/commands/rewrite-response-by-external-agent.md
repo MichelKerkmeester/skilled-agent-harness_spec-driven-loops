@@ -143,15 +143,18 @@ Execute the following steps in order:
 - Proceed to Step 4 to display the result.
 
 #### Branch B: External AI CLI Skill (`cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`)
-- Validate the chosen CLI skill against the six supported external skills.
-- **Dispatch Preload Rule**: Read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` before composing the dispatch prompt.
-- Prepare the rewrite prompt incorporating the target text, protected span constraints, and the plain-English rubric.
-- Dispatch the prompt to the chosen external CLI skill with inline environment scoping:
+- Validate the chosen CLI skill against the six supported external skills, then map `cli-<skill>` to its engine id: `cli-claude-code` → `claude-code`; `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi` → `codex`, `cursor`, `devin`, `opencode`, `pi`.
+- **Dispatch Preload Rule**: Read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` to confirm the engine's default model id (opencode and pi expect a `provider/model` id), or use the user's explicit model override.
+- Route the rewrite through the package's external-cli provider entrypoint, passing the target text on stdin and scoping projection to this single process:
   ```bash
-  COMMUNICATION_PROJECTION_ENABLED=1 <cli-dispatch-command>
+  printf '%s' "<target-text>" \
+    | COMMUNICATION_PROJECTION_ENABLED=1 node \
+        .opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs \
+        <engine> <model>
   ```
-- Capture the returned plain-English response from the external CLI invocation.
-- The inline environment variable is cleared automatically upon child process exit.
+- The entrypoint builds the `external-cli-<engine>` provider record, runs the rewrite through the CLI subprocess, and drives it through the package's privacy routing (hosted-retained under egress consent), fidelity validation, and exact-original fallback. It prints the projected plain-English text — or the byte-exact original on any denied route, dispatch failure, or rejected rewrite — to stdout, and a `STATUS=` line to stderr.
+- Capture the entrypoint's stdout as the projection result.
+- The inline environment variable is cleared automatically upon child process exit; the entrypoint sets no global projection state.
 - Proceed to Step 4 to display the result.
 
 #### Branch C: Local LLM Provider (`local`)
@@ -243,5 +246,6 @@ STATUS=OK
 - **Display-Only Invariant:** This command modifies only the immediate presentation layer. It does not alter conversation transcripts, model history, or project files.
 - **Default-OFF Invariant:** Global default-off state is preserved across all environments. `enablement.local.json` is never written to enable projection.
 - **Guaranteed Cleanup:** `COMMUNICATION_PROJECTION_ENABLED` is scoped strictly to the child subprocess execution and ceases to exist immediately upon exit, even during errors or cancellations.
+- **Pipeline Routing (Branch B):** The external-cli path runs through the package's `external-cli-project` entrypoint, so every cli-* rewrite passes the same privacy routing, fidelity validation, and exact-original fallback as the local provider path. A denied route, dispatch failure, or rejected rewrite returns the byte-exact original.
 - **Supported External CLIs:** The six supported external CLI skills are `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, and `cli-pi`.
 - **Preload Requirement:** The executing agent must read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` prior to external dispatch.

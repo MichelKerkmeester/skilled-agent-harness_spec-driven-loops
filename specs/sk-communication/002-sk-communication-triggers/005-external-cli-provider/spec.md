@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers/005-external-cli-provider"
-    last_updated_at: "2026-08-19T05:55:00.000Z"
+    last_updated_at: "2026-08-19T07:35:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Scoped external-cli provider build"
-    next_safe_action: "Implement family, adapter, preset, transport"
+    recent_action: "Landed external-cli provider; gate green"
+    next_safe_action: "Reconcile parent metadata and validate"
     blockers: []
     key_files:
       - ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-005-external-cli-provider"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator approved building the first-class external-cli provider (option B)."
@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 5: external-cli provider
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
@@ -42,15 +42,15 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 2 |
+| **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-08-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 5 |
 | **Predecessor** | 004-skill-and-mirrors |
-| **Successor** | Parent closeout verification |
+| **Successor** | 006-external-cli-runtime-wiring |
 | **Handoff Criteria** | The external-cli provider builds, `npm run check` is green, the sk-code drift-guard packet delta is clean, the catalog and playbook reference the new adapter code, and every touched folder validates `--strict` with zero errors. |
 <!-- /ANCHOR:metadata -->
 

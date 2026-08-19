@@ -7,7 +7,9 @@
     "sk-communication/002-sk-communication-triggers/001-research-contracts",
     "sk-communication/002-sk-communication-triggers/002-rewrite-response",
     "sk-communication/002-sk-communication-triggers/003-rewrite-response-by-external-agent",
-    "sk-communication/002-sk-communication-triggers/004-skill-and-mirrors"
+    "sk-communication/002-sk-communication-triggers/004-skill-and-mirrors",
+    "sk-communication/002-sk-communication-triggers/005-external-cli-provider",
+    "sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring"
   ],
   "manual": {
     "depends_on": [],
@@ -35,7 +37,7 @@
       "package"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "002-rewrite-response/spec.md",
@@ -87,15 +89,15 @@
     ],
     "causal_summary": "The sk-communication projection layer ships as a package that is off by default and invoked by hand",
     "created_at": "2026-08-19T04:24:46.147Z",
-    "last_save_at": "2026-08-19T04:55:44.762Z",
+    "last_save_at": "2026-08-19T07:28:51.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c72ee7cf52243d32ad32e3c0fd0a5373e278b8be95022bdf748724eebd5c615d",
+    "source_fingerprint": "sha256:035436d59171a4028b7b2490da81635ac8b6a99b08ce3ac56dcf3a5dda765ad9",
     "source_doc_hashes": {
-      "spec.md": "47e26af662c0c57d0dc4856296b27883bbd0d1841dc129643d3f7952d78d0099"
+      "spec.md": "551fe58c7563fbcb8a123cdc5e0b382d2fa3f7b06874f2a40d2db9a136126549"
     },
     "last_active_child_id": "sk-communication/002-sk-communication-triggers/004-skill-and-mirrors",
     "last_active_at": "2026-08-19T04:46:01.327Z"

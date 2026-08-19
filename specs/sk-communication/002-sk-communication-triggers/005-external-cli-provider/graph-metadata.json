@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-communication/002-sk-communication-triggers/004-skill-and-mirrors",
-  "spec_folder": "sk-communication/002-sk-communication-triggers/004-skill-and-mirrors",
+  "packet_id": "sk-communication/002-sk-communication-triggers/005-external-cli-provider",
+  "spec_folder": "sk-communication/002-sk-communication-triggers/005-external-cli-provider",
   "parent_id": "sk-communication/002-sk-communication-triggers",
   "children_ids": [],
   "manual": {
@@ -11,25 +11,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk-communication skill note",
-      "trigger command mirrors",
-      "cross-runtime command mirror"
+      "external-cli provider",
+      "cli provider family",
+      "external agent projection provider",
+      "cli transport"
     ],
     "key_topics": [
-      "sk-communication",
-      "skill",
-      "note",
-      "trigger",
+      "external-cli",
+      "provider",
+      "cli",
+      "family",
+      "external",
+      "agent",
+      "projection",
+      "transport",
       "command",
-      "mirrors",
-      "cross-runtime",
-      "mirror",
-      "two",
-      "commands",
-      "existed",
-      "opencode"
+      "engine",
+      "path",
+      "pure"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -93,7 +94,7 @@
         "source": "derived"
       },
       {
-        "name": "Operator Trigger Commands",
+        "name": "Problem Statement Command",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -105,8 +106,14 @@
         "source": "derived"
       },
       {
-        "name": "Core Implementation",
-        "kind": "proper_noun",
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -175,17 +182,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The two commands existed under `.opencode/commands/` but were undocumented in the skill and unmirrored, so operators had no in-skill pointer to the trigger surface and the commands were not invokable across runtimes",
-    "created_at": "2026-08-19T04:54:46.199Z",
-    "last_save_at": "2026-08-19T06:35:13.461Z",
+    "causal_summary": "Command 2's cli- engine path is pure command-level orchestration",
+    "created_at": "2026-08-19T06:20:53.378Z",
+    "last_save_at": "2026-08-19T07:28:51.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +195,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:289a54253e705c9d0e9dd0c4530ce598fd6267b31819e25a11d02f818448efa9",
+    "source_fingerprint": "sha256:f4de1b82afb3488df61e0076f0aee045b1041b3158d5aef74c4d29d1149b873d",
     "source_doc_hashes": {
-      "spec.md": "684229e1eb48e389c8fa3b1f686dd44148f6e10d50d908d602ab3a48b0805234",
-      "plan.md": "37321177ee5733a4daa6101e621c688e214e5991417c1a72fbed883abca12143",
-      "tasks.md": "49b6ef5470a28f633bc310a46e8d2da407b2a02c86405b6bb3b8477c01243297",
-      "implementation-summary.md": "6685fe72c268cb9a15663822ed6fd640214a705c00663defd368214a2133e0c4"
+      "spec.md": "3f5b2dcfa033e21e69ba84ad6f8c10b4a02e7ebef0b5363a0d9848fa4eaf6542",
+      "plan.md": "81cd01c91d81088aa2fbb63b9842009a0342b4b48b2190c5906222fd9229296a",
+      "tasks.md": "2687f2705fc12f2d25946ca6295664be694d4c0f7acb6bf814541da285dedee2",
+      "implementation-summary.md": "935b598d98942aa61f1e14a78cc4ab88cdfa1ddab148f5890d20c8e5d6723e70"
     },
     "last_active_child_id": null,
     "last_active_at": null

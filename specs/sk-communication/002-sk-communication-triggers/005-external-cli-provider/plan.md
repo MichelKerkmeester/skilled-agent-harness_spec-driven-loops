@@ -6,10 +6,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers/005-external-cli-provider"
-    last_updated_at: "2026-08-19T05:55:00.000Z"
+    last_updated_at: "2026-08-19T07:35:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Planned external-cli provider build"
-    next_safe_action: "Implement family, adapter, preset, transport"
+    recent_action: "Landed external-cli provider; gate green"
+    next_safe_action: "Reconcile parent metadata and validate"
     blockers: []
     key_files:
       - ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts"
@@ -17,14 +17,14 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-005-external-cli-provider"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 5: external-cli provider
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
@@ -72,26 +72,26 @@ The provider system drives every family through an injected `ProviderTransport`:
 
 ### Phase 1: Provider family and record
 
-- [ ] Add `EXTERNAL_CLI` to `ProviderFamilies` and the adapter switch case.
-- [ ] Add the registry family/protocol compatibility clause.
-- [ ] Add `createExternalCliModelRecord` and export it.
+- [x] Add `EXTERNAL_CLI` to `ProviderFamilies` and the adapter switch case.
+- [x] Add the registry family/protocol compatibility clause.
+- [x] Add `createExternalCliModelRecord` and export it.
 
 ### Phase 2: Transport and runner
 
-- [ ] Create `createExternalCliTransport` mapping a wire request to a CLI invocation and back.
-- [ ] Create `createChildProcessCliRunner` with an injected spawn boundary and an engine-command table.
-- [ ] Export the transport API through the barrel.
+- [x] Create `createExternalCliTransport` mapping a wire request to a CLI invocation and back.
+- [x] Create `createChildProcessCliRunner` with an injected spawn boundary and an engine-command table.
+- [x] Export the transport API through the barrel.
 
 ### Phase 3: Tests and pipeline proof
 
-- [ ] Cover preset validity, privacy routing, adapter body, and end-to-end candidate and fallback.
-- [ ] Cover the transport seam, engine resolution, argv, timeout, and stdout handling with an injected double.
+- [x] Cover preset validity, privacy routing, adapter body, and end-to-end candidate and fallback.
+- [x] Cover the transport seam, engine resolution, argv, timeout, and stdout handling with an injected double.
 
 ### Phase 4: Verification and references
 
-- [ ] Run `npm run check` and the sk-code drift guards; capture output and exit status.
-- [ ] Author the feature-catalog entry and playbook scenario and register them in their indexes.
-- [ ] Run `validate.sh --strict` on every touched spec folder.
+- [x] Run `npm run check` and the sk-code drift guards; capture output and exit status.
+- [x] Author the feature-catalog entry and playbook scenario and register them in their indexes.
+- [x] Run `validate.sh --strict` on every touched spec folder.
 <!-- /ANCHOR:phases -->
 
 ---

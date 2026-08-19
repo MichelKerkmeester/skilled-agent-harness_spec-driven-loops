@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers"
-    last_updated_at: "2026-08-19T00:00:00.000Z"
+    last_updated_at: "2026-08-19T09:30:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Both commands shipped; packet validates clean"
+    recent_action: "Added external-cli runtime wiring phase 006"
     next_safe_action: "None; packet complete"
     blockers: []
     key_files:
@@ -108,6 +108,8 @@ Detailed research, design, implementation, and verification belong to the child 
 | `.opencode/skills/sk-communication/cli-communication-projection/` | Modify | 003 | Engine path for command 2 (scope pending Fork 1) |
 | `.opencode/skills/sk-communication/SKILL.md` | Modify | 004 | Document the trigger surface |
 | `.claude/commands/`, `.cursor/commands/`, `.codex/prompts/` | Create | 004 | Cross-runtime command mirrors |
+| `.opencode/skills/sk-communication/cli-communication-projection/bin/`, `src/`, `test/` | Create/Modify | 006 | External-cli runtime entrypoint, per-engine command table, projection module, and tests |
+| `.opencode/commands/rewrite-response-by-external-agent.md` | Modify | 006 | Branch B routes through the external-cli entrypoint |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -121,7 +123,9 @@ Detailed research, design, implementation, and verification belong to the child 
 | 2 | `002-rewrite-response/` | `/rewrite-response` — in-context self-rewrite, no LLM, display-only | 1 | Complete |
 | 3 | `003-rewrite-response-by-external-agent/` | `/rewrite-response-by-external-agent` — one-shot engine-choice flow, command-level orchestration (no package edits) | 1 | Complete |
 | 4 | `004-skill-and-mirrors/` | sk-communication `SKILL.md` trigger-surface note and cross-runtime command mirrors | 1 | Complete |
-| 5 | (parent closeout) | Final gate: `validate.sh --strict --recursive`, hygiene sweep, metadata reconciliation | — | Complete |
+| 5 | `005-external-cli-provider/` | First-class external-cli provider family, injected CLI transport, tests, and catalog and playbook references | 1 | Complete |
+| 6 | `006-external-cli-runtime-wiring/` | Runnable external-cli entrypoint over projectMessage, verified per-engine command table, and command 2 Branch B adoption | 1 | Complete |
+| 7 | (parent closeout) | Final gate: `validate.sh --strict --recursive`, hygiene sweep, metadata reconciliation | — | Complete |
 
 ### Phase Transition Rules
 
@@ -137,8 +141,9 @@ Detailed research, design, implementation, and verification belong to the child 
 | 001 research-contracts | 002 rewrite-response | Facts verified: activation gate, runnable entrypoint, provider families, cli roster, dispatch contract | Phase 001 research evidence |
 | 002 rewrite-response | 003 by-external-agent | `/rewrite-response` passes `validate_document.py --type command` and the projection/no-LLM invariants hold | Independent validator re-run |
 | 003 by-external-agent | 004 skill-and-mirrors | Command 2 flips ON→run→OFF with a guaranteed off, honoring privacy and exact-original fallback | Command validator plus package `npm run check` if code changed |
-| 004 skill-and-mirrors | 005 verification | SKILL update keeps default-off intact; mirrors resolve in every runtime | Mirror resolve check plus SKILL review |
-| 005 verification | Parent closeout | Both commands authored to template, invariants intact, every touched folder validates `--strict` clean | Recursive strict validation |
+| 004 skill-and-mirrors | 005 external-cli-provider | SKILL update keeps default-off intact; mirrors resolve in every runtime | Mirror resolve check plus SKILL review |
+| 005 external-cli-provider | 006 external-cli-runtime-wiring | Provider builds, `npm run check` is green, catalog and playbook reference the new adapter code | Package gate plus recursive strict validation |
+| 006 external-cli-runtime-wiring | Parent closeout | The entrypoint routes the cli-* path through `projectMessage`, the engine table resolves all six engines, command 2 Branch B invokes the entrypoint, and the gate is green | Package gate plus recursive strict validation |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -146,7 +151,7 @@ Detailed research, design, implementation, and verification belong to the child 
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- **Fork 1 (resolved):** command 2 was built as command-level orchestration — the goal's literal reading — touching no shipped package code. A first-class `external-cli` package provider that routes the cli-* path through the package's privacy and fidelity pipeline is recorded as a recommended future hardening, requiring a package change and operator approval.
+- **Fork 1 (resolved and built):** command 2 first shipped as command-level orchestration; phase 005 then built the first-class `external-cli` package provider that routes the cli-* path through the package's privacy and fidelity pipeline, under operator approval.
 - **Fork 2 (resolved):** all six cli-* skills are selectable engines.
 <!-- /ANCHOR:questions -->
 
