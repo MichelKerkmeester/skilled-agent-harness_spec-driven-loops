@@ -61,13 +61,14 @@ The append gateway is the sanctioned way every canonical record reaches a mode's
    ```
 
 5. Capture stdout JSON, exit code, and the artifacts created under the run directory.
-6. Confirm the projected legacy record and the projection watermark carry the documented fields.
-7. Re-run each of the four measured negative cases and confirm none of them writes a state file or a ledger frame:
+6. In the captured stdout JSON, check `projectionRefreshed` and treat `false` as a finding even when the exit code is 0 — the append can succeed while the legacy projection does not refresh, in which case `projectionError` carries the named reason. Exit 0 only means the event is durable; it does not mean the legacy file was refreshed.
+7. Confirm the projected legacy record and the projection watermark carry the documented fields.
+8. Re-run each of the four measured negative cases and confirm none of them writes a state file or a ledger frame:
    - A bare, unprefixed stem (`"stem":"run_initialized"`) — exit 1, `reason` `"Envelope field must be a bounded non-empty string"`, code `RUNTIME_ERROR`.
    - An event file carrying neither stem nor event_type (e.g. `{"type":"event","event":"x"}`) — exit 1, `reason` `"Unrecognized event format: expected object with stem or event_type"`, code `RUNTIME_ERROR`.
    - An unresolvable mode name (`--mode not-a-real-mode`) — exit 1, `reason` `"Unsupported mode: not-a-real-mode"`, code `RUNTIME_ERROR`.
    - A mode that resolves but sits outside the frozen authority order (`--mode deep-improvement`) — exit 2, `reason` `"Mode 'deep-improvement' is not in the frozen authority order: deep-research, deep-review, deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark, deep-alignment"`, code `AUTHORITY_DENIED`.
-8. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+9. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
 
 ### Expected Outcome
 
@@ -90,6 +91,7 @@ append-mode-event.cjs matches the documented current reality, the source anchors
 - The watermark carries `ledger_sequence` 1, a `ledger_record_hash`, `projection_version` `"legacy-research-state@1"`, and `reducer_version` `"deep-research-state-reducer@1"`.
 - No authority record is written, so the mode stays on legacy authority and this works before any cutover.
 - Exit 1 and exit 2 mean different things and must not be treated interchangeably: exit 1 is a script error where the input never reached authority, exit 2 is a refusal at the authority boundary.
+- Exit 0 means the event is durable, not that the legacy file was projected. `projectionRefreshed` is the signal for whether the legacy projection file was actually refreshed; it must be checked separately from the exit status, and `projectionError` carries the named reason when it is `false`. A caller that inspects only the exit code can leave the legacy file silently stale while every signal it looked at says success.
 
 ### Failure Modes
 
@@ -107,6 +109,8 @@ Two distinct exit codes carry two distinct meanings; do not conflate them.
 - Admission denied, admission closed, or the append itself failing also exit 2.
 
 Exit 2 is the refusal path, demonstrably: it is a halt, never a licence to write the state file directly.
+
+**Exit 0 with a stale projection — the append succeeded, the legacy projection did not refresh.** This is neither exit 1 nor exit 2, and must not be read as a clean write. The event is durable in the ledger (asserted at sequence 1), the exit code is 0, `ok` is `true`, yet `projectionRefreshed` is `false` and `projectionError` names the reason the refresh did not happen. The legacy file stays stale until it is refreshed, and because that file is the one existing consumers read, a caller that checks only the exit status will see success while the projected state lags the ledger.
 
 - Source file no longer exposes the documented function, type, script argument, or output field.
 - Matching test coverage is missing, renamed, or contradicts the documented behavior.
