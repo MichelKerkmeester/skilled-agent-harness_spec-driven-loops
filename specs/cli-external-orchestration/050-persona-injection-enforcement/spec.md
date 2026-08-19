@@ -108,8 +108,8 @@ Make agent-persona injection a documented, enforced rule across every external-C
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| P1 | `001-analysis-inventory/` | Inventory every agent persona + every CLI dispatch/prompt-composition point across the 6 modes, the hub, and sk-prompt; classify native-load-vs-inline per mode; confirm the gap with evidence | In Progress |
-| P2 | `002-persona-injection-contract/` | Design the shared persona-injection contract: dispatch-block format, runtime path resolution (AGENTS.md §7), native-vs-inline decision rule, explicit exceptions | Planned |
+| P1 | `001-analysis-inventory/` | Inventory every agent persona + every CLI dispatch/prompt-composition point across the 6 modes, the hub, and sk-prompt; classify native-load-vs-inline per mode; confirm the gap with evidence | Complete |
+| P2 | `002-persona-injection-contract/` | Design the shared persona-injection contract: dispatch-block format, runtime path resolution (AGENTS.md §7), native-vs-inline decision rule, explicit exceptions | Complete |
 | P3 | `003-cli-mode-enforcement/` | Apply the contract to all 6 mode SKILLs + hub SKILL ALWAYS/NEVER rules | Planned |
 | P4 | `004-sk-prompt-alignment/` | Carry the persona-injection step into sk-prompt prompt-craft references | Planned |
 | P5 | `005-verification/` | Objective grep/audit sweep + `validate.sh --strict` across touched packets + regression delta | Planned |

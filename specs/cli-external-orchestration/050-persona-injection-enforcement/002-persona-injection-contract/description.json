@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
+  "description": "The P1 inventory confirmed the gap: only `cli-claude-code` `--agent` loads a resolved persona natively on the non-interactive path; the other five",
+  "keywords": [
+    "inventory",
+    "confirmed",
+    "gap",
+    "only",
+    "cli-claude-code",
+    "agent",
+    "loads",
+    "resolved",
+    "persona",
+    "natively",
+    "non-interactive",
+    "path",
+    "five"
+  ],
+  "lastUpdated": "2026-08-19T09:39:32.169Z",
+  "specId": "002",
+  "folderSlug": "persona-injection-contract",
+  "parentChain": [
+    "cli-external-orchestration",
+    "050-persona-injection-enforcement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
