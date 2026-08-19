@@ -38,7 +38,7 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "scratch/suite-baseline-and-delta.md",
       "spec.md",
@@ -103,12 +103,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,6 +110,12 @@
       },
       {
         "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The authority selector is defined as \"the one route decision a mode adapter would consult at its canonical",
     "created_at": "2026-08-19T06:57:07.715Z",
-    "last_save_at": "2026-08-19T10:20:48.422Z",
+    "last_save_at": "2026-08-19T10:27:21.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:202700dcfd95885caf7699bbfe543c294330c74395d0e42d894307fe40632f0f",
+    "source_fingerprint": "sha256:1d245b7c881ef980dfb38281ff0a2ea6b11d4456b65836a83e91c89a608b9492",
     "source_doc_hashes": {
-      "spec.md": "5d4b17316f672e818871f7099a57f22f7b8d4f5e67c93cc3779a4e2da7eead0b",
+      "spec.md": "f86512e47845337641e3561c4ae46b26ed6ec61a617c51b14b464b3832170bb4",
       "plan.md": "264a726d33d330621ef45f754af5b0e64d307faba44090e79349d041705e5992",
       "tasks.md": "8d73457ac11c03648c3d06846d08b354d263feb48563bd35e159529b29b7b617",
-      "checklist.md": "9c60bb6b8fb3ce29a701a0ee80f7e8506743f336d7c6e90cdd662c34235ae4e9",
-      "implementation-summary.md": "e7275c7ef9607e174c5a19a4a923c4526a6c705d5fddfade29e3ff000efaa9b9"
+      "checklist.md": "8e9bdb3ab1f6fdd43f627858c4c7d30c45e898890e6bbb342e0d7ca278b1a0b6",
+      "implementation-summary.md": "c08e861910cedbca1869a68fc76989c281af965399b821e5f0e475799a59801d"
     },
     "last_active_child_id": null,
     "last_active_at": null

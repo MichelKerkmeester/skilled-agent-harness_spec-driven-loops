@@ -12,16 +12,14 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection"
     last_updated_at: "2026-08-19T10:30:00Z"
     last_updated_by: "opencode"
-    recent_action: "Landed the gateway, CLI and first projection contract"
-    next_safe_action: "Close the reader contract on a real run scaffold"
-    blockers:
-      - "Reader contract needs a run scaffold with retained legacy inputs"
-      - "Projected config row omits three documented fields"
+    recent_action: "Closed the reader contract and the row-conformance justification"
+    next_safe_action: "Begin the deep-research protocol migration"
+    blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts"
       - ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts"
       - ".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Projection failure succeeds with a stale marker; the append is already durable"
@@ -38,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Commit** | `a980092ffe` on `worktrees/022-012-runtime-enablement-build`, not pushed |
 | **Completed** | 2026-08-19 |
 | **Lines** | 1894 added across 7 files |
@@ -111,6 +109,26 @@ namespace grammar`; an incomplete payload returned `Required payload field is mi
 |---------|--------|----------|
 | Authorization denial disabled | 2 tests red | 10/10 green |
 | Projection success path broken | 3 tests red | 10/10 green |
+| Fence resource made unique per call | 4 tests red, incl. concurrency | 10/10 green |
+
+The fence control matters most. It proves the concurrency test detects a broken fence rather than
+passing by luck: with serialisation removed, the test that asserts `min=1, max=2` and a two-event
+ledger goes red.
+
+**Reader contract, exercised against a real run scaffold.**
+
+| Consumer | Result |
+|----------|--------|
+| `reduce-state.cjs` | exit 0, `corruptionCount: 0` |
+| `fanout-merge.cjs` | exit 0 |
+| `fanout-salvage.cjs` | exit 0 |
+| `divergent-research-pivot.ts` | exit 0 |
+| `verify-iteration.cjs` | exit 1, structured `iteration_file_missing` — no iterations exist in the scaffold; the projection parsed cleanly |
+| `fanout-run.cjs` | not run live: a dispatcher that would spawn real model calls. Its state reads are covered by a unit suite passing in baseline |
+
+A synthetic directory is not sufficient. The scaffold needs the retained legacy inputs — the config
+file and the strategy file, the latter built from the shipped template asset because the reducer
+requires its anchor sections.
 
 **Suite delta.** Baseline at `e6f17e1cbf5`: 35 failed / 4074 passed / 39 skipped of 4148, across 20
 files, in 2h 47m. The targeted delta over every affected file reproduced exactly those failures,
@@ -120,17 +138,19 @@ identical by name, and added 10 passing tests. Zero regressions.
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
-**Projected row conformance is unreconciled.** The projected config row carries `type`, `topic` and
-`maxIterations` but omits `convergenceThreshold`, `stuckThreshold` and `specFolder`, and names its
-timestamp field differently from the documented row. Enumerated, not yet justified.
+**Row conformance is justified, not merely enumerated.** `convergenceThreshold`, `stuckThreshold`
+and `specFolder` occur zero times in the deep-research ledger schema, so no ledger event carries
+them and the projection cannot source them. They live in the config file, which the manifest
+classifies `retain-legacy-input` precisely because operator input is not ledger-derived. The
+timestamp field name differs from the documented row, and no consumer is affected: the only reader
+of `createdAt` takes it from the config file and already falls back when absent.
 
-**The reader contract is unverified.** The consumers need a complete run scaffold. `reduce-state.cjs`
-requires `deep-research-config.json` and `deep-research-strategy.md`, which the manifest classifies
-`retain-legacy-input` because operator input is not ledger-derived. A synthetic directory cannot
-stand in for a real run.
-
-**Two negative controls remain unrun** — the envelope refusal and the concurrency guarantee. The
-concurrency one matters most: a serialised-by-luck test would pass against a broken fence.
+**The gateway does not verify envelopes; its callers prepare them.** The section labelled as
+envelope verification resolves the policy and passes the record through. Malformed input is refused
+at the authorization boundary instead, which the authorization control proves red. The CLI does
+prepare a typed envelope from raw JSON, so the observable contract — a shell caller needs no runtime
+object — holds. The internal division of labour differs from the phase description and is recorded
+here rather than reshaped to match it.
 
 **Correction worth keeping.** The missing config file first looked like a projection defect. It is
 not; the manifest deliberately excludes it. The projection was right and the test setup was wrong.
