@@ -247,6 +247,15 @@ Produce an evidence-backed architecture and execution plan before implementation
 - Raw session/message IDs become directory names and a later recursive-deletion target at `../context/claudish-to-english-main/rewrite.sh:102` and `:126`; the portable design must not carry that path risk forward.
 - The optional Markdown path mutates files after an opt-in directory check and uses a temporary rename at `../context/claudish-to-english-main/rewrite-md.sh:100` and `:200`; it is a separate semantic surface from display-only rewriting.
 - Current-source runtime and provider links, confidence labels, and the exact research workflow are in `plan.md`.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+- The two workflow-owned lineages completed the forced 7+3 split with `maxIterationsReached`; all ten canonical iteration validators passed.
+- The recommended architecture mirrors immutable runtime events and changes only a separate display projection. Claude can use `MessageDisplay`; Codex, OpenCode, Devin, and Cursor should use client-owned presentation; Pi should use custom rendering or JSON/RPC rather than finalized-message mutation.
+- A versioned assembler must reconcile source order, arrival order, completion, duplicate conflict, concurrent identities, cancellation, timeout, and retry generations before projection.
+- Protected spans and deterministic-first validation must reject changed literals, code, Markdown structure, facts, polarity, caveats, requirement strength, or next steps. Every rejection selects the byte-identical original.
+- Provider records are model-specific and privacy eligibility precedes quality, latency, or cost. Local content never falls back to hosted inference without explicit compatible consent.
+- Canonical findings, evidence labels, evaluation design, unresolved probes, and the seven-stage downstream phase map live in `research/research.md`.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:evidence -->
 
 <!-- SCAFFOLD_VALIDATION_COUNTS:
