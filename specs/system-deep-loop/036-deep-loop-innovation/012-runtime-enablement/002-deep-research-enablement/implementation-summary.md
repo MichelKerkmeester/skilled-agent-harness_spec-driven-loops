@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-de
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement"
-    last_updated_at: "2026-08-20T13:22:51Z"
+    last_updated_at: "2026-08-20T18:58:08Z"
     last_updated_by: "claude"
-    recent_action: "Gave the evidence derivation one home and built the reader that refuses an absent producer"
+    recent_action: "Recorded the four built pieces and the two independent reasons the flip stays blocked"
     next_safe_action: "Wire reader to derivation to classification manifest to drill adapter"
     blockers:
       - "No production code constructs an effect ledger, so pendingEffects and receipts are unobservable"
@@ -66,6 +66,37 @@ The protocol now names the gateway: the executor invariant, the continuity contr
 direct-mode fallback, and the JSONL state reference. Both command manifests carry one
 `state_write_protocol` block declaring the gateway as the mechanism for every `append_to_jsonl`
 directive, so the mechanism is stated once instead of at forty sites where it could drift.
+
+Since that first pass, four more pieces were added, each closing a link in the chain between
+observed state and a cutover certificate.
+
+**The promotion edge.** `prepareCutover` on the authority registry moves a record from
+`legacy_authoritative` to `cutover_ready` at the same epoch, which is the one lifecycle transition
+that had no writer. The epoch deliberately does not change: the flip's compare-and-swap expects
+`cutover_ready` at epoch N and writes `new_authoritative_reversible` at N+1, so bumping here would
+make every flip fail. The coordinator calls it best-effort before its own gate, and swallows a
+compare-and-swap conflict, because a crash-resumed run may already have completed the flip.
+
+**One home for the derivation.** The only code that builds a classification evidence record from
+restart state lived in a fixtures module, reachable only from tests. It now lives in the
+classification package, moved verbatim — proven by diffing both bodies after normalising four
+renames, 72 lines, clean. Production and fixtures can no longer compute evidence differently while
+the fixture tests stay green.
+
+**A reader that refuses.** `observeRestartFacts` derives the five restart facts from shipped
+read-only accessors, and checks each ledger's storage directory on disk before calling any read
+method. A missing ledger throws rather than returning facts. This matters because
+`[].every(...)` is true: an absent producer reported as an empty one yields `receiptCoverage`,
+`idempotencyCoverage`, `boundedCompletion` and `verifier.verified` all true, which was confirmed by
+execution. Refusing is the only answer that invents nothing — the derivation's `uncertain` state
+requires a non-empty pending list, so routing absence through it would mean fabricating an effect.
+
+**A gate that reads the manifest.** The certificate builder checked a verdict on six of its seven
+evidence inputs; the classification manifest was checked only for shape and self-hash. The verdict
+is not retained in the row snapshot at all, so widening it would change the manifest digest that
+drills and certificates bind. It is instead reconstructed from fields the snapshot does keep —
+order, identity and receipt coverage, and lease state — and a null field fails, because an
+unasserted verdict must not read as a passing one.
 
 What was NOT built: the authority move. See KNOWN LIMITATIONS.
 <!-- /ANCHOR:what-built -->
@@ -131,12 +162,29 @@ the legacy side.
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
-**The authority move cannot execute.** `AuthorityCompareAndSwapInput.expectedState` is the literal
-type `'cutover_ready'`, its only caller is the cutover coordinator, and a never-flipped mode reads
-back `legacy_authoritative`. The declared machine is
-`legacy_authoritative -> shadowing -> cutover_ready -> new_authoritative_reversible`; only the last
-edge exists in code. Every producer of `cutover_ready` is a sandbox or a fixture. This is not the
-epic's usual "landed but unwired" — it is absent, and absent by type.
+**The authority move still cannot execute, but the reason has moved twice.** It was originally a
+missing state: no producer of `cutover_ready` existed outside a fixture. That edge is now built.
+The blocker is now evidence, and there are two independent reasons, either of which alone is
+sufficient.
+
+*First, the evidence cannot be observed.* Effects and receipts come from an effect ledger, and no
+production code constructs one — only `append-mode-event.cjs` builds ledgers, and it builds the
+mode ledger and its audit ledger. The machinery ships in `receipts-and-effect-recovery` and is
+unwired, so no production run has ever written an effect or a receipt. The reader refuses rather
+than reporting that absence as an idle system.
+
+*Second, and this survives fixing the first:* nothing read the manifest's verdict. That is now
+fixed in the certificate builder, but it is worth recording that wiring effects would have made the
+evidence truthful without making anything check it.
+
+**The effect producer does not belong to this phase.** An effect intent carries `operation`,
+`target_identity`, `adapter`, `recovery_policy` and `secret_references` — it models an external
+side effect that must survive a crash without being performed twice. A ledger append is the record,
+not the acted-upon world. Wrapping the append CLI would emit effect records corresponding to no
+external action, each confirmed immediately, producing `receiptCoverage: true` from records
+attesting to nothing. That is strictly worse than the current absence: an absence can be refused,
+a fabrication cannot be told from evidence downstream. The producer belongs in whatever executes a
+run and performs real external actions.
 
 Consequently the post-flip work is also not done: the transition event, the fan-out proof, and the
 non-pilot byte diff all presuppose a flip that cannot happen.

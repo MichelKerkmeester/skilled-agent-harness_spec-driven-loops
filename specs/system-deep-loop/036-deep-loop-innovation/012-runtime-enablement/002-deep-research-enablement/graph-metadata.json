@@ -49,6 +49,8 @@
       "scratch/directive-to-command-gap.md",
       "scratch/parity-blocks-flip.md",
       "scratch/missing-cutover-ready-producer.md",
+      "scratch/effects-have-no-producer.md",
+      "scratch/effect-producer-is-not-an-append-wrapper.md",
       "scratch/full-suite-delta.md",
       "tasks.md"
     ],
@@ -99,6 +101,18 @@
         "name": "missing-cutover-ready-producer.md",
         "kind": "doc",
         "path": "scratch/missing-cutover-ready-producer.md",
+        "source": "derived"
+      },
+      {
+        "name": "effects-have-no-producer.md",
+        "kind": "doc",
+        "path": "scratch/effects-have-no-producer.md",
+        "source": "derived"
+      },
+      {
+        "name": "effect-producer-is-not-an-append-wrapper.md",
+        "kind": "doc",
+        "path": "scratch/effect-producer-is-not-an-append-wrapper.md",
         "source": "derived"
       },
       {
@@ -184,23 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "negative",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Deep-research state is produced by agents following prose",
     "created_at": "2026-08-19T06:57:07.880Z",
-    "last_save_at": "2026-08-20T13:22:58.237Z",
+    "last_save_at": "2026-08-20T18:58:08.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c56b22772bfb8260185e9cf7e8f2671d03313f3e570bd8c2f5d7c16d3984d1c4",
+    "source_fingerprint": "sha256:b5d72437f5f1fe936fd88eddff8a7aeef752dfbbe12796864fac1e74a1d2ed46",
     "source_doc_hashes": {
       "spec.md": "aa7305d8347d7b7b7ec3b0746fb1c9cc8a64e91d13eea4f0ed1c5ad14c483e15",
       "plan.md": "6b5a5c48fcec891c8cdc1ef1bbeec86cd83ca63260904abdda3ef0fbf3434a44",
       "tasks.md": "efc52c900dfdd83c9b2d08b2e894718408a1317ce192591988f42de3db585984",
-      "checklist.md": "4f13d47efb75bd45654c9180ce92ac60e754ad2f27d027d1b6a5ec76e8bc4f32",
-      "implementation-summary.md": "a188598f98effdb736e98093efabd4387de79a31cee7c23c702629021fb0847b"
+      "checklist.md": "d9a20beecbc41e17585282d0889502e2e0165d066972d6dce50a167fb9d58593",
+      "implementation-summary.md": "a895ca9fce5c4237b1897a4ede98a1ebfa9b81bd2b682de9e70044d2deae9d81"
     },
     "last_active_child_id": null,
     "last_active_at": null

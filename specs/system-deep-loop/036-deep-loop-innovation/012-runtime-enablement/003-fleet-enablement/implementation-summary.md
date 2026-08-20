@@ -11,23 +11,29 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fl
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement"
-    last_updated_at: "2026-08-20T07:42:40Z"
+    last_updated_at: "2026-08-20T18:55:28Z"
     last_updated_by: "claude"
-    recent_action: "Reconciled a stale predecessor count"
-    next_safe_action: "Operator decision on the missing flip transitions, which block this phase and 004 through 006"
+    recent_action: "Proved by execution that a ready mode is recorded as enabled without any authority write"
+    next_safe_action: "Make the per-mode step refuse rather than return ok for work it did not perform"
     blockers:
-      - "No mode can reach cutover_ready, so no mode can be enabled"
+      - "The per-mode step contains no flip code, so a cutover_ready mode returns ok and is recorded completed with no authority record written"
+      - "That false completion persists to the state file, and the driver skips completed modes on resume, so it suppresses the next attempt"
+      - "The step cannot be the pilot's procedure parameterised, because the pilot's procedure has never completed a flip"
       - "deep-improvement-common has no working name on the append CLI; the fix crosses into the gateway and the projection manifest"
     key_files:
-      - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/mode-surface-map.ts"
-      - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/enablement-driver.ts"
       - ".opencode/skills/system-deep-loop/runtime/scripts/enable-modes.cjs"
-    completion_pct: 65
+      - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/enablement-driver.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/mode-surface-map.ts"
+      - "scratch/false-completion-proven.md"
+    completion_pct: 60
     open_questions:
-      - "Who builds the legacy-to-cutover-ready edges, and under what evidence?"
       - "Does the improvement-mode rename return to 001, given it touches the gateway and the manifest?"
+      - "Should the spec's six-mode list be reconciled to FLEET_MODE_ORDER's seven, or the order narrowed to six?"
     answered_questions:
       - "Every fleet mode has at least one manifest surface; skill-benchmark's projectable set is empty and is reported as such"
+      - "Who builds the legacy-to-cutover-ready edge: it is built, as prepareCutover on the authority registry"
+      - "The synthesized default authority record sits at epoch 1, not 0"
+      - "The gap in the step is unwritten code, not a blocked precondition; removing the block does not reveal a procedure behind it"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

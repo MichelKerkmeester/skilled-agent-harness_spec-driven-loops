@@ -50,6 +50,7 @@
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/false-completion-proven.md",
       "implementation-summary.md",
       "tasks.md"
     ],
@@ -106,6 +107,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "false-completion-proven.md",
+        "kind": "doc",
+        "path": "scratch/false-completion-proven.md",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mode registry names seven canonical modes",
     "created_at": "2026-08-19T06:57:08.040Z",
-    "last_save_at": "2026-08-20T07:42:43.670Z",
+    "last_save_at": "2026-08-20T18:57:37.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9e3fb4ed9ceaefd7521f7e0d93fa2579b81b4ba0e979d85501569ddfa7f6e38",
+    "source_fingerprint": "sha256:e33cc75cdf9c66e18401b78f7a7af9af7a7e6a11dd51e66a7265d92db664cbe2",
     "source_doc_hashes": {
       "spec.md": "c693a5eb936a71c0526bdfb4c9d9368dbecebfa81ca6563e5aaa2c4e737616aa",
       "plan.md": "1919ee26ec2b5391d29858715df79c6561b4a871349658485e19169002949e94",
       "tasks.md": "629c19ccbb626a088b076759ff5ae303dd710297f7f9ab9741278648ec663abe",
-      "checklist.md": "32a25543d2b58bc263130a41dcef4e785fb44a787ff690224d02fe946b7aabd7",
-      "implementation-summary.md": "46b48a3d63ea4019a8f4ee5130c245df9aeab075bb331a090679274e72621a6e"
+      "checklist.md": "ba119c9b00efd80859c1bba81d89822a8fab088f96305359c52df05d54f7e3a2",
+      "implementation-summary.md": "39140d4c3dce9b52a7d22bc844597aa319fa756d358a2df4e3aa1dcca0789498"
     },
     "last_active_child_id": null,
     "last_active_at": null
