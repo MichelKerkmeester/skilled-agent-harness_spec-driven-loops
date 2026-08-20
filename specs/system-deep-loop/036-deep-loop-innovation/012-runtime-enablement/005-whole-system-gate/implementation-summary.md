@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-19T21:50:00Z"
+    last_updated_at: "2026-08-20T01:17:49Z"
     last_updated_by: "claude"
-    recent_action: "Ran the whole-system gate; verdict FAIL, falsifiability proven twice"
-    next_safe_action: "Operator decision on the missing flip transitions"
+    recent_action: "Replaced a gate check that reported pass on a condition it could not fail"
+    next_safe_action: "Recapture the suite at the current candidate and regenerate the receipt"
     blockers:
       - "8 of 8 modes read legacy_authoritative, so the gate cannot pass"
       - "Predecessor 004 unbuilt; retiring legacy writers now would stop writes"
@@ -111,6 +111,27 @@ and saying so in the detail, so a bare "clean" is not read as stronger than it i
 
 **Nothing outside the gate's own output changed.** `git status --porcelain` filtered of that directory is
 empty, `.opencode/` shows zero changes, and the authority root still holds only its `README.md`.
+**One of the gate's own greens could not fail.** The check named `reader-contracts` reported `pass`
+whenever every listed consumer spawned with a numeric exit status. Node returns a numeric status even
+for a script that does not exist — measured at exit 1 for a nonexistent path — so its only declared
+failure mode never occurred. It was a green for a property nothing could falsify, sitting inside a
+receipt whose own contract forbids an advisory tier.
+
+It is now `consumer-reachability`, which is all it ever proved: it fails when a listed script is
+missing from disk or cannot be started, and reports those two counts separately so an operator can
+tell them apart. The end-to-end contract it was named for is recorded as its own `not-run` check
+beside the fan-out, so the receipt no longer implies a verification that never ran.
+
+| Stage | `consumer-reachability` |
+|-------|-------------------------|
+| Real manifest of consumers | pass |
+| One consumer hidden from disk | fail — `1 script(s) missing on disk; 0 script(s) could not be spawned` |
+| Consumer restored, hash-identical | pass |
+
+The gate's exclusion of its own output directory was checked rather than assumed while doing this:
+`tree-clean` reported clean with the gate script modified, which is correct and deliberate — the
+script lives inside the directory it measures, and the exclusion is by exact repo-relative path with
+a forced-break lever proving the check can still turn red.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

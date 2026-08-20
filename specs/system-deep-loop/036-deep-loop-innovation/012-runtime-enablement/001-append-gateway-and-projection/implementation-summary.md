@@ -10,9 +10,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-ap
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection"
-    last_updated_at: "2026-08-20T00:30:23Z"
+    last_updated_at: "2026-08-20T01:17:49Z"
     last_updated_by: "opencode"
-    recent_action: "Corrected a false deferral reason"
+    recent_action: "Repaired a mode the authority order named and the CLI could not write"
     next_safe_action: "Begin the deep-research protocol migration"
     blockers: []
     key_files:
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection |
 | **Status** | Complete |
-| **Commit** | `a980092ffe` on `worktrees/022-012-runtime-enablement-build`, not pushed |
+| **Commit** | `a980092ffe`, then `b0137b9504` for a post-completion defect repair, on `worktrees/022-012-runtime-enablement-build`, not pushed |
 | **Completed** | 2026-08-19 |
 | **Lines** | 1894 added across 7 files |
 <!-- /ANCHOR:metadata -->
@@ -133,6 +133,33 @@ requires its anchor sections.
 **Suite delta.** Baseline at `e6f17e1cbf5`: 35 failed / 4074 passed / 39 skipped of 4148, across 20
 files, in 2h 47m. The targeted delta over every affected file reproduced exactly those failures,
 identical by name, and added 10 passing tests. Zero regressions.
+**A mode the CLI could not write, found after completion.** The fleet phase recorded that one of the
+seven fleet modes had no working name on this CLI and routed the fix here, because the gateway's
+surface resolution is this phase's surface. Re-measured by execution before changing anything: every
+spelling failed, each refused by the layer the other satisfied — `improvement` and `deep-improvement`
+denied because the frozen authority order spells the mode `deep-improvement-common`, and
+`deep-improvement-common` refused by the adapter, which had no case for it. A routable mode run the
+same way cleared both gates, which is the control that makes the result specific to this mode.
+
+The authority order is the canonical vocabulary, so the CLI's private alias was the defect. Three
+sites moved together. The gateway's surface line was required rather than cleanup: without it the
+renamed mode falls to the generic tail, which yields a surface id that does not exist, so the write
+would have landed elsewhere instead of failing.
+
+The suite could not have caught this, because it was asserting the defect. Its unknown-mode test used
+a real fleet mode as its example of an unrecognized one, which can only pass while a mode exists that
+the adapter accepts and the order refuses. That branch is now unreachable: the adapter runs first and
+the two mode sets hold the same eight modes. Replacing it is a guard that walks the frozen order and
+requires every mode in it to route.
+
+| Stage | Result |
+|-------|--------|
+| Baseline, before any change | 17 passed |
+| After the fix | 19 passed |
+| Defect reintroduced | 2 failed, 6 passed — guard named `deep-improvement-common` |
+| Restored | 19 passed |
+
+Detail, including two assertions prescribed wrong and why: `scratch/unroutable-mode.md`.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

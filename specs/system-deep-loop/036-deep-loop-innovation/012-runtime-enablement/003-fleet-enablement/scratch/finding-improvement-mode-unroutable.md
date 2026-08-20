@@ -46,3 +46,23 @@ never passes through `normalizeMode`, which the dry run confirms by listing
 It becomes load-bearing the moment the flip exists. `deep-improvement-common` is third in the fleet
 order, and its enablement step has to migrate the write protocol — which means appending through
 the CLI, which is precisely the path that has no working name. The fleet run would stop there.
+
+## Resolved
+
+Fixed where this phase's scope said it belonged: the gateway and the append CLI, both owned by the
+append-gateway phase, which is where this phase's Out of Scope clause routes gateway defects. The
+mode now normalizes to the authority spelling, the adapter is keyed on it, and the gateway's surface
+resolution accepts it — the third site was required, not cleanup, because without it the write would
+have resolved to a surface id that does not exist rather than failing.
+
+The blast radius named above was re-measured rather than trusted. The projection manifest did not
+need to change: its `legacyWriter` is the historical writer name, not a routing key. The adjudication
+subsystem's like-named constant is a decision kind in a separate registry and was confirmed
+unrelated, as this finding asked.
+
+Evidence, including the negative control that turns the new guard red: the append-gateway phase's
+`scratch/unroutable-mode.md`.
+
+The cost this finding predicted — that the fleet run would stop at the third mode the moment the flip
+exists — no longer applies. A guard now walks the frozen authority order and requires every mode in
+it to route, so a recurrence fails at the mode that drifted instead of at a fleet run.

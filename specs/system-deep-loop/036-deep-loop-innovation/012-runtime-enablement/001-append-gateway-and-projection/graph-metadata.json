@@ -41,6 +41,7 @@
     "status": "complete",
     "key_files": [
       "scratch/suite-baseline-and-delta.md",
+      "scratch/unroutable-mode.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -53,6 +54,12 @@
         "name": "suite-baseline-and-delta.md",
         "kind": "doc",
         "path": "scratch/suite-baseline-and-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "unroutable-mode.md",
+        "kind": "doc",
+        "path": "scratch/unroutable-mode.md",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The authority selector is defined as \"the one route decision a mode adapter would consult at its canonical",
     "created_at": "2026-08-19T06:57:07.715Z",
-    "last_save_at": "2026-08-20T00:30:24.269Z",
+    "last_save_at": "2026-08-20T01:17:35.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e28eda945a84aa8c6a01014fe58db4ef85033f6c9a60ae098c34b1ecf552d96",
+    "source_fingerprint": "sha256:b4185230022b6aec259d1c047d32b8457f757185a7ee1f1defda384233de71cd",
     "source_doc_hashes": {
       "spec.md": "f86512e47845337641e3561c4ae46b26ed6ec61a617c51b14b464b3832170bb4",
       "plan.md": "264a726d33d330621ef45f754af5b0e64d307faba44090e79349d041705e5992",
       "tasks.md": "8d73457ac11c03648c3d06846d08b354d263feb48563bd35e159529b29b7b617",
       "checklist.md": "5997736a08baa087388c7675db98a276059a0b58d4c9545dc31bf2b557c1f2d4",
-      "implementation-summary.md": "caaf6fe7bb6e728ece905feff003363a8330221c7b4c4016badc0fe37f946b11"
+      "implementation-summary.md": "d150c36f51168673c90e2833a383fef9c73142f0971a7701fdaa5d7f4ec064ba"
     },
     "last_active_child_id": null,
     "last_active_at": null
