@@ -7,7 +7,7 @@
 // reports good news is not a gate.
 
 import { execFileSync, spawnSync } from 'node:child_process';
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, mkdirSync, statSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -322,17 +322,101 @@ function checkReaderContracts() {
   };
 }
 
-// check 6 — not run. A not-run check is an unanswered question, not a satisfied
-// one, so it can never count toward a pass; it forces the verdict to INCOMPLETE
-// at best. Recording it explicitly (rather than silently skipping) keeps the
-// receipt honest about what was and was not measured.
+// check 6 — the only check here that exercises the runtime end to end rather
+// than reading a captured artifact, so it is the one that would notice the write
+// path breaking in a way unit tests do not. A summary is a claim, so the check
+// also requires observed iteration content before believing it: a summary that
+// declares success while the lineage produced no iteration file would otherwise
+// pass, and the check would be reporting a self-declared success rather than
+// observed work.
 function checkFanoutRealRun() {
+  const summaryPath = join(SCRIPT_DIR, 'fanout-proof/research/orchestration-summary.json');
+  const iterationPath = join(
+    SCRIPT_DIR,
+    'fanout-proof/research/lineages/ds-flash-min/iterations/iteration-001.md'
+  );
+
+  let summary;
+  try {
+    summary = JSON.parse(readFileSync(summaryPath, 'utf8'));
+  } catch (e) {
+    return {
+      id: 'fanout-real-run',
+      description: 'Real fan-out dispatch produced observed lineage work',
+      status: 'fail',
+      detail: `summary unreadable (${summaryPath}): ${e.message}`,
+    };
+  }
+
+  if (typeof summary.total !== 'number' || summary.total < 1) {
+    return {
+      id: 'fanout-real-run',
+      description: 'Real fan-out dispatch produced observed lineage work',
+      status: 'fail',
+      detail: `summary.total < 1 (got ${summary.total})`,
+    };
+  }
+  if (typeof summary.succeeded !== 'number' || summary.succeeded < 1) {
+    return {
+      id: 'fanout-real-run',
+      description: 'Real fan-out dispatch produced observed lineage work',
+      status: 'fail',
+      detail: `summary.succeeded < 1 (got ${summary.succeeded})`,
+    };
+  }
+  if (summary.failed !== 0) {
+    return {
+      id: 'fanout-real-run',
+      description: 'Real fan-out dispatch produced observed lineage work',
+      status: 'fail',
+      detail: `summary.failed !== 0 (got ${summary.failed})`,
+    };
+  }
+  if (summary.all_failed !== false) {
+    return {
+      id: 'fanout-real-run',
+      description: 'Real fan-out dispatch produced observed lineage work',
+      status: 'fail',
+      detail: `summary.all_failed !== false (got ${summary.all_failed})`,
+    };
+  }
+  if (!Array.isArray(summary.orphaned_lineages) || summary.orphaned_lineages.length !== 0) {
+    return {
+      id: 'fanout-real-run',
+      description: 'Real fan-out dispatch produced observed lineage work',
+      status: 'fail',
+      detail: `orphaned_lineages not an empty array (got ${JSON.stringify(summary.orphaned_lineages)})`,
+    };
+  }
+
+  let iterSize;
+  try {
+    iterSize = statSync(iterationPath).size;
+  } catch (e) {
+    return {
+      id: 'fanout-real-run',
+      description: 'Real fan-out dispatch produced observed lineage work',
+      status: 'fail',
+      detail: `iteration artifact unreadable (${iterationPath}): ${e.message}`,
+    };
+  }
+  if (!(iterSize > 0)) {
+    return {
+      id: 'fanout-real-run',
+      description: 'Real fan-out dispatch produced observed lineage work',
+      status: 'fail',
+      detail: `iteration artifact empty or zero-size (${iterationPath}, size ${iterSize})`,
+    };
+  }
+
   return {
     id: 'fanout-real-run',
-    description: 'Real fan-out dispatch (not run)',
-    status: 'not-run',
+    description: 'Real fan-out dispatch produced observed lineage work',
+    status: 'pass',
     detail:
-      'Requires a real fan-out dispatching external CLI subprocesses. Not run: the authority check already fails, so the verdict is determined, and a real fan-out spends model budget to confirm a foregone conclusion. Recorded as not-run rather than skipped silently.',
+      `run_id ${summary.run_id}: total ${summary.total}, succeeded ${summary.succeeded}, ` +
+      `failed ${summary.failed}, all_failed ${summary.all_failed}, orphaned ${summary.orphaned_lineages.length}; ` +
+      `iteration artifact ${iterationPath} size ${iterSize}`,
   };
 }
 

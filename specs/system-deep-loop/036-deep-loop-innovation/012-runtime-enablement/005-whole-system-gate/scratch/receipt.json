@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-20T03:31:21.154Z",
-  "candidateSha": "81949212b7c94c6f094b77b6bc24739fc0ed14ca",
+  "generatedAt": "2026-08-20T04:11:41.261Z",
+  "candidateSha": "8bbe1335e309f7d3c61b289665eaa09ace4770b4",
   "baselineSha": "8c9f0b6944ac4e43e99d26f9cf61dab74b600640",
   "forcedBreak": null,
   "verdict": "FAIL",
@@ -14,8 +14,8 @@
     {
       "id": "candidate-frozen",
       "description": "Candidate runtime tree matches the measured tree",
-      "status": "pass",
-      "detail": "identical"
+      "status": "fail",
+      "detail": ".../tests/unit/per-mode-authority-flip.vitest.ts   | 69 ----------------------\n 1 file changed, 69 deletions(-)"
     },
     {
       "id": "authority-state",
@@ -43,9 +43,9 @@
     },
     {
       "id": "fanout-real-run",
-      "description": "Real fan-out dispatch (not run)",
-      "status": "not-run",
-      "detail": "Requires a real fan-out dispatching external CLI subprocesses. Not run: the authority check already fails, so the verdict is determined, and a real fan-out spends model budget to confirm a foregone conclusion. Recorded as not-run rather than skipped silently."
+      "description": "Real fan-out dispatch produced observed lineage work",
+      "status": "pass",
+      "detail": "run_id 1787198541887-w6k53d: total 1, succeeded 1, failed 0, all_failed false, orphaned 0; iteration artifact /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/022-012-runtime-enablement-build/specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/fanout-proof/research/lineages/ds-flash-min/iterations/iteration-001.md size 4978"
     }
   ],
   "suite": {

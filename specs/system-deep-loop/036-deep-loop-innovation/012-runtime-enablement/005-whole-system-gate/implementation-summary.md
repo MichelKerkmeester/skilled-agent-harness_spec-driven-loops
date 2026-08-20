@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-20T03:32:02Z"
+    last_updated_at: "2026-08-20T04:12:31Z"
     last_updated_by: "claude"
-    recent_action: "Re-ran the gate on a clean re-measured candidate; verdict FAIL on authority"
+    recent_action: "Ran a real fan-out and made the gate check its artifacts, not its summary"
     next_safe_action: "Recapture the suite at the current candidate and regenerate the receipt"
     blockers:
       - "8 of 8 modes read legacy_authoritative, so the gate cannot pass"
