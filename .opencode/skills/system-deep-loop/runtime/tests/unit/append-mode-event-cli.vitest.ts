@@ -358,6 +358,11 @@ describe('append-mode-event CLI subprocess execution', () => {
     // the adapter would refuse it as 'Unsupported mode', or the order check
     // would refuse it as 'not in the frozen authority order'. Iterating the
     // order itself catches either drift at the mode that drifted.
+    // A mode is routable when the write either completed or was refused for a
+    // reason of its own. The two refusals the guard forbids are the ones that
+    // mean the mode never reached its schema at all. A missing reason on the
+    // refusal branch is itself a failure, because an absence check over a
+    // missing reason passes by containing nothing.
     for (const mode of AUTHORITY_FLIP_MODE_ORDER) {
       const runDir = createTempDir(`order-routable-${mode}`);
       const authorityRoot = createTempDir(`order-routable-${mode}-root`);
@@ -373,9 +378,18 @@ describe('append-mode-event CLI subprocess execution', () => {
         eventJsonPath,
       ], { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot });
 
-      const reason = String(result.json.reason);
-      expect(reason, `mode '${mode}' must be routable through the CLI`).not.toContain('Unsupported mode');
-      expect(reason, `mode '${mode}' must be routable through the CLI`).not.toContain('not in the frozen authority order');
+      if (result.json.ok === true) {
+        // Routed all the way: the write completed. Nothing further to assert for this mode.
+        expect(result.json.ok, `mode '${mode}' routed and completed`).toBe(true);
+      } else {
+        // Refused after routing: the refusal must be attributable, and it must not be either of
+        // the two refusals that mean the mode never routed at all.
+        expect(typeof result.json.reason, `mode '${mode}' must report a reason`).toBe('string');
+        expect(String(result.json.reason).length, `mode '${mode}' must report a reason`).toBeGreaterThan(0);
+        const reason = String(result.json.reason);
+        expect(reason, `mode '${mode}' must be routable through the CLI`).not.toContain('Unsupported mode');
+        expect(reason, `mode '${mode}' must be routable through the CLI`).not.toContain('not in the frozen authority order');
+      }
     }
   });
 
