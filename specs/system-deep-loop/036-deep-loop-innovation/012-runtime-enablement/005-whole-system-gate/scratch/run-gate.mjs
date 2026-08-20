@@ -7,7 +7,7 @@
 // reports good news is not a gate.
 
 import { execFileSync, spawnSync } from 'node:child_process';
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -263,14 +263,18 @@ function checkRuntimeSuite() {
   };
 }
 
-// check 5 — informational reachability of the runtime CLI scripts. Passes when
-// every script was successfully spawned (exitCode is a number, not null). A
-// null exit code means the process could not be started at all — that is the
-// only failure this check detects. A non-zero exit from a script invoked
-// without its required arguments is expected and is NOT a failure here.
-// This is proof the consumers are reachable and nothing more; it is not proof
-// they work end to end.
-function checkReaderContracts() {
+// check 5 — each listed consumer script must exist on disk and be startable.
+// A check that is structurally incapable of turning red is worse than no
+// check at all: it prints a green that lulls an operator into believing a
+// property was verified when nothing was. The previous shape only looked at
+// whether spawn returned a numeric status, but node returns a numeric status
+// even for a script that does not exist on disk — so the guard could never
+// fire and the green was meaningless. This version fails on either a missing
+// file or a spawn that could not start, which are the two things it can
+// actually prove. A non-zero exit from a script invoked without its required
+// arguments is expected and is NOT a failure here. This proves reachability
+// only; it is not proof the consumers work end to end.
+function checkConsumerReachability() {
   const scripts = [
     'scripts/reduce-state.cjs',
     'scripts/reduce-alignment-state.cjs',
@@ -283,21 +287,38 @@ function checkReaderContracts() {
   const results = [];
   for (const rel of scripts) {
     const scriptPath = join(RUNTIME, rel);
+    const exists = existsSync(scriptPath);
     const res = spawnSync(process.execPath, [scriptPath], { encoding: 'utf8', cwd: RUNTIME });
     const stdoutFirst = (res.stdout || '').split('\n').map((l) => l.trim()).find((l) => l.length > 0) || '';
     const stderrFirst = (res.stderr || '').split('\n').map((l) => l.trim()).find((l) => l.length > 0) || '';
     const firstLine = (stdoutFirst || stderrFirst || '').slice(0, 200);
-    results.push({ script: rel, exitCode: res.status, firstLine });
+    results.push({ script: rel, exists, exitCode: res.status, firstLine });
   }
-  const allSpawned = results.every((r) => r.exitCode !== null && r.exitCode !== undefined);
+  const missing = results.filter((r) => !r.exists);
+  const notSpawned = results.filter((r) => r.exitCode === null || r.exitCode === undefined);
+  const ok = missing.length === 0 && notSpawned.length === 0;
+  return {
+    id: 'consumer-reachability',
+    description: 'Every listed consumer script exists on disk and can be started',
+    status: ok ? 'pass' : 'fail',
+    detail: ok
+      ? `all ${results.length} scripts exist and spawned; non-zero exits are expected when required args are absent — this proves reachability only, not end-to-end correctness`
+      : `${missing.length} script(s) missing on disk; ${notSpawned.length} script(s) could not be spawned`,
+    results,
+  };
+}
+
+// check — not run. An end-to-end reader contract requires files projected by
+// an enabled mode; no mode is currently enabled, so running one now would
+// pass vacuously. Recorded as not-run rather than skipped silently so the
+// receipt stays honest about what was and was not measured.
+function checkReaderContracts() {
   return {
     id: 'reader-contracts',
-    description: 'Every runtime CLI script is reachable (spawn succeeds; non-zero exit from missing args is expected, not a failure)',
-    status: allSpawned ? 'pass' : 'fail',
-    detail: allSpawned
-      ? `all ${results.length} scripts spawned; non-zero exits are expected when required args are absent — this proves reachability only, not end-to-end correctness`
-      : `${results.filter((r) => r.exitCode === null || r.exitCode === undefined).length} script(s) could not be spawned`,
-    results,
+    description: 'End-to-end reader contract (not run)',
+    status: 'not-run',
+    detail:
+      'An end-to-end reader contract requires files projected by an enabled mode. No mode is currently enabled, so running one now would pass vacuously. Recorded as not-run rather than skipped silently.',
   };
 }
 
@@ -420,10 +441,13 @@ async function main() {
 
   // check 5
   try {
-    checks.push(checkReaderContracts());
+    checks.push(checkConsumerReachability());
   } catch (e) {
-    checks.push({ id: 'reader-contracts', description: 'Every runtime CLI script is reachable', status: 'fail', detail: e.message });
+    checks.push({ id: 'consumer-reachability', description: 'Every listed consumer script exists on disk and can be started', status: 'fail', detail: e.message });
   }
+
+  // check — always not-run, immediately after consumer-reachability
+  checks.push(checkReaderContracts());
 
   // check 6 — always not-run
   checks.push(checkFanoutRealRun());
