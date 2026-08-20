@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T19:40:58.971Z",
-  "candidateSha": "8cb16fba480d1f0c8bd4cff2f63695934d2d6b8c",
+  "generatedAt": "2026-08-20T03:31:21.154Z",
+  "candidateSha": "81949212b7c94c6f094b77b6bc24739fc0ed14ca",
   "baselineSha": "8c9f0b6944ac4e43e99d26f9cf61dab74b600640",
   "forcedBreak": null,
   "verdict": "FAIL",
@@ -21,19 +21,25 @@
       "id": "authority-state",
       "description": "Every mode authority has moved to new_authoritative_reversible",
       "status": "fail",
-      "detail": "read 8 modes; 8 on legacy_authoritative"
+      "detail": "Cannot find module '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/022-012-runtime-enablement-build/.opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.js' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/022-012-runtime-enablement-build/.opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/index.ts"
     },
     {
       "id": "runtime-suite",
       "description": "Candidate suite failures <= baseline (read from captured logs)",
       "status": "pass",
-      "detail": "failed 15 vs 15 (Δ+0); passed 4152 vs 4111 (Δ+41); skipped 39 vs 39 (Δ+0); total 4206 vs 4165 (Δ+41); files 184 vs 182 (Δ+2)"
+      "detail": "failed 15 vs 15 (Δ+0); passed 4188 vs 4111 (Δ+77); skipped 39 vs 39 (Δ+0); total 4242 vs 4165 (Δ+77); files 188 vs 182 (Δ+6)"
+    },
+    {
+      "id": "consumer-reachability",
+      "description": "Every listed consumer script exists on disk and can be started",
+      "status": "pass",
+      "detail": "all 7 scripts exist and spawned; non-zero exits are expected when required args are absent — this proves reachability only, not end-to-end correctness"
     },
     {
       "id": "reader-contracts",
-      "description": "Every runtime CLI script is reachable (spawn succeeds; non-zero exit from missing args is expected, not a failure)",
-      "status": "pass",
-      "detail": "all 7 scripts spawned; non-zero exits are expected when required args are absent — this proves reachability only, not end-to-end correctness"
+      "description": "End-to-end reader contract (not run)",
+      "status": "not-run",
+      "detail": "An end-to-end reader contract requires files projected by an enabled mode. No mode is currently enabled, so running one now would pass vacuously. Recorded as not-run rather than skipped silently."
     },
     {
       "id": "fanout-real-run",
@@ -54,19 +60,19 @@
     },
     "candidate": {
       "testsFailed": 15,
-      "testsPassed": 4152,
+      "testsPassed": 4188,
       "testsSkipped": 39,
-      "testsTotal": 4206,
+      "testsTotal": 4242,
       "filesFailed": 17,
-      "filesPassed": 167,
-      "filesTotal": 184
+      "filesPassed": 171,
+      "filesTotal": 188
     },
     "delta": {
       "failed": 0,
-      "passed": 41,
+      "passed": 77,
       "skipped": 0,
-      "total": 41,
-      "files": 2
+      "total": 77,
+      "files": 6
     }
   }
 }

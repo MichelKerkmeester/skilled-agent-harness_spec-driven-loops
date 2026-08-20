@@ -24,12 +24,12 @@ const RUNTIME =
 const BASELINE_LOG =
   '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/3d8efc78-2cdf-42fa-9383-4eb62a229b9b/scratchpad/p003/baseline-raw.txt';
 const CANDIDATE_LOG =
-  '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/3d8efc78-2cdf-42fa-9383-4eb62a229b9b/scratchpad/p003/after-raw.txt';
+  '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/3d8efc78-2cdf-42fa-9383-4eb62a229b9b/scratchpad/p005/candidate-raw.txt';
 
 // The commit whose tree the suite was measured against. The candidate must be
 // byte-identical to this tree on the runtime path, or the suite numbers are
 // numbers about a different commit than the one we are shipping.
-const SUITE_TREE_REF = '16e802c037';
+const SUITE_TREE_REF = 'e0e2659153';
 const DEFAULT_BASELINE_REF = '8c9f0b6944';
 
 // A nonexistent path used to force git commands to fail for --break falsifiability.

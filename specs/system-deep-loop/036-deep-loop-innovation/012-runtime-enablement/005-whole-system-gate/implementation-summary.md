@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-20T01:17:49Z"
+    last_updated_at: "2026-08-20T03:32:02Z"
     last_updated_by: "claude"
-    recent_action: "Replaced a gate check that reported pass on a condition it could not fail"
+    recent_action: "Re-ran the gate on a clean re-measured candidate; verdict FAIL on authority"
     next_safe_action: "Recapture the suite at the current candidate and regenerate the receipt"
     blockers:
       - "8 of 8 modes read legacy_authoritative, so the gate cannot pass"
@@ -85,14 +85,14 @@ nothing about the gate. Both controls were aimed at green checks.
 <!-- ANCHOR:verification -->
 ## 5. VERIFICATION
 
-**Verdict: FAIL, exit 1.** Candidate `8cb16fba48`, baseline `8c9f0b6944`.
+**Verdict: FAIL, exit 1.** Candidate `81949212b7`, baseline `8c9f0b6944`.
 
 | Check | Status | What it found |
 |-------|--------|---------------|
 | `tree-clean` | pass | clean apart from the gate's own artifacts, which are named in the detail |
 | `candidate-frozen` | pass | runtime tree byte-identical to the tree the suite measured |
 | `authority-state` | **fail** | 8 of 8 modes read `legacy_authoritative` |
-| `runtime-suite` | pass | failed 15 vs 15, passed 4152 vs 4111, skipped 39 vs 39, total 4206 vs 4165 |
+| `runtime-suite` | pass | failed 15 vs 15, passed 4188 vs 4111, skipped 39 vs 39, total 4242 vs 4165, files 188 vs 182; the 21 failure lines are byte-identical between runs |
 | `reader-contracts` | pass | all 7 consumer scripts spawned; reachability only, stated as such |
 | `fanout-real-run` | not-run | recorded with its reason, never counted as a pass |
 
@@ -132,6 +132,15 @@ The gate's exclusion of its own output directory was checked rather than assumed
 `tree-clean` reported clean with the gate script modified, which is correct and deliberate — the
 script lives inside the directory it measures, and the exclusion is by exact repo-relative path with
 a forced-break lever proving the check can still turn red.
+**The gate found real residue, which is how its cleanliness check earned its pass.** Re-run after
+the suite was re-measured, `tree-clean` failed on three tracked artifacts the suite itself had
+written: two graph databases and 51 appended observability events from the convergence producer.
+None had ever been part of a commit. That is a genuine side effect of running the suite, not of
+running the gate — confirmed by re-running the gate afterwards and finding the databases untouched.
+
+The residue was discarded and the gate re-run from a genuinely clean tree. The distinction matters:
+this check had previously passed because the artifacts happened to be clean at the time, and it has
+now been shown to fail on a real event rather than only under a forced break.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
