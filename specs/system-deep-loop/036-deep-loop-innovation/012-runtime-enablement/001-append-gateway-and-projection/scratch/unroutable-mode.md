@@ -95,3 +95,56 @@ The guard failed naming the mode that drifted:
 
 The perturbed file was restored from a copy taken before the edit and confirmed byte-identical by
 hash.
+
+## Adversarial review, and what it changed
+
+The change was handed to an independent reviewer instructed to refute rather than confirm, with the
+code inline and no file access. It returned two findings. Both were treated as hypotheses and tested.
+
+**Upheld, and it was right.** The frozen-order guard asserted only two absences against the CLI's
+reason string and never asserted a reason was present. A run that produced no reason stringifies to
+`undefined`, which contains neither forbidden phrase, so both absence checks pass and the guard
+reports a mode routed when it was not. The routing test beside it already closed exactly that vacuum;
+the guard meant to generalise it had dropped the defense.
+
+Adding the presence check then failed, and the failure was informative rather than annoying:
+
+    mode 'deep-research' must report a reason: expected 'undefined' to be 'string'
+
+The sample payload the loop feeds every mode is a valid deep-research event, so for that one mode the
+CLI **succeeds** — no reason, because there is nothing to explain. A completed write is the strongest
+evidence of routability available, and the assertion had been written as though refusal were the only
+outcome. The guard now takes both branches explicitly: the write completed, or it was refused for a
+reason of its own that is neither of the two refusals meaning the mode never reached its schema.
+
+Both branches were then proven red separately.
+
+| perturbation | branch exercised | result |
+| ------------ | ---------------- | ------ |
+| old spelling restored in the CLI | routing | `mode 'deep-improvement-common' must be routable through the CLI` |
+| `reason` deleted from every emission | presence | `mode 'deep-review' must report a reason: expected 'undefined' to be 'string'` |
+| restored, hash-identical | — | 8 passed |
+
+**Challenged an assertion that had not been shown.** The reviewer noted the claim that the renamed
+mode falls to the generic tail was asserted, not demonstrated: the manifest lookup ahead of the tail
+might have matched. That was fair, and it is now measured rather than argued — the manifest holds
+zero entries matching any of that lookup's five arms for this mode, and no surface named
+`improvement-common-state` exists at all. The claim stands, on evidence instead of on reasoning.
+
+**Recorded, not acted on.** The reviewer observed that `normalizeMode` is exported, so its changed
+return value is visible beyond the CLI. Checked: nothing in the repository imports that module, so no
+in-repo caller compares against the old literal. The residual exposure is limited to callers outside
+this repository, which cannot be ruled out from here.
+
+It also observed that a check proving a consumer exists and starts is weaker than the word
+reachability suggests — a gutted stub that exits zero would still pass. True, and the check's own
+description now claims exactly that and no more, with the deeper contract carried as an explicit
+unanswered question rather than folded into this one.
+
+## A capture that had to be discarded
+
+The full suite was started before this work settled, and kept running while the test file was edited
+and the CLI was twice perturbed and restored for the controls above. Those measurements describe a
+tree that moved underneath them, so the capture was quarantined rather than used. This is the same
+property the whole-system gate's frozen-candidate check exists to enforce, arrived at from the other
+direction. The suite was re-run only once no runtime path was dirty.
