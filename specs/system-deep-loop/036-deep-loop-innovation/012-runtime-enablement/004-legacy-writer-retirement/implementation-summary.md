@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-le
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement"
-    last_updated_at: "2026-08-20T00:55:06Z"
+    last_updated_at: "2026-08-20T01:29:44Z"
     last_updated_by: "claude"
-    recent_action: "Scoped the coverage gap by writer"
+    recent_action: "Measured the append-site census the checker's green does not cover"
     next_safe_action: "Operator decision on the missing flip transitions"
     blockers:
       - "Removing the write instruction now would leave agents no sanctioned path"
