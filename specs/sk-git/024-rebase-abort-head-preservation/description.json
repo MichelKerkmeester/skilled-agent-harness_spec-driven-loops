@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/024-rebase-abort-head-preservation",
+  "description": "The live-sync reconcilers publish a session's commits onto the shared live branch",
+  "keywords": [
+    "live-sync",
+    "reconcilers",
+    "publish",
+    "session",
+    "commits",
+    "onto",
+    "shared",
+    "live",
+    "branch"
+  ],
+  "lastUpdated": "2026-08-20T08:39:48.828Z",
+  "specId": "024",
+  "folderSlug": "rebase-abort-head-preservation",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

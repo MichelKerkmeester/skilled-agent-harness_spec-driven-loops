@@ -231,6 +231,18 @@ while :; do
     _bail 1
   fi
 
+  # Never run over a rebase this hook did not start. A leftover rebase state
+  # directory (a killed or stale rebase) makes the rebase below fail instantly,
+  # and the blanket abort would then rewind the branch to THAT rebase's orig-head
+  # — silently discarding every commit made since. Detect it first and refuse.
+  _pre_rebase_merge="$(git rev-parse --git-path rebase-merge 2>/dev/null || true)"
+  _pre_rebase_apply="$(git rev-parse --git-path rebase-apply 2>/dev/null || true)"
+  if [ -e "$_pre_rebase_merge" ] || [ -e "$_pre_rebase_apply" ]; then
+    _record blocked "pre-existing rebase in progress; refused to touch it"
+    warn "a rebase is already in progress — refusing to rebase or abort it. Resolve: git status (then git rebase --continue or --abort)."
+    _bail 1
+  fi
+
   if git rebase --quiet "$REMOTE_TIP" 2>/dev/null; then
     if _push_live; then
       _record published "rebased onto $REMOTE/$LIVE"
@@ -254,14 +266,23 @@ while :; do
   # is byte-identical to before this run; its commits stay local and unpublished.
   git rebase --abort 2>/dev/null || true
   # Assert the abort actually restored the pre-rebase state. A failed abort
-  # (residual rebase state or a dirty tree) must be surfaced as critical, never
-  # mislabeled as a clean pending — that would strand the session mid-rebase.
+  # (residual rebase state, a dirty tree, or a HEAD that moved off the pre-rebase
+  # commit) must be surfaced as critical, never mislabeled as a clean pending —
+  # that would strand the session mid-rebase or silently drop a commit.
+  _restored_head="$(git rev-parse --quiet --verify HEAD 2>/dev/null || true)"
+  # If the abort landed anywhere other than the pre-rebase commit, force it back
+  # before reporting — a detected rewind is never left in place. Tracked files are
+  # clean here (checked above), so this restores the branch exactly.
+  if [ "$_restored_head" != "$HEAD_SHA" ]; then
+    git reset --hard "$HEAD_SHA" >/dev/null 2>&1 || true
+    _restored_head="$(git rev-parse --quiet --verify HEAD 2>/dev/null || true)"
+  fi
   _rebase_merge="$(git rev-parse --git-path rebase-merge 2>/dev/null || true)"
   _rebase_apply="$(git rev-parse --git-path rebase-apply 2>/dev/null || true)"
-  if [ -e "$_rebase_merge" ] || [ -e "$_rebase_apply" ] || \
+  if [ "$_restored_head" != "$HEAD_SHA" ] || [ -e "$_rebase_merge" ] || [ -e "$_rebase_apply" ] || \
      ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
-    _record conflict "abort-failed (rebase state or tracked changes remain)"
-    warn "CRITICAL: rebase abort did not fully restore the branch — rebase state or tracked changes remain."
+    _record conflict "abort-failed (rebase state, tracked changes, or HEAD moved from $HEAD_SHA to $_restored_head)"
+    warn "CRITICAL: rebase abort did not fully restore the branch — rebase state, tracked changes, or a HEAD move remain."
     warn "fix manually: git rebase --abort   then   git status   then run git-sync again"
     _bail 1
   fi

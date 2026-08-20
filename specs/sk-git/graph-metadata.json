@@ -16,7 +16,8 @@
     "sk-git/015-remote-branch-policy",
     "sk-git/020-live-sync-harden-default-on",
     "sk-git/021-hook-gate-hardening",
-    "sk-git/022-worktree-branch-naming-overhaul"
+    "sk-git/022-worktree-branch-naming-overhaul",
+    "sk-git/024-rebase-abort-head-preservation"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +45,7 @@
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "sk-git/022-worktree-branch-naming-overhaul",
-    "last_active_at": "2026-08-16T07:03:13.556Z"
+    "last_active_child_id": "sk-git/024-rebase-abort-head-preservation",
+    "last_active_at": "2026-08-20T08:35:00.000Z"
   }
 }
