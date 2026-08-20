@@ -902,6 +902,140 @@ describe('AuthorityRegistry', () => {
   });
 
   // ─────────────────────────────────────────────────────────────────
+  // prepareCutover: the missing producer for the cutover_ready state
+  // ─────────────────────────────────────────────────────────────────
+
+  describe('prepareCutover', () => {
+    it('moves a legacy record to cutover_ready at the same epoch, with selectedWriter still legacy', () => {
+      const root = temporaryRoot('prepare-cutover');
+      seedAuthorityRecord(root, {
+        schemaVersion: 1,
+        mode: 'deep-research',
+        state: 'legacy_authoritative',
+        epoch: 5,
+        selectedWriter: 'legacy',
+        candidateSha: null,
+        policyVersion: 0,
+        cutoverCertificateDigest: null,
+        lastTransitionDigest: null,
+        updatedAt: '2026-08-09T00:00:00Z',
+      });
+      const registry = new AuthorityRegistry(root);
+      const outcome = registry.prepareCutover({
+        mode: 'deep-research',
+        expectedEpoch: 5,
+        candidateSha: CANDIDATE_SHA,
+        policyVersion: 1,
+        at: '2026-08-09T00:05:00Z',
+      });
+      expect(outcome.resumed).toBe(false);
+      expect(outcome.record.state).toBe('cutover_ready');
+      expect(outcome.record.epoch).toBe(5);
+      expect(outcome.record.selectedWriter).toBe('legacy');
+      expect(outcome.record.candidateSha).toBe(CANDIDATE_SHA);
+      expect(registry.read('deep-research').state).toBe('cutover_ready');
+      expect(registry.read('deep-research').epoch).toBe(5);
+    });
+
+    it('resumes idempotently when called twice with identical input, without changing updatedAt', () => {
+      const root = temporaryRoot('prepare-cutover-resume');
+      seedAuthorityRecord(root, {
+        schemaVersion: 1,
+        mode: 'deep-research',
+        state: 'legacy_authoritative',
+        epoch: 5,
+        selectedWriter: 'legacy',
+        candidateSha: null,
+        policyVersion: 0,
+        cutoverCertificateDigest: null,
+        lastTransitionDigest: null,
+        updatedAt: '2026-08-09T00:00:00Z',
+      });
+      const registry = new AuthorityRegistry(root);
+      const first = registry.prepareCutover({
+        mode: 'deep-research',
+        expectedEpoch: 5,
+        candidateSha: CANDIDATE_SHA,
+        policyVersion: 1,
+        at: '2026-08-09T00:05:00Z',
+      });
+      expect(first.resumed).toBe(false);
+      const second = registry.prepareCutover({
+        mode: 'deep-research',
+        expectedEpoch: 5,
+        candidateSha: CANDIDATE_SHA,
+        policyVersion: 1,
+        at: '2026-08-09T00:10:00Z',
+      });
+      expect(second.resumed).toBe(true);
+      expect(second.record.updatedAt).toBe(first.record.updatedAt);
+    });
+
+    it('throws CAS_CONFLICT when the record is not in the legacy_authoritative state', () => {
+      const root = temporaryRoot('prepare-cutover-wrong-state');
+      seedAuthorityRecord(root, {
+        schemaVersion: 1,
+        mode: 'deep-research',
+        state: 'new_authoritative_reversible',
+        epoch: 5,
+        selectedWriter: 'dark',
+        candidateSha: CANDIDATE_SHA,
+        policyVersion: 1,
+        cutoverCertificateDigest: digest('certificate'),
+        lastTransitionDigest: digest('transition'),
+        updatedAt: '2026-08-09T00:00:00Z',
+      });
+      const registry = new AuthorityRegistry(root);
+      try {
+        registry.prepareCutover({
+          mode: 'deep-research',
+          expectedEpoch: 5,
+          candidateSha: CANDIDATE_SHA,
+          policyVersion: 1,
+          at: '2026-08-09T00:05:00Z',
+        });
+        throw new Error('expected prepareCutover to throw');
+      } catch (error) {
+        expect(error).toBeInstanceOf(AuthorityFlipError);
+        expect((error as AuthorityFlipError).reasonCode).toBe('CAS_CONFLICT');
+      }
+      expect(registry.read('deep-research').state).toBe('new_authoritative_reversible');
+    });
+
+    it('throws CAS_CONFLICT on an epoch mismatch', () => {
+      const root = temporaryRoot('prepare-cutover-epoch-mismatch');
+      seedAuthorityRecord(root, {
+        schemaVersion: 1,
+        mode: 'deep-research',
+        state: 'legacy_authoritative',
+        epoch: 5,
+        selectedWriter: 'legacy',
+        candidateSha: null,
+        policyVersion: 0,
+        cutoverCertificateDigest: null,
+        lastTransitionDigest: null,
+        updatedAt: '2026-08-09T00:00:00Z',
+      });
+      const registry = new AuthorityRegistry(root);
+      try {
+        registry.prepareCutover({
+          mode: 'deep-research',
+          expectedEpoch: 4,
+          candidateSha: CANDIDATE_SHA,
+          policyVersion: 1,
+          at: '2026-08-09T00:05:00Z',
+        });
+        throw new Error('expected prepareCutover to throw');
+      } catch (error) {
+        expect(error).toBeInstanceOf(AuthorityFlipError);
+        expect((error as AuthorityFlipError).reasonCode).toBe('CAS_CONFLICT');
+      }
+      expect(registry.read('deep-research').state).toBe('legacy_authoritative');
+      expect(registry.read('deep-research').epoch).toBe(5);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────────
   // Reverse CAS: rollback actually restores durable authority
   // ─────────────────────────────────────────────────────────────────
 
@@ -1799,6 +1933,185 @@ describe('AuthorityFlipCoordinator', () => {
     const decision = await coordinator.requestCutover({ ...request, policyDigest: digest('forged-digest') });
     expect(decision).toEqual({ disposition: 'denied', reasonCode: 'POLICY_MISMATCH' });
     expect(await ledger.readVerifiedEvents()).toHaveLength(0);
+  });
+
+  // ─────────────────────────────────────────────────────────────────
+  // End-to-end promotion: legacy_authoritative -> cutover_ready ->
+  // new_authoritative_reversible through requestCutover alone.
+  // ─────────────────────────────────────────────────────────────────
+
+  it('promotes a legacy_authoritative mode through cutover_ready to new_authoritative_reversible end-to-end', async () => {
+    const root = temporaryRoot('end-to-end-promote');
+    const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff);
+    seedAuthorityRecord(join(root, 'authority-registry'), {
+      schemaVersion: 1,
+      mode: MODE,
+      state: 'legacy_authoritative',
+      epoch: AUTHORITY_EPOCH,
+      selectedWriter: 'legacy',
+      candidateSha: null,
+      policyVersion: 0,
+      cutoverCertificateDigest: null,
+      lastTransitionDigest: null,
+      updatedAt: '2026-08-09T00:00:00Z',
+    });
+    const registry = new AuthorityRegistry(join(root, 'authority-registry'));
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
+
+    const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
+    expect(decision.disposition).toBe('flipped');
+    if (decision.disposition !== 'flipped') throw new Error('expected flipped');
+    expect(decision.record.state).toBe('new_authoritative_reversible');
+    expect(decision.record.epoch).toBe(AUTHORITY_EPOCH + 1);
+    expect(decision.resumed).toBe(false);
+    expect(registry.read(MODE).state).toBe('new_authoritative_reversible');
+    expect(registry.read(MODE).epoch).toBe(AUTHORITY_EPOCH + 1);
+
+    const events = await ledger.readVerifiedEvents();
+    const flipEvents = events.filter((entry) => entry.event.effective.envelope.event_type === AUTHORITY_FLIP_EVENT_TYPE);
+    expect(flipEvents).toHaveLength(1);
+  });
+
+  it('denies a mode whose preflight is not ready and leaves the record legacy_authoritative', async () => {
+    const root = temporaryRoot('end-to-end-blocked-preflight');
+    // A handoff with rows that vetoed to BLOCKED produces a blocked
+    // preflight — promotion must never happen on a blocked preflight.
+    const handoff = await buildHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff);
+    seedAuthorityRecord(join(root, 'authority-registry'), {
+      schemaVersion: 1,
+      mode: MODE,
+      state: 'legacy_authoritative',
+      epoch: AUTHORITY_EPOCH,
+      selectedWriter: 'legacy',
+      candidateSha: null,
+      policyVersion: 0,
+      cutoverCertificateDigest: null,
+      lastTransitionDigest: null,
+      updatedAt: '2026-08-09T00:00:00Z',
+    });
+    const registry = new AuthorityRegistry(join(root, 'authority-registry'));
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
+
+    const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
+    expect(decision.disposition).toBe('denied');
+    expect(await ledger.readVerifiedEvents()).toHaveLength(0);
+    expect(registry.read(MODE).state).toBe('legacy_authoritative');
+    expect(registry.read(MODE).epoch).toBe(AUTHORITY_EPOCH);
+  });
+
+  // A gateway denial (or failure) after promotion leaves the durable record
+  // at cutover_ready rather than rolling it back to legacy_authoritative.
+  // This is intentional, not an accident: promotion must precede the
+  // compare-and-swap gate, whose pre-state IS cutover_ready, so a
+  // post-promotion denial necessarily leaves the prepared state behind. It
+  // is safe because selectAuthorityRoute still routes cutover_ready to the
+  // legacy writer (shadow dark only), so no write is misrouted, and the next
+  // attempt resumes idempotently from that prepared state rather than
+  // wedging. The pair below pins both halves of that decision.
+  function denyingGateway(): TransitionAuthorizationGateway {
+    // The coordinator only calls `authorize` on the gateway; a stub returning
+    // a non-allow verdict exercises the denial path while the real policy
+    // registry still satisfies the certificate-matching policy check.
+    return {
+      authorize: async () => Object.freeze({
+        verdict: 'deny' as const,
+        reasonCode: 'policy_denied' as const,
+        decision: null,
+        auditReceipt: null,
+      }),
+    } as unknown as TransitionAuthorizationGateway;
+  }
+
+  it('leaves a recoverable, correctly-routed record when the gateway denies after promotion', async () => {
+    const root = temporaryRoot('gateway-denial-residue');
+    const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff);
+    seedAuthorityRecord(join(root, 'authority-registry'), {
+      schemaVersion: 1,
+      mode: MODE,
+      state: 'legacy_authoritative',
+      epoch: AUTHORITY_EPOCH,
+      selectedWriter: 'legacy',
+      candidateSha: null,
+      policyVersion: 0,
+      cutoverCertificateDigest: null,
+      lastTransitionDigest: null,
+      updatedAt: '2026-08-09T00:00:00Z',
+    });
+    const registry = new AuthorityRegistry(join(root, 'authority-registry'));
+    const { ledger, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway: denyingGateway(), policies, identityResolver: defaultIdentityResolver,
+    });
+
+    const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
+    expect(decision.disposition).toBe('denied');
+
+    // The residue: promoted to cutover_ready at the SAME epoch — not flipped,
+    // not bumped — and no ledger event was appended for the denied attempt.
+    const record = registry.read(MODE);
+    expect(record.state).toBe('cutover_ready');
+    expect(record.epoch).toBe(AUTHORITY_EPOCH);
+    expect(await ledger.readVerifiedEvents()).toHaveLength(0);
+
+    // The load-bearing assertion: the residue does not misroute writes.
+    // cutover_ready still selects the legacy writer (shadow dark only), so
+    // every write lands exactly where it did before promotion.
+    const route = selectAuthorityRoute(record, { mode: MODE });
+    expect(route).toMatchObject({ outcome: 'selected', route: 'legacy', shadowRoute: 'dark' });
+  });
+
+  it('recovers from a gateway-denial residue: a later allowed attempt resumes and flips', async () => {
+    const root = temporaryRoot('gateway-denial-recover');
+    const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff);
+    seedAuthorityRecord(join(root, 'authority-registry'), {
+      schemaVersion: 1,
+      mode: MODE,
+      state: 'legacy_authoritative',
+      epoch: AUTHORITY_EPOCH,
+      selectedWriter: 'legacy',
+      candidateSha: null,
+      policyVersion: 0,
+      cutoverCertificateDigest: null,
+      lastTransitionDigest: null,
+      updatedAt: '2026-08-09T00:00:00Z',
+    });
+    const registry = new AuthorityRegistry(join(root, 'authority-registry'));
+    const { ledger, gateway: realGateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const request = buildRequest(policy, preflight);
+
+    // First attempt: the gateway denies, leaving the cutover_ready residue.
+    const denying = new AuthorityFlipCoordinator({
+      registry, ledger, gateway: denyingGateway(), policies, identityResolver: defaultIdentityResolver,
+    });
+    const denied = await denying.requestCutover(request);
+    expect(denied.disposition).toBe('denied');
+    expect(registry.read(MODE).state).toBe('cutover_ready');
+    expect(registry.read(MODE).epoch).toBe(AUTHORITY_EPOCH);
+
+    // Second attempt, from the exact state the denial left behind: the real
+    // gateway now allows, and the prepared record resumes straight through to
+    // the flipped state at epoch+1 — proving the residue is resumable, not a
+    // wedge.
+    const recovering = new AuthorityFlipCoordinator({
+      registry, ledger, gateway: realGateway, policies, identityResolver: defaultIdentityResolver,
+    });
+    const decision = await recovering.requestCutover(request);
+    expect(decision.disposition).toBe('flipped');
+    if (decision.disposition !== 'flipped') throw new Error('expected flipped');
+    expect(decision.record.state).toBe('new_authoritative_reversible');
+    expect(decision.record.epoch).toBe(AUTHORITY_EPOCH + 1);
+    expect(registry.read(MODE).state).toBe('new_authoritative_reversible');
+    expect(registry.read(MODE).epoch).toBe(AUTHORITY_EPOCH + 1);
   });
 });
 

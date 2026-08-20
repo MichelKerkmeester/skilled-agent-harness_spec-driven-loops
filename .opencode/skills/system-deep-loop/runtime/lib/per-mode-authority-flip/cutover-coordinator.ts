@@ -150,6 +150,32 @@ export class AuthorityFlipCoordinator {
         return Object.freeze({ disposition: 'denied', reasonCode: preflight.reasonCode });
       }
 
+      // Promotion is best-effort: it supplies the required cutover_ready
+      // pre-state when the record is promotable, and stays silent when it is
+      // not. The authority decision belongs to the compare-and-swap gate
+      // below, which already tells an already-completed flip apart from a
+      // genuinely stale epoch — so a non-promotable record is not a denial,
+      // merely a signal that the gate below must make the call.
+      try {
+        this.#registry.prepareCutover({
+          mode,
+          expectedEpoch: request.preflight.expectedAuthorityEpoch,
+          candidateSha: request.preflight.cutover.certificate.facts.candidateSha,
+          policyVersion: request.policyVersion,
+          at: this.#now().toISOString(),
+        });
+      } catch (error) {
+        if (error instanceof AuthorityFlipError && error.reasonCode === 'CAS_CONFLICT') {
+          // Swallowed: a CAS_CONFLICT here only means the record is not in
+          // the promotable pre-state (e.g. an already-completed flip after a
+          // crash-resume). The gate below reads the current record and
+          // distinguishes that case from a stale epoch, so denying here
+          // would pre-empt the correct decision and break crash-resume.
+        } else {
+          throw error;
+        }
+      }
+
       const current = this.#registry.read(mode);
       const expectedEpoch = request.preflight.expectedAuthorityEpoch;
       const facts = buildAuthorityTransitionFacts({

@@ -87,6 +87,14 @@ export interface AuthorityCompareAndSwapInput {
   readonly at: string;
 }
 
+export interface AuthorityPrepareCutoverInput {
+  readonly mode: CutoverCertificateMode;
+  readonly expectedEpoch: number;
+  readonly candidateSha: string;
+  readonly policyVersion: number;
+  readonly at: string;
+}
+
 /**
  * Every durable fact `compareAndSwap` needs to finish a forward transition,
  * captured before the ledger append so a crash between the append and the
@@ -312,6 +320,69 @@ export class AuthorityRegistry {
         policyVersion: input.policyVersion,
         cutoverCertificateDigest: input.cutoverCertificateDigest,
         lastTransitionDigest: input.lastTransitionDigest,
+        updatedAt: input.at,
+      });
+      const next: AuthorityRecord = Object.freeze({ ...core, recordDigest: digest(core) });
+      writeCanonicalJsonAtomic(path, next as unknown as JsonObject);
+      return Object.freeze({ record: next, resumed: false });
+    } finally {
+      this.#releaseLock(descriptor, lockPath);
+    }
+  }
+
+  /**
+   * Promote a mode's durable record from `legacy_authoritative` to
+   * `cutover_ready`, the pre-state the flip CAS requires. A record already at
+   * `cutover_ready` for the same epoch resumes idempotently without writing —
+   * the candidate SHA is intentionally not compared, since the flip's CAS
+   * overwrites it from the validated certificate anyway; any other state or a
+   * mismatched epoch is a conflict.
+   */
+  public prepareCutover(input: AuthorityPrepareCutoverInput): { record: AuthorityRecord; resumed: boolean } {
+    const path = this.#recordPath(input.mode);
+    const lockPath = this.#lockPath(input.mode);
+    const descriptor = this.#acquireLock(
+      lockPath,
+      'Another writer holds this mode\'s authority record lock',
+      { mode: input.mode },
+    );
+    try {
+      const current = this.read(input.mode);
+
+      // A record already sitting at cutover_ready for this epoch is left
+      // exactly as it is: the flip's compare-and-swap overwrites the
+      // candidate SHA from the validated certificate, and the preflight that
+      // ran immediately before this point already bound that certificate to
+      // the candidate being flipped. Comparing the candidate here would
+      // reject a record that a previous, legitimate preparation step had
+      // written.
+      if (current.state === 'cutover_ready' && current.epoch === input.expectedEpoch) {
+        return Object.freeze({ record: current, resumed: true });
+      }
+
+      if (current.state !== 'legacy_authoritative' || current.epoch !== input.expectedEpoch) {
+        throw new AuthorityFlipError('CAS_CONFLICT', 'Authority record no longer matches the expected state/epoch', {
+          mode: input.mode,
+          expectedState: 'legacy_authoritative',
+          expectedEpoch: input.expectedEpoch,
+          actualState: current.state,
+          actualEpoch: current.epoch,
+        });
+      }
+
+      // The epoch does NOT change here. The flip CAS expects cutover_ready at
+      // epoch N and writes new_authoritative_reversible at N+1; bumping now
+      // would make every flip fail with CAS_CONFLICT.
+      const core = Object.freeze({
+        schemaVersion: AUTHORITY_FLIP_SCHEMA_VERSION,
+        mode: input.mode,
+        state: 'cutover_ready' as const,
+        epoch: input.expectedEpoch,
+        selectedWriter: 'legacy' as const,
+        candidateSha: input.candidateSha,
+        policyVersion: input.policyVersion,
+        cutoverCertificateDigest: null,
+        lastTransitionDigest: null,
         updatedAt: input.at,
       });
       const next: AuthorityRecord = Object.freeze({ ...core, recordDigest: digest(core) });
