@@ -104,10 +104,16 @@ state_write_protocol:
   migration_exception: "Embedded lifecycle writers append run-now and pause sentinel records directly; no ledger event stem exists for them yet, so the gateway would reject them."
   exempt_append_sites: 3
   contract: |
-    Every canonical record named by an append_to_jsonl or append_jsonl directive below is
-    written by invoking the command above with that record as the event JSON. Those directives
-    specify WHAT to record; this block specifies HOW every record reaches the log, so the
-    mechanism is stated once rather than repeated at each site where it could drift.
+    The directives below specify WHAT to record. This block specifies the mechanism by which
+    those records are intended to reach the log, stated once rather than repeated at each site
+    where it could drift. A record is not passed to the command in its directive shape: the
+    command accepts a canonical event envelope — a `stem` with `scope` and `data`, or an
+    `event_type` with a `payload` — and rejects a legacy-shaped row with exit 1 and
+    "Unrecognized event format". Translating a directive row into that envelope is a step this
+    block does not yet define, so the route from a directive to a durable record is not yet
+    executable end to end for these rows. Keep the distinction sharp: exit 1 means the input
+    never reached authority, and it is different from the exit 2 refusal described elsewhere
+    in this block.
 
     The gateway authorizes the write against the mode's durable authority record, serialises it
     behind the ledger fence, returns a receipt, and refreshes state_log from the ledger. Exit 0
