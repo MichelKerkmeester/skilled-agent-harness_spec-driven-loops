@@ -207,4 +207,63 @@ describe('check-projection-coverage', () => {
     expect(r.payload.error).toBeTruthy();
     expect(r.payload.error).toContain('seed array declaration');
   });
+
+  it('case 7: the real manifest reports the ownership breakdown', () => {
+    // The breakdown is additive: it splits the projectable population by
+    // legacy-writer ownership without touching the top-level counts anything
+    // else reads. Asserting the pre-existing keys stay put is the point — a
+    // breakdown that silently shifted projectable/covered/uncovered would
+    // break readers that never opted into the breakdown.
+    const r = runReal();
+    expect(r.status).toBe(0);
+    expect(r.payload.ok).toBe(true);
+    expect(r.payload.projectable).toBe(22);
+    expect(r.payload.covered).toBe(1);
+    expect(r.payload.uncovered).toBe(21);
+    expect(r.payload.violations).toEqual([]);
+    expect(r.payload.breakdown.modeOwned.total).toBe(10);
+    expect(r.payload.breakdown.modeOwned.uncovered).toBe(9);
+    expect(r.payload.breakdown.modeOwned.uncoveredSurfaceIds).toEqual([
+      'alignment-state-deltas',
+      'council-config-state',
+      'improvement-ledgers',
+      'research-deltas',
+      'research-projections',
+      'research-strategy-inbox',
+      'review-deltas',
+      'review-projections',
+      'review-state',
+    ]);
+    expect(r.payload.breakdown.infrastructure.total).toBe(12);
+    expect(r.payload.breakdown.infrastructure.uncovered).toBe(12);
+  });
+
+  it('case 8: reassigning a mode surface to an infrastructure writer fires MODE_OWNED_COUNT_MISMATCH', () => {
+    // Rewrite one mode-owned entry's legacyWriter to an infrastructure-style
+    // value so the derived mode-owned total drops from 10 to 9 while the
+    // declared constant stays 10. The anchor must sit INSIDE the target
+    // entry's own block: matching from its surfaceId line through to its own
+    // legacyWriter line pins the replacement to research-deltas itself, so a
+    // neighbouring block's fields cannot silently redirect the rewrite and
+    // leave the test passing or failing for the wrong reason. The surface
+    // stays projectable and uncovered, so only the ownership cross-check
+    // fires — the uncovered total and declarations are unaffected.
+    const manifest = REAL_MANIFEST.replace(
+      "    surfaceId: 'research-deltas', format: 'jsonl',\n    pathTemplate: '{spec_folder}/research/deltas/iter-NNN.jsonl',\n    legacyWriter: 'deep-research', readers: ['deep-research reducer'],",
+      "    surfaceId: 'research-deltas', format: 'jsonl',\n    pathTemplate: '{spec_folder}/research/deltas/iter-NNN.jsonl',\n    legacyWriter: 'runtime research delta emitter', readers: ['deep-research reducer'],",
+    );
+    const r = runWithFixture({
+      [MANIFEST_REL]: manifest,
+      [CONTRACT_REL]: REAL_CONTRACT,
+    });
+    expect(r.status).toBe(2);
+    expect(r.payload.ok).toBe(false);
+    expect(rulesOf(r.payload)).toContain('MODE_OWNED_COUNT_MISMATCH');
+    const mismatch = r.payload.violations.find(
+      (v: any) => v.rule === 'MODE_OWNED_COUNT_MISMATCH',
+    );
+    expect(mismatch.detail).toContain('10');
+    expect(mismatch.detail).toContain('9');
+    expect(r.payload.breakdown.modeOwned.total).toBe(9);
+  });
 });

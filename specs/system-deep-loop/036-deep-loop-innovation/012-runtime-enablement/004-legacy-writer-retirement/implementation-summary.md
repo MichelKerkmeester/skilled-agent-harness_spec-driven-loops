@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-le
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement"
-    last_updated_at: "2026-08-19T23:04:14Z"
+    last_updated_at: "2026-08-20T00:55:06Z"
     last_updated_by: "claude"
-    recent_action: "Inventoried direct-append paths and built the detection guard, proven on a real append"
+    recent_action: "Scoped the coverage gap by writer"
     next_safe_action: "Operator decision on the missing flip transitions"
     blockers:
       - "Removing the write instruction now would leave agents no sanctioned path"

@@ -77,3 +77,40 @@ cannot hold as written: 21 of 22 projectable surfaces have no contract, so retir
 would leave their legacy files unproduced. Registering those contracts is a build per mode, and is
 not in this phase's frozen scope. This is recorded as a conflict for an amendment decision rather
 than worked around.
+
+## Refinement: which uncovered surfaces actually block retirement
+
+The raw total of 21 uncovered surfaces was true but not actionable, because it mixes two
+populations that this phase treats differently.
+
+Retirement applies to the mode protocol document sets. A surface whose manifest writer is one of
+the deep-loop modes is in that scope; a surface written by runtime infrastructure is not, and its
+lack of a projection contract does not block retiring a mode's writer.
+
+Measured split of the 22 projectable surfaces:
+
+| population | total | uncovered |
+| ---------- | ----: | --------: |
+| mode-owned | 10 | 9 |
+| runtime infrastructure | 12 | 12 |
+
+The one covered surface, `research-state`, is mode-owned. So the number retirement is actually
+waiting on is **nine**, not twenty-one. The nine are `research-deltas`, `research-projections`,
+`research-strategy-inbox`, `review-state`, `review-deltas`, `review-projections`,
+`alignment-state-deltas`, `council-config-state` and `improvement-ledgers`.
+
+The twelve infrastructure surfaces — the fanout ledger and checkpoints, observability, the
+compiled command manifest, the dispatch guard's state and archive, the model grader cache, the
+benchmark output, the divergent-pivot transactions, and the three reducer-written surfaces — have
+writers this phase never retires. Their coverage is a separate question and not a precondition
+here.
+
+The guard now reports that breakdown alongside the original totals, which are unchanged so nothing
+reading them breaks, and a new rule fails when the declared mode-owned count drifts from the
+derived one. Negative control against the real manifest: reassigning one mode surface's writer to
+an infrastructure writer moved the derived total to 9 and produced exit 2 with
+`MODE_OWNED_COUNT_MISMATCH` naming the drift; restored, exit 0, manifest byte-identical.
+
+This corrects an earlier statement of mine that REQ-004 was unachievable for 21 of 22 surfaces.
+The requirement is conditioned on a writer being retired, and this phase retires mode writers, so
+the twelve infrastructure surfaces were never in its reach. The gap is real and it is nine.

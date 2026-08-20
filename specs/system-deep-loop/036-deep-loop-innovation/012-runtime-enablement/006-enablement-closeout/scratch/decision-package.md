@@ -33,8 +33,11 @@ gets built.
 
 ## 2. Projection coverage, which requirement REQ-004 assumes
 
-**Measured.** The manifest declares 28 surfaces, 22 of them projectable. Exactly one projection
-contract exists. For the other 21 an append succeeds, reports `projectionRefreshed` false, and
+**Measured.** The manifest declares 28 surfaces, 22 of them projectable, and exactly one projection
+contract exists. The actionable subset is smaller than that total: only 10 projectable surfaces name a
+mode as their writer, and those are the ones this retirement reaches. The other 12 are written by runtime
+infrastructure whose writers the phase never retires. One mode-owned surface is covered, so the gap that
+blocks retirement is **nine**, not twenty-one. For the other 21 an append succeeds, reports `projectionRefreshed` false, and
 never refreshes the legacy file.
 
 REQ-004 requires every manifest-named legacy file to still be produced after its writer is retired.

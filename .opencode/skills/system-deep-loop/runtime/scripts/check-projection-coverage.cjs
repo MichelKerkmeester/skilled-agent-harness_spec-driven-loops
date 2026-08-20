@@ -80,6 +80,38 @@ const UNCOVERED_DECLARED = Object.freeze([
 // mismatch rather than passing quietly.
 const UNCOVERED_DECLARED_COUNT = 21;
 
+// Legacy-writer retirement is scoped to mode-owned surfaces — those whose
+// legacyWriter is owned by one of the deep-loop modes. Surfaces written by
+// runtime infrastructure (fanout, dispatch guards, command renderers, etc.)
+// are not part of that retirement at all, so a missing projection contract on
+// an infrastructure surface is not a blocker for it. A raw uncovered total
+// mixes those two populations and is therefore not actionable: it reports 21
+// gaps when only the 9 mode-owned uncovered surfaces are actually waiting on a
+// contract. Ownership — derived from the legacyWriter prefix — is what decides
+// whether a missing contract blocks retirement, so the breakdown below splits
+// the uncovered set along that line. The prefixes are declared once here so a
+// reclassification or a new mode surface cannot slip in through a scattered
+// string literal.
+const MODE_OWNER_PREFIXES = Object.freeze([
+  'deep-research',
+  'deep-review',
+  'deep-alignment',
+  'deep-ai-council',
+  'deep-improvement',
+]);
+
+// Independent cross-check for the mode-owned population, mirroring
+// UNCOVERED_DECLARED_COUNT. A surface silently changing owner (its
+// legacyWriter rewritten to an infrastructure writer) or a new mode surface
+// appearing would shift the derived mode-owned total off this declared
+// constant, surfacing as MODE_OWNED_COUNT_MISMATCH rather than being absorbed
+// into a single uncovered number that still happens to add up.
+const MODE_OWNED_EXPECTED_COUNT = 10;
+
+function isModeOwned(legacyWriter) {
+  return MODE_OWNER_PREFIXES.some((prefix) => legacyWriter.startsWith(prefix));
+}
+
 function emit(obj) {
   process.stdout.write(JSON.stringify(obj) + '\n');
 }
@@ -107,11 +139,16 @@ function parseArgs(argv) {
   return out;
 }
 
-// Locate the manifest seed array and extract one { surfaceId, disposition }
-// pair per entry block. Entry blocks are delimited by a line that is just `{`
-// and a line that is just `}` (optionally trailing comma), so braces inside
-// string literals (path templates like '{spec_folder}/...') cannot start or
-// end a block. A block missing either field is a parser error.
+// Locate the manifest seed array and extract one
+// { surfaceId, disposition, legacyWriter } triple per entry block. Entry
+// blocks are delimited by a line that is just `{` and a line that is just `}`
+// (optionally trailing comma), so braces inside string literals (path
+// templates like '{spec_folder}/...') cannot start or end a block. A block
+// missing any of the three fields is a parser error: legacyWriter is the
+// ownership signal that splits the uncovered set into mode-owned vs
+// infrastructure, so a block that yields no legacyWriter is a script error,
+// not a silently skipped row — the same defensive rule applied to surfaceId
+// and disposition.
 function parseManifest(text) {
   const lines = text.split('\n');
   let start = -1;
@@ -157,13 +194,17 @@ function parseManifest(text) {
       const body = buffer.join('\n');
       const sid = body.match(/surfaceId\s*:\s*['"]([^'"]+)['"]/);
       const dis = body.match(/disposition\s*:\s*['"]([^'"]+)['"]/);
+      const lw = body.match(/legacyWriter\s*:\s*['"]([^'"]+)['"]/);
       if (!sid) {
         throw new Error(`manifest entry block at line ${i} has no surfaceId`);
       }
       if (!dis) {
         throw new Error(`manifest entry block for '${sid[1]}' has no disposition`);
       }
-      entries.push({ surfaceId: sid[1], disposition: dis[1] });
+      if (!lw) {
+        throw new Error(`manifest entry block for '${sid[1]}' has no legacyWriter`);
+      }
+      entries.push({ surfaceId: sid[1], disposition: dis[1], legacyWriter: lw[1] });
       continue;
     }
     buffer.push(line);
@@ -211,6 +252,20 @@ function evaluate(entries, contractText) {
 
   const uncoveredDeclaredSet = new Set(UNCOVERED_DECLARED);
 
+  // Split the projectable population by ownership. A surface is mode-owned
+  // when its legacyWriter begins with one of the deep-loop mode prefixes;
+  // everything else is infrastructure. Only mode-owned surfaces are in scope
+  // for legacy-writer retirement, so only their uncovered entries are the
+  // ones retirement is actually waiting on. The infrastructure uncovered
+  // count is reported for completeness but is not a retirement blocker.
+  const projectableById = new Map(projectable.map((e) => [e.surfaceId, e]));
+  const modeOwnedIds = projectableIds.filter((id) =>
+    isModeOwned(projectableById.get(id).legacyWriter));
+  const modeOwnedSet = new Set(modeOwnedIds);
+  const infrastructureIds = projectableIds.filter((id) => !modeOwnedSet.has(id));
+  const modeOwnedUncoveredIds = uncoveredIds.filter((id) => modeOwnedSet.has(id));
+  const infrastructureUncoveredIds = uncoveredIds.filter((id) => !modeOwnedSet.has(id));
+
   // R1: MISSING_CONTRACT_EXPORT — a factory named in the covered map is not
   // exported by its module. The covered declaration is only meaningful while
   // the factory it names actually exists.
@@ -250,6 +305,21 @@ function evaluate(entries, contractText) {
     });
   }
 
+  // R5: MODE_OWNED_COUNT_MISMATCH — the declared mode-owned count must equal
+  // the derived mode-owned projectable total. A surface silently changing
+  // owner (legacyWriter rewritten to an infrastructure writer) or a new
+  // mode-owned surface appearing would shift this total off the declared
+  // constant. Without this cross-check the change would be absorbed into the
+  // single uncovered number, which could still add up while the ownership
+  // split that retirement depends on had drifted.
+  if (MODE_OWNED_EXPECTED_COUNT !== modeOwnedIds.length) {
+    violations.push({
+      surfaceId: '*',
+      rule: 'MODE_OWNED_COUNT_MISMATCH',
+      detail: `declared mode-owned count ${MODE_OWNED_EXPECTED_COUNT} but actual mode-owned projectable total ${modeOwnedIds.length}`,
+    });
+  }
+
   // R4: STALE_UNCOVERED_DECLARATION — a surface declared uncovered that is now
   // covered (gained a contract) or no longer projectable (removed or
   // reclassified). Either way the declaration is stale and must be updated.
@@ -282,6 +352,17 @@ function evaluate(entries, contractText) {
     uncovered: uncoveredIds.length,
     violations,
     info,
+    breakdown: {
+      modeOwned: {
+        total: modeOwnedIds.length,
+        uncovered: modeOwnedUncoveredIds.length,
+        uncoveredSurfaceIds: modeOwnedUncoveredIds.slice().sort(),
+      },
+      infrastructure: {
+        total: infrastructureIds.length,
+        uncovered: infrastructureUncoveredIds.length,
+      },
+    },
   };
 }
 
@@ -326,6 +407,7 @@ function main() {
       uncovered: result.uncovered,
       violations: result.violations,
       info: result.info,
+      breakdown: result.breakdown,
     });
     process.exit(ok ? 0 : 2);
   } catch (err) {
