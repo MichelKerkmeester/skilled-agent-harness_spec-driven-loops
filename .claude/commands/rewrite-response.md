@@ -1,1 +1,0 @@
-../../.opencode/commands/rewrite-response.md

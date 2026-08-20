@@ -1,1 +1,1 @@
-../../.opencode/commands/rewrite-response.md
+../../.opencode/commands/rewrite/response.md
