@@ -19,10 +19,32 @@ would look exactly like one assembled from real evidence.
 | `shadowParity` | `deep-research-shadow-parity/harness-adapter.ts` → `issueParityCertificate` | **Producible** |
 | `migrationReceipts` | `receipts-and-effect-recovery/index.ts` → boundary receipts | **Producible** |
 | `modeGateCertificate` | `deep-research-rollback-gate/mode-gate.ts` | Present; needs wiring |
-| `classificationManifest` | `compileClassificationManifest` | **No production caller** |
+| `classificationManifest` | `createClassificationManifest` ← `mixed-version-fixtures/reducer-resume-oracle.ts` | **Fixture-produced** |
 | `rollbackDrillCertificate` | `runRollbackDrill` / `buildRollbackCertificate` | **No production caller** |
-| `mixedVersionReplay` | — | **No production caller** |
+| `mixedVersionReplay` | type and producer both live in `mixed-version-fixtures/` | **Fixture-produced** |
 | the certificate itself | `buildCutoverCertificate` | **No production caller** |
+
+### Correction to two rows above
+
+An earlier version of this table recorded the classification manifest as having no producer at
+all. That was wrong, and the error was mine: the search used `compileClassificationManifest`, a
+name that does not exist anywhere. The real producer is `createClassificationManifest`, and it
+does have a caller.
+
+The corrected finding is more interesting than the wrong one. Two of the seven evidence inputs
+are produced by a module named `mixed-version-fixtures`. That is shipped library code, not test
+code, so a naive "is it called outside tests?" search calls it a production path — but its
+purpose is manufacturing fixtures.
+
+For the mixed-version replay this is arguably inherent: proving that an old reader and a new
+reader agree requires constructing both versions, and constructing them is what a fixture
+generator does. The classification manifest is the one worth a second look, because it feeds
+the drill manifest and the certificate cross-checks its digest, so whether it describes real
+in-flight state or synthesized state decides whether that cross-check means anything.
+
+Neither is a defect to fix here. Both are recorded because "the certificate verified" reads as
+a much stronger claim than "the certificate verified against evidence a fixture generator
+produced", and only the second one is true today.
 
 Every per-mode shadow-parity adapter exists, for all eight modes, so parity is the one piece
 of the safety margin that is genuinely ready to run for real.
