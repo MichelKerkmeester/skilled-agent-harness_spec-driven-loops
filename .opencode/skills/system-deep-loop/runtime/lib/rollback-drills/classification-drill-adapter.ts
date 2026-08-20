@@ -58,6 +58,12 @@ export interface AdaptClassificationInput {
   readonly classified: readonly ClassifiedInflightStateRow[];
   readonly expectedRowIds: readonly string[];
   readonly verifierIdentity: string;
+  /**
+   * Map of rowId -> terminal completion receipt digest for rows that reached
+   * their terminal boundary while pinned. Optional; a missing or empty value
+   * for a row yields a null terminalReceiptId and lets the drill's veto fire.
+   */
+  readonly terminalPinReceipts?: Readonly<Record<string, string>>;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -171,10 +177,20 @@ export function adaptClassificationForDrill(
       || evidence.pendingEffectsState === 'reconciled';
     const isQuiescent = leaseQuiescent && effectsQuiescent;
 
-    const receiptDigest = evidence.verifier.receiptDigest;
+    // The terminal receipt is the record that a pinned row reached its
+    // terminal boundary. The verifier's receiptDigest is a different claim:
+    // it attests that the verifier ran and checked the classification. The
+    // two are about different things, and substituting the verifier's
+    // attestation for the terminal receipt would stamp a non-null id onto
+    // essentially every row, disarming the drill's veto on unterminated PIN
+    // rows. Look the receipt up by rowId; a missing or empty value is
+    // reported truthfully as null and the drill decides what to do with it.
+    const terminalPinReceipts = input.terminalPinReceipts;
+    const lookedUpReceipt =
+      terminalPinReceipts !== undefined ? terminalPinReceipts[rowId] : undefined;
     const terminalReceiptId =
-      typeof receiptDigest === 'string' && receiptDigest.length > 0
-        ? receiptDigest
+      typeof lookedUpReceipt === 'string' && lookedUpReceipt.length > 0
+        ? lookedUpReceipt
         : null;
 
     // Fail fast on grammar the drill would reject, with a clearer message.

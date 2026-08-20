@@ -180,7 +180,7 @@ describe('adaptClassificationForDrill', () => {
     expect(row.orderCoverageComplete).toBe(true);
     expect(row.isQuiescent).toBe(true);
     expect(row.verifier).toBe(VERIFIER_IDENTITY);
-    expect(row.terminalReceiptId).toBe(digest(`${rowId}:verifier`));
+    expect(row.terminalReceiptId).toBeNull();
     expect(row.disposition).toBe(InflightDisposition.UPCAST);
   });
 
@@ -346,13 +346,61 @@ describe('adaptClassificationForDrill', () => {
     }
   });
 
-  it('sets terminalReceiptId to null when the receipt digest is absent', () => {
-    const rowId = 'row-no-receipt';
+  it('sets terminalReceiptId from terminalPinReceipts, looked up by rowId', () => {
+    const rowId = 'row-pin-terminated';
+    const terminalReceipt = digest(`${rowId}:terminal-pin`);
     const result = adaptClassificationForDrill({
-      evidence: [evidenceFor({ rowId, receiptDigest: '' })],
-      classified: [classifiedFor(rowId)],
+      evidence: [evidenceFor({ rowId })],
+      classified: [classifiedFor(rowId, InflightDisposition.PIN)],
       expectedRowIds: [rowId],
       verifierIdentity: VERIFIER_IDENTITY,
+      terminalPinReceipts: { [rowId]: terminalReceipt },
+    });
+
+    expect((result.rows[0] as DrillClassificationRow).terminalReceiptId).toBe(terminalReceipt);
+  });
+
+  it('sets terminalReceiptId to null for a PIN row with no terminalPinReceipts entry, even when the verifier receiptDigest is non-empty', () => {
+    // Regression for the P1: the verifier's receiptDigest attests that the
+    // classification was checked, not that the pinned row reached its
+    // terminal boundary. The adapter must report null so the drill's veto
+    // on an unterminated PIN row can fire.
+    const rowId = 'row-pin-unterminated';
+    const verifierReceipt = digest(`${rowId}:verifier`);
+    const result = adaptClassificationForDrill({
+      evidence: [evidenceFor({ rowId, receiptDigest: verifierReceipt })],
+      classified: [classifiedFor(rowId, InflightDisposition.PIN)],
+      expectedRowIds: [rowId],
+      verifierIdentity: VERIFIER_IDENTITY,
+    });
+
+    const terminalReceiptId = (result.rows[0] as DrillClassificationRow).terminalReceiptId;
+    expect(terminalReceiptId).toBeNull();
+    expect(terminalReceiptId).not.toBe(verifierReceipt);
+  });
+
+  it('sets terminalReceiptId to null for every row when terminalPinReceipts is omitted entirely', () => {
+    const first = 'row-omitted-first';
+    const second = 'row-omitted-second';
+    const result = adaptClassificationForDrill({
+      evidence: [evidenceFor({ rowId: first }), evidenceFor({ rowId: second })],
+      classified: [classifiedFor(first), classifiedFor(second)],
+      expectedRowIds: [first, second],
+      verifierIdentity: VERIFIER_IDENTITY,
+    });
+
+    expect((result.rows[0] as DrillClassificationRow).terminalReceiptId).toBeNull();
+    expect((result.rows[1] as DrillClassificationRow).terminalReceiptId).toBeNull();
+  });
+
+  it('treats an empty-string terminalPinReceipts value as null, not the empty string', () => {
+    const rowId = 'row-empty-receipt';
+    const result = adaptClassificationForDrill({
+      evidence: [evidenceFor({ rowId })],
+      classified: [classifiedFor(rowId, InflightDisposition.PIN)],
+      expectedRowIds: [rowId],
+      verifierIdentity: VERIFIER_IDENTITY,
+      terminalPinReceipts: { [rowId]: '' },
     });
 
     expect((result.rows[0] as DrillClassificationRow).terminalReceiptId).toBeNull();
