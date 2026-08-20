@@ -46,7 +46,7 @@ Execute a one-shot communication projection of a target response into plain Engl
 
 ## 1. PURPOSE
 
-The `/rewrite-response-by-external-agent` command performs a one-shot plain-English projection of a target assistant message through a user-selected engine (an external CLI agent, native in-context reasoning, or a local LLM).
+The `/rewrite:response-by-external-agent` command performs a one-shot plain-English projection of a target assistant message through a user-selected engine (an external CLI agent, native in-context reasoning, or a local LLM).
 
 - Projection is disabled by default globally and remains disabled after execution.
 - Enables transient projection for the single execution lifecycle, runs the rewrite workflow, and flips projection off upon completion or failure.
@@ -193,7 +193,7 @@ Execute the following steps in order:
 Invocation:
 
 ```text
-/rewrite-response-by-external-agent cli-claude-code
+/rewrite:response-by-external-agent cli-claude-code
 ```
 
 Output:
@@ -210,7 +210,7 @@ STATUS=OK
 Invocation:
 
 ```text
-/rewrite-response-by-external-agent native
+/rewrite:response-by-external-agent native
 ```
 
 Output:
@@ -227,7 +227,7 @@ STATUS=OK
 Invocation:
 
 ```text
-/rewrite-response-by-external-agent local
+/rewrite:response-by-external-agent local
 ```
 
 Output:

@@ -6,7 +6,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring"
-    last_updated_at: "2026-08-19T07:35:00.000Z"
+    last_updated_at: "2026-08-19T20:34:00.000Z"
     last_updated_by: "claude"
     recent_action: "Landed entrypoint, engine table, and command wiring; gate green"
     next_safe_action: "Reconcile parent metadata and validate recursively"

@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 Routes an external CLI agent as a first-class hosted-retained provider so the cli-* projection path runs through the same privacy routing, fidelity validation, and exact-original fallback as every other provider.
 
-The external-cli family lets `/rewrite-response-by-external-agent` dispatch its rewrite to an installed CLI agent while staying inside the projection pipeline. The provider is inert unless a caller selects its record and transport; the default provider transport, the default-off enablement gate, and the live wrapper path are unchanged.
+The external-cli family lets `/rewrite:response-by-external-agent` dispatch its rewrite to an installed CLI agent while staying inside the projection pipeline. The provider is inert unless a caller selects its record and transport; the default provider transport, the default-off enablement gate, and the live wrapper path are unchanged.
 
 ---
 

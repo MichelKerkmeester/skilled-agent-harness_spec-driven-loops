@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring",
-  "spec_folder": "sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring",
+  "packet_id": "sk-communication/002-sk-communication-triggers/007-command-namespace-rename",
+  "spec_folder": "sk-communication/002-sk-communication-triggers/007-command-namespace-rename",
   "parent_id": "sk-communication/002-sk-communication-triggers",
   "children_ids": [],
   "manual": {
@@ -11,25 +11,25 @@
   },
   "derived": {
     "trigger_phrases": [
-      "external-cli runtime wiring",
-      "external-cli entrypoint",
-      "per-engine cli command table"
+      "rewrite command namespace",
+      "rewrite response command rename",
+      "rewrite subfolder commands"
     ],
     "key_topics": [
-      "external-cli",
-      "runtime",
-      "wiring",
-      "entrypoint",
-      "per-engine",
-      "cli",
+      "rewrite",
       "command",
-      "table",
-      "phase",
-      "delivered",
-      "provider",
-      "tested"
+      "namespace",
+      "response",
+      "rename",
+      "subfolder",
+      "commands",
+      "two",
+      "trigger",
+      "sat",
+      "flat",
+      "paths"
     ],
-    "importance_tier": "important",
+    "importance_tier": "supporting",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -93,7 +93,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Phase",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -105,13 +105,13 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "the",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "an",
+        "name": "no",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -141,7 +141,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria The",
+        "name": "Completion Criteria Both",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -183,9 +183,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 005 delivered the external-cli provider as a tested package path, but command 2's Branch B still dispatches to a cli- skill ad-hoc",
-    "created_at": "2026-08-19T07:26:19.954Z",
-    "last_save_at": "2026-08-19T20:34:35.514Z",
+    "causal_summary": "The two trigger commands sat at the flat paths `.opencode/commands/rewrite-response.md` and `.opencode/commands/rewrite-response-by-external-agent.md`, so they invoked as `/rewrite-response` and `/rewrite-response-by-external-agent`",
+    "created_at": "2026-08-19T20:23:37.258Z",
+    "last_save_at": "2026-08-19T20:34:35.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a5891bec6cb2c2b5d490709025076698af3f108b1dd6c4e1ce62fd9be6167f8",
+    "source_fingerprint": "sha256:9bbf7e1ea9196249828084523fad1087ddba3ade99e93eb16fe3b8ad849e9285",
     "source_doc_hashes": {
-      "spec.md": "1c1bad19d394c68f679283c200a111d2a0f8cf85cf6fee8f08e5c80a928b2b8d",
-      "plan.md": "7eda16bd6586b1ce08454ae325373719e326d1bc27b9468a5844ecf195d817f7",
-      "tasks.md": "b8f997c0d4b2090431db2e5ca3a3abf8a23af3ca3b69a07bef8a0c0d69857290",
-      "implementation-summary.md": "570ae136a71054bf039146cf239d58ad29bd3bf125c00419eeeed809744aa397"
+      "spec.md": "b3d47e50c875b3bef9e356d0739d9d6f2991b6acf915c85c42377dc634ea3271",
+      "plan.md": "80e9a40b2fb61cd9dfc7f0739087c8831eb3919120f02453099c97c79acf3e61",
+      "tasks.md": "c3d6f6e0a25ce98285bafe6798b841def43658923d0a2acecbf82b22a438eb34",
+      "implementation-summary.md": "3d9a528de05b36a448285469bb28783f3705c41cd5b9f7ae70d9a137c6f7c27a"
     },
     "last_active_child_id": null,
     "last_active_at": null

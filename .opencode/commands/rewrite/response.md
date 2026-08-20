@@ -11,7 +11,7 @@ Rewrite the immediately preceding assistant response into plain English directly
 
 ## 1. PURPOSE
 
-The `/rewrite-response` command instructs the active AI to rewrite its own most recent assistant response into clear, accessible plain English.
+The `/rewrite:response` command instructs the active AI to rewrite its own most recent assistant response into clear, accessible plain English.
 
 - Operates entirely in-context using the executing model's reasoning capacity.
 - Uses no local or external LLM providers, CLI dispatches, or background services.
@@ -94,7 +94,7 @@ Execute the following steps in order:
 ### Example 1: Default Invocation (Rewrite Only)
 
 ```text
-/rewrite-response
+/rewrite:response
 ```
 
 Output:
@@ -109,7 +109,7 @@ STATUS=OK
 ### Example 2: Show Original and Rewrite
 
 ```text
-/rewrite-response --show-original
+/rewrite:response --show-original
 ```
 
 Output:
@@ -127,7 +127,7 @@ STATUS=OK
 ### Example 3: No Prior Message Found
 
 ```text
-/rewrite-response
+/rewrite:response
 ```
 
 Output:

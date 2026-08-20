@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers"
-    last_updated_at: "2026-08-19T09:30:00.000Z"
+    last_updated_at: "2026-08-19T20:22:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Added external-cli runtime wiring phase 006"
+    recent_action: "Renamed the two rewrite commands into the rewrite/ namespace (phase 007)"
     next_safe_action: "None; packet complete"
     blockers: []
     key_files:
@@ -68,8 +68,8 @@ The sk-communication projection layer ships as a package that is off by default 
 
 Add two slash commands that expose those two trigger paths while preserving every projection invariant.
 
-- `/rewrite-response` — the active AI rewrites its own most recent reply into plain English, entirely in-context. No local or external LLM. Display-only: canonical bytes stay unchanged.
-- `/rewrite-response-by-external-agent` — flips projection ON for a single request, runs the projection flow through a user-chosen engine, then flips it OFF, guaranteed. Default-off is preserved even on error.
+- `/rewrite:response` — the active AI rewrites its own most recent reply into plain English, entirely in-context. No local or external LLM. Display-only: canonical bytes stay unchanged.
+- `/rewrite:response-by-external-agent` — flips projection ON for a single request, runs the projection flow through a user-chosen engine, then flips it OFF, guaranteed. Default-off is preserved even on error.
 
 The root invariants both commands preserve:
 
@@ -110,6 +110,7 @@ Detailed research, design, implementation, and verification belong to the child 
 | `.claude/commands/`, `.cursor/commands/`, `.codex/prompts/` | Create | 004 | Cross-runtime command mirrors |
 | `.opencode/skills/sk-communication/cli-communication-projection/bin/`, `src/`, `test/` | Create/Modify | 006 | External-cli runtime entrypoint, per-engine command table, projection module, and tests |
 | `.opencode/commands/rewrite-response-by-external-agent.md` | Modify | 006 | Branch B routes through the external-cli entrypoint |
+| `.opencode/commands/rewrite/` | Rename | 007 | Move both commands into the `rewrite/` namespace; invoke as `/rewrite:response` and `/rewrite:response-by-external-agent` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,7 +126,8 @@ Detailed research, design, implementation, and verification belong to the child 
 | 4 | `004-skill-and-mirrors/` | sk-communication `SKILL.md` trigger-surface note and cross-runtime command mirrors | 1 | Complete |
 | 5 | `005-external-cli-provider/` | First-class external-cli provider family, injected CLI transport, tests, and catalog and playbook references | 1 | Complete |
 | 6 | `006-external-cli-runtime-wiring/` | Runnable external-cli entrypoint over projectMessage, verified per-engine command table, and command 2 Branch B adoption | 1 | Complete |
-| 7 | (parent closeout) | Final gate: `validate.sh --strict --recursive`, hygiene sweep, metadata reconciliation | — | Complete |
+| 7 | `007-command-namespace-rename/` | Move both commands into the `rewrite/` namespace; invoke as `/rewrite:response` and `/rewrite:response-by-external-agent` | 1 | Complete |
+| 8 | (parent closeout) | Final gate: `validate.sh --strict --recursive`, hygiene sweep, metadata reconciliation | — | Complete |
 
 ### Phase Transition Rules
 
@@ -143,7 +145,8 @@ Detailed research, design, implementation, and verification belong to the child 
 | 003 by-external-agent | 004 skill-and-mirrors | Command 2 flips ON→run→OFF with a guaranteed off, honoring privacy and exact-original fallback | Command validator plus package `npm run check` if code changed |
 | 004 skill-and-mirrors | 005 external-cli-provider | SKILL update keeps default-off intact; mirrors resolve in every runtime | Mirror resolve check plus SKILL review |
 | 005 external-cli-provider | 006 external-cli-runtime-wiring | Provider builds, `npm run check` is green, catalog and playbook reference the new adapter code | Package gate plus recursive strict validation |
-| 006 external-cli-runtime-wiring | Parent closeout | The entrypoint routes the cli-* path through `projectMessage`, the engine table resolves all six engines, command 2 Branch B invokes the entrypoint, and the gate is green | Package gate plus recursive strict validation |
+| 006 external-cli-runtime-wiring | 007 command-namespace-rename | The entrypoint routes the cli-* path through `projectMessage`, the engine table resolves all six engines, command 2 Branch B invokes the entrypoint, and the gate is green | Package gate plus recursive strict validation |
+| 007 command-namespace-rename | Parent closeout | Both commands live under `.opencode/commands/rewrite/`, invoke under the colon namespace, and no functional surface references the old flat names | Recursive strict validation |
 <!-- /ANCHOR:phase-map -->
 
 ---
