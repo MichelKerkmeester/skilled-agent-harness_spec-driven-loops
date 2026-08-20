@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep-Research Enablement"
-description: "The pilot's write path now resolves authority from a durable record instead of asserting it, and the protocol names the gateway; the authority move itself is blocked because the runtime implements only the last edge of the flip state machine."
+description: "The pilot's write path resolves authority from a durable record and the missing cutover-ready edge is now built; the flip is blocked on evidence rather than state, because the certificate's attestations have no production producer."
 trigger_phrases:
   - "deep-research enablement summary"
   - "pilot flip blocked"
@@ -11,21 +11,23 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-de
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement"
-    last_updated_at: "2026-08-20T09:14:54Z"
+    last_updated_at: "2026-08-20T10:20:03Z"
     last_updated_by: "claude"
-    recent_action: "Built the cutover-ready producer; inventoried what real flip evidence requires"
-    next_safe_action: "Operator decision on the missing legacy-to-cutover-ready transitions"
+    recent_action: "Built the classifier-to-drill adapter and fixed a terminal-receipt P1 found by review"
+    next_safe_action: "Build the rollback anchor attestation producer"
     blockers:
-      - "requestCutover starts from cutover_ready; no code path reaches that state from legacy_authoritative"
+      - "Rollback anchor, verifier and disposition-proof attestations have no production producer"
+      - "Only the fixtures generator has ever constructed a classification evidence record"
     key_files:
-      - ".opencode/skills/system-deep-loop/runtime/lib/authority-root/resolve-authority-root.ts"
-      - ".opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts"
-      - ".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
-    completion_pct: 70
-    open_questions:
-      - "Who builds the legacy-to-shadowing-to-cutover-ready edges, and under what evidence?"
+      - ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/classification-drill-adapter.ts"
+      - ".opencode/skills/system-deep-loop/runtime/scripts/run-pilot-rollback-drill.cjs"
+    completion_pct: 78
+    open_questions: []
     answered_questions:
       - "The composition seam exists and had zero callers; the gateway is now its first"
+      - "The missing edge is built: prepareCutover persists the readiness verdict as state"
+      - "The drill never consumed classifier output; an adapter translates between them"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
