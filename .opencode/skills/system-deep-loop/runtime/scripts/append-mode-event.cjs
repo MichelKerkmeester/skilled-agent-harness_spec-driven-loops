@@ -228,6 +228,7 @@ async function main() {
   const { resolveAuthorityRoot } = await import('../lib/authority-root/index.ts');
   const { admitCanonicalWrite } = await import('../lib/deep-research-authority/index.ts');
   const { AUTHORITY_FLIP_MODE_ORDER } = await import('../lib/per-mode-authority-flip/index.ts');
+  const { upcastLegacyDeepResearchRecord } = await import('../lib/deep-research-ledger-schema/index.ts');
 
   const adapter = await resolveModeAdapter(modeRaw);
   const normalizedMode = adapter.normalizedMode;
@@ -350,7 +351,39 @@ async function main() {
   const currentHead = await ledger.getVerifiedHead();
   const nowIso = new Date().toISOString();
 
+  // Shared builder for the envelope-metadata + payload-core input that
+  // adapter.prepareEvent consumes. Both the explicit-stem path and the legacy
+  // upcast path funnel through here so the envelope shape is defined once.
+  function buildPreparedInput(core, meta) {
+    return {
+      stem: core.stem,
+      scope: core.scope,
+      data: core.data,
+      prevEventHash: core.prevEventHash,
+      replay: core.replay,
+      eventId: meta.eventId || meta.event_id || `event-${crypto.randomUUID()}`,
+      streamId: meta.streamId || meta.stream_id || ledgerId,
+      streamSequence: meta.streamSequence ?? meta.stream_sequence ?? (currentHead.sequence + 1),
+      occurredAt: meta.occurredAt || meta.occurred_at || nowIso,
+      recordedAt: meta.recordedAt || meta.recorded_at || nowIso,
+      producer: meta.producer || { name: 'deep-loop-cli', version: '1.0.0' },
+      authorityEpoch: meta.authorityEpoch ?? meta.authority_epoch ?? authority.epoch,
+      correlationId: meta.correlationId || meta.correlation_id || crypto.randomUUID(),
+      causationId: meta.causationId !== undefined
+        ? meta.causationId
+        : (meta.causation_id !== undefined ? meta.causation_id : null),
+      idempotencyKey: meta.idempotencyKey || meta.idempotency_key || crypto.randomUUID(),
+    };
+  }
+
+  const defaultReplay = {
+    fingerprint_version: 1,
+    final_digest: '0'.repeat(64),
+    replay_input_digests: {},
+  };
+
   let eventRecord;
+  let legacyWarnings;
   if (
     rawEvent
     && typeof rawEvent === 'object'
@@ -361,29 +394,13 @@ async function main() {
   ) {
     eventRecord = rawEvent;
   } else if (rawEvent && typeof rawEvent === 'object' && rawEvent.stem) {
-    const preparedInput = {
+    const preparedInput = buildPreparedInput({
       stem: rawEvent.stem,
       scope: rawEvent.scope || { runId: 'run-cli', lineageId: 'lineage-cli' },
       data: rawEvent.data || {},
       prevEventHash: rawEvent.prevEventHash || rawEvent.prev_event_hash || currentHead.recordHash,
-      replay: rawEvent.replay || {
-        fingerprint_version: 1,
-        final_digest: '0'.repeat(64),
-        replay_input_digests: {},
-      },
-      eventId: rawEvent.eventId || rawEvent.event_id || `event-${crypto.randomUUID()}`,
-      streamId: rawEvent.streamId || rawEvent.stream_id || ledgerId,
-      streamSequence: rawEvent.streamSequence ?? rawEvent.stream_sequence ?? (currentHead.sequence + 1),
-      occurredAt: rawEvent.occurredAt || rawEvent.occurred_at || nowIso,
-      recordedAt: rawEvent.recordedAt || rawEvent.recorded_at || nowIso,
-      producer: rawEvent.producer || { name: 'deep-loop-cli', version: '1.0.0' },
-      authorityEpoch: rawEvent.authorityEpoch ?? rawEvent.authority_epoch ?? authority.epoch,
-      correlationId: rawEvent.correlationId || rawEvent.correlation_id || crypto.randomUUID(),
-      causationId: rawEvent.causationId !== undefined
-        ? rawEvent.causationId
-        : (rawEvent.causation_id !== undefined ? rawEvent.causation_id : null),
-      idempotencyKey: rawEvent.idempotencyKey || rawEvent.idempotency_key || crypto.randomUUID(),
-    };
+      replay: rawEvent.replay || defaultReplay,
+    }, rawEvent);
     eventRecord = adapter.prepareEvent(preparedInput, registry);
   } else if (rawEvent && typeof rawEvent === 'object' && (rawEvent.event_type || rawEvent.eventType)) {
     const envelope = {
@@ -405,6 +422,52 @@ async function main() {
       payload: rawEvent.payload || {},
     };
     eventRecord = prepareEventWrite(envelope, registry);
+  } else if (
+    normalizedMode === 'deep-research'
+    && rawEvent
+    && typeof rawEvent === 'object'
+  ) {
+    // Legacy deep-research rows predate the canonical envelope and carry no
+    // stem or event_type the current registry recognizes. This branch is tried
+    // last so canonical envelopes and explicit stem/event_type rows keep their
+    // fast paths untouched; only rows that would otherwise hit the final throw
+    // reach the upcaster. Non-research modes never enter here, so they keep
+    // the original unrecognized-format rejection.
+    const legacyRunId = rawEvent.runId || rawEvent.sessionId || 'run-cli';
+    const legacyLineageId = rawEvent.lineageId
+      || rawEvent.parentSessionId
+      || rawEvent.sessionId
+      || 'lineage-cli';
+    const legacyScope = { runId: legacyRunId, lineageId: legacyLineageId };
+    const legacyIteration = rawEvent.iteration ?? rawEvent.run;
+    if (Number.isSafeInteger(legacyIteration) && legacyIteration > 0) {
+      legacyScope.iteration = legacyIteration;
+    }
+    const legacyContext = {
+      scope: legacyScope,
+      prevEventHash: currentHead.recordHash,
+      replay: defaultReplay,
+    };
+    const upcast = upcastLegacyDeepResearchRecord(rawEvent, legacyContext);
+    if (upcast.status === 'refused') {
+      // A bare "refused" tells the operator nothing actionable. Carrying the
+      // decision's own reasonCode lets them see whether the row was blocked,
+      // pinned to the old runtime, or simply unrecognized, so they can fix the
+      // input rather than guess. Nothing is written: this throws before any
+      // append is attempted.
+      throw new Error(
+        `Legacy deep-research record refused: ${upcast.decision.reasonCode}`,
+      );
+    }
+    const preparedInput = buildPreparedInput({
+      stem: upcast.targetStem,
+      scope: upcast.scope,
+      data: upcast.data,
+      prevEventHash: upcast.prevEventHash,
+      replay: upcast.replay,
+    }, rawEvent);
+    eventRecord = adapter.prepareEvent(preparedInput, registry);
+    legacyWarnings = upcast.warnings;
   } else {
     throw new Error('Unrecognized event format: expected object with stem or event_type');
   }
@@ -426,7 +489,14 @@ async function main() {
     binding,
   });
 
-  jsonOut(outcome);
+  // Surface a lossy legacy migration instead of letting it pass silently. Only
+  // the legacy upcast path sets legacyWarnings, so canonical/stem/event_type
+  // outputs stay byte-identical to before.
+  if (legacyWarnings && legacyWarnings.length > 0) {
+    jsonOut({ ...outcome, warnings: [...legacyWarnings] });
+  } else {
+    jsonOut(outcome);
+  }
   process.exit(outcome.ok ? 0 : 2);
 }
 

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Deep-research state is produced by agents following prose",
     "created_at": "2026-08-19T06:57:07.880Z",
-    "last_save_at": "2026-08-20T00:25:07.655Z",
+    "last_save_at": "2026-08-20T00:46:00.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e67d3485b643ac693bf2b500aec6689b8d364fcf84fe67bd6ce0ea9d64214dc",
+    "source_fingerprint": "sha256:c32f054b842df05ca1c4cfc7d44730c19433c9914cc920c22a42b3cd3c880aa6",
     "source_doc_hashes": {
       "spec.md": "aa7305d8347d7b7b7ec3b0746fb1c9cc8a64e91d13eea4f0ed1c5ad14c483e15",
       "plan.md": "6b5a5c48fcec891c8cdc1ef1bbeec86cd83ca63260904abdda3ef0fbf3434a44",
       "tasks.md": "efc52c900dfdd83c9b2d08b2e894718408a1317ce192591988f42de3db585984",
       "checklist.md": "14f24424d9b5fbf04941482dbf366aed38d6bbe99571a2598fe979374f1ce2fc",
-      "implementation-summary.md": "e0f6c1cc68468778b928f94e4be08c95877c38f1df02c29180b92675a448e6ee"
+      "implementation-summary.md": "a8449b01d06d55adb9d5556471549b22afb1d3958273b92ee215a6335c6d2d6b"
     },
     "last_active_child_id": null,
     "last_active_at": null
