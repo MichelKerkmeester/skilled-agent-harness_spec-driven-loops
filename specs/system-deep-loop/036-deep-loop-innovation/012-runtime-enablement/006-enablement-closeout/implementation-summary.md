@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-en
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout"
-    last_updated_at: "2026-08-20T00:55:08Z"
+    last_updated_at: "2026-08-20T03:36:03Z"
     last_updated_by: "claude"
-    recent_action: "Scoped the coverage gap by writer"
+    recent_action: "Traced the strict-mode gate that exits 2 while reporting zero errors"
     next_safe_action: "Operator decision on who builds the missing cutover_ready edges"
     blockers:
       - "No production writer persists cutover_ready, so the forward flip can never fire"
@@ -137,6 +137,21 @@ uses `appendFileSync` to write `profile-selection.log` — a profiling log, not 
 mode ledger surface — so it is out of scope rather than an unfixed violation.
 
 **No runtime change.** The scoped diff is documentation and evidence only.
+**The gate used to certify every phase disagrees with itself.** `validate.sh --strict` returns exit 2
+for every folder in the repository, including packets unrelated to this one, while printing
+`Errors: 0  Warnings: 0` and `RESULT: PASSED`. Traced by execution: a strict-only command-tree parity
+rule runs after the summary is printed, its failure is never added to the error tally, and its status
+becomes the script's exit code. That rule appears zero times in the validator's own report, so the
+half that fails is invisible and the half that is visible cannot show it.
+
+The failure is command-mirror drift in an unrelated command tree, predating this work and untouched
+by any commit here. It is reported rather than repaired because it is outside this packet and
+outward-facing for other runtimes.
+
+Earlier records in this packet reading "exit 0" were taking the status of a pipeline's last stage
+rather than the validator's. The `Errors: 0` readings themselves are accurate, and the orchestrator
+run directly against a phase folder returns passed with zero errors and exit 0. Detail:
+`scratch/validator-exit-vs-summary.md`.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
