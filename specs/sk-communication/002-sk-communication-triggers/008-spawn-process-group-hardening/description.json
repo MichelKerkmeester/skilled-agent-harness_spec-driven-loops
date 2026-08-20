@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-communication/002-sk-communication-triggers/008-spawn-process-group-hardening",
+  "description": "The phase-006 spawn boundary killed only the direct child on timeout",
+  "keywords": [
+    "phase-006",
+    "spawn",
+    "boundary",
+    "killed",
+    "only",
+    "direct",
+    "child",
+    "timeout"
+  ],
+  "lastUpdated": "2026-08-20T05:52:16.783Z",
+  "specId": "008",
+  "folderSlug": "spawn-process-group-hardening",
+  "parentChain": [
+    "sk-communication",
+    "002-sk-communication-triggers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

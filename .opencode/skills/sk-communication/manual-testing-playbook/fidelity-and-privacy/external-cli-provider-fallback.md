@@ -68,7 +68,7 @@ The two commands are jointly required: the fallback test alone does not prove th
 | [External CLI transport](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts) | Dispatch mapping and fail-closed responses. |
 | [External CLI preset](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts) | Hosted-retained record and privacy class. |
 | [External CLI provider tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts) | Fallback and egress-consent evidence. |
-| [External CLI transport tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts) | Engine resolution, argv, timeout, and fail-closed evidence. |
+| [External CLI transport tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts) | Engine resolution, argv, timeout, fail-closed evidence, and process-group teardown on timeout and abort. |
 
 ---
 

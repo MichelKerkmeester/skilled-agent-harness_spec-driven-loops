@@ -27,6 +27,8 @@ The external-cli family lets `/rewrite:response-by-external-agent` dispatch its 
 
 The external-cli family reuses the OpenAI-chat adapter, so `createExternalCliTransport` synthesizes an OpenAI-chat-shaped response whose message content is the CLI rewrite, and the shared executor, fidelity validation, and exact-original fallback apply unchanged. The subprocess lives only in `createChildProcessCliRunner`, behind an injected spawn boundary, and the per-engine command mapping is caller-supplied because it depends on which CLI binaries are installed and authenticated. Any unknown engine, missing user message, aborted request, non-zero exit, timeout, empty output, or thrown runner returns a non-2xx response that the executor maps to the exact original.
 
+The spawn boundary runs the CLI as its own process-group leader and, on a timeout or an aborted request, kills the whole group. A tool that forks background helpers therefore cannot leave them running after the dispatch, and no forked helper can hold the output pipe open past the rewrite.
+
 ---
 
 ## 3. SOURCE FILES
@@ -44,7 +46,7 @@ The external-cli family reuses the OpenAI-chat adapter, so `createExternalCliTra
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts` | Unit | Covers engine resolution, argv, stdin delivery, timeout, and fail-closed transport responses. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts` | Unit | Covers engine resolution, argv, stdin delivery, timeout, fail-closed transport responses, and process-group teardown on timeout and abort. |
 | `.opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts` | Unit | Verifies record validity, privacy routing, adapter body, and end-to-end candidate and exact-original fallback. |
 
 ---
