@@ -48,6 +48,7 @@
       "scratch/seam-executed.md",
       "scratch/directive-to-command-gap.md",
       "scratch/parity-blocks-flip.md",
+      "scratch/missing-cutover-ready-producer.md",
       "scratch/full-suite-delta.md",
       "tasks.md"
     ],
@@ -92,6 +93,12 @@
         "name": "parity-blocks-flip.md",
         "kind": "doc",
         "path": "scratch/parity-blocks-flip.md",
+        "source": "derived"
+      },
+      {
+        "name": "missing-cutover-ready-producer.md",
+        "kind": "doc",
+        "path": "scratch/missing-cutover-ready-producer.md",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "empty",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Deep-research state is produced by agents following prose",
     "created_at": "2026-08-19T06:57:07.880Z",
-    "last_save_at": "2026-08-20T03:54:57.067Z",
+    "last_save_at": "2026-08-20T07:42:40.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09c99ab457509c3b8f9144dd4b3d16f0785982e8de28b19860a4259f999c826b",
+    "source_fingerprint": "sha256:8c9f62614420934ce3df468811b290194dcbd895caa8ce3b9d5df0a674e6dc53",
     "source_doc_hashes": {
       "spec.md": "aa7305d8347d7b7b7ec3b0746fb1c9cc8a64e91d13eea4f0ed1c5ad14c483e15",
       "plan.md": "6b5a5c48fcec891c8cdc1ef1bbeec86cd83ca63260904abdda3ef0fbf3434a44",
       "tasks.md": "efc52c900dfdd83c9b2d08b2e894718408a1317ce192591988f42de3db585984",
-      "checklist.md": "3113c1cfd1272452970fa639930f9a386ad8860d434779925fa61dc5466d094c",
-      "implementation-summary.md": "43d1c5f7075b052a1dbab1b6b24ad57603d6734bb4cabb91a9388c5c78b51d20"
+      "checklist.md": "4f13d47efb75bd45654c9180ce92ac60e754ad2f27d027d1b6a5ec76e8bc4f32",
+      "implementation-summary.md": "44fe7a124a2b8837f6a7f4f3fc1dec84c58b2cb1ab1c10f044ddb0d393aaf0e4"
     },
     "last_active_child_id": null,
     "last_active_at": null

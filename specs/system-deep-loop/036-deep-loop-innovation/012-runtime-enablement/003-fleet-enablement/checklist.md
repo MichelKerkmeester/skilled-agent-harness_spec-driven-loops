@@ -40,7 +40,7 @@ another.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Predecessor `002-deep-research-enablement` complete including its fan-out proof [BLOCKED: predecessor `002-deep-research-enablement` closed 18 of 26 items; its remaining 8 and its fan-out proof are blocked on the same missing flip transitions that block this phase]
+- [ ] CHK-001 [P0] Predecessor `002-deep-research-enablement` complete including its fan-out proof [BLOCKED: predecessor `002-deep-research-enablement` closed 20 of 26 items; its remaining 8 and its fan-out proof are blocked on the same missing flip transitions that block this phase]
 - [x] CHK-002 [P0] Each mode's reader set derived from its own projection manifest entries (REQ-003) [EVIDENCE: `deriveModeSurfaceSet` reads `LEGACY_PROJECTION_MANIFEST` per mode via a prefix-ownership table — `mode-surface-map.ts:58`; the derived sets for all 7 modes are in `scratch/dryrun.json`]
 - [x] CHK-003 [P0] Any mode lacking a manifest entry is flagged as a failure to investigate, not skipped (REQ-003) [EVIDENCE: an empty `surfaceIds` returns a `reader-contract` failure rather than a skip — `enable-modes.cjs:120`; no mode currently trips it, every one of the 7 derives at least one surface, asserted by `gives every fleet mode at least one surface`]
 - [x] CHK-004 [P0] Pre-run authority record bytes captured for all seven modes (SC-002) [EVIDENCE: `scratch/authority-prerun-capture.md` — no `authority-*.json` exists for any of the 8 registry modes, so every pre-run state is the synthesized `legacy_authoritative` default; the authority root holds only its `README.md`]
