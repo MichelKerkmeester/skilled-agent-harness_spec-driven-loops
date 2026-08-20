@@ -1,29 +1,33 @@
 # ─────────────────────────────────────────────────────────────────
-# SK-DESIGN-MD-GENERATOR: DESIGN-REFERENCE CREATION WORKFLOW (AUTO MODE)
+# SK-DESIGN-MD-GENERATOR: EXTRACT CREATION WORKFLOW (CONFIRM MODE)
 # ─────────────────────────────────────────────────────────────────
-# Mode: autonomous (no user approval gates)
+# Mode: interactive (one consolidated confirmation prompt, then autonomous)
 # Delegates shared lifecycle/envelope/authority/proof vocabulary to
 # creation-contract.md; this file carries only the style-reference
 # extraction workflow and the command-standard scaffolding.
 # ─────────────────────────────────────────────────────────────────
-role: sk-design-md-generator design-reference creation command, autonomous execution
+role: sk-design-md-generator extract creation command, interactive execution
 purpose: Extract a provenance-rich validated Style Reference DESIGN.md from a canonical live source
-action: Apply workflowMode=sk-design-md-generator to $ARGUMENTS through the shared creation contract
+action: Resolve private access and overwrite decisions once, then apply workflowMode=sk-design-md-generator
 
 operating_mode:
   workflow: sequential_creation_contract
   workflow_compliance: MANDATORY
-  workflow_execution: autonomous
-  approvals: none
+  workflow_execution: interactive_then_autonomous
+  approvals: consolidated_prompt_once
   intake: progressive
   tracking: progressive_step_outputs
   validation: continuous_self_validation
-  confirmation: "Only for route, identity, access, destructive action, or acceptance changes"
+  confirmation: "Wait for the bundled reply before extraction work"
   description: |
-    Runs the style-reference extraction workflow end to end without step-by-step
-    approval, delegating shared lifecycle/envelope/authority/proof vocabulary to
-    creation-contract.md. Pauses only when a confirmation-required field is
-    unresolved or confidence drops below threshold.
+    Collects every confirmation-required decision once via the presentation
+    prompt, then runs the style-reference extraction workflow to completion,
+    delegating shared lifecycle/envelope/authority/proof vocabulary to
+    creation-contract.md.
+
+checkpoint:
+  source: ".opencode/commands/design/assets/extract-presentation.txt"
+  wait_for: user_reply
 
 # ─────────────────────────────────────────────────────────────────
 # CONFIDENCE & CLARIFICATION FRAMEWORK
@@ -32,7 +36,7 @@ confidence_framework:
   thresholds:
     high: { range: "80-100%", action: "Proceed with citable source" }
     medium: { range: "40-79%", action: "Proceed with caution, record bounded assumptions" }
-    low: { range: "0-39%", action: "STOP - resolve the confirmation-required field before extraction work" }
+    low: { range: "0-39%", action: "STOP - fold the unresolved field into the consolidated prompt" }
   scoring_weights:
     brief_clarity: 0.30
     grounding_fit: 0.25
@@ -74,6 +78,13 @@ workflow_enforcement:
   mode: strict
   step_order: sequential_mandatory
   skip_allowed: false
+  confirmation_gate:
+    location: "step_0 before any extraction work"
+    purpose: "Collect all confirmation-required decisions in one bundled prompt"
+    requirements:
+    - "Consolidated prompt rendered from the presentation asset"
+    - "Operator reply received before step_1"
+    action_if_failed: "WAIT for the bundled reply"
   creation_contract_gate:
     location: "Between step_2 and step_3"
     purpose: "Verify the shared creation contract is loaded before route proof and extraction work"
@@ -94,15 +105,15 @@ workflow_enforcement:
 
 gate_logic:
   hard:
-    H0_route_proof:
-      description: "The canonical /design:design-reference route + workflowMode=sk-design-md-generator must be proven"
+    H0_confirmation:
+      description: "The consolidated confirmation reply must be received before extraction work"
+      fail_action: "WAIT for the bundled reply"
+    H1_route_proof:
+      description: "The canonical /design:extract route + workflowMode=sk-design-md-generator must be proven"
       fail_action: "STOP and record the route proof"
-    H1_creation_contract:
+    H2_creation_contract:
       description: "The shared creation contract must be loaded before extraction work"
       fail_action: "STOP and load creation-contract.md"
-    H2_required_input:
-      description: "A resolvable canonical source must be present"
-      fail_action: "STATUS=ASK MISSING=source"
     H3_acceptance_before_handoff:
       description: "Implementation handoff only after accepted design output"
       fail_action: "Hold handoff until acceptance"
@@ -125,16 +136,16 @@ circuit_breaker:
     suggest: "Resolve the blocked field or defer to a sibling route"
 
 # ─────────────────────────────────────────────────────────────────
-# AUTONOMOUS EXECUTION
+# AUTONOMOUS EXECUTION (after the consolidated confirmation)
 # ─────────────────────────────────────────────────────────────────
 autonomous_execution:
-  principle: "Execute the workflow steps sequentially without approval gates"
+  principle: "After the bundled reply, execute the workflow steps sequentially without further approval gates"
   decision_making: "Use the confidence framework to self-assess at each step"
   self_validation_approach:
     continuous: "Self-validate at each step output"
     confidence_threshold: "Stop only if confidence < 40%"
     error_handling: "Apply error_recovery strategies automatically"
-  uncertainty_handling: "If a confirmation-required field is unresolved, pause and report"
+  uncertainty_handling: "If a confirmation-required field is unresolved, fold it into the consolidated prompt"
   progress_tracking: "Record each step output"
   completion_criteria: "All steps validated, deliverable produced, status contract emitted"
 
@@ -154,6 +165,10 @@ backend_boundary:
   pipeline: ".opencode/skills/sk-design-md-generator/backend/scripts/guided-run.ts"
 
 workflow:
+  step_0_show_prompt:
+    purpose: Collect source, access, overwrite, coverage, and acceptance decisions once
+    action: "Render .opencode/commands/design/assets/extract-presentation.txt and wait"
+    output: confirmed_inputs
   step_1_load_skill:
     purpose: Load the standalone extraction skill
     action: "Read .opencode/skills/sk-design-md-generator/SKILL.md"
@@ -164,7 +179,7 @@ workflow:
     output: creation_contract
   step_3_route_proof:
     purpose: Prove the canonical extraction route and output policy
-    action: "Record command=/design:design-reference, workflowMode=sk-design-md-generator, canonical source, and proof environment"
+    action: "Record command=/design:extract, workflowMode=sk-design-md-generator, canonical source, and proof environment"
     output: route_proof
   step_4_context_manifest:
     purpose: Load source origin, representative routes/states/viewports/themes, access, dynamic loading, output, and overwrite policy
@@ -220,7 +235,7 @@ status_contract:
 # ─────────────────────────────────────────────────────────────────
 error_recovery:
   missing_source:
-    action: "Emit STATUS=ASK MISSING=source and wait"
+    action: "Fold source into the consolidated prompt and wait"
   no_fit_grounding:
     action: "Stop; the canonical source is required and no unrelated fallback is allowed"
   contract_not_loaded:
@@ -242,6 +257,7 @@ termination:
 # ─────────────────────────────────────────────────────────────────
 rules:
   ALWAYS:
+  - "Render the consolidated prompt and wait for the bundled reply before extraction work"
   - "Load creation-contract.md before extraction work"
   - "Prove the canonical route before producing artifacts"
   - "Treat the canonical website as the primary exemplar; no unrelated fallback"
@@ -251,7 +267,7 @@ rules:
   - "Write artifacts outside the owned extract-write-validate pipeline"
   - "Skip the creation contract or route proof"
   - "Add unrelated inspiration or generic replacement content"
-  - "Leave a confirmation-required field unresolved in autonomous mode"
+  - "Proceed past step_0 before the consolidated reply is received"
 
 pipeline:
   stage: "extract - the pipeline origin for measured source evidence before design judgment"

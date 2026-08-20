@@ -4,7 +4,7 @@ argument-hint: "<live-url> --output <dir> [--register brand|product] [:auto|:con
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
-# /design:design-reference
+# /design:extract
 
 Creation-template router for stable `workflowMode=sk-design-md-generator`. Read `.opencode/skills/sk-design-md-generator/references/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the md-generator pipeline to `$ARGUMENTS`.
 
@@ -40,9 +40,9 @@ Use the shared nine-stage contract for source-faithful extraction. The canonical
 | Purpose | Asset |
 |---|---|
 | Shared lifecycle | `.opencode/skills/sk-design-md-generator/references/creation-contract.md` |
-| Presentation source of truth | `.opencode/commands/design/assets/design-reference-presentation.txt` |
-| Auto workflow | `.opencode/commands/design/assets/design-reference-auto.yaml` |
-| Confirm workflow | `.opencode/commands/design/assets/design-reference-confirm.yaml` |
+| Presentation source of truth | `.opencode/commands/design/assets/extract-presentation.txt` |
+| Auto workflow | `.opencode/commands/design/assets/extract-auto.yaml` |
+| Confirm workflow | `.opencode/commands/design/assets/extract-confirm.yaml` |
 
 ---
 
@@ -75,8 +75,8 @@ Return `Route Proof`, `Resolved Brief`, `Context Manifest`, `Grounding Record`, 
 
 | Mode | Target |
 |---|---|
-| `:auto`, or complete input | `.opencode/commands/design/assets/design-reference-auto.yaml` |
-| `:confirm`, or incomplete input | `.opencode/commands/design/assets/design-reference-confirm.yaml` |
+| `:auto`, or complete input | `.opencode/commands/design/assets/extract-auto.yaml` |
+| `:confirm`, or incomplete input | `.opencode/commands/design/assets/extract-confirm.yaml` |
 
 ---
 

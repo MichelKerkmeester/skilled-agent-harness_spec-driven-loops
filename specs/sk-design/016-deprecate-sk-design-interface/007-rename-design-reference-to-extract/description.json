@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-design/016-deprecate-sk-design-interface/007-rename-design-reference-to-extract",
+  "description": "Phase 007 renames the surviving design-reference command to /design:extract (file, owned assets, all six runtime mirrors), and closes the",
+  "keywords": [
+    "phase",
+    "renames",
+    "surviving",
+    "design-reference",
+    "command",
+    "design",
+    "extract",
+    "file",
+    "owned",
+    "assets",
+    "six",
+    "runtime",
+    "mirrors",
+    "closes"
+  ],
+  "lastUpdated": "2026-08-20T18:58:10.517Z",
+  "specId": "007",
+  "folderSlug": "rename-design-reference-to-extract",
+  "parentChain": [
+    "sk-design",
+    "016-deprecate-sk-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

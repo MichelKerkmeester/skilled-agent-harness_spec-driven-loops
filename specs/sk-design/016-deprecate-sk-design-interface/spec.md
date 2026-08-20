@@ -44,7 +44,7 @@ _memory:
 | **Level** | 2 |
 | **Structure** | Phase Parent lean trio (program umbrella over six numbered children) |
 | **Priority** | P1 |
-| **Status** | Complete — all 6 children shipped; scoped commit operator-gated |
+| **Status** | Complete — all 7 children shipped; scoped commit operator-gated |
 | **Created** | 2026-08-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None; root packet under the design track |
@@ -142,6 +142,7 @@ Most execution work is delegated to **`cli-devin` running `gemini-3-7-flash-high
 | 4 | `004-fold-design-knowledge/` | Distill the salvage set (`shared/` principles + `interface/references` digest) into a condensed `references/design-knowledge/` layer in the standalone skill | add-only | **Complete** |
 | 5 | `005-delete-hub-and-interface-commands/` | Delete the `sk-design` hub + `sk-design-interface` mode + `.opencode/commands/interface/` (after rebinding `/…design-reference`) | **destructive — operator gate** | **Complete** |
 | 6 | `006-reference-cleanup-and-reconcile/` | Repo-wide live-ref cleanup + repoint `cli-*`/deep-alignment/mcp-tooling contracts + regenerate advisor graph + compiled routing; `validate.sh --recursive --strict`; closeout | mutates | **Complete** |
+| 7 | `007-rename-design-reference-to-extract/` | Rename `/design:design-reference` -> `/design:extract` (file, assets, all six runtime mirrors via existing sync tooling); close the interface-era mirror residue 006 left (broken `.claude/commands/interface` symlinks, stale never-synced `.codex`/`.pi` `interface-*.md` copies) | mutates | **Complete** |
 
 ### Phase Transition Rules
 

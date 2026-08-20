@@ -1,11 +1,11 @@
-# Design Reference Presentation Contract
+# Extract Presentation Contract
 
 ## 1. Progressive Intake
 
 Resolve canonical URL, allowed origin, representative routes/states/viewports/themes, private access, dynamic loading, output, overwrite policy, coverage, and validation bar. Private access, overwrite, and missing canonical source always require confirmation.
 
 ```text
-Design Reference setup
+Extract setup
 What canonical URL/origin, capture matrix, access method, output directory, overwrite decision, coverage target, and validation bar apply?
 ```
 
@@ -42,7 +42,7 @@ STATUS=DEFER ROUTE=<hub|sibling>
 ## 5. Example Usage
 
 ```text
-/design:design-reference https://stripe.com --output design/reference
+/design:extract https://stripe.com --output design/reference
 ```
 
 Returns: a Style Reference DESIGN.md and extracted token data under the output directory.

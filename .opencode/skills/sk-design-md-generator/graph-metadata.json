@@ -28,7 +28,7 @@
     "design-systems",
     "design-tokens",
     "css-extraction",
-    "design-reference",
+    "extract",
     "style-reference",
     "design-knowledge",
     "anti-slop"
@@ -89,7 +89,7 @@
     ],
     "key_topics": [
       "sk-design-md-generator",
-      "design-reference",
+      "extract",
       "css-extraction",
       "tokens.json",
       "playwright-extract",

@@ -55,7 +55,7 @@ This agent is LEAF-only.
    vocabulary), and the owned assets.
 2. **Detect the phase.** Classify the request: EXTRACT_WRITE (crawl a live URL → `DESIGN.md`),
    VALIDATE (check an existing `DESIGN.md` against its `tokens.json`), REPORT (render visual
-   artifacts), or STUDY (example reference). Honor a `/design:design-reference` command invocation.
+   artifacts), or STUDY (example reference). Honor a `/design:extract` command invocation.
 3. **Check readiness.** Confirm the backend is installed (`backend/node_modules` + Playwright
    Chromium) before an EXTRACT run.
 4. **Run the pipeline.** Execute the owned extract-write-validate scripts from the repo root

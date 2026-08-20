@@ -1,8 +1,8 @@
 ---
-title: Design-Reference Creation Contract
-description: Lifecycle, context, grounding, proof, authority, and handoff contract for the design-reference extraction command.
+title: Extract Creation Contract
+description: Lifecycle, context, grounding, proof, authority, and handoff contract for the extract command.
 trigger_phrases:
-  - "design-reference creation contract"
+  - "extract creation contract"
   - "progressive design brief"
   - "typed design evidence"
   - "accepted design handoff"
@@ -11,9 +11,9 @@ contextType: implementation
 version: 2.0.0.0
 ---
 
-# Design-Reference Creation Contract
+# Extract Creation Contract
 
-This contract supplies the public choreography for the `/design:design-reference` extraction command. It is not a design mode and contains no palette, typography, layout, motion, or audit taste doctrine.
+This contract supplies the public choreography for the `/design:extract` command. It is not a design mode and contains no palette, typography, layout, motion, or audit taste doctrine.
 
 ---
 
@@ -21,11 +21,11 @@ This contract supplies the public choreography for the `/design:design-reference
 
 ### Purpose
 
-Coordinate intake and lifecycle for `/design:design-reference` so the command never duplicates the extraction skill's own judgment.
+Coordinate intake and lifecycle for `/design:extract` so the command never duplicates the extraction skill's own judgment.
 
 ### When To Use
 
-Use when authoring, auditing, or extending the design-reference command's route resolution, lifecycle stage, context envelope, or handoff behavior.
+Use when authoring, auditing, or extending the extract command's route resolution, lifecycle stage, context envelope, or handoff behavior.
 
 ### Core Principle
 
@@ -39,7 +39,7 @@ Resolve the canonical command and stable `workflowMode` before extraction work:
 
 | Canonical command | Stable `workflowMode` |
 |---|---|
-| `/design:design-reference` | `sk-design-md-generator` |
+| `/design:extract` | `sk-design-md-generator` |
 
 Public commands never invoke public commands. A command may pass an accepted-decision envelope to `sk-code` without restarting intake. Authority precedence is:
 
@@ -75,7 +75,7 @@ Carry this envelope through every stage:
 
 ```json
 {
-  "command": "design:design-reference",
+  "command": "design:extract",
   "workflowMode": "sk-design-md-generator",
   "request": "...",
   "resolvedBrief": {},

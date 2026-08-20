@@ -128,5 +128,5 @@ Phase 005 deleted the `sk-design` judgment hub and the `interface` command names
 
 - **Parent:** `../spec.md`
 - **Predecessor:** `../005-delete-hub-and-interface-commands/spec.md`
-- **Successor:** — (final phase)
+- **Successor:** `../007-rename-design-reference-to-extract/spec.md`
 <!-- /ANCHOR:phase-navigation -->

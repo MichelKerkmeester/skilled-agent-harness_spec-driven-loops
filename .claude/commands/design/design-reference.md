@@ -1,1 +1,0 @@
-../../../.opencode/commands/design/design-reference.md
