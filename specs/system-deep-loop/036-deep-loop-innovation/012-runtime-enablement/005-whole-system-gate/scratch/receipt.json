@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-20T04:11:41.261Z",
-  "candidateSha": "8bbe1335e309f7d3c61b289665eaa09ace4770b4",
+  "generatedAt": "2026-08-20T07:37:54.132Z",
+  "candidateSha": "f58ff5283d1f2213072a1fd3106326976656afe1",
   "baselineSha": "8c9f0b6944ac4e43e99d26f9cf61dab74b600640",
   "forcedBreak": null,
   "verdict": "FAIL",
@@ -14,20 +14,78 @@
     {
       "id": "candidate-frozen",
       "description": "Candidate runtime tree matches the measured tree",
-      "status": "fail",
-      "detail": ".../tests/unit/per-mode-authority-flip.vitest.ts   | 69 ----------------------\n 1 file changed, 69 deletions(-)"
+      "status": "pass",
+      "detail": "identical"
     },
     {
       "id": "authority-state",
       "description": "Every mode authority has moved to new_authoritative_reversible",
       "status": "fail",
-      "detail": "Cannot find module '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/022-012-runtime-enablement-build/.opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.js' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/022-012-runtime-enablement-build/.opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/index.ts"
+      "detail": "read 8 modes; 8 on legacy_authoritative; 0 from a stored record, 8 from the absent-record default",
+      "records": [
+        {
+          "mode": "deep-research",
+          "state": "legacy_authoritative",
+          "epoch": 1,
+          "selectedWriter": "legacy",
+          "source": "default"
+        },
+        {
+          "mode": "deep-review",
+          "state": "legacy_authoritative",
+          "epoch": 1,
+          "selectedWriter": "legacy",
+          "source": "default"
+        },
+        {
+          "mode": "deep-ai-council",
+          "state": "legacy_authoritative",
+          "epoch": 1,
+          "selectedWriter": "legacy",
+          "source": "default"
+        },
+        {
+          "mode": "deep-improvement-common",
+          "state": "legacy_authoritative",
+          "epoch": 1,
+          "selectedWriter": "legacy",
+          "source": "default"
+        },
+        {
+          "mode": "agent-improvement",
+          "state": "legacy_authoritative",
+          "epoch": 1,
+          "selectedWriter": "legacy",
+          "source": "default"
+        },
+        {
+          "mode": "model-benchmark",
+          "state": "legacy_authoritative",
+          "epoch": 1,
+          "selectedWriter": "legacy",
+          "source": "default"
+        },
+        {
+          "mode": "skill-benchmark",
+          "state": "legacy_authoritative",
+          "epoch": 1,
+          "selectedWriter": "legacy",
+          "source": "default"
+        },
+        {
+          "mode": "deep-alignment",
+          "state": "legacy_authoritative",
+          "epoch": 1,
+          "selectedWriter": "legacy",
+          "source": "default"
+        }
+      ]
     },
     {
       "id": "runtime-suite",
       "description": "Candidate suite failures <= baseline (read from captured logs)",
       "status": "pass",
-      "detail": "failed 15 vs 15 (Δ+0); passed 4188 vs 4111 (Δ+77); skipped 39 vs 39 (Δ+0); total 4242 vs 4165 (Δ+77); files 188 vs 182 (Δ+6)"
+      "detail": "failed 14 vs 15 (Δ-1); passed 4190 vs 4111 (Δ+79); skipped 39 vs 39 (Δ+0); total 4243 vs 4165 (Δ+78); files 188 vs 182 (Δ+6)"
     },
     {
       "id": "consumer-reachability",
@@ -59,19 +117,19 @@
       "filesTotal": 182
     },
     "candidate": {
-      "testsFailed": 15,
-      "testsPassed": 4188,
+      "testsFailed": 14,
+      "testsPassed": 4190,
       "testsSkipped": 39,
-      "testsTotal": 4242,
-      "filesFailed": 17,
-      "filesPassed": 171,
+      "testsTotal": 4243,
+      "filesFailed": 16,
+      "filesPassed": 172,
       "filesTotal": 188
     },
     "delta": {
-      "failed": 0,
-      "passed": 77,
+      "failed": -1,
+      "passed": 79,
       "skipped": 0,
-      "total": 77,
+      "total": 78,
       "files": 6
     }
   }
