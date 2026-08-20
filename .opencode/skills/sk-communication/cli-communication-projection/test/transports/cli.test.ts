@@ -7,12 +7,14 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   createChildProcessCliRunner,
   createExternalCliTransport,
+  defaultChildProcessSpawn,
   defaultComposePrompt,
 } from '../../src/transports/index.js';
 
 import type {
   CliRunner,
   SpawnImpl,
+  SpawnRequest,
 } from '../../src/transports/index.js';
 import type { ProviderWireRequest } from '../../src/providers/index.js';
 
@@ -224,4 +226,71 @@ describe('defaultComposePrompt', () => {
   it('returns only the user text when the system instruction is blank', () => {
     expect(defaultComposePrompt({ ...base, systemInstruction: '   ' })).toBe('USER');
   });
+});
+
+describe('defaultChildProcessSpawn (real subprocess)', () => {
+  const isAlive = (pid: number): boolean => {
+    try {
+      process.kill(pid, 0);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+  const delay = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
+  const request = (overrides: Partial<SpawnRequest>): SpawnRequest => ({
+    command: '/bin/sh',
+    args: [],
+    env: {},
+    input: null,
+    signal: new AbortController().signal,
+    timeoutMs: 5_000,
+    ...overrides,
+  });
+
+  it.skipIf(process.platform === 'win32')(
+    'captures stdout and closes stdin so a stdin reader reaches EOF',
+    async () => {
+      const outcome = await defaultChildProcessSpawn(
+        request({ args: ['-c', 'cat; printf DONE'], input: 'HELLO' }),
+      );
+
+      expect(outcome.timedOut).toBe(false);
+      expect(outcome.code).toBe(0);
+      expect(outcome.stdout).toBe('HELLODONE');
+    },
+  );
+
+  it.skipIf(process.platform === 'win32')(
+    'kills the whole process group on timeout so a forked helper does not survive',
+    async () => {
+      const outcome = await defaultChildProcessSpawn(
+        request({ args: ['-c', 'sleep 10 & echo $!; sleep 10'], timeoutMs: 400 }),
+      );
+
+      expect(outcome.timedOut).toBe(true);
+      const helperPid = Number(outcome.stdout.trim());
+      expect(Number.isInteger(helperPid)).toBe(true);
+      await delay(300);
+      expect(isAlive(helperPid)).toBe(false);
+    },
+  );
+
+  it.skipIf(process.platform === 'win32')(
+    'kills the whole process group on abort so a forked helper does not survive',
+    async () => {
+      const controller = new AbortController();
+      const pending = defaultChildProcessSpawn(
+        request({ args: ['-c', 'sleep 10 & echo $!; sleep 10'], signal: controller.signal }),
+      );
+      await delay(300);
+      controller.abort();
+
+      const outcome = await pending;
+      const helperPid = Number(outcome.stdout.trim());
+      expect(Number.isInteger(helperPid)).toBe(true);
+      await delay(300);
+      expect(isAlive(helperPid)).toBe(false);
+    },
+  );
 });

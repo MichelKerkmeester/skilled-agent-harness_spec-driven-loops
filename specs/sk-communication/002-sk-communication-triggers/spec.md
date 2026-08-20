@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers"
-    last_updated_at: "2026-08-19T20:22:00.000Z"
+    last_updated_at: "2026-08-20T05:10:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Renamed the two rewrite commands into the rewrite/ namespace (phase 007)"
+    recent_action: "Hardened the external-cli spawn boundary to group-kill (phase 008)"
     next_safe_action: "None; packet complete"
     blockers: []
     key_files:
@@ -111,6 +111,7 @@ Detailed research, design, implementation, and verification belong to the child 
 | `.opencode/skills/sk-communication/cli-communication-projection/bin/`, `src/`, `test/` | Create/Modify | 006 | External-cli runtime entrypoint, per-engine command table, projection module, and tests |
 | `.opencode/commands/rewrite-response-by-external-agent.md` | Modify | 006 | Branch B routes through the external-cli entrypoint |
 | `.opencode/commands/rewrite/` | Rename | 007 | Move both commands into the `rewrite/` namespace; invoke as `/rewrite:response` and `/rewrite:response-by-external-agent` |
+| `.../src/transports/cli.ts` | Modify | 008 | Spawn detached and group-kill the external-cli child on timeout and abort |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -127,7 +128,8 @@ Detailed research, design, implementation, and verification belong to the child 
 | 5 | `005-external-cli-provider/` | First-class external-cli provider family, injected CLI transport, tests, and catalog and playbook references | 1 | Complete |
 | 6 | `006-external-cli-runtime-wiring/` | Runnable external-cli entrypoint over projectMessage, verified per-engine command table, and command 2 Branch B adoption | 1 | Complete |
 | 7 | `007-command-namespace-rename/` | Move both commands into the `rewrite/` namespace; invoke as `/rewrite:response` and `/rewrite:response-by-external-agent` | 1 | Complete |
-| 8 | (parent closeout) | Final gate: `validate.sh --strict --recursive`, hygiene sweep, metadata reconciliation | — | Complete |
+| 8 | `008-spawn-process-group-hardening/` | Spawn the external-cli child detached and group-kill it on timeout and abort so a forked helper cannot orphan | 1 | Complete |
+| 9 | (parent closeout) | Final gate: `validate.sh --strict --recursive`, hygiene sweep, metadata reconciliation | — | Complete |
 
 ### Phase Transition Rules
 
@@ -146,7 +148,8 @@ Detailed research, design, implementation, and verification belong to the child 
 | 004 skill-and-mirrors | 005 external-cli-provider | SKILL update keeps default-off intact; mirrors resolve in every runtime | Mirror resolve check plus SKILL review |
 | 005 external-cli-provider | 006 external-cli-runtime-wiring | Provider builds, `npm run check` is green, catalog and playbook reference the new adapter code | Package gate plus recursive strict validation |
 | 006 external-cli-runtime-wiring | 007 command-namespace-rename | The entrypoint routes the cli-* path through `projectMessage`, the engine table resolves all six engines, command 2 Branch B invokes the entrypoint, and the gate is green | Package gate plus recursive strict validation |
-| 007 command-namespace-rename | Parent closeout | Both commands live under `.opencode/commands/rewrite/`, invoke under the colon namespace, and no functional surface references the old flat names | Recursive strict validation |
+| 007 command-namespace-rename | 008 spawn-process-group-hardening | Both commands live under `.opencode/commands/rewrite/`, invoke under the colon namespace, and no functional surface references the old flat names | Recursive strict validation |
+| 008 spawn-process-group-hardening | Parent closeout | The spawn boundary group-kills on timeout and abort, a forked helper does not survive, and the package gate is green | Package gate plus recursive strict validation |
 <!-- /ANCHOR:phase-map -->
 
 ---

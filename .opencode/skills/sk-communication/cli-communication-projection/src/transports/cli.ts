@@ -213,17 +213,53 @@ export function defaultComposePrompt(invocation: CliInvocation): string {
 /** Default process boundary; kept thin so the runner logic above stays testable. */
 export const defaultChildProcessSpawn: SpawnImpl = (request) =>
   new Promise<SpawnOutcome>((resolve) => {
+    // Run the CLI as its own process-group leader. A rewrite tool may fork
+    // background helpers (a model server, a language server); killing only the
+    // direct child would orphan those and leave them running — and, because a
+    // helper inherits the stdout pipe, keep the parent from ever seeing close.
     const child = spawn(request.command, [...request.args], {
       env: { ...process.env, ...request.env },
-      signal: request.signal,
+      detached: true,
     });
     let stdout = '';
     let stderr = '';
     let timedOut = false;
+
+    const killTree = (): void => {
+      const pid = child.pid;
+      if (pid === undefined) {
+        return;
+      }
+      try {
+        // A negative pid signals the whole group on POSIX; where process groups
+        // are unavailable, fall back to the direct child.
+        if (process.platform === 'win32') {
+          child.kill('SIGKILL');
+        } else {
+          process.kill(-pid, 'SIGKILL');
+        }
+      } catch {
+        // The group is already gone; nothing left to signal.
+      }
+    };
+
     const timer = setTimeout(() => {
       timedOut = true;
-      child.kill('SIGKILL');
+      killTree();
     }, request.timeoutMs);
+    const onAbort = (): void => killTree();
+    const finish = (outcome: SpawnOutcome): void => {
+      clearTimeout(timer);
+      request.signal.removeEventListener('abort', onAbort);
+      resolve(outcome);
+    };
+
+    if (request.signal.aborted) {
+      killTree();
+    } else {
+      request.signal.addEventListener('abort', onAbort, { once: true });
+    }
+
     child.stdout?.on('data', (chunk: Buffer) => {
       stdout += chunk.toString('utf8');
     });
@@ -231,12 +267,10 @@ export const defaultChildProcessSpawn: SpawnImpl = (request) =>
       stderr += chunk.toString('utf8');
     });
     child.on('error', () => {
-      clearTimeout(timer);
-      resolve({ code: null, stdout, stderr, timedOut });
+      finish({ code: null, stdout, stderr, timedOut });
     });
     child.on('close', (code) => {
-      clearTimeout(timer);
-      resolve({ code, stdout, stderr, timedOut });
+      finish({ code, stdout, stderr, timedOut });
     });
     // Always close stdin — writing the prompt first when it is delivered that
     // way — so a prompt-arg engine that still reads stdin (opencode in
