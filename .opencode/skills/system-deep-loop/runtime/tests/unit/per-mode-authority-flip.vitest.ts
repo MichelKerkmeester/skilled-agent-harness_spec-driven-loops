@@ -1253,6 +1253,75 @@ describe('evaluateCutoverPreflight', () => {
     }, handoff);
     expect(evaluateCutoverPreflight(input).verdict).toBe('ready');
   });
+
+  it('blocks the authority flip outright when shadow parity is not green, rather than issuing a warning-shaped success', async () => {
+    // Each link of this chain — the parity status being recorded, the
+    // certificate builder consulting it, the refusal being a non-throwing
+    // result — is verified in isolation elsewhere; only a composed
+    // end-to-end assertion catches a future change that lets a non-green
+    // parity result reach a flip. The green control below proves the
+    // fixture is otherwise fully valid, so the subsequent refusal is
+    // attributable to the parity status alone rather than to an unrelated
+    // fixture defect.
+    const policy = fixturePolicy();
+    const rollbackDrillCertificate = await fixtureRollbackDrillCertificateForMode(MODE);
+    const migrationReceipt = await fixtureMigrationReceiptForMode(MODE, 'one');
+    const buildForParity = async (
+      exitStatus: CutoverCertificateEvidenceSources['shadowParity']['exitStatus'],
+    ) => buildCutoverCertificate({
+      mode: MODE,
+      candidateSha: CANDIDATE_SHA,
+      fromAuthorityEpoch: AUTHORITY_EPOCH,
+      issuer: 'per-mode-authority-flip-tests',
+      issuedAt: '2026-08-09T00:05:00Z',
+      evidence: {
+        modeGateCertificate: {
+          mode: MODE,
+          candidateSha: CANDIDATE_SHA,
+          authorityEpoch: AUTHORITY_EPOCH,
+          readiness: 'ready-for-phase-014-consideration',
+          certificateDigest: digest('mode-gate-certificate'),
+        },
+        shadowParity: {
+          mode: MODE,
+          candidateSha: CANDIDATE_SHA,
+          exitStatus,
+          evidenceDigest: digest('shadow-parity-evidence'),
+        },
+        rollbackDrillCertificate,
+        mixedVersionReplay: Object.freeze({
+          ok: true,
+          caseId: 'mixed-version-case-1',
+          capsuleDigest: digest('mixed-version-capsule'),
+          evidenceDigest: digest('mixed-version-evidence'),
+          deterministicRuns: 2,
+          parityEligible: true,
+          certificateEligible: true,
+          authorityState: 'legacy_authoritative',
+          authorityMutation: false,
+        }) as never,
+        classificationManifest: CLASSIFICATION_MANIFEST,
+        migrationReceipts: [migrationReceipt] as never,
+        approvingPolicy: policy,
+      },
+    }, fixtureCertificateVerificationProviders());
+
+    // Green control: with a green parity result and every other field
+    // identical, the certificate issues — proving the fixture is valid, so
+    // any later refusal can only be attributed to the parity status.
+    const green = await buildForParity('green');
+    expect(green.verdict).toBe('issued');
+
+    // A non-green parity result must block the flip outright, not warn.
+    const blocked = await buildForParity('blocked');
+    expect(blocked.verdict).not.toBe('issued');
+    expect(typeof blocked.reasonCode).toBe('string');
+    expect(blocked.reasonCode.length).toBeGreaterThan(0);
+    expect(
+      blocked.verdict !== 'issued' && blocked.certificate === undefined,
+      'a non-green parity result must block the flip outright rather than issue a warning-shaped success',
+    ).toBe(true);
+  });
 });
 
 async function fixtureCutoverCertificateForMode(mode: CutoverCertificateMode): Promise<CutoverCertificate> {
