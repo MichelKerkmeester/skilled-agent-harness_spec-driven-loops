@@ -45,7 +45,9 @@
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/suite-delta-minus-one.md",
       "scratch/fanout-real-run.md",
+      "scratch/authority-check-never-ran.md",
       "scratch/run-gate.mjs",
       "tasks.md"
     ],
@@ -87,9 +89,21 @@
         "source": "derived"
       },
       {
+        "name": "suite-delta-minus-one.md",
+        "kind": "doc",
+        "path": "scratch/suite-delta-minus-one.md",
+        "source": "derived"
+      },
+      {
         "name": "fanout-real-run.md",
         "kind": "doc",
         "path": "scratch/fanout-real-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "authority-check-never-ran.md",
+        "kind": "doc",
+        "path": "scratch/authority-check-never-ran.md",
         "source": "derived"
       },
       {
@@ -181,23 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "status",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Each preceding phase verified its own surface",
     "created_at": "2026-08-19T06:57:08.364Z",
-    "last_save_at": "2026-08-20T04:13:39.290Z",
+    "last_save_at": "2026-08-20T07:37:37.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8852b5d9b10a995c1d8b33a2927e40fd2f06fbe4dd313d2c35035285e229275",
+    "source_fingerprint": "sha256:bac7bbe2a31c023632b5b2b14cc53324fe1d40a451196f3a3ee933b980e58f63",
     "source_doc_hashes": {
       "spec.md": "cfd8faf5f83d35ce8e8c3e9a90157a94cbce0b891e28c6a9b3d715ede50f9e6b",
       "plan.md": "90f39c8339ee692f2fe20881022d09a535f4b03a4f67df08bc55e2f2c6d8f29e",
       "tasks.md": "9cd4fbe5372a4e5bd23610360d695b6536f5d7d7e47b3386b56ac215289b3fa2",
-      "checklist.md": "691418a3d19c7cf03389c38e61a837d8345fe5eb1ad445e445d59abab7029070",
-      "implementation-summary.md": "d72b07ccaf7579da5218f9918b29d4a8c83fd4b718aad77216aa5557024d61bb"
+      "checklist.md": "a94b857f1183580f5c756e849ffda3fc2cedee8bc9c2c82a9c32a916be807927",
+      "implementation-summary.md": "03af0391ede927330e29c527811ef6812df4629242d07609d7a0a674e4c87b31"
     },
     "last_active_child_id": null,
     "last_active_at": null

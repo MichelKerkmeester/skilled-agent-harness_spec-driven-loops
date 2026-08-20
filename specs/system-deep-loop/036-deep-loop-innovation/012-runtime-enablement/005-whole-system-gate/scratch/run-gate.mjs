@@ -3,9 +3,15 @@
 // Verdict is PASS only if every check that ran passed; any failing check => FAIL.
 // There is no advisory tier — a warning that lets a failure through would defeat
 // the purpose, which is to be believed at the exact moment someone wants to ship.
+// A check that throws is reported as `error`, never as `fail`. The two mean
+// opposite things: `fail` is a measurement of the system, `error` is a defect in
+// this harness that measured nothing. Collapsing them lets a broken check pose as
+// a diligent one, which is the more dangerous direction — a permanent red reads
+// as rigour and stops being questioned.
 // The receipt is written whether the gate passes or fails: a gate that only
 // reports good news is not a gate.
 
+import { registerHooks } from 'node:module';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, writeFileSync, mkdirSync, statSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
@@ -13,8 +19,27 @@ import { fileURLToPath } from 'node:url';
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 
-// Absolute runtime directory. The gate is invoked from here under
-// `node --import tsx run-gate.mjs`, and the check-3 imports resolve .ts via tsx.
+// The runtime's sources are TypeScript that import each other with the `.js`
+// specifiers the TS-ESM convention requires. Node strips types from a `.ts`
+// entry file but does not rewrite those specifiers, so every internal import
+// resolves to a `.js` that was never emitted. Mapping the miss back to `.ts`
+// keeps resolution a property of this harness rather than of the command line
+// used to start it: an invocation-dependent gate silently reports a defect in
+// itself as a defect in the system.
+registerHooks({
+  resolve(specifier, context, nextResolve) {
+    try {
+      return nextResolve(specifier, context);
+    } catch (err) {
+      if (specifier.endsWith('.js')) {
+        return nextResolve(`${specifier.slice(0, -3)}.ts`, context);
+      }
+      throw err;
+    }
+  },
+});
+
+// Absolute runtime directory.
 const RUNTIME =
   '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/022-012-runtime-enablement-build/.opencode/skills/system-deep-loop/runtime';
 
@@ -24,12 +49,12 @@ const RUNTIME =
 const BASELINE_LOG =
   '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/3d8efc78-2cdf-42fa-9383-4eb62a229b9b/scratchpad/p003/baseline-raw.txt';
 const CANDIDATE_LOG =
-  '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/3d8efc78-2cdf-42fa-9383-4eb62a229b9b/scratchpad/p005/candidate-raw.txt';
+  '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/3d8efc78-2cdf-42fa-9383-4eb62a229b9b/scratchpad/p005b/candidate-raw.txt';
 
 // The commit whose tree the suite was measured against. The candidate must be
 // byte-identical to this tree on the runtime path, or the suite numbers are
 // numbers about a different commit than the one we are shipping.
-const SUITE_TREE_REF = 'e0e2659153';
+const SUITE_TREE_REF = '992c611d90';
 const DEFAULT_BASELINE_REF = '8c9f0b6944';
 
 // A nonexistent path used to force git commands to fail for --break falsifiability.
@@ -194,17 +219,27 @@ async function checkAuthorityState() {
   const { resolveAuthorityRoot } = await import(
     `${RUNTIME}/lib/authority-root/resolve-authority-root.ts`
   );
-  const registry = new AuthorityRegistry(resolveAuthorityRoot());
+  const authorityRoot = resolveAuthorityRoot();
+  const registry = new AuthorityRegistry(authorityRoot);
   const records = [];
   for (const mode of AUTHORITY_FLIP_MODE_ORDER) {
+    // A read of an absent record returns a synthesized legacy default rather
+    // than failing, so the value alone cannot say whether a mode was ever
+    // written. Record the provenance next to it: today an absent record and a
+    // stored legacy record agree, but a record that is deleted later would read
+    // as ordinary legacy instead of as the corruption it is, and this is the
+    // only place that distinction is still visible.
+    const stored = existsSync(join(authorityRoot, `authority-${mode}.json`));
     const rec = registry.read(mode); // pure read; writes nothing
     records.push({
       mode,
       state: rec.state,
       epoch: rec.epoch,
       selectedWriter: rec.selectedWriter,
+      source: stored ? 'stored' : 'default',
     });
   }
+  const storedCount = records.filter((r) => r.source === 'stored').length;
   const count = records.length;
   const byState = {};
   for (const r of records) byState[r.state] = (byState[r.state] || 0) + 1;
@@ -212,7 +247,9 @@ async function checkAuthorityState() {
   const stateSummary = Object.entries(byState)
     .map(([s, n]) => `${n} on ${s}`)
     .join(', ');
-  const detail = `read ${count} modes; ${stateSummary}`;
+  const detail =
+    `read ${count} modes; ${stateSummary}; ` +
+    `${storedCount} from a stored record, ${count - storedCount} from the absent-record default`;
   return {
     id: 'authority-state',
     description: 'Every mode authority has moved to new_authoritative_reversible',
@@ -423,6 +460,12 @@ function checkFanoutRealRun() {
 // ---------------------------------------------------------------- verdict
 
 function computeVerdict(checks) {
+  // `error` outranks `fail`: while a check is broken the gate cannot claim to
+  // have measured the system at all, and repairing the harness has to happen
+  // before any verdict about the system is worth reading. Each check keeps its
+  // own status in the table, so a real failure alongside an error stays visible.
+  const anyError = checks.some((c) => c.status === 'error');
+  if (anyError) return 'ERROR';
   const anyFail = checks.some((c) => c.status === 'fail');
   if (anyFail) return 'FAIL';
   const anyNotRun = checks.some((c) => c.status === 'not-run');
@@ -496,14 +539,14 @@ async function main() {
   try {
     checks.push(checkTreeClean(forcedBreak));
   } catch (e) {
-    checks.push({ id: 'tree-clean', description: 'Working tree is clean', status: 'fail', detail: e.message });
+    checks.push({ id: 'tree-clean', description: 'Working tree is clean', status: 'error', detail: e.message });
   }
 
   // check 2
   try {
     checks.push(checkCandidateFrozen(candidateSha, forcedBreak));
   } catch (e) {
-    checks.push({ id: 'candidate-frozen', description: 'Candidate runtime tree matches the measured tree', status: 'fail', detail: e.message });
+    checks.push({ id: 'candidate-frozen', description: 'Candidate runtime tree matches the measured tree', status: 'error', detail: e.message });
   }
 
   // check 3
@@ -511,7 +554,7 @@ async function main() {
     const r = await checkAuthorityState();
     checks.push(r);
   } catch (e) {
-    checks.push({ id: 'authority-state', description: 'Every mode authority has moved to new_authoritative_reversible', status: 'fail', detail: e.message });
+    checks.push({ id: 'authority-state', description: 'Every mode authority has moved to new_authoritative_reversible', status: 'error', detail: e.message });
   }
 
   // check 4
@@ -520,14 +563,14 @@ async function main() {
     checks.push(r);
     if (r.suite) suite = r.suite;
   } catch (e) {
-    checks.push({ id: 'runtime-suite', description: 'Candidate suite failures <= baseline (read from captured logs)', status: 'fail', detail: e.message });
+    checks.push({ id: 'runtime-suite', description: 'Candidate suite failures <= baseline (read from captured logs)', status: 'error', detail: e.message });
   }
 
   // check 5
   try {
     checks.push(checkConsumerReachability());
   } catch (e) {
-    checks.push({ id: 'consumer-reachability', description: 'Every listed consumer script exists on disk and can be started', status: 'fail', detail: e.message });
+    checks.push({ id: 'consumer-reachability', description: 'Every listed consumer script exists on disk and can be started', status: 'error', detail: e.message });
   }
 
   // check — always not-run, immediately after consumer-reachability
@@ -549,6 +592,11 @@ async function main() {
       description: c.description,
       status: c.status,
       detail: c.detail,
+      // Per-mode authority states are carried verbatim, not folded into the
+      // summary line. A count says how many modes are on legacy; only the
+      // records say which, and a partially-flipped fleet is exactly the state
+      // where that difference decides what is safe to do next.
+      ...(c.records ? { records: c.records } : {}),
     })),
     suite,
   };
@@ -565,7 +613,8 @@ async function main() {
   }
 
   console.log(`verdict: ${verdict}`);
-  process.exit(verdict === 'PASS' ? 0 : verdict === 'FAIL' ? 1 : 2);
+  // 0 pass, 1 measured failure, 2 incomplete, 3 broken harness.
+  process.exit(verdict === 'PASS' ? 0 : verdict === 'FAIL' ? 1 : verdict === 'INCOMPLETE' ? 2 : 3);
 }
 
 main().catch((e) => {
