@@ -31,6 +31,59 @@ report an authority mutation turned 103 green into 30 failures reading
 `expected 'blocked' to be 'green'`. That safety margin is real, which matters if the promotion path
 gets built.
 
+### Re-derived exhaustively, and it narrows to one edge
+
+The claim above was re-tested against every occurrence of the state in the runtime, not just the two
+consumer checks, because it gates five items across three phases and deserves better than a partial
+search.
+
+The production registry writes exactly four record states:
+
+| written state | written from |
+| ------------- | ------------ |
+| `legacy_authoritative` | the read-time default for a mode with no record |
+| `new_authoritative_reversible` | compare-and-swap expecting `cutover_ready` |
+| `rollback_pending` | compare-and-swap expecting `new_authoritative_reversible` |
+| `legacy_authoritative` | the rollback completion |
+
+`cutover_ready` is never among them. It appears only as an expectation — a precondition some other
+writer is assumed to have satisfied. So the lifecycle is:
+
+    legacy_authoritative --[NO PRODUCER]--> cutover_ready --> new_authoritative_reversible
+                                                                      |
+                          legacy_authoritative <-- rollback_pending <--+
+
+Exactly one edge in that cycle has no implementation, and it is the entry edge. Every other edge is
+built and exercised.
+
+### The rollback path exists, and is green
+
+The drill suite passes 30 of 30 and asserts the full lifecycle with monotonic epochs:
+
+    cutover_ready                --> new_authoritative_reversible   epoch 7 -> 8
+    new_authoritative_reversible --> rollback_pending               epoch 8 -> 9
+    rollback_pending             --> legacy_authoritative           epoch 9 -> 10
+
+This matters for the framing above and for the instruction this work was carried out under, both of
+which describe the enablement edge as having no rollback window. The runtime disagrees: the forward
+state is literally named `new_authoritative_reversible`, a reverse path to legacy authority is
+implemented, and it is drilled and passing. Declining to rely on rollback is a legitimate policy
+choice; it is a different statement from the system not having one, and the two should not be
+conflated when deciding.
+
+The drill's isolation was checked rather than assumed. Its store validates containment on every path
+against a drill-owned root under the system temp directory, throws on escape, and refuses to
+overwrite an existing record. It **seeds** `cutover_ready` as a starting condition rather than
+transitioning into it, which is why the drill can exercise the flip while the missing producer
+remains missing.
+
+### What this changes about the decision
+
+The request is not to build and prove a flip mechanism. That exists, including its reverse, and it
+is green. The request is narrower and sharper: authorize and specify the single entry edge — what
+evidence admits a mode to `cutover_ready`, and who may assert it. Whoever takes it inherits a tested
+forward transition, a tested rollback, and a parity gate already proven able to turn red.
+
 ## 2. Projection coverage, which requirement REQ-004 assumes
 
 **Measured.** The manifest declares 28 surfaces, 22 of them projectable, and exactly one projection
