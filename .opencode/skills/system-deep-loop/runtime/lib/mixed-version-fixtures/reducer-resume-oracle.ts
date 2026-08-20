@@ -6,9 +6,9 @@ import { resolve } from 'node:path';
 
 import { canonicalBytes, canonicalJson, sha256Bytes } from '../event-envelope/index.js';
 import {
-  FROZEN_CENSUS_CONTRACT,
   InflightDisposition,
   createClassificationManifest,
+  deriveRestartClassificationEvidence,
   verifyClassificationManifest,
 } from '../inflight-state-classification/index.js';
 import { verifyCompiledMixedVersionCase } from './seal-compiler.js';
@@ -172,78 +172,12 @@ function restartClassificationEvidence(
   restart: MixedVersionRestartMetadata,
 ): ClassificationEvidence {
   const row = censusRowMetadata(input.censusBytes, input.rowId);
-  const activeLeaseCount = restart.leases.filter((lease) => lease.state === 'active').length;
-  const leaseState = restart.leases.length === 0
-    ? 'none'
-    : restart.leases.some((lease) => lease.state === 'uncertain')
-      ? 'uncertain'
-      : activeLeaseCount > 0
-        ? 'active'
-        : 'quiescent';
-  const receiptCoverage = restart.pendingEffects.every((effectId) => (
-    restart.receipts.some((receipt) => receipt.effectId === effectId)
-  ));
-  const rollbackReady = restart.stopSequence !== null && restart.continuityId !== null;
-  const pendingEffectsState = restart.pendingEffects.length === 0
-    ? 'none'
-    : receiptCoverage
-      ? 'active-legacy'
-      : 'uncertain';
-  return {
+  return deriveRestartClassificationEvidence({
     rowId: input.rowId,
-    isPresent: true,
-    stateDigest: digest(restart),
-    shapeVersion: '1',
-    shapeStatus: 'registered',
-    schemaDigest: digest(Object.keys(restart).sort()),
-    lifecyclePoint: `${row.lifecycle}:restart-${restart.stopSequence ?? 'unknown'}`,
-    authorityState: 'legacy_authoritative',
-    authorityEpoch: Math.max(0, ...restart.leases.map((lease) => lease.fencingToken)),
+    lifecycle: row.lifecycle,
     mutability: row.mutability,
-    leaseState,
-    activeLeaseCount,
-    leaseSetDigest: digest(restart.leases),
-    pendingEffectsState,
-    pendingEffectSetDigest: digest(restart.pendingEffects),
-    identityCoverage: restart.continuityId !== null,
-    orderCoverage: restart.stopSequence !== null,
-    idempotencyCoverage: receiptCoverage,
-    budgetCoverage: true,
-    receiptCoverage,
-    pendingWorkCoverage: restart.pendingEffects.length > 0,
-    isCorrupt: false,
-    rollbackAnchor: {
-      anchorId: restart.continuityId ?? 'missing-continuity-anchor',
-      digest: digest({
-        continuityId: restart.continuityId,
-        stopSequence: restart.stopSequence,
-      }),
-      retained: rollbackReady,
-      restorable: rollbackReady,
-      minimumRetentionDays: FROZEN_CENSUS_CONTRACT.rollbackMinimumDays,
-      minimumSuccessfulRuns: FROZEN_CENSUS_CONTRACT.rollbackMinimumSuccessfulRuns,
-    },
-    verifier: {
-      verified: rollbackReady && receiptCoverage && leaseState !== 'uncertain',
-      receiptDigest: digest(restart.receipts),
-      replayFingerprintDigest: null,
-      rollbackScenarioDigest: digest({
-        leaseState,
-        pendingEffectsState,
-        stopSequence: restart.stopSequence,
-      }),
-      parityCaseDigest: null,
-    },
-    proof: {
-      kind: 'pin',
-      legacyWriterSoleAuthority: true,
-      legacyCompletionAvailable: restart.pendingEffects.length > 0 && receiptCoverage,
-      boundedCompletion: rollbackReady && leaseState !== 'uncertain',
-      timedOut: leaseState === 'uncertain',
-      terminalBoundary: restart.continuityId ?? 'missing-continuity-boundary',
-      terminalReceiptRequired: restart.pendingEffects.length > 0,
-    },
-  };
+    restart,
+  });
 }
 
 /** Bind one fixture restart decision to a verified frozen-census classification row. */

@@ -21,6 +21,9 @@ export {
   verifyClassificationManifest,
 } from './inflight-state-classifier.js';
 export {
+  deriveRestartClassificationEvidence,
+} from './restart-classification-evidence.js';
+export {
   createPhase014HandlingPlan,
   currentEvidenceForRow,
   evaluateModeCutoverReadiness,
@@ -34,6 +37,12 @@ export {
 } from './inflight-state-types.js';
 
 export type { FrozenCensusRowId } from './frozen-census-policy.js';
+export type {
+  DeriveRestartClassificationEvidenceInput,
+  RestartFacts,
+  RestartLeaseObservation,
+  RestartReceiptObservation,
+} from './restart-classification-evidence.js';
 export type {
   BlockProof,
   BuiltClassificationManifest,
