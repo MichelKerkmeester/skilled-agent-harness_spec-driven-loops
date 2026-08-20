@@ -1,63 +1,60 @@
-# The fleet driver is built and proven; the step it drives does no enablement
+# The step's gap is unwritten code, not a blocked precondition
 
-## What the phase requires
+## Correction to the first version of this note
 
-The spec asks for a driver that, per mode, migrates the write protocol, captures
-parity, gates on that parity, flips authority, and verifies the result. Five
-actions. The check vocabulary in the driver reflects them:
+The first version of this note presented "the per-mode step performs no
+enablement" as a discovery, and said the phase's guards had not caught it. Both
+claims were wrong, and the checklist in this folder says so plainly:
 
-    type EnablementCheck = 'protocol' | 'parity' | 'flip' | 'reader-contract'
+- CHK-008 is marked PARTIAL: "the step performs the checks the runtime can
+  actually perform and refuses the flip with the on-disk state named."
+- CHK-006 records: "No coordinator request is constructed at all, since the step
+  refuses before the write path."
+- CHK-015 is BLOCKED: "a reader contract needs files projected by an enabled
+  mode; no mode is enabled, so running one would pass vacuously."
+- CHK-017 is BLOCKED: "no mode was enabled, so the property is untested rather
+  than satisfied."
 
-## What the per-mode step actually does
+The absence of the flip, the reader contract and the parity capture was recorded
+item by item, with reasoning, before this session. Nothing was hidden and no
+guard failed. The correction is owed.
 
-`buildRunStep` in the enablement CLI, in full:
+## What is still worth adding
 
-1. derive the mode's surface set; on throw, fail as `reader-contract`
-2. if the surface set is empty, fail as `reader-contract` ("no projection-manifest entry")
-3. read the authority record; on throw, fail as `flip`
-4. if the record is not `cutover_ready`, fail as `flip`
-5. otherwise return ok
+One distinction survives, and it changes what the remaining work is.
 
-Grepping the script for the names that would perform an enablement returns
-nothing:
+The checklist frames the gap as **blocked by an upstream precondition**. CHK-008
+says the step "cannot be the pilot's full procedure because the pilot's own flip
+is blocked", which reads as: the procedure is waiting on `cutover_ready` to
+become reachable.
+
+It is not waiting. Grepping the script returns nothing for
 
     requestCutover · prepareCutover · CutoverCoordinator · buildCutoverCertificate
 
-No protocol document is migrated. No parity run is captured. No authority record
-is written. No reader contract is executed. Two of the four declared check kinds
-are never emitted at all, and the two that are emitted label failures of a
-manifest lookup and a state read rather than of the work they are named for.
+There is no flip code to reach. The promotion edge is now built, so a mode can
+reach `cutover_ready` — and the consequence is that this step would return `ok`
+for that mode and the driver would report a completed enablement, having written
+no authority record.
 
-## The consequence, stated plainly
+That is the difference that matters. Removing the block does not reveal a
+procedure that was waiting behind it. It removes the only thing currently
+producing a refusal, and what is left underneath reports success.
 
-If every mode were already `cutover_ready`, this driver would return ok for all
-seven and report a completed fleet enablement, having changed nothing.
+## Why the harness guards do not cover this
 
-That is not a driver that cannot run yet. It is a driver whose success does not
-depend on any enablement occurring.
+Also stated fairly: the twelve guards are real and were proven by negative
+control. They cover persistence across a crash, stop-on-first-failure, untouched
+modes after a stop, resumption without re-planning a completed mode, refusal of
+a malformed state file, and rejection of multi-mode requests.
 
-## Why the guards did not catch it
+They test the orchestration, which is the part that exists. `runStep` is
+injected and the suites supply their own, which is what lets the driver be
+tested without moving authority. That is sound design, not an oversight. It does
+mean the shipped step is not what those twelve guards are about.
 
-The phase records twelve guards proven by negative control, and they are real.
-They cover the harness: state persistence across a crash, stop-on-first-failure,
-untouched modes after a stop, resumption without re-flipping, refusal to read a
-malformed state file, rejection of multi-mode requests.
+## The remaining work
 
-Every one of those tests the orchestration. None tests what is orchestrated,
-because the step is injected — `runStep` is a parameter, and the suites supply
-their own. The injection is a good design; it is what makes the driver testable
-without moving authority. But it also means the shipped step has never been the
-thing under test.
-
-The driver sequences, persists, resumes and halts correctly. That was verified.
-What it sequences was not.
-
-## What this changes about the phase's status
-
-The recorded blocker was "no mode can reach cutover_ready, so no mode can be
-enabled". That reads as a driver waiting on an upstream precondition. The
-precondition is now buildable — the promotion edge exists — but satisfying it
-would not make this driver enable anything.
-
-The remaining work in this phase is the per-mode step itself: the five actions
-the spec names. The orchestration around it is done.
+The per-mode step's five actions — migrate the write protocol, capture parity,
+gate on it, flip, verify — are the content of this phase that is not yet
+written. The orchestration around them is done and proven.
