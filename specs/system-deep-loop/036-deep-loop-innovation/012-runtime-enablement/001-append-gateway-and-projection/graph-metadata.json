@@ -44,6 +44,7 @@
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/envelope-refusal-nc.md",
       "implementation-summary.md",
       "tasks.md"
     ],
@@ -70,6 +71,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "envelope-refusal-nc.md",
+        "kind": "doc",
+        "path": "scratch/envelope-refusal-nc.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The authority selector is defined as \"the one route decision a mode adapter would consult at its canonical",
     "created_at": "2026-08-19T06:57:07.715Z",
-    "last_save_at": "2026-08-19T10:27:21.796Z",
+    "last_save_at": "2026-08-20T00:30:24.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d245b7c881ef980dfb38281ff0a2ea6b11d4456b65836a83e91c89a608b9492",
+    "source_fingerprint": "sha256:8e28eda945a84aa8c6a01014fe58db4ef85033f6c9a60ae098c34b1ecf552d96",
     "source_doc_hashes": {
       "spec.md": "f86512e47845337641e3561c4ae46b26ed6ec61a617c51b14b464b3832170bb4",
       "plan.md": "264a726d33d330621ef45f754af5b0e64d307faba44090e79349d041705e5992",
       "tasks.md": "8d73457ac11c03648c3d06846d08b354d263feb48563bd35e159529b29b7b617",
-      "checklist.md": "8e9bdb3ab1f6fdd43f627858c4c7d30c45e898890e6bbb342e0d7ca278b1a0b6",
-      "implementation-summary.md": "c08e861910cedbca1869a68fc76989c281af965399b821e5f0e475799a59801d"
+      "checklist.md": "5997736a08baa087388c7675db98a276059a0b58d4c9545dc31bf2b557c1f2d4",
+      "implementation-summary.md": "caaf6fe7bb6e728ece905feff003363a8330221c7b4c4016badc0fe37f946b11"
     },
     "last_active_child_id": null,
     "last_active_at": null
