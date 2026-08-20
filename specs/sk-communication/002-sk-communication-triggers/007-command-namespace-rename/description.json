@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-communication/002-sk-communication-triggers/007-command-namespace-rename",
+  "description": "The two trigger commands sat at the flat paths `.opencode/commands/rewrite-response.md` and",
+  "keywords": [
+    "two",
+    "trigger",
+    "commands",
+    "sat",
+    "flat",
+    "paths",
+    "opencode",
+    "rewrite-response"
+  ],
+  "lastUpdated": "2026-08-19T20:34:35.137Z",
+  "specId": "007",
+  "folderSlug": "command-namespace-rename",
+  "parentChain": [
+    "sk-communication",
+    "002-sk-communication-triggers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

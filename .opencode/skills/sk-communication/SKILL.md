@@ -36,9 +36,16 @@ Use this skill when the request involves:
 
 - General application code implementation → `sk-code`.
 - Authoring documentation or markdown → `sk-doc`.
-- UI or visual design → `sk-design`.
+- Live-website CSS to a measured Style Reference → `sk-design-md-generator`.
 - Git worktrees, commits, or PRs → `sk-git`.
 - Rewriting durable Markdown or any on-disk file. That changes canonical bytes and is explicitly out of scope; it needs a separate opt-in product contract, not this projection layer.
+
+### Operator Trigger Commands
+
+Two slash commands expose sk-communication as an on-demand trigger surface. Projection stays off by default; neither command changes that global state persistently.
+
+- `/rewrite:response` — the active AI re-renders its own most recent reply in plain English, entirely in-context. No local or external LLM. Display-only: canonical bytes stay unchanged.
+- `/rewrite:response-by-external-agent` — a one-shot projection of a target through a chosen engine (an external `cli-*` skill, native in-context, or a local LLM). It sets `COMMUNICATION_PROJECTION_ENABLED` inline for the single run so the flag falls away immediately afterward, keeping the default-off invariant even on error. It never writes `enablement.local.json`.
 
 ---
 
@@ -183,7 +190,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 ### Related Skills
 
 - `sk-code` — builds and verifies integration code against the package.
-- `sk-design` — owns a companion UI for a full-projection view.
+- `sk-design-md-generator` — extracts a measured Style Reference (design tokens from a live source).
 - `sk-git` — worktree, commits, and PR for the integration.
 
 ---
@@ -211,5 +218,5 @@ Run the package's authoritative gate from the package directory: `npm run check`
 ### Related Workflows
 
 - `sk-code` builds and verifies integration code against this package.
-- `sk-design` owns any companion UI that renders a full-projection view.
+- `sk-design-md-generator` extracts a measured Style Reference from a live source.
 - `sk-git` handles the worktree, commits, and PR when integrating.

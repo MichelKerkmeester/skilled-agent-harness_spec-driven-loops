@@ -245,6 +245,7 @@ function thinkingField(family: ProviderFamily): string {
       return 'think';
     case 'llama-cpp':
       return 'chat_template_kwargs.enable_thinking';
+    case 'external-cli':
     case 'generic-hosted':
     case 'opencode-go':
       return 'reasoning_effort';

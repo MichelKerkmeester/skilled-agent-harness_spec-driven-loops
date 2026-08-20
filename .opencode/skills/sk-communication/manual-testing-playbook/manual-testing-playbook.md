@@ -110,7 +110,7 @@ Run scenarios in dependency order so failures are localized:
 | Wave | Category | Scenario IDs | Purpose |
 |---|---|---|---|
 | 1 | Advisor Routing | `COMM-001` | Confirm the request reaches the owning skill. |
-| 2 | Fidelity And Privacy | `COMM-002..COMM-003` | Confirm immutable fallback and privacy-before-ranking. |
+| 2 | Fidelity And Privacy | `COMM-002..COMM-003`, `COMM-009` | Confirm immutable fallback, privacy-before-ranking, and external-cli fail-closed dispatch. |
 | 3 | Presentation Tiers | `COMM-004..COMM-005` | Confirm atomic ownership and original visibility. |
 | 4 | Release Gating | `COMM-006..COMM-008` | Confirm provisional evidence, doctor blocks, and human-certified release evidence. |
 
@@ -150,6 +150,15 @@ Prompt: `Check that hosted egress is rejected before provider ranking when conse
 
 > **Feature File:** [COMM-003](fidelity-and-privacy/privacy-precedes-provider-ranking.md)
 > **Catalog:** [Privacy-first provider routing](../feature-catalog/provider-and-privacy/privacy-first-provider-routing.md)
+
+### COMM-009 | External CLI provider fallback
+
+Verify the external-cli provider returns exact-original output when the CLI dispatch fails and is denied when hosted egress is not consented.
+
+Prompt: `Verify that the external CLI provider returns the exact original bytes when the CLI dispatch fails and only routes with hosted egress consent, then give me a PASS or FAIL verdict with the focused test evidence.`
+
+> **Feature File:** [COMM-009](fidelity-and-privacy/external-cli-provider-fallback.md)
+> **Catalog:** [External CLI agent provider](../feature-catalog/provider-and-privacy/external-cli-provider.md)
 
 ---
 
@@ -215,6 +224,7 @@ The complete automated suite lives under [`.opencode/skills/sk-communication/cli
 | Advisor routing | [Advisor compatibility entry point](../../system-skill-advisor/mcp-server/scripts/skill_advisor.py) | `COMM-001` |
 | Fidelity fallback | [Protected spans](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/protected-spans.test.ts), [fidelity validator](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/validator.test.ts) | `COMM-002` |
 | Privacy routing | [Privacy router tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/providers/privacy.test.ts) | `COMM-003` |
+| External CLI provider | [External CLI provider tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts), [external CLI transport tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts) | `COMM-009` |
 | Full projection | [Client display tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/clients/display.test.ts) | `COMM-004` |
 | Safe-native | [Client display tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/clients/display.test.ts), [sidecar tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/clients/sidecar.test.ts) | `COMM-005` |
 | Provisional evaluation | [Proxy judge tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/evaluation/proxy-judge.test.ts), [release gate tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/release/release-gate.test.ts) | `COMM-006` |
@@ -230,6 +240,7 @@ The complete automated suite lives under [`.opencode/skills/sk-communication/cli
 | Advisor Routing | `COMM-001` | [Advisor routes projection request](advisor-routing/advisor-routes-projection-request.md) | [Privacy-first provider routing](../feature-catalog/provider-and-privacy/privacy-first-provider-routing.md) | Yes |
 | Fidelity And Privacy | `COMM-002` | [Exact-original fidelity fallback](fidelity-and-privacy/exact-original-fidelity-fallback.md) | [Protected-span fidelity validation](../feature-catalog/fidelity-and-render/protected-span-fidelity-validation.md) | Yes |
 | Fidelity And Privacy | `COMM-003` | [Privacy precedes provider ranking](fidelity-and-privacy/privacy-precedes-provider-ranking.md) | [Privacy-first provider routing](../feature-catalog/provider-and-privacy/privacy-first-provider-routing.md) | Yes |
+| Fidelity And Privacy | `COMM-009` | [External CLI provider fallback](fidelity-and-privacy/external-cli-provider-fallback.md) | [External CLI agent provider](../feature-catalog/provider-and-privacy/external-cli-provider.md) | No |
 | Presentation Tiers | `COMM-004` | [Full projection requires atomic ownership](presentation-tiers/full-projection-requires-atomic-ownership.md) | [Capability-aware presentation](../feature-catalog/fidelity-and-render/capability-aware-presentation.md) | Yes |
 | Presentation Tiers | `COMM-005` | [Safe-native preserves original visibility](presentation-tiers/safe-native-preserves-original-visibility.md) | [Capability-aware presentation](../feature-catalog/fidelity-and-render/capability-aware-presentation.md) | Yes |
 | Release Gating | `COMM-006` | [Provisional evaluation blocks release](release-gating/provisional-evaluation-blocks-release.md) | [Blind non-inferiority evaluation](../feature-catalog/evaluation-and-observability/blind-non-inferiority-evaluation.md) | Yes |

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-communication/002-sk-communication-triggers/001-research-contracts",
+  "description": "Building the two trigger commands safely requires knowing exactly how the projection layer activates, what runnable surface it exposes, which engines",
+  "keywords": [
+    "two",
+    "trigger",
+    "commands",
+    "safely",
+    "requires",
+    "knowing",
+    "exactly",
+    "projection",
+    "layer",
+    "activates",
+    "runnable",
+    "surface",
+    "exposes",
+    "engines"
+  ],
+  "lastUpdated": "2026-08-19T04:41:42.341Z",
+  "specId": "001",
+  "folderSlug": "research-contracts",
+  "parentChain": [
+    "sk-communication",
+    "002-sk-communication-triggers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

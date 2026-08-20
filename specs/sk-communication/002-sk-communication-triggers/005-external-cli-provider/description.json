@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "sk-communication/002-sk-communication-triggers/005-external-cli-provider",
+  "description": "Command 2's cli- engine path is pure command-level orchestration",
+  "keywords": [
+    "command",
+    "cli",
+    "engine",
+    "path",
+    "pure",
+    "command-level",
+    "orchestration"
+  ],
+  "lastUpdated": "2026-08-19T07:27:53.057Z",
+  "specId": "005",
+  "folderSlug": "external-cli-provider",
+  "parentChain": [
+    "sk-communication",
+    "002-sk-communication-triggers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
