@@ -149,6 +149,29 @@ export async function buildCutoverCertificate(
       return rejected('CLASSIFICATION_MANIFEST_INVALID');
     }
 
+    // Every other evidence input is checked for a verdict — readiness,
+    // parity, drill pass, replay eligibility, receipt result — but the
+    // classification manifest was checked only for structural validity and
+    // self-hash above. A manifest whose every row reports a failed
+    // verifier would bind and pass exactly like one that reports success,
+    // because the manifest's own digest commits the structure, not the
+    // verdict. The verdict is reconstructible from fields the snapshot
+    // already retains (order/identity/receipt coverage and lease state),
+    // so reject when any row fails the reconstructed verdict. A null
+    // field means the classifier had nothing to assert, and an unasserted
+    // verdict must not read as a passing one.
+    for (const row of classificationManifest.rows) {
+      if (
+        row.evidence.orderCoverage !== true
+        || row.evidence.identityCoverage !== true
+        || row.evidence.receiptCoverage !== true
+        || row.evidence.leaseState === null
+        || row.evidence.leaseState === 'uncertain'
+      ) {
+        return rejected('CLASSIFICATION_MANIFEST_INVALID');
+      }
+    }
+
     for (const receipt of migrationReceipts) {
       if (
         receipt.from_state !== 'cutover_ready'

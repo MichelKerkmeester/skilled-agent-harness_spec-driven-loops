@@ -63,6 +63,7 @@ import type {
 } from '../../lib/cutover-certificate/index.js';
 import type {
   ClassificationEvidence,
+  ClassifiedEvidenceSnapshot,
   DispositionProof,
   InflightClassificationManifest,
   StateBackendCensus,
@@ -216,6 +217,29 @@ function buildManifest(): InflightClassificationManifest {
 }
 
 const CLASSIFICATION_MANIFEST = buildManifest();
+const FIRST_ROW_ID = CLASSIFICATION_MANIFEST.rows[0].rowId;
+
+/**
+ * Produce a manifest identical to the fixture except that one row's
+ * evidence snapshot carries the given override, with a recomputed
+ * finalDigest so the manifest's self-hash stays consistent. The rollback
+ * drill certificate must bind to the recomputed digest, which the caller
+ * supplies via fixtureRollbackDrillCertificate.
+ */
+function manifestWithRowEvidenceOverride(
+  rowId: string,
+  override: Readonly<Partial<ClassifiedEvidenceSnapshot>>,
+): InflightClassificationManifest {
+  const { finalDigest: _originalDigest, ...core } = CLASSIFICATION_MANIFEST;
+  const rows = core.rows.map((row) => (
+    row.rowId === rowId
+      ? { ...row, evidence: { ...row.evidence, ...override } }
+      : row
+  ));
+  const modifiedCore = { ...core, rows };
+  const modifiedDigest = sha256Bytes(canonicalBytes(modifiedCore as never));
+  return Object.freeze({ ...modifiedCore, finalDigest: modifiedDigest });
+}
 
 // Two independently keyed trusted providers, mirroring the real deployment
 // shape where the rollback-drill authority and the migration-receipt
@@ -538,6 +562,58 @@ describe('buildCutoverCertificate', () => {
     const evidence = await fixtureEvidence({ classificationManifest: tampered });
     const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'CLASSIFICATION_MANIFEST_INVALID' });
+  });
+
+  it('rejects a classification manifest whose first row has receiptCoverage false', async () => {
+    const manifest = manifestWithRowEvidenceOverride(FIRST_ROW_ID, { receiptCoverage: false });
+    const evidence = await fixtureEvidence({
+      classificationManifest: manifest,
+      rollbackDrillCertificate: await fixtureRollbackDrillCertificate({
+        classificationDigest: manifest.finalDigest,
+      }),
+    });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'CLASSIFICATION_MANIFEST_INVALID' });
+  });
+
+  it('rejects a classification manifest whose first row has leaseState uncertain', async () => {
+    const manifest = manifestWithRowEvidenceOverride(FIRST_ROW_ID, { leaseState: 'uncertain' });
+    const evidence = await fixtureEvidence({
+      classificationManifest: manifest,
+      rollbackDrillCertificate: await fixtureRollbackDrillCertificate({
+        classificationDigest: manifest.finalDigest,
+      }),
+    });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'CLASSIFICATION_MANIFEST_INVALID' });
+  });
+
+  it('rejects a classification manifest whose first row has orderCoverage null', async () => {
+    const manifest = manifestWithRowEvidenceOverride(FIRST_ROW_ID, { orderCoverage: null });
+    const evidence = await fixtureEvidence({
+      classificationManifest: manifest,
+      rollbackDrillCertificate: await fixtureRollbackDrillCertificate({
+        classificationDigest: manifest.finalDigest,
+      }),
+    });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'CLASSIFICATION_MANIFEST_INVALID' });
+  });
+
+  it('issues a certificate when the modified manifest row still passes the reconstructed verdict', async () => {
+    // Positive control: the same fixture construction as the rejection
+    // cases above, but the override changes leaseState to a passing value
+    // rather than a failing one. If this does not issue, the rejections
+    // are attributable to a broken fixture, not to the verdict gate.
+    const manifest = manifestWithRowEvidenceOverride(FIRST_ROW_ID, { leaseState: 'quiescent' });
+    const evidence = await fixtureEvidence({
+      classificationManifest: manifest,
+      rollbackDrillCertificate: await fixtureRollbackDrillCertificate({
+        classificationDigest: manifest.finalDigest,
+      }),
+    });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result.verdict).toBe('issued');
   });
 
   it('rejects an empty migration receipt set', async () => {
