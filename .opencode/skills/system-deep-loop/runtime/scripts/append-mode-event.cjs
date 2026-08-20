@@ -106,7 +106,9 @@ function normalizeMode(mode) {
   if (trimmed === 'agent-improvement' || trimmed === 'deep-agent-improvement') return 'agent-improvement';
   if (trimmed === 'model-benchmark' || trimmed === 'deep-model-benchmark') return 'model-benchmark';
   if (trimmed === 'skill-benchmark' || trimmed === 'deep-skill-benchmark') return 'skill-benchmark';
-  if (trimmed === 'improvement' || trimmed === 'deep-improvement') return 'deep-improvement';
+  // The authority order is the canonical spelling; a private alias that
+  // disagrees with it makes a real fleet mode unreachable.
+  if (trimmed === 'improvement' || trimmed === 'deep-improvement' || trimmed === 'deep-improvement-common') return 'deep-improvement-common';
   return trimmed;
 }
 
@@ -176,10 +178,10 @@ async function resolveModeAdapter(mode) {
         isEventStem: mod.isSkillBenchmarkEventStem,
       };
     }
-    case 'deep-improvement': {
+    case 'deep-improvement-common': {
       const mod = await import('../lib/deep-improvement-common-ledger-schema/index.ts');
       return {
-        normalizedMode: 'deep-improvement',
+        normalizedMode: 'deep-improvement-common',
         createRegistry: mod.createDeepImprovementCommonEventRegistry,
         prepareEvent: mod.prepareDeepImprovementCommonEvent,
         isEventStem: mod.isDeepImprovementCommonEventStem,
