@@ -24,7 +24,7 @@ version: 1.5.2.0
 | **Use it for** | Browser debugging and automation, ClickUp task operations, Obsidian vault and markdown-note management, Aside agentic browser tasks, Figma Desktop transport, Refero web UI reference search and Mobbin mobile-app design research |
 | **Invoke with** | Keyword routing through Gate 2 with no bound slash command for any of the seven modes, plus `/doctor:mcp` for install and debug |
 | **Routes to** | All seven packet directories via `mode-registry.json` and `hub-router.json`: four mutating workflow bridges and three read-only design transports |
-| **Produces** | Browser evidence, ClickUp task state changes, Obsidian note and vault operations, Aside browser evidence, Figma reads and exports plus Refero and Mobbin research, with design decisions paired to `sk-design` |
+| **Produces** | Browser evidence, ClickUp task state changes, Obsidian note and vault operations, Aside browser evidence, Figma reads and exports plus Refero and Mobbin research, paired with `sk-design-md-generator` for a measured Style Reference |
 
 ---
 
@@ -52,7 +52,7 @@ The hub holds no packet-local logic. It routes every request to exactly one of s
 
 ### The Transport Axis
 
-Four modes are workflow bridges that mutate this workspace directly. The remaining three are read-only design transports that bridge to an external tool's surface and never perform design judgment or mutate this workspace. `mcp-figma` drives Figma Desktop over its local daemon with `mutatesWorkspace:false`: export commands write artifacts only to explicit output paths while document changes land in Figma Desktop. `mcp-refero` and `mcp-mobbin` run as remote MCP servers reached through Code Mode with no local writes at all. Every design-affecting operation runs with `sk-design` paired in, because the transport never decides taste on its own.
+Four modes are workflow bridges that mutate this workspace directly. The remaining three are read-only design transports that bridge to an external tool's surface and never perform design judgment or mutate this workspace. `mcp-figma` drives Figma Desktop over its local daemon with `mutatesWorkspace:false`: export commands write artifacts only to explicit output paths while document changes land in Figma Desktop. `mcp-refero` and `mcp-mobbin` run as remote MCP servers reached through Code Mode with no local writes at all. Every design-affecting operation pairs in `sk-design-md-generator` to extract a measured Style Reference (design tokens) from a live source, because the transport never decides taste or produces a Style Reference on its own.
 
 ---
 
@@ -80,13 +80,13 @@ Create a daily note for today in my Obsidian vault and register the vault.
 
 The request reaches `mcp-obsidian`, which operates the vault through headless `notesmd-cli` without opening the app.
 
-**Step 3: Route a design transport with its judgment partner.**
+**Step 3: Route a design transport with its measured-reference partner.**
 
 ```text
 Render this component in Figma and export the design tokens.
 ```
 
-The request reaches `mcp-figma`, which drives Figma Desktop through `figma-ds-cli`. The transport pairs with `sk-design` before any design-affecting operation, because the transport never decides taste on its own.
+The request reaches `mcp-figma`, which drives Figma Desktop through `figma-ds-cli`. The transport pairs with `sk-design-md-generator` before any design-affecting operation — using it to extract a measured Style Reference from a live source — because the transport never decides taste on its own.
 
 **Step 4: Install or debug a bridge.** `/doctor:mcp` covers install and debug for every `mcp-*` skill, including every hub member. The doctor route reports the state of the target bridge without changing its configuration.
 
@@ -112,14 +112,14 @@ The hub owns one `graph-metadata.json` advisor identity for all seven modes, whi
 
 ### When To Use This Skill
 
-Reach for the hub whenever a request names one of its seven surfaces: browser debugging, ClickUp task operations, Obsidian vault work, agentic browser tasks, Figma Desktop, real-app UI references or mobile app design research. Design work always pairs a transport with `sk-design`. When a bridge needs install or debug help, `/doctor:mcp` is the route.
+Reach for the hub whenever a request names one of its seven surfaces: browser debugging, ClickUp task operations, Obsidian vault work, agentic browser tasks, Figma Desktop, real-app UI references or mobile app design research. Design work always pairs a transport with `sk-design-md-generator` for a measured Style Reference. When a bridge needs install or debug help, `/doctor:mcp` is the route.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
 | `mcp-code-mode` | Shared MCP execution substrate for the CLI-plus-MCP workflows and the remote transports through the unchanged `code_mode` registration key. External infrastructure, not a hub member |
-| `sk-design` | Mandatory cross-hub judgment partner for the three design transports. The transports never decide taste on their own |
+| `sk-design-md-generator` | Mandatory cross-hub measured-reference partner for the three design transports: extracts a measured Style Reference (design tokens) from a live source. The transports never decide taste on their own |
 | `sk-code` | Consumes browser-debugging output, ClickUp task context, Obsidian note context, Aside evidence, Figma exports and `DESIGN.md` plus Refero and Mobbin research as implementation input |
 | `sk-doc` | Documentation and component authoring. The sibling parent hub whose structure this hub mirrors |
 

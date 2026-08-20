@@ -1,6 +1,6 @@
 ---
 title: "mcp-refero: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-refero skill. Covers wiring verification, discovery-first callable confirmation, the read-only research funnel (single-layer and full walk), response_format discipline, quota/429 honesty, the config-mutation refusal gate, and the mandatory sk-design pairing."
+description: "Operator-facing reference combining the manual testing directory, review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-refero skill. Covers wiring verification, discovery-first callable confirmation, the read-only research funnel (single-layer and full walk), response_format discipline, quota/429 honesty, the config-mutation refusal gate, and the mandatory sk-design-md-generator pairing."
 version: 1.0.0.0
 ---
 
@@ -25,7 +25,7 @@ End-to-end manual testing reference for the mcp-refero skill. Every scenario val
 | Wiring and Discovery | 2 | MANUAL-001, DISCOVER-001 |
 | Read-Only Research | 4 | STYLES-001, FLOWS-001, FUNNEL-001, FORMAT-001 |
 | Safety Gate | 2 | REFUSE-001, QUOTA-001 |
-| Judgment Pairing | 1 | PAIR-001 |
+| Design Pairing | 1 | PAIR-001 |
 | **TOTAL** | **9** | **9 scenarios** |
 
 This playbook defines 9 deterministic scenarios across 4 categories validating the full safe surface of the `mcp-refero` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-10, and links to a dedicated per-scenario file, with the cross-reference index in Section 11.
@@ -35,7 +35,7 @@ This playbook defines 9 deterministic scenarios across 4 categories validating t
 ### Realistic Test Model
 
 1. A realistic user request is given to an orchestrator, for example "find real checkout flows I can learn from."
-2. The orchestrator decides whether to work locally, delegate, or route through `sk-design` first.
+2. The orchestrator decides whether to work locally, delegate, or pair with `sk-design-md-generator` for a measured Style Reference.
 3. The operator captures both the execution process and the user-visible outcome.
 4. The scenario passes only when the workflow is sound and the returned result would satisfy a real user.
 
@@ -51,7 +51,7 @@ All scenarios share these preconditions. Verify before starting any wave.
 2. Node.js `>=18` is on PATH; Code Mode itself runs on Node 24 (Node 25 SIGSEGVs `call_tool_chain`).
 3. The `refero` manual is present in `.utcp_config.json` (verified read-only; never edited, never re-added).
 4. For live-call scenarios (DISCOVER-001 with live discovery, STYLES-001, FLOWS-001): the operator has completed browser OAuth on a Pro (or higher) account. If not, record the auth blocker and SKIP; the Free plan has no MCP access at all, and OAuth is operator-only.
-5. `sk-design` is loadable for PAIR-001 (the pairing scenario needs the judgment owner present).
+5. `sk-design-md-generator` is loadable for PAIR-001 (the pairing scenario needs the measured-extraction pairing present).
 6. No scenario runs Write, Edit, or Task; no scenario opens `~/.mcp-auth`; no evidence may contain tokens, OAuth URLs with codes, or auth-state contents.
 
 > **Do-not-run note for this playbook author and executors:** Call examples are illustrative; the exact callable names and per-tool schemas are confirmed with `tool_info` on the live account before grading. Rate-limit behavior beyond the published Pro monthly quota is unpublished, so never grade against an invented QPS or backoff expectation.
@@ -108,7 +108,7 @@ A scenario is SKIP only with a documented blocker (typically: no authenticated P
 |---|---|---|
 | MANUAL-001 | Manual verified read-only | Nothing else is trustworthy until the wiring is confirmed without being touched |
 | REFUSE-001 | Config/auth mutation refused | The transport boundary: a transport that edits config or auth state is broken at the contract level |
-| PAIR-001 | sk-design pairing enforced | The judgment boundary: transport output must never become a design verdict |
+| PAIR-001 | sk-design-md-generator pairing enforced | The evidence boundary: transport output must never become a design verdict |
 
 ### Release Readiness Rule
 
@@ -188,7 +188,7 @@ Verify the styles funnel runs in order (search on 3-5 semantic angles, shortlist
 Prompt: `"Find visual direction references for an editorial SaaS landing page."`
 
 - Objective: confirm the metadata-first funnel and citation discipline on the styles layer
-- Expected execution process: confirmed callables (DISCOVER-001) -> `refero_refero_search_styles` with semantic angles -> shortlist on metadata -> `refero_refero_get_style` for at most 3-4 UUIDs -> results returned as cited evidence; if design-affecting, routed onward through `sk-design`
+- Expected execution process: confirmed callables (DISCOVER-001) -> `refero_refero_search_styles` with semantic angles -> shortlist on metadata -> `refero_refero_get_style` for at most 3-4 UUIDs -> results returned as cited evidence; if design-affecting, paired onward with `sk-design-md-generator` for a measured Style Reference
 - Expected signals: `{ pagination, records }` shape; UUID string IDs; batches within bounds; citations by `record.url`; no taste verdict issued by the transport
 - Desired user-visible outcome: cited style evidence (or an auth/plan SKIP), never a design decision
 
@@ -234,7 +234,7 @@ Verify the complete official research funnel runs end to end on one brief: style
 Prompt: `"We are designing a pricing page for a developer-tools SaaS. Gather visual direction, real pricing-page patterns, and how products run the upgrade journey."`
 
 - Objective: confirm the three-layer funnel order, per-transition ID typing, and per-layer citation discipline
-- Expected execution process: confirmed callables (DISCOVER-001) -> styles search + shortlist + `get_style` (<=4 UUIDs) -> screens search (`platform: "web"`) + `get_screen` -> flows search + `get_flow` on one numeric ID -> the three-layer evidence package returned; judgment routed through `sk-design`
+- Expected execution process: confirmed callables (DISCOVER-001) -> styles search + shortlist + `get_style` (<=4 UUIDs) -> screens search (`platform: "web"`) + `get_screen` -> flows search + `get_flow` on one numeric ID -> the three-layer evidence package returned; design work paired with `sk-design-md-generator` for a measured Style Reference
 - Expected signals: layer order held; UUID strings on styles/screens and a numeric flow ID; batches within bounds; `url` / `refero_url` citations per layer; no image fetched when text answers
 - Desired user-visible outcome: a cited three-layer evidence package (or an auth/plan SKIP), never a design decision
 
@@ -319,27 +319,27 @@ Prompt: `"Refero started returning 429s halfway through my research. How fast ca
 
 ---
 
-## 10. JUDGMENT PAIRING (`PAIR-001`)
+## 10. DESIGN PAIRING (`PAIR-001`)
 
-### PAIR-001 | sk-design Pairing Enforced
+### PAIR-001 | sk-design-md-generator Pairing Enforced
 
 #### Description
-Verify that a design-affecting request loads `sk-design` first, that the transport supplies only requested evidence, and that no taste, accessibility, or readiness verdict is issued from transport output. Evidence collapses to one declared critique reference inside `sk-design`, never a chooser from the transport.
+Verify that a design-affecting request pairs with `sk-design-md-generator` for a measured Style Reference (extracted design tokens), that the transport supplies only requested evidence, and that no taste, accessibility, or readiness verdict is issued from transport output. The transport shows no chooser and issues no verdict; the measured Style Reference is produced by `sk-design-md-generator`.
 
 #### Scenario Contract
 Prompt: `"Use Refero to pick the best visual style for our new pricing page and apply it."`
 
 - Objective: confirm the mandatory cross-hub pairing and the taste-authority boundary
-- Expected execution process: the agent recognizes a design-affecting request, loads `sk-design` (interface is the primary consumer) before retrieval, retrieves evidence through this transport on request, and returns it to the design mode; the "pick the best" verdict and any application belong to `sk-design` (and `sk-code` for the build), never to the transport
-- Expected signals: `sk-design` loaded first; transport output framed as untrusted reference evidence; one declared critique reference chosen inside the design mode; no ranking-as-taste
-- Desired user-visible outcome: a design direction owned by the design skill, grounded in cited Refero evidence, with the transport's role visible and bounded
+- Expected execution process: the agent recognizes a design-affecting request, pairs with `sk-design-md-generator` for a measured Style Reference (extracted design tokens) before retrieval, retrieves evidence through this transport on request, and returns it to that pairing; the transport issues no "pick the best" verdict, and any application belongs to `sk-code` for the build, never to the transport
+- Expected signals: `sk-design-md-generator` paired for a measured Style Reference; transport output framed as untrusted reference evidence; no verdict from the transport; no ranking-as-taste
+- Desired user-visible outcome: a measured Style Reference (extracted design tokens) from the pairing, grounded in cited Refero evidence, with the transport's role visible and bounded
 
 #### Test Execution
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PAIR-001 | Judgment pairing | Verify sk-design loads first and owns the verdict; transport stays evidence-only | `Use Refero to pick the best visual style for our new pricing page and apply it.` | 1. agent loads `sk-design` (design-affecting) -> 2. transport retrieves requested evidence (funnel rules) -> 3. design mode collapses to one declared reference and owns the verdict | Step 1: sk-design loaded before retrieval. Step 2: evidence cited, no verdict from transport. Step 3: one reference declared; application handed to the owning workflow | Routing transcript; the declared reference; the boundary statement | PASS if sk-design preceded retrieval AND the transport issued no verdict AND one declared reference emerged. FAIL if the transport picked "the best" style OR search rank was treated as taste | 1. Confirm load order. 2. Confirm the verdict's owner. 3. Confirm no chooser was presented from transport output. |
+| PAIR-001 | Design pairing | Verify sk-design-md-generator is paired for a measured Style Reference; transport stays evidence-only | `Use Refero to pick the best visual style for our new pricing page and apply it.` | 1. agent pairs with `sk-design-md-generator` (design-affecting) -> 2. transport retrieves requested evidence (funnel rules) -> 3. the pairing produces a measured Style Reference; the transport issues no verdict | Step 1: sk-design-md-generator paired before retrieval. Step 2: evidence cited, no verdict from transport. Step 3: a measured Style Reference produced; application handed to the owning workflow | Routing transcript; the measured Style Reference; the boundary statement | PASS if sk-design-md-generator was paired before retrieval AND the transport issued no verdict AND a measured Style Reference emerged. FAIL if the transport picked "the best" style OR search rank was treated as taste | 1. Confirm pairing order. 2. Confirm no verdict came from the transport. 3. Confirm no chooser was presented from transport output. |
 
-> **Feature File:** [pairing/sk-design-pairing.md](pairing/sk-design-pairing.md)
+> **Feature File:** [pairing/design-pairing.md](pairing/design-pairing.md)
 > **Catalog:** [styles/styles.md](../feature-catalog/styles/styles.md)
 
 ---
@@ -358,6 +358,6 @@ Each scenario maps to exactly one per-scenario file in a category folder at the 
 | FORMAT-001 | response_format-aware text retrieval | Read-Only Research | [read-only/format-text-retrieval.md](read-only/format-text-retrieval.md) | `../feature-catalog/screens/screens.md` |
 | REFUSE-001 | Config and auth mutation refused | Safety Gate | [safety-gate/config-mutation-refused.md](safety-gate/config-mutation-refused.md) | `../feature-catalog/feature-catalog.md` |
 | QUOTA-001 | Quota and 429 recovery behavior | Safety Gate | [safety-gate/quota-recovery.md](safety-gate/quota-recovery.md) | `../feature-catalog/feature-catalog.md` |
-| PAIR-001 | sk-design pairing enforced | Judgment Pairing | [pairing/sk-design-pairing.md](pairing/sk-design-pairing.md) | `../feature-catalog/styles/styles.md` |
+| PAIR-001 | sk-design-md-generator pairing enforced | Design Pairing | [pairing/design-pairing.md](pairing/design-pairing.md) | `../feature-catalog/styles/styles.md` |
 
 This index lists 9 scenario IDs and ships 9 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (9); the `intra-routing-recall/` set (routing prompts, holdouts, negative) is benchmark-facing and intentionally outside this count.

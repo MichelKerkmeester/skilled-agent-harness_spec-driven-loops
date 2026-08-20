@@ -104,7 +104,7 @@ A task marked `[B]` records its blocker inline and is not started until the bloc
 Promotion copies bytes into canonical targets. Every test in this child runs against a fixture target tree, never the real one.
 
 - [x] T001 **CONFIRM BEFORE BUILD.** For each of the 13 finding IDs in scope, re-read the cited `file:line` at current HEAD and record `CONFIRMED` / `REFUTED` / `MOVED` / `ALREADY-FIXED` with a cited probe. Carry the severity calibration: the actor is the operator or a stale local file. (`spec.md` §3 scope table) [4h]
-- [ ] T002 [P] Capture the improvement baseline: `npx vitest run --config .opencode/skills/system-deep-loop/deep-improvement/scripts/vitest.config.mjs`. Record discovered, pass, fail, skip, exit code and SHA. [1h] {deps: T001}
+- [x] T002 [P] Capture the improvement baseline: `npx vitest run --config .opencode/skills/system-deep-loop/deep-improvement/scripts/vitest.config.mjs`. Record discovered, pass, fail, skip, exit code and SHA. [1h] {deps: T001} Done 2026-08-18. Pre-edit baseline captured at `d0d8623ddf` (parent of the first landing commit) in a throwaway worktree, then re-run post-landing — a real before/after, not a relabelled current run. Full project: 17 -> 13 failing files, 54 -> 49 failing tests, 478 -> 542 passing, 547 -> 591 discovered, exit non-zero both sides. Per lane: `agent-improvement` 60 -> 63 passed with zero failures throughout; `shared` 124 passed/1 failed -> 159 passed/0 failed. All residual red sits in the `model-benchmark` and `skill-benchmark` sibling lanes and decreased across this change. Detail: `scratch/improvement-project-baseline.md`.
 - [x] T003 [P] Capture the council baseline: `npx vitest run --config .opencode/skills/system-deep-loop/deep-ai-council/vitest.config.mjs`. [1h] {deps: T001}
 - [x] T004 Fix the acceptance receipt contents in ADR-001: evidence digests, paths, target preimage, candidate snapshot, evaluator epoch, approval identity [4h] {deps: T001} [Evidence: `promotion receipt authority > authenticates the decided authority fields and evidence bindings`; suite SHA-256 `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`]
 - [x] T005 Choose and record the evaluator identity authority the candidate cannot control [2h] {deps: T001} [Evidence: `score-candidate evaluator authority > ignores candidate frontmatter when selecting evaluator identity and rubric source`; suite SHA-256 `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`]
@@ -181,7 +181,7 @@ Severity remains calibrated as an operator/stale-local-file robustness risk, not
 
 - [x] T020 Re-run both vitest projects; report deltas against the T002 and T003 baselines [2h] {deps: T008, T010, T011, T013, T014, T016, T017, T018, T019} [Evidence: council delta 109/2/exit1 -> 118/0/exit0 (T003); adversarial close re-ran the affected promotion-authority suites 44 -> 48 (+4 new binding suite), 0 regressions via `vitest`; landed `c897dcf294`. The full 52-file improvement-project T002 baseline was not captured, so the whole-project delta remains open at CHK-002/CHK-010.]
 - [x] T021 Independent adversarial verification pass targeted at whether any promotion path still trusts a mutable local file [6h] {deps: T020} [Evidence: independent pass (different actor than the builder) found a Medium candidate-rebind TOCTOU gap and fixed it with the shared fail-closed guard `assertCandidateMatchesApproval` at both consumption boundaries (`promote-candidate.cjs:377` accept, `:1011` single-phase), proven by `promote-candidate-approval-binding.vitest.ts`; landed `c897dcf294`. Two LOW residual defense-in-depth findings accepted as follow-up.]
-- [ ] T022 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority --strict` exits 0; record the improvement-lane gate for `014` [2h] {deps: T021}
+- [x] T022 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority --strict` exits 0; record the improvement-lane gate for `014` [2h] {deps: T021} Done 2026-08-18. `validate.sh --strict` exits 0 with zero errors and zero warnings.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -189,15 +189,15 @@ Severity remains calibrated as an operator/stale-local-file robustness risk, not
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]` — zero open `T` tasks remain
+- [x] No `[B]` blocked tasks remaining — the only `[B]` occurrences are the legend and its explanatory line
 - [ ] Every scoped finding ID resolved to a fix, a `REFUTED` rationale, or an `ALREADY-FIXED` commit citation
 - [ ] Every confirmed finding carries a negative test that was red pre-fix
-- [ ] Whole gate re-run and reported as a delta against the captured baseline
-- [ ] Independent adversarial verification pass recorded
+- [x] Whole gate re-run and reported as a delta against the captured baseline — pre-edit `d0d8623ddf` vs post-landing: 17 -> 13 failing files, 54 -> 49 failing tests, 478 -> 542 passing; residual red confined to the benchmark sibling lanes and decreasing (`scratch/improvement-project-baseline.md`)
+- [x] Independent adversarial verification pass recorded — found and fixed a Medium candidate-rebind TOCTOU gap (`c897dcf294`) and flagged two LOW residuals; sign-off row approved 2026-08-18
 - [ ] `checklist.md` fully verified with test-name + suite-digest + SHA evidence
-- [ ] All ADRs have a terminal status (Accepted or Superseded)
-- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-child> --strict` exits 0
+- [x] All ADRs have a terminal status — all four are `Accepted`
+- [x] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-child> --strict` exits 0 — re-run 2026-08-18 from the final state: Errors 0, Warnings 0
 <!-- /ANCHOR:completion -->
 
 ---

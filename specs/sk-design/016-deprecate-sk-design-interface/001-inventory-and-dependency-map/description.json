@@ -1,0 +1,38 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/016-deprecate-sk-design-interface/001-inventory-and-dependency-map",
+  "description": "sk-design is referenced across ~180 files; this read-only phase classifies every reference into reconcile buckets and produces dependency-map.md for",
+  "keywords": [
+    "sk-design",
+    "referenced",
+    "across",
+    "files",
+    "read-only",
+    "phase",
+    "classifies",
+    "every",
+    "reference",
+    "reconcile",
+    "buckets",
+    "produces",
+    "dependency-map"
+  ],
+  "lastUpdated": "2026-08-19T11:43:20.557Z",
+  "specId": "001",
+  "folderSlug": "inventory-and-dependency-map",
+  "parentChain": [
+    "sk-design",
+    "016-deprecate-sk-design-interface"
+  ],
+  "memorySequence": 8,
+  "memoryNameHistory": [
+    "19-08-26_05-18__read-only-inventory-child-greps-repo-for-sk.md",
+    "19-08-26_05-24__read-only-level-1-inventory-child-greps-repo-for.md",
+    "19-08-26_05-26__read-only-level-1-inventory-child-producing.md",
+    "19-08-26_05-29__read-only-level-1-inventory-child-producing.md",
+    "19-08-26_05-52__read-only-inventory-complete-dependency-map-md.md",
+    "19-08-26_05-54__inventory-complete-dependency-map-md-classifies.md",
+    "19-08-26_05-57__sk-design-is-referenced-across-180-files-this.md",
+    "19-08-26_05-57__sk-design-is-referenced-across-180-files-this.md"
+  ]
+}

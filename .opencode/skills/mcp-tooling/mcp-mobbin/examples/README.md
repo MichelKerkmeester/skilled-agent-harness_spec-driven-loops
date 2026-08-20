@@ -53,7 +53,7 @@ const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 - Cite every used reference by its `mobbin_url`; report `failed[]` and missing images as partial success.
 - The `deep` question is resolved: `mode: "deep" | "standard"` is a real `search_screens` input (2026-07-16 fixture) — use it deliberately for nuanced queries; preserve unknown response fields.
 - Budget the documented rate limit (60 requests per 60 seconds per user); on 429 honor `Retry-After`, then exponential backoff with jitter.
-- Anything design-affecting loads `sk-design` first; these examples produce evidence, never verdicts.
+- For a measured Style Reference of extracted design tokens, pair `sk-design-md-generator`; these examples produce evidence, never a Style Reference.
 
 ---
 

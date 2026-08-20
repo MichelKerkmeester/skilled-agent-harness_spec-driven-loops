@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 A worked walkthrough of the official research funnel for a realistic brief: *"We are designing a pricing page for a developer-tools SaaS; gather visual direction, real pricing-page patterns, and how products run the upgrade journey."* Every tool, argument, and bound below traces to [`references/tool-surface.md`](../references/tool-surface.md).
 
-> **Design-affecting note.** This brief feeds a design decision, so `sk-design` loads FIRST and owns the judgment; the transport only retrieves what the design mode requests. The funnel below is the retrieval half of that pairing.
+> **Design-affecting note.** This brief feeds a design decision, so pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens); the transport only retrieves what that pairing requests. The funnel below is the retrieval half of that pairing.
 
 ---
 
@@ -52,7 +52,7 @@ call_tool_chain({
 });
 ```
 
-Cite each style by `record.url`. Never average strong references into a generic middle — selection of ONE primary direction happens inside `sk-design`, not here. **SKIP-valid** with the auth blocker.
+Cite each style by `record.url`. Never average strong references into a generic middle — selection of a direction never happens in the transport; a measured Style Reference (extracted design tokens) comes from `sk-design-md-generator`, not here. **SKIP-valid** with the auth blocker.
 
 ## Step 3 — Screens for the concrete pattern
 
@@ -91,9 +91,9 @@ call_tool_chain({
 
 If flows are sparse, broaden the query or reconstruct the journey from related screens — and report the reconstruction as inference, never as retrieved fact. **SKIP-valid** with the auth blocker.
 
-## Step 5 — Hand off to the judgment owner
+## Step 5 — Hand off to the measured Style Reference pairing
 
-Return the cited evidence (style `url`s, screen `refero_url`s, the ordered flow steps) to `sk-design`, which collapses it to ONE declared critique reference before any design verdict. The transport issues no taste, accessibility, or readiness call.
+Return the cited evidence (style `url`s, screen `refero_url`s, the ordered flow steps) to `sk-design-md-generator` for a measured Style Reference (extracted design tokens). The transport issues no taste, accessibility, or readiness call.
 
 ---
 

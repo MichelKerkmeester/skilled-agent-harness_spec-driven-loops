@@ -1,0 +1,120 @@
+#!/usr/bin/env python3
+"""Second refutation attempt: can the legacy side reach the reducer fold through
+an imported module rather than a call inside the adapter file?
+
+The in-file call graph cannot see that. This resolves every import the legacy
+side actually reaches, follows those modules transitively, and reports any path
+that lands on the mode's fold entry point.
+"""
+import os
+import re
+import sys
+
+MODES = [
+    'deep-ai-council', 'agent-improvement', 'model-benchmark',
+    'skill-benchmark', 'deep-alignment', 'deep-review',
+]
+FOLD = {
+    'deep-ai-council': 'foldDeepAiCouncilEvents',
+    'agent-improvement': 'foldAgentImprovementEvents',
+    'model-benchmark': 'foldModelBenchmarkEvents',
+    'skill-benchmark': 'foldSkillBenchmarkEvents',
+    'deep-alignment': 'foldDeepAlignmentEvents',
+    'deep-review': 'foldDeepReviewEvents',
+}
+LEGACY_ENTRY = {'deep-ai-council': 'councilLegacyProjection'}
+
+DEF_RE = re.compile(
+    r'^(?:export\s+)?(?:async\s+)?function\s+([A-Za-z_$][\w$]*)\s*[(<]'
+    r'|^(?:export\s+)?const\s+([A-Za-z_$][\w$]*)\s*=\s*(?:async\s*)?[(<]', re.M)
+CALL_RE = re.compile(r'\b([A-Za-z_$][\w$]*)\s*\(')
+IMPORT_RE = re.compile(r'import\s+(?:type\s+)?\{([^}]*)\}\s*from\s*[\'"]([^\'"]+)[\'"]', re.S)
+
+
+def local_graph(src):
+    lines = src.split('\n')
+    defs = sorted((src[:m.start()].count('\n'), m.group(1) or m.group(2)) for m in DEF_RE.finditer(src))
+    bodies = {}
+    for i, (line, name) in enumerate(defs):
+        end = defs[i + 1][0] if i + 1 < len(defs) else len(lines)
+        bodies.setdefault(name, []).append('\n'.join(lines[line:end]))
+    return {n: set(CALL_RE.findall('\n'.join(b))) for n, b in bodies.items()}
+
+
+def reach(graph, start):
+    seen, stack = set(), [start]
+    while stack:
+        for callee in graph.get(stack.pop(), ()):
+            if callee not in seen:
+                seen.add(callee)
+                stack.append(callee)
+    return seen
+
+
+def imports_of(src):
+    """value-imported name -> specifier (type-only imports cannot carry code)."""
+    out = {}
+    for block, spec in IMPORT_RE.findall(src):
+        head = src[max(0, src.find(block) - 40):src.find(block)]
+        if 'import type' in head:
+            continue
+        for raw in block.split(','):
+            name = raw.strip().split(' as ')[-1].strip()
+            if name and not name.startswith('type '):
+                out[name] = spec
+    return out
+
+
+def resolve(spec, from_file):
+    if not spec.startswith('.'):
+        return None
+    p = os.path.normpath(os.path.join(os.path.dirname(from_file), spec))
+    for cand in (p, p.replace('.js', '.ts'), p[:-3] + '.ts' if p.endswith('.js') else p,
+                 os.path.join(p, 'index.ts')):
+        if os.path.isfile(cand):
+            return cand
+    return None
+
+
+def module_reaches_fold(path, fold, depth=3, seen=None):
+    """Does this module, or anything it imports, mention the fold entry point?"""
+    seen = seen or set()
+    if path in seen or depth < 0 or not path:
+        return None
+    seen.add(path)
+    src = open(path, encoding='utf-8').read()
+    if re.search(r'\b%s\b' % fold, src):
+        return path
+    for _, spec in IMPORT_RE.findall(src):
+        hit = module_reaches_fold(resolve(spec, path), fold, depth - 1, seen)
+        if hit:
+            return hit
+    return None
+
+
+def main(root):
+    bad = 0
+    for mode in MODES:
+        path = os.path.join(root, f'lib/{mode}-shadow-parity/harness-adapter.ts')
+        src = open(path, encoding='utf-8').read()
+        graph = local_graph(src)
+        entry = LEGACY_ENTRY.get(mode, 'legacyProjection')
+        reached = reach(graph, entry)
+        imported = imports_of(src)
+        # names the legacy side reaches that are not defined in this file
+        external = sorted((reached & set(imported)) - set(graph))
+        hits = []
+        for name in external:
+            hit = module_reaches_fold(resolve(imported[name], path), FOLD[mode])
+            if hit:
+                hits.append(f'{name} -> {os.path.relpath(hit, root)}')
+        status = 'REFUTED' if hits else 'HOLDS'
+        if hits:
+            bad = 1
+        print(f'{status:8} {mode:20} external symbols reached={len(external)}'
+              + (f'; fold reachable via: {hits}' if hits else '; none reach the fold'))
+    return bad
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1]))

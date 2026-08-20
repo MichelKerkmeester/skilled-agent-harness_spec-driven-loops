@@ -577,63 +577,60 @@ opencode run \
 
 ---
 
-## 17. TEMPLATE 16 — DESIGN/UI TASK DISPATCH
+## 17. TEMPLATE 16 — DESIGN/UI BUILD DISPATCH (MEASURED STYLE REFERENCE)
 
-**Framework:** RCAF + sk-design Context Manifest
+**Framework:** RCAF + sk-design-md-generator Style Reference Manifest
 **Agent:** `general`, `write`, or a design-capable leaf agent
 **Use case:** 1 or 3
 
-Use this for delegated UI build, redesign, design review, accessibility/readiness review, or design recommendations that may become implementation guidance. The dispatched agent must load `sk-design` with the right mode bundle before any design decision. For MiniMax-M3 or other small-model dispatches, pair this contract with the model profile variant in `../../../sk-prompt/sk-prompt-models/references/models/minimax-m3.md`.
+Use this for delegated UI build or redesign that must match a live source rather than guessing colors, type, spacing, or shadows. The dispatched agent must first load `sk-design-md-generator`, extract a measured Style Reference DESIGN.md from the live source, then build against those measured tokens. `sk-design-md-generator` measures real CSS — it does not invent visual direction or critique design; new direction is out of scope. For MiniMax-M3 or other small-model dispatches, pair this contract with the model profile variant in `../../../sk-prompt/sk-prompt-models/references/models/minimax-m3.md`.
 
 ```text
-You are dispatching a design/UI task through cli-opencode.
+You are dispatching a design/UI build task through cli-opencode.
 
-Goal: <one-sentence design/UI goal>
+Goal: <one-sentence UI build/redesign goal>
 
-Context Manifest:
+Style Reference Manifest:
 - Spec folder: <path> (pre-approved, skip Gate 3)
 - Write scope: <read-only | allowed write paths>
-- Target surface: <page | component | flow | audit target>
-- Task type: <build | redesign | review | accessibility | release-readiness | recommendation>
-- Register: <Brand | Product | unknown until shared/register.md is read>
-- Required mode bundle: <interface | interface + foundations | interface + foundations + audit | audit>
+- Target surface: <page | component | flow>
+- Task type: <build | redesign against a live source>
+- Live source to measure: <URL whose real CSS is the ground truth>
 - Exact files to read:
-  - .opencode/skills/sk-design/shared/context-loading-contract.md
-  - .opencode/skills/sk-design/shared/register.md
-  - <required mode SKILL.md files and axis references>
-  - .opencode/skills/sk-design/shared/assets/context-loaded-card.md
-  - .opencode/skills/sk-design/shared/assets/proof-of-application-card.md
+  - .opencode/skills/sk-design-md-generator/SKILL.md
+  - .opencode/skills/sk-design-md-generator/references/extraction-workflow.md
+  - .opencode/skills/sk-design-md-generator/references/design-md-format.md
+  - .opencode/skills/sk-design-md-generator/references/quality-checklist.md
+  - .opencode/skills/sk-design-md-generator/references/sk-code-handoff.md
 
 Instructions:
-1. Load `sk-design` and the required mode bundle before any design decision.
-2. Read the exact files in the Context Manifest. If a listed shared contract or card is missing, report that path as missing and do not substitute memory.
-3. Emit the Context Loaded card before recommendations, code, audit findings, or design direction.
-4. Apply the task, staying inside the write scope.
-5. Emit the Proof Of Application card before any "ready", "accessible", "release-ready", "done", or equivalent claim.
+1. Load `sk-design-md-generator` and read the exact files before any build decision. If a listed file is missing, report that path as missing and do not substitute memory.
+2. Extract a measured Style Reference DESIGN.md (named color tokens, type scale, components, Surfaces, Elevation, Quick-Start CSS/Tailwind) plus verbatim tokens.json from the live source.
+3. Run the validate step to confirm hex accuracy and section completeness against tokens.json.
+4. Build the UI against the measured tokens, staying inside the write scope. Use every color, type role, spacing, radius, and shadow verbatim from the reference.
+5. Emit the sk-code handoff card before any "ready", "done", or handoff claim.
 
-Required proof fields in the Proof Of Application card:
-- REGISTER / DIALS: Brand|Product, why, variance, motion, density, and downstream effect.
-- CONTRAST PAIRS: every foreground/background pair touched or evaluated, target, result, and fix if failing.
-- INTERFACE PREFLIGHT: surface, narrowest tested width, required pass/fail rows, and verdict.
-- AUDIT EVIDENCE: target, evidence labels, dimensions checked, and any not-assessed areas.
+Required fidelity proof before a ready/handoff claim:
+- LOCKED VALUES: every measured token the build used verbatim, each traced to a source observation.
+- INFERRED VS MEASURED: any value not directly measured, flagged as an OPEN RISK so it is never treated as ground truth.
+- VALIDATION: validate step result (hex accuracy, section completeness) with the pass/fail verdict.
 
 Do's:
-- Treat `.opencode/skills/sk-design/shared/context-loading-contract.md` as the shared contract.
-- Use `shared/register.md` before palette, layout, motion, density, copy, or audit-severity choices.
-- Use foundations references for color, theme, token, contrast, layout, or responsive decisions.
-- Use audit evidence labels before accessibility, score, release-readiness, or review claims.
+- Treat the measured Style Reference DESIGN.md + tokens.json as the source of truth.
+- Trace every built value to a measured token; label anything inferred as an OPEN RISK.
+- Re-extract after a source redesign rather than editing tokens from memory.
 
 Don'ts:
-- Do not summarize `sk-design` from memory.
-- Do not make design recommendations before the Context Loaded card.
-- Do not claim accessibility, readiness, release quality, or completion without the Proof Of Application card and all four proof fields.
+- Do not summarize `sk-design-md-generator` output from memory.
+- Do not invent new palette, type scale, or visual direction — this skill measures, it does not create direction.
+- Do not claim readiness, fidelity, or completion without the validate result and the sk-code handoff card.
 - Do not touch files outside the allowed write scope.
 
 Output:
-1. Context Loaded card.
-2. Recommendations, code, or findings.
-3. Verification commands or evidence.
-4. Proof Of Application card.
+1. Measured Style Reference summary (tokens loaded).
+2. Built UI or implementation against the measured tokens.
+3. Validate result (hex accuracy, section completeness).
+4. sk-code handoff card.
 ```
 
 ```bash

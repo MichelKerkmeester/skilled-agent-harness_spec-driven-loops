@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile",
+  "description": "Phase 006 reconciles every live cross-skill contract that named the deleted sk-design hub — advisor graph identity + edges, command bridges,",
+  "keywords": [
+    "phase",
+    "reconciles",
+    "every",
+    "live",
+    "cross-skill",
+    "contract",
+    "named",
+    "deleted",
+    "sk-design",
+    "hub",
+    "advisor",
+    "graph",
+    "identity",
+    "edges",
+    "command",
+    "bridges"
+  ],
+  "lastUpdated": "2026-08-19T11:40:32.164Z",
+  "specId": "006",
+  "folderSlug": "reference-cleanup-and-reconcile",
+  "parentChain": [
+    "sk-design",
+    "016-deprecate-sk-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

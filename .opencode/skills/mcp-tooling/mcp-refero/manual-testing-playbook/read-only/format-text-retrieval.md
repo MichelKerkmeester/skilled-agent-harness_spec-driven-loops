@@ -39,7 +39,7 @@ Operators run the exact sequence for `FORMAT-001` and confirm the expected signa
 ### Recommended Orchestration Process
 
 1. Restate the user request in plain user language.
-2. Decide whether the scenario should stay local or delegate. Retrieval runs in this transport; any verdict belongs to `sk-design`.
+2. Decide whether the scenario should stay local or delegate. Retrieval runs in this transport; the transport issues no verdict, and a measured Style Reference comes from `sk-design-md-generator`.
 3. Execute the deterministic steps exactly as written.
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.

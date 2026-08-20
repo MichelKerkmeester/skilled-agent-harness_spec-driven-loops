@@ -23,7 +23,7 @@ Prompt: Research onboarding flow patterns from real iOS apps on Mobbin and colle
 
 ## Expected Behavior
 
-Strong `mobbin-aliases`/`app-design-research` signal (Mobbin, real-app screens, onboarding flow patterns) resolves `workflowMode: mcp-mobbin`; the hub loads `mcp-mobbin/SKILL.md`, not `mcp-refero` (its design-reference sibling — distinguished by tool vocabulary) and not the hub's own thin `SKILL.md`. The transport pairing rule applies: design DECISIONS from the research load `sk-design` first.
+Strong `mobbin-aliases`/`app-design-research` signal (Mobbin, real-app screens, onboarding flow patterns) resolves `workflowMode: mcp-mobbin`; the hub loads `mcp-mobbin/SKILL.md`, not `mcp-refero` (its design-reference sibling — distinguished by tool vocabulary) and not the hub's own thin `SKILL.md`. The transport pairing rule applies: to turn the research into a measured Style Reference (design tokens), pair `sk-design-md-generator` to extract from a live source.
 
 ## Success Criteria
 

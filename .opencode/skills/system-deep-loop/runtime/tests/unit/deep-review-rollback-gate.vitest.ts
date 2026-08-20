@@ -1978,6 +1978,44 @@ describe('rollback window', () => {
     });
   });
 
+  it('rejects the evidence set when a rollback row violates its declared type', () => {
+    const [valid] = successfulWindowExecutions(1);
+    const executions = [{ ...valid!, certificateDigest: 'not-a-sha256-digest' }];
+
+    expect(() => evaluateDeepReviewRollbackWindow({
+      openedAt: '2026-07-01T00:00:00Z',
+      evaluatedAt: '2026-07-15T00:00:00Z',
+      executions,
+      authenticatedExecutions: executions,
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    } as never)).toThrow(TypeError);
+  });
+
+  it('rejects an out-of-contract result while still counting legitimate unsuccessful rows', () => {
+    const [valid] = successfulWindowExecutions(1);
+    const undeclared = [{ ...valid!, result: 'not-a-declared-result' }];
+
+    expect(() => evaluateDeepReviewRollbackWindow({
+      openedAt: '2026-07-01T00:00:00Z',
+      evaluatedAt: '2026-07-15T00:00:00Z',
+      executions: undeclared,
+      authenticatedExecutions: undeclared,
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    } as never)).toThrow(TypeError);
+
+    const abstained = [{ ...valid!, result: 'abstained' as const }];
+    expect(evaluateDeepReviewRollbackWindow({
+      openedAt: '2026-07-01T00:00:00Z',
+      evaluatedAt: '2026-07-15T00:00:00Z',
+      executions: abstained,
+      authenticatedExecutions: abstained,
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    } as never)).toMatchObject({ successfulAuthoritativeExecutions: 0, state: 'open' });
+  });
+
   it('closes neither authority nor evidence while five distinct executions become eligible', () => {
     const result = evaluateDeepReviewRollbackWindow({
       openedAt: '2026-07-01T00:00:00Z',

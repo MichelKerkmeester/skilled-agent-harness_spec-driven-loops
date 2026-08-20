@@ -1,6 +1,6 @@
 ---
 title: mcp-refero
-description: Search real shipped UI as design-reference evidence: visual styles, screen patterns, user flows and the metadata behind them, read-only through Code Mode, with sk-design owning the judgment.
+description: Search real shipped UI as design-reference evidence: visual styles, screen patterns, user flows and the metadata behind them, read-only through Code Mode, pairing with sk-design-md-generator for a measured Style Reference (extracted design tokens).
 trigger_phrases:
   - "refero"
   - "refero mcp"
@@ -12,7 +12,7 @@ version: 1.1.0.0
 
 # mcp-refero
 
-> Refero holds 150,000+ real shipped app screens. This skill makes that library searchable by your agent as read-only design-reference evidence, with `sk-design` owning the judgment.
+> Refero holds 150,000+ real shipped app screens. This skill makes that library searchable by your agent as read-only design-reference evidence, pairing with `sk-design-md-generator` for a measured Style Reference (extracted design tokens).
 
 ---
 
@@ -23,7 +23,7 @@ version: 1.1.0.0
 | **Use it for** | Searching Refero for design references: visual styles for direction, real app screens for UI patterns, user flows for multi-step processes and verification of the Code Mode wiring and auth expectations |
 | **Invoke with** | "refero", "refero mcp", "design reference", "ui reference search", "real app screens" or auto-routing on Refero keywords |
 | **Works on** | The remote Refero MCP at `api.refero.design/mcp`, bridged by `npx mcp-remote` through the `refero` manual already registered in this repo's Code Mode. Needs a Refero Pro (or higher) plan and operator authentication. The Free plan has no MCP access |
-| **Produces** | Cited reference evidence: style records, full style references, screen metadata, screenshots and ordered flow steps, all returned to the requesting workflow, usually an `sk-design` mode |
+| **Produces** | Cited reference evidence: style records, full style references, screen metadata, screenshots and ordered flow steps, all returned to the requesting workflow, usually paired with `sk-design-md-generator` for a measured Style Reference |
 
 ---
 
@@ -35,13 +35,13 @@ Refero indexes a large library of real shipped UI. Its official repository count
 
 The callable names double their prefix inside Code Mode (`refero.refero_refero_<tool>`). Two independent research lineages got that detail wrong by derivation. Only live evidence settled it, so discovery confirmation is mandatory. Access is plan-gated. The Free tier has no MCP at all. Unauthenticated calls return HTTP 401, so an agent that guesses burns a round trip and then misreports the failure. Stale extractions of an older tool surface still circulate: four-tool lists, `_tool` names, numeric screen IDs and `limit`/`offset` paging. Calling them fails.
 
-The biggest risk is not technical. Search results look authoritative. An agent will happily treat a top-ranked reference as a design verdict. This packet wraps the wiring, the eight-tool contract, the funnel discipline and the hard boundary that judgment belongs to `sk-design`. The agent always knows what it can call, what it can claim, what it must hand off and who owns the verdict.
+The biggest risk is not technical. Search results look authoritative. An agent will happily treat a top-ranked reference as a design verdict. This packet wraps the wiring, the eight-tool contract, the funnel discipline and the hard boundary that this transport supplies evidence, never a taste verdict; a measured Style Reference (extracted design tokens) comes from `sk-design-md-generator`. The agent always knows what it can call, what it can claim and what it must hand off.
 
 ### What It Does
 
 The packet is a TRANSPORT under the `mcp-tooling` hub, with `packetKind: transport` and `mutatesWorkspace: false`. It verifies the existing `refero` Code Mode manual, discovers and confirms the live callables and runs the read-only research funnel: styles first for visual direction, screens for concrete UI patterns, flows for multi-step processes, with metadata-first ordering and images last. Every read happens against the external Refero service. Nothing in this repo changes. The allowed tool surface is Read, Bash, Grep, Glob and Code Mode calls only.
 
-Whenever the retrieved evidence feeds a design decision, `sk-design` loads first and owns the judgment. This packet supplies IDs, metadata, images and source-backed facts. Its output can never satisfy a taste, accessibility, responsiveness or readiness gate by itself.
+Whenever the retrieved evidence feeds a design decision, pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). This packet supplies IDs, metadata, images and source-backed facts. Its output can never satisfy a taste, accessibility, responsiveness or readiness gate by itself.
 
 This is the hub's second transport, a simpler peer of `mcp-figma`: MCP-only, read-only-only, no CLI machinery and no mutating or destructive gating taxonomy, because the provider surface itself is read-only.
 
@@ -95,9 +95,9 @@ call_tool_chain({
 
 Expect the record count and the first style URL, then the full style record for citation. Style results come first for visual direction. Screens cover concrete UI patterns. Flows cover multi-step processes. Fetch an image only when metadata cannot answer the question.
 
-**Step 4: Hand the evidence to the judgment owner.**
+**Step 4: Pair with the measured Style Reference.**
 
-Any design-affecting use routes through `sk-design`, which collapses the evidence to one declared critique reference. Cite styles by `record.url` and screens by `record.refero_url`.
+Any design-affecting use pairs with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). Cite styles by `record.url` and screens by `record.refero_url`.
 
 ---
 
@@ -121,7 +121,7 @@ Plan gating is hard. Free has no MCP access at all. Pro carries 8,000 tool calls
 
 ### The Judgment Boundary
 
-The transport allows breadth while researching. You can compare multiple styles, multiple screens, multiple flows and their metadata before narrowing. But design-affecting use is governed by the `sk-design` contract: one declared critique reference, no chooser, no copying and no averaging of strong references into a generic middle.
+The transport allows breadth while researching. You can compare multiple styles, multiple screens, multiple flows and their metadata before narrowing. But design-affecting use pairs with `sk-design-md-generator` for a measured Style Reference (extracted design tokens); the transport shows no chooser, copies nothing, and never averages strong references into a generic middle.
 
 A transport response is untrusted reference evidence. Search rank is not taste. Similarity is not approval. No taste, accessibility, responsiveness or readiness verdict ever comes from this packet.
 
@@ -133,13 +133,13 @@ A transport response is untrusted reference evidence. Search rank is not taste. 
 
 Reach for this packet when you want Refero evidence: visual styles for a direction, real app screens for a pattern or state, user flows for a multi-step process or company and domain research through screen and flow metadata. Also reach for it when the `refero` wiring or its auth expectations need verification.
 
-Skip it when the work is the design judgment itself, which belongs to `sk-design` while this packet stays the transport. Skip it for Mobbin-based app research (`mcp-mobbin`, a planned future sibling), for browser automation and previews (`mcp-chrome-devtools`), for Figma work (`mcp-figma`) and for generic app coding (`sk-code`). Never use it to change files. The allowed tool surface is Read, Bash, Grep, Glob and Code Mode calls only.
+Skip it when the work is the design judgment itself; this packet stays the transport and only supplies reference evidence. Skip it for Mobbin-based app research (`mcp-mobbin`, a planned future sibling), for browser automation and previews (`mcp-chrome-devtools`), for Figma work (`mcp-figma`) and for generic app coding (`sk-code`). Never use it to change files. The allowed tool surface is Read, Bash, Grep, Glob and Code Mode calls only.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-design` | The mandatory judgment partner. Every design-affecting use loads it first. It owns reference locks, registers and every taste, accessibility, responsiveness or readiness verdict. This packet is the transport, that skill is the taste. |
+| `sk-design-md-generator` | The design pairing. Every design-affecting use pairs with it for a measured Style Reference: it extracts a live website's real CSS into named design tokens, a type scale, and components (a Style Reference DESIGN.md). This packet is the transport for shipped-UI evidence, that skill measures real tokens. |
 | `mcp-code-mode` | The substrate. Manuals, `{manual}.{manual}_{tool}` naming, prefixed env vars, discovery and error-envelope discipline all come from Code Mode. |
 | `mcp-figma` | The sibling Figma transport in this hub, CLI-primary with an optional MCP. No surface overlap with Refero. |
 | `mcp-chrome-devtools` | Browser inspection and preview, never a design-reference search surface. |
@@ -181,9 +181,9 @@ A: Unverified. An unauthenticated probe observed HTTP 401 with OAuth metadata. T
 
 A: No. It is a transport with `mutatesWorkspace: false`. The allowed surface is Read, Bash, Grep, Glob and Code Mode calls only. The `refero` manual in `.utcp_config.json` is validated as-is and never edited. Auth state under `~/.mcp-auth` is operator-owned and never touched.
 
-**Q: How does this relate to `sk-design` and the official Refero Skill?**
+**Q: How does this relate to `sk-design-md-generator` and the official Refero Skill?**
 
-A: `sk-design` owns the design judgment and is loaded first for any design-affecting use. This packet only carries the evidence. The official `referodesign/refero_skill` repository is a design methodology skill and a peer of `sk-design`. This packet deliberately does not vendor or duplicate it.
+A: `sk-design-md-generator` provides a measured Style Reference (extracted design tokens from a live site) and pairs with this packet for any design-affecting use. This packet only carries shipped-UI reference evidence. The official `referodesign/refero_skill` repository is a design methodology skill and a peer of `sk-design-md-generator`. This packet deliberately does not vendor or duplicate it.
 
 ---
 

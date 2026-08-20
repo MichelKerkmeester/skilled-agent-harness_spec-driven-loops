@@ -66,4 +66,5 @@ This phase is the only phase that moves canonical authority. It turns the comple
 | 001 | `001-inflight-state-migration/` | Execute the migration of eligible in-flight state per the phase-008 classification (upcast/fork/migrate), guarded so a running loop is never corrupted or lost. | Planned |
 | 002 | `002-per-mode-authority-flip/` | Flip canonical authority from legacy to the dark spine one mode at a time, each flip gated by that mode's shadow-parity proof and a passing rollback drill. | Planned |
 | 003 | `003-cutover-certificate-and-rollback-window/` | The cutover certificate (the evidence bundle that authorizes a flip) plus enforcement of the monitored rollback window during which a flip stays reversible. | Planned |
+| 004 | `004-census-path-and-config-drift-repair/` | Repair 7 stale state-census path references that made 5 runtime test files ENOENT-uncollectable, and close a fan-out config schema gap that silently dropped a smuggled stopPolicy key. | Complete |
 <!-- /ANCHOR:phase-map -->

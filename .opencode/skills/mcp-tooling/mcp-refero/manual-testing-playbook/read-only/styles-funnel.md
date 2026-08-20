@@ -27,7 +27,7 @@ Operators run the exact sequence for `STYLES-001` and confirm the expected signa
 - Objective: confirm the metadata-first funnel and citation discipline on the styles layer
 - Real user request: `Find visual direction references for an editorial SaaS landing page.`
 - Prompt: `Find visual direction references for an editorial SaaS landing page.`
-- Expected execution process: confirmed callables (DISCOVER-001) -> `refero_refero_search_styles` with 3-5 semantic angles -> shortlist on metadata (titles, descriptions, tags) -> `refero_refero_get_style` for at most 3-4 UUIDs -> results returned as cited evidence; if design-affecting, routed onward through `sk-design`
+- Expected execution process: confirmed callables (DISCOVER-001) -> `refero_refero_search_styles` with 3-5 semantic angles -> shortlist on metadata (titles, descriptions, tags) -> `refero_refero_get_style` for at most 3-4 UUIDs -> results returned as cited evidence; if design-affecting, paired onward with `sk-design-md-generator` for a measured Style Reference
 - Expected signals: `{ pagination, records }` response shape; UUID string IDs; batches within bounds; citations by `record.url`; no taste verdict issued by the transport
 - Desired user-visible outcome: cited style evidence (or an auth/plan SKIP), never a design decision
 - Pass/fail: PASS if the funnel order held AND batches stayed within bounds AND all evidence was cited AND no taste verdict was issued; FAIL if detail was fetched before metadata shortlisting OR a design verdict came from the transport; SKIP with the documented auth/plan blocker
@@ -39,7 +39,7 @@ Operators run the exact sequence for `STYLES-001` and confirm the expected signa
 ### Recommended Orchestration Process
 
 1. Restate the user request in plain user language.
-2. Decide whether the scenario should stay local or delegate. Retrieval runs in this transport; any verdict belongs to `sk-design`.
+2. Decide whether the scenario should stay local or delegate. Retrieval runs in this transport; the transport issues no verdict, and a measured Style Reference comes from `sk-design-md-generator`.
 3. Execute the deterministic steps exactly as written.
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.

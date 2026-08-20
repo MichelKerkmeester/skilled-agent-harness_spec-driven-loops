@@ -160,7 +160,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 - Choose and record one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
 - For each artifact in the resolved slice:
-  - **Deterministic layer**: invoke the lane's own adapter as a CLI via Bash (`node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/<adapter>.cjs check <artifact-path-or-ref>`, where `<adapter>` is the dispatch-supplied adapter and defaults to the lane's authority module), reusing whatever it already wraps (`sk-doc`: `validate_document.py` + `extract_structure.py`; `sk-git`: commit/branch rule checks; `sk-design`: static rubric checks; `sk-code`: surface-detection).
+  - **Deterministic layer**: invoke the lane's own adapter as a CLI via Bash (`node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/<adapter>.cjs check <artifact-path-or-ref>`, where `<adapter>` is the dispatch-supplied adapter and defaults to the lane's authority module), reusing whatever it already wraps (`sk-doc`: `validate_document.py` + `extract_structure.py`; `sk-git`: commit/branch rule checks; `sk-code`: surface-detection).
   - **Reasoning-agent layer (verify-first)**: for any artifact where a pattern match suggests drift, extract the specific live-behavior claim and re-probe it directly against the real validator, CLI, registry, or source file — never assert a finding from pattern-matching alone (Alignment Invariant 1). When a contradiction is confirmed with cited evidence, construct a finding in the same shape the adapter's own `check()` would produce (`severity`, `type: 'reality-drift'`, `subcheck`, `layer: 'reasoning-agent'`, `message`, artifact identity, `sourceTool: 'live re-probe (agent-performed)'`, `detail: {claim, reprobeEvidence}`) and fold it into this iteration's findings alongside the deterministic-layer output.
 - Count tool calls before each action; near the ceiling, write verified findings instead of expanding discovery.
 - Do not use shell output as a substitute for cited evidence.
@@ -247,7 +247,7 @@ Use Read, Grep, Glob, Bash, and memory/code-graph MCP tools only within the decl
 | Skill | Purpose |
 |-------|---------|
 | `system-deep-loop` (deep-alignment mode) | Shared alignment contract, lane semantics, adapter registry |
-| Each lane's own authority skill (`sk-doc`, `sk-git`, `sk-design`, `sk-code`) | The standard source this agent's current lane checks against — read-only reference, never edited |
+| Each lane's own authority skill (`sk-doc`, `sk-git`, `sk-code`) | The standard source this agent's current lane checks against — read-only reference, never edited |
 
 ### Caller + Command Integrations
 

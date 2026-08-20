@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/016-deprecate-sk-design-interface/004-fold-design-knowledge",
+  "spec_folder": "sk-design/016-deprecate-sk-design-interface/004-fold-design-knowledge",
+  "parent_id": "sk-design/016-deprecate-sk-design-interface",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fold design knowledge",
+      "condensed design layer md-generator",
+      "fold design knowledge plan",
+      "fold design knowledge tasks",
+      "fold design knowledge summary"
+    ],
+    "key_topics": [
+      "fold",
+      "design",
+      "knowledge",
+      "condensed",
+      "layer",
+      "md-generator",
+      "plan",
+      "tasks",
+      "summary",
+      "phase",
+      "distills",
+      "general"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mutation Class",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "in-place",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Scope",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Knowledge",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 004 distills a condensed general design-knowledge layer (Brand-vs-Product register, anti-slop principles, cognitive and numeric design laws, design-token vocabulary, and a design-principles digest) from the soon-to-be-deleted sk-design hub into references/design-knowledge/ of the standalone md-generator, and repoints the 3 dangling ../shared/* links to the local copies.",
+    "created_at": "2026-08-19T06:07:45.237Z",
+    "last_save_at": "2026-08-19T11:43:38.416Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3c1262311d1fb864249754c77528677f4b8b224b0aaa5ac04ce93ae78f80b33e",
+    "source_doc_hashes": {
+      "spec.md": "c98e5790da662e31df5cd4a71d7b6d19f82a0beeaa247a85561a9593a2e6fd24",
+      "plan.md": "0dddb36703c434447af77609756d3ece78007d8e6fa2e6eb0f5847fbd9245bd2",
+      "tasks.md": "f9007e5d4c63c66f707520980d6a903e7b6105a1758bad5986cb411fd7f6e268",
+      "implementation-summary.md": "e825e103b4b4f0e02ae628fdec975d81cb05b84d6849b008e95f32edbeeb6d15"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

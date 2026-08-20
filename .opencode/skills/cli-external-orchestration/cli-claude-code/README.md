@@ -58,7 +58,7 @@ The skill routes to a roster of specialized `.claude/agents/*.md` definitions wi
 | **deep-improvement** | proposal-only deep-improvement candidate generation, command-owned |
 | **deep-research** | single-iteration deep research execution, command-owned |
 | **deep-review** | single-iteration deep review execution, command-owned |
-| **design** | UI and design work via `sk-design` |
+| **design** | measured design-reference extraction via `sk-design-md-generator` |
 | **markdown** | template-first markdown and documentation execution |
 | **orchestrate** | multi-agent coordination |
 | **prompt-improver** | dispatch-ready prompt package generation, command-owned |

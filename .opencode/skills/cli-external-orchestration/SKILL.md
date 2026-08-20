@@ -32,7 +32,7 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 ### When NOT to Use
 
 - The current runtime IS the target CLI — each mode's own self-invocation guard refuses self-dispatch (see that packet's §2); this hub does no dispatch itself and carries no guard of its own.
-- Application-code implementation, review, or design work with no CLI-dispatch need — use `sk-code` / `sk-design` directly.
+- Application-code implementation or review, or measured design-reference extraction with no CLI-dispatch need — use `sk-code` / `sk-design-md-generator` directly.
 - A quick in-process task with no cross-AI handoff — dispatching to an external CLI process is unnecessary overhead.
 
 ---

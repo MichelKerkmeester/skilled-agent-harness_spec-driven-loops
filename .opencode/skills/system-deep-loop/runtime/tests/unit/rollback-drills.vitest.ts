@@ -71,7 +71,7 @@ interface CensusDocument {
 
 const CENSUS_PATH = fileURLToPath(new URL(
   '../../../../../specs/system-deep-loop/036-deep-loop-innovation/'
-    + '003-baseline-taxonomy-and-state-census/state-backend-census.json',
+    + '001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json',
   import.meta.url,
 ));
 const CENSUS = JSON.parse(readFileSync(CENSUS_PATH, 'utf8')) as CensusDocument;

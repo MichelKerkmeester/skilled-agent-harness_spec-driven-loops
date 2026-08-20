@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
+  "description": "After enablement, the epic's documentation describes a system that no longer exists",
+  "keywords": [
+    "enablement",
+    "epic",
+    "documentation",
+    "describes",
+    "system",
+    "longer",
+    "exists"
+  ],
+  "lastUpdated": "2026-08-19T06:55:52.590Z",
+  "specId": "006",
+  "folderSlug": "enablement-closeout",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -16,7 +16,7 @@
   "expected_interaction": "question_halt",
   "expected_presentation_markers": [
     "/execution mode|:auto|:confirm/i",
-    "/authority|artifact.?class|scope|lane|sk-doc|sk-git|sk-design|sk-code/i"
+    "/authority|artifact.?class|scope|lane|sk-doc|sk-git|sk-code/i"
   ],
   "expected_delegation": {
     "leaf_agent": null,

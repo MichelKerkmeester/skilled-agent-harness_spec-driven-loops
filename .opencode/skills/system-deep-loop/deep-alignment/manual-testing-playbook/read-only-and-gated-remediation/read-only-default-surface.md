@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates alignment invariant 3 (read-only default) for `DAL-024`. The objective is to verify that the default loop only observes and reports: `SKILL.md`'s `allowed-tools` carries no Write/Edit in the default surface (Task/Bash are reserved for gated remediation), `check-convergence.cjs` writes nothing (decision only), the adapters read but never mutate audited artifacts, and the one wrapped sk-code tool that would write to the tree (`minify-webflow.mjs`) is explicitly listed in `excludedFromCheck` with a read-only-by-default reason, while the static sk-design adapter never renders.
+This scenario validates alignment invariant 3 (read-only default) for `DAL-024`. The objective is to verify that the default loop only observes and reports: `SKILL.md`'s `allowed-tools` carries no Write/Edit in the default surface (Task/Bash are reserved for gated remediation), `check-convergence.cjs` writes nothing (decision only), the adapters read but never mutate audited artifacts, and the one wrapped sk-code tool that would write to the tree (`minify-webflow.mjs`) is explicitly listed in `excludedFromCheck` with a read-only-by-default reason.
 
 ### WHY THIS MATTERS
 
@@ -27,9 +27,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify no Write/Edit in the default surface, CONVERGE is decision-only, and the tree-mutating minify-webflow.mjs is excluded from the sk-code check().
 - Real user request: Can I run this audit on my real packets without it changing anything?
 - Prompt: `Validate the deep-alignment read-only default: no Write/Edit in the default surface, CONVERGE is decision-only, and the tree-mutating minify-webflow.mjs is excluded from the sk-code check().`
-- Expected execution process: Read `SKILL.md`'s `allowed-tools` + read-only note, confirm `check-convergence.cjs` performs no writes, read `sk-code.cjs standardSource().excludedFromCheck`, and confirm the static sk-design adapter has no render path.
+- Expected execution process: Read `SKILL.md`'s `allowed-tools` + read-only note, confirm `check-convergence.cjs` performs no writes, and read `sk-code.cjs standardSource().excludedFromCheck`.
 - Desired user-facing outcome: The user is told the default audit reads and reports only — it has no Write/Edit tools, its convergence check writes nothing, and it never runs the mutating minifier or renders a page.
-- Expected signals: `SKILL.md` `allowed-tools` lists read/query tools plus Task/Bash reserved for gated remediation, with a note that the default surface has no Write/Edit; `check-convergence.cjs` writes nothing (decision only); `sk-code.cjs standardSource().excludedFromCheck` names `minify-webflow.mjs` with a read-only-by-default reason; the static sk-design adapter never renders; SKILL.md ALWAYS-#4 and NEVER-#3 state the rule.
+- Expected signals: `SKILL.md` `allowed-tools` lists read/query tools plus Task/Bash reserved for gated remediation, with a note that the default surface has no Write/Edit; `check-convergence.cjs` writes nothing (decision only); `sk-code.cjs standardSource().excludedFromCheck` names `minify-webflow.mjs` with a read-only-by-default reason; SKILL.md ALWAYS-#4 and NEVER-#3 state the rule.
 - Pass/fail posture: PASS if the default surface has no Write/Edit, CONVERGE writes nothing, and the mutating minifier is excluded. FAIL if any default path can mutate an audited artifact.
 
 ---
@@ -48,7 +48,7 @@ Validate the deep-alignment read-only default: no Write/Edit in the default surf
 1. `bash: rg -n 'allowed-tools|read-only by default|no Write/Edit|reserved for the gated' .opencode/skills/system-deep-loop/deep-alignment/SKILL.md`
 2. `bash: rg -n 'decision only; no writes|no writes|writeFileSync|write' .opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs || echo "no writeFileSync in check-convergence.cjs (expected)"`
 3. `bash: node -e "const c=require('./.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs'); const ss=c.standardSource('sk-code'); console.log(JSON.stringify(ss.excludedFromCheck,null,2));"`
-4. `bash: rg -n 'never render|STATIC-ONLY|NFR-S01' .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs; rg -n 'Read-only by default|Keep the audited target read-only|Modify an audited artifact' .opencode/skills/system-deep-loop/deep-alignment/SKILL.md`
+4. `bash: rg -n 'Read-only by default|Keep the audited target read-only|Modify an audited artifact' .opencode/skills/system-deep-loop/deep-alignment/SKILL.md`
 ### Expected
 ### Evidence
 Capture the allowed-tools + read-only note, the absence of writes in check-convergence.cjs, the excludedFromCheck entry, and the STATIC-ONLY / ALWAYS-#4 / NEVER-#3 statements.
@@ -74,7 +74,6 @@ If `check()` in sk-code ever spawns `minify-webflow.mjs`, or `check-convergence.
 | `.opencode/skills/system-deep-loop/deep-alignment/SKILL.md` | `allowed-tools`, read-only note, ALWAYS-#4 / NEVER-#3 |
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs` | Decision-only (no writes) |
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs` | `excludedFromCheck` for the tree-mutating minifier |
-| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs` | STATIC-ONLY, never renders |
 
 ---
 

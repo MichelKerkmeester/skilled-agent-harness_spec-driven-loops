@@ -41,7 +41,7 @@ sk-git is a special case with two distinct mechanisms: its Git-generated-subject
 | `SKILL.md` | Skill contract | §2 states invariant 2 and the NEVER "flag an authority's own documented, intentional convention as drift" rule. |
 | `references/adapters/sk-doc-known-deviations.md` | Reference | The sk-doc suppression list (active + dormant entries), Section 8 fenced JSON parsed by the adapter. |
 | `references/adapters/sk-git-known-deviations.md` | Reference | The sk-git list: two structural exemptions plus one post-hoc pre-hook-scope rule. |
-| `references/adapters/sk-design-known-deviations.md` / `sk-code-known-deviations.md` | Reference | The sk-design and sk-code suppression lists. |
+| `references/adapters/sk-code-known-deviations.md` | Reference | The sk-code suppression list. |
 | `scripts/adapters/*.cjs` | Adapter | Each `loadKnownDeviations()`/`suppressKnownDeviations()`/`matchesDeviation()` implementing the filter. |
 
 ### Validation And Tests

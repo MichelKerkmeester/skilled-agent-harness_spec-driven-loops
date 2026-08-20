@@ -13,7 +13,7 @@ version: 1.0.0.2
 
 # sk-doc Reference Adapter
 
-The concrete `standardSource("sk-doc")` / `discover(scope)` / `check(artifact,rules)` specification wrapping the real, already-shipping sk-doc validators. This is the reference implementation every later `deep-alignment` adapter (sk-git/sk-design in phase 006, sk-code in phase 007) copies the shape of.
+The concrete `standardSource("sk-doc")` / `discover(scope)` / `check(artifact,rules)` specification wrapping the real, already-shipping sk-doc validators. This is the reference implementation every later `deep-alignment` adapter (sk-git in phase 006, sk-code in phase 007) copies the shape of.
 
 ---
 

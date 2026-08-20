@@ -1,0 +1,97 @@
+---
+title: Design Token Vocabulary
+description: Shared naming for color, typography, layout, spacing, elevation, motion, and state tokens, so a measured Style Reference names each captured token consistently.
+trigger_phrases:
+  - "design token vocabulary"
+  - "token system terms"
+  - "color type layout tokens"
+  - "shared design tokens"
+importance_tier: normal
+contextType: general
+version: 1.0.0.0
+---
+
+# Design Token Vocabulary
+
+Shared naming for color, typography, layout, elevation, motion, and state tokens, so a term means the same thing every time a captured surface is recorded as a Style Reference.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Keep token language consistent when a captured visual system is described, so a name in a Style Reference carries one meaning.
+
+### Usage
+
+Use these terms when naming or grouping the tokens read off an extracted surface. The detailed math behind each token stays with the extraction workflow and the reference format.
+
+---
+
+## 2. COLOR TOKENS
+
+- **Canvas**: the dominant surface color behind content.
+- **Surface**: cards, panels, sheets, and contained regions placed on the canvas.
+- **Text primary**: the highest-emphasis reading color.
+- **Text secondary**: lower-emphasis supporting copy.
+- **Accent**: the brand or action color that carries emphasis.
+- **Signal**: semantic feedback color such as success, warning, danger, or info.
+- **Border**: structural line color for separation without heavy fill.
+- **Overlay**: scrim, modal, tooltip, or floating-layer color.
+
+---
+
+## 3. TYPOGRAPHY TOKENS
+
+- **Display**: large expressive text for moments of identity.
+- **Heading**: structural section titles and page hierarchy.
+- **Body**: primary reading text.
+- **Caption**: metadata, helper text, labels, and dense details.
+- **Utility**: navigation, buttons, tabs, badges, and compact control text.
+- **Measure**: comfortable line length for reading.
+- **Tracking**: letter spacing used intentionally, usually sparingly.
+
+---
+
+## 4. LAYOUT AND SPACING TOKENS
+
+- **Grid**: the macro alignment system.
+- **Cluster**: a group of related controls or content items.
+- **Stack**: vertical rhythm between related elements.
+- **Inset**: padding inside a component or region.
+- **Gap**: space between sibling elements.
+- **Breakout**: a deliberate element that crosses the normal grid to create emphasis.
+- **Density**: how much information appears in a given area.
+
+---
+
+## 5. ELEVATION AND SHAPE TOKENS
+
+- **Radius**: corner treatment and softness.
+- **Shadow**: depth cue, not decoration by default.
+- **Image-edge outline**: an inset 1px pure-black or pure-white optical separator on images, distinct from semantic border tokens.
+- **Shadow ring**: a transparent shadow used as a depth or border replacement, distinct from a solid border.
+- **Stroke**: border width and emphasis.
+- **Layer**: z-axis ordering for sticky bars, popovers, modals, and overlays.
+- **Material**: the combined surface behavior: flat, tactile, translucent, recessed, or raised.
+
+---
+
+## 6. MOTION AND STATE TOKENS
+
+- **Duration**: time a transition takes.
+- **Easing**: acceleration curve and perceived weight.
+- **Delay**: intentional offset in a sequence.
+- **Choreography**: ordered relationship between moving parts.
+- **State**: default, hover, focus, active, selected, loading, disabled, error, or success.
+- **Reduced motion**: alternate behavior for motion-sensitive users.
+
+---
+
+## 7. TOKEN QUALITY CHECKS
+
+- Each token should have a role, not just a value.
+- Similar tokens should collapse unless they express distinct meaning.
+- Names should describe purpose before appearance.
+- Captured implementation tokens should trace back to a design intent you can name.

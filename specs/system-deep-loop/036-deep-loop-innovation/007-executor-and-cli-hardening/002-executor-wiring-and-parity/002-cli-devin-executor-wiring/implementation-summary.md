@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring"
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Documented landed cli-devin executor wiring"
-    next_safe_action: "Commit the reconciled packet docs"
+    recent_action: "Closed T011/CHK-021 with a live glm-5-2 devin dispatch"
+    next_safe_action: "None - packet closed with no open items"
     blockers: []
     key_files:
       - "spec.md"
@@ -112,7 +112,7 @@ The wiring landed in `107a732a40` as a purely additive change that mirrors the e
 | Allowlist rejects an unvetted id before build | PASS: `buildDevinLineageCommand` throws (`fanout-run.cjs:2000`) |
 | Fail-closed on absent binary | PASS: PATH preflight throws (`fanout-run.cjs:1995`) |
 | `validate.sh --strict` on this packet | PASS: Errors 0 (lone `dirty_tree` continuity warning is expected pre-commit) |
-| Live `devin -p` smoke dispatch on `glm-5-2` | DEFERRED: needs an authenticated Devin account; exercised by the `88ffed2893` repair, external re-run pending |
+| Live `devin -p` smoke dispatch on `glm-5-2` | PASS: ran 2026-08-18 on the operator's authenticated account; `devin 3000.4.25`, exit 0, 2.26s, output matched the requested string exactly (`scratch/t011-live-smoke-evidence.md`) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -120,7 +120,7 @@ The wiring landed in `107a732a40` as a purely additive change that mirrors the e
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Live smoke dispatch is not re-run here.** A `devin -p` dispatch on `glm-5-2` requires an authenticated Devin account. The `88ffed2893` repair confirms it was exercised against the current CLI, but this reconcile does not reproduce the paid external run.
+1. **Non-interactive dispatch needs the workspace-trust flag.** On `devin 3000.4.25` a headless `devin -p` refuses to run in any directory the operator has not opened `devin` in by hand. `--respect-workspace-trust false` is therefore load-bearing for every automated dispatch, and its absence fails closed rather than silently degrading.
 2. **The allowlist is curated, not exhaustive.** `DEVIN_SUPPORTED_MODELS` covers 23 vetted ids, not the full 37-family Devin roster. Add an id to the allowlist data to enable it; no adapter change is needed.
 3. **No session identifier is captured.** Devin exposes none in `devin --help`, so audit receipts carry the invocation fingerprint but no Devin-side session id.
 <!-- /ANCHOR:limitations -->

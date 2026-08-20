@@ -285,7 +285,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q-Lanes. Lanes (required unless --lane-config was supplied): resolve one or more lanes over the
      three axes authority x artifactClass x scope, per
      `.opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md`.
-       authority   -- one of: sk-doc | sk-git | sk-design | sk-code
+       authority   -- one of: sk-doc | sk-git | sk-code
        artifactClass -- the class of artifact this lane audits (per the authority's adapter)
        scope       -- paths / globs, or a branch range for sk-git
      A lane is never guessed. Supply `--lane-config <file.json>` to resolve lanes non-interactively.

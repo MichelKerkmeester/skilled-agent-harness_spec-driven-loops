@@ -120,7 +120,7 @@ Required inventories run for this change:
 - [x] Audit tables extended with binary, state-env, home-dir, and env-prefix entries
 
 ### Phase 3: Verification
-- [ ] Manual testing — live dispatch on the free model [Deferred: needs an authenticated Devin account, exercised by the `88ffed2893` repair, external re-run pending]
+- [x] Manual testing — live dispatch ran 2026-08-18 on the operator's authenticated Devin account: `glm-5-2`, `devin 3000.4.25`, exit 0, output matched exactly (`scratch/t011-live-smoke-evidence.md`)
 - [x] Edge cases handled — disallowed model, absent binary, omitted model covered in `fanout-run.vitest.ts`
 - [x] Documentation updated — packet docs reconciled to Complete
 <!-- /ANCHOR:phases -->

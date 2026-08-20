@@ -1,0 +1,1 @@
+../../.opencode/commands/rewrite/response-by-external-agent.md

@@ -27,7 +27,7 @@ Full style-reference retrieval for UUIDs shortlisted by [`refero_search_styles`]
 
 ## 2. HOW IT WORKS
 
-Runs only after a metadata shortlist — never speculatively over a whole result page. One primary direction gets selected from the retrieved references; bounded details may be borrowed; strong references are never averaged into a generic middle. For design-affecting use, `sk-design` collapses the retrieved set to one declared critique reference. Citations use each style's source `url`.
+Runs only after a metadata shortlist — never speculatively over a whole result page. One primary direction gets selected from the retrieved references; bounded details may be borrowed; strong references are never averaged into a generic middle. For design-affecting use, pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). Citations use each style's source `url`.
 
 ---
 

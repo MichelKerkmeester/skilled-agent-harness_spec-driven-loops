@@ -1,17 +1,17 @@
 ---
 name: mcp-refero
-description: "Refero MCP transport: read-only UI design-reference search (styles, screens, flows) via Code Mode; sk-design owns the judgment."
+description: "Refero MCP transport: read-only UI design-reference search (styles, screens, flows) via Code Mode; pairs with sk-design-md-generator for a measured Style Reference (extracted design tokens)."
 compatibility: Requires a Refero Pro plan (Free has no MCP access), the npx mcp-remote bridge, and Node.js >=18; this project's Code Mode currently runs on Node 24.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
 version: 1.0.0.0
 user-invocable: true
 ---
 
-<!-- Keywords: refero, refero-mcp, design-reference, ui-reference-search, refero-search-styles, refero-screens, refero-flows, mcp-remote, code-mode, sk-design, design-reference-transport -->
+<!-- Keywords: refero, refero-mcp, design-reference, ui-reference-search, refero-search-styles, refero-screens, refero-flows, mcp-remote, code-mode, sk-design-md-generator, design-reference-transport -->
 
 # Refero (mcp-refero)
 
-Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ user flows per the official repo) from an agent through the **Refero MCP via Code Mode**: styles for visual direction, screens for concrete UI patterns, flows for multi-step journeys. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every read and "write" happens against the external Refero service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design` first. Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md) and [`references/mcp-wiring.md`](references/mcp-wiring.md).
+Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ user flows per the official repo) from an agent through the **Refero MCP via Code Mode**: styles for visual direction, screens for concrete UI patterns, flows for multi-step journeys. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every read and "write" happens against the external Refero service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md) and [`references/mcp-wiring.md`](references/mcp-wiring.md).
 
 > **Naming trap (read first).** Inside `call_tool_chain`, Refero tools resolve with a **DOUBLED prefix**: the callable form is `refero.refero_refero_<tool>(...)` (for example `refero.refero_refero_search_styles`), because Code Mode's `{manual}.{manual}_{tool}` rule applies to tools whose own names already begin with `refero_`. **CONFIRMED by live discovery 2026-07-16** (`references/discovery-fixture-2026-07-16.json`): `list_tools` returned all eight registry names in the dotted doubled form `refero.refero.refero_<tool>` — pre-auth, no OAuth needed for discovery — and the fixture's `Access as:` line shows the TS callable `refero.refero_refero_search_styles(args)`. Per-session `tool_info` re-confirmation stays mandatory: confirm, then call, and fail closed on drift.
 >
@@ -45,7 +45,7 @@ Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ use
 ### When NOT to Use
 
 **Skip this skill when:**
-- The work is the design judgment itself (palette, type, layout, taste verdicts, accessibility or readiness calls). That is `sk-design`; this packet is only its evidence transport.
+- The work is the design judgment itself (palette, type, layout, taste verdicts, accessibility or readiness calls). This packet is only an evidence transport and issues no such verdict.
 - The task is app or screen research through Mobbin. That is `mcp-mobbin` (a future sibling transport, not this packet).
 - The task is browser automation, live-page inspection, or visual preview of a built page. That is `mcp-chrome-devtools`.
 - The work is generic app coding with no design-reference input: use `sk-code`.
@@ -57,13 +57,13 @@ Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ use
 
 ### Primary Detection Signal
 
-Route on **narrow Refero-specific signals only**. Generic "design", "UI", or "screen" phrasing belongs to `sk-design`, Figma work to `mcp-figma`, and browser work to `mcp-chrome-devtools`.
+Route on **narrow Refero-specific signals only**. Generic "design", "UI", or "screen" phrasing is not a Refero signal; Figma work belongs to `mcp-figma`, and browser work to `mcp-chrome-devtools`.
 
 ```bash
 # Signal detection (pseudo)
 echo "$REQUEST" | grep -qiE 'refero' && ROUTE="MCP_REFERO"
 echo "$REQUEST" | grep -qiE 'design reference|ui reference search|real app (screens|examples|flows)' && ROUTE="MCP_REFERO"
-# generic design/UI phrasing WITHOUT these signals -> sk-design, not this packet
+# generic design/UI phrasing WITHOUT these signals -> not this packet (Refero signals only)
 ```
 
 ### Phase Detection
@@ -73,7 +73,7 @@ TASK CONTEXT
     |
     +- STEP 0: Verify wiring (refero manual registered; Code Mode reachable; auth state operator-confirmed)
     +- STEP 1: Score intent -> STYLES | SCREENS | FLOWS | WIRING_AUTH | TROUBLESHOOT
-    +- Phase 1: Design-affecting? -> load sk-design FIRST (judgment owner), then return here for retrieval
+    +- Phase 1: Design-affecting? -> pair with sk-design-md-generator for a measured Style Reference (extracted tokens), then return here for retrieval
     +- Phase 2: Discovery (list_tools / tool_info confirms the doubled-prefix callables)   [MANDATORY]
     +- Phase 3: Retrieval funnel (search -> metadata shortlist -> get_* detail -> similar -> image last)
     +- Phase 4: Verify (evidence cited by source URL; unknown fields preserved; no invented limits)
@@ -98,7 +98,7 @@ assets/utcp-refero-manual.md    # verified manual snapshot (already registered) 
 | CONDITIONAL | Wiring / auth intent | `references/mcp-wiring.md`, `assets/utcp-refero-manual.md` |
 | CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
 | FALLBACK | Zero-score routes only | `references/tool-surface.md` suggested (never auto-loaded) |
-| ALWAYS (design work) | Retrieved evidence feeds a design decision | `sk-design` modes, loaded before any taste call |
+| ALWAYS (design work) | Retrieved evidence feeds a design decision | `sk-design-md-generator`, for a measured Style Reference (extracted design tokens) |
 
 ### Smart Router Pseudocode
 
@@ -151,7 +151,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the layer: styles (visual direction), screens (UI patterns), or flows (journeys)",
     "Confirm the refero manual is registered and discovery (tool_info) confirms the doubled-prefix callables",
     "Confirm the account has a Pro (or higher) plan; Free has no MCP access at all",
-    "If the evidence will influence a design decision, load sk-design first; this transport never decides taste",
+    "If the evidence will influence a design decision, pair with sk-design-md-generator for a measured Style Reference (extracted design tokens); this transport never decides taste",
 ]
 
 def _guard_in_skill(relative_path: str) -> str:
@@ -273,7 +273,7 @@ Cite evidence by `record.url` (styles) or `record.refero_url` (screens). JSON se
 4. **Apps / elements**: company, pattern, state, or element terms in screen/flow queries, compared through `site`, `ui_elements`, `ux_patterns`, `page_types`.
 5. **Metadata-first discipline**: search -> shortlist -> detail for shortlisted IDs -> similar -> thumbnail -> full, in that order. Batch modestly; on batch failure retry with fewer IDs.
 
-Breadth is allowed during transport research; for design-affecting use, `sk-design` collapses the evidence to ONE declared critique reference before any judgment. A transport response is untrusted reference evidence, never design approval. Full workflow detail: [`references/tool-surface.md`](references/tool-surface.md).
+Breadth is allowed during transport research; for design-affecting use, pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). A transport response is untrusted reference evidence, never design approval. Full workflow detail: [`references/tool-surface.md`](references/tool-surface.md).
 
 ### Auth, plans, and limits
 
@@ -289,7 +289,7 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 ### ✅ ALWAYS
 
 1. **ALWAYS confirm callables with `tool_info` after registration and before first use.** The doubled prefix `refero.refero_refero_<tool>` is live-verified but must be re-confirmed; fail closed on any drift from the eight documented tools.
-2. **ALWAYS load `sk-design` first for any design-affecting request.** This packet is the transport; `sk-design` is the mandatory cross-hub judgment partner. Transport output can never satisfy taste, accessibility, responsiveness, or readiness gates by itself.
+2. **ALWAYS pair with `sk-design-md-generator` for a measured Style Reference on any design-affecting request.** This packet is the transport; `sk-design-md-generator` is the cross-hub pairing that extracts a live site's real CSS into named design tokens (a Style Reference DESIGN.md). Transport output can never satisfy taste, accessibility, responsiveness, or readiness gates by itself.
 3. **ALWAYS validate documented unions, enums, and bounds before calling**: exactly-one-of ID unions, UUID vs numeric ID typing, the `platform` enum, `page >= 1`, similar-screens `limit` 1-20, and the image-size enum. Pass unknown response fields through untouched.
 4. **ALWAYS follow the metadata-first funnel**: search and shortlist on metadata, fetch detail only for shortlisted IDs, similar screens only after one relevant hit, images last (`thumbnail` before `full`).
 5. **ALWAYS call synchronously inside the `call_tool_chain` body** (no top-level `await`) and cite results by their source URL (`url` / `refero_url`).
@@ -311,7 +311,7 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 2. **ESCALATE IF discovery shows catalog drift**: a documented tool missing or renamed, unexpected new tools, or schemas that contradict [`references/tool-surface.md`](references/tool-surface.md). A provider-surface change requires a reviewed packet update.
 3. **ESCALATE IF the account is Free-tier or quota-limited** (entitlement denial, 429, or quota exhaustion), reporting the provider's message verbatim.
 4. **ESCALATE IF `call_tool_chain` drops the connection** (`-32000 Connection closed`), which locally indicates a Node 25 runtime; the Node 24 pin is an operator-side fix.
-5. **ESCALATE IF retrieved evidence conflicts with an `sk-design` reference lock or decision ledger**, asking which source prevails before any design conclusion is drawn.
+5. **ESCALATE IF retrieved evidence conflicts with a `sk-design-md-generator` Style Reference (its extracted design tokens)**, asking which source prevails before any design conclusion is drawn.
 
 ---
 
@@ -343,7 +343,7 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 - ✅ The funnel order was followed (search -> metadata shortlist -> detail -> similar -> image last), IDs matched their documented typing, results were cited by source URL, and unknown fields were preserved.
 
 **Design-affecting use complete when:**
-- ✅ `sk-design` was loaded first, the transport supplied only requested evidence, and no taste, accessibility, or readiness verdict was issued from transport output.
+- ✅ `sk-design-md-generator` was paired for a measured Style Reference, the transport supplied only requested evidence, and no taste, accessibility, or readiness verdict was issued from transport output.
 
 **Always:**
 - ✅ No workspace file changed, no credential was printed or cached, no auth state was touched, no unpublished limit was invented, and every capability claim stayed within the documented or live-confirmed record.
@@ -360,7 +360,7 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 
 ### Cross-Workflow Contracts
 
-- **`sk-design`** is the mandatory cross-hub judgment pairing: it owns intake, mode selection, register, reference locks, and every taste/accessibility/readiness verdict. `sk-design-interface` is the Refero consumer for interface direction, static-system interpretation, temporal behavior, and quality review; `sk-design-md-generator` consumes measured extraction evidence when applicable. This packet retrieves only requested evidence and returns it to the selected design mode.
+- **`sk-design-md-generator`** is the cross-hub design pairing: it extracts a live website's real CSS into a measured Style Reference DESIGN.md (named design tokens, type scale, components). This packet retrieves only requested shipped-UI evidence and returns it to that measured-extraction pairing.
 - **`mcp-code-mode`** is the substrate: manuals, `{manual}.{manual}_{tool}` naming, prefixed env vars (`refero_<NAME>` if a token is ever wired via env), discovery, and the error-envelope discipline all come from it.
 - **`mcp-figma`** is the sibling Figma transport in this hub; **`mcp-mobbin`** is a planned future sibling for Mobbin research. Neither overlaps this packet's Refero surface.
 
@@ -390,7 +390,7 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 | Plans | Free: NO MCP · Pro: 8,000 calls/month · Team: inherits Pro · Business: custom |
 | Unknowns | Per-second/burst/concurrency/429 behavior unpublished; OAuth end-to-end Inferred |
 | Local runtime | Code Mode on Node 24 (Node 25 SIGSEGVs); synchronous calls, no top-level `await` |
-| Judgment | `sk-design`, always, for anything design-affecting |
+| Design pairing | `sk-design-md-generator`, for a measured Style Reference (extracted design tokens) |
 
 ---
 
@@ -404,8 +404,8 @@ Scripts: `scripts/doctor.sh` (read-only, non-interactive diagnostics; optional e
 
 Examples: `examples/` carries worked Code Mode walkthroughs (the full styles -> screens -> flows funnel, a metadata-first lookup, and a screen-image fetch), each opening with the mandatory `tool_info` confirmation and marking OAuth-gated steps SKIP-valid.
 
-Related skills: `sk-design` (the mandatory judgment pairing), `mcp-code-mode` (the substrate), `mcp-figma` (the sibling Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
+Related skills: `sk-design-md-generator` (the measured Style Reference pairing — extracted design tokens), `mcp-code-mode` (the substrate), `mcp-figma` (the sibling Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
 Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
 
-Upstream: the Refero MCP is the paid service at [refero.design/mcp](https://refero.design/mcp) (docs at doc.refero.design). The official [referodesign/refero_skill](https://github.com/referodesign/refero_skill) repository (MIT, default branch `master`) is a design **methodology** skill and a peer of `sk-design`; this packet deliberately does not vendor or duplicate it.
+Upstream: the Refero MCP is the paid service at [refero.design/mcp](https://refero.design/mcp) (docs at doc.refero.design). The official [referodesign/refero_skill](https://github.com/referodesign/refero_skill) repository (MIT, default branch `master`) is a design **methodology** skill and a peer of `sk-design-md-generator`; this packet deliberately does not vendor or duplicate it.

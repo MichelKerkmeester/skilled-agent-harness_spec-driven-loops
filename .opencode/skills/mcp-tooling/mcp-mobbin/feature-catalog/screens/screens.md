@@ -56,7 +56,7 @@ The inferred callable `mobbin.mobbin_search_screens({ query, platform, limit? })
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/read-only/screens-search.md` | Manual playbook | The screen-search contract and citation discipline |
-| `manual-testing-playbook/pairing/sk-design-pairing.md` | Manual playbook | Screen evidence routes through sk-design before any design verdict |
+| `manual-testing-playbook/pairing/design-pairing.md` | Manual playbook | Screen evidence pairs with sk-design-md-generator for a measured Style Reference |
 
 ---
 

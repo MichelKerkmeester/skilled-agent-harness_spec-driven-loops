@@ -17,7 +17,7 @@ Agents:
   deep-improvement: proposal-only mutator for bounded agent improvement, evaluator-first
   deep-research:    autonomous deep-research iterations with externalized state
   deep-review:      deep-review iteration agent, one dimension per pass with P0/P1/P2 findings
-  design:           design specialist via sk-design parent hub, applies interface/foundations/motion/audit/md-generator modes, LEAF
+  design:           design-reference extraction specialist via the sk-design-md-generator skill (measures a live site's CSS into a Style Reference DESIGN.md), LEAF
   markdown:         template-first markdown and documentation executor for /create:* commands and spec docs
   orchestrate:      senior multi-agent orchestration, decomposition, delegation and synthesis
   prompt-improver:  prompt-engineering specialist, framework selection and CLEAR validation

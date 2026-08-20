@@ -4,7 +4,7 @@
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ Implements the three-method adapter contract for the sk-doc              ║
 // ║ authority: discover(scope), standardSource(authority), check(artifact,   ║
-// ║ rules). This is the REFERENCE adapter — sk-git/sk-design and sk-code     ║
+// ║ rules). This is the REFERENCE adapter — sk-git and sk-code               ║
 // ║ copy this file's shape, not its content.                                 ║
 // ║                                                                          ║
 // ║ Full specification: ../../references/adapters/sk-doc-adapter.md          ║

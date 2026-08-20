@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Reconciled packet docs to Complete against landed commit bf4f280ce7"
-    next_safe_action: "Re-land F-031-01/F-031-02 with a non-regressing rollback-window fix"
+    next_safe_action: "None — T014 re-landed; packet deferrals closed"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -44,7 +44,7 @@ completion_pct: 100
 
 <!-- ANCHOR:what-built -->
 
-Lane A now points duplicated facts at `mode-registry.json` and the playbook indices, derives the registry counts in `scripts/check-documentation-drift.cjs`, scans local links, checks benchmark report folders against the index, and derives command help from `COMMANDS` and `LEAF_BY_LOOP`. Lane B now uses code-unit ordering and frozen wave arrays without mutable casts, and persists convergence snapshots. 27 of 29 findings landed; the two findings that adopt shared strict-gate helpers in the legacy research/review rollback gates (`F-031-01`, `F-031-02`) were attempted and reverted (see Known Limitations).
+Lane A now points duplicated facts at `mode-registry.json` and the playbook indices, derives the registry counts in `scripts/check-documentation-drift.cjs`, scans local links, checks benchmark report folders against the index, and derives command help from `COMMANDS` and `LEAF_BY_LOOP`. Lane B now uses code-unit ordering and frozen wave arrays without mutable casts, and persists convergence snapshots. All 29 findings are landed: 27 shipped in `bf4f280ce7`, and the two that adopt shared strict-gate helpers in the legacy research/review rollback gates (`F-031-01`, `F-031-02`) were re-landed on 2026-08-18 (see Known Limitations item 1).
 
 Landed as `bf4f280ce7` on `skilled/v4.0.0.0`. The completion evidence below uses candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`, the worktree HEAD at the start of implementation used for the focused checks.
 
@@ -76,8 +76,8 @@ The finding is a hypothesis until its cited anchor is checked. T001 re-read all 
 | F-035-04 | CONFIRMED | Same backend-kind drift as F-026-08; one merge group. |
 | F-002-03 | CONFIRMED | `localeCompare` ordering replaced by deterministic code-unit comparison; policy checks pass. The full authorized-ledger suite has one unrelated missing-fixture failure. |
 | F-036-05 | CONFIRMED | Frozen wave collection mutable casts removed; wave immutability test and tsc pass. |
-| F-031-01 | CONFIRMED · DEFERRED (not landed) | Exact top-level checks already existed at T001. Adopting the shared validator in the legacy gates was attempted and reverted (see Known Limitations); the shared `hasExactKeys` primitive landed in `mode-contracts/strict-gate-validator.ts` but is not yet consumed by the legacy gates. |
-| F-031-02 | CONFIRMED · DEFERRED (not landed) | Malformed rollback rows were filtered. The shared `validateRows` adoption was attempted and reverted after regressing 2 deep-review rollback-window evidence-counting tests; `validateRows` landed as an unconsumed primitive in `mode-contracts/strict-gate-validator.ts`. |
+| F-031-01 | CONFIRMED · RESOLVED | Exact top-level checks already existed at T001; the re-land replaces both local `hasExactKeys` copies with the shared `mode-contracts` export, so the gates now consume `027`'s validator instead of duplicating it. |
+| F-031-02 | CONFIRMED · RESOLVED | Malformed rollback rows now reject the evidence set through the shared `validateRows` instead of being silently filtered, proven by two added negative tests per gate that fail against the unfixed lib. |
 | F-026-05 | CONFIRMED | Runtime README omitted alignment; consumer inventory now includes it. |
 | F-001-01 | ALREADY-FIXED | Runtime scripts README had no removed parent link at T001. |
 | F-026-01 | ALREADY-FIXED | Same resolved link state as F-001-01. |
@@ -90,7 +90,7 @@ Merge groups collapsed: runtime scripts link; sk-doc-command adapter; family/lan
 ## How It Was Delivered
 
 <!-- ANCHOR:how-delivered -->
-The implementation was kept in the assigned worktree, then landed as `bf4f280ce7` on `skilled/v4.0.0.0`. Red probes were run before each grouped fix, focused per-file suites and tsc were run after the fixes, and the drift checks were exercised against deliberate mismatches. The mode-gate shared-validator adoption (`F-031-01`, `F-031-02`) was reverted before landing after it regressed two rollback-window tests; it did not ship in `bf4f280ce7`.
+The implementation was kept in the assigned worktree, then landed as `bf4f280ce7` on `skilled/v4.0.0.0`. Red probes were run before each grouped fix, focused per-file suites and tsc were run after the fixes, and the drift checks were exercised against deliberate mismatches. The mode-gate shared-validator adoption (`F-031-01`, `F-031-02`) did not ship in `bf4f280ce7`; it was re-landed separately on 2026-08-18 on branch `worktrees/015-036-mode-gate-strict-validator` after the regression was reproduced as a negative control and fixed at the root.
 <!-- /ANCHOR:how-delivered -->
 
 ## Key Decisions
@@ -131,5 +131,5 @@ The full runtime run was not used because the authored contract forbids the appe
 
 No `transition-authorization-gateway.ts` or other excluded surfaces were changed. The hook installer check still reports repository hook drift (`missing=8`, `command=8`, `orphaned=7`), which is environment/repository state outside this packet.
 
-1. **`F-031-01`/`F-031-02` DEFERRED (not landed)** — Adopting `027`'s shared strict-gate validator (`hasExactKeys`, `validateRows`) in the legacy `deep-research-rollback-gate/mode-gate.ts` and `deep-review-rollback-gate/mode-gate.ts` was attempted and reverted: it regressed 2 deep-review rollback-window evidence-counting tests (83 pass at the pre-change baseline, 2 fail with the change). Both mode-gate files were reverted to origin. The shared primitives themselves landed in `mode-contracts/strict-gate-validator.ts` and `mode-contracts/index.ts` as unconsumed exports. Re-landing needs a non-regressing adoption path for the rollback-window evidence count.
+1. **`F-031-01`/`F-031-02` RESOLVED (re-landed 2026-08-18)** — The adoption of `027`'s shared strict-gate validator (`hasExactKeys`, `validateRows`) in the legacy `deep-research-rollback-gate/mode-gate.ts` and `deep-review-rollback-gate/mode-gate.ts` is complete. The original attempt regressed the rollback-window evidence count because it flipped the entire row predicate from filter to reject; that predicate conflated three separate concerns. The re-land splits them: structural row validity (token id, positive safe-integer epoch, sha256 certificate digest, declared authority-state and result members) now rejects the whole evidence set via the shared `validateRows`, while success and authentication selection stay a filter. Legal `incomplete`/`abstained` rows and well-formed rows absent from `authenticatedExecutions` are therefore excluded from the count rather than rejecting the set — which is exactly what the two evidence-counting tests assert.
 <!-- /ANCHOR:limitations -->

@@ -33,6 +33,27 @@ Load this reference when validating state logs, adding event records, reconstruc
 
 Raw JSONL is append-only evidence. Reducer-owned files derive from it, but they do not replace it.
 
+### How Records Get Written
+
+Canonical records are written by calling the append gateway, not by writing to the file:
+
+```bash
+node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+  --mode research \
+  --run-directory <spec folder> \
+  --event-json <path to one JSON record>
+```
+
+The gateway authorizes the write against the mode's durable authority record, serialises it behind
+the ledger fence, returns a receipt, and refreshes this file from the ledger. Exit `0` means the
+record is durable; exit `2` means it was refused and the refusal names the check that failed.
+
+Writing to `deep-research-state.jsonl` directly bypasses all four of those properties. Two writers
+with no shared ordering can interleave, and a record nobody authorized carries no receipt, so a
+later reader cannot tell an accepted record from an invented one. The file below remains the
+readable surface — six consumers depend on it — but it is now a projection of the ledger rather
+than the place writes land.
+
 ---
 
 ## 2. CONFIG RECORD
@@ -244,7 +265,7 @@ Idea observation event:
 }
 ```
 
-Leaf agents may append `idea_observed` for promising tangents. They must not append `idea_promoted`; promotion is reducer-owned.
+Leaf agents may record `idea_observed` through the gateway for promising tangents. They must not record `idea_promoted`; promotion is reducer-owned.
 
 Idea promotion event:
 

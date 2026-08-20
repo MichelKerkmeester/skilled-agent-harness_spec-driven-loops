@@ -134,7 +134,7 @@ const FILE_MODE = 0o600;
 const CENSUS_ROOT = resolve(
   import.meta.dirname,
   '../../../../../specs/system-deep-loop/036-deep-loop-innovation',
-  '003-baseline-taxonomy-and-state-census',
+  '001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census',
 );
 const temporaryRoots: string[] = [];
 

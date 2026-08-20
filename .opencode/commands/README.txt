@@ -44,7 +44,7 @@ Commands are organized into six groups plus root-level utilities:
 | **create** | `commands/create/` | 11 | Scaffold OpenCode components, documentation packages, and changelogs |
 | **deep** | `commands/deep/` | 8 | Deep research, review, alignment, AI council, improvement and benchmark loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
-| **interface** | `commands/interface/` | 2 | Interface direction (incl. motion) and design-reference extraction |
+| **design** | `commands/design/` | 1 | Measured Style Reference DESIGN.md extraction |
 | **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
@@ -105,9 +105,9 @@ command/
 │   ├── update.md             # Dependency-ordered subsystem alignment
 │   ├── assets/               # YAML workflow definitions
 │   └── scripts/              # Diagnostic scripts
-├── interface/                # Interface design commands
-│   ├── design.md             # Create an interface direction (incl. motion)
-│   └── design-reference.md   # Extract a measured style reference
+├── design/                    # Design extraction commands
+│   ├── extract.md             # Extract a measured Style Reference DESIGN.md
+│   └── assets/                # Auto/confirm/presentation workflow assets
 ├── memory/                   # Memory system commands
 │   ├── search.md             # Unified retrieval + analysis (intent-aware search, epistemic, causal, eval)
 │   ├── learn.md              # Constitutional memory manager
@@ -173,14 +173,13 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
 | Skill Benchmark | `/deep:skill-benchmark <skill> [:auto\|:confirm]` | Benchmark a skill routing, discovery, efficiency and usefulness |
 
-### Interface Commands
+### Design Commands
 
-Design and validate interface systems using the `sk-design` skill.
+Extract a measured Style Reference from a live site using the `sk-design-md-generator` skill.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Design | `/interface:design <target> [:auto\|:confirm]` | Create or reshape a distinctive interface direction (incl. motion, transitions, reduced-motion) |
-| Design Reference | `/interface:design-reference <live-url> --output <dir> [:auto\|:confirm]` | Extract a measured Style Reference DESIGN.md |
+| Extract | `/design:extract <live-url> --output <dir> [:auto\|:confirm]` | Extract a measured Style Reference DESIGN.md |
 
 ### Root Commands
 
@@ -221,7 +220,7 @@ Structured workflows for the spec folder development lifecycle.
 <!-- ANCHOR:instructions -->
 ## 5. INSTRUCTIONS
 
-1. Choose the command group that matches your intent: `create`, `deep`, `doctor`, `interface`, `memory`, or `speckit`.
+1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `memory`, or `speckit`.
 2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/agent-router` or `/goal-opencode`.
 3. Prefer the unified commands over historical split commands.
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.

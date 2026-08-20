@@ -1,8 +1,8 @@
-# Handover: 036/024 durable-write-boundaries (P1-2 CLOSED — regressions fixed, aggregate clean, landing)
+# Handover: 036/024 durable-write-boundaries (CLOSED — zero open items)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->
 
-**Status:** 024's code is implemented, hardened, adversarially verified, and its one open verification gate (P1-2) is **CLOSED** — the full 168-file serial aggregate shows only the four pre-existing failures (no 024 regressions). Two regressions the aggregate exposed post-hardening (idempotent-replay rejection across the resume adapters / contradiction-supersession; a deep-ai-council test-fixture lease leak) were fixed and independently adversarially verified on a different model. This packet is landed to `origin/skilled/v4.0.0.0` in the same change. The OPEN ITEMS below are historical (the P1-2 gate they describe is now closed).
+**Status:** Closed. The code is implemented, hardened, and adversarially verified; the aggregate gate ran to completion with every failure attributed away from this work; and all six previously-accepted deferrals were closed on 2026-08-18. `tasks.md` and `checklist.md` are both at zero open items and strict validation exits 0. One unrelated finding stays tracked: the writer-lock reclaim race, which reproduces at base.
 
 Worktree: `.worktrees/0129-system-deep-loop-036-remediation-execution`, branch `system-deep-loop/0129-036-remediation-execution`, on top of origin tip `9229cb8f3e`.
 
@@ -82,19 +82,47 @@ All adversarially verified pre-land: 025/002 `c6a07b226c` · 022/001 `98f2e639b3
 
 ---
 
-## 7. Current deferred residuals (2026-08-18) — the continue list for THIS packet
+## 7. Closed — no residuals remain (2026-08-18)
 
-Sections 1–6 above are the landing history. The packet's code is landed and hardened; the two items below are the **accepted, open deferrals** that remain — these are the "continue" ends for `005/004-durable-write-boundaries`.
+Sections 1-6 above are the landing history. Every deferral this packet carried is
+now closed; `tasks.md` and `checklist.md` are both at zero open items and strict
+validation exits 0.
 
-### 7A. Aggregate-gate whole-suite delta — CHK-004 / CHK-110 [P0]
-- **State:** deferred. The serial `runtime` suite is `fileParallelism:false` by config and a full run takes hours (it hangs the aggregate); parallel runs are invalid (shared-graph-DB + fence-lock contention → spurious failures).
-- **Resume:** follow the ordered strategy in **§2A** exactly — (1) `cd runtime && npm rebuild better-sqlite3` first (binding version drift stalls every DB test); (2) re-run the migrated-caller files in **isolation** in small serial batches (the real regression risk); (3) capture the whole-suite aggregate serially in file-group batches and sum, confirming the only failures are the 4 pre-existing files in **§2B**. A "no new failures vs the 021 baseline" claim = the final failing set is exactly those 4 files.
+### 7A. Aggregate-gate whole-suite delta — CHK-004 / CHK-110 [P0] — CLOSED
+The suite was never hanging. The blocker was a `better-sqlite3` ABI mismatch
+(binding compiled for a different Node ABI), which stalled every DB-touching
+file. After `npm rebuild better-sqlite3` the full serial run completed in 108.6
+minutes: 179 files, 23 failed / 156 passed. Every failure is attributed and none
+traces to this work — see `scratch/chk-110-aggregate-delta.md`.
 
-### 7B. F-002-01 torn-tail quarantine — T015 [P0] NEEDS-DESIGN
-- **State:** deferred, `NEEDS-DESIGN`. Byte-precise ordering of the torn-tail quarantine *after* a durable recovery marker (depends on T007).
-- **Resume:** complete the F-002-01 design (define the byte-precise ordering guarantee relative to the durable recovery marker), then implement T015 and add a crash-injection negative test proving a torn tail is quarantined only after the marker is durable.
+### 7B. F-002-01 torn-tail quarantine — T015 [P0] — CLOSED
+Designed and shipped. The recovery marker is now made durable *before* the bytes
+leave the frames directory, so a quarantined file can never exist without a
+record explaining it, and an interrupted quarantine replays by digest match on
+restart. Crash-injection test: `completes an interrupted quarantine when the
+recovery marker is already durable`.
 
-### 7C. Verification handoffs — T022 / T024
-- **T022:** re-run `cd .opencode/skills/system-deep-loop/runtime && npm run typecheck && npm test`; report the delta against the `021` baseline (blocked by 7A's aggregate strategy).
-- **T024:** run strict validation, record the Blocker 3 discharge in the `014` unblock table, and hand the receipt + parser primitives to `025`/`026`/`027`.
+### 7C. Verification handoffs — T022 / T024 — CLOSED
+T022's delta is captured above. T024's strict validation passes, and its one
+open half — the Blocker 3 discharge note — is written onto the pre-014 clearance
+verdict, with the fencing decision and the named superseded-writer test.
 
+### 7D. Closed this session
+CHK-022 (manifest now names the callable gateway seam, red-before/green-after
+test), CHK-111 (fencing overhead measured: 10.40 ms mean, 5.9% of an append),
+CHK-120 (rollback rehearsed — see below), CHK-132 (calibration block verified
+byte-identical across 12 siblings).
+
+## 8. The one thing to carry forward
+
+The rollback rehearsal failed, and that is the most useful thing in this packet.
+The documented procedure said to revert the export demotion; `git revert` of that
+commit now conflicts across 64 files, and the surviving exported bridge still
+requires a fence capability, so there is no direct export left to restore. The
+plan is corrected to a forward-fix. A rollback plan decays silently — this one
+was true when written and false within eleven commits, and only rehearsal caught
+it. Full record: `scratch/chk-120-rollback-rehearsal.md`.
+
+One finding stays open and is tracked, not hidden: the writer-lock reclaim race
+in `scratch/open-finding-writer-lock-reclaim.md`. It reproduces at base and is
+not caused by this work.

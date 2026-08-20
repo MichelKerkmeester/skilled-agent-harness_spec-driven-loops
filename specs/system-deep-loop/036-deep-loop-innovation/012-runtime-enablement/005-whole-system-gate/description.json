@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate",
+  "description": "Each preceding phase verified its own surface",
+  "keywords": [
+    "preceding",
+    "phase",
+    "verified",
+    "own",
+    "surface"
+  ],
+  "lastUpdated": "2026-08-19T06:54:24.520Z",
+  "specId": "005",
+  "folderSlug": "whole-system-gate",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -94,7 +94,7 @@ Reach for `sk-create-diagram` when a reader will learn more from a visual than f
 | Skill | Relationship |
 |---|---|
 | `create-quality-control` | Audits or scores an existing document. `sk-create-diagram` is for authoring a new diagram artifact. |
-| `sk-design` | Owns interface/product UI design. `sk-create-diagram` is scoped to standalone technical/product diagrams, not application interfaces. |
+| Application / product UI | `sk-create-diagram` is scoped to standalone technical/product diagrams, not application interfaces. |
 
 ---
 
@@ -114,7 +114,7 @@ Reach for `sk-create-diagram` when a reader will learn more from a visual than f
 
 **Q: Why HTML/SVG instead of Mermaid or a design tool?**
 
-A: Self-contained HTML with inline SVG opens in any browser with no renderer, build step, or account. If the deliverable specifically needs an ASCII flowchart in markdown, pass `--output-format ascii-markdown`; if it needs pixel-level product UI, that's `sk-design`.
+A: Self-contained HTML with inline SVG opens in any browser with no renderer, build step, or account. If the deliverable specifically needs an ASCII flowchart in markdown, pass `--output-format ascii-markdown`; if it needs pixel-level product UI, that is out of scope for sk-create-diagram.
 
 **Q: What if my content doesn't fit any of the 27 types?**
 

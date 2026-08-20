@@ -58,7 +58,5 @@ The adapter deliberately excludes `minify-webflow.mjs` from `check()` because it
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `adapter-contract/adapter-sk-code.md`
 - Primary sources: `scripts/adapters/sk-code.cjs`, `references/adapters/sk-code-adapter.md`, `references/adapters/sk-code-known-deviations.md`
-Related references:
-- [adapter-sk-design.md](../../feature-catalog/adapter-contract/adapter-sk-design.md) — sk-design adapter
-- [check.md](check.md) — check(artifact, rules)
+Related references:- [check.md](check.md) — check(artifact, rules)
 - [../alignment-contract/read-only-default.md](../../feature-catalog/alignment-contract/read-only-default.md) — Read-only default

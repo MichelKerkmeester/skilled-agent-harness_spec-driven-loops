@@ -27,7 +27,7 @@ Operators run the exact sequence for `FUNNEL-001` and confirm the expected signa
 - Objective: confirm the full three-layer funnel runs in order with metadata-first discipline and correct ID typing at every transition
 - Real user request: `We are designing a pricing page for a developer-tools SaaS. Gather visual direction, real pricing-page patterns, and how products run the upgrade journey.`
 - Prompt: `We are designing a pricing page for a developer-tools SaaS. Gather visual direction, real pricing-page patterns, and how products run the upgrade journey.`
-- Expected execution process: confirmed callables (DISCOVER-001) -> styles layer (3-5 angles, metadata shortlist, `get_style` <=4 UUIDs) -> screens layer (`search_screens` with `platform: "web"`, `get_screen` for shortlisted UUIDs) -> flows layer (`search_flows` with `platform: "web"`, `get_flow` on one numeric ID) -> cited evidence per layer returned; design-affecting judgment routed onward through `sk-design`
+- Expected execution process: confirmed callables (DISCOVER-001) -> styles layer (3-5 angles, metadata shortlist, `get_style` <=4 UUIDs) -> screens layer (`search_screens` with `platform: "web"`, `get_screen` for shortlisted UUIDs) -> flows layer (`search_flows` with `platform: "web"`, `get_flow` on one numeric ID) -> cited evidence per layer returned; design-affecting work paired onward with `sk-design-md-generator` for a measured Style Reference
 - Expected signals: funnel order styles -> screens -> flows; UUID strings on styles/screens, a numeric ID on the flow; batches within bounds; citations (`url` / `refero_url`) at every layer; no image fetched (text answered)
 - Desired user-visible outcome: a three-layer evidence package with per-layer citations (or an auth/plan SKIP), never a design decision
 - Pass/fail: PASS if all three layers ran in order AND ID typing held at every transition AND every layer's evidence was cited; FAIL if a layer was skipped/reordered without a stated reason OR an ID crossed typing boundaries OR detail preceded its metadata shortlist; SKIP with the documented auth/plan blocker
@@ -39,7 +39,7 @@ Operators run the exact sequence for `FUNNEL-001` and confirm the expected signa
 ### Recommended Orchestration Process
 
 1. Restate the user request in plain user language.
-2. Decide whether the scenario should stay local or delegate. Retrieval runs in this transport; any verdict belongs to `sk-design`.
+2. Decide whether the scenario should stay local or delegate. Retrieval runs in this transport; the transport issues no verdict, and a measured Style Reference comes from `sk-design-md-generator`.
 3. Execute the deterministic steps exactly as written.
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.

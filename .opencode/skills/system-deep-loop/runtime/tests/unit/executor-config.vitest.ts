@@ -476,6 +476,22 @@ describe('parseFanoutConfig', () => {
     );
   });
 
+  it('rejects a stop policy smuggled into the fan-out config instead of the CLI flag', () => {
+    // Silently dropping this one is worse than most config mistakes: the caller
+    // believes they pinned forced depth, the run stops on convergence instead,
+    // and the resulting lineage looks legitimately converged in the artifacts.
+    expect(() => parseFanoutConfig({
+      stopPolicy: 'max-iterations',
+      executors: [{ kind: 'native', label: 'opus' }],
+    })).toThrow(ExecutorConfigError);
+    expect(() => parseFanoutConfig({
+      stopPolicy: 'max-iterations',
+      models: [{ id: 'native', kind: 'native' }],
+      branches: [{ id: 'branch' }],
+      replicas: 1,
+    })).toThrow(ExecutorConfigError);
+  });
+
   it('rejects negative fan-out observability thresholds', () => {
     expect(() => parseFanoutConfig({ lagCeilingMs: -1, executors: [{ kind: 'native', label: 'opus' }] })).toThrow(
       ExecutorConfigError,

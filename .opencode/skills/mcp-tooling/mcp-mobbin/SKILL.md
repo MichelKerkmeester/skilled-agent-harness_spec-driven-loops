@@ -1,17 +1,17 @@
 ---
 name: mcp-mobbin
-description: "Mobbin MCP transport: read-only app/screen/flow design research via Code Mode; sk-design owns the judgment."
+description: "Mobbin MCP transport: read-only app/screen/flow design research via Code Mode; pair with sk-design-md-generator for a measured Style Reference (extracted design tokens)."
 compatibility: Requires a paid Mobbin plan for MCP (Pro, Team, or Enterprise; Free has no MCP access), the npx mcp-remote bridge, Node.js >=18, and a browser OAuth round-trip on first use.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
 version: 1.0.0.0
 user-invocable: true
 ---
 
-<!-- Keywords: mobbin, mobbin-mcp, app-design-research, screen-examples, ux-flow-references, search-screens, mcp-remote, code-mode, sk-design, design-research-transport -->
+<!-- Keywords: mobbin, mobbin-mcp, app-design-research, screen-examples, ux-flow-references, search-screens, mcp-remote, code-mode, sk-design-md-generator, design-research-transport -->
 
 # Mobbin (mcp-mobbin)
 
-Search **Mobbin's library of real app UI screenshots** ("the world's largest library of real app UI screenshots" per the official repo) from an agent through the **Mobbin MCP via Code Mode**: one documented tool, `search_screens`, answering app, screen, flow, and element research as query intents. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every call goes against the external hosted Mobbin service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design` first. Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md) and [`references/mcp-wiring.md`](references/mcp-wiring.md).
+Search **Mobbin's library of real app UI screenshots** ("the world's largest library of real app UI screenshots" per the official repo) from an agent through the **Mobbin MCP via Code Mode**: one documented tool, `search_screens`, answering app, screen, flow, and element research as query intents. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every call goes against the external hosted Mobbin service, never this repo, and it **produces no design tokens or Style Reference of its own**. When a measured Style Reference of real, extracted design tokens is also wanted, pair with `sk-design-md-generator`. Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md) and [`references/mcp-wiring.md`](references/mcp-wiring.md).
 
 > **Discovery status (read first).** The `mobbin` Code Mode manual **IS REGISTERED** in this repo's `.utcp_config.json` (registered 2026-07-16 by an operator; this packet never edits the config), and **live discovery RAN 2026-07-16, pre-auth** (fixture: `references/discovery-fixture-2026-07-16.json`): `list_tools` returned **THREE** read tools — registry names `mobbin.mobbin.{search_screens,search_flows,search_sections}` (dot-separated), TS callables `mobbin.mobbin_search_screens(...)` etc. per the fixture's `Access as:` lines — superseding the research's one-public-tool baseline. Operator browser OAuth is still pending for CALLS. Per-session `tool_info` re-confirmation stays MANDATORY before relying on any name: confirm, then call, and fail closed on drift.
 >
@@ -46,7 +46,7 @@ Search **Mobbin's library of real app UI screenshots** ("the world's largest lib
 ### When NOT to Use
 
 **Skip this skill when:**
-- The work is the design judgment itself (palette, type, layout, taste verdicts, accessibility or readiness calls). That is `sk-design`; this packet is only its evidence transport.
+- The work is measured design-reference extraction: turning a live website's real CSS into a Style Reference DESIGN.md of named design tokens (type scale, components, Quick-Start CSS/Tailwind). That is `sk-design-md-generator`; this packet only retrieves Mobbin screenshot evidence.
 - The task is styles, screens, or flows research through Refero. That is `mcp-refero`, the sibling transport.
 - The task is Figma work (inspect, tokens, render, Code Connect). That is `mcp-figma`.
 - The task is browser automation, live-page inspection, or visual preview of a built page. That is `mcp-chrome-devtools`.
@@ -60,13 +60,13 @@ Search **Mobbin's library of real app UI screenshots** ("the world's largest lib
 
 ### Primary Detection Signal
 
-Route on **narrow Mobbin-specific signals only**. Generic "design", "UI", or "screen" phrasing belongs to `sk-design`, Refero references to `mcp-refero`, Figma work to `mcp-figma`, and browser work to `mcp-chrome-devtools`.
+Route on **narrow Mobbin-specific signals only**. Generic "design", "UI", or "screen" phrasing is not a Mobbin signal; measured live-site extraction belongs to `sk-design-md-generator`, Refero references to `mcp-refero`, Figma work to `mcp-figma`, and browser work to `mcp-chrome-devtools`.
 
 ```bash
 # Signal detection (pseudo)
 echo "$REQUEST" | grep -qiE 'mobbin' && ROUTE="MCP_MOBBIN"
 echo "$REQUEST" | grep -qiE 'app design research|real app (screenshots|screens)|ux flow reference' && ROUTE="MCP_MOBBIN"
-# generic design/UI phrasing WITHOUT these signals -> sk-design, not this packet
+# generic design/UI phrasing WITHOUT these signals -> not this packet (measured extraction -> sk-design-md-generator)
 ```
 
 ### Phase Detection
@@ -76,7 +76,7 @@ TASK CONTEXT
     |
     +- STEP 0: Verify wiring state (mobbin manual registered; presence expected — absence is a failure to escalate)
     +- STEP 1: Score intent -> APPS | SCREENS | FLOWS | ELEMENTS | WIRING_AUTH | TROUBLESHOOT
-    +- Phase 1: Design-affecting? -> load sk-design FIRST (judgment owner), then return here for retrieval
+    +- Phase 1: Measured Style Reference also wanted? -> pair sk-design-md-generator (extracted design tokens); retrieval stays here
     +- Phase 2: Discovery (list_tools / tool_info confirms the callable name)   [MANDATORY; needs a fresh Code Mode session]
     +- Phase 3: Retrieval (search_screens with intent-shaped query; limit 5; platform ios|web)
     +- Phase 4: Verify (evidence cited by mobbin_url; failed[] reported; unknowns preserved; no invented tools)
@@ -101,7 +101,7 @@ assets/utcp-mobbin-manual.md    # Registered manual's reference shape + post-reg
 | CONDITIONAL | Wiring / auth intent | `references/mcp-wiring.md`, `assets/utcp-mobbin-manual.md` |
 | CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
 | FALLBACK | Zero-score routes only | `references/tool-surface.md` suggested (never auto-loaded) |
-| ALWAYS (design work) | Retrieved evidence feeds a design decision | `sk-design` modes, loaded before any taste call |
+| PAIR (measured reference) | A measured Style Reference of extracted tokens is also wanted | `sk-design-md-generator`, the measured-extraction companion |
 
 ### Smart Router Pseudocode
 
@@ -157,7 +157,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the research intent: apps, screens, flows, or elements (all are query intents over search_screens)",
     "Confirm the mobbin manual's registration state (registered; absence is a failure symptom to escalate, never repair)",
     "Confirm the account has a paid plan (Pro, Team, or Enterprise); Free has no MCP access",
-    "If the evidence will influence a design decision, load sk-design first; this transport never decides taste",
+    "If a measured Style Reference of extracted design tokens is also wanted, pair sk-design-md-generator; this transport only retrieves Mobbin screenshot evidence",
 ]
 
 def _guard_in_skill(relative_path: str) -> str:
@@ -294,7 +294,7 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 ### ✅ ALWAYS
 
 1. **ALWAYS confirm callables with `tool_info` before first use.** The `mobbin.mobbin_search_screens` form is **CONFIRMED by live discovery 2026-07-16** (fixture `references/discovery-fixture-2026-07-16.json`; registry names are dotted `mobbin.mobbin.<tool>`). Fail closed on any drift from the live three-tool baseline (`search_screens`, `search_flows`, `search_sections`).
-2. **ALWAYS load `sk-design` first for any design-affecting request.** This packet is the transport; `sk-design` is the mandatory cross-hub judgment partner. Transport output can never satisfy taste, accessibility, responsiveness, or readiness gates by itself.
+2. **ALWAYS route measured-extraction needs to `sk-design-md-generator`, and pair it when a measured Style Reference is also wanted.** This packet is the transport; `sk-design-md-generator` is its cross-hub measured-extraction companion, turning a live site's real CSS into a Style Reference DESIGN.md of named design tokens. Transport output is Mobbin screenshot evidence and never a design-token set or Style Reference by itself.
 3. **ALWAYS report the manual's registration state honestly.** The `mobbin` manual is registered in `.utcp_config.json`: presence means verify read-only and proceed to discovery; absence is a **failure symptom** (a broken or reverted registration) to escalate to the operator, never to repair from this packet.
 4. **ALWAYS follow the documented input contract**: `query` from the user's actual words, `platform` `ios`|`web` (infer from context; unclear -> ask), `limit` starting at 5 and never exceeding ~15 without asking. Preserve unknown response fields untouched.
 5. **ALWAYS cite evidence by `mobbin_url`** and report `failed[]` entries and missing images as partial success, never silently discarding them.
@@ -316,7 +316,7 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 2. **ESCALATE IF discovery shows catalog drift**: a different callable name than the inferred form, unexpected new tools, or any mutation-capable tool. Refuse mutation-capable tools outright; a provider-surface change requires a reviewed packet update.
 3. **ESCALATE IF the account is Free-tier or rate-limited** (entitlement denial or 429 beyond the `Retry-After` + backoff protocol), reporting the provider's message verbatim without guessing denial semantics.
 4. **ESCALATE IF the manual is missing or malformed in `.utcp_config.json`.** The registered entry is operator-owned; a broken or reverted registration is reported with the reference shape in the asset, and any config change stops with the operator.
-5. **ESCALATE IF retrieved evidence conflicts with an `sk-design` reference lock or decision ledger**, asking which source prevails before any design conclusion is drawn.
+5. **ESCALATE IF retrieved Mobbin evidence conflicts with a `sk-design-md-generator` Style Reference (its extracted design tokens)**, asking which source prevails before any conclusion is drawn.
 
 ---
 
@@ -347,8 +347,8 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 **Retrieval complete when:**
 - ✅ Discovery preceded any call, the documented input contract was honored (`query`, `platform`, `limit` starting at 5), results were cited by `mobbin_url`, `failed[]` and missing images were reported as partial success, and no invented tool or parameter was used.
 
-**Design-affecting use complete when:**
-- ✅ `sk-design` was loaded first, the transport supplied only requested evidence, and no taste, accessibility, or readiness verdict was issued from transport output.
+**Measured-reference pairing complete when:**
+- ✅ `sk-design-md-generator` owned any measured Style Reference (extracted design tokens), the transport supplied only requested Mobbin evidence, and no design-token set or Style Reference was fabricated from transport output.
 
 **Always:**
 - ✅ No workspace file changed, no credential was invented, printed, or cached, no auth state was touched, no unpublished limit or schema was invented, and every capability claim stayed within the documented record or was labeled Inferred/UNKNOWN.
@@ -365,7 +365,7 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 
 ### Cross-Workflow Contracts
 
-- **`sk-design`** is the mandatory cross-hub judgment pairing: it owns intake, mode selection, reference locks, and every taste/accessibility/readiness verdict. The pairing lifecycle: `sk-design` gathers goal, surface, inputs, constraints, proof expectations -> selects `sk-design-interface` for design judgment (or `sk-design-md-generator` for measured extraction) -> this packet retrieves cited screens through Code Mode -> results return to the selected judgment mode -> `sk-design`, not transport rank or images alone, owns the decision. Pure setup/doctor or factual tool-surface reporting makes no design verdict, but the pairing still applies to anything design-affecting.
+- **`sk-design-md-generator`** is the cross-hub measured-extraction companion: it turns a live website's real CSS into a Style Reference DESIGN.md of named design tokens (type scale, components, Quick-Start CSS/Tailwind). The pairing: this packet retrieves cited Mobbin screens through Code Mode as reference evidence, and `sk-design-md-generator` produces the measured Style Reference of extracted tokens from an actual live site. The transport issues no design tokens or Style Reference of its own; pure setup/doctor or factual tool-surface reporting stays purely retrieval.
 - **`mcp-code-mode`** is the substrate: manuals, `{manual}.{manual}_{tool}` naming, discovery, and the error-envelope discipline all come from it. The current local config surface documents `stdio`/`sse` manual shapes, which is why the registered manual bridges through `mcp-remote` rather than declaring direct Streamable HTTP.
 - **`mcp-refero`** is the closest sibling: another remote-MCP-via-`mcp-remote`, read-only, OAuth-gated design-research transport in this hub. **`mcp-figma`** is the hub's original Figma transport. Neither overlaps this packet's Mobbin surface.
 
@@ -395,7 +395,7 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 | Plans | Free: NO MCP · Pro/Team/Enterprise: MCP eligible; per-plan caps undocumented |
 | Rate limit | 60 requests / 60 seconds / user; on 429 honor `Retry-After`, then backoff with jitter |
 | Open items | Authenticated calls + live response shapes unexercised; OAuth end-to-end Inferred; inline-image fidelity through `call_tool_chain` UNKNOWN (naming + inventory + `deep` mode: resolved 2026-07-16) |
-| Judgment | `sk-design`, always, for anything design-affecting |
+| Measured reference | `sk-design-md-generator` for a Style Reference of extracted design tokens |
 
 ---
 
@@ -409,7 +409,7 @@ Scripts: `scripts/doctor.sh` (read-only, non-interactive diagnostics; manual abs
 
 Examples: `examples/README.md` plus worked Code Mode walkthroughs (smoke search, platform-filtered flow research, element intent), all quoting the 2026-07-16 discovery-confirmed callables with the mandatory per-session `tool_info` confirmation first.
 
-Related skills: `sk-design` (the mandatory judgment pairing), `mcp-code-mode` (the substrate), `mcp-refero` (the closest sibling transport), `mcp-figma` (the hub's Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
+Related skills: `sk-design-md-generator` (the measured-extraction companion), `mcp-code-mode` (the substrate), `mcp-refero` (the closest sibling transport), `mcp-figma` (the hub's Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
 Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
 

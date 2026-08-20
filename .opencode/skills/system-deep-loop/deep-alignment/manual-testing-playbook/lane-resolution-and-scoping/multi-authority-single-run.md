@@ -1,6 +1,6 @@
 ---
 title: "DAL-009 -- Multi-authority single run"
-description: "Verify one run resolves N named lanes (not a cross-product): the sk-code/sk-git/sk-design worked example resolves to exactly three lanes, with no hard-coded lane ceiling."
+description: "Verify one run resolves N named lanes (not a cross-product): the sk-code/sk-git/sk-doc worked example resolves to exactly three lanes, with no hard-coded lane ceiling."
 version: 1.0.0.0
 ---
 
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates multi-authority resolution for `DAL-009`. The objective is to verify that one run resolves N lanes for exactly the named `(authority, artifactClass, scope)` combinations — not a full artifact-class x authority cross-product — using the documented "sk-code and sk-git and/or sk-design in one pass" precedent, and that the engine imposes no hard-coded lane ceiling.
+This scenario validates multi-authority resolution for `DAL-009`. The objective is to verify that one run resolves N lanes for exactly the named `(authority, artifactClass, scope)` combinations — not a full artifact-class x authority cross-product — using the documented "sk-code and sk-git and/or sk-doc in one pass" precedent, and that the engine imposes no hard-coded lane ceiling.
 
 ### WHY THIS MATTERS
 
@@ -25,11 +25,11 @@ The mode's headline capability is auditing several authorities' standards in a s
 Operators should run this as a real orchestrator-led check rather than a synthetic command-matrix exercise. The scenario is only complete when the operator can explain the behavior back to a user in plain language.
 
 - Objective: Verify the worked 3-lane example resolves to exactly 3 named lanes, not a cross-product.
-- Real user request: I want to check sk-code on my source, sk-git on my recent commits, and sk-design on DESIGN.md, all in one run.
+- Real user request: I want to check sk-code on my source, sk-git on my recent commits, and sk-doc on my docs, all in one run.
 - Prompt: `Validate deep-alignment multi-authority resolution: the worked 3-lane example resolves to exactly 3 named lanes, not a full artifact-class x authority cross-product.`
 - Expected execution process: Read `lane-config-schema.md` §7's worked example and `scoping-protocol.md` §3, then resolve the three-lane config and confirm exactly three lanes come back with the expected authorities/classes/scopes.
 - Desired user-facing outcome: The user is told one lane file can name several authorities, and the run audits exactly those combinations — three lanes for the three named walks.
-- Expected signals: The `lane-config-schema.md` §7 worked example (sk-code/code, sk-git/git-history, sk-design/designs) resolves to 3 lanes; `scoping-protocol.md` §3 states only named combinations become lanes and lane count is unbounded by the engine (SC-002).
+- Expected signals: The `lane-config-schema.md` §7 worked example (sk-code/code, sk-git/git-history, sk-doc/docs) resolves to 3 lanes; `scoping-protocol.md` §3 states only named combinations become lanes and lane count is unbounded by the engine (SC-002).
 - Pass/fail posture: PASS if the three-lane config resolves to exactly three correctly-typed lanes. FAIL if it produces a cross-product, drops a lane, or hits an artificial cap.
 
 ---
@@ -46,9 +46,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-alignment multi-authority resolution: the worked 3-lane example resolves to exactly 3 named lanes, not a full artifact-class x authority cross-product.
 ### Commands
 1. `bash: rg -n 'Multi-Authority Single Run|resolves this to 3 lanes|not.*cross-product|unbounded|SC-002' .opencode/skills/system-deep-loop/deep-alignment/references/lane-config-schema.md .opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md`
-2. `bash: printf '[{"authority":"sk-code","artifactClass":"code","scope":{"type":"globs","values":["src/**/*.ts"]}},{"authority":"sk-git","artifactClass":"git-history","scope":{"type":"branchRange","from":"main","to":"HEAD"}},{"authority":"sk-design","artifactClass":"designs","scope":{"type":"paths","values":["DESIGN.md"]}}]' > /tmp/dal009.json; node .opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs --lane-config /tmp/dal009.json --json`
+2. `bash: printf '[{"authority":"sk-code","artifactClass":"code","scope":{"type":"globs","values":["src/**/*.ts"]}},{"authority":"sk-git","artifactClass":"git-history","scope":{"type":"branchRange","from":"main","to":"HEAD"}},{"authority":"sk-doc","artifactClass":"docs","scope":{"type":"paths","values":["docs/"]}}]' > /tmp/dal009.json; node .opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs --lane-config /tmp/dal009.json --json`
 ### Expected
-The CLI reports `status: ok` with exactly 3 lanes: `sk-code/code/globs`, `sk-git/git-history/branchRange`, `sk-design/designs/paths` — one lane per named walk, in order, not a 4x4 cross-product. The references confirm only named combinations become lanes and the lane count is unbounded by the engine.
+The CLI reports `status: ok` with exactly 3 lanes: `sk-code/code/globs`, `sk-git/git-history/branchRange`, `sk-doc/docs/paths` — one lane per named walk, in order, not a 3x3 cross-product. The references confirm only named combinations become lanes and the lane count is unbounded by the engine.
 ### Evidence
 Capture the 3-lane `--json` payload and the two reference passages (named-combinations-only, unbounded-count).
 ### Pass/Fail
