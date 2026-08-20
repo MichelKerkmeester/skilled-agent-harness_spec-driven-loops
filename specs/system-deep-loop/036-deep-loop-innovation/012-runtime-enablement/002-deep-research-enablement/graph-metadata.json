@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Deep-research state is produced by agents following prose",
     "created_at": "2026-08-19T06:57:07.880Z",
-    "last_save_at": "2026-08-20T10:20:04.192Z",
+    "last_save_at": "2026-08-20T13:22:58.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:730a794c40bec8134cd1c87fc8d4a23b255c018b7e02792cda17a5844a75e29a",
+    "source_fingerprint": "sha256:c56b22772bfb8260185e9cf7e8f2671d03313f3e570bd8c2f5d7c16d3984d1c4",
     "source_doc_hashes": {
       "spec.md": "aa7305d8347d7b7b7ec3b0746fb1c9cc8a64e91d13eea4f0ed1c5ad14c483e15",
       "plan.md": "6b5a5c48fcec891c8cdc1ef1bbeec86cd83ca63260904abdda3ef0fbf3434a44",
       "tasks.md": "efc52c900dfdd83c9b2d08b2e894718408a1317ce192591988f42de3db585984",
       "checklist.md": "4f13d47efb75bd45654c9180ce92ac60e754ad2f27d027d1b6a5ec76e8bc4f32",
-      "implementation-summary.md": "3dee9824a92636e045e0ac7dca9238b16872324b7062a4afbb84df8f24572c12"
+      "implementation-summary.md": "a188598f98effdb736e98093efabd4387de79a31cee7c23c702629021fb0847b"
     },
     "last_active_child_id": null,
     "last_active_at": null

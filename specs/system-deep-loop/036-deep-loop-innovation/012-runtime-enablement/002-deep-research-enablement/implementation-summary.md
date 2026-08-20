@@ -11,23 +11,26 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-de
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement"
-    last_updated_at: "2026-08-20T10:20:03Z"
+    last_updated_at: "2026-08-20T13:22:51Z"
     last_updated_by: "claude"
-    recent_action: "Built the classifier-to-drill adapter and fixed a terminal-receipt P1 found by review"
-    next_safe_action: "Build the rollback anchor attestation producer"
+    recent_action: "Gave the evidence derivation one home and built the reader that refuses an absent producer"
+    next_safe_action: "Wire reader to derivation to classification manifest to drill adapter"
     blockers:
-      - "Rollback anchor, verifier and disposition-proof attestations have no production producer"
-      - "Only the fixtures generator has ever constructed a classification evidence record"
+      - "No production code constructs an effect ledger, so pendingEffects and receipts are unobservable"
+      - "Deep-research cannot produce a passing certificate until effects are wired; the reader refuses rather than reporting a vacuous pass"
     key_files:
-      - ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/restart-classification-evidence.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/restart-observation/restart-facts-reader.ts"
       - ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/classification-drill-adapter.ts"
-      - ".opencode/skills/system-deep-loop/runtime/scripts/run-pilot-rollback-drill.cjs"
-    completion_pct: 78
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/restart-classification-evidence-characterization.vitest.ts"
+    completion_pct: 82
     open_questions: []
     answered_questions:
       - "The composition seam exists and had zero callers; the gateway is now its first"
       - "The missing edge is built: prepareCutover persists the readiness verdict as state"
       - "The drill never consumed classifier output; an adapter translates between them"
+      - "The three missing attestations were one derivation, not three producers"
+      - "An empty pending-effect list reads as a clean bill of health, so absence must refuse rather than report"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
