@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-en
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout"
-    last_updated_at: "2026-08-21T00:44:15Z"
+    last_updated_at: "2026-08-21T12:05:00Z"
     last_updated_by: "claude"
-    recent_action: "Drove the full flip sequence end to end; the forward flip fires and reads back"
+    recent_action: "Closed the writer-validation gap; refuted a suspected regression by repeat runs"
     next_safe_action: "Operator decision on whether the per-mode step should call the flip"
     blockers:
       - "The per-mode step never calls prepareCutover or compareAndSwap, so no mode flips in production"
@@ -23,13 +23,14 @@ _memory:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/claim-sweep.md"
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/probe-reachability.mjs"
     completion_pct: 65
-    open_questions:
-      - "Should compareAndSwap validate nextSelectedWriter, as its own replay path already does?"
+    open_questions: []
     answered_questions:
       - "Why every downstream phase blocked on the same root cause"
       - "Why the drills and parity harnesses stayed green while production could not move"
       - "The forward flip fires: prepareCutover then compareAndSwap reaches epoch 2 and reads back"
       - "The blocker is not a missing edge; it is that the per-mode step calls neither method"
+      - "compareAndSwap now shares the replay path's writer predicate; ordering proven, not asserted"
+      - "The runtime suite's failing set is unstable: identical conditions gave 5 failed and 163 passed"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -193,7 +194,9 @@ That finding was first recorded here as a production-bricking blocker, and adver
 that reading. `nextSelectedWriter` is declared `AuthorityRoute`, which is the union of exactly those
 two values, so a typed caller cannot reach it; the only production caller hardcodes `'dark' as const`.
 It is reachable only by calling the registry directly from untyped code. This is a defence-in-depth
-gap, not an active defect, and it is demoted accordingly.
+gap, not an active defect, and it was demoted accordingly. It has since been closed: both paths now
+share one named predicate, and the validation runs before the lock so a rejected input contends for
+nothing.
 
 What keeps it worth closing is where the gap sits. The predicate that rejects `'spine'` already exists
 in the same file and is applied to the pending transition replayed from disk during crash recovery —
@@ -201,6 +204,20 @@ so a value the recovery path refuses is accepted on the live path that writes th
 enablement CLI, the caller this epic is about to extend to perform the flip, is a `.cjs` file, which
 is precisely the untyped caller the type argument does not protect. On a path that is irreversible by
 design, a mistyped argument brands the record permanently and surfaces only on the next read.
+
+**The runtime suite's failing set is not stable, and a delta can accuse a change that did nothing.**
+A full-suite delta after the writer fix read 21 failed files against a baseline of 17, with five files
+newly failing. Every one of those failures sat on a 30-second or 60-second timeout, and the failing
+test names shifted between runs of the same condition. Running the five suspects across four
+conditions settled it: at the base commit 163 passed in 562s; with the guard alone 163 passed in 531s;
+with guard and tests 5 failed in 789s; and with the identical pair repeated 163 passed in 515s. The
+same condition produced opposite results, and the red run was the slowest by half again.
+
+The delta was therefore measuring machine speed, not the change. Two intermediate conclusions along
+the way — that load explained it, then that the test file explained it — were both wrong, and the
+bisect that appeared to isolate the test file was an artifact of one run per condition. A wall-clock
+failure mode needs a repeated condition before any regression is claimed, and a failing set must be
+compared by name rather than by count.
 
 **What actually blocks production is narrower than this phase recorded, but wider than a missing call.**
 Both registry methods work and the per-mode step calls neither, which is what this phase first
