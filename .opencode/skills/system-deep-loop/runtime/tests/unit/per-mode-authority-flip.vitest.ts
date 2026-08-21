@@ -4,7 +4,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -73,6 +73,7 @@ import type {
 import type { InflightMigrationHandoff, MigrationReceipt } from '../../lib/inflight-state-migration/index.js';
 import type {
   AuthorityRecord,
+  AuthorityRoute,
   CutoverCertificateMode,
   CutoverPreflightInput,
   CutoverRequest,
@@ -875,6 +876,129 @@ describe('AuthorityRegistry', () => {
     expect(second.resumed).toBe(true);
     expect(second.record.epoch).toBe(6);
     expect(second.record.updatedAt).toBe(first.record.updatedAt);
+  });
+
+  it('rejects a compareAndSwap whose nextSelectedWriter the reader rejects, leaving the record byte-identical', () => {
+    const root = temporaryRoot('cas-bad-writer');
+    seedAuthorityRecord(root, cutoverReadyRecord('deep-research', 5));
+    const registry = new AuthorityRegistry(root);
+    const recordPath = join(root, 'authority-deep-research.json');
+    const before = readFileSync(recordPath);
+
+    // The guard exists for untyped callers (the enablement CLI is a .cjs
+    // file), so the bad value is cast at the test boundary to reach the
+    // runtime check rather than being caught at compile time.
+    let thrown: unknown;
+    try {
+      registry.compareAndSwap({
+        mode: 'deep-research',
+        expectedState: 'cutover_ready',
+        expectedEpoch: 5,
+        nextSelectedWriter: 'spine' as unknown as AuthorityRoute,
+        candidateSha: CANDIDATE_SHA,
+        policyVersion: 1,
+        cutoverCertificateDigest: digest('certificate'),
+        lastTransitionDigest: digest('transition'),
+        at: '2026-08-09T00:10:00Z',
+      });
+    } catch (error) {
+      thrown = error;
+    }
+    expect(thrown).toBeInstanceOf(AuthorityFlipError);
+    expect((thrown as AuthorityFlipError).reasonCode).toBe('RECORD_MALFORMED');
+
+    // Nothing was written: the on-disk bytes are unchanged.
+    const after = readFileSync(recordPath);
+    expect(after.equals(before)).toBe(true);
+  });
+
+  it('proves the writer guard runs before lock acquisition by using a root the process cannot write to', () => {
+    const root = temporaryRoot('cas-bad-writer-ordering');
+    const registry = new AuthorityRegistry(root);
+    registry.prepareCutover({
+      mode: 'deep-research',
+      expectedEpoch: 1,
+      candidateSha: CANDIDATE_SHA,
+      policyVersion: 1,
+      at: '2026-08-09T00:00:00Z',
+    });
+
+    // Making the root unwritable forces lock acquisition to fail: if the
+    // writer guard did not run first, the bad-writer call would surface the
+    // lock error instead of the writer error, so the reason code discriminates
+    // the ordering rather than merely asserting it.
+    chmodSync(root, 0o500);
+    try {
+      // The guard exists for untyped callers (the enablement CLI is a .cjs
+      // file), so the bad value is cast at the test boundary to reach the
+      // runtime check rather than being caught at compile time.
+      let thrown: unknown;
+      try {
+        registry.compareAndSwap({
+          mode: 'deep-research',
+          expectedState: 'cutover_ready',
+          expectedEpoch: 1,
+          nextSelectedWriter: 'spine' as unknown as AuthorityRoute,
+          candidateSha: CANDIDATE_SHA,
+          policyVersion: 1,
+          cutoverCertificateDigest: digest('certificate'),
+          lastTransitionDigest: digest('transition'),
+          at: '2026-08-09T00:10:00Z',
+        });
+      } catch (error) {
+        thrown = error;
+      }
+      expect(thrown).toBeInstanceOf(AuthorityFlipError);
+      expect((thrown as AuthorityFlipError).reasonCode).toBe('RECORD_MALFORMED');
+
+      // Control: an admitted writer ('dark') reaches lock acquisition on the
+      // same unwritable root and fails there, proving the bad-writer call
+      // above never contended for a lock — the writer guard rejected it first.
+      let control: unknown;
+      try {
+        registry.compareAndSwap({
+          mode: 'deep-research',
+          expectedState: 'cutover_ready',
+          expectedEpoch: 1,
+          nextSelectedWriter: 'dark',
+          candidateSha: CANDIDATE_SHA,
+          policyVersion: 1,
+          cutoverCertificateDigest: digest('certificate'),
+          lastTransitionDigest: digest('transition'),
+          at: '2026-08-09T00:10:00Z',
+        });
+      } catch (error) {
+        control = error;
+      }
+      expect(control).toBeInstanceOf(AuthorityFlipError);
+      expect((control as AuthorityFlipError).reasonCode).toBe('ACTIVE_TRANSACTION_CONFLICT');
+    } finally {
+      chmodSync(root, 0o700);
+    }
+  });
+
+  it('still admits a compareAndSwap with nextSelectedWriter "dark" and reads the record back cleanly', () => {
+    const root = temporaryRoot('cas-dark-control');
+    seedAuthorityRecord(root, cutoverReadyRecord('deep-research', 5));
+    const registry = new AuthorityRegistry(root);
+    const outcome = registry.compareAndSwap({
+      mode: 'deep-research',
+      expectedState: 'cutover_ready',
+      expectedEpoch: 5,
+      nextSelectedWriter: 'dark',
+      candidateSha: CANDIDATE_SHA,
+      policyVersion: 1,
+      cutoverCertificateDigest: digest('certificate'),
+      lastTransitionDigest: digest('transition'),
+      at: '2026-08-09T00:10:00Z',
+    });
+    expect(outcome.resumed).toBe(false);
+    expect(outcome.record.selectedWriter).toBe('dark');
+    // The green control: the guard is not rejecting everything, and the
+    // written record still passes the reader's integrity check.
+    const readBack = registry.read('deep-research');
+    expect(isValidAuthorityRecord(readBack)).toBe(true);
+    expect(readBack.selectedWriter).toBe('dark');
   });
 
   it('rejects a tampered on-disk record rather than trusting stored bytes', () => {

@@ -105,13 +105,25 @@ export interface AuthorityPendingTransition extends AuthorityCompareAndSwapInput
   readonly preparedAt: string;
 }
 
+/**
+ * The only writer identities a durable authority record may ever carry. Both
+ * the live compare-and-swap input and the crash-recovery replay of a pending
+ * transition route through this one predicate so the write path and the
+ * recovery path can never again accept different writer sets: the original
+ * defect was the live path writing a value the recovery path would refuse,
+ * leaving a record every subsequent read rejected as malformed.
+ */
+function isAdmittedAuthorityWriter(value: unknown): value is AuthorityRoute {
+  return value === 'legacy' || value === 'dark';
+}
+
 function isValidPendingTransition(value: unknown): value is AuthorityPendingTransition {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
   const record = value as Partial<AuthorityPendingTransition>;
   return record.expectedState === 'cutover_ready'
     && typeof record.mode === 'string'
     && Number.isSafeInteger(record.expectedEpoch)
-    && (record.nextSelectedWriter === 'legacy' || record.nextSelectedWriter === 'dark')
+    && isAdmittedAuthorityWriter(record.nextSelectedWriter)
     && typeof record.candidateSha === 'string'
     && Number.isSafeInteger(record.policyVersion)
     && typeof record.cutoverCertificateDigest === 'string'
@@ -277,6 +289,17 @@ export class AuthorityRegistry {
     record: AuthorityRecord;
     resumed: boolean;
   }> {
+    // Validate the writer before any lock is acquired or byte is written: a
+    // rejected input must leave no lock file and touch no record. This shares
+    // the recovery path's predicate so the live write and the crash replay
+    // can never accept different writer sets.
+    if (!isAdmittedAuthorityWriter(input.nextSelectedWriter)) {
+      throw new AuthorityFlipError(
+        'RECORD_MALFORMED',
+        'compareAndSwap received a nextSelectedWriter the authority record reader would reject',
+        { mode: input.mode, nextSelectedWriter: input.nextSelectedWriter },
+      );
+    }
     const path = this.#recordPath(input.mode);
     const lockPath = this.#lockPath(input.mode);
     const descriptor = this.#acquireLock(
