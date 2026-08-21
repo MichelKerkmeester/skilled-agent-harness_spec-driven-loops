@@ -3,7 +3,9 @@
   "packet_id": "mcp-tooling/015-notion-to-obisidian-migration",
   "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -11,45 +13,49 @@
   },
   "derived": {
     "trigger_phrases": [
+      "015-notion-to-obisidian-migration",
       "notion to obsidian migration",
       "migrate notion obsidian",
-      "notion obsidian bases dataview",
-      "obsidian importer notion api",
-      "notion obsidian migration findings",
-      "obsidian bases notion databases",
-      "notion api importer obsidian",
-      "dataview rollups relations migration"
+      "flawless notion obsidian migration",
+      "complex notion workspace migration"
     ],
     "key_topics": [
+      "015-notion-to-obisidian-migration",
       "notion",
       "obsidian",
       "migration",
       "migrate",
-      "bases",
-      "dataview",
-      "importer",
-      "api",
-      "findings",
-      "databases",
-      "rollups",
-      "relations"
+      "flawless",
+      "complex",
+      "workspace",
+      "phase",
+      "parent",
+      "complex-notion",
+      "capability"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "research.md",
-      "spec.md"
+      "spec.md",
+      "001-deep-research/spec.md",
+      "001-deep-research/prior-findings.md"
     ],
     "entities": [
       {
-        "name": "research.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "prior-findings.md",
         "kind": "doc",
+        "path": "001-deep-research/prior-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -60,75 +66,43 @@
         "source": "derived"
       },
       {
-        "name": "Obsidian Importer",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "file-layer Obsidian",
+        "name": "cli-devin",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "plugins",
+        "name": "cli-opencode",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "sources",
+        "name": "prior",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. QUESTION",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Missing Notion",
-        "kind": "proper_noun",
-        "path": "research.md",
-        "source": "derived"
-      },
-      {
-        "name": "For Notion",
-        "kind": "proper_noun",
-        "path": "research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Full Calendar",
-        "kind": "proper_noun",
-        "path": "research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Native Obsidian",
-        "kind": "proper_noun",
-        "path": "research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Findings on the best current (2026) approach for an Obsidian-literate AI agent to migrate complex Notion workspaces to Obsidian: importer choice (Notion API vs HTML .zip), native Bases as the database replacement, the plugins that recover relations/rollups/extra views, and the agent's file-layer role.",
+    "causal_summary": "Phase parent for a flawless complex-Notion→Obsidian migration capability: research first (20 iterations, GLM-5.2 via cli-devin + DeepSeek V4 Flash xhigh via cli-opencode/Cline, no early convergence), then synthesize into whatever phase children mcp-obsidian + mcp-notion need — including any Obsidian plugins that close a gap.",
     "created_at": "2026-08-21T10:35:33.158Z",
-    "last_save_at": "2026-08-21T10:35:33.158Z",
+    "last_save_at": "2026-08-21T20:10:21.034Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "research.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:030e252bd5585f6463992f42f07a40d7a3e0abe5890659d4519d30aebdc63937",
+    "source_fingerprint": "sha256:c979a4b9438dde429c2331a331aef71ab99675eafaeeb4ebda2374983723bb9d",
     "source_doc_hashes": {
-      "spec.md": "3cf3f9eb0bce759f75682db5ab17acc8ffa6e5639b578c185f1cbf7ce2058a44",
-      "research.md": "3fb3a5452dca6a1ef087d086fe19753fed22468df49a901978b03adeb406e6d4"
+      "spec.md": "34ad1ec933ee82ddaf77083f1e4a46091346124d365e6841da38b7155d18ecd9"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
     "last_active_at": null
   }
 }

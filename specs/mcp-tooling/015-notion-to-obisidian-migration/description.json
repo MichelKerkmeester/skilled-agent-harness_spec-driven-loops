@@ -1,28 +1,30 @@
 {
+  "level": "phase",
   "specFolder": "mcp-tooling/015-notion-to-obisidian-migration",
-  "description": "Findings on the best current (2026) approach for an Obsidian-literate AI agent to migrate complex Notion workspaces to Obsidian: importer choice",
+  "description": "Phase parent for a flawless complex-Notion→Obsidian migration capability: research first (20 iterations, GLM-5.2 via cli-devin + DeepSeek V4 Flash",
   "keywords": [
-    "findings",
-    "best",
-    "current",
-    "approach",
-    "obsidian-literate",
-    "agent",
-    "migrate",
-    "complex",
-    "notion",
-    "workspaces",
+    "phase",
+    "parent",
+    "flawless",
+    "complex-notion",
     "obsidian",
-    "importer",
-    "choice"
+    "migration",
+    "capability",
+    "research",
+    "first",
+    "iterations",
+    "glm-5",
+    "via",
+    "cli-devin",
+    "deepseek",
+    "flash"
   ],
-  "lastUpdated": "2026-08-21T10:34:47.845Z",
+  "lastUpdated": "2026-08-21T20:08:45.590Z",
   "specId": "015",
   "folderSlug": "notion-to-obisidian-migration",
   "parentChain": [
     "mcp-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

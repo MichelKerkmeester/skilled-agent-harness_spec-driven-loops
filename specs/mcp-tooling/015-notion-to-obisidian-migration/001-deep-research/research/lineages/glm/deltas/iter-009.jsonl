@@ -1,0 +1,5 @@
+{"type":"iteration","run":9,"status":"complete","focus":"Division of labor (step-by-step)","findingsCount":4,"newInfoRatio":0.62,"keyQuestions":["Q9"],"answeredQuestions":["Q9"],"timestamp":"2026-08-21T23:31:00Z"}
+{"type":"finding","id":"f9-step-tool-map","label":"7-step migration method mapped to exact mcp-notion reads + mcp-obsidian writes","iteration":9}
+{"type":"finding","id":"f9-mode-a-mode-b","label":"Mode A (human Importer bulk) + Mode B (agent gap-closing via mcp-notion reads + mcp-obsidian writes)","iteration":9}
+{"type":"finding","id":"f9-headless-pipeline","label":"Entire reconstruction + verification pipeline is headless-capable (notesmd-cli + file-layer)","iteration":9}
+{"type":"ruledOut","approach":"Agent drives in-app Importer UI","reason":"cannot — human-driven bulk; agent complements at file layer","evidence":"prior-findings §5","iteration":9}

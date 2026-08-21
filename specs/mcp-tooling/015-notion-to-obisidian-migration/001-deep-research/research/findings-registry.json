@@ -1,0 +1,526 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "glm"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "KQ-1",
+      "text": "Importer choice: API vs HTML .zip — concrete losses per path",
+      "status": "confirmed",
+      "evidence": "iteration-001.md §F1.1 + iteration-005.md §F5.2 + prior-findings.md §1",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-10",
+      "text": "Rate limits and batching for large workspaces",
+      "status": "confirmed",
+      "evidence": "iteration-010.md §F10.1-F10.5 — ~64 min for 5000 pages at 3 req/s",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-2",
+      "text": "Relations/rollups/formulas recovery method",
+      "status": "confirmed",
+      "evidence": "iteration-003.md §F3.1-F3.5 — Notion Bases plugin handles >90%, Dataview supplements",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-3",
+      "text": "mcp-notion-reads / mcp-obsidian-writes division of labor",
+      "status": "confirmed",
+      "evidence": "iteration-001.md §F1.1-F1.4 + iteration-002.md §F2.1-F2.4",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-4",
+      "text": "Files/attachments/comments/multi-view databases carry-over",
+      "status": "confirmed",
+      "evidence": "iteration-004.md §F4.1-F4.5",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-5",
+      "text": "Required vs optional Obsidian plugins",
+      "status": "confirmed",
+      "evidence": "iteration-007.md §F7.1-F7.4 — Notion Bases P0, Dataview P1, Tasks conditional",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-6",
+      "text": "Parity verification — no silent data loss checks",
+      "status": "confirmed",
+      "evidence": "iteration-008.md §F8.1-F8.4 — two-pass AI + human verification",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-7",
+      "text": "Notion API 2.0 data-source model impact on inventory",
+      "status": "confirmed",
+      "evidence": "iteration-005.md §F5.1-F5.5 — database→data-source bridge required",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-8",
+      "text": "Nested page hierarchy handling during import",
+      "status": "confirmed",
+      "evidence": "iteration-006.md §F6.1-F6.4 — preserved but ordering and breadcrumbs lost",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-9",
+      "text": "AI agent programmatic migration vs human-in-the-loop",
+      "status": "confirmed",
+      "evidence": "iteration-009.md §F9.1-F9.5 — hybrid model; 3 GUI steps human, all else AI",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "Q6",
+      "question": "Files, attachments & comments carry-over",
+      "resolvedAtIteration": 6,
+      "verdict": "Attachments carried (downloaded + ![]() embeds; downloadExternalAttachments opt-in; incremental dedup). Comments confirmed gap — recovery: MCP comment-list -> appended ## Comments section + comment_count frontmatter. Page cover -> frontmatter cover; gallery covers gap.",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q5",
+      "question": "Formulas 2.0 recovery",
+      "resolvedAtIteration": 5,
+      "verdict": "Importer convertNotionFormulaToObsidian() with hybrid (live) / static (fallback) strategy. Logical/text/math/date/list mostly convert; style()/name()/email() have no equivalent; dateBetween/dateRange VERIFY. DataviewJS for complex read-only; Notion Bases plugin formulas for new interactive.",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q1",
+      "question": "Importer choice (API vs HTML) — what each preserves vs drops",
+      "resolvedAtIteration": 1,
+      "verdict": "API import primary for database-heavy spaces; HTML fallback only when no token. Importer auto-converts databases->Bases, formulas->Bases formulas, rollups->Bases formulas, relations->wikilinks, downloads attachments. Drops comments, secondary views, gallery covers.",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q2",
+      "question": "mcp-notion read surface mapping (24 tools + 5 API gaps)",
+      "resolvedAtIteration": 2,
+      "verdict": "24 MCP tools (pages/blocks/data-sources/comments/users/search) + 5 API gaps (file_uploads/views/property-items/async-tasks/daily-notes) mapped to a 7-step inventory procedure. Limits: 25-ref truncation, title-only search, data_source_id keying, ~3 req/s.",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q9",
+      "question": "mcp-notion-reads / mcp-obsidian-writes division of labor",
+      "resolvedAtIteration": 9,
+      "verdict": "7-step method: inventory (mcp-notion reads) -> human Importer bulk (Mode A) -> headless reconstruction (mcp-obsidian file-layer: relations/rollups/formulas/comments/views) -> verify. Mode B = agent gap-closing. Agent never drives Importer UI; complements at file layer. Entire reconstruction+verification headless-capable.",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q3",
+      "question": "mcp-obsidian write surface mapping",
+      "resolvedAtIteration": 3,
+      "verdict": "Three surfaces: notesmd-cli (headless primary), cyanheads MCP (app-backed optional), plugin file-layer (.base/_database.md/data.json). No CLI/MCP tool authors .base/Dataview — pure file-layer. Unattended migration is headless-capable.",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q7",
+      "question": "Multi-view databases & nested hierarchy",
+      "resolvedAtIteration": 7,
+      "verdict": "Only default table view imports. Core Bases covers 4/10 view types; Notion Bases plugin 7/10; form/map/dashboard no parity (lost). Nested hierarchy preserved (page->folder, synced blocks->files). View reconstruction is file-layer only.",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "Parity & verification (no silent loss)",
+      "resolvedAtIteration": 10,
+      "verdict": "11 programmatic parity checks (mcp-notion source vs mcp-obsidian/grep target): counts, schema, relation resolution, rollup/formula render, attachments, comments, views, hierarchy, links, types. Auto-preserved-vs-reconstruct matrix produced. Final method decision ready for phase 002+.",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q4",
+      "question": "Relations & rollups recovery path",
+      "resolvedAtIteration": 4,
+      "verdict": "Importer auto-converts rollups->Bases formulas (14 functions) and relations->wikilinks. Dual relations need Notion Bases plugin two-way Relation or Dataview back-ref. Bases v1.9.7 added cross-note lookups (no aggregation/auto-refresh). Notion Bases plugin provides native relation/lookup/rollup columns + subtasks.",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q8",
+      "question": "Required vs optional plugins",
+      "resolvedAtIteration": 8,
+      "verdict": "Required: Core Bases, Notion Bases community plugin (relational/view parity), Dataview (already in mcp-obsidian knowledge). Optional: Tasks, Kanban, Calendar/Full Calendar, Charts, Bases Toolbox, Excalidraw, Git, Outliner, BRAT. No parity: Form/Map/Dashboard, Database buttons.",
+      "_lineages": [
+        "glm"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f3-base-filelayer-only",
+      "iteration": 3,
+      "finding": ".base and Dataview authoring is pure file-layer; no CLI/MCP tool",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f7-view-fate-matrix",
+      "iteration": 7,
+      "finding": "10 Notion view types: only table imports; core 4/10, plugin 7/10, 3/10 gap",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f10-parity-checks",
+      "iteration": 10,
+      "finding": "11 programmatic parity checks mapping source reads to target checks",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f2-read-surface-map",
+      "iteration": 2,
+      "finding": "24 MCP + 5 API gaps mapped to inventory reads",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f9-step-tool-map",
+      "iteration": 9,
+      "finding": "7-step migration method mapped to exact mcp-notion reads + mcp-obsidian writes",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f4-bases-v197-lookups",
+      "iteration": 4,
+      "finding": "Bases v1.9.7 added cross-note lookups; no native aggregation/auto-refresh",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f6-comments-gap-confirmed",
+      "iteration": 6,
+      "finding": "Comments confirmed gap; recovery = MCP comment-list -> ## Comments + comment_count",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f1-comments-gap",
+      "iteration": 1,
+      "finding": "Discussion comments are a gap",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f10-final-method",
+      "iteration": 10,
+      "finding": "Final flawless-migration method decision ready for phase 002+",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f4-rollup-auto-converted",
+      "iteration": 4,
+      "finding": "Importer converts 14 rollup functions to Bases formulas",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f5-hybrid-static-strategy",
+      "iteration": 5,
+      "finding": "Importer formulaStrategy hybrid (live) vs static (fallback)",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f9-mode-a-mode-b",
+      "iteration": 9,
+      "finding": "Mode A (human Importer bulk) + Mode B (agent gap-closing)",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f1-importer-live",
+      "iteration": 1,
+      "finding": "Notion API importer is live and converts databases to Bases",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f8-notion-bases-required",
+      "iteration": 8,
+      "finding": "Notion Bases community plugin required for relational/view parity",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f4-notion-bases-plugin-relations",
+      "iteration": 4,
+      "finding": "Notion Bases plugin: native relation/lookup/rollup columns, two-way sync, subtasks",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f1-secondary-views-gap",
+      "iteration": 1,
+      "finding": "Only default table view generated per .base",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f1-rollup-to-formula",
+      "iteration": 1,
+      "finding": "Rollups auto-converted to Bases formulas",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f3-headless-primary",
+      "iteration": 3,
+      "finding": "Unattended migration defaults to notesmd-cli + file Read/Edit",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f2-views-gap-inventory",
+      "iteration": 2,
+      "finding": "Views must be inventoried via the views API gap",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "F-001",
+      "text": "API importer preserves databases → Bases; HTML loses all DB structure",
+      "source": "prior-findings.md §1 + iteration-001.md",
+      "iterations": [
+        "seed",
+        "001"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-002",
+      "text": "Bases has no native relations/rollups — Notion Bases plugin or Dataview needed",
+      "source": "prior-findings.md §2-3 + iteration-003.md",
+      "iterations": [
+        "seed",
+        "003"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-003",
+      "text": "mcp-notion exposes 24 tools across 6 domains; 5 API gaps require direct API calls",
+      "source": "mcp-notion SKILL.md + iteration-001.md",
+      "iterations": [
+        "seed",
+        "001",
+        "005"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-004",
+      "text": "mcp-obsidian operates at file layer via notesmd-cli (headless) + MCP (live app, 14 tools)",
+      "source": "mcp-obsidian SKILL.md + iteration-002.md",
+      "iterations": [
+        "seed",
+        "002"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-005",
+      "text": "In-app Importer cannot be AI-driven; agent works around it via file-layer operations",
+      "source": "prior-findings.md §5 + iteration-009.md",
+      "iterations": [
+        "seed",
+        "009"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-006",
+      "text": "Notion Bases plugin (bgarciamoura/obsidian-notion-bases-plugin) is P0 required for relations/rollups/formulas/extra views",
+      "source": "iteration-003.md §F3.1-F3.5 + iteration-007.md §F7.1",
+      "iterations": [
+        "003",
+        "007"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-007",
+      "text": "Three-way plugin recovery matrix: Notion Bases > Dataview > .base files for every relation/rollup/formula pattern",
+      "source": "iteration-003.md §F3.1",
+      "iterations": [
+        "003"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-008",
+      "text": "Comment migration is not supported by the importer; reconstruction via callout blocks is the AI agent's task",
+      "source": "iteration-004.md §F4.3",
+      "iterations": [
+        "004"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-009",
+      "text": "API 2.0 data-source model requires database→data_source_id bridging during inventory",
+      "source": "iteration-005.md §F5.2",
+      "iterations": [
+        "005"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-010",
+      "text": "Notion page hierarchy is preserved by the API importer as folder nesting; ordering and breadcrumbs are lost",
+      "source": "iteration-006.md §F6.1-F6.2",
+      "iterations": [
+        "006"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-011",
+      "text": "Hybrid migration flow: human does 3 GUI actions (create integration, install plugins, run Import), AI does everything else",
+      "source": "iteration-009.md §F9.3-F9.4",
+      "iterations": [
+        "009"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-012",
+      "text": "Large workspace (5000 pages, 50 DBs) requires ~64 min API time at 3 req/s for full deep inventory",
+      "source": "iteration-010.md §F10.1",
+      "iterations": [
+        "010"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-013",
+      "text": "Two-pass verification: AI automated script (page count, link validation, attachment presence, row count, frontmatter check) + human sample (5% page quality, 10 critical formulas)",
+      "source": "iteration-008.md §F8.4",
+      "iterations": [
+        "008"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-014",
+      "text": "Relation reconstruction is the highest-value AI task — rewriting UUIDs to [[wikilinks]] across hundreds of notes saves hours vs manual",
+      "source": "iteration-009.md §F9.4 + prior-findings.md §5",
+      "iterations": [
+        "009"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-015",
+      "text": "Notion-specific formula functions (prop(), name(), style(), unstyle()) have no direct Obsidian equivalent and require manual translation",
+      "source": "iteration-003.md §F3.3",
+      "iterations": [
+        "003"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 0,
+    "resolvedQuestions": 20,
+    "keyFindings": 34,
+    "sourceFindings": 34,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

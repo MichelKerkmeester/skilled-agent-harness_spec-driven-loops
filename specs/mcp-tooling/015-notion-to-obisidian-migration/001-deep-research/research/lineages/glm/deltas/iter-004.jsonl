@@ -1,0 +1,7 @@
+{"type":"iteration","run":4,"status":"complete","focus":"Relations & rollups recovery path","findingsCount":6,"newInfoRatio":0.78,"keyQuestions":["Q4"],"answeredQuestions":["Q4"],"timestamp":"2026-08-21T22:56:00Z"}
+{"type":"finding","id":"f4-rollup-auto-converted","label":"Importer converts 14 rollup functions to Bases formulas (count/sum/show_original/earliest_date/etc.)","iteration":4}
+{"type":"finding","id":"f4-bases-v197-lookups","label":"Bases v1.9.7 added file()/asFile()/File.properties cross-note lookups; no native aggregation, no auto-refresh","iteration":4}
+{"type":"finding","id":"f4-notion-bases-plugin-relations","label":"Notion Bases plugin: native relation/lookup/rollup columns, two-way sync, subtasks (3 levels), 7 views","iteration":4}
+{"type":"finding","id":"f4-dataview-readonly-rollups","label":"Dataview recovers rollups read-only (SUM/COUNT/AVG over linked pages); no write-back","iteration":4}
+{"type":"ruledOut","approach":"Relations/rollups are lost on import","reason":"false — auto-converted to formulas/wikilinks","evidence":"importer database-helpers.ts","iteration":4}
+{"type":"ruledOut","approach":"Bases cannot do any cross-note lookup","reason":"false since v1.9.7 (file/asFile); aggregation still limited","evidence":"forum.obsidian.md cross-note-lookup thread","iteration":4}

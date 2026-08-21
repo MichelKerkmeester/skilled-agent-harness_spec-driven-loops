@@ -1,0 +1,58 @@
+{
+  "topic": "Flawless complex Notion-to-Obsidian migration leveraging mcp-notion and mcp-obsidian plus Obsidian plugins",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 10,
+  "maxDurationMinutes": 180,
+  "maxToolCallsPerIteration": 14,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
+  "createdAt": "2026-08-21T00:00:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "cline-pass/cline-pass/deepseek-v4-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1787344059442-oo7ndm",
+    "parentSessionId": "015-001-deep-research",
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/lineages/deepseek/findings-registry.json",
+    "dashboardFile": "research/lineages/deepseek/deep-research-dashboard.md",
+    "strategyFile": "research/lineages/deepseek/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions", "answered-questions", "what-worked", "what-failed",
+      "exhausted-approaches", "ruled-out-directions", "divergence-frontier", "next-focus"
+    ]
+  },
+  "pauseSentinelPath": "research/lineages/deepseek/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}
