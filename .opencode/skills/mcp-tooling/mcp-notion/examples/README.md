@@ -27,40 +27,40 @@ Three workflows are documented below:
 - **Data-source query** — read rows from a data source with a filter (read-only).
 - **Add relation** — set a relation property linking one page to another.
 
-The snippets are illustrative. Tool identifiers follow the local stdio server's kebab pattern (`create-a-page`, `post-data-source-query`, …); **confirm every name live with `list_tools()` / `tool_info()`** before running — the local and remote backends name tools differently.
+The snippets are illustrative. Tool identifiers follow the local stdio server's kebab pattern (`create-a-page`, `query-data-source`, …); **confirm every name live with `list_tools()` / `tool_info()`** before running — the local and remote backends name tools differently.
 
 ---
 
-## 2. PREREQUISITES
+## 2. REQUIREMENTS
 
 ```bash
 # Verify the runtime and registration
 bash .opencode/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
-
-# Token must be set so Code Mode can resolve the manual
-export notion_NOTION_TOKEN="ntn_YOUR_TOKEN"
 ```
 
-- The `notion` manual is registered in `.utcp_config.json`.
-- The integration (the token's bot user) has been shared into the target parent page or database. A Notion token sees only content explicitly shared with it.
-- A scratch parent page ID and a scratch data source ID are on hand for safe testing.
+| Requirement | Minimum | Notes |
+|---|---|---|
+| `notion` manual | Registered in `.utcp_config.json` | Lets Code Mode resolve `notion["..."]` calls |
+| `notion_NOTION_TOKEN` | Set before running | `export notion_NOTION_TOKEN="ntn_YOUR_TOKEN"` so Code Mode can resolve the manual |
+| Notion integration | Shared into the target parent page or database | A token sees only content explicitly shared with it |
+| Scratch parent page ID and data source ID | On hand | Needed for safe testing |
 
 ---
 
-## 3. AVAILABLE WORKFLOWS
+## 3. USAGE EXAMPLES
 
-### 3.1 Page Create
+### 3.1 PAGE CREATE
 
 Create a page under a known parent, set a title, and append an initial paragraph.
 
 ```javascript
 await call_tool_chain({
   code: `
-    const page = await notion.notion_post_page({
+    const page = await notion["notion_create-a-page"]({
       parent: { page_id: "PARENT_PAGE_ID" },
       properties: { title: [{ text: { content: "Weekly Notes" } }] }
     });
-    await notion.notion_patch_block_children({
+    await notion["notion_append-block-children"]({
       block_id: page.id,
       children: [{
         type: "paragraph",
@@ -76,14 +76,14 @@ Confirm the real tool names first — the create-page and append-children tools 
 
 ---
 
-### 3.2 Data-Source Query
+### 3.2 DATA-SOURCE QUERY
 
 Read rows from a data source with a filter. This is read-only and safe to run against real data.
 
 ```javascript
 await call_tool_chain({
   code: `
-    const rows = await notion.notion_post_data_source_query({
+    const rows = await notion["notion_query-data-source"]({
       data_source_id: "DATA_SOURCE_ID",
       filter: { property: "Status", status: { equals: "In progress" } },
       page_size: 25
@@ -97,14 +97,14 @@ An empty result (`[]`) is valid — never fabricate rows. Queries target the **d
 
 ---
 
-### 3.3 Add Relation
+### 3.3 ADD RELATION
 
 Set a relation property on one page so it links to another. Relations are how Notion connects rows across data sources.
 
 ```javascript
 await call_tool_chain({
   code: `
-    const updated = await notion.notion_patch_page({
+    const updated = await notion["notion_update-page-properties"]({
       page_id: "SOURCE_PAGE_ID",
       properties: {
         "Related project": { relation: [{ id: "TARGET_PAGE_ID" }] }
@@ -119,28 +119,28 @@ The relation property ("Related project" here) must already exist on the source 
 
 ---
 
-## 4. COMMON PATTERNS
-
-### Preflight Before Any Write
+### 3.4 PREFLIGHT BEFORE ANY WRITE
 
 ```javascript
 // Confirm the integration is connected before mutating anything.
-await call_tool_chain({ code: `return await notion.notion_get_self({});` });
+await call_tool_chain({ code: `return await notion["notion_retrieve-bot-user"]({});` });
 ```
 
-### Scratch-Safe Round-Trip
+---
+
+### 3.5 SCRATCH-SAFE ROUND-TRIP
 
 Create in a scratch parent, read back, then archive (reversible) — never hard-delete, there is no hard delete.
 
 ```javascript
 await call_tool_chain({
   code: `
-    const p = await notion.notion_post_page({
+    const p = await notion["notion_create-a-page"]({
       parent: { page_id: "SCRATCH_PARENT_ID" },
       properties: { title: [{ text: { content: "scratch" } }] }
     });
-    const readback = await notion.notion_retrieve_a_page({ page_id: p.id });
-    await notion.notion_archive_a_page({ page_id: p.id });   // trash, reversible
+    const readback = await notion["notion_retrieve-a-page"]({ page_id: p.id });
+    await notion["notion_archive-a-page"]({ page_id: p.id });   // trash, reversible
     return readback.id;
   `
 });
@@ -148,7 +148,7 @@ await call_tool_chain({
 
 ---
 
-## 5. RELATED
+## 4. RELATED RESOURCES
 
 - [`../feature-catalog/FEATURE-CATALOG.md`](../feature-catalog/FEATURE-CATALOG.md) — the full 24-tool + 5-gap capability inventory
 - [`../manual-testing-playbook/manual-testing-playbook.md`](../manual-testing-playbook/manual-testing-playbook.md) — scratch-safe test scenarios

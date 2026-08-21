@@ -13,6 +13,8 @@ version: 0.1.0.0
 
 # scripts: Notion MCP Setup and Diagnostics
 
+> Setup and read-only diagnostic scripts for `mcp-notion`, the Notion mode of the `mcp-tooling` hub.
+
 ---
 
 ## 1. OVERVIEW
@@ -21,16 +23,7 @@ version: 0.1.0.0
 
 ---
 
-## 2. CONTENTS
-
-| File | Purpose |
-|------|---------|
-| `install.sh` | Checks that Node 18+ and `npx` are present, prints the `notion_NOTION_TOKEN` authentication instructions, and prints the official Notion MCP manual snippet for `.utcp_config.json`. Writes no config files. Supports `--check-only` and `--mcp-only`. |
-| `doctor.sh` | Read-only diagnostics. Reports the platform, Node and npx versions, whether the `notion` manual referencing `@notionhq/notion-mcp-server` is registered in `.utcp_config.json`, and whether the `notion_NOTION_TOKEN` env key is set (presence only — never the value). Changes nothing and installs nothing. |
-
----
-
-## 3. VALIDATION
+## 2. QUICK START
 
 Run from the repository root.
 
@@ -43,8 +36,17 @@ Expected result: `doctor.sh` prints a checklist with no red `✗` lines when Nod
 
 ---
 
-## 4. RELATED
+## 3. STRUCTURE
 
-- [`../feature-catalog/FEATURE-CATALOG.md`](../feature-catalog/FEATURE-CATALOG.md)
-- [`../manual-testing-playbook/manual-testing-playbook.md`](../manual-testing-playbook/manual-testing-playbook.md)
-- [`../examples/README.md`](../examples/README.md)
+| Path | Purpose |
+|------|---------|
+| `install.sh` | Checks that Node 18+ and `npx` are present, prints the `notion_NOTION_TOKEN` authentication instructions, and prints the official Notion MCP manual snippet for `.utcp_config.json`. Writes no config files. Supports `--check-only` and `--mcp-only`. |
+| `doctor.sh` | Read-only diagnostics. Reports the platform, Node and npx versions, whether the `notion` manual referencing `@notionhq/notion-mcp-server` is registered in `.utcp_config.json`, and whether the `notion_NOTION_TOKEN` env key is set (presence only — never the value). Changes nothing and installs nothing. |
+
+---
+
+## 4. RELATED RESOURCES
+
+- [`../feature-catalog/FEATURE-CATALOG.md`](../feature-catalog/FEATURE-CATALOG.md) — the full 24-tool + 5-gap capability inventory
+- [`../manual-testing-playbook/manual-testing-playbook.md`](../manual-testing-playbook/manual-testing-playbook.md) — scratch-safe test scenarios
+- [`../examples/README.md`](../examples/README.md) — Code Mode workflow index

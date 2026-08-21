@@ -169,15 +169,15 @@ NEXT STEPS:
   1. Set the token:    export notion_NOTION_TOKEN="ntn_YOUR_TOKEN"
   2. Register the MCP: add the snippet above to .utcp_config.json
   3. Verify:           bash scripts/doctor.sh
-  4. Smoke test:       call notion.notion_get-self({}) via Code Mode
+  4. Smoke test:       call notion["notion_retrieve-bot-user"]({}) via Code Mode
 
 QUICK REFERENCE:
   Pages   : create-a-page, retrieve-a-page, patch-page, archive-a-page
-  Blocks  : patch-block-children, retrieve-block-children, update/delete a block
-  Data    : create/retrieve/update a data source, post-data-source-query
-  Comments: create-a-comment, retrieve-a-comment
-  Users   : get-users, get-user, get-self
-  Search  : post-search  (title-only)
+  Blocks  : append-block-children, retrieve-block-children, update/delete a block
+  Data    : create/retrieve/update a data source, query-data-source
+  Comments: create-a-comment, list-comments
+  Users   : list-all-users, retrieve-a-user, retrieve-bot-user
+  Search  : search  (title-only)
 
 SKILL REFERENCE:
   .opencode/skills/mcp-tooling/mcp-notion/SKILL.md

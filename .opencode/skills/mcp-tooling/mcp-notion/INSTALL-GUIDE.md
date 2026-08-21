@@ -10,6 +10,43 @@ Complete installation and configuration for Notion workspace operations, giving 
 
 ---
 
+## 0. AI-FIRST INSTALL GUIDE
+
+Copy and paste this prompt to your AI assistant to get installation help:
+
+```
+Check the runtime and print the Notion MCP config:
+  bash .opencode/skills/mcp-tooling/mcp-notion/scripts/install.sh
+
+It will:
+  1. Verify Node 18+ and npx are available
+  2. Print the internal-integration token instructions
+  3. Print the "notion" manual snippet for .utcp_config.json
+
+Then:
+  1. Create an internal integration at https://www.notion.so/my-integrations
+     and copy its token (starts with "ntn_").
+  2. Share the target pages/databases with that integration.
+  3. Set the token:
+       export notion_NOTION_TOKEN="ntn_YOUR_TOKEN_HERE"
+     (or add notion_NOTION_TOKEN= to .env)
+  4. Paste the printed manual into .utcp_config.json's manual_call_templates
+     (Code Mode's config, not opencode.json).
+
+Verify:
+  bash .opencode/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
+```
+
+### Quick Success Check (30 seconds)
+
+```bash
+bash .opencode/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
+```
+
+All checks report `✓`: the runtime, the manual registration and the token are in place. Not working? Go to [Troubleshooting](#7-troubleshooting).
+
+---
+
 ## 1. OVERVIEW
 
 | Component | Source | Package | Install | Required For |
