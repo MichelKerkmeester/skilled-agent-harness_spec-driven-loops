@@ -9,7 +9,12 @@
 # reused number. skilled/ (releases) and backup/ (safety refs) stay.
 #
 #   WORKTREE_BRANCH := "worktrees/" NNN "-" SLUG    (NNN 3-digit 001..999)
-#   WORKTREE_DIR    := ".worktrees/" NNN "-" SLUG    (dir mirrors the branch tail)
+#   WORKTREE_DIR    := BASE "/" NNN "-" SLUG         (dir mirrors the branch tail)
+#   BASE            := speckit.worktreeBase | $SPECKIT_WORKTREE_BASE | ".worktrees"
+#                       (default keeps the tree in-checkout; a configured base
+#                        moves it OUT so the checkout's file-watchers — Git
+#                        status/fsmonitor, GUIs, sync clients — stop scanning
+#                        every worktree's node_modules)
 #   DEDICATED_BRANCH:= "branches/" NNN "-" SLUG      (a branch with NO worktree)
 #   RELEASE         := "skilled/v" A "." B "." C "." D
 #   BACKUP          := "backup/" ANYTHING            (safety refs; legal, not numbered)
@@ -22,7 +27,8 @@
 # enforce sequential numbering itself, so allocation holds a lock in the shared
 # common Git dir and seeds its max from the namespace's stored high-water mark,
 # every matching local + remote ref, and (for worktrees/) every registered
-# .worktrees/NNN-* basename — a partial scan can never reissue a live number.
+# worktree's NNN-* basename (location-independent, so relocating the base never
+# lets a number be reissued) — a partial scan can never reissue a live number.
 # Gaps are never back-filled: next = max-in-use + 1, even after a delete.
 #
 # Sourceable: validators (is_valid_slug/nnn/branch/wrapper/backup/pair) are
@@ -46,6 +52,29 @@ _wn_toplevel() {
   common="$(_wn_common_dir)" || return 1
   [ -n "$common" ] || return 1
   ( cd "$(dirname "$common")" && pwd -P )
+}
+
+# Absolute directory that holds worktrees/NNN-slug working trees. Kept
+# configurable so the trees can live OUTSIDE the primary checkout: with dozens
+# of nested worktrees the checkout's own file-watchers (Git status/fsmonitor,
+# GUIs, sync clients) otherwise walk every worktree's node_modules on each scan.
+# Precedence: env SPECKIT_WORKTREE_BASE > git config speckit.worktreeBase >
+# default "<toplevel>/.worktrees" (unchanged legacy behavior when neither is
+# set, so other clones and tests keep the in-checkout layout). A relative value
+# resolves against the main toplevel; a leading ~ expands to $HOME.
+_wn_base_dir() {
+  local top raw
+  top="$(_wn_toplevel)" || return 1
+  raw="${SPECKIT_WORKTREE_BASE:-$(git -C "$top" config --get speckit.worktreeBase 2>/dev/null || true)}"
+  [ -n "$raw" ] || raw=".worktrees"
+  case "$raw" in
+    "~")   raw="$HOME" ;;
+    "~/"*) raw="$HOME/${raw#\~/}" ;;
+  esac
+  case "$raw" in
+    /*) printf '%s\n' "$raw" ;;
+    *)  printf '%s\n' "$top/$raw" ;;
+  esac
 }
 
 # Per-namespace high-water files keep the two counters independent.
@@ -137,18 +166,28 @@ is_remote_push_allowlisted() {
   return 1
 }
 
-# A worktrees/NNN-slug branch must pair with directory .worktrees/NNN-slug.
-# branches/NNN-slug dedicated branches have no worktree and therefore no pair.
+# A worktrees/NNN-slug branch must pair with a directory whose basename is
+# NNN-slug, sitting directly under the worktree base. Migration-tolerant: the
+# base may be the configured (possibly relocated) base OR the legacy
+# ".worktrees" parent, so worktrees created before and after a relocation both
+# validate. branches/NNN-slug dedicated branches have no worktree and no pair.
 is_valid_pair() {
-  local branch="$1" dir="$2" base parent
+  local branch="$1" dir="$2" base parent expected
   [[ "$branch" =~ ^worktrees/([0-9][0-9][0-9])-([a-z0-9-]+)$ ]] || return 1
   is_valid_nnn  "${BASH_REMATCH[1]}" || return 1
   is_valid_slug "${BASH_REMATCH[2]}" || return 1
-  [[ "$dir" == .worktrees/* ]] || return 1
   base="${dir##*/}"
   parent="${dir%/*}"
-  [ "$parent" = ".worktrees" ] || return 1
-  [ "$base" = "${BASH_REMATCH[1]}-${BASH_REMATCH[2]}" ]
+  [ "$base" = "${BASH_REMATCH[1]}-${BASH_REMATCH[2]}" ] || return 1
+  # Legacy in-checkout parent (relative or absolute path ending in .worktrees).
+  case "$parent" in
+    .worktrees|*/.worktrees) return 0 ;;
+  esac
+  # Configured base: compare by resolved path when both exist, else by string.
+  expected="$(_wn_base_dir 2>/dev/null || true)"
+  [ -n "$expected" ] || return 1
+  [ "$parent" = "$expected" ] && return 0
+  [ -d "$parent" ] && [ -d "$expected" ] && [ "$parent" -ef "$expected" ]
 }
 
 # ───────────────────────────────────────────────────────────────
@@ -341,14 +380,16 @@ _wn_default_base() {
 # create branch worktrees/NNN-slug and directory .worktrees/NNN-slug together.
 # Emits "<branch> <dir>" on success.
 create_named_worktree() {
-  local slug="$1" base="${2:-}" top nnn branch dir
+  local slug="$1" base="${2:-}" top wtbase nnn branch dir
   is_valid_slug "$slug" || { echo "invalid slug: $slug" >&2; return 1; }
   top="$(_wn_toplevel)" || { echo "not in a git repo" >&2; return 1; }
+  wtbase="$(_wn_base_dir)" || { echo "cannot resolve worktree base" >&2; return 1; }
   [ -n "$base" ] || base="$(_wn_default_base)"
   nnn="$(allocate_number worktrees)" || return 1
   branch="worktrees/$nnn-$slug"
-  dir=".worktrees/$nnn-$slug"
-  git -C "$top" worktree add -b "$branch" "$top/$dir" "$base" >&2 || return 1
+  dir="$wtbase/$nnn-$slug"
+  mkdir -p "$wtbase" || { echo "cannot create worktree base: $wtbase" >&2; return 1; }
+  git -C "$top" worktree add -b "$branch" "$dir" "$base" >&2 || return 1
   echo "$branch $dir"
 }
 
@@ -368,13 +409,15 @@ create_branch() {
 # create_detached_worktree <slug> [base] — numbered dir, no branch. Uses the
 # worktrees/ counter so a detached dir can never collide with a paired one.
 create_detached_worktree() {
-  local slug="$1" base="${2:-}" top nnn dir
+  local slug="$1" base="${2:-}" top wtbase nnn dir
   is_valid_slug "$slug" || { echo "invalid slug: $slug" >&2; return 1; }
   top="$(_wn_toplevel)" || { echo "not in a git repo" >&2; return 1; }
+  wtbase="$(_wn_base_dir)" || { echo "cannot resolve worktree base" >&2; return 1; }
   [ -n "$base" ] || base="$(_wn_default_base)"
   nnn="$(allocate_number worktrees)" || return 1
-  dir=".worktrees/$nnn-detached-$slug"
-  git -C "$top" worktree add --detach "$top/$dir" "$base" >&2 || return 1
+  dir="$wtbase/$nnn-detached-$slug"
+  mkdir -p "$wtbase" || { echo "cannot create worktree base: $wtbase" >&2; return 1; }
+  git -C "$top" worktree add --detach "$dir" "$base" >&2 || return 1
   echo "$dir"
 }
 
