@@ -397,3 +397,65 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 | [Hook reference](./hooks/skill-advisor-hook.md) | Claude, Copilot, OpenCode and OpenCode plugin hook contract. |
 | [Manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
 | [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder-pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference. |
+
+---
+
+## 14. TUNING THE ADVISOR
+
+Installation makes the advisor run; tuning makes it route *your* skills accurately. The advisor scores each prompt against every skill's `graph-metadata.json` signals plus the scorer lane tables (`TOKEN_BOOSTS`, `PHRASE_BOOSTS`, `CATEGORY_HINTS`). There are two tuning paths — a fast signal-only loop and the full gated workflow.
+
+### 14.1 Quick tuning (no rebuild) — recommended for external clones
+
+Most "match my setup" needs are signal additions, not lane-weight changes:
+
+1. Edit `intent_signals` (and optionally `derived.trigger_phrases` / `derived.key_topics`) in the per-skill `graph-metadata.json`:
+   ```bash
+   $EDITOR .opencode/skills/<name>/graph-metadata.json
+   ```
+2. Re-index the SQLite graph — REQUIRED, or the edit has ZERO effect on routing:
+   - MCP tool: `skill_graph_scan({})`
+   - Trusted CLI: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`
+3. Verify: `advisor_recommend({ prompt: "your test phrase", options: { topK: 3 } })` — your skill should now appear.
+
+> **Critical:** the advisor reads scoring inputs from `.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without re-indexing produces identical pre-edit scores.
+
+### 14.2 Full tuning — `/doctor skill-advisor`
+
+For batch optimization across all skills plus lane-weight tuning, run the gated doctor workflow:
+
+| Use case | Command |
+| --- | --- |
+| First-time tuning / re-tune after adding a skill | `/doctor skill-advisor` |
+| Preview without writing | `/doctor skill-advisor --dry-run` |
+| Tune one lane only | `/doctor skill-advisor --scope=explicit` (or `derived` / `lexical`) |
+| Skip post-apply tests (not recommended) | `/doctor skill-advisor --skip-tests` |
+
+Five phases gated behind operator approval: Discovery → Analysis → Proposal → Apply → Verify. Phase 3 (Apply) rebuilds `dist/`, runs `skill_graph_scan`, runs the advisor test suite, and writes a per-run rollback script. Full reference: `.opencode/commands/doctor/speckit.md` and `.opencode/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`.
+
+### 14.3 What tuning touches
+
+Mutates only:
+
+- `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/explicit.ts` (`TOKEN_BOOSTS`, `PHRASE_BOOSTS`)
+- `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/lexical.ts` (`CATEGORY_HINTS`)
+- `.opencode/skills/<name>/graph-metadata.json` (`intent_signals`, `derived.trigger_phrases`, `derived.key_topics`)
+
+Never touches any `SKILL.md` content, `weights-config.ts`, the fusion scorer, or daemon code. Any MANUAL edit to these files (e.g. the Quick-tuning recipe above) requires a re-index (`skill_graph_scan`) — the SQLite graph is the runtime source of truth.
+
+### 14.4 Tuning rollback
+
+`/doctor skill-advisor` Phase 3 writes a per-run rollback script at `<packet_scratch>/rollback-<timestamp>.sh` (under `<spec-folder>/scratch/` or `.opencode/scratch/`) that restores only the files that run modified — unrelated WIP is preserved — and rebuilds the package at the end. Prefer it over a broad `git checkout HEAD -- ...`, which would discard unrelated WIP.
+
+If the per-run script is unavailable (the run failed before Phase 3 completed), stash unrelated WIP first, then restore from HEAD and rebuild:
+
+```bash
+git stash push -m "skill-advisor-rollback-safety" -- \
+  .opencode/skills/system-skill-advisor/mcp-server/lib/ \
+  .opencode/skills/*/graph-metadata.json
+
+git restore --source=HEAD -- \
+  .opencode/skills/system-skill-advisor/mcp-server/lib/ \
+  .opencode/skills/*/graph-metadata.json
+
+npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
+```

@@ -3,10 +3,9 @@
 # COMPONENT: MASTER INSTALLER
 # ───────────────────────────────────────────────────────────────
 # Orchestrates installation of all MCP servers in dependency order:
-#   1. Sequential Thinking (no dependencies)
-#   2. Spec Kit Memory (no dependencies)
-#   3. Code Mode (no dependencies)
-#   4. Chrome DevTools (no dependencies)
+#   1. Spec Kit Memory (no dependencies)
+#   2. Code Mode (no dependencies)
+#   3. Chrome DevTools (no dependencies)
 
 set -euo pipefail
 
@@ -18,23 +17,20 @@ source "${SCRIPT_DIR}/_utils.sh"
 # ───────────────────────────────────────────────────────────────
 
 # MCP definitions using parallel arrays (bash 3.2 compatible)
-# Index: 0=sequential-thinking, 1=system-spec-memory, 2=code-mode, 3=chrome-devtools
+# Index: 0=system-spec-memory, 1=code-mode, 2=chrome-devtools
 readonly MCP_NAMES=(
-    "sequential-thinking"
     "system-spec-memory"
     "code-mode"
     "chrome-devtools"
 )
 
 readonly MCP_SCRIPTS=(
-    "install-sequential-thinking.sh"
     "install-spec-kit-memory.sh"
     "install-code-mode.sh"
     "install-chrome-devtools.sh"
 )
 
 readonly MCP_DISPLAY_NAMES=(
-    "Sequential Thinking"
     "Spec Kit Memory"
     "Code Mode"
     "Chrome DevTools"
@@ -45,11 +41,10 @@ readonly MCP_DEPS=(
     ""
     ""
     ""
-    ""
 )
 
 # Installation order indices
-readonly INSTALL_ORDER=(0 1 2 3)
+readonly INSTALL_ORDER=(0 1 2)
 
 # Counters
 INSTALLED=0
@@ -212,16 +207,14 @@ Options:
     --no-verify         Skip verification steps
 
 MCP Names (for --skip/--only):
-    sequential-thinking    Dynamic problem-solving through reflective thinking
     system-spec-memory        Semantic vector search for conversation context
     code-mode              UTCP orchestration for external MCP tools
     chrome-devtools        Browser debugging via DevTools Protocol
 
 Installation Order (dependency-based):
-    1. Sequential Thinking (no dependencies)
-    2. Spec Kit Memory (no dependencies)
-    3. Code Mode (no dependencies)
-    4. Chrome DevTools (no dependencies)
+    1. Spec Kit Memory (no dependencies)
+    2. Code Mode (no dependencies)
+    3. Chrome DevTools (no dependencies)
 
 Examples:
     $(basename "$0")                          # Install all MCPs

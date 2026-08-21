@@ -14,7 +14,7 @@ importance_tier: "important"
 
 # OpenCode Install Guides
 
-> AI-executable guides for the OpenCode dev environment. Covers 8 guide entries, native skills, 10 custom agents, and optional CLI tools.
+> AI-executable guides for the OpenCode dev environment. Covers 5 guide entries, native skills, 10 custom agents, and optional CLI tools.
 
 ---
 
@@ -55,9 +55,9 @@ The `install-guides/` directory is the central hub for all OpenCode setup and in
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Guide files | 8 | 3 regular files + 5 symlinks in this directory |
-| Install scripts | 7 | 4 regular files + 3 symlinks in `install-scripts/` |
-| Registered MCP servers | 4 | Code Mode, Spec Kit Memory, Skill Advisor, Sequential Thinking (Chrome DevTools is a Code Mode provider / CLI, not a registered native server) |
+| Guide files | 5 | 1 regular file + 4 symlinks in this directory |
+| Install scripts | 6 | 3 regular files + 3 symlinks in `install-scripts/` |
+| Registered MCP servers | 3 | Code Mode, Spec Kit Memory, Skill Advisor (Chrome DevTools is a Code Mode provider / CLI, not a registered native server) |
 | Platforms supported | 3 | macOS, Linux, Windows WSL |
 
 ### What this guide covers
@@ -70,7 +70,7 @@ This README serves as both the **directory index** (listing all available guides
 <!-- ANCHOR:guides-inventory -->
 ## 2. GUIDES INVENTORY
 
-All 8 `.md` guide entries in this directory (3 regular files + 5 symlinks), grouped by type:
+All 5 `.md` guide entries in this directory (1 regular file + 4 symlinks), grouped by type:
 
 | Guide | Type | Purpose |
 |-------|------|---------|
@@ -78,12 +78,8 @@ All 8 `.md` guide entries in this directory (3 regular files + 5 symlinks), grou
 | **MCP Guides** | | |
 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) | Symlink | Chrome DevTools MCP server (bdg CLI) |
 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) | Symlink | Code Mode orchestration MCP |
-| [MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md) | Real | Sequential Thinking MCP server |
 | [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) | Symlink | Spec Kit Memory MCP server |
-| [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Skill-local | Standalone `system_skill_advisor` MCP server install |
-| **SET-UP Guides** | | |
-| [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) | Real | AGENTS.md customization and AI agent behavior |
-| [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md) | Symlink | Skill advisor configuration |
+| [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Skill-local | Standalone `system_skill_advisor` MCP server install + tuning |
 | **Automation** | | |
 | [install-scripts/](./install-scripts/) | Directory | Automated install scripts (7 files) |
 
@@ -99,7 +95,7 @@ All 8 `.md` guide entries in this directory (3 regular files + 5 symlinks), grou
 |----------|------------|
 | **Fresh install (first time)** | This README, Section 4 (Pre-Flight Check) onwards |
 | **Add a specific MCP server** | The corresponding `MCP - *.md` guide |
-| **Configure AI agent behavior** | [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) |
+| **Configure AI agent behavior** | Section 15 (Post-Installation Configuration) |
 | **Something broke** | Section 14 (Disaster Recovery) or Section 17 (Troubleshooting) |
 | **Resume partial install** | Section 4 (Pre-Flight Check) to detect what is missing |
 
@@ -114,7 +110,7 @@ My environment:
 - Platform: [macOS / Linux / Windows WSL]
 - LLM Provider: [Claude / GitHub Copilot / OpenAI]
 - Install Mode: [Full / Minimal / Missing only / Custom]
-- Components (if custom): [Code Mode, Spec Kit Memory, Sequential Thinking, Chrome DevTools CLI]
+- Components (if custom): [Code Mode, Spec Kit Memory, Skill Advisor, Chrome DevTools CLI]
 
 Start with Pre-Flight Check to detect what's already installed, then guide me through each phase.
 ```
@@ -281,7 +277,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 **Notes:**
 - Node.js 22+ recommended for best performance
-- Python 3.12 recommended for Sequential Thinking
+- Python 3.10+ used by the Skill Advisor Python shim and SpecKit shell/Python scripts
 - Spec Kit Memory local embeddings resolve automatically through the active provider profile.
 
 ### 6.2 Resource Requirements
@@ -289,7 +285,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | Bundle   | RAM  | Disk | Network  | Components                                |
 | -------- | ---- | ---- | -------- | ----------------------------------------- |
 | Minimal  | 4GB  | 2GB  | Optional | Code Mode + Spec Kit Memory               |
-| Standard | 8GB  | 5GB  | Required | + Sequential Thinking                     |
+| Standard | 8GB  | 5GB  | Required | + Skill Advisor                           |
 | Full     | 16GB | 10GB | Required | All + Chrome DevTools CLI                 |
 
 **Disk breakdown:**
@@ -315,7 +311,6 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | Code Mode                          | MCP Server | External tool orchestration (GitHub, your CMS, etc.)                       | Node.js 18+                             |
 | Spec Kit Memory (`system-spec-memory`) | MCP Server | Conversation context preservation                                          | Node.js 20.11+                          |
 | Skill Advisor (`system_skill_advisor`) | MCP Server | Native advisor_recommend + skill_graph_* (9 tools)                         | Node.js 20.11+                          |
-| Sequential Thinking                | MCP Server | Complex reasoning chains                                                    | npx (Node.js 18+)                       |
 | Native Skills                      | Built-in   | Skill discovery from .opencode/skills/                                      | None (OpenCode v1.0.190+)               |
 | Chrome DevTools CLI                | CLI Tool   | Browser debugging & automation                                              | Node.js 18+                             |
 | Antigravity Auth                   | Plugin     | Google OAuth for Claude                                                     | Node.js 18+                             |
@@ -338,15 +333,15 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
          │                            │                            │
          ▼                            ▼                            ▼
     ┌─────────────────────────────────────────────────────────────────────┐
-    │                     5 NATIVE MCP SERVERS                            │
+    │                     3 NATIVE MCP SERVERS                            │
     │                   (configured in opencode.json)                      │
     └─────────────────────────────────────────────────────────────────────┘
                                        │
          ┌─────────────────────────────┼──────────────────┐
          ▼                             ▼                  ▼
    ┌───────────┐               ┌───────────┐       ┌───────────┐
-   │   Code    │               │ Semantic  │       │Sequential │
-   │   Mode    │               │  Memory   │       │ Thinking  │
+   │   Code    │               │ Semantic  │       │   Skill   │
+   │   Mode    │               │  Memory   │       │  Advisor  │
    └─────┬─────┘               └───────────┘       └───────────┘
          │
          ▼
@@ -365,8 +360,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 **Full Bundle** (all components):
 ```
 Prerequisites → Local Embeddings → Code Mode → Spec Kit Memory →
-Skill Advisor →
-Sequential Thinking → Chrome DevTools CLI →
+Skill Advisor → Chrome DevTools CLI →
 Antigravity Auth → OpenAI Codex Auth
 ```
 
@@ -379,7 +373,6 @@ Prerequisites → Code Mode → Spec Kit Memory
 - [ ] Code Mode (foundation for external tools)
 - [ ] Spec Kit Memory (context preservation)
 - [ ] Skill Advisor (native advisor_recommend + skill_graph_* — 8 tools)
-- [ ] Sequential Thinking (complex reasoning)
 - [ ] Chrome DevTools CLI (browser debugging)
 - [ ] Antigravity Auth (Google OAuth)
 - [ ] OpenAI Codex Auth (ChatGPT OAuth)
@@ -433,7 +426,9 @@ sudo apt-get install -y nodejs
 ```
 </details>
 
-### 8.2 Python 3.10+ (for Sequential Thinking)
+### 8.2 Python 3.10+
+
+Python powers the Skill Advisor Python shim (`skill_advisor.py`) and the SpecKit shell/Python scripts. Install it if missing.
 
 **Check version:**
 ```bash
@@ -491,7 +486,7 @@ No separate local model service is required for Memory MCP embeddings. Continue 
 
 1. **Code Mode** (foundation, install FIRST)
 2. Spec Kit Memory (context preservation, **now supports multiple embedding providers**)
-3. Sequential Thinking (complex reasoning)
+3. Skill Advisor (native skill recommendation)
 
 ---
 
@@ -657,43 +652,12 @@ Use the `memory_health` tool after starting OpenCode to see which provider is ac
 
 ---
 
-### 10.3 Sequential Thinking (Complex Reasoning)
-
-Sequential Thinking provides structured reasoning chains for complex problems.
-
-> **Detailed Guide:** See [MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md) for comprehensive configuration and usage.
-
-**Configure in `opencode.json`:**
-```json
-{
-  "mcp": {
-    "sequential_thinking": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "env": {}
-    }
-  }
-}
-```
-
-### Validation: `sequential_thinking_check`
-
-- [ ] npx can download and run the package
-- [ ] Configuration added to opencode.json
-
-**Quick Verification:**
-```bash
-grep -q '"sequential_thinking"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
-```
-
----
-
-### 10.4 Skill Advisor (`system_skill_advisor` — Native Recommendation)
+### 10.3 Skill Advisor (`system_skill_advisor` — Native Recommendation)
 
 The standalone `system_skill_advisor` MCP server registers 8 tools (`advisor_recommend/rebuild/status/validate`, `skill_graph_scan/query/status/validate`) for prompt-time skill recommendation and skill-graph queries.
 
 > **Detailed Guide:** See [system-skill-advisor/INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) for full installation, configuration, rollback, and operator notes.
-> **Runtime Tuning:** See [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md) for post-install adjustments.
+> **Runtime Tuning:** See [system-skill-advisor INSTALL-GUIDE.md §14 Tuning the Advisor](../skills/system-skill-advisor/INSTALL-GUIDE.md#14-tuning-the-advisor) for post-install adjustments.
 
 **Location:** Bundled in this repository at `.opencode/skills/system-skill-advisor/`.
 
@@ -746,7 +710,7 @@ test -f .opencode/bin/system-skill-advisor-launcher.cjs && \
 
 ---
 
-### 10.5 Chrome DevTools CLI (Optional)
+### 10.4 Chrome DevTools CLI (Optional)
 
 Chrome DevTools provides browser automation and debugging via CLI.
 
@@ -784,7 +748,6 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 - [ ] Code Mode: npx utcp-mcp --version responds
 - [ ] Spec Kit Memory (`system-spec-memory`): configured in opencode.json
 - [ ] Skill Advisor (`system_skill_advisor`): configured in opencode.json
-- [ ] Sequential Thinking: configured in opencode.json
 - [ ] (Optional) Chrome DevTools: bdg --version responds
 
 **Quick Verification:**
@@ -792,7 +755,6 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 grep -q '"code_mode"' opencode.json && \
   grep -q '"system-spec-memory"' opencode.json && \
   grep -q '"system_skill_advisor"' opencode.json && \
-  grep -q '"sequential_thinking"' opencode.json && \
   echo "✅ PASS" || echo "❌ FAIL"
 ```
 
@@ -919,10 +881,14 @@ test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo 
       "command": "node",
       "args": [".opencode/bin/system-spec-memory-launcher.cjs"]
     },
-    "sequential_thinking": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "env": {}
+    "system_skill_advisor": {
+      "type": "local",
+      "command": ["node", ".opencode/bin/system-skill-advisor-launcher.cjs"],
+      "environment": {
+        "SYSTEM_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp-server/database",
+        "SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT": "trusted",
+        "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "0"
+      }
     }
   },
   "plugins": [
@@ -1014,7 +980,7 @@ After the static checks above pass, run the interactive doctor surface to verify
 
 - `/doctor` opens an 11-option menu. **Option 1** is "Update everything to match latest spec-kit release" — the right pick after a fresh install (runs `/doctor:update --migrate`).
 - `/doctor:update` rebuilds every database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
-- `/doctor:mcp debug` checks the native MCP servers (Spec Kit Memory, Skill Advisor, Code Mode, Sequential Thinking) and offers guided repair with `--fix`.
+- `/doctor:mcp debug` checks the native MCP servers (Spec Kit Memory, Skill Advisor, Code Mode) and offers guided repair with `--fix`.
 
 Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory, causal-graph, deep-loop, skill-advisor, skill-budget.
 
@@ -1063,7 +1029,6 @@ BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$
 | **Code Mode**            | `npm uninstall -g utcp-mcp`                            | Remove from opencode.json + delete .utcp_config.json |
 | **Chrome DevTools CLI**  | `npm uninstall -g browser-debugger-cli`                |                                                      |
 | **Spec Kit Memory**      | `rm .opencode/skills/system-spec-kit/mcp-server/database/*.sqlite` | Database will be recreated             |
-| **Sequential Thinking**  | Remove from `opencode.json`                            | No files to delete                                   |
 | **Skills**               | `rm -rf .opencode/skills/<skill-name>/`                 | Remove specific skill folder                         |
 | **All Skills**           | `rm -rf .opencode/skills/`                              | Removes all skills                                   |
 
@@ -1155,8 +1120,6 @@ The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize 
 | Back-end     | API testing, Database tools     | sk-code               | Browser tools, your CMS MCP |
 | Full-stack   | All tools                       | All skills                               | Nothing                       |
 
-**Detailed Guide**: [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md)
-
 ### 15.2 Skill Advisor Setup
 
 The Skill Advisor (`skill_advisor.py`) powers Gate 2 in AGENTS.md, routing requests to appropriate skills:
@@ -1168,7 +1131,7 @@ python .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py
 
 If confidence > 0.8, the AI agent MUST use the recommended skill.
 
-**Detailed Guide**: [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md)
+**Detailed Guide**: [system-skill-advisor INSTALL-GUIDE.md §14 Tuning the Advisor](../skills/system-skill-advisor/INSTALL-GUIDE.md#14-tuning-the-advisor)
 
 ### 15.3 Skill Creation
 
@@ -1347,23 +1310,6 @@ sqlite3 "$(ls .opencode/skills/system-spec-kit/mcp-server/database/context-index
 </details>
 
 <details>
-<summary><strong>Sequential Thinking Issues</strong></summary>
-
-### Package not found
-```bash
-# Clear npm cache and retry
-npm cache clean --force
-npx -y @modelcontextprotocol/server-sequential-thinking --help
-```
-
-### Timeout errors
-- Sequential thinking is resource-intensive
-- Ensure adequate RAM (8GB+ recommended)
-- Consider using for complex tasks only
-
-</details>
-
-<details>
 <summary><strong>Chrome DevTools Issues</strong></summary>
 
 ### bdg command not found
@@ -1435,7 +1381,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 Instead of manual troubleshooting, use the built-in diagnostic commands that check all MCP servers automatically:
 
 ```bash
-# Diagnose all 5 registered MCP servers across all runtimes
+# Diagnose all registered native MCP servers across all runtimes
 /doctor:mcp debug
 
 # Auto-fix detected issues
@@ -1479,7 +1425,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 
 | File                        | Purpose                                       |
 | --------------------------- | --------------------------------------------- |
-| `opencode.json`             | OpenCode MCP server config (4 native servers) |
+| `opencode.json`             | OpenCode MCP server config (3 native servers) |
 | `.utcp_config.json`         | Code Mode external tools config               |
 | `.opencode/skills/`          | Skill definitions (16 skills)                 |
 | `.opencode/agents/`          | Base agent source definitions                 |

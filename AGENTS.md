@@ -381,15 +381,14 @@ Full routing + FTS fallback chain: `.opencode/skills/system-spec-kit/constitutio
 
 **Two systems:**
 
-1. **Native MCP** (`opencode.json`) - Direct tools, called natively. **4 servers registered:**
-   - Sequential Thinking
+1. **Native MCP** (`opencode.json`) - Direct tools, called natively. **3 servers registered:**
    - Spec Kit Memory (`system-spec-memory`, 41 tools)
    - Skill Advisor (`system_skill_advisor`, 9 tools — 4 advisor + 5 skill_graph)
    - Code Mode
 
    The Spec Kit Memory and Skill Advisor daemons also have daemon-backed CLI front doors over the same tool surfaces. These CLIs are additive IPC clients, not separate MCP servers and not replacements for the registered MCP transports.
 
-   Registration is per runtime and not uniform: `.claude/mcp.json` (shared with Cursor) omits Sequential Thinking, and `.codex/config.toml` carries only Spec Kit Memory, Skill Advisor and Code Mode.
+   Registration is uniform across runtimes: `opencode.json`, `.claude/mcp.json` (shared with Cursor) and `.codex/config.toml` each carry the same three servers (Spec Kit Memory, Skill Advisor, Code Mode). The former Sequential Thinking server has been decommissioned.
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
    - Figma, Github, ClickUp, Chrome DevTools, etc.
