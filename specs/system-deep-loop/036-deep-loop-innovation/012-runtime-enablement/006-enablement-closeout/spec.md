@@ -44,7 +44,9 @@ _memory:
 | **Authority posture** | No runtime change; documentation and status only |
 
 > Phase adjacency under `012-runtime-enablement` (navigation order): predecessor `005-whole-system-gate`;
-> successor `none` (final sibling).
+> successor `007-effect-enablement`. The successor is a late-allocated dependency phase, not a step that
+> runs after closeout — phase numbers are allocation order, and `007-effect-enablement` is a prerequisite
+> of the flip in `002`/`003`.
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
