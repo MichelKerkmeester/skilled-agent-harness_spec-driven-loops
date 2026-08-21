@@ -20,7 +20,11 @@
     "trigger_phrases": [
       "runtime enablement",
       "deep-loop turn on",
-      "activate authorized ledger"
+      "activate authorized ledger",
+      "runtime enablement handover",
+      "012 runtime enablement resume",
+      "authority flip blocked",
+      "effect producer missing"
     ],
     "key_topics": [
       "runtime",
@@ -30,22 +34,38 @@
       "activate",
       "authorized",
       "ledger",
-      "dark",
-      "substrate",
-      "append",
-      "gateway",
-      "legacy"
+      "handover",
+      "resume",
+      "authority",
+      "flip",
+      "blocked"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "002-deep-research-enablement/implementation-summary.md",
+      "003-fleet-enablement/plan.md",
+      "002-deep-research-enablement/scratch/directive-census-remeasured.md",
+      "spec.md",
+      "handover.md"
     ],
     "entities": [
+      {
+        "name": "directive-census-remeasured.md",
+        "kind": "doc",
+        "path": "002-deep-research-enablement/scratch/directive-census-remeasured.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -83,19 +103,57 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Enablement Blocked",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Chain",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "From Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "To Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Turn the dark deep-loop substrate on: build the append gateway and legacy projection the modes lack, migrate each mode's write protocol onto it, flip authority serially across all seven modes, retire the legacy writers, gate the whole system, and document the result.",
     "created_at": "2026-08-19T06:57:07.539Z",
-    "last_save_at": "2026-08-19T06:59:50.697Z",
+    "last_save_at": "2026-08-21T12:36:47.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:bad11f45e7a6762f5b3b9fe4bd7ae08ad33fb84fe6a6d8bcb6190a717e7a3905",
+    "source_fingerprint": "sha256:3dd1cf4f2fff5302eba706e4f6f32c6aee43580539564f14e02b0ed11bd14d77",
     "source_doc_hashes": {
-      "spec.md": "33b22aca0b151c8e2cf69ad238a9246a208bca4666f09739ab6839a9824e7e8e"
+      "spec.md": "33b22aca0b151c8e2cf69ad238a9246a208bca4666f09739ab6839a9824e7e8e",
+      "handover.md": "ea702a75e63ac5e95b7efd7125fad19201bc04d879fe6910dbce58a774b840ba"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
     "last_active_at": null
