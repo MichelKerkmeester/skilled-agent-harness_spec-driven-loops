@@ -994,6 +994,40 @@ describe('deep-research typed ledger schema', () => {
     });
   });
 
+  it('pins spec-protocol side effects emitted by the runtime with no lossless target', () => {
+    const eventShapes = [
+      'migration',
+      'min_iterations_guard_pass',
+      'spec_check_result',
+      'spec_mutation',
+      'spec_mutation_conflict',
+      'spec_preinit_context_added',
+      'spec_preinit_context_deduped',
+      'spec_seed_created',
+    ] as const;
+    for (const event of eventShapes) {
+      expect(decideDeepResearchCompatibility({
+        type: 'event',
+        event,
+        schemaVersion: 1,
+      })).toMatchObject({
+        status: 'pin-old-runtime',
+        reasonCode: 'legacy-event-has-no-lossless-mode-event',
+        targetStem: null,
+      });
+    }
+    // spec_mutation is also emitted as a record type; the type branch is tested
+    // before the event branch and produces a different reason code.
+    expect(decideDeepResearchCompatibility({
+      type: 'spec_mutation',
+      schemaVersion: 1,
+    })).toMatchObject({
+      status: 'pin-old-runtime',
+      reasonCode: 'legacy-record-has-no-lossless-mode-event',
+      targetStem: null,
+    });
+  });
+
   it('upcasts legacy JSONL purely while preserving source and upcaster digests', () => {
     const record = {
       type: 'iteration',

@@ -35,6 +35,8 @@ const LEGACY_EVENT_STEMS = Object.freeze({
 
 const PINNED_LEGACY_TYPES = new Set([
   'iteration_start',
+  // Also emitted as a record type; the type branch is tested before the event branch.
+  'spec_mutation',
 ]);
 
 const PINNED_LEGACY_EVENTS = new Set([
@@ -56,6 +58,18 @@ const PINNED_LEGACY_EVENTS = new Set([
   'ideaRejectedReset',
   'stuckRecovery',
   'userPaused',
+  // Spec-protocol side effects emitted by the runtime have no lossless research-event
+  // target: the canonical stems describe run lifecycle and research semantics, not
+  // spec-folder mutations, seeds, preinit context, or guard outcomes. Pinning keeps
+  // the records addressable without coercing them into a stem that means something else.
+  'migration',
+  'min_iterations_guard_pass',
+  'spec_check_result',
+  'spec_mutation',
+  'spec_mutation_conflict',
+  'spec_preinit_context_added',
+  'spec_preinit_context_deduped',
+  'spec_seed_created',
 ]);
 
 // ───────────────────────────────────────────────────────────────────
