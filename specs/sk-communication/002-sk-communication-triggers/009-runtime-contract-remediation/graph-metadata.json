@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-communication/002-sk-communication-triggers/002-rewrite-response",
-  "spec_folder": "sk-communication/002-sk-communication-triggers/002-rewrite-response",
+  "packet_id": "sk-communication/002-sk-communication-triggers/009-runtime-contract-remediation",
+  "spec_folder": "sk-communication/002-sk-communication-triggers/009-runtime-contract-remediation",
   "parent_id": "sk-communication/002-sk-communication-triggers",
   "children_ids": [],
   "manual": {
@@ -11,26 +11,25 @@
   },
   "derived": {
     "trigger_phrases": [
-      "rewrite-response",
-      "self-rewrite command",
-      "in-context plain english",
-      "sk-communication trigger"
+      "runtime contract remediation",
+      "external cli model default",
+      "local mode static text projection"
     ],
     "key_topics": [
-      "rewrite-response",
-      "self-rewrite",
-      "command",
-      "in-context",
-      "plain",
-      "english",
-      "sk-communication",
-      "trigger",
-      "projection",
-      "layer",
-      "rewrites",
-      "cli"
+      "runtime",
+      "contract",
+      "remediation",
+      "external",
+      "cli",
+      "model",
+      "default",
+      "local",
+      "mode",
+      "static",
+      "text",
+      "projection"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -94,7 +93,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -106,8 +105,8 @@
         "source": "derived"
       },
       {
-        "name": "Core Implementation",
-        "kind": "proper_noun",
+        "name": "honest",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -118,7 +117,7 @@
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "it",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -148,6 +147,18 @@
         "source": "derived"
       },
       {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -155,18 +166,6 @@
       },
       {
         "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -184,9 +183,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-communication projection layer rewrites CLI output through a model, but a user has no way to ask the active AI to re-render its own reply in that plain-English style without invoking any model",
-    "created_at": "2026-08-19T04:33:57.686Z",
-    "last_save_at": "2026-08-20T21:06:43.148Z",
+    "causal_summary": "A review of the shipped packet found four contract defects:",
+    "created_at": "2026-08-20T20:00:33.153Z",
+    "last_save_at": "2026-08-20T21:12:02.721Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c91a002ba65e51f8d45a8ef1d98e38f4540f87f515d3dbf7901e7a2fc83de2f1",
+    "source_fingerprint": "sha256:f7308300aae89ee5bd0e0d89863dac22c2eee9f1e0c66729c6adafae7fbf8d1d",
     "source_doc_hashes": {
-      "spec.md": "f811273877ef4b0820d63ed1d632e7edd80b85a2d5a525be629a43c6ff426a07",
-      "plan.md": "ff10b0a390c205da6f8cb0a7575110d8c907045178e85320f2c0471812a1952e",
-      "tasks.md": "3b16b63f3b27ffe2eedc9bfc3c7c752cdde599c55c53835c06f9364d4424f4ed",
-      "implementation-summary.md": "6fb116ff5fefcb9765557f6e60dc931972da163d0bc1c044a2c73479a2d3a046"
+      "spec.md": "d05064aeb9debf040bfee07763a07abdf404222904e9f3a683669760224b5e3f",
+      "plan.md": "9188a8454dbfd5b1636db662a882b2db83faf18dc913b039930af4317bc4bb2e",
+      "tasks.md": "5e42276dd308c51cfc7d508167786ffca0336c690ff99529ada204d1b5a9e95f",
+      "implementation-summary.md": "5956611f6248b59a7f21d7994c6092567fc93e65f7cd809a45e6ff51160bab6f"
     },
     "last_active_child_id": null,
     "last_active_at": null

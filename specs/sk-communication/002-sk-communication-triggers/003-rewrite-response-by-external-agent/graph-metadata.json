@@ -186,7 +186,7 @@
     ],
     "causal_summary": "sk-communication ships off by default with no operator surface to run its projection once against a chosen engine",
     "created_at": "2026-08-19T04:54:45.825Z",
-    "last_save_at": "2026-08-19T04:54:45.825Z",
+    "last_save_at": "2026-08-20T21:06:43.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +195,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69d730d453514c99715048058417082a30b3399d6c780d8309b418f582f5ac5e",
+    "source_fingerprint": "sha256:daa17720b91beb25de04a84645de6e1430ccf4d7009fd666be743308b9064b0c",
     "source_doc_hashes": {
-      "spec.md": "2eb2cc3edb6c1eba516c30791eb77d4e2f9cc167f3698827c28216a60d674942",
+      "spec.md": "2f201045119745db15fc12544fc94a15998b935b6269c90f6781dba842f279cc",
       "plan.md": "ebc220a24b3eb331d1423a646bc3d159dc15e3eaaa25c9d52e10b79479d40997",
       "tasks.md": "9e06ec9bdffed427a5e903566f281315d6e563f7c0f67de2d86f1076f3281486",
-      "implementation-summary.md": "5f26ede90cc66be9ef1ec9edc9beaaee48cc30089b613866da2cf04a411a656d"
+      "implementation-summary.md": "12840bb501784a6e3e146b8e350a50d1ce5b8241a2f9214f67c3aa2c9f80d808"
     },
     "last_active_child_id": null,
     "last_active_at": null

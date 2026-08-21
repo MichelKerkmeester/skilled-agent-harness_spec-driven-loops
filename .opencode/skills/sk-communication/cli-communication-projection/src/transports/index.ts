@@ -24,7 +24,7 @@ export {
   defaultComposePrompt,
 } from './cli.js';
 
-export { CliEngineIds, resolveCliEngineCommand } from './cli-engines.js';
+export { CliEngineIds, defaultModelForEngine, resolveCliEngineCommand } from './cli-engines.js';
 
 export type { CliEngineId } from './cli-engines.js';
 

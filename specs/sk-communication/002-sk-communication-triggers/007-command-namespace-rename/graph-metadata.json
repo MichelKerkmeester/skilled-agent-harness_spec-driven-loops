@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The two trigger commands sat at the flat paths `.opencode/commands/rewrite-response.md` and `.opencode/commands/rewrite-response-by-external-agent.md`, so they invoked as `/rewrite-response` and `/rewrite-response-by-external-agent`",
     "created_at": "2026-08-19T20:23:37.258Z",
-    "last_save_at": "2026-08-20T05:12:58.517Z",
+    "last_save_at": "2026-08-20T21:06:44.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:599bd4f28b0ce65e9c28b19cbf9499a49e8920498490b83e159b117a942eff60",
+    "source_fingerprint": "sha256:305e72495854f1dc8340fae79e9b9a003f60390d0181b67b08d021e0bb26b258",
     "source_doc_hashes": {
-      "spec.md": "dd08f5d957f3c21136add44e86f992ee61646faa02caafe0e625d9049601c369",
+      "spec.md": "e8eeb60edf69d4488a01bbd3935a5e047bf57d3c3feaa88a56c33817678beb49",
       "plan.md": "df6603072dbfa6611677d8358d361c249496028e8f5f60d08f1341f25124b180",
       "tasks.md": "9dca9c515630833728dac05303571e5e517953a141133d4f57691d81c432702d",
-      "implementation-summary.md": "a8d54cd724911ac9247765a660e876ab9ed41b3e995b1a28616e7a81cd77ce6b"
+      "implementation-summary.md": "af44d750dd48e6a9730145dc936bc0fdb5b1aee1dc703499669700f58f726405"
     },
     "last_active_child_id": null,
     "last_active_at": null

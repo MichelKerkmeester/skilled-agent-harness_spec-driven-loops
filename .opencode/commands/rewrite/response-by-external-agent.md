@@ -144,13 +144,13 @@ Execute the following steps in order:
 
 #### Branch B: External AI CLI Skill (`cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`)
 - Validate the chosen CLI skill against the six supported external skills, then map `cli-<skill>` to its engine id: `cli-claude-code` → `claude-code`; `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi` → `codex`, `cursor`, `devin`, `opencode`, `pi`.
-- **Dispatch Preload Rule**: Read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` to confirm the engine's default model id (opencode and pi expect a `provider/model` id), or use the user's explicit model override.
-- Route the rewrite through the package's external-cli provider entrypoint, passing the target text on stdin and scoping projection to this single process:
+- **Model resolution**: The entrypoint supplies a documented default model for `claude-code`, `codex`, `cursor`, `devin`, and `opencode` when the model argument is omitted, so an engine-only invocation runs. `pi` has no default and needs an explicit `provider/model` id. To pin a considered model, read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` and pass it explicitly.
+- Route the rewrite through the package's external-cli provider entrypoint, passing the target text on stdin and scoping projection to this single process. Pass an explicit model, or omit it to use the engine's documented default (required for `pi`):
   ```bash
   printf '%s' "<target-text>" \
     | COMMUNICATION_PROJECTION_ENABLED=1 node \
         .opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs \
-        <engine> <model>
+        <engine> [model]
   ```
 - The entrypoint builds the `external-cli-<engine>` provider record, runs the rewrite through the CLI subprocess, and drives it through the package's privacy routing (hosted-retained under egress consent), fidelity validation, and exact-original fallback. It prints the projected plain-English text — or the byte-exact original on any denied route, dispatch failure, or rejected rewrite — to stdout, and a `STATUS=` line to stderr.
 - Capture the entrypoint's stdout as the projection result.
@@ -158,18 +158,16 @@ Execute the following steps in order:
 - Proceed to Step 4 to display the result.
 
 #### Branch C: Local LLM Provider (`local`)
-- Verify whether a local provider is configured (for example, in `enablement.local.json`).
-- If no local provider is configured:
-  - Emit actionable instructions:
-    `No local provider configured. Configure a 'localProvider' block in enablement.local.json (specifying type, model, and baseUrl) to enable local LLM projection.`
-  - Return `STATUS=FAIL ERROR="local provider not configured"`.
-  - Terminate execution.
-- Execute the package's runnable flow with inline environment enablement:
+- The local provider is read from a `localProvider` block in `enablement.local.json`. If none is configured, the entrypoint below prints actionable instructions and returns `STATUS=FAIL ERROR="local provider not configured"`; surface that message and terminate.
+- Route the resolved target text through the package's local projection entrypoint, passing the target text on stdin and scoping projection to this single process:
   ```bash
-  COMMUNICATION_PROJECTION_ENABLED=1 node .opencode/skills/sk-communication/cli-communication-projection/bin/cli-output-wrapper.mjs <runtime> -- <target-command>
+  printf '%s' "<target-text>" \
+    | COMMUNICATION_PROJECTION_ENABLED=1 node \
+        .opencode/skills/sk-communication/cli-communication-projection/bin/local-project.mjs
   ```
-- Capture the projected output from the wrapper.
-- The inline environment variable is cleared automatically upon child process exit.
+- The entrypoint builds the local provider record from `enablement.local.json` and drives the target text through the package's privacy routing (local-only, no egress), fidelity validation, and exact-original fallback. It prints the projected plain-English text — or the byte-exact original on any denied route, provider failure, or rejected rewrite — to stdout, and a `STATUS=` line to stderr.
+- Capture the entrypoint's stdout as the projection result.
+- The inline environment variable is cleared automatically upon child process exit; the entrypoint sets no global projection state.
 - Proceed to Step 4 to display the result.
 
 ### Step 4: Render Projection and Return Status

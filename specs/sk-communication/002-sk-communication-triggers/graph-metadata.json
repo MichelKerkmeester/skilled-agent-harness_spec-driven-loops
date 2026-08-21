@@ -11,7 +11,8 @@
     "sk-communication/002-sk-communication-triggers/005-external-cli-provider",
     "sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring",
     "sk-communication/002-sk-communication-triggers/007-command-namespace-rename",
-    "sk-communication/002-sk-communication-triggers/008-spawn-process-group-hardening"
+    "sk-communication/002-sk-communication-triggers/008-spawn-process-group-hardening",
+    "sk-communication/002-sk-communication-triggers/009-runtime-contract-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -91,17 +92,17 @@
     ],
     "causal_summary": "The sk-communication projection layer ships as a package that is off by default and invoked by hand",
     "created_at": "2026-08-19T04:24:46.147Z",
-    "last_save_at": "2026-08-20T05:12:59.300Z",
+    "last_save_at": "2026-08-20T21:06:45.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:77f3f51dd11383acc3a6c50e1217ac01601cd950ef43f98e4000998caeb68168",
+    "source_fingerprint": "sha256:2bf052f8916dd6ae74324d67fa435ea1ceb8d9bba911dd233dc5814947cbaf62",
     "source_doc_hashes": {
-      "spec.md": "ade1279a23ef89b7ba9a6626962248b09c2f91baee419bc7591eeca5473d311a"
+      "spec.md": "630718e59d88db03f9de1276a4b1d9fb80177f82f7d84ee98ac26facac3d1e74"
     },
-    "last_active_child_id": "sk-communication/002-sk-communication-triggers/004-skill-and-mirrors",
-    "last_active_at": "2026-08-19T04:46:01.327Z"
+    "last_active_child_id": "sk-communication/002-sk-communication-triggers/009-runtime-contract-remediation",
+    "last_active_at": "2026-08-20T21:56:00.000Z"
   }
 }

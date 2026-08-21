@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers/008-spawn-process-group-hardening"
-    last_updated_at: "2026-08-20T05:52:00.000Z"
+    last_updated_at: "2026-08-20T21:58:00Z"
     last_updated_by: "claude"
     recent_action: "Hardened the spawn boundary to group-kill on timeout and abort with real-subprocess tests"
     next_safe_action: "Validate the packet recursively"
@@ -46,9 +46,9 @@ _memory:
 | **Created** | 2026-08-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 9 |
+| **Phase** | 8 of 10 |
 | **Predecessor** | 007-command-namespace-rename |
-| **Successor** | (parent closeout) |
+| **Successor** | 009-runtime-contract-remediation |
 | **Handoff Criteria** | The default spawn boundary group-kills on timeout and abort, a forked helper does not survive either, the normal path is unchanged, and the package gate is green. |
 <!-- /ANCHOR:metadata -->
 

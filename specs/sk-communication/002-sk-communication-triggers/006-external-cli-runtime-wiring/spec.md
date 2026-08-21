@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring"
-    last_updated_at: "2026-08-19T20:34:00.000Z"
+    last_updated_at: "2026-08-20T21:58:00Z"
     last_updated_by: "claude"
     recent_action: "Authored phase 006 spec"
     next_safe_action: "Author plan and tasks, then implement the entrypoint and engine table"
@@ -48,7 +48,7 @@ _memory:
 | **Created** | 2026-08-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 7 |
+| **Phase** | 6 of 10 |
 | **Predecessor** | 005-external-cli-provider |
 | **Successor** | 007-command-namespace-rename |
 | **Handoff Criteria** | A runnable entrypoint drives the external-cli provider through `projectMessage`, the per-engine command table resolves all six cli-* engines, command 2's Branch B invokes the entrypoint, and the package gate is green. |

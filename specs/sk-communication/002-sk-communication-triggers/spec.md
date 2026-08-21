@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers"
-    last_updated_at: "2026-08-20T05:10:00.000Z"
+    last_updated_at: "2026-08-20T21:55:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Hardened the external-cli spawn boundary to group-kill (phase 008)"
+    recent_action: "Closed the four runtime-contract defects and reconciled packet metadata (phase 009)"
     next_safe_action: "None; packet complete"
     blockers: []
     key_files:
@@ -90,7 +90,7 @@ Detailed research, design, implementation, and verification belong to the child 
 
 - Two OpenCode slash commands under `.opencode/commands/`, authored to the sk-create-command standard, with cross-runtime mirrors.
 - The one-shot ON→run→OFF enablement ceremony for `COMMUNICATION_PROJECTION_ENABLED`, with a guaranteed flip-off.
-- Command 2's engine selection across the cli-* family, native in-context, and the package's local providers (exact model pending Fork 1).
+- Command 2's engine selection across the cli-* family, native in-context, and the package's local providers, each engine resolving a documented default model when none is given.
 - Targeted sk-communication `SKILL.md` updates only where required to document the new trigger surface, keeping the default-off invariant intact.
 
 ### Out of Scope
@@ -105,13 +105,14 @@ Detailed research, design, implementation, and verification belong to the child 
 |-----------|-------------|-------|-------------|
 | `.opencode/commands/rewrite-response.md` | Create | 002 | Command 1, self-rewrite, no LLM (shipped) |
 | `.opencode/commands/rewrite-response-by-external-agent.md` | Create | 003 | Command 2, one-shot engine-choice flow |
-| `.opencode/skills/sk-communication/cli-communication-projection/` | Modify | 003 | Engine path for command 2 (scope pending Fork 1) |
+| `.opencode/skills/sk-communication/cli-communication-projection/` | Modify | 003 | Engine path for command 2 |
 | `.opencode/skills/sk-communication/SKILL.md` | Modify | 004 | Document the trigger surface |
 | `.claude/commands/`, `.cursor/commands/`, `.codex/prompts/` | Create | 004 | Cross-runtime command mirrors |
 | `.opencode/skills/sk-communication/cli-communication-projection/bin/`, `src/`, `test/` | Create/Modify | 006 | External-cli runtime entrypoint, per-engine command table, projection module, and tests |
 | `.opencode/commands/rewrite-response-by-external-agent.md` | Modify | 006 | Branch B routes through the external-cli entrypoint |
 | `.opencode/commands/rewrite/` | Rename | 007 | Move both commands into the `rewrite/` namespace; invoke as `/rewrite:response` and `/rewrite:response-by-external-agent` |
 | `.../src/transports/cli.ts` | Modify | 008 | Spawn detached and group-kill the external-cli child on timeout and abort |
+| `.../src/runtime/local-projection.ts`, `.../src/transports/cli-engines.ts`, `.../bin/local-project.mjs` | Create/Modify | 009 | Coded per-engine default model, local static-text projection entrypoint, and read-only flags where a CLI supports them |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -122,14 +123,15 @@ Detailed research, design, implementation, and verification belong to the child 
 | Phase | Folder | Title / Focus | Level | Status |
 |-------|--------|---------------|-------|--------|
 | 1 | `001-research-contracts/` | Verified current-state facts, activation mechanism, cli roster, command-authoring standard, dispatch contract | 2 | Complete |
-| 2 | `002-rewrite-response/` | `/rewrite-response` — in-context self-rewrite, no LLM, display-only | 1 | Complete |
-| 3 | `003-rewrite-response-by-external-agent/` | `/rewrite-response-by-external-agent` — one-shot engine-choice flow, command-level orchestration (no package edits) | 1 | Complete |
+| 2 | `002-rewrite-response/` | `/rewrite:response` — in-context self-rewrite, no LLM, display-only | 1 | Complete |
+| 3 | `003-rewrite-response-by-external-agent/` | `/rewrite:response-by-external-agent` — one-shot engine-choice flow, command-level orchestration (no package edits) | 1 | Complete |
 | 4 | `004-skill-and-mirrors/` | sk-communication `SKILL.md` trigger-surface note and cross-runtime command mirrors | 1 | Complete |
 | 5 | `005-external-cli-provider/` | First-class external-cli provider family, injected CLI transport, tests, and catalog and playbook references | 1 | Complete |
 | 6 | `006-external-cli-runtime-wiring/` | Runnable external-cli entrypoint over projectMessage, verified per-engine command table, and command 2 Branch B adoption | 1 | Complete |
 | 7 | `007-command-namespace-rename/` | Move both commands into the `rewrite/` namespace; invoke as `/rewrite:response` and `/rewrite:response-by-external-agent` | 1 | Complete |
 | 8 | `008-spawn-process-group-hardening/` | Spawn the external-cli child detached and group-kill it on timeout and abort so a forked helper cannot orphan | 1 | Complete |
-| 9 | (parent closeout) | Final gate: `validate.sh --strict --recursive`, hygiene sweep, metadata reconciliation | — | Complete |
+| 9 | `009-runtime-contract-remediation/` | Close four runtime-contract defects: engine-only model default, local static-text projection, verifiable read-only, and a metadata reconcile | 1 | Complete |
+| 10 | (parent closeout) | Final gate: `validate.sh --strict --recursive`, hygiene sweep, metadata reconciliation | — | Complete |
 
 ### Phase Transition Rules
 
@@ -149,7 +151,8 @@ Detailed research, design, implementation, and verification belong to the child 
 | 005 external-cli-provider | 006 external-cli-runtime-wiring | Provider builds, `npm run check` is green, catalog and playbook reference the new adapter code | Package gate plus recursive strict validation |
 | 006 external-cli-runtime-wiring | 007 command-namespace-rename | The entrypoint routes the cli-* path through `projectMessage`, the engine table resolves all six engines, command 2 Branch B invokes the entrypoint, and the gate is green | Package gate plus recursive strict validation |
 | 007 command-namespace-rename | 008 spawn-process-group-hardening | Both commands live under `.opencode/commands/rewrite/`, invoke under the colon namespace, and no functional surface references the old flat names | Recursive strict validation |
-| 008 spawn-process-group-hardening | Parent closeout | The spawn boundary group-kills on timeout and abort, a forked helper does not survive, and the package gate is green | Package gate plus recursive strict validation |
+| 008 spawn-process-group-hardening | 009 runtime-contract-remediation | The spawn boundary group-kills on timeout and abort, a forked helper does not survive, and the package gate is green | Package gate plus recursive strict validation |
+| 009 runtime-contract-remediation | Parent closeout | Engine-only external dispatch resolves a model, local mode projects target text, read-only is enforced where verifiable and documented honestly elsewhere, and the packet metadata is internally consistent | Package gate plus recursive strict validation |
 <!-- /ANCHOR:phase-map -->
 
 ---
