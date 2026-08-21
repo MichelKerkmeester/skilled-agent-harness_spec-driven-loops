@@ -4,7 +4,7 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { CliEngineIds, resolveCliEngineCommand } from '../../src/transports/index.js';
+import { CliEngineIds, defaultModelForEngine, resolveCliEngineCommand } from '../../src/transports/index.js';
 
 describe('resolveCliEngineCommand', () => {
   it('resolves a plain-text, prompt-arg command for every engine', () => {
@@ -52,7 +52,7 @@ describe('resolveCliEngineCommand', () => {
   it('maps devin to a print command whose prompt follows the argument separator', () => {
     const spec = resolveCliEngineCommand(CliEngineIds.DEVIN, 'swe');
     expect(spec?.command).toBe('devin');
-    expect(spec?.args).toEqual(['-p', '--model', 'swe', '--permission-mode', 'auto', '--']);
+    expect(spec?.args).toEqual(['-p', '--model', 'swe', '--permission-mode', 'accept-edits', '--']);
     expect(spec?.args.at(-1)).toBe('--');
   });
 
@@ -67,10 +67,29 @@ describe('resolveCliEngineCommand', () => {
     const scoped = resolveCliEngineCommand(CliEngineIds.PI, 'anthropic/claude');
     expect(scoped?.command).toBe('pi');
     expect(scoped?.args).toEqual([
-      '-p', '--offline', '--provider', 'anthropic', '--model', 'anthropic/claude',
+      '-p', '--offline', '--tools', 'read,grep,find,ls',
+      '--provider', 'anthropic', '--model', 'anthropic/claude',
     ]);
 
     const bare = resolveCliEngineCommand(CliEngineIds.PI, 'gemini-3');
-    expect(bare?.args).toEqual(['-p', '--offline', '--provider', 'google', '--model', 'gemini-3']);
+    expect(bare?.args).toEqual([
+      '-p', '--offline', '--tools', 'read,grep,find,ls',
+      '--provider', 'google', '--model', 'gemini-3',
+    ]);
+  });
+});
+
+describe('defaultModelForEngine', () => {
+  it('returns the documented default model for the five engines that have one', () => {
+    expect(defaultModelForEngine(CliEngineIds.CLAUDE_CODE)).toBe('claude-sonnet-4-6');
+    expect(defaultModelForEngine(CliEngineIds.CODEX)).toBe('gpt-5.5');
+    expect(defaultModelForEngine(CliEngineIds.CURSOR)).toBe('composer-2.5');
+    expect(defaultModelForEngine(CliEngineIds.DEVIN)).toBe('swe');
+    expect(defaultModelForEngine(CliEngineIds.OPENCODE)).toBe('deepseek/deepseek-v4-pro');
+  });
+
+  it('returns undefined for pi, which documents no default, and for an unknown engine', () => {
+    expect(defaultModelForEngine(CliEngineIds.PI)).toBeUndefined();
+    expect(defaultModelForEngine('not-an-engine')).toBeUndefined();
   });
 });

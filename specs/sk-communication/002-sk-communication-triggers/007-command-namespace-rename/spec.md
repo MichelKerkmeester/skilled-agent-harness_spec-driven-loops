@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers/007-command-namespace-rename"
-    last_updated_at: "2026-08-20T05:10:00.000Z"
+    last_updated_at: "2026-08-20T21:58:00Z"
     last_updated_by: "claude"
     recent_action: "Renamed both commands into the rewrite/ namespace and updated functional references"
     next_safe_action: "Validate the packet recursively"
@@ -47,7 +47,7 @@ _memory:
 | **Created** | 2026-08-19 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 7 |
+| **Phase** | 7 of 10 |
 | **Predecessor** | 006-external-cli-runtime-wiring |
 | **Successor** | 008-spawn-process-group-hardening |
 | **Handoff Criteria** | Both commands live under `.opencode/commands/rewrite/`, invoke as `/rewrite:response` and `/rewrite:response-by-external-agent`, and no functional surface references the old flat names. |

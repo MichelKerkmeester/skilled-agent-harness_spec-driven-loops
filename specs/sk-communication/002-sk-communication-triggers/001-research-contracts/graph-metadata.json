@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Building the two trigger commands safely requires knowing exactly how the projection layer activates, what runnable surface it exposes, which engines exist, and what invariants must hold",
     "created_at": "2026-08-19T04:33:57.534Z",
-    "last_save_at": "2026-08-19T04:41:43.060Z",
+    "last_save_at": "2026-08-20T21:06:42.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:726670373e86fd4ba81afa47e6e6a5a360ee547d799b71e8f3b5bf6673fa969f",
+    "source_fingerprint": "sha256:4f0d094bb4cf535702136d0d9bc0ab50ec85f1d28dc88db0019ba70fcf64b15c",
     "source_doc_hashes": {
-      "spec.md": "9f2b2394981733b8471ca38db237ce34bd4be802de9f8e55ad815b2ff0c731be",
+      "spec.md": "351407486d61ff4e184b17a0ca35f0d02d43144e3302c1c1055bb1cc27504661",
       "plan.md": "f4d4222505133e254542b353d47ec429002b85a47084e94f4d9157c892908f3b",
       "tasks.md": "f867a50269302c94a7220918028aba09be542f2d04be04a23aa4c1bc31fc8773",
-      "implementation-summary.md": "4dcebc2eba19d98847babd2b0fee5ace20d552e4855745485b1e8d889a9d6958",
+      "implementation-summary.md": "a5120a5d0e0ecadb9f7263b82fe1facda3a037ced2e11b5e4e4fbf81fd199326",
       "research/research.md": "b9c3d8e24902bbf17f9b163debcfcd5ab56b3e19eddcfeb2ad05bb3d6e99121d"
     },
     "last_active_child_id": null,

@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The phase-006 spawn boundary killed only the direct child on timeout",
     "created_at": "2026-08-20T05:12:58.967Z",
-    "last_save_at": "2026-08-20T05:52:17.389Z",
+    "last_save_at": "2026-08-20T21:06:45.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62df09fb8ffdb1f40f4d8815854971b5c93981fb46b12aff5e07eb5510ca3f5e",
+    "source_fingerprint": "sha256:5535ef99b89aba954faf7112ba6c6a0aa0d909b3c1b274f6eb695bc281e28367",
     "source_doc_hashes": {
-      "spec.md": "bd164f97c7115f9ca805599ad090d4b02f73bff725942cc1b4fe4ece8cd5386a",
+      "spec.md": "9a479d2facaf4ea2fb81fed5a56db2150b44a8089dbd8fa92bb0fd2f6a5700a1",
       "plan.md": "b3760da7f252ae4f7bcef6a2565c1268a7a924214a1188f7c3a910a559cb66ec",
       "tasks.md": "6994f181740b68f324a31021bfc170c45b5e5f8ca1d89561ff94caa82d50747e",
-      "implementation-summary.md": "ec9a81fc656ee4dc44f8850e53fc56def4e865701ce2ec6a42fa8e8cae46626e"
+      "implementation-summary.md": "6702b09088ffba0dd2117672ebc70ce04691eb3f96d7b6a4965e076390395805"
     },
     "last_active_child_id": null,
     "last_active_at": null

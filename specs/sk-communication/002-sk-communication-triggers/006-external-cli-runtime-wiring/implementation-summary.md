@@ -6,7 +6,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring"
-    last_updated_at: "2026-08-19T20:34:00.000Z"
+    last_updated_at: "2026-08-20T21:58:00Z"
     last_updated_by: "claude"
     recent_action: "Landed external-cli runtime wiring; gate green"
     next_safe_action: "Reconcile parent metadata and validate recursively"
@@ -25,7 +25,7 @@ _memory:
     answered_questions:
       - "The entrypoint calls projectMessage so the whole route/execute/validate/render tail is reused, not reimplemented."
       - "Prompt delivery is a trailing argument with a closed stdin, the only shape opencode tolerates; the spawn boundary now always closes stdin."
-      - "Per-engine argv drops write escalation because a rewrite needs no write access; it is documentation-verified from each skill's SKILL.md, not live-verified."
+      - "Read-only is enforced only where a CLI supports it without changing the rewrite output (codex runs under a read-only sandbox); the other engines' no-write property rests on the non-mutating rewrite prompt plus fail-closed-to-exact-original, not a sandbox flag. The argv is documentation-verified from each skill's SKILL.md, not live-verified."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 6: external-cli runtime wiring
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Status** | Complete |
-| **Phase** | 6 of 7 |
+| **Phase** | 6 of 10 |
 | **Completed** | 2026-08-19 |
 <!-- /ANCHOR:metadata -->
 
@@ -63,7 +63,7 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The entrypoint reuses `projectMessage`, so the assembly, bounded-context, protected-span, privacy-routing, provider-execution, fidelity-validation, and render stages all apply unchanged; the only new logic is the external-cli input assembly and the engine argv table. The prompt is delivered as the trailing argument with a closed stdin — the single invocation shape opencode tolerates — and the per-engine argv drops write escalation because a plain-English rewrite needs no write access. Each engine's argv is sourced from its cli-external-orchestration SKILL.md and is documentation-verified rather than live-verified, so an engine whose output does not match the expected shape fails closed to the exact original through the shared fidelity validation. The default-off gate is preserved: the launcher sets no global state, and projection runs only while `COMMUNICATION_PROJECTION_ENABLED=1` is scoped to the invocation.
+The entrypoint reuses `projectMessage`, so the assembly, bounded-context, protected-span, privacy-routing, provider-execution, fidelity-validation, and render stages all apply unchanged; the only new logic is the external-cli input assembly and the engine argv table. The prompt is delivered as the trailing argument with a closed stdin — the single invocation shape opencode tolerates. Read-only is enforced only where a CLI has a flag that does not change the rewrite output: codex runs under a read-only sandbox, while the other engines rely on the non-mutating rewrite prompt plus fail-closed-to-exact-original rather than a sandbox flag. Each engine's argv is sourced from its cli-external-orchestration SKILL.md and is documentation-verified rather than live-verified, so an engine whose output does not match the expected shape fails closed to the exact original through the shared fidelity validation. The default-off gate is preserved: the launcher sets no global state, and projection runs only while `COMMUNICATION_PROJECTION_ENABLED=1` is scoped to the invocation.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -73,7 +73,7 @@ The entrypoint reuses `projectMessage`, so the assembly, bounded-context, protec
 
 - Reuse `projectMessage` instead of re-implementing the projection tail, so the cli-* path cannot diverge from the local and hosted paths.
 - Uniform trailing-argument prompt delivery with a closed stdin, because opencode hangs on an open stdin and the other engines accept a trailing positional prompt.
-- Read-only per-engine argv, because a rewrite never needs write access and the read-only shape sidesteps every sandbox-mutation concern.
+- Read-only enforced where a CLI supports it (codex sandbox); elsewhere the no-write guarantee is the non-mutating rewrite prompt plus fail-closed-to-exact-original, not a per-engine sandbox flag.
 - Caller/entrypoint-supplied model with a per-engine provider derivation for pi, keeping model knowledge in each skill's SKILL.md rather than duplicated in code.
 <!-- /ANCHOR:decisions -->
 

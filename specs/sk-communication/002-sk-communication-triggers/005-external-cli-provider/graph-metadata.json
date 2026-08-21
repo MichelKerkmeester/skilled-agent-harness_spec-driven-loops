@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Command 2's cli- engine path is pure command-level orchestration",
     "created_at": "2026-08-19T06:20:53.378Z",
-    "last_save_at": "2026-08-19T07:28:51.504Z",
+    "last_save_at": "2026-08-20T21:06:44.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +195,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4de1b82afb3488df61e0076f0aee045b1041b3158d5aef74c4d29d1149b873d",
+    "source_fingerprint": "sha256:7bb3abaa86c0623817bd847b428df22ae169af6979505a79ad3a3f293273cec6",
     "source_doc_hashes": {
-      "spec.md": "3f5b2dcfa033e21e69ba84ad6f8c10b4a02e7ebef0b5363a0d9848fa4eaf6542",
-      "plan.md": "81cd01c91d81088aa2fbb63b9842009a0342b4b48b2190c5906222fd9229296a",
-      "tasks.md": "2687f2705fc12f2d25946ca6295664be694d4c0f7acb6bf814541da285dedee2",
-      "implementation-summary.md": "935b598d98942aa61f1e14a78cc4ab88cdfa1ddab148f5890d20c8e5d6723e70"
+      "spec.md": "fa7e4b28fa804c547b323f0662318d31b2759a9e9b4b928db9d2232b776b1f0b",
+      "plan.md": "e1361c2117b9b7e80600308156341e92ee172111452930776c298260232ee548",
+      "tasks.md": "da1362047bf70c64d2050065ca40bf765ed6ff19f6dc62c647178941955fa6b4",
+      "implementation-summary.md": "652f4136b9ce4bf2ea0956df514390e1f3968184909e7dbffd9fe2993f251ddb"
     },
     "last_active_child_id": null,
     "last_active_at": null

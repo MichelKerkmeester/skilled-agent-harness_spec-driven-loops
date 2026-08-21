@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-communication/002-sk-communication-triggers/003-rewrite-response-by-external-agent",
   "description": "sk-communication ships off by default with no operator surface to run its projection once against a chosen engine",
   "keywords": [
@@ -13,7 +14,7 @@
     "chosen",
     "engine"
   ],
-  "lastUpdated": "2026-08-19T04:54:45.507Z",
+  "lastUpdated": "2026-08-20T21:06:27.721Z",
   "specId": "003",
   "folderSlug": "rewrite-response-by-external-agent",
   "parentChain": [
@@ -21,6 +22,5 @@
     "002-sk-communication-triggers"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

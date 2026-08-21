@@ -20,6 +20,27 @@ export const CliEngineIds = {
 /** One selectable external-cli engine. */
 export type CliEngineId = typeof CliEngineIds[keyof typeof CliEngineIds];
 
+/**
+ * The model each cli-external-orchestration skill documents as its default. The
+ * launcher falls back to this when a dispatch names an engine but no model, so
+ * the command's engine-only contract still reaches a runnable dispatch. `pi` is
+ * intentionally absent: its skill documents no default model and requires an
+ * explicit provider/model id, so an engine-only pi dispatch must fail rather
+ * than guess a provider that is not authenticated.
+ */
+const DEFAULT_ENGINE_MODEL: Readonly<Partial<Record<CliEngineId, string>>> = {
+  [CliEngineIds.CLAUDE_CODE]: 'claude-sonnet-4-6',
+  [CliEngineIds.CODEX]: 'gpt-5.5',
+  [CliEngineIds.CURSOR]: 'composer-2.5',
+  [CliEngineIds.DEVIN]: 'swe',
+  [CliEngineIds.OPENCODE]: 'deepseek/deepseek-v4-pro',
+};
+
+/** The engine's documented default model, or undefined when it documents none. */
+export function defaultModelForEngine(engine: string): string | undefined {
+  return isCliEngineId(engine) ? DEFAULT_ENGINE_MODEL[engine] : undefined;
+}
+
 /** Child-dispatch marker every cli-* skill honors for non-interactive runs. */
 const CHILD_DISPATCH_ENV: Readonly<Record<string, string>> = { AI_SESSION_CHILD: '1' };
 
@@ -31,13 +52,18 @@ const GATE_FREE_CHILD_ENV: Readonly<Record<string, string>> = {
 
 /**
  * Map a selectable engine to the non-interactive one-shot dispatch command its
- * cli-external-orchestration skill documents. Each command requests a single
- * plain-text rewrite with no write access, receives the prompt as the trailing
- * argument, and relies on a closed stdin — the only invocation shape opencode
- * tolerates without hanging. The argv is sourced from each skill's SKILL.md and
- * is verified against that documentation rather than a live binary, so an engine
- * whose output does not match fails closed to the exact original through the
- * shared fidelity validation rather than displaying a malformed rewrite.
+ * cli-external-orchestration skill documents. Each command receives the prompt as
+ * the trailing argument and relies on a closed stdin — the only invocation shape
+ * opencode tolerates without hanging. Read-only is enforced only where a CLI has
+ * a flag that does not alter the rewrite output: codex runs under a read-only
+ * sandbox, pi under a read-only tool allowlist, and devin under its documented
+ * print-mode default rather than an auto-approve mode. claude-code, cursor, and
+ * opencode expose no such flag, so their no-write guarantee rests on the
+ * non-mutating copy-editing prompt plus the fail-closed-to-exact-original path,
+ * not on a sandbox. The argv is sourced from each skill's SKILL.md and verified
+ * against that documentation rather than a live binary, so an engine whose output
+ * does not match fails closed to the exact original through the shared fidelity
+ * validation rather than displaying a malformed rewrite.
  */
 export const resolveCliEngineCommand: CliCommandResolver = (engine, model) => {
   if (!isCliEngineId(engine)) {
@@ -68,7 +94,7 @@ export const resolveCliEngineCommand: CliCommandResolver = (engine, model) => {
     case CliEngineIds.DEVIN:
       return {
         command: 'devin',
-        args: ['-p', '--model', model, '--permission-mode', 'auto', '--'],
+        args: ['-p', '--model', model, '--permission-mode', 'accept-edits', '--'],
         input: 'prompt-arg',
         env: CHILD_DISPATCH_ENV,
       };
@@ -82,7 +108,10 @@ export const resolveCliEngineCommand: CliCommandResolver = (engine, model) => {
     case CliEngineIds.PI:
       return {
         command: 'pi',
-        args: ['-p', '--offline', '--provider', providerOf(model), '--model', model],
+        args: [
+          '-p', '--offline', '--tools', 'read,grep,find,ls',
+          '--provider', providerOf(model), '--model', model,
+        ],
         input: 'prompt-arg',
         env: CHILD_DISPATCH_ENV,
       };

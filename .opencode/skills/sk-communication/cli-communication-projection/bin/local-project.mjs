@@ -1,26 +1,24 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────────
-// MODULE: External CLI Projection Launcher
+// MODULE: Local Provider Projection Launcher
 // ───────────────────────────────────────────────────────────────────
-// PURPOSE: Project a target message into plain English through a chosen
-//          external CLI engine, routing the rewrite through the package's
-//          privacy, fidelity, and exact-original guarantees. Projection
-//          runs only while COMMUNICATION_PROJECTION_ENABLED=1 is scoped to
-//          this process; otherwise the byte-exact original passes through.
+// PURPOSE: Project a target message into plain English through the configured
+//          local provider, routing the rewrite through the package's privacy,
+//          fidelity, and exact-original guarantees. Projection runs only while
+//          COMMUNICATION_PROJECTION_ENABLED=1 is scoped to this process;
+//          otherwise the byte-exact original passes through. Unlike the wrapper
+//          launcher, this rewrites a static piece of target text rather than a
+//          live CLI capture.
 // ───────────────────────────────────────────────────────────────────
 
-import { defaultModelForEngine, runExternalCliProjection } from '../dist/index.js';
-
-const EXIT_USAGE = 2;
+import { loadLocalProjectionConfig, runLocalProjection } from '../dist/index.js';
 
 function usage() {
   return [
-    'Usage: external-cli-project <engine> [model] [-- <target-text>]',
+    'Usage: local-project [-- <target-text>]',
     '',
     'Reads the target message from stdin when no inline target text is given.',
-    'Engines: claude-code, codex, cursor, devin, opencode, pi.',
-    'The model is optional for every engine except pi, which has no default and',
-    'needs an explicit provider/model id; opencode also expects a provider/model id.',
+    'Requires a localProvider block in enablement.local.json.',
   ].join('\n');
 }
 
@@ -43,38 +41,27 @@ async function main() {
   }
 
   const separator = argv.indexOf('--');
-  const positionals = separator === -1 ? argv : argv.slice(0, separator);
-  const engine = positionals[0];
-  if (engine === undefined) {
-    process.stderr.write(`${usage()}\n`);
-    process.exit(EXIT_USAGE);
-  }
-
-  const model = positionals[1] ?? defaultModelForEngine(engine);
-  if (model === undefined) {
-    process.stderr.write(
-      `external-cli-project: engine '${engine}' needs an explicit model; it has no documented default.\n`
-      + `${usage()}\n`,
-    );
-    process.exit(EXIT_USAGE);
-  }
-
   const inlineText = separator === -1 ? '' : argv.slice(separator + 1).join(' ');
   const sourceText = inlineText.length > 0 ? inlineText : await readStdin();
   if (sourceText.trim().length === 0) {
     process.stderr.write(
-      'external-cli-project: no target text supplied.\nSTATUS=NOOP REASON="no target text"\n',
+      'local-project: no target text supplied.\nSTATUS=NOOP REASON="no target text"\n',
     );
     return;
   }
 
+  const config = loadLocalProjectionConfig();
+  if (config === null) {
+    process.stderr.write(
+      'local-project: no local provider configured. Add a localProvider block '
+      + '(type, model, baseUrl) to enablement.local.json to enable local projection.\n'
+      + 'STATUS=FAIL ERROR="local provider not configured"\n',
+    );
+    process.exit(1);
+  }
+
   const now = new Date().toISOString();
-  const result = await runExternalCliProjection({
-    engine,
-    modelId: model,
-    sourceText,
-    now,
-  });
+  const result = await runLocalProjection({ config, sourceText, now });
 
   process.stdout.write(result.text);
   if (!result.text.endsWith('\n')) {
@@ -83,11 +70,11 @@ async function main() {
 
   if (result.status === 'projection') {
     process.stderr.write(
-      `external-cli-project: projected via ${engine} (mode=${result.mode}).\nSTATUS=OK\n`,
+      `local-project: projected via local provider (mode=${result.mode}).\nSTATUS=OK\n`,
     );
   } else {
     process.stderr.write(
-      `external-cli-project: exact original returned (${result.reasonCode}).\n`
+      `local-project: exact original returned (${result.reasonCode}).\n`
       + `STATUS=OK REASON="exact-original:${result.reasonCode}"\n`,
     );
   }
@@ -95,6 +82,6 @@ async function main() {
 
 main().catch((error) => {
   const message = error?.message ?? String(error);
-  process.stderr.write(`external-cli-project: ${message}\nSTATUS=FAIL ERROR="${message}"\n`);
+  process.stderr.write(`local-project: ${message}\nSTATUS=FAIL ERROR="${message}"\n`);
   process.exit(1);
 });
