@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] **T-004** Remove direct-append instructions from every mode's protocol documents. [BLOCKED: removing the instruction while legacy is still the only authority would leave agents with no sanctioned write path. The additive `state_write_protocol` declaration is the non-destructive half and exists on 2 of 10 files]
+- [ ] **T-004** Remove direct-append instructions from every mode's protocol documents. [BLOCKED: removing the instruction while legacy is still the only authority would leave agents with no sanctioned write path. The additive `state_write_protocol` declaration is the non-destructive half and is now complete: all 12 workflow assets that contain append directives carry it. The remaining 4 of 16 assets declare nothing because they contain no append directives at all — measured directly, zero `append_to_jsonl` and zero jsonl references each — so the checker's green over 16 scanned files is accurate rather than vacuous]
 - [x] **T-005** Remove or neutralise each executable direct-append path; record per path which and why. [EVIDENCE: vacuous — a tree-wide search over `*.ts`, `*.cjs`, `*.mjs` and `*.js` finds `0` executable direct-append paths, so there is nothing to remove or neutralise; see `scratch/inventory.md`. The writes are agent-performed from prose, not code]
 - [x] **T-006** Add the enforcement guard that fails a post-retirement direct append. [EVIDENCE: `scripts/check-direct-append.cjs` compares the legacy file's sha256 against the gateway watermark's `output_digest`, and is inert unless the mode reads `new_authoritative_reversible`]
 <!-- /ANCHOR:phase-2 -->
@@ -68,7 +68,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] **T-012** Full suite re-run and reported as a delta against a captured baseline. [NOT RUN: the full suite takes over two hours and this phase adds one script and one test file. The targeted suite runs `6 passed`, and the guard was negative-controlled; a full delta is owed before this phase can be called done]
+- [x] **T-012** Full suite re-run and reported as a delta against a captured baseline. [DONE. Baseline 20 failed files / 24 failed tests / 4218 passed (10262s); after, 17 failed files / 15 failed tests / 4241 passed (7194s). Compared as sets, not counts: one test newly fails, `extends all common stems` in `model-benchmark-ledger-schema`, and it also fails at HEAD with the change stashed out — a borderline 30.0s timeout against a 30s limit, not attributable here. This phase's own increment is green in the full run: `check-protocol-append-sites.vitest.ts` passes 16 and appears in neither run's failing set]
 - [x] **T-013** `validate.sh` on this folder with `--strict`; Errors: 0. [EVIDENCE: `validate.sh --strict` from the final state after regenerating `description.json` and `graph-metadata.json`; `Errors: 0`]
 - [x] **T-014** `implementation-summary.md` records the inventory, the per-path decisions, and the guard firing. [EVIDENCE: `implementation-summary.md` records the inventory, the vacuous-removal finding, and the guard firing on a real append]
 <!-- /ANCHOR:completion -->

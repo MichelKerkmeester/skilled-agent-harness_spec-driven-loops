@@ -200,7 +200,7 @@
     ],
     "causal_summary": "After the fleet is enabled, every mode's canonical writes go through the gateway, but the direct-append paths still",
     "created_at": "2026-08-19T06:57:08.198Z",
-    "last_save_at": "2026-08-20T01:29:44.488Z",
+    "last_save_at": "2026-08-21T00:36:26.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c126666139daec3898f6798a3132bd95fe8789fbf6a60c2678abbc4a4016708a",
+    "source_fingerprint": "sha256:2e40c62f3861865e845d1c196eb73d29550918f49f992a18866feb75d87285d8",
     "source_doc_hashes": {
       "spec.md": "9316737a64709732d753fadfb436a01008c28de54cd4915808d223c760defd76",
       "plan.md": "06b0381329b8b98bd4e36a5ea2100989dc9f9635d2582ba08dc70c177d547798",
-      "tasks.md": "83965280f4bd6fbf30544372dbcb5ba7b99b0a509ef71645a9da52aef3c27cd7",
+      "tasks.md": "827fb5fed638995a6ee3dbec055787ecdd204e0160d8c9a42559beee34ba2656",
       "checklist.md": "907db5eba366dafd7dbe61f3f62cc7a020bbb1a83817a879ba6879dabbd2da6d",
-      "implementation-summary.md": "2bdd1c0bc37a26c96941726b7c0d4b15e8f2e481fc0c4812b24b9f5c6d6d846b"
+      "implementation-summary.md": "522ddd5e9534cb960699704d21d74b5016e5414d03324ab340801c0d6e5ee76e"
     },
     "last_active_child_id": null,
     "last_active_at": null

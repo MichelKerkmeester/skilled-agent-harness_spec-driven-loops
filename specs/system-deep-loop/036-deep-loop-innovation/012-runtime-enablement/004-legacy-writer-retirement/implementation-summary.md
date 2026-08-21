@@ -11,20 +11,22 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-le
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement"
-    last_updated_at: "2026-08-20T01:29:44Z"
+    last_updated_at: "2026-08-21T00:36:20Z"
     last_updated_by: "claude"
-    recent_action: "Measured the append-site census the checker's green does not cover"
+    recent_action: "Closed the owed full-suite delta and the declaration half of the document work"
     next_safe_action: "Operator decision on the missing flip transitions"
     blockers:
       - "Removing the write instruction now would leave agents no sanctioned path"
       - "No mode is on ledger authority, so the guard stays inert"
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/check-direct-append.cjs"
-    completion_pct: 50
+    completion_pct: 60
     open_questions:
-      - "Who builds the legacy-to-cutover-ready edges, and under what evidence?"
+      - "May the append directives be retired before any mode holds ledger authority?"
     answered_questions:
-      - "There are no executable direct-append paths; every direct append is agent-performed from prose"
+      - "Direct appends are agent-performed from prose, plus 8 appendFileSync sites inside workflow assets"
+      - "prepareCutover builds the legacy-to-cutover-ready edge; evidence comes from the reader gate"
+      - "All 12 assets with append directives declare the protocol; the other 4 have no append sites"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -119,11 +121,15 @@ gateway is authoritative, and not before.
 report `not-enforced` for every mode until the flip exists. It has been exercised against a fixture in
 that state, which is the only way to exercise it at all right now.
 
-**The full suite was not re-run for this phase.** It takes over two hours and this increment is one
-script and one test file. The targeted suite runs `6 passed`. A full delta is owed before this phase can
-be called done, and is listed as such rather than waved through.
+**The full suite has since been run and reported as a delta.** Baseline 20 failed files and 24 failed
+tests; after, 17 and 15, with 4241 passing. The comparison was made as sets rather than counts, which
+surfaced one newly failing test that counts alone would have hidden; it fails at HEAD too, as a
+borderline thirty-second timeout, so it is not attributable to this work. This phase's own script and
+test are green inside that run.
 
-**Eight of ten workflow files still lack the `state_write_protocol` declaration.** Extending that additive
-pattern is the non-destructive half of the document work and remains available now; the removal half is
-not.
+**The declaration half of the document work is complete.** All 12 workflow assets carrying append
+directives now declare `state_write_protocol`. The other 4 assets declare nothing because they contain
+no append directives — zero `append_to_jsonl` and zero jsonl references each — so the checker's green
+across 16 scanned files reflects real coverage rather than an untested path. The earlier note that eight
+of ten files still lacked the declaration was stale.
 <!-- /ANCHOR:limitations -->
