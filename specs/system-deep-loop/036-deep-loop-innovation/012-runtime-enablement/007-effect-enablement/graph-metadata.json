@@ -109,7 +109,7 @@
         "source": "derived"
       },
       {
-        "name": "Authorized Cross",
+        "name": "Name Mapping",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A cutover certificate attests that a run's external effects were recorded and confirmed, deriving that from an effect",
     "created_at": "2026-08-21T20:04:08.398Z",
-    "last_save_at": "2026-08-21T20:17:55.314Z",
+    "last_save_at": "2026-08-21T20:21:28.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:63eb73a3384bf11db4cc82ac5802c3d29766a3f5c49b6a0cf96f957a8d0a6cac",
+    "source_fingerprint": "sha256:f560dc95b1f21fb1d5668dc9969f18c09df657ef767cce0156c5d023d7c1e8fb",
     "source_doc_hashes": {
-      "spec.md": "d3f6cf5ee9cd61e8addf1feb23e3871189c37aa63224e899554e28132de2f60e",
+      "spec.md": "ca3d0d09108c47a6ce4a7881c3bd555757575216eb4df5723254497f625560e6",
       "plan.md": "e410e531625fa9b047d0ca7485a2973cfbfcb69aa2ed10c5ccaa3feb37830f72",
       "tasks.md": "8fac12c6fc9d7f8073293eda13eb24d502ff9f0bd23dcf5fdfde715b2af79b7a",
       "checklist.md": "4fe8f07c35d685099b34e61bbfebab84f2ccafae1a39e93717174e508c9891a6",

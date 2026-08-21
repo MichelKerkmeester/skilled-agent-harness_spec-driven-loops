@@ -118,6 +118,18 @@ becomes an assertion over records that describe real external actions instead of
 - Fail closed: if the intent cannot be durably recorded, refuse the spawn loudly and structurally.
 - Prove the enablement consumer, pointed at a real lineage run directory, observes the records instead of refusing.
 
+### Coverage and the Mode-Name Mapping
+
+`fanout-run.cjs` uses `loopType` values `research` and `review`, while the canonical mode names — and the effect-ledger
+ids the consumer reads — are `deep-research` and `deep-review`. The launcher already carries that mapping (its
+`agentName` derivation). The effect ledger MUST be keyed by the canonical name, so `${lineageDir}/deep-research-effect-ledger`
+matches what the enablement step reads; keying it by the raw `loopType` would write where the consumer never looks.
+
+`fanout-run.cjs` is the launcher for the two modes that fan out — deep-research and deep-review. The pilot flip (`002`)
+is deep-research, so wiring this launcher unblocks the pilot directly. The other six modes dispatch single-executor
+through a different path; producing their effects is a documented follow-on within the fleet work, not part of this
+launcher's wiring.
+
 ### Authorized Cross-Packet Surface
 
 The live launcher `fanout-run.cjs` and the audited executor library `lib/deep-loop/executor-audit.ts` are owned by the
@@ -168,8 +180,9 @@ routing the spawn through the audited path and to effect recording; they add no 
   control that perturbs only the recording step and asserts no spawn, then restores and asserts a spawn.
 - **SC-003**: The enablement step, run over a lineage directory populated by a real dispatch, returns non-empty effect
   coverage instead of the refusal-over-absence — the exact vacuity the reader guards against is gone end to end.
-- **SC-004**: The runtime suite is re-run and reported as a delta against a captured baseline, with no new failing file
-  attributable to this change; the fan-out suite in particular still passes.
+- **SC-004**: The regression surface (the fan-out and executor-audit suites — baseline 8 files, 235 tests, all passing)
+  is re-run and stays green, and the full runtime suite is reported as a delta with no new failing file attributable to
+  this change.
 - **SC-005**: The scoped diff touches only the live launcher, the audited executor path, their effect-ledger
   construction, and the tests.
 <!-- /ANCHOR:success-criteria -->
