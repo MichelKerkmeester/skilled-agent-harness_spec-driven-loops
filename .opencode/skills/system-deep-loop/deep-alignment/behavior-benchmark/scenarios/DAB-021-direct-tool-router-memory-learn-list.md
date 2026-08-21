@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `STATUS=OK ACTION=` | `.opencode/commands/memory/learn.md` | `sha256:930c9111acd7eeb2caff4e4192b6b5179402367b8afe71a11238ad6649c4c8c8` |
-| `listed` | `.opencode/commands/memory/learn.md` | `sha256:930c9111acd7eeb2caff4e4192b6b5179402367b8afe71a11238ad6649c4c8c8` |
+| `STATUS=OK ACTION=` | `.opencode/commands/memory/learn.md` | `sha256:240b285eaabaec89f1f20b51fd4d5eb52327986110c138c7db90cf0fe48c5eb0` |
+| `listed` | `.opencode/commands/memory/learn.md` | `sha256:240b285eaabaec89f1f20b51fd4d5eb52327986110c138c7db90cf0fe48c5eb0` |

@@ -29,7 +29,7 @@ const RUNNER_PATH = path.join(
 const PILOT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures';
 const ROLLOUT_FIXTURE_ROOT = '.opencode/specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures';
 const PENDING = 'pending (deferred live capture)';
-const EXPECTED_RUNNER_SHA256 = 'cc5e0fa8d9e1e7b58c3cd3d24be0d8e936e08e64143b6615bd3ddfe386d38aba';
+const EXPECTED_RUNNER_SHA256 = '034514b4fc73f9c0887602e1b6b42be4fea9a985ad8c8f2de76b66577c7c5e1e';
 const ALLOWED_PROBES = new Set([
   'file_exists',
   'json_field_equals',

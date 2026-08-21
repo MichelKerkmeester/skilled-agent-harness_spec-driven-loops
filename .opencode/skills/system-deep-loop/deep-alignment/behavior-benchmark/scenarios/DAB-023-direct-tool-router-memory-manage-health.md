@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `memory_health` | `.opencode/commands/memory/manage.md` | `sha256:c0136ed22d0f605aef663a6be0ac4ab19211fdf9e1374ebb2b51c71fc904821e` |
-| `health` | `.opencode/commands/memory/manage.md` | `sha256:c0136ed22d0f605aef663a6be0ac4ab19211fdf9e1374ebb2b51c71fc904821e` |
+| `memory_health` | `.opencode/commands/memory/manage.md` | `sha256:8a927a71a089a4b38276a91eb13a71c708c084522294f55ba5452a01925b99a6` |
+| `health` | `.opencode/commands/memory/manage.md` | `sha256:8a927a71a089a4b38276a91eb13a71c708c084522294f55ba5452a01925b99a6` |

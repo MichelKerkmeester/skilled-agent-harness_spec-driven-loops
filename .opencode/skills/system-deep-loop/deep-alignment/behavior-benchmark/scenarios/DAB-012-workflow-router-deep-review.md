@@ -66,5 +66,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `deep-review` | `.opencode/commands/deep/review.md` | `sha256:f2d5c62a86b012f7f3b1a76617fe5828136305fce7d85f6d18995ceef17958fc` |
+| `deep-review` | `.opencode/commands/deep/review.md` | `sha256:2eeefeb5f37c3eb380f2f9e54ca9cbf557bfdb6a3366f0c497335967a433e3af` |
 | `review-report.md` | `.opencode/commands/deep/assets/deep-review-presentation.txt` | `sha256:e97412d6af5385efa5c8715ba757d8ea911cad207992e65c96786f8e0cd6626f` |
