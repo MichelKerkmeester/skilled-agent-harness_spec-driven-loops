@@ -8,13 +8,6 @@
     "external_directory": "allow"
   },
   "mcp": {
-    "sequential_thinking": {
-      "type": "local",
-      "command": [
-        "npx",
-        "@modelcontextprotocol/server-sequential-thinking@2025.12.18"
-      ]
-    },
     "system-spec-memory": {
       "type": "local",
       "command": [
