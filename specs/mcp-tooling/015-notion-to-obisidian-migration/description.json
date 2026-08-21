@@ -1,0 +1,28 @@
+{
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration",
+  "description": "Findings on the best current (2026) approach for an Obsidian-literate AI agent to migrate complex Notion workspaces to Obsidian: importer choice",
+  "keywords": [
+    "findings",
+    "best",
+    "current",
+    "approach",
+    "obsidian-literate",
+    "agent",
+    "migrate",
+    "complex",
+    "notion",
+    "workspaces",
+    "obsidian",
+    "importer",
+    "choice"
+  ],
+  "lastUpdated": "2026-08-21T10:34:47.845Z",
+  "specId": "015",
+  "folderSlug": "notion-to-obisidian-migration",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -197,6 +197,25 @@
    }
   },
   {
+   "name": "notion",
+   "call_template_type": "mcp",
+   "config": {
+    "mcpServers": {
+     "notion": {
+      "transport": "stdio",
+      "command": "npx",
+      "args": [
+       "-y",
+       "@notionhq/notion-mcp-server"
+      ],
+      "env": {
+       "NOTION_TOKEN": "${notion_NOTION_TOKEN}"
+      }
+     }
+    }
+   }
+  },
+  {
    "name": "magnific",
    "call_template_type": "mcp",
    "config": {

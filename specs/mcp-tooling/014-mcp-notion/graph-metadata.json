@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/014-mcp-notion",
+  "spec_folder": "mcp-tooling/014-mcp-notion",
+  "parent_id": null,
+  "children_ids": [
+    "mcp-tooling/014-mcp-notion/001-deep-research",
+    "mcp-tooling/014-mcp-notion/002-skill-authoring",
+    "mcp-tooling/014-mcp-notion/003-knowledge-references",
+    "mcp-tooling/014-mcp-notion/004-hub-registration-and-advisor",
+    "mcp-tooling/014-mcp-notion/005-verification-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "014-mcp-notion",
+      "mcp-notion",
+      "notion mcp",
+      "notion mode mcp-tooling",
+      "official notion mcp evaluation"
+    ],
+    "key_topics": [
+      "014-mcp-notion",
+      "mcp-notion",
+      "notion",
+      "mcp",
+      "mode",
+      "mcp-tooling",
+      "official",
+      "evaluation",
+      "phase",
+      "parent",
+      "support",
+      "hub"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-deep-research/research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Notion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Official Notion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "NOTION_TOKEN",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a Notion",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for adding Notion support to the mcp-tooling hub: first validate whether the official Notion MCP (@notionhq/notion-mcp-server, 24 tools) covers the needed operations, then adopt-or-build an mcp-notion mode mirroring mcp-obsidian — deep research, scaffold, author the skill, register in hub + advisor, verify. BUILT: mcp-notion mode shipped and routing at 0.95 advisor confidence.",
+    "created_at": "2026-08-21T10:59:49.005Z",
+    "last_save_at": "2026-08-21T15:58:25.321Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a2162185e624b05abad541ad0a7736520b20a729935efb89c8555248e6a86bbd",
+    "source_doc_hashes": {
+      "spec.md": "5a515503cf2d0eacb92cb90361cffd3646e8ad5af061068adf9453cca92e9b29"
+    },
+    "last_active_child_id": "mcp-tooling/014-mcp-notion/001-deep-research",
+    "last_active_at": null
+  }
+}

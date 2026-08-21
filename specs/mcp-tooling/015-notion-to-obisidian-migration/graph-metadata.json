@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "notion to obsidian migration",
+      "migrate notion obsidian",
+      "notion obsidian bases dataview",
+      "obsidian importer notion api",
+      "notion obsidian migration findings",
+      "obsidian bases notion databases",
+      "notion api importer obsidian",
+      "dataview rollups relations migration"
+    ],
+    "key_topics": [
+      "notion",
+      "obsidian",
+      "migration",
+      "migrate",
+      "bases",
+      "dataview",
+      "importer",
+      "api",
+      "findings",
+      "databases",
+      "rollups",
+      "relations"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Obsidian Importer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "file-layer Obsidian",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugins",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sources",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. QUESTION",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Missing Notion",
+        "kind": "proper_noun",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "For Notion",
+        "kind": "proper_noun",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Calendar",
+        "kind": "proper_noun",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Native Obsidian",
+        "kind": "proper_noun",
+        "path": "research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Findings on the best current (2026) approach for an Obsidian-literate AI agent to migrate complex Notion workspaces to Obsidian: importer choice (Notion API vs HTML .zip), native Bases as the database replacement, the plugins that recover relations/rollups/extra views, and the agent's file-layer role.",
+    "created_at": "2026-08-21T10:35:33.158Z",
+    "last_save_at": "2026-08-21T10:35:33.158Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:030e252bd5585f6463992f42f07a40d7a3e0abe5890659d4519d30aebdc63937",
+    "source_doc_hashes": {
+      "spec.md": "3cf3f9eb0bce759f75682db5ab17acc8ffa6e5639b578c185f1cbf7ce2058a44",
+      "research.md": "3fb3a5452dca6a1ef087d086fe19753fed22468df49a901978b03adeb406e6d4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
