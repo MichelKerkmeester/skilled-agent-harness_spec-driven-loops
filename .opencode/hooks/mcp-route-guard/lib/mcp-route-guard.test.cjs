@@ -146,8 +146,8 @@ function testNormalizationBridgesOfficialAndConnectorSpellings() {
 }
 
 function testInternalServerTokenPrefixDetection() {
-  assert.ok(guardCore.isInternalServerToken('system_code_index'), 'mk_ prefix is internal');
-  assert.ok(guardCore.isInternalServerToken('system_spec_memory'), 'mk_ prefix is internal');
+  assert.ok(guardCore.isInternalServerToken('system_code_index'), 'system_ prefix is internal');
+  assert.ok(guardCore.isInternalServerToken('system_spec_memory'), 'system_ prefix is internal');
   assert.ok(guardCore.isInternalServerToken('code_mode'), 'code_mode is internal');
   assert.ok(guardCore.isInternalServerToken('sequential_thinking'), 'sequential_thinking is internal');
   assert.ok(!guardCore.isInternalServerToken('clickup'), 'clickup is not internal');

@@ -71,7 +71,9 @@ function normalizeServerToken(rawServer) {
 
 function isInternalServerToken(normalized) {
   if (!normalized) return false;
-  if (normalized.startsWith('mk_')) return true;
+  // Our own MCP servers carry the framework prefix; the pre-rename opaque prefix
+  // stays recognized so a stale connector spelling is still treated as internal.
+  if (normalized.startsWith('system_') || normalized.startsWith('mk_')) return true;
   return INTERNAL_EXACT_TOKENS.has(normalized);
 }
 
