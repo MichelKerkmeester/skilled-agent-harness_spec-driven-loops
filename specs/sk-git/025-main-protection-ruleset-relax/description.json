@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/025-main-protection-ruleset-relax",
+  "description": "Every direct push to `main` records a bypass entry under the repository's Rule Insights, surfaced to the operator as \"1 violation (unsigned / no-PR)\"",
+  "keywords": [
+    "every",
+    "direct",
+    "push",
+    "main",
+    "records",
+    "bypass",
+    "entry",
+    "repository",
+    "rule",
+    "insights",
+    "surfaced",
+    "operator",
+    "violation",
+    "unsigned",
+    "no-pr"
+  ],
+  "lastUpdated": "2026-08-21T08:55:50.739Z",
+  "specId": "025",
+  "folderSlug": "main-protection-ruleset-relax",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
