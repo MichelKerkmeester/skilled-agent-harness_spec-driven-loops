@@ -10,6 +10,12 @@
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+// buildRunStep is a CJS script that, when driven in-process here, dynamically
+// imports its TypeScript modules by `.js` specifier. Registering tsx makes
+// those specifiers resolve to the `.ts` source, exactly as the CLI's own
+// tsx bootstrap does when the script runs as a subprocess.
+import 'tsx';
+
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -29,9 +35,33 @@ import type {
 // effects, so requiring it directly is safe and lets the regression test
 // exercise the exact function buildRunStep calls after observation.
 const requireFromTest = createRequire(import.meta.url);
-const { enforceObservedClassificationVerdict } = requireFromTest(
-  '../../scripts/enable-modes.cjs',
-) as { enforceObservedClassificationVerdict: (built: unknown) => { ok: boolean; reason?: string } };
+const {
+  buildRunStep,
+  enforceObservedClassificationVerdict,
+} = requireFromTest('../../scripts/enable-modes.cjs') as {
+  buildRunStep: (
+    registry: { read: (mode: string) => { state: string } },
+    deriveModeSurfaceSet: (mode: string) => {
+      surfaceIds: string[];
+      projectableSurfaceIds: string[];
+      readers: unknown[];
+      hasProjectableSurface: boolean;
+      sharedWith: string[];
+    },
+    runDirectory: string,
+    censusPath: string,
+    continuityId: string | null | undefined,
+    ledgerPorts?: {
+      modeLedger: () => LedgerReadPort;
+      effectLedger: () => LedgerReadPort;
+    },
+  ) => (mode: string) => Promise<{
+    ok: boolean;
+    failedCheck: string | null;
+    reason: string | null;
+  }>;
+  enforceObservedClassificationVerdict: (built: unknown) => { ok: boolean; reason?: string };
+};
 
 const here = dirname(fileURLToPath(import.meta.url));
 const CLI_PATH = resolve(here, '..', '..', 'scripts', 'enable-modes.cjs');
@@ -128,6 +158,8 @@ describe('enable-modes CLI', () => {
         runDir,
         '--census',
         CENSUS_PATH,
+        '--continuity-id',
+        'lineage-alpha',
       ]);
 
       expect(result.exitCode).toBe(2);
@@ -213,7 +245,7 @@ describe('enable-modes CLI', () => {
     const statePath = join(tmp, 'state.json');
     const authority = join(tmp, 'authority');
     const runDir = join(tmp, 'run');
-    const { exitCode, json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+    const { exitCode, json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
 
     expect(exitCode).toBe(2);
     expect(json.ok).toBe(false);
@@ -233,7 +265,7 @@ describe('enable-modes CLI', () => {
     const statePath = join(tmp, 'state.json');
     const authority = join(tmp, 'authority');
     const runDir = join(tmp, 'run');
-    const { json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+    const { json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
 
     const failure = json.failure as Record<string, unknown>;
     expect(failure.check).toBe('parity');
@@ -245,7 +277,7 @@ describe('enable-modes CLI', () => {
     const statePath = join(tmp, 'state.json');
     const authority = join(tmp, 'authority');
     const runDir = join(tmp, 'run');
-    const { json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+    const { json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
 
     const failure = json.failure as Record<string, unknown>;
     expect(failure.check).toBe('parity');
@@ -258,7 +290,7 @@ describe('enable-modes CLI', () => {
     const statePath = join(tmp, 'state.json');
     const authority = join(tmp, 'authority');
     const runDir = join(tmp, 'run');
-    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
 
     const entries = readdirSync(authority);
     const authorityRecords = entries.filter((entry) => /^authority-.*\.json$/.test(entry));
@@ -280,7 +312,7 @@ describe('enable-modes CLI', () => {
     const statePath = join(tmp, 'state.json');
     const authority = join(tmp, 'authority');
     const runDir = join(tmp, 'run');
-    const { json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+    const { json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
 
     expect(json.completedModes).toEqual([]);
     expect(json.untouchedModes).toEqual(MODES_AFTER_DEEP_REVIEW);
@@ -291,7 +323,7 @@ describe('enable-modes CLI', () => {
     const statePath = join(tmp, 'state.json');
     const authority = join(tmp, 'authority');
     const runDir = join(tmp, 'run');
-    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
 
     const entries = readdirSync(authority);
     const authorityRecords = entries.filter((entry) => /^authority-.*\.json$/.test(entry));
@@ -303,7 +335,7 @@ describe('enable-modes CLI', () => {
     const statePath = join(tmp, 'state.json');
     const authority = join(tmp, 'authority');
     const runDir = join(tmp, 'run');
-    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
 
     const parsed = JSON.parse(readFileSync(statePath, 'utf8'));
     expect(parsed.version).toBe(1);
@@ -316,9 +348,9 @@ describe('enable-modes CLI', () => {
     const statePath = join(tmp, 'state.json');
     const authority = join(tmp, 'authority');
     const runDir = join(tmp, 'run');
-    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
 
-    const { exitCode, json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+    const { exitCode, json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
     expect(exitCode).toBe(1);
     expect(json.code).toBe('RESUME_NOT_REQUESTED');
   });
@@ -329,7 +361,7 @@ describe('enable-modes CLI', () => {
     const authority = join(tmp, 'authority');
     const runDir = join(tmp, 'run');
 
-    const { exitCode, json } = runCli(['--resume', '--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+    const { exitCode, json } = runCli(['--resume', '--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
     expect(exitCode).toBe(1);
     expect(json.phase).toBe('resume');
     expect(json.code).toBe('NOTHING_TO_RESUME');
@@ -379,6 +411,115 @@ describe('enable-modes CLI', () => {
     expect(json.code).toBe('ARG_TAKES_NO_VALUE');
     expect(json.argument).toBe('dryRun');
     expect(existsSync(statePath)).toBe(false);
+  });
+
+  it('a non-dry run without --continuity-id fails with the required-argument code', () => {
+    const tmp = makeTempDir();
+    const statePath = join(tmp, 'state.json');
+    const authority = join(tmp, 'authority');
+    const runDir = join(tmp, 'run');
+    const { exitCode, json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH]);
+
+    expect(exitCode).toBe(1);
+    expect(json.phase).toBe('args');
+    expect(json.code).toBe('CONTINUITY_ID_REQUIRED');
+  });
+
+  it('a dry run still succeeds without --continuity-id', () => {
+    const tmp = makeTempDir();
+    const statePath = join(tmp, 'state.json');
+    const { exitCode, json } = runCli(['--dry-run', '--state', statePath]);
+
+    expect(exitCode).toBe(0);
+    expect(json.ok).toBe(true);
+    expect(json.dryRun).toBe(true);
+  });
+
+  it('an empty classification row set fails the verdict naming that no rows were classified', () => {
+    const verdict = enforceObservedClassificationVerdict({ manifest: { rows: [] } });
+
+    expect(verdict.ok).toBe(false);
+    expect(verdict.reason as string).toContain('no rows were classified');
+  });
+
+  it('a matched intent+confirmation ledger and a supplied continuity id pass the parity gate and proceed past it', async () => {
+    // Before the fix buildRunStep hardcoded continuityId: null, so identity
+    // coverage was always false and the verdict always failed; a run that
+    // carried the identity could never pass the parity gate no matter how
+    // clean the ledger. This test threads a real ledger through the exact
+    // observation, evidence derivation, and verdict enforcement buildRunStep
+    // uses, with the run's continuity identity supplied, and asserts the step
+    // clears the gate and reaches the authority state check.
+    const mode = 'deep-review';
+    const runDir = mkdtempSync(join(tmpdir(), 'enable-modes-parity-'));
+    temporaryDirectories.push(runDir);
+    mkdirSync(join(runDir, `${mode}-ledger`));
+    mkdirSync(join(runDir, `${mode}-effect-ledger`));
+
+    const effectId = 'effect-done';
+    const effectEvents = [
+      {
+        event: {
+          effective: {
+            envelope: {
+              event_type: 'deep-loop.effect.intent-recorded',
+              payload: { effect_id: effectId },
+            },
+          },
+        },
+      },
+      {
+        event: {
+          effective: {
+            envelope: {
+              event_type: 'deep-loop.effect.confirmed',
+              payload: { effect_id: effectId },
+            },
+          },
+        },
+      },
+    ];
+    const modeLedgerPort: LedgerReadPort = {
+      async getVerifiedHead() {
+        return { sequence: 7 };
+      },
+      async readVerifiedEvents() {
+        return [];
+      },
+    };
+    const effectLedgerPort: LedgerReadPort = {
+      async getVerifiedHead() {
+        return { sequence: 0 };
+      },
+      async readVerifiedEvents() {
+        return effectEvents;
+      },
+    };
+
+    const step = buildRunStep(
+      { read: () => ({ state: 'cutover_ready' }) },
+      () => ({
+        surfaceIds: ['surface-a'],
+        projectableSurfaceIds: ['surface-a'],
+        readers: [],
+        hasProjectableSurface: true,
+        sharedWith: [],
+      }),
+      runDir,
+      CENSUS_PATH,
+      'lineage-alpha',
+      {
+        modeLedger: () => modeLedgerPort,
+        effectLedger: () => effectLedgerPort,
+      },
+    );
+
+    const result = await step(mode);
+
+    // The parity gate passed (no 'parity' failure) and the step moved on to
+    // the authority state check, which passes for a cutover_ready record.
+    expect(result.ok).toBe(true);
+    expect(result.failedCheck).toBeNull();
   });
 
   it('mkdir bypass: empty ledger directories cause EFFECT_LEDGER_EMPTY refusal and completedModes: []', async () => {
@@ -431,6 +572,8 @@ describe('enable-modes CLI', () => {
         runDir,
         '--census',
         CENSUS_PATH,
+        '--continuity-id',
+        'lineage-alpha',
       ]);
 
       expect(result.exitCode).toBe(2);

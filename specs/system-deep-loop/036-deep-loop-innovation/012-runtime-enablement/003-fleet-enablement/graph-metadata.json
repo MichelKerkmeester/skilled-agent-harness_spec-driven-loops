@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The mode registry names seven canonical modes",
     "created_at": "2026-08-19T06:57:08.040Z",
-    "last_save_at": "2026-08-21T00:32:55.673Z",
+    "last_save_at": "2026-08-21T01:27:26.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9a44115c5ef61cdaf7e2fbe76e028a04aa97d4f80016886f0c3095d68975406",
+    "source_fingerprint": "sha256:afe69867033e544857c9264d27e87808981e17095301b37c53cfdd73eb2b7ce7",
     "source_doc_hashes": {
       "spec.md": "c693a5eb936a71c0526bdfb4c9d9368dbecebfa81ca6563e5aaa2c4e737616aa",
       "plan.md": "1919ee26ec2b5391d29858715df79c6561b4a871349658485e19169002949e94",
       "tasks.md": "629c19ccbb626a088b076759ff5ae303dd710297f7f9ab9741278648ec663abe",
       "checklist.md": "5c300f856f2ef9d2ddaa3bd8ed83e31426ddf50ac634e6f01b4b23ed8875daf7",
-      "implementation-summary.md": "f90c9d3bcc12df28d43e7cd73676ac0bd566530da5f16e907bbe9ef5a3506e62"
+      "implementation-summary.md": "4737ebfec0d80d703e9e8e6a89ac90c18fd25c7579c4309756fb313079953cb0"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,16 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fl
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement"
-    last_updated_at: "2026-08-21T00:32:55Z"
+    last_updated_at: "2026-08-21T01:40:00Z"
     last_updated_by: "claude"
-    recent_action: "Built the evidence gate: three fail-closed refusals plus verdict enforcement"
+    recent_action: "Fixed the evidence gate that could never go green; rejected empty row sets"
     next_safe_action: "Make the step perform the flip, or refuse explicitly for the work it does not perform"
     blockers:
-      - "The step still has no flip code: given matched ledger evidence a cutover_ready mode returns ok, with no authority record written"
-      - "That false completion persists and resume skips completed modes, suppressing the next attempt"
-      - "The pilot's procedure has never completed a flip, so nothing is proven to parameterise"
+      - "The step still has no flip code: a passing gate returns ok, writing no authority record"
+      - "A false completion persists: resume skips it, suppressing the next attempt"
+      - "The pilot has never completed a flip, so nothing is proven to parameterise"
       - "deep-improvement-common has no working name on the append CLI"
-      - "No production code writes an effect ledger, so every mode refuses at the evidence gate"
+      - "No production code writes an effect ledger, so every real mode still refuses at the gate"
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/enable-modes.cjs"
       - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/enablement-driver.ts"
@@ -32,11 +32,12 @@ _memory:
       - "Does the improvement-mode rename return to 001?"
       - "Reconcile the spec's six-mode list to FLEET_MODE_ORDER's seven, or narrow it?"
     answered_questions:
-      - "Who builds the legacy-to-cutover-ready edge: it is built, as prepareCutover on the authority registry"
+      - "The legacy-to-cutover-ready edge is built, as prepareCutover on the registry"
       - "The gap in the step is unwritten code, not a blocked precondition"
       - "Directory existence is not evidence: the guard was passed with mkdir"
       - "Empty ledgers and unmatched receipts must refuse: an empty list reports full coverage"
       - "Computing a verdict is not enforcing one: the manifest was built and discarded"
+      - "A gate that cannot go green is as untested as one that cannot go red"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -101,6 +102,22 @@ passing one.
 The ledger ports are constructed lazily, after both existence checks. Constructing an
 `AppendOnlyLedger` creates its storage directory — including on a construction that throws part-way
 — so an eagerly built port would answer the question by changing the answer.
+
+**The gate that could not go green.** Enforcing the verdict introduced the mirror image of the
+defect it was built to close. The observation passed a hardcoded `null` continuity id, and identity
+coverage is derived as `continuityId !== null`, so every row failed identity coverage before any
+evidence was consulted. Every refusal above was therefore unreachable: no input could get past the
+first field, and a gate that no input can pass proves nothing about the inputs it claims to
+discriminate. The run's continuity identity is now an operator-supplied argument, required for a
+non-dry run and refused up front when absent, because a fabricated lineage id would assert a
+continuity nobody established — the same class of defect as a receipt with no intent. A test now
+drives matched intent-and-confirmation evidence with a supplied identity all the way past the gate,
+so the passing direction is exercised and not merely assumed.
+
+**An empty row set asserts nothing.** The per-row loop shared the weakness that motivated the
+reader's refusals: with no rows, every row's verdict passes. An empty classification row set is now
+rejected by name, so an empty census cannot satisfy a step that would go on to move authority
+without having looked at evidence at all.
 
 The census is an explicit argument rather than a path resolved from the script's own location. The
 previous resolution reached the file only through a symlink, and embedded folder numbers that this
@@ -180,16 +197,26 @@ modes reported untouched and no `authority-*.json` written for any mode.
 
 **Full suite, as a delta.** Baseline before any edit: `17 failed / 4111 passed / 39 skipped (4165)`, 7894s. After: `17 failed / 4152 passed / 39 skipped (4206)`, 7486s. The gain is exactly this phase's 2 files and 41 tests. The failing-file sets from the two runs diff identical, which is the part that matters — an unchanged failure count can hide a swap, and this one does not.
 
-**Targeted suites.** 41 tests across `enable-modes-cli.vitest.ts` and `fleet-enablement.vitest.ts`,
-vitest exit `0`, re-run green from the restored tree after every control pass.
+**Two more guards, two more reds.** Restoring the hardcoded `null` continuity id turns exactly one
+test red — the one that drives matched evidence past the gate — and nothing else, which is the
+discriminating half: the perturbation is visible only where the passing direction is asserted.
+Disabling the empty-row-set rejection by its condition alone, leaving every declaration in place so
+the failure cannot be a compile error, turns exactly its own test red. Both restored green at
+`28 passed (28)`.
+
+**Targeted suites.** 71 tests across `enable-modes-cli.vitest.ts` (28), `fleet-enablement.vitest.ts`
+(25), `restart-facts-reader.vitest.ts` (14) and `observed-classification.vitest.ts` (4), vitest exit
+`0` on each, re-run green from the restored tree after every control pass. `--help` exits `0`.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
 **No mode can be enabled.** `AuthorityCompareAndSwapInput.expectedState` is the literal type
-`'cutover_ready'`, and a never-flipped mode reads back `legacy_authoritative`. Only the last edge
-of the declared machine exists in code. This blocks the reader contracts against projected files,
+`'cutover_ready'`, and a never-flipped mode reads back `legacy_authoritative`. The promotion edge
+between them was built in the preceding phase and the whole sequence has since been driven end to
+end against a temporary root, so the machine is no longer the obstacle: the step contains no flip
+code. This blocks the reader contracts against projected files,
 the independent read showing ledger authority, end-to-end resume, and the parity-gate-per-mode
 property — each is untested rather than satisfied. It equally blocks phases `004` through `006`,
 all of which presuppose a fleet that has flipped.

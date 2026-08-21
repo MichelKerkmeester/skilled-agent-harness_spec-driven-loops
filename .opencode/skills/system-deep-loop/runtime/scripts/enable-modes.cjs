@@ -111,6 +111,17 @@ function extractSurfaces(deriveModeSurfaceSet, mode) {
 // receiptCoverage && leaseState !== 'uncertain').
 function enforceObservedClassificationVerdict(built) {
   const rows = built && built.manifest ? built.manifest.rows : [];
+  // A manifest that asserts nothing is not a manifest that asserts success:
+  // with no rows there is nothing to prove each row's verdict passed, so an
+  // empty row set must fail rather than read as clean. This also keeps an
+  // empty census from vacuously satisfying a step that ends up promoting
+  // authority without ever looking at evidence.
+  if (rows.length === 0) {
+    return {
+      ok: false,
+      reason: 'no rows were classified; an empty classification row set cannot assert a passing verdict',
+    };
+  }
   for (const row of rows) {
     const evidence = row && row.evidence ? row.evidence : {};
     if (evidence.orderCoverage !== true) {
@@ -141,7 +152,13 @@ function enforceObservedClassificationVerdict(built) {
   return { ok: true };
 }
 
-function buildRunStep(registry, deriveModeSurfaceSet, runDirectory, censusPath) {
+// The run's continuity identity is a fact the operator asserts about the run,
+// never something the script may invent: a fabricated lineage id would make
+// identity coverage claim a continuity nobody established, which is the same
+// class of defect as a receipt with no intent. The last parameter is a
+// test-only seam that injects ledger read ports; production callers omit it
+// and buildRunStep constructs the real ledgers exactly as before.
+function buildRunStep(registry, deriveModeSurfaceSet, runDirectory, censusPath, continuityId, ledgerPorts) {
   // Refusing on the read path means a failed step touches no authority record
   // at all: no compare-and-swap, no transaction, nothing to roll back.
   return async (mode) => {
@@ -212,35 +229,44 @@ function buildRunStep(registry, deriveModeSurfaceSet, runDirectory, censusPath) 
         const modeLedgerId = `${mode}-ledger`;
         const effectLedgerId = `${mode}-effect-ledger`;
 
-        // Construct real ledger read ports lazily from AppendOnlyLedger.
-        // The factories must remain lazy because constructing a ledger creates
-        // its directory, and the existence checks must observe the pre-construction
-        // state to refuse when the producer is absent.
-        const { AppendOnlyLedger } = await import('../lib/authorized-ledger/index.ts');
-        const { resolveAuthorityRoot } = await import('../lib/authority-root/index.ts');
+        let modeLedgerFactory;
+        let effectLedgerFactory;
+        if (ledgerPorts) {
+          // Test seam: the caller supplies read ports so the real observation,
+          // evidence derivation, and verdict enforcement still run unchanged.
+          modeLedgerFactory = ledgerPorts.modeLedger;
+          effectLedgerFactory = ledgerPorts.effectLedger;
+        } else {
+          // Construct real ledger read ports lazily from AppendOnlyLedger.
+          // The factories must remain lazy because constructing a ledger creates
+          // its directory, and the existence checks must observe the pre-construction
+          // state to refuse when the producer is absent.
+          const { AppendOnlyLedger } = await import('../lib/authorized-ledger/index.ts');
+          const { resolveAuthorityRoot } = await import('../lib/authority-root/index.ts');
 
-        const authorityRoot = resolveAuthorityRoot();
-        const registryInner = await import('../lib/per-mode-authority-flip/index.ts')
-          .then((m) => new m.AuthorityRegistry(authorityRoot));
+          const authorityRoot = resolveAuthorityRoot();
+          const registryInner = await import('../lib/per-mode-authority-flip/index.ts')
+            .then((m) => new m.AuthorityRegistry(authorityRoot));
 
-        const modeLedgerFactory = () => {
-          const ledger = new AppendOnlyLedger({
-            rootDirectory: runDirectory,
-            ledgerId: modeLedgerId,
-            auditLedgerId: `${mode}-audit-ledger`,
-            authorityProvider: () => registryInner.read(mode),
-          }, registryInner);
-          return ledger;
-        };
-        const effectLedgerFactory = () => {
-          const ledger = new AppendOnlyLedger({
-            rootDirectory: runDirectory,
-            ledgerId: effectLedgerId,
-            auditLedgerId: `${mode}-audit-ledger`,
-            authorityProvider: () => registryInner.read(mode),
-          }, registryInner);
-          return ledger;
-        };
+          modeLedgerFactory = () => {
+            const ledger = new AppendOnlyLedger({
+              rootDirectory: runDirectory,
+              ledgerId: modeLedgerId,
+              auditLedgerId: `${mode}-audit-ledger`,
+              authorityProvider: () => registryInner.read(mode),
+            }, registryInner);
+            return ledger;
+          };
+          effectLedgerFactory = () => {
+            const ledger = new AppendOnlyLedger({
+              rootDirectory: runDirectory,
+              ledgerId: effectLedgerId,
+              auditLedgerId: `${mode}-audit-ledger`,
+              authorityProvider: () => registryInner.read(mode),
+            }, registryInner);
+            return ledger;
+          };
+        }
 
         const observedManifest = await buildObservedClassificationManifest({
           observation: {
@@ -250,7 +276,7 @@ function buildRunStep(registry, deriveModeSurfaceSet, runDirectory, censusPath) 
             modeLedger: modeLedgerFactory,
             effectLedger: effectLedgerFactory,
             leases: [],
-            continuityId: null,
+            continuityId,
           },
           rows: census.rows.map((row) => ({
             rowId: row.id,
@@ -356,6 +382,7 @@ OPTIONS:
   --authority-root <path>     Path to the authority-state directory (resolved automatically if not provided)
   --run-directory <path>      Path to the run directory containing ledgers (required for non-dry runs)
   --census <path>              Path to the state backend census JSON file (required for non-dry runs)
+  --continuity-id <id>         Continuity/lineage identity of this run (required for non-dry runs)
   --dry-run                    Plan the enablement without making any changes
   --resume                    Resume a previously stopped enablement run
   --help                      Show this help message
@@ -374,7 +401,7 @@ EXIT CODES:
   // the shape up front makes a mistyped invocation fail instead of doing something
   // unintended.
   const kebab = (key) => key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
-  const valueArgs = ['state', 'authorityRoot', 'runDirectory', 'census'];
+  const valueArgs = ['state', 'authorityRoot', 'runDirectory', 'census', 'continuityId'];
   const flagArgs = ['dryRun', 'resume', 'help'];
   const knownArgs = [...valueArgs, ...flagArgs];
   for (const key of Object.keys(args)) {
@@ -425,6 +452,7 @@ EXIT CODES:
   const resume = args.resume === true;
   const runDirectory = args.runDirectory;
   const censusPath = args.census;
+  const continuityId = args.continuityId;
 
   // A non-dry run observes on-disk restart state before flipping authority,
   // so it must know where the run's ledgers live. A dry run touches nothing
@@ -446,6 +474,19 @@ EXIT CODES:
       phase: 'args',
       code: 'CENSUS_PATH_REQUIRED',
       reason: 'A --census path is required for a non-dry run',
+    });
+    process.exit(1);
+  }
+
+  // A non-dry run must assert the run's continuity identity; without it the
+  // classification evidence cannot establish identity coverage and the parity
+  // gate would report a failure caused by the caller, not by the evidence.
+  if (!dryRun && !args.continuityId) {
+    jsonOut({
+      ok: false,
+      phase: 'args',
+      code: 'CONTINUITY_ID_REQUIRED',
+      reason: 'A --continuity-id is required for a non-dry run',
     });
     process.exit(1);
   }
@@ -535,7 +576,7 @@ EXIT CODES:
     '../lib/per-mode-authority-flip/index.ts'
   );
   const registry = new AuthorityRegistry(authorityRoot);
-  const runStep = buildRunStep(registry, deriveModeSurfaceSet, runDirectory, censusPath);
+  const runStep = buildRunStep(registry, deriveModeSurfaceSet, runDirectory, censusPath, continuityId);
 
   const result = await runFleetEnablement({
     statePath,
