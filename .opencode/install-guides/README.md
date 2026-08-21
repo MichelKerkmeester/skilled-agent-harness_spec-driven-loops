@@ -80,7 +80,7 @@ All 8 `.md` guide entries in this directory (3 regular files + 5 symlinks), grou
 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) | Symlink | Code Mode orchestration MCP |
 | [MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md) | Real | Sequential Thinking MCP server |
 | [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) | Symlink | Spec Kit Memory MCP server |
-| [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Skill-local | Standalone `mk_skill_advisor` MCP server install |
+| [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Skill-local | Standalone `system_skill_advisor` MCP server install |
 | **SET-UP Guides** | | |
 | [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) | Real | AGENTS.md customization and AI agent behavior |
 | [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md) | Symlink | Skill advisor configuration |
@@ -313,8 +313,8 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | Component                          | Type       | Purpose                                                                    | Dependencies                            |
 | ---------------------------------- | ---------- | -------------------------------------------------------------------------- | --------------------------------------- |
 | Code Mode                          | MCP Server | External tool orchestration (GitHub, your CMS, etc.)                       | Node.js 18+                             |
-| Spec Kit Memory (`mk-spec-memory`) | MCP Server | Conversation context preservation                                          | Node.js 20.11+                          |
-| Skill Advisor (`mk_skill_advisor`) | MCP Server | Native advisor_recommend + skill_graph_* (9 tools)                         | Node.js 20.11+                          |
+| Spec Kit Memory (`system-spec-memory`) | MCP Server | Conversation context preservation                                          | Node.js 20.11+                          |
+| Skill Advisor (`system_skill_advisor`) | MCP Server | Native advisor_recommend + skill_graph_* (9 tools)                         | Node.js 20.11+                          |
 | Sequential Thinking                | MCP Server | Complex reasoning chains                                                    | npx (Node.js 18+)                       |
 | Native Skills                      | Built-in   | Skill discovery from .opencode/skills/                                      | None (OpenCode v1.0.190+)               |
 | Chrome DevTools CLI                | CLI Tool   | Browser debugging & automation                                              | Node.js 18+                             |
@@ -485,7 +485,7 @@ No separate local model service is required for Memory MCP embeddings. Continue 
 <!-- ANCHOR:phase-3-mcp-servers -->
 ## 10. PHASE 3: MCP SERVERS
 
-> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"mk-spec-memory"' opencode.json && echo "✅ All configured"`. If all configured, skip to Phase 4.
+> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"system-spec-memory"' opencode.json && echo "✅ All configured"`. If all configured, skip to Phase 4.
 
 ### Installation Order (Important!)
 
@@ -586,9 +586,9 @@ Spec Kit Memory now supports four providers in cascade:
 ```json
 {
   "mcp": {
-    "mk-spec-memory": {
+    "system-spec-memory": {
       "command": "node",
-      "args": [".opencode/bin/mk-spec-memory-launcher.cjs"],
+      "args": [".opencode/bin/system-spec-memory-launcher.cjs"],
       "env": {
         "EMBEDDINGS_PROVIDER": "auto"
       }
@@ -631,7 +631,7 @@ Each provider+model+dimension combination uses its own SQLite database. This pre
 ls -la .opencode/skills/system-spec-kit/mcp-server/database/
 ```
 
-### Validation: `mk_spec_memory_check`
+### Validation: `system_spec_memory_check`
 
 - [ ] Context server JS file exists
 - [ ] Database directory exists (or will be created)
@@ -639,7 +639,7 @@ ls -la .opencode/skills/system-spec-kit/mcp-server/database/
 
 **Quick Verification:**
 ```bash
-test -f .opencode/bin/mk-spec-memory-launcher.cjs && grep -q 'mk-spec-memory-launcher' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+test -f .opencode/bin/system-spec-memory-launcher.cjs && grep -q 'system-spec-memory-launcher' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 **Verify active provider:**
@@ -688,9 +688,9 @@ grep -q '"sequential_thinking"' opencode.json && echo "✅ PASS" || echo "❌ FA
 
 ---
 
-### 10.4 Skill Advisor (`mk_skill_advisor` — Native Recommendation)
+### 10.4 Skill Advisor (`system_skill_advisor` — Native Recommendation)
 
-The standalone `mk_skill_advisor` MCP server registers 8 tools (`advisor_recommend/rebuild/status/validate`, `skill_graph_scan/query/status/validate`) for prompt-time skill recommendation and skill-graph queries.
+The standalone `system_skill_advisor` MCP server registers 8 tools (`advisor_recommend/rebuild/status/validate`, `skill_graph_scan/query/status/validate`) for prompt-time skill recommendation and skill-graph queries.
 
 > **Detailed Guide:** See [system-skill-advisor/INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) for full installation, configuration, rollback, and operator notes.
 > **Runtime Tuning:** See [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md) for post-install adjustments.
@@ -714,14 +714,14 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
 ```json
 {
   "mcp": {
-    "mk_skill_advisor": {
+    "system_skill_advisor": {
       "type": "local",
-      "command": ["node", ".opencode/bin/mk-skill-advisor-launcher.cjs"],
+      "command": ["node", ".opencode/bin/system-skill-advisor-launcher.cjs"],
       "environment": {
-        "_NOTE_1_DB": "Database lives at .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite by default; MK_SKILL_ADVISOR_DB_DIR overrides.",
-        "_NOTE_2_TOOLS": "Registers 8 tools: advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate. MCP namespace: mcp__mk_skill_advisor__*",
-        "MK_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp-server/database",
-        "MK_SKILL_ADVISOR_TRUST_DEFAULT": "trusted",
+        "_NOTE_1_DB": "Database lives at .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite by default; SYSTEM_SKILL_ADVISOR_DB_DIR overrides.",
+        "_NOTE_2_TOOLS": "Registers 8 tools: advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate. MCP namespace: mcp__system_skill_advisor__*",
+        "SYSTEM_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp-server/database",
+        "SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT": "trusted",
         "_NOTE_3_SHADOW_MODE": "SPECKIT_ADVISOR_SHADOW_MODE is currently inert: documented intent only, no runtime reader yet.",
         "SPECKIT_ADVISOR_SHADOW_MODE": "0",
         "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "0"
@@ -731,16 +731,16 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
 }
 ```
 
-### Validation: `mk_skill_advisor_check`
+### Validation: `system_skill_advisor_check`
 
-- [ ] Launcher exists: `.opencode/bin/mk-skill-advisor-launcher.cjs`
+- [ ] Launcher exists: `.opencode/bin/system-skill-advisor-launcher.cjs`
 - [ ] Built entry exists: `.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/advisor-server.js`
-- [ ] Configuration added to opencode.json (key: `mk_skill_advisor`)
+- [ ] Configuration added to opencode.json (key: `system_skill_advisor`)
 
 **Quick Verification:**
 ```bash
-test -f .opencode/bin/mk-skill-advisor-launcher.cjs && \
-  grep -q '"mk_skill_advisor"' opencode.json && \
+test -f .opencode/bin/system-skill-advisor-launcher.cjs && \
+  grep -q '"system_skill_advisor"' opencode.json && \
   echo "✅ PASS" || echo "❌ FAIL"
 ```
 
@@ -782,16 +782,16 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 ### Phase 3 Complete Validation: `mcp_servers_check`
 
 - [ ] Code Mode: npx utcp-mcp --version responds
-- [ ] Spec Kit Memory (`mk-spec-memory`): configured in opencode.json
-- [ ] Skill Advisor (`mk_skill_advisor`): configured in opencode.json
+- [ ] Spec Kit Memory (`system-spec-memory`): configured in opencode.json
+- [ ] Skill Advisor (`system_skill_advisor`): configured in opencode.json
 - [ ] Sequential Thinking: configured in opencode.json
 - [ ] (Optional) Chrome DevTools: bdg --version responds
 
 **Quick Verification:**
 ```bash
 grep -q '"code_mode"' opencode.json && \
-  grep -q '"mk-spec-memory"' opencode.json && \
-  grep -q '"mk_skill_advisor"' opencode.json && \
+  grep -q '"system-spec-memory"' opencode.json && \
+  grep -q '"system_skill_advisor"' opencode.json && \
   grep -q '"sequential_thinking"' opencode.json && \
   echo "✅ PASS" || echo "❌ FAIL"
 ```
@@ -915,9 +915,9 @@ test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo 
       "args": ["utcp-mcp"],
       "env": {}
     },
-    "mk-spec-memory": {
+    "system-spec-memory": {
       "command": "node",
-      "args": [".opencode/bin/mk-spec-memory-launcher.cjs"]
+      "args": [".opencode/bin/system-spec-memory-launcher.cjs"]
     },
     "sequential_thinking": {
       "command": "npx",
@@ -954,9 +954,9 @@ test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo 
       "args": ["utcp-mcp"],
       "env": {}
     },
-    "mk-spec-memory": {
+    "system-spec-memory": {
       "command": "node",
-      "args": [".opencode/bin/mk-spec-memory-launcher.cjs"]
+      "args": [".opencode/bin/system-spec-memory-launcher.cjs"]
     }
   },
   "plugins": []
@@ -1445,7 +1445,7 @@ Instead of manual troubleshooting, use the built-in diagnostic commands that che
 /doctor:mcp install
 
 # Diagnose or install a single server
-/doctor:mcp install --server mk-spec-memory
+/doctor:mcp install --server system-spec-memory
 ```
 
 The doctor commands read the install guides, check system reality, and offer guided repair. Available across OpenCode, Claude Code, and Codex CLI.
@@ -1509,7 +1509,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | [AGENTS.md](../../AGENTS.md) | AI agent behavior configuration and mandatory gates |
 | [Spec Kit Framework](../skills/system-spec-kit/README.md) | Spec folder and memory system documentation |
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Document creation standards and templates |
-| [system-skill-advisor INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Standalone `mk_skill_advisor` MCP server bootstrap |
+| [system-skill-advisor INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Standalone `system_skill_advisor` MCP server bootstrap |
 
 ### External Resources
 

@@ -1,0 +1,34 @@
+# Frozen token map for packet 008-hook-library-mk-rename.
+# Columns: old_token <TAB> new_token <TAB> phase <TAB> form
+# Method: substring replace, LONGEST old_token first, on NON-spec functional
+#   files only (exclude specs/** .worktrees/** barter/** node_modules/** dist/**).
+# A base token's replace also fixes its suffixes (mk-spec-memory -> also
+#   mk-spec-memory-launcher; mk_spec_memory -> also mcp__mk_spec_memory__).
+# Env vars (MK_*) are NOT blanket-replaced here — they get new canonical names +
+#   permanent MK_ aliases in Phase 4 (see name-mapping.md §5, ADR-004).
+# spec-memory & skill-advisor plugin FILES ride Phase 5 (stem == live daemon key).
+mk-communication-projection	sk-communication-projection	2	kebab
+mk-cli-dispatch-audit	cli-dispatch-audit	2	kebab
+mk-codex-hooks-watchdog	codex-hooks-watchdog	2	kebab
+mk-completion-sentinel	system-completion-sentinel	2	kebab
+mk-deep-loop-guard	system-deep-loop-guard	2	kebab
+mk-dist-freshness-guard	system-dist-freshness-guard	2	kebab
+mk-git-preflight-advisory	sk-git-preflight-advisory	2	kebab
+mk-mcp-route-guard	mcp-route-guard	2	kebab
+mk-post-edit-quality	sk-code-post-edit-quality	2	kebab
+mk-speckit-completion	system-speckit-completion	2	kebab
+mk-spec-gate	system-spec-gate	2	kebab
+mk-goal	opencode-goal	2	kebab
+mk_deep_loop_guard	system_deep_loop_guard	2	snake
+mk_speckit_completion	system_speckit_completion	2	snake
+mk_goal	opencode_goal	2	snake
+mk-spec-memory	system-spec-memory	5	kebab
+mk-skill-advisor	system-skill-advisor	5	kebab
+mk-code-index	system-code-index	5	kebab
+mk-code-graph	system-code-graph	5	kebab
+mk-hf-embed	system-hf-embed	5	kebab
+mk-reranker	system-reranker	5	kebab
+mk_spec_memory	system_spec_memory	5	snake
+mk_skill_advisor	system_skill_advisor	5	snake
+mk_code_index	system_code_index	5	snake
+mk_code_graph	system_code_graph	5	snake

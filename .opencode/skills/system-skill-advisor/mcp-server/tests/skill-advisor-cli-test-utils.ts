@@ -64,7 +64,7 @@ export function createIsolatedCliScope(label: string): IsolatedCliScope {
     SPECKIT_PROBE_TIMEOUT_MS: '500',
     SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS: '200',
     SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS: '10',
-    MK_SKILL_ADVISOR_DB_DIR: skillAdvisorDbDir,
+    SYSTEM_SKILL_ADVISOR_DB_DIR: skillAdvisorDbDir,
     MEMORY_DB_PATH: memoryDbPath,
     SPECKIT_CODE_GRAPH_DB_DIR: codeGraphDbDir,
     SPECKIT_ADVISOR_SHADOW_DELTA_PATH: shadowDeltaPath,
@@ -186,7 +186,7 @@ export function readJsonFile<T = Record<string, unknown>>(filePath: string): T |
 }
 
 export function skillAdvisorLauncherLeasePath(dbDir: string): string {
-  return join(dbDir, '.mk-skill-advisor-launcher.json');
+  return join(dbDir, '.system-skill-advisor-launcher.json');
 }
 
 export function readSkillAdvisorLauncherPid(dbDir: string): number | null {

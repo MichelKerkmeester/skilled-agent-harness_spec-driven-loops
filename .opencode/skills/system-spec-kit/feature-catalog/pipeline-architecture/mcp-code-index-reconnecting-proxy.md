@@ -24,7 +24,7 @@ version: 3.6.0.2
 
 ### Generic classify-frame factory
 
-`createClassifyFrame({ replayableToolNames, unsafeToolNames })` is a factory in the session-proxy library. Each server passes its own replay and unsafe tool sets, so one piece of proxy machinery serves both daemons with different safety classifications and the mk-spec-memory classifier stays exactly as it was.
+`createClassifyFrame({ replayableToolNames, unsafeToolNames })` is a factory in the session-proxy library. Each server passes its own replay and unsafe tool sets, so one piece of proxy machinery serves both daemons with different safety classifications and the system-spec-memory classifier stays exactly as it was.
 
 ### Code-graph replay set
 

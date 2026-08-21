@@ -1,6 +1,6 @@
 ---
 title: "MCP launcher persistent log"
-description: "The mk-spec-memory launcher writes a bounded, best-effort durable line to a log file alongside its stderr output, so daemon flaps and owner-disposal races stay attributable from disk after the host drops stderr. Rotates one previous generation at a size cap and ships on by default."
+description: "The system-spec-memory launcher writes a bounded, best-effort durable line to a log file alongside its stderr output, so daemon flaps and owner-disposal races stay attributable from disk after the host drops stderr. Rotates one previous generation at a size cap and ships on by default."
 trigger_phrases:
   - "launcher persistent log"
   - "daemon flap attributable from disk"
@@ -16,7 +16,7 @@ version: 3.6.0.2
 
 ## 1. OVERVIEW
 
-The mk-spec-memory launcher logs lifecycle events to stderr, but MCP hosts often discard a child's stderr once they dispose the session. That is exactly when daemon flaps and owner-disposal races happen, so the most diagnostic lines are the ones most likely to be lost.
+The system-spec-memory launcher logs lifecycle events to stderr, but MCP hosts often discard a child's stderr once they dispose the session. That is exactly when daemon flaps and owner-disposal races happen, so the most diagnostic lines are the ones most likely to be lost.
 
 The persistent log makes the launcher's `log()` also append the same line to a durable file. The write is best-effort: a failed disk write never breaks launcher operation, it just falls back to stderr alone. The file is bounded, rotating to a single previous generation once it crosses a size cap, so it stays attributable without growing without limit. The feature ships on by default and can be disabled, repointed, or resized through environment variables.
 
@@ -34,7 +34,7 @@ The persistent log makes the launcher's `log()` also append the same line to a d
 
 ### Path resolution
 
-`resolveLauncherLogPath` resolves the destination. By default it writes to `<dbDir>/.mk-spec-memory-launcher.log`, keeping the log next to the database directory the launcher already owns. `SPECKIT_LAUNCHER_LOG_PATH` overrides the destination when an operator wants the log elsewhere.
+`resolveLauncherLogPath` resolves the destination. By default it writes to `<dbDir>/.system-spec-memory-launcher.log`, keeping the log next to the database directory the launcher already owns. `SPECKIT_LAUNCHER_LOG_PATH` overrides the destination when an operator wants the log elsewhere.
 
 ### Bounded single-generation rotation
 
@@ -48,7 +48,7 @@ The persistent log makes the launcher's `log()` also append the same line to a d
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Defines `persistLauncherLogLine`, `launcherLogIsEnabled`, `resolveLauncherLogPath` and `shouldRotateLauncherLog`. Reads `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LAUNCHER_LOG_PATH` and `SPECKIT_LAUNCHER_LOG_MAX_BYTES`. Calls the durable append from the launcher `log()` path |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | Script | Defines `persistLauncherLogLine`, `launcherLogIsEnabled`, `resolveLauncherLogPath` and `shouldRotateLauncherLog`. Reads `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LAUNCHER_LOG_PATH` and `SPECKIT_LAUNCHER_LOG_MAX_BYTES`. Calls the durable append from the launcher `log()` path |
 
 ### Validation And Tests
 

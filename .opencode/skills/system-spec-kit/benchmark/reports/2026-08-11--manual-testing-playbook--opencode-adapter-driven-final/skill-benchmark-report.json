@@ -107,7 +107,7 @@
     "runtime": "opencode-plugin-test-seam",
     "nodeVersion": "v25.6.1",
     "hostVersionObservation": "not-observed",
-    "command": "cd .opencode/skills/system-skill-advisor/mcp-server && npx vitest run tests/hooks/directive-lifecycle.vitest.ts tests/hooks/directive-lifecycle-boundary.vitest.ts tests/hooks/claude-user-prompt-submit-hook.vitest.ts tests/mk-skill-advisor-plugin.vitest.ts --sequence.shuffle --sequence.seed=18018",
+    "command": "cd .opencode/skills/system-skill-advisor/mcp-server && npx vitest run tests/hooks/directive-lifecycle.vitest.ts tests/hooks/directive-lifecycle-boundary.vitest.ts tests/hooks/claude-user-prompt-submit-hook.vitest.ts tests/system-skill-advisor-plugin.vitest.ts --sequence.shuffle --sequence.seed=18018",
     "payloadFixture": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/seam-payload-fixtures.json",
     "executorObserved": true,
     "modelNotApplicableReason": "adapter-driven test seam uses deterministic fixtures without a model",

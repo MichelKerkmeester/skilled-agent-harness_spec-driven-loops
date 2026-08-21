@@ -32,11 +32,11 @@ const CLAUDE_MCP_PREFIX = 'mcp__';
 const CLAUDE_AI_PREFIX = 'claude_ai_';
 
 // Kill-switch: set to '1' to make the guard a full no-op on every call.
-const DISABLED_ENV = 'MK_MCP_ROUTE_GUARD_DISABLED';
+const DISABLED_ENV = 'MCP_ROUTE_GUARD_DISABLED';
 // Opt-in, default-off: also advise on external servers the manifest cannot
 // route yet, nudging the operator to register a manual for them. Manifest-
 // strict (the default) stays silent there so every advisory stays actionable.
-const BROAD_MODE_ENV = 'MK_MCP_ROUTE_GUARD_BROAD_MODE';
+const BROAD_MODE_ENV = 'MCP_ROUTE_GUARD_BROAD_MODE';
 
 // Internal MCP servers this repo registers natively (never worth a routing
 // nudge -- Code Mode does not, and should not, wrap its own siblings).
@@ -44,8 +44,8 @@ const INTERNAL_EXACT_TOKENS = new Set(['code_mode', 'sequential_thinking']);
 const INTERNAL_RAW_TOKENS = [
   'code_mode',
   'sequential_thinking',
-  'mk_spec_memory',
-  'mk_skill_advisor',
+  'system_spec_memory',
+  'system_skill_advisor',
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -215,10 +215,10 @@ describe.skip('launcher IPC bridge', () => {
 
   it('lease-held with socket present enters bridge mode and stays attached', async () => {
     const root = tempDir('launcher-bridge-present-');
-    const launcherPath = copyLauncherFixture(root, '.opencode/bin/mk-spec-memory-launcher.cjs');
+    const launcherPath = copyLauncherFixture(root, '.opencode/bin/system-spec-memory-launcher.cjs');
     const dbDir = join(root, '.opencode/skills/system-spec-kit/mcp-server/database');
     mkdirSync(dbDir, { recursive: true });
-    writeFileSync(join(dbDir, '.mk-spec-memory-launcher.json'), JSON.stringify({ pid: process.pid, startedAt: '2026-05-19T00:00:00.000Z' }));
+    writeFileSync(join(dbDir, '.system-spec-memory-launcher.json'), JSON.stringify({ pid: process.pid, startedAt: '2026-05-19T00:00:00.000Z' }));
     const server = net.createServer(() => undefined);
     const socketEndpoint = await listenTcp(server);
     if (!socketEndpoint) return;
@@ -230,10 +230,10 @@ describe.skip('launcher IPC bridge', () => {
 
   it('lease-held with missing socket exits with no-bridge-socket marker', async () => {
     const root = tempDir('launcher-bridge-missing-');
-    const launcherPath = copyLauncherFixture(root, '.opencode/bin/mk-spec-memory-launcher.cjs');
+    const launcherPath = copyLauncherFixture(root, '.opencode/bin/system-spec-memory-launcher.cjs');
     const dbDir = join(root, '.opencode/skills/system-spec-kit/mcp-server/database');
     mkdirSync(dbDir, { recursive: true });
-    writeFileSync(join(dbDir, '.mk-spec-memory-launcher.json'), JSON.stringify({ pid: process.pid, startedAt: '2026-05-19T00:00:00.000Z' }));
+    writeFileSync(join(dbDir, '.system-spec-memory-launcher.json'), JSON.stringify({ pid: process.pid, startedAt: '2026-05-19T00:00:00.000Z' }));
 
     const run = spawnLauncher(root, launcherPath);
     await waitForExit(run.child);
@@ -242,10 +242,10 @@ describe.skip('launcher IPC bridge', () => {
 
   it('SPECKIT_LAUNCHER_BRIDGE_DISABLED forces legacy lease-held output', async () => {
     const root = tempDir('launcher-bridge-disabled-');
-    const launcherPath = copyLauncherFixture(root, '.opencode/bin/mk-spec-memory-launcher.cjs');
+    const launcherPath = copyLauncherFixture(root, '.opencode/bin/system-spec-memory-launcher.cjs');
     const dbDir = join(root, '.opencode/skills/system-spec-kit/mcp-server/database');
     mkdirSync(dbDir, { recursive: true });
-    writeFileSync(join(dbDir, '.mk-spec-memory-launcher.json'), JSON.stringify({ pid: process.pid, startedAt: '2026-05-19T00:00:00.000Z' }));
+    writeFileSync(join(dbDir, '.system-spec-memory-launcher.json'), JSON.stringify({ pid: process.pid, startedAt: '2026-05-19T00:00:00.000Z' }));
     const server = net.createServer(() => undefined);
     const socketEndpoint = await listenTcp(server);
     if (!socketEndpoint) return;

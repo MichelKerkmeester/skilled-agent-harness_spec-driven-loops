@@ -81,7 +81,7 @@ async function startFakeDaemon(socketDir: string, options: FakeDaemonOptions = {
             result: {
               protocolVersion: options.protocolVersion ?? '2025-06-18',
               capabilities: {},
-              serverInfo: { name: 'fake-mk-spec-memory', version: '0.0.0' },
+              serverInfo: { name: 'fake-system-spec-memory', version: '0.0.0' },
             },
           })}\n`);
           continue;

@@ -4,7 +4,7 @@ description: "Benchmark tree for cli-opencode holding curated goal-hook validati
 trigger_phrases:
   - "cli-opencode benchmark"
   - "cli-opencode goal hook validation report"
-  - "mk-goal headless validation report"
+  - "opencode-goal headless validation report"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -17,7 +17,7 @@ contextType: "general"
 
 ## 1. OVERVIEW
 
-This `benchmark/` tree holds reports **derived after the fact from a manual-testing-playbook validation run**, not the deep-improvement Lane C skill-benchmark harness -- no D1 to D5 dimension scoring applies here, and no field in this tree was written by a harness at run time. The archived run below packages an already-captured attempt to validate the OpenCode-native `mk-goal` plugin's live injection path through headless `opencode run` -- the `CO-039` scenario's Optional Supplemental Check, not its primary direct-in-process contract (which independently returned an overall PASS documented in the same playbook file). This tree tracks only the live-dispatch slice.
+This `benchmark/` tree holds reports **derived after the fact from a manual-testing-playbook validation run**, not the deep-improvement Lane C skill-benchmark harness -- no D1 to D5 dimension scoring applies here, and no field in this tree was written by a harness at run time. The archived run below packages an already-captured attempt to validate the OpenCode-native `opencode-goal` plugin's live injection path through headless `opencode run` -- the `CO-039` scenario's Optional Supplemental Check, not its primary direct-in-process contract (which independently returned an overall PASS documented in the same playbook file). This tree tracks only the live-dispatch slice.
 
 Every file inside a run-label folder carries the marker `_Derived after the fact from this run's stored record, not written at run time._` for that reason.
 

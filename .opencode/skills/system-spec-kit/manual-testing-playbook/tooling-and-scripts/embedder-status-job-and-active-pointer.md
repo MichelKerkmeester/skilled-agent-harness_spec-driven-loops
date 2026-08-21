@@ -140,7 +140,7 @@ Command 3 (`embedder_status({ jobId: "emb-swap-does-not-exist" })`) returned str
         "inferenceP95Ms": null,
         "lastInferenceMs": null,
         "queueDepth": 0,
-        "baseUrl": "/tmp/mk-hf-embed/hf-embed.sock",
+        "baseUrl": "/tmp/system-hf-embed/hf-embed.sock",
         "requestCount": 0
       },
       "recallDegradation": {

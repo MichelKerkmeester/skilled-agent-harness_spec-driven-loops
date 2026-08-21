@@ -29,7 +29,7 @@ Live dispatches confirm `sessionStart`, `sessionEnd`, generic `preToolUse`, `pos
 
 ### Gate-3 Enforcement And Classification
 
-`spec-gate-prebind.mjs` runs on confirmed `sessionStart` delivery. It satisfies a filesystem-validated `MK_SPEC_FOLDER`, or opens state only when `MK_SPEC_GATE_ENFORCE=1` is explicitly set for an identifiable top-level session. Disabled sessions, dispatched children, malformed input, and missing session identities write no state. `spec-gate-enforce.mjs` consumes that state on `preToolUse`; `spec-gate-classify.mjs` remains registered on the undelivered prompt event for forward compatibility.
+`spec-gate-prebind.mjs` runs on confirmed `sessionStart` delivery. It satisfies a filesystem-validated `SYSTEM_SPEC_FOLDER`, or opens state only when `SYSTEM_SPEC_GATE_ENFORCE=1` is explicitly set for an identifiable top-level session. Disabled sessions, dispatched children, malformed input, and missing session identities write no state. `spec-gate-enforce.mjs` consumes that state on `preToolUse`; `spec-gate-classify.mjs` remains registered on the undelivered prompt event for forward compatibility.
 
 ### Current Hook Matrix
 
@@ -52,7 +52,7 @@ Cursor CLI and the Cursor desktop editor consume the same `.cursor/hooks.json`. 
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/session-end.ts` | Handler | Delegates confirmed `sessionEnd` delivery to session stop. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.mjs` | Script | Initializes validated or explicitly enforced state on confirmed `sessionStart` delivery. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-enforce.mjs` | Script | Enforces Gate-3 policy on confirmed `preToolUse` delivery. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-classify.mjs` | Script | Registered advisory classifier whose `beforeSubmitPrompt` delivery remains unconfirmed; on emission it records post-emission Gate-3 question delivery (observed receipt, `lifecycleEpoch >= 1`) feeding the default-off `MK_SPEC_GATE_3_DELIVERY_SUPPRESSION` shadow. |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-classify.mjs` | Script | Registered advisory classifier whose `beforeSubmitPrompt` delivery remains unconfirmed; on emission it records post-emission Gate-3 question delivery (observed receipt, `lifecycleEpoch >= 1`) feeding the default-off `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION` shadow. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs` | Script | Runs post-edit, code-graph freshness, and dispatch-audit checks on confirmed `postToolUse` delivery. |
 | `.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` | Script | Applies the task-dispatch guard on a matched `preToolUse` entry. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts` | Handler | Registered `beforeSubmitPrompt` proxy with unconfirmed delivery. Directive delivery is lifecycle-deduped via the shared compiled shim (full on first message + lifecycle boundaries, route-only on repeats; `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full). |

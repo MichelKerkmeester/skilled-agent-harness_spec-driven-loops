@@ -170,8 +170,8 @@ export function normalizeArguments(toolName, args) {
 }
 
 export function selectClientForServer(clients, server) {
-  if (server === 'mk_spec_memory' || server === 'mk-spec-memory') {
-    return clients.mk_spec_memory ?? clients['mk-spec-memory'] ?? null;
+  if (server === 'system_spec_memory' || server === 'system-spec-memory') {
+    return clients.system_spec_memory ?? clients['system-spec-memory'] ?? null;
   }
   return null;
 }
@@ -234,7 +234,7 @@ export function parseScenarioToolCalls(markdown) {
     const closeIndex = findMatchingParen(execution, openIndex);
     if (closeIndex < 0) continue;
     const argsSource = execution.slice(openIndex + 1, closeIndex);
-    const server = match[2] || 'mk_spec_memory';
+    const server = match[2] || 'system_spec_memory';
     const tool = normalizeToolName(server, match[3] || match[4]);
     try {
       calls.push({
@@ -378,8 +378,8 @@ function liveOwnerForService(name) {
   let leasePath;
   let pidFields;
   let startedAtField;
-  if (name === 'mk-spec-memory') {
-    leasePath = path.join(MEMORY_SERVER_ROOT, 'database', '.mk-spec-memory-launcher.json');
+  if (name === 'system-spec-memory') {
+    leasePath = path.join(MEMORY_SERVER_ROOT, 'database', '.system-spec-memory-launcher.json');
     pidFields = ['ownerPid', 'pid'];
     startedAtField = 'startedAt';
   } else {
@@ -687,8 +687,8 @@ async function runScenario(clients, toolNameSets, scenario) {
     };
   }
   const markdown = fs.readFileSync(file, 'utf8');
-  if (scenario === 410 && toolNameSets.mk_spec_memory?.has('memory_search')) {
-    return { scenario, ...(await runLatencyScenario(clients.mk_spec_memory)) };
+  if (scenario === 410 && toolNameSets.system_spec_memory?.has('memory_search')) {
+    return { scenario, ...(await runLatencyScenario(clients.system_spec_memory)) };
   }
   return runGenericScenario(clients, toolNameSets, scenario, markdown);
 }
@@ -764,10 +764,10 @@ async function main() {
   const connections = [];
   try {
     const memoryConnection = await connectSharedClient({
-      name: 'mk-spec-memory',
+      name: 'system-spec-memory',
       transportOptions: {
         command: process.execPath,
-        args: ['.opencode/bin/mk-spec-memory-launcher.cjs'],
+        args: ['.opencode/bin/system-spec-memory-launcher.cjs'],
         cwd: REPO_ROOT,
         env: buildDaemonEnv({
           SPECKIT_RETRY_ENABLED: 'false',
@@ -791,10 +791,10 @@ async function main() {
     }
 
     const clients = {
-      mk_spec_memory: memoryConnection.client,
+      system_spec_memory: memoryConnection.client,
     };
     const toolNameSets = {
-      mk_spec_memory: memoryConnection.toolNames,
+      system_spec_memory: memoryConnection.toolNames,
     };
     for (const scenario of options.scenarios) {
       const row = await runScenario(clients, toolNameSets, scenario);

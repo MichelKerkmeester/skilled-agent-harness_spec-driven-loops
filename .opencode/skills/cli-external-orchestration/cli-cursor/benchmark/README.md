@@ -45,10 +45,10 @@ benchmark/
 
 ## 4. HOW TO RE-RUN
 
-There is no automated re-run harness for this tree — it is a hand-derived capture, not a Lane C `loop-host.cjs` invocation. To reproduce the underlying evidence, follow `CU-027` Supplemental Check 4 in [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md): isolate `MK_GOAL_STATE_DIR`, seed a fresh canary objective via `bin/goal.cjs set`, then dispatch:
+There is no automated re-run harness for this tree — it is a hand-derived capture, not a Lane C `loop-host.cjs` invocation. To reproduce the underlying evidence, follow `CU-027` Supplemental Check 4 in [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md): isolate `OPENCODE_GOAL_STATE_DIR`, seed a fresh canary objective via `bin/goal.cjs set`, then dispatch:
 
 ```bash
-MK_GOAL_STATE_DIR=<iso> MK_GOAL_RUNTIME_LABEL=Cursor \
+OPENCODE_GOAL_STATE_DIR=<iso> OPENCODE_GOAL_RUNTIME_LABEL=Cursor \
   cursor-agent -p "<prompt>" --output-format text --model composer-2.5 --auto-review --sandbox enabled </dev/null
 ```
 

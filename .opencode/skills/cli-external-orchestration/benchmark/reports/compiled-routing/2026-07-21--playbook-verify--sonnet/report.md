@@ -109,7 +109,7 @@ All against fresh `mktemp` scratch directories, never the real repo log path:
 1. Core unit-test suite (`npx vitest run`, scoped to the canonical file): **38/38 PASS**.
 2. Live Claude PostToolUse(Bash) hook adapter, stdin, with an embedded `--api-key` secret: exit 0; one JSONL line written; the secret fully replaced with `[REDACTED]`.
 3. Live OpenCode plugin `tool.execute.after` hook, in-process, with an embedded `Authorization: Bearer` secret: invoked without throwing; one JSONL line written; the bearer token fully replaced with `[REDACTED]`.
-4. Kill-switch (`MK_CLI_DISPATCH_AUDIT_DISABLED=1`) on a real dispatch-shaped payload: exit 0; no log file created.
+4. Kill-switch (`CLI_DISPATCH_AUDIT_DISABLED=1`) on a real dispatch-shaped payload: exit 0; no log file created.
 5. Non-dispatch fast-exit (`git status` payload): exit 0; no log file created.
 
 All 5 results match the doc's 2026-07-11 embedded evidence exactly. **Bonus corroboration**: the sibling PreToolUse preflight-lint hook fired live and unprompted in this very agent session against the literal `opencode run`/`claude -p` substrings embedded in the test payloads — the same live proof of the shared `DISPATCH_SHAPES` registry the doc's own evidence section documents.
@@ -118,7 +118,7 @@ All 5 results match the doc's 2026-07-11 embedded evidence exactly. **Bonus corr
 
 Against `$HOME/.codex-hook-fixtures/` (a dedicated non-repo fixtures path, matching the doc's own recipe — not the real global `~/.codex/hooks.json`):
 
-1. `spec-gate-enforce` deny path (open gate + `MK_SPEC_GATE_ENFORCE=1` + `apply_patch` on a non-exempt file): real `permissionDecision:"deny"` envelope, exit 0.
+1. `spec-gate-enforce` deny path (open gate + `SYSTEM_SPEC_GATE_ENFORCE=1` + `apply_patch` on a non-exempt file): real `permissionDecision:"deny"` envelope, exit 0.
 2. `spec-gate-enforce` fail-open (empty + malformed stdin): both exit 0, no output.
 3. `spec-gate-classify` advisory (mutation-intent prompt): Gate-3 A-E `additionalContext` envelope emitted, exit 0.
 4. `dispatch-audit` records a `codex exec -p` dispatch shape: one JSONL line, `runtime:"codex"`, `skill:"cli-codex"`.

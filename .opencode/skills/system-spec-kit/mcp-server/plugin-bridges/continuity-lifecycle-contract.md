@@ -53,7 +53,7 @@ intersection is therefore **recovery + dedupe**, not persistence.
 | Runtime | Recovered where | Persisted where |
 |---|---|---|
 | **Claude** | `SessionStart` hook (`session-prime.ts`): `handleStartup` / `handleResume` restore prior context and `maybeAppendCliWarmFallback` appends a warm `session_resume` brief; `handleCompact` replays the PreCompact cache. | `PreCompact` hook (`compact-inject.ts`) caches a payload for the next start; `Stop` hook (`session-stop.ts`) autosaves canonical docs. |
-| **OpenCode** | `experimental.chat.system.transform` (`mk-spec-memory.js` → `appendContinuityBrief`): a warm `session_resume` brief on every prompt. | **Not persisted by the plugin.** Lifecycle events only invalidate/reset in-memory cache. |
+| **OpenCode** | `experimental.chat.system.transform` (`system-spec-memory.js` → `appendContinuityBrief`): a warm `session_resume` brief on every prompt. | **Not persisted by the plugin.** Lifecycle events only invalidate/reset in-memory cache. |
 
 ---
 
@@ -90,13 +90,13 @@ a continuity surface; it is out of scope for this contract.
 
 ## 5. OPENCODE RUNTIME
 
-Source: `.opencode/plugins/mk-spec-memory.js`.
+Source: `.opencode/plugins/system-spec-memory.js`.
 
 **Recovery** happens in the `experimental.chat.system.transform` hook,
 implemented by `appendContinuityBrief`:
 
 - Every prompt, `getContinuity` calls `runBridge({ request: 'brief' })`, which
-  spawns `mk-spec-memory-bridge.mjs`. The bridge routes the prompt-safe `brief`
+  spawns `system-spec-memory-bridge.mjs`. The bridge routes the prompt-safe `brief`
   request to the read-only `session_resume` tool over the warm daemon CLI — the
   same recovery path Claude uses on startup.
 - Results are cached with a short TTL and deduped: `markedBrief` stamps each brief
@@ -139,7 +139,7 @@ contract changes.
 
 ## 7. CAPABILITY VOCABULARY
 
-The OpenCode plugin's status tool (`mk_spec_memory_status`) reports these
+The OpenCode plugin's status tool (`system_spec_memory_status`) reports these
 continuity capability fields. They are the machine-readable projection of this
 contract — the shared recovery guarantee plus the two explicitly-unsupported
 persistence capabilities:
@@ -167,7 +167,7 @@ cannot drift apart unnoticed.
 ## 8. VERIFICATION
 
 `mcp-server/tests/continuity-lifecycle-parity.vitest.ts` instantiates the plugin
-hermetically (no live daemon), captures the `mk_spec_memory_status` output, and
+hermetically (no live daemon), captures the `system_spec_memory_status` output, and
 asserts each `continuity_*` field equals the value documented in Section 7. A
 change to either the plugin's emitted capability or this document — without the
 matching change to the other — fails that test.

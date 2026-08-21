@@ -65,7 +65,7 @@ The B8 signal ceiling ("12 active scoring signals") is a governance target, not 
 - `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` - Runtime tri-state flag parser and the manifest serving-authority gate.
 - `.opencode/skills/system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts` - Advisor-side single-sourced tri-state parser, `COMPILED_ROUTING_HUBS` eligibility set, and `DEFAULT_ON_HUBS` cohort.
 - `.opencode/bin/compiled-route-status.cjs` - Per-hub serving-status probe emitting the drift-vs-break `causeCode` contract.
-- `.opencode/bin/mk-skill-advisor-launcher.cjs` - Child-process env allowlist that forwards `SPECKIT_COMPILED_ROUTING` to the spawned advisor daemon.
+- `.opencode/bin/system-skill-advisor-launcher.cjs` - Child-process env allowlist that forwards `SPECKIT_COMPILED_ROUTING` to the spawned advisor daemon.
 
 ---
 

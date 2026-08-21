@@ -105,10 +105,10 @@ function canonicalizePath(pathValue) {
 }
 
 function leaseFile(workspaceRoot) {
-  const dir = process.env.MK_SKILL_ADVISOR_DB_DIR
-    ? canonicalizePath(process.env.MK_SKILL_ADVISOR_DB_DIR)
+  const dir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
+    ? canonicalizePath(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR)
     : path.join(workspaceRoot, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'database');
-  return path.join(dir, '.mk-skill-advisor-launcher.json');
+  return path.join(dir, '.system-skill-advisor-launcher.json');
 }
 
 function readLease(filePath) {
@@ -144,7 +144,7 @@ exports.isLeaseHeld = function isLeaseHeld(workspaceRoot) {
 function createWorkspace(): Workspace {
   const root = mkdtempSync('/tmp/sao-');
   tempDirs.push(root);
-  const launcherPath = join(root, '.opencode/bin/mk-skill-advisor-launcher.cjs');
+  const launcherPath = join(root, '.opencode/bin/system-skill-advisor-launcher.cjs');
   const bridgePath = join(root, '.opencode/bin/lib/launcher-ipc-bridge.cjs');
   const sessionProxyPath = join(root, '.opencode/bin/lib/launcher-session-proxy.cjs');
   const childPidFile = join(root, 'runtime', 'advisor-child.pid');
@@ -155,7 +155,7 @@ function createWorkspace(): Workspace {
   mkdirSync(dirname(sessionProxyPath), { recursive: true });
   mkdirSync(dirname(advisorServer), { recursive: true });
   mkdirSync(dirname(leaseModule), { recursive: true });
-  copyFileSync(join(repoRoot, '.opencode/bin/mk-skill-advisor-launcher.cjs'), launcherPath);
+  copyFileSync(join(repoRoot, '.opencode/bin/system-skill-advisor-launcher.cjs'), launcherPath);
   copyFileSync(join(repoRoot, '.opencode/bin/lib/launcher-ipc-bridge.cjs'), bridgePath);
   copyFileSync(join(repoRoot, '.opencode/bin/lib/launcher-session-proxy.cjs'), sessionProxyPath);
   writeFileSync(advisorServer, advisorServerSource(childPidFile), 'utf8');
@@ -173,7 +173,7 @@ function createWorkspace(): Workspace {
     dbDir,
     socketDir,
     socketPath: join(socketDir, 'daemon-ipc.sock'),
-    leaseFilePath: join(dbDir, '.mk-skill-advisor-launcher.json'),
+    leaseFilePath: join(dbDir, '.system-skill-advisor-launcher.json'),
     ownerLeaseFilePath: join(dbDir, '.skill-advisor-owner.json'),
     childPidFile,
   };
@@ -185,7 +185,7 @@ function spawnLauncher(workspace: Workspace, env: NodeJS.ProcessEnv = {}, option
       cwd: workspace.root,
       env: {
         ...process.env,
-        MK_SKILL_ADVISOR_DB_DIR: workspace.dbDir,
+        SYSTEM_SKILL_ADVISOR_DB_DIR: workspace.dbDir,
         SPECKIT_IPC_SOCKET_DIR: workspace.socketDir,
         SPECKIT_DAEMON_REELECTION: 'on',
         SPECKIT_LEASE_PROBE_RETRIES: '1',

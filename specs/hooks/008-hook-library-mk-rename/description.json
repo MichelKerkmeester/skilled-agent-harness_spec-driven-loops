@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "hooks/008-hook-library-mk-rename",
+  "description": "Rename the repo hook library away from the mk- prefix to skill-relevant names across plugins, cores, per-runtime scripts, the two live MCP daemons, and the MK_ env namespace, without touching historical spec docs.",
+  "keywords": [
+    "hook",
+    "library",
+    "rename",
+    "mk",
+    "prefix",
+    "plugin",
+    "daemon",
+    "system",
+    "sk-code",
+    "sk-git",
+    "opencode-goal",
+    "tool-namespace",
+    "env"
+  ],
+  "lastUpdated": "2026-08-20T00:00:00.000Z",
+  "specId": "008",
+  "folderSlug": "hook-library-mk-rename",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "_stub": "Hand-authored in a bare worktree (no deps). Regenerate on main post-merge via generate-context.js + graph-metadata backfill (ADR-006)."
+}

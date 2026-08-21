@@ -10,7 +10,7 @@
 # all of them so none is forgotten.
 #
 # Recycle model (see references/memory/ for detail):
-#   - mk-spec-memory recycles transparently: SIGTERM its daemon CHILD and the
+#   - system-spec-memory recycles transparently: SIGTERM its daemon CHILD and the
 #     owner launcher respawns it from the fresh dist while the front-proxy keeps
 #     MCP up. This script does that when --recycle is passed.
 #     of respawning, so this script never SIGTERMs them; their fresh dist loads
@@ -22,7 +22,7 @@
 #
 # Usage:
 #   deploy-mcp.sh            # build all dists + report (safe, no recycle)
-#   deploy-mcp.sh --recycle  # also transparently recycle the mk-spec-memory daemon
+#   deploy-mcp.sh --recycle  # also transparently recycle the system-spec-memory daemon
 
 set -euo pipefail
 REPO="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
@@ -47,9 +47,9 @@ build_pkg() {
 }
 
 echo "== Building MCP server dists =="
-# mk-spec-memory: builds @spec-kit/shared too via TS project references.
-build_pkg "mk-spec-memory" ".opencode/skills/system-spec-kit/mcp-server"
-# mk-skill-advisor: build if it ships a build script.
+# system-spec-memory: builds @spec-kit/shared too via TS project references.
+build_pkg "system-spec-memory" ".opencode/skills/system-spec-kit/mcp-server"
+# system-skill-advisor: build if it ships a build script.
 build_pkg "advisor" ".opencode/skills/system-skill-advisor/mcp-server"
 
 if [ "$FAIL" -ne 0 ]; then
@@ -74,10 +74,10 @@ else
 fi
 
 if [ "$RECYCLE" -eq 1 ]; then
-  echo "== Recycling mk-spec-memory daemon (transparent) =="
+  echo "== Recycling system-spec-memory daemon (transparent) =="
   CHILD="$(pgrep -f 'system-spec-kit/mcp-server/dist/context-server.js' | head -1 || true)"
   if [ -z "$CHILD" ]; then
-    echo "  No running mk-spec-memory daemon child found — it will load fresh dist on next start."
+    echo "  No running system-spec-memory daemon child found — it will load fresh dist on next start."
   else
     kill -TERM "$CHILD" && echo "  SIGTERM sent to daemon child $CHILD; owner launcher will respawn from fresh dist."
     i=0

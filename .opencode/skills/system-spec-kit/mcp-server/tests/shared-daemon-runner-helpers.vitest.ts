@@ -50,7 +50,7 @@ memory_search({ query: "latency baseline", limit: 5 })
 
     expect(parseScenarioToolCalls(markdown)).toEqual([
       {
-        server: 'mk_spec_memory',
+        server: 'system_spec_memory',
         tool: 'memory_search',
         arguments: {
           query: 'latency baseline',
@@ -63,18 +63,18 @@ memory_search({ query: "latency baseline", limit: 5 })
 
   it('selects the MCP client for each known server', () => {
     const memoryClient = { name: 'memory' };
-    const clients = { mk_spec_memory: memoryClient };
+    const clients = { system_spec_memory: memoryClient };
 
-    expect(selectClientForServer(clients, 'mk_spec_memory')).toBe(memoryClient);
-    expect(selectClientForServer(clients, 'mk-spec-memory')).toBe(memoryClient);
+    expect(selectClientForServer(clients, 'system_spec_memory')).toBe(memoryClient);
+    expect(selectClientForServer(clients, 'system-spec-memory')).toBe(memoryClient);
     expect(selectClientForServer(clients, 'unknown_server')).toBeNull();
   });
 
   it('routes via primary daemon keys', () => {
     const memoryClient = { name: 'mem' };
-    const clients = { mk_spec_memory: memoryClient };
+    const clients = { system_spec_memory: memoryClient };
 
-    expect(selectClientForServer(clients, 'mk_spec_memory')).toBe(memoryClient);
+    expect(selectClientForServer(clients, 'system_spec_memory')).toBe(memoryClient);
     expect(selectClientForServer(clients, 'unknown')).toBeNull();
   });
 
@@ -113,14 +113,14 @@ memory_search({ query: "latency baseline", limit: 5 })
 
   it('checks tool availability and executes every runnable call before aggregating failures', async () => {
     const calls = [
-      { server: 'mk_spec_memory', tool: 'memory_search', arguments: { query: 'ok' } },
-      { server: 'mk_spec_memory', tool: 'memory_context', arguments: { input: 'bad' } },
+      { server: 'system_spec_memory', tool: 'memory_search', arguments: { query: 'ok' } },
+      { server: 'system_spec_memory', tool: 'memory_context', arguments: { input: 'bad' } },
     ];
     const availability = checkToolAvailability(calls, {
-      mk_spec_memory: new Set(['memory_search', 'memory_context']),
+      system_spec_memory: new Set(['memory_search', 'memory_context']),
     });
     const clients = {
-      mk_spec_memory: {
+      system_spec_memory: {
         callTool: async ({ name }: { name: string }) => (
           name === 'memory_search'
             ? { content: [{ type: 'text', text: '{"success":true}' }] }

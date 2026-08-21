@@ -1,0 +1,1 @@
+../../../plugins/cli-dispatch-audit.js

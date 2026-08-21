@@ -31,8 +31,8 @@ export interface CodexShimCapture {
   readonly stdin: string;
   readonly env: {
     readonly AI_SESSION_CHILD: string | null;
-    readonly MK_SPEC_GATE_ENFORCE: string | null;
-    readonly MK_SPEC_GATE_DISABLED: string | null;
+    readonly SYSTEM_SPEC_GATE_ENFORCE: string | null;
+    readonly SYSTEM_SPEC_GATE_DISABLED: string | null;
   };
   readonly childPid?: number;
   readonly grandchildPid?: number;

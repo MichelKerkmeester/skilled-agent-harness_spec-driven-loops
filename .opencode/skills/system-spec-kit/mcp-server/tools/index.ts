@@ -22,7 +22,7 @@ export const ALL_DISPATCHERS = [
   checkpointTools,
   lifecycleTools,
   // codeGraphTools intentionally omitted: standalone system_code_graph owns MCP dispatch
-  // skillGraphTools intentionally omitted: standalone mk_skill_advisor owns MCP dispatch
+  // skillGraphTools intentionally omitted: standalone system_skill_advisor owns MCP dispatch
 ] as const;
 
 /** Dispatch a tool call to the appropriate module. Returns null if unrecognized. */

@@ -23,8 +23,8 @@ _Derived after the fact from this run's stored record, not written at run time._
 
 | Scenario | Stage | Provider model | Verdict | Reason |
 |---|---|---|---|---|
-| CO-039-HEADLESS-TOOL-DEEPSEEK | tool-exposure | deepseek-v4-pro | SKIP | mk_goal tool not exposed to the headless run agent |
-| CO-039-HEADLESS-TOOL-LUNA | tool-exposure | openai/gpt-5.6-luna | SKIP | mk_goal referenced but never executed; no goal persisted |
+| CO-039-HEADLESS-TOOL-DEEPSEEK | tool-exposure | deepseek-v4-pro | SKIP | opencode_goal tool not exposed to the headless run agent |
+| CO-039-HEADLESS-TOOL-LUNA | tool-exposure | openai/gpt-5.6-luna | SKIP | opencode_goal referenced but never executed; no goal persisted |
 | CO-039-HEADLESS-TRANSFORM-DEEPSEEK | chat-system-transform | deepseek-v4-pro | SKIP | transform did not fire against a pre-seeded ACTIVE goal state |
 
 ## Methodology / caveats
@@ -33,4 +33,4 @@ _Derived after the fact from this run's stored record, not written at run time._
 - `score` is `not-recorded` for every row: this run's stored evidence never carried a numeric score.
 - Every verdict here is SKIP, not FAIL: both structural causes (tool not exposed, transform not fired) are a headless-surface limitation of `opencode run`, independent of model quality, and orthogonal to packet `032-goal-hooks-cross-runtime`.
 - This run covers only `CO-039`'s live headless `opencode run` supplemental check. The scenario's primary contract (direct in-process invocation of the shipped plugin) independently returned an overall PASS, documented in `cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md`, not in this report.
-- mk-goal's `setGoal` / injection / lifecycle / supervisor behavior remains covered by its 7 committed unit suites (`.opencode/plugins/tests/mk-goal-*.test.cjs`).
+- opencode-goal's `setGoal` / injection / lifecycle / supervisor behavior remains covered by its 7 committed unit suites (`.opencode/plugins/tests/opencode-goal-*.test.cjs`).

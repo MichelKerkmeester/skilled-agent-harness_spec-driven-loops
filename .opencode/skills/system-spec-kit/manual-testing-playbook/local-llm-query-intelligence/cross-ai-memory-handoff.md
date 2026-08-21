@@ -49,7 +49,7 @@ Cross-AI handoff test: this memory was stored by Claude during validation scenar
 Then saves it:
 
 ```
-mcp__mk_spec_memory__memory_save({
+mcp__system_spec_memory__memory_save({
   filePath: "<absolute path to the file written above>"
 })
 ```
@@ -74,7 +74,7 @@ You are OpenCode. I am Claude orchestrating a Memory MCP cross-AI validation. I 
 
 Open a fresh Memory MCP session (your MCP client should already be wired). Then:
 
-1. Call mcp__mk_spec_memory__memory_search({ query: "cross-AI handoff scenario 414", limit: 10 }).
+1. Call mcp__system_spec_memory__memory_search({ query: "cross-AI handoff scenario 414", limit: 10 }).
 2. Capture top-5 results: rank, score, parent_id, first 100 chars of content.
 3. Verify whether a memory whose content references "scenario 414 ... cross-AI handoff" appears.
 4. Return JSON:
@@ -143,6 +143,6 @@ Per CLI:
 ## 5. CLEAN-UP
 
 ```
-mcp__mk_spec_memory__memory_delete({ parent_id: STORED_ID })
+mcp__system_spec_memory__memory_delete({ parent_id: STORED_ID })
 rm -rf <spec-folder>
 ```

@@ -83,7 +83,7 @@ const DEFAULT_CLI_PROBE_TIMEOUT_MS = 50;
 const EXIT_RETRYABLE = 75;
 const EXIT_SETTLE_GRACE_MS = 25;
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
-const DEFAULT_SOCKET_DIR = '/tmp/mk-skill-advisor';
+const DEFAULT_SOCKET_DIR = '/tmp/system-skill-advisor';
 const MAX_STDOUT_BYTES = 1024 * 1024;
 const require = createRequire(import.meta.url);
 
@@ -185,7 +185,7 @@ function findCliFallbackPaths(workspaceRoot: string, env: NodeJS.ProcessEnv): Cl
         repoRoot: current,
         cliPath,
         bridgePath,
-        dbDir: resolve(env.MK_SKILL_ADVISOR_DB_DIR ?? env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? defaultDbDir),
+        dbDir: resolve(env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? defaultDbDir),
       };
     }
     const parent = dirname(current);
@@ -248,7 +248,7 @@ function childEnvForCli(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
   return {
     ...env,
     SPECKIT_IPC_SOCKET_DIR: env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SOCKET_DIR,
-    MK_SKILL_ADVISOR_CLI_PROMPT_TIME: '1',
+    SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME: '1',
   };
 }
 

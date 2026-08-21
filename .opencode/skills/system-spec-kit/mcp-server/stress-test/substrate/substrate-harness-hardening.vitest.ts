@@ -42,7 +42,7 @@ describe('substrate harness — owner identity (recycled-PID hardening)', () => 
 // Evidence-integrity hardening: the summary TSV must never silently present a prior run's pids.
 describe('substrate harness — TSV run-id + sidecar', () => {
   const rows = [
-    { scenario: 'runner:mk-spec-memory', verdict: 'SKIP', key_metric: 'k', detail: 'd' },
+    { scenario: 'runner:system-spec-memory', verdict: 'SKIP', key_metric: 'k', detail: 'd' },
     { scenario: '410', verdict: 'PASS', key_metric: 'k2', detail: 'd2' },
   ];
 
@@ -55,7 +55,7 @@ describe('substrate harness — TSV run-id + sidecar', () => {
 
   it('keeps scenario/verdict as the first two columns (no reader regression)', () => {
     const dataLines = renderSummaryTsv(rows, 'RUNX').trim().split('\n').slice(1);
-    expect(dataLines[0].split('\t')[0]).toBe('runner:mk-spec-memory');
+    expect(dataLines[0].split('\t')[0]).toBe('runner:system-spec-memory');
     expect(dataLines[0].split('\t')[1]).toBe('SKIP');
   });
 

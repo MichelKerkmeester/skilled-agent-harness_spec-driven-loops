@@ -11,9 +11,9 @@
  * skill-ON run and a skill-OFF run of the same scenario, graded by the existing
  * Lane B grader (gradeD4).
  *
- * Honest constraint (validated in the Phase 0 spike): opencode has no clean
+ * Honest constraint: opencode has no clean
  * single-skill suppression. Skill-OFF is APPROXIMATED with
- * MK_SKILL_ADVISOR_HOOK_DISABLED=1 + a "do not load any skill" preamble, then
+ * SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1 + a "do not load any skill" preamble, then
  * verified by checking the skill was NOT loaded/read (else the pair is dropped
  * as contaminated). D4 scores are stamped attribution:"approximate".
  */
@@ -34,7 +34,7 @@ const buildGraderBase = grader.buildGraderBase;
 
 /**
  * Build the skill-OFF prompt: answer from the model's own knowledge, no skill,
- * no project skill-file reads. Pairs with MK_SKILL_ADVISOR_HOOK_DISABLED=1.
+ * no project skill-file reads. Pairs with SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1.
  *
  * @param {Object} scenario - Scenario whose prompt is being ablated.
  * @returns {string} Skill-OFF dispatch prompt.
@@ -88,7 +88,7 @@ async function runD4Ablation({ scenario, skillRoot, model, variant, graderMode =
   const skillId = path.basename(skillRoot || '');
 
   const on = runDispatch({ prompt: buildLiveDispatchPrompt(scenario), dir, model, variant });
-  const off = runDispatch({ prompt: buildSkillOffPrompt(scenario), dir, model, variant, extraEnv: { MK_SKILL_ADVISOR_HOOK_DISABLED: '1' } });
+  const off = runDispatch({ prompt: buildSkillOffPrompt(scenario), dir, model, variant, extraEnv: { SYSTEM_SKILL_ADVISOR_HOOK_DISABLED: '1' } });
   if (on.status !== 0 || off.status !== 0) {
     return { d4: { score: null, unscored: 'ablation dispatch failed', attribution: 'approximate' } };
   }
@@ -200,7 +200,7 @@ async function runD4RAblation({ scenario, skillRoot, model, variant, graderMode 
   const skillId = path.basename(skillRoot || '');
 
   const on = runDispatch({ prompt: buildTaskOutcomePrompt(scenario), dir, model, variant });
-  const off = runDispatch({ prompt: buildTaskOutcomeOffPrompt(scenario), dir, model, variant, extraEnv: { MK_SKILL_ADVISOR_HOOK_DISABLED: '1' } });
+  const off = runDispatch({ prompt: buildTaskOutcomeOffPrompt(scenario), dir, model, variant, extraEnv: { SYSTEM_SKILL_ADVISOR_HOOK_DISABLED: '1' } });
   if (on.status !== 0 || off.status !== 0) {
     return { d4r: { score: null, unscored: 'ablation dispatch failed', attribution: 'approximate', instrument: 'task-outcome' } };
   }

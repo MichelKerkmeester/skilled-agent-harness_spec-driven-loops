@@ -1,1 +1,0 @@
-../../../plugins/mk-post-edit-quality.js

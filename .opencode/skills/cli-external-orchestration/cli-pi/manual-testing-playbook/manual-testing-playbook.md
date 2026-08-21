@@ -256,7 +256,7 @@ This category applies the canonical CLEAR card before a non-trivial Pi dispatch 
 
 ## 15. GOAL HOOK (`PI-021`)
 
-This category validates Pi's complete session-bound goal path: native `/goal-pi` management, input/session-start/turn-end identity binding, two-session isolation, resume/new-session behavior, explicit legacy ownership, fallback safety, and `MK_GOAL_STATE_DIR` isolation.
+This category validates Pi's complete session-bound goal path: native `/goal-pi` management, input/session-start/turn-end identity binding, two-session isolation, resume/new-session behavior, explicit legacy ownership, fallback safety, and `OPENCODE_GOAL_STATE_DIR` isolation.
 
 - `PI-021`: [Session-isolated goal hook and native command](goal-hook/goal-hook.md)
 
@@ -272,7 +272,7 @@ This category validates that the Pi extension carries the shared sk-git advisory
 
 ## 17. CURRENT EXECUTION BOUNDARIES
 
-Provider-backed model turns remain an explicit boundary when credentials are absent. Goal isolation does not depend on that boundary: `/goal-pi` is a registered extension command, and the A/B lifecycle matrix runs against fake native contexts plus explicit-load command canaries. Operators must still isolate `PI_CODING_AGENT_DIR`, session directories, and `MK_GOAL_STATE_DIR` for live probes.
+Provider-backed model turns remain an explicit boundary when credentials are absent. Goal isolation does not depend on that boundary: `/goal-pi` is a registered extension command, and the A/B lifecycle matrix runs against fake native contexts plus explicit-load command canaries. Operators must still isolate `PI_CODING_AGENT_DIR`, session directories, and `OPENCODE_GOAL_STATE_DIR` for live probes.
 
 ---
 

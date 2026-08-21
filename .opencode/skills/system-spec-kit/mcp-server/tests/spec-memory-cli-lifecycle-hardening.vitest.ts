@@ -76,7 +76,7 @@ interface RuntimeScope {
 
 const bridge = require('../../../../bin/lib/launcher-ipc-bridge.cjs') as BridgeModule;
 const supervision = require('../../../../bin/lib/model-server-supervision.cjs') as SupervisionModule;
-const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as LauncherModule;
+const launcher = require('../../../../bin/system-spec-memory-launcher.cjs') as LauncherModule;
 
 const tempDirs: string[] = [];
 const originalEnv = new Map<string, string | undefined>();

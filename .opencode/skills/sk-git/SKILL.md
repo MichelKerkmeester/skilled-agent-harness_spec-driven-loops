@@ -325,7 +325,7 @@ working tree holds changes it would destroy; a directory-scoped commit warns onl
 files sit inside that scope. Measured fire rate across ordinary commands is zero.
 
 All six AI runtimes carry the same shared hook: Claude and Codex/Devin via their PreToolUse hook
-configs, Cursor via a Shell-payload proxy, OpenCode via the `mk-git-preflight-advisory` plugin,
+configs, Cursor via a Shell-payload proxy, OpenCode via the `sk-git-preflight-advisory` plugin,
 and Pi via a native extension. Registration paths, delivery channels, and the fail-open contract:
 [scripts/hooks/README.md](scripts/hooks/README.md). The rule engine and its tests:
 [scripts/lib/README.md](scripts/lib/README.md). Operator test scenario: the

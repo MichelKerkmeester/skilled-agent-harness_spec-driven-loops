@@ -36,7 +36,7 @@ Kill-switch names and wiring status live in the [`README.md` kill-switch index](
 Almost every asymmetry falls out of which of these a runtime uses:
 
 - **Config-invoked discrete hooks — Claude, Codex, Cursor, Devin.** Named events (`SessionStart`, `Stop`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `PreCompact`; Claude/Devin also `SessionEnd`/`PermissionRequest`) each run one file per matcher. The matcher runs a **shell command**, so every concern — including standalone `.sh` guards — is wired as its own discrete entry. → many small per-concern folders.
-- **In-process event-bus plugins — OpenCode.** One `event` handler per plugin, branching on `eventType`. Concern logic is factored **per plugin** (`mk-spec-memory`, `mk-goal`, …); there are no per-event files. → session work distributed across plugins, few folders.
+- **In-process event-bus plugins — OpenCode.** One `event` handler per plugin, branching on `eventType`. Concern logic is factored **per plugin** (`system-spec-memory`, `opencode-goal`, …); there are no per-event files. → session work distributed across plugins, few folders.
 - **TS session-bound extensions — Pi.** Extensions register on `session_start`/`session_compact`/`prompt`/`tool_call`/`turn_end` and can shell out via `ctx.exec()`. Pi bundles several SessionStart advisories into one extension, but independently gates `git-worktree-guard`, `git-hooks-check`, `dist-freshness`, and `hook-install` by their own concerns. → few folders.
 
 ---
@@ -47,11 +47,11 @@ Only concerns with uneven coverage appear. The six covered everywhere — `compl
 
 ### `spec-memory` — folder only on **opencode**
 **The same continuity injection the others fold into `session-lifecycle`; OpenCode just ships it as a standalone plugin.**
-`mk-spec-memory` subscribes to `session.created` / `resumed` / `compacted` on the event bus; the discrete-hook runtimes do the identical injection inside their session-start hook, so a separate adapter there would be redundant.
+`system-spec-memory` subscribes to `session.created` / `resumed` / `compacted` on the event bus; the discrete-hook runtimes do the identical injection inside their session-start hook, so a separate adapter there would be redundant.
 
 ### `session-lifecycle` — folder on **all but opencode**
 **OpenCode has no per-event files — its session events are already consumed by the concern plugins, so nothing is left to centralize.**
-The others wire one file per boundary (`SessionStart`/`Stop`/`PreCompact`) — that file set *is* session-lifecycle; OpenCode's equivalent is distributed across `mk-spec-memory`, `mk-goal`, etc.
+The others wire one file per boundary (`SessionStart`/`Stop`/`PreCompact`) — that file set *is* session-lifecycle; OpenCode's equivalent is distributed across `system-spec-memory`, `opencode-goal`, etc.
 
 ### `git-worktree-guard` and `git-hooks-check` — folders on **claude, codex, cursor, devin**
 **OpenCode and Pi run the same `.sh` guards too — just bundled into one session-start adapter instead of a folder per guard.**
@@ -59,7 +59,7 @@ OpenCode's `session-cleanup` plugin executes `worktree-guard.sh` (`session-clean
 
 ### `dist-freshness` — folder on **all but pi**
 **Pi runs the same staleness check, bundled into `session-start-advisories`; it just has no discrete folder.**
-OpenCode's `mk-dist-freshness-guard` plugin owns the rebuild-on-stale projection; the four editors wire `check-dist-staleness.sh` discretely; Pi runs `check-dist-staleness.sh --all` inside its session-start extension.
+OpenCode's `system-dist-freshness-guard` plugin owns the rebuild-on-stale projection; the four editors wire `check-dist-staleness.sh` discretely; Pi runs `check-dist-staleness.sh --all` inside its session-start extension.
 
 ### `session-cleanup` — folder on **all but pi**
 **Pi runs the startup-guard portion but wires no discrete cleanup/teardown adapter.**
@@ -67,11 +67,11 @@ The shared `session-cleanup.sh` (startup + teardown) is a discrete hook on the f
 
 ### `codex-watchdog` — folder only on **opencode**
 **Only a long-lived OpenCode plugin can poll whether Codex's hooks stayed installed.**
-Codex can't audit its own not-yet-installed hooks, and no other runtime has a stake in Codex's install state; `mk-codex-hooks-watchdog` watches `hooks.json` from OpenCode's process.
+Codex can't audit its own not-yet-installed hooks, and no other runtime has a stake in Codex's install state; `codex-hooks-watchdog` watches `hooks.json` from OpenCode's process.
 
 ### `directive-lifecycle` — folder only on **claude**
 **Everyone de-dups the directives in the prompt path; only Claude needs a separate adapter because its host lifecycle events carry the de-dup's durable state.**
-Per the module: *"host lifecycle hooks advance durable policy state independently of prompt payloads."* Elsewhere the de-dup lives in `prompt-advisor.ts` (Pi), `mk-skill-advisor` state (OpenCode), the shared `user-prompt-submit` (Codex/Cursor/Devin).
+Per the module: *"host lifecycle hooks advance durable policy state independently of prompt payloads."* Elsewhere the de-dup lives in `prompt-advisor.ts` (Pi), `system-skill-advisor` state (OpenCode), the shared `user-prompt-submit` (Codex/Cursor/Devin).
 
 ### `permission-policy` — folder only on **devin**
 **Devin is the only runtime whose approval event isn't already covered by a `PreToolUse` deny.**
@@ -83,7 +83,7 @@ Claude/Cursor/Devin fire a tool event for the spawn and OpenCode/Pi expose a sub
 
 ### `goal` — folders on **cursor, opencode, pi**
 **Ships only where a session-bound command identity exists to drive it.**
-Per the goal contract: OpenCode has `mk-goal` + `/goal-opencode`, Pi has a native extension + `/goal-pi`, Cursor has a partial `sessionStart` hook; Claude is explicitly *"outside this contract,"* and Codex/Devin ship no adapter.
+Per the goal contract: OpenCode has `opencode-goal` + `/goal-opencode`, Pi has a native extension + `/goal-pi`, Cursor has a partial `sessionStart` hook; Claude is explicitly *"outside this contract,"* and Codex/Devin ship no adapter.
 
 ### `git-preflight` — covered on **all six** (not a gap)
 **The four editors share one `shared/` adapter instead of a copy each; only opencode and pi carry runtime-native subfolders.**

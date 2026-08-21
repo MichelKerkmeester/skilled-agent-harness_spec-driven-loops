@@ -99,7 +99,7 @@ cp -R "$TMP/stale-primary" "$P/.git/rebase-merge"
 present "primary: pre-state has a planted rebase-merge dir" "$P/.git/rebase-merge"
 eq "primary: pre-state HEAD is the local commit X" "$P_X" "$(git -C "$P" rev-parse HEAD)"
 
-( cd "$P" && env -u MK_LIVE_SYNC_DISABLED -u MK_PRIMARY_RECONCILE_DISABLED -u MK_HOOKS_DISABLED \
+( cd "$P" && env -u SYSTEM_LIVE_SYNC_DISABLED -u SYSTEM_PRIMARY_RECONCILE_DISABLED -u SYSTEM_HOOKS_DISABLED \
     SPECKIT_LIVE_BRANCH=skilled/v4.0.0.0 SPECKIT_LIVE_REMOTE=origin \
     bash "$RECONCILE" ) >/dev/null 2>&1
 
@@ -144,7 +144,7 @@ S_Y="$(git -C "$S" rev-parse HEAD~1)"
 cp -R "$TMP/stale-session" "$S/.git/rebase-merge"
 present "session: pre-state has a planted rebase-merge dir" "$S/.git/rebase-merge"
 
-( cd "$S" && env -u MK_LIVE_SYNC_DISABLED -u MK_HOOKS_DISABLED \
+( cd "$S" && env -u SYSTEM_LIVE_SYNC_DISABLED -u SYSTEM_HOOKS_DISABLED \
     SPECKIT_LIVE_BRANCH=skilled/v4.0.0.0 SPECKIT_LIVE_REMOTE=origin \
     bash "$GITSYNC" --live skilled/v4.0.0.0 --auto --quiet ) >/dev/null 2>&1
 
@@ -171,7 +171,7 @@ git -C "$TMP/rc3" checkout -q -B skilled/v4.0.0.0 origin/skilled/v4.0.0.0
 printf 'remote-change\n' > "$TMP/rc3/shared"; git -C "$TMP/rc3" add shared; git -C "$TMP/rc3" commit -q -m z3; git -C "$TMP/rc3" push -q origin skilled/v4.0.0.0
 printf 'local-change\n' > "$P3/shared"; git -C "$P3" add shared; git -C "$P3" commit -q -m x3
 P3_X="$(git -C "$P3" rev-parse HEAD)"
-( cd "$P3" && env -u MK_LIVE_SYNC_DISABLED -u MK_PRIMARY_RECONCILE_DISABLED -u MK_HOOKS_DISABLED \
+( cd "$P3" && env -u SYSTEM_LIVE_SYNC_DISABLED -u SYSTEM_PRIMARY_RECONCILE_DISABLED -u SYSTEM_HOOKS_DISABLED \
     SPECKIT_LIVE_BRANCH=skilled/v4.0.0.0 SPECKIT_LIVE_REMOTE=origin bash "$RECONCILE" ) >/dev/null 2>&1
 eq "reconcile genuine conflict: local commit preserved" "$P3_X" "$(git -C "$P3" rev-parse HEAD)"
 if grep -q "rebase conflict aborted cleanly" "$P3/.git/git-primary-reconcile.log" 2>/dev/null; then ok; else bad "reconcile genuine conflict: records a clean abort"; fi
@@ -194,7 +194,7 @@ git -C "$TMP/rc4" checkout -q -B skilled/v4.0.0.0 origin/skilled/v4.0.0.0
 commit_file "$TMP/rc4" rz z4-remote
 git -C "$TMP/rc4" push -q origin skilled/v4.0.0.0
 commit_file "$P4" lx x4-local
-( cd "$P4" && env -u MK_LIVE_SYNC_DISABLED -u MK_PRIMARY_RECONCILE_DISABLED -u MK_HOOKS_DISABLED \
+( cd "$P4" && env -u SYSTEM_LIVE_SYNC_DISABLED -u SYSTEM_PRIMARY_RECONCILE_DISABLED -u SYSTEM_HOOKS_DISABLED \
     SPECKIT_LIVE_BRANCH=skilled/v4.0.0.0 SPECKIT_LIVE_REMOTE=origin bash "$RECONCILE" ) >/dev/null 2>&1
 present "reconcile clean rebase: remote file present after rebase" "$P4/rz"
 present "reconcile clean rebase: local file retained after rebase" "$P4/lx"
@@ -220,7 +220,7 @@ git -C "$TMP/sc5" checkout -q -B skilled/v4.0.0.0 origin/skilled/v4.0.0.0
 printf 'remote-change\n' > "$TMP/sc5/shared"; git -C "$TMP/sc5" add shared; git -C "$TMP/sc5" commit -q -m z5; git -C "$TMP/sc5" push -q origin skilled/v4.0.0.0
 printf 'session-change\n' > "$S5/shared"; git -C "$S5" add shared; git -C "$S5" commit -q -m x5
 S5_X="$(git -C "$S5" rev-parse HEAD)"
-( cd "$S5" && env -u MK_LIVE_SYNC_DISABLED -u MK_HOOKS_DISABLED \
+( cd "$S5" && env -u SYSTEM_LIVE_SYNC_DISABLED -u SYSTEM_HOOKS_DISABLED \
     SPECKIT_LIVE_BRANCH=skilled/v4.0.0.0 SPECKIT_LIVE_REMOTE=origin bash "$GITSYNC" --live skilled/v4.0.0.0 --auto --quiet ) >/dev/null 2>&1
 eq "git-sync genuine conflict: session commit preserved" "$S5_X" "$(git -C "$S5" rev-parse HEAD)"
 if grep -q "aborted cleanly" "$S5/.git/git-sync.log" 2>/dev/null; then ok; else bad "git-sync genuine conflict: records a clean abort"; fi

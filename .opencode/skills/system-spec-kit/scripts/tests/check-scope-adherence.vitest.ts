@@ -55,14 +55,14 @@ function run(env: Record<string, string>): { status: string; message: string; vi
 
 describe('SCOPE_ADHERENCE rule', () => {
   it('is a no-op when no change-set is supplied', () => {
-    const r = run({ MK_SCOPE_CHANGED_FILES: '', MK_SCOPE_BASE: '' });
+    const r = run({ SYSTEM_SCOPE_CHANGED_FILES: '', SYSTEM_SCOPE_BASE: '' });
     expect(r.status).toBe('pass');
     expect(r.message).toMatch(/not active/i);
   });
 
   it("warns on only the out-of-scope file; this packet's own docs and declared paths pass", () => {
     const r = run({
-      MK_SCOPE_CHANGED_FILES:
+      SYSTEM_SCOPE_CHANGED_FILES:
         `${pkt}/spec.md .opencode/skills/foo/bar.ts some/other/out-of-scope.ts`,
     });
     expect(r.status).toBe('warn');
@@ -71,14 +71,14 @@ describe('SCOPE_ADHERENCE rule', () => {
 
   it("passes when the change-set is only this packet's canonical docs plus declared paths", () => {
     const r = run({
-      MK_SCOPE_CHANGED_FILES: `${pkt}/spec.md ${pkt}/plan.md .opencode/skills/foo/bar.ts`,
+      SYSTEM_SCOPE_CHANGED_FILES: `${pkt}/spec.md ${pkt}/plan.md .opencode/skills/foo/bar.ts`,
     });
     expect(r.status).toBe('pass');
     expect(r.violations).toBe('');
   });
 
   it('warns on a same-named canonical doc that lives in a DIFFERENT folder (not exempt by basename)', () => {
-    const r = run({ MK_SCOPE_CHANGED_FILES: 'other/spec.md' });
+    const r = run({ SYSTEM_SCOPE_CHANGED_FILES: 'other/spec.md' });
     expect(r.status).toBe('warn');
     expect(r.violations).toBe('other/spec.md');
   });
@@ -86,7 +86,7 @@ describe('SCOPE_ADHERENCE rule', () => {
   it('matches declared prefixes anchored at the repo root, not as a nested substring', () => {
     // The declared prefix `.opencode/skills/foo/` must not match the same segment
     // nested under an unrelated ancestor.
-    const r = run({ MK_SCOPE_CHANGED_FILES: 'nested/.opencode/skills/foo/x.ts' });
+    const r = run({ SYSTEM_SCOPE_CHANGED_FILES: 'nested/.opencode/skills/foo/x.ts' });
     expect(r.status).toBe('warn');
     expect(r.violations).toBe('nested/.opencode/skills/foo/x.ts');
   });

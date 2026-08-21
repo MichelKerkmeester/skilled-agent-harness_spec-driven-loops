@@ -15,15 +15,15 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-Index of the dist-freshness concern (real code at `.opencode/plugins/mk-dist-freshness-guard.js`, mirrored here). At session start the guard compares the compiled `dist/` output against its TypeScript sources; when `dist/` is stale it triggers a rebuild, so runtime code paths that import compiled scripts never run against an out-of-date build. This is the hook behind the `DIST REBUILT: @spec-kit/scripts -- self-healed a stale build at session start` line. It is an **OpenCode-plugin-only** concern by design — it depends on OpenCode's session-start plugin event.
+Index of the dist-freshness concern (real code at `.opencode/plugins/system-dist-freshness-guard.js`, mirrored here). At session start the guard compares the compiled `dist/` output against its TypeScript sources; when `dist/` is stale it triggers a rebuild, so runtime code paths that import compiled scripts never run against an out-of-date build. This is the hook behind the `DIST REBUILT: @spec-kit/scripts -- self-healed a stale build at session start` line. It is an **OpenCode-plugin-only** concern by design — it depends on OpenCode's session-start plugin event.
 
-Honors the `dist-freshness` kill-switch (`isHookEnabled`; `MK_DIST_FRESHNESS_DISABLED`, legacy `MK_DIST_FRESHNESS_GUARD_DISABLED`, or the master `MK_HOOKS_DISABLED`), default-on.
+Honors the `dist-freshness` kill-switch (`isHookEnabled`; `SYSTEM_DIST_FRESHNESS_DISABLED`, legacy `SYSTEM_DIST_FRESHNESS_GUARD_DISABLED`, or the master `SYSTEM_HOOKS_DISABLED`), default-on.
 
 ## 2. KEY FILES
 
 | Runtime | Adapter |
 |---|---|
-| `opencode/` | `mk-dist-freshness-guard.js` (browsability symlink → `../../../plugins/`) |
+| `opencode/` | `system-dist-freshness-guard.js` (browsability symlink → `../../../plugins/`) |
 
 ## 3. BOUNDARIES
 

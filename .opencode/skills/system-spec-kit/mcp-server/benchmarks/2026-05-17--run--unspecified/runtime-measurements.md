@@ -1,6 +1,6 @@
 ---
 title: "Runtime measurements — jina-v3, nomic, gemma (May 17, 2026)"
-description: "Live runtime profile for the three finalist embedders from the May 17, 2026 mk-spec-memory bake-off: RAM, VRAM residency, Metal acceleration, disk footprint, raw inference latency, and end-to-end memory_search latency with the retrieval-rescue layer."
+description: "Live runtime profile for the three finalist embedders from the May 17, 2026 system-spec-memory bake-off: RAM, VRAM residency, Metal acceleration, disk footprint, raw inference latency, and end-to-end memory_search latency with the retrieval-rescue layer."
 trigger_phrases:
   - "jina v3 runtime measurements"
   - "ollama embedder ram latency"
@@ -104,7 +104,7 @@ End-to-end is dominated by **rescue-layer overhead**, not raw embedder latency. 
 
 ## 6. DECISION ARTIFACT
 
-Per `decision-record.md` ADR-012: **`jina-embeddings-v3` plus rescue layer is the production default for `mk-spec-memory`.** Jina beats Nomic on both quality (9 vs 8 cat-24/409 top-3 hits) and latency (`893 ms` vs `922 ms` median, `1465 ms` vs `3045 ms` p95). Baseline Gemma is the fastest but reaches only 7/10 cat-24/409 even with rescue, so the no-swap path is rejected.
+Per `decision-record.md` ADR-012: **`jina-embeddings-v3` plus rescue layer is the production default for `system-spec-memory`.** Jina beats Nomic on both quality (9 vs 8 cat-24/409 top-3 hits) and latency (`893 ms` vs `922 ms` median, `1465 ms` vs `3045 ms` p95). Baseline Gemma is the fastest but reaches only 7/10 cat-24/409 even with rescue, so the no-swap path is rejected.
 
 ### Tradeoffs ratified by ADR-012
 

@@ -16,21 +16,74 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const MASTER_FLAG = "MK_HOOKS_DISABLED";
+// Bridge legacy env names onto their new equivalents once, as early as possible.
+// Nearly every runtime hook loads this module, so wiring the bridge here covers
+// the whole library from a single place; entry points with no flag dependency
+// (the standalone daemon launchers) call it themselves.
+require("./env-aliases.cjs").applyEnvAliases();
 
-// concern -> extra env vars that also disable it (the pre-convention names).
+const MASTER_FLAG = "SYSTEM_HOOKS_DISABLED";
+// The master switch was renamed from its opaque prefix to a self-describing one.
+// The old name stays honored so any operator who exported it keeps their opt-out.
+const MASTER_ALIASES = ["MK_HOOKS_DISABLED"];
+
+// Canonical per-concern kill-switch, where the new name does not follow the
+// default `SYSTEM_<CONCERN>_DISABLED` shape because the hook is owned by a named
+// skill or CLI surface rather than the framework core. Concerns not listed here
+// fall back to the default shape in concernFlag().
+const CONCERN_CANONICAL = {
+  goal: "OPENCODE_GOAL_DISABLED",
+  dispatch: "CLI_DISPATCH_AUDIT_DISABLED",
+  "mcp-route-guard": "MCP_ROUTE_GUARD_DISABLED",
+  "codex-watchdog": "CODEX_HOOKS_WATCHDOG_DISABLED",
+  "git-preflight": "SK_GIT_PREFLIGHT_DISABLED",
+  "post-edit-quality": "SK_CODE_POST_EDIT_QUALITY_DISABLED",
+};
+
+// concern -> extra env vars that also disable it. Three generations coexist here
+// so operator config written against any of them keeps working: the still-older
+// MK_/SPECKIT_ aliases, and the self-describing variant names that a concern's
+// own plugin/config/docs use where they differ from concernFlag()'s canonical
+// (e.g. a plugin's *_PLUGIN_DISABLED / *_HOOK_DISABLED const, or a doc's shorter
+// spelling). concernFlag() supplies the one canonical name; everything a real
+// surface also documents or exports for the same concern is listed here so the
+// documented switch actually disables the hook.
 const LEGACY_ALIASES = {
-  goal: ["MK_GOAL_PLUGIN_DISABLED"],
-  dispatch: ["MK_CLI_DISPATCH_AUDIT_DISABLED"],
+  goal: ["OPENCODE_GOAL_PLUGIN_DISABLED", "MK_GOAL_DISABLED", "MK_GOAL_PLUGIN_DISABLED"],
+  dispatch: ["SYSTEM_DISPATCH_DISABLED", "MK_DISPATCH_DISABLED", "MK_CLI_DISPATCH_AUDIT_DISABLED"],
   "skill-advisor": [
+    "SYSTEM_SKILL_ADVISOR_HOOK_DISABLED",
+    "SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED",
+    "MK_SKILL_ADVISOR_DISABLED",
     "MK_SKILL_ADVISOR_HOOK_DISABLED",
     "MK_SKILL_ADVISOR_PLUGIN_DISABLED",
     "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED",
     "SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED",
   ],
-  completion: ["MK_COMPLETION_SENTINEL_DISABLED", "MK_SPECKIT_COMPLETION_DISABLED"],
-  "spec-memory": ["MK_SPEC_MEMORY_PLUGIN_DISABLED", "SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED"],
-  "spec-gate": ["SPECKIT_SPEC_GATE_DISABLED"],
+  completion: [
+    "SYSTEM_SPECKIT_COMPLETION_DISABLED",
+    "SYSTEM_COMPLETION_SENTINEL_DISABLED",
+    "MK_COMPLETION_DISABLED",
+    "MK_COMPLETION_SENTINEL_DISABLED",
+    "MK_SPECKIT_COMPLETION_DISABLED",
+  ],
+  "spec-memory": [
+    "SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED",
+    "MK_SPEC_MEMORY_DISABLED",
+    "MK_SPEC_MEMORY_PLUGIN_DISABLED",
+    "SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED",
+  ],
+  "spec-gate": ["MK_SPEC_GATE_DISABLED", "SPECKIT_SPEC_GATE_DISABLED"],
+  "mcp-route-guard": ["MK_MCP_ROUTE_GUARD_DISABLED"],
+  "codex-watchdog": ["CODEX_WATCHDOG_DISABLED", "MK_CODEX_WATCHDOG_DISABLED", "MK_CODEX_HOOKS_WATCHDOG_DISABLED"],
+  "dist-freshness": ["MK_DIST_FRESHNESS_DISABLED", "MK_DIST_FRESHNESS_GUARD_DISABLED"],
+  "git-preflight": ["MK_GIT_PREFLIGHT_DISABLED"],
+  "hook-install": ["MK_HOOK_INSTALL_DISABLED"],
+  "permission-policy": ["MK_PERMISSION_POLICY_DISABLED"],
+  "session-lifecycle": ["MK_SESSION_LIFECYCLE_DISABLED"],
+  "session-cleanup": ["MK_SESSION_CLEANUP_DISABLED"],
+  "task-dispatch": ["MK_TASK_DISPATCH_DISABLED"],
+  "post-edit-quality": ["MK_POST_EDIT_QUALITY_DISABLED"],
 };
 
 // The operator config file: sibling of this shared/ dir, in the hooks hub root.
@@ -111,6 +164,9 @@ function isHookEnabled(concern, env, config) {
     return fromEnv !== undefined ? fromEnv : cfg[key];
   };
   if (isTruthy(resolve(MASTER_FLAG))) return false;
+  for (const alias of MASTER_ALIASES) {
+    if (isTruthy(resolve(alias))) return false;
+  }
   const flag = concernFlag(concern);
   const keys = (flag ? [flag] : []).concat(LEGACY_ALIASES[concern] || []);
   for (const key of keys) {
@@ -125,7 +181,8 @@ function concernFlag(concern) {
   if (concern === null || concern === undefined) return null;
   const slug = String(concern).trim();
   if (!slug) return null;
-  return "MK_" + slug.toUpperCase().replace(/[^A-Z0-9]+/g, "_") + "_DISABLED";
+  if (CONCERN_CANONICAL[slug]) return CONCERN_CANONICAL[slug];
+  return "SYSTEM_" + slug.toUpperCase().replace(/[^A-Z0-9]+/g, "_") + "_DISABLED";
 }
 
 module.exports = {
@@ -134,6 +191,8 @@ module.exports = {
   isTruthy,
   loadConfigFile,
   MASTER_FLAG,
+  MASTER_ALIASES,
+  CONCERN_CANONICAL,
   LEGACY_ALIASES,
   configPath,
   _resetConfigCache,

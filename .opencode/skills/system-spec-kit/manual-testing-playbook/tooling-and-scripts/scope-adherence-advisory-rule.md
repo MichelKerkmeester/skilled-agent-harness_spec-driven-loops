@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-`SCOPE_ADHERENCE` (`scripts/rules/check-scope-adherence.sh`) is a default-inactive, advisory (warn, never error) validation rule. It activates only when a change-set is supplied via `MK_SCOPE_CHANGED_FILES` (an explicit whitespace or newline separated list) or `MK_SCOPE_BASE` (a git ref; the change-set is then `git diff --name-only <ref>`). It compares each changed path against the packet's `spec.md` "Files to Change" declared prefixes, matched anchored at the repo root, and warns on any path outside them. A packet's own canonical docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`, and the other spec-doc files) are always in-scope, but only when they live in that packet's folder. A same-named doc in a different folder is not exempt.
+`SCOPE_ADHERENCE` (`scripts/rules/check-scope-adherence.sh`) is a default-inactive, advisory (warn, never error) validation rule. It activates only when a change-set is supplied via `SYSTEM_SCOPE_CHANGED_FILES` (an explicit whitespace or newline separated list) or `SYSTEM_SCOPE_BASE` (a git ref; the change-set is then `git diff --name-only <ref>`). It compares each changed path against the packet's `spec.md` "Files to Change" declared prefixes, matched anchored at the repo root, and warns on any path outside them. A packet's own canonical docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`, and the other spec-doc files) are always in-scope, but only when they live in that packet's folder. A same-named doc in a different folder is not exempt.
 
 ---
 
@@ -19,7 +19,7 @@ expected_leaf_resources: []
 
 - Objective: Confirm the rule no-ops with no change-set, warns only on genuinely out-of-scope paths, and treats packet docs as in-scope by folder, not basename.
 - Real user request: `Check that the scope-adherence rule flags out-of-scope changed files but leaves declared paths and my packet's own docs alone.`
-- Prompt: `Exercise SCOPE_ADHERENCE with MK_SCOPE_CHANGED_FILES against a packet's declared Files to Change and report cited pass/fail evidence.`
+- Prompt: `Exercise SCOPE_ADHERENCE with SYSTEM_SCOPE_CHANGED_FILES against a packet's declared Files to Change and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION commands, capture the observed `RULE_STATUS` and violation list, compare against the expected signals, and return a pass/fail verdict.
 - Expected signals: no change-set gives `RULE_STATUS=pass` with a "not active" message. A change-set mixing a packet-own doc, a declared path, and an unrelated path gives `RULE_STATUS=warn` listing only the unrelated path. A same-named doc in a different folder warns. The rule never emits `error` and never blocks `--strict`.
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,19 +31,19 @@ expected_leaf_resources: []
 
 ### Prompt
 
-`Exercise SCOPE_ADHERENCE with MK_SCOPE_CHANGED_FILES against a packet's declared Files to Change and report cited pass/fail evidence.`
+`Exercise SCOPE_ADHERENCE with SYSTEM_SCOPE_CHANGED_FILES against a packet's declared Files to Change and report cited pass/fail evidence.`
 
 ### Commands
 
 1. Pick a packet whose `spec.md` has a "Files to Change" section (declared prefixes), for example `specs/system-speckit/033-spec-template-context-optimization`.
 2. No change-set gives an inactive no-op:
    ```bash
-   MK_SCOPE_CHANGED_FILES="" MK_SCOPE_BASE="" \
+   SYSTEM_SCOPE_CHANGED_FILES="" SYSTEM_SCOPE_BASE="" \
      bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict 2>&1 | grep -i SCOPE_ADHERENCE
    ```
 3. A mixed change-set warns on only the out-of-scope path:
    ```bash
-   MK_SCOPE_CHANGED_FILES="<spec-folder>/spec.md <a-declared-prefix>/x some/unrelated/file.ts" \
+   SYSTEM_SCOPE_CHANGED_FILES="<spec-folder>/spec.md <a-declared-prefix>/x some/unrelated/file.ts" \
      bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> 2>&1 | grep -i SCOPE_ADHERENCE
    ```
 4. The automated behavioral gate for this rule is `scripts/tests/check-scope-adherence.vitest.ts`. Run it for a fast deterministic check:
@@ -69,7 +69,7 @@ PASS when the rule stays advisory (never `error`, never blocks `--strict`), warn
 
 ### Failure Triage
 
-- Rule reports "not active" when a change-set was supplied: confirm `MK_SCOPE_CHANGED_FILES` or `MK_SCOPE_BASE` is exported into the same shell that runs `validate.sh`.
+- Rule reports "not active" when a change-set was supplied: confirm `SYSTEM_SCOPE_CHANGED_FILES` or `SYSTEM_SCOPE_BASE` is exported into the same shell that runs `validate.sh`.
 - An out-of-scope path is not flagged: check the packet `spec.md` actually has a parseable "Files to Change" section; an empty or unparseable section makes the rule skip.
 - A packet doc in a different folder is wrongly exempted: this is the folder-scoping regression the rule guards against; re-run `check-scope-adherence.vitest.ts` (the cross-folder case must warn).
 

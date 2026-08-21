@@ -18,7 +18,7 @@ contextType: "reference"
 
 Index of the Spec-Kit session-lifecycle adapters, whose real code lives in `system-spec-kit/mcp-server/hooks/` and is symlinked here per runtime. These hooks fire on a runtime's session boundaries — start, stop/end, and the compaction boundary — to prime continuity context into a fresh session, checkpoint state on stop, and re-inject the recovered brief after a compaction so long sessions do not lose their spec-folder anchor.
 
-They are advisory and model-context-only: they add recovery text, never block a session. Every adapter honors the `session-lifecycle` kill-switch (`isHookEnabled`; `MK_SESSION_LIFECYCLE_DISABLED` or the master `MK_HOOKS_DISABLED`), default-on.
+They are advisory and model-context-only: they add recovery text, never block a session. Every adapter honors the `session-lifecycle` kill-switch (`isHookEnabled`; `SYSTEM_SESSION_LIFECYCLE_DISABLED` or the master `SYSTEM_HOOKS_DISABLED`), default-on.
 
 ## 2. KEY FILES
 

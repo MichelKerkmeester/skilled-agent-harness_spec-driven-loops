@@ -101,6 +101,6 @@ describe('runExternalCliProjection', () => {
     expect(call?.args.slice(0, 3)).toEqual(['run', '--model', 'deepseek/deepseek-v4-pro']);
     expect(call?.args.at(-1)).toContain('deployment finished');
     expect(call?.input).toBeNull();
-    expect(call?.env).toMatchObject({ MK_SPEC_GATE_ENFORCE: '0', AI_SESSION_CHILD: '1' });
+    expect(call?.env).toMatchObject({ SYSTEM_SPEC_GATE_ENFORCE: '0', AI_SESSION_CHILD: '1' });
   });
 });

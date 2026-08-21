@@ -30,7 +30,7 @@ describe('resolveCliEngineCommand', () => {
       command: 'claude',
       args: ['-p', '--model', 'claude-sonnet-4-6', '--output-format', 'text'],
       input: 'prompt-arg',
-      env: { MK_SPEC_GATE_ENFORCE: '0', AI_SESSION_CHILD: '1' },
+      env: { SYSTEM_SPEC_GATE_ENFORCE: '0', AI_SESSION_CHILD: '1' },
     });
   });
 
@@ -60,7 +60,7 @@ describe('resolveCliEngineCommand', () => {
     const spec = resolveCliEngineCommand(CliEngineIds.OPENCODE, 'deepseek/deepseek-v4-pro');
     expect(spec?.command).toBe('opencode');
     expect(spec?.args).toEqual(['run', '--model', 'deepseek/deepseek-v4-pro']);
-    expect(spec?.env).toEqual({ MK_SPEC_GATE_ENFORCE: '0', AI_SESSION_CHILD: '1' });
+    expect(spec?.env).toEqual({ SYSTEM_SPEC_GATE_ENFORCE: '0', AI_SESSION_CHILD: '1' });
   });
 
   it('derives the pi provider from a provider/model id and defaults to google', () => {

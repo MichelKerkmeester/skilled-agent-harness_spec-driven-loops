@@ -1,6 +1,6 @@
 ---
 title: "Runtime Safety Helpers"
-description: "Shutdown, timer and runtime guard utilities for the mk-spec-memory MCP process."
+description: "Shutdown, timer and runtime guard utilities for the system-spec-memory MCP process."
 trigger_phrases:
   - "runtime guard"
   - "shutdown hooks"
@@ -11,7 +11,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/runtime/` owns process-lifetime helpers for mk-spec-memory. These modules keep shutdown paths deterministic and prevent long-lived timers from leaking across tests or daemon sessions.
+`lib/runtime/` owns process-lifetime helpers for system-spec-memory. These modules keep shutdown paths deterministic and prevent long-lived timers from leaking across tests or daemon sessions.
 
 ---
 

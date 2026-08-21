@@ -10,7 +10,7 @@ type MaintenanceMarker = {
 };
 
 const require = createRequire(import.meta.url);
-const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
+const launcher = require('../../../../bin/system-spec-memory-launcher.cjs') as {
   readMaintenanceMarker: (
     dbDir: string,
     options?: { fs?: { readFileSync?: (path: string, encoding?: string) => string } },

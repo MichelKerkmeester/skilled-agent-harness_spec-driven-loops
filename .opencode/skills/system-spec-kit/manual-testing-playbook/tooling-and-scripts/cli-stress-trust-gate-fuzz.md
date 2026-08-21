@@ -51,7 +51,7 @@ sa advisor_rebuild
 sa advisor_rebuild --force true
 sa advisor_rebuild --untrusted
 sa advisor_rebuild --trusted --untrusted                   # later flag wins -> untrusted
-MK_SKILL_ADVISOR_CLI_TRUSTED=0 sa advisor_rebuild           # zeroed env grant is no grant
+SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=0 sa advisor_rebuild           # zeroed env grant is no grant
 sa skill_graph_scan
 sa skill_graph_scan --format jsonl --timeout-ms 1000
 sa skill_graph_propagate_enhances --mode apply --dryRun false
@@ -60,7 +60,7 @@ sa skill_graph_propagate_enhances --json '{"mode":"apply","dryRun":false}'
 echo "== controls"
 sa advisor_rebuild --trusted                                # gate passes -> 75 (no daemon)
 sa advisor_rebuild --maintainer                             # alias passes -> 75
-MK_SKILL_ADVISOR_CLI_TRUSTED=1 sa skill_graph_scan          # env grant passes -> 75
+SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1 sa skill_graph_scan          # env grant passes -> 75
 sa skill_graph_propagate_enhances --mode apply              # dryRun defaults true -> not a mutation -> 75
 sa advisor_status --workspaceRoot .                         # plain read -> 75
 
@@ -69,7 +69,7 @@ rm -rf "$SANDBOX"
 
 ### Expected
 
-- Every row in the untrusted block exits 64 with `requires --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1` — including the flag-order game, the zeroed env, and the `--json` payload shape.
+- Every row in the untrusted block exits 64 with `requires --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` — including the flag-order game, the zeroed env, and the `--json` payload shape.
 - Controls: the trusted/maintainer/env-granted rows and the dry-run and read rows all exit 75 (`backend unavailable`), proving the gate (not a broken CLI) produced the 64s.
 - The sandbox socket dir stays empty throughout.
 
@@ -101,7 +101,7 @@ Refusal rerun without `>/dev/null`:
 ```text
 {
   "status": "error",
-  "error": "advisor_rebuild requires --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1",
+  "error": "advisor_rebuild requires --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1",
   "exitCode": 64
 }
 refusal_exit=64
@@ -126,7 +126,7 @@ drwx------@ 3 michelkerkmeester  wheel  96 Jul  2 22:50 ..
 
 ### Failure Triage
 
-A 75 in the untrusted block is a gate bypass: check `assertTrustedForMutation`'s tool set and the `isPropagateApply` predicate against the attempted shape, then add the bypassing shape to the daemon-side trust-gate suite. A 64 in the control block means trust resolution broke (`--trusted` / `--maintainer` parsing or `envTrustedDefault`). Daemon-side defense in depth is locked by `advisor-trust-gate.vitest.ts`, including the daemon-environment-only `MK_SKILL_ADVISOR_TRUST_DEFAULT` grant.
+A 75 in the untrusted block is a gate bypass: check `assertTrustedForMutation`'s tool set and the `isPropagateApply` predicate against the attempted shape, then add the bypassing shape to the daemon-side trust-gate suite. A 64 in the control block means trust resolution broke (`--trusted` / `--maintainer` parsing or `envTrustedDefault`). Daemon-side defense in depth is locked by `advisor-trust-gate.vitest.ts`, including the daemon-environment-only `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT` grant.
 
 ---
 
@@ -144,7 +144,7 @@ A 75 in the untrusted block is a gate bypass: check `assertTrustedForMutation`'s
 | File | Role |
 |---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | Trust-gate predicate, flag parsing (`--trusted` / `--maintainer` / `--untrusted`), env default |
-| `.opencode/skills/system-skill-advisor/mcp-server/advisor-server.ts` | Daemon-side untrusted default and `MK_SKILL_ADVISOR_TRUST_DEFAULT` |
+| `.opencode/skills/system-skill-advisor/mcp-server/advisor-server.ts` | Daemon-side untrusted default and `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT` |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate regression suite |
 
 ---

@@ -102,9 +102,9 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   // Real manifest artifacts: `manifest.json`/`.tsv`/`.ts` files (incl. `*-manifest.json`), embedder
   // `manifest.{backend,dim,name}` fields, and the CHECKPOINT_MANIFEST / getManifest identifiers.
   if (/\bmanifest\.(?:json|tsv|ts|backend|dim|name)\b|\bgetManifest\b|\bCHECKPOINT_MANIFEST\b/u.test(hit.text)) return true;
-  // Roadmap capability-flags config module/type + doc, the `mk-goal-capabilities` test, and the
+  // Roadmap capability-flags config module/type + doc, the `opencode-goal-capabilities` test, and the
   // `capabilities` JSON-RPC / config field — MCP protocol + config surface, not workflow taxonomy.
-  if (/capability-flags|MemoryRoadmapCapabilityFlags|roadmap capability flags|mk-goal-capabilities|"capabilities"\s*:|capabilities\s*:\s*\{/iu.test(hit.text)) return true;
+  if (/capability-flags|MemoryRoadmapCapabilityFlags|roadmap capability flags|opencode-goal-capabilities|"capabilities"\s*:|capabilities\s*:\s*\{/iu.test(hit.text)) return true;
   // /doctor router consolidation feature docs legitimately use "manifest" vocabulary (route
   // manifest + manifest-driven dispatch) — a real command surface, not private taxonomy.
   if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md')) return true;

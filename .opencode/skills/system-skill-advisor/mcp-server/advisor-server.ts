@@ -118,7 +118,7 @@ async function loadSkillGraphWatchFactory(): Promise<(paths: string[], options: 
 function logSkillGraphIndexResult(trigger: string, result: ReturnType<typeof indexSkillMetadata>): void {
   if (trigger === 'startup-scan') {
     console.error(
-      '[mk-skill-advisor-launcher] Skill graph: scanned=%d indexed=%d skipped=%d edges=%d rejected=%d deleted=%d',
+      '[system-skill-advisor-launcher] Skill graph: scanned=%d indexed=%d skipped=%d edges=%d rejected=%d deleted=%d',
       result.scannedFiles,
       result.indexedFiles,
       result.skippedFiles,
@@ -129,13 +129,13 @@ function logSkillGraphIndexResult(trigger: string, result: ReturnType<typeof ind
     return;
   }
 
-  console.error(`[mk-skill-advisor-launcher] Skill graph ${trigger}: indexed=${result.indexedFiles}`);
+  console.error(`[system-skill-advisor-launcher] Skill graph ${trigger}: indexed=${result.indexedFiles}`);
 }
 
 async function startupSkillGraphScan(): Promise<void> {
   const skillGraphSourceDir = resolveSkillGraphSourceDir();
   if (!skillGraphSourceDir) {
-    console.warn('[mk-skill-advisor-launcher] Skill graph source directory not found; skipping startup scan');
+    console.warn('[system-skill-advisor-launcher] Skill graph source directory not found; skipping startup scan');
     return;
   }
 
@@ -161,12 +161,12 @@ async function startupSkillGraphScan(): Promise<void> {
         sourceSignature,
       });
       console.warn(
-        `[mk-skill-advisor-launcher] Skill graph post-index assertion failed: ${status.freshness}/${status.trustState.state}`,
+        `[system-skill-advisor-launcher] Skill graph post-index assertion failed: ${status.freshness}/${status.trustState.state}`,
       );
     }
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
-    console.warn('[mk-skill-advisor-launcher] Skill graph startup scan failed:', message);
+    console.warn('[system-skill-advisor-launcher] Skill graph startup scan failed:', message);
   }
 }
 
@@ -179,7 +179,7 @@ let shuttingDown = false;
 async function shutdownAdvisor(reason: string): Promise<void> {
   if (shuttingDown) return;
   shuttingDown = true;
-  console.error(`[mk-skill-advisor-launcher] ${reason}`);
+  console.error(`[system-skill-advisor-launcher] ${reason}`);
   if (launcherIdleMonitor) {
     launcherIdleMonitor.stop();
     launcherIdleMonitor = null;
@@ -187,7 +187,7 @@ async function shutdownAdvisor(reason: string): Promise<void> {
   if (ipcBridge) {
     await ipcBridge.close().catch((error: unknown) => {
       const message = error instanceof Error ? error.message : String(error);
-      console.error(`[mk-skill-advisor-launcher] ipc-bridge close error: ${message}`);
+      console.error(`[system-skill-advisor-launcher] ipc-bridge close error: ${message}`);
     });
     ipcBridge = null;
   }
@@ -217,9 +217,9 @@ export function resolveTrustedCaller(metadata: Record<string, unknown>): boolean
   // CLOSED (untrusted). The daemon owner can restore the legacy
   // default-trusted behavior for native MCP surfaces (e.g. /doctor repair
   // flows, whose clients send no _meta) by setting
-  // MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted in the daemon's own environment
+  // SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted in the daemon's own environment
   // (MCP registration env block / launcher env), which callers cannot forge.
-  return process.env.MK_SKILL_ADVISOR_TRUST_DEFAULT === 'trusted';
+  return process.env.SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT === 'trusted';
 }
 
 export function buildCallerContext(extra: unknown): MCPCallerContext {
@@ -236,7 +236,7 @@ export function buildCallerContext(extra: unknown): MCPCallerContext {
 
 function createAdvisorMcpServer(): Server {
   const advisorServer = new Server(
-    { name: 'mk_skill_advisor', version: '0.1.0' },
+    { name: 'system_skill_advisor', version: '0.1.0' },
     { capabilities: { tools: {} } },
   );
 
@@ -282,7 +282,7 @@ function createAdvisorMcpServer(): Server {
 const server = createAdvisorMcpServer();
 
 export async function main(): Promise<void> {
-  console.error(`[mk-skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
+  console.error(`[system-skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
   initSkillGraphDb(resolveSkillGraphDbDir());
 
   // Resolve the active embedder via the shared cascade if the
@@ -294,12 +294,12 @@ export async function main(): Promise<void> {
   try {
     const resolved = await ensureActiveEmbedder(getSkillGraphDb(), { contentType: 'text' });
     console.error(
-      `[mk-skill-advisor-launcher] Active embedder: ${resolved.name} (${resolved.dim}-dim)`,
+      `[system-skill-advisor-launcher] Active embedder: ${resolved.name} (${resolved.dim}-dim)`,
     );
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(
-      `[mk-skill-advisor-launcher] ensureActiveEmbedder failed: ${message}. Semantic-shadow scoring may degrade until the operator runs the swap runbook.`,
+      `[system-skill-advisor-launcher] ensureActiveEmbedder failed: ${message}. Semantic-shadow scoring may degrade until the operator runs the swap runbook.`,
     );
   }
 
@@ -311,11 +311,11 @@ export async function main(): Promise<void> {
     generationReason: 'advisor-server-watcher-reindex',
     watchFactory,
   });
-  console.error(`[mk-skill-advisor-launcher] Skill graph daemon active=${skillGraphDaemon.active}`);
+  console.error(`[system-skill-advisor-launcher] Skill graph daemon active=${skillGraphDaemon.active}`);
   transport = new StdioServerTransport();
   await server.connect(transport);
   launcherIdleMonitor = createLauncherIdleMonitor({
-    serviceName: 'mk-skill-advisor-launcher',
+    serviceName: 'system-skill-advisor-launcher',
     getActiveClientCount: () => getIpcBridgeStats().secondary_clients_count,
     onIdle: async () => {
       await shutdownAdvisor('launcher idle timeout');
@@ -341,7 +341,7 @@ if (isMain) {
     void shutdownAdvisor('SIGTERM').finally(() => process.exit(0));
   });
   main().catch((error: unknown) => {
-    console.error('[mk-skill-advisor-launcher] Fatal error:', error);
+    console.error('[system-skill-advisor-launcher] Fatal error:', error);
     void shutdownAdvisor('fatal error').finally(() => process.exit(1));
   });
 }

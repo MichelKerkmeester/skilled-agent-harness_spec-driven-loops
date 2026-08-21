@@ -123,7 +123,7 @@ This folder owns storage location only. Schema creation, attach and detach, lazy
 
 | Boundary | Rule |
 |---|---|
-| Writes | Only the mk-spec-memory daemon writes to shards, through `dist/lib/search/vector-index-store.js` and `mcp-server/scripts/reindex-embeddings.ts`. |
+| Writes | Only the system-spec-memory daemon writes to shards, through `dist/lib/search/vector-index-store.js` and `mcp-server/scripts/reindex-embeddings.ts`. |
 | Reads | Reads go through `active_vec` after attach. Handlers never open shard files directly. |
 | Manual edits | Do not hand-edit shards. Dim mismatches between `vec_metadata` and the `vec_<dim>` table corrupt the index. |
 | Commits | Do not commit `.sqlite`, `.sqlite-shm` or `.sqlite-wal` files. The parent `database/README.md` covers the gitignore rule for this directory. |

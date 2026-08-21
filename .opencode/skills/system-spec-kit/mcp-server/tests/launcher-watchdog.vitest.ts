@@ -6,7 +6,7 @@ type ProcessRowsRunner = () => string | Array<Record<string, number>>;
 type SignalFn = (pid: number, sig: number | string) => boolean;
 
 const require = createRequire(import.meta.url);
-const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
+const launcher = require('../../../../bin/system-spec-memory-launcher.cjs') as {
   bridgeStdioThroughSessionProxy: (socketPath: string, options?: Record<string, unknown>) => Promise<unknown>;
   buildLeaseObject: (childPid?: number | null, startedAt?: string) => Record<string, unknown>;
   createCrashLoopGuard: (options?: Record<string, unknown>) => { recordDeath: () => Record<string, unknown> };

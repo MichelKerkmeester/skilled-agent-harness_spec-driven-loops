@@ -1,7 +1,7 @@
 ---
 name: deep-alignment
 description: "LEAF deep-alignment iteration agent: per-lane conformance check against a named authority, verify-first findings, JSONL state."
-tools: Read, Bash, Grep, Glob, mcp__mk_spec_memory__*
+tools: Read, Bash, Grep, Glob, mcp__system_spec_memory__*
 ---
 
 # The Deep Aligner: Iterative Conformance-Audit Agent
@@ -240,7 +240,7 @@ Use Read, Grep, Glob, Bash, and memory/code-graph MCP tools only within the decl
 ### MCP + Code Intelligence Tools
 
 - `memory_search` / `memory_context`: broader history only after packet continuity is insufficient.
-- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `mk-spec-memory` daemon can flap. If any `mcp__mk_spec_memory__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files, or the lane's own adapter CLI output, is sufficient evidence on its own; the warm-daemon CLI front door is the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `system-spec-memory` daemon can flap. If any `mcp__system_spec_memory__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files, or the lane's own adapter CLI output, is sufficient evidence on its own; the warm-daemon CLI front door is the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 ### Skills
 

@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
-const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
+const launcher = require('../../../../bin/system-spec-memory-launcher.cjs') as {
   launcherLogIsEnabled: (env?: Record<string, string | undefined>) => boolean;
   launcherLogMaxBytes: (env?: Record<string, string | undefined>) => number;
   resolveLauncherLogPath: (env?: Record<string, string | undefined>, baseDir?: string) => string;
@@ -26,7 +26,7 @@ function setEnv(key: string, value: string | undefined): void {
 
 function freshLogPath(): string {
   tmpDir = mkdtempSync(join(tmpdir(), 'launcher-log-'));
-  const p = join(tmpDir, '.mk-spec-memory-launcher.log');
+  const p = join(tmpDir, '.system-spec-memory-launcher.log');
   setEnv('SPECKIT_LAUNCHER_LOG_PATH', p);
   return p;
 }
@@ -57,9 +57,9 @@ describe('launcher persistent log — pure helpers', () => {
   });
 
   it('resolves a path under the base dir, or an explicit override, ignoring blanks', () => {
-    expect(launcher.resolveLauncherLogPath({}, '/base').endsWith('/.mk-spec-memory-launcher.log')).toBe(true);
+    expect(launcher.resolveLauncherLogPath({}, '/base').endsWith('/.system-spec-memory-launcher.log')).toBe(true);
     expect(launcher.resolveLauncherLogPath({ SPECKIT_LAUNCHER_LOG_PATH: '/c/p.log' }, '/base')).toBe('/c/p.log');
-    expect(launcher.resolveLauncherLogPath({ SPECKIT_LAUNCHER_LOG_PATH: '   ' }, '/base').endsWith('/.mk-spec-memory-launcher.log')).toBe(true);
+    expect(launcher.resolveLauncherLogPath({ SPECKIT_LAUNCHER_LOG_PATH: '   ' }, '/base').endsWith('/.system-spec-memory-launcher.log')).toBe(true);
   });
 
   it('rotates only when the current size strictly exceeds the cap', () => {

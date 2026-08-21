@@ -1,9 +1,9 @@
 ---
 title: "Spec Kit Memory IPC Helpers"
-description: "Local IPC socket bridge and idle-timeout helpers for the mk-spec-memory MCP server."
+description: "Local IPC socket bridge and idle-timeout helpers for the system-spec-memory MCP server."
 trigger_phrases:
   - "spec memory ipc"
-  - "mk-spec-memory socket"
+  - "system-spec-memory socket"
   - "launcher idle timeout"
   - "secondary clients"
 ---
@@ -16,7 +16,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/ipc/` owns local IPC helpers used by the `mk-spec-memory` launcher bridge. The socket bridge lets secondary MCP clients connect to the existing server process, while the idle monitor gives the server a configurable self-exit path when no primary or secondary client activity remains.
+`lib/ipc/` owns local IPC helpers used by the `system-spec-memory` launcher bridge. The socket bridge lets secondary MCP clients connect to the existing server process, while the idle monitor gives the server a configurable self-exit path when no primary or secondary client activity remains.
 
 ---
 

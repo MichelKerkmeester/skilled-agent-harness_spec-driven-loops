@@ -88,7 +88,7 @@ export type Inventory = HarnessSnapshot;
 export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
   {
     id: 'code-graph-launcher',
-    pattern: /mk-code-index-launcher\.cjs/,
+    pattern: /system-code-index-launcher\.cjs/,
     role: 'project-daemon',
     reason: 'Code Graph launcher process',
   },
@@ -100,7 +100,7 @@ export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
   },
   {
     id: 'spec-memory-launcher',
-    pattern: /mk-spec-memory-launcher\.cjs/,
+    pattern: /system-spec-memory-launcher\.cjs/,
     role: 'project-daemon',
     reason: 'Spec Kit Memory launcher process',
   },
@@ -120,7 +120,7 @@ export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
 
 const KNOWN_PROJECT_OWNER_MARKERS = [
   '.opencode/skills/system-spec-kit',
-  'mk-spec-memory-launcher.cjs',
+  'system-spec-memory-launcher.cjs',
   'SPECKIT_OWNER_TOKEN=',
   'SPECKIT_PROCESS_OWNER=',
   'SPECKIT_PROJECT_ROOT=',
@@ -484,7 +484,7 @@ export function syntheticFixtureSnapshot(): HarnessSnapshot {
  1000     1 S     5000 opencode
  1001  1000 S     4000 node synthetic-child.js
  1002  1001 S     3000 node synthetic-grandchild.js
- 2003     1 S    12000 /opt/homebrew/bin/node .opencode/bin/mk-spec-memory-launcher.cjs
+ 2003     1 S    12000 /opt/homebrew/bin/node .opencode/bin/system-spec-memory-launcher.cjs
  4000     1 S    24000 /opt/homebrew/opt/ollama/bin/ollama serve
  5000   918 Z        0 <defunct>
 `;

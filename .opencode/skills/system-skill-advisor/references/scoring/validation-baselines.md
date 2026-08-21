@@ -65,13 +65,13 @@ The measurement authority is [`scorer-eval-baseline.json`](../../mcp-server/scri
 `advisor_validate` is a heavy operation. It runs the full corpus plus holdout plus parity plus safety plus latency slices in one pass. Require `confirmHeavyRun=true` to invoke.
 
 ```text
-mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
+mcp__system_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
 ```
 
 For a single-skill check (skip corpus + holdout):
 
 ```text
-mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true, "skillSlug": "sk-code" })
+mcp__system_skill_advisor__advisor_validate({ "confirmHeavyRun": true, "skillSlug": "sk-code" })
 ```
 
 Response fields to retain for baseline tracking:

@@ -20,8 +20,8 @@ const os = require('node:os');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
-const REJECT_ENV = 'MK_DEEP_LOOP_GUARD_REJECT';
-const REJECT_LOOP_ENV = 'MK_DEEP_LOOP_GUARD_REJECT_LOOP';
+const REJECT_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT';
+const REJECT_LOOP_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP';
 const GUARD_LOG_RELATIVE = ['.opencode', 'skills', '.loop-guard-state', 'guard-warnings.log'];
 
 const HOOK_PATH = path.join(
@@ -203,8 +203,8 @@ function main() {
   clearGuardLog(cwd);
   hook = runHook({ tool_name: 'Task', tool_input: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' }, cwd });
   assert.equal(decisionOf(hook), null, 'default mode must not deny a mismatch');
-  assert.match(contextOf(hook), /mk-deep-loop-guard.*mode mismatch/i, 'default mismatch must surface an advisory');
-  assert.match(readGuardLog(cwd), /mk-deep-loop-guard.*mode mismatch/i, 'default mismatch must append to the shared warning log');
+  assert.match(contextOf(hook), /system-deep-loop-guard.*mode mismatch/i, 'default mismatch must surface an advisory');
+  assert.match(readGuardLog(cwd), /system-deep-loop-guard.*mode mismatch/i, 'default mismatch must append to the shared warning log');
 
   // Mismatch, reject mode: deny with the guard's reason.
   hook = runHook(
@@ -212,7 +212,7 @@ function main() {
     { [REJECT_ENV]: '1' },
   );
   assert.equal(decisionOf(hook), 'deny', 'reject mode must deny a mismatch');
-  assert.match(reasonOf(hook), /mk-deep-loop-guard: Deep Route mode mismatch/, 'deny must carry the mismatch reason');
+  assert.match(reasonOf(hook), /system-deep-loop-guard: Deep Route mode mismatch/, 'deny must carry the mismatch reason');
 
   // Fail-open: registry unreadable, mismatch present, reject on -- approve + degraded audit, no deny.
   const registryPath = path.join(cwd, '.opencode', 'skills', 'system-deep-loop', 'mode-registry.json');
@@ -273,7 +273,7 @@ function main() {
     { [REJECT_LOOP_ENV]: '1' },
   );
   assert.equal(decisionOf(hook), 'deny', '3rd hand-off must deny under reject-loop');
-  assert.match(reasonOf(hook), /mk-deep-loop-guard: loop-like repeated dispatch/, 'deny must carry the loop-repeat reason');
+  assert.match(reasonOf(hook), /system-deep-loop-guard: loop-like repeated dispatch/, 'deny must carry the loop-repeat reason');
 
   // Mixed-case agent identity still reaches loop rejection.
   const sessionUpper = 'claude-loop-upper';
@@ -294,7 +294,7 @@ function main() {
     { [REJECT_LOOP_ENV]: '1' },
   );
   assert.equal(decisionOf(hook), 'deny', 'deep-alignment repeated hand-off must reach loop rejection');
-  assert.match(reasonOf(hook), /mk-deep-loop-guard: loop-like repeated dispatch/, 'deny must carry the loop-repeat reason for deep-alignment');
+  assert.match(reasonOf(hook), /system-deep-loop-guard: loop-like repeated dispatch/, 'deny must carry the loop-repeat reason for deep-alignment');
 
   // Command-driven dispatches never count toward the threshold -- but only when the
   // iteration marker co-occurs with a Config: path resolving to a real, on-disk

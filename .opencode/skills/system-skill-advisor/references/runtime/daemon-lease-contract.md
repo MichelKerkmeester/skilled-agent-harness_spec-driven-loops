@@ -44,20 +44,20 @@ Only one advisor daemon may hold the workspace lease for a resolved database dir
 
 ### Launcher-Boundary Enforcement
 
-The `mk-skill-advisor-launcher.cjs` script enforces single-writer semantics at process startup before opening the SQLite skill-graph database. It combines the owner-lease sidecar with the launcher PID lease and bridges secondary clients through `maybeBridgeLeaseHolder` when a live owner already exists:
+The `system-skill-advisor-launcher.cjs` script enforces single-writer semantics at process startup before opening the SQLite skill-graph database. It combines the owner-lease sidecar with the launcher PID lease and bridges secondary clients through `maybeBridgeLeaseHolder` when a live owner already exists:
 
 - If a live owner holds the lease: the launcher tries to bridge this client's stdio to the live owner's IPC socket through the session proxy. `LEASE_HELD_BY:<ownerPid>` is now only the fallback diagnostic when bridging is disabled or the socket cannot be used.
 - If the socket is dead or refused while the owner can be reclaimed: the launcher enters the guarded respawn path instead of treating `LEASE_HELD_BY` as the normal outcome.
 - If `staleReclaimable === true`: the launcher logs `staleReclaimed: true` and continues normal bootstrap (the existing `acquireSkillGraphLease` call reclaims the lease).
 - If `held === false`: the launcher continues normal bootstrap.
 
-This enforcement is gated by the `MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER` environment variable (default `1`/true). When set to `0` or `false`, the launcher logs a warning and continues without exiting (dev override).
+This enforcement is gated by the `SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER` environment variable (default `1`/true). When set to `0` or `false`, the launcher logs a warning and continues without exiting (dev override).
 
 ### Acquire
 
 Daemon attempts lease acquisition on startup. The lease database lives next to the canonical skill graph database directory as `skill-graph-daemon-lease.sqlite`. Canonical means lexical `path.resolve()` followed by `fs.realpathSync.native()` when the path exists; if the directory did not exist yet, the daemon creates it and canonicalizes again before deriving the `workspace_key`.
 
-With the default configuration that directory is `.opencode/skills/system-skill-advisor/mcp-server/database/`. With `MK_SKILL_ADVISOR_DB_DIR` or `SYSTEM_SKILL_ADVISOR_DB_DIR`, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. On success the lease row records:
+With the default configuration that directory is `.opencode/skills/system-skill-advisor/mcp-server/database/`. With `SYSTEM_SKILL_ADVISOR_DB_DIR` or `SYSTEM_SKILL_ADVISOR_DB_DIR`, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. On success the lease row records:
 
 - holder PID
 - holder owner ID
@@ -127,7 +127,7 @@ During the Phase 006 compatibility window, launcher startup also probes the old 
 
 ## 6. DATABASE DIRECTORY OVERRIDE CONSTRAINT
 
-`MK_SKILL_ADVISOR_DB_DIR` and `SYSTEM_SKILL_ADVISOR_DB_DIR` override the skill graph database directory. The daemon lease database is co-located with that canonical directory, so two workspaces pointing at the same SQLite directory through different symlinks or path aliases share the same single-writer boundary.
+`SYSTEM_SKILL_ADVISOR_DB_DIR` and `SYSTEM_SKILL_ADVISOR_DB_DIR` override the skill graph database directory. The daemon lease database is co-located with that canonical directory, so two workspaces pointing at the same SQLite directory through different symlinks or path aliases share the same single-writer boundary.
 
 This keeps "same SQLite file" and "same lease owner" aligned:
 

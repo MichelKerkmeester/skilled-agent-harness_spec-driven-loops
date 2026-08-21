@@ -31,7 +31,7 @@ It acts only in the main checkout, only on the resolved live branch, and only wh
 - **Scope-gated.** Runs only in the main checkout, only on the resolved live branch, and stops safely on a linked worktree, a rebase conflict, or a blocked push, never losing a commit.
 - **Non-fatal.** Every internal failure exits zero so session start always continues.
 - **Real code stays in `.opencode/bin/`.** The hub entries are relative symlinks.
-- **Disable:** `MK_LIVE_SYNC_DISABLED=1` turns off the whole live-sync loop; `MK_PRIMARY_RECONCILE_DISABLED=1` turns off this leg alone.
+- **Disable:** `SYSTEM_LIVE_SYNC_DISABLED=1` turns off the whole live-sync loop; `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` turns off this leg alone.
 
 ## 4. RELATED
 

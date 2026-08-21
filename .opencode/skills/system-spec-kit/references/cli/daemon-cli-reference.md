@@ -23,8 +23,8 @@ Run the repo-relative examples from the repository root. If the caller is in ano
 
 | CLI shim | MCP daemon | Tool count | Primary use |
 | --- | --- | ---: | --- |
-| `node .opencode/bin/spec-memory.cjs` | `mk-spec-memory` | 41 | Memory context, search, health, indexing, checkpoint, and session recovery fallback. |
-| `node .opencode/bin/skill-advisor.cjs` | `mk_skill_advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
+| `node .opencode/bin/spec-memory.cjs` | `system-spec-memory` | 41 | Memory context, search, health, indexing, checkpoint, and session recovery fallback. |
+| `node .opencode/bin/skill-advisor.cjs` | `system_skill_advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
 
 Each shim first sets a default socket directory when needed, checks its built CLI entrypoint for freshness, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
 
@@ -120,7 +120,7 @@ The shims refuse stale or missing dist entrypoints with exit `69`. Rebuild befor
 | `spec-memory.cjs` | `Run npm run build --workspace=@spec-kit/mcp-server.` | `npm run build --workspace=@spec-kit/mcp-server` |
 | `skill-advisor.cjs` | `Run the skill-advisor TypeScript build.` | `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build` |
 
-Development-only stale overrides exist for local loops, but should not be used in normal recovery: `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, and `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
+Development-only stale overrides exist for local loops, but should not be used in normal recovery: `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, and `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
 
 ---
 
@@ -162,7 +162,7 @@ The smoke check expects `spec-memory=41`, `skill-advisor=9`, and `daemonFree:tru
 - Prompt-time hooks must probe warm daemons only. They must not cold-spawn daemons from prompt-time paths.
 - Treat exit `75` as retryable daemon/IPC unavailability. Retry after MCP reconnect, daemon prewarm, or short backoff.
 - Treat exit `69` as a stale/missing dist or protocol mismatch. Rebuild the matching package before retrying.
-- Skill-advisor CLI calls are untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, and apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`.
+- Skill-advisor CLI calls are untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, and apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`.
 - Do not use `jsonl` as a streaming automation contract; it is one complete JSON payload on one line.
 
 ---

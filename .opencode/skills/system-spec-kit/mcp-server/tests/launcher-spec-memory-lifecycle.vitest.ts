@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: mk-spec-memory Launcher Lifecycle Tests
+// MODULE: system-spec-memory Launcher Lifecycle Tests
 // ───────────────────────────────────────────────────────────────
 // Regression coverage for the spec-memory launcher daemon-lifecycle fixes:
 //   - bootstrap-lock reclaim must fire on a provably-dead stamped holder, not only
@@ -21,7 +21,7 @@ const require = createRequire(import.meta.url);
 // which is required for vi.spyOn — and it's the exact same fs object the launcher's own
 // `require('fs')` resolves to, so spying here intercepts the launcher's internal calls too.
 const fs = require('node:fs') as typeof fsTypes;
-const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
+const launcher = require('../../../../bin/system-spec-memory-launcher.cjs') as {
   acquireBootstrapLock: (options?: { requireLock?: boolean; staleMs?: number; timeoutMs?: number; retrySleepMs?: number }) => Promise<boolean>;
   removeStaleBootstrapLock: (staleMs?: number) => boolean;
   readBootstrapLockOwnerPid: () => number | null;
@@ -58,16 +58,16 @@ afterEach(() => {
 });
 
 function configureTempLauncher(): { dbDir: string; lockDir: string } {
-  const root = mkdtempSync(join(tmpdir(), 'mk-spec-memory-lifecycle-'));
+  const root = mkdtempSync(join(tmpdir(), 'system-spec-memory-lifecycle-'));
   tempDirs.push(root);
   const dbDir = join(root, 'database');
   mkdirSync(dbDir, { recursive: true });
-  const lockDir = join(dbDir, '.mk-spec-memory-launcher.lockdir');
-  launcher.configureLauncherPathsForTesting({ dbDir, lockDir, stateFile: join(dbDir, '.mk-spec-memory-launcher.json') });
+  const lockDir = join(dbDir, '.system-spec-memory-launcher.lockdir');
+  launcher.configureLauncherPathsForTesting({ dbDir, lockDir, stateFile: join(dbDir, '.system-spec-memory-launcher.json') });
   return { dbDir, lockDir };
 }
 
-describe('mk-spec-memory launcher bootstrap lock', () => {
+describe('system-spec-memory launcher bootstrap lock', () => {
   it('stamps the holder pid inside the lock dir on acquire', async () => {
     const { lockDir } = configureTempLauncher();
     await expect(launcher.acquireBootstrapLock({ requireLock: true, timeoutMs: 200, retrySleepMs: 5 })).resolves.toBe(true);
@@ -89,7 +89,7 @@ describe('mk-spec-memory launcher bootstrap lock', () => {
   });
 });
 
-describe('mk-spec-memory launcher owner-lease CAS reclaim', () => {
+describe('system-spec-memory launcher owner-lease CAS reclaim', () => {
   it('acquires a fresh owner lease and records this pid as owner', () => {
     configureTempLauncher();
     launcher.clearOwnerLeaseFile();
@@ -161,7 +161,7 @@ describe('mk-spec-memory launcher owner-lease CAS reclaim', () => {
   });
 });
 
-describe('mk-spec-memory reapOwnerBeforeRespawn heartbeat gate', () => {
+describe('system-spec-memory reapOwnerBeforeRespawn heartbeat gate', () => {
   it('refuses to reap a heartbeat-fresh live owner (socket-probe verdict is not death)', async () => {
     configureTempLauncher();
     launcher.clearOwnerLeaseFile();

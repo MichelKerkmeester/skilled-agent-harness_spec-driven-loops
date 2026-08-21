@@ -51,7 +51,7 @@ Orchestrating AI stores 5 baseline memories. For each i in 1..5:
 
   b. Save it:
      ```
-     mcp__mk_spec_memory__memory_save({
+     mcp__system_spec_memory__memory_save({
        filePath: "<absolute path from step a>"
      })
      # Do NOT pass retentionPolicy: "ephemeral" — see post-014/022 follow-up note in 401-paraphrase-recall.md.
@@ -66,7 +66,7 @@ opencode run --model "gpt-5.5" -c approval_policy=never --sandbox workspace-writ
 You are <CLI-A>. Run this tight loop for 30 seconds:
 
   for i in 1..50:
-    response = mcp__mk_spec_memory__memory_search({
+    response = mcp__system_spec_memory__memory_search({
       query: "local LLM concurrent safety probe",
       limit: 5,
     })
@@ -100,7 +100,7 @@ You are <CLI-B>. Wait 3 seconds for CLI-A's reader to start its loop, then fire 
      Concurrent write 415-write-{i}: testing interleaved access against an active reader.
 
   b. Save:
-     mcp__mk_spec_memory__memory_save({
+     mcp__system_spec_memory__memory_save({
        filePath: "<absolute path from step a>"
      })
      # Do NOT pass retentionPolicy: "ephemeral" — see post-014/022 follow-up note in 401-paraphrase-recall.md.
@@ -149,8 +149,8 @@ Verdict: PASS — 50/50 reads coherent, 10/10 writes succeeded, 0 errors total.
 ### Evidence
 
 - BLOCKED before Phase 1. The scenario commands require writing additional files outside this scenario file:
-  - Phase 1 lines 36-53: `Orchestrating AI stores 5 baseline memories. For each i in 1..5:` then `Write `<spec-folder>{i}/research.md`` and `mcp__mk_spec_memory__memory_save({ filePath: "<absolute path from step a>" })`.
-  - Phase 3 lines 87-107: `Wait 3 seconds for CLI-A's reader to start its loop, then fire 10 memory_save calls back-to-back` and for each i in 1..10 `Write `<spec-folder>{i}/research.md`` then `mcp__mk_spec_memory__memory_save({ filePath: "<absolute path from step a>" })`.
+  - Phase 1 lines 36-53: `Orchestrating AI stores 5 baseline memories. For each i in 1..5:` then `Write `<spec-folder>{i}/research.md`` and `mcp__system_spec_memory__memory_save({ filePath: "<absolute path from step a>" })`.
+  - Phase 3 lines 87-107: `Wait 3 seconds for CLI-A's reader to start its loop, then fire 10 memory_save calls back-to-back` and for each i in 1..10 `Write `<spec-folder>{i}/research.md`` then `mcp__system_spec_memory__memory_save({ filePath: "<absolute path from step a>" })`.
 - User-provided write constraint for this execution: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
 - User-provided allowed write path for this execution: `.opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/concurrent-multi-ai-safety.md (this file only)`.
 - No pre-seed files were written, no `memory_save` calls were run, no concurrent reader/writer CLI sessions were launched, and no cleanup commands were run, because doing so would require creating and deleting files outside the single allowed write path.
@@ -171,7 +171,7 @@ Verdict: PASS — 50/50 reads coherent, 10/10 writes succeeded, 0 errors total.
 Loop memory_delete over the 15 captured parent_ids (5 pre-seed + 10 writes), then remove on-disk files:
 ```
 for ID in [<5 baseline parent_ids> + <10 write parent_ids>]:
-  mcp__mk_spec_memory__memory_delete({ parent_id: ID })
+  mcp__system_spec_memory__memory_delete({ parent_id: ID })
 
 rm -rf <spec-folder>*
 ```

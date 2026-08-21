@@ -9,10 +9,10 @@
 // shared mutation evaluator remains the policy authority.
 //
 // Two startup outcomes preserve the interactive mutation policy:
-// 1. MK_SPEC_FOLDER names a valid spec folder up front: satisfy the gate
+// 1. SYSTEM_SPEC_FOLDER names a valid spec folder up front: satisfy the gate
 //    immediately, mirroring an already-answered Gate 3 (source 'flags', a
 //    prebound source, never 'prior_answer').
-// 2. No valid declaration, but the operator opted into MK_SPEC_GATE_ENFORCE=1:
+// 2. No valid declaration, but the operator opted into SYSTEM_SPEC_GATE_ENFORCE=1:
 //    open the gate so the existing evaluator enforces for the rest of the
 //    top-level session. Disabled and dispatched child sessions remain no-ops;
 //    the shared core owns that child-session contract centrally.
@@ -70,7 +70,7 @@ async function main() {
   const existingState = guardCore.readGateState(stateDir, sessionID);
   if (existingState.status === 'satisfied' || existingState.status === 'skipped') return allow();
 
-  const declaredFolder = env.MK_SPEC_FOLDER;
+  const declaredFolder = env.SYSTEM_SPEC_FOLDER;
   if (typeof declaredFolder === 'string' && declaredFolder.trim().length > 0) {
     const validation = validateSpecFolderBinding(
       { path: declaredFolder.trim(), source: 'flags' },

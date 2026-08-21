@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `GIT-028` and confirm th
 
 ### Optional Supplemental Checks
 
-Confirm `MK_SPEC_GATE_ENFORCE=0` is exported before the in-place exec, so a dispatched child never inherits an enforced spec gate it has no user turn to answer.
+Confirm `SYSTEM_SPEC_GATE_ENFORCE=0` is exported before the in-place exec, so a dispatched child never inherits an enforced spec gate it has no user turn to answer.
 
 ---
 

@@ -71,7 +71,7 @@ See [`compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.
 
 #### Current Reality
 
-The committed `.cursor/hooks.json` registers lifecycle, session-start Gate-3 prebinding, mutation-gate, post-tool, task-dispatch, prompt-submit, pre-compact, and MCP advisory adapters. The prebind validates `MK_SPEC_FOLDER` or opens explicitly enabled state for top-level sessions while preserving disabled and child-session no-ops. `sessionStart`, `sessionEnd`, `preToolUse`, `postToolUse`, and `beforeMCPExecution` have confirmed delivery paths; prompt-submit and pre-compact delivery remain unconfirmed.
+The committed `.cursor/hooks.json` registers lifecycle, session-start Gate-3 prebinding, mutation-gate, post-tool, task-dispatch, prompt-submit, pre-compact, and MCP advisory adapters. The prebind validates `SYSTEM_SPEC_FOLDER` or opens explicitly enabled state for top-level sessions while preserving disabled and child-session no-ops. `sessionStart`, `sessionEnd`, `preToolUse`, `postToolUse`, and `beforeMCPExecution` have confirmed delivery paths; prompt-submit and pre-compact delivery remain unconfirmed.
 
 #### Source Files
 
@@ -103,7 +103,7 @@ See [`cli-dispatch-authorization/cli-dispatch-authorization.md`](cli-dispatch-au
 
 #### Description
 
-The runtime-neutral goal core stores one active goal per workspace, runtime, and native session id. Pi supplies identity through its extension session manager; Cursor supplies identity to its `sessionStart` hook. The OpenCode-native `mk-goal` plugin remains a separate per-session system.
+The runtime-neutral goal core stores one active goal per workspace, runtime, and native session id. Pi supplies identity through its extension session manager; Cursor supplies identity to its `sessionStart` hook. The OpenCode-native `opencode-goal` plugin remains a separate per-session system.
 
 #### Current Reality
 

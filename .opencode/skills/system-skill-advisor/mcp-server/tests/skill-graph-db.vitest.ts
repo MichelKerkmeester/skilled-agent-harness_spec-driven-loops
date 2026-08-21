@@ -350,10 +350,10 @@ describe('skill graph database indexing', () => {
     const workspaceRoot = join(root, 'workspace');
     const skillRoot = join(workspaceRoot, '.opencode', 'skills');
     const skillDir = join(skillRoot, 'alpha');
-    const previousDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR;
+    const previousDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 
     try {
-      process.env.MK_SKILL_ADVISOR_DB_DIR = dbDir;
+      process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = dbDir;
       initDb(dbDir);
       mkdirSync(skillDir, { recursive: true });
       writeFileSync(join(skillDir, 'SKILL.md'), '# Alpha\n\nSafe test skill.\n', 'utf8');
@@ -382,8 +382,8 @@ describe('skill graph database indexing', () => {
       expect(alpha?.derivedKeywords).toEqual(expect.arrayContaining(['safe topic', 'safe entity']));
       expect(alpha?.derivedKeywords.join(' ')).not.toMatch(/developer instructions|prompt injection/);
     } finally {
-      if (previousDbDir === undefined) delete process.env.MK_SKILL_ADVISOR_DB_DIR;
-      else process.env.MK_SKILL_ADVISOR_DB_DIR = previousDbDir;
+      if (previousDbDir === undefined) delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+      else process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = previousDbDir;
       closeDb();
       rmSync(root, { recursive: true, force: true });
     }

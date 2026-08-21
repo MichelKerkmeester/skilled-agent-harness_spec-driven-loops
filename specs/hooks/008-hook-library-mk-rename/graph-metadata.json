@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/008-hook-library-mk-rename",
+  "spec_folder": "hooks/008-hook-library-mk-rename",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "hooks/001-hook-docs-relocation",
+      "hooks/002-injection-bloat-reduction"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook library mk rename",
+      "mk prefix rename",
+      "plugin rename to system",
+      "daemon rename spec-memory skill-advisor",
+      "mk to skill-relevant names",
+      "hook library rename plan",
+      "mk rename tasks",
+      "mk rename verification"
+    ],
+    "key_topics": [
+      "hook",
+      "library",
+      "rename",
+      "mk",
+      "prefix",
+      "plugin",
+      "daemon",
+      "tool-namespace",
+      "env",
+      "system"
+    ],
+    "importance_tier": "important",
+    "status": "planning",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "name-mapping.md"
+    ],
+    "entities": [
+      { "name": "spec.md", "kind": "doc", "path": "spec.md", "source": "derived" },
+      { "name": "plan.md", "kind": "doc", "path": "plan.md", "source": "derived" },
+      { "name": "tasks.md", "kind": "doc", "path": "tasks.md", "source": "derived" },
+      { "name": "checklist.md", "kind": "doc", "path": "checklist.md", "source": "derived" },
+      { "name": "decision-record.md", "kind": "doc", "path": "decision-record.md", "source": "derived" },
+      { "name": "name-mapping.md", "kind": "doc", "path": "name-mapping.md", "source": "derived" }
+    ],
+    "causal_summary": "The hook library carries an opaque mk- prefix across 14 plugins, their cores/scripts, two live MCP daemons, and the MK_ env namespace; this packet renames them to skill-relevant names on functional surfaces only, leaving historical spec docs intact.",
+    "created_at": "2026-08-20T00:00:00.000Z",
+    "last_save_at": "2026-08-20T00:00:00.000Z",
+    "save_lineage": "hand_stub",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "name-mapping.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null,
+    "_stub": "Hand-authored in a bare worktree (no deps). Regenerate on main post-merge (ADR-006)."
+  }
+}

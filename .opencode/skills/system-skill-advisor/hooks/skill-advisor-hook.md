@@ -44,7 +44,7 @@ Hooks surface prompt-safe routing context. They do not replace explicit skill lo
 | Codex | `mcp-server/hooks/codex/user-prompt-submit.ts` | `mcp-server/dist/hooks/codex/user-prompt-submit.js` | `.codex/hooks.json` | `hookSpecificOutput.additionalContext` |
 | Cursor | `mcp-server/hooks/cursor/user-prompt-submit.ts` | `mcp-server/dist/hooks/cursor/user-prompt-submit.js` | `.cursor/hooks.json` | `hookSpecificOutput.additionalContext` |
 | Devin | `mcp-server/hooks/devin/user-prompt-submit.ts` | `mcp-server/dist/hooks/devin/user-prompt-submit.js` | `.devin/hooks.v1.json` | `hookSpecificOutput.additionalContext` |
-| OpenCode | `.opencode/plugins/mk-skill-advisor.js` + `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | OpenCode plugin discovery | `experimental.chat.system.transform` |
+| OpenCode | `.opencode/plugins/system-skill-advisor.js` + `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | OpenCode plugin discovery | `experimental.chat.system.transform` |
 
 OpenCode has no source-hook adapter in this repository. Its prompt-time integration is the plugin bridge, which uses the maintained advisor package and a warm-only CLI fallback.
 
@@ -81,7 +81,7 @@ OpenCode uses the maintained bridge entrypoint:
 
 ```bash
 printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | \
-  node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs
+  node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs
 ```
 
 ---
@@ -152,7 +152,7 @@ This check compares the repository's maintained Codex registration and adapter p
 
 ## 9. TIMEOUT OWNERSHIP
 
-`SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` is owned by the `system-skill-advisor` hub because its live consumers are `mcp-server/lib/subprocess.ts`, `mcp-server/lib/skill-advisor-brief.ts`, `mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`, and `mcp-server/scripts/skill_advisor.py`. The default is `3000` ms; on timeout, the OpenCode bridge serves prompt-safe stale context with a timeout marker. The sibling environment reference points here for the ownership contract.
+`SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` is owned by the `system-skill-advisor` hub because its live consumers are `mcp-server/lib/subprocess.ts`, `mcp-server/lib/skill-advisor-brief.ts`, `mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`, and `mcp-server/scripts/skill_advisor.py`. The default is `3000` ms; on timeout, the OpenCode bridge serves prompt-safe stale context with a timeout marker. The sibling environment reference points here for the ownership contract.
 
 ---
 

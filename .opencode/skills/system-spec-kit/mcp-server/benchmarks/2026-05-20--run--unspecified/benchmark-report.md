@@ -1,6 +1,6 @@
 ---
-title: "mk-spec-memory nomic re-bench — May 20, 2026"
-description: "Skill-local benchmark for mk-spec-memory under nomic-embed-text-v1.5 (ADR-013) post the 016/002/016-019 fix arc, with the regenerated cat-24/409 fixture, Z threshold tuned to 1.3, shared-connection harness, and embedding_cache reset. Final: 9/10 ID-match, median 1071 ms, p95 2627 ms — matches the May 17 jina-v3 + rescue baseline at stricter top-1 scoring."
+title: "system-spec-memory nomic re-bench — May 20, 2026"
+description: "Skill-local benchmark for system-spec-memory under nomic-embed-text-v1.5 (ADR-013) post the 016/002/016-019 fix arc, with the regenerated cat-24/409 fixture, Z threshold tuned to 1.3, shared-connection harness, and embedding_cache reset. Final: 9/10 ID-match, median 1071 ms, p95 2627 ms — matches the May 17 jina-v3 + rescue baseline at stricter top-1 scoring."
 trigger_phrases:
   - "spec memory nomic benchmark 2026-05-20"
   - "nomic 9/10 re-bench"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 ---
 
-# mk-spec-memory nomic re-bench — May 20, 2026
+# system-spec-memory nomic re-bench — May 20, 2026
 
 > **Headline:** 9/10 top-1 ID-match against the regenerated cat-24/409 fixture, median 1071 ms, p95 2627 ms. Matches the May 17 jina-v3 plus retrieval-rescue baseline at the stricter top-1 cut (May 17 was 9/10 at top-3). Achieved by re-tuning Z_SCORE_THRESHOLD from 1.5 to 1.3 to match the nomic profile, regenerating the fixture against current corpus IDs, switching to a shared-connection harness, and resetting the stale embedding_cache that was triggering UNIQUE constraint failures on every query.
 
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ## 1. OVERVIEW AND HEADLINE
 
-Final state for the May 20, 2026 re-bench of `mk-spec-memory` under `nomic-embed-text-v1.5` (ollama Q4_K_M, 768-dim). The bench validates the 016/002/016-019 fix arc (vec_memories KNN dual-write, factory shard fallback, constitutional gate exemption, graph-metadata plus lineage repair runner) plus four follow-on tuning actions taken during this run:
+Final state for the May 20, 2026 re-bench of `system-spec-memory` under `nomic-embed-text-v1.5` (ollama Q4_K_M, 768-dim). The bench validates the 016/002/016-019 fix arc (vec_memories KNN dual-write, factory shard fallback, constitutional gate exemption, graph-metadata plus lineage repair runner) plus four follow-on tuning actions taken during this run:
 
 1. Regenerated the cat-24/409 fixture against current corpus IDs (the prior fixture pinned IDs from the May 17 corpus snapshot; 3 of 10 were out of range, the other 7 had shifted from session-internal corpus rebuilds).
 2. Tuned `Z_SCORE_THRESHOLD` from `1.5` to `1.3` in `lib/search/evidence-gap-detector.ts` to match the realistic floor for paraphrase queries on nomic at 768-dim without a configured cross-encoder reranker.
@@ -71,7 +71,7 @@ ID-match top-1: pass if `expected_source_memory_id` equals the `results[0].id` r
 ### Environment
 
 - Daemon: PID 93367 / 93374 running with patched dist (`Z_SCORE_THRESHOLD=1.3`, 016/002/016-019 fix arc)
-- Bridge socket: `/tmp/mk-spec-memory/daemon-ipc.sock`
+- Bridge socket: `/tmp/system-spec-memory/daemon-ipc.sock`
 - Active embedder: nomic-embed-text-v1.5 via ollama (factory log: `[factory] Using provider: ollama (vec_metadata active_embedder_name=nomic-embed-text-v1.5 (768-dim))`)
 - Cross-encoder reranker: NONE configured (no `VOYAGE_API_KEY`, no `COHERE_API_KEY`, no `RERANKER_LOCAL=true`); positional fallback-sort engaged at stage 3
 - Retrieval-rescue layer (ADR-010/011): default-on via `SPECKIT_RERANK_LAYER` (not explicit false)
@@ -161,7 +161,7 @@ The 4434 stale rows with three distinct profile_key values were enough to break 
 ```bash
 # Daemon must be running with nomic-embed-text-v1.5 as the active embedder
 # and the patched dist (Z_SCORE_THRESHOLD=1.3 in lib/search/evidence-gap-detector.ts).
-# The launcher bridge at /tmp/mk-spec-memory/daemon-ipc.sock must be reachable.
+# The launcher bridge at /tmp/system-spec-memory/daemon-ipc.sock must be reachable.
 
 node /tmp/cat24-shared-harness.mjs
 # Expected: 9/10 top-1 ID-match, median ~1000-1200 ms, p95 ~2500-3000 ms
@@ -170,7 +170,7 @@ node /tmp/cat24-shared-harness.mjs
 ### Verify the embedder pointer
 
 ```bash
-grep "Using provider" /tmp/mk-spec-memory-daemon.log | head -1
+grep "Using provider" /tmp/system-spec-memory-daemon.log | head -1
 # Expected: [factory] Using provider: ollama (vec_metadata active_embedder_name=nomic-embed-text-v1.5 (768-dim))
 ```
 
@@ -200,7 +200,7 @@ node -e "const D=require('better-sqlite3'); const db=new D('.opencode/skills/sys
 | [`results.csv`](./results.csv) | One-row aggregate with hit rate, latency, threshold |
 | [`per-probe.jsonl`](./per-probe.jsonl) | Per-probe top-3 IDs, titles, latency |
 | [`../2026-05-17--run--unspecified/benchmark-report.md`](../../../mcp-server/benchmarks/2026-05-17--run--unspecified/benchmark-report.md) | Prior baseline: jina-v3 plus retrieval-rescue, 9/10 cat-24/409 at top-3 |
-| [`../README.md`](../README.md) | Index of all mk-spec-memory benchmarks |
+| [`../README.md`](../README.md) | Index of all system-spec-memory benchmarks |
 
 ### Source packets
 

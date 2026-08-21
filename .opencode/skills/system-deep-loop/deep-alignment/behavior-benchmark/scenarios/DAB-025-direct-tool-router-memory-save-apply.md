@@ -28,8 +28,8 @@
     "role_absorption_forbidden": true,
     "min_seats": 0,
     "expected_targets": [
-      "mcp__mk_spec_memory__memory_index_scan",
-      "mcp__mk_spec_memory__memory_save"
+      "mcp__system_spec_memory__memory_index_scan",
+      "mcp__system_spec_memory__memory_save"
     ],
     "forbidden_targets": [
       "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",

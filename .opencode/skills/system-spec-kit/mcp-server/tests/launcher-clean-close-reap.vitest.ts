@@ -15,7 +15,7 @@ import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 // forcing a child to ignore SIGTERM is environment-fragile.
 const require = createRequire(import.meta.url);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const launcher = require(join(repoRoot, '.opencode/bin/mk-spec-memory-launcher.cjs')) as {
+const launcher = require(join(repoRoot, '.opencode/bin/system-spec-memory-launcher.cjs')) as {
   reapLeaseChildBeforeRespawn: (childPid: number) => Promise<{
     allowed: boolean;
     reaped?: boolean;

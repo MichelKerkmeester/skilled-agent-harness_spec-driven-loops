@@ -1,0 +1,1 @@
+../../../plugins/opencode-goal.js

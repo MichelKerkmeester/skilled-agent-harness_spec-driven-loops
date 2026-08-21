@@ -8,7 +8,7 @@
 //
 // PreToolUse advisory hook for native external MCP calls (Claude Code).
 //
-// Claude's counterpart to the mk-mcp-route-guard OpenCode plugin: it reads the
+// Claude's counterpart to the mcp-route-guard OpenCode plugin: it reads the
 // PreToolUse payload for a matched `mcp__claude_ai_.*` tool call and evaluates
 // the runtime-neutral mcp-route-guard core. A match against the Code Mode
 // manifest emits an additionalContext advisory nudging the call toward

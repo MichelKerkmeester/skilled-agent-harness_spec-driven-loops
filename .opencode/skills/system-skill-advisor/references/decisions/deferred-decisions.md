@@ -78,7 +78,7 @@ A complete migration of both hooks requires building `session-start.js` at the N
 ### Risks
 
 - `.devin/hooks.v1.json` is runtime config consumed by Devin. A wrong path produces silent hook failure plus the operator may not notice until skill-advisor surface stops appearing in Devin output.
-- The disable-flag interaction (per `INSTALL-GUIDE.md` §8): Devin hook checks `MK_SKILL_ADVISOR_HOOK_DISABLED` first plus falls back to `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`. Migration does not change this contract.
+- The disable-flag interaction (per `INSTALL-GUIDE.md` §8): Devin hook checks `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED` first plus falls back to `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`. Migration does not change this contract.
 
 ---
 
@@ -154,7 +154,7 @@ Mark OLD as deprecated with a 90-day migration window. Concrete steps:
    | Claude | `.claude/settings.local.json` hooks block | yes | Update Claude config |
    | OpenCode | `opencode.json` hooks section | yes | Update OpenCode config |
    | Devin | `.devin/hooks.v1.json` | partial (session-start.js missing) | Resolve F4 first |
-   | OpenCode plugin | `.opencode/plugins/mk-skill-advisor.js` | n/a (plugin owns its loading) | No change needed |
+   | OpenCode plugin | `.opencode/plugins/system-skill-advisor.js` | n/a (plugin owns its loading) | No change needed |
 
 3. After all runtime configs are migrated plus the 90-day window passes, delete the OLD location in a separate cleanup packet.
 

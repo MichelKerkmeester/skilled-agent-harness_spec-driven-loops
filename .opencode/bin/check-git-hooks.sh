@@ -11,7 +11,7 @@
 # and the same silent gap that can drop post-merge/post-rewrite drift-marker
 # coverage.
 #
-# Live-sync self-heal: with the live-sync loop enabled (MK_LIVE_SYNC_DISABLED
+# Live-sync self-heal: with the live-sync loop enabled (SYSTEM_LIVE_SYNC_DISABLED
 # absent), this guard also auto-runs the installer from the MAIN checkout so a
 # fresh clone heals itself without an operator step. It never auto-installs from
 # a linked worktree, and disabling the guard or the live-sync loop stops it.

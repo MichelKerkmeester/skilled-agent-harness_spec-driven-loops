@@ -185,7 +185,7 @@ STATUS=[OK|CANCELLED|FAIL]
 ```text
 Examples:
   /doctor:mcp install
-  /doctor:mcp install --server mk-spec-memory
+  /doctor:mcp install --server system-spec-memory
   /doctor:mcp install --runtime claude
   /doctor:mcp debug
   /doctor:mcp debug --fix

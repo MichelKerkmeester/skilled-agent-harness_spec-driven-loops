@@ -23,7 +23,7 @@ Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM s
 
 `lib/daemon/lifecycle.ts` orchestrates daemon boot by acquiring the workspace lease, starting the watcher, warming freshness state and exposing `trustState` to readers. Shutdown responds to SIGTERM, flushes any pending reindex, releases the lease and drains the watcher. `advisor_status` returns `generation`, `skillCount`, `lastScanAt`, `trustState` and `laneWeights` regardless of whether the daemon has a live writer.
 
-The `mk_skill_advisor` MCP server also participates in the shared launcher idle-timeout guardrail. `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the monitor. Stdio and IPC socket connect/data/write activity refresh the idle timer so active secondary clients keep the server alive.
+The `system_skill_advisor` MCP server also participates in the shared launcher idle-timeout guardrail. `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the monitor. Stdio and IPC socket connect/data/write activity refresh the idle timer so active secondary clients keep the server alive.
 
 ---
 

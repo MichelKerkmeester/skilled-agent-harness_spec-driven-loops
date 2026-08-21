@@ -125,7 +125,7 @@ describe('launcher IPC bridge liveness probe', () => {
     process.env.SPECKIT_IPC_SOCKET_DIR = 'tcp://127.0.0.1:65535';
     const bridge = vi.fn();
     const decision = await maybeBridgeLeaseHolder({
-      serviceName: 'mk-spec-memory',
+      serviceName: 'system-spec-memory',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       connect: createAliveConnect(),
@@ -141,7 +141,7 @@ describe('launcher IPC bridge liveness probe', () => {
     process.env.SPECKIT_IPC_SOCKET_DIR = 'tcp://127.0.0.1:65535';
     const bridge = vi.fn();
     await maybeBridgeLeaseHolder({
-      serviceName: 'mk-spec-memory',
+      serviceName: 'system-spec-memory',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       connect: createAliveConnect(),
@@ -168,7 +168,7 @@ describe('launcher IPC bridge liveness probe', () => {
     });
 
     const decision = maybeBridgeLeaseHolder({
-      serviceName: 'mk-spec-memory',
+      serviceName: 'system-spec-memory',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       connect: createAliveConnect(),
@@ -271,7 +271,7 @@ describe('launcher IPC bridge liveness probe', () => {
     const bridge = vi.fn();
 
     const decision = maybeBridgeLeaseHolder({
-      serviceName: 'mk-spec-memory',
+      serviceName: 'system-spec-memory',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       connect: createNeverConnect(),
@@ -309,23 +309,23 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
   it('scopes advisor sockets by database under the shared default socket directory', () => {
     const firstDbDir = tempDir('lease-scope-first-');
     const secondDbDir = tempDir('lease-scope-second-');
-    process.env.SPECKIT_IPC_SOCKET_DIR = '/tmp/mk-skill-advisor';
+    process.env.SPECKIT_IPC_SOCKET_DIR = '/tmp/system-skill-advisor';
     delete process.env.SPECKIT_IPC_SOCKET_SCOPE;
 
-    const firstSocket = getIpcSocketPath('mk-skill-advisor', { dbDir: firstDbDir });
-    const secondSocket = getIpcSocketPath('mk-skill-advisor', { dbDir: secondDbDir });
+    const firstSocket = getIpcSocketPath('system-skill-advisor', { dbDir: firstDbDir });
+    const secondSocket = getIpcSocketPath('system-skill-advisor', { dbDir: secondDbDir });
 
-    expect(firstSocket).toMatch(/^\/tmp\/mk-skill-advisor\/[0-9a-f]{12}\/daemon-ipc\.sock$/);
+    expect(firstSocket).toMatch(/^\/tmp\/system-skill-advisor\/[0-9a-f]{12}\/daemon-ipc\.sock$/);
     expect(secondSocket).not.toBe(firstSocket);
   });
 
-  // (1) A freshly written mk-spec-memory lease now carries the owner's actual socket path.
+  // (1) A freshly written system-spec-memory lease now carries the owner's actual socket path.
   it('emits socketPath in the lease payload when the owner supplies one', () => {
     const lease = buildLeaseObject(4242, '2026-05-28T00:00:00.000Z', null, '/tmp/owner-env/daemon-ipc.sock');
     expect(lease.socketPath).toBe('/tmp/owner-env/daemon-ipc.sock');
   });
 
-  // (4) Leases without a socketPath (legacy mk-spec-memory writes and every skill-advisor /
+  // (4) Leases without a socketPath (legacy system-spec-memory writes and every skill-advisor /
   // code-index lease, which never records one) omit the field entirely so existing readers and
   // the recompute fallback are unaffected.
   it('omits socketPath entirely when no owner path is supplied', () => {
@@ -346,7 +346,7 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
 
     const bridged: string[] = [];
     const decision = await maybeBridgeLeaseHolder({
-      serviceName: 'mk-spec-memory',
+      serviceName: 'system-spec-memory',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z', socketPath: storedSocket },
       loggerPrefix: 'test-launcher',
       dbDir: divergentDir,
@@ -371,7 +371,7 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
 
     const bridged: string[] = [];
     const decision = await maybeBridgeLeaseHolder({
-      serviceName: 'mk-spec-memory',
+      serviceName: 'system-spec-memory',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       dbDir: ownerDir,
@@ -387,14 +387,14 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
   });
 
   // (4) A skill-advisor / code-index style lease (no socketPath) is unaffected: same recompute path
-  // as a legacy mk-spec-memory lease, and a missing recomputed socket still reports no-bridge-socket.
+  // as a legacy system-spec-memory lease, and a missing recomputed socket still reports no-bridge-socket.
   it('reports no-bridge-socket for a no-socketPath lease whose recomputed socket is absent', async () => {
     const divergentDir = tempDir('lease-advisor-');
     delete process.env.SPECKIT_IPC_SOCKET_DIR; // force recompute to resolve from dbDir, not host env
 
     const bridged: string[] = [];
     const decision = await maybeBridgeLeaseHolder({
-      serviceName: 'mk-skill-advisor',
+      serviceName: 'system-skill-advisor',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       dbDir: divergentDir,

@@ -16,7 +16,7 @@ import {
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const OPENCODE_TRANSFORM_DEDUP_ENV = 'MK_OPENCODE_TRANSFORM_DEDUP';
+export const OPENCODE_TRANSFORM_DEDUP_ENV = 'SYSTEM_OPENCODE_TRANSFORM_DEDUP';
 const UNKNOWN_TRANSFORM_NAME = 'unknown-transform';
 const UNKNOWN_SESSION_ID = '__global__';
 const IDENTITY_SEPARATOR = '\u001f';

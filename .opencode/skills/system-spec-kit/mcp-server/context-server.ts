@@ -375,7 +375,7 @@ function runBootFtsIntegrityCheckAttempt(): void {
         bootFtsIntegrityHealth = 'corrupt';
         console.error([
           '[context-server] ===== FTS5 SHADOW INDEX CORRUPTION DETECTED =====',
-          '[context-server] Boot marker indicates the previous mk-spec-memory shutdown was unclean.',
+          '[context-server] Boot marker indicates the previous system-spec-memory shutdown was unclean.',
           `[context-server] FTS5 integrity-check failed: ${message}`,
           `[context-server] Boot auto-rebuild FAILED: ${rebuildMessage}`,
           '[context-server] DETECT-ONLY fallback: no further recovery attempted; manual repair required.',
@@ -388,7 +388,7 @@ function runBootFtsIntegrityCheckAttempt(): void {
     bootFtsIntegrityHealth = 'corrupt';
     console.error([
       '[context-server] ===== FTS5 SHADOW INDEX CORRUPTION DETECTED =====',
-      '[context-server] Boot marker indicates the previous mk-spec-memory shutdown was unclean.',
+      '[context-server] Boot marker indicates the previous system-spec-memory shutdown was unclean.',
       `[context-server] FTS5 integrity-check failed: ${message}`,
       '[context-server] DETECT-ONLY: auto-heal disabled (SPECKIT_BOOT_FTS_AUTOHEAL=0); no rebuild attempted.',
       `[context-server] Runbook: ${FTS_CORRUPTION_RUNBOOK}`,
@@ -970,7 +970,7 @@ async function invalidateReinitializedDbCaches(): Promise<void> {
 
 function createContextMcpServer(): Server {
   return new Server(
-    { name: 'mk-spec-memory', version: '1.8.0' },
+    { name: 'system-spec-memory', version: '1.8.0' },
     { capabilities: { tools: {} } },
   );
 }
@@ -1502,7 +1502,7 @@ const SHUTDOWN_DEADLINE_MS = 5000;
  * single-writer lock": bridge to that owner instead of counting this exit
  * toward the crash loop. Chosen clear of the daemon's 0/1, the launcher's
  * 0/1/128, and the CLI contract's 0/1/64/69/75. Mirrored in
- * mk-spec-memory-launcher.cjs.
+ * system-spec-memory-launcher.cjs.
  */
 const EXIT_DB_LOCK_HELD = 86;
 

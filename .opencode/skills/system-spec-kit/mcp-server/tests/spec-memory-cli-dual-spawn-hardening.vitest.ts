@@ -50,9 +50,9 @@ interface RuntimeScope {
   readonly memoryDbPath: string;
 }
 
-const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as LauncherModule;
+const launcher = require('../../../../bin/system-spec-memory-launcher.cjs') as LauncherModule;
 const bridge = require('../../../../bin/lib/launcher-ipc-bridge.cjs') as BridgeModule;
-const launcherPath = require.resolve('../../../../bin/mk-spec-memory-launcher.cjs') as string;
+const launcherPath = require.resolve('../../../../bin/system-spec-memory-launcher.cjs') as string;
 
 const tempDirs: string[] = [];
 const servers: net.Server[] = [];
@@ -176,7 +176,7 @@ describe('spec-memory CLI dual simultaneous spawn hardening', () => {
     const bridgedSockets: string[] = [];
 
     const result = await bridge.maybeBridgeLeaseHolder({
-      serviceName: 'mk-spec-memory',
+      serviceName: 'system-spec-memory',
       leaseResult: {
         ownerPid: process.pid,
         startedAt: new Date().toISOString(),

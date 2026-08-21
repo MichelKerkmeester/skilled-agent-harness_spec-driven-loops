@@ -1,11 +1,11 @@
 ---
 title: "Post-Edit Quality Router"
-description: "Manual validation for the mk-post-edit-quality plugin and Claude PostToolUse hook"
+description: "Manual validation for the sk-code-post-edit-quality plugin and Claude PostToolUse hook"
 trigger_phrases:
   - "plg-001"
   - "post-edit-quality"
   - "post edit quality router"
-  - "mk-post-edit-quality"
+  - "sk-code-post-edit-quality"
   - "posttooluse quality hook"
 version: 1.0.0.0
 ---
@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`mk-post-edit-quality` is a runtime-neutral post-edit quality router shared by two adapters over one
+`sk-code-post-edit-quality` is a runtime-neutral post-edit quality router shared by two adapters over one
 core: the OpenCode plugin (`tool.execute.before` / `tool.execute.after` / `experimental.chat.system.transform`)
 and the Claude Code `PostToolUse(Write|Edit)` hook. Both adapters call the same
 `post-edit-router.cjs` core (`resolveDispatch()` then `runChecks()`) so the two runtimes cannot drift
@@ -34,7 +34,7 @@ to a thrown error or a blocked edit.
 
 This scenario validates that the real dispatch/router core, the real Claude hook binary, and the real
 OpenCode plugin module produce the documented behavior end-to-end: a genuine ephemeral-comment edit
-surfaces a finding, a clean edit surfaces nothing, the `MK_POST_EDIT_QUALITY_DISABLED=1` kill-switch
+surfaces a finding, a clean edit surfaces nothing, the `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` kill-switch
 fully silences every hook, and an edit outside the project root resolves to zero dispatch entries.
 
 ---
@@ -42,11 +42,11 @@ fully silences every hook, and an edit outside the project root resolves to zero
 ## 2. SCENARIO CONTRACT
 
 - Preconditions:
-  - `.opencode/plugins/mk-post-edit-quality.js` exists (OpenCode plugin adapter).
+  - `.opencode/plugins/sk-code-post-edit-quality.js` exists (OpenCode plugin adapter).
   - `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs` exists (Claude adapter).
   - `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs` exists (shared core).
   - `.claude/settings.json` wires `PostToolUse` matcher `Write|Edit` to the Claude adapter above.
-  - `.opencode/plugins/tests/mk-post-edit-quality.test.cjs` (38 tests) is present.
+  - `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` (38 tests) is present.
   - All six canonical checker paths in `CHECKER_RELATIVE_PATHS` exist on disk (comment-hygiene,
     flowchart, frontmatter-versions, placeholders, wikilinks, dist-staleness) -- verified present.
   - Node `v22.23.1` available on PATH (confirmed via `node --version`).
@@ -62,7 +62,7 @@ fully silences every hook, and an edit outside the project root resolves to zero
     line; process exit code `0`.
   - Claude adapter, clean edit or missing file or malformed stdin: empty stdout, exit code `0`, no
     stderr traceback.
-  - Claude adapter, `MK_POST_EDIT_QUALITY_DISABLED=1`: empty stdout, exit code `0` (full no-op).
+  - Claude adapter, `SK_CODE_POST_EDIT_QUALITY_DISABLED=1`: empty stdout, exit code `0` (full no-op).
   - OpenCode plugin, real `tool.execute.before` -> `tool.execute.after` -> `chat.system.transform`
     sequence: `output.system` contains exactly one entry starting with
     `[post-edit-quality] Advisory findings from recent edits:`, and zero writes to
@@ -70,7 +70,7 @@ fully silences every hook, and an edit outside the project root resolves to zero
   - OpenCode plugin, kill-switch env: `output.system` stays `[]` after the same sequence.
   - `resolveDispatch()` on a path outside the project root (e.g. a scratch dir under `/private/tmp`):
     returns `[]`, so neither adapter emits a finding.
-  - `node --test` run of `mk-post-edit-quality.test.cjs`: `# pass 38`, `# fail 0`.
+  - `node --test` run of `sk-code-post-edit-quality.test.cjs`: `# pass 38`, `# fail 0`.
 - Pass/fail: PASS if the real 38-test suite is fully green AND a live invocation of the real Claude
   adapter against a genuine ephemeral-comment file prints the `COMMENT HYGIENE WARNING` banner with
   exit `0` AND the kill-switch and outside-root cases both produce empty output AND a live import of the
@@ -87,7 +87,7 @@ fully silences every hook, and an edit outside the project root resolves to zero
 1. Run the real unit-test suite (hermetic fixtures, no live session required):
 
 ```bash
-node --test .opencode/plugins/tests/mk-post-edit-quality.test.cjs
+node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
 ```
 
 Expected: `# tests 38`, `# pass 38`, `# fail 0`, `# cancelled 0`.
@@ -124,7 +124,7 @@ cat > "$TMPDIR_KILL/edited.ts" <<'EOF'
 export const liveSample = 1;
 EOF
 printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"$PWD/$TMPDIR_KILL/edited.ts\"},\"cwd\":\"$PWD\"}" \
-  | MK_POST_EDIT_QUALITY_DISABLED=1 node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs
+  | SK_CODE_POST_EDIT_QUALITY_DISABLED=1 node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs
 echo "EXIT_CODE=$?"
 rm -rf "$TMPDIR_KILL"
 ```
@@ -153,7 +153,7 @@ chmod +x "$TMPDIR_LIVE/.opencode/skills/sk-code/sk-code-quality/scripts/check-co
 
 cat > "$TMPDIR_LIVE/live-invoke.mjs" <<EOF
 import path from 'node:path';
-const { default: MkPostEditQualityPlugin } = await import(new URL('file://$PWD/.opencode/plugins/mk-post-edit-quality.js'));
+const { default: MkPostEditQualityPlugin } = await import(new URL('file://$PWD/.opencode/plugins/sk-code-post-edit-quality.js'));
 const projectDir = '$PWD/$TMPDIR_LIVE';
 const editedFile = path.join(projectDir, 'edited.ts');
 const hooks = await MkPostEditQualityPlugin({ directory: projectDir });
@@ -179,15 +179,15 @@ Expected: JSON output with one `system` entry containing
    reason and would not actually exercise the outside-root dispatch logic:
 
 ```bash
-mkdir -p /private/tmp/mk-post-edit-quality-outside-root-check
-cat > /private/tmp/mk-post-edit-quality-outside-root-check/outside-root.ts <<'EOF'
+mkdir -p /private/tmp/sk-code-post-edit-quality-outside-root-check
+cat > /private/tmp/sk-code-post-edit-quality-outside-root-check/outside-root.ts <<'EOF'
 // See ADR-042 for details
 export const liveSample = 1;
 EOF
-printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"/private/tmp/mk-post-edit-quality-outside-root-check/outside-root.ts\"},\"cwd\":\"$PWD\"}" \
+printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"/private/tmp/sk-code-post-edit-quality-outside-root-check/outside-root.ts\"},\"cwd\":\"$PWD\"}" \
   | node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs
 echo "EXIT_CODE=$?"
-rm -rf /private/tmp/mk-post-edit-quality-outside-root-check
+rm -rf /private/tmp/sk-code-post-edit-quality-outside-root-check
 ```
 
 Expected: empty stdout, `EXIT_CODE=0` (the fixture file exists, so the Claude adapter's
@@ -197,7 +197,7 @@ then returns `null` for a path that is not a descendant of `projectDir`, so `res
 
 ### Kill-switch reference
 
-Env var: `MK_POST_EDIT_QUALITY_DISABLED`. Set to `"1"` to force every hook (Claude adapter and all
+Env var: `SK_CODE_POST_EDIT_QUALITY_DISABLED`. Set to `"1"` to force every hook (Claude adapter and all
 three OpenCode plugin hooks) into a full no-op, verified live in Command 3 above and in the unit-test
 suite (`OpenCode plugin: kill-switch env makes every hook a full no-op`,
 `Claude hook is a full no-op under its kill-switch env`).
@@ -209,7 +209,7 @@ suite (`OpenCode plugin: kill-switch env makes every hook a full no-op`,
 Unit-test suite command and real tail output:
 
 ```bash
-node --test .opencode/plugins/tests/mk-post-edit-quality.test.cjs
+node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
 ```
 
 ```text
@@ -243,10 +243,10 @@ Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line
 EXIT_CODE=0
 ```
 
-Live kill-switch invocation (same edited file, `MK_POST_EDIT_QUALITY_DISABLED=1`):
+Live kill-switch invocation (same edited file, `SK_CODE_POST_EDIT_QUALITY_DISABLED=1`):
 
 ```text
---- live kill-switch invocation (MK_POST_EDIT_QUALITY_DISABLED=1) ---
+--- live kill-switch invocation (SK_CODE_POST_EDIT_QUALITY_DISABLED=1) ---
 EXIT_CODE=0 STDOUT_ABOVE_SHOULD_BE_EMPTY
 ```
 
@@ -323,7 +323,7 @@ unit-test suite's `OpenCode plugin: before/after correlation...with zero termina
 additionally proves the console/stdout/stderr are never touched during that sequence -- both stand in
 as the concrete fallback evidence for the runtime-session-only path.
 
-Working-tree note: `.opencode/plugins/mk-post-edit-quality.js` shows as modified (`git diff --stat`,
+Working-tree note: `.opencode/plugins/sk-code-post-edit-quality.js` shows as modified (`git diff --stat`,
 9 insertions/9 deletions) in this repo's working tree independent of this scenario -- this scenario
 only ever used `Read` on that file and ran throwaway fixtures under `mktemp`-created, removed-after-use
 directories; it made no edits to any source file.
@@ -333,10 +333,10 @@ directories; it made no edits to any source file.
 ## 5. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- OpenCode plugin adapter: `.opencode/plugins/mk-post-edit-quality.js`
+- OpenCode plugin adapter: `.opencode/plugins/sk-code-post-edit-quality.js`
 - Claude PostToolUse adapter: `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
 - Shared runtime-neutral core: `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs`
-- Unit-test suite (38 tests): `.opencode/plugins/tests/mk-post-edit-quality.test.cjs`
+- Unit-test suite (38 tests): `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs`
 - Hook wiring: `.claude/settings.json` (`PostToolUse` -> matcher `Write|Edit`)
 - Checkers dispatched by the router:
   - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
@@ -364,7 +364,7 @@ PASS
 The real 38-test suite ran green (`# pass 38`, `# fail 0`, `# cancelled 0`). A live invocation of the
 real Claude PostToolUse adapter against a genuine ephemeral-comment `.ts` file printed the exact
 `COMMENT HYGIENE WARNING` banner with exit code `0`. The same adapter under
-`MK_POST_EDIT_QUALITY_DISABLED=1` produced empty stdout with exit code `0` (full no-op). A direct live
+`SK_CODE_POST_EDIT_QUALITY_DISABLED=1` produced empty stdout with exit code `0` (full no-op). A direct live
 import of the real OpenCode plugin module ran the actual `tool.execute.before` ->
 `tool.execute.after` -> `experimental.chat.system.transform` sequence and surfaced the buffered finding
 through `output.system` with no terminal writes. A path outside the project root produced empty stdout

@@ -158,7 +158,7 @@ Tier.
 ```
 Surface stale/guard notices via `experimental.chat.system.transform` (bounded
 `output.system` push), a fail-open log file, or a plugin tool — `stderr` only
-behind a default-off debug env flag. Reference: `mk-dist-freshness-guard.js`.
+behind a default-off debug env flag. Reference: `system-dist-freshness-guard.js`.
 See `quality-standards.md` §10.
 
 **Wrong for non-plugin CommonJS utilities**:

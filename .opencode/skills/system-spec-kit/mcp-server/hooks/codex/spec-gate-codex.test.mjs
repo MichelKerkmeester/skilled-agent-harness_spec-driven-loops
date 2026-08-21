@@ -39,7 +39,7 @@ function makeWorkspace() {
 
 function isolatedEnv(overrides = {}) {
   const env = { ...process.env };
-  delete env.MK_SPEC_FOLDER;
+  delete env.SYSTEM_SPEC_FOLDER;
   delete env[guardCore.DISABLED_ENV];
   delete env[guardCore.ENFORCE_ENV];
   delete env[guardCore.CHILD_SESSION_ENV];

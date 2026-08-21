@@ -3,7 +3,7 @@
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Persist isolated cross-runtime session goals and render the     ║
 // ║          passive `[active_goal]` steering block injected into a model's ║
-// ║          context. Ported from the OpenCode `mk-goal` plugin's session   ║
+// ║          context. Ported from the OpenCode `opencode-goal` plugin's session   ║
 // ║          state machine, template, and prompt-injection hardening. Reads ║
 // ║          fail open; management mutations raise stable GoalError codes. ║
 // ║          This module never writes stdout or stderr.                     ║
@@ -39,8 +39,8 @@ const { isHookEnabled } = require('../../shared/hook-flags.cjs');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const STATE_DIR_ENV = 'MK_GOAL_STATE_DIR';
-const DISABLED_ENV = 'MK_GOAL_PLUGIN_DISABLED';
+const STATE_DIR_ENV = 'OPENCODE_GOAL_STATE_DIR';
+const DISABLED_ENV = 'OPENCODE_GOAL_PLUGIN_DISABLED';
 const STATE_SUBDIR = '.opencode/skills/.goal-state';
 const LEGACY_STATE_FILENAME = 'active-goal.json';
 const ARCHIVE_SUBDIR = '.archive';
@@ -86,7 +86,7 @@ const ACTIONS = [
 ];
 const USAGE_SOURCE = 'turn-count-estimate';
 
-// Ported from mk-goal: folds visually-confusable Cyrillic/Greek letters back to
+// Ported from opencode-goal: folds visually-confusable Cyrillic/Greek letters back to
 // Latin before the role-token guard runs, so `аssistant:` cannot dodge redaction.
 const ROLE_HOMOGLYPHS = Object.freeze({
   а: 'a', е: 'e', і: 'i', о: 'o', р: 'p', с: 'c', ѕ: 's', у: 'y',
@@ -101,7 +101,7 @@ const VERIFIER_STOPWORDS = new Set([
   'mission', 'phase', 'that', 'this', 'update', 'with', 'work',
 ]);
 
-// Ported verbatim from mk-goal's default heuristic supervisor verifier patterns.
+// Ported verbatim from opencode-goal's default heuristic supervisor verifier patterns.
 const VERIFIER_BLOCKING_PATTERN = /\b(blocked?|blocker|error|failed|failing|failure|cannot|can't|unable|todo|not yet|partial(?:ly)?|still need(?:s)?|incomplete|not complete|not done|waiting|pending)\b/i;
 const VERIFIER_COMPLETION_PATTERN = /\b(done|completed?|finished|implemented|fixed|resolved|delivered|shipped|verified|validated|tests? passed|checks? passed|passing)\b/i;
 
@@ -139,7 +139,7 @@ function resolveRepoRoot(startDir = process.cwd()) {
 
 /**
  * Resolve the workspace state directory. Precedence: explicit `stateDir` option,
- * then `MK_GOAL_STATE_DIR` env override (tests use this to avoid touching the
+ * then `OPENCODE_GOAL_STATE_DIR` env override (tests use this to avoid touching the
  * real `.goal-state/` tree), then the default path under the resolved repo root.
  */
 function resolveStateDir(rawOptions = {}) {
@@ -224,7 +224,7 @@ function legacyArchiveDir(rawOptions = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. TEXT HARDENING (ported from mk-goal normalizeUserAuthoredText)
+// 4. TEXT HARDENING (ported from opencode-goal normalizeUserAuthoredText)
 // ─────────────────────────────────────────────────────────────────────────────
 
 function clampText(value, maxChars) {
@@ -241,7 +241,7 @@ function foldRoleToken(value) {
 }
 
 /**
- * Prompt-injection hardening ported from mk-goal: NFKC-normalize, strip
+ * Prompt-injection hardening ported from opencode-goal: NFKC-normalize, strip
  * bidi/zero-width control characters, redact any user-authored attempt to
  * forge the `[active_goal]` markers, downgrade fenced code blocks, fold
  * homoglyph role tokens, and redact common instruction-override phrasing.
@@ -331,9 +331,9 @@ function goalFocusHints(objective) {
 }
 
 /**
- * Build the RICCE goalPrompt skeleton, ported from mk-goal's
+ * Build the RICCE goalPrompt skeleton, ported from opencode-goal's
  * `buildEnhancedGoalPrompt` with the Role line parameterized per runtime
- * (mk-goal hardcodes "OpenCode execution agent").
+ * (opencode-goal hardcodes "OpenCode execution agent").
  */
 function buildGoalPrompt(objective, rawOptions = {}) {
   const runtimeLabel = sanitizeInlineText(rawOptions.runtimeLabel || 'cross-runtime', 60) || 'cross-runtime';
@@ -375,10 +375,10 @@ function calculateObjectivePreviewChars(maxInjectionChars) {
 /**
  * Render the passive `[active_goal]` steering block. Markers and field-line
  * labels (`status:`, `objective:`, `goal_prompt:`, `last_check:`, `usage:`,
- * `directive:`) match mk-goal's `renderGoalInjection` byte-for-byte; the
+ * `directive:`) match opencode-goal's `renderGoalInjection` byte-for-byte; the
  * `usage:` line reports turn-count-estimate content honestly since no
  * native token feed exists outside OpenCode. Falls back to a compact block
- * (same shape as mk-goal's fallback) when over `maxChars`.
+ * (same shape as opencode-goal's fallback) when over `maxChars`.
  */
 function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFAULT_MAX_INJECTION_CHARS } = {}) {
   if (!goal || goal.status !== 'active') return '';
@@ -431,7 +431,7 @@ function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFA
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 7. HEURISTIC VERIFIER (ported from mk-goal defaultHeuristicSupervisorVerifier)
+// 7. HEURISTIC VERIFIER (ported from opencode-goal defaultHeuristicSupervisorVerifier)
 // ─────────────────────────────────────────────────────────────────────────────
 
 function objectiveKeywords(objective) {
@@ -452,7 +452,7 @@ function verifierResult(verdict, reason, evidence, confidence) {
 }
 
 /**
- * Heuristic goal verifier, ported from mk-goal's
+ * Heuristic goal verifier, ported from opencode-goal's
  * `defaultHeuristicSupervisorVerifier`. Free-form assistant text can sound
  * conclusive while still describing a blocker, so ambiguous or mixed
  * evidence always stays open (`not-met`/`unclear`) rather than `met`.
@@ -596,7 +596,7 @@ function ensureDir(dir) {
   }
 }
 
-/** Atomic temp+rename write at mode 0600, mirroring mk-goal's writeGoalAtomic. */
+/** Atomic temp+rename write at mode 0600, mirroring opencode-goal's writeGoalAtomic. */
 function writeJsonAtomic(targetPath, record) {
   ensureDir(dirname(targetPath));
   const tempPath = `${targetPath}.${process.pid}.${Date.now()}.${Math.random().toString(16).slice(2)}.tmp`;
@@ -890,7 +890,7 @@ function buildNewRecord(objective, goalPrompt, tokenBudget, runtime, nowMsValue)
 }
 
 /**
- * Set or replace the active goal. Mirrors mk-goal's `setGoal` mutation
+ * Set or replace the active goal. Mirrors opencode-goal's `setGoal` mutation
  * semantics: `refreshed` when the objective is unchanged on an
  * active/paused goal, `created` when no goal existed, `replaced` otherwise.
  */

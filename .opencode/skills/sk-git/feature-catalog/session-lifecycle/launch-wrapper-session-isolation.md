@@ -26,7 +26,7 @@ Each top-level (human-launched) session gets its own worktree, its own branch, a
 
 ### Child Detection
 
-The wrapper execs in place — no new worktree — whenever either signal is present: `AI_SESSION_CHILD=1` in the environment (set at dispatch sites for orchestrated children), or a structural backstop that the process is already inside a linked git worktree (`git --git-dir` differs from `--git-common-dir`). An unknown or ambiguous signal defaults to top-level isolation, the safe failure mode. A child session also has `MK_SPEC_GATE_ENFORCE=0` neutralized on its way in, as a belt-and-suspenders backstop for the case where a dispatched child has no user turn available to answer a spec-gate question.
+The wrapper execs in place — no new worktree — whenever either signal is present: `AI_SESSION_CHILD=1` in the environment (set at dispatch sites for orchestrated children), or a structural backstop that the process is already inside a linked git worktree (`git --git-dir` differs from `--git-common-dir`). An unknown or ambiguous signal defaults to top-level isolation, the safe failure mode. A child session also has `SYSTEM_SPEC_GATE_ENFORCE=0` neutralized on its way in, as a belt-and-suspenders backstop for the case where a dispatched child has no user turn available to answer a spec-gate question.
 
 ### Worktree Allocation and Basing
 

@@ -22,7 +22,7 @@ if (!RUNTIME_ENGINE) {
   throw new Error(`no coherent compiled-routing layout under ${RUNTIME}`);
 }
 
-const launcher = requireCjs(join(HERE, 'mk-skill-advisor-launcher.cjs'));
+const launcher = requireCjs(join(HERE, 'system-skill-advisor-launcher.cjs'));
 const engine = requireCjs(RUNTIME_ENGINE);
 const status = requireCjs(join(HERE, 'compiled-route-status.cjs'));
 

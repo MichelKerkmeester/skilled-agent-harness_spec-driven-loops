@@ -9,7 +9,7 @@
   "command_topology": "subaction router",
   "entry_surface": "E1",
   "clarity": "C3",
-  "prompt": "install --fix --server mk-spec-memory",
+  "prompt": "install --fix --server system-spec-memory",
   "invocation": {
     "kind": "command",
     "command": "doctor/mcp"
@@ -39,7 +39,7 @@
     {
       "kind": "text_contains",
       "path": "src/case.txt",
-      "substring": "install --fix --server mk-spec-memory",
+      "substring": "install --fix --server system-spec-memory",
       "binds_setup": true
     },
     {

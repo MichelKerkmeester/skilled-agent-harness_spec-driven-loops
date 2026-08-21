@@ -79,7 +79,7 @@ function resolveSuppression() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  // Kill-switch: master MK_HOOKS_DISABLED or MK_GIT_PREFLIGHT_DISABLED. The
+  // Kill-switch: master SYSTEM_HOOKS_DISABLED or SK_GIT_PREFLIGHT_DISABLED. The
   // advisory is advisory-only, so silence is a safe no-op; approve() (exit 0)
   // is also the fail-open path if the guard ever throws. The SKGIT_ADVISORY
   // suppression tier below is untouched and still applies when enabled.

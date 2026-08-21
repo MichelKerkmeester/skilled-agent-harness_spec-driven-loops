@@ -77,7 +77,7 @@ Outside this tree, runtimes may contribute their own skills. Pi, for example, lo
 
 ## 4. ROUTING
 
-Gate 2 runs before any non-trivial task. The native advisor (`mk_skill_advisor`, tool `advisor_recommend`) scores the request and returns prompt-safe recommendations ranked by confidence. Two thresholds gate invocation: confidence at or above 0.8 and uncertainty at or below 0.35. When both pass, the skill must be invoked. When either fails, a general approach is allowed. A Python shim (`skill_advisor.py`) provides a fallback when the native path is unreachable.
+Gate 2 runs before any non-trivial task. The native advisor (`system_skill_advisor`, tool `advisor_recommend`) scores the request and returns prompt-safe recommendations ranked by confidence. Two thresholds gate invocation: confidence at or above 0.8 and uncertainty at or below 0.35. When both pass, the skill must be invoked. When either fails, a general approach is allowed. A Python shim (`skill_advisor.py`) provides a fallback when the native path is unreachable.
 
 New skills are discovered through `graph-metadata.json` plus a valid `SKILL.md` frontmatter. The `name` and `description` fields are required. `trigger_phrases` strengthen routing accuracy without being mandatory.
 

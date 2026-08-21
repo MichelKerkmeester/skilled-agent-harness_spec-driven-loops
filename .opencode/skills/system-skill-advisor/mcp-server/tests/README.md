@@ -109,7 +109,7 @@ tests/
 +-- lifecycle-derived-metadata.vitest.ts
 +-- manual-testing-playbook.vitest.ts
 +-- migration-lineage-identity.vitest.ts
-+-- mk-skill-advisor-plugin.vitest.ts
++-- system-skill-advisor-plugin.vitest.ts
 +-- rename-invariants.vitest.ts
 +-- routing-fixtures.affordance.test.ts
 +-- routing-parity-deep-council.vitest.ts

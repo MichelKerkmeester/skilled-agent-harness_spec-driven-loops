@@ -16,7 +16,7 @@ This folder injects nothing into any AI session — it is pure plumbing for the 
 
 ### Resolver API
 
-`hook-flags.cjs` exports `isHookEnabled(concern, env?)` (default-on; honors `MK_HOOKS_DISABLED`, canonical per-concern flags, and registered aliases), plus `concernFlag()`, `isTruthy()`, and `LEGACY_ALIASES`. `hook-flags.mjs` and `hook-flags.ts` are zero-drift facades over that implementation. `hook-flags.sh` exposes the equivalent POSIX `hook_enabled <concern>` helper for shell entrypoints. The dist-freshness Python entrypoint carries the same logic in its local `_hook_enabled()` helper.
+`hook-flags.cjs` exports `isHookEnabled(concern, env?)` (default-on; honors `SYSTEM_HOOKS_DISABLED`, canonical per-concern flags, and registered aliases), plus `concernFlag()`, `isTruthy()`, and `LEGACY_ALIASES`. `hook-flags.mjs` and `hook-flags.ts` are zero-drift facades over that implementation. `hook-flags.sh` exposes the equivalent POSIX `hook_enabled <concern>` helper for shell entrypoints. The dist-freshness Python entrypoint carries the same logic in its local `_hook_enabled()` helper.
 
 ### Adapter plumbing
 

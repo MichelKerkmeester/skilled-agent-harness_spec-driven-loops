@@ -8,11 +8,11 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-// Feature catalog: Memory indexing (memory_save)
-// Feature catalog: Atomic-save parity and partial-indexing hints
+// Serializing saves here is what gives memory_save its atomic-save parity and
+// keeps partial-indexing hints from being lost when two saves race one folder.
 
 const SPEC_FOLDER_LOCKS = new Map<string, Promise<unknown>>();
-const LOCK_ROOT = path.join(os.tmpdir(), 'mk-spec-memory-save-locks');
+const LOCK_ROOT = path.join(os.tmpdir(), 'system-spec-memory-save-locks');
 const LOCK_WAIT_MS = 25;
 const LOCK_TIMEOUT_MS = 30_000;
 const LOCK_STALE_MS = 5 * 60 * 1000;

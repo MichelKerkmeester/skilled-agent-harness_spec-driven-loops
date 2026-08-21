@@ -71,7 +71,7 @@ fable-governor.md  "Fable-5 Governor — Reason Outward, Act, Commit, Qualify Mi
 finding-is-a-hypothesis.md  "A Finding Is a Hypothesis Until You Open the Cited Code"  ~466 tokens
 gate-enforcement.md  "GATE ENFORCEMENT - Edge Cases & Cross-Reference"  ~1159 tokens
 gate-tool-routing.md  "TOOL ROUTING - Search & Retrieval Decision Tree"  ~820 tokens
-goal-prompting-runtime-specific.md  "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode mk-goal Plugin"  ~986 tokens
+goal-prompting-runtime-specific.md  "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode opencode-goal Plugin"  ~986 tokens
 main-branch-direct-push.md  "Main Branch — Owner's AIs Push Directly"  ~551 tokens
 memory-system-spec-kit-only.md  "MEMORY — Spec-Kit System Only"  ~553 tokens
 post-implementation-deep-review.md  "POST-IMPLEMENTATION DEEP-REVIEW — Mandatory after substantive ship"  ~997 tokens
@@ -150,7 +150,7 @@ Constitutional rules  20 files
    ~820 tokens
 
 13. goal-prompting-runtime-specific.md
-   "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode mk-goal Plugin"
+   "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode opencode-goal Plugin"
    Triggers: (none)
    ~986 tokens
 
@@ -241,7 +241,7 @@ Select a constitutional rule file to edit:
 - finding-is-a-hypothesis.md  "A Finding Is a Hypothesis Until You Open the Cited Code"
 - gate-enforcement.md  "GATE ENFORCEMENT - Edge Cases & Cross-Reference"
 - gate-tool-routing.md  "TOOL ROUTING - Search & Retrieval Decision Tree"
-- goal-prompting-runtime-specific.md  "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode mk-goal Plugin"
+- goal-prompting-runtime-specific.md  "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode opencode-goal Plugin"
 - main-branch-direct-push.md  "Main Branch — Owner's AIs Push Directly"
 - memory-system-spec-kit-only.md  "MEMORY — Spec-Kit System Only"
 - post-implementation-deep-review.md  "POST-IMPLEMENTATION DEEP-REVIEW — Mandatory after substantive ship"
@@ -268,7 +268,7 @@ Select a constitutional rule file to remove:
 - finding-is-a-hypothesis.md  "A Finding Is a Hypothesis Until You Open the Cited Code"
 - gate-enforcement.md  "GATE ENFORCEMENT - Edge Cases & Cross-Reference"
 - gate-tool-routing.md  "TOOL ROUTING - Search & Retrieval Decision Tree"
-- goal-prompting-runtime-specific.md  "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode mk-goal Plugin"
+- goal-prompting-runtime-specific.md  "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode opencode-goal Plugin"
 - main-branch-direct-push.md  "Main Branch — Owner's AIs Push Directly"
 - memory-system-spec-kit-only.md  "MEMORY — Spec-Kit System Only"
 - post-implementation-deep-review.md  "POST-IMPLEMENTATION DEEP-REVIEW — Mandatory after substantive ship"

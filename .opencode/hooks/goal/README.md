@@ -20,7 +20,7 @@ workspace + runtime + native session id -> one opaque state file and one archive
 
 There is no default session and no process-global current-goal pointer. Missing identity makes reads return no goal and makes management fail with a stable error. The legacy singleton `active-goal.json` is diagnostic input only and is never an injection fallback.
 
-OpenCode's `.opencode/plugins/mk-goal.js` remains a separate native implementation. It has its own per-OpenCode-session files, fixed opaque SHA-256 state keys, token accounting, lifecycle events, and guarded continuation. Existing reversible hex-keyed files are adopted lazily after their embedded session id is validated.
+OpenCode's `.opencode/plugins/opencode-goal.js` remains a separate native implementation. It has its own per-OpenCode-session files, fixed opaque SHA-256 state keys, token accounting, lifecycle events, and guarded continuation. Existing reversible hex-keyed files are adopted lazily after their embedded session id is validated.
 
 ## 2. RUNTIME SUPPORT
 
@@ -28,7 +28,7 @@ OpenCode's `.opencode/plugins/mk-goal.js` remains a separate native implementati
 |---|---|---|---|---|
 | Pi | `input`, restore on `session_start` | Native `/goal-pi` registered by the extension | Heuristic check on `turn_end`; no forced continuation | Supported |
 | Cursor | `sessionStart` using `session_id`, then `conversation_id` fallback | Unavailable because prompt commands do not receive the hook's native identity | Turn touch only; no continuation | Injection-only |
-| OpenCode | Native `mk-goal` plugin, outside this core | Native `/goal-opencode` tools | Native verifier and guarded continuation | Separate supported system |
+| OpenCode | Native `opencode-goal` plugin, outside this core | Native `/goal-opencode` tools | Native verifier and guarded continuation | Separate supported system |
 | Claude Code | No adapter in this core | No repository command; live native capability unverified here | Outside this core | Not provided here |
 | Codex | No adapter | None | None | Unsupported |
 
@@ -36,7 +36,7 @@ A runtime is not called fully supported unless injection and management bind the
 
 ## 3. STATE LAYOUT
 
-The default state root is `.opencode/skills/.goal-state/`. Tests and isolated probes override it with `MK_GOAL_STATE_DIR`.
+The default state root is `.opencode/skills/.goal-state/`. Tests and isolated probes override it with `OPENCODE_GOAL_STATE_DIR`.
 
 ```text
 .goal-state/
@@ -112,7 +112,7 @@ Non-OpenCode runtimes use turn-count estimation because they do not expose the s
 
 ## 7. FAILURE AND ROLLBACK
 
-- `MK_GOAL_PLUGIN_DISABLED=1` disables goal behavior and management.
+- `OPENCODE_GOAL_PLUGIN_DISABLED=1` disables goal behavior and management.
 - Reads fail open: missing identity, missing state, malformed scoped JSON, or adapter failure selects no goal.
 - Mutations fail closed with stable `GoalError` codes and do not guess identity.
 - To roll back runtime injection, disable the adapter while preserving both scoped state and legacy quarantine files. Do not merge scoped records back into a singleton.
@@ -127,13 +127,13 @@ node --test \
   .opencode/hooks/goal/pi/goal-pi.test.mjs \
   .opencode/hooks/goal/cursor/goal-cursor.test.mjs
 
-node --test .opencode/plugins/tests/mk-goal-*.test.cjs
+node --test .opencode/plugins/tests/opencode-goal-*.test.cjs
 
 python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py \
   --root .opencode/hooks/goal
 ```
 
-Use temporary `MK_GOAL_STATE_DIR` paths for manual probes. Never point migration fixtures at the operator's live state root.
+Use temporary `OPENCODE_GOAL_STATE_DIR` paths for manual probes. Never point migration fixtures at the operator's live state root.
 
 ## 9. RELATED
 

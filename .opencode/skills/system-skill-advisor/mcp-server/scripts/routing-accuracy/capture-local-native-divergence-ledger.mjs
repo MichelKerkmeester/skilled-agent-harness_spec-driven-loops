@@ -35,7 +35,7 @@ function findWorkspaceRoot(start) {
 
 const WORKSPACE_ROOT = findWorkspaceRoot(HERE);
 
-delete process.env.MK_SKILL_ADVISOR_DB_DIR;
+delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';

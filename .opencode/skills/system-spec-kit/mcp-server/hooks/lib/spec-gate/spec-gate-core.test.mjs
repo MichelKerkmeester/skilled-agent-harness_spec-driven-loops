@@ -1043,7 +1043,7 @@ test('evaluateMutation(null) fails open: never throws, always allows', () => {
 // Kill switch
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('MK_SPEC_GATE_DISABLED=1 makes both entrypoints a full no-op', () => {
+test('SYSTEM_SPEC_GATE_DISABLED=1 makes both entrypoints a full no-op', () => {
   const { root } = makeWorkspace();
   try {
     const sessionID = nextSessionID();
@@ -1325,8 +1325,8 @@ test('appendWarningLog + formatSpecGateEvent: a source-file mutation event produ
     const contents = readFileSync(logPath, 'utf8');
     const lines = contents.split('\n').filter((entry) => entry.length > 0);
     assert.equal(lines.length, 1, 'a hostile field must never split one advisory into two log lines');
-    assert.ok(lines[0].includes('[mk-spec-gate]'));
-    const [, payload] = lines[0].split('[mk-spec-gate] ');
+    assert.ok(lines[0].includes('[system-spec-gate]'));
+    const [, payload] = lines[0].split('[system-spec-gate] ');
     const fields = payload.split(' | ');
     assert.equal(fields.length, 5);
     assert.equal(fields[0], 'opencode');
@@ -1338,7 +1338,7 @@ test('appendWarningLog + formatSpecGateEvent: a source-file mutation event produ
   }
 });
 
-test('MK_SPEC_GATE_DISABLED=1: the kill-switch means no telemetry line is ever written', () => {
+test('SYSTEM_SPEC_GATE_DISABLED=1: the kill-switch means no telemetry line is ever written', () => {
   const { root } = makeWorkspace();
   const sessionID = nextSessionID();
   const { stateDir } = core.resolveGuardPaths(root);
@@ -1496,7 +1496,7 @@ test('answerParse() never parses an answer when isOpen is explicitly false', () 
 // P2 fix: UNKNOWN_SESSION_ID is exported so every adapter can key a missing
 // sessionID to the EXACT same state file the core's own internal fallback
 // resolves to -- this is the anchor the OpenCode adapter's classify/enforce
-// unification (mk-spec-gate.js sessionIdFrom()) depends on.
+// unification (system-spec-gate.js sessionIdFrom()) depends on.
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('sessionStateKey: an omitted/nullish sessionID resolves to the SAME key as the exported UNKNOWN_SESSION_ID constant', () => {
@@ -1549,11 +1549,11 @@ test('case-insensitive FS: a case-variant path to a real in-repo file is still e
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// HIGHEST BLAST proof: MK_SPEC_GATE_ENFORCE unset never denies, across the
+// HIGHEST BLAST proof: SYSTEM_SPEC_GATE_ENFORCE unset never denies, across the
 // full tool/target/gate-state matrix; every known error path fails OPEN.
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('HIGHEST BLAST proof: with MK_SPEC_GATE_ENFORCE unset, no tool/target/gate-state combination ever denies', () => {
+test('HIGHEST BLAST proof: with SYSTEM_SPEC_GATE_ENFORCE unset, no tool/target/gate-state combination ever denies', () => {
   const { root, folderRel } = makeWorkspace();
   try {
     const tools = ['write', 'edit', 'Write', 'Edit', 'patch', 'multiedit', 'apply_patch', 'bash', 'read', 'glob', 'bogus-tool'];
@@ -2003,7 +2003,7 @@ test('WS3 scaffolded accept: a deprecated folder carrying the FULL trio still st
   }
 });
 
-test('WS3 scaffolded accept: MK_SPEC_GATE_DISABLED=1 short-circuits before the relaxation ever runs', () => {
+test('WS3 scaffolded accept: SYSTEM_SPEC_GATE_DISABLED=1 short-circuits before the relaxation ever runs', () => {
   const { root } = makeWorkspace();
   const folderRel = '.opencode/specs/045-disabled-check';
   mkdirSync(join(root, folderRel), { recursive: true });

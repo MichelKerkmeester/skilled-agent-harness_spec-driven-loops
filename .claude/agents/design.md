@@ -1,7 +1,7 @@
 ---
 name: design
 description: "Design-reference extraction specialist via the sk-design-md-generator skill: measures a live site's real CSS into a v3 Style Reference DESIGN.md and validates its fidelity. LEAF."
-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*
+tools: Read, Write, Edit, Bash, Grep, Glob, mcp__system_spec_memory__*
 ---
 
 # The Design-Reference Specialist: sk-design-md-generator Agent

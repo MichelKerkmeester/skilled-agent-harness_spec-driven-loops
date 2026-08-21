@@ -221,15 +221,15 @@ function runTermination({
 describe('orphan sweeper UNIX-socket preserve', () => {
   it('preserves a daemon holding a listener plus a live peer connection on daemon-ipc.sock', () => {
     const result = runPredicateWithLsof([
-      'node 4242 user 17u unix 0xaaa 0t0 /private/tmp/mk-code-index/daemon-ipc.sock',
-      'node 4242 user 23u unix 0xbbb 0t0 /private/tmp/mk-code-index/daemon-ipc.sock',
+      'node 4242 user 17u unix 0xaaa 0t0 /private/tmp/system-code-index/daemon-ipc.sock',
+      'node 4242 user 23u unix 0xbbb 0t0 /private/tmp/system-code-index/daemon-ipc.sock',
     ]);
     expect(result).toBe('preserve');
   });
 
   it('does not preserve a daemon holding only the listener socket (no live peers)', () => {
     const result = runPredicateWithLsof([
-      'node 4242 user 17u unix 0xaaa 0t0 /private/tmp/mk-code-index/daemon-ipc.sock',
+      'node 4242 user 17u unix 0xaaa 0t0 /private/tmp/system-code-index/daemon-ipc.sock',
     ]);
     expect(result).toBe('sweep');
   });

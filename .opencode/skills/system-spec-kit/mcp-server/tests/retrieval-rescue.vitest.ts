@@ -88,9 +88,9 @@ describe('retrieval rescue layer', () => {
       },
       {
         id: 2,
-        title: 'Tasks: 008 mk-spec-memory stress test',
-        file_path: '/repo/.opencode/specs/system-spec-kit/026/008-mk-spec-memory-stress-test/tasks.md',
-        spec_folder: 'system-spec-kit/026/008-mk-spec-memory-stress-test',
+        title: 'Tasks: 008 system-spec-memory stress test',
+        file_path: '/repo/.opencode/specs/system-spec-kit/026/008-system-spec-memory-stress-test/tasks.md',
+        spec_folder: 'system-spec-kit/026/008-system-spec-memory-stress-test',
         document_type: 'tasks',
         trigger_phrases: '["008 tasks"]',
         content: 'cat-14-pipeline gaps, cat-16 tooling fixes, stress-test execution, memory recall failure',

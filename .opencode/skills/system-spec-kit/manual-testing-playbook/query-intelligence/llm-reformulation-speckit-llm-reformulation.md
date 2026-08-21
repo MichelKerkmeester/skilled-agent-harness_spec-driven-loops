@@ -185,7 +185,7 @@ $ node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"complex m
 (Use `node --trace-warnings ...` to show where the warning was created)
 {
   "status": "error",
-  "error": "backend unavailable: connect ECONNREFUSED /tmp/mk-spec-memory/daemon-ipc.sock",
+  "error": "backend unavailable: connect ECONNREFUSED /tmp/system-spec-memory/daemon-ipc.sock",
   "exitCode": 75
 }
 ```

@@ -2,7 +2,7 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: Skill Advisor CLI Shim                                        ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Runs the built daemon-backed mk-skill-advisor CLI.              ║
+// ║ PURPOSE: Runs the built daemon-backed system-skill-advisor CLI.              ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -22,9 +22,9 @@ const opencodeDir = path.resolve(__dirname, '..');
 const mcpServerDir = path.join(opencodeDir, 'skills', 'system-skill-advisor', 'mcp-server');
 const cliDist = path.join(mcpServerDir, 'dist', 'mcp-server', 'skill-advisor-cli.js');
 const { checkPackageFreshness } = require(path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'));
-const defaultSocketDir = '/tmp/mk-skill-advisor';
+const defaultSocketDir = '/tmp/system-skill-advisor';
 const socketFileName = 'daemon-ipc.sock';
-const allowStale = process.env.MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1'
+const allowStale = process.env.SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1'
   || process.env.SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1';
 const EXIT_PROTOCOL = 69;
 const EXIT_RETRYABLE = 75;

@@ -13,7 +13,7 @@
 #   --json              Output machine-readable JSON
 #   --fix               Attempt auto-repair for failures
 #   --server <name>     Diagnose a single server only
-#                       Names: mk-spec-memory, mk_skill_advisor, code_mode, sequential_thinking
+#                       Names: system-spec-memory, system_skill_advisor, code_mode, sequential_thinking
 #   --root <path>       Override project root
 #
 # Exit Codes:
@@ -47,7 +47,7 @@ Options:
   --json              Output machine-readable JSON
   --fix               Attempt auto-repair for failures
   --server <name>     Diagnose a single server only
-                      Names: mk-spec-memory, mk_skill_advisor, code_mode, sequential_thinking
+                      Names: system-spec-memory, system_skill_advisor, code_mode, sequential_thinking
   --root <path>       Override project root
 
 Exit Codes:
@@ -56,8 +56,8 @@ Exit Codes:
   2  Failures detected
 
 Servers Checked:
-  mk-spec-memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
-  mk_skill_advisor      Skill Advisor (Node.js MCP, advisor_recommend + skill_graph_*)
+  system-spec-memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
+  system_skill_advisor      Skill Advisor (Node.js MCP, advisor_recommend + skill_graph_*)
   code_mode             Code Mode (Node.js MCP, TypeScript tool orchestration)
   sequential_thinking   Sequential Thinking (npx MCP, structured reasoning)
 
@@ -139,8 +139,8 @@ fi
 # ══════════════════════════════════════════════════════════════
 
 # ── Spec Kit Memory ───────────────────────────────────────────
-diagnose_mk_spec_memory() {
-  local srv="mk-spec-memory"
+diagnose_system_spec_memory() {
+  local srv="system-spec-memory"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-spec-kit"
   local dist_entry="$skill_dir/mcp-server/dist/context-server.js"
   local db_dir="$skill_dir/mcp-server/database"
@@ -363,18 +363,18 @@ diagnose_code_mode() {
 }
 
 
-# ── mk_skill_advisor (Skill Advisor) ──────────────────────────
-diagnose_mk_skill_advisor() {
-  local srv="mk_skill_advisor"
+# ── system_skill_advisor (Skill Advisor) ──────────────────────────
+diagnose_system_skill_advisor() {
+  local srv="system_skill_advisor"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-skill-advisor"
   local dist_entry="$skill_dir/mcp-server/dist/mcp-server/advisor-server.js"
   local shared_dep="$skill_dir/mcp-server/node_modules/@spec-kit/shared"
   local shared_import_probe="$skill_dir/mcp-server/dist/mcp-server/lib/scorer/lanes/semantic-shadow.js"
-  local launcher="$PROJECT_ROOT/.opencode/bin/mk-skill-advisor-launcher.cjs"
+  local launcher="$PROJECT_ROOT/.opencode/bin/system-skill-advisor-launcher.cjs"
   local db_dir="$skill_dir/mcp-server/database"
   local needs_fix=false
 
-  _log log_header "Skill Advisor (mk_skill_advisor)"
+  _log log_header "Skill Advisor (system_skill_advisor)"
 
   if [[ "$HAS_NODE" != true ]]; then
     record_skip "$srv" "all" "Node.js not available"
@@ -395,7 +395,7 @@ diagnose_mk_skill_advisor() {
   # Check 2: launcher exists
   if [[ -f "$launcher" ]]; then
     record_pass "$srv" "launcher_exists" "$launcher"
-    _log log_pass ".opencode/bin/mk-skill-advisor-launcher.cjs exists"
+    _log log_pass ".opencode/bin/system-skill-advisor-launcher.cjs exists"
   else
     record_fail "$srv" "launcher_exists" "File missing: $launcher"
     _log log_fail "launcher missing — repo state inconsistent"
@@ -573,7 +573,7 @@ detect_and_check_configs() {
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 
-  local -a servers=("mk-spec-memory" "mk_skill_advisor" "code_mode" "sequential_thinking")
+  local -a servers=("system-spec-memory" "system_skill_advisor" "code_mode" "sequential_thinking")
 
   for cfg_entry in "${config_files[@]}"; do
     IFS='|' read -r cfg_path cfg_format cfg_label <<< "$cfg_entry"
@@ -605,8 +605,8 @@ detect_and_check_configs() {
 # ══════════════════════════════════════════════════════════════
 # MAIN DISPATCH
 # ══════════════════════════════════════════════════════════════
-should_run "mk-spec-memory"      && diagnose_mk_spec_memory
-should_run "mk_skill_advisor"    && diagnose_mk_skill_advisor
+should_run "system-spec-memory"      && diagnose_system_spec_memory
+should_run "system_skill_advisor"    && diagnose_system_skill_advisor
 should_run "code_mode"            && diagnose_code_mode
 should_run "sequential_thinking"  && diagnose_sequential_thinking
 

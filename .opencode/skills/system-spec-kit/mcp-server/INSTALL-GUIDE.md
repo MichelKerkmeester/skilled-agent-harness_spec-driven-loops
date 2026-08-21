@@ -2,7 +2,7 @@
 
 > MCP Server v1.8.0 | 2026-03-15 (verification steps refreshed on 2026-04-25)
 
-Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides memory, trigger, context, evaluation, retention, and compatibility tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp-server/tool-schemas.ts`). Skill Advisor tools are served by the standalone `mk_skill_advisor` MCP server, registered separately in your runtime config. See `.opencode/skills/system-skill-advisor/INSTALL-GUIDE.md`.
+Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides memory, trigger, context, evaluation, retention, and compatibility tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp-server/tool-schemas.ts`). Skill Advisor tools are served by the standalone `system_skill_advisor` MCP server, registered separately in your runtime config. See `.opencode/skills/system-skill-advisor/INSTALL-GUIDE.md`.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 
@@ -92,7 +92,7 @@ This guide addresses the full installation lifecycle and common failures after m
 
 | Path | Purpose |
 |---|---|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
 | `.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js` | Backend artifact the launcher spawns (built by `npm run build`) |
 | `.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite` | Canonical repo-local memory database |
 
@@ -310,16 +310,16 @@ Add the following to `opencode.json` in your project root:
 ```json
 {
   "mcp": {
-    "mk-spec-memory": {
+    "system-spec-memory": {
       "type": "local",
       "command": [
         "node",
-        ".opencode/bin/mk-spec-memory-launcher.cjs"
+        ".opencode/bin/system-spec-memory-launcher.cjs"
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
         "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp-server/database",
-        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory"
+        "SPECKIT_IPC_SOCKET_DIR": "/tmp/system-spec-memory"
       },
       "enabled": true
     }
@@ -327,7 +327,7 @@ Add the following to `opencode.json` in your project root:
 }
 ```
 
-The MCP `command` points at the front-proxy launcher (`.opencode/bin/mk-spec-memory-launcher.cjs`), which spawns and supervises the `dist/context-server.js` backend; do not point clients at `dist/context-server.js` directly. `SPECKIT_IPC_SOCKET_DIR` selects a short socket dir under the macOS `sun_path` 104-char limit; set `SPECKIT_BACKEND_ONLY=1` only when running the backend standalone (no front-proxy).
+The MCP `command` points at the front-proxy launcher (`.opencode/bin/system-spec-memory-launcher.cjs`), which spawns and supervises the `dist/context-server.js` backend; do not point clients at `dist/context-server.js` directly. `SPECKIT_IPC_SOCKET_DIR` selects a short socket dir under the macOS `sun_path` 104-char limit; set `SPECKIT_BACKEND_ONLY=1` only when running the backend standalone (no front-proxy).
 
 Paths are relative to the project root. Use absolute paths if your client requires them:
 `/Users/YOUR_USERNAME/path/to/project/.opencode/...`
@@ -354,14 +354,14 @@ Add the following to that file:
 ```json
 {
   "mcpServers": {
-    "mk-spec-memory": {
+    "system-spec-memory": {
       "command": "node",
       "args": [
-        "/Users/YOUR_USERNAME/path/to/project/.opencode/bin/mk-spec-memory-launcher.cjs"
+        "/Users/YOUR_USERNAME/path/to/project/.opencode/bin/system-spec-memory-launcher.cjs"
       ],
       "env": {
         "EMBEDDINGS_PROVIDER": "auto",
-        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory"
+        "SPECKIT_IPC_SOCKET_DIR": "/tmp/system-spec-memory"
       }
     }
   }
@@ -385,7 +385,7 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
 
 | Variable | Default | Description |
 |---|---|---|
-| `SPECKIT_IPC_SOCKET_DIR` | `/tmp/mk-spec-memory` | Directory for the launcher front-proxy IPC socket. Keep it short to stay under the macOS `sun_path` 104-char limit. |
+| `SPECKIT_IPC_SOCKET_DIR` | `/tmp/system-spec-memory` | Directory for the launcher front-proxy IPC socket. Keep it short to stay under the macOS `sun_path` 104-char limit. |
 | `SPECKIT_BACKEND_ONLY` | unset | Set to `1` only when running `dist/context-server.js` standalone (no front-proxy). Normal clients use the launcher and leave this unset. |
 
 **Example** (OpenCode with all flags explicit):
@@ -393,16 +393,16 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
 ```json
 {
   "mcp": {
-    "mk-spec-memory": {
+    "system-spec-memory": {
       "type": "local",
       "command": [
         "node",
-        ".opencode/bin/mk-spec-memory-launcher.cjs"
+        ".opencode/bin/system-spec-memory-launcher.cjs"
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
         "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp-server/database",
-        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory",
+        "SPECKIT_IPC_SOCKET_DIR": "/tmp/system-spec-memory",
         "SPECKIT_ADAPTIVE_FUSION": "true",
         "SPECKIT_EXTENDED_TELEMETRY": "true",
         "SPECKIT_MEMORY_ROADMAP_PHASE": "graph",
@@ -423,7 +423,7 @@ python3 -m json.tool < opencode.json > /dev/null
 python3 -m json.tool < .claude/mcp.json > /dev/null
 
 # Verify the MCP launcher path exists (the command clients point at)
-ls -la .opencode/bin/mk-spec-memory-launcher.cjs
+ls -la .opencode/bin/system-spec-memory-launcher.cjs
 # And the backend artifact the launcher spawns (after `npm run build`)
 ls -la .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js
 ```
@@ -459,7 +459,7 @@ Ask your AI assistant:
 What MCP tools are available?
 ```
 
-You should see `mk-spec-memory` tools listed, including:
+You should see `system-spec-memory` tools listed, including:
 - `memory_context` (unified context retrieval)
 - `memory_search` (semantic search)
 - `memory_match_triggers` (fast trigger matching)
@@ -474,7 +474,7 @@ You should see `mk-spec-memory` tools listed, including:
 
 - `detect_changes` (changed-file detection from a diff)
 
-Skill Advisor is a separate MCP server named `mk_skill_advisor`, registered alongside `mk-spec-memory`. Its public tool ids remain stable:
+Skill Advisor is a separate MCP server named `system_skill_advisor`, registered alongside `system-spec-memory`. Its public tool ids remain stable:
 - `advisor_recommend` (native skill routing recommendations)
 - `advisor_rebuild` (advisor graph rebuild)
 - `advisor_status` (daemon freshness and trust-state health)
@@ -581,7 +581,7 @@ FAIL criterion: any badge field is missing, top-level only, dependent on new sch
 
 Checklist:
 - [ ] MCP server appears in the tool list
-- [ ] `advisor_recommend`, `advisor_status`, and `advisor_validate` appear under the standalone `mk_skill_advisor` MCP server
+- [ ] `advisor_recommend`, `advisor_status`, and `advisor_validate` appear under the standalone `system_skill_advisor` MCP server
 - [ ] `memory_search()` returns results (or empty if no memories are indexed yet)
 - [ ] No connection errors in responses
 - [ ] No `ERR_DLOPEN_FAILED` or module resolution errors
@@ -892,7 +892,7 @@ sqlite3 "$ACTIVE_DB" \
 ### Example 8: Troubleshooting OpenCode MCP Startup Failure
 
 ```bash
-# Symptom: OpenCode cannot initialize mk-spec-memory MCP server
+# Symptom: OpenCode cannot initialize system-spec-memory MCP server
 
 # Check 1: SPEC_KIT_DB_DIR must be writable
 # In opencode.json, verify the directory is writable:
@@ -1132,7 +1132,7 @@ This calls `memory_index_scan({ force: true })` to repopulate the search index f
 
 | Path | Purpose |
 |---|---|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
 | `.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js` | Backend artifact the launcher spawns |
 | `.opencode/skills/system-spec-kit/mcp-server/database/context-index__*.sqlite` | Active profile database resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh` | Verify Node.js version and prerequisites |

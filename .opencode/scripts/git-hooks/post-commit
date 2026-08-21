@@ -41,7 +41,7 @@ fi
 # linked worktree, never the primary checkout. Fully non-fatal: git-sync leaves a
 # blocked commit local and post-commit's exit status never affects the commit.
 if [ "${SPECKIT_AUTOSYNC:-0}" = "1" ] && [ -n "${SPECKIT_LIVE_BRANCH:-}" ]; then
-  # Master live-sync switch: MK_LIVE_SYNC_DISABLED (or the master MK_HOOKS_DISABLED)
+  # Master live-sync switch: SYSTEM_LIVE_SYNC_DISABLED (or the master SYSTEM_HOOKS_DISABLED)
   # stops the whole publish leg with one flag; the finer SPECKIT_AUTOSYNC=0 opt-out
   # keeps working underneath. Absent resolver means enabled (fail-open).
   __pc_ls_enabled=1

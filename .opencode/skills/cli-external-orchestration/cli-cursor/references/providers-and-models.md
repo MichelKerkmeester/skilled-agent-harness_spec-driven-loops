@@ -136,12 +136,12 @@ cursor-agent -p --model composer-2.5 "<prompt>"
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and terminate stdin:
 
 ```bash
-MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 cursor-agent -p \
+SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 cursor-agent -p \
   --model composer-2.5 --auto-review --sandbox enabled --output-format text \
   "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 
-- `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer, and marks the dispatch as an orchestrated sub-session that SHARES the parent worktree (distinct from Cursor's own native `-w` worktree flag).
+- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer, and marks the dispatch as an orchestrated sub-session that SHARES the parent worktree (distinct from Cursor's own native `-w` worktree flag).
 - `</dev/null` — pair with `cursor-agent -p ... &` inside a `while read` loop so the backgrounded process cannot race the loop for stdin lines. See [integration-patterns.md](./integration-patterns.md) §4.
 
 ### Parallel / fan-out

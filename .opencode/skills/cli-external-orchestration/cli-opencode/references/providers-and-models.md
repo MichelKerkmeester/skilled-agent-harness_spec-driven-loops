@@ -149,12 +149,12 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and terminate stdin:
 
 ```bash
-MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode run \
+SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode run \
   --model deepseek/deepseek-v4-pro --variant high --format json \
   --dir "$REPO_ROOT" "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 
-- `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
+- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
 - `</dev/null` — REQUIRED before stdout/stderr redirects; opencode reads stdin at startup and hangs at 0% CPU without an EOF. See [integration-patterns.md](./integration-patterns.md) §6.
 
 ### Self-invocation guard

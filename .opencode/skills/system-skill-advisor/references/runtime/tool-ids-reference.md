@@ -76,13 +76,13 @@ Untrusted callers are rejected before detection runs. No separate internal-tool 
 
 ## 5. MCP NAMESPACE CONVENTION
 
-All tools follow the pattern `mcp__mk_skill_advisor__<tool_name>` where `<tool_name>` matches the descriptor's `name` field in snake_case.
+All tools follow the pattern `mcp__system_skill_advisor__<tool_name>` where `<tool_name>` matches the descriptor's `name` field in snake_case.
 
 Worked examples:
 
-- `advisor_recommend` is reachable as `mcp__mk_skill_advisor__advisor_recommend`.
-- `skill_graph_query` is reachable as `mcp__mk_skill_advisor__skill_graph_query`.
-- `skill_graph_propagate_enhances` is reachable as `mcp__mk_skill_advisor__skill_graph_propagate_enhances`.
+- `advisor_recommend` is reachable as `mcp__system_skill_advisor__advisor_recommend`.
+- `skill_graph_query` is reachable as `mcp__system_skill_advisor__skill_graph_query`.
+- `skill_graph_propagate_enhances` is reachable as `mcp__system_skill_advisor__skill_graph_propagate_enhances`.
 
 Stable IDs survive migrations. The MCP server namespace may rename across packets, but the per-tool IDs do not change. See [legacy_tool_bridge.md](./legacy-tool-bridge.md) for the bridge policy.
 

@@ -1,8 +1,8 @@
 ---
 title: "MCP Route Guard"
-description: "Manual scenario validating the mk-mcp-route-guard PreToolUse routing advisory guard."
+description: "Manual scenario validating the mcp-route-guard PreToolUse routing advisory guard."
 trigger_phrases:
-  - "mk-mcp-route-guard"
+  - "mcp-route-guard"
   - "mcp route guard"
   - "route guard"
   - "mcp routing advisory"
@@ -23,12 +23,12 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-`mk-mcp-route-guard` is a warn-only, fail-open guard that nudges an agent toward Code Mode's `call_tool_chain` whenever it is about to call an external MCP tool natively instead of through Code Mode. It ships as two thin transport adapters over one runtime-neutral core:
+`mcp-route-guard` is a warn-only, fail-open guard that nudges an agent toward Code Mode's `call_tool_chain` whenever it is about to call an external MCP tool natively instead of through Code Mode. It ships as two thin transport adapters over one runtime-neutral core:
 
-- OpenCode plugin adapter: `.opencode/plugins/mk-mcp-route-guard.js` (`tool.execute.before`, appends to a bounded rotated log file, never stdout/stderr).
+- OpenCode plugin adapter: `.opencode/plugins/mcp-route-guard.js` (`tool.execute.before`, appends to a bounded rotated log file, never stdout/stderr).
 - Claude PreToolUse hook adapter: `.opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs` (reads the PreToolUse JSON payload from stdin, emits `hookSpecificOutput.additionalContext`, never `permissionDecision`).
 
-This scenario validates: the shared core + Claude-hook unit-test suite; a live invocation of the core against this repo's real `.utcp_config.json` manifest for both a routable family (ClickUp) and an unrouteable one (Webflow); the live Claude hook adapter piped real PreToolUse-shaped payloads for both cases; the kill-switch (`MK_MCP_ROUTE_GUARD_DISABLED`) and broad-mode (`MK_MCP_ROUTE_GUARD_BROAD_MODE`) env flags; and confirms, from real repo config, that the OpenCode plugin adapter's log-write path is currently dormant in this repo (`opencode.json` registers only internal-exempt MCP servers), so that specific path is validated through source read and the shared core's coverage rather than a live OpenCode session.
+This scenario validates: the shared core + Claude-hook unit-test suite; a live invocation of the core against this repo's real `.utcp_config.json` manifest for both a routable family (ClickUp) and an unrouteable one (Webflow); the live Claude hook adapter piped real PreToolUse-shaped payloads for both cases; the kill-switch (`MCP_ROUTE_GUARD_DISABLED`) and broad-mode (`MCP_ROUTE_GUARD_BROAD_MODE`) env flags; and confirms, from real repo config, that the OpenCode plugin adapter's log-write path is currently dormant in this repo (`opencode.json` registers only internal-exempt MCP servers), so that specific path is validated through source read and the shared core's coverage rather than a live OpenCode session.
 
 ---
 
@@ -85,13 +85,13 @@ printf '%s' '{"tool_name":"mcp__claude_ai_Webflow__data_cms_tool","tool_input":{
 5. Kill-switch check — expect empty stdout even for the routable ClickUp payload:
 
 ```bash
-printf '%s' '{"tool_name":"mcp__claude_ai_ClickUp__clickup_create_task","tool_input":{},"cwd":"'"$PWD"'"}' | MK_MCP_ROUTE_GUARD_DISABLED=1 node .opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs
+printf '%s' '{"tool_name":"mcp__claude_ai_ClickUp__clickup_create_task","tool_input":{},"cwd":"'"$PWD"'"}' | MCP_ROUTE_GUARD_DISABLED=1 node .opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs
 ```
 
 6. Broad-mode check — expect a coverage warn on the otherwise-silent Webflow case:
 
 ```bash
-printf '%s' '{"tool_name":"mcp__claude_ai_Webflow__data_cms_tool","tool_input":{},"cwd":"'"$PWD"'"}' | MK_MCP_ROUTE_GUARD_BROAD_MODE=1 node .opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs
+printf '%s' '{"tool_name":"mcp__claude_ai_Webflow__data_cms_tool","tool_input":{},"cwd":"'"$PWD"'"}' | MCP_ROUTE_GUARD_BROAD_MODE=1 node .opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs
 ```
 
 7. Confirm the OpenCode plugin adapter's live wiring state by checking which MCP servers `opencode.json` registers natively:
@@ -110,7 +110,7 @@ python3 -c "import json; print(list(json.load(open('opencode.json'))['mcp'].keys
 
 ### Runtime Boundary (UNAUTOMATABLE)
 
-The OpenCode plugin adapter (`mk-mcp-route-guard.js`) itself has no dedicated unit test (confirmed: `.opencode/plugins/tests/` contains no `route-guard` file) and its `tool.execute.before` hook and `appendGuardLog` file-write only execute inside a live OpenCode `ctx` session. This session is a Claude Code session, not a live OpenCode TUI session, and (per step 7) `opencode.json` registers no non-exempt external MCP server to warn on even if one were available. Concrete blocker: no live OpenCode runtime context (`ctx.directory`, `tool.execute.before` dispatch) is reachable from here. Fallback evidence: the plugin adapter is an 89-line pass-through that calls the identical `guardCore.evaluateNativeMcpCall` exercised live in steps 1-2 above and only adds file-logging around the same `warnings` array the Claude hook also consumes -- read confirmed at `.opencode/plugins/mk-mcp-route-guard.js:76-86`.
+The OpenCode plugin adapter (`mcp-route-guard.js`) itself has no dedicated unit test (confirmed: `.opencode/plugins/tests/` contains no `route-guard` file) and its `tool.execute.before` hook and `appendGuardLog` file-write only execute inside a live OpenCode `ctx` session. This session is a Claude Code session, not a live OpenCode TUI session, and (per step 7) `opencode.json` registers no non-exempt external MCP server to warn on even if one were available. Concrete blocker: no live OpenCode runtime context (`ctx.directory`, `tool.execute.before` dispatch) is reachable from here. Fallback evidence: the plugin adapter is an 89-line pass-through that calls the identical `guardCore.evaluateNativeMcpCall` exercised live in steps 1-2 above and only adds file-logging around the same `warnings` array the Claude hook also consumes -- read confirmed at `.opencode/plugins/mcp-route-guard.js:76-86`.
 
 ---
 
@@ -190,10 +190,10 @@ printf '%s' '{"tool_name":"mcp__claude_ai_Webflow__data_cms_tool","tool_input":{
 
 (exit code 0)
 
-Kill-switch, routable ClickUp payload with `MK_MCP_ROUTE_GUARD_DISABLED=1`:
+Kill-switch, routable ClickUp payload with `MCP_ROUTE_GUARD_DISABLED=1`:
 
 ```bash
-printf '%s' '{"tool_name":"mcp__claude_ai_ClickUp__clickup_create_task","tool_input":{},"cwd":"'"$PWD"'"}' | MK_MCP_ROUTE_GUARD_DISABLED=1 node .opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs
+printf '%s' '{"tool_name":"mcp__claude_ai_ClickUp__clickup_create_task","tool_input":{},"cwd":"'"$PWD"'"}' | MCP_ROUTE_GUARD_DISABLED=1 node .opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs
 ```
 
 ```text
@@ -202,10 +202,10 @@ printf '%s' '{"tool_name":"mcp__claude_ai_ClickUp__clickup_create_task","tool_in
 
 (exit code 0)
 
-Broad-mode, unrouteable Webflow payload with `MK_MCP_ROUTE_GUARD_BROAD_MODE=1`:
+Broad-mode, unrouteable Webflow payload with `MCP_ROUTE_GUARD_BROAD_MODE=1`:
 
 ```bash
-printf '%s' '{"tool_name":"mcp__claude_ai_Webflow__data_cms_tool","tool_input":{},"cwd":"'"$PWD"'"}' | MK_MCP_ROUTE_GUARD_BROAD_MODE=1 node .opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs
+printf '%s' '{"tool_name":"mcp__claude_ai_Webflow__data_cms_tool","tool_input":{},"cwd":"'"$PWD"'"}' | MCP_ROUTE_GUARD_BROAD_MODE=1 node .opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs
 ```
 
 ```json
@@ -229,7 +229,7 @@ All five are internal-exempt tokens per `guardCore.INTERNAL_RAW_TOKENS`, so no n
 
 ## 5. SOURCE FILES
 
-- OpenCode plugin adapter: `.opencode/plugins/mk-mcp-route-guard.js`
+- OpenCode plugin adapter: `.opencode/plugins/mcp-route-guard.js`
 - Runtime-neutral core: `.opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs`
 - Core + Claude-hook unit test: `.opencode/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs`
 - Claude PreToolUse hook adapter: `.opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs`

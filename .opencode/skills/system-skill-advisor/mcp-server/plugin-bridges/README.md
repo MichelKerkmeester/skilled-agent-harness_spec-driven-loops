@@ -1,9 +1,9 @@
 ---
 title: "Plugin Bridges: Skill Advisor Bridge"
-description: "Subprocess bridge between the mk-skill-advisor OpenCode plugin and the standalone mk_skill_advisor MCP server."
+description: "Subprocess bridge between the system-skill-advisor OpenCode plugin and the standalone system_skill_advisor MCP server."
 trigger_phrases:
   - "plugin bridge"
-  - "mk-skill-advisor bridge"
+  - "system-skill-advisor bridge"
   - "advisor plugin bridge"
 ---
 
@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`plugin-bridges/` contains the Node `.mjs` subprocess bridge between `.opencode/plugins/mk-skill-advisor.js` and the standalone `mk_skill_advisor` MCP server.
+`plugin-bridges/` contains the Node `.mjs` subprocess bridge between `.opencode/plugins/system-skill-advisor.js` and the standalone `system_skill_advisor` MCP server.
 
 The bridge reads stdin JSON (prompt, workspaceRoot, thresholdConfidence), probes the advisor daemon, calls `advisor_recommend`, renders a brief and emits a single stdout JSON envelope (`{ status, brief, metadata }`). It fails open on all errors so the OpenCode plugin never blocks on advisor unavailability.
 
@@ -25,7 +25,7 @@ This bridge was moved from `.opencode/skills/system-spec-kit/mcp-server/plugin-b
 
 | File | Responsibility |
 |---|---|
-| `mk-skill-advisor-bridge.mjs` | Stdin-to-stdout bridge: parses input, probes advisor, calls recommend, renders brief, emits JSON. |
+| `system-skill-advisor-bridge.mjs` | Stdin-to-stdout bridge: parses input, probes advisor, calls recommend, renders brief, emits JSON. |
 | `README.md` | This file. |
 
 ---

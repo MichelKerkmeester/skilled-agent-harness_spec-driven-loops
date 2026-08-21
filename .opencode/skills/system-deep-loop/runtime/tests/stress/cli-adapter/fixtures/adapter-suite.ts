@@ -246,8 +246,8 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       expectSuccessArgs(kind, captures[0].args);
       expect(captures[0].env).toMatchObject({
         AI_SESSION_CHILD: '1',
-        MK_SPEC_GATE_ENFORCE: '0',
-        MK_SPEC_GATE_DISABLED: '1',
+        SYSTEM_SPEC_GATE_ENFORCE: '0',
+        SYSTEM_SPEC_GATE_DISABLED: '1',
       });
       expect(existsSync(`${run.lineageDir}/research.md`)).toBe(true);
       if (kind === 'cli-claude-code') {
@@ -314,8 +314,8 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       const run = await runAdapterFanout(fixture, { mode: 'gate' });
       expect(run.result.exitCode).toBe(0);
       expect(readAdapterCaptures(fixture)[0].env).toMatchObject({
-        MK_SPEC_GATE_ENFORCE: '0',
-        MK_SPEC_GATE_DISABLED: '1',
+        SYSTEM_SPEC_GATE_ENFORCE: '0',
+        SYSTEM_SPEC_GATE_DISABLED: '1',
         AI_SESSION_CHILD: '1',
       });
     });
