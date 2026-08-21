@@ -1,15 +1,15 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Embedders — adapter interface (shared contract surface)
 // ───────────────────────────────────────────────────────────────
-// Canonical EmbedderAdapter contract shared by mk-spec-memory and
+// Canonical EmbedderAdapter contract shared by system-spec-memory and
 // skill-advisor. Both skills' local `mcp-server/lib/embedders/adapter.ts`
 // re-export from here.
 //
-// Promoted from mk-spec-memory's mcp-server/lib/embedders/adapter.ts.
+// Promoted from system-spec-memory's mcp-server/lib/embedders/adapter.ts.
 // The shared
 // interface adopts skill-advisor's wider surface (optional
 // `options?: EmbedderOptions` parameter) because it is strictly
-// backward-compatible with mk-spec-memory's narrower interface and
+// backward-compatible with system-spec-memory's narrower interface and
 // preserves the query-vs-document hint at the type level.
 // ───────────────────────────────────────────────────────────────
 

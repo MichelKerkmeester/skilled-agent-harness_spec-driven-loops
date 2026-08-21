@@ -46,7 +46,7 @@ const CHILD_DISPATCH_ENV: Readonly<Record<string, string>> = { AI_SESSION_CHILD:
 
 /** Child-dispatch marker plus the spec-gate release the gated skills require. */
 const GATE_FREE_CHILD_ENV: Readonly<Record<string, string>> = {
-  MK_SPEC_GATE_ENFORCE: '0',
+  SYSTEM_SPEC_GATE_ENFORCE: '0',
   AI_SESSION_CHILD: '1',
 };
 

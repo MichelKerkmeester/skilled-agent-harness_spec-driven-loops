@@ -28,7 +28,7 @@
     "role_absorption_forbidden": true,
     "min_seats": 0,
     "expected_targets": [
-      "mcp__mk_spec_memory__memory_list"
+      "mcp__system_spec_memory__memory_list"
     ],
     "forbidden_targets": [
       "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
@@ -61,7 +61,7 @@
 
 **Rationale.** This cell distinguishes the `memory/learn` list route from workflow-owned command execution. The router should call the memory list tool directly and render the command-owned presentation contract without creating or editing a rule.
 
-**Pass shape.** The captured stream names `mcp__mk_spec_memory__memory_list`, includes both pinned result markers, contains no forbidden dispatch or workflow target, and leaves the fixture unchanged.
+**Pass shape.** The captured stream names `mcp__system_spec_memory__memory_list`, includes both pinned result markers, contains no forbidden dispatch or workflow target, and leaves the fixture unchanged.
 
 **Failure modes.** Listing rules inline without the MCP target is role absorption; dispatching an agent or loading workflow YAML contradicts the topology; mutating the fixture or repository is a boundary violation.
 

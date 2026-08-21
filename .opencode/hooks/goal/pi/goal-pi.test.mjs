@@ -25,13 +25,13 @@ let previousStateDir;
 
 beforeEach(() => {
   stateDir = mkdtempSync(join(tmpdir(), 'goal-pi-test-'));
-  previousStateDir = process.env.MK_GOAL_STATE_DIR;
-  process.env.MK_GOAL_STATE_DIR = stateDir;
+  previousStateDir = process.env.OPENCODE_GOAL_STATE_DIR;
+  process.env.OPENCODE_GOAL_STATE_DIR = stateDir;
 });
 
 afterEach(() => {
-  if (previousStateDir === undefined) delete process.env.MK_GOAL_STATE_DIR;
-  else process.env.MK_GOAL_STATE_DIR = previousStateDir;
+  if (previousStateDir === undefined) delete process.env.OPENCODE_GOAL_STATE_DIR;
+  else process.env.OPENCODE_GOAL_STATE_DIR = previousStateDir;
   rmSync(stateDir, { recursive: true, force: true });
 });
 
@@ -43,7 +43,7 @@ function opts(sessionId = 'test-session', runtime = 'pi') {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// RENDER SELECTION (core-facing, isolated MK_GOAL_STATE_DIR)
+// RENDER SELECTION (core-facing, isolated OPENCODE_GOAL_STATE_DIR)
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('renderGoalBrief renders the active_goal block for an active goal, parameterized for Pi', async () => {
@@ -80,10 +80,10 @@ test('renderGoalBrief returns empty string for a paused goal', async () => {
   assert.equal(core.renderGoalBrief({ goal, runtimeLabel: 'Pi' }), '');
 });
 
-test('isPluginDisabled respects MK_GOAL_PLUGIN_DISABLED without touching real state', async () => {
+test('isPluginDisabled respects OPENCODE_GOAL_PLUGIN_DISABLED without touching real state', async () => {
   const core = (await import(pathToFileURL(CORE_PATH).href)).default;
   assert.equal(core.isPluginDisabled({}), false);
-  assert.equal(core.isPluginDisabled({ MK_GOAL_PLUGIN_DISABLED: '1' }), true);
+  assert.equal(core.isPluginDisabled({ OPENCODE_GOAL_PLUGIN_DISABLED: '1' }), true);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -407,6 +407,6 @@ test('native goal-pi management rejects missing identity without writing', async
 test('the Pi prompt fallback never invokes the unbound manage CLI', () => {
   const prompt = readFileSync(PROMPT_PATH, 'utf8');
   assert.match(prompt, /registers the authoritative `\/goal-pi` command/);
-  assert.doesNotMatch(prompt, /MK_GOAL_RUNTIME_LABEL=/);
+  assert.doesNotMatch(prompt, /OPENCODE_GOAL_RUNTIME_LABEL=/);
   assert.doesNotMatch(prompt, /node\s+\.opencode\/hooks\/goal\/bin\/goal\.cjs/);
 });

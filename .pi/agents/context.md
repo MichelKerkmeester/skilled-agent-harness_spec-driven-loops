@@ -65,7 +65,7 @@ This agent is LEAF-only and read-only. Nested sub-agent dispatch and file mutati
 | `memory_list` | Memory (L3) | Browse stored memories | Inspect records for a relevant spec folder |
 | `memory_stats` | Memory (L3) | Memory system statistics | Report memory health when retrieval appears unavailable or stale |
 
-**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `mk-spec-memory` daemon can flap. If any `mcp__mk_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources). Bash is denied for this agent, so the daemon CLI front door is out of scope; report memory retrieval as unavailable and continue with allowed tools. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `system-spec-memory` daemon can flap. If any `mcp__system_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources). Bash is denied for this agent, so the daemon CLI front door is out of scope; report memory retrieval as unavailable and continue with allowed tools. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 ### Denied Capability Guard
 

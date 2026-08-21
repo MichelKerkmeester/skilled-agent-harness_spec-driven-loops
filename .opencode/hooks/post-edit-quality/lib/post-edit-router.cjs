@@ -386,7 +386,7 @@ function runChecks(entries, deadlineMs, opts = {}) {
  * always ran alongside comment hygiene. Kept as its own entrypoint (not a
  * dispatch-table row) because it is unconditional per edited file rather than
  * path-matched, and because OpenCode already has independent dist-freshness
- * coverage via mk-dist-freshness-guard.js -- folding it into the shared table
+ * coverage via system-dist-freshness-guard.js -- folding it into the shared table
  * would duplicate that plugin's own checks on every OpenCode edit.
  *
  * Always returns null on any failure path (missing checker, spawn error,

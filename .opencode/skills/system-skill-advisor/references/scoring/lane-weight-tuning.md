@@ -1,6 +1,6 @@
 ---
 title: "Lane Weight Tuning Guide"
-description: "Process, measurement methodology, decision framework, approval gates plus rollback criteria for changing scorer lane weights in mk_skill_advisor."
+description: "Process, measurement methodology, decision framework, approval gates plus rollback criteria for changing scorer lane weights in system_skill_advisor."
 trigger_phrases:
   - "lane weight tuning"
   - "scorer weight change"
@@ -13,7 +13,7 @@ version: 0.8.0.11
 
 # Lane Weight Tuning Guide
 
-Process, measurement methodology, decision framework, approval gates plus rollback criteria for changing scorer lane weights in mk_skill_advisor.
+Process, measurement methodology, decision framework, approval gates plus rollback criteria for changing scorer lane weights in system_skill_advisor.
 
 ---
 
@@ -68,7 +68,7 @@ Every weight change requires a baseline plus a comparison run. The measurement c
 ```bash
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
 # Then via MCP:
-mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
+mcp__system_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
 ```
 
 Save the response. Key fields to retain: `overallAccuracy`, `slices.corpus.full_corpus_top1`, `slices.corpus.unknown_count`, `slices.holdout.holdout_top1`, `slices.parity`, `slices.safety`, `slices.latency.regression_suite_status`, `telemetry`, `perSkill[]`.
@@ -140,8 +140,8 @@ Rollback procedure:
 ```bash
 git revert <commit-sha>
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
-mcp__mk_skill_advisor__advisor_rebuild({ "force": true })
-mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
+mcp__system_skill_advisor__advisor_rebuild({ "force": true })
+mcp__system_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
 ```
 
 Confirm the baseline numbers return. Document the rollback rationale in the original packet's `implementation-summary.md`.

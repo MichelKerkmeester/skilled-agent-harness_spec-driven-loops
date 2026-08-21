@@ -15,7 +15,7 @@ import { dirname } from 'node:path';
 // A single env var name, owned here so both runtime adapters read the exact same string
 // rather than each hard-coding their own copy. Set to '1' to turn the whole surface into a
 // full no-op under either runtime.
-export const KILL_SWITCH_ENV = 'MK_CLI_DISPATCH_AUDIT_DISABLED';
+export const KILL_SWITCH_ENV = 'CLI_DISPATCH_AUDIT_DISABLED';
 
 /** True when the kill-switch env var disables the whole audit surface. */
 export function isAuditDisabled(env = process.env) {
@@ -431,7 +431,7 @@ const LOG_BACKUP_SUFFIX = '.1';
 
 /**
  * Append one pre-built JSONL line to the audit log, rotating it to a `.1` backup first when
- * the primary file has reached the size cap. Mirrors mk-dist-freshness-guard's appendGuardLog
+ * the primary file has reached the size cap. Mirrors system-dist-freshness-guard's appendGuardLog
  * copy+truncate rotation. Fail-open: any read/write error is swallowed and the caller gets a
  * `false` back rather than a thrown exception, so an unwritable log can never affect the
  * dispatch it is auditing.

@@ -55,7 +55,7 @@ This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (al
 
 ### Commands
 
-1. Fixture stdin-pipe smoke for all eight adapters (fail-open on empty + malformed; plus the deny / advise / additionalContext / audit-line envelopes). The deny fixture plants an open gate-state under a project dir **outside `/tmp`** (the core exempts `/tmp`), then pipes an `apply_patch` payload with `MK_SPEC_GATE_ENFORCE=1`:
+1. Fixture stdin-pipe smoke for all eight adapters (fail-open on empty + malformed; plus the deny / advise / additionalContext / audit-line envelopes). The deny fixture plants an open gate-state under a project dir **outside `/tmp`** (the core exempts `/tmp`), then pipes an `apply_patch` payload with `SYSTEM_SPEC_GATE_ENFORCE=1`:
 
 ```bash
 # deny path — real permissionDecision:"deny". The apply_patch target lives in the
@@ -64,7 +64,7 @@ PROJ="$HOME/.codex-hook-fixtures/proj"; mkdir -p "$PROJ/.opencode/skills/.spec-g
 HEX=$(python3 -c "print('fix-sess'.encode().hex())")
 printf '{"status":"open","askedAtMs":1}\n' > "$PROJ/.opencode/skills/.spec-gate-state/$HEX.json"
 printf '%s' "{\"tool_name\":\"apply_patch\",\"tool_input\":{\"command\":\"*** Begin Patch\n*** Add File: src/app.ts\n+export const x=1;\n*** End Patch\"},\"cwd\":\"$PROJ\",\"session_id\":\"fix-sess\"}" \
-  | MK_SPEC_GATE_ENFORCE=1 node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs; echo "  exit=$?"
+  | SYSTEM_SPEC_GATE_ENFORCE=1 node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs; echo "  exit=$?"
 
 # fail-open — empty + malformed stdin exit 0 with no emit (every adapter)
 printf '' | node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs; echo "empty exit=$?"
@@ -152,7 +152,7 @@ PASS  quality/nonexistent-file->exit0          rc=0
 ════════════ TOTAL: PASS=33  FAIL=0 ════════════
 ```
 
-`spec-gate-enforce` real deny envelope (open gate + `MK_SPEC_GATE_ENFORCE=1` + `apply_patch` on a non-exempt in-project file):
+`spec-gate-enforce` real deny envelope (open gate + `SYSTEM_SPEC_GATE_ENFORCE=1` + `apply_patch` on a non-exempt in-project file):
 
 ```json
 {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"DENIED: this Write/Edit needs a bound spec folder first. Ask the USER to reply with a letter A-E naming an existing (or new) spec folder, then retry."}}
@@ -189,7 +189,7 @@ codex
 I'm using option E: no spec folder for this focused parser/test fix. …
 ```
 
-Live deny block — a second live run (`MK_SPEC_GATE_ENFORCE=1`, `-s workspace-write`, prompt to `apply_patch` a new `src/app.ts`) was **blocked** by `spec-gate-enforce`. The Codex tool router refused the write and surfaced the deny reason; the file was never created; the enforce warning log recorded the event:
+Live deny block — a second live run (`SYSTEM_SPEC_GATE_ENFORCE=1`, `-s workspace-write`, prompt to `apply_patch` a new `src/app.ts`) was **blocked** by `spec-gate-enforce`. The Codex tool router refused the write and surfaced the deny reason; the file was never created; the enforce warning log recorded the event:
 
 ```text
 ERROR codex_core::tools::router: error=Command blocked by PreToolUse hook:
@@ -199,7 +199,7 @@ hook: PreToolUse Blocked
 ```
 ```text
 # spec-gate-warnings.log
-2026-07-13T19:36:17Z [mk-spec-gate] codex | 019f5cfa-… | write | src/app.ts | would-deny
+2026-07-13T19:36:17Z [system-spec-gate] codex | 019f5cfa-… | write | src/app.ts | would-deny
 ```
 
 Confirming this surfaced (and fixed) a real defect: Codex's `apply_patch` hook payload carries the target path inside `tool_input.command` (the `*** Add File:` patch header), not a `file_path` field. The first live attempt therefore read a null path, treated the write as exempt, and did not block; the three filePath-driven adapters now parse the affected path out of the patch body (the enforce guard picks the first non-exempt path so a multi-file patch can't hide a real write behind an exempt sibling).
@@ -213,7 +213,7 @@ notify.sh preserved: 3
 per-event: SessionStart 3, UserPromptSubmit 1, PreToolUse 3, PostToolUse 3, Stop 3, PreCompact 1
 ```
 
-Stop chain (resolved): an earlier run showed one `Stop Failed` while the other three completed. Root cause — `session-cleanup.sh` always prints a plain-text teardown line to stdout, and Codex parses a Stop hook's stdout as a response envelope, so the non-JSON text read as a failure despite exit 0. Fixed by redirecting that neutral script's stdout in the Stop wiring (`>/dev/null 2>&1`; script byte-unchanged). A consolidated live acceptance run (`MK_SPEC_GATE_ENFORCE=1`, workspace-write) now shows SessionStart 5/5, UserPromptSubmit 3/3, PreToolUse `Blocked` (the deny), and **Stop 4/4 Completed, 0 Failed**.
+Stop chain (resolved): an earlier run showed one `Stop Failed` while the other three completed. Root cause — `session-cleanup.sh` always prints a plain-text teardown line to stdout, and Codex parses a Stop hook's stdout as a response envelope, so the non-JSON text read as a failure despite exit 0. Fixed by redirecting that neutral script's stdout in the Stop wiring (`>/dev/null 2>&1`; script byte-unchanged). A consolidated live acceptance run (`SYSTEM_SPEC_GATE_ENFORCE=1`, workspace-write) now shows SessionStart 5/5, UserPromptSubmit 3/3, PreToolUse `Blocked` (the deny), and **Stop 4/4 Completed, 0 Failed**.
 
 ---
 

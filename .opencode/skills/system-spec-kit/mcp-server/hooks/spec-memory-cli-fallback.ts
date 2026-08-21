@@ -12,8 +12,8 @@ import { fileURLToPath } from 'node:url';
 import { resolveDatabasePaths } from '../core/config.js';
 import { warmCliFallbackEnvelope, type WarmCliFallbackEnvelope } from './warm-cli-fallback-envelope.js';
 
-const SERVICE_NAME = 'mk-spec-memory';
-const DEFAULT_SOCKET_DIR = '/tmp/mk-spec-memory';
+const SERVICE_NAME = 'system-spec-memory';
+const DEFAULT_SOCKET_DIR = '/tmp/system-spec-memory';
 const DEFAULT_PROBE_TIMEOUT_MS = 80;
 const MIN_CLI_TIMEOUT_MS = 25;
 const MAX_STDIO_BYTES = 1024 * 1024;

@@ -29,7 +29,7 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 const require = createRequire(import.meta.url);
 // stress-test/durability/<file> -> repo root is six levels up.
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../../..');
-const launcherPath = join(repoRoot, '.opencode/bin/mk-spec-memory-launcher.cjs');
+const launcherPath = join(repoRoot, '.opencode/bin/system-spec-memory-launcher.cjs');
 
 // The real production primitives under test. require() is side-effect-free here:
 // the launcher only runs main() under `require.main === module`, never on import.

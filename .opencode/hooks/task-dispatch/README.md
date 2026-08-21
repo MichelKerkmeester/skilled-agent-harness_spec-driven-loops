@@ -24,14 +24,14 @@ The core returns a transport-free `allow`/`warn`/`reject` decision; adapters tra
 **task-dispatch-guard** evaluates every Task-tool dispatch. Warnings are injected into the model's context as `additionalContext` (`[SYS]`), newline-joined when several apply. The two warning templates, verbatim from the core:
 
 ```text
-mk-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="<agent>" (registry modes="<a|b>") but the prompt declares mode="<mode>"
+system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="<agent>" (registry modes="<a|b>") but the prompt declares mode="<mode>"
 ```
 
 ```text
-mk-deep-loop-guard: loop-like repeated dispatch -- "<agent>" received <N> non-command-driven hand-offs in this session without a command-driven iteration marker; command-owned loop executors should be dispatched by their parent /deep:* command, not repeatedly handed off by another agent.
+system-deep-loop-guard: loop-like repeated dispatch -- "<agent>" received <N> non-command-driven hand-offs in this session without a command-driven iteration marker; command-owned loop executors should be dispatched by their parent /deep:* command, not repeatedly handed off by another agent.
 ```
 
-Confirmed loop-recreation escalates from warn to a deny (`[BLOCK]`), with the same detail text as the denial reason. Every non-allow decision also appends a `[mk-deep-loop-guard] WARN:` line to the shared bounded log in `.opencode/skills/.loop-guard-state/`.
+Confirmed loop-recreation escalates from warn to a deny (`[BLOCK]`), with the same detail text as the denial reason. Every non-allow decision also appends a `[system-deep-loop-guard] WARN:` line to the shared bounded log in `.opencode/skills/.loop-guard-state/`.
 
 **fable-subagent-guard** (Claude only) denies two dispatch shapes when the main loop runs on a Fable model — `subagent_type: "fork"` and any call omitting `model` — with this reason (`[BLOCK]`):
 
@@ -54,7 +54,7 @@ task-dispatch/
 |   `-- fable-subagent-guard.mjs  # PreToolUse(Task|Agent) Fable-model policy
 +-- devin/    task-dispatch-guard.cjs
 +-- cursor/   task-dispatch-guard.mjs
-`-- opencode/ mk-deep-loop-guard.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
+`-- opencode/ system-deep-loop-guard.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
 ```
 
 ---
@@ -69,7 +69,7 @@ task-dispatch/
 | `devin/task-dispatch-guard.cjs` | Devin adapter over the same core. |
 | `cursor/task-dispatch-guard.mjs` | Cursor `preToolUse` (matcher `Task`) adapter; `spawnSync`s the Claude adapter so policy cannot drift. |
 
-OpenCode reaches the core through `.opencode/plugins/mk-deep-loop-guard.js` — OpenCode discovers plugins only from `.opencode/plugins/`, so that file stays there and the `opencode/` folder here holds a browsability-only symlink back into it (nothing loads through the symlink).
+OpenCode reaches the core through `.opencode/plugins/system-deep-loop-guard.js` — OpenCode discovers plugins only from `.opencode/plugins/`, so that file stays there and the `opencode/` folder here holds a browsability-only symlink back into it (nothing loads through the symlink).
 
 ---
 
@@ -86,7 +86,7 @@ OpenCode reaches the core through `.opencode/plugins/mk-deep-loop-guard.js` — 
 ## 6. VALIDATION
 
 ```bash
-node --test .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs .opencode/plugins/tests/mk-deep-loop-guard.test.cjs
+node --test .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs .opencode/plugins/tests/system-deep-loop-guard.test.cjs
 ```
 
 Expected result: all tests pass (includes the forged-iteration-marker regression cases).

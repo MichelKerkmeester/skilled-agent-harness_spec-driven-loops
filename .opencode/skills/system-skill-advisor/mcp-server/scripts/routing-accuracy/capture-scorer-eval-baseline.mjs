@@ -4,7 +4,7 @@
 //
 // Captures the current scorer accuracy across the full corpus, the independent
 // holdout, the frozen ambiguity slice, and the named intent buckets, under the
-// reproducible filesystem projection (empty MK_SKILL_ADVISOR_DB_DIR → SQLite
+// reproducible filesystem projection (empty SYSTEM_SKILL_ADVISOR_DB_DIR → SQLite
 // loader returns null → projection built purely from committed graph metadata).
 // The result is the ratchet baseline: the ratchet gate re-scores live under the
 // same env and holds every metric to it, so any scoring or metadata change that
@@ -32,7 +32,7 @@ const DELEGATION_JSON = resolve(HERE, '../../tests/parity/fixtures/executor-dele
 const OUTPUT_JSON = resolve(HERE, 'scorer-eval-baseline.json');
 const DIST = resolve(HERE, '../../dist/mcp-server');
 
-process.env.MK_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-eval-baseline-'));
+process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-eval-baseline-'));
 process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
 process.env.PYTHONDONTWRITEBYTECODE = '1';
@@ -132,7 +132,7 @@ const baseline = {
   ambiguitySha256: sha256File(AMBIGUITY_JSONL),
   env: {
     SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
-    MK_SKILL_ADVISOR_DB_DIR: '<empty-dir>',
+    SYSTEM_SKILL_ADVISOR_DB_DIR: '<empty-dir>',
     projectionSource: 'filesystem',
   },
   metrics: {

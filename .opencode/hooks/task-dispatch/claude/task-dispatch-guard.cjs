@@ -7,7 +7,7 @@
 //
 // PreToolUse(Task) deep-loop dispatch guard for Claude Code.
 //
-// Claude's counterpart to the mk-deep-loop-guard OpenCode plugin: it intercepts a
+// Claude's counterpart to the system-deep-loop-guard OpenCode plugin: it intercepts a
 // Task tool call BEFORE it dispatches and evaluates the same runtime-neutral policy
 // (Deep Route mode mismatch + loop-like repeated hand-offs to command-owned loop
 // executors) through the shared dispatch-guard core. A policy denial emits Claude's

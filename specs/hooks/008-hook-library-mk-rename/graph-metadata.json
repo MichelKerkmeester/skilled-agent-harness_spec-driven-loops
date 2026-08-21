@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/008-hook-library-mk-rename",
+  "spec_folder": "hooks/008-hook-library-mk-rename",
+  "parent_id": "hooks",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook library rename",
+      "mk prefix rename",
+      "plugin rename",
+      "mk to system",
+      "daemon rename",
+      "hook rename plan",
+      "mk rename phases",
+      "daemon rename plan",
+      "hook rename tasks",
+      "mk rename checklist tasks",
+      "hook rename checklist",
+      "mk rename verification"
+    ],
+    "key_topics": [
+      "hook",
+      "library",
+      "rename",
+      "prefix",
+      "plugin",
+      "system",
+      "daemon",
+      "plan",
+      "phases",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "tasks.md",
+      "decision-record.md",
+      "plan.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Library",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prefix Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Inventory",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every runtime hook entry point is named `mk-<concern>` (e.g",
+    "created_at": "2026-08-20T00:00:00.000Z",
+    "last_save_at": "2026-08-21T09:16:18.074Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eaa5e42a937703db76f33023021bb09a3d2878a34cd21b8a8d3f93cd0ce65a7b",
+    "source_doc_hashes": {
+      "spec.md": "fc0cea917ecadde5893d3423fba91b88baa524594baf2d8ef0a8c647466ef7f2",
+      "plan.md": "3e7db5ca63464edf85c0425b25ee904e691678436252a03766dde8bbfd91d80b",
+      "tasks.md": "fc2d31ff45130556e722cee8a0e0bdab7dff49cacb300a9e359cbbc3eaad175b",
+      "checklist.md": "9bcd1a1a11c7d5178e01d186c4f35642dd6f38c205bfa7748aea58765ef489f1",
+      "decision-record.md": "3c8bb482932b0b913645489c960d1d97bc842853bf6af19457b26f7dcf9db567",
+      "implementation-summary.md": "d760113aa2544937ae05fac95d05a0ec75456902c9d0621b2f45e0659f64bc88"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

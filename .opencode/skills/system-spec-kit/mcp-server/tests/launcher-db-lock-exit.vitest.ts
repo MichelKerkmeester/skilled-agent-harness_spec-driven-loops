@@ -2,7 +2,7 @@ import { createRequire } from 'node:module';
 import { describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
-const launcher = require(require.resolve('../../../../bin/mk-spec-memory-launcher.cjs'));
+const launcher = require(require.resolve('../../../../bin/system-spec-memory-launcher.cjs'));
 const { decideDbLockHeldAction, EXIT_DB_LOCK_HELD } = launcher;
 
 // Exit-86 ("database single-writer lock held") supervision flow. The critical

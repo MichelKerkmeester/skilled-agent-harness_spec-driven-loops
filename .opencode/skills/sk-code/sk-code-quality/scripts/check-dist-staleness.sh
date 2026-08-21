@@ -57,10 +57,10 @@ def _hook_enabled(concern):
     def _resolve(key):
         return os.environ[key] if key in os.environ else cfg.get(key)
 
-    if _truthy(_resolve("MK_HOOKS_DISABLED")):
+    if _truthy(_resolve("SYSTEM_HOOKS_DISABLED")):
         return False
     import re
-    flag = "MK_" + re.sub(r"[^A-Z0-9]+", "_", concern.upper()) + "_DISABLED"
+    flag = "SYSTEM_" + re.sub(r"[^A-Z0-9]+", "_", concern.upper()) + "_DISABLED"
     if _truthy(_resolve(flag)):
         return False
     return True

@@ -1,7 +1,7 @@
 ---
 description: Create and manage constitutional rules — always-surface entries that appear at the top of every search result.
 argument-hint: "[rule-description] | list | edit <filename> | remove <filename> | budget"
-allowed-tools: Read, Write, Edit, Glob, Bash, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_list, mcp__mk_spec_memory__memory_delete, mcp__mk_spec_memory__memory_index_scan
+allowed-tools: Read, Write, Edit, Glob, Bash, mcp__system_spec_memory__memory_save, mcp__system_spec_memory__memory_search, mcp__system_spec_memory__memory_stats, mcp__system_spec_memory__memory_list, mcp__system_spec_memory__memory_delete, mcp__system_spec_memory__memory_index_scan
 ---
 
 # /memory:learn

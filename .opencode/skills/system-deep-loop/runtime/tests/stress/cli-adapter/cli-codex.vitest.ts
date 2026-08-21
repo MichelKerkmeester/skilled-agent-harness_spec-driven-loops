@@ -189,11 +189,11 @@ describe.sequential('cli-codex manifest integrity', () => {
       'recursionGuard',
     ]));
     expect(liveContracts.childEnvironment.direct).toEqual([
-      'MK_SPEC_GATE_ENFORCE=0',
+      'SYSTEM_SPEC_GATE_ENFORCE=0',
       'AI_SESSION_CHILD=1',
     ]);
     expect(liveContracts.childEnvironment.fanout).toEqual([
-      'MK_SPEC_GATE_DISABLED=1',
+      'SYSTEM_SPEC_GATE_DISABLED=1',
       'AI_SESSION_CHILD=1',
     ]);
   });
@@ -270,13 +270,13 @@ describe.sequential('cli-codex adapter contracts', () => {
 
   it(EDGE_CASE_ROWS[5].codexTest, () => {
     const { fixture, result } = dispatchWithShim('success', {}, {
-      MK_SPEC_GATE_ENFORCE: '0',
+      SYSTEM_SPEC_GATE_ENFORCE: '0',
       AI_SESSION_CHILD: '1',
     });
     const capture = readCodexCapture(fixture);
     expect(result.status).toBe(0);
     expect(capture.env).toMatchObject({
-      MK_SPEC_GATE_ENFORCE: '0',
+      SYSTEM_SPEC_GATE_ENFORCE: '0',
       AI_SESSION_CHILD: '1',
     });
   });
@@ -463,7 +463,7 @@ describe.sequential('cli-codex adapter contracts', () => {
       CLI_ADAPTER_SHIM_MODE: 'success',
       CLI_ADAPTER_SHIM_CAPTURE: fixture.capturePath,
       CLI_ADAPTER_SHIM_PID_FILE: fixture.pidPath,
-      MK_SPEC_GATE_ENFORCE: '0',
+      SYSTEM_SPEC_GATE_ENFORCE: '0',
       AI_SESSION_CHILD: '1',
     });
     expect(preflightCodexLive({

@@ -27,7 +27,7 @@ cd .opencode/skills/system-deep-loop/runtime && \
 
 - **stdout**: Capture the verbose Vitest line for the exact test name and the final file/test count.
 - **stderr**: Capture any runner or assertion diagnostic; redact credential-shaped values before retention.
-- **ledger/artifacts**: Exit 0 and the captured child environment contains `MK_SPEC_GATE_ENFORCE=0`, `MK_SPEC_GATE_DISABLED=1`, and `AI_SESSION_CHILD=1`.
+- **ledger/artifacts**: Exit 0 and the captured child environment contains `SYSTEM_SPEC_GATE_ENFORCE=0`, `SYSTEM_SPEC_GATE_DISABLED=1`, and `AI_SESSION_CHILD=1`.
 - Fixtures are temporary and removed by test teardown, so the durable evidence is the terminal transcript and exit code.
 
 ## Verdict

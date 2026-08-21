@@ -14,15 +14,15 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-Index of the codex-watchdog concern (real code at `.opencode/plugins/mk-codex-hooks-watchdog.js`, mirrored here). The watchdog monitors whether Codex's hook wiring is firing as expected and surfaces a warning when Codex hooks are missing or misbehaving, so a silently broken Codex hook chain is caught rather than assumed healthy. It runs as an **OpenCode plugin** (the observing runtime) that watches the Codex configuration — an OpenCode-plugin-hosted concern with no adapter on the other runtimes.
+Index of the codex-watchdog concern (real code at `.opencode/plugins/codex-hooks-watchdog.js`, mirrored here). The watchdog monitors whether Codex's hook wiring is firing as expected and surfaces a warning when Codex hooks are missing or misbehaving, so a silently broken Codex hook chain is caught rather than assumed healthy. It runs as an **OpenCode plugin** (the observing runtime) that watches the Codex configuration — an OpenCode-plugin-hosted concern with no adapter on the other runtimes.
 
-Honors the `codex-watchdog` kill-switch (`isHookEnabled`; `MK_CODEX_WATCHDOG_DISABLED`, legacy `MK_CODEX_HOOKS_WATCHDOG_DISABLED`, or the master `MK_HOOKS_DISABLED`), default-on.
+Honors the `codex-watchdog` kill-switch (`isHookEnabled`; `CODEX_WATCHDOG_DISABLED`, legacy `CODEX_HOOKS_WATCHDOG_DISABLED`, or the master `SYSTEM_HOOKS_DISABLED`), default-on.
 
 ## 2. KEY FILES
 
 | Runtime | Adapter |
 |---|---|
-| `opencode/` | `mk-codex-hooks-watchdog.js` (browsability symlink → `../../../plugins/`) |
+| `opencode/` | `codex-hooks-watchdog.js` (browsability symlink → `../../../plugins/`) |
 
 ## 3. BOUNDARIES
 

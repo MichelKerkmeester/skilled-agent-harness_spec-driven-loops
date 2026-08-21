@@ -144,8 +144,8 @@ A duplicate-owner failure points at respawn-lock serialization in the affected l
 | File | Role |
 |---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/tri-daemon-drill.vitest.ts` | Env-gated drill (program gate), `SPECKIT_RUN_TRI_DAEMON_DRILL=1` |
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Launcher with transparent-recycle SIGTERM reap |
-| `.opencode/bin/mk-skill-advisor-launcher.cjs` | Launcher that exits on child SIGTERM |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | Launcher with transparent-recycle SIGTERM reap |
+| `.opencode/bin/system-skill-advisor-launcher.cjs` | Launcher that exits on child SIGTERM |
 
 ---
 

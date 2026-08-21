@@ -107,7 +107,7 @@ async function startFakeAdvisorDaemon(socketPath: string): Promise<FakeDaemon> {
             result: {
               protocolVersion: '2025-06-18',
               capabilities: {},
-              serverInfo: { name: 'fake-mk-skill-advisor', version: identity },
+              serverInfo: { name: 'fake-system-skill-advisor', version: identity },
             },
           })}\n`);
           continue;

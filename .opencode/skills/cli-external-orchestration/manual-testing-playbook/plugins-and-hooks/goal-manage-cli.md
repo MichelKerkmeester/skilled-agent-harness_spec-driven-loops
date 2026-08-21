@@ -22,13 +22,13 @@ version: 2.0.0.0
 
 This scenario validates the runtime-neutral goal core without touching operator state. It proves that two sessions keep different goals, missing identity never writes or injects, aggregate diagnostics do not reveal raw session ids, legacy state requires explicit ownership, malformed legacy data can only be archived, and rollback disables injection while preserving every state layout.
 
-OpenCode's native `mk-goal` plugin is a separate regression control. Pi is the fully supported cross-runtime path. Cursor is injection-only because its prompt command does not receive the hook's native session id. Codex has no goal adapter. Claude Code has no repository adapter or goal command; any separate live native capability is outside this scenario.
+OpenCode's native `opencode-goal` plugin is a separate regression control. Pi is the fully supported cross-runtime path. Cursor is injection-only because its prompt command does not receive the hook's native session id. Codex has no goal adapter. Claude Code has no repository adapter or goal command; any separate live native capability is outside this scenario.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Preconditions: Node is available; the goal core, CLI, Pi adapter, and Cursor adapter exist; every command uses a fresh `MK_GOAL_STATE_DIR`.
+- Preconditions: Node is available; the goal core, CLI, Pi adapter, and Cursor adapter exist; every command uses a fresh `OPENCODE_GOAL_STATE_DIR`.
 - Real user request: `Keep two Pi sessions focused on different goals without either session seeing or replacing the other goal.`
 - Prompt: `Verify the goal system keeps two native sessions isolated, refuses unbound access, migrates legacy state only to an explicit owner, archives malformed legacy state without data loss, and can be disabled without deleting state.`
 - Expected signals: Session A and B show distinct objectives; all unbound current-session actions fail with `MISSING_SESSION_ID`; `doctor` reports counts but not raw ids; legacy-only scoped reads return no goal; explicit migration binds exactly one empty target and archives the singleton; an occupied target stays unchanged; malformed legacy bytes survive `legacy-archive`; disabled adapters emit no goal block.
@@ -43,12 +43,12 @@ OpenCode's native `mk-goal` plugin is a separate regression control. Pi is the f
 
 ```bash
 GOAL_TEST_ROOT="$(mktemp -d /tmp/goal-isolation.XXXXXX)"
-export MK_GOAL_STATE_DIR="$GOAL_TEST_ROOT"
+export OPENCODE_GOAL_STATE_DIR="$GOAL_TEST_ROOT"
 GOAL_CLI=.opencode/hooks/goal/bin/goal.cjs
 WORKSPACE="$PWD"
 ```
 
-Do not run these scenarios without `MK_GOAL_STATE_DIR`. Snapshot the real legacy path before and after if operator state already exists.
+Do not run these scenarios without `OPENCODE_GOAL_STATE_DIR`. Snapshot the real legacy path before and after if operator state already exists.
 
 ### B. Concurrent sessions and non-owner preservation
 
@@ -84,7 +84,7 @@ Use a new isolated state root:
 
 ```bash
 GOAL_MIGRATION_ROOT="$(mktemp -d /tmp/goal-migration.XXXXXX)"
-export MK_GOAL_STATE_DIR="$GOAL_MIGRATION_ROOT"
+export OPENCODE_GOAL_STATE_DIR="$GOAL_MIGRATION_ROOT"
 
 node -e '
 const fs = require("node:fs");
@@ -96,7 +96,7 @@ const record = {
   createdAtMs: 1,
   updatedAtMs: 1
 };
-fs.writeFileSync(path.join(process.env.MK_GOAL_STATE_DIR, "active-goal.json"), JSON.stringify(record) + "\n", { mode: 0o600 });
+fs.writeFileSync(path.join(process.env.OPENCODE_GOAL_STATE_DIR, "active-goal.json"), JSON.stringify(record) + "\n", { mode: 0o600 });
 '
 
 node "$GOAL_CLI" --runtime pi --session target-session --workspace "$WORKSPACE" show
@@ -122,7 +122,7 @@ Before migrating into an occupied target, record the target file bytes. The comm
 
 ```bash
 GOAL_MALFORMED_ROOT="$(mktemp -d /tmp/goal-malformed.XXXXXX)"
-export MK_GOAL_STATE_DIR="$GOAL_MALFORMED_ROOT"
+export OPENCODE_GOAL_STATE_DIR="$GOAL_MALFORMED_ROOT"
 printf '{broken-legacy\n' > "$GOAL_MALFORMED_ROOT/active-goal.json"
 chmod 600 "$GOAL_MALFORMED_ROOT/active-goal.json"
 
@@ -136,10 +136,10 @@ Expected: inspect reports `malformed`; migrate fails with `LEGACY_GOAL_MALFORMED
 ### F. Rollback and disabled state
 
 ```bash
-MK_GOAL_PLUGIN_DISABLED=1 node "$GOAL_CLI" --runtime pi --session session-b --workspace "$WORKSPACE" show
+OPENCODE_GOAL_PLUGIN_DISABLED=1 node "$GOAL_CLI" --runtime pi --session session-b --workspace "$WORKSPACE" show
 
 printf '%s' '{"session_id":"session-b","workspace_roots":["'"$WORKSPACE"'"]}' \
-  | MK_GOAL_PLUGIN_DISABLED=1 node .opencode/hooks/goal/cursor/goal-inject.mjs
+  | OPENCODE_GOAL_PLUGIN_DISABLED=1 node .opencode/hooks/goal/cursor/goal-inject.mjs
 ```
 
 Expected: CLI management fails with `PLUGIN_DISABLED`; Cursor returns only `{"permission":"allow"}` with no `agent_message`. Pi rollback uses `-extensions/goal-context.ts` in `.pi/settings.json`; preserve the state root and do not merge scoped files into `active-goal.json`.

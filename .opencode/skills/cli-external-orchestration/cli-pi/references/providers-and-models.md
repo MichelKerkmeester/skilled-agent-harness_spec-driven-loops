@@ -169,13 +169,13 @@ Confirm the target model actually honors the requested tier before assuming it c
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and capture streams separately:
 
 ```bash
-MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 pi -p "<prompt>" \
+SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 pi -p "<prompt>" \
   --provider deepseek --model deepseek-v4-pro \
   --thinking high --mode text --offline \
   > stdout.log 2> stderr.log
 ```
 
-- `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
+- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
 - `--offline` — pass explicitly for any automated/CI dispatch; `pi --verbose` without `--offline` hung 2+ minutes with no reachable network path in the pinned contract. See [cli-reference.md](./cli-reference.md) §7 and [integration-patterns.md](./integration-patterns.md) §15.
 - **Exit code is never an availability/auth signal** — an identical unauthenticated `pi -p` returned exit `0` then exit `1` across runs. Classify the captured output text (`No API key found...`), never the exit code. See [cli-reference.md](./cli-reference.md) §9.
 

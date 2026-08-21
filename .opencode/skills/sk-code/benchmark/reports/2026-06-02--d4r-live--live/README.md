@@ -35,7 +35,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
   --outputs-dir .opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live
 ```
 
-Paid + non-deterministic (15 gpt-5.5 dispatches + 10 grader calls; ~45–55 min). `--d4` requires `--trace-mode live`. Skill-OFF is an approximation (`MK_SKILL_ADVISOR_HOOK_DISABLED=1` + preamble + a contamination guard that drops a pair if the skill leaked in), so scores are stamped `attribution: approximate`.
+Paid + non-deterministic (15 gpt-5.5 dispatches + 10 grader calls; ~45–55 min). `--d4` requires `--trace-mode live`. Skill-OFF is an approximation (`SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` + preamble + a contamination guard that drops a pair if the skill leaked in), so scores are stamped `attribution: approximate`.
 
 ## Files
 

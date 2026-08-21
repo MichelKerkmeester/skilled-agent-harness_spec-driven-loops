@@ -81,7 +81,7 @@ memory_search({ query: "auth", specFolder: "122-skill-standardization" })
 ❌ **Wrong approach:**
 ```javascript
 // Calling through Code Mode (loses native efficiency)
-call_tool_chain(`mk-spec-memory.memory_search({ query: "test" })`)
+call_tool_chain(`system-spec-memory.memory_search({ query: "test" })`)
 ```
 
 ✅ **Correct approach:**
@@ -116,7 +116,7 @@ memory_search({ query: "test" })
 **Connection Recovery Protocol:**
 
 1. Check server status: `ps aux | grep context-server`
-2. Verify config: `cat opencode.json | jq '.mcp["mk-spec-memory"]'`
+2. Verify config: `cat opencode.json | jq '.mcp["system-spec-memory"]'`
 3. Test basic call: `memory_stats()`
 4. Probe the warm daemon via the dual-stack CLI: `node .opencode/bin/spec-memory.cjs memory_stats --warm-only --format json --timeout-ms 3000` — success means the daemon is healthy and only the runtime's MCP wiring needs repair (reconnect MCP); exit `75` means the daemon itself is down (retryable after restart or prewarm)
 5. If still failing: restart server and wait 10s

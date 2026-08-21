@@ -229,7 +229,7 @@ describe('completion-evidence-sentinel core', () => {
     expect(second.decision).toBe('advise');
   });
 
-  it('kill switch: MK_COMPLETION_SENTINEL_DISABLED=1 makes the core a full no-op', () => {
+  it('kill switch: SYSTEM_COMPLETION_SENTINEL_DISABLED=1 makes the core a full no-op', () => {
     projectDir = newProjectDir();
     const fixture = trackFixture(makeFixtureFolder({ checklist: CHECKLIST_P0_NO_EVIDENCE }));
     const spy = vi.spyOn(childProcess, 'execFileSync');
@@ -380,7 +380,7 @@ describe('sweepStaleSentinelState (throttled, adapter-invoked, fail-open state m
     expect(readFileSync(dedupPath, 'utf8')).toBe('not valid json{{{');
   });
 
-  it('kill switch (MK_COMPLETION_SENTINEL_DISABLED=1) makes the sweep a full no-op', () => {
+  it('kill switch (SYSTEM_COMPLETION_SENTINEL_DISABLED=1) makes the sweep a full no-op', () => {
     const projectDir = newProjectDir();
     const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
     const originalStore = { stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(400) } };

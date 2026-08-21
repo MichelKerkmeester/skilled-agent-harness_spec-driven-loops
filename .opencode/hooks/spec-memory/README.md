@@ -14,15 +14,15 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-Index of the spec-memory concern (real code at `.opencode/plugins/mk-spec-memory.js`, mirrored here). The plugin bridges the Spec-Kit Memory MCP into an OpenCode session so continuity and prior-work context are retrievable at runtime. This is an **OpenCode-plugin-only** concern by design — it hooks OpenCode's plugin API and has no equivalent lifecycle event on the other runtimes (see the hub coverage matrix).
+Index of the spec-memory concern (real code at `.opencode/plugins/system-spec-memory.js`, mirrored here). The plugin bridges the Spec-Kit Memory MCP into an OpenCode session so continuity and prior-work context are retrievable at runtime. This is an **OpenCode-plugin-only** concern by design — it hooks OpenCode's plugin API and has no equivalent lifecycle event on the other runtimes (see the hub coverage matrix).
 
-Honors the `spec-memory` kill-switch (`isHookEnabled`; `MK_SPEC_MEMORY_DISABLED`, legacy `MK_SPEC_MEMORY_PLUGIN_DISABLED` / `SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED`, or the master `MK_HOOKS_DISABLED`), default-on.
+Honors the `spec-memory` kill-switch (`isHookEnabled`; `SYSTEM_SPEC_MEMORY_DISABLED`, legacy `SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED` / `SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED`, or the master `SYSTEM_HOOKS_DISABLED`), default-on.
 
 ## 2. KEY FILES
 
 | Runtime | Adapter |
 |---|---|
-| `opencode/` | `mk-spec-memory.js` (browsability symlink → `../../../plugins/`) |
+| `opencode/` | `system-spec-memory.js` (browsability symlink → `../../../plugins/`) |
 
 ## 3. BOUNDARIES
 

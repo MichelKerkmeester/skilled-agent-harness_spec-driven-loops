@@ -43,7 +43,7 @@ const LOAD_BEARING_MARKERS = Object.freeze([
 ]);
 
 const TOOL_ALIASES = Object.freeze({
-  detect_changes: Object.freeze(['detect_changes', 'mcp__mk_code_index__detect_changes']),
+  detect_changes: Object.freeze(['detect_changes', 'mcp__system_code_index__detect_changes']),
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

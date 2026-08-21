@@ -14,7 +14,7 @@ expected_leaf_resources: []
 
 A SHA256 content hash over the watched source files is written lazily into a small cache file next to the dist entry (e.g. `dist/.dist-freshness-<package>-<suffix>.json`) purely as a same-session performance short-circuit: if a later check finds the same content hash already cached, it reports fresh without re-checking mtime at all. This cache is not pre-warmed by any build script -- it is written only by the runtime check itself, and only on a fresh pass -- so a clean checkout or the first check against a given source state always falls through to the authoritative mtime comparison. One consequence worth knowing (directly verified): a bare `touch` (mtime bump, no content change) does NOT re-trip the guard once a matching cache entry already exists for that exact content, but the identical `touch` DOES trip the guard when no matching cache entry exists yet, because mtime alone decides staleness in that case.
 
-The test trips the guard reversibly: it backs up the source file, appends a content change so it is genuinely newer than the dist entry, observes the refusal and the override, then restores the exact original content — no rebuild needed and no lasting host impact. If the restored run still refuses (no matching cache entry for the original content on this host), `touch` the dist entry to clear it without rebuilding. Per-system development overrides (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`, `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`) turn the refusal into pass-through.
+The test trips the guard reversibly: it backs up the source file, appends a content change so it is genuinely newer than the dist entry, observes the refusal and the override, then restores the exact original content — no rebuild needed and no lasting host impact. If the restored run still refuses (no matching cache entry for the original content on this host), `touch` the dist entry to clear it without rebuilding. Per-system development overrides (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`) turn the refusal into pass-through.
 
 ---
 
@@ -108,7 +108,7 @@ A restored run that still exits 69 means the restore was not byte-exact — conf
 |---|---|
 | `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` | Shared `checkPackageFreshness()` module: mtime comparison, lazy same-session hash cache, `DIST_PACKAGES` registry (7 watched packages) |
 | `.opencode/bin/spec-memory.cjs` | `ensureFreshDist` guard, exit 69, `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE` |
-| `.opencode/bin/skill-advisor.cjs` | Same guard for skill-advisor, `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
+| `.opencode/bin/skill-advisor.cjs` | Same guard for skill-advisor, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
 
 ---
 

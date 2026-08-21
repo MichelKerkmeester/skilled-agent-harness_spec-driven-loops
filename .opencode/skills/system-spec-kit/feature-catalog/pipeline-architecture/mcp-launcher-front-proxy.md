@@ -26,11 +26,11 @@ This matters because the daemon recycles itself in place when it sustains an RSS
 
 ### Front-proxy bridge
 
-`bridgeStdioThroughSessionProxy(socketPath, options)` in `mk-spec-memory-launcher.cjs` wraps a secondary launcher's client stdio in a `createSessionProxy` instance. Each secondary launcher gets its own proxy with its own `pendingRequests` map and cached-initialize state because it owns its own stdio. The proxy owns stdout and emits JSON-RPC errors on failure, so the raw bridge's stdout error marker is intentionally unused on this path (it would corrupt the MCP stream). The lease holder bridges directly; secondaries bridge through the proxy so they reconnect like the lease holder does.
+`bridgeStdioThroughSessionProxy(socketPath, options)` in `system-spec-memory-launcher.cjs` wraps a secondary launcher's client stdio in a `createSessionProxy` instance. Each secondary launcher gets its own proxy with its own `pendingRequests` map and cached-initialize state because it owns its own stdio. The proxy owns stdout and emits JSON-RPC errors on failure, so the raw bridge's stdout error marker is intentionally unused on this path (it would corrupt the MCP stream). The lease holder bridges directly; secondaries bridge through the proxy so they reconnect like the lease holder does.
 
 ### In-place daemon recycle
 
-`recycleDaemonInPlace(graceMs)` in `mk-spec-memory-launcher.cjs` is invoked on a sustained RSS ceiling breach (`onRssBreach`). It sends `SIGTERM` to the running `context-server` child (and the `hf-model-server` child first when present), escalates to `SIGKILL` after the grace window, then re-spawns the backend in place. The re-spawned backend runs with `SPECKIT_BACKEND_ONLY: '1'` so it serves the IPC socket without binding its own stdio transport.
+`recycleDaemonInPlace(graceMs)` in `system-spec-memory-launcher.cjs` is invoked on a sustained RSS ceiling breach (`onRssBreach`). It sends `SIGTERM` to the running `context-server` child (and the `hf-model-server` child first when present), escalates to `SIGKILL` after the grace window, then re-spawns the backend in place. The re-spawned backend runs with `SPECKIT_BACKEND_ONLY: '1'` so it serves the IPC socket without binding its own stdio transport.
 
 ### Backend-only mode (SPECKIT_BACKEND_ONLY)
 
@@ -56,7 +56,7 @@ The proxy distinguishes two failure classes:
 | File | Role |
 |------|------|
 | `.opencode/bin/lib/launcher-session-proxy.cjs` | Reconnecting session proxy: reattach loop, replay snapshot, keepalive, `RETRYABLE_RECYCLE_ERROR` (-32001), `PROTOCOL_MISMATCH_ERROR` (-32002), terminal `CLOSED` fail-closed on protocol drift |
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | `bridgeStdioThroughSessionProxy` for secondary clients; `recycleDaemonInPlace` on RSS breach; spawns the backend with `SPECKIT_BACKEND_ONLY: '1'` |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | `bridgeStdioThroughSessionProxy` for secondary clients; `recycleDaemonInPlace` on RSS breach; spawns the backend with `SPECKIT_BACKEND_ONLY: '1'` |
 | `.opencode/bin/lib/launcher-ipc-bridge.cjs` | IPC socket path resolution and daemon probe used by the proxy |
 | `mcp-server/context-server.ts` | Reads `SPECKIT_BACKEND_ONLY`; in backend-only mode skips the stdio transport and serves the IPC socket |
 

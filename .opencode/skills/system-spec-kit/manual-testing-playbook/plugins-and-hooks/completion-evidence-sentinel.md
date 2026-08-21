@@ -1,9 +1,9 @@
 ---
 title: "Completion Evidence Sentinel"
-description: "Manual scenario validating the mk-completion-sentinel plugin and Stop hook advisory flow."
+description: "Manual scenario validating the system-completion-sentinel plugin and Stop hook advisory flow."
 trigger_phrases:
   - "plg-001"
-  - "mk-completion-sentinel"
+  - "system-completion-sentinel"
   - "completion evidence sentinel"
   - "completion sentinel plugin"
   - "completion-evidence-sentinel"
@@ -22,7 +22,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-`mk-completion-sentinel` is an OpenCode plugin (`.opencode/plugins/mk-completion-sentinel.js`) that
+`system-completion-sentinel` is an OpenCode plugin (`.opencode/plugins/system-completion-sentinel.js`) that
 adapts the runtime-neutral core `completion-evidence-sentinel.cjs`
 (`.opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs`) onto
 OpenCode's `session.idle` and `session.created` events. The identical core is also consumed by a
@@ -46,7 +46,7 @@ This scenario validates:
 - claim-detection anchoring and spec-folder text resolution in the core
 - the checklist `EVIDENCE_MISSING` advisory path and its dedup suppression on a repeat claim
 - the Level 1 `implementation-summary.md` advisory path (present vs. absent)
-- the `MK_COMPLETION_SENTINEL_DISABLED=1` kill switch as a full no-op on the core, the OpenCode
+- the `SYSTEM_COMPLETION_SENTINEL_DISABLED=1` kill switch as a full no-op on the core, the OpenCode
   plugin, and the Claude Stop hook
 - the throttled dedup-store sweep pruning aged entries
 - both runtime adapters (OpenCode `session.idle` plugin, Claude `Stop` hook) delegating to the
@@ -72,7 +72,7 @@ This scenario validates:
   - Identical claim text against the identical packet, next check: `{"decision":"ok","detail":null,"deduped":true}`.
   - A genuinely satisfied packet (implementation-summary.md present, or a fully evidenced
     checklist): `{"decision":"ok","detail":null,"deduped":false}`.
-  - `MK_COMPLETION_SENTINEL_DISABLED=1` (any adapter, any call): unconditional `{"decision":"ok"}`,
+  - `SYSTEM_COMPLETION_SENTINEL_DISABLED=1` (any adapter, any call): unconditional `{"decision":"ok"}`,
     no filesystem probe, no advisory written.
   - The OpenCode plugin appends the advisory line to
     `.opencode/logs/completion-sentinel-advisories.log` and never writes stdout/stderr.
@@ -93,7 +93,7 @@ This scenario validates:
 ### 1. OpenCode plugin unit test (session.created sweep, kill switch, throttling, unrelated event)
 
 ```bash
-node .opencode/plugins/tests/mk-completion-sentinel.test.cjs
+node .opencode/plugins/tests/system-completion-sentinel.test.cjs
 ```
 
 Expected: `# tests 4`, `# pass 4`, `# fail 0`.
@@ -211,7 +211,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import { pathToFileURL } from 'node:url';
 
-const pluginUrl = pathToFileURL(path.resolve(process.cwd(), '.opencode/plugins/mk-completion-sentinel.js')).href;
+const pluginUrl = pathToFileURL(path.resolve(process.cwd(), '.opencode/plugins/system-completion-sentinel.js')).href;
 const { default: MkCompletionSentinelPlugin } = await import(pluginUrl);
 const projectDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentinel-adapter-live-'));
 
@@ -302,9 +302,9 @@ recorded in <SPEC_DIR>` on stderr, `exit code: 0`, and the identical line append
 
 ### Kill-switch flip (covered inline above and in the suites)
 
-`MK_COMPLETION_SENTINEL_DISABLED=1` is exercised as a full no-op in: the core's own kill-switch unit
+`SYSTEM_COMPLETION_SENTINEL_DISABLED=1` is exercised as a full no-op in: the core's own kill-switch unit
 test (`completion-evidence-sentinel.vitest.ts`), the OpenCode plugin's kill-switch unit test
-(`mk-completion-sentinel.test.cjs`), the Claude Stop hook's kill-switch vitest
+(`system-completion-sentinel.test.cjs`), the Claude Stop hook's kill-switch vitest
 (`hook-completion-evidence-stop.vitest.ts`), and step 3's live invocation above (`KILL SWITCH env=1`
 section). No separate live flip was needed beyond those four independent confirmations.
 
@@ -317,7 +317,7 @@ section). No separate live flip was needed beyond those four independent confirm
 Command:
 
 ```bash
-node .opencode/plugins/tests/mk-completion-sentinel.test.cjs
+node .opencode/plugins/tests/system-completion-sentinel.test.cjs
 ```
 
 Output:
@@ -326,8 +326,8 @@ Output:
 TAP version 13
 # Subtest: session.created invokes the throttled state sweep, pruning a stale dedup entry
 ok 1 - session.created invokes the throttled state sweep, pruning a stale dedup entry
-# Subtest: kill switch (MK_COMPLETION_SENTINEL_DISABLED=1) makes session.created a full no-op, sweep included
-ok 2 - kill switch (MK_COMPLETION_SENTINEL_DISABLED=1) makes session.created a full no-op, sweep included
+# Subtest: kill switch (SYSTEM_COMPLETION_SENTINEL_DISABLED=1) makes session.created a full no-op, sweep included
+ok 2 - kill switch (SYSTEM_COMPLETION_SENTINEL_DISABLED=1) makes session.created a full no-op, sweep included
 # Subtest: a second session.created on the same plugin instance within the sweep interval is throttled (no re-sweep)
 ok 3 - a second session.created on the same plugin instance within the sweep interval is throttled (no re-sweep)
 # Subtest: an unrelated event type never triggers the sweep
@@ -361,7 +361,7 @@ Output:
  ✓ mcp-server/tests/hook-completion-evidence-stop.vitest.ts > completion-evidence-stop.cjs (Claude Stop hook transport) > missing stop_hook_active field (undefined) behaves like a normal turn-end and still evaluates 34ms
  ✓ mcp-server/tests/hook-completion-evidence-stop.vitest.ts > completion-evidence-stop.cjs (Claude Stop hook transport) > a re-entrant continuation (stop_hook_active:true) still skips evaluation 26ms
  ✓ mcp-server/tests/hook-completion-evidence-stop.vitest.ts > completion-evidence-stop.cjs (Claude Stop hook transport) > a non-claim message never reaches evaluation regardless of stop_hook_active 26ms
- ✓ mcp-server/tests/hook-completion-evidence-stop.vitest.ts > completion-evidence-stop.cjs (Claude Stop hook transport) > kill switch: MK_COMPLETION_SENTINEL_DISABLED=1 makes the hook a full no-op even on a normal turn-end 25ms
+ ✓ mcp-server/tests/hook-completion-evidence-stop.vitest.ts > completion-evidence-stop.cjs (Claude Stop hook transport) > kill switch: SYSTEM_COMPLETION_SENTINEL_DISABLED=1 makes the hook a full no-op even on a normal turn-end 25ms
  ✓ mcp-server/tests/hook-completion-evidence-stop.vitest.ts > completion-evidence-stop.cjs (Claude Stop hook transport) > invalid stdin JSON fails open silently 26ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > completion-evidence-sentinel core > detectCompletionClaim anchors to the trailing slice of the turn 1ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > completion-evidence-sentinel core > resolveSpecFolderFromText extracts a spec-folder-shaped path and trims trailing punctuation 0ms
@@ -375,14 +375,14 @@ Output:
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > completion-evidence-sentinel core > REQ-004: a forced internal error (unexpected spawn failure shape) fails open to ok 1ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > completion-evidence-sentinel core > REQ-007: dedups an identical packet+message pair to at most one advisory 22ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > completion-evidence-sentinel core > REQ-007: a different claim against the same packet advises again (fingerprint changed) 25ms
- ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > completion-evidence-sentinel core > kill switch: MK_COMPLETION_SENTINEL_DISABLED=1 makes the core a full no-op 1ms
+ ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > completion-evidence-sentinel core > kill switch: SYSTEM_COMPLETION_SENTINEL_DISABLED=1 makes the core a full no-op 1ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > completion-evidence-sentinel core > appendAdvisoryLog writes a bounded, append-only line under .opencode/logs 1ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > sweepStaleSentinelState (throttled, adapter-invoked, fail-open state maintenance) > prunes a stale dedup entry by advisedAt age while keeping a fresh one 1ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > sweepStaleSentinelState (throttled, adapter-invoked, fail-open state maintenance) > removes a stray .tmp file older than the retention window, keeps a fresh one 1ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > sweepStaleSentinelState (throttled, adapter-invoked, fail-open state maintenance) > age-prunes the rotated advisory-log backup past the retention window 1ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > sweepStaleSentinelState (throttled, adapter-invoked, fail-open state maintenance) > keeps a rotated advisory-log backup that is still within the retention window 1ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > sweepStaleSentinelState (throttled, adapter-invoked, fail-open state maintenance) > an unreadable/corrupt dedup store is a no-op: never throws, never rewrites 2ms
- ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > sweepStaleSentinelState (throttled, adapter-invoked, fail-open state maintenance) > kill switch (MK_COMPLETION_SENTINEL_DISABLED=1) makes the sweep a full no-op 1ms
+ ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > sweepStaleSentinelState (throttled, adapter-invoked, fail-open state maintenance) > kill switch (SYSTEM_COMPLETION_SENTINEL_DISABLED=1) makes the sweep a full no-op 1ms
  ✓ mcp-server/tests/completion-evidence-sentinel.vitest.ts > sweepStaleSentinelState (throttled, adapter-invoked, fail-open state maintenance) > throttles a second sweep on the same runtimeState within the interval (no-op) 2ms
 
  Test Files  2 passed (2)
@@ -478,8 +478,8 @@ advisory appended to `$PROJECT_DIR/.opencode/logs/completion-sentinel-advisories
 ## 5. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- OpenCode plugin (adapter): `.opencode/plugins/mk-completion-sentinel.js`
-- OpenCode plugin unit test: `.opencode/plugins/tests/mk-completion-sentinel.test.cjs`
+- OpenCode plugin (adapter): `.opencode/plugins/system-completion-sentinel.js`
+- OpenCode plugin unit test: `.opencode/plugins/tests/system-completion-sentinel.test.cjs`
 - Runtime-neutral core: `.opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs`
 - Core vitest suite: `.opencode/skills/system-spec-kit/mcp-server/tests/completion-evidence-sentinel.vitest.ts`
 - Claude Stop hook (adapter): `.opencode/skills/system-spec-kit/mcp-server/hooks/claude/completion-evidence-stop.cjs`
@@ -511,7 +511,7 @@ with no fabricated output: claim detection anchored to the trailing slice of the
 checklist with a completed P0/P1 item lacking an evidence marker advised `EVIDENCE_MISSING`; the
 identical claim against the identical packet deduped to `ok` on the next check; a Level 1 folder
 without `implementation-summary.md` advised, the same folder with it resolved `ok`; the
-`MK_COMPLETION_SENTINEL_DISABLED=1` kill switch made every layer (core, OpenCode plugin, Claude
+`SYSTEM_COMPLETION_SENTINEL_DISABLED=1` kill switch made every layer (core, OpenCode plugin, Claude
 Stop hook) a full no-op; the throttled sweep pruned an artificially aged dedup entry to `{}`; the
 OpenCode adapter appended exactly one advisory log line across two identical `session.idle` events
 (dedup held at the adapter layer); and the Claude Stop hook printed the advisory to stderr, appended

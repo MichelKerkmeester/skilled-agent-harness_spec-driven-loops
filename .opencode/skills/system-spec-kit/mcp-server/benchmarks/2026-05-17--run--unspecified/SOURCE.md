@@ -1,6 +1,6 @@
 ---
 title: "SOURCE — May 17, 2026 text-embedder bake-off"
-description: "Wayfinding pointer to the authoritative spec packet for the May 17, 2026 mk-spec-memory text-embedder bake-off. Maps the benchmark question you have to the evidence file that answers it."
+description: "Wayfinding pointer to the authoritative spec packet for the May 17, 2026 system-spec-memory text-embedder bake-off. Maps the benchmark question you have to the evidence file that answers it."
 trigger_phrases:
   - "text-embedder bake-off source"
   - "spec memory bake-off spec packet"
@@ -12,7 +12,7 @@ contextType: "reference"
 
 # SOURCE — May 17, 2026 text-embedder bake-off
 
-> Pointer to the authoritative spec packet that owns the May 17, 2026 `mk-spec-memory` text-embedder bake-off. The skill-local folder you are reading is curated. The spec packet is the audit trail.
+> Pointer to the authoritative spec packet that owns the May 17, 2026 `system-spec-memory` text-embedder bake-off. The skill-local folder you are reading is curated. The spec packet is the audit trail.
 
 ---
 

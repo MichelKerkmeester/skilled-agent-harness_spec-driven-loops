@@ -2,7 +2,7 @@
 // TEST: Continuity Lifecycle Parity (contract doc <-> plugin status)
 // ───────────────────────────────────────────────────────────────
 // Asserts the OpenCode plugin's continuity capability fields, as
-// reported by mk_spec_memory_status, match the values documented in
+// reported by system_spec_memory_status, match the values documented in
 // the cross-runtime continuity lifecycle contract. This keeps the
 // documented recover/persist guarantees and the emitted capability
 // strings from drifting apart. Hermetic: the plugin is imported with
@@ -13,7 +13,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const PLUGIN_PATH = fileURLToPath(
-  new URL('../../../../plugins/mk-spec-memory.js', import.meta.url),
+  new URL('../../../../plugins/system-spec-memory.js', import.meta.url),
 );
 const CONTRACT_PATH = fileURLToPath(
   new URL('../plugin-bridges/continuity-lifecycle-contract.md', import.meta.url),
@@ -44,7 +44,7 @@ async function importPluginHermetic(): Promise<{ default: (ctx: unknown, opts: u
     )
     .replace(
       /const BRIDGE_PATH = .*?;\nconst SOURCE_PATHS = \[[\s\S]*?\n\];/,
-      "const BRIDGE_PATH = '/test/mk-spec-memory-bridge.mjs';\nconst SOURCE_PATHS = [BRIDGE_PATH];",
+      "const BRIDGE_PATH = '/test/system-spec-memory-bridge.mjs';\nconst SOURCE_PATHS = [BRIDGE_PATH];",
     );
   return import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
 }
@@ -77,7 +77,7 @@ async function readPluginCapabilities(): Promise<Record<string, string>> {
   // enabled:false keeps execute() from spawning the warm bridge while
   // still emitting the hard-coded continuity capability lines.
   const hooks = await pluginModule.default({ directory: process.cwd() }, { enabled: false });
-  const status: string = await hooks.tool.mk_spec_memory_status.execute();
+  const status: string = await hooks.tool.system_spec_memory_status.execute();
   return parseStatusFields(status);
 }
 

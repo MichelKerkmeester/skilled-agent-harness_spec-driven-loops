@@ -114,7 +114,7 @@ Disallowed direction:
 | `lib/` | Shares TypeScript helpers and sourced shell utilities. |
 | `check-markdown-links.cjs` | Repo-wide markdown-link integrity guard over skills/commands/agents; CI-wired via `.github/workflows/markdown-link-integrity.yml`. Strips fenced + inline code before extraction. Complements the wikilink checker. `--self-test` asserts the inline-code handling. |
 | `check-links.sh` | Wikilink (`[[...]]`) validator; delegates to `rules/check-links.sh` (opt-in via `SPECKIT_VALIDATE_LINKS`). |
-| `deploy-mcp.sh` | Rebuilds every MCP server `dist/` (mk-spec-memory + `@spec-kit/shared`, code-graph, advisor) after a source change; `--recycle` also transparently recycles the mk-spec-memory daemon. `dist/` is gitignored, so this is the canonical rebuild step after pulling source changes. |
+| `deploy-mcp.sh` | Rebuilds every MCP server `dist/` (system-spec-memory + `@spec-kit/shared`, code-graph, advisor) after a source change; `--recycle` also transparently recycles the system-spec-memory daemon. `dist/` is gitignored, so this is the canonical rebuild step after pulling source changes. |
 | `validate-command-tree-parity.sh` | Policy-aware runtime mirror gate wired into `spec/validate.sh` as the `COMMAND_TREE_PARITY` rule. Its default mode delegates to the generated mirror checker so runtime-exclusive commands stay excluded; explicit `--left`/`--right` trees retain byte-parity comparison and `--self-test` coverage. |
 | `scripts-registry.json` | Lists package scripts and known entrypoints. |
 | `package.json` | Defines ESM runtime settings and build scripts. |

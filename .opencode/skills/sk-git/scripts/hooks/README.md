@@ -53,7 +53,7 @@ This layer is advisory only. Any malformed payload, missing rule file, non-repos
 | `../lib/git-rule-checks.mjs` | Shared git shape gate, parser, and 17 checks. |
 | `../lib/git-context.mjs` | Shared lazy repository-state collector. |
 | `.cursor/hooks/git-preflight-advisory.mjs` | Relative mirror symlink to the shared hook. `.cursor/hooks.json` registers the shared hook directly for matcher `Shell`; the symlink only keeps the `.cursor/hooks/` tree browsable and never reshapes the payload. |
-| `.opencode/plugins/mk-git-preflight-advisory.js` | Evaluates OpenCode `bash` calls and drains bounded findings into `experimental.chat.system.transform` on the next turn. It never prints to plugin stdout or stderr. |
+| `.opencode/plugins/sk-git-preflight-advisory.js` | Evaluates OpenCode `bash` calls and drains bounded findings into `experimental.chat.system.transform` on the next turn. It never prints to plugin stdout or stderr. |
 | `.pi/extensions/git-preflight-advisory.ts` | Evaluates Pi `bash` tool calls and returns a warning `reason` without `block: true`. |
 
 ---
@@ -66,12 +66,12 @@ This layer is advisory only. Any malformed payload, missing rule file, non-repos
 | Codex | `tool_name: exec` | `git-preflight-advisory.mjs` | `.codex/hooks.json` pre-tool wiring |
 | Devin | `tool_name: exec` | `git-preflight-advisory.mjs` | `.devin/hooks.v1.json` `PreToolUse`, matcher `^exec$` |
 | Cursor | `tool_name: Shell` | `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | `.cursor/hooks.json` `preToolUse`, matcher `Shell` |
-| OpenCode | `tool: bash` | `.opencode/plugins/mk-git-preflight-advisory.js` | OpenCode plugin discovery under `.opencode/plugins/` |
+| OpenCode | `tool: bash` | `.opencode/plugins/sk-git-preflight-advisory.js` | OpenCode plugin discovery under `.opencode/plugins/` |
 | Pi | `toolName: bash` | `.pi/extensions/git-preflight-advisory.ts` | Pi extension discovery under `.pi/extensions/` |
 
 OpenCode plugins cannot print because stdout or stderr overlays the TUI prompt line. Its adapter therefore buffers at most 20 advisory events and injects each once through the strongest existing legal channel, `experimental.chat.system.transform`. The advisory reaches the agent on the next transform after the command event; the command itself is never delayed or blocked.
 
-OpenCode discovers plugins solely from `.opencode/plugins/`, so `mk-git-preflight-advisory.js` must live there. For cross-runtime browsability, `scripts/hooks/opencode/mk-git-preflight-advisory.js` is a relative symlink pointing back into `.opencode/plugins/` — nothing loads through it (the reverse of Pi's `.pi/extensions/` direction, where the symlink is the load path).
+OpenCode discovers plugins solely from `.opencode/plugins/`, so `sk-git-preflight-advisory.js` must live there. For cross-runtime browsability, `scripts/hooks/opencode/sk-git-preflight-advisory.js` is a relative symlink pointing back into `.opencode/plugins/` — nothing loads through it (the reverse of Pi's `.pi/extensions/` direction, where the symlink is the load path).
 
 ---
 
@@ -111,7 +111,7 @@ Run from the repository root.
 node --test .opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
 node --check .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs
 node --check .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs
-node --check .opencode/plugins/mk-git-preflight-advisory.js
+node --check .opencode/plugins/sk-git-preflight-advisory.js
 node -e "JSON.parse(require('node:fs').readFileSync('.cursor/hooks.json', 'utf8')); JSON.parse(require('node:fs').readFileSync('.devin/hooks.v1.json', 'utf8'))"
 ```
 

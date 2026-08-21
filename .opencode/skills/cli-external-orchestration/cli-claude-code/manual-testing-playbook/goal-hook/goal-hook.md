@@ -8,7 +8,7 @@ version: 2.0.0.1
 
 ## 1. OVERVIEW
 
-The runtime-neutral goal core does not register a Claude Code adapter or command. Claude's repository command tree is a filtered per-file mirror that excludes the OpenCode-only goal router. OpenCode's `mk_goal` tools and the Pi/Cursor sibling core are different systems and must not be invoked as substitutes. This repository boundary does not prove whether a live Claude product version exposes a separate native goal feature.
+The runtime-neutral goal core does not register a Claude Code adapter or command. Claude's repository command tree is a filtered per-file mirror that excludes the OpenCode-only goal router. OpenCode's `opencode_goal` tools and the Pi/Cursor sibling core are different systems and must not be invoked as substitutes. This repository boundary does not prove whether a live Claude product version exposes a separate native goal feature.
 
 ---
 

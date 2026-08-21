@@ -298,9 +298,9 @@ describe('session-cleanup live process tree', () => {
     // Each node forks the next generation, then execs a renamed sleep so it is
     // a single, correctly named process that stays parent of its child.
     const helperPath = writeNode(dir, 'helper.sh',
-      `#!/usr/bin/env bash\nexec -a "${token}-mk-skill-advisor-launcher.cjs" sleep ${FAKE_SLEEP_SECONDS}\n`);
+      `#!/usr/bin/env bash\nexec -a "${token}-system-skill-advisor-launcher.cjs" sleep ${FAKE_SLEEP_SECONDS}\n`);
     const wrapperPath = writeNode(dir, 'wrapper.sh',
-      `#!/usr/bin/env bash\n"${helperPath}" &\nexec -a "${token}-mk-spec-memory-launcher.cjs" sleep ${FAKE_SLEEP_SECONDS}\n`);
+      `#!/usr/bin/env bash\n"${helperPath}" &\nexec -a "${token}-system-spec-memory-launcher.cjs" sleep ${FAKE_SLEEP_SECONDS}\n`);
     const rootPath = writeNode(dir, 'root.sh',
       `#!/usr/bin/env bash\n"${wrapperPath}" &\nexec -a "${token}-root" sleep ${FAKE_SLEEP_SECONDS}\n`);
 
@@ -314,8 +314,8 @@ describe('session-cleanup live process tree', () => {
       const [helperPid] = pgrepChildren(wrapperPid);
       if (!helperPid) return null;
       // Require both to have reached their renamed sleep so is_target_command matches.
-      if (!psCommand(wrapperPid).includes('mk-spec-memory-launcher.cjs')) return null;
-      if (!psCommand(helperPid).includes('mk-skill-advisor-launcher.cjs')) return null;
+      if (!psCommand(wrapperPid).includes('system-spec-memory-launcher.cjs')) return null;
+      if (!psCommand(helperPid).includes('system-skill-advisor-launcher.cjs')) return null;
       return { wrapperPid, helperPid };
     });
     assert.ok(tree, 'root -> wrapper -> helper tree established');
@@ -329,8 +329,8 @@ describe('session-cleanup live process tree', () => {
 
     const killLines = log.split('\n').filter((line) => line.includes('action=kill signal=TERM'));
     assert.equal(killLines.length, 2, log);
-    const helperIdx = killLines.findIndex((line) => line.includes('mk-skill-advisor-launcher.cjs'));
-    const wrapperIdx = killLines.findIndex((line) => line.includes('mk-spec-memory-launcher.cjs'));
+    const helperIdx = killLines.findIndex((line) => line.includes('system-skill-advisor-launcher.cjs'));
+    const wrapperIdx = killLines.findIndex((line) => line.includes('system-spec-memory-launcher.cjs'));
     assert.ok(helperIdx !== -1 && wrapperIdx !== -1, log);
     assert.ok(helperIdx < wrapperIdx,
       `deepest-first: helper(${helperIdx}) must be signalled before wrapper(${wrapperIdx})`);
@@ -354,7 +354,7 @@ describe('session-cleanup live process tree', () => {
     // detached:true gives the launcher its own process group so Node's spawn
     // cleanup cannot tear the orphan down before it reparents.
     const orphanLauncher = spawn('bash', ['-c',
-      `exec -a "${token}-mk-spec-memory-launcher.cjs" sleep ${FAKE_SLEEP_SECONDS} &\necho $! > "${pidFile}"`,
+      `exec -a "${token}-system-spec-memory-launcher.cjs" sleep ${FAKE_SLEEP_SECONDS} &\necho $! > "${pidFile}"`,
       ],
       { detached: true, stdio: 'ignore' });
     orphanLauncher.unref();

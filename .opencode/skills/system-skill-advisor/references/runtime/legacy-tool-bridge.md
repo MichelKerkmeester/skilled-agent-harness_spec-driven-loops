@@ -48,7 +48,7 @@ Keep these public tool ids stable:
 - `advisor_status`
 - `advisor_validate`
 
-The MCP server namespace changes to `mk_skill_advisor`. The tool ids do not change.
+The MCP server namespace changes to `system_skill_advisor`. The tool ids do not change.
 
 ---
 
@@ -69,6 +69,6 @@ A public rename would force broad consumer churn at the same time as the process
 
 ## 4. BRIDGE WINDOW
 
-During migration, `mk-spec-memory` may keep deprecated proxy tools or fail fast with a migration hint. That bridge exists only to protect callers while runtime configs and hooks move.
+During migration, `system-spec-memory` may keep deprecated proxy tools or fail fast with a migration hint. That bridge exists only to protect callers while runtime configs and hooks move.
 
 After child 006, advisor tool ownership belongs to the standalone server.

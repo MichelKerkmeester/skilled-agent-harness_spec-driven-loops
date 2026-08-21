@@ -2523,7 +2523,7 @@ async function main() {
         // and enforce no-ops; AI_SESSION_CHILD lets the worktree wrapper exec in place.
         // buildExecutorDispatchEnv filters these keys (outside the per-kind allowlist),
         // so they are re-injected here to reach the child. Harmless for the codex path.
-        MK_SPEC_GATE_DISABLED: '1',
+        SYSTEM_SPEC_GATE_DISABLED: '1',
         AI_SESSION_CHILD: '1',
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
         ...(resolvedClaudeConfigDir ? { CLAUDE_CONFIG_DIR: resolvedClaudeConfigDir } : {}),

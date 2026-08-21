@@ -174,8 +174,8 @@ else
   warn "WARN: hook flag resolver unavailable; continuing with primary reconcile enabled."
 fi
 if [ "$FLAGS_LOADED" = "1" ]; then
-  hook_enabled live-sync || { record skip "disabled by MK_LIVE_SYNC_DISABLED"; exit 0; }
-  hook_enabled primary-reconcile || { record skip "disabled by MK_PRIMARY_RECONCILE_DISABLED"; exit 0; }
+  hook_enabled live-sync || { record skip "disabled by SYSTEM_LIVE_SYNC_DISABLED"; exit 0; }
+  hook_enabled primary-reconcile || { record skip "disabled by SYSTEM_PRIMARY_RECONCILE_DISABLED"; exit 0; }
 fi
 
 if ! try_acquire_lock; then

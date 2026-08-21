@@ -25,7 +25,7 @@ describe('isSpecMemoryDaemonAlive', () => {
 
   beforeEach(() => {
     tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-daemon-detect-'));
-    leasePath = path.join(tempDir, '.mk-spec-memory-launcher.json');
+    leasePath = path.join(tempDir, '.system-spec-memory-launcher.json');
   });
 
   afterEach(() => {
@@ -66,7 +66,7 @@ describe('isSpecMemoryDaemonAlive', () => {
   // dist/core previously landed at the nonexistent scripts/mcp-server/database -> the guard was dead code.
   it('resolves the default lease path to the launcher-canonical system-spec-kit/mcp-server/database dir', () => {
     const resolved = resolveSpecMemoryDaemonLeasePath();
-    expect(resolved.endsWith(path.join('system-spec-kit', 'mcp-server', 'database', '.mk-spec-memory-launcher.json'))).toBe(true);
+    expect(resolved.endsWith(path.join('system-spec-kit', 'mcp-server', 'database', '.system-spec-memory-launcher.json'))).toBe(true);
     expect(resolved.includes(path.join('scripts', 'mcp-server'))).toBe(false);
   });
 

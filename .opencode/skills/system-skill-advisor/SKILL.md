@@ -54,7 +54,7 @@ Do not use this skill as a replacement for the recommended target skill. For exa
 
 ## 2. SMART ROUTING
 
-This package is mandatory context for non-trivial Gate 2 routing. The live advisor scores prompts through `mk_skill_advisor`; this smart router controls which local documentation resources an agent should load while maintaining the advisor package.
+This package is mandatory context for non-trivial Gate 2 routing. The live advisor scores prompts through `system_skill_advisor`; this smart router controls which local documentation resources an agent should load while maintaining the advisor package.
 
 Routing model:
 
@@ -65,7 +65,7 @@ user prompt
   |
   +-- non-trivial or ambiguous request
         |
-        +-- advisor_recommend on mk_skill_advisor MCP
+        +-- advisor_recommend on system_skill_advisor MCP
         |
         +-- top recommendation above confidence threshold -> invoke that skill
         |
@@ -96,7 +96,7 @@ Resource domains:
 
 ### Smart router pseudocode
 
-This pseudocode is the canonical resource-routing contract. The router is a singleton-mode selector: it scores the request against `INTENT_SIGNALS`, keeps the intents within the ambiguity delta of the top score (at most two), and resolves each to its exact `RESOURCE_MAP` leaf path — no directory prefixes, filename stems, or globs. Every selected leaf projects to a typed `(WORKFLOW_MODE, leafResourceId)` pair against `leaf-manifest.json` via `leaf-aliases.json`; package indexes and fallback defaults ride their own channels and never become typed leaves. The live `mk_skill_advisor` scorer, not this router, remains authoritative for runtime skill scoring — see [`references/scoring/advisor-scorer.md`](./references/scoring/advisor-scorer.md).
+This pseudocode is the canonical resource-routing contract. The router is a singleton-mode selector: it scores the request against `INTENT_SIGNALS`, keeps the intents within the ambiguity delta of the top score (at most two), and resolves each to its exact `RESOURCE_MAP` leaf path — no directory prefixes, filename stems, or globs. Every selected leaf projects to a typed `(WORKFLOW_MODE, leafResourceId)` pair against `leaf-manifest.json` via `leaf-aliases.json`; package indexes and fallback defaults ride their own channels and never become typed leaves. The live `system_skill_advisor` scorer, not this router, remains authoritative for runtime skill scoring — see [`references/scoring/advisor-scorer.md`](./references/scoring/advisor-scorer.md).
 
 ```python
 from pathlib import Path
@@ -295,14 +295,14 @@ return {
 - **Low confidence:** load default runtime references, emit `UNKNOWN_FALLBACK_CHECKLIST`, and ask for the missing intent/path/tool signal.
 - **Ambiguous intent scores:** load the top two intents' exact leaves and disclose the ambiguity instead of picking one silently.
 - **Known intent with no mapped leaf:** return a "no knowledge base found" notice naming the missing intent; never invent a typed pair for a path outside `leaf-manifest.json`.
-- **Advisor MCP unavailable:** for normal Gate 2 routing, fall back to Python `skill_advisor.py` only when the caller needs the legacy JSON-array facade or MCP/CLI transport is unavailable. Use `node .opencode/bin/skill-advisor.cjs <tool> --format json --timeout-ms N` for operator checks, doctor routes and runtime fallbacks that have already verified a warm `mk-skill-advisor` daemon socket. Prompt-time hooks must probe the socket first, never cold-spawn the daemon, and fail open on CLI exit 75 before keyword matching against frontmatter `trigger_phrases`. Full cross-daemon CLI behavior, recovery, exit taxonomy, stale-dist build commands, per-command `--help`, offline smoke, and `jsonl` semantics live in [`../system-spec-kit/references/cli/daemon-cli-reference.md`](../system-spec-kit/references/cli/daemon-cli-reference.md).
+- **Advisor MCP unavailable:** for normal Gate 2 routing, fall back to Python `skill_advisor.py` only when the caller needs the legacy JSON-array facade or MCP/CLI transport is unavailable. Use `node .opencode/bin/skill-advisor.cjs <tool> --format json --timeout-ms N` for operator checks, doctor routes and runtime fallbacks that have already verified a warm `system-skill-advisor` daemon socket. Prompt-time hooks must probe the socket first, never cold-spawn the daemon, and fail open on CLI exit 75 before keyword matching against frontmatter `trigger_phrases`. Full cross-daemon CLI behavior, recovery, exit taxonomy, stale-dist build commands, per-command `--help`, offline smoke, and `jsonl` semantics live in [`../system-spec-kit/references/cli/daemon-cli-reference.md`](../system-spec-kit/references/cli/daemon-cli-reference.md).
 
 ### Gate 2 caller guidance
 
-- Prefer `mcp__mk_skill_advisor__advisor_recommend` for live runtime routing when MCP transport is healthy.
+- Prefer `mcp__system_skill_advisor__advisor_recommend` for live runtime routing when MCP transport is healthy.
 - Use `skill_advisor.py` for the legacy facade contract: AGENTS.md fallback checks, compatibility scripts expecting the JSON-array shape, or environments without the daemon-backed CLI.
 - Use `.opencode/bin/skill-advisor.cjs` for full-parity daemon-backed CLI checks and runtime fallback only after a warm-socket probe succeeds; all 9 advisor tools are reachable over the same daemon, exit 75 is retryable fail-open, and a later evolution could make the CLI the primary or sole transport without breaking existing MCP workflows.
-- CLI calls are sent untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1` — the maintainer path. Read tools never need it.
+- CLI calls are sent untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` — the maintainer path. Read tools never need it.
 
 ### Anti-patterns
 
@@ -318,7 +318,7 @@ return {
 
 ADR-001 locks the target shape as **Standalone Advisor MCP With Legacy Tool Bridge**.
 
-The package owns a dedicated MCP server named `mk_skill_advisor`. It lists all **9 tools** on the MCP surface. The tool ids stay stable:
+The package owns a dedicated MCP server named `system_skill_advisor`. It lists all **9 tools** on the MCP surface. The tool ids stay stable:
 
 Tools (9):
 
@@ -336,7 +336,7 @@ Tools (9):
 
 The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
 
-The surface is dual-stack: the same 9 tools are callable through the full-parity daemon-backed CLI `node .opencode/bin/skill-advisor.cjs <tool_name>` over the same daemon (the MCP registration is unchanged). MCP remains the primary in-session transport today; use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Recovery example: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --warm-only --format json --timeout-ms 3000`. CLI exit taxonomy: `0` success, `1` runtime, `64` usage/schema or trusted-mutation refusal, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. Because this CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. `--format jsonl` renders one complete JSON payload on one stdout line; it is not streaming JSON Lines. Trust resolution fails closed: the daemon treats a caller as untrusted when transport `_meta` is absent or unknown, the CLI sends `callerAuthority: untrusted` unless `--trusted`/`MK_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied, and native MCP surfaces whose clients send no `_meta` are re-granted default trust only through `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon's own environment (set in the committed MCP registrations: `.mcp.json`, `opencode.json`, `opencode.json`), which callers cannot forge. An env-gated tri-daemon drill (`SPECKIT_RUN_TRI_DAEMON_DRILL=1`, `mcp-server/tests/tri-daemon-drill.vitest.ts`) exercises all three daemon-backed CLIs together.
+The surface is dual-stack: the same 9 tools are callable through the full-parity daemon-backed CLI `node .opencode/bin/skill-advisor.cjs <tool_name>` over the same daemon (the MCP registration is unchanged). MCP remains the primary in-session transport today; use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Recovery example: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --warm-only --format json --timeout-ms 3000`. CLI exit taxonomy: `0` success, `1` runtime, `64` usage/schema or trusted-mutation refusal, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. Because this CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. `--format jsonl` renders one complete JSON payload on one stdout line; it is not streaming JSON Lines. Trust resolution fails closed: the daemon treats a caller as untrusted when transport `_meta` is absent or unknown, the CLI sends `callerAuthority: untrusted` unless `--trusted`/`SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied, and native MCP surfaces whose clients send no `_meta` are re-granted default trust only through `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon's own environment (set in the committed MCP registrations: `.mcp.json`, `opencode.json`, `opencode.json`), which callers cannot forge. An env-gated tri-daemon drill (`SPECKIT_RUN_TRI_DAEMON_DRILL=1`, `mcp-server/tests/tri-daemon-drill.vitest.ts`) exercises all three daemon-backed CLIs together.
 
 The advisor implementation, skill-graph library and package-local database now live under this skill package, while memory remains focused on memory tools.
 
@@ -416,14 +416,14 @@ This skill is healthy when:
 
 Current package state:
 
-- `mk_skill_advisor` is registered as a standalone MCP server.
+- `system_skill_advisor` is registered as a standalone MCP server.
 - Advisor handlers, schemas, tools, scripts, tests, docs and database path ownership live under this package.
 - `skill_graph_*` MCP handlers and tool descriptors live under this package.
 - `lib/skill-graph/` database/query logic is fully migrated to `system-skill-advisor` (extraction complete).
 
 Expected consumers:
 
-- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.opencode/skills/system-spec-kit/mcp-server/hooks/`; the OpenCode plugin bridge (`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`) falls back to `node .opencode/bin/skill-advisor.cjs --warm-only` when its bridge path is unavailable.
+- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.opencode/skills/system-spec-kit/mcp-server/hooks/`; the OpenCode plugin bridge (`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`) falls back to `node .opencode/bin/skill-advisor.cjs --warm-only` when its bridge path is unavailable.
 - MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
 - Daemon-backed CLI callers (`node .opencode/bin/skill-advisor.cjs <tool>`) for doctor routes, scripts and CI — untrusted by default, `--trusted` for maintainer mutations.
 - Doctor workflows that validate advisor health and rebuild state.

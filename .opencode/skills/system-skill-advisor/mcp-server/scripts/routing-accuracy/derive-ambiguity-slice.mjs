@@ -18,7 +18,7 @@
 // The frozen `margin_at_capture` is advisory (it documents why a row is in the
 // slice); the gate recomputes margin live and does not trust it.
 //
-// Determinism: an empty MK_SKILL_ADVISOR_DB_DIR forces the SQLite loader to
+// Determinism: an empty SYSTEM_SKILL_ADVISOR_DB_DIR forces the SQLite loader to
 // return null, yielding the clean filesystem projection built purely from
 // committed graph metadata — reproducible from the repo alone.
 //
@@ -40,7 +40,7 @@ const CORPUS_JSONL = resolve(HERE, 'labeled-prompts.jsonl');
 const OUTPUT_JSONL = resolve(HERE, 'ambiguity-prompts.jsonl');
 const DIST = resolve(HERE, '../../dist/mcp-server');
 
-process.env.MK_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-ambiguity-'));
+process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-ambiguity-'));
 process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
 process.env.PYTHONDONTWRITEBYTECODE = '1';

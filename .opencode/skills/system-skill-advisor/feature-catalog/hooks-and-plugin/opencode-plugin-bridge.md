@@ -4,7 +4,7 @@ description: "OpenCode plugin plus bridge process that wires the advisor into Op
 trigger_phrases:
   - "opencode plugin"
   - "plugin bridge"
-  - "mk-skill-advisor plugin"
+  - "system-skill-advisor plugin"
   - "skill advisor plugin"
 version: 0.8.0.17
 ---
@@ -21,7 +21,7 @@ Give OpenCode a first-class plugin that surfaces advisor output at prompt time w
 
 ## 2. HOW IT WORKS
 
-`.opencode/plugins/mk-skill-advisor.js` exports the plugin. `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` runs `buildSkillAdvisorBrief` + `renderAdvisorBrief` out-of-process via IPC. Cache TTL is 5 minutes. The live threshold pair is `confidenceThreshold: 0.8` and `uncertaintyThreshold: 0.35`. The bridge times out after 1000 ms with SIGKILL escalation. Opt-out via `MK_SKILL_ADVISOR_HOOK_DISABLED=1` or `MK_SKILL_ADVISOR_PLUGIN_DISABLED=1` (with legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` aliases) or `enabled: false` in plugin config. Compat regressions are preserved by routing through the stable `compat/index.ts` entrypoint.
+`.opencode/plugins/system-skill-advisor.js` exports the plugin. `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` runs `buildSkillAdvisorBrief` + `renderAdvisorBrief` out-of-process via IPC. Cache TTL is 5 minutes. The live threshold pair is `confidenceThreshold: 0.8` and `uncertaintyThreshold: 0.35`. The bridge times out after 1000 ms with SIGKILL escalation. Opt-out via `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` (with legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` aliases) or `enabled: false` in plugin config. Compat regressions are preserved by routing through the stable `compat/index.ts` entrypoint.
 
 ---
 
@@ -31,8 +31,8 @@ Give OpenCode a first-class plugin that surfaces advisor output at prompt time w
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/plugins/mk-skill-advisor.js` | Implementation | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | Implementation | Source reference |
+| `.opencode/plugins/system-skill-advisor.js` | Implementation | Source reference |
+| `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Implementation | Source reference |
 | `.opencode/skills/system-skill-advisor/mcp-server/compat/index.ts` | Implementation | Source reference |
 
 ### Validation And Tests

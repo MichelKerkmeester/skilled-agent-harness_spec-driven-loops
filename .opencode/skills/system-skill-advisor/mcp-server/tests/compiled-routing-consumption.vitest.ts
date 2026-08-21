@@ -21,9 +21,9 @@ vi.mock('node:child_process', () => ({ spawn: mockedChild.spawn }));
 vi.mock('@modelcontextprotocol/sdk/client/index.js', () => ({ Client: class {} }));
 vi.mock('@modelcontextprotocol/sdk/client/stdio.js', () => ({ StdioClientTransport: class {} }));
 
-import * as bridge from '../plugin-bridges/mk-skill-advisor-bridge.mjs';
+import * as bridge from '../plugin-bridges/system-skill-advisor-bridge.mjs';
 
-import MkSkillAdvisorPlugin from '../../../../plugins/mk-skill-advisor.js';
+import MkSkillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
 
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 

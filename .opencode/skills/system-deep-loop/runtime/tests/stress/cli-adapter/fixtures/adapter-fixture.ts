@@ -110,7 +110,7 @@ export function createAdapterShim(kind: AdapterKind, mode: string): AdapterShimF
       CLI_ADAPTER_SHIM_MODE: mode,
       CLI_ADAPTER_SHIM_CAPTURE: capturePath,
       CLI_ADAPTER_SHIM_PID_FILE: pidPath,
-      MK_SPEC_GATE_ENFORCE: '0',
+      SYSTEM_SPEC_GATE_ENFORCE: '0',
       AI_SESSION_CHILD: '1',
     },
     cleanup: () => rmSync(root, { recursive: true, force: true }),

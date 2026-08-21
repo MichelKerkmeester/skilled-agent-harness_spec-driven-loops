@@ -163,7 +163,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
   - `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied.
   - `mutates` routes require the same spec-folder discipline as any other file/database mutation.
 - **Ask first, then act.** No Read/Edit/Write/Bash (except Gate Actions) before answer. The answer applies for the ENTIRE session — re-ask ONLY when user says "new task" / "different feature" / names a different spec folder, or asks you to re-ask.
-- **Autonomous child-dispatch exemption.** When `MK_SPEC_GATE_ENFORCE=0` OR `AI_SESSION_CHILD=1` is set — a non-interactive dispatched worker (e.g. a deep-loop fan-out review/research leaf) whose write authority is ALREADY bound to a specific externalized state / lineage directory — Gate 3 is PRE-RESOLVED and MUST NOT be asked. Treat that bound directory as the established write authority and proceed directly; do NOT emit the A/B/C/D/E documentation-scope question or stop to wait for an answer (none will arrive on a non-interactive dispatch). Scoped strictly to such dispatched child sessions — interactive sessions always ask Gate 3.
+- **Autonomous child-dispatch exemption.** When `SYSTEM_SPEC_GATE_ENFORCE=0` OR `AI_SESSION_CHILD=1` is set — a non-interactive dispatched worker (e.g. a deep-loop fan-out review/research leaf) whose write authority is ALREADY bound to a specific externalized state / lineage directory — Gate 3 is PRE-RESOLVED and MUST NOT be asked. Treat that bound directory as the established write authority and proceed directly; do NOT emit the A/B/C/D/E documentation-scope question or stop to wait for an answer (none will arrive on a non-interactive dispatch). Scoped strictly to such dispatched child sessions — interactive sessions always ask Gate 3.
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
 Trigger-phrase routing ("deep-research", "deep-review", ":auto", "iterations", "convergence") and state-machine discipline (no manual `/tmp` state, no direct `@deep-research` / `@deep-review` Task dispatch, no skipping `deep-research-state.jsonl` / `deltas/` / `logs/`) are enforced by Gate 2 (Skill Advisor at ≥ 0.8) plus the `/deep:research` and `/deep:review` mode-packet SKILL.md invariants (the deep modes are packets under `system-deep-loop/`, not standalone skills). The two tiebreakers below are NOT covered there:
@@ -383,8 +383,8 @@ Full routing + FTS fallback chain: `.opencode/skills/system-spec-kit/constitutio
 
 1. **Native MCP** (`opencode.json`) - Direct tools, called natively. **4 servers registered:**
    - Sequential Thinking
-   - Spec Kit Memory (`mk-spec-memory`, 41 tools)
-   - Skill Advisor (`mk_skill_advisor`, 9 tools — 4 advisor + 5 skill_graph)
+   - Spec Kit Memory (`system-spec-memory`, 41 tools)
+   - Skill Advisor (`system_skill_advisor`, 9 tools — 4 advisor + 5 skill_graph)
    - Code Mode
 
    The Spec Kit Memory and Skill Advisor daemons also have daemon-backed CLI front doors over the same tool surfaces. These CLIs are additive IPC clients, not separate MCP servers and not replacements for the registered MCP transports.

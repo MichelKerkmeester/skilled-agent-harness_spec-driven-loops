@@ -13,8 +13,8 @@ triggerPhrases:
   - goal prompt
   - session goal
   - set goal
-  - mk_goal
-  - mk-goal
+  - opencode_goal
+  - opencode-goal
   - active goal
   - goal plugin
 ---
@@ -32,7 +32,7 @@ from being treated as one interchangeable global goal.
 ## 2. RULE
 
 When operating as **Claude Code** and the user says "/goal" or asks to set/manage a
-session goal, do not route through the OpenCode `mk-goal` plugin command. The filtered
+session goal, do not route through the OpenCode `opencode-goal` plugin command. The filtered
 `.claude/commands` discovery tree must not expose `.opencode/commands/goal-opencode.md`.
 Use a Claude-native goal surface only after the live runtime confirms one exists; this
 repository does not prove that product capability.
@@ -50,7 +50,7 @@ identity and never reads the legacy singleton as an active fallback.
 - **Cursor:** the `sessionStart` adapter binds `session_id`, with `conversation_id` as the
   documented fallback. `/goal-cursor` management is unsupported because prompt commands
   do not receive that hook identity.
-- **OpenCode:** use the separate native `mk-goal` plugin and `/goal-opencode` command.
+- **OpenCode:** use the separate native `opencode-goal` plugin and `/goal-opencode` command.
 - **Claude Code:** no repository adapter or goal command is provided. A separate native
   feature is usable only when the live runtime exposes and documents it.
 - **Codex:** no goal adapter or management command is registered.
@@ -79,7 +79,7 @@ hook, and unsupported or unverified runtimes receive no guessed binding.
    any native goal feature. Never substitute the repository's OpenCode command.
 2. In an OpenCode session (or when explicitly targeting the OpenCode plugin from any
    runtime), **check `.opencode/commands/goal-opencode.md` exists** before invoking it — it routes
-   to `.opencode/plugins/mk-goal.js` via `mk_goal`/`mk_goal_status`, and only functions
+   to `.opencode/plugins/opencode-goal.js` via `opencode_goal`/`opencode_goal_status`, and only functions
    inside an actual OpenCode session.
 3. In Pi, use the registered `/goal-pi` command only when the extension is enabled. In
    Cursor, do not bypass `/goal-cursor`'s unsupported response with an unbound shell call.
@@ -90,7 +90,7 @@ hook, and unsupported or unverified runtimes receive no guessed binding.
 
 ## 6. FAILURE MODE SIGNAL
 
-If Claude Code attempts to call `mk_goal()`/`mk_goal_status()` and no such tool exists
+If Claude Code attempts to call `opencode_goal()`/`opencode_goal_status()` and no such tool exists
 in the toolset, STOP — this confirms the OpenCode plugin command was invoked from the
 wrong runtime. Inspect the live Claude command surface; do not invent or retry a native
 mechanism that has not been observed.

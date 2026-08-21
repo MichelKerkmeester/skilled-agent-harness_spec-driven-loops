@@ -53,7 +53,7 @@ function makeWorkspace() {
 
 function isolatedEnv(overrides = {}) {
   const env = { ...process.env };
-  delete env.MK_SPEC_FOLDER;
+  delete env.SYSTEM_SPEC_FOLDER;
   delete env[guardCore.DISABLED_ENV];
   delete env[guardCore.ENFORCE_ENV];
   delete env[guardCore.CHILD_SESSION_ENV];
@@ -114,14 +114,14 @@ test('disabled and autonomous child sessions are complete no-ops', () => {
   const { root, folderRel } = makeWorkspace();
   try {
     const disabled = runHook(PREBIND_HOOK_PATH, root, sessionPayload(root, 'disabled'), {
-      MK_SPEC_FOLDER: folderRel,
+      SYSTEM_SPEC_FOLDER: folderRel,
       [guardCore.DISABLED_ENV]: '1',
       [guardCore.ENFORCE_ENV]: '1',
     });
     assertAllowed(disabled);
 
     const child = runHook(PREBIND_HOOK_PATH, root, sessionPayload(root, 'child'), {
-      MK_SPEC_FOLDER: folderRel,
+      SYSTEM_SPEC_FOLDER: folderRel,
       [guardCore.CHILD_SESSION_ENV]: '1',
       [guardCore.ENFORCE_ENV]: '1',
     });
@@ -150,7 +150,7 @@ test('a valid declared folder satisfies the gate and allows the existing consume
   try {
     const sessionID = 'prebound';
     const prebind = runHook(PREBIND_HOOK_PATH, root, sessionPayload(root, sessionID), {
-      MK_SPEC_FOLDER: folderRel,
+      SYSTEM_SPEC_FOLDER: folderRel,
       [guardCore.ENFORCE_ENV]: '1',
     });
     assertAllowed(prebind);
@@ -198,13 +198,13 @@ test('invalid declarations never satisfy and only open under explicit enforcemen
   try {
     const invalidFolder = '../outside-spec-tree';
     const inert = runHook(PREBIND_HOOK_PATH, root, sessionPayload(root, 'invalid-inert'), {
-      MK_SPEC_FOLDER: invalidFolder,
+      SYSTEM_SPEC_FOLDER: invalidFolder,
     });
     assertAllowed(inert);
     assert.equal(existsSync(statePath(root, 'invalid-inert')), false);
 
     const enforced = runHook(PREBIND_HOOK_PATH, root, sessionPayload(root, 'invalid-enforced'), {
-      MK_SPEC_FOLDER: invalidFolder,
+      SYSTEM_SPEC_FOLDER: invalidFolder,
       [guardCore.ENFORCE_ENV]: '1',
     });
     assertAllowed(enforced);
@@ -274,7 +274,7 @@ test('a valid declared folder satisfies the gate even when enforcement is off', 
   try {
     const sessionID = 'prebound-no-enforce';
     const prebind = runHook(PREBIND_HOOK_PATH, root, sessionPayload(root, sessionID), {
-      MK_SPEC_FOLDER: folderRel,
+      SYSTEM_SPEC_FOLDER: folderRel,
     });
     assertAllowed(prebind);
     assert.equal(JSON.parse(readFileSync(statePath(root, sessionID), 'utf8')).status, 'satisfied');

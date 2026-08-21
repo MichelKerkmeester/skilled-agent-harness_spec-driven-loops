@@ -28,7 +28,7 @@
     "role_absorption_forbidden": true,
     "min_seats": 0,
     "expected_targets": [
-      "mcp__mk_spec_memory__checkpoint_list"
+      "mcp__system_spec_memory__checkpoint_list"
     ],
     "forbidden_targets": [
       "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
@@ -61,7 +61,7 @@
 
 **Rationale.** This cell samples the nested positional grammar of `memory/manage` without turning it into a subaction-router topology. The command still dispatches directly to its MCP tool; `checkpoint list` selects which tool receives the request.
 
-**Pass shape.** The captured stream names `mcp__mk_spec_memory__checkpoint_list`, includes the pinned checkpoint markers, excludes forbidden targets, and records no fixture mutation.
+**Pass shape.** The captured stream names `mcp__system_spec_memory__checkpoint_list`, includes the pinned checkpoint markers, excludes forbidden targets, and records no fixture mutation.
 
 **Failure modes.** Treating `checkpoint` as an external workflow or agent route is a topology mismatch; calling a mutating checkpoint operation is a setup misbind; any write escape is a boundary violation.
 

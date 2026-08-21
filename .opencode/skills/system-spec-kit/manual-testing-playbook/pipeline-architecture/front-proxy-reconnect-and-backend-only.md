@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates the MCP front-proxy reconnect contract for `EX-040`. The launcher front-proxy (`.opencode/bin/lib/launcher-session-proxy.cjs`, bridged by `bridgeStdioThroughSessionProxy` in `.opencode/bin/mk-spec-memory-launcher.cjs`) sits between an MCP client and the long-lived memory backend. When the backend recycles (for example on an RSS-driven restart), the proxy reattaches transparently so the client's session survives. When the backend's protocol version changes, the proxy fails closed and requires a client reconnect.
+This scenario validates the MCP front-proxy reconnect contract for `EX-040`. The launcher front-proxy (`.opencode/bin/lib/launcher-session-proxy.cjs`, bridged by `bridgeStdioThroughSessionProxy` in `.opencode/bin/system-spec-memory-launcher.cjs`) sits between an MCP client and the long-lived memory backend. When the backend recycles (for example on an RSS-driven restart), the proxy reattaches transparently so the client's session survives. When the backend's protocol version changes, the proxy fails closed and requires a client reconnect.
 
 The two behaviors are distinguished by two JSON-RPC error codes with deliberately opposite semantics:
 
@@ -195,7 +195,7 @@ Inspect `PROTOCOL_MISMATCH_ERROR` and the terminal-`CLOSED` branch (the "must no
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Front-proxy: `.opencode/bin/lib/launcher-session-proxy.cjs` (`RETRYABLE_RECYCLE_ERROR` -32001, `PROTOCOL_MISMATCH_ERROR` -32002, reattach loop, terminal CLOSED)
-- Proxy bridge: `.opencode/bin/mk-spec-memory-launcher.cjs` (`bridgeStdioThroughSessionProxy`)
+- Proxy bridge: `.opencode/bin/system-spec-memory-launcher.cjs` (`bridgeStdioThroughSessionProxy`)
 - Backend-only mode: `mcp-server/context-server.ts` (`SPECKIT_BACKEND_ONLY` guard)
 
 ---
@@ -205,7 +205,7 @@ Inspect `PROTOCOL_MISMATCH_ERROR` and the terminal-`CLOSED` branch (the "must no
 - Group: Pipeline Architecture
 - Playbook ID: EX-040
 - Canonical root source: `manual-testing-playbook.md`
-- Source anchors read: `.opencode/bin/lib/launcher-session-proxy.cjs` (`RETRYABLE_RECYCLE_ERROR` code -32001 L18-22, `PROTOCOL_MISMATCH_ERROR` code -32002 L23-26, terminal `CLOSED` guard L617-620); `.opencode/bin/mk-spec-memory-launcher.cjs` (`bridgeStdioThroughSessionProxy` L198); `mcp-server/context-server.ts` (`SPECKIT_BACKEND_ONLY` read L2126)
+- Source anchors read: `.opencode/bin/lib/launcher-session-proxy.cjs` (`RETRYABLE_RECYCLE_ERROR` code -32001 L18-22, `PROTOCOL_MISMATCH_ERROR` code -32002 L23-26, terminal `CLOSED` guard L617-620); `.opencode/bin/system-spec-memory-launcher.cjs` (`bridgeStdioThroughSessionProxy` L198); `mcp-server/context-server.ts` (`SPECKIT_BACKEND_ONLY` read L2126)
 - Accuracy note: `-32001` is the LIVE retryable-recycle code (not removed); `-32002` is the terminal fail-closed protocol-mismatch code.
 - Feature file path: `pipeline-architecture/front-proxy-reconnect-and-backend-only.md`
 - Destructive: No — sandbox-only recycle/drift injection; no production data touched.

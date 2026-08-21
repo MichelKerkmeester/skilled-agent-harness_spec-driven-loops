@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const launcherPath = join(repoRoot, '.opencode/bin/mk-spec-memory-launcher.cjs');
+const launcherPath = join(repoRoot, '.opencode/bin/system-spec-memory-launcher.cjs');
 
 type RecycleDeps = {
   getContextChild?: () => unknown;

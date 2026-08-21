@@ -1,6 +1,6 @@
 ---
-title: "Embedder Pluggability: mk-spec-memory"
-description: "Canonical mk-spec-memory pluggable-embedder reference, covering defaults, swap flows, rollback, and the out-of-box support matrix."
+title: "Embedder Pluggability: system-spec-memory"
+description: "Canonical system-spec-memory pluggable-embedder reference, covering defaults, swap flows, rollback, and the out-of-box support matrix."
 trigger_phrases:
   - "embedder pluggability"
   - "embedder swap"
@@ -14,9 +14,9 @@ contextType: implementation
 version: 3.6.0.14
 ---
 
-# Embedder Pluggability: mk-spec-memory
+# Embedder Pluggability: system-spec-memory
 
-Canonical reference for mk-spec-memory embedder pluggability. Read this when a new user asks "which embedder do you use", before swapping memory embedders, or when triaging memory retrieval-quality regressions.
+Canonical reference for system-spec-memory embedder pluggability. Read this when a new user asks "which embedder do you use", before swapping memory embedders, or when triaging memory retrieval-quality regressions.
 
 ---
 
@@ -24,24 +24,24 @@ Canonical reference for mk-spec-memory embedder pluggability. Read this when a n
 
 ### Purpose
 
-Explain mk-spec-memory embedder pluggability, including defaults, swap flows, rollback, and supported candidates.
+Explain system-spec-memory embedder pluggability, including defaults, swap flows, rollback, and supported candidates.
 
 ### When to Use
 
-Load this reference when changing the mk-spec-memory text embedder, diagnosing memory retrieval-quality regressions, or answering operator questions about out-of-box support.
+Load this reference when changing the system-spec-memory text embedder, diagnosing memory retrieval-quality regressions, or answering operator questions about out-of-box support.
 
 ### Core Principle
 
-mk-spec-memory has a pluggable text embedder. The current default is `nomic-embed-text-v1.5` through the local-first cascade described below.
+system-spec-memory has a pluggable text embedder. The current default is `nomic-embed-text-v1.5` through the local-first cascade described below.
 
 ### Scope after 014
 
-`mk-spec-memory` indexes prose: spec docs, decision records, continuity frontmatter, conversation summaries. Prose recall benefits from text-tuned embedders that handle paraphrase, multilingual prefixes, and synonym overlap.
+`system-spec-memory` indexes prose: spec docs, decision records, continuity frontmatter, conversation summaries. Prose recall benefits from text-tuned embedders that handle paraphrase, multilingual prefixes, and synonym overlap.
 
 
 ### What "out-of-box for any embedder" means
 
-The promise is operator-facing: a new install picks the mk-spec-memory default without configuration, and swapping to a different text embedder from the vetted list never requires code changes. Schema migrations and dim-mismatch handling are automatic.
+The promise is operator-facing: a new install picks the system-spec-memory default without configuration, and swapping to a different text embedder from the vetted list never requires code changes. Schema migrations and dim-mismatch handling are automatic.
 
 The promise does NOT mean any HuggingFace model just works. Only vetted candidates in the memory registry are guaranteed first-class. Adding a new candidate is a one-row append (see §2) — not a new code path.
 
@@ -184,7 +184,7 @@ Per-row empirical results live in `evidence/embedder-comparison-with-rescue.json
 
 ### First-install flow
 
-| Step | mk-spec-memory |
+| Step | system-spec-memory |
 |---|---|
 | 1 | Install the MCP server (per skill INSTALL_GUIDE). |
 | 2 | Pull the default Ollama model: `ollama pull nomic-embed-text:v1.5`. |
@@ -202,19 +202,19 @@ No code changes. No schema migrations. A fresh clone reaches a ready state from 
 4. memory_search probe                        // sanity-check a known-good query
 ```
 
-The mk-spec-memory swap is single-MCP-call and crash-resumable.
+The system-spec-memory swap is single-MCP-call and crash-resumable.
 
 ### Rollback flow
 
-mk-spec-memory rollback is a same-shape `embedder_set` call that re-points active back to the prior embedder. The previous `vec_<dim>` table is preserved, so rollback is fast when same-to-same (the re-index orchestrator can short-circuit if the destination table already has fresh vectors for the current corpus). Eight rollbacks executed cleanly across ADR-001..ADR-008.
+system-spec-memory rollback is a same-shape `embedder_set` call that re-points active back to the prior embedder. The previous `vec_<dim>` table is preserved, so rollback is fast when same-to-same (the re-index orchestrator can short-circuit if the destination table already has fresh vectors for the current corpus). Eight rollbacks executed cleanly across ADR-001..ADR-008.
 
 ---
 
 ## 5. OUT-OF-BOX SUPPORT MATRIX
 
-The table below lists the mk-spec-memory embedder that works without code changes because the registry already includes the candidate. Only one manifest is registered today (`MANIFESTS` in `shared/embeddings/registry.ts`); `embedder_set` throws `UNKNOWN_EMBEDDER` for any name not in this list.
+The table below lists the system-spec-memory embedder that works without code changes because the registry already includes the candidate. Only one manifest is registered today (`MANIFESTS` in `shared/embeddings/registry.ts`); `embedder_set` throws `UNKNOWN_EMBEDDER` for any name not in this list.
 
-| Embedder | mk-spec-memory backend | Dim | Approx RAM | Notes |
+| Embedder | system-spec-memory backend | Dim | Approx RAM | Notes |
 |---|---|---:|---:|---|
 | `nomic-embed-text-v1.5` | ollama | 768 | ~600 MB | Current default text retrieval specialist; local-first cascade default. |
 
@@ -226,7 +226,7 @@ The candidates evaluated during the 016/004 bake-off (`jina-embeddings-v3`, `bge
 
 ### Fit guidance
 
-mk-spec-memory indexes prose: spec docs, decision records, meeting notes, conversation summaries. Text-tuned embedders are the right class when queries are paraphrase-heavy ("how do we handle X" rather than literal symbol lookups), or when multilingual or cross-domain recall matters.
+system-spec-memory indexes prose: spec docs, decision records, meeting notes, conversation summaries. Text-tuned embedders are the right class when queries are paraphrase-heavy ("how do we handle X" rather than literal symbol lookups), or when multilingual or cross-domain recall matters.
 
 ### Size vs quality
 

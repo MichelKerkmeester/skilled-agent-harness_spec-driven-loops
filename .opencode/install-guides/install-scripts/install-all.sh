@@ -18,10 +18,10 @@ source "${SCRIPT_DIR}/_utils.sh"
 # ───────────────────────────────────────────────────────────────
 
 # MCP definitions using parallel arrays (bash 3.2 compatible)
-# Index: 0=sequential-thinking, 1=mk-spec-memory, 2=code-mode, 3=chrome-devtools
+# Index: 0=sequential-thinking, 1=system-spec-memory, 2=code-mode, 3=chrome-devtools
 readonly MCP_NAMES=(
     "sequential-thinking"
-    "mk-spec-memory"
+    "system-spec-memory"
     "code-mode"
     "chrome-devtools"
 )
@@ -213,7 +213,7 @@ Options:
 
 MCP Names (for --skip/--only):
     sequential-thinking    Dynamic problem-solving through reflective thinking
-    mk-spec-memory        Semantic vector search for conversation context
+    system-spec-memory        Semantic vector search for conversation context
     code-mode              UTCP orchestration for external MCP tools
     chrome-devtools        Browser debugging via DevTools Protocol
 
@@ -227,7 +227,7 @@ Examples:
     $(basename "$0")                          # Install all MCPs
     $(basename "$0") --skip chrome-devtools   # Install all except Chrome DevTools
     $(basename "$0") --only code-mode         # Install only Code Mode
-    $(basename "$0") --only code-mode --only mk-spec-memory   # Install Code Mode and Spec Kit Memory
+    $(basename "$0") --only code-mode --only system-spec-memory   # Install Code Mode and Spec Kit Memory
     $(basename "$0") --dry-run                # Preview without installing
 
 EOF

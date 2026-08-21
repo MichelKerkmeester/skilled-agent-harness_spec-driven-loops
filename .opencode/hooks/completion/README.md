@@ -17,7 +17,7 @@ contextType: "reference"
 
 Index of the completion-evidence adapters, whose real code lives in `system-spec-kit` (per-runtime hooks) and `.opencode/plugins/` (OpenCode). When the assistant claims a task is "done"/"complete", these hooks check that the claim carries objective evidence and surface a warning when it does not — the runtime realization of the framework's completion-verification rule.
 
-They are advisory: they add a warning to the model context, never block the turn. Every adapter honors the `completion` kill-switch (`isHookEnabled`; `MK_COMPLETION_DISABLED`, legacy `MK_COMPLETION_SENTINEL_DISABLED` / `MK_SPECKIT_COMPLETION_DISABLED`, or the master `MK_HOOKS_DISABLED`), default-on.
+They are advisory: they add a warning to the model context, never block the turn. Every adapter honors the `completion` kill-switch (`isHookEnabled`; `SYSTEM_COMPLETION_DISABLED`, legacy `SYSTEM_COMPLETION_SENTINEL_DISABLED` / `SYSTEM_SPECKIT_COMPLETION_DISABLED`, or the master `SYSTEM_HOOKS_DISABLED`), default-on.
 
 ## 2. KEY FILES
 
@@ -26,7 +26,7 @@ They are advisory: they add a warning to the model context, never block the turn
 | `claude/`, `codex/`, `devin/` | `completion-evidence-stop.cjs` | the Stop event |
 | `cursor/` | `completion-evidence-response.mjs` | `afterAgentResponse` |
 | `pi/` | `completion-evidence.ts` | `turn_end` |
-| `opencode/` | `mk-completion-sentinel.js`, `mk-speckit-completion.js` | plugin lifecycle |
+| `opencode/` | `system-completion-sentinel.js`, `system-speckit-completion.js` | plugin lifecycle |
 
 Runtimes expose different "the assistant just finished" events; each adapter maps its runtime's event onto the shared completion-evidence sentinel.
 

@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------
 // MODULE: Spec Memory CLI
 // ---------------------------------------------------------------
-// Daemon-backed command line client for the mk-spec-memory tool
+// Daemon-backed command line client for the system-spec-memory tool
 // surface. The CLI is intentionally IPC-only: all persistence remains
 // owned by the already-running context server daemon.
 
@@ -24,7 +24,7 @@ import {
 
 const JSON_RPC_PROTOCOL_VERSION = '2025-06-18';
 const DEFAULT_TIMEOUT_MS = 30_000;
-const DEFAULT_SOCKET_DIR = '/tmp/mk-spec-memory';
+const DEFAULT_SOCKET_DIR = '/tmp/system-spec-memory';
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const RESERVED_COMMANDS = new Set(['list-tools', 'completion']);
 
@@ -160,7 +160,7 @@ function findRepoPaths(startFile = currentModulePath()): RepoPaths {
 
   while (true) {
     const directOpencodeDir = path.basename(current) === '.opencode' ? current : path.join(current, '.opencode');
-    const launcherPath = path.join(directOpencodeDir, 'bin', 'mk-spec-memory-launcher.cjs');
+    const launcherPath = path.join(directOpencodeDir, 'bin', 'system-spec-memory-launcher.cjs');
     const bridgePath = path.join(directOpencodeDir, 'bin', 'lib', 'launcher-ipc-bridge.cjs');
     if (existsSync(launcherPath) && existsSync(bridgePath)) {
       const repoRoot = path.dirname(directOpencodeDir);
@@ -220,7 +220,7 @@ Input schema:
 ${JSON.stringify(tool.inputSchema, null, 2)}`;
   }
 
-  return `spec-memory - daemon-backed CLI for mk-spec-memory
+  return `spec-memory - daemon-backed CLI for system-spec-memory
 
 Usage:
   spec-memory list-tools [--format json|text|jsonl] [--compact|--names-only]
@@ -1009,7 +1009,7 @@ async function callTool(toolName: string, args: Record<string, unknown>, timeout
   ensureSocketEnvironment();
   const paths = findRepoPaths();
   const bridge = loadBridge(paths);
-  const socketPath = bridge.getIpcSocketPath('mk-spec-memory', { dbDir: paths.dbDir });
+  const socketPath = bridge.getIpcSocketPath('system-spec-memory', { dbDir: paths.dbDir });
   if (socketPathTooLong(socketPath)) {
     throw new CliProtocolError(`IPC socket path exceeds the Darwin sun_path limit: ${socketPath}`);
   }

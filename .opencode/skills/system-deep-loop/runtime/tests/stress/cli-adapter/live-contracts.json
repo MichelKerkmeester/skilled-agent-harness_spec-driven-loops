@@ -34,8 +34,8 @@
     "contract": "SPECKIT_CLI_DISPATCH_STACK is stamped per dispatch and a same-kind child lineage is rejected before spawn."
   },
   "childEnvironment": {
-    "direct": ["MK_SPEC_GATE_ENFORCE=0", "AI_SESSION_CHILD=1"],
-    "fanout": ["MK_SPEC_GATE_DISABLED=1", "AI_SESSION_CHILD=1"]
+    "direct": ["SYSTEM_SPEC_GATE_ENFORCE=0", "AI_SESSION_CHILD=1"],
+    "fanout": ["SYSTEM_SPEC_GATE_DISABLED=1", "AI_SESSION_CHILD=1"]
   },
   "incidentVerdicts": {
     "adapterDefect": "A hermetic invocation reaches the shipped adapter contract and violates an asserted command, process, artifact, or classification invariant.",

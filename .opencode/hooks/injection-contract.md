@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
 
-**Kill-switches.** Every concern is default-on and honors the master `MK_HOOKS_DISABLED` switch plus its canonical `MK_<CONCERN>_DISABLED` switch. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index); this contract does not duplicate it.
+**Kill-switches.** Every concern is default-on and honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index); this contract does not duplicate it.
 
 ---
 
@@ -63,8 +63,8 @@ as an objective pass-or-fail check...
 ```
 
 - **Trigger:** every user prompt submission. The **three constant directives** are delivered in full on the first proven message and after lifecycle boundaries. Route-only delivery requires confirmed primitive identity, valid transcript evidence, a matching versioned record, stable generation/epoch state, and an atomically advanced transcript high-water mark. Registered session/compaction owners advance the durable epoch through the boundary bridge; unidentified or failed boundaries poison older receipts until a successful reset clears the fail-safe marker. The file-backed store uses a directory-descriptor-anchored helper and defers full-delivery receipts until stdout handoff. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. Missing evidence, contention, insecure state, helper/platform failure, fallback policy, or any error also stays full. Canonical rule: `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`; durable state: `directive-lifecycle-file-store.ts` plus `directive-lifecycle-store.py`; OpenCode mirrors the in-process semantics.
-- **Canonical owner:** `.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts` (`renderAdvisorBrief`, `HYGIENE_DIRECTIVE`, `GOVERNOR_DIRECTIVE`, `TERMINAL_PROOF_DIRECTIVE`) owns the shared directive text used by runtime adapters. The OpenCode plugin bridge (`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`) is the fallback emitter: it mirrors the same three directives locally and delegates to the canonical renderer when the compiled module is available.
-- **Channel per runtime:** Claude Code `[SYS]` (`user-prompt-submit.js` -> `hookSpecificOutput.additionalContext`). Cursor/Devin `[SYS]` (same shim, re-wrapped into each CLI's own envelope). Codex `[SYS]` (mirror of the Claude shim). OpenCode `[SYS]` (`mk-skill-advisor.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`prompt-advisor.ts` forwards the shared context onto the visible prompt via the `input` event's `{action:"transform"}`).
+- **Canonical owner:** `.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts` (`renderAdvisorBrief`, `HYGIENE_DIRECTIVE`, `GOVERNOR_DIRECTIVE`, `TERMINAL_PROOF_DIRECTIVE`) owns the shared directive text used by runtime adapters. The OpenCode plugin bridge (`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`) is the fallback emitter: it mirrors the same three directives locally and delegates to the canonical renderer when the compiled module is available.
+- **Channel per runtime:** Claude Code `[SYS]` (`user-prompt-submit.js` -> `hookSpecificOutput.additionalContext`). Cursor/Devin `[SYS]` (same shim, re-wrapped into each CLI's own envelope). Codex `[SYS]` (mirror of the Claude shim). OpenCode `[SYS]` (`system-skill-advisor.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`prompt-advisor.ts` forwards the shared context onto the visible prompt via the `input` event's `{action:"transform"}`).
 - **Pi-only directive ownership:** `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` owns `PI_SUBAGENT_DISPATCH_DIRECTIVE`, appending the native pi-subagents default and explicit `cli-*` override policy after the forwarded advisor context in the same visible `[MSG]` transform. The Pi adapter is a forwarder, not an owner, of the three shared directives; this Pi-only directive is not emitted by `render.ts` or the OpenCode bridge.
 - **See also:** [`skill-advisor-hook.md`](../skills/system-skill-advisor/hooks/skill-advisor-hook.md) for setup and validation. This file only documents the injected content.
 
@@ -82,19 +82,19 @@ B) Create a new spec folder
 
 - **Trigger:** a user prompt the classifier scores as a probable file mutation, once per session until answered.
 - **Owning module:** `system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent`).
-- **Channel per runtime:** Claude/Cursor/Devin/Codex `[SYS]` (`spec-gate-classify.mjs` -> `additionalContext`). OpenCode `[SYS]` (`mk-spec-gate.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`spec-gate-classify.ts` appends the question onto the visible prompt via the same `input`-transform mechanism as the advisor brief, and the two chain additively, so both appear in the same visibly-modified prompt).
+- **Channel per runtime:** Claude/Cursor/Devin/Codex `[SYS]` (`spec-gate-classify.mjs` -> `additionalContext`). OpenCode `[SYS]` (`system-spec-gate.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`spec-gate-classify.ts` appends the question onto the visible prompt via the same `input`-transform mechanism as the advisor brief, and the two chain additively, so both appear in the same visibly-modified prompt).
 
 ### Spec Memory / Goal / Dist-Freshness Context (OpenCode only)
 
 **Injects:** a deduplicated continuity brief, active-goal guidance, or a stale-dist warning, each bounded and each appended independently.
 
 - **Trigger:** `session.created` (continuity/goal) or before a risky Bash command (dist-freshness).
-- **Owning modules:** `mk-spec-memory.js`, `mk-goal.js`, `mk-dist-freshness-guard.js` (see their own entries in [`../plugins/README.md`](../plugins/README.md) §5).
+- **Owning modules:** `system-spec-memory.js`, `opencode-goal.js`, `system-dist-freshness-guard.js` (see their own entries in [`../plugins/README.md`](../plugins/README.md) §5).
 - **Channel:** `[SYS]` only. All three use `experimental.chat.system.transform`, never `chat.message`'s mutable `parts`, so none of this is rendered as a visible chat bubble in OpenCode today (see §5 below for what would make it visible).
 
 ### Cross-Runtime Active-Goal Brief (Cursor / Pi)
 
-**Injects:** the passive session-goal steering block, marker- and field-compatible with mk-goal's OpenCode injection but rendered by the runtime-neutral core (`.opencode/hooks/goal/lib/goal-core.cjs` `renderGoalBrief`) with the `goalPrompt` Role line relabeled to the reading runtime. Verbatim shape:
+**Injects:** the passive session-goal steering block, marker- and field-compatible with opencode-goal's OpenCode injection but rendered by the runtime-neutral core (`.opencode/hooks/goal/lib/goal-core.cjs` `renderGoalBrief`) with the `goalPrompt` Role line relabeled to the reading runtime. Verbatim shape:
 
 ```text
 [active_goal:<goalId>]
@@ -132,7 +132,7 @@ Fire around a specific tool call, not the whole turn.
 
 - **Trigger:** a mutating tool call (`bash`/`write`/`edit`) the shared gate evaluates as denied.
 - **Owning module:** `spec-gate-core.mjs` (`evaluateMutation`).
-- **Channel:** `[BLOCK]` everywhere. Claude/Cursor/Devin/Codex return `hookSpecificOutput.permissionDecision: "deny"` plus `permissionDecisionReason`. Pi's `spec-gate-enforce.ts` returns `{block: true, reason}`. OpenCode's `mk-spec-gate.js` denies via `tool.execute.before`.
+- **Channel:** `[BLOCK]` everywhere. Claude/Cursor/Devin/Codex return `hookSpecificOutput.permissionDecision: "deny"` plus `permissionDecisionReason`. Pi's `spec-gate-enforce.ts` returns `{block: true, reason}`. OpenCode's `system-spec-gate.js` denies via `tool.execute.before`.
 
 ### Dispatch Preflight Lint
 
@@ -153,7 +153,7 @@ Dispatch blocked by cli-opencode hard-rule(s):
 
 - **Trigger:** a native (non-Code-Mode) MCP tool call matching a manual Code Mode already covers.
 - **Owning module:** `.opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs`, relocated from `mcp-code-mode/runtime/lib/`.
-- **Channel:** `[SYS]` on Claude/Cursor/Devin/Codex/Pi (`additionalContext`/`reason`). `[LOG]`-only on OpenCode: `mk-mcp-route-guard.js`'s own README entry says explicitly it "writes advisory logs only and never rejects a call," so this is the one guard genuinely invisible to the OpenCode model, not just invisible to the human.
+- **Channel:** `[SYS]` on Claude/Cursor/Devin/Codex/Pi (`additionalContext`/`reason`). `[LOG]`-only on OpenCode: `mcp-route-guard.js`'s own README entry says explicitly it "writes advisory logs only and never rejects a call," so this is the one guard genuinely invisible to the OpenCode model, not just invisible to the human.
 
 ### Dispatch Audit
 
@@ -182,7 +182,7 @@ Violations in src/foo.ts:
 
 - **Trigger:** a completed `edit`/`write` tool call.
 - **Owning module:** `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs`, relocated from `sk-code/sk-code-quality/scripts/lib/`.
-- **Channel, read this one carefully:** Claude Code's and Devin's own adapters (`claude-posttooluse.cjs`, `devin/post-edit-quality.cjs`) write this text to **plain stdout and always exit 0**, with no `hookSpecificOutput`/`systemMessage` field at all. Per Claude Code's documented `PostToolUse` contract, exit-0 stdout is "shown in transcript," the debug/verbose transcript view, not the normal conversation the assistant reasons over. **These two adapters' findings likely never reach the assistant's context at all in normal use**, unlike every other `[SYS]`-tagged hook in this document. This is confirmed for Claude Code from its own hook documentation. Devin's exact handling of plain (non-JSON) `PostToolUse` stdout is not independently verified in this repo. Pi's `post-edit-quality.ts` and OpenCode's `mk-post-edit-quality.js` both use their runtime's real context-injection channel instead (`ToolResultEventResult.content` for Pi, `experimental.chat.system.transform` for OpenCode), so only those two are confirmed to reach the model.
+- **Channel, read this one carefully:** Claude Code's and Devin's own adapters (`claude-posttooluse.cjs`, `devin/post-edit-quality.cjs`) write this text to **plain stdout and always exit 0**, with no `hookSpecificOutput`/`systemMessage` field at all. Per Claude Code's documented `PostToolUse` contract, exit-0 stdout is "shown in transcript," the debug/verbose transcript view, not the normal conversation the assistant reasons over. **These two adapters' findings likely never reach the assistant's context at all in normal use**, unlike every other `[SYS]`-tagged hook in this document. This is confirmed for Claude Code from its own hook documentation. Devin's exact handling of plain (non-JSON) `PostToolUse` stdout is not independently verified in this repo. Pi's `post-edit-quality.ts` and OpenCode's `sk-code-post-edit-quality.js` both use their runtime's real context-injection channel instead (`ToolResultEventResult.content` for Pi, `experimental.chat.system.transform` for OpenCode), so only those two are confirmed to reach the model.
 
 ---
 
@@ -220,7 +220,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ### Completion Evidence Sentinel
 
-**Injects:** nothing into the model context today. `completion-evidence-stop.cjs` and OpenCode's `mk-completion-sentinel.js` both log an advisory finding to a file/stderr when a completion claim looks unsupported by spec evidence, but neither ever sets `systemMessage`/`additionalContext`, by explicit design: "Advisory only for the entire v1 rollout, never `{decision:"block"}`."
+**Injects:** nothing into the model context today. `completion-evidence-stop.cjs` and OpenCode's `system-completion-sentinel.js` both log an advisory finding to a file/stderr when a completion claim looks unsupported by spec evidence, but neither ever sets `systemMessage`/`additionalContext`, by explicit design: "Advisory only for the entire v1 rollout, never `{decision:"block"}`."
 
 - **Channel:** `[LOG]`.
 

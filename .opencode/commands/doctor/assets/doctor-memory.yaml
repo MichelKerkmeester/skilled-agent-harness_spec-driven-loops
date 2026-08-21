@@ -28,7 +28,7 @@ memory_doctor_invariant: |
 upstream_assets:
   contract: "local command design contract"
   cli_health_command: "node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 500 --warm-only"
-  cli_health_policy: "Warm-only: probe the existing mk-spec-memory IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
+  cli_health_policy: "Warm-only: probe the existing system-spec-memory IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
   files:
     spec: "spec.md"  # flock, snapshots, and dashboard contract
     decision_record: "decision-record.md"  # memory_index_scan transaction model rationale

@@ -101,8 +101,8 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 
 | Env var | Effect |
 | --- | --- |
-| `MK_SCOPE_CHANGED_FILES` | Whitespace/newline-separated repo-relative changed paths to audit directly (takes precedence). |
-| `MK_SCOPE_BASE` | A git ref; when `MK_SCOPE_CHANGED_FILES` is empty, the change-set is `git diff --name-only <MK_SCOPE_BASE>`. |
+| `SYSTEM_SCOPE_CHANGED_FILES` | Whitespace/newline-separated repo-relative changed paths to audit directly (takes precedence). |
+| `SYSTEM_SCOPE_BASE` | A git ref; when `SYSTEM_SCOPE_CHANGED_FILES` is empty, the change-set is `git diff --name-only <SYSTEM_SCOPE_BASE>`. |
 
 ### Non-Breaking Completion Freshness Rollout
 

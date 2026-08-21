@@ -64,10 +64,10 @@ Output:
 @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
 ```
 
-Native plugin status from `mk_spec_memory_status()`:
+Native plugin status from `system_spec_memory_status()`:
 
 ```text
-plugin_id=mk-spec-memory
+plugin_id=system-spec-memory
 enabled=true
 disabled_reason=none
 cache_ttl_ms=5000

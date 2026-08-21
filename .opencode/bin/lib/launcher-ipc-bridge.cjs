@@ -20,7 +20,7 @@ const { StringDecoder } = require('string_decoder');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
-const DEFAULT_SKILL_ADVISOR_SOCKET_DIR = '/tmp/mk-skill-advisor';
+const DEFAULT_SKILL_ADVISOR_SOCKET_DIR = '/tmp/system-skill-advisor';
 const DEFAULT_PROBE_TIMEOUT_MS = 5000;
 const MAX_PROBE_TIMEOUT_MS = 6999;
 const DEFAULT_MODEL_SERVER_LOADING_MAX_MS = 150000;
@@ -83,11 +83,11 @@ function repoRoot() {
 
 function defaultDbDirForService(serviceName) {
   const root = repoRoot();
-  if (serviceName === 'mk-spec-memory') {
+  if (serviceName === 'system-spec-memory') {
     return path.join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp-server', 'database');
   }
-  if (serviceName === 'mk-skill-advisor') {
-    const advisorOverride = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  if (serviceName === 'system-skill-advisor') {
+    const advisorOverride = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
     return advisorOverride
       ? path.resolve(advisorOverride)
       : path.join(root, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'database');
@@ -96,7 +96,7 @@ function defaultDbDirForService(serviceName) {
 }
 
 function shouldScopeIpcSocket(serviceName, socketDir = process.env.SPECKIT_IPC_SOCKET_DIR, env = process.env) {
-  if (serviceName !== 'mk-skill-advisor') return false;
+  if (serviceName !== 'system-skill-advisor') return false;
   if (String(socketDir ?? '').startsWith('tcp://')) return false;
   if (env.SPECKIT_IPC_SOCKET_SCOPE === 'database') return true;
   return path.resolve(socketDir ?? DEFAULT_SKILL_ADVISOR_SOCKET_DIR)

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: mk-skill-advisor Launcher Reap PID-Reuse + Owner-Lease CAS Tests
+// MODULE: system-skill-advisor Launcher Reap PID-Reuse + Owner-Lease CAS Tests
 // ───────────────────────────────────────────────────────────────
 // Regression coverage for:
 //   - reapOwnerBeforeRespawn must NOT SIGKILL a recorded pid that the OS recycled
@@ -14,7 +14,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
-const launcher = require('../../../../bin/mk-skill-advisor-launcher.cjs') as {
+const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as {
   reapOwnerBeforeRespawn: (ownerPid: number, expectedExecutablePath?: string | null) => Promise<{ allowed: boolean; reason: string }>;
   readProcessExecutableBasename: (pid: number) => string | null;
   acquireOwnerLeaseFile: () => { acquired: boolean; lease?: { ownerPid: number }; classification?: string };
@@ -39,7 +39,7 @@ function findDeadPid(): number {
 }
 
 function configureTempLauncher(): void {
-  const root = mkdtempSync(join(tmpdir(), 'mk-skill-advisor-reap-'));
+  const root = mkdtempSync(join(tmpdir(), 'system-skill-advisor-reap-'));
   tempDirs.push(root);
   const mcpDir = join(root, 'mcp-server');
   const dbDir = join(mcpDir, 'database');
@@ -47,8 +47,8 @@ function configureTempLauncher(): void {
   launcher.configureLauncherPathsForTesting({
     mcpDir,
     dbDir,
-    lockDir: join(dbDir, '.mk-skill-advisor-launcher.lockdir'),
-    stateFile: join(dbDir, '.mk-skill-advisor-launcher.json'),
+    lockDir: join(dbDir, '.system-skill-advisor-launcher.lockdir'),
+    stateFile: join(dbDir, '.system-skill-advisor-launcher.json'),
   });
 }
 
@@ -60,7 +60,7 @@ afterEach(() => {
   }
 });
 
-describe('mk-skill-advisor reapOwnerBeforeRespawn PID-reuse guard', () => {
+describe('system-skill-advisor reapOwnerBeforeRespawn PID-reuse guard', () => {
   it('reads the executable basename of a live process (this test runner is node)', () => {
     const basename = launcher.readProcessExecutableBasename(process.pid);
     expect(basename).toBeTruthy();
@@ -83,7 +83,7 @@ describe('mk-skill-advisor reapOwnerBeforeRespawn PID-reuse guard', () => {
   });
 });
 
-describe('mk-skill-advisor owner-lease CAS reclaim', () => {
+describe('system-skill-advisor owner-lease CAS reclaim', () => {
   it('acquires a fresh owner lease and records this pid as owner', () => {
     configureTempLauncher();
     launcher.clearOwnerLeaseFile();
@@ -106,7 +106,7 @@ describe('mk-skill-advisor owner-lease CAS reclaim', () => {
   });
 });
 
-describe('mk-skill-advisor heartbeat self-shutdown escalation', () => {
+describe('system-skill-advisor heartbeat self-shutdown escalation', () => {
   it('source: the heartbeat-failure shutdown escalates SIGTERM -> wait -> SIGKILL before exit', async () => {
     // The escalation runs on process.exit(128) so it cannot be unit-driven in-process;
     // assert the structural fix is present (the path previously sent SIGTERM only).
@@ -114,7 +114,7 @@ describe('mk-skill-advisor heartbeat self-shutdown escalation', () => {
     const { fileURLToPath } = await import('node:url');
     const { dirname, resolve } = await import('node:path');
     const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', '..', '..');
-    const src = readFileSync(resolve(repoRoot, '.opencode/bin/mk-skill-advisor-launcher.cjs'), 'utf8');
+    const src = readFileSync(resolve(repoRoot, '.opencode/bin/system-skill-advisor-launcher.cjs'), 'utf8');
     const heartbeat = src.slice(src.indexOf('startOwnerLeaseHeartbeat'), src.indexOf('function ownsOwnerLeaseFile'));
     expect(heartbeat).toContain("childProcess.kill('SIGTERM')");
     expect(heartbeat).toContain('waitForChildExit(childProcess, 5000)');

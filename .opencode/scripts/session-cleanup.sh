@@ -102,8 +102,8 @@ EOF
 is_target_command() {
   local cmd="$1"
   case "$cmd" in
-    *"mk-spec-memory-launcher.cjs"*|\
-    *"mk-skill-advisor-launcher.cjs"*|\
+    *"system-spec-memory-launcher.cjs"*|\
+    *"system-skill-advisor-launcher.cjs"*|\
     *"system-spec-kit/mcp-server/dist/context-server.js"*|\
     *"system-skill-advisor/mcp-server/dist/"*"advisor-server.js"*|\
     *"mcp-code-mode/mcp-server/dist/index.js"*|\

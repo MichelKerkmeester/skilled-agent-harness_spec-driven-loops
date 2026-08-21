@@ -1,13 +1,13 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Embedders — Ollama adapter (shared)
 // ───────────────────────────────────────────────────────────────
-// Canonical OllamaAdapter shared by mk-spec-memory and skill-advisor.
+// Canonical OllamaAdapter shared by system-spec-memory and skill-advisor.
 // Both skills' local `mcp-server/lib/embedders/adapters/ollama.ts`
 // re-export from here.
 //
-// Promoted from mk-spec-memory's mcp-server/lib/embedders/adapters/ollama.ts
+// Promoted from system-spec-memory's mcp-server/lib/embedders/adapters/ollama.ts
 // The implementation is byte-equivalent to skill-advisor's prior copy plus
-// mk-spec-memory's (they had already converged).
+// system-spec-memory's (they had already converged).
 // ───────────────────────────────────────────────────────────────
 
 import type { EmbedderAdapter, EmbedderOptions } from '../adapter.js';

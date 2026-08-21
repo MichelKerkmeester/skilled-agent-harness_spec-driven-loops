@@ -96,11 +96,11 @@ cli-claude-code expresses reasoning depth through the **`--effort`** flag (exten
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and capture stderr:
 
 ```bash
-MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 claude -p "<prompt>" \
+SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 claude -p "<prompt>" \
   --model claude-sonnet-4-6 --output-format text 2>&1
 ```
 
-- `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall on an interactive Gate-3 answer, and marks the run as an orchestrated sub-session so the worktree wrapper exec's in place rather than allocating its own worktree. See [../SKILL.md](../SKILL.md) §4 Rule 13.
+- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall on an interactive Gate-3 answer, and marks the run as an orchestrated sub-session so the worktree wrapper exec's in place rather than allocating its own worktree. See [../SKILL.md](../SKILL.md) §4 Rule 13.
 - `2>&1` — REQUIRED to capture stderr; without it error and warning messages are lost. See [integration-patterns.md](./integration-patterns.md).
 - `-p` (print) is mandatory for non-interactive dispatch; use `--permission-mode plan` for read-only review/analysis.
 

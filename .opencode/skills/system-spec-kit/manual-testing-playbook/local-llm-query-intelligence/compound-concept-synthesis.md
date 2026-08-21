@@ -86,7 +86,7 @@ Summary:
 
 
   ```
-  plugin_id=mk-code-graph
+  plugin_id=system-code-graph
   cache_ttl_ms=5000
   spec_folder=auto
   resume_mode=minimal
@@ -135,10 +135,10 @@ Summary:
 
 - Missing or buried constituent note: all four constituents are absent from observed top-K because retrieval was blocked by tool/runtime mismatch, not because of corpus sparsity, embedding mismatch, or genuine irrelevance.
 
-- Active provider from `memory_health`: not available. `mk_spec_memory_status` returned:
+- Active provider from `memory_health`: not available. `system_spec_memory_status` returned:
 
   ```
-  plugin_id=mk-spec-memory
+  plugin_id=system-spec-memory
   enabled=true
   disabled_reason=none
   cache_ttl_ms=5000

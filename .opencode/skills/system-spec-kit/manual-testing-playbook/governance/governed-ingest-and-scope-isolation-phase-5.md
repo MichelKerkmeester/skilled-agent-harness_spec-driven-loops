@@ -131,7 +131,7 @@ MCP error -32001: backend recycled; retry
 Checked Spec Memory runtime status after the retry:
 
 ```text
-plugin_id=mk-spec-memory
+plugin_id=system-spec-memory
 enabled=true
 disabled_reason=none
 cache_ttl_ms=5000
@@ -143,7 +143,7 @@ bridge_timeout_ms=3000
 cli_timeout_ms=2500
 bridge_path=[spec-memory-bridge]
 last_bridge_status=skipped
-last_error_code=CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK
+last_error_code=CONNECT_ECONNREFUSED__TMP_SYSTEM_SPEC_MEMORY_DAEMON_IPC_SOCK
 last_duration_ms=26
 bridge_invocations=10
 continuity_lookups=9
@@ -152,7 +152,7 @@ cache_hits=0
 cache_misses=9
 cache_hit_rate=0
 warm_status=skipped
-warm_error=CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK
+warm_error=CONNECT_ECONNREFUSED__TMP_SYSTEM_SPEC_MEMORY_DAEMON_IPC_SOCK
 warm_route=warm_probe
 warm_retryable=true
 warm_exit_code=75

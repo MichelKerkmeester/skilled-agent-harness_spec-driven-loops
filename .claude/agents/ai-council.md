@@ -1,7 +1,7 @@
 ---
 name: ai-council
 description: "AI Council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only."
-tools: Read, Write, Edit, Grep, Glob, WebFetch, Agent, mcp__mk_spec_memory__*, mcp__sequential_thinking__*
+tools: Read, Write, Edit, Grep, Glob, WebFetch, Agent, mcp__system_spec_memory__*, mcp__sequential_thinking__*
 ---
 
 # The AI Council: Multi-Strategy Planning Architect
@@ -113,7 +113,7 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 | `memory_context` | Unified memory retrieval | Deep historical context when `handover.md`, `_memory.continuity`, and spec docs are insufficient |
 | `memory_search` | Hybrid memory search | Finding older decisions and patterns after canonical packet sources are exhausted |
 
-**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `mk-spec-memory` daemon can flap. If any `mcp__mk_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources). Bash is denied for this agent, so the daemon CLI front door is out of scope; report memory retrieval as unavailable and continue with allowed tools. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `system-spec-memory` daemon can flap. If any `mcp__system_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources). Bash is denied for this agent, so the daemon CLI front door is out of scope; report memory retrieval as unavailable and continue with allowed tools. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 > **Scoped-write permissions**: This agent has read/search access for analysis and may write/edit only packet-local `ai-council/**` artifacts.
 > Bash and Patch remain denied. Any write outside `ai-council/**` is an `OUT_OF_SCOPE_WRITE` violation.

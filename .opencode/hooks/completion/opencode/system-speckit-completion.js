@@ -1,0 +1,1 @@
+../../../plugins/system-speckit-completion.js

@@ -144,16 +144,16 @@ The naming and remote-permission helpers are one shared dependency. If that help
 
 Live-sync is **on by default** in the main checkout. No setup step is required: SessionStart self-heals the git hook install, backgrounds a bounded reconcile, and backgrounds the optional follower. All three legs are primary-checkout gated and never reconcile a linked session worktree.
 
-1. **Nothing to install** - when the hook symlinks are missing, `check-git-hooks.sh` runs the installer itself from the main checkout (self-heal). `MK_LIVE_SYNC_DISABLED=1` stops this leg.
+1. **Nothing to install** - when the hook symlinks are missing, `check-git-hooks.sh` runs the installer itself from the main checkout (self-heal). `SYSTEM_LIVE_SYNC_DISABLED=1` stops this leg.
 
-2. **Nothing to start** - the SessionStart chain backgrounds `git-primary-reconcile.sh` for reliable convergence and runs `git-live-follow.sh --start` for near-real-time following. `MK_PRIMARY_RECONCILE_DISABLED=1` stops only the reconcile leg; `MK_LIVE_FOLLOW_DISABLED=1` stops only the follower.
+2. **Nothing to start** - the SessionStart chain backgrounds `git-primary-reconcile.sh` for reliable convergence and runs `git-live-follow.sh --start` for near-real-time following. `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` stops only the reconcile leg; `SYSTEM_LIVE_FOLLOW_DISABLED=1` stops only the follower.
 
 3. **Glance at what's outstanding** any time:
    ```bash
    bash .opencode/bin/worktree-status.sh --fetch
    ```
 
-4. **Opt out** - the one master flag `MK_LIVE_SYNC_DISABLED=1` (truthy `1`/`true`/`on`) disables the whole loop: autosync publish, SessionStart reconcile, follower auto-start, and self-heal install. It honors the shared hook kill-switch convention, so `MK_HOOKS_DISABLED=1` or a line in `.opencode/hooks/hook-flags.env` also stops it. Finer per-leg switches stay available: `SPECKIT_AUTOSYNC=0` for a single publish, `MK_PRIMARY_RECONCILE_DISABLED=1` for SessionStart reconciliation, and `MK_LIVE_FOLLOW_DISABLED=1` for the follower alone.
+4. **Opt out** - the one master flag `SYSTEM_LIVE_SYNC_DISABLED=1` (truthy `1`/`true`/`on`) disables the whole loop: autosync publish, SessionStart reconcile, follower auto-start, and self-heal install. It honors the shared hook kill-switch convention, so `SYSTEM_HOOKS_DISABLED=1` or a line in `.opencode/hooks/hook-flags.env` also stops it. Finer per-leg switches stay available: `SPECKIT_AUTOSYNC=0` for a single publish, `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` for SessionStart reconciliation, and `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower alone.
 
 ---
 

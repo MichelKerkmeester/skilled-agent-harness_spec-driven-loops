@@ -8,7 +8,7 @@ import { resolve } from 'node:path';
 
 const REPO_ROOT = resolve(import.meta.dirname, '../../../../../../');
 const CLAUDE_SETTINGS = resolve(REPO_ROOT, '.claude/settings.json');
-const OPENCODE_PLUGIN = resolve(REPO_ROOT, '.opencode/plugins/mk-skill-advisor.js');
+const OPENCODE_PLUGIN = resolve(REPO_ROOT, '.opencode/plugins/system-skill-advisor.js');
 
 function readJson(path: string): Record<string, unknown> {
   expect(existsSync(path)).toBe(true);

@@ -1,7 +1,7 @@
 ---
 name: deep-review
 description: "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code_index__detect_changes
+tools: Read, Write, Edit, Bash, Grep, Glob, mcp__system_spec_memory__*, mcp__system_code_index__detect_changes
 ---
 
 # The Deep Reviewer: Iterative Code Quality Agent
@@ -253,7 +253,7 @@ Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declare
 - `memory_search` / `memory_context`: broader history only after packet continuity is insufficient.
 - `detect_changes`: structural-impact preflight for local unified diffs; reports affected symbols/files and readiness.
 - `Grep` plus `Glob`: discovery when exact symbols are unknown; verify hits with direct reads.
-- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `mk-spec-memory` daemon can flap. If any `mcp__mk_spec_memory__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit; the warm-daemon CLI front door is the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `system-spec-memory` daemon can flap. If any `mcp__system_spec_memory__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit; the warm-daemon CLI front door is the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 ### Skills
 

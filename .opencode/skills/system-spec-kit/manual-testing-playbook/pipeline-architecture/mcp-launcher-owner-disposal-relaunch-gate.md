@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies the launcher guard that stops a relaunch timer from starting a fresh mk-spec-memory daemon after the owning MCP runtime has exited. Without the guard, a session ending sent SIGTERM to the shared daemon and the launcher respawned it under the disposing runtime, so every bridged session lost its MCP transport.
+This scenario verifies the launcher guard that stops a relaunch timer from starting a fresh system-spec-memory daemon after the owning MCP runtime has exited. Without the guard, a session ending sent SIGTERM to the shared daemon and the launcher respawned it under the disposing runtime, so every bridged session lost its MCP transport.
 
 The check is automated-test-backed. A human runs the launcher syntax checks, the launcher watchdog unit suite, and targeted greps that prove the predicate is defined, exported, wired into the timer callback, and does not block crash or recycle recovery while the owner is alive.
 
@@ -20,8 +20,8 @@ The check is automated-test-backed. A human runs the launcher syntax checks, the
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm owner disposal aborts a delayed daemon relaunch while normal crash and recycle recovery still relaunch under a live owner.
-- Real user request: `Why did every bridged session lose mk-spec-memory transport when one owning session ended, and is it fixed without breaking crash recovery?`
-- Prompt: `Validate the mk-spec-memory launcher owner-disposal relaunch gate and confirm crash and recycle recovery remain active.`
+- Real user request: `Why did every bridged session lose system-spec-memory transport when one owning session ended, and is it fixed without breaking crash recovery?`
+- Prompt: `Validate the system-spec-memory launcher owner-disposal relaunch gate and confirm crash and recycle recovery remain active.`
 - Expected execution process: Run the launcher syntax checks, run the launcher watchdog unit tests, grep for the predicate definition/export/call site, and inspect the crash and recycle relaunch wiring.
 - Expected signals: `node --check` exits cleanly for both launcher files. `launcher-watchdog.vitest.ts` passes including the `shouldAbortRelaunchOnFire` cases. The predicate appears at its lib definition, the launcher re-export and the timer call site. `recycleDaemonInPlace` and the crash relaunch path still reach `launchServer`.
 - Desired user-visible outcome: The MCP daemon no longer flaps after owner-session disposal, and live-owner recovery behavior is unchanged.
@@ -34,16 +34,16 @@ The check is automated-test-backed. A human runs the launcher syntax checks, the
 ### Prompt
 
 ```text
-Validate the mk-spec-memory launcher owner-disposal relaunch gate and confirm crash and recycle recovery remain active.
+Validate the system-spec-memory launcher owner-disposal relaunch gate and confirm crash and recycle recovery remain active.
 ```
 
 ### Commands
 
-1. `node --check .opencode/bin/mk-spec-memory-launcher.cjs`
+1. `node --check .opencode/bin/system-spec-memory-launcher.cjs`
 2. `node --check .opencode/bin/lib/model-server-supervision.cjs`
 3. `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-watchdog.vitest.ts`
-4. `rg -n "shouldAbortRelaunchOnFire" .opencode/bin/mk-spec-memory-launcher.cjs .opencode/bin/lib/model-server-supervision.cjs`
-5. `rg -n "recycleDaemonInPlace|scheduleRelaunch|launchServer\(" .opencode/bin/mk-spec-memory-launcher.cjs`
+4. `rg -n "shouldAbortRelaunchOnFire" .opencode/bin/system-spec-memory-launcher.cjs .opencode/bin/lib/model-server-supervision.cjs`
+5. `rg -n "recycleDaemonInPlace|scheduleRelaunch|launchServer\(" .opencode/bin/system-spec-memory-launcher.cjs`
 
 ### Expected
 
@@ -57,7 +57,7 @@ Validate the mk-spec-memory launcher owner-disposal relaunch gate and confirm cr
 Shell transcript for all commands:
 
 ```text
-$ node --check .opencode/bin/mk-spec-memory-launcher.cjs
+$ node --check .opencode/bin/system-spec-memory-launcher.cjs
 (no output; command exited 0)
 
 $ node --check .opencode/bin/lib/model-server-supervision.cjs
@@ -73,15 +73,15 @@ $ cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launche
    Start at  15:03:53
    Duration  96ms (transform 18ms, setup 14ms, import 15ms, tests 6ms, environment 0ms)
 
-$ rg -n "shouldAbortRelaunchOnFire" .opencode/bin/mk-spec-memory-launcher.cjs .opencode/bin/lib/model-server-supervision.cjs
+$ rg -n "shouldAbortRelaunchOnFire" .opencode/bin/system-spec-memory-launcher.cjs .opencode/bin/lib/model-server-supervision.cjs
 .opencode/bin/lib/model-server-supervision.cjs:319:function shouldAbortRelaunchOnFire({ shuttingDown, currentPpid, initialPpid } = {}) {
 .opencode/bin/lib/model-server-supervision.cjs:1464:  shouldAbortRelaunchOnFire,
-.opencode/bin/mk-spec-memory-launcher.cjs:39:  shouldAbortRelaunchOnFire,
-.opencode/bin/mk-spec-memory-launcher.cjs:1432:            if (shouldAbortRelaunchOnFire({ shuttingDown: launcherShutdownInProgress, currentPpid: process.ppid, initialPpid: LAUNCHER_INITIAL_PPID })) {
-.opencode/bin/mk-spec-memory-launcher.cjs:1499:      if (shouldAbortRelaunchOnFire({ shuttingDown: launcherShutdownInProgress, currentPpid: process.ppid, initialPpid: LAUNCHER_INITIAL_PPID })) return;
-.opencode/bin/mk-spec-memory-launcher.cjs:1867:  shouldAbortRelaunchOnFire,
+.opencode/bin/system-spec-memory-launcher.cjs:39:  shouldAbortRelaunchOnFire,
+.opencode/bin/system-spec-memory-launcher.cjs:1432:            if (shouldAbortRelaunchOnFire({ shuttingDown: launcherShutdownInProgress, currentPpid: process.ppid, initialPpid: LAUNCHER_INITIAL_PPID })) {
+.opencode/bin/system-spec-memory-launcher.cjs:1499:      if (shouldAbortRelaunchOnFire({ shuttingDown: launcherShutdownInProgress, currentPpid: process.ppid, initialPpid: LAUNCHER_INITIAL_PPID })) return;
+.opencode/bin/system-spec-memory-launcher.cjs:1867:  shouldAbortRelaunchOnFire,
 
-$ rg -n "recycleDaemonInPlace|scheduleRelaunch|launchServer\(" .opencode/bin/mk-spec-memory-launcher.cjs
+$ rg -n "recycleDaemonInPlace|scheduleRelaunch|launchServer\(" .opencode/bin/system-spec-memory-launcher.cjs
 878:    launchServer();
 994:  onRssBreach: (cfg) => recycleDaemonInPlace(cfg.graceMs),
 1187:async function recycleDaemonInPlace(graceMs, deps = {}) {
@@ -119,7 +119,7 @@ If a syntax check fails, inspect the helper placement and the CommonJS exports f
 
 | File | Role |
 |---|---|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Primary implementation anchor |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | Primary implementation anchor |
 | `.opencode/bin/lib/model-server-supervision.cjs` | Pure relaunch-gate predicate anchor |
 | `mcp-server/tests/launcher-watchdog.vitest.ts` | Regression or validation anchor |
 

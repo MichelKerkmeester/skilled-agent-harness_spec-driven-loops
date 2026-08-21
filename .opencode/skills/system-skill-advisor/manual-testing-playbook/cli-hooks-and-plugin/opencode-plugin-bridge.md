@@ -1,6 +1,6 @@
 ---
 title: "CL-005 OpenCode Plugin Bridge"
-description: "Manual validation for the OpenCode mk-skill-advisor plugin and bridge."
+description: "Manual validation for the OpenCode system-skill-advisor plugin and bridge."
 trigger_phrases:
   - "cl-005"
   - "opencode plugin bridge"
@@ -18,7 +18,7 @@ expected_leaf_resources:
 
 # CL-005 OpenCode Plugin Bridge
 
-Prompt: Manual validation for the OpenCode mk-skill-advisor plugin and bridge.
+Prompt: Manual validation for the OpenCode system-skill-advisor plugin and bridge.
 
 
 <!-- sk-doc-template: manual_testing_playbook -->
@@ -34,8 +34,8 @@ Validate the OpenCode plugin path that delegates through the stable native compa
 ## 2. SCENARIO CONTRACT
 
 - MCP server build is current.
-- Plugin host file exists at `.opencode/plugins/mk-skill-advisor.js`.
-- Bridge helper exists at `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`.
+- Plugin host file exists at `.opencode/plugins/system-skill-advisor.js`.
+- Bridge helper exists at `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`.
 
 ---
 
@@ -50,7 +50,7 @@ npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
 2. Run bridge directly:
 
 ```bash
-printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs
+printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs
 ```
 
 3. Inspect plugin status tool in OpenCode, when available:
@@ -79,8 +79,8 @@ spec_kit_skill_advisor_status({})
 
 ## 4. SOURCE FILES
 
-- `.opencode/plugins/mk-skill-advisor.js`
-- `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`
+- `.opencode/plugins/system-skill-advisor.js`
+- `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`
 - `.opencode/skills/system-skill-advisor/mcp-server/compat/index.ts`
 
 ---
@@ -99,8 +99,8 @@ spec_kit_skill_advisor_status({})
 Preconditions observed:
 
 ```text
-.opencode/plugins/mk-skill-advisor.js read successfully; total 747 lines.
-.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs read successfully; total 935 lines.
+.opencode/plugins/system-skill-advisor.js read successfully; total 747 lines.
+.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs read successfully; total 935 lines.
 .opencode/skills/system-skill-advisor/mcp-server/compat/index.ts read successfully; total 9 lines.
 ```
 
@@ -120,7 +120,7 @@ Build output:
 Bridge command:
 
 ```bash
-printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs
+printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs
 ```
 
 Bridge output:
@@ -138,7 +138,7 @@ spec_kit_skill_advisor_status({})
 OpenCode status tool output:
 
 ```text
-plugin_id=mk-skill-advisor
+plugin_id=system-skill-advisor
 enabled=true
 disabled_reason=none
 cache_ttl_ms=300000
@@ -164,7 +164,7 @@ cache_misses=8
 cache_hit_rate=0
 ```
 
-Bridge import path evidence from `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`:
+Bridge import path evidence from `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`:
 
 ```js
 const compat = await import(new URL('../dist/mcp-server/compat/index.js', import.meta.url));
@@ -187,7 +187,7 @@ Disable flag contract evidence from `.opencode/skills/system-skill-advisor/mcp-s
 Disabled bridge command:
 
 ```bash
-printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs
+printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs
 ```
 
 Disabled bridge output:

@@ -1,11 +1,11 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Embedders — registry (shared contract surface)
 // ───────────────────────────────────────────────────────────────
-// Canonical MANIFESTS + factory functions shared by mk-spec-memory and
+// Canonical MANIFESTS + factory functions shared by system-spec-memory and
 // skill-advisor. Both skills' local `mcp-server/lib/embedders/registry.ts`
 // re-export from here.
 //
-// Promoted from mk-spec-memory's mcp-server/lib/embedders/registry.ts.
+// Promoted from system-spec-memory's mcp-server/lib/embedders/registry.ts.
 // Text-tuned embedder manifests are intentionally kept
 // separate from future code-tuned consumers.
 // ───────────────────────────────────────────────────────────────

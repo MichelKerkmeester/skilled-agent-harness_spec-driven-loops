@@ -172,7 +172,7 @@ workflow:
     approval: "auto-acknowledge before database flock; this phase uses Bash/Node only, no MCP tools"
     purpose: "Resolve the fresh-start paradox: OpenCode can only register MCP tools at process startup, so missing dist/layout must be fixed before MCP-dependent phases run."
     launcher_contract:
-      mcp_config_entrypoint: ".opencode/bin/mk-spec-memory-launcher.cjs"
+      mcp_config_entrypoint: ".opencode/bin/system-spec-memory-launcher.cjs"
       invariant: "MCP configs MUST point to the stable launcher, not directly to mcp-server/dist/context-server.js."
       launcher_behavior: "resolve singular/plural skill layout, build @spec-kit/mcp-server and @spec-kit/scripts when dist is missing, then exec the real MCP server"
     command_preflight:
@@ -449,8 +449,8 @@ workflow:
             " "$LOG"
           fi
       causal-edges-init: "memory_causal_link(...) for high-confidence missing lineage"
-      skill-graph: "mk_skill_advisor.skill_graph_scan({})"
-      advisor: "mk_skill_advisor.advisor_rebuild({ force: true }) + mk_skill_advisor.advisor_validate({})"
+      skill-graph: "system_skill_advisor.skill_graph_scan({})"
+      advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"
       deep-loop-graph: "deep_loop_graph_upsert(...)"
       speckit-eval: "eval_run_ablation({})"
     failure:

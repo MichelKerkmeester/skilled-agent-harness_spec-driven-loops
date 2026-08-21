@@ -183,7 +183,7 @@ function runShim(shimPath: string, args: string[], label: string) {
       SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE: '1',
       SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE: '1',
       SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE: '1',
-      MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE: '1',
+      SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE: '1',
     },
     encoding: 'utf8',
     timeout: 30_000,

@@ -28,7 +28,7 @@
     "role_absorption_forbidden": true,
     "min_seats": 0,
     "expected_targets": [
-      "/mcp__mk_spec_memory__memory_(?:context|quick_search|search)/i"
+      "/mcp__system_spec_memory__memory_(?:context|quick_search|search)/i"
     ],
     "forbidden_targets": [
       "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",

@@ -3,7 +3,7 @@
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Injection-when-active, no-op-when-none/paused/disabled, and      ║
 // ║          fail-open-on-malformed-stdin coverage for goal-inject.mjs.       ║
-// ║          Every case points MK_GOAL_STATE_DIR at a fresh temp directory    ║
+// ║          Every case points OPENCODE_GOAL_STATE_DIR at a fresh temp directory    ║
 // ║          so the real `.opencode/skills/.goal-state/` tree is never       ║
 // ║          touched, and every hook invocation runs as a real spawned       ║
 // ║          process (execFileSync) so stdin/stdout/exit-code behavior is    ║
@@ -48,7 +48,7 @@ function runHook(input, envOverrides = {}) {
   try {
     const stdout = execFileSync('node', [HOOK_PATH], {
       input,
-      env: { ...process.env, MK_GOAL_STATE_DIR: stateDir, MK_GOAL_PLUGIN_DISABLED: undefined, ...envOverrides },
+      env: { ...process.env, OPENCODE_GOAL_STATE_DIR: stateDir, OPENCODE_GOAL_PLUGIN_DISABLED: undefined, ...envOverrides },
       encoding: 'utf8',
     });
     return { stdout, status: 0 };
@@ -154,7 +154,7 @@ test('no-op when the active goal is paused', () => {
 
 test('no-op when the goal plugin is disabled, even with an active goal', () => {
   core.setGoal({ objective: 'Ship the widget', runtime: 'cursor' }, opts());
-  const { stdout, status } = runHook(STDIN_PAYLOAD, { MK_GOAL_PLUGIN_DISABLED: '1' });
+  const { stdout, status } = runHook(STDIN_PAYLOAD, { OPENCODE_GOAL_PLUGIN_DISABLED: '1' });
   assert.equal(status, 0);
   const response = JSON.parse(stdout);
   assert.deepEqual(response, { permission: 'allow' });
@@ -211,6 +211,6 @@ test('fails open (never throws) when the shared state file is corrupt JSON', () 
 test('the Cursor command is fail-closed and never invokes the unbound manage CLI', () => {
   const command = readFileSync(COMMAND_PATH, 'utf8');
   assert.match(command, /code=UNSUPPORTED_SESSION_BINDING/);
-  assert.doesNotMatch(command, /MK_GOAL_RUNTIME_LABEL=/);
+  assert.doesNotMatch(command, /OPENCODE_GOAL_RUNTIME_LABEL=/);
   assert.doesNotMatch(command, /node\s+\.opencode\/hooks\/goal\/bin\/goal\.cjs/);
 });

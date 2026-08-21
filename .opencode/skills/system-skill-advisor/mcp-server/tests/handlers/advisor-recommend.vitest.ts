@@ -112,7 +112,7 @@ beforeEach(() => {
 afterEach(() => {
   advisorPromptCache.clear();
   vi.restoreAllMocks();
-  delete process.env.MK_SKILL_ADVISOR_HOOK_DISABLED;
+  delete process.env.SYSTEM_SKILL_ADVISOR_HOOK_DISABLED;
   delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
   delete process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH;
   mockReadAdvisorStatus.mockReset();
@@ -388,8 +388,8 @@ describe('advisor_recommend handler', () => {
     expect(mockScoreAdvisorPrompt).not.toHaveBeenCalled();
   });
 
-  it('honors the canonical MK_ disable flag on the daemon path', async () => {
-    process.env.MK_SKILL_ADVISOR_HOOK_DISABLED = '1';
+  it('honors the canonical SYSTEM_ disable flag on the daemon path', async () => {
+    process.env.SYSTEM_SKILL_ADVISOR_HOOK_DISABLED = '1';
 
     const response = parseResponse(await handleAdvisorRecommend({ prompt: 'Implement routing' }));
 

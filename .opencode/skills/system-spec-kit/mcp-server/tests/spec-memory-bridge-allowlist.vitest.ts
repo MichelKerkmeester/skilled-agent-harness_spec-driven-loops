@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
-const bridgePath = resolve(import.meta.dirname, '../plugin-bridges/mk-spec-memory-bridge.mjs');
+const bridgePath = resolve(import.meta.dirname, '../plugin-bridges/system-spec-memory-bridge.mjs');
 
 interface BridgeModule {
   readonly promptSafeSpecMemoryBridgePolicy: (input: { request: string; toolName: string }) => { allowed: boolean; reason: string };

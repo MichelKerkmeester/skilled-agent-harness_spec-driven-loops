@@ -37,10 +37,10 @@ Current state:
 
 Consumed by:
 
-- `mk-goal-lifecycle.test.cjs`
-- `mk-goal-state.test.cjs`
-- `mk-goal-continuation.test.cjs`
-- `mk-goal-capabilities.test.cjs`
+- `opencode-goal-lifecycle.test.cjs`
+- `opencode-goal-state.test.cjs`
+- `opencode-goal-continuation.test.cjs`
+- `opencode-goal-capabilities.test.cjs`
 
 ---
 

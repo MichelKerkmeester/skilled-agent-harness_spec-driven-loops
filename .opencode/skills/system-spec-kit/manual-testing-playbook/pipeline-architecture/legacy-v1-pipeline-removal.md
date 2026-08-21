@@ -82,7 +82,7 @@ Validation test command output:
 Spec Kit memory runtime status:
 
 ```text
-plugin_id=mk-spec-memory
+plugin_id=system-spec-memory
 enabled=true
 disabled_reason=none
 cache_ttl_ms=5000

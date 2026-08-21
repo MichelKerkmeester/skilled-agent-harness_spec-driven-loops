@@ -55,7 +55,7 @@ export interface CommandBridgeProjection extends SkillProjection {
   readonly routingEnabled?: boolean;
 }
 
-const advisorDbDirOverride = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+const advisorDbDirOverride = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 const SKILL_GRAPH_DB = advisorDbDirOverride
   ? join(advisorDbDirOverride, 'skill-graph.sqlite')
   : join('.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'database', 'skill-graph.sqlite');

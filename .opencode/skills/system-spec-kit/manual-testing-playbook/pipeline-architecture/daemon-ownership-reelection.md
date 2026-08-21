@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies the default-on daemon-ownership reelection path in the mk-spec-memory launcher. A disposing owner releases the shared daemon so a connected live secondary keeps its MCP transport instead of forcing a relaunch, and a fresh session started after the owner is gone reaps the released daemon before spawning a replacement so the database is never left with two writers.
+This scenario verifies the default-on daemon-ownership reelection path in the system-spec-memory launcher. A disposing owner releases the shared daemon so a connected live secondary keeps its MCP transport instead of forcing a relaunch, and a fresh session started after the owner is gone reaps the released daemon before spawning a replacement so the database is never left with two writers.
 
 The check is automated-test-backed. A human runs the launcher syntax check, the reelection unit suite, and the live two-session durability test, plus a grep that proves the flag resolver, the spawn-io selector, and the release predicate are defined and wired.
 
@@ -41,10 +41,10 @@ Validate the default-on daemon-ownership reelection path: release on disposal fo
 
 ### Commands
 
-1. `node --check .opencode/bin/mk-spec-memory-launcher.cjs`
+1. `node --check .opencode/bin/system-spec-memory-launcher.cjs`
 2. `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-daemon-reelection.vitest.ts`
 3. `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run --config vitest.stress.config.ts mcp-server/stress-test/durability/daemon-reelection-adoption-live.vitest.ts`
-4. `rg -n "daemonReelectionEnabled|shouldReleaseDaemonForReelection|contextServerSpawnIo" .opencode/bin/mk-spec-memory-launcher.cjs`
+4. `rg -n "daemonReelectionEnabled|shouldReleaseDaemonForReelection|contextServerSpawnIo" .opencode/bin/system-spec-memory-launcher.cjs`
 
 ### Expected
 
@@ -60,7 +60,7 @@ Shell transcript for all commands:
 Command 1:
 
 ```sh
-$ node --check .opencode/bin/mk-spec-memory-launcher.cjs
+$ node --check .opencode/bin/system-spec-memory-launcher.cjs
 ```
 
 Observed output: no stdout/stderr. Exit status: 0.
@@ -100,7 +100,7 @@ Exit status: 0.
 Command 4:
 
 ```sh
-$ rg -n "daemonReelectionEnabled|shouldReleaseDaemonForReelection|contextServerSpawnIo" .opencode/bin/mk-spec-memory-launcher.cjs
+$ rg -n "daemonReelectionEnabled|shouldReleaseDaemonForReelection|contextServerSpawnIo" .opencode/bin/system-spec-memory-launcher.cjs
 206:function daemonReelectionEnabled(env = process.env) {
 209:function contextServerSpawnIo(reelectionEnabled) {
 214:function shouldReleaseDaemonForReelection({ enabled, hasLiveDaemon } = {}) {
@@ -137,7 +137,7 @@ If the syntax check fails, inspect the helper placement and the CommonJS exports
 
 | File | Role |
 |---|---|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Primary implementation anchor |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | Primary implementation anchor |
 | `mcp-server/tests/launcher-daemon-reelection.vitest.ts` | Unit regression anchor |
 | `mcp-server/stress-test/durability/daemon-reelection-adoption-live.vitest.ts` | Live two-session validation anchor |
 

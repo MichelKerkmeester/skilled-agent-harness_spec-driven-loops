@@ -71,7 +71,7 @@ npx vitest run \
   tests/hooks/directive-lifecycle.vitest.ts \
   tests/hooks/directive-lifecycle-boundary.vitest.ts \
   tests/hooks/claude-user-prompt-submit-hook.vitest.ts \
-  tests/mk-skill-advisor-plugin.vitest.ts \
+  tests/system-skill-advisor-plugin.vitest.ts \
   --sequence.shuffle --sequence.seed=18018
 ```
 
@@ -139,7 +139,7 @@ A complete run stores:
 1. Canonical decision failure: inspect `hooks/lib/directive-lifecycle.ts`, the contract module, and the durable file-store module.
 2. Host-boundary failure: inspect the advisor boundary target and the system-spec-kit boundary bridge, then the registered session/compaction owner.
 3. Runtime-envelope failure: inspect the corresponding system-spec-kit adapter using its native payload shape.
-4. OpenCode identity failure: inspect primitive/conflicting identity classification and store-wide invalidation in `mk-skill-advisor.js`.
+4. OpenCode identity failure: inspect primitive/conflicting identity classification and store-wide invalidation in `system-skill-advisor.js`.
 5. Evidence failure: inspect the manual wrapper's durable-evidence hashing, observed-provenance fields, and append-only destination reservation.
 
 ---
@@ -153,7 +153,7 @@ A complete run stores:
 - Durable store: `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts`
 - Host boundary: `.opencode/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`
 - Registered bridge: `.opencode/skills/system-spec-kit/mcp-server/hooks/claude/directive-lifecycle-boundary.ts`
-- OpenCode adapter: `.opencode/plugins/mk-skill-advisor.js`
+- OpenCode adapter: `.opencode/plugins/system-skill-advisor.js`
 - Persistence wrapper: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs`
 
 ---

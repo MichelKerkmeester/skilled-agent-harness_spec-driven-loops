@@ -20,7 +20,7 @@
       "variant": "headless",
       "score": "not-recorded",
       "verdict": "SKIP",
-      "reason": "mk_goal tool is not exposed to the default headless opencode run agent; deepseek-v4-pro replied verbatim 'The mk_goal tool is not available in my tool set. I cannot call tools that don't exist.'; zero tool calls made",
+      "reason": "opencode_goal tool is not exposed to the default headless opencode run agent; deepseek-v4-pro replied verbatim 'The opencode_goal tool is not available in my tool set. I cannot call tools that don't exist.'; zero tool calls made",
       "evidence": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt"
     },
     {
@@ -34,7 +34,7 @@
       "variant": "headless",
       "score": "not-recorded",
       "verdict": "SKIP",
-      "reason": "mk_goal tool is not exposed to the default headless opencode run agent; gpt-5.6-luna referenced mk_goal but never executed a set (no goal persisted)",
+      "reason": "opencode_goal tool is not exposed to the default headless opencode run agent; gpt-5.6-luna referenced opencode_goal but never executed a set (no goal persisted)",
       "evidence": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt"
     },
     {
@@ -48,7 +48,7 @@
       "variant": "headless",
       "score": "not-recorded",
       "verdict": "SKIP",
-      "reason": "experimental.chat.system.transform did not fire in opencode run --session, even against a pre-seeded ACTIVE mk-goal state matching the shipped schema (canary GOALCANARY-CO-1010816640); resumed-session turn 2 showed zero [active_goal] occurrences and the model reported none",
+      "reason": "experimental.chat.system.transform did not fire in opencode run --session, even against a pre-seeded ACTIVE opencode-goal state matching the shipped schema (canary GOALCANARY-CO-1010816640); resumed-session turn 2 showed zero [active_goal] occurrences and the model reported none",
       "evidence": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt"
     }
   ],

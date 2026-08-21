@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Evidence Gap Detector
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Signal vocabulary expansion
 // Transparent Reasoning Module (TRM): Z-score confidence check
 // On RRF scores to detect low-confidence retrieval and inject
 // Warnings for the MCP markdown output layer.
@@ -25,7 +24,7 @@ import { LOW_THRESHOLD } from './confidence-scoring.js';
  *   floor under that configuration.)
  *
  * Post-reranker-removal state:
- * - Neural reranking is no longer available in mk-spec-memory.
+ * - Neural reranking is no longer available in system-spec-memory.
  * - The threshold stays conservative at 1.3 so positional fallback scoring
  *   does not over-penalize healthy vector/BM25/RRF retrieval.
  */

@@ -14,7 +14,7 @@ import type { AdvisorStatusOutput } from '../schemas/advisor-tool-schemas.js';
 import { resolveProvider } from '@spec-kit/shared/embeddings/factory.js';
 
 const require = createRequire(import.meta.url);
-const launcher = require('../../../../bin/mk-skill-advisor-launcher.cjs') as {
+const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as {
   acquireBootstrapLock: (options?: { staleMs?: number; timeoutMs?: number; retrySleepMs?: number }) => Promise<boolean>;
   advisorDbPath: () => string;
   artifactsReady: () => boolean;
@@ -22,7 +22,7 @@ const launcher = require('../../../../bin/mk-skill-advisor-launcher.cjs') as {
   createChildEnv: (sourceEnv?: NodeJS.ProcessEnv) => Record<string, string>;
 };
 
-describe('mk-skill-advisor launcher bootstrap', () => {
+describe('system-skill-advisor launcher bootstrap', () => {
   const tempDirs: string[] = [];
 
   afterEach(() => {
@@ -33,17 +33,17 @@ describe('mk-skill-advisor launcher bootstrap', () => {
   });
 
   function configureTempLauncher(): { mcpDir: string; lockDir: string } {
-    const root = mkdtempSync(join(tmpdir(), 'mk-skill-advisor-launcher-'));
+    const root = mkdtempSync(join(tmpdir(), 'system-skill-advisor-launcher-'));
     tempDirs.push(root);
     const mcpDir = join(root, 'mcp-server');
     const dbDir = join(mcpDir, 'database');
-    const lockDir = join(dbDir, '.mk-skill-advisor-launcher.lockdir');
+    const lockDir = join(dbDir, '.system-skill-advisor-launcher.lockdir');
     mkdirSync(join(mcpDir, 'dist/mcp-server'), { recursive: true });
     launcher.configureLauncherPathsForTesting({
       mcpDir,
       dbDir,
       lockDir,
-      stateFile: join(dbDir, '.mk-skill-advisor-launcher.json'),
+      stateFile: join(dbDir, '.system-skill-advisor-launcher.json'),
     });
     return { mcpDir, lockDir };
   }
@@ -78,13 +78,13 @@ describe('mk-skill-advisor launcher bootstrap', () => {
     expect(launcher.createChildEnv({
       PATH: '/bin',
       HOME: '/tmp/home',
-      MK_SKILL_ADVISOR_DB_DIR: '/tmp/db',
+      SYSTEM_SKILL_ADVISOR_DB_DIR: '/tmp/db',
       AWS_SECRET_ACCESS_KEY: 'should-not-leak',
       RANDOM_PARENT_ENV: 'should-not-leak',
     })).toEqual({
       PATH: '/bin',
       HOME: '/tmp/home',
-      MK_SKILL_ADVISOR_DB_DIR: '/tmp/db',
+      SYSTEM_SKILL_ADVISOR_DB_DIR: '/tmp/db',
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
     });
@@ -95,17 +95,17 @@ describe('mk-skill-advisor launcher bootstrap', () => {
     const memoryDbPath = launcher.advisorDbPath();
     const socketDir = dirname(memoryDbPath);
     const opencodeConfig = JSON.parse(sourceText('../../../../../opencode.json')) as {
-      mcp?: { mk_skill_advisor?: { environment?: Record<string, string> } };
+      mcp?: { system_skill_advisor?: { environment?: Record<string, string> } };
     };
-    const committedTrustDefault = opencodeConfig.mcp?.mk_skill_advisor?.environment?.MK_SKILL_ADVISOR_TRUST_DEFAULT;
+    const committedTrustDefault = opencodeConfig.mcp?.system_skill_advisor?.environment?.SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT;
 
     expect(committedTrustDefault).toBe('trusted');
-    expect(sourceText('../advisor-server.ts')).toContain('process.env.MK_SKILL_ADVISOR_TRUST_DEFAULT');
+    expect(sourceText('../advisor-server.ts')).toContain('process.env.SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT');
     expect(launcher.createChildEnv({
-      MK_SKILL_ADVISOR_TRUST_DEFAULT: committedTrustDefault,
+      SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: committedTrustDefault,
       AWS_SECRET_ACCESS_KEY: 'should-not-leak',
     })).toEqual({
-      MK_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted',
+      SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted',
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
     });
@@ -127,7 +127,7 @@ describe('mk-skill-advisor launcher bootstrap', () => {
     });
   });
 
-  it('defaults the child MEMORY_DB_PATH to the advisor own database, not mk-spec-memory context-index.sqlite', () => {
+  it('defaults the child MEMORY_DB_PATH to the advisor own database, not system-spec-memory context-index.sqlite', () => {
     configureTempLauncher();
     const childEnv = launcher.createChildEnv({ PATH: '/bin' });
 
@@ -136,13 +136,13 @@ describe('mk-skill-advisor launcher bootstrap', () => {
     expect(childEnv.MEMORY_DB_PATH).not.toMatch(/context-index\.sqlite$/);
   });
 
-  it('honors an explicit MK_SKILL_ADVISOR_MEMORY_DB_PATH override instead of the default', () => {
+  it('honors an explicit SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH override instead of the default', () => {
     configureTempLauncher();
     const explicitOverride = '/tmp/some-other-test-or-external-db/custom.sqlite';
 
     const childEnv = launcher.createChildEnv({
       PATH: '/bin',
-      MK_SKILL_ADVISOR_MEMORY_DB_PATH: explicitOverride,
+      SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH: explicitOverride,
     });
 
     expect(childEnv.MEMORY_DB_PATH).toBe(explicitOverride);
@@ -151,7 +151,7 @@ describe('mk-skill-advisor launcher bootstrap', () => {
   it('009-REQ-004/005: ignores an ambient MEMORY_DB_PATH that was not set via the dedicated override var', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
-    // Mimics mk-spec-memory's own established use of this exact env var name —
+    // Mimics system-spec-memory's own established use of this exact env var name —
     // a legacy shell/script exporting it must not silently reopen the
     // cross-server DB-path leak the advisor default protects against.
     const ambientMemoryDbPath = '/tmp/some-other-service/context-index.sqlite';
@@ -170,14 +170,14 @@ describe('mk-skill-advisor launcher bootstrap', () => {
     const childEnv = launcher.createChildEnv({
       PATH: '/bin',
       MEMORY_DB_PATH: ambientMemoryDbPath,
-      MK_SKILL_ADVISOR_MEMORY_DB_PATH: explicitOverride,
+      SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH: explicitOverride,
     });
 
     expect(childEnv.MEMORY_DB_PATH).toBe(explicitOverride);
   });
 });
 
-describe('mk-skill-advisor launcher end-to-end MEMORY_DB_PATH resolution (009-REQ-008)', () => {
+describe('system-skill-advisor launcher end-to-end MEMORY_DB_PATH resolution (009-REQ-008)', () => {
   const tempDirs: string[] = [];
   const restoreKeys = ['MEMORY_DB_PATH', 'SPEC_KIT_DB_DIR', 'SPECKIT_DB_DIR', 'EMBEDDINGS_PROVIDER', 'VOYAGE_API_KEY', 'OPENAI_API_KEY'] as const;
   const originalEnv: Partial<Record<(typeof restoreKeys)[number], string>> = {};
@@ -211,7 +211,7 @@ describe('mk-skill-advisor launcher end-to-end MEMORY_DB_PATH resolution (009-RE
   }
 
   function configureTempLauncherForE2e(): void {
-    const root = mkdtempSync(join(tmpdir(), 'mk-skill-advisor-e2e-'));
+    const root = mkdtempSync(join(tmpdir(), 'system-skill-advisor-e2e-'));
     tempDirs.push(root);
     const mcpDir = join(root, 'mcp-server');
     const dbDir = join(mcpDir, 'database');
@@ -220,8 +220,8 @@ describe('mk-skill-advisor launcher end-to-end MEMORY_DB_PATH resolution (009-RE
     launcher.configureLauncherPathsForTesting({
       mcpDir,
       dbDir,
-      lockDir: join(dbDir, '.mk-skill-advisor-launcher.lockdir'),
-      stateFile: join(dbDir, '.mk-skill-advisor-launcher.json'),
+      lockDir: join(dbDir, '.system-skill-advisor-launcher.lockdir'),
+      stateFile: join(dbDir, '.system-skill-advisor-launcher.json'),
     });
   }
 
@@ -290,7 +290,7 @@ describe('mk-skill-advisor launcher end-to-end MEMORY_DB_PATH resolution (009-RE
     mkdirSync(dirname(advisorDbPath), { recursive: true });
     createResolvableOllamaFixture(advisorDbPath);
 
-    const decoyDir = mkdtempSync(join(tmpdir(), 'mk-skill-advisor-e2e-decoy-'));
+    const decoyDir = mkdtempSync(join(tmpdir(), 'system-skill-advisor-e2e-decoy-'));
     tempDirs.push(decoyDir);
     const decoyDbPath = join(decoyDir, 'context-index.sqlite');
     createUnresolvableFixture(decoyDbPath);
@@ -389,7 +389,7 @@ describe('lease-held single-writer enforcement', () => {
 
   afterEach(() => {
     closeDb();
-    delete process.env.MK_SKILL_ADVISOR_DB_DIR;
+    delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
     delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
     while (tempDirs.length > 0) {
       const dir = tempDirs.pop();
@@ -440,7 +440,7 @@ describe('lease-held single-writer enforcement', () => {
     const secondWorkspace = mkdtempSync(join(tmpdir(), 'lease-workspace-b-'));
     const sharedDbDir = mkdtempSync(join(tmpdir(), 'lease-shared-db-'));
     tempDirs.push(firstWorkspace, secondWorkspace, sharedDbDir);
-    process.env.MK_SKILL_ADVISOR_DB_DIR = sharedDbDir;
+    process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = sharedDbDir;
 
     const lease = acquireSkillGraphLease({ workspaceRoot: firstWorkspace });
     const result = isLeaseHeld(secondWorkspace);
@@ -466,7 +466,7 @@ describe('lease-held single-writer enforcement', () => {
   it('WAL pragma is set on every fresh DB open', () => {
     const tempDbDir = mkdtempSync(join(tmpdir(), 'skill-graph-db-test-'));
     tempDirs.push(tempDbDir);
-    process.env.MK_SKILL_ADVISOR_DB_DIR = tempDbDir;
+    process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = tempDbDir;
 
     const db = initDb(tempDbDir);
     const journalMode = db.pragma('journal_mode', { simple: true }) as string;
@@ -481,7 +481,7 @@ describe('lease-held single-writer enforcement', () => {
     const tempDbDir = mkdtempSync(join(tmpdir(), 'skill-graph-db-test-'));
     tempDirs.push(workspaceRoot, tempDbDir);
     mkdirSync(join(workspaceRoot, '.opencode', 'skills'), { recursive: true });
-    process.env.MK_SKILL_ADVISOR_DB_DIR = tempDbDir;
+    process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = tempDbDir;
     let statusCalls = 0;
 
     rebuildAdvisorIndex({ workspaceRoot, force: true }, {

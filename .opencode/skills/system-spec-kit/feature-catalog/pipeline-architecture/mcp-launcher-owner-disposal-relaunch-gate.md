@@ -1,6 +1,6 @@
 ---
 title: "MCP launcher owner-disposal relaunch gate"
-description: "The mk-spec-memory launcher aborts a scheduled daemon relaunch when its owning MCP runtime has exited, stopping the SIGTERM/relaunch flap that dropped bridged transports, while leaving crash-recovery and RSS-recycle relaunch intact."
+description: "The system-spec-memory launcher aborts a scheduled daemon relaunch when its owning MCP runtime has exited, stopping the SIGTERM/relaunch flap that dropped bridged transports, while leaving crash-recovery and RSS-recycle relaunch intact."
 trigger_phrases:
   - "launcher owner disposal relaunch gate"
   - "daemon relaunch flap guard"
@@ -16,7 +16,7 @@ version: 3.6.0.2
 
 ## 1. OVERVIEW
 
-The launcher owns the shared mk-spec-memory daemon for the MCP host that spawned it. When that host disposes its session it sends SIGTERM to the daemon child, and the launcher's child-exit supervisor schedules a relaunch on a short backoff. When that relaunch fired under the disposing runtime, the fresh daemon was killed again about a second later, and every session bridged to that daemon lost its MCP transport.
+The launcher owns the shared system-spec-memory daemon for the MCP host that spawned it. When that host disposes its session it sends SIGTERM to the daemon child, and the launcher's child-exit supervisor schedules a relaunch on a short backoff. When that relaunch fired under the disposing runtime, the fresh daemon was killed again about a second later, and every session bridged to that daemon lost its MCP transport.
 
 The owner-disposal relaunch gate re-checks reality at the moment the backoff fires. If the launcher is shutting down, or its owning runtime has gone away, it releases the owner lease and exits cleanly instead of respawning. Crash-recovery and RSS-recycle are untouched: both run with the owner alive, so the gate is a no-op for them and the daemon relaunches as before.
 
@@ -49,7 +49,7 @@ The gate is additive. Crash-recovery and the in-place RSS-recycle (`recycleDaemo
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/bin/lib/model-server-supervision.cjs` | Shared | Defines and exports the pure `shouldAbortRelaunchOnFire` predicate alongside `shouldSkipLaunch` and `superviseChildExit` |
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Captures `LAUNCHER_INITIAL_PPID`, calls `shouldAbortRelaunchOnFire` inside the `scheduleRelaunch` timer, releases leases via `clearAllLeaseFiles` and re-exports the predicate. The crash and `recycleDaemonInPlace` paths still reach `launchServer` |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | Script | Captures `LAUNCHER_INITIAL_PPID`, calls `shouldAbortRelaunchOnFire` inside the `scheduleRelaunch` timer, releases leases via `clearAllLeaseFiles` and re-exports the predicate. The crash and `recycleDaemonInPlace` paths still reach `launchServer` |
 
 ### Validation And Tests
 

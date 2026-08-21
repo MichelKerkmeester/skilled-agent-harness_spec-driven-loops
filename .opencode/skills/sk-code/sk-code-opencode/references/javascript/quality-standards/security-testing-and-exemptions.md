@@ -284,7 +284,7 @@ OpenCode's TUI paints plugin `stdout`/`stderr` onto the prompt input line, where
 | Append-only log file (e.g. `.opencode/logs/*.log`, fail-open) | Durable operator/audit record |
 | A plugin `tool` the agent can call | On-demand status the user explicitly requests |
 
-`stderr` diagnostics are allowed only behind an explicit debug env flag that defaults off (matching `mk-goal`'s `MK_GOAL_DEBUG`). Reference implementations: `mk-dist-freshness-guard.js` (injection + log) and `mk-deep-loop-guard.js` (log-only).
+`stderr` diagnostics are allowed only behind an explicit debug env flag that defaults off (matching `opencode-goal`'s `OPENCODE_GOAL_DEBUG`). Reference implementations: `system-dist-freshness-guard.js` (injection + log) and `system-deep-loop-guard.js` (log-only).
 
 ### Brief Example
 

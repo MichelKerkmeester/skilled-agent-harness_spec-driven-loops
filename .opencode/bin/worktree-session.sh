@@ -143,9 +143,9 @@ exec_in_place() {
   # reach it -- neutralize it here as a belt-and-suspenders backstop even
   # though the core's own evaluateMutation() already narrows deny to
   # non-child sessions via AI_SESSION_CHILD.
-  export MK_SPEC_GATE_ENFORCE=0
+  export SYSTEM_SPEC_GATE_ENFORCE=0
   if [ "$DRY_RUN" = "1" ]; then
-    echo "DRY_RUN: would exec in place: $RUNTIME_EXEC $* (MK_SPEC_GATE_ENFORCE=0)"
+    echo "DRY_RUN: would exec in place: $RUNTIME_EXEC $* (SYSTEM_SPEC_GATE_ENFORCE=0)"
     exit 0
   fi
   exec "$RUNTIME_EXEC" "$@"

@@ -1,11 +1,11 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Embedders — types (shared contract surface)
 // ───────────────────────────────────────────────────────────────
-// Canonical BackendKind + EmbedderManifest shared by mk-spec-memory and
+// Canonical BackendKind + EmbedderManifest shared by system-spec-memory and
 // skill-advisor. Both skills' local `mcp-server/lib/embedders/types.ts`
 // re-export from here.
 //
-// Promoted from mk-spec-memory's mcp-server/lib/embedders/types.ts so both
+// Promoted from system-spec-memory's mcp-server/lib/embedders/types.ts so both
 // skills share the canonical surface.
 // ───────────────────────────────────────────────────────────────
 

@@ -27,7 +27,7 @@ interface MarkerShape {
 let tmpDir: string;
 const originalSpecKitDbDir = process.env.SPEC_KIT_DB_DIR;
 const originalSpeckitDbDir = process.env.SPECKIT_DB_DIR;
-const LAUNCHER_PATH = path.resolve(import.meta.dirname, '../../../../bin/mk-spec-memory-launcher.cjs');
+const LAUNCHER_PATH = path.resolve(import.meta.dirname, '../../../../bin/system-spec-memory-launcher.cjs');
 
 function markerPath(): string {
   return path.join(tmpDir, MARKER_FILE);

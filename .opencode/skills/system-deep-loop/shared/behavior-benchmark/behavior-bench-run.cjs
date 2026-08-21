@@ -1224,7 +1224,7 @@ async function runOnce(args) {
       if (tFirstDispatchMs === null) tFirstDispatchMs = t;
       if (taskEvents.length < 50) taskEvents.push({ t, line });
     }
-    if (line.includes('mk-deep-loop-guard')) guardWarnings.push(line);
+    if (line.includes('system-deep-loop-guard')) guardWarnings.push(line);
   };
 
   const onData = (src, chunk) => {

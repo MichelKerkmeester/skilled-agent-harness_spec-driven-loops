@@ -4,7 +4,7 @@
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Claude/Bash parity front door over the runtime-neutral          ║
 // ║          completion-state core. OpenCode fronts the same core with a     ║
-// ║          registered `mk_speckit_completion` tool; Claude has no plugin   ║
+// ║          registered `system_speckit_completion` tool; Claude has no plugin   ║
 // ║          tool-register surface, so this thin shim prints the identical   ║
 // ║          merged JSON payload to stdout for a Bash-invoked caller. All    ║
 // ║          resolution, exec, and fail-open logic lives in the core -- this ║
@@ -57,7 +57,7 @@ function printUsage(stream) {
     '  --project-dir <dir>  Resolve <spec-folder> and shell both scripts from this directory (default: cwd)',
     '  --help, -h            Show this help',
     '',
-    'Set MK_SPECKIT_COMPLETION_DISABLED=1 to make this a full no-op (no filesystem probe, no script exec).',
+    'Set SYSTEM_SPECKIT_COMPLETION_DISABLED=1 to make this a full no-op (no filesystem probe, no script exec).',
     '',
   ].join('\n'));
 }

@@ -1,0 +1,1 @@
+../../../plugins/system-dist-freshness-guard.js

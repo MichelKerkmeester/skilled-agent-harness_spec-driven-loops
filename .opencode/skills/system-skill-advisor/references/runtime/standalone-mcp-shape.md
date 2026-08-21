@@ -3,7 +3,7 @@ title: "Standalone MCP Shape"
 description: "Summary of ADR-001 standalone System Skill Advisor MCP topology and migration boundary."
 trigger_phrases:
   - "standalone advisor mcp shape"
-  - "mk_skill_advisor topology"
+  - "system_skill_advisor topology"
   - "advisor mcp server boundary"
 importance_tier: "normal"
 contextType: "implementation"
@@ -20,7 +20,7 @@ Summary of ADR-001 standalone System Skill Advisor MCP topology and migration bo
 
 ### Purpose
 
-Documents the standalone `mk_skill_advisor` MCP topology chosen by ADR-001 and the ownership boundary between advisor routing and adjacent Spec Kit runtimes.
+Documents the standalone `system_skill_advisor` MCP topology chosen by ADR-001 and the ownership boundary between advisor routing and adjacent Spec Kit runtimes.
 
 ### When to Use
 
@@ -42,7 +42,7 @@ Advisor routing is a standalone MCP process boundary; documentation can point ac
 
 ## 2. DECISION
 
-ADR-001 chooses a standalone MCP server named `mk_skill_advisor`.
+ADR-001 chooses a standalone MCP server named `system_skill_advisor`.
 
 The server owns:
 
@@ -60,8 +60,8 @@ The server owns:
 The standalone boundary is a process boundary, not only a folder move.
 
 ```text
-mk_skill_advisor -> advisor tools and skill graph DB
-mk-spec-memory      -> memory, continuity and spec-kit tools
+system_skill_advisor -> advisor tools and skill graph DB
+system-spec-memory      -> memory, continuity and spec-kit tools
 ```
 
 The memory MCP server may keep a temporary bridge for legacy `advisor_*` calls during migration. It must not remain the long-term owner of advisor implementation modules or database writes.

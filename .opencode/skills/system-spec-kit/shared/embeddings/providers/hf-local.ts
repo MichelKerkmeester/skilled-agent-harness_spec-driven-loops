@@ -827,7 +827,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
           this.isHealthy = false;
           throw new Error(
             `HF local model server socket ${this.target.socketPath} is absent and no live launcher or `
-            + `model-server spawn authority exists; not retrying. Restart or reconnect mk-spec-memory.`,
+            + `model-server spawn authority exists; not retrying. Restart or reconnect system-spec-memory.`,
           );
         }
         lastError = error;

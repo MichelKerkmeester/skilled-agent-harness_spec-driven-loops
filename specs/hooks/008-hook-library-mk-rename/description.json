@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "_stub": "Hand-authored in a bare worktree (no deps). Regenerate on main post-merge via generate-context.js + graph-metadata backfill (ADR-006).",
+  "specFolder": "hooks/008-hook-library-mk-rename",
+  "description": "Every runtime hook entry point is named `mk-<concern>` (e.g",
+  "keywords": [
+    "every",
+    "runtime",
+    "hook",
+    "entry",
+    "point",
+    "named",
+    "concern"
+  ],
+  "lastUpdated": "2026-08-21T09:16:18.074Z",
+  "specId": "008",
+  "folderSlug": "hook-library-mk-rename",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-08-26_10-16__manual-context-save.md"
+  ]
+}

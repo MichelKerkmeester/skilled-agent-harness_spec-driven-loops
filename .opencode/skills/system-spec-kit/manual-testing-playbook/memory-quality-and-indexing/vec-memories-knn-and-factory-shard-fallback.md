@@ -58,11 +58,11 @@ Validate vec_memories KNN dual-write and factory ADR-012 shard fallback against 
 
 7. Restart the daemon clean. From repo root:
    ```
-   SPECKIT_IPC_SOCKET_DIR=/tmp/mk-spec-memory node .opencode/bin/mk-spec-memory-launcher.cjs &
+   SPECKIT_IPC_SOCKET_DIR=/tmp/system-spec-memory node .opencode/bin/system-spec-memory-launcher.cjs &
    ```
 8. Grep the startup log for the positive factory line and the absence of the cascade warning:
    ```
-   grep -E "factory.*Using provider|factory.*points to vec_|continuing provider cascade" /tmp/mk-spec-memory-daemon.log
+   grep -E "factory.*Using provider|factory.*points to vec_|continuing provider cascade" /tmp/system-spec-memory-daemon.log
    ```
 
 ### Expected
@@ -73,7 +73,7 @@ Validate vec_memories KNN dual-write and factory ADR-012 shard fallback against 
 
 ### Evidence
 
-Active embedder lookup via `mk-spec-memory_embedder_list`:
+Active embedder lookup via `system-spec-memory_embedder_list`:
 
 ```json
 {
@@ -112,22 +112,22 @@ Block B KNN top-5 output:
 Block C daemon launcher output:
 
 ```text
-[mk-spec-memory-launcher] loaded 1 env(s) from .env.local
-[mk-spec-memory-launcher] loaded 5 env(s) from .env
-[mk-spec-memory-launcher] staleReclaimed: true
-[mk-spec-memory-launcher] stale-reclaim adopting live daemon pid 58287 via bridge instead of reaping
-[mk-spec-memory-launcher] bridging to lease holder pid=54495 socket=/tmp/mk-spec-memory/daemon-ipc.sock
+[system-spec-memory-launcher] loaded 1 env(s) from .env.local
+[system-spec-memory-launcher] loaded 5 env(s) from .env
+[system-spec-memory-launcher] staleReclaimed: true
+[system-spec-memory-launcher] stale-reclaim adopting live daemon pid 58287 via bridge instead of reaping
+[system-spec-memory-launcher] bridging to lease holder pid=54495 socket=/tmp/system-spec-memory/daemon-ipc.sock
 ```
 
 Block C grep output:
 
 ```text
-grep: /tmp/mk-spec-memory-daemon.log: No such file or directory
+grep: /tmp/system-spec-memory-daemon.log: No such file or directory
 ```
 
 ### Pass / Fail
 
-- **FAIL**: Block A failed because `vec_memories` had 17 rows while `vec_768` had 18464 rows with 18456 missing from `vec_memories`; Block B failed because rank 1 returned the seed row but distance was `1.369869589805603` instead of `0`; Block C could not confirm the expected factory log because `/tmp/mk-spec-memory-daemon.log` did not exist.
+- **FAIL**: Block A failed because `vec_memories` had 17 rows while `vec_768` had 18464 rows with 18456 missing from `vec_memories`; Block B failed because rank 1 returned the seed row but distance was `1.369869589805603` instead of `0`; Block C could not confirm the expected factory log because `/tmp/system-spec-memory-daemon.log` did not exist.
 
 ### Failure Triage
 

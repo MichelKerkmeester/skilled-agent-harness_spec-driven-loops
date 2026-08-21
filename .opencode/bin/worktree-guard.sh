@@ -26,7 +26,7 @@ __hf_root="$(git rev-parse --show-toplevel 2>/dev/null)"
 if [ -n "$__hf_root" ] && [ -r "$__hf_root/.opencode/hooks/shared/hook-flags.sh" ]; then
   . "$__hf_root/.opencode/hooks/shared/hook-flags.sh"
   # Honor the pre-rename flag name as a backward-compatible alias for this concern.
-  __hook_flags_truthy "$(__hook_flags_resolve MK_WORKTREE_GUARD_DISABLED)" && exit 0
+  __hook_flags_truthy "$(__hook_flags_resolve SYSTEM_WORKTREE_GUARD_DISABLED)" && exit 0
   hook_enabled git-worktree-guard || exit 0
 fi
 

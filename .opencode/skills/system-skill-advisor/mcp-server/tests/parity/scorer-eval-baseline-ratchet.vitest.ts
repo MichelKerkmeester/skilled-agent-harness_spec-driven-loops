@@ -92,12 +92,12 @@ function readJsonl<T>(path: string): T[] {
 }
 
 // Freeze scoring to the reproducible filesystem projection: an empty
-// MK_SKILL_ADVISOR_DB_DIR makes the SQLite loader return null (clean FS
+// SYSTEM_SKILL_ADVISOR_DB_DIR makes the SQLite loader return null (clean FS
 // projection from committed metadata), semantic embeddings are disabled, and
 // the native lane-ranking overrides are cleared so the top-1 decision is
 // deterministic across machines.
 function freezeEvalEnv(): void {
-  process.env.MK_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-eval-ratchet-'));
+  process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-eval-ratchet-'));
   process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
   process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
   delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;

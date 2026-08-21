@@ -1,18 +1,18 @@
 ---
-title: "mk-spec-memory — benchmarks index"
-description: "Index of curated, skill-local benchmark runs for the mk-spec-memory MCP server. One dated folder per benchmark run. Authoritative spec packets live under specs/."
+title: "system-spec-memory — benchmarks index"
+description: "Index of curated, skill-local benchmark runs for the system-spec-memory MCP server. One dated folder per benchmark run. Authoritative spec packets live under specs/."
 trigger_phrases:
   - "spec memory benchmarks"
-  - "mk-spec-memory benchmark index"
+  - "system-spec-memory benchmark index"
   - "spec memory bake-off index"
   - "skill local benchmarks"
 importance_tier: "important"
 contextType: "reference"
 ---
 
-# mk-spec-memory — benchmarks index
+# system-spec-memory — benchmarks index
 
-> Curated, skill-local record of benchmark runs for the `mk-spec-memory` MCP server. One dated folder per run. The authoritative audit trail lives in the spec packet linked from each row.
+> Curated, skill-local record of benchmark runs for the `system-spec-memory` MCP server. One dated folder per run. The authoritative audit trail lives in the spec packet linked from each row.
 
 ---
 
@@ -23,7 +23,7 @@ contextType: "reference"
 | Field | Value |
 |---|---|
 | Skill | `system-spec-kit` |
-| MCP server | `mk-spec-memory` |
+| MCP server | `system-spec-memory` |
 | Stack | TypeScript, Node, Ollama, ollama |
 | Folder root | `.opencode/skills/system-spec-kit/mcp-server/benchmarks/` |
 
@@ -82,7 +82,7 @@ When skill-local doc and spec packet disagree:
 
 ## 4. SIBLING SKILL BENCHMARKS
 
-This skill-local benchmarks convention is currently unique to `mk-spec-memory`. No other MCP server in this repo maintains a parallel `mcp-server/benchmarks/` folder today. The former `mcp-coco-index` sibling example was removed when that skill was deprecated.
+This skill-local benchmarks convention is currently unique to `system-spec-memory`. No other MCP server in this repo maintains a parallel `mcp-server/benchmarks/` folder today. The former `mcp-coco-index` sibling example was removed when that skill was deprecated.
 
 Any skill that adopts this convention later still will not have comparable numbers. Quantization, runtime, fixture and corpus shape differ by stack, and each skill's benchmark report should call this out in its own Caveats section.
 
@@ -136,7 +136,7 @@ The bake-off promotion flow is documented in `.opencode/skills/sk-doc/sk-create-
 | File | Purpose |
 |---|---|
 | `references/README.md` | Convention every dated subfolder follows. The overflow route-map / convention index is `.opencode/skills/sk-doc/sk-create-benchmark/references/shared/README.md`; the canonical report contract and mechanics live in `.opencode/skills/sk-doc/sk-create-benchmark/SKILL.md` §3-8. |
-| [`benchmark-2026-05-17/benchmark-report.md`](./2026-05-17--run--unspecified/benchmark-report.md) | The May 17, 2026 mk-spec-memory text-embedder bake-off report. |
+| [`benchmark-2026-05-17/benchmark-report.md`](./2026-05-17--run--unspecified/benchmark-report.md) | The May 17, 2026 system-spec-memory text-embedder bake-off report. |
 | [`benchmark-2026-05-17/SOURCE.md`](./2026-05-17--run--unspecified/SOURCE.md) | Pointer to the May 17, 2026 spec packet. |
 
 ### Tracking and authoritative spec

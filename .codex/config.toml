@@ -1,35 +1,35 @@
 [features]
 hooks = true
 
-[mcp_servers."mk-spec-memory"]
+[mcp_servers."system-spec-memory"]
 command = "/Users/michelkerkmeester/.nvm/versions/node/v22.23.1/bin/node"
-args = [".opencode/bin/mk-spec-memory-launcher.cjs"]
+args = [".opencode/bin/system-spec-memory-launcher.cjs"]
 
-[mcp_servers."mk-spec-memory".env]
+[mcp_servers."system-spec-memory".env]
 EMBEDDINGS_PROVIDER = "auto"
-HF_EMBED_SERVER_URL = "unix:///tmp/mk-hf-embed/hf-embed.sock"
-SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-spec-memory"
+HF_EMBED_SERVER_URL = "unix:///tmp/system-hf-embed/hf-embed.sock"
+SPECKIT_IPC_SOCKET_DIR = "/tmp/system-spec-memory"
 SPECKIT_MAX_SECONDARY_CLIENTS = "64"
 SPECKIT_RETRY_BATCH_SIZE = "100"
 SPECKIT_RETRY_INTERVAL_MS = "5000"
 SPECKIT_RETRY_QUEUE_MAX_AGE_MS = "3153600000000"
 SPECKIT_RETRY_QUEUE_MAX_PENDING = "300000"
 
-[mcp_servers."mk-spec-memory".tools.memory_match_triggers]
+[mcp_servers."system-spec-memory".tools.memory_match_triggers]
 approval_mode = "approve"
 
 # Keep this runtime aligned with the installed better-sqlite3 native-module ABI.
-[mcp_servers.mk_skill_advisor]
+[mcp_servers.system_skill_advisor]
 command = "/opt/homebrew/bin/node"
-args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]
+args = [".opencode/bin/system-skill-advisor-launcher.cjs"]
 
-[mcp_servers.mk_skill_advisor.env]
-HF_EMBED_SERVER_URL = "unix:///tmp/mk-hf-embed/hf-embed.sock"
-MK_SKILL_ADVISOR_DB_DIR = ".opencode/skills/system-skill-advisor/mcp-server/database"
-MK_SKILL_ADVISOR_HOOK_DISABLED = "0"
-MK_SKILL_ADVISOR_TRUST_DEFAULT = "trusted"
+[mcp_servers.system_skill_advisor.env]
+HF_EMBED_SERVER_URL = "unix:///tmp/system-hf-embed/hf-embed.sock"
+SYSTEM_SKILL_ADVISOR_DB_DIR = ".opencode/skills/system-skill-advisor/mcp-server/database"
+SYSTEM_SKILL_ADVISOR_HOOK_DISABLED = "0"
+SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT = "trusted"
 SPECKIT_ADVISOR_DOC_TRIGGERS = "true"
-SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-skill-advisor"
+SPECKIT_IPC_SOCKET_DIR = "/tmp/system-skill-advisor"
 SPECKIT_MAX_SECONDARY_CLIENTS = "64"
 
 # Pinned to Node 24, unlike its siblings above: the server bundles isolated-vm,

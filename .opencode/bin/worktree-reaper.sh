@@ -191,7 +191,7 @@ fi
 # ───────────────────────────────────────────────────────────────
 
 # --- orphan daemon reporting (kill only with --reap-daemons) ---------------
-# A worktree daemon writes its lease under <worktree-db-dir>/.mk-spec-memory-launcher.json.
+# A worktree daemon writes its lease under <worktree-db-dir>/.system-spec-memory-launcher.json.
 # If that lease names a live childPid but the worktree DB dir is gone, it is orphaned.
 log "scanning for orphan worktree daemons"
 ORPHANS=0

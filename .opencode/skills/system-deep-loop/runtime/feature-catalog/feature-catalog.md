@@ -22,7 +22,7 @@ Use this catalog as the canonical inventory for the live `runtime/` feature surf
 |---|---:|---|
 | [executor](executor/) | 4 features | `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `lib/deep-loop/fallback-router.ts` |
 | [prompt-rendering](../feature-catalog/prompt-rendering) | 1 features | `lib/deep-loop/prompt-pack.ts` |
-| [validation](validation/) | 4 features | `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/plugins/mk-deep-loop-guard.js`, `lib/mode-contracts/strict-gate-validator.ts` |
+| [validation](validation/) | 4 features | `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/plugins/system-deep-loop-guard.js`, `lib/mode-contracts/strict-gate-validator.ts` |
 | [state-safety](../feature-catalog/state-safety) | 11 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
 | [scoring](scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
 | [coverage-graph](../feature-catalog/coverage-graph) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
@@ -161,7 +161,7 @@ See [`validation/llm-judge-hardening.md`](../feature-catalog/validation/llm-judg
 
 ---
 
-### mk-deep-loop-guard
+### system-deep-loop-guard
 
 #### Description
 
@@ -169,11 +169,11 @@ Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch wh
 
 #### How It Works
 
-A `tool.execute.before` hook resolves the real target agent (`orchestrate` always dispatches with `subagent_type: "general"`, so identity is parsed from `Agent: @X` / `Deep Route: ... target_agent=@X` prompt text) against `mode-registry.json` and compares it to any `mode=X` value declared in the dispatch prompt (Check 1). It also tracks per-session, per-target-agent dispatch counts for command-owned loop executors, exempting command-driven iterations, and flags non-command-driven repeats (Check 2). Default is mutate-and-warn for both; `MK_DEEP_LOOP_GUARD_REJECT=1` / `MK_DEEP_LOOP_GUARD_REJECT_LOOP=1` independently switch each check to fail-closed (throws, blocking the dispatch — confirmed live against the installed OpenCode host). Fails open on its own internal errors. A separate `event` hook, throttled to once per hour on `session.created`, sweeps/archives/prunes the plugin's own `.loop-guard-state` per-session files and rotates `guard-warnings.log`, mirroring `mk-goal.js`'s retention pattern.
+A `tool.execute.before` hook resolves the real target agent (`orchestrate` always dispatches with `subagent_type: "general"`, so identity is parsed from `Agent: @X` / `Deep Route: ... target_agent=@X` prompt text) against `mode-registry.json` and compares it to any `mode=X` value declared in the dispatch prompt (Check 1). It also tracks per-session, per-target-agent dispatch counts for command-owned loop executors, exempting command-driven iterations, and flags non-command-driven repeats (Check 2). Default is mutate-and-warn for both; `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` / `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` independently switch each check to fail-closed (throws, blocking the dispatch — confirmed live against the installed OpenCode host). Fails open on its own internal errors. A separate `event` hook, throttled to once per hour on `session.created`, sweeps/archives/prunes the plugin's own `.loop-guard-state` per-session files and rotates `guard-warnings.log`, mirroring `opencode-goal.js`'s retention pattern.
 
 #### Source Files
 
-See [`validation/mk-deep-loop-guard.md`](../feature-catalog/validation/mk-deep-loop-guard.md) for full implementation and validation file listings.
+See [`validation/system-deep-loop-guard.md`](../feature-catalog/validation/system-deep-loop-guard.md) for full implementation and validation file listings.
 
 ---
 

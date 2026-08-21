@@ -109,7 +109,7 @@ class McpServer:
         env.setdefault("SPECKIT_PROGRESSIVE_DISCLOSURE", "false")
         env.setdefault("SPECKIT_FILE_WATCHER", "false")
         env.setdefault("MEMORY_DB_PATH", str(db_path(repo_root)))
-        env.setdefault("SPECKIT_IPC_SOCKET_DIR", f"/tmp/mk-spec-memory-bench-{uuid.uuid4().hex[:10]}")
+        env.setdefault("SPECKIT_IPC_SOCKET_DIR", f"/tmp/system-spec-memory-bench-{uuid.uuid4().hex[:10]}")
 
         self.repo_root = repo_root
         self.next_id = 1

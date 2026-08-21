@@ -10,13 +10,13 @@ version: 1.0.0.1
 
 # Spec Gate Runtime State
 
-> Runtime storage for spec-folder gate decisions managed by `mk-spec-gate.js`.
+> Runtime storage for spec-folder gate decisions managed by `system-spec-gate.js`.
 
 ---
 
 ## 1. OVERVIEW
 
-This folder stores machine-specific state for the [`mk-spec-gate.js`](../../plugins/mk-spec-gate.js) OpenCode plugin. The plugin is a transport adapter over the runtime-neutral [`spec-gate-core.mjs`](../system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs). The core defines this directory path, persists each session's Gate 3 status and applies the shared classification and mutation policy.
+This folder stores machine-specific state for the [`system-spec-gate.js`](../../plugins/system-spec-gate.js) OpenCode plugin. The plugin is a transport adapter over the runtime-neutral [`spec-gate-core.mjs`](../system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs). The core defines this directory path, persists each session's Gate 3 status and applies the shared classification and mutation policy.
 
 Gate 3 is the **SPEC FOLDER QUESTION** in the [`system-spec-kit` gate rules](../system-spec-kit/constitutional/gate-enforcement.md). It asks for an A-E choice before file mutation work. The persisted status lets the prompt-classification hook and the later tool-execution hook share one answer even though they run at different points in the OpenCode lifecycle.
 
@@ -40,11 +40,11 @@ The plugin and core process a session in this order:
 2. `classifyIntent()` checks an existing open state for an answer before it classifies the turn again. A recognized skip stores `skipped`. A valid spec-folder binding stores `satisfied`.
 3. A triggering turn without an accepted answer stores `open` with `askedAtMs` and returns the bounded A-E question. A triggering turn that already names a valid folder can satisfy the gate without another question.
 4. `evaluateMutation()` reads that cached status. It allows sessions marked `satisfied` or `skipped`, and it allows sessions whose gate never opened.
-5. An unanswered `open` gate produces advice for a relevant mutation. Only `write` and `edit` can be denied, denial requires `MK_SPEC_GATE_ENFORCE=1` and dispatched child sessions remain advisory.
+5. An unanswered `open` gate produces advice for a relevant mutation. Only `write` and `edit` can be denied, denial requires `SYSTEM_SPEC_GATE_ENFORCE=1` and dispatched child sessions remain advisory.
 
 This state exists because prompt classification and mutation interception do not receive the same input at the same time. A session file carries the user's Gate 3 decision from the chat hook to the tool hook without asking on every mutation. The warning log keeps bounded operational evidence for open-gate mutation events so operators can inspect advisory traffic and would-deny behavior before enabling enforcement.
 
-The plugin fails open. Missing prompts, unreadable state, invalid JSON and internal errors produce no new block. `MK_SPEC_GATE_DISABLED=1` makes the plugin inactive before it classifies prompts or evaluates mutations.
+The plugin fails open. Missing prompts, unreadable state, invalid JSON and internal errors produce no new block. `SYSTEM_SPEC_GATE_DISABLED=1` makes the plugin inactive before it classifies prompts or evaluates mutations.
 
 ---
 
@@ -81,11 +81,11 @@ For accepted prior answers, the core validates the folder against the local spec
 
 | Setting | Default | Purpose |
 |---|---|---|
-| `MK_SPEC_GATE_ACTIVE_RETENTION_DAYS` | `2` days | Controls when inactive gate state moves into `.archive/`. |
-| `MK_SPEC_GATE_ARCHIVE_RETENTION_DAYS` | `90` days | Controls archive and warning-log retention. |
-| `MK_SPEC_GATE_SWEEP_INTERVAL_MS` | `3600000` | Controls how often cleanup may run. |
-| `MK_SPEC_GATE_WARNING_LOG_MAX_BYTES` | `262144` bytes | Controls warning-log rotation. |
-| `MK_SPEC_GATE_DISABLED` | Disabled | Makes classification and enforcement inactive when set to `1`. |
+| `SYSTEM_SPEC_GATE_ACTIVE_RETENTION_DAYS` | `2` days | Controls when inactive gate state moves into `.archive/`. |
+| `SYSTEM_SPEC_GATE_ARCHIVE_RETENTION_DAYS` | `90` days | Controls archive and warning-log retention. |
+| `SYSTEM_SPEC_GATE_SWEEP_INTERVAL_MS` | `3600000` | Controls how often cleanup may run. |
+| `SYSTEM_SPEC_GATE_WARNING_LOG_MAX_BYTES` | `262144` bytes | Controls warning-log rotation. |
+| `SYSTEM_SPEC_GATE_DISABLED` | Disabled | Makes classification and enforcement inactive when set to `1`. |
 
 Rotation keeps the active warning log and one `.1` backup. Cleanup also removes stale temporary files from interrupted writes.
 
@@ -97,13 +97,13 @@ The runtime state supports Gate 3 enforcement but does not replace the documente
 
 `spec-gate-core.mjs` imports the compiled shared classifier from `shared/dist`. It does not call the Spec Kit Memory MCP daemon to classify a prompt or evaluate a mutation. Memory-save phrases still trigger Gate 3 because those workflows can write continuity artifacts, not because this state directory stores memory records.
 
-The core is runtime-neutral so another runtime adapter can use the same policy and persistence behavior. `mk-spec-gate.js` owns the OpenCode transport details, including session prompt retrieval, OpenCode event mapping and warning-log writes.
+The core is runtime-neutral so another runtime adapter can use the same policy and persistence behavior. `system-spec-gate.js` owns the OpenCode transport details, including session prompt retrieval, OpenCode event mapping and warning-log writes.
 
 ---
 
 ## 6. RELATED FILES
 
-- [`mk-spec-gate.js`](../../plugins/mk-spec-gate.js) connects OpenCode prompts, mutations and session events to the gate.
+- [`system-spec-gate.js`](../../plugins/system-spec-gate.js) connects OpenCode prompts, mutations and session events to the gate.
 - [`spec-gate-core.mjs`](../system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs) defines state persistence, event logging and cleanup.
 - [`gate-3-classifier.ts`](../system-spec-kit/shared/gate-3-classifier.ts) defines the authoritative Gate 3 trigger and binding contract.
 - [`gate-enforcement.md`](../system-spec-kit/constitutional/gate-enforcement.md) summarizes the human-facing gate rules and their relationship to the broader workflow.

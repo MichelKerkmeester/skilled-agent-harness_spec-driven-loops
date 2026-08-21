@@ -1,6 +1,6 @@
 ---
 title: "Daemon-backed spec-memory CLI surface"
-description: "Dual-stack CLI over the unchanged mk-spec-memory daemon: all 41 tools generated from TOOL_DEFINITIONS, a stable shim with dist-freshness and socket-path guards, the shared 0/1/64/69/75 exit taxonomy, warm-only no-spawn probing, and IPC auto-spawn through the launcher."
+description: "Dual-stack CLI over the unchanged system-spec-memory daemon: all 41 tools generated from TOOL_DEFINITIONS, a stable shim with dist-freshness and socket-path guards, the shared 0/1/64/69/75 exit taxonomy, warm-only no-spawn probing, and IPC auto-spawn through the launcher."
 trigger_phrases:
   - "spec-memory cli"
   - "daemon-backed cli surface"
@@ -16,7 +16,7 @@ version: 3.6.0.3
 
 ## 1. OVERVIEW
 
-The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon. The CLI generates its command map at runtime from `TOOL_DEFINITIONS`, so all 41 MCP tools are CLI commands with no generated manifest to drift. It validates argv-derived arguments with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` when the daemon probe fails, and renders `json`, `jsonl`, or text output.
+The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged system-spec-memory daemon. The CLI generates its command map at runtime from `TOOL_DEFINITIONS`, so all 41 MCP tools are CLI commands with no generated manifest to drift. It validates argv-derived arguments with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `system-spec-memory-launcher.cjs` when the daemon probe fails, and renders `json`, `jsonl`, or text output.
 
 ---
 
@@ -24,7 +24,7 @@ The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a sec
 
 ### Shim guards before dispatch
 
-`.opencode/bin/spec-memory.cjs` defaults unset `SPECKIT_IPC_SOCKET_DIR` to `/tmp/mk-spec-memory`, rejects socket paths over the Darwin `sun_path` limit, and refuses missing or stale `dist/spec-memory-cli.js` with exit 69 (a source file newer than dist trips the guard; `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` is the development override). A shim-level spawn failure exits 75.
+`.opencode/bin/spec-memory.cjs` defaults unset `SPECKIT_IPC_SOCKET_DIR` to `/tmp/system-spec-memory`, rejects socket paths over the Darwin `sun_path` limit, and refuses missing or stale `dist/spec-memory-cli.js` with exit 69 (a source file newer than dist trips the guard; `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` is the development override). A shim-level spawn failure exits 75.
 
 ### Exit taxonomy shared by all three CLIs
 
@@ -50,7 +50,7 @@ The automation surface also supports `list-tools --compact` and `list-tools --na
 |---|---|---|
 | `.opencode/bin/spec-memory.cjs` | Script | Stable shim: socket-dir defaulting, Darwin socket-path guard, dist-freshness refusal (exit 69), spawn-failure mapping (exit 75) |
 | `mcp-server/spec-memory-cli.ts` | CLI entrypoint | Runtime command generation from `TOOL_DEFINITIONS`, Zod argv validation, IPC `tools/call` path, warm-only probe, exit taxonomy, output rendering |
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Auto-spawn target when the daemon probe fails outside warm-only mode |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | Script | Auto-spawn target when the daemon probe fails outside warm-only mode |
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | Sibling CLI entrypoint | Compact/names-only list-tools and generated completion for the skill-advisor CLI |
 
 ### Validation And Tests

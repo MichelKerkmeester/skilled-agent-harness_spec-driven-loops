@@ -18,9 +18,9 @@ trigger_phrases:
 
 Current state:
 
-- Spec-memory plugin bridge lives here as `mk-spec-memory-bridge.mjs` and routes through the daemon-backed `spec-memory.cjs` CLI.
+- Spec-memory plugin bridge lives here as `system-spec-memory-bridge.mjs` and routes through the daemon-backed `spec-memory.cjs` CLI.
 - Message-shape helpers for safe synthetic text-part insertion live here.
-- The goal plugin `.opencode/plugins/mk-goal.js` is intentionally absent from this directory because it is a standalone local OpenCode plugin, not a daemon bridge. Its operator contract lives in `../../../../hooks/goal/goal-plugin.md`.
+- The goal plugin `.opencode/plugins/opencode-goal.js` is intentionally absent from this directory because it is a standalone local OpenCode plugin, not a daemon bridge. Its operator contract lives in `../../../../hooks/goal/goal-plugin.md`.
 
 ---
 
@@ -28,7 +28,7 @@ Current state:
 
 ```text
 plugin-bridges/
-+-- mk-spec-memory-bridge.mjs              # Calls the spec-memory CLI front door for plugin payloads
++-- system-spec-memory-bridge.mjs              # Calls the spec-memory CLI front door for plugin payloads
 +-- spec-kit-opencode-message-schema.mjs    # Validates OpenCode message parts and markers
 `-- README.md
 ```
@@ -40,7 +40,7 @@ plugin-bridges/
 
 | File | Responsibility |
 |---|---|
-| `mk-spec-memory-bridge.mjs` | Reads bridge input from stdin, calls `.opencode/bin/spec-memory.cjs` over the warm daemon CLI path, and emits one JSON response. |
+| `system-spec-memory-bridge.mjs` | Reads bridge input from stdin, calls `.opencode/bin/spec-memory.cjs` over the warm daemon CLI path, and emits one JSON response. |
 | `spec-kit-opencode-message-schema.mjs` | Defines message-anchor checks, synthetic text-part creation and unsafe part detection. |
 
 ---
@@ -52,7 +52,7 @@ plugin-bridges/
 | Imports | May import built runtime files from `mcp-server/dist/` and local schema files needed by plugin bridges. |
 | Exports | Message schema helpers export functions for plugin code. Executable bridges communicate through stdin, stdout and stderr. |
 | Ownership | Owns subprocess and plugin-adapter glue. Core MCP behavior stays in handlers, session libraries and advisor compat modules. |
-| Non-bridge plugins | Local plugin state machines such as `mk-goal.js` stay in `.opencode/plugins/` and are documented by hook references rather than bridge scripts. |
+| Non-bridge plugins | Local plugin state machines such as `opencode-goal.js` stay in `.opencode/plugins/` and are documented by hook references rather than bridge scripts. |
 
 ---
 

@@ -15,7 +15,7 @@ import { runStep115AutoIndex } from '../core/workflow';
 // ───────────────────────────────────────────────────────────────────
 
 describe('runStep115AutoIndex daemon guard', () => {
-  it('skips the direct indexing runtime when mk-spec-memory is alive', async () => {
+  it('skips the direct indexing runtime when system-spec-memory is alive', async () => {
     const importIndexingApi = vi.fn(async () => ({
       initializeIndexingRuntime: vi.fn(),
       reindexSpecDocs: vi.fn(),

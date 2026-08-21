@@ -31,7 +31,7 @@ const compiledRouteScript = resolve(repoRoot, '.opencode/bin/compiled-route.cjs'
 
 // Pinned force-local regime — must precede the scorer import so the scorer
 // picks it up at module load, matching the baseline capture exactly.
-process.env.MK_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'golden-prompts-'));
+process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'golden-prompts-'));
 process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
 process.env.VITEST = 'true';

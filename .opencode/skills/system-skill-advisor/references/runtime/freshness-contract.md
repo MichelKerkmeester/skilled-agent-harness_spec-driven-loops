@@ -148,7 +148,7 @@ The daemon is NOT responsible for:
 
 | Failure | Symptom | Recovery |
 |---|---|---|
-| Daemon dies | `advisor_status.daemon = "down"`, trustState may stay `live` until next file change but freshness detection lags | Restart the MCP server (`mk_skill_advisor` restarts the daemon on boot) |
+| Daemon dies | `advisor_status.daemon = "down"`, trustState may stay `live` until next file change but freshness detection lags | Restart the MCP server (`system_skill_advisor` restarts the daemon on boot) |
 | Lease contention | `advisor_rebuild` fails with lease-busy error | Wait for current rebuild to finish, then retry. If stuck, kill the process holding the lease |
 | SQLite corruption | `advisor_status.trustState = "absent"` even after rebuild attempts | Delete `mcp-server/database/skill-graph.sqlite{,-wal,-shm}`, run `advisor_rebuild --force` |
 | File watcher overflow (too many files) | Daemon stops detecting changes | Restart MCP server. Long-term: prune `.opencode/skills/` excludes |

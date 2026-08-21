@@ -37,7 +37,7 @@ This scenario verifies that the five session-lifecycle bridges (`session-start-c
 ### Recommended Orchestration Process
 
 1. Write a temporary probe extension logging every relevant event to a file; never commit it.
-2. Run one authenticated print-mode session whose bash command matches a dispatch shape (`opencode run` or `claude -p` as harmless `echo` text), with stdin closed and a timeout above 240s (a down `mk-spec-memory` daemon adds ~49s of MCP retries to startup).
+2. Run one authenticated print-mode session whose bash command matches a dispatch shape (`opencode run` or `claude -p` as harmless `echo` text), with stdin closed and a timeout above 240s (a down `system-spec-memory` daemon adds ~49s of MCP retries to startup).
 3. Read the probe log, the audit-log delta, and the spawn result before interpreting anything.
 4. Delete the probe and re-run the plain offline smoke check.
 

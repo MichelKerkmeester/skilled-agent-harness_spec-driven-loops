@@ -16,9 +16,9 @@ const PROMPT_TIME_ENV_KEYS = [
   'OPENCODE_PROMPT_TIME',
   'CLAUDE_CODE_PROMPT_TIME',
   'SPECKIT_CLI_PROMPT_TIME',
-  'MK_SKILL_ADVISOR_CLI_PROMPT_TIME',
+  'SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME',
   'SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME',
-  'MK_SKILL_ADVISOR_CLI_TRUSTED',
+  'SYSTEM_SKILL_ADVISOR_CLI_TRUSTED',
   'SPECKIT_SKILL_ADVISOR_CLI_TRUSTED',
 ];
 
@@ -81,7 +81,7 @@ describe('skill-advisor CLI prompt-time mutation block', () => {
   it('blocks skill_graph_scan at prompt-time via OPENCODE_PROMPT_TIME=1 even with trusted env', () => {
     clearPromptTimeEnv();
     process.env.OPENCODE_PROMPT_TIME = '1';
-    process.env.MK_SKILL_ADVISOR_CLI_TRUSTED = '1';
+    process.env.SYSTEM_SKILL_ADVISOR_CLI_TRUSTED = '1';
     const parsed = parseCliArgs(['skill_graph_scan']);
     expect(parsed.promptTime).toBe(true);
     expect(parsed.trusted).toBe(true);

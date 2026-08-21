@@ -11,7 +11,7 @@
 //
 // ISOLATION: a per-test mkdtemp directory holds the DB and the checkpoints/ tree.
 // The injectable `reopen` hook does an in-process close/swap/open against that
-// temp DB, so nothing touches the production DB at ~/.mk-spec-memory or the live
+// temp DB, so nothing touches the production DB at ~/.system-spec-memory or the live
 // daemon socket. afterEach rm -rf's the temp tree.
 
 import * as fs from 'fs';

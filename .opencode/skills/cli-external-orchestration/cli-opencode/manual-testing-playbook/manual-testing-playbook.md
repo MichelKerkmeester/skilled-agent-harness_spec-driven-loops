@@ -786,17 +786,17 @@ Expected signals: Layer 1 trips. SKILL.md `has_parallel_session_keywords` is the
 
 ## 16. GOAL HOOK (`CO-039`)
 
-This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `mk-goal` plugin (`.opencode/plugins/mk-goal.js`) directly in-process: the `/goal-opencode` action set, two-session isolation, fixed SHA-256 state keys, long-session persistence, validated lazy migration from the earlier hex layout, native token accounting, and `experimental.chat.system.transform` injection. `mk-goal` remains separate from the runtime-neutral Pi/Cursor core validated as `CE-P03` in the hub playbook.
+This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `opencode-goal` plugin (`.opencode/plugins/opencode-goal.js`) directly in-process: the `/goal-opencode` action set, two-session isolation, fixed SHA-256 state keys, long-session persistence, validated lazy migration from the earlier hex layout, native token accounting, and `experimental.chat.system.transform` injection. `opencode-goal` remains separate from the runtime-neutral Pi/Cursor core validated as `CE-P03` in the hub playbook.
 
-### CO-039 | Goal hook native mk-goal validation
+### CO-039 | Goal hook native opencode-goal validation
 
 #### Description
 
-Verify the native `mk-goal` plugin's actions, opaque persistence, validated compatibility migration, session isolation, native token accounting, and passive `[active_goal]` injection against scratch state.
+Verify the native `opencode-goal` plugin's actions, opaque persistence, validated compatibility migration, session isolation, native token accounting, and passive `[active_goal]` injection against scratch state.
 
 #### Scenario Contract
 
-Prompt summary: As an OpenCode plugin validator, exercise the shipped mk-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior.
+Prompt summary: As an OpenCode plugin validator, exercise the shipped opencode-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior.
 
 Expected signals: `set` returns `mutation=created` with a populated RICCE `goal_prompt`; every new state basename is 64 lowercase hex characters plus `.json`; a 140-character id persists; a valid legacy file migrates only after embedded-session validation; A/B state remains isolated; native tokens total exactly with `usage_source=opencode-native-tokens`; one matching injection block appears; every disabled action fails closed; and all seven suites pass 125/125. A live headless `opencode run` attempt remains a documented SKIP, not a plugin failure.
 
@@ -885,4 +885,4 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### GOAL HOOK
 
-- CO-039: [Goal hook native mk-goal validation](../manual-testing-playbook/goal-hook/goal-hook.md)
+- CO-039: [Goal hook native opencode-goal validation](../manual-testing-playbook/goal-hook/goal-hook.md)

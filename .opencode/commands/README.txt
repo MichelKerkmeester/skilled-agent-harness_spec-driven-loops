@@ -50,7 +50,7 @@ Commands are organized into six groups plus root-level utilities:
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
 | **root** | `commands/` | 2 | Standalone `/agent-router` and `/goal-opencode` utilities |
 
-Standalone commands live at the root level: `agent-router.md` routes requests to AI systems, and `goal-opencode.md` manages the passive session goal via the `mk-goal` plugin. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
+Standalone commands live at the root level: `agent-router.md` routes requests to AI systems, and `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
 
 <!-- /ANCHOR:overview -->
 
@@ -73,7 +73,7 @@ This file is descriptive only. The executable contract for any workflow lives in
 ```
 command/
 ├── agent-router.md           # Route requests to AI systems
-├── goal-opencode.md          # Session-goal router for the mk-goal plugin (OpenCode only)
+├── goal-opencode.md          # Session-goal router for the opencode-goal plugin (OpenCode only)
 ├── prompt/                   # Prompt engineering command group
 │   └── improve.md            # Canonical prompt improvement command (/prompt:improve)
 ├── create/                   # Component creation commands
@@ -189,7 +189,7 @@ Root commands have no group prefix.
 |---------|------------|---------|
 | Agent Router | `/agent-router <request>` | Route a request through intelligent AI system selection |
 | Prompt | `/prompt:improve <prompt_or_topic> [:auto\|:confirm]` | Create or improve prompts using frameworks, DEPTH thinking, and CLEAR scoring |
-| Goal (OpenCode) | `/goal-opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `mk-goal` plugin |
+| Goal (OpenCode) | `/goal-opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `opencode-goal` plugin |
 
 ### Memory Commands
 

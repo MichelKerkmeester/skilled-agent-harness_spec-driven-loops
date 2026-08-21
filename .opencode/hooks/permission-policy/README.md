@@ -16,7 +16,7 @@ contextType: "reference"
 
 Index of the permission-policy adapter (real code in `system-spec-kit/mcp-server/hooks/devin/`, symlinked here). It responds to Devin's `permission-request` event with an advisory policy. This concern is **Devin-only by design**: `permission-request` is the only dedicated approval-hook event any supported runtime exposes — Claude and Codex influence permissions through `PreToolUse` decisions rather than a separate event, so they carry no permission-policy adapter (see the hub coverage matrix).
 
-Honors the `permission-policy` kill-switch (`isHookEnabled`; `MK_PERMISSION_POLICY_DISABLED` or the master `MK_HOOKS_DISABLED`), default-on.
+Honors the `permission-policy` kill-switch (`isHookEnabled`; `SYSTEM_PERMISSION_POLICY_DISABLED` or the master `SYSTEM_HOOKS_DISABLED`), default-on.
 
 ## 2. KEY FILES
 

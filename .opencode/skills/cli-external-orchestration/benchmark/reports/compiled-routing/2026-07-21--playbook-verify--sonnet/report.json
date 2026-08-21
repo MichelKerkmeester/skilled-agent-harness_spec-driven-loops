@@ -132,7 +132,7 @@
           { "step": "core unit-test suite (npx vitest run, scoped to canonical file)", "result": "38/38 PASS", "matchesPriorEvidence": true },
           { "step": "live Claude PostToolUse(Bash) hook adapter, stdin, api-key secret", "result": "exit 0; JSONL line written; --api-key value fully replaced with [REDACTED]", "matchesPriorEvidence": true },
           { "step": "live OpenCode plugin tool.execute.after hook, in-process, bearer secret", "result": "invoked without throwing; JSONL line written; Authorization: Bearer value fully replaced with [REDACTED]", "matchesPriorEvidence": true },
-          { "step": "kill-switch (MK_CLI_DISPATCH_AUDIT_DISABLED=1) on a real dispatch-shaped payload", "result": "exit 0; no log file created", "matchesPriorEvidence": true },
+          { "step": "kill-switch (CLI_DISPATCH_AUDIT_DISABLED=1) on a real dispatch-shaped payload", "result": "exit 0; no log file created", "matchesPriorEvidence": true },
           { "step": "non-dispatch fast-exit (git status payload)", "result": "exit 0; no log file created", "matchesPriorEvidence": true }
         ],
         "bonus": "The sibling PreToolUse preflight-lint hook fired live, unprompted, in this very agent session against the literal 'opencode run'/'claude -p' substrings embedded in the test payloads — the same live corroboration of the shared DISPATCH_SHAPES registry the doc's own evidence section documents."
@@ -157,7 +157,7 @@
       "functionalReverification": {
         "scope": "partial — 3 of 5 documented steps re-executed live today against $HOME/.codex-hook-fixtures/ (a dedicated non-repo fixtures path, matching the doc's own recipe); steps 4-5 deliberately not re-run",
         "steps": [
-          { "step": "spec-gate-enforce deny path (open gate + MK_SPEC_GATE_ENFORCE=1 + apply_patch on a non-exempt file)", "result": "real permissionDecision:\"deny\" envelope, exit 0", "matchesPriorEvidence": true },
+          { "step": "spec-gate-enforce deny path (open gate + SYSTEM_SPEC_GATE_ENFORCE=1 + apply_patch on a non-exempt file)", "result": "real permissionDecision:\"deny\" envelope, exit 0", "matchesPriorEvidence": true },
           { "step": "spec-gate-enforce fail-open (empty + malformed stdin)", "result": "both exit 0, no output", "matchesPriorEvidence": true },
           { "step": "spec-gate-classify advisory (mutation-intent prompt)", "result": "Gate-3 A-E additionalContext envelope emitted, exit 0", "matchesPriorEvidence": true },
           { "step": "dispatch-audit records a codex exec -p dispatch shape", "result": "one JSONL line, runtime:\"codex\", skill:\"cli-codex\"", "matchesPriorEvidence": true },

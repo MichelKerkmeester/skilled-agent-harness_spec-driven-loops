@@ -42,7 +42,7 @@ constitutional/
 +-- finding-is-a-hypothesis.md                    # Confirm findings against real code before acting
 +-- gate-enforcement.md                           # Gate edge cases: compaction recovery + continuation validation
 +-- gate-tool-routing.md                          # Search and retrieval routing decision tree
-+-- goal-prompting-runtime-specific.md            # Claude Code native /goal vs OpenCode mk-goal plugin, by runtime
++-- goal-prompting-runtime-specific.md            # Claude Code native /goal vs OpenCode opencode-goal plugin, by runtime
 +-- main-branch-direct-push.md                    # Owner's AIs push directly to main; the bypass is authorized
 +-- memory-system-spec-kit-only.md                # Use Spec Kit Memory only; never write Claude native memory unprompted
 +-- post-implementation-deep-review.md            # Mandatory deep-review after substantive ships
@@ -106,7 +106,7 @@ constitutional/
 +-- finding-is-a-hypothesis.md                    # Confirm findings against real code before acting
 +-- gate-enforcement.md                           # Gate edge cases: compaction recovery + continuation validation
 +-- gate-tool-routing.md                          # Search and retrieval routing decision tree
-+-- goal-prompting-runtime-specific.md            # Claude Code native /goal vs OpenCode mk-goal plugin, by runtime
++-- goal-prompting-runtime-specific.md            # Claude Code native /goal vs OpenCode opencode-goal plugin, by runtime
 +-- main-branch-direct-push.md                    # Owner's AIs push directly to main; the bypass is authorized
 +-- memory-system-spec-kit-only.md                # Use Spec Kit Memory only; never write Claude native memory unprompted
 +-- post-implementation-deep-review.md            # Mandatory deep-review after substantive ships
@@ -137,7 +137,7 @@ Do not document `.DS_Store` or other local machine artifacts as part of the pack
 | `finding-is-a-hypothesis.md` | Treat every finding as a hypothesis until it is verified against the real code or symptom. |
 | `gate-enforcement.md` | Gate edge cases: compaction recovery and continuation validation (full gate definitions in AGENTS.md §2). |
 | `gate-tool-routing.md` | Search and retrieval routing across memory, code graph, and the FTS fallback chain. |
-| `goal-prompting-runtime-specific.md` | Use each runtime's own goal-prompting surface: Claude Code native `/goal`, OpenCode's `mk-goal` plugin. Never cross-wire the two. |
+| `goal-prompting-runtime-specific.md` | Use each runtime's own goal-prompting surface: Claude Code native `/goal`, OpenCode's `opencode-goal` plugin. Never cross-wire the two. |
 | `main-branch-direct-push.md` | Owner's AIs push directly to `main`; the protected-branch bypass is expected and authorized. |
 | `memory-system-spec-kit-only.md` | Use Spec Kit Memory for all saves; never write Claude native memory unless explicitly asked. |
 | `post-implementation-deep-review.md` | Run a deep-review after every substantive implementation phase or when uncertain about shipped code. |

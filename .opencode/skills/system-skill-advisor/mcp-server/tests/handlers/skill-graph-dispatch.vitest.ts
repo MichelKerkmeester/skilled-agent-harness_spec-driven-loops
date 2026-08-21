@@ -29,7 +29,7 @@ vi.mock('../../handlers/index.js', () => ({
 
 const { dispatchTool } = await import('../../advisor-server.js');
 
-describe('mk_skill_advisor dispatch', () => {
+describe('system_skill_advisor dispatch', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
