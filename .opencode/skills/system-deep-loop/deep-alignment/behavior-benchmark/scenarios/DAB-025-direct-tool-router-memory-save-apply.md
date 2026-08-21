@@ -70,5 +70,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `save plan` | `.opencode/commands/memory/save.md` | `sha256:142aa508aea41f57e5b2ee0aee6c31107c988aab98c7ce26ba6c0291849ef382` |
-| `memory_index_scan` | `.opencode/commands/memory/save.md` | `sha256:142aa508aea41f57e5b2ee0aee6c31107c988aab98c7ce26ba6c0291849ef382` |
+| `save plan` | `.opencode/commands/memory/save.md` | `sha256:bd13288ab374047539e9101fec17bedd1c48b3231581b99b6e5d36cd6ddca93b` |
+| `memory_index_scan` | `.opencode/commands/memory/save.md` | `sha256:bd13288ab374047539e9101fec17bedd1c48b3231581b99b6e5d36cd6ddca93b` |

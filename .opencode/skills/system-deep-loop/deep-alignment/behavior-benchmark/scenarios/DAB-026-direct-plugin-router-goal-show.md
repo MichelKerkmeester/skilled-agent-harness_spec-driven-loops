@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `STATUS=OK ACTION=` | `.opencode/commands/goal-opencode.md` | `sha256:f96e0c06fcc442e80a300bd1e07eaecca7f93c2c10a494eb3437554c904385dd` |
-| `remaining_auto_turns` | `.opencode/commands/goal-opencode.md` | `sha256:f96e0c06fcc442e80a300bd1e07eaecca7f93c2c10a494eb3437554c904385dd` |
+| `STATUS=OK ACTION=` | `.opencode/commands/goal-opencode.md` | `sha256:e6410df2f680255bb1e7e55938db5c0819bb2a71dfd0a6be8e77d93ca9394156` |
+| `remaining_auto_turns` | `.opencode/commands/goal-opencode.md` | `sha256:e6410df2f680255bb1e7e55938db5c0819bb2a71dfd0a6be8e77d93ca9394156` |
