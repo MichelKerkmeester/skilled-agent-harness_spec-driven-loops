@@ -1,0 +1,28 @@
+{
+  "level": 1,
+  "specFolder": "sk-git/026-worktree-hygiene-and-relocation",
+  "description": "The repo carried 24 git worktrees nested inside the primary checkout at",
+  "keywords": [
+    "repo",
+    "carried",
+    "git",
+    "worktrees",
+    "nested",
+    "inside",
+    "primary",
+    "checkout"
+  ],
+  "lastUpdated": "2026-08-21T14:16:44.595Z",
+  "specId": "026",
+  "folderSlug": "worktree-hygiene-and-relocation",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "21-08-26_14-13__configurable-base-defaults-to.md",
+    "21-08-26_14-26__configurable-base-defaults-to.md",
+    "21-08-26_14-28__configurable-base-defaults-to.md",
+    "21-08-26_15-16__configurable-base-defaults-to.md"
+  ]
+}

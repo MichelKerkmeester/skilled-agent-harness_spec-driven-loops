@@ -59,7 +59,7 @@ Run from any location inside the clone. All subcommands operate on the shared co
 | `validate-slug <slug>` | CLI | Exit 0 when the slug is lowercase kebab |
 | `validate-nnn <nnn>` | CLI | Exit 0 when the number is 3-digit 001..999 (base-10, not octal) |
 | `validate-branch <branch>` | CLI | Exit 0 when the branch matches the numbered grammar (`main`, `skilled/v*`, `worktrees/NNN-slug`, `branches/NNN-slug`, `backup/*`, `work/*`) |
-| `validate-pair <branch> <dir>` | CLI | Exit 0 when a `worktrees/NNN-slug` branch and `.worktrees/NNN-slug` directory agree |
+| `validate-pair <branch> <dir>` | CLI | Exit 0 when a `worktrees/NNN-slug` branch and a `{base}/NNN-slug` directory agree. `{base}` is the resolved worktree base (`speckit.worktreeBase` / `$SPECKIT_WORKTREE_BASE`, default `.worktrees`); both the configured base and the legacy `.worktrees` layout validate |
 | `validate-backup <branch>` | CLI | Exit 0 when the branch is a `backup/*` safety ref |
 | `validate-remote-allowlist <branch>` | CLI | Check the remote-push-permission allowlist |
 
