@@ -63,11 +63,15 @@ try {
 }
 
 // Now the forward flip from the state it actually demands.
+// The writer must be one of the two the registry's reader accepts ('legacy'
+// or 'dark'); any other value is persisted by compareAndSwap yet refused by
+// every later read, so this probe would print a refusal for a flip that
+// actually succeeded. 'dark' is the writer every real call site selects.
 try {
   const cur = reg.read(mode);
   reg.compareAndSwap({
     mode, expectedState: 'cutover_ready', expectedEpoch: cur.epoch,
-    nextSelectedWriter: 'spine', candidateSha: 'a'.repeat(64),
+    nextSelectedWriter: 'dark', candidateSha: 'a'.repeat(64),
     policyVersion: 1, cutoverCertificateDigest: 'b'.repeat(64),
     lastTransitionDigest: 'c'.repeat(64), at: new Date().toISOString(),
   });

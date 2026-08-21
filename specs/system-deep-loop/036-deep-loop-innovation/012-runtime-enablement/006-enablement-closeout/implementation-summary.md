@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Enablement Closeout"
-description: "The closeout sweep ran and found the epic's blocking defect by measurement: the forward authority flip is structurally unreachable because no production writer ever persists the cutover_ready state it requires."
+description: "The closeout sweep ran, and measurement refuted its own first conclusion: the forward authority flip fires end to end, and what actually blocks production is that the per-mode step calls neither registry method."
 trigger_phrases:
   - "enablement closeout summary"
   - "claim sweep results"
@@ -18,13 +18,13 @@ _memory:
     blockers:
       - "The per-mode step never calls prepareCutover or compareAndSwap, so no mode flips in production"
       - "Catalog and playbook tasks require an enabled runtime that does not exist"
-      - "compareAndSwap persists a selectedWriter its own reader rejects, bricking the record"
+      - "Catalog and playbook tasks cannot be closed from a runtime that has never flipped"
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/claim-sweep.md"
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/probe-reachability.mjs"
     completion_pct: 65
     open_questions:
-      - "Should compareAndSwap validate nextSelectedWriter against the states its reader accepts?"
+      - "Should compareAndSwap validate nextSelectedWriter, as its own replay path already does?"
     answered_questions:
       - "Why every downstream phase blocked on the same root cause"
       - "Why the drills and parity harnesses stayed green while production could not move"
@@ -184,12 +184,23 @@ every mutator against a live registry. It drove one: it attempted the flip from 
 which correctly refuses because the starting state is wrong, and stopped there. `prepareCutover` was
 sitting in the public surface it printed. The probe now runs the full sequence.
 
-**A writer value the reader rejects is accepted and persisted.** `compareAndSwap` was given
-`nextSelectedWriter: 'spine'` and wrote it. `isValidAuthorityRecord` accepts only `legacy` or `dark`,
-so every subsequent `read()` throws `RECORD_MALFORMED` and the record is unusable. The same sequence
-with `dark` succeeds and reads back cleanly. The writer accepting what its own reader refuses is worth
-closing on a path that is irreversible by design: a mistyped argument brands the record permanently,
-and the failure surfaces only on the next read.
+**A writer value the reader rejects is accepted and persisted — but not from production today.**
+`compareAndSwap` was given `nextSelectedWriter: 'spine'` and wrote it. `isValidAuthorityRecord`
+accepts only `legacy` or `dark`, so every subsequent `read()` throws `RECORD_MALFORMED` and the
+record is unusable. The same sequence with `dark` succeeds and reads back cleanly.
+
+That finding was first recorded here as a production-bricking blocker, and adversarial review refuted
+that reading. `nextSelectedWriter` is declared `AuthorityRoute`, which is the union of exactly those
+two values, so a typed caller cannot reach it; the only production caller hardcodes `'dark' as const`.
+It is reachable only by calling the registry directly from untyped code. This is a defence-in-depth
+gap, not an active defect, and it is demoted accordingly.
+
+What keeps it worth closing is where the gap sits. The predicate that rejects `'spine'` already exists
+in the same file and is applied to the pending transition replayed from disk during crash recovery —
+so a value the recovery path refuses is accepted on the live path that writes the record. And the
+enablement CLI, the caller this epic is about to extend to perform the flip, is a `.cjs` file, which
+is precisely the untyped caller the type argument does not protect. On a path that is irreversible by
+design, a mistyped argument brands the record permanently and surfaces only on the next read.
 
 **What actually blocks production is narrower than this phase recorded.** Both registry methods work.
 The per-mode enablement step calls neither. That is a missing call, not a missing capability.
