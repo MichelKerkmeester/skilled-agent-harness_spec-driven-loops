@@ -9,6 +9,13 @@ trigger_phrases:
   - "daemon rename"
 importance_tier: "high"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-hook-library-mk-rename"
+    last_updated_at: "2026-08-21T09:16:30Z"
+    last_updated_by: "claude"
+    recent_action: "Regenerated packet metadata to pass strict validate"
+    next_safe_action: "Complete daemon cutover on next fresh session"
 ---
 # Feature Specification: Hook Library `mk-` Prefix Rename
 
@@ -49,7 +56,7 @@ post-merge (sk-git large-reorg rule).
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planning |
+| **Status** | Complete |
 | **Created** | 2026-08-20 |
 | **Branch** | `worktrees/024-hook-library-mk-rename` |
 | **Worktree** | `.worktrees/024-hook-library-mk-rename` |
@@ -192,8 +199,30 @@ files (the reference edits are enumerated per phase in `tasks.md`):
 <!-- /ANCHOR:edge-cases -->
 ---
 
+<!-- ANCHOR:complexity -->
+## 9. COMPLEXITY ASSESSMENT
+
+The complexity is driven by **breadth, not depth**. No hook, daemon, or tool
+changes behavior — every edit is a name substitution — so per-edit risk is low.
+The cost lives in the number and spread of the surfaces.
+
+| Dimension | Assessment | Driver |
+|-----------|------------|--------|
+| Logic complexity | Low | Pure rename; same inputs → same outputs (NFR-R01) |
+| Surface breadth | High | 6 runtimes, ~2,435 references, ~40 file renames |
+| Coupling | Medium | Server-key rename cascades into `mcp__…__` namespaces across ~96 agent files |
+| Reversibility | High (Phases 1–4/6) / Medium (Phase 5) | `git revert` restores names; only the live-daemon cutover needs a restart |
+| Blast radius | Concentrated in Phase 5 | Live sockets + agent allowlists; isolated and gated behind operator go-ahead |
+
+**Overall**: medium complexity from coordination, not algorithmic difficulty. The
+mitigation is coordinated single-surface waves + a frozen `name-mapping.md`, so the
+tree is never left with a dangling reference between phases.
+
+<!-- /ANCHOR:complexity -->
+---
+
 <!-- ANCHOR:risk-matrix -->
-## 9. RISK MATRIX
+## 10. RISK MATRIX
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
@@ -207,13 +236,51 @@ files (the reference edits are enumerated per phase in `tasks.md`):
 <!-- /ANCHOR:risk-matrix -->
 ---
 
-<!-- ANCHOR:open-questions -->
-## 10. OPEN QUESTIONS
+<!-- ANCHOR:user-stories -->
+## 11. USER STORIES
+
+Each story states the acceptance behavior in Given / When / Then form.
+
+- **US-001 — Operator config survives the rename**
+  **Given** an operator's config sets the old `MK_SPECKIT_COMPLETION_DISABLED` flag,
+  **When** a hook loads after the rename,
+  **Then** `env-aliases.cjs` forward-maps it to the new canonical name and the hook still disables — no config break (REQ-005).
+
+- **US-002 — Agent tool calls resolve after the daemon rename**
+  **Given** an agent definition references `mcp__mk_spec_memory__*`,
+  **When** Phase 5 renames the daemon server key,
+  **Then** the agent allowlist is updated to `mcp__system_spec_memory__*` in lockstep so the tool call resolves (REQ-008).
+
+- **US-003 — A reader can name a hook's owner at a glance**
+  **Given** a reader opens `.opencode/plugins/`,
+  **When** they scan the plugin filenames,
+  **Then** each name states its owning skill or concern (e.g. `sk-code-post-edit-quality`) instead of the opaque `mk-` prefix (NFR-M01).
+
+- **US-004 — Internal servers stay exempt from the route-guard nudge**
+  **Given** the mcp-route-guard evaluates a native call to an internal server,
+  **When** the server token now carries the `system_` prefix,
+  **Then** `isInternalServerToken` recognizes it and suppresses the routing advisory (NFR-R01).
+
+- **US-005 — The grep gate proves the rename is complete**
+  **Given** a maintainer runs `verify-no-mk.sh all`,
+  **When** the rename has landed,
+  **Then** it reports 0 canonical `mk-`/`mk_` tokens across both file content and symlink name/target (SC-001).
+
+- **US-006 — The renamed daemon binds within the socket-path limit**
+  **Given** the spec-memory daemon starts after cutover,
+  **When** it binds its socket at `/tmp/system-spec-memory`,
+  **Then** the path stays under the 104-char `sun_path` limit and the MCP handshake succeeds (REQ-010).
+
+<!-- /ANCHOR:user-stories -->
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
 
 - **Env-var rename (ADR-004)**: rename `MK_*` → new prefixes with permanent aliases, or keep `MK_` (unique, collision-safe namespace) untouched? **Recommendation: rename with permanent aliases; operator may veto before Phase 4 — non-blocking for Phases 1–3, 5.**
 - **Daemon cutover window**: perform the daemon rename (Phase 5) in this packet, or split into a follow-up once Phases 1–4 land? **Recommendation: gate Phase 5 behind an explicit operator go-ahead at cutover time.**
 
-<!-- /ANCHOR:open-questions -->
+<!-- /ANCHOR:questions -->
 ---
 
 <!-- ANCHOR:related-docs -->

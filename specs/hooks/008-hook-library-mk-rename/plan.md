@@ -7,6 +7,13 @@ trigger_phrases:
   - "daemon rename plan"
 importance_tier: "high"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-hook-library-mk-rename"
+    last_updated_at: "2026-08-21T09:16:30Z"
+    last_updated_by: "claude"
+    recent_action: "Regenerated packet metadata to pass strict validate"
+    next_safe_action: "Complete daemon cutover on next fresh session"
 ---
 # Implementation Plan: Hook Library `mk-` Prefix Rename
 
@@ -240,3 +247,61 @@ See `decision-record.md`:
 | ADR-006 | Defer validate/generate/reindex to `main` | Bare worktree lacks deps (sk-git ALWAYS #8) |
 
 <!-- /ANCHOR:l3-adr-summary -->
+---
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+```
+                 ┌─────────────────────────┐
+                 │ Phase 1: inventory + map │  (source of truth: name-mapping.md)
+                 └────────────┬────────────┘
+                              │
+                 ┌────────────▼────────────┐
+                 │ Phase 2: plugins + tests │
+                 └────────────┬────────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        ▼                     ▼                     ▼
+┌───────────────┐   ┌──────────────────┐   ┌────────────────────┐
+│ Phase 3:      │   │ Phase 4: env      │   │ Phase 5: daemons   │
+│ cores+runtime │   │ layer (ADR-004)   │   │ (GATED, high-blast)│
+└───────┬───────┘   └────────┬─────────┘   └─────────┬──────────┘
+        └─────────────────────┼───────────────────────┘
+                              ▼
+                 ┌─────────────────────────┐
+                 │ Phase 6: docs + verify   │
+                 └─────────────────────────┘
+```
+
+Phases 3, 4, and 5 are mutually independent once Phase 2 lands; only Phase 6
+(final grep + validation) waits on all of them.
+
+<!-- /ANCHOR:dependency-graph -->
+---
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+The longest blocking chain is **Phase 1 → Phase 2 → Phase 5 → Phase 6**. Phase 5
+(the live-daemon cutover) is the critical, highest-blast leg: it renames server
+keys, launchers, bridges, sockets, and the `mcp__…__` namespaces every agent
+allowlist depends on, and it is gated behind an explicit operator go-ahead.
+Phases 3 and 4 run off the critical path and can complete in any order relative
+to Phase 5, so slipping them does not delay the merge as long as Phase 5 and the
+final verification stay on track.
+
+<!-- /ANCHOR:critical-path -->
+---
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Definition of reached | Gating check |
+|-----------|-----------------------|--------------|
+| **M1 — Map frozen** | `name-mapping.md` + `token-map.tsv` materialized; `verify-no-mk.sh` authored | grep-gate script runs against a negative control |
+| **M2 — Library renamed** | Phases 2–4 landed; plugins/tests/cores/env on new names | `verify-no-mk.sh 2` CLEAN; plugins parse |
+| **M3 — Daemons cut over** | Phase 5 landed; sockets/keys/namespaces renamed | fresh daemon binds `/tmp/system-*`; MCP handshake + one tool call |
+| **M4 — Packet green** | Docs swept; validation + metadata regenerated on `main` | `validate.sh --strict` Exit 0; no `specs/**` in diff |
+
+<!-- /ANCHOR:milestones -->
