@@ -202,6 +202,19 @@ enablement CLI, the caller this epic is about to extend to perform the flip, is 
 is precisely the untyped caller the type argument does not protect. On a path that is irreversible by
 design, a mistyped argument brands the record permanently and surfaces only on the next read.
 
-**What actually blocks production is narrower than this phase recorded.** Both registry methods work.
-The per-mode enablement step calls neither. That is a missing call, not a missing capability.
+**What actually blocks production is narrower than this phase recorded, but wider than a missing call.**
+Both registry methods work and the per-mode step calls neither, which is what this phase first
+concluded. Counting the callers shows that conclusion was still too kind.
+
+`AuthorityFlipCoordinator` has no production caller at all: every reference to `requestCutover`
+outside its own module is in one unit test. `buildCutoverCertificate` is referenced only by its own
+module and its barrel. The pilot's composition root exports one function, `admitCanonicalWrite`, and
+its own header says it is read-only and performs no authority mutation.
+
+So there are two different flips, and they are not variants of one task. Calling the registry
+directly is the two calls this phase proved; it also bypasses the gate, the certificate check, the
+transition event and the mode-order constraint — the entire safety margin. Going through the
+coordinator is the flip the plan describes, and it has never been composed in production, on top of
+a certificate that has no production producer. Which of those the enablement step should perform is
+an operator decision, not an implementation detail, because the transition is irreversible.
 <!-- /ANCHOR:limitations -->

@@ -117,7 +117,7 @@ times.
 |------------|-------|------|
 | `002-deep-research-enablement` | Predecessor | Supplies the proven per-mode procedure |
 | Projection manifest | Landed | Source of each mode's reader set |
-| `AuthorityFlipCoordinator` | Wired by the pilot | Serial constraint enforced by the coordinator itself |
+| `AuthorityFlipCoordinator` | NOT wired | Assumed wired by the pilot; it has no production caller, so the serial constraint it would enforce is unenforced |
 | Mode registry | Landed | Source of the canonical mode list |
 <!-- /ANCHOR:dependencies -->
 

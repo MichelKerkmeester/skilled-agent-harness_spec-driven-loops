@@ -14,11 +14,11 @@ _memory:
     last_updated_at: "2026-08-21T01:40:00Z"
     last_updated_by: "claude"
     recent_action: "Fixed the evidence gate that could never go green; rejected empty row sets"
-    next_safe_action: "Make the step perform the flip, or refuse explicitly for the work it does not perform"
+    next_safe_action: "Operator picks the flip path: registry direct, or compose the coordinator"
     blockers:
       - "The step still has no flip code: a passing gate returns ok, writing no authority record"
       - "A false completion persists: resume skips it, suppressing the next attempt"
-      - "The pilot has never completed a flip, so nothing is proven to parameterise"
+      - "AuthorityFlipCoordinator has no production caller, so there is no pilot procedure to reuse"
       - "deep-improvement-common has no working name on the append CLI"
       - "No production code writes an effect ledger, so every real mode still refuses at the gate"
     key_files:
@@ -220,6 +220,18 @@ code. This blocks the reader contracts against projected files,
 the independent read showing ledger authority, end-to-end resume, and the parity-gate-per-mode
 property — each is untested rather than satisfied. It equally blocks phases `004` through `006`,
 all of which presuppose a fleet that has flipped.
+
+**The procedure this phase was to parameterise was never composed.** The plan lists
+`AuthorityFlipCoordinator` as a dependency already "wired by the pilot", and builds the per-mode step
+on that. Counting callers refutes it: every reference to `requestCutover` outside its own module is in
+one unit test, `buildCutoverCertificate` is referenced only by its own module and its barrel, and the
+pilot's composition root exports one read-only function whose header states it performs no authority
+mutation. There is no pilot procedure to parameterise, so the step's remaining work is not the missing
+call it was recorded as. It is a choice between two flips with very different blast radii — the
+registry called directly, which works today and bypasses the gate, the certificate, the transition
+event and the mode-order constraint; or the coordinator, which is the flip the plan means and has
+never been composed in production, over a certificate with no production producer. That choice is
+escalated rather than made here, because the transition is irreversible by this epic's own policy.
 
 **One mode has no working name on the append path.** `--mode improvement` is denied by the frozen
 authority order, and `--mode deep-improvement-common` is refused by the adapter resolver — each
