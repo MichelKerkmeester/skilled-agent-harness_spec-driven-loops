@@ -354,7 +354,12 @@ test('the plugin writes nothing to stdout or stderr', async () => {
 
 test('an injected loader config projects the rewritten text through the real plugin', async () => {
   const dist = await import(distUrl);
-  const now = '2026-08-14T00:00:00.000Z';
+  // The record's capability evidence expires 7 days after this `now` (see
+  // CAPABILITY_EXPIRY_WINDOW_MS), and the real plugin checks freshness against
+  // the wall-clock at projection time. A static pin ages out of that window and
+  // silently flips this test to fail-open, so anchor `now` to the current clock
+  // to keep the evidence fresh whenever the suite runs.
+  const now = new Date().toISOString();
   const transport = async (request) => {
     const messages = request.body.messages;
     const user = messages.find((entry) => entry.role === 'user').content;
