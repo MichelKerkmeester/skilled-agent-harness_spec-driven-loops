@@ -76,8 +76,8 @@ function countingLedgerPort(
 function baseObservation(
   runDirectory: string,
   overrides: Partial<ObserveRestartFactsOptions> & {
-    readonly modeLedger: LedgerReadPort;
-    readonly effectLedger: LedgerReadPort;
+    readonly modeLedger: () => LedgerReadPort;
+    readonly effectLedger: () => LedgerReadPort;
   },
 ): ObserveRestartFactsOptions {
   return {
@@ -135,7 +135,7 @@ describe('buildObservedClassificationManifest', () => {
     // reached it would throw a classification error on the empty bytes.
     // Asserting the reader's refusal instead proves the builder was not.
     const result = buildObservedClassificationManifest({
-      observation: baseObservation(runDirectory, { modeLedger, effectLedger }),
+      observation: baseObservation(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
       rows: [{ rowId: CENSUS.rows[0].id, lifecycle: CENSUS.rows[0].lifecycle, mutability: CENSUS.rows[0].mutability }],
       classificationId: CLASSIFICATION_ID,
       classifiedAt: CLASSIFIED_AT,
@@ -168,7 +168,7 @@ describe('buildObservedClassificationManifest', () => {
     const requestedIds = requested.map((row) => row.rowId);
 
     const built = await buildObservedClassificationManifest({
-      observation: baseObservation(runDirectory, { modeLedger, effectLedger }),
+      observation: baseObservation(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
       rows: requested,
       classificationId: CLASSIFICATION_ID,
       classifiedAt: CLASSIFIED_AT,
@@ -201,7 +201,7 @@ describe('buildObservedClassificationManifest', () => {
     }));
 
     await buildObservedClassificationManifest({
-      observation: baseObservation(runDirectory, { modeLedger, effectLedger }),
+      observation: baseObservation(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
       rows: requested,
       classificationId: CLASSIFICATION_ID,
       classifiedAt: CLASSIFIED_AT,
@@ -239,7 +239,7 @@ describe('buildObservedClassificationManifest', () => {
     expect(distinct[0].lifecycle).not.toBe(distinct[1].lifecycle);
 
     const built = await buildObservedClassificationManifest({
-      observation: baseObservation(runDirectory, { modeLedger, effectLedger }),
+      observation: baseObservation(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
       rows: distinct,
       classificationId: CLASSIFICATION_ID,
       classifiedAt: CLASSIFIED_AT,

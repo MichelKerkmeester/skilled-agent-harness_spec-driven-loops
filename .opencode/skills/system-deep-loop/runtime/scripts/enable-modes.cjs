@@ -97,7 +97,51 @@ function extractSurfaces(deriveModeSurfaceSet, mode) {
   };
 }
 
-function buildRunStep(registry, deriveModeSurfaceSet) {
+// A classification manifest's own digest commits its structure, not its
+// verdict. Reading the manifest without checking each row's verdict lets a
+// manifest whose every row reports a failed verifier bind and pass exactly
+// like one that reports success — the observation gate then collapses to
+// "did reading throw," and a ledger whose evidence is ambiguous reads as
+// clean. The verdict is reconstructible from fields the snapshot already
+// retains (order/identity/receipt coverage and lease state), so this helper
+// rejects when any row fails the reconstructed verdict. A null field means
+// the classifier had nothing to assert, and an unasserted verdict must never
+// read as a passing one. The reconstructed four-field conjunction IS the
+// derived verifier verdict (verified = orderCoverage && identityCoverage &&
+// receiptCoverage && leaseState !== 'uncertain').
+function enforceObservedClassificationVerdict(built) {
+  const rows = built && built.manifest ? built.manifest.rows : [];
+  for (const row of rows) {
+    const evidence = row && row.evidence ? row.evidence : {};
+    if (evidence.orderCoverage !== true) {
+      return {
+        ok: false,
+        reason: `row '${row.rowId}' failed parity: orderCoverage is ${JSON.stringify(evidence.orderCoverage)}, expected true`,
+      };
+    }
+    if (evidence.identityCoverage !== true) {
+      return {
+        ok: false,
+        reason: `row '${row.rowId}' failed parity: identityCoverage is ${JSON.stringify(evidence.identityCoverage)}, expected true`,
+      };
+    }
+    if (evidence.receiptCoverage !== true) {
+      return {
+        ok: false,
+        reason: `row '${row.rowId}' failed parity: receiptCoverage is ${JSON.stringify(evidence.receiptCoverage)}, expected true`,
+      };
+    }
+    if (evidence.leaseState === null || evidence.leaseState === 'uncertain') {
+      return {
+        ok: false,
+        reason: `row '${row.rowId}' failed parity: leaseState is ${JSON.stringify(evidence.leaseState)}, expected a non-uncertain state`,
+      };
+    }
+  }
+  return { ok: true };
+}
+
+function buildRunStep(registry, deriveModeSurfaceSet, runDirectory, censusPath) {
   // Refusing on the read path means a failed step touches no authority record
   // at all: no compare-and-swap, no transaction, nothing to roll back.
   return async (mode) => {
@@ -129,10 +173,6 @@ function buildRunStep(registry, deriveModeSurfaceSet) {
       };
     }
 
-    // The compare-and-swap that moves a mode to ledger authority accepts only
-    // a cutover_ready record, so a mode still sitting in its default legacy
-    // state cannot be flipped. Reporting the actual state and the required one
-    // makes the gap a fact the operator can act on, not an opaque refusal.
     // A mode whose record cannot be read is a failure of that mode, not of the
     // run — letting it escape would abort every remaining mode and lose the
     // record of where the run actually stopped.
@@ -148,6 +188,128 @@ function buildRunStep(registry, deriveModeSurfaceSet) {
         surfaces: null,
       };
     }
+
+    // Observe classification evidence before checking the state, but only if
+    // a runDirectory is provided. The parity gate depends on this evidence;
+    // if it cannot be observed, the step must fail with the observation error
+    // rather than proceeding to the state check. The effect ledger id is
+    // distinct from the audit ledger: the audit ledger exists today, so
+    // passing it would satisfy the guard and produce a vacuous pass. Using a
+    // non-existent effect ledger id ensures the correct result is a refusal
+    // until the effect subsystem is wired.
+    if (runDirectory) {
+      try {
+        const { buildObservedClassificationManifest } = await import(
+          '../lib/restart-observation/observed-classification.js'
+        );
+        const { readFileSync } = await import('node:fs');
+        const { join, resolve } = await import('node:path');
+        const { fileURLToPath } = await import('node:url');
+
+        const CENSUS_BYTES = readFileSync(censusPath);
+        const census = JSON.parse(CENSUS_BYTES.toString('utf8'));
+
+        const modeLedgerId = `${mode}-ledger`;
+        const effectLedgerId = `${mode}-effect-ledger`;
+
+        // Construct real ledger read ports lazily from AppendOnlyLedger.
+        // The factories must remain lazy because constructing a ledger creates
+        // its directory, and the existence checks must observe the pre-construction
+        // state to refuse when the producer is absent.
+        const { AppendOnlyLedger } = await import('../lib/authorized-ledger/index.ts');
+        const { resolveAuthorityRoot } = await import('../lib/authority-root/index.ts');
+
+        const authorityRoot = resolveAuthorityRoot();
+        const registryInner = await import('../lib/per-mode-authority-flip/index.ts')
+          .then((m) => new m.AuthorityRegistry(authorityRoot));
+
+        const modeLedgerFactory = () => {
+          const ledger = new AppendOnlyLedger({
+            rootDirectory: runDirectory,
+            ledgerId: modeLedgerId,
+            auditLedgerId: `${mode}-audit-ledger`,
+            authorityProvider: () => registryInner.read(mode),
+          }, registryInner);
+          return ledger;
+        };
+        const effectLedgerFactory = () => {
+          const ledger = new AppendOnlyLedger({
+            rootDirectory: runDirectory,
+            ledgerId: effectLedgerId,
+            auditLedgerId: `${mode}-audit-ledger`,
+            authorityProvider: () => registryInner.read(mode),
+          }, registryInner);
+          return ledger;
+        };
+
+        const observedManifest = await buildObservedClassificationManifest({
+          observation: {
+            runDirectory,
+            modeLedgerId,
+            effectLedgerId,
+            modeLedger: modeLedgerFactory,
+            effectLedger: effectLedgerFactory,
+            leases: [],
+            continuityId: null,
+          },
+          rows: census.rows.map((row) => ({
+            rowId: row.id,
+            lifecycle: row.lifecycle,
+            mutability: row.mutability,
+          })),
+          classificationId: `enablement-${mode}`,
+          classifiedAt: new Date().toISOString(),
+          classifierBuildId: 'enablement-check',
+          censusBytes: CENSUS_BYTES,
+        });
+
+        // The manifest was built, but building it only proves the ledger
+        // could be read and the rows classified — it says nothing about
+        // whether the evidence is unambiguous. Enforce the reconstructed
+        // verdict on every row so a ledger whose evidence is ambiguous
+        // (for example, an intent recorded with no confirmation) fails the
+        // step instead of reading as clean. Failing here, on the read path,
+        // means no authority record is touched.
+        const verdict = enforceObservedClassificationVerdict(observedManifest);
+        if (!verdict.ok) {
+          return {
+            mode,
+            ok: false,
+            failedCheck: 'parity',
+            reason: verdict.reason,
+            surfaces: null,
+          };
+        }
+      } catch (error) {
+        // A RestartObservationError carries a reasonCode and detail; surface
+        // them verbatim so the operator sees exactly why observation failed.
+        if (error && error.reasonCode) {
+          return {
+            mode,
+            ok: false,
+            failedCheck: 'parity',
+            reason: `${error.reasonCode}: ${error.detail}`,
+            surfaces: null,
+          };
+        }
+        // Any other error must surface as a failed step, never as ok.
+        return {
+          mode,
+          ok: false,
+          failedCheck: 'parity',
+          reason: error instanceof Error ? error.message : String(error),
+          surfaces: null,
+        };
+      }
+    }
+
+    // The compare-and-swap that moves a mode to ledger authority accepts only
+    // a cutover_ready record. This check remains correct as a precondition,
+    // but it was misleading as the first thing reported: a promotion path can
+    // now move a record to cutover_ready, so a mode that passes this check is
+    // not necessarily safe to flip — its effects may never have been recorded.
+    // Reporting the state mismatch before observing evidence would hide the
+    // real obstacle behind a condition that might not even fail.
     if (record.state !== 'cutover_ready') {
       return {
         mode,
@@ -182,14 +344,38 @@ async function main() {
     process.exit(1);
   }
 
+  if (args.help === true) {
+    console.log(`
+Deep-Loop Runtime — Fleet Mode Enablement CLI
+
+USAGE:
+  node scripts/enable-modes.cjs [OPTIONS]
+
+OPTIONS:
+  --state <path>              (required) Path to the enablement state file
+  --authority-root <path>     Path to the authority-state directory (resolved automatically if not provided)
+  --run-directory <path>      Path to the run directory containing ledgers (required for non-dry runs)
+  --census <path>              Path to the state backend census JSON file (required for non-dry runs)
+  --dry-run                    Plan the enablement without making any changes
+  --resume                    Resume a previously stopped enablement run
+  --help                      Show this help message
+
+EXIT CODES:
+  0 = success
+  1 = script error
+  2 = run stopped at a failing mode
+`);
+    process.exit(0);
+  }
+
   // An option that quietly accepts the wrong shape turns a typo into a different
   // command: a missing value becomes a boolean used as a path, and a flag that
   // swallowed the next token turns "change nothing" into a real run. Validating
   // the shape up front makes a mistyped invocation fail instead of doing something
   // unintended.
   const kebab = (key) => key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
-  const valueArgs = ['state', 'authorityRoot'];
-  const flagArgs = ['dryRun', 'resume'];
+  const valueArgs = ['state', 'authorityRoot', 'runDirectory', 'census'];
+  const flagArgs = ['dryRun', 'resume', 'help'];
   const knownArgs = [...valueArgs, ...flagArgs];
   for (const key of Object.keys(args)) {
     if (!knownArgs.includes(key)) {
@@ -237,6 +423,32 @@ async function main() {
   const statePath = args.state;
   const dryRun = args.dryRun === true;
   const resume = args.resume === true;
+  const runDirectory = args.runDirectory;
+  const censusPath = args.census;
+
+  // A non-dry run observes on-disk restart state before flipping authority,
+  // so it must know where the run's ledgers live. A dry run touches nothing
+  // and never reads ledgers, so it does not need a run directory.
+  if (!dryRun && !runDirectory) {
+    jsonOut({
+      ok: false,
+      phase: 'args',
+      code: 'RUN_DIRECTORY_REQUIRED',
+      reason: 'A --run-directory path is required for a non-dry run',
+    });
+    process.exit(1);
+  }
+
+  // A non-dry run needs the census file to build the classification manifest.
+  if (!dryRun && !censusPath) {
+    jsonOut({
+      ok: false,
+      phase: 'args',
+      code: 'CENSUS_PATH_REQUIRED',
+      reason: 'A --census path is required for a non-dry run',
+    });
+    process.exit(1);
+  }
 
   let authorityRoot = args.authorityRoot;
   if (!dryRun && !authorityRoot) {
@@ -323,7 +535,7 @@ async function main() {
     '../lib/per-mode-authority-flip/index.ts'
   );
   const registry = new AuthorityRegistry(authorityRoot);
-  const runStep = buildRunStep(registry, deriveModeSurfaceSet);
+  const runStep = buildRunStep(registry, deriveModeSurfaceSet, runDirectory, censusPath);
 
   const result = await runFleetEnablement({
     statePath,
@@ -366,4 +578,4 @@ if (require.main === module && isTsxLoaded) {
   });
 }
 
-module.exports = { parseArgs, buildRunStep, main };
+module.exports = { parseArgs, buildRunStep, main, enforceObservedClassificationVerdict };

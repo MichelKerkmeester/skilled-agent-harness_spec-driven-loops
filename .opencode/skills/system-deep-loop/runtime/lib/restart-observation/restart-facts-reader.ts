@@ -18,6 +18,32 @@
 // effects occurred" and "effects were never recorded" must not look the
 // same, so the reader refuses before it reads rather than reporting a
 // vacuous clean bill of health.
+//
+// Directory existence is a necessary but not sufficient signal: a directory
+// can be created by anything, whereas recorded events can only come from a
+// producer. An empty ledger (directory exists but contains no effect events)
+// cannot support a verified claim that effects were recorded and confirmed,
+// so the reader refuses with EFFECT_LEDGER_EMPTY when the ledger yields zero
+// effect-intent and zero effect-confirmation events.
+//
+// A receipt is evidence that an effect COMPLETED. A confirmation whose
+// effect id never appeared in an intent event means the ledger's own
+// history is incomplete: it attests to the completion of an effect that
+// was never recorded as intended. An incomplete history must not read as
+// a clean one. Without this refusal, the unmatched receipt would leave
+// pendingEffects empty, and the derivation's every() over an empty list
+// would report receipt coverage and a verified certificate for a run
+// whose effects were never recorded as intended — a vacuous clean bill
+// of health built on a gap in the ledger. The reader therefore refuses
+// with RECEIPT_WITHOUT_INTENT when any confirmation has no matching intent.
+//
+// The ledger ports are lazy factories rather than instances because
+// constructing a ledger creates its directory. The refusal guard checks
+// whether the directory exists; if the port were constructed before the
+// check, the construction would create the directory and the check would
+// always pass, defeating the guard. By requiring factories and performing
+// both existence checks before calling them, the guard observes the
+// pre-construction state and refuses when the producer is absent.
 
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -35,6 +61,8 @@ import type { RestartFacts } from '../inflight-state-classification/index.js';
 export const RestartObservationErrorCodes = Object.freeze({
   EFFECT_LEDGER_ABSENT: 'EFFECT_LEDGER_ABSENT',
   MODE_LEDGER_ABSENT: 'MODE_LEDGER_ABSENT',
+  EFFECT_LEDGER_EMPTY: 'EFFECT_LEDGER_EMPTY',
+  RECEIPT_WITHOUT_INTENT: 'RECEIPT_WITHOUT_INTENT',
 } as const);
 
 export type RestartObservationErrorCode =
@@ -84,8 +112,8 @@ export interface ObserveRestartFactsOptions {
   readonly runDirectory: string;
   readonly modeLedgerId: string;
   readonly effectLedgerId: string;
-  readonly modeLedger: LedgerReadPort;
-  readonly effectLedger: LedgerReadPort;
+  readonly modeLedger: () => LedgerReadPort;
+  readonly effectLedger: () => LedgerReadPort;
   readonly leases: readonly {
     readonly resource: unknown;
     readonly peek: LeasePeekPort;
@@ -161,10 +189,13 @@ export async function observeRestartFacts(
     );
   }
 
-  const head = await options.modeLedger.getVerifiedHead();
+  const modeLedger = options.modeLedger();
+  const effectLedger = options.effectLedger();
+
+  const head = await modeLedger.getVerifiedHead();
   const stopSequence = head.sequence;
 
-  const verifiedEvents = await options.effectLedger.readVerifiedEvents();
+  const verifiedEvents = await effectLedger.readVerifiedEvents();
 
   // Collect effect ids from intent events and receipt ids from
   // confirmation events in encounter order. pendingEffects is the set of
@@ -181,6 +212,35 @@ export async function observeRestartFacts(
       receipts.push({ effectId: fact.effectId });
     }
   }
+
+  // An empty ledger cannot support a verified claim that effects were
+  // recorded and confirmed. Refuse when the ledger yields zero effect-intent
+  // and zero effect-confirmation events.
+  if (intentEffectIds.length === 0 && receipts.length === 0) {
+    throw new RestartObservationError(
+      RestartObservationErrorCodes.EFFECT_LEDGER_EMPTY,
+      `effect ledger at ${effectLedgerPath} contains no effect events`,
+    );
+  }
+
+  // A confirmation whose effect id never appeared in an intent event means
+  // the ledger's history is incomplete: it attests to the completion of an
+  // effect that was never recorded as intended. Refuse before constructing
+  // pendingEffects, otherwise the unmatched receipt would leave that list
+  // empty and the derivation's every() over an empty list would report
+  // coverage and a verified certificate for a run whose effects were never
+  // recorded as intended. See the module header for the full rationale.
+  const intentEffectIdSet = new Set(intentEffectIds);
+  const receiptsWithoutIntent = receipts
+    .filter((receipt) => !intentEffectIdSet.has(receipt.effectId))
+    .map((receipt) => receipt.effectId);
+  if (receiptsWithoutIntent.length > 0) {
+    throw new RestartObservationError(
+      RestartObservationErrorCodes.RECEIPT_WITHOUT_INTENT,
+      `effect ledger at ${effectLedgerPath} contains confirmation(s) for effect id(s) with no intent event: ${receiptsWithoutIntent.join(', ')}`,
+    );
+  }
+
   const confirmedEffectIds = new Set(receipts.map((receipt) => receipt.effectId));
   const pendingEffects = intentEffectIds.filter(
     (effectId) => !confirmedEffectIds.has(effectId),

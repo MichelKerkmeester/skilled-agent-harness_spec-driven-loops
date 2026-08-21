@@ -6,7 +6,7 @@
 // reject before any read method is called, so a system that never
 // recorded effects can never be mistaken for one that recorded none.
 
-import { mkdirSync, mkdtempSync, rmSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -99,8 +99,8 @@ function stubPeek(
 function baseOptions(
   runDirectory: string,
   overrides: Partial<ObserveRestartFactsOptions> & {
-    readonly modeLedger: LedgerReadPort;
-    readonly effectLedger: LedgerReadPort;
+    readonly modeLedger: () => LedgerReadPort;
+    readonly effectLedger: () => LedgerReadPort;
   },
 ): ObserveRestartFactsOptions {
   return {
@@ -140,7 +140,7 @@ describe('observeRestartFacts', () => {
 
       await expect(
         observeRestartFacts(
-          baseOptions(runDirectory, { modeLedger, effectLedger }),
+          baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
         ),
       ).rejects.toMatchObject({
         reasonCode: RestartObservationErrorCodes.EFFECT_LEDGER_ABSENT,
@@ -163,7 +163,7 @@ describe('observeRestartFacts', () => {
       const effectLedger = countingLedgerPort(0, []);
 
       const result = observeRestartFacts(
-        baseOptions(runDirectory, { modeLedger, effectLedger }),
+        baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
       );
 
       // The defining assertion: the call rejects rather than resolving to
@@ -185,7 +185,7 @@ describe('observeRestartFacts', () => {
 
       await expect(
         observeRestartFacts(
-          baseOptions(runDirectory, { modeLedger, effectLedger }),
+          baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
         ),
       ).rejects.toMatchObject({
         reasonCode: RestartObservationErrorCodes.MODE_LEDGER_ABSENT,
@@ -193,6 +193,150 @@ describe('observeRestartFacts', () => {
 
       expect(modeLedger.headCalls).toBe(0);
       expect(effectLedger.readCalls).toBe(0);
+    });
+
+    it('negative control: after EFFECT_LEDGER_ABSENT refusal, the effect-ledger directory still does not exist', async () => {
+      const runDirectory = makeRunDirectory();
+      mkdirSync(join(runDirectory, 'mode-ledger'));
+      // No effect-ledger directory.
+
+      // The factory simulates what a real AppendOnlyLedger construction
+      // does: it creates its own directory as a side effect of being
+      // called. If the reader called the factory before checking
+      // existence, the factory would create the directory and the
+      // refusal would never fire — the guard would be defeated by its
+      // own construction path. This test goes red if the factories are
+      // called before the existence checks.
+      const directoryCreatingEffectLedgerFactory = (): LedgerReadPort => {
+        mkdirSync(join(runDirectory, 'effect-ledger'));
+        return countingLedgerPort(0, []);
+      };
+
+      const effectLedgerPath = join(runDirectory, 'effect-ledger');
+      expect(existsSync(effectLedgerPath)).toBe(false);
+
+      await expect(
+        observeRestartFacts(
+          baseOptions(runDirectory, {
+            modeLedger: () => countingLedgerPort(7, []),
+            effectLedger: directoryCreatingEffectLedgerFactory,
+          }),
+        ),
+      ).rejects.toMatchObject({
+        reasonCode: RestartObservationErrorCodes.EFFECT_LEDGER_ABSENT,
+      });
+
+      // The refusal must not create the directory; the guard observes the
+      // pre-construction state and refuses when the producer is absent.
+      expect(existsSync(effectLedgerPath)).toBe(false);
+    });
+
+    it('rejects with EFFECT_LEDGER_EMPTY when the effect ledger directory exists but contains no effect events', async () => {
+      const runDirectory = makeRunDirectory();
+      mkdirSync(join(runDirectory, 'mode-ledger'));
+      mkdirSync(join(runDirectory, 'effect-ledger'));
+
+      const modeLedger = countingLedgerPort(7, []);
+      const effectLedger = countingLedgerPort(0, []);
+
+      await expect(
+        observeRestartFacts(
+          baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
+        ),
+      ).rejects.toMatchObject({
+        reasonCode: RestartObservationErrorCodes.EFFECT_LEDGER_EMPTY,
+      });
+    });
+
+    it('rejects with RECEIPT_WITHOUT_INTENT when a confirmation has no matching intent event', async () => {
+      // A receipt attests to the completion of an effect. A confirmation
+      // whose effect id never appeared in an intent event means the ledger's
+      // own history is incomplete, and an incomplete history must not read
+      // as a clean one. Without this refusal the unmatched receipt leaves
+      // pendingEffects empty and the derivation's every() over an empty list
+      // reports coverage and a verified certificate for an effect that was
+      // never recorded as intended.
+      const runDirectory = makeRunDirectory();
+      mkdirSync(join(runDirectory, 'mode-ledger'));
+      mkdirSync(join(runDirectory, 'effect-ledger'));
+
+      const modeLedger = countingLedgerPort(7, []);
+      const effectLedger = countingLedgerPort(0, [
+        // A confirmation for an effect that was never recorded as intended.
+        effectConfirmationEvent('orphan-effect'),
+      ]);
+
+      await expect(
+        observeRestartFacts(
+          baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
+        ),
+      ).rejects.toMatchObject({
+        reasonCode: RestartObservationErrorCodes.RECEIPT_WITHOUT_INTENT,
+      });
+    });
+
+    it('a receipt without intent names the offending effect id and the ledger path in the detail', async () => {
+      const runDirectory = makeRunDirectory();
+      mkdirSync(join(runDirectory, 'mode-ledger'));
+      mkdirSync(join(runDirectory, 'effect-ledger'));
+
+      const modeLedger = countingLedgerPort(7, []);
+      const effectLedger = countingLedgerPort(0, [
+        effectConfirmationEvent('orphan-a'),
+        effectConfirmationEvent('orphan-b'),
+      ]);
+
+      await expect(
+        observeRestartFacts(
+          baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
+        ),
+      ).rejects.toMatchObject({
+        reasonCode: RestartObservationErrorCodes.RECEIPT_WITHOUT_INTENT,
+        detail: expect.stringContaining('orphan-a'),
+      });
+    });
+  });
+
+  describe('receipt/intent pairing', () => {
+    it('an intent-only ledger resolves: unconfirmed work is legitimate pending state, not a read error, and yields pendingEffects with the intent id', async () => {
+      // Unconfirmed work is a real, observable state of the run — the effect
+      // was intended but not yet confirmed — so the reader must report it as
+      // pending rather than refusing. Refusing here would conflate "the work
+      // is in progress" with "the ledger is broken."
+      const runDirectory = makeRunDirectory();
+      mkdirSync(join(runDirectory, 'mode-ledger'));
+      mkdirSync(join(runDirectory, 'effect-ledger'));
+
+      const modeLedger = countingLedgerPort(7, []);
+      const effectLedger = countingLedgerPort(0, [
+        effectIntentEvent('effect-pending'),
+      ]);
+
+      const facts = await observeRestartFacts(
+        baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
+      );
+
+      expect(facts.pendingEffects).toEqual(['effect-pending']);
+      expect(facts.receipts).toEqual([]);
+    });
+
+    it('an intent-plus-confirmation ledger resolves and yields empty pendingEffects', async () => {
+      const runDirectory = makeRunDirectory();
+      mkdirSync(join(runDirectory, 'mode-ledger'));
+      mkdirSync(join(runDirectory, 'effect-ledger'));
+
+      const modeLedger = countingLedgerPort(7, []);
+      const effectLedger = countingLedgerPort(0, [
+        effectIntentEvent('effect-done'),
+        effectConfirmationEvent('effect-done'),
+      ]);
+
+      const facts = await observeRestartFacts(
+        baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
+      );
+
+      expect(facts.pendingEffects).toEqual([]);
+      expect(facts.receipts).toEqual([{ effectId: 'effect-done' }]);
     });
   });
 
@@ -211,7 +355,7 @@ describe('observeRestartFacts', () => {
       ]);
 
       const facts = await observeRestartFacts(
-        baseOptions(runDirectory, { modeLedger, effectLedger }),
+        baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
       );
 
       expect(facts.stopSequence).toBe(7);
@@ -232,7 +376,7 @@ describe('observeRestartFacts', () => {
       ]);
 
       const facts = await observeRestartFacts(
-        baseOptions(runDirectory, { modeLedger, effectLedger }),
+        baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger }),
       );
 
       expect(facts.pendingEffects).toEqual([]);
@@ -247,7 +391,10 @@ describe('observeRestartFacts', () => {
       mkdirSync(join(runDirectory, 'effect-ledger'));
 
       const modeLedger = countingLedgerPort(1, []);
-      const effectLedger = countingLedgerPort(0, []);
+      const effectLedger = countingLedgerPort(0, [
+        effectIntentEvent('effect-a'),
+        effectConfirmationEvent('effect-a'),
+      ]);
 
       const heldLease = stubPeek({
         fenceToken: 9,
@@ -257,8 +404,8 @@ describe('observeRestartFacts', () => {
 
       const facts = await observeRestartFacts(
         baseOptions(runDirectory, {
-          modeLedger,
-          effectLedger,
+          modeLedger: () => modeLedger,
+          effectLedger: () => effectLedger,
           leases: [
             { resource: 'resource-held', peek: heldLease },
             { resource: 'resource-released', peek: releasedLease },
@@ -279,10 +426,13 @@ describe('observeRestartFacts', () => {
       mkdirSync(join(runDirectory, 'effect-ledger'));
 
       const modeLedger = countingLedgerPort(0, []);
-      const effectLedger = countingLedgerPort(0, []);
+      const effectLedger = countingLedgerPort(0, [
+        effectIntentEvent('effect-a'),
+        effectConfirmationEvent('effect-a'),
+      ]);
 
       const facts = await observeRestartFacts(
-        baseOptions(runDirectory, { modeLedger, effectLedger, leases: [] }),
+        baseOptions(runDirectory, { modeLedger: () => modeLedger, effectLedger: () => effectLedger, leases: [] }),
       );
 
       expect(facts.leases).toEqual([]);
@@ -303,8 +453,8 @@ describe('observeRestartFacts', () => {
 
       const facts = await observeRestartFacts(
         baseOptions(runDirectory, {
-          modeLedger,
-          effectLedger,
+          modeLedger: () => modeLedger,
+          effectLedger: () => effectLedger,
           leases: [
             {
               resource: 'r',

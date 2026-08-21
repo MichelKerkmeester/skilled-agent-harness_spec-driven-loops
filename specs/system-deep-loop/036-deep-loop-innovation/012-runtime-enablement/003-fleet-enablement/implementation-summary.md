@@ -11,29 +11,32 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fl
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement"
-    last_updated_at: "2026-08-20T18:55:28Z"
+    last_updated_at: "2026-08-21T00:32:55Z"
     last_updated_by: "claude"
-    recent_action: "Proved by execution that a ready mode is recorded as enabled without any authority write"
-    next_safe_action: "Make the per-mode step refuse rather than return ok for work it did not perform"
+    recent_action: "Built the evidence gate: three fail-closed refusals plus verdict enforcement"
+    next_safe_action: "Make the step perform the flip, or refuse explicitly for the work it does not perform"
     blockers:
-      - "The per-mode step contains no flip code, so a cutover_ready mode returns ok and is recorded completed with no authority record written"
-      - "That false completion persists to the state file, and the driver skips completed modes on resume, so it suppresses the next attempt"
-      - "The step cannot be the pilot's procedure parameterised, because the pilot's procedure has never completed a flip"
-      - "deep-improvement-common has no working name on the append CLI; the fix crosses into the gateway and the projection manifest"
+      - "The step still has no flip code: given matched ledger evidence a cutover_ready mode returns ok, with no authority record written"
+      - "That false completion persists and resume skips completed modes, suppressing the next attempt"
+      - "The pilot's procedure has never completed a flip, so nothing is proven to parameterise"
+      - "deep-improvement-common has no working name on the append CLI"
+      - "No production code writes an effect ledger, so every mode refuses at the evidence gate"
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/enable-modes.cjs"
       - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/enablement-driver.ts"
       - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/mode-surface-map.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/restart-observation/restart-facts-reader.ts"
       - "scratch/false-completion-proven.md"
-    completion_pct: 60
+    completion_pct: 70
     open_questions:
-      - "Does the improvement-mode rename return to 001, given it touches the gateway and the manifest?"
-      - "Should the spec's six-mode list be reconciled to FLEET_MODE_ORDER's seven, or the order narrowed to six?"
+      - "Does the improvement-mode rename return to 001?"
+      - "Reconcile the spec's six-mode list to FLEET_MODE_ORDER's seven, or narrow it?"
     answered_questions:
-      - "Every fleet mode has at least one manifest surface; skill-benchmark's projectable set is empty and is reported as such"
       - "Who builds the legacy-to-cutover-ready edge: it is built, as prepareCutover on the authority registry"
-      - "The synthesized default authority record sits at epoch 1, not 0"
-      - "The gap in the step is unwritten code, not a blocked precondition; removing the block does not reveal a procedure behind it"
+      - "The gap in the step is unwritten code, not a blocked precondition"
+      - "Directory existence is not evidence: the guard was passed with mkdir"
+      - "Empty ledgers and unmatched receipts must refuse: an empty list reports full coverage"
+      - "Computing a verdict is not enforcing one: the manifest was built and discarded"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -74,6 +77,36 @@ registry at all. A real run performs the checks the runtime can actually perform
 flip on the read path, so a failed step reaches no compare-and-swap. Resuming is an explicit
 `--resume`: a state file that already exists means an earlier run stopped part-way, and continuing
 by default would let an operator miss that a failure ever happened.
+
+**An evidence gate in front of the flip check.** The step now observes classification evidence
+before it looks at authority state, and fails closed on four distinct conditions. The order matters:
+reporting a state mismatch first was misleading once a promotion path existed, because it named a
+condition that might not even be the obstacle.
+
+Three of the four are refusals raised by the reader. A ledger directory that does not exist refuses,
+because an absent producer read as an empty one makes `every()` over an empty list report full
+coverage. A directory that exists but holds no effect events refuses, because directory existence is
+not evidence — that guard was passed with `mkdir`, and a mode was recorded enabled on two empty
+directories with its authority record byte-identical either side. A confirmation whose effect id
+never appeared in an intent refuses, because a receipt for an unrecorded effect leaves the pending
+list empty and produces a verified verdict from a history that is missing its own beginning.
+
+The fourth is enforcement rather than refusal. The classification manifest was previously built and
+discarded, so the gate collapsed to whether reading threw: a run whose derived verdict was
+`verified: false` still passed. The manifest's verdict is now read per row, and any row whose order,
+identity or receipt coverage is not true, or whose lease state is null or uncertain, fails the step
+naming the row and the field. A null field fails, because an unasserted verdict must not read as a
+passing one.
+
+The ledger ports are constructed lazily, after both existence checks. Constructing an
+`AppendOnlyLedger` creates its storage directory — including on a construction that throws part-way
+— so an eagerly built port would answer the question by changing the answer.
+
+The census is an explicit argument rather than a path resolved from the script's own location. The
+previous resolution reached the file only through a symlink, and embedded folder numbers that this
+repository does renumber.
+
+What was NOT built: the flip itself. See KNOWN LIMITATIONS.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
