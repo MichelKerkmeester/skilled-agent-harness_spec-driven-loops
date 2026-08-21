@@ -12,9 +12,9 @@ version: 0.1.0.0
 
 # mcp-notion: Feature Catalog
 
-This document combines the current feature inventory for the `mcp-notion` mode into a single reference. The root catalog acts as the system-level directory: it summarizes each capability area, describes what the mode does today, and points to the reference docs that carry deeper implementation and validation detail.
+This document combines the current feature inventory for the `mcp-notion` mode into a single reference. The root catalog acts as the system-level directory: it summarizes each capability area, describes what the mode does today, and points to the per-feature files and reference docs that carry deeper implementation and validation detail.
 
-Notion is an **MCP-only** surface: there is no purpose-built CLI. Every operation runs through the official server or a direct Notion REST call, invoked from Code Mode. This catalog is single-file — there are no per-feature leaf files under `feature-catalog/`; implementation and source-anchor detail for every entry below lives in `../SKILL.md` and the `../references/` set linked throughout.
+Notion is an **MCP-only** surface: there is no purpose-built CLI. Every operation runs through the official server or a direct Notion REST call, invoked from Code Mode. This catalog is a **split package**: this root file is the directory and index, and each capability has its own per-feature file under `feature-catalog/{category}/` — 29 files across 7 categories (`pages/`, `blocks/`, `data-sources/`, `comments/`, `users/`, `search/`, `api-gap-fills/`). Backend selection (§2) and the knowledge-layer references (§10) have no per-feature split and stay inline here as context; implementation and source-anchor detail for every entry below also lives in `../SKILL.md` and the `../references/` set linked throughout.
 
 ---
 
@@ -82,6 +82,8 @@ Create a page under a parent page or data source, with initial properties and co
 
 Runs under API `2025-09-03`; the parent may be a `page_id` or a `data_source_id`.
 
+See [`pages/create-a-page.md`](pages/create-a-page.md).
+
 ---
 
 ### Retrieve a page
@@ -93,6 +95,8 @@ Read a page's properties and metadata by ID.
 #### Current Reality
 
 Property values past ~25 items truncate — use the direct-API page-property-item gap fill (§9) for the full paginated list.
+
+See [`pages/retrieve-a-page.md`](pages/retrieve-a-page.md).
 
 ---
 
@@ -106,6 +110,8 @@ Patch a page's property values.
 
 Runs under API `2025-09-03`; only the supplied properties change.
 
+See [`pages/update-page-properties.md`](pages/update-page-properties.md).
+
 ---
 
 ### Archive a page
@@ -117,6 +123,8 @@ Move a page to trash.
 #### Current Reality
 
 A soft, reversible delete — there is no hard-delete endpoint for pages.
+
+See [`pages/archive-a-page.md`](pages/archive-a-page.md).
 
 ---
 
@@ -130,6 +138,8 @@ Move a page to a different parent page or data source.
 
 `POST /v1/pages/{page_id}/move`; runs under API `2025-09-03`.
 
+See [`pages/move-page.md`](pages/move-page.md).
+
 ---
 
 ### Fetch page as Markdown
@@ -142,6 +152,8 @@ Render a page's block content to Markdown.
 
 Requires API `2026-03-11` — the default `2025-09-03` pin does not expose this tool.
 
+See [`pages/retrieve-page-markdown.md`](pages/retrieve-page-markdown.md).
+
 ---
 
 ### Update page from Markdown
@@ -153,6 +165,8 @@ Write Markdown content into a page's blocks.
 #### Current Reality
 
 Requires API `2026-03-11`, matching `Fetch page as Markdown`.
+
+See [`pages/update-page-markdown.md`](pages/update-page-markdown.md).
 
 ---
 
@@ -170,6 +184,8 @@ Read a single block by ID.
 
 Runs under API `2025-09-03`, the pin shared by every non-markdown tool.
 
+See [`blocks/retrieve-a-block.md`](blocks/retrieve-a-block.md).
+
 ---
 
 ### Retrieve block children
@@ -181,6 +197,8 @@ List the child blocks of a page or block.
 #### Current Reality
 
 Paginated — a full listing may need repeated calls with a continuation cursor.
+
+See [`blocks/retrieve-block-children.md`](blocks/retrieve-block-children.md).
 
 ---
 
@@ -194,6 +212,8 @@ Add one or more blocks to a page or block.
 
 Accepts multiple block objects in one call; runs under API `2025-09-03`.
 
+See [`blocks/append-block-children.md`](blocks/append-block-children.md).
+
 ---
 
 ### Update a block
@@ -206,6 +226,8 @@ Edit a block's type-specific content.
 
 The payload shape is type-specific — a paragraph block and a heading block take different fields.
 
+See [`blocks/update-a-block.md`](blocks/update-a-block.md).
+
 ---
 
 ### Delete a block
@@ -217,6 +239,8 @@ Move a block to trash.
 #### Current Reality
 
 Reversible, matching the page-level archive/restore model.
+
+See [`blocks/delete-a-block.md`](blocks/delete-a-block.md).
 
 ---
 
@@ -234,6 +258,8 @@ Create a new data source (schema) under a database or parent.
 
 Defines the schema only; rows are added afterward via `Create a page` targeting the new data source.
 
+See [`data-sources/create-a-data-source.md`](data-sources/create-a-data-source.md).
+
 ---
 
 ### Retrieve a data source
@@ -245,6 +271,8 @@ Read a data source's schema and property definitions.
 #### Current Reality
 
 Runs under API `2025-09-03`; the returned schema drives every property write and filter against it.
+
+See [`data-sources/retrieve-a-data-source.md`](data-sources/retrieve-a-data-source.md).
 
 ---
 
@@ -258,6 +286,8 @@ Edit a data source's schema and properties.
 
 Schema edits apply to all existing rows immediately.
 
+See [`data-sources/update-a-data-source.md`](data-sources/update-a-data-source.md).
+
 ---
 
 ### Query a data source
@@ -270,17 +300,21 @@ Filter and sort the rows (pages) of a data source.
 
 Targets a data-source ID, not a database ID — the v2.0.0 breaking change this catalog's data model is built around.
 
+See [`data-sources/query-data-source.md`](data-sources/query-data-source.md).
+
 ---
 
-### Create a database
+### List data source templates
 
 #### Description
 
-Create the database container that holds data sources.
+List a data source's page templates — the pre-filled "New" button options a user sees when adding a row by hand.
 
 #### Current Reality
 
-Creates the container only; call `Create a data source` afterward to define its schema.
+`GET /v1/data_sources/{id}/templates`; most data sources have no templates configured, so an empty result is a valid outcome, not a failure.
+
+See [`data-sources/list-data-source-templates.md`](data-sources/list-data-source-templates.md).
 
 ---
 
@@ -293,6 +327,8 @@ Read a database container's metadata and its data-source list.
 #### Current Reality
 
 Row-level reads still go through the data-source tools above, not this one.
+
+See [`data-sources/retrieve-a-database.md`](data-sources/retrieve-a-database.md).
 
 ---
 
@@ -310,6 +346,8 @@ Add a comment to a page or an existing discussion thread.
 
 Runs under API `2025-09-03`.
 
+See [`comments/create-a-comment.md`](comments/create-a-comment.md).
+
 ---
 
 ### Retrieve comments
@@ -321,6 +359,8 @@ List the comments on a block or page.
 #### Current Reality
 
 Paginated, matching the block-children listing pattern.
+
+See [`comments/list-comments.md`](comments/list-comments.md).
 
 ---
 
@@ -338,6 +378,8 @@ Enumerate the workspace's users.
 
 Paginated.
 
+See [`users/list-all-users.md`](users/list-all-users.md).
+
 ---
 
 ### Retrieve a user
@@ -350,6 +392,8 @@ Read a single user by ID.
 
 Runs under API `2025-09-03`.
 
+See [`users/retrieve-a-user.md`](users/retrieve-a-user.md).
+
 ---
 
 ### Retrieve your bot user
@@ -361,6 +405,8 @@ Read the integration's own bot user — the owner of the `NOTION_TOKEN`.
 #### Current Reality
 
 Use as a connectivity/auth preflight before other calls.
+
+See [`users/retrieve-bot-user.md`](users/retrieve-bot-user.md).
 
 ---
 
@@ -378,6 +424,8 @@ Find pages and data sources the integration can access.
 
 **Title-only** — there is no full-text content search. A structural platform limit, not a fillable gap.
 
+See [`search/search.md`](search/search.md).
+
 ---
 
 ## 9. API-GAP FILLS (5 DIRECT-API CAPABILITIES)
@@ -394,6 +442,8 @@ Five capabilities the MCP does not expose. Each is reachable with a direct Notio
 
 Direct API, then attach the file object to a page or block.
 
+See [`api-gap-fills/file-uploads.md`](api-gap-fills/file-uploads.md).
+
 ---
 
 ### Views
@@ -405,6 +455,8 @@ Direct API, then attach the file object to a page or block.
 #### Current Reality
 
 Direct API.
+
+See [`api-gap-fills/views.md`](api-gap-fills/views.md).
 
 ---
 
@@ -418,6 +470,8 @@ Direct API.
 
 The direct-API property-item endpoint returns the full paginated list.
 
+See [`api-gap-fills/page-property-items.md`](api-gap-fills/page-property-items.md).
+
 ---
 
 ### Async-task polling
@@ -430,6 +484,8 @@ The local backend does not expose long-running task status (e.g. large exports o
 
 Direct API poll on the task, or use the remote MCP (§2), which exposes async-task tools natively.
 
+See [`api-gap-fills/async-task-polling.md`](api-gap-fills/async-task-polling.md).
+
 ---
 
 ### Daily notes
@@ -441,6 +497,8 @@ No API endpoint exists for daily notes.
 #### Current Reality
 
 Knowledge-layer convention: `create-a-page` into a "Daily Notes" data source keyed by date.
+
+See [`api-gap-fills/daily-notes.md`](api-gap-fills/daily-notes.md).
 
 ---
 

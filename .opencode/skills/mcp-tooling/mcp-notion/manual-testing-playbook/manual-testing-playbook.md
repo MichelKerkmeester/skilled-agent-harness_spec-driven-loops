@@ -6,14 +6,22 @@ version: 0.1.0.1
 
 # mcp-notion: Manual Testing Playbook
 
-This document combines the full manual-validation contract for the `mcp-notion` skill into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide: it explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded, and where each scenario's execution contract lives. Because mcp-notion ships as a **single-file playbook** (11 scenarios, no per-feature split), every scenario's user request, orchestrator prompt, execution process, source anchors, and validation criteria live inline in this same document rather than in separate per-feature files.
+This document combines the full manual-validation contract for the `mcp-notion` skill into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide: it explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded, and where each scenario's execution contract lives. mcp-notion ships as a **split package** (33 scenarios across 8 categories): every scenario's user request, orchestrator prompt, exact command sequence, source anchors, and validation criteria live in its own per-feature file under `manual-testing-playbook/{category}/`, and this root document is the directory, review surface, and orchestration guide that points to each one.
 
 ---
 
-This playbook package is intentionally **single-file** for `mcp-notion`: with 11 scenarios across 4 categories, the root document carries the full execution contract inline instead of splitting into per-feature files under category folders. The root document remains the directory, review surface, and orchestration guide, **and** the sole execution-truth source -- every scenario's 9-column contract lives inline in Sections 7-10 below.
+This playbook package is a **split package** for `mcp-notion`: 33 scenarios across 8 categories, each with its own per-feature file under a category folder. The root document remains the directory, review surface, and orchestration guide -- Section 7 below is the by-category scenario directory that links to every per-feature file, which in turn owns the full 9-column execution contract.
 
 Canonical package artifacts:
-- `manual-testing-playbook.md` (this file -- mcp-notion ships no separate category folders or per-feature files)
+- `manual-testing-playbook.md` (this file)
+- `pages/`
+- `blocks/`
+- `data-sources/`
+- `comments/`
+- `users/`
+- `search/`
+- `api-gap-fills/`
+- `backend-and-failure/`
 
 ### Result persistence
 
@@ -30,17 +38,21 @@ Notion is a live cloud workspace with no headless sandbox, so **every scenario h
 
 ## 1. OVERVIEW
 
-This playbook provides a derived census of deterministic scenarios across categories validating the `mcp-notion` skill surface. Each scenario keeps its original ID and its full execution contract inline in Sections 7-10.
+This playbook provides a derived census of deterministic scenarios across categories validating the `mcp-notion` skill surface. Each scenario keeps its original ID; its full execution contract lives in its own per-feature file, indexed by category in Section 7.
 
-Coverage note (2026-08-21): 11 operator scenarios across 4 categories cover 24 MCP tools plus 5 API-gap fills -- MCP tool round-trips (pages, blocks, data sources, comments, users, search) over Code Mode, one direct-API gap fill for non-truncated page property items, one backend-selection scenario confirming headless routing to local stdio, and three auth/rate-limit failure scenarios.
+Coverage note (2026-08-21): 33 operator scenarios across 8 categories cover 24 MCP tools plus 5 API-gap fills -- MCP tool round-trips (pages, blocks, data sources, comments, users, search) over Code Mode, five direct-API gap-fill scenarios, one backend-selection scenario confirming headless routing to local stdio, and three auth/rate-limit failure scenarios.
 
 | Category | Capabilities | Scenarios |
 |----------|-------------|-----------|
-| MCP tool round-trip (Code Mode) | Pages, blocks, data sources, comments, users, search | 6 |
-| API-gap direct call | Page property items (non-truncated) | 1 |
-| Backend selection | Local stdio vs remote OAuth routing | 1 |
-| Auth and failure | Missing / invalid `NOTION_TOKEN`, rate-limit backoff | 3 |
-| **TOTAL** | **24 MCP tools + 5 gap fills** | **11 scenarios** |
+| Pages | Create, retrieve, update properties, archive, move, retrieve/update Markdown | 7 |
+| Blocks | Retrieve, retrieve children, append, update, delete | 5 |
+| Data sources | Retrieve database, retrieve/update/create data source, query, list templates | 6 |
+| Comments | Create, list | 2 |
+| Users | List, retrieve, retrieve bot user | 3 |
+| Search | Search | 1 |
+| API-gap fills | File uploads, views, page property items, async-task polling, daily notes | 5 |
+| Backend and failure | Backend selection, missing token, invalid token, rate-limit backoff | 4 |
+| **TOTAL** | **24 MCP tools + 5 gap fills (+ backend selection + 3 auth/failure)** | **33 scenarios** |
 
 ### Realistic Test Model
 
@@ -54,12 +66,12 @@ An operator reads: "create a scratch page, add a paragraph, then read it back." 
 
 A scenario PASSES only when both the **execution process** (correct tool called, correct arguments) and the **observable outcome** (the returned object matches, the page is visible then trashed) are verified.
 
-### What Each Feature File Should Explain
+### What Each Feature File Explains
 
-mcp-notion has no separate per-feature files -- this content lives inline in each scenario's `#### Description` and `#### Scenario Contract` blocks in Sections 7-10:
+Each per-feature scenario file under `manual-testing-playbook/{category}/` explains, in its own `## 2. SCENARIO CONTRACT` and `## 3. TEST EXECUTION` sections:
 
-- The realistic user request that should trigger the behavior
-- The orchestrator brief or agent-facing prompt that should drive the test
+- The realistic user request that triggers the behavior
+- The orchestrator brief or agent-facing prompt that drives the test
 - The expected execution process, including delegation or external CLI use when relevant
 - The desired user-visible outcome
 - The implementation or knowledge-layer anchors that justify the scenario
@@ -78,7 +90,7 @@ All scenarios share these preconditions. Verify before starting.
 6. The integration (the token's bot user) has been granted access to that scratch parent -- Notion tokens see only explicitly shared content.
 7. Internet access to `api.notion.com`.
 8. **Cleanup discipline:** every scratch page or block created in a scenario is archived (trashed) at the end of that scenario. Trash is reversible; no hard delete exists.
-9. mcp-notion has no destructive scenarios. The nearest equivalent is FAIL-01 and FAIL-02, which deliberately break auth: both MUST restore `notion_NOTION_TOKEN` to a valid value immediately after execution and before any other scenario runs.
+9. mcp-notion has no destructive scenarios. The nearest equivalent is FAIL-001 and FAIL-002, which deliberately break auth: both MUST restore `notion_NOTION_TOKEN` to a valid value immediately after execution and before any other scenario runs.
 
 ---
 
@@ -112,7 +124,7 @@ Each scenario MUST capture:
 
 ### Inputs Required
 
-1. `manual-testing-playbook.md` -- the sole scenario-contract source; mcp-notion ships no separate per-feature files.
+1. `manual-testing-playbook.md` plus each scenario's per-feature file under `manual-testing-playbook/{category}/` -- the per-feature files own the full execution contract; this root is the directory and review surface.
 2. Scenario execution evidence (Section 3 Global Evidence Requirements).
 3. The feature-to-scenario coverage map (Section 1 Coverage table).
 4. Triage notes for all non-pass outcomes.
@@ -130,7 +142,7 @@ For each executed scenario, check:
 Scenario verdict:
 - `PASS`: all acceptance checks true
 - `FAIL`: expected behavior missing, contradictory output, or a critical check failed
-- `SKIP`: a specific sandbox or runtime blocker prevents execution (the blocker must be named -- e.g. GAP-01 with no pre-seeded many-item relation)
+- `SKIP`: a specific sandbox or runtime blocker prevents execution (the blocker must be named -- e.g. GAP-003 with no pre-seeded many-item relation)
 
 ### Feature Verdict Rules
 
@@ -139,20 +151,20 @@ Scenario verdict:
 - `SKIP`: every mapped scenario is blocked by a named sandbox or runtime blocker
 
 Hard rule:
-- Any critical-path scenario `FAIL` forces the feature verdict to `FAIL`. NOTION-01 is the critical-path gate -- its `FAIL` blocks every downstream scenario from running at all.
+- Any critical-path scenario `FAIL` forces the feature verdict to `FAIL`. USR-003 (retrieve-bot-user) is the critical-path gate -- its `FAIL` blocks every downstream scenario from running at all.
 
 ### Release Readiness Rule
 
 Release is releasable only when:
 
 1. No feature verdict is `FAIL`.
-2. NOTION-01 (the critical-path gate) is `PASS`.
-3. Coverage is 100% of the 11 scenarios defined in Section 1 (`COVERED_SCENARIOS == 11`).
+2. USR-003 (the critical-path gate) is `PASS`.
+3. Coverage is 100% of the 33 scenarios defined in Section 1 (`COVERED_SCENARIOS == 33`).
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
 
-Keep global verdict logic in this root section. Scenario-specific acceptance caveats (for example GAP-01's pre-seeded-data dependency, or BACKEND-01's interactive-OAuth contrasting branch) stay inline with each scenario's `#### Scenario Contract` and `#### Test Execution` blocks in Sections 7-10 -- mcp-notion has no separate per-feature files to hold them.
+Keep global verdict logic in this root section. Scenario-specific acceptance caveats (for example GAP-003's pre-seeded-data dependency, or BACKEND-001's interactive-OAuth contrasting branch) stay inline with each scenario's own per-feature file under `manual-testing-playbook/{category}/` -- this root section keeps only the global verdict logic.
 
 ---
 
@@ -164,17 +176,17 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ### Operational Rules
 
-1. Probe runtime capacity at start (run NOTION-01 first -- it is the connectivity gate every other scenario depends on).
+1. Probe runtime capacity at start (run USR-003 first -- it is the connectivity gate every other scenario depends on).
 2. Reserve one coordinator.
 3. Saturate remaining worker slots.
 4. Pre-assign explicit scenario IDs to each wave before execution.
-5. Run token-perturbing scenarios (FAIL-01, FAIL-02) in a dedicated last wave and restore `notion_NOTION_TOKEN` to a valid value immediately after each. mcp-notion has no destructive scenarios; this is the nearest equivalent isolation requirement.
+5. Run token-perturbing scenarios (FAIL-001, FAIL-002) in a dedicated last wave and restore `notion_NOTION_TOKEN` to a valid value immediately after each. mcp-notion has no destructive scenarios; this is the nearest equivalent isolation requirement.
 6. After each wave, save context and evidence, then begin the next wave.
 7. Record utilization table and evidence paths in the final report.
 
-### What Belongs In Per-Feature Files
+### What Each Per-Feature File Contains
 
-mcp-notion has no separate per-feature files -- this content lives inline in each scenario's `#### Scenario Contract` block in Sections 7-10:
+Each per-feature scenario file under `manual-testing-playbook/{category}/` contains:
 
 - Real user request
 - Prompt field following the natural-human voice contract (the actor is a human user, not an orchestrator delegating to another tool, for every scenario in this playbook)
@@ -186,306 +198,138 @@ mcp-notion has no separate per-feature files -- this content lives inline in eac
 
 | Wave | Scenarios | Parallelizable | Constraint |
 |------|-----------|-----------------|-----------|
-| Wave 1 -- Connectivity Gate | NOTION-01 | No | Must PASS before any other wave starts |
-| Wave 2 -- Read-Only | NOTION-04, NOTION-06, BACKEND-01, GAP-01 | Yes (no writes) | Requires Wave 1 PASS |
-| Wave 3 -- Scratch Write Round-Trips | NOTION-02, NOTION-03, NOTION-05 | Sequential | NOTION-03 and NOTION-05 reuse the scratch page from NOTION-02; requires Wave 1 PASS |
-| Wave 4 -- Auth and Rate-Limit Failure | FAIL-01, FAIL-02, FAIL-03 | Sequential, last | Restore `notion_NOTION_TOKEN` after each of FAIL-01 and FAIL-02 before proceeding |
+| Wave 1 -- Connectivity Gate | USR-003 | No | Must PASS before any other wave starts |
+| Wave 2 -- Read-Only | PAGE-002, PAGE-006, BLK-001, BLK-002, DS-001, DS-002, DS-003, DS-006, CMT-002, USR-001, USR-002, SRCH-001, GAP-003, GAP-004, BACKEND-001 | Yes (no writes) | Requires Wave 1 PASS |
+| Wave 3 -- Scratch Write Round-Trips | PAGE-001, PAGE-003, PAGE-004, PAGE-005, PAGE-007, BLK-003, BLK-004, BLK-005, DS-004, DS-005, CMT-001, GAP-001, GAP-002, GAP-005 | Sequential within a shared scratch fixture; parallel across independent scratch pages/data sources | Requires Wave 1 PASS; reuse the scratch fixture a scenario file names, rather than creating a new one |
+| Wave 4 -- Auth and Rate-Limit Failure | FAIL-001, FAIL-002, FAIL-003 | Sequential, last | Restore `notion_NOTION_TOKEN` after each of FAIL-001 and FAIL-002 before proceeding |
 
 ---
 
-## 7. MCP TOOL ROUND-TRIP SCENARIOS (`NOTION-01..NOTION-06`)
+## 7. SCENARIO DIRECTORY (BY CATEGORY)
 
-### NOTION-01 | Bot User Preflight (CRITICAL PATH)
+Every scenario's full 9-column execution contract (Feature ID, Feature Name, Scenario Objective, Exact Prompt, Exact Command Sequence, Expected Signals, Evidence, Pass/Fail Criteria, Failure Triage) lives in its own per-feature file. `Contract` below links straight to it; this root section is the directory only.
 
-#### Description
-Verify `notion_retrieve-bot-user` returns the integration's bot user -- the connectivity and auth smoke test that gates every other scenario.
+### Pages
 
-#### Scenario Contract
-Prompt: `"Confirm the Notion integration is connected and report the bot user."`
+| ID | Scenario | Objective | Contract |
+|---|---|---|---|
+| PAGE-001 | Create a page | Create a scratch page under a shared parent page, confirm it was created, then archive it. | [`pages/create-a-page.md`](pages/create-a-page.md) |
+| PAGE-002 | Retrieve a page | Read a known scratch page's properties and metadata by ID. | [`pages/retrieve-a-page.md`](pages/retrieve-a-page.md) |
+| PAGE-003 | Update page properties | Create a scratch page, patch its title property, confirm the patch, then archive. | [`pages/update-page-properties.md`](pages/update-page-properties.md) |
+| PAGE-004 | Archive a page | Create a scratch page, archive it, and confirm the trashed state with a follow-up read. | [`pages/archive-a-page.md`](pages/archive-a-page.md) |
+| PAGE-005 | Move a page | Create a scratch page, move it to a second scratch parent, confirm the new parent, then archive. | [`pages/move-page.md`](pages/move-page.md) |
+| PAGE-006 | Retrieve page as Markdown | Read a known scratch page's block content as Markdown. | [`pages/retrieve-page-markdown.md`](pages/retrieve-page-markdown.md) |
+| PAGE-007 | Update page via Markdown | Create a scratch page, write Markdown content to it, read it back to confirm, then archive. | [`pages/update-page-markdown.md`](pages/update-page-markdown.md) |
 
-Single read-only Code Mode call against the local stdio backend; no scratch content is created.
+### Blocks
 
-Desired user-visible outcome: the operator sees a confirmed bot identity with no error, clearing every other scenario to run.
+| ID | Scenario | Objective | Contract |
+|---|---|---|---|
+| BLK-001 | Retrieve a block | Create a scratch page, append one paragraph block to get a real `block_id`, retrieve that block by ID, then archive the scratch page as cleanup. | [`blocks/retrieve-a-block.md`](blocks/retrieve-a-block.md) |
+| BLK-002 | Retrieve block children | Create a scratch page, append one paragraph block, list the page's children and confirm the appended block is present, then archive the scratch page as cleanup. | [`blocks/retrieve-block-children.md`](blocks/retrieve-block-children.md) |
+| BLK-003 | Append block children | Create a scratch page, append one paragraph block to it, confirm the response contains a real block ID and matching content, then archive the scratch page as cleanup. | [`blocks/append-block-children.md`](blocks/append-block-children.md) |
+| BLK-004 | Update a block | Create a scratch page, append one paragraph block to get a real `block_id`, update that block's text, confirm the new content is present, then archive the scratch page as cleanup. | [`blocks/update-a-block.md`](blocks/update-a-block.md) |
+| BLK-005 | Delete a block | Create a scratch page, append one paragraph block to get a real `block_id`, trash that block, confirm the response reports `archived: true`, restore it, then archive the scratch page as cleanup. | [`blocks/delete-a-block.md`](blocks/delete-a-block.md) |
 
-#### Test Execution
+### Data Sources
 
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| NOTION-01 | Bot User Preflight | Verify retrieve-bot-user returns the bot user (gate for all other scenarios) | `"Confirm the Notion integration is connected and report the bot user."` | 1. `notion["notion_retrieve-bot-user"]({})` | Step 1: return includes a `bot` type and the integration name; no error | Code Mode call code; return object (redact token) | PASS if bot object returned with no error; FAIL if error thrown or `bot` type missing | 1. Confirm `notion_NOTION_TOKEN` is set -> 2. Confirm the `notion` manual is registered (`grep -c '"name": "notion"' .utcp_config.json`) -> 3. Re-run `list_tools()` to confirm the callable name, then retry |
+| ID | Scenario | Objective | Contract |
+|---|---|---|---|
+| DS-001 | Retrieve a database | Read a scratch database container's metadata and confirm its data-source ID list resolves. | [`data-sources/retrieve-a-database.md`](data-sources/retrieve-a-database.md) |
+| DS-002 | Retrieve a data source | Read a scratch data source's property schema and confirm it resolves. | [`data-sources/retrieve-a-data-source.md`](data-sources/retrieve-a-data-source.md) |
+| DS-003 | Query a data source | Query a scratch data source for rows and confirm a paginated result resolves, empty or not. | [`data-sources/query-data-source.md`](data-sources/query-data-source.md) |
+| DS-004 | Update a data source | Create a scratch data source, then rename it and add a `Status` property, and confirm the schema edit is reflected. | [`data-sources/update-a-data-source.md`](data-sources/update-a-data-source.md) |
+| DS-005 | Create a data source | Create a new scratch data source with a minimal `Name` schema under a scratch parent page. | [`data-sources/create-a-data-source.md`](data-sources/create-a-data-source.md) |
+| DS-006 | List data source templates | List a scratch data source's page templates and confirm the result resolves, empty or not. | [`data-sources/list-data-source-templates.md`](data-sources/list-data-source-templates.md) |
 
-Cleanup: none (read-only).
+### Comments
 
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 7 Users](../feature-catalog/FEATURE-CATALOG.md)
+| ID | Scenario | Objective | Contract |
+|---|---|---|---|
+| CMT-001 | Create a comment | Create a scratch page, add a comment to it via `create-a-comment`, confirm it appears via `list-comments`, then archive the scratch page as cleanup. | [`comments/create-a-comment.md`](comments/create-a-comment.md) |
+| CMT-002 | List comments | List the unresolved comments on a known shared page via `list-comments` and confirm the response shape, whether or not any comments exist. | [`comments/list-comments.md`](comments/list-comments.md) |
 
-### NOTION-02 | Page Create -> Read -> Archive Round-Trip
+### Users
 
-#### Description
-Verify a page lifecycle: `create-a-page -> retrieve-a-page -> archive-a-page`, all against the scratch parent.
+| ID | Scenario | Objective | Contract |
+|---|---|---|---|
+| USR-001 | List all users | List the workspace's users via `list-all-users` and confirm at least one row (the integration's own bot user) is present. | [`users/list-all-users.md`](users/list-all-users.md) |
+| USR-002 | Retrieve a user | Source a `user_id` from `list-all-users`, then confirm `retrieve-a-user` returns a matching user object for that ID. | [`users/retrieve-a-user.md`](users/retrieve-a-user.md) |
+| USR-003 | Retrieve your bot user (CRITICAL PATH) | Confirm `retrieve-bot-user` resolves with the integration's own bot identity, no input required. | [`users/retrieve-bot-user.md`](users/retrieve-bot-user.md) |
 
-#### Scenario Contract
-Prompt: `"Create a scratch page titled 'MCP Test Page' under the scratch parent, read it back, then trash it."`
+### Search
 
-Creates one scratch page, confirms it round-trips through a read, then archives it as the scenario's own cleanup.
+| ID | Scenario | Objective | Contract |
+|---|---|---|---|
+| SRCH-001 | Search | Confirm `search` finds a fixture page by a title-matching query, and confirm the same tool returns no result for a query matching only that page's body text. | [`search/search.md`](search/search.md) |
 
-Desired user-visible outcome: the scratch page exists, is readable with the expected title, then is trashed and confirmed archived.
+### API-Gap Fills
 
-#### Test Execution
+| ID | Scenario | Objective | Contract |
+|---|---|---|---|
+| GAP-001 | File uploads | Create a file upload via direct REST, send its bytes, then attach the finished upload to a scratch page and confirm it is visible. | [`api-gap-fills/file-uploads.md`](api-gap-fills/file-uploads.md) |
+| GAP-002 | Views | Create a table view on a scratch data source, confirm it appears in the list, run its query, then delete it. | [`api-gap-fills/views.md`](api-gap-fills/views.md) |
+| GAP-003 | Page property items | Read a page's relation property via the MCP, confirm it is truncated (or note the item count), then fetch the same property via the direct endpoint and confirm it returns the full paginated set. | [`api-gap-fills/page-property-items.md`](api-gap-fills/page-property-items.md) |
+| GAP-004 | Async-task polling | Poll a known async task id via direct REST until its status reports completion, honoring the rate-limit budget between polls. | [`api-gap-fills/async-task-polling.md`](api-gap-fills/async-task-polling.md) |
+| GAP-005 | Daily notes | Query for today's daily note, create it if absent, then re-query to confirm exactly one page exists for the date. | [`api-gap-fills/daily-notes.md`](api-gap-fills/daily-notes.md) |
 
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| NOTION-02 | Page Create -> Read -> Archive Round-Trip | Verify page lifecycle round-trip against the scratch parent | `"Create a scratch page titled 'MCP Test Page' under the scratch parent, read it back, then trash it."` | 1. `notion["notion_create-a-page"]({...})` -> 2. `notion["notion_retrieve-a-page"]({ page_id })` -> 3. `notion["notion_archive-a-page"]({ page_id })` -> 4. `notion["notion_retrieve-a-page"]({ page_id })` | Step 1: returns a `page_id`; Step 2: returns the same page with the title; Step 3: marks the page trashed; Step 4: shows `archived: true` | page_id; retrieved title; archived flag before and after | PASS if create returns a page_id, the retrieve matches the title, and the follow-up retrieve shows `archived: true`; FAIL if any step errors or the follow-up retrieve is not archived | 1. Confirm the scratch parent is shared with the integration -> 2. Confirm the properties payload matches the parent's schema -> 3. Re-run the follow-up retrieve to confirm archive propagation |
+### Backend and Failure
 
-Cleanup: the page is archived by the scenario itself (this is the cleanup).
-
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 3 Pages](../feature-catalog/FEATURE-CATALOG.md)
-
-### NOTION-03 | Block Append -> Read Round-Trip
-
-#### Description
-Verify block content: `append-block-children -> retrieve-block-children` on the scratch page from NOTION-02 (recreate a scratch page if needed).
-
-#### Scenario Contract
-Prompt: `"Append a paragraph block to the scratch page, then list its children and confirm the paragraph is present."`
-
-Appends one paragraph block to the NOTION-02 scratch page, then reads block children back to confirm content landed on the correct surface.
-
-Desired user-visible outcome: the paragraph text is visible in the page and confirmed via the children listing.
-
-#### Test Execution
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| NOTION-03 | Block Append -> Read Round-Trip | Verify a paragraph block append is visible in the children listing | `"Append a paragraph block to the scratch page, then list its children and confirm the paragraph is present."` | 1. `notion["notion_append-block-children"]({ block_id, children })` -> 2. `notion["notion_retrieve-block-children"]({ block_id })` | Step 1: returns the new block(s); Step 2: listing shows the paragraph text | Appended block id(s); children-listing content | PASS if the appended paragraph text is present in the children listing; FAIL if the block is missing or the append errors | 1. Confirm the NOTION-02 scratch page still exists (recreate if it was already archived) -> 2. Confirm the block payload matches the paragraph block-type schema -> 3. Re-run the children listing to rule out pagination truncation |
-
-Cleanup: archive the scratch page.
-
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 4 Blocks](../feature-catalog/FEATURE-CATALOG.md)
-
-### NOTION-04 | Data-Source Query (READ-ONLY)
-
-#### Description
-Verify `query-data-source` returns rows from a scratch data source without mutating anything.
-
-#### Scenario Contract
-Prompt: `"Query the scratch data source and return the first page of rows with no filter."`
-
-Single read-only query against a scratch data source; an empty result set is a valid outcome, not a failure.
-
-Desired user-visible outcome: the operator sees the first page of rows (or a confirmed-empty result) with no mutation.
-
-#### Test Execution
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| NOTION-04 | Data-Source Query | Verify an unfiltered query returns a paginated row list | `"Query the scratch data source and return the first page of rows with no filter."` | 1. `notion["notion_query-data-source"]({ data_source_id })` | Step 1: returns a paginated list of pages (rows); `[]` for an empty data source is valid | Returned rows (or confirmed-empty array); data_source_id used | PASS if a paginated list object is returned (empty or populated) with no error; FAIL if the call errors or the object is not a paginated list | 1. Confirm the id used is a **data-source id**, not a database id -> 2. Confirm the integration has access to the parent database -> 3. Re-run with an explicit `filter: {}` to rule out a malformed default |
-
-Cleanup: none (read-only).
-
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 5 Databases and data sources](../feature-catalog/FEATURE-CATALOG.md)
-
-### NOTION-05 | Comment Create -> List Round-Trip
-
-#### Description
-Verify comments: `create-a-comment -> list-comments` on the scratch page.
-
-#### Scenario Contract
-Prompt: `"Add a comment 'MCP test comment' to the scratch page, then list its comments and confirm it appears."`
-
-Creates one comment on the NOTION-02 scratch page, then confirms it is present in the comment listing.
-
-Desired user-visible outcome: the comment is visible on the scratch page and confirmed via the listing call.
-
-#### Test Execution
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| NOTION-05 | Comment Create -> List Round-Trip | Verify a created comment appears in the listing | `"Add a comment 'MCP test comment' to the scratch page, then list its comments and confirm it appears."` | 1. `notion["notion_create-a-comment"]({ parent, rich_text })` -> 2. `notion["notion_list-comments"]({ block_id })` | Step 1: returns a comment object; Step 2: listing returns the comment with matching text | Comment id; listed comment text | PASS if the listed comments include the created text; FAIL if the comment is missing or either call errors | 1. Confirm the scratch page still exists -> 2. Confirm the `rich_text` payload shape matches the comment schema -> 3. Re-run the list call to rule out propagation delay |
-
-Cleanup: archive the scratch page (comments go with it).
-
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 6 Comments](../feature-catalog/FEATURE-CATALOG.md)
-
-### NOTION-06 | Search Is Title-Only (STRUCTURAL LIMIT)
-
-#### Description
-Verify `search` matches on title and does **not** perform full-text content search.
-
-#### Scenario Contract
-Prompt: `"Search for the scratch page by its title, then search for a unique phrase that only appears in its body."`
-
-Two read-only search calls confirming the documented title-only structural limit; no scratch content is created.
-
-Desired user-visible outcome: the operator sees confirmation that title search finds the page while body-content search does not, matching the documented limit.
-
-#### Test Execution
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| NOTION-06 | Search Is Title-Only | Verify search matches on title, not full-text body content | `"Search for the scratch page by its title, then search for a unique phrase that only appears in its body."` | 1. `notion["notion_search"]({ query: "<page title>" })` -> 2. `notion["notion_search"]({ query: "<unique body phrase>" })` | Step 1: returns the page; Step 2: does not return the page | Both search result sets | PASS if the title search finds the page and the body-phrase search does not; FAIL if the body-phrase search unexpectedly returns the page, or the title search misses it | 1. Confirm the title used matches exactly -> 2. Confirm the page is shared with the integration -> 3. Re-run the title search alone to isolate a search-index propagation delay |
-
-Cleanup: none (read-only).
-
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 8 Search](../feature-catalog/FEATURE-CATALOG.md)
+| ID | Scenario | Objective | Contract |
+|---|---|---|---|
+| BACKEND-001 | Headless backend selection | Confirm the `notion` manual is registered against the local stdio transport and that a call resolves with no OAuth step. | [`backend-and-failure/backend-selection.md`](backend-and-failure/backend-selection.md) |
+| FAIL-001 | Missing token | Confirm `retrieve-bot-user` fails with a named-credential error when `notion_NOTION_TOKEN` is unset, then restore the token and confirm recovery. | [`backend-and-failure/missing-token.md`](backend-and-failure/missing-token.md) |
+| FAIL-002 | Invalid token | Confirm `retrieve-bot-user` surfaces `401` unauthorized for a wrong token, then restore the valid token and confirm recovery. | [`backend-and-failure/invalid-token.md`](backend-and-failure/invalid-token.md) |
+| FAIL-003 | Rate-limit backoff | Issue a small read-only burst above ~3 req/s, observe a `429`, and confirm the retry honors `Retry-After` plus jitter before eventually succeeding. | [`backend-and-failure/rate-limit-backoff.md`](backend-and-failure/rate-limit-backoff.md) |
 
 ---
 
-## 8. API-GAP DIRECT-CALL SCENARIOS (`GAP-01`)
-
-### GAP-01 | Non-Truncated Page Property Items
-
-#### Description
-Verify the direct-API fill for property truncation: `retrieve-a-page` truncates a relation/rollup/people property past ~25 items, and the direct page-property-item endpoint returns the full paginated list.
-
-#### Scenario Contract
-Prompt: `"Read a page whose relation property has more than 25 items via the MCP, then fetch the full list via the direct property-item endpoint."`
-
-Requires an existing scratch page pre-seeded with a many-item relation property; falls back to `SKIP` with a named blocker if none exists. Uses `Notion-Version: 2025-09-03` and the Bearer token from `$notion_NOTION_TOKEN`, never hardcoded.
-
-Desired user-visible outcome: the operator confirms the gap and its fill -- the MCP shows a truncated property, and the direct call recovers the complete paginated set.
-
-#### Test Execution
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| GAP-01 | Non-Truncated Page Property Items | Verify the property-item direct call recovers the full list past the ~25-item MCP truncation | `"Read a page whose relation property has more than 25 items via the MCP, then fetch the full list via the direct property-item endpoint."` | 1. `notion["notion_retrieve-a-page"]({ page_id })` -> 2. `GET /v1/pages/{page_id}/properties/{property_id}?page_size=100` (Bearer `$notion_NOTION_TOKEN`, `Notion-Version: 2025-09-03`) | Step 1: shows a truncated / `has_more` property; Step 2: paginates to the complete set, following `start_cursor` until `has_more` is false | MCP page-read truncation flag; direct-call paginated result set; item-count comparison | PASS if the direct call returns the full item count past the ~25-item MCP truncation; FAIL if the direct call also truncates or errors | 1. Confirm a scratch page pre-seeded with a many-item relation exists, else SKIP with that blocker -> 2. Confirm the `Notion-Version: 2025-09-03` header is set -> 3. Confirm the token is read from `$notion_NOTION_TOKEN`, never hardcoded |
-
-Cleanup: none (read-only). Use an existing scratch page pre-seeded with a many-item relation, or SKIP with a documented blocker if none exists.
-
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 9 API-gap fills](../feature-catalog/FEATURE-CATALOG.md)
-
----
-
-## 9. BACKEND SELECTION SCENARIOS (`BACKEND-01`)
-
-### BACKEND-01 | Headless Routes to Local Stdio
-
-#### Description
-Verify the smart router selects the **local stdio** backend for headless Code Mode execution, not the remote OAuth server.
-
-#### Scenario Contract
-Prompt: `"In a headless run with NOTION_TOKEN set and no browser, confirm which backend the mode selects."`
-
-Read-only inspection of `.utcp_config.json` plus one confirming call; an interactive session with OAuth available would instead prefer remote -- that is the contrasting branch, stated but not executed headlessly.
-
-Desired user-visible outcome: the operator confirms the headless path always resolves through local stdio, never attempting remote OAuth without a browser session.
-
-#### Test Execution
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| BACKEND-01 | Headless Routes to Local Stdio | Verify headless Code Mode always selects the local stdio backend | `"In a headless run with NOTION_TOKEN set and no browser, confirm which backend the mode selects."` | 1. `bash: grep -c '"name": "notion"' .utcp_config.json` -> 2. inspect the `notion` manual's `transport` field in `.utcp_config.json` -> 3. `notion["notion_retrieve-bot-user"]({})` to confirm calls resolve through the local server | Step 1: returns `1`; Step 2: `transport: "stdio"`, command `npx -y @notionhq/notion-mcp-server`; Step 3: call resolves with no OAuth prompt | `.utcp_config.json` manual entry; successful headless call transcript | PASS if the mode selects local stdio (no OAuth step) and the call resolves; FAIL if the mode attempts remote OAuth in a headless context | 1. Confirm the `notion` manual config still points at local `npx` -> 2. Confirm no OAuth token is being injected into a headless run -> 3. Re-check that the interactive-session branch is genuinely absent |
-
-Cleanup: none (read-only inspection).
-
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 2 Backend selection](../feature-catalog/FEATURE-CATALOG.md)
-
----
-
-## 10. AUTH AND FAILURE SCENARIOS (`FAIL-01..FAIL-03`)
-
-### FAIL-01 | Missing Token
-
-#### Description
-Verify a clear failure when `NOTION_TOKEN` / `notion_NOTION_TOKEN` is unset.
-
-#### Scenario Contract
-Prompt: `"Call retrieve-bot-user with no Notion token configured."`
-
-Token-perturbing scenario -- run in the last wave (Section 6) and restore the valid token immediately after.
-
-Desired user-visible outcome: the operator sees a clear, named-credential error rather than a generic crash, with an obvious recovery path.
-
-#### Test Execution
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| FAIL-01 | Missing Token | Verify retrieve-bot-user fails with a named-credential error when the token is unset | `"Call retrieve-bot-user with no Notion token configured."` | 1. unset `notion_NOTION_TOKEN` -> 2. `notion["notion_retrieve-bot-user"]({})` | Step 2: call fails with an auth error naming the token, not a generic crash; exit non-zero | Error message/body; exit code | PASS if the failure names the missing token credential; FAIL if it crashes generically or silently returns empty | 1. Confirm the token was actually unset for this run -> 2. Confirm the error path is reached (not a cached client) -> 3. Restore `notion_NOTION_TOKEN` and re-run NOTION-01 to confirm recovery |
-
-Cleanup: restore the token before continuing.
-
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 2 Backend selection](../feature-catalog/FEATURE-CATALOG.md)
-
-### FAIL-02 | Invalid Token
-
-#### Description
-Verify an invalid token produces a `401 unauthorized` rather than a silent empty result.
-
-#### Scenario Contract
-Prompt: `"Call retrieve-bot-user with a deliberately wrong Notion token."`
-
-Token-perturbing scenario -- run in the last wave (Section 6) and restore the valid token immediately after.
-
-Desired user-visible outcome: the operator sees an explicit `401`/unauthorized error, never a silent empty success that could be mistaken for a valid but empty result.
-
-#### Test Execution
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| FAIL-02 | Invalid Token | Verify retrieve-bot-user surfaces 401 unauthorized for a wrong token, never a silent empty success | `"Call retrieve-bot-user with a deliberately wrong Notion token."` | 1. set `notion_NOTION_TOKEN` to a deliberately invalid value -> 2. `notion["notion_retrieve-bot-user"]({})` | Step 2: `401` / unauthorized error surfaced with a meaningful message; exit non-zero | Error status code; error body | PASS if `401`/unauthorized is surfaced with a message; FAIL if the call returns an empty success | 1. Confirm the invalid token was actually applied -> 2. Confirm the error is `401`, not a different failure mode -> 3. Restore the valid token and re-run NOTION-01 |
-
-Cleanup: restore the valid token.
-
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 2 Backend selection](../feature-catalog/FEATURE-CATALOG.md)
-
-### FAIL-03 | Rate-Limit Backoff
-
-#### Description
-Verify the mode honors Notion's **3 requests/second** limit and backs off on `429` using `Retry-After`.
-
-#### Scenario Contract
-Prompt: `"Issue a burst of read calls above 3/second and confirm the mode backs off instead of hammering."`
-
-Keep the burst small and read-only; the scenario proves backoff discipline, not throughput.
-
-Desired user-visible outcome: the burst eventually succeeds after an observed backoff-and-retry, never a tight immediate-retry loop that would compound the rate limit.
-
-#### Test Execution
-
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| FAIL-03 | Rate-Limit Backoff | Verify the mode backs off on 429 per Retry-After instead of hammering | `"Issue a burst of read calls above 3/second and confirm the mode backs off instead of hammering."` | 1. issue a small burst of read calls (e.g. repeated `notion["notion_retrieve-bot-user"]({})`) above 3 req/s -> 2. observe a `429` -> 3. confirm the retry honors `Retry-After` plus jitter, then succeeds | Step 2: `429` observed; Step 3: retry waits per `Retry-After` plus jitter, not a tight immediate-retry loop, then succeeds | Request timing/transcript; observed `Retry-After` header value; eventual success | PASS if the mode backs off per `Retry-After` and then succeeds; FAIL if it retries immediately in a tight loop or gives up | 1. Confirm the burst actually exceeded ~3 req/s -> 2. Confirm the `429` response carried a `Retry-After` header -> 3. Re-run with a slightly larger burst if `429` was not triggered |
-
-Cleanup: none (read-only).
-
-> **Scenario Detail:** inline above -- mcp-notion ships no separate per-feature file.
-> **Catalog:** [FEATURE-CATALOG.md, section 10 Knowledge-layer references](../feature-catalog/FEATURE-CATALOG.md)
-
----
-
-## 11. AUTOMATED TEST CROSS-REFERENCE
+## 8. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| _None_ | mcp-notion has no automated test suite. `scripts/doctor.sh` performs read-only Node/npx/manual/token diagnostics; `scripts/install.sh` prints registration state. Neither asserts a pass/fail scenario outcome. | All 11 scenarios remain manual-only |
+| _None_ | mcp-notion has no automated test suite. `scripts/doctor.sh` performs read-only Node/npx/manual/token diagnostics; `scripts/install.sh` prints registration state. Neither asserts a pass/fail scenario outcome. | All 33 scenarios remain manual-only |
 
 No automated regression tests exist for this mode yet. `scripts/doctor.sh` and `scripts/install.sh` are non-mutating diagnostics, not tests -- they confirm the preconditions in Section 2 but provide no scenario-level assertion overlap.
 
 ---
 
-## 12. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 9. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-| Feature ID | Feature Name | Category | Playbook Section |
-|---|---|---|---|
-| NOTION-01 | Bot User Preflight | MCP tool round-trip | Section 7, `### NOTION-01` |
-| NOTION-02 | Page Create -> Read -> Archive Round-Trip | MCP tool round-trip | Section 7, `### NOTION-02` |
-| NOTION-03 | Block Append -> Read Round-Trip | MCP tool round-trip | Section 7, `### NOTION-03` |
-| NOTION-04 | Data-Source Query | MCP tool round-trip | Section 7, `### NOTION-04` |
-| NOTION-05 | Comment Create -> List Round-Trip | MCP tool round-trip | Section 7, `### NOTION-05` |
-| NOTION-06 | Search Is Title-Only | MCP tool round-trip | Section 7, `### NOTION-06` |
-| GAP-01 | Non-Truncated Page Property Items | API-gap direct call | Section 8, `### GAP-01` |
-| BACKEND-01 | Headless Routes to Local Stdio | Backend selection | Section 9, `### BACKEND-01` |
-| FAIL-01 | Missing Token | Auth and failure | Section 10, `### FAIL-01` |
-| FAIL-02 | Invalid Token | Auth and failure | Section 10, `### FAIL-02` |
-| FAIL-03 | Rate-Limit Backoff | Auth and failure | Section 10, `### FAIL-03` |
+This 1:1 table is the proof that every scenario has both a catalog entry and a per-feature scenario file. The four `backend-and-failure` scenarios have no per-feature catalog file, so their catalog entry links the catalog root instead.
 
-mcp-notion ships as a single-file playbook, so the "Feature File" column used by multi-file packages is replaced here with a same-document `Playbook Section` pointer -- every scenario's full execution contract is inline at the referenced heading, not in a separate file.
+| ID | Scenario | Category | Catalog entry | Scenario file |
+|---|---|---|---|---|
+| PAGE-001 | Create a page | Pages | [`pages/create-a-page.md`](../feature-catalog/pages/create-a-page.md) | [`pages/create-a-page.md`](pages/create-a-page.md) |
+| PAGE-002 | Retrieve a page | Pages | [`pages/retrieve-a-page.md`](../feature-catalog/pages/retrieve-a-page.md) | [`pages/retrieve-a-page.md`](pages/retrieve-a-page.md) |
+| PAGE-003 | Update page properties | Pages | [`pages/update-page-properties.md`](../feature-catalog/pages/update-page-properties.md) | [`pages/update-page-properties.md`](pages/update-page-properties.md) |
+| PAGE-004 | Archive a page | Pages | [`pages/archive-a-page.md`](../feature-catalog/pages/archive-a-page.md) | [`pages/archive-a-page.md`](pages/archive-a-page.md) |
+| PAGE-005 | Move a page | Pages | [`pages/move-page.md`](../feature-catalog/pages/move-page.md) | [`pages/move-page.md`](pages/move-page.md) |
+| PAGE-006 | Retrieve page as Markdown | Pages | [`pages/retrieve-page-markdown.md`](../feature-catalog/pages/retrieve-page-markdown.md) | [`pages/retrieve-page-markdown.md`](pages/retrieve-page-markdown.md) |
+| PAGE-007 | Update page via Markdown | Pages | [`pages/update-page-markdown.md`](../feature-catalog/pages/update-page-markdown.md) | [`pages/update-page-markdown.md`](pages/update-page-markdown.md) |
+| BLK-001 | Retrieve a block | Blocks | [`blocks/retrieve-a-block.md`](../feature-catalog/blocks/retrieve-a-block.md) | [`blocks/retrieve-a-block.md`](blocks/retrieve-a-block.md) |
+| BLK-002 | Retrieve block children | Blocks | [`blocks/retrieve-block-children.md`](../feature-catalog/blocks/retrieve-block-children.md) | [`blocks/retrieve-block-children.md`](blocks/retrieve-block-children.md) |
+| BLK-003 | Append block children | Blocks | [`blocks/append-block-children.md`](../feature-catalog/blocks/append-block-children.md) | [`blocks/append-block-children.md`](blocks/append-block-children.md) |
+| BLK-004 | Update a block | Blocks | [`blocks/update-a-block.md`](../feature-catalog/blocks/update-a-block.md) | [`blocks/update-a-block.md`](blocks/update-a-block.md) |
+| BLK-005 | Delete a block | Blocks | [`blocks/delete-a-block.md`](../feature-catalog/blocks/delete-a-block.md) | [`blocks/delete-a-block.md`](blocks/delete-a-block.md) |
+| DS-001 | Retrieve a database | Data sources | [`data-sources/retrieve-a-database.md`](../feature-catalog/data-sources/retrieve-a-database.md) | [`data-sources/retrieve-a-database.md`](data-sources/retrieve-a-database.md) |
+| DS-002 | Retrieve a data source | Data sources | [`data-sources/retrieve-a-data-source.md`](../feature-catalog/data-sources/retrieve-a-data-source.md) | [`data-sources/retrieve-a-data-source.md`](data-sources/retrieve-a-data-source.md) |
+| DS-003 | Query a data source | Data sources | [`data-sources/query-data-source.md`](../feature-catalog/data-sources/query-data-source.md) | [`data-sources/query-data-source.md`](data-sources/query-data-source.md) |
+| DS-004 | Update a data source | Data sources | [`data-sources/update-a-data-source.md`](../feature-catalog/data-sources/update-a-data-source.md) | [`data-sources/update-a-data-source.md`](data-sources/update-a-data-source.md) |
+| DS-005 | Create a data source | Data sources | [`data-sources/create-a-data-source.md`](../feature-catalog/data-sources/create-a-data-source.md) | [`data-sources/create-a-data-source.md`](data-sources/create-a-data-source.md) |
+| DS-006 | List data source templates | Data sources | [`data-sources/list-data-source-templates.md`](../feature-catalog/data-sources/list-data-source-templates.md) | [`data-sources/list-data-source-templates.md`](data-sources/list-data-source-templates.md) |
+| CMT-001 | Create a comment | Comments | [`comments/create-a-comment.md`](../feature-catalog/comments/create-a-comment.md) | [`comments/create-a-comment.md`](comments/create-a-comment.md) |
+| CMT-002 | List comments | Comments | [`comments/list-comments.md`](../feature-catalog/comments/list-comments.md) | [`comments/list-comments.md`](comments/list-comments.md) |
+| USR-001 | List all users | Users | [`users/list-all-users.md`](../feature-catalog/users/list-all-users.md) | [`users/list-all-users.md`](users/list-all-users.md) |
+| USR-002 | Retrieve a user | Users | [`users/retrieve-a-user.md`](../feature-catalog/users/retrieve-a-user.md) | [`users/retrieve-a-user.md`](users/retrieve-a-user.md) |
+| USR-003 | Retrieve your bot user | Users | [`users/retrieve-bot-user.md`](../feature-catalog/users/retrieve-bot-user.md) | [`users/retrieve-bot-user.md`](users/retrieve-bot-user.md) |
+| SRCH-001 | Search | Search | [`search/search.md`](../feature-catalog/search/search.md) | [`search/search.md`](search/search.md) |
+| GAP-001 | File uploads | API-gap fills | [`api-gap-fills/file-uploads.md`](../feature-catalog/api-gap-fills/file-uploads.md) | [`api-gap-fills/file-uploads.md`](api-gap-fills/file-uploads.md) |
+| GAP-002 | Views | API-gap fills | [`api-gap-fills/views.md`](../feature-catalog/api-gap-fills/views.md) | [`api-gap-fills/views.md`](api-gap-fills/views.md) |
+| GAP-003 | Page property items | API-gap fills | [`api-gap-fills/page-property-items.md`](../feature-catalog/api-gap-fills/page-property-items.md) | [`api-gap-fills/page-property-items.md`](api-gap-fills/page-property-items.md) |
+| GAP-004 | Async-task polling | API-gap fills | [`api-gap-fills/async-task-polling.md`](../feature-catalog/api-gap-fills/async-task-polling.md) | [`api-gap-fills/async-task-polling.md`](api-gap-fills/async-task-polling.md) |
+| GAP-005 | Daily notes | API-gap fills | [`api-gap-fills/daily-notes.md`](../feature-catalog/api-gap-fills/daily-notes.md) | [`api-gap-fills/daily-notes.md`](api-gap-fills/daily-notes.md) |
+| BACKEND-001 | Headless backend selection | Backend and failure | [`FEATURE-CATALOG.md`](../feature-catalog/FEATURE-CATALOG.md) | [`backend-and-failure/backend-selection.md`](backend-and-failure/backend-selection.md) |
+| FAIL-001 | Missing token | Backend and failure | [`FEATURE-CATALOG.md`](../feature-catalog/FEATURE-CATALOG.md) | [`backend-and-failure/missing-token.md`](backend-and-failure/missing-token.md) |
+| FAIL-002 | Invalid token | Backend and failure | [`FEATURE-CATALOG.md`](../feature-catalog/FEATURE-CATALOG.md) | [`backend-and-failure/invalid-token.md`](backend-and-failure/invalid-token.md) |
+| FAIL-003 | Rate-limit backoff | Backend and failure | [`FEATURE-CATALOG.md`](../feature-catalog/FEATURE-CATALOG.md) | [`backend-and-failure/rate-limit-backoff.md`](backend-and-failure/rate-limit-backoff.md) |
