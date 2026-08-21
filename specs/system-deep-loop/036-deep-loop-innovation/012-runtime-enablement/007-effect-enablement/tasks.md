@@ -40,17 +40,17 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] **T-001** Capture the runtime suite baseline before any edit.
-- [ ] **T-002** Read the effect gateway, event contracts, and restart-facts reader at the seam; record the effect-ledger id the reader expects and the intent payload shape.
-- [ ] **T-003** Confirm by execution that a bare dispatch writes zero effect records and the reader refuses over the absent ledger.
+- [ ] **T-002** Read the effect gateway, event contracts, the audited executor input contract, and restart-facts reader; record the effect-ledger id, the intent payload shape, and how `fanout-run.cjs` binds `loopType`/`lineageDir`.
+- [ ] **T-003** Confirm by execution that the live launcher spawns unaudited, the audited path has zero callers, and the reader refuses over the absent ledger.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] **T-004** Construct the per-run effect ledger in the dispatch path, keyed to the id the reader reads.
-- [ ] **T-005** Append a fail-closed effect intent before the spawn; on a failed durable append, return a dispatch failure and do not spawn.
+- [ ] **T-004** Route the live executor spawn in `fanout-run.cjs` through the audited executor path, passing the mode and run directory.
+- [ ] **T-005** Construct the per-run effect ledger at `${lineageDir}/${mode}-effect-ledger`; append a fail-closed effect intent before the spawn and do not spawn on a failed durable append.
 - [ ] **T-006** Append an effect confirmation after the dispatch settles, keyed to the intent's effect id.
-- [ ] **T-007** Confirm the best-effort receipt pair is untouched in behavior.
+- [ ] **T-007** Confirm the fan-out behavior and the best-effort receipt pair are untouched.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->

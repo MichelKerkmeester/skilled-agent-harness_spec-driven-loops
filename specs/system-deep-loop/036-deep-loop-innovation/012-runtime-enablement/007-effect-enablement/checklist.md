@@ -44,28 +44,28 @@ zero children.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-004 [P0] A durable effect-intent record is written before the spawn crosses the process boundary (REQ-001)
-- [ ] CHK-005 [P0] An effect-confirmation record is written after the dispatch settles, sharing the intent's effect id (REQ-002, REQ-004)
-- [ ] CHK-006 [P0] On a failed durable intent append, no child process is spawned; the refusal is loud and structured (REQ-003)
-- [ ] CHK-007 [P1] The edit to the 007-owned dispatch file is confined to effect recording; no unrelated hot-path behavior is added (REQ-007)
+- [ ] CHK-004 [P0] The live executor spawn is routed through the audited executor path; no unaudited direct spawn reaches an executor without effect recording (REQ-001)
+- [ ] CHK-005 [P0] A durable effect-intent record is written before the spawn crosses the process boundary, and a confirmation after it settles, sharing the intent's effect id (REQ-002, REQ-003)
+- [ ] CHK-006 [P0] On a failed durable intent append, no child process is spawned; the refusal is loud and structured (REQ-005)
+- [ ] CHK-007 [P1] The edits to the two cross-packet surfaces (the launcher and the audited path) are confined to routing and effect recording; fan-out semantics are unchanged (REQ-007)
 - [ ] CHK-008 [P1] Comments carry the durable why; no spec paths, packet numbers, or task ids in code comments
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-009 [P0] A real dispatch writes exactly one intent and one confirmation sharing an effect id, proven by reading the ledger (SC-001)
-- [ ] CHK-010 [P0] The intent's sequence precedes the spawn on a real dispatch (REQ-001)
+- [ ] CHK-009 [P0] A real dispatch writes exactly one intent and one confirmation sharing an effect id into `${lineageDir}/${mode}-effect-ledger`, proven by reading the ledger (SC-001, REQ-004)
+- [ ] CHK-010 [P0] The intent's sequence precedes the spawn on a real dispatch (REQ-002)
 - [ ] CHK-011 [P0] Fail-closed negative control: perturbing only the durable append spawns zero children; restoring spawns one; both outcomes recorded (SC-002)
-- [ ] CHK-012 [P0] The restart-facts reader over the populated ledger returns non-empty coverage instead of the empty-list pass (SC-003)
-- [ ] CHK-013 [P1] Full suite re-run and reported as a delta against the baseline (SC-004)
+- [ ] CHK-012 [P0] The enablement step, pointed at a lineage directory populated by a real dispatch, observes the records rather than refusing over absence (SC-003, REQ-006)
+- [ ] CHK-013 [P1] Full suite re-run and reported as a delta against the baseline; the fan-out suite still passes (SC-004)
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-014 [P0] The best-effort receipt pair around the spawn is unchanged in behavior (REQ-006)
-- [ ] CHK-015 [P1] No effect record is written where no real external action occurs — the producer sits at the spawn, not a ledger append (SC-001)
+- [ ] CHK-014 [P0] The fan-out behavior — concurrency cap, streaming, liveness, salvage — and the best-effort receipt pair are unchanged (REQ-007)
+- [ ] CHK-015 [P1] No effect record is written where no real external action occurs — the producer sits at the live spawn, not a ledger append (SC-001)
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->

@@ -12,10 +12,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement"
     last_updated_at: "2026-08-21T15:30:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored and validated the phase docs; authorized the cross-packet edit"
-    next_safe_action: "Capture the runtime baseline, then wire the fail-closed producer at the spawn"
+    recent_action: "Corrected the seam to the live launcher after confirming zero audited-path callers"
+    next_safe_action: "Capture the baseline, then route the live launcher through the audited path"
     blockers: []
     key_files:
+      - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
     completion_pct: 0
     open_questions: []
@@ -46,12 +47,15 @@ _memory:
 ## 2. WHAT WAS BUILT
 
 Nothing yet. This phase exists because the effect producer that unblocks the flip was scoped by no phase in the packet,
-and it must edit a file the `007-executor-and-cli-hardening` packet owns. The operator authorized a new child here rather
-than overloading a sibling or silently editing across a packet boundary.
+and it must edit files the executor-hardening and fanout-parity work owns. The operator authorized a new child here
+rather than overloading a sibling or silently editing across a packet boundary.
 
-The planned build brackets one line — the real child-process spawn at the audited executor seam — with a durable
-effect-intent record before it and an effect-confirmation after it, into the effect ledger the certificate reads. The
-intent write gates the spawn: no durable intent, no dispatch.
+An earlier reading named `executor-audit.ts` as the seam. Verification refuted it: that audited wrapper has zero
+production callers, and it holds no binding to the mode or run directory the consumer reads. The live launcher is
+`fanout-run.cjs`, which spawns the executor unaudited today and already knows the mode (`loopType`) and run directory
+(`lineageDir`). The planned build routes that live spawn through the audited path and brackets it with a durable
+effect-intent before and an effect-confirmation after, into `${lineageDir}/${mode}-effect-ledger` — the exact ledger the
+enablement step reads. The intent write gates the spawn: no durable intent, no dispatch.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->

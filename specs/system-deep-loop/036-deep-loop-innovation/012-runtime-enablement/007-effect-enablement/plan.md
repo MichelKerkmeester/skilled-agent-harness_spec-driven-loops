@@ -12,10 +12,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement"
     last_updated_at: "2026-08-21T15:30:00Z"
     last_updated_by: "claude"
-    recent_action: "Planned setup, wiring, and the fail-closed negative control"
-    next_safe_action: "Capture the runtime baseline and read the effect-gateway contract at the seam"
+    recent_action: "Corrected the plan to route the live launcher through the audited path"
+    next_safe_action: "Capture the baseline and read the fanout-run binding and audited-path contract"
     blockers: []
     key_files:
+      - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
     completion_pct: 0
     open_questions: []
@@ -32,12 +33,14 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | The audited executor dispatch seam, its effect-ledger construction, and effect-recording tests |
-| **Change class** | New durable side-record on a hot path, gating a real external action |
+| **Surface** | The live executor launcher, the audited executor path it is routed through, their effect-ledger construction, and tests |
+| **Change class** | Wire an unwired audited path into the live launcher, plus a durable fail-closed side-record gating the real spawn |
 | **Authority** | No authority moves; this phase produces the evidence a later flip consumes |
-| **Blast radius** | High: the seam runs on every deep-loop dispatch, and it is owned by another packet |
+| **Blast radius** | High: the live fan-out launcher runs every deep-loop dispatch, and both surfaces are owned by another packet |
 
-This is the phase that makes the certificate's coverage check mean something. Before it, the check passes over nothing.
+This is the phase that makes the certificate's coverage check mean something. Before it, the check passes over nothing,
+because the audited path that would record effects has zero production callers and the ledger the certificate reads has
+no writer.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -56,22 +59,28 @@ This is the phase that makes the certificate's coverage check mean something. Be
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-The real external action is one line: `spawn(input.command, ...)` in `runAuditedExecutorCommandAsync`. Everything this
-phase adds brackets that line.
+Two things are wrong today and this phase fixes both. The live launcher `fanout-run.cjs` spawns the executor child
+directly, bypassing the audited path. And the audited path `runAuditedExecutorCommandAsync`, which already brackets its
+spawn with a best-effort receipt pair, has no production caller. So the real external action happens unaudited, and the
+audited machinery runs only in tests.
 
-**Before the spawn**, resolve and durably append an effect-intent record to a per-run effect ledger. The intent carries
-the identity of the action about to happen. The append is fail-closed: if it does not durably land, the function
-returns a dispatch failure and never reaches `spawn`. This is the whole safety property — a spawn that is not preceded
-by a durable intent cannot occur, so a confirmed effect can always be traced to a recorded intention.
+**Route the live spawn through the audited path.** `fanout-run.cjs` already knows the mode (`loopType`) and the run
+directory (`lineageDir`), so it can hand the audited path the identity the effect record needs. This makes the audited
+path's first production caller the live launcher, which is where the real action is.
 
-**After the dispatch settles**, append an effect-confirmation record carrying the observed outcome (exit, signal), keyed
-to the same effect id. The confirmation is what closes the intent; a resumed run that finds a confirmation for an effect
-id does not repeat the action, through the gateway's existing recovery path.
+**Before the spawn**, resolve and durably append an effect-intent record to the per-run effect ledger at
+`${lineageDir}/${mode}-effect-ledger` — the exact ledger the enablement step reads. The append is fail-closed: if it
+does not durably land, the dispatch returns a failure and never reaches `spawn`. This is the whole safety property — a
+spawn not preceded by a durable intent cannot occur, so a confirmed effect always traces to a recorded intention.
 
-**Why not the append CLI.** Wrapping a ledger append would emit an effect record for every append — actions that are
-themselves just records, each confirmed instantly. That produces perfect coverage attesting to nothing, and a
+**After the dispatch settles**, append an effect-confirmation carrying the observed outcome (exit, signal), keyed to the
+same effect id. The confirmation closes the intent; a resumed run that finds a confirmation for an effect id does not
+repeat the action, through the gateway's existing recovery path.
+
+**Why here and not the append CLI.** Wrapping a ledger append would emit an effect record for every append — actions
+that are themselves just records, each confirmed instantly. That produces perfect coverage attesting to nothing, and a
 fabrication cannot be told from evidence downstream, where an absence can be refused. The producer must sit at the real
-action, which is the process spawn, not a record write.
+action, which is the executor spawn on the live path, not a record write.
 
 **The existing receipt pair stays.** `beginReceipt`/`completeReceipt` write MAC-signed receipt files for launch
 recognition; they are best-effort and orthogonal. The effect records are durable and gating. Both bracket the same
@@ -83,17 +92,18 @@ spawn without interfering.
 
 ### Phase 1: Setup
 - Capture the runtime suite baseline before any edit.
-- Read the effect gateway, event contracts, and the restart-facts reader at the seam; record the effect-ledger id the
-  reader expects and the intent payload shape the gateway requires.
-- Confirm by execution that a bare dispatch today writes zero effect records and the reader refuses over the absent
-  ledger.
+- Read the effect gateway, event contracts, the audited executor input contract, and the restart-facts reader; record
+  the effect-ledger id the reader expects, the intent payload shape, and how `fanout-run.cjs` binds `loopType`/`lineageDir`.
+- Confirm by execution that the live launcher spawns unaudited today, the audited path has zero callers, and the reader
+  refuses over the absent ledger.
 
 ### Phase 2: Implementation
-- Construct the per-run effect ledger in the dispatch path, keyed to the id the reader reads.
+- Route the live executor spawn in `fanout-run.cjs` through the audited executor path, passing the mode and run directory.
+- Construct the per-run effect ledger at `${lineageDir}/${mode}-effect-ledger`, the id the reader reads.
 - Append a fail-closed effect intent before the spawn; on a failed durable append, return a dispatch failure and do not
   spawn.
 - Append an effect confirmation after the dispatch settles, keyed to the intent's effect id.
-- Leave the best-effort receipt pair untouched in behavior.
+- Preserve the fan-out concurrency, streaming, liveness, and salvage behavior, and the best-effort receipt pair.
 
 ### Phase 3: Verification
 - Prove intent-before-spawn by sequence on a real dispatch.
@@ -124,8 +134,9 @@ a delta against a captured baseline, and the seam's records read from disk rathe
 | Dependency | State | Note |
 |------------|-------|------|
 | Effect gateway and event contracts | Landed, unwired | `EffectRecoveryGateway`, the intent/confirmation event types; used only by rollback drills today |
-| Restart-facts reader | Landed | Refuses over an absent effect ledger; reads the per-run effect ledger id |
-| The audited executor dispatch | Landed, 007-owned | The real spawn seam; edit authorized for this phase |
+| Restart-facts reader | Landed | Refuses over an absent effect ledger; reads `${runDirectory}/${mode}-effect-ledger` |
+| The audited executor path | Landed, zero callers | `runAuditedExecutorCommandAsync`; this phase is its first production caller; edit authorized |
+| The live launcher `fanout-run.cjs` | Landed, 007-owned | Spawns the executor unaudited today; holds the mode and run-directory binding; edit authorized |
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

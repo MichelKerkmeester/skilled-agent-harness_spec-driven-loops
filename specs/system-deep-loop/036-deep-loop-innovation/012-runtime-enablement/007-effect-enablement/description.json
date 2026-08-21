@@ -1,7 +1,7 @@
 {
   "level": 2,
   "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement",
-  "description": "A cutover certificate attests that a run's external effects were all recorded and confirmed",
+  "description": "A cutover certificate attests that a run's external effects were recorded and confirmed, deriving that from an effect",
   "keywords": [
     "cutover",
     "certificate",
@@ -10,9 +10,11 @@
     "external",
     "effects",
     "recorded",
-    "confirmed"
+    "confirmed",
+    "deriving",
+    "effect"
   ],
-  "lastUpdated": "2026-08-21T20:06:56.247Z",
+  "lastUpdated": "2026-08-21T20:17:44.940Z",
   "specId": "007",
   "folderSlug": "effect-enablement",
   "parentChain": [
