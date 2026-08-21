@@ -11,20 +11,23 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-20T07:37:37Z"
+    last_updated_at: "2026-08-21T00:40:33Z"
     last_updated_by: "claude"
-    recent_action: "Repaired the authority check, which had never executed"
-    next_safe_action: "Recapture the suite at the current candidate and regenerate the receipt"
+    recent_action: "Regenerated the receipt at the current candidate and negative-controlled four checks"
+    next_safe_action: "Operator decision on the flip; the gate cannot pass until a mode holds authority"
     blockers:
       - "8 of 8 modes read legacy_authoritative, so the gate cannot pass"
       - "Predecessor 004 unbuilt; retiring legacy writers now would stop writes"
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
-    completion_pct: 70
+    completion_pct: 80
     open_questions:
-      - "Who builds the legacy-to-cutover-ready edges, and under what evidence?"
+      - "Should the gate hardcode session-scoped tmp paths for the suite logs it reads?"
     answered_questions:
       - "The frozen authority order contains eight modes, not the seven this phase assumed"
+      - "prepareCutover builds the legacy-to-cutover-ready edge; the reader gate supplies its evidence"
+      - "The fan-out did run and passed; the receipt records a real lineage with an artifact on disk"
+      - "The gate turns red on demand: tree-clean, candidate-frozen and runtime-suite were each proven"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -157,4 +160,23 @@ it can be started, nothing more. A real contract needs files projected by an ena
 
 **The phase says seven modes; the frozen order contains eight.** The gate records the count it actually
 read. The discrepancy is in the specification, not the measurement.
+
+**The receipt has been regenerated at the current candidate.** Candidate `b8cf7ab74e`, baseline
+`f5676ec691`, verdict FAIL. The verdict is unchanged and the reason is unchanged: 8 of 8 modes read
+`legacy_authoritative`, and all 8 read it from the absent-record default rather than from a stored
+record. `runtime-suite` passes at 15 failures against 24, `consumer-reachability` and
+`fanout-real-run` pass, `reader-contracts` remains `not-run`.
+
+**Four of the gate's checks have now been shown to turn red.** `tree-clean` and `candidate-frozen`
+were forced through the harness's own `--break`, which had never been used before — the field
+recorded `null` on every prior receipt. `runtime-suite` was proven separately by pointing it at a
+candidate log carrying more failures than its baseline: it reported `fail` at Δ+16 and returned to
+`pass` at Δ-9 when the real log was restored. `consumer-reachability` was proven earlier by hiding a
+consumer script. `authority-state` needs no control, since it is the check currently failing.
+
+**The gate reads its suite numbers from two hardcoded absolute paths under a session-scoped
+temporary directory.** Those files are not part of the repository and do not survive the session
+that produced them. A later run in a fresh session reports `fail: baseline log missing` — a defect
+in the harness that would read as a defect in the system. Regenerating this receipt required
+placing the current logs at those exact paths.
 <!-- /ANCHOR:limitations -->

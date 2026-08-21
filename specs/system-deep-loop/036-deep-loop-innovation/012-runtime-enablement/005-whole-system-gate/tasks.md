@@ -52,7 +52,7 @@ _memory:
 - [x] **T-004** Run the runtime suite at the candidate. [EVIDENCE: `17 failed / 4152 passed / 39 skipped (4206)`; `candidate-frozen` proves the runtime tree is byte-identical to the one measured]
 - [ ] **T-005** [P] Run every mode's reader contract at the candidate. [PARTIAL: 7 consumer scripts spawned and exit codes recorded — reachability only. End-to-end contracts need files projected by an enabled mode]
 - [x] **T-006** [P] Read and record the authority state of all seven modes. [EVIDENCE: all 8 modes of the frozen order read; every one `legacy_authoritative`]
-- [ ] **T-007** Run a real fan-out to completion. [NOT RUN: recorded in the receipt as `not-run`, never as a pass; the verdict is already determined by the authority check]
+- [x] **T-007** Run a real fan-out to completion. [DONE, and the earlier note was stale in the pessimistic direction. The receipt records `fanout-real-run` as `pass`, not `not-run`: run_id 1787198541887-w6k53d, total 1, succeeded 1, failed 0, orphaned 0, with a 4978-byte iteration artifact still on disk under `scratch/fanout-proof/`. The gate verdict is still determined by the authority check, which is a separate matter from whether this task ran]
 - [x] **T-008** Write the receipt naming both SHAs, every check, and the verdict. [EVIDENCE: `scratch/receipt.json` and `scratch/receipt.md` — both SHAs, six checks, suite delta, verdict FAIL]
 <!-- /ANCHOR:phase-2 -->
 

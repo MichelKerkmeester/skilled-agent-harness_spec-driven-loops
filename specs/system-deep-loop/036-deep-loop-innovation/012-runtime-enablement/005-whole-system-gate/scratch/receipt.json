@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-20T07:37:54.132Z",
-  "candidateSha": "f58ff5283d1f2213072a1fd3106326976656afe1",
-  "baselineSha": "8c9f0b6944ac4e43e99d26f9cf61dab74b600640",
+  "generatedAt": "2026-08-21T00:39:19.142Z",
+  "candidateSha": "b8cf7ab74e919760a8169496d66536896b08b937",
+  "baselineSha": "f5676ec691e8ae78b63040290ac442a8857abbbc",
   "forcedBreak": null,
   "verdict": "FAIL",
   "checks": [
@@ -85,7 +85,7 @@
       "id": "runtime-suite",
       "description": "Candidate suite failures <= baseline (read from captured logs)",
       "status": "pass",
-      "detail": "failed 14 vs 15 (Δ-1); passed 4190 vs 4111 (Δ+79); skipped 39 vs 39 (Δ+0); total 4243 vs 4165 (Δ+78); files 188 vs 182 (Δ+6)"
+      "detail": "failed 15 vs 24 (Δ-9); passed 4241 vs 4218 (Δ+23); skipped 39 vs 39 (Δ+0); total 4295 vs 4281 (Δ+14); files 192 vs 192 (Δ+0)"
     },
     {
       "id": "consumer-reachability",
@@ -108,29 +108,29 @@
   ],
   "suite": {
     "baseline": {
-      "testsFailed": 15,
-      "testsPassed": 4111,
+      "testsFailed": 24,
+      "testsPassed": 4218,
       "testsSkipped": 39,
-      "testsTotal": 4165,
-      "filesFailed": 17,
-      "filesPassed": 165,
-      "filesTotal": 182
+      "testsTotal": 4281,
+      "filesFailed": 20,
+      "filesPassed": 172,
+      "filesTotal": 192
     },
     "candidate": {
-      "testsFailed": 14,
-      "testsPassed": 4190,
+      "testsFailed": 15,
+      "testsPassed": 4241,
       "testsSkipped": 39,
-      "testsTotal": 4243,
-      "filesFailed": 16,
-      "filesPassed": 172,
-      "filesTotal": 188
+      "testsTotal": 4295,
+      "filesFailed": 17,
+      "filesPassed": 175,
+      "filesTotal": 192
     },
     "delta": {
-      "failed": -1,
-      "passed": 79,
+      "failed": -9,
+      "passed": 23,
       "skipped": 0,
-      "total": 78,
-      "files": 6
+      "total": 14,
+      "files": 0
     }
   }
 }
