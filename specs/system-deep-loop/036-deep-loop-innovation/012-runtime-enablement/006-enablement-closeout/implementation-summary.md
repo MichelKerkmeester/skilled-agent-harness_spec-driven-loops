@@ -11,22 +11,25 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-en
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout"
-    last_updated_at: "2026-08-20T03:41:16Z"
+    last_updated_at: "2026-08-21T00:44:15Z"
     last_updated_by: "claude"
-    recent_action: "Narrowed the flip blocker to one missing edge; found the rollback path built and green"
-    next_safe_action: "Operator decision on who builds the missing cutover_ready edges"
+    recent_action: "Drove the full flip sequence end to end; the forward flip fires and reads back"
+    next_safe_action: "Operator decision on whether the per-mode step should call the flip"
     blockers:
-      - "No production writer persists cutover_ready, so the forward flip can never fire"
+      - "The per-mode step never calls prepareCutover or compareAndSwap, so no mode flips in production"
       - "Catalog and playbook tasks require an enabled runtime that does not exist"
+      - "compareAndSwap persists a selectedWriter its own reader rejects, bricking the record"
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/claim-sweep.md"
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/probe-reachability.mjs"
-    completion_pct: 55
+    completion_pct: 65
     open_questions:
-      - "Who builds the legacy-to-cutover-ready edges, and under what evidence?"
+      - "Should compareAndSwap validate nextSelectedWriter against the states its reader accepts?"
     answered_questions:
       - "Why every downstream phase blocked on the same root cause"
       - "Why the drills and parity harnesses stayed green while production could not move"
+      - "The forward flip fires: prepareCutover then compareAndSwap reaches epoch 2 and reads back"
+      - "The blocker is not a missing edge; it is that the per-mode step calls neither method"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -168,4 +171,26 @@ the invalidated claim it would find is the one this phase just confirmed.
 The closeout does not resolve the blocker. It identifies it precisely and
 locates the decision: who builds the `legacy_authoritative -> cutover_ready`
 edges, and on what evidence a mode is judged ready.
+
+**The blocker recorded here was false, and false in the dangerous direction.** It read: no production
+writer persists `cutover_ready`, so the forward flip can never fire. Driven directly against a live
+registry in a temp root, the sequence completes: `prepareCutover` moves the record to `cutover_ready`
+at epoch 1, `compareAndSwap` moves it to `new_authoritative_reversible` at epoch 2, and `read()`
+returns that state. Anyone resuming on the old text would have believed the transition impossible and
+gone looking for an edge that already exists.
+
+**The probe that produced that conclusion never exercised the promotion.** Its header claims it drives
+every mutator against a live registry. It drove one: it attempted the flip from the default record,
+which correctly refuses because the starting state is wrong, and stopped there. `prepareCutover` was
+sitting in the public surface it printed. The probe now runs the full sequence.
+
+**A writer value the reader rejects is accepted and persisted.** `compareAndSwap` was given
+`nextSelectedWriter: 'spine'` and wrote it. `isValidAuthorityRecord` accepts only `legacy` or `dark`,
+so every subsequent `read()` throws `RECORD_MALFORMED` and the record is unusable. The same sequence
+with `dark` succeeds and reads back cleanly. The writer accepting what its own reader refuses is worth
+closing on a path that is irreversible by design: a mistyped argument brands the record permanently,
+and the failure surfaces only on the next read.
+
+**What actually blocks production is narrower than this phase recorded.** Both registry methods work.
+The per-mode enablement step calls neither. That is a missing call, not a missing capability.
 <!-- /ANCHOR:limitations -->

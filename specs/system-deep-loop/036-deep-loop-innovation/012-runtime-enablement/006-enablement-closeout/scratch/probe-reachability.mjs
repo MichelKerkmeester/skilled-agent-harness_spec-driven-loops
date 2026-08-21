@@ -30,8 +30,11 @@ try { seed = reg.read(mode); console.log('read() ->', seed?.state ?? seed?.core?
 catch (e) { console.log('read() threw:', e.message); }
 console.log('after read:', onDisk());
 
-// Attempt the forward flip. It is the ONLY method that writes
-// new_authoritative_reversible, and it demands expectedState cutover_ready.
+// Attempt the forward flip from the default record, WITHOUT first reaching
+// cutover_ready. This is expected to refuse, and the refusal is not evidence
+// that the flip is unreachable — only that this is the wrong starting state.
+// The earlier version of this probe stopped here and concluded the forward
+// flip could never fire, which was wrong: it never exercised the promotion.
 try {
   reg.compareAndSwap({
     mode, expectedState: 'cutover_ready', expectedEpoch: 1,
@@ -43,5 +46,35 @@ try {
 } catch (e) {
   console.log('compareAndSwap REFUSED:', e.message.slice(0, 200));
 }
+// The promotion the earlier probe never drove. prepareCutover is the writer
+// that moves legacy_authoritative -> cutover_ready at the SAME epoch; the flip
+// then expects cutover_ready at epoch N and writes epoch N+1, so bumping here
+// would make every flip fail its compare-and-swap.
+try {
+  const before = reg.read(mode);
+  const prep = reg.prepareCutover({
+    mode, expectedEpoch: before.epoch,
+    candidateSha: 'a'.repeat(64), policyVersion: 1,
+    at: new Date().toISOString(),
+  });
+  console.log('prepareCutover: SUCCEEDED ->', onDisk(), '| epoch', prep.record.epoch, '| resumed', prep.resumed);
+} catch (e) {
+  console.log('prepareCutover REFUSED:', e.message.slice(0, 200));
+}
+
+// Now the forward flip from the state it actually demands.
+try {
+  const cur = reg.read(mode);
+  reg.compareAndSwap({
+    mode, expectedState: 'cutover_ready', expectedEpoch: cur.epoch,
+    nextSelectedWriter: 'spine', candidateSha: 'a'.repeat(64),
+    policyVersion: 1, cutoverCertificateDigest: 'b'.repeat(64),
+    lastTransitionDigest: 'c'.repeat(64), at: new Date().toISOString(),
+  });
+  console.log('compareAndSwap AFTER promotion: SUCCEEDED ->', onDisk(), '| epoch', reg.read(mode).epoch);
+} catch (e) {
+  console.log('compareAndSwap AFTER promotion REFUSED:', e.message.slice(0, 200));
+}
+
 console.log('final on-disk state:', onDisk());
 console.log('ROOT:', root);
