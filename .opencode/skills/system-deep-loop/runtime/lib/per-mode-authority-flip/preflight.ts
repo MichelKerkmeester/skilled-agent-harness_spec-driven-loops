@@ -17,9 +17,22 @@ import { MigrationOperationStatuses, verifyInflightMigrationHandoff } from '../i
 import { checkManifestOrder } from './manifest-order.js';
 
 import type { JsonObject } from '../event-envelope/index.js';
+import type { CutoverCertificateMode } from '../cutover-certificate/index.js';
+import type { WorkflowMode } from '../inflight-state-classification/index.js';
 import type { CutoverPreflightInput, CutoverPreflightResult } from './types.js';
 
 const HEX_64 = /^[a-f0-9]{64}$/u;
+
+const CUTOVER_TO_WORKFLOW_MODES: Readonly<Record<CutoverCertificateMode, readonly WorkflowMode[]>> = {
+  'deep-research': ['research'],
+  'deep-review': ['review'],
+  'deep-ai-council': ['ai-council'],
+  'deep-alignment': ['alignment'],
+  'agent-improvement': ['agent-improvement'],
+  'model-benchmark': ['model-benchmark'],
+  'skill-benchmark': ['skill-benchmark'],
+  'deep-improvement-common': ['agent-improvement', 'model-benchmark', 'skill-benchmark'],
+};
 
 function digest(value: unknown): string {
   return sha256Bytes(canonicalBytes(value as JsonObject));
@@ -72,6 +85,14 @@ export function evaluateCutoverPreflight(input: CutoverPreflightInput): CutoverP
     if (!verifyInflightMigrationHandoff(classificationManifest, handoff)) {
       return Object.freeze({ verdict: 'blocked', reasonCode: 'MIGRATION_HANDOFF_INVALID' });
     }
+    const scopeModes = CUTOVER_TO_WORKFLOW_MODES[input.mode];
+    const modeRowIds = new Set(
+      classificationManifest.rows
+        .filter((row) => row.modes.some((mode) => scopeModes.includes(mode)))
+        .map((row) => row.rowId),
+    );
+    // The flip is per-mode, so only rows the selected mode touches (including shared
+    // cross-mode rows) may gate it; a row no selected mode touches must not deny this flip.
     // `verifyInflightMigrationHandoff` already proves every row reached a
     // terminal receipt (COMMITTED, BLOCKED, or ABORTED) bound to this exact
     // manifest. An ABORTED row means an attempted operation itself failed at
@@ -85,9 +106,14 @@ export function evaluateCutoverPreflight(input: CutoverPreflightInput): CutoverP
     // reached its intended terminal outcome and would be silently stranded
     // under the new writer's contract.
     const illegitimatelyBlockedRows = handoff.rows.filter(
-      (row) => row.status === MigrationOperationStatuses.BLOCKED && row.disposition !== InflightDisposition.BLOCK,
+      (row) => modeRowIds.has(row.rowId)
+        && row.status === MigrationOperationStatuses.BLOCKED
+        && row.disposition !== InflightDisposition.BLOCK,
     ).length;
-    if (illegitimatelyBlockedRows > 0 || handoff.closure.abortedRows > 0) {
+    const abortedRows = handoff.rows.filter(
+      (row) => modeRowIds.has(row.rowId) && row.status === MigrationOperationStatuses.ABORTED,
+    ).length;
+    if (illegitimatelyBlockedRows > 0 || abortedRows > 0) {
       return Object.freeze({ verdict: 'blocked', reasonCode: 'MIGRATION_HANDOFF_INVALID' });
     }
 

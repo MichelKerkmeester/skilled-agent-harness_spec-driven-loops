@@ -300,10 +300,11 @@ function committedMigrateReceipt(rowId: string, now: string): MigrationReceipt {
  * migrated) remain BLOCKED. This is the "nothing illegitimately blocked"
  * handoff a real flip needs to reach `ready`.
  */
-async function runAllRowsToTerminalClean(root: string): Promise<Map<string, MigrationReceipt>> {
+async function runAllRowsToTerminalClean(root: string, skipRowId?: string): Promise<Map<string, MigrationReceipt>> {
   const coordinator = new MigrationCoordinator({ rootDirectory: root });
   const receipts = new Map<string, MigrationReceipt>();
   for (const row of CLASSIFICATION_MANIFEST.rows) {
+    if (row.rowId === skipRowId) continue;
     if (row.disposition === InflightDisposition.MIGRATE) {
       receipts.set(row.rowId, committedMigrateReceipt(row.rowId, '2026-08-09T00:00:00Z'));
       continue;
@@ -317,6 +318,42 @@ async function runAllRowsToTerminalClean(root: string): Promise<Map<string, Migr
 
 async function buildCleanHandoffFixture(root: string): Promise<InflightMigrationHandoff> {
   const receipts = await runAllRowsToTerminalClean(root);
+  return buildInflightMigrationHandoff(CLASSIFICATION_MANIFEST, receipts);
+}
+
+async function buildCleanHandoffWithBlockedRow(root: string, rowId: string): Promise<InflightMigrationHandoff> {
+  const receipts = await runAllRowsToTerminalClean(root, rowId);
+  const row = CLASSIFICATION_MANIFEST.rows.find((candidate) => candidate.rowId === rowId);
+  if (!row) throw new Error(`manifest row not found: ${rowId}`);
+  const coordinator = new MigrationCoordinator({ rootDirectory: root });
+  const { receipt } = await coordinator.runRow({ manifest: CLASSIFICATION_MANIFEST, row, currentEvidence: undefined });
+  receipts.set(rowId, receipt);
+  return buildInflightMigrationHandoff(CLASSIFICATION_MANIFEST, receipts);
+}
+
+function abortedReceipt(rowId: string, now: string): MigrationReceipt {
+  const row = CLASSIFICATION_MANIFEST.rows.find((candidate) => candidate.rowId === rowId);
+  if (!row) throw new Error(`manifest row not found: ${rowId}`);
+  const envelope = buildMigrationEnvelope(CLASSIFICATION_MANIFEST, row, row.disposition, freshEvidenceFor(rowId));
+  const core = Object.freeze({
+    receiptVersion: 1 as const,
+    envelope,
+    status: MigrationOperationStatuses.ABORTED,
+    fenceToken: 1,
+    preIntegrityDigest: `sha256:${digest(`${rowId}:pre-aborted`)}`,
+    postIntegrityDigest: null,
+    outcome: null,
+    reasonCode: 'TEST_ABORT',
+    attempt: 1,
+    startedAt: now,
+    committedAt: null,
+  });
+  return Object.freeze({ ...core, receiptDigest: sha256Bytes(canonicalBytes(core as never)) });
+}
+
+async function buildCleanHandoffWithAbortedRow(root: string, rowId: string): Promise<InflightMigrationHandoff> {
+  const receipts = await runAllRowsToTerminalClean(root);
+  receipts.set(rowId, abortedReceipt(rowId, '2026-08-09T00:00:00Z'));
   return buildInflightMigrationHandoff(CLASSIFICATION_MANIFEST, receipts);
 }
 
@@ -1399,6 +1436,50 @@ describe('evaluateCutoverPreflight', () => {
     expect(result.verdict).toBe('ready');
     if (result.verdict !== 'ready') throw new Error('expected ready');
     expect(result.classificationManifestDigest).toBe(CLASSIFICATION_MANIFEST.finalDigest);
+  });
+
+  it('ignores an illegitimately blocked row belonging only to another workflow mode', async () => {
+    const reviewRow = CLASSIFICATION_MANIFEST.rows.find((row) => row.rowId === 'review-config');
+    expect(reviewRow?.modes).toEqual(['review']);
+    const handoff = await buildCleanHandoffWithBlockedRow(temporaryRoot('other-mode-blocked'), 'review-config');
+    const blockedRow = handoff.rows.find((row) => row.rowId === 'review-config');
+    expect(blockedRow?.status).toBe(MigrationOperationStatuses.BLOCKED);
+    expect(blockedRow?.disposition).not.toBe(InflightDisposition.BLOCK);
+
+    const input = await fixturePreflightInput({}, handoff);
+    expect(evaluateCutoverPreflight(input).verdict).toBe('ready');
+  });
+
+  it('blocks an illegitimately blocked row belonging to the flipping workflow mode', async () => {
+    const researchRow = CLASSIFICATION_MANIFEST.rows.find((row) => row.rowId === 'research-config');
+    expect(researchRow?.modes).toEqual(['research']);
+    const handoff = await buildCleanHandoffWithBlockedRow(temporaryRoot('selected-mode-blocked'), 'research-config');
+    const blockedRow = handoff.rows.find((row) => row.rowId === 'research-config');
+    expect(blockedRow?.status).toBe(MigrationOperationStatuses.BLOCKED);
+    expect(blockedRow?.disposition).not.toBe(InflightDisposition.BLOCK);
+
+    const input = await fixturePreflightInput({}, handoff);
+    expect(evaluateCutoverPreflight(input)).toEqual({ verdict: 'blocked', reasonCode: 'MIGRATION_HANDOFF_INVALID' });
+  });
+
+  it('blocks an aborted row belonging to the flipping workflow mode', async () => {
+    const handoff = await buildCleanHandoffWithAbortedRow(temporaryRoot('selected-mode-aborted'), 'research-config');
+    expect(handoff.rows.find((row) => row.rowId === 'research-config')?.status)
+      .toBe(MigrationOperationStatuses.ABORTED);
+    expect(handoff.closure.abortedRows).toBe(1);
+
+    const input = await fixturePreflightInput({}, handoff);
+    expect(evaluateCutoverPreflight(input)).toEqual({ verdict: 'blocked', reasonCode: 'MIGRATION_HANDOFF_INVALID' });
+  });
+
+  it('ignores an aborted row belonging only to another workflow mode', async () => {
+    const handoff = await buildCleanHandoffWithAbortedRow(temporaryRoot('other-mode-aborted'), 'review-config');
+    expect(handoff.rows.find((row) => row.rowId === 'review-config')?.status)
+      .toBe(MigrationOperationStatuses.ABORTED);
+    expect(handoff.closure.abortedRows).toBe(1);
+
+    const input = await fixturePreflightInput({}, handoff);
+    expect(evaluateCutoverPreflight(input).verdict).toBe('ready');
   });
 
   it('denies a handoff carrying rows that vetoed to BLOCKED instead of reaching their intended disposition, even with zero ABORTED rows: unresolved/blocked state denies the flip', async () => {
