@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement",
-  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement",
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
   "children_ids": [],
   "manual": {
@@ -11,34 +11,34 @@
   },
   "derived": {
     "trigger_phrases": [
-      "effect enablement",
-      "effect producer at dispatch",
-      "fail-closed effect record",
-      "wire the audited dispatch",
-      "effect enablement plan",
-      "fail-closed producer plan",
-      "effect enablement tasks",
-      "fail-closed producer tasks",
-      "effect enablement checklist",
-      "fail-closed producer verification",
-      "effect enablement summary",
-      "effect producer planned"
+      "ledger read cache",
+      "verified events cache",
+      "append-only ledger read floor",
+      "opt-in single-writer read cache",
+      "ledger read cache plan",
+      "read cache implementation plan",
+      "ledger read cache tasks",
+      "read cache tasks",
+      "ledger read cache checklist",
+      "read cache verification",
+      "ledger read cache summary",
+      "read cache planned"
     ],
     "key_topics": [
-      "effect",
-      "enablement",
-      "producer",
-      "dispatch",
-      "fail-closed",
-      "record",
-      "wire",
-      "audited",
+      "ledger",
+      "read",
+      "cache",
+      "verified",
+      "events",
+      "append-only",
+      "floor",
+      "opt-in",
+      "single-writer",
       "plan",
-      "tasks",
-      "checklist",
-      "verification"
+      "implementation",
+      "tasks"
     ],
-    "importance_tier": "important",
+    "importance_tier": "critical",
     "status": "planned",
     "key_files": [
       "implementation-summary.md",
@@ -85,19 +85,19 @@
         "source": "derived"
       },
       {
-        "name": "Effect Enablement",
+        "name": "Ledger Read Cache",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Routing",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Route",
+        "name": "Purpose Give",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,7 +109,7 @@
         "source": "derived"
       },
       {
-        "name": "Name Mapping",
+        "name": "The Single",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +121,13 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -134,12 +140,6 @@
       },
       {
         "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. ARCHITECTURE",
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
@@ -163,18 +163,6 @@
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Protocol The",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -191,11 +179,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "A cutover certificate attests that a run's external effects were recorded and confirmed, deriving that from an effect",
-    "created_at": "2026-08-21T20:04:08.398Z",
-    "last_save_at": "2026-08-22T04:13:27.744Z",
+    "causal_summary": "Routing the live fan-out executor spawn through the shipped effect gateway (phase `007`) records a fail-closed intent",
+    "created_at": "2026-08-22T04:10:32.128Z",
+    "last_save_at": "2026-08-22T04:13:05.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:580ff18ca80a696936bb21b105345d1e331f5069dd5d55a9fa8bd96527c3d808",
+    "source_fingerprint": "sha256:5d6671ba8a26d45d5abd8bc3bf185f852fc2dc5625911b52cdea92f02d0ee13a",
     "source_doc_hashes": {
-      "spec.md": "aa8bcee5ce3cac622f3cc19f7a0cfebde3ef6fad15d2d1972a22d85d4e2f10de",
-      "plan.md": "e410e531625fa9b047d0ca7485a2973cfbfcb69aa2ed10c5ccaa3feb37830f72",
-      "tasks.md": "8fac12c6fc9d7f8073293eda13eb24d502ff9f0bd23dcf5fdfde715b2af79b7a",
-      "checklist.md": "4fe8f07c35d685099b34e61bbfebab84f2ccafae1a39e93717174e508c9891a6",
-      "implementation-summary.md": "9445a5392abd5a0e3b5d48891e1a878e0c8910fe179170b2fb786148748e3882"
+      "spec.md": "e6206ffee7faa5a3cdab79d6c44c459d3b768fde000780acd2bb3936a33546f5",
+      "plan.md": "7f48b99cb5cb0c0967b1eed1d6d6e984c6d51374ca7a85627feee05659888d26",
+      "tasks.md": "882d0194ba3281eddd5609a5114e6ed0e9230c7e5e44668ffce1ad0da4de3540",
+      "checklist.md": "c64aa9cee72193b9f5a8815ef7ad8107c52201cd94c446a7a730b60fc465d716",
+      "implementation-summary.md": "e9d49a0916899f8615624fb8f09c09a775c8a79c1b1ac9d37ca1073b9a209f79"
     },
     "last_active_child_id": null,
     "last_active_at": null

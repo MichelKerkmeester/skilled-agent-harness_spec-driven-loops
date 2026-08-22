@@ -63,6 +63,7 @@ execution-time binding resolved from the environment rather than requested from 
 | 005 | `005-whole-system-gate/` | Execute the frozen-SHA whole-system gate against the enabled runtime and record a blocking verifier receipt. | Planned |
 | 006 | `006-enablement-closeout/` | Reconcile status across the epic and document the enabled system: feature catalog, manual-testing playbook, and mode READMEs. | Planned |
 | 007 | `007-effect-enablement/` | Record a durable, fail-closed effect intent and confirmation around the real executor dispatch, so a cutover certificate observes real effect evidence instead of an empty list. Late-allocated dependency of the `002`/`003` flip, not a post-closeout step. | Planned |
+| 008 | `008-ledger-read-cache/` | Give `AppendOnlyLedger` an opt-in, default-off verified-events read cache so the effect producer's per-lineage ledger stops paying the exclusive-lock read floor on every read. Dependency of `007`: removes the serialization the effect producer otherwise adds to the fan-out pool. | Planned |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:what-needs-done -->

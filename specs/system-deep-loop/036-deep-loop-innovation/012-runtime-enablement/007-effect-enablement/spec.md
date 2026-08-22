@@ -49,9 +49,10 @@ _memory:
 | **Authority posture** | No authority moves; this phase supplies the effect evidence a later flip requires |
 
 > Phase adjacency under `012-runtime-enablement` (navigation order): predecessor `006-enablement-closeout`
-> (allocation order only — this phase was allocated last); successor `none` (final sibling). Logically this
+> (allocation order only — this phase was allocated last); successor `008-ledger-read-cache`. Logically this
 > phase is a dependency of the flip, not a step after closeout: it unblocks `002` and `003`, whose
-> certificates cannot pass without it.
+> certificates cannot pass without it. Its own dependency `008-ledger-read-cache` removes the per-read lock
+> floor that would otherwise make this producer serialize the fan-out pool.
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

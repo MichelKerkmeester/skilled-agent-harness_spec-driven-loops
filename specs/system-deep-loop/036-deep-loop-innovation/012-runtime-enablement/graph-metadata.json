@@ -10,7 +10,8 @@
     "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement",
     "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate",
     "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
-    "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement"
+    "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement",
+    "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache"
   ],
   "manual": {
     "depends_on": [],
@@ -144,16 +145,16 @@
     ],
     "causal_summary": "Turn the dark deep-loop substrate on: build the append gateway and legacy projection the modes lack, migrate each mode's write protocol onto it, flip authority serially across all seven modes, retire the legacy writers, gate the whole system, and document the result.",
     "created_at": "2026-08-19T06:57:07.539Z",
-    "last_save_at": "2026-08-21T20:07:34.632Z",
+    "last_save_at": "2026-08-22T04:14:03.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:7d4caa70c1ab88a5603917bfdfb05634e512de88205dfd80f216c50d81b84f0b",
+    "source_fingerprint": "sha256:9eeff2263d9410b23ca778fef6a154659aa2addd75dd3e02f45c143fbd535705",
     "source_doc_hashes": {
-      "spec.md": "3667e820c7278f18bb3d82a0f0e36a8fbf0d26e0fb4bee495d49582f996d9981",
+      "spec.md": "ca33d5d89b47ec4595ce7407fe463ff5fe8331d7917c1a571002be418211a229",
       "handover.md": "ea702a75e63ac5e95b7efd7125fad19201bc04d879fe6910dbce58a774b840ba"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
