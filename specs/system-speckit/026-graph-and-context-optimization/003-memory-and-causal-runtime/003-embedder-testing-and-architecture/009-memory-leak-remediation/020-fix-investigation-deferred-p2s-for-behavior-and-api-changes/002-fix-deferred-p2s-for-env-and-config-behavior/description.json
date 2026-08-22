@@ -13,7 +13,7 @@
     "config",
     "surface"
   ],
-  "lastUpdated": "2026-07-21T05:58:28.847Z",
+  "lastUpdated": "2026-08-15T14:41:11.196Z",
   "specId": "002",
   "folderSlug": "fix-deferred-p2s-for-env-and-config-behavior",
   "parentChain": [

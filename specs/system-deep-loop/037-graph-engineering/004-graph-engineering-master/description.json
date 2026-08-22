@@ -1,21 +1,20 @@
 {
   "level": 1,
   "specFolder": "system-deep-loop/037-graph-engineering/004-graph-engineering-master",
-  "description": "20-iteration documentary completeness study (gpt-5.6-sol high; synthesized by gpt-5.6-sol xhigh; independently verified by DeepSeek V4 Pro, PASS-WITH-FIXES applied) of graph-engineering-master, a teaching/skill package with no runnable code. Confirms the studies-1-3 graph-based deep-loop design has no new contradiction and fills the one open gap with a knowledge/evidence-plane production methodology (competency-question ontology, source-routed extraction, reversible provenance-preserving fusion, quality gates, hybrid serving). Closes the 4-repo program at doctrine level; several architecture items remain open.",
+  "description": "Studies 1–3 (agent-swarms, graphene-main, graph-arch) built and hardened the graph-based deep-loop design from executable code",
   "keywords": [
-    "graph-engineering-master",
-    "graph-engineering",
+    "studies",
+    "agent-swarms",
+    "graphene-main",
+    "graph-arch",
+    "hardened",
+    "graph-based",
     "deep-loop",
-    "knowledge-graph",
-    "extraction-fusion",
-    "completeness-check",
-    "036-authority-plane",
-    "documentary",
-    "research",
-    "gpt-5.6-sol",
-    "deepseek-v4-pro-verified"
+    "design",
+    "executable",
+    "code"
   ],
-  "lastUpdated": "2026-08-14T01:00:00Z",
+  "lastUpdated": "2026-08-15T14:41:04.593Z",
   "specId": "004",
   "folderSlug": "graph-engineering-master",
   "parentChain": [

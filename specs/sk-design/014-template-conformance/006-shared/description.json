@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/014-template-conformance/006-shared",
   "description": "`shared/` holds cross-packet vocabulary consumed by every sk-design mode (11 root markdown contracts, plus",
   "keywords": [
@@ -15,7 +16,7 @@
     "contracts",
     "plus"
   ],
-  "lastUpdated": "2026-07-27T14:59:40.050Z",
+  "lastUpdated": "2026-08-15T14:40:58.327Z",
   "specId": "006",
   "folderSlug": "shared",
   "parentChain": [
@@ -23,6 +24,5 @@
     "014-template-conformance"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,21 +1,21 @@
 {
   "level": 1,
   "specFolder": "system-deep-loop/037-graph-engineering/003-graph-arch",
-  "description": "20-iteration deep-research study (gpt-5.6-sol high; synthesized by gpt-5.6-sol xhigh; independently verified by DeepSeek V4 Pro, REWORK fixes applied) of the graph-arch (GraphARC) Python governance-wrapper over LangGraph. Extends the studies-1+2 graph-based deep-loop design with governance contracts: admission-proof-before-036-authorization, materialization sealing, an organization-policy compiler, one durable human gate, authority-zero refusals, ledger-first observability, a budget reservation/debit lifecycle, and a governance mutant corpus.",
+  "description": "Studies 1 (agent-swarms) and 2 (graphene-main) produced the graph-based deep-loop design and its executable contracts, but neither deeply studied the",
   "keywords": [
-    "graph-arch",
-    "grapharc",
-    "graph-engineering",
+    "studies",
+    "agent-swarms",
+    "graphene-main",
+    "produced",
+    "graph-based",
     "deep-loop",
-    "governance",
-    "admission",
-    "organization-policy",
-    "036-authority-plane",
-    "research",
-    "gpt-5.6-sol",
-    "deepseek-v4-pro-verified"
+    "design",
+    "executable",
+    "contracts",
+    "deeply",
+    "studied"
   ],
-  "lastUpdated": "2026-08-14T00:00:00Z",
+  "lastUpdated": "2026-08-15T14:41:04.530Z",
   "specId": "003",
   "folderSlug": "graph-arch",
   "parentChain": [

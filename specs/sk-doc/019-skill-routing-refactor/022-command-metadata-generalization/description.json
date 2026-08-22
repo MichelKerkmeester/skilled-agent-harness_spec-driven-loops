@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/019-skill-routing-refactor/022-command-metadata-generalization",
   "description": "Only sk-design's two commands had machine-checked contracts: argument grammar, routing signals, and load choreography as validated data",
   "keywords": [
@@ -17,7 +18,7 @@
     "validated",
     "data"
   ],
-  "lastUpdated": "2026-07-28T13:03:51.151Z",
+  "lastUpdated": "2026-08-15T14:41:00.108Z",
   "specId": "022",
   "folderSlug": "command-metadata-generalization",
   "parentChain": [
@@ -25,6 +26,5 @@
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

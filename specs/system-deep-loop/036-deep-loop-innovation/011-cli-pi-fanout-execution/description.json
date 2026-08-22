@@ -1,24 +1,13 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution",
-  "description": "DeepSeek via the cli-pi executor cannot complete a deep-loop fan-out lineage — the runner requeues the Pi worker to death before it produces a single",
+  "description": "Amendment (from Phase-1 reproduction)",
   "keywords": [
-    "deepseek",
-    "via",
-    "cli-pi",
-    "executor",
-    "cannot",
-    "complete",
-    "deep-loop",
-    "fan-out",
-    "lineage",
-    "runner",
-    "requeues",
-    "worker",
-    "death",
-    "produces",
-    "single"
+    "amendment",
+    "phase-1",
+    "reproduction"
   ],
-  "lastUpdated": "2026-08-16T13:47:26.359Z",
+  "lastUpdated": "2026-08-17T08:29:24.538Z",
   "specId": "011",
   "folderSlug": "cli-pi-fanout-execution",
   "parentChain": [
@@ -26,6 +15,5 @@
     "036-deep-loop-innovation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

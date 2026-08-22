@@ -4,7 +4,10 @@
   "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration",
   "parent_id": null,
   "children_ids": [
-    "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research"
+    "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
+    "mcp-tooling/015-notion-to-obisidian-migration/002-migration-playbook",
+    "mcp-tooling/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in",
+    "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification"
   ],
   "manual": {
     "depends_on": [],
@@ -37,7 +40,10 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "001-deep-research/spec.md",
+      "001-deep-research/research/research.md",
+      "002-migration-playbook/spec.md",
+      "003-notion-bases-plugin-tie-in/spec.md",
+      "004-plugin-install-and-verification/spec.md",
       "001-deep-research/prior-findings.md"
     ],
     "entities": [
@@ -66,43 +72,43 @@
         "source": "derived"
       },
       {
-        "name": "cli-devin",
-        "kind": "key_phrase",
+        "name": "Phase Transition Rules",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "cli-opencode",
-        "kind": "key_phrase",
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "prior",
-        "kind": "key_phrase",
+        "name": "Divergence Map",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Open Questions",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase parent for a flawless complex-Notion→Obsidian migration capability: research first (20 iterations, GLM-5.2 via cli-devin + DeepSeek V4 Flash xhigh via cli-opencode/Cline, no early convergence), then synthesize into whatever phase children mcp-obsidian + mcp-notion need — including any Obsidian plugins that close a gap.",
     "created_at": "2026-08-21T10:35:33.158Z",
-    "last_save_at": "2026-08-21T20:10:21.034Z",
+    "last_save_at": "2026-08-21T22:04:42.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c979a4b9438dde429c2331a331aef71ab99675eafaeeb4ebda2374983723bb9d",
+    "source_fingerprint": "sha256:7e718e3633378f6116a53f77063bdba80c6615892f3dc2a3a1e1a139151271b6",
     "source_doc_hashes": {
-      "spec.md": "34ad1ec933ee82ddaf77083f1e4a46091346124d365e6841da38b7155d18ecd9"
+      "spec.md": "9521925bc8ca6782e4a9773f8a8ff1092f0cc6ff20e69f414f780254bbc0ba31"
     },
-    "last_active_child_id": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
+    "last_active_child_id": "mcp-tooling/015-notion-to-obisidian-migration/002-migration-playbook",
     "last_active_at": null
   }
 }

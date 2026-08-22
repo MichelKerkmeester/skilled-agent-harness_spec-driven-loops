@@ -21,7 +21,7 @@
     "rerank",
     "sidecars"
   ],
-  "lastUpdated": "2026-07-21T05:58:28.858Z",
+  "lastUpdated": "2026-08-15T14:41:11.225Z",
   "specId": "009",
   "folderSlug": "memory-leak-remediation",
   "parentChain": [

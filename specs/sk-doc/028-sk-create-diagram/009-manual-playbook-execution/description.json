@@ -1,18 +1,21 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/028-sk-create-diagram/009-manual-playbook-execution",
-  "description": "The manual-testing-playbook shipped in phase 007 had never actually been run \u2014 its 9 scenarios existed as documented contracts with no execution",
+  "description": "The manual-testing-playbook shipped in phase 007 had never actually been run — its 9 scenarios existed as documented contracts with no execution",
   "keywords": [
     "manual-testing-playbook",
+    "shipped",
     "phase",
+    "never",
+    "actually",
+    "run",
     "scenarios",
+    "existed",
     "documented",
     "contracts",
-    "execution",
-    "evidence",
-    "coverage",
-    "runnable"
+    "execution"
   ],
-  "lastUpdated": "2026-08-12T18:40:07.000Z",
+  "lastUpdated": "2026-08-15T14:41:01.848Z",
   "specId": "009",
   "folderSlug": "manual-playbook-execution",
   "parentChain": [
@@ -20,6 +23,5 @@
     "028-sk-create-diagram"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

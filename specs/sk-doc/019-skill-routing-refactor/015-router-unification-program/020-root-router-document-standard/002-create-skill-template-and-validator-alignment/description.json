@@ -1,19 +1,22 @@
 {
   "level": 3,
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/002-create-skill-template-and-validator-alignment",
-  "description": "Completed tooling-alignment packet for the two-state root ROUTER.md standard: templates and schema references, the stage1-only initializer, command workflow classification, the pure root-router contract validator with stable codes, parent doctor and package integration, and the positive/negative fixture matrix.",
+  "description": "The parent generator emits no second-stage router and its template still instructs authors to create `shared/references/smart-routing.md`",
   "keywords": [
-    "create-skill",
-    "root router",
-    "router state",
-    "stage1-only",
-    "validator",
-    "parent doctor",
-    "stable codes",
-    "default resource",
-    "fixtures"
+    "parent",
+    "generator",
+    "emits",
+    "second-stage",
+    "router",
+    "template",
+    "still",
+    "instructs",
+    "authors",
+    "shared",
+    "references",
+    "smart-routing"
   ],
-  "lastUpdated": "2026-08-16T07:40:58.180Z",
+  "lastUpdated": "2026-08-16T18:06:00.718Z",
   "specId": "002",
   "folderSlug": "create-skill-template-and-validator-alignment",
   "parentChain": [

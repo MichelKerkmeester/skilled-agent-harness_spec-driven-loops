@@ -1,20 +1,20 @@
 {
   "level": "2",
   "specFolder": "sk-communication/001-sk-communication-creation/013-capability-evidence-unblock",
-  "description": "Supply fresh confirmed capability evidence so provider control knobs are reachable through the shipped path instead of failing closed to exact-original before transport",
+  "description": "`compilePromptControls` fails closed unless capability, mapping, freshness, and control evidence are confirmed",
   "keywords": [
+    "compilepromptcontrols",
+    "fails",
+    "closed",
+    "unless",
     "capability",
-    "evidence",
+    "mapping",
+    "freshness",
     "control",
-    "temperature",
-    "thinking",
-    "fail-closed",
-    "preset",
-    "reachable",
-    "projection",
-    "quality"
+    "evidence",
+    "confirmed"
   ],
-  "lastUpdated": "2026-08-13T00:00:00.000Z",
+  "lastUpdated": "2026-08-15T14:40:57.317Z",
   "specId": "013",
   "folderSlug": "capability-evidence-unblock",
   "parentChain": [
