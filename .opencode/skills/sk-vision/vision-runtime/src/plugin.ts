@@ -4,6 +4,7 @@ import { RuntimeClient } from "./runtime/client.js";
 import { PhotonProvider } from "./providers/photon.js";
 import { skVisionTools } from "./opencode/tools.js";
 import { AttachmentInjector, isImagePart } from "./opencode/attachments.js";
+import { handleVisionCommand } from "./opencode/command.js";
 
 export const SkVisionPlugin: Plugin = async (input, options) => {
   const opts: {
@@ -17,6 +18,20 @@ export const SkVisionPlugin: Plugin = async (input, options) => {
 
   if (opts.enabled === false) {
     return { dispose: async () => {} };
+  }
+
+  // SK_VISION_AUTOINSPECT=1 restores legacy automatic GPU analysis; normal sessions stay idle.
+  const autoInspect = process.env.SK_VISION_AUTOINSPECT === "1";
+  const commandExecuteBefore = async (commandInput: {
+    command: string;
+    sessionID: string;
+    arguments: string;
+  }, commandOutput: { parts: import("@opencode-ai/sdk").Part[] }): Promise<void> => {
+    await handleVisionCommand(input, commandInput, commandOutput);
+  };
+
+  if (!autoInspect) {
+    return { "command.execute.before": commandExecuteBefore };
   }
 
   const client = new RuntimeClient({
@@ -41,6 +56,7 @@ export const SkVisionPlugin: Plugin = async (input, options) => {
   });
 
   return {
+    "command.execute.before": commandExecuteBefore,
     event: async ({ event }) => {
       // Analyze a clipboard/file image as soon as it's attached to a draft —
       // before the message is submitted — so `chat.message` completes fast and

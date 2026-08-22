@@ -37,7 +37,7 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 
 This playbook provides a derived census of deterministic scenarios across categories validating the `sk-vision` skill surface. The operator validator computes those counts from the walked tree; do not hand-maintain them. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-08-18): 25 operator scenarios across 6 categories cover the 13 shipped `sk_vision_*` tools, all four host adapters (in-process OpenCode plugin and Pi extension; MCP Cursor and Devin), the standalone MCP server and its process lifecycle (VSN-025), an end-to-end vision-blind-model scenario (a text-only model such as GLM gaining sight through the tools), the guaranteed-vision feature for text-only models (VSN-021..024), and the JSON-RPC runtime lifecycle. The tool, pixel, and runtime scenarios run against the local fork with the default `moondream2` model and no network after the first load; the Cursor/Devin attachment (VSN-018/019), the vision-blind scenario (VSN-020), and the rule-driven guaranteed-vision scenarios (VSN-022/023) additionally require the host with `sk-vision` attached.
+Coverage note (2026-08-22): 27 operator scenarios across 6 categories cover the 13 shipped `sk_vision_*` tools, all four host adapters, the `/vision` command in OpenCode, Cursor and Pi, direct MCP use in Devin, the standalone MCP server and its process lifecycle, the legacy auto-inspect compatibility path and the JSON-RPC runtime lifecycle. The default OpenCode and Pi posture is idle. The command scenarios verify question and bare forms plus runtime teardown. The Cursor and Devin scenarios require their hosts with `sk-vision` attached.
 
 ### Realistic Test Model
 
@@ -62,7 +62,7 @@ Coverage note (2026-08-18): 25 operator scenarios across 6 categories cover the 
 2. Hardware: Apple Silicon (M-series, MPS backend) or an NVIDIA GPU (Ampere or newer). 6 GB VRAM is enough for the default `moondream2`.
 3. Model cache: the first model load downloads ~3.9 GB of weights into the Hugging Face cache and provisions a Python venv under `~/.cache/sk-vision/venv`. Warm the cache once (`{"id":1,"method":"load","params":{}}`) before any image scenario.
 4. Interpreter: the provisioned venv `$HOME/.cache/sk-vision/venv/bin/python` (Python 3.12 with Pillow + torch). The runtime resolves it automatically when spawned through the host adapters; direct NDJSON commands in this playbook call it explicitly.
-5. Fixture image: the image scenarios reference `<FIXTURE>` — any local PNG with visible text (e.g. a screenshot of an error dialog or a mockup). The reference fixture used by this phase's live runs is `specs/sk-vision/001-sk-vision-fork-of-opencode-senses/009-manual-testing-playbook/scratch/fixture.png`, generated deterministically:
+5. Fixture image: the image scenarios reference `<FIXTURE>`, any local PNG with visible text such as a screenshot of an error dialog or a mockup. Generate the fixture in a scratch directory with:
 
 ```bash
 printf '%s\n' \
@@ -75,8 +75,9 @@ printf '%s\n' \
 | "$HOME/.cache/sk-vision/venv/bin/python" -
 ```
 
-6. Host adapters present: `.opencode/plugins/sk-vision.js` (OpenCode) and `.pi/extensions/sk-vision.ts` (Pi) exist and load; the 13 tool names are `sk_vision_inspect`, `sk_vision_detect`, `sk_vision_point`, `sk_vision_ocr`, `sk_vision_status`, `sk_vision_segment`, `sk_vision_metadata`, `sk_vision_crop`, `sk_vision_zoom`, `sk_vision_colors`, `sk_vision_diff`, `sk_vision_annotate`, `sk_vision_reverse`.
-7. Destructive scenarios: none in this playbook; no scenario deletes cache or model state permanently. `unload` (VSN-016) frees GPU memory only and is immediately reversible via `load`.
+6. Host adapters present: `.opencode/plugins/sk-vision.js` (OpenCode) and `.pi/extensions/sk-vision.ts` (Pi) exist and load. OpenCode advertises no vision tools by default. Pi registers the 13 tools hidden. `SK_VISION_AUTOINSPECT=1` restores visible legacy tools. Cursor and Devin keep the MCP tools available.
+7. Teardown: `SK_VISION_TEARDOWN=close` is the default. Each `/vision` scenario checks that the runtime process is gone after the call. `unload` frees the model while keeping the process. `keep` leaves it running.
+8. Destructive scenarios: none in this playbook. No scenario deletes cache or model state permanently.
 
 ---
 
@@ -410,19 +411,19 @@ Desired user-visible outcome: a list of visually similar local images, or an exp
 
 ---
 
-## 10. HOST ADAPTERS (`VSN-014, VSN-015, VSN-017..VSN-020, VSN-025`)
+## 10. HOST ADAPTERS (`VSN-014, VSN-015, VSN-017..VSN-020, VSN-025..VSN-027`)
 
-OpenCode and Pi attach in-process (VSN-014, VSN-015). Cursor and Devin are MCP-only, so they share one MCP stdio server (VSN-017) attached via config (VSN-018 Cursor, VSN-019 Devin); VSN-020 proves a text-only model like GLM reads an image through those tools. VSN-025 proves that shared server self-terminates when its host goes away, so it never leaves an orphaned process behind.
+OpenCode and Pi attach in-process and stay idle by default. Their `/vision` scenarios verify command activation and teardown. Cursor uses `/vision` to drive its registered MCP tool. Devin has no command surface and calls the tool directly. The remaining scenarios cover the shared MCP server, host attachments and process lifecycle.
 
 ### VSN-014 | OpenCode plugin
 
 #### Description
-Verify the OpenCode plugin load path re-exports the built runtime and registers the 13 tools.
+Verify the OpenCode plugin load path serves `/vision` without advertising tools by default.
 
 #### Scenario Contract
 Prompt: `Make sure sk-vision is loaded as an OpenCode plugin and list its tools.`
 
-File-level checks: the plugin file is a regular file, it re-exports `dist/plugin.js`, the built bundle exists, and all 13 tool names appear in the bundle.
+File-level checks: the plugin file is a regular file, it re-exports `dist/plugin.js`, the built bundle exists and the command hook is present. A live command check confirms default tool silence and teardown.
 
 Desired user-visible outcome: the 13 `sk_vision_*` tools available in an OpenCode session.
 
@@ -433,12 +434,12 @@ Desired user-visible outcome: the 13 `sk_vision_*` tools available in an OpenCod
 ### VSN-015 | Pi extension
 
 #### Description
-Verify the Pi extension symlink resolves to the owned factory and registers the 13 tools.
+Verify the Pi extension symlink resolves to the owned factory, registers hidden tools and supports `/vision` teardown.
 
 #### Scenario Contract
 Prompt: `Make sure sk-vision is loaded as a Pi extension and list its tools.`
 
-File-level checks: the extension symlink resolves inside the skill tree, the factory registers 13 tools, and a `pi --offline --approve` session starts with the extension loaded.
+File-level checks: the extension symlink resolves inside the skill tree, the factory registers 13 hidden tools and a `pi --offline --approve` session starts with the extension loaded. Live `/vision` calls use a fresh runtime and leave no process by default.
 
 Desired user-visible outcome: the 13 `sk_vision_*` tools available in a Pi session.
 
@@ -516,11 +517,41 @@ Desired user-visible outcome: the server exits on its own and no `mcp-server.js`
 > **Feature File:** [VSN-025](host-adapters/mcp-lifecycle.md)
 > **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
 
+### VSN-026 | OpenCode `/vision` command
+
+#### Description
+Verify `/vision <question>` and bare `/vision` use the latest image without default tool advertisement and tear down the runtime.
+
+#### Scenario Contract
+Prompt: `Use /vision to read the latest screenshot, then confirm that the vision runtime has closed.`
+
+The default OpenCode plugin must remain idle until the command runs. The question form returns an answer. The bare form returns scene, caption and OCR evidence. Both forms use default `SK_VISION_TEARDOWN=close`.
+
+Desired user-visible outcome: OpenCode answers the image question on demand and leaves no sk-vision runtime process.
+
+#### Test Execution
+> **Feature File:** [VSN-026](host-adapters/opencode-vision-command.md)
+
+### VSN-027 | Pi `/vision` command
+
+#### Description
+Verify Pi keeps its tools hidden by default, runs `/vision` through the hidden inspect tool and tears down each call.
+
+#### Scenario Contract
+Prompt: `Use /vision to read the latest screenshot, then confirm that the vision runtime has closed.`
+
+The question form answers against the latest image. Bare `/vision` asks in the conversation or returns a full read because the prompt file cannot open a UI input box. Each call uses default `SK_VISION_TEARDOWN=close`.
+
+Desired user-visible outcome: Pi provides on-demand image evidence without adding visible tools or leaving a runtime process.
+
+#### Test Execution
+> **Feature File:** [VSN-027](host-adapters/pi-vision-command.md)
+
 ---
 
 ## 11. GUARANTEED VISION FOR TEXT-ONLY MODELS (`VSN-021..VSN-024`)
 
-A text-only model cannot see an attached image, so the auto-inspect is made a guarantee for it: the two in-process hosts (OpenCode, Pi) await the full analysis before the model reads the message, and the two MCP-only hosts (Cursor, Devin) ship a best-effort rule that tells the model to inspect the image itself.
+The legacy auto-inspect guarantee is covered only when `SK_VISION_AUTOINSPECT=1` is set. The default posture uses `/vision` instead. Cursor and Devin instruction rules remain unchanged.
 
 ### VSN-021 | Guaranteed auto-inspect for a text-only model
 

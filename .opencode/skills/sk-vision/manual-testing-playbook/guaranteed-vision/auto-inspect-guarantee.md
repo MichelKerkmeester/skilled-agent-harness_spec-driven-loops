@@ -1,6 +1,6 @@
 ---
 title: "VSN-021 -- Guaranteed auto-inspect for a text-only model"
-description: "This scenario validates that, for a text-only model in an in-process host (OpenCode or Pi), the adapter awaits the full image analysis and auto-injects a `<SK-VISION>` evidence block so the evidence is guaranteed present."
+description: "This scenario validates the legacy auto-inspect guarantee when `SK_VISION_AUTOINSPECT=1` is set for a text-only model in OpenCode or Pi."
 version: 1.0.0.0
 ---
 
@@ -12,30 +12,30 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This is an in-process scenario for the guarantee: text-only models get a hard guarantee of vision evidence, unlike multimodal models which keep a non-blocking grace race.
+This is a compatibility scenario for the legacy auto-inspect guarantee. It runs only with `SK_VISION_AUTOINSPECT=1`.
 
 ### Why This Matters
 
-For a text-only model in an in-process host (OpenCode or Pi), the adapter AWAITS the full image analysis and auto-injects a `<SK-VISION>` evidence block. This means the evidence is guaranteed present even when the first cold analysis is slower than the 2-second grace. Run this scenario live in OpenCode/Pi. Its logic is also unit-proven by the tests named below.
+With `SK_VISION_AUTOINSPECT=1`, a text-only model in OpenCode or Pi receives the full image analysis before it reads the message. The adapter injects a `<SK-VISION>` evidence block even when the first cold analysis exceeds the 2-second grace. Run this scenario live in OpenCode or Pi. The tests named below also cover the logic.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt against a text-only model in an in-process host, and confirm the submitted message already carries a `<SK-VISION>` evidence block with the fixture's real text.
+Operators run the exact prompt against a text-only model in an in-process host and confirm the submitted message already carries a `<SK-VISION>` evidence block with the fixture's real text.
 
 - Objective: for a text-only model, the adapter AWAITS the full image analysis and auto-injects the `<SK-VISION>` block, so the evidence is guaranteed present even when the first cold analysis is slower than the 2-second grace
-- Real user request: `I'm running DeepSeek in OpenCode and pasted a screenshot — it should read it without me asking.`
+- Real user request: `I'm running DeepSeek in OpenCode and enabled legacy auto-inspect. The pasted screenshot should be readable without a command.`
 - Prompt: `What does this screenshot say?`
-- Preconditions: the OpenCode plugin (`.opencode/plugins/sk-vision.js`) or Pi extension (`.pi/extensions/sk-vision.ts`) is loaded; the active model is text-only (matched by the allowlist, e.g. deepseek, or on Pi declares no "image" input); the fixture is attached.
-- Expected execution process: on submit, the adapter calls `isTextOnlyModel`, awaits the full analysis (not the 2s race), and injects a `<SK-VISION>` block with scene + caption + OCR; the model answers from that block.
-- Expected signals: the submitted message contains a `<SK-VISION>` block with the fixture's real text (`DEPLOY OK 7391`); evidence present even on a cold first load.
+- Preconditions: set `SK_VISION_AUTOINSPECT=1`. The OpenCode plugin (`.opencode/plugins/sk-vision.js`) or Pi extension (`.pi/extensions/sk-vision.ts`) is loaded. The active model is text-only, matched by the allowlist such as deepseek or by Pi declaring no "image" input. The fixture is attached.
+- Expected execution process: on submit, the legacy adapter path calls `isTextOnlyModel`, awaits the full analysis and injects a `<SK-VISION>` block with scene, caption and OCR. The model answers from that block.
+- Expected signals: the submitted message contains a `<SK-VISION>` block with the fixture's real text (`DEPLOY OK 7391`). Evidence is present even on a cold first load.
 - Desired user-visible outcome: a text-only model answers the model's real question using guaranteed vision evidence it never had to ask for.
-- Pass/fail: PASS if the `<SK-VISION>` block is present with real evidence for a text-only model (awaited); FAIL if a text-only model's message submits with no evidence (raced out).
+- Pass/fail: PASS if the `<SK-VISION>` block is present with real evidence for a text-only model. FAIL if the message submits with no evidence.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-021 | Guaranteed auto-inspect for a text-only model | For a text-only model, the adapter awaits the full analysis and auto-injects the `<SK-VISION>` evidence block | What does this screenshot say? | 1. Confirm the OpenCode plugin (`.opencode/plugins/sk-vision.js`) or Pi extension (`.pi/extensions/sk-vision.ts`) is loaded and the active model is text-only -> 2. host: run in-process in OpenCode/Pi, attach the fixture `specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/scratch/fixture-guarantee.png`, then submit -> 3. inspect the submitted message for the injected `<SK-VISION>` block and compare its text to the ground truth `DEPLOY OK 7391` | The submitted message contains a `<SK-VISION>` block with the fixture's real text (`DEPLOY OK 7391`); evidence present even on a cold first load | The message with the injected `<SK-VISION>` block, plus the unit proofs `vision-runtime/src/opencode/attachments.test.ts` (await-past-grace) and `vision-runtime/src/model-modality.test.ts` | PASS if the `<SK-VISION>` block is present with real evidence for a text-only model (awaited); FAIL if a text-only model's message submits with no evidence (raced out) | 1. Confirm the model is on the allowlist or declares no image input -> 2. Set `SK_VISION_FORCE=1` to force -> 3. Confirm the runtime loads (VSN-012 status) -> 4. Confirm the paste-preload ran |
+| VSN-021 | Guaranteed auto-inspect for a text-only model | With `SK_VISION_AUTOINSPECT=1`, verify the adapter awaits the full analysis and injects the `<SK-VISION>` evidence block | What does this screenshot say? | 1. Set `SK_VISION_AUTOINSPECT=1` and confirm the OpenCode plugin or Pi extension is loaded with a text-only model -> 2. host: run in-process in OpenCode or Pi, attach `<FIXTURE>` and submit -> 3. inspect the submitted message for the injected `<SK-VISION>` block and compare its text to the ground truth `DEPLOY OK 7391` | The submitted message contains a `<SK-VISION>` block with the fixture's real text (`DEPLOY OK 7391`). Evidence is present on a cold first load | The message with the injected `<SK-VISION>` block, plus the unit proofs `vision-runtime/src/opencode/attachments.test.ts` (await-past-grace) and `vision-runtime/src/model-modality.test.ts` | PASS if the `<SK-VISION>` block is present with real evidence for a text-only model. FAIL if the message submits with no evidence | 1. Confirm `SK_VISION_AUTOINSPECT=1` is set -> 2. Confirm the model is on the allowlist or declares no image input -> 3. Confirm the runtime loads -> 4. Confirm the legacy attachment path ran |
 
 ---
 
@@ -47,13 +47,13 @@ Operators run the exact prompt against a text-only model in an in-process host, 
 
 ### Commands
 
-1. `host: confirm the OpenCode plugin or Pi extension is loaded and the active model is text-only`
-2. `host: run in-process in OpenCode/Pi, attach the fixture, and submit`
+1. `bash: SK_VISION_AUTOINSPECT=1` and confirm the OpenCode plugin or Pi extension is loaded with a text-only model
+2. `host: run in-process in OpenCode/Pi, attach the fixture and submit`
 3. `bash: inspect the submitted message for the injected <SK-VISION> block and compare its text to the ground truth DEPLOY OK 7391`
 
 ### Expected
 
-The model answers the neutral prompt using a `<SK-VISION>` block that is already present in the submitted message; the block's text matches the fixture's known content even on a cold first load.
+With `SK_VISION_AUTOINSPECT=1`, the model answers the neutral prompt using a `<SK-VISION>` block already present in the submitted message. The block's text matches the fixture's known content even on a cold first load.
 
 ### Evidence
 
@@ -66,7 +66,7 @@ Capture the message with the injected `<SK-VISION>` block, plus the unit proofs 
 
 ### Failure Triage
 
-1. Confirm the model is on the allowlist or declares no image input -> 2. Set `SK_VISION_FORCE=1` to force -> 3. Confirm the runtime loads (VSN-012 status) -> 4. Confirm the paste-preload ran.
+1. Confirm `SK_VISION_AUTOINSPECT=1` is set -> 2. Confirm the model is on the allowlist or declares no image input -> 3. Confirm the runtime loads -> 4. Confirm the legacy attachment path ran.
 
 ---
 
