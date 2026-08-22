@@ -137,7 +137,10 @@ export function hasKnownProjectOwnerMarker(command: string): boolean {
 }
 
 function isExternalMcpProcess(command: string): boolean {
-  return /(?:^|[\s/])mcp-[^\s/]+/.test(command) || /(?:^|\s)--mcp-server(?:\s|=|$)/.test(command);
+  // Match an external MCP binary (mcp-foo) only as a terminal command/arg segment:
+  // the trailing (?=\s|$) stops a project daemon that merely lives under an
+  // mcp-server/ directory from being misread as an external, preserve-forever process.
+  return /(?:^|[\s/])mcp-[^\s/]+(?=\s|$)/.test(command) || /(?:^|\s)--mcp-server(?:\s|=|$)/.test(command);
 }
 
 function isBrowserProcess(command: string): boolean {
