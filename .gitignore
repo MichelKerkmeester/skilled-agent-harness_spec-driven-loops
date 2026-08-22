@@ -301,3 +301,8 @@ specs/z-future
 # Hook configuration
 # ───────────────────────────────────────────
 .opencode/hooks/hook-flags.env
+
+# ───────────────────────────────────────────
+# Skill-advisor runtime launcher state (transient build/launch records)
+# ───────────────────────────────────────────
+**/.mk-skill-advisor-launcher.json
