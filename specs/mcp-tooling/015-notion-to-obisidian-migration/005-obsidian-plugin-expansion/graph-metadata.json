@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
   "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
@@ -11,31 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "015 plugin install verification",
-      "notion bases dataview install real vault",
-      "migration parity verification script",
-      "015 plugin install plan",
-      "verify-notion-migration-parity plan",
-      "015 plugin install tasks",
-      "015 plugin install checklist",
-      "015 plugin install summary"
+      "015 obsidian plugin expansion",
+      "install nine obsidian plugins",
+      "advanced canvas claudian project manager skill folders",
+      "installed plugins roster",
+      "015 plugin expansion plan",
+      "advanced canvas claudian project manager plan",
+      "015 plugin expansion tasks",
+      "015 plugin expansion checklist",
+      "015 plugin expansion summary"
     ],
     "key_topics": [
+      "obsidian",
       "plugin",
+      "expansion",
       "install",
-      "verification",
-      "notion",
-      "bases",
-      "dataview",
-      "real",
-      "vault",
-      "migration",
-      "parity",
-      "script",
-      "plan"
+      "nine",
+      "plugins",
+      "advanced",
+      "canvas",
+      "claudian",
+      "project",
+      "manager",
+      "skill"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -75,7 +76,13 @@
         "source": "derived"
       },
       {
-        "name": "Notion Bases",
+        "name": "Advanced Canvas",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Project Manager",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -99,13 +106,7 @@
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Phase",
+        "name": "Notion Bases",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -123,19 +124,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Mobile Documents",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Michel Kerkmeester",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -153,7 +142,7 @@
         "source": "derived"
       },
       {
-        "name": "Recommended Orchestration Process",
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -165,13 +154,13 @@
         "source": "derived"
       },
       {
-        "name": "File Organization",
+        "name": "Real Install Execution",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Real Install Execution",
+        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -187,11 +176,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation column it cannot yet write, because neither Notion Bases nor (potentially) Dataview is confirmed present in the operator's actual vault",
-    "created_at": "2026-08-21T22:01:25.732Z",
-    "last_save_at": "2026-08-22T07:15:12.827Z",
+    "causal_summary": "The `mcp-obsidian` skill documented thirteen plugins (twelve community plugins plus the Minimal theme), but the operator's vault stack was growing",
+    "created_at": "2026-08-22T06:59:23.392Z",
+    "last_save_at": "2026-08-22T07:10:40.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:371ed4eda61c6295f9b7bf09d2b4045ffa3f1b093d1f887c3076f4e24cc1f581",
+    "source_fingerprint": "sha256:b1f09b33d9cc03adf72b7e31d74f09c578f2a34a3d0bfaa6a3320bbb1d5eea5f",
     "source_doc_hashes": {
-      "spec.md": "3a024cb89490c4b38f521c8d8b56ab363d956aa84e4ac5d55bf3b59405c8ce9d",
-      "plan.md": "525e275973b5de6efd39bf8ca31a99a5ab10fc0684646ea497d390e89d78d721",
-      "tasks.md": "21aca8d5c0164a2460e8db3133855a1ea89d4a604cc51e8aab88da33ac3cf8de",
-      "checklist.md": "dab6874d540bb383956227362157dabf957e3967c8f7a06b950ebe0bcdfdfb8a",
-      "implementation-summary.md": "b8a05c9f4ac7724f88f619dcf4f913fc173653ca0f51e50b07c54e7f9ad7f941"
+      "spec.md": "0154d07a2da5e6157e54568a163a0dc8eed2823c86ff50f3a845ed0942064cbe",
+      "plan.md": "2342dc67093a163ef29884837c361f22329fea16447677d258e2e3e703ff1166",
+      "tasks.md": "435ff2adc415898edfa0d9c928dbcfc4199cc38e6c9534cf1683af74d05f53f2",
+      "checklist.md": "ed371d68bc7671514969145a41e9182130ed41883f6067ac81d7851d88c4126a",
+      "implementation-summary.md": "6cbc9608fdb66e4abb7af353dd9bb3ca37e20d3f0a107236e1012f4885970d50"
     },
     "last_active_child_id": null,
     "last_active_at": null

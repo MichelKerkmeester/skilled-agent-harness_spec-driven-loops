@@ -1,0 +1,30 @@
+{
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+  "description": "The `mcp-obsidian` skill documented thirteen plugins (twelve community plugins plus the Minimal theme), but the operator's vault stack was growing",
+  "keywords": [
+    "mcp-obsidian",
+    "skill",
+    "documented",
+    "thirteen",
+    "plugins",
+    "twelve",
+    "community",
+    "plus",
+    "minimal",
+    "theme",
+    "operator",
+    "vault",
+    "stack",
+    "growing"
+  ],
+  "lastUpdated": "2026-08-22T07:10:25.979Z",
+  "specId": "005",
+  "folderSlug": "obsidian-plugin-expansion",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

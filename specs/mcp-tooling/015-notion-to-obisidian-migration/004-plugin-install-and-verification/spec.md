@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification"
-    last_updated_at: "2026-08-22T04:44:34Z"
+    last_updated_at: "2026-08-22T07:15:12.827Z"
     last_updated_by: "claude"
     recent_action: "BRAT-headless install of notion-bases v1.12.0 executed + verified in the real vault"
     next_safe_action: "None — 015 capability complete; migration run is a separate action"
@@ -49,7 +49,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 4 of 4 |
 | **Predecessor** | `003-notion-bases-plugin-tie-in` |
-| **Successor** | None — closes the 015 phased build |
+| **Successor** | `005-obsidian-plugin-expansion` — extends the stack beyond the migration plugins |
 | **Handoff Criteria** | Notion Bases staged and registered in the operator's real vault via BRAT-headless file-layer install (executed and verified 2026-08-22); activation completes when the operator next opens Obsidian. Dataview was already installed and left untouched. `verify-notion-migration-parity.sh` (11 checks) shipped under `mcp-obsidian/scripts/`; a manual-testing scenario (`OBS-023`) documents the procedure; rollback proven reversible and remains available. |
 <!-- /ANCHOR:metadata -->
 

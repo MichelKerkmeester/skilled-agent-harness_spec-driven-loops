@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration"
     last_updated_at: "2026-08-21T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "built all phases + installed Notion Bases v1.12.0 into the real vault"
-    next_safe_action: "None — capability build complete; running an actual migration is a separate future use"
+    recent_action: "added phase 005 — installed 9 more plugins + 3 references + roster + router wiring"
+    next_safe_action: "None — all phases complete; per-plugin deep research is a separate follow-up"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,6 +23,7 @@ _memory:
       - "002-migration-playbook/spec.md"
       - "003-notion-bases-plugin-tie-in/spec.md"
       - "004-plugin-install-and-verification/spec.md"
+      - "005-obsidian-plugin-expansion/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "015-notion-to-obisidian-migration"
@@ -72,8 +73,9 @@ A prior single-pass web-research note (preserved as `001-deep-research/prior-fin
 | **002 — Migration playbook** | `002-migration-playbook/` | Done. Built `mcp-obsidian/references/notion-migration.md` (8-step reconstruction + verification method) and `mcp-notion/references/migration-inventory.md` (7-step inventory + API-gap reads), plus additive `NOTION_MIGRATION` router entries in both SKILL.md files. |
 | **003 — Notion Bases plugin tie-in** | `003-notion-bases-plugin-tie-in/` | Done. Built the `mcp-obsidian` Notion Bases community-plugin reference tree (two-way relations, 7 rollups, 7 views, subtasks, Lookup columns) plus a Dataview supplement, a feature-catalog entry, the OBS-022 manual scenario, and a `PLUGIN_NOTION_BASES` router intent. |
 | **004 — Plugin install and verification** | `004-plugin-install-and-verification/` | Done. Shipped the OBS-023 headless real-vault install scenario and the 11-check `verify-notion-migration-parity.sh`, and executed the real BRAT install of Notion Bases v1.12.0 into the operator's vault (Dataview already present). |
+| **005 — Obsidian plugin-stack expansion** | `005-obsidian-plugin-expansion/` | Done. Installed nine more community plugins into the operator's vault via BRAT-headless, authored dedicated file-layer references for the three with an AI-authorable data model (Advanced Canvas, Claudian, Project Manager), added an all-plugins roster covering every enabled plugin, and wired three new router intents into `mcp-obsidian`. |
 
-Phases 002-004 are complete: the migration/inventory references, the Notion Bases plugin knowledge tree, and the parity verifier are built into `mcp-obsidian`/`mcp-notion`, and Notion Bases v1.12.0 is installed in the operator's vault. Running an actual Notion→Obsidian migration of a live workspace is a separate future use of this capability.
+Phases 002-004 completed the migration capability: the migration/inventory references, the Notion Bases plugin knowledge tree, and the parity verifier are built into `mcp-obsidian`/`mcp-notion`, and Notion Bases v1.12.0 is installed in the operator's vault. Phase 005 extends the same skill beyond migration to the operator's broader plugin stack — nine more plugins installed, and dedicated docs for the three with a file-layer data model. Running an actual Notion→Obsidian migration of a live workspace is a separate future use of this capability.
 
 ---
 
@@ -88,6 +90,7 @@ Phases 002-004 are complete: the migration/inventory references, the Notion Base
 | 002 | `002-migration-playbook/` | `mcp-obsidian`/`mcp-notion` migration + inventory reference docs | Done |
 | 003 | `003-notion-bases-plugin-tie-in/` | Notion Bases plugin knowledge tree + Dataview supplement | Done |
 | 004 | `004-plugin-install-and-verification/` | Real-vault plugin install scenario + 11-check parity script | Done |
+| 005 | `005-obsidian-plugin-expansion/` | Nine-plugin vault install + three file-layer references + all-plugins roster + router wiring | Done |
 
 ### Phase Transition Rules
 
@@ -104,4 +107,5 @@ Phases 002-004 are complete: the migration/inventory references, the Notion Base
 | 002 | 003 | Migration playbook build complete: both reference docs + routers built | `validate_document.py --type skill` = 0 issues; `ci-leaf-manifest-freshness.cjs` OK |
 | 003 | 004 | Notion Bases plugin reference tree built; `mcp-obsidian` router routes to it | `validate_document.py --type skill` = 0 issues; `ci-leaf-manifest-freshness.cjs` OK |
 | 004 | Done | Planning artifacts built AND the real install has executed with an explicit operator go-ahead | `OBS-023` scenario verify step passes; `verify-notion-migration-parity.sh` runs against a live vault |
+| 005 | Done | Nine plugins installed in the vault AND three file-layer references + roster + router wiring authored and validated | `validate.sh 005-obsidian-plugin-expansion --strict` Errors:0; `validate_document.py` 16/16 clean |
 <!-- /ANCHOR:phase-map -->

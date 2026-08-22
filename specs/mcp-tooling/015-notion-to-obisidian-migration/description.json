@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "mcp-tooling/015-notion-to-obisidian-migration",
   "description": "Phase parent for a flawless complex-Notion→Obsidian migration capability: research first (20 iterations, GLM-5.2 via cli-devin + DeepSeek V4 Flash",
   "keywords": [
@@ -19,7 +19,7 @@
     "deepseek",
     "flash"
   ],
-  "lastUpdated": "2026-08-21T22:04:28.433Z",
+  "lastUpdated": "2026-08-22T07:13:04.074Z",
   "specId": "015",
   "folderSlug": "notion-to-obisidian-migration",
   "parentChain": [
