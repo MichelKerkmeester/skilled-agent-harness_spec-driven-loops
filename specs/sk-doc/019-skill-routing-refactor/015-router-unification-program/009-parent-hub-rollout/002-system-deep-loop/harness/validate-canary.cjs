@@ -102,7 +102,7 @@ const PROTECTED_DIGESTS = Object.freeze({
   'score-skill-benchmark.cjs': '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
 });
 const AUTHORED_SOURCE_DIGESTS = Object.freeze({
-  'SKILL.md': '9a44f34a925cf878ef0438b978c0a4c11b2754d1d8cbfb895629bbae029c3e08',
+  'SKILL.md': '292b60eeae5e037b1af1c487ad666ece0331f922a5ffc1297369fd7c0ae8f43f',
   'mode-registry.json': '8b6e6ae055b03a7c7c4da9c85a74e6564b04a5e40bcd03212079077b3365ac6d',
 });
 

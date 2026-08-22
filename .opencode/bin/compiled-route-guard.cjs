@@ -46,7 +46,6 @@ const HUBS = [
   'cli-external-orchestration',
   'mcp-tooling',
   'sk-code',
-  'sk-design',
   'sk-doc',
   'sk-prompt',
   'system-deep-loop',

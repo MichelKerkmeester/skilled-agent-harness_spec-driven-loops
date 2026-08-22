@@ -16,17 +16,13 @@
  },
  "extensions": {
   "transport-axis": {
-   "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never produce a measured design reference themselves and carry a mandatory cross-hub pairing to sk-design-md-generator (a DIFFERENT skill) for measured design-reference extraction, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply a measured Style Reference. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual \u2014 both remote MCP through Code Mode).",
+   "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never produce a measured design reference themselves and hand off to sk-design-md-generator (a DIFFERENT, standalone skill) for measured design-reference extraction, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply a measured Style Reference. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual \u2014 both remote MCP through Code Mode).",
    "transports": [
     "mcp-figma",
     "mcp-refero",
     "mcp-mobbin"
    ],
-   "crossHubPairing": {
-    "mcp-figma": "sk-design-md-generator",
-    "mcp-refero": "sk-design-md-generator",
-    "mcp-mobbin": "sk-design-md-generator"
-   }
+   "crossHubPairing": {}
   }
  },
  "modes": [

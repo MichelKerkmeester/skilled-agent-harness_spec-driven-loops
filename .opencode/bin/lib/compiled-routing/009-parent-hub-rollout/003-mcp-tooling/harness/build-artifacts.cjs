@@ -48,8 +48,6 @@ function sourceInputs() {
     'mcp-tooling/hub-router.json': path.join(SKILLS_ROOT, 'mcp-tooling', 'hub-router.json'),
     'mcp-tooling/mcp-figma/SKILL.md': path.join(SKILLS_ROOT, 'mcp-tooling', 'mcp-figma', 'SKILL.md'),
     'mcp-tooling/mode-registry.json': path.join(SKILLS_ROOT, 'mcp-tooling', 'mode-registry.json'),
-    'sk-design/SKILL.md': path.join(SKILLS_ROOT, 'sk-design', 'SKILL.md'),
-    'sk-design/mode-registry.json': path.join(SKILLS_ROOT, 'sk-design', 'mode-registry.json'),
   };
   return Object.fromEntries(Object.entries(paths).map(([id, filePath]) => [id, fs.readFileSync(filePath)]));
 }
@@ -58,16 +56,17 @@ function loadSnapshot() {
   const fixture = readJson(path.join(PHASE_ROOT, 'fixtures', 'canary-cases.v1.json'));
   const sourceBytes = sourceInputs();
   const hubRegistry = JSON.parse(sourceBytes['mcp-tooling/mode-registry.json'].toString('utf8'));
-  const judgmentRegistry = JSON.parse(sourceBytes['sk-design/mode-registry.json'].toString('utf8'));
+  // The transport axis' cross-hub design-reference handoff points at a standalone
+  // skill that carries no hub mode-registry, so it is a documented routing
+  // relationship only and contributes no compiled judgment pairing; the compiler
+  // therefore receives no judgment registries.
   const snapshot = compileRegistry({
     activationGeneration: fixture.activationGeneration,
     externalInfrastructureMarkdown: sourceBytes['mcp-code-mode/SKILL.md'].toString('utf8'),
     hubRegistry,
     hubSkillMarkdown: sourceBytes['mcp-tooling/SKILL.md'].toString('utf8'),
-    judgmentRegistries: { [judgmentRegistry.skill]: judgmentRegistry },
-    judgmentSkillMarkdown: {
-      [judgmentRegistry.skill]: sourceBytes['sk-design/SKILL.md'].toString('utf8'),
-    },
+    judgmentRegistries: {},
+    judgmentSkillMarkdown: {},
     packetSkillMarkdown: {
       'mcp-figma': sourceBytes['mcp-tooling/mcp-figma/SKILL.md'].toString('utf8'),
     },

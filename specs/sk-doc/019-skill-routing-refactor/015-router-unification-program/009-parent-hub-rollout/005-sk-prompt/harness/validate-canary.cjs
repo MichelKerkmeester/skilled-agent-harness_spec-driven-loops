@@ -95,8 +95,8 @@ const AUTHORED_SOURCE_DIGESTS = Object.freeze({
   'SKILL.md': '11be5c0b3deb70f2a6fe986326b8ab88ec58bc05146a8951328ca2162c495d45',
   'hub-router.json': '9591886dac2f63abf77a89d8b6ed79b7534d7293163c25a0cbd513a7ab63fa25',
   'mode-registry.json': 'a96830f197e8cab8d89b8a7ff46f7264f7d2e16e06f29c7bf3a773a4f9bda4fa',
-  'sk-prompt-improve/SKILL.md': '2eb2dcab831956b5fbe2afbdcda668cd720a6c7ed054aacfc95b149296d3b16a',
-  'sk-prompt-models/SKILL.md': '8bd2f3e6fd02f2b06682d56de03e92b8e127d88c6c32635c7ce874b24ec6082e',
+  'sk-prompt-improve/SKILL.md': 'a395402f826b3b181d0d30f0fd30b23e0500e65fbfa8c4d759a25afe3616ba07',
+  'sk-prompt-models/SKILL.md': '5ba79b0a70419bbd26b5ddbc4f7e535c4051f76ae1581764f63228c2de75dec0',
 });
 
 function readJson(filePath) {
