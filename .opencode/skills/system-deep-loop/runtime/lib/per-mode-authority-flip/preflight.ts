@@ -88,11 +88,16 @@ export function evaluateCutoverPreflight(input: CutoverPreflightInput): CutoverP
     const scopeModes = CUTOVER_TO_WORKFLOW_MODES[input.mode];
     const modeRowIds = new Set(
       classificationManifest.rows
-        .filter((row) => row.modes.some((mode) => scopeModes.includes(mode)))
+        .filter((row) => row.modes.every((mode) => scopeModes.includes(mode)))
         .map((row) => row.rowId),
     );
-    // The flip is per-mode, so only rows the selected mode touches (including shared
-    // cross-mode rows) may gate it; a row no selected mode touches must not deny this flip.
+    // This flip transitions only the selected mode's own authority record, so a
+    // row may gate it only when every mode that owns the row is inside this
+    // flip's scope. A row co-owned by a mode that is not flipping here — the
+    // fleet-shared infrastructure every mode writes, or a row shared with one
+    // other mode — moves under its own later transition, so its unresolved state
+    // must not deny this flip; gating on it would couple one mode's flip to
+    // backends this flip never changes and could not, on its own, make whole.
     // `verifyInflightMigrationHandoff` already proves every row reached a
     // terminal receipt (COMMITTED, BLOCKED, or ABORTED) bound to this exact
     // manifest. An ABORTED row means an attempted operation itself failed at

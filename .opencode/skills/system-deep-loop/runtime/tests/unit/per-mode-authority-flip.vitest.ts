@@ -1482,6 +1482,26 @@ describe('evaluateCutoverPreflight', () => {
     expect(evaluateCutoverPreflight(input).verdict).toBe('ready');
   });
 
+  it('ignores an illegitimately blocked fleet-shared row that this mode co-owns with modes not flipping here', async () => {
+    // A fleet-shared row is owned by every workflow mode, so it includes the
+    // flipping mode ('research'): an intersection scope would gate this flip on
+    // it, but the subset scope defers it because other owners have not flipped.
+    // This is the one row shape that distinguishes the two scoping rules; the
+    // single-mode cases above pass under either, so only this proves the rule.
+    const infraRow = CLASSIFICATION_MANIFEST.rows.find((row) => row.rowId === 'runtime-observability');
+    expect(infraRow?.modes).toContain('research');
+    expect(infraRow?.modes).toContain('review');
+    expect(infraRow?.modes.length).toBeGreaterThan(1);
+
+    const handoff = await buildCleanHandoffWithBlockedRow(temporaryRoot('fleet-shared-blocked'), 'runtime-observability');
+    const blockedRow = handoff.rows.find((row) => row.rowId === 'runtime-observability');
+    expect(blockedRow?.status).toBe(MigrationOperationStatuses.BLOCKED);
+    expect(blockedRow?.disposition).not.toBe(InflightDisposition.BLOCK);
+
+    const input = await fixturePreflightInput({}, handoff);
+    expect(evaluateCutoverPreflight(input).verdict).toBe('ready');
+  });
+
   it('denies a handoff carrying rows that vetoed to BLOCKED instead of reaching their intended disposition, even with zero ABORTED rows: unresolved/blocked state denies the flip', async () => {
     const handoff = await buildHandoffFixture(temporaryRoot('illegitimately-blocked'));
     // Every MIGRATE-disposition row in this handoff vetoed to BLOCKED for
