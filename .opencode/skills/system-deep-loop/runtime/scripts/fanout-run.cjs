@@ -1858,6 +1858,7 @@ const PI_ALLOWED_MODELS = new Set([
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
+  'ox-alpha-free',
   // OpenRouter is currently restricted to DeepSeek V4 Flash only; the id keeps the
   // upstream provider path so `${provider}/${model}` composes the full
   // openrouter/<upstream>/<model> selector.
@@ -2067,6 +2068,7 @@ const PI_MODEL_PROVIDERS = new Map([
   ['mimo-v2.5-pro', 'xiaomi'],
   ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
   ['qwen3.8-max', 'opencode-go'],
+  ['ox-alpha-free', 'opencode-go'],
   // OpenRouter fronts this `-latest` hosted tune, and is currently restricted to
   // DeepSeek V4 Flash only. The model id already carries the upstream provider path, so
   // `${provider}/${model}` yields the 3-segment openrouter/<upstream>/<model> selector

@@ -81,12 +81,13 @@ MiMo passthrough; `-ultraspeed` is the low-latency tier.
 
 ### opencode-go
 
-OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--provider opencode-go --model <id>` — the enforced deep-loop fan-out route for both models below.
+OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--provider opencode-go --model <id>` — the enforced deep-loop fan-out route for the models below.
 
 | Model id | Notes |
 |----------|-------|
 | `deepseek-v4-flash` | Latency-optimized reasoning model pinned to `--thinking max` by policy; opencode-go is the fan-out provider for this model. A live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07. Also reachable directly via `--provider deepseek` (see above) |
 | `qwen3.8-max` | Qwen 3.8 Max; a live `pi --provider opencode-go --model qwen3.8-max -p` dispatch completed a real turn 2026-08-07 |
+| `ox-alpha-free` | Ox Alpha Free (unlimited). List-confirmed live in `opencode models opencode-go` on 2026-08-22. Not yet in pi's cached `models-store.json`, so `pi` emits `Warning: Model "ox-alpha-free" not found for provider "opencode-go". Using custom model id.` and dispatches it as a custom id to the same gateway — routing confirmed on 2026-08-22 (the dispatch reached the gateway and returned a `429 GoUsageLimitError` monthly-quota error, not model-not-found). A refreshed pi catalog clears the warning |
 
 ### openrouter
 

@@ -83,6 +83,7 @@ OpenCode Go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and 
 | `opencode-go/deepseek-v4-flash` | — | Latency-optimized DeepSeek V4 Flash via the Go gateway (2x usage); reasoning model pinned to `--variant max` by policy; a live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07 |
 | `opencode-go/glm-5.3` | — | Z.AI GLM 5.3 via the Go gateway; list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
 | `opencode-go/qwen3.8-max` | — | Qwen 3.8 Max via the Go gateway; a live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
+| `opencode-go/ox-alpha-free` | — | Ox Alpha Free (unlimited) via the Go gateway; list-confirmed in `opencode models opencode-go` on 2026-08-22 and `opencode run --model opencode-go/ox-alpha-free` selected it (`build · ox-alpha-free`). A full turn was not completed because the opencode-go monthly free-tier quota was exhausted at test time (429 `GoUsageLimitError`, resets ~16 days) |
 
 ### openrouter
 

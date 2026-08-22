@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster",
+  "spec_folder": "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ox-alpha-free roster",
+      "opencode-go ox alpha",
+      "cli-pi ox-alpha-free",
+      "cli-opencode ox-alpha-free",
+      "ox-alpha-free roster plan",
+      "ox-alpha-free fanout",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "ox-alpha-free",
+      "roster",
+      "opencode-go",
+      "alpha",
+      "cli-pi",
+      "cli-opencode",
+      "plan",
+      "fanout",
+      "implementation",
+      "tasks",
+      "verification",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ox Alpha Free",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Register",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The OpenCode Go gateway now offers Ox Alpha Free (unlimited), listed by `opencode models opencode-go` as `opencode-go/ox-alpha-free`",
+    "created_at": "2026-08-22T10:23:23.561Z",
+    "last_save_at": "2026-08-22T10:27:26.119Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f09953c00daccbadeacd5e102c3ff2421ac8653148c4ff597b1c755af1e1bbd4",
+    "source_doc_hashes": {
+      "spec.md": "4e981568fa83f8fee1900b8f446b90b9b24f4c8d4dd40db7d932a7e8da171d32",
+      "plan.md": "1a25cc272ce24132529b98f34a3d5a3e2150525cc4d2d224dbe3a578f2438bee",
+      "tasks.md": "ce1c157c18c912941e2de89d9c1ef89eed68e4314993da9e466d581bee293de7",
+      "checklist.md": "93ed929c749609e6c2dbc320dc662a9a92fe9960f2c06ea2cc60e7f81bf669da",
+      "implementation-summary.md": "9eaf2fdf30a3b202fee020ea1118288e189dfcc9d8d81fef755cfa6f508acda9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

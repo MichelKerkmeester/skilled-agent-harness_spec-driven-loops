@@ -1,0 +1,26 @@
+{
+  "specFolder": "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster",
+  "level": "2",
+  "description": "The OpenCode Go gateway now offers Ox Alpha Free (unlimited), listed by `opencode models opencode-go` as `opencode-go/ox-alpha-free`",
+  "keywords": [
+    "opencode",
+    "gateway",
+    "now",
+    "offers",
+    "alpha",
+    "free",
+    "unlimited",
+    "listed",
+    "models",
+    "opencode-go",
+    "ox-alpha-free"
+  ],
+  "lastUpdated": "2026-08-22T10:23:01.087Z",
+  "specId": "052",
+  "folderSlug": "opencode-go-ox-alpha-free-roster",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

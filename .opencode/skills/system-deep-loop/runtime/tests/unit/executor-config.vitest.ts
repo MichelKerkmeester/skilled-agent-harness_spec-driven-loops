@@ -800,6 +800,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'mimo-v2.5-pro',
       'mimo-v2.5-pro-ultraspeed',
       'minimax-m3',
+      'ox-alpha-free',
       'qwen3.8-max',
     ]);
   });
