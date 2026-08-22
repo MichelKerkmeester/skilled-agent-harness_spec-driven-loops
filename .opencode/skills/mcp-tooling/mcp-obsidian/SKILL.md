@@ -52,6 +52,7 @@ ALWAYS:    SKILL.md (this file)
 ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official obsidian CLI command details)
            references/mcp-tools.md                      (cyanheads MCP tool catalog + invocation)
            references/troubleshooting.md                (error, auth, REST API, or install issue detected)
+           references/notion-migration.md               (Notion→Obsidian migration reconstruction method)
            Plugin operation logic:
              references/plugins/plugin-operation-logic.md (plugin-driven note automation)
            Beancount Finance:
@@ -269,6 +270,12 @@ INTENT_SIGNALS = {
         "weight": 5,
         "keywords": ["plugin", "plugin automation", "community plugin"],
     },
+    "NOTION_MIGRATION": {
+        "weight": 5,
+        "keywords": ["migration", "migrate", "notion import", "obsidian import",
+                     "relation recovery", "rollup recovery", "comment reconstruction",
+                     "parity verification"],
+    },
     "INSTALL": {
         "weight": 6,
         "keywords": ["install notesmd-cli", "install obsidian", "setup", "not found",
@@ -289,7 +296,7 @@ INTENT_SIGNALS = {
 }
 
 # NOTE: no "DEFAULT" entry — route_obsidian_resources() never indexes RESOURCE_MAP
-# by that key. The selected `intent` is one of the sixteen INTENT_SIGNALS keys above.
+# by that key. The selected `intent` is one of the seventeen INTENT_SIGNALS keys above.
 # Specific plugin intents always supersede generic PLUGINS whenever any specific signal matches: the highest specific score wins, a tie between specific intents disambiguates, and generic PLUGINS is considered only when no specific plugin signal matches.
 # The no-match case is owned by DEFAULT_RESOURCE, whose declared
 # fallback-only semantics mean it is SUGGESTED beside the disambiguation checklist,
@@ -365,6 +372,7 @@ RESOURCE_MAP = {
                        "references/plugins/git/git.md",
                        "references/plugins/outliner/outliner.md",
                        "references/plugins/minimal/minimal.md"],
+    "NOTION_MIGRATION": ["references/notion-migration.md"],
     "INSTALL":       ["references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
 }
@@ -688,6 +696,7 @@ await call_tool_chain({
 - `references/obsidian-cli-commands.md` — Full `notesmd-cli` + official `obsidian` CLI command reference with agent patterns
 - `references/mcp-tools.md` — Cyanheads `obsidian-mcp-server` 14-tool catalog, priorities, and `call_tool_chain()` invocation
 - `references/troubleshooting.md` — Install, vault, auth, Local REST API and MCP failures
+- `references/notion-migration.md` — Notion→Obsidian migration reconstruction method: 8-step method, division of labor, relation/rollup/formula recovery, comment reconstruction, verification protocol
 - `references/plugins/plugin-operation-logic.md` — How plugin-driven note automation is operated
 - `references/plugins/beancount-finance/beancount-finance.md` — Beancount Ledger / beancount-finance plugin index
 - `references/plugins/beancount-finance/data-model.md` — Beancount Ledger settings, layout, directives, and BQL data model

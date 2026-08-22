@@ -45,7 +45,7 @@ Markdown round-trip tools (`retrieve-page-markdown` / `update-page-markdown`) re
 ### When NOT to Use
 
 - **Community Notion MCP servers** (suekou/mcp-notion-server, awkoy/notion-mcp-server) — this mode uses the **official** `@notionhq/notion-mcp-server` only.
-- **Notion→Obsidian migration mechanics** — that research lives in `specs/mcp-tooling/015-…`; this mode is the read-side inventory enabler, not the importer.
+- **Notion→Obsidian migration mechanics (running the importer itself)** — the importer runs inside the Obsidian desktop app, not here; this mode is the read-side inventory enabler (`references/migration-inventory.md`), not the importer.
 - Generic markdown authoring with no Notion workspace — use `@markdown` / `sk-doc`.
 - Non-Notion knowledge apps (Obsidian, ClickUp docs) — wrong surface (`mcp-obsidian`, `mcp-click-up`).
 
@@ -62,6 +62,7 @@ ON_DEMAND: references/mcp-tools.md        (24-tool catalog + Code Mode invocatio
            references/property-types.md   (22 property types: schema, value, filter/sort)
            references/database-model.md    (data-source hierarchy, relations, rollups, Formulas 2.0)
            references/troubleshooting.md   (auth, rate-limit, version, deprecation-migration)
+           references/migration-inventory.md (Notion→Obsidian migration read-side inventory method)
 ```
 
 ### Two Decisions This Router Makes
@@ -151,6 +152,13 @@ INTENT_SIGNALS = {
         "keywords": ["property type", "property types", "select", "multi-select", "status",
                      "formula function", "rollup function", "data model", "hierarchy"],
     },
+    "NOTION_MIGRATION": {
+        "weight": 5,
+        "keywords": ["migration", "migrate", "migration inventory", "notion import",
+                     "obsidian import", "workspace inventory", "pre-migration inventory",
+                     "relation recovery", "rollup recovery", "comment reconstruction",
+                     "parity verification"],
+    },
     "INSTALL": {
         "weight": 6,
         "keywords": ["install", "setup", "not found", "not installed", "notion token",
@@ -168,16 +176,17 @@ INTENT_SIGNALS = {
 }
 
 # NOTE: no "DEFAULT" entry — route_notion_resources() never indexes RESOURCE_MAP by
-# that key; the selected `intent` is always one of the six INTENT_SIGNALS keys. The
+# that key; the selected `intent` is always one of the seven INTENT_SIGNALS keys. The
 # no-match case is owned by DEFAULT_RESOURCE, whose fallback-only semantics mean it is
 # SUGGESTED beside the disambiguation checklist, never loaded — so mcp-tools.md cannot
-# leak into the DATA / API_GAP / KNOWLEDGE / INSTALL / TROUBLESHOOT routes.
+# leak into the DATA / API_GAP / KNOWLEDGE / MIGRATION / INSTALL / TROUBLESHOOT routes.
 RESOURCE_MAP = {
     "NOTION_PAGES":     ["references/mcp-tools.md"],
     "NOTION_DATA":      ["references/database-model.md", "references/property-types.md",
                          "references/mcp-tools.md"],
     "NOTION_API_GAP":   ["references/api-gap-tools.md"],
     "NOTION_KNOWLEDGE": ["references/property-types.md", "references/database-model.md"],
+    "NOTION_MIGRATION": ["references/migration-inventory.md"],
     "INSTALL":          ["references/troubleshooting.md"],
     "TROUBLESHOOT":     ["references/troubleshooting.md"],
 }
@@ -370,7 +379,7 @@ File uploads, views, non-truncated page property items, and async-task polling e
 
 **Code Mode MCP:** the official Notion MCP tools are invoked via `mcp__code_mode__call_tool_chain`; Code Mode namespaces each as `notion.notion_<tool_name>` — use hyphen-safe bracket access since Notion names are hyphenated. See `references/mcp-tools.md`.
 
-**Migration (packet 015):** this mode is the read-side inventory enabler for Notion→Obsidian migration — the same knowledge layer that operates a live workspace reads its structure to drive an Obsidian import.
+**Migration (packet 015):** this mode is the read-side inventory enabler for Notion→Obsidian migration (`references/migration-inventory.md`) — the same knowledge layer that operates a live workspace reads its structure to drive an Obsidian import; the write-side reconstruction method lives in `mcp-obsidian`'s `references/notion-migration.md`.
 
 **Memory:** save Notion workflow context (target data-source ids, integration name, backend) with `/memory:save` when switching sessions.
 
@@ -427,6 +436,7 @@ await call_tool_chain({
 - `references/property-types.md` — 22 property types: schema, value, filter/sort
 - `references/database-model.md` — data-source hierarchy, relations, rollups, Formulas 2.0
 - `references/troubleshooting.md` — auth, rate-limit, API-version, deprecation-migration
+- `references/migration-inventory.md` — Notion→Obsidian migration read-side inventory method: the 7-step inventory procedure, the 5 API-gap reads it uses, and the read-limit constraints that shape it
 
 Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — token setup, Code Mode registration, dual-backend config.
 

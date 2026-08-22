@@ -60,6 +60,7 @@
         "references/api-gap-tools.md",
         "references/database-model.md",
         "references/mcp-tools.md",
+        "references/migration-inventory.md",
         "references/property-types.md",
         "references/troubleshooting.md"
       ],
@@ -90,6 +91,7 @@
         "assets/plugins/outliner/outliner-settings.partial.example.json",
         "assets/workflows.md",
         "references/mcp-tools.md",
+        "references/notion-migration.md",
         "references/obsidian-cli-commands.md",
         "references/plugins/beancount-finance/beancount-finance.md",
         "references/plugins/beancount-finance/data-model.md",
