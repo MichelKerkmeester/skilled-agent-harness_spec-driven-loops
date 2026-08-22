@@ -1858,11 +1858,11 @@ const PI_ALLOWED_MODELS = new Set([
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
-  'ox-alpha-free',
-  // OpenRouter is currently restricted to DeepSeek V4 Flash only; the id keeps the
-  // upstream provider path so `${provider}/${model}` composes the full
-  // openrouter/<upstream>/<model> selector.
+  // OpenRouter carries DeepSeek V4 Flash and the Ox Alpha stealth tune; each id keeps
+  // its upstream provider path so `${provider}/${model}` composes the full
+  // openrouter/<upstream>/<model> selector. No other model routes through OpenRouter.
   'deepseek/deepseek-v4-flash-latest',
+  'stealth/ox-alpha',
 ]);
 const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
 
@@ -2068,12 +2068,11 @@ const PI_MODEL_PROVIDERS = new Map([
   ['mimo-v2.5-pro', 'xiaomi'],
   ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
   ['qwen3.8-max', 'opencode-go'],
-  ['ox-alpha-free', 'opencode-go'],
-  // OpenRouter fronts this `-latest` hosted tune, and is currently restricted to
-  // DeepSeek V4 Flash only. The model id already carries the upstream provider path, so
-  // `${provider}/${model}` yields the 3-segment openrouter/<upstream>/<model> selector
-  // Pi's OpenRouter roster expects.
+  // OpenRouter fronts DeepSeek V4 Flash `-latest` and the Ox Alpha stealth tune. Each
+  // model id already carries its upstream provider path, so `${provider}/${model}` yields
+  // the 3-segment openrouter/<upstream>/<model> selector Pi's OpenRouter roster expects.
   ['deepseek/deepseek-v4-flash-latest', 'openrouter'],
+  ['stealth/ox-alpha', 'openrouter'],
 ]);
 // Map each shared reasoningEffort level to the name Pi's `--thinking` uses (from the
 // installed `pi --help`): the config's 'none' is Pi's 'off', and the config's 'ultra'

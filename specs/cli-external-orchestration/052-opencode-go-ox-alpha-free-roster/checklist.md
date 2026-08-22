@@ -1,19 +1,19 @@
 ---
-title: "Verification Checklist: opencode-go Ox Alpha Free roster"
+title: "Verification Checklist: Ox Alpha via OpenRouter roster"
 description: "Verification Date: 2026-08-22"
 trigger_phrases:
   - "verification"
   - "checklist"
-  - "ox-alpha-free roster"
+  - "ox-alpha roster"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster"
-    last_updated_at: "2026-08-22T10:20:00Z"
+    last_updated_at: "2026-08-22T11:20:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Verified all P0/P1 items with evidence"
-    next_safe_action: "Packet complete pending operator review"
+    recent_action: "Verified all P0/P1 items with evidence (openrouter route)"
+    next_safe_action: "Commit when operator approves"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
@@ -26,7 +26,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Verification Checklist: opencode-go Ox Alpha Free roster
+# Verification Checklist: Ox Alpha via OpenRouter roster
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md [evidence: `spec.md` REQ-001..005 present]
-- [x] CHK-002 [P0] Enforcement points + sync invariant identified [evidence: `executor-config.ts` + `fanout-run.cjs` mirror located; 034 prior art]
-- [x] CHK-003 [P1] opencode-go availability confirmed [evidence: `opencode models opencode-go` lists `opencode-go/ox-alpha-free`]
+- [x] CHK-001 [P0] Requirements documented in spec.md [evidence: `spec.md` REQ-001..006 present]
+- [x] CHK-002 [P0] Enforcement points + OpenRouter policy sites identified [evidence: `grep -rn "OpenRouter.*Flash"` located roster in 2 files + policy in 2 comments + 2 blockquotes]
+- [x] CHK-003 [P0] Zen ruled out, OpenRouter confirmed [evidence: `opencode/ox-alpha*` → Model not found; `openrouter/stealth/ox-alpha` → PONG]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -58,9 +58,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] `ox-alpha-free` in both synced allowlists (REQ-001) [evidence: `grep -c "'ox-alpha-free'" executor-config.ts`=1, `grep -c ox-alpha-free fanout-run.cjs`=2 (mirror + provider map)]
-- [x] CHK-011 [P0] Provider map routes it via opencode-go (REQ-002) [evidence: `PI_MODEL_PROVIDERS` has `['ox-alpha-free','opencode-go']`]
-- [x] CHK-012 [P0] fanout module syntactically valid (REQ-003) [evidence: `node --check fanout-run.cjs` exit 0]
+- [x] CHK-010 [P0] `stealth/ox-alpha` in both synced allowlists (REQ-001) [evidence: executor-config=2, fanout-run=2 occurrences]
+- [x] CHK-011 [P0] Provider map routes it via openrouter (REQ-002) [evidence: `PI_MODEL_PROVIDERS` has `['stealth/ox-alpha','openrouter']`]
+- [x] CHK-012 [P0] opencode-go ox fully removed (REQ-003) [evidence: `grep -c ox-alpha-free` both runtime files = 0]
+- [x] CHK-013 [P0] fanout module syntactically valid (REQ-004) [evidence: `node --check fanout-run.cjs` exit 0]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -68,10 +69,9 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Negative control observed before test edit [evidence: pre-edit run failed ONLY on `PI_SUPPORTED_MODELS` exact-roster assertion, diff showed `+ "ox-alpha-free"`]
-- [x] CHK-021 [P0] Guard tests green (REQ-003) [evidence: `npx vitest run` executor-config + fanout = `199 passed`]
-- [x] CHK-022 [P0] Builder wiring probe (REQ-002) [evidence: `buildLineageCommand` emits `pi -p --offline --model opencode-go/ox-alpha-free probe`]
-- [x] CHK-023 [P1] Live dispatch routing (REQ-005) [evidence: pi reached the gateway (429 `GoUsageLimitError`); `opencode run` selected `build · ox-alpha-free`. Full turn deferred by monthly quota — documented]
+- [x] CHK-020 [P0] Guard tests green (REQ-004) [evidence: `npx vitest run` = 199 passed]
+- [x] CHK-021 [P0] Builder wiring probe (REQ-002) [evidence: emits `pi -p --offline --model openrouter/stealth/ox-alpha probe`]
+- [x] CHK-022 [P1] Live dispatch both CLIs (REQ-006) [evidence: `opencode run` + `pi` of `openrouter/stealth/ox-alpha` each returned `PONG`]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -79,9 +79,10 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-FIX-001 [P0] Both enforcement points updated in sync (no drift) [evidence: `PI_SUPPORTED_MODELS` and `PI_ALLOWED_MODELS` both gained `ox-alpha-free`; fanout mirror-sync test green]
-- [x] CHK-FIX-002 [P0] Every allowlisted model has a provider-map entry [evidence: `PI_MODEL_PROVIDERS` covers all 11 ids incl `ox-alpha-free`]
-- [x] CHK-FIX-003 [P1] Guard tests re-pinned to the new roster [evidence: `executor-config.vitest.ts` 11-id assertion + `fanout-run.vitest.ts` providerByModel updated]
+- [x] CHK-FIX-001 [P0] Both enforcement points updated in sync (no drift) [evidence: mirror-sync guard green; both gained `stealth/ox-alpha`, both lost `ox-alpha-free`]
+- [x] CHK-FIX-002 [P0] Every allowlisted model has a provider-map entry [evidence: `PI_MODEL_PROVIDERS` covers all ids incl `stealth/ox-alpha`]
+- [x] CHK-FIX-003 [P1] Guard tests re-pinned to the new roster [evidence: `executor-config.vitest.ts` exact-roster + `fanout-run.vitest.ts` providerByModel swapped; `npx vitest run` 199 passed]
+- [x] CHK-FIX-004 [P1] OpenRouter policy relaxed consistently [evidence: `grep -rn "Flash + Ox Alpha"` returns 2 code comments + 2 doc blockquotes]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -90,7 +91,7 @@ _memory:
 ## Security
 
 - [x] CHK-030 [P0] No secrets added [evidence: `git diff` is roster/doc text only; no keys]
-- [x] CHK-031 [P1] No unconfirmed model ids fabricated [evidence: `opencode-go/ox-alpha-free` confirmed live via `opencode models opencode-go` + a real dispatch that the gateway recognized]
+- [x] CHK-031 [P1] No unconfirmed model ids fabricated [evidence: `openrouter/stealth/ox-alpha` confirmed live via `opencode models` + real `PONG` turns; zen ox NOT added because it does not exist]
 <!-- /ANCHOR:security -->
 
 ---
@@ -98,9 +99,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] `ox-alpha-free` row under `### opencode-go` in both roster docs (REQ-004) [evidence: cli-pi + cli-opencode `providers-and-models.md` rows added]
-- [x] CHK-041 [P1] pi store-staleness caveat documented [evidence: cli-pi row records the benign `Using custom model id` warning + catalog-refresh note]
-- [x] CHK-042 [P2] Spec/plan/tasks/checklist/implementation-summary synchronized [evidence: all five docs describe the same roster + doc change and the same quota caveat]
+- [x] CHK-040 [P1] `openrouter/stealth/ox-alpha` row under `### openrouter` in both docs (REQ-005) [evidence: cli-pi + cli-opencode `providers-and-models.md`]
+- [x] CHK-041 [P1] opencode-go ox rows removed from both docs [evidence: `grep -c "opencode-go/ox-alpha"` = 0 in both providers-and-models.md]
+- [x] CHK-042 [P2] Spec/plan/tasks/checklist/implementation-summary synchronized on the openrouter route [evidence: all five docs describe the same route + policy relaxation]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -109,7 +110,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P1] No temp files outside scratch/ [evidence: `git status` shows only the 6 runtime/doc files + this packet]
-- [x] CHK-051 [P1] Packet path + naming ok [evidence: `052-opencode-go-ox-alpha-free-roster` matches `^[0-9]{3}-[a-z0-9-]+$`; sits under the cli-external-orchestration track]
+- [x] CHK-051 [P1] Packet path + naming ok [evidence: slug matches `^[0-9]{3}-[a-z0-9-]+$`; slug kept from original framing, content states the OpenRouter route]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -119,11 +120,10 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 9/9 |
-| P1 Items | 8 | 8/8 |
+| P0 Items | 10 | 10/10 |
+| P1 Items | 9 | 9/9 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-08-22
 **Verified By**: AI Assistant (Claude)
-**Caveat**: A full end-to-end model turn was not completed because the opencode-go monthly free-tier quota was exhausted (429 `GoUsageLimitError`, resets ~16 days). Model existence and routing were confirmed independently; a completion turn can be re-run after the quota resets or with balance enabled.
 <!-- /ANCHOR:summary -->

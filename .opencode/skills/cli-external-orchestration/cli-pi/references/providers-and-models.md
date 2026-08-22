@@ -81,23 +81,23 @@ MiMo passthrough; `-ultraspeed` is the low-latency tier.
 
 ### opencode-go
 
-OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--provider opencode-go --model <id>` — the enforced deep-loop fan-out route for the models below.
+OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--provider opencode-go --model <id>` — the enforced deep-loop fan-out route for both models below.
 
 | Model id | Notes |
 |----------|-------|
 | `deepseek-v4-flash` | Latency-optimized reasoning model pinned to `--thinking max` by policy; opencode-go is the fan-out provider for this model. A live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07. Also reachable directly via `--provider deepseek` (see above) |
 | `qwen3.8-max` | Qwen 3.8 Max; a live `pi --provider opencode-go --model qwen3.8-max -p` dispatch completed a real turn 2026-08-07 |
-| `ox-alpha-free` | Ox Alpha Free (unlimited). List-confirmed live in `opencode models opencode-go` on 2026-08-22. Not yet in pi's cached `models-store.json`, so `pi` emits `Warning: Model "ox-alpha-free" not found for provider "opencode-go". Using custom model id.` and dispatches it as a custom id to the same gateway — routing confirmed on 2026-08-22 (the dispatch reached the gateway and returned a `429 GoUsageLimitError` monthly-quota error, not model-not-found). A refreshed pi catalog clears the warning |
 
 ### openrouter
 
 OpenRouter passthrough (base `https://openrouter.ai/api/v1`). Select with `--provider openrouter --model <upstream>/<id>`; the deep-loop fan-out composes the full `openrouter/<upstream>/<id>` selector from the allowlisted model literal (the literal keeps its upstream provider path, so `${provider}/${model}` is three segments here). The DeepSeek Flash `-latest` variant is a reasoning model and is pinned to `--thinking max` by the same policy as the bare id.
 
-> **OpenRouter is currently restricted to a single model: DeepSeek V4 Flash (`deepseek/deepseek-v4-flash-latest`).** No other model may be routed through OpenRouter here — it is the only entry in the Pi OpenRouter allowlist. Other models (e.g. GPT-5.6 Luna/Sol) must go through their own providers (openai-codex, etc.), never OpenRouter.
+> **OpenRouter here carries exactly two models: DeepSeek V4 Flash (`deepseek/deepseek-v4-flash-latest`) and Ox Alpha (`stealth/ox-alpha`).** No other model may be routed through OpenRouter — these are the only two entries in the Pi OpenRouter allowlist. Other models (e.g. GPT-5.6 Luna/Sol) must go through their own providers (openai-codex, etc.), never OpenRouter.
 
 | Model id | Notes |
 |----------|-------|
-| `deepseek/deepseek-v4-flash-latest` | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--thinking max`. The ONLY OpenRouter-routed model. Distinct from the opencode-go-routed bare `deepseek-v4-flash`. Dispatched as `openrouter/deepseek/deepseek-v4-flash-latest` |
+| `deepseek/deepseek-v4-flash-latest` | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--thinking max`. Distinct from the opencode-go-routed bare `deepseek-v4-flash`. Dispatched as `openrouter/deepseek/deepseek-v4-flash-latest` |
+| `stealth/ox-alpha` | Ox Alpha (stealth channel) via OpenRouter. A live `pi -p --offline --model openrouter/stealth/ox-alpha` dispatch completed a real turn (returned `PONG`) 2026-08-22. Not a reasoning model; no thinking pin. Dispatched as `openrouter/stealth/ox-alpha` |
 
 ### cline-pass
 
