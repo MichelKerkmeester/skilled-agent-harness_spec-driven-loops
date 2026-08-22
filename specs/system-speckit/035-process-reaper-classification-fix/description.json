@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/035-process-reaper-classification-fix",
+  "description": "The daemon-reaper (`process-memory-harness.ts`) classifies each running process before deciding whether it is a termination candidate",
+  "keywords": [
+    "daemon-reaper",
+    "process-memory-harness",
+    "classifies",
+    "running",
+    "process",
+    "deciding",
+    "whether",
+    "termination",
+    "candidate"
+  ],
+  "lastUpdated": "2026-08-22T19:35:01.687Z",
+  "specId": "035",
+  "folderSlug": "process-reaper-classification-fix",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
