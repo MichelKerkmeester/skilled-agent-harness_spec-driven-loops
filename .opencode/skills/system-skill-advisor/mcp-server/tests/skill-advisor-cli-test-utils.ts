@@ -66,7 +66,6 @@ export function createIsolatedCliScope(label: string): IsolatedCliScope {
     SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS: '10',
     SYSTEM_SKILL_ADVISOR_DB_DIR: skillAdvisorDbDir,
     MEMORY_DB_PATH: memoryDbPath,
-    SPECKIT_CODE_GRAPH_DB_DIR: codeGraphDbDir,
     SPECKIT_ADVISOR_SHADOW_DELTA_PATH: shadowDeltaPath,
     SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED: '0',
     SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',

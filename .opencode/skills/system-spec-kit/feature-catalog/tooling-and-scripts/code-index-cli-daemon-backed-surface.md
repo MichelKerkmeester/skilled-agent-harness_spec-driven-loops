@@ -31,7 +31,6 @@ Runtime integrations call read paths with `--warm-only --timeout-ms`. Maintenanc
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/plugins/system-code-graph.js` | Plugin bridge | OpenCode bridge using CLI/IPC instead of in-process imports |
 
 ### Validation And Tests
 

@@ -4078,11 +4078,11 @@ See [`tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md`](../featur
 
 #### Description
 
-Every 028 CLI workstream shipped paired runtime integrations, because a CLI nobody's runtime calls does not close the transport-down incident class. Claude and OpenCode prompt-time hooks gained warm-only CLI fallback helpers (socket probe first, fast fail-open when no socket exists, no prompt-time cold spawn), and OpenCode gained a per-system plugin route: a new `system-spec-memory` plugin, a repaired `system-code-graph` bridge on the CLI route, and CLI fallback routing in `system-skill-advisor`.
+Every 028 CLI workstream shipped paired runtime integrations, because a CLI nobody's runtime calls does not close the transport-down incident class. Claude and OpenCode prompt-time hooks gained warm-only CLI fallback helpers (socket probe first, fast fail-open when no socket exists, no prompt-time cold spawn), and OpenCode gained a per-system plugin route: a new `system-spec-memory` plugin and CLI fallback routing in `system-skill-advisor`.
 
 #### How It Works
 
-The shared helpers (`spec-memory-cli-fallback.ts`, `code-index-cli-fallback.ts`, and the skill-advisor `skill-advisor-cli-fallback.ts`) wrap the CLIs with a socket probe plus `--warm-only --timeout-ms` invocation: no socket fails open in about a millisecond, warm calls measured 117-198 ms, and the 824.8 ms one-shot native bridge stays banned from the prompt path. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier system-code-graph revert cannot return. `.opencode/settings.json` allowlists the CLI invocations; `AGENTS.md` carries the transport-down guidance.
+The shared helpers (`spec-memory-cli-fallback.ts`, `code-index-cli-fallback.ts`, and the skill-advisor `skill-advisor-cli-fallback.ts`) wrap the CLIs with a socket probe plus `--warm-only --timeout-ms` invocation: no socket fails open in about a millisecond, warm calls measured 117-198 ms, and the 824.8 ms one-shot native bridge stays banned from the prompt path. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier revert cannot return. `.opencode/settings.json` allowlists the CLI invocations; `AGENTS.md` carries the transport-down guidance.
 
 #### Source Files
 
@@ -4344,7 +4344,7 @@ The orphan MCP sweeper gives operators a dry-run-first way to inspect and later 
 
 #### Worktree-per-session isolation
 
-Three companion scripts under `.opencode/bin/` provide per-session git worktree isolation so concurrent agent sessions operate on separate working trees without sharing a `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` or `SPECKIT_IPC_SOCKET_DIR`.
+Three companion scripts under `.opencode/bin/` provide per-session git worktree isolation so concurrent agent sessions operate on separate working trees without sharing a `SPEC_KIT_DB_DIR` or `SPECKIT_IPC_SOCKET_DIR`.
 
 | Script | Role |
 |---|---|

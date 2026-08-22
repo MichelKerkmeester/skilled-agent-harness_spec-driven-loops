@@ -34,7 +34,7 @@ A top-level session gets a short unique slug (`epoch-pid`), a numbered ephemeral
 
 ### Dependency Sharing and DB Isolation
 
-Shared build artifacts (`node_modules`, compiled `dist` output) are symlinked from the main checkout into the new worktree rather than reinstalled, so session startup stays fast. Each worktree still gets its own MCP databases via `SPEC_KIT_DB_DIR` and `SPECKIT_CODE_GRAPH_DB_DIR`, and its own short per-session socket directory under `$HOME` (rather than nested inside the worktree) to stay under the platform's unix-domain-socket path-length limit.
+Shared build artifacts (`node_modules`, compiled `dist` output) are symlinked from the main checkout into the new worktree rather than reinstalled, so session startup stays fast. Each worktree still gets its own MCP databases via `SPEC_KIT_DB_DIR`, and its own short per-session socket directory under `$HOME` (rather than nested inside the worktree) to stay under the platform's unix-domain-socket path-length limit.
 
 ### Session Marker and Continuous-Integration Wiring
 

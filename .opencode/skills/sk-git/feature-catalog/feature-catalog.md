@@ -66,7 +66,7 @@ An operator-opted-in launch wrapper places every top-level AI session in its own
 
 #### Current Reality
 
-`worktree-session.sh` detects whether the invoking process is a top-level session or an orchestrated child (`AI_SESSION_CHILD=1`, or already inside a linked worktree) and only isolates the former; a child execs in place inside its parent's worktree instead of nesting. A top-level session gets a numbered ephemeral worktree on a `work/<runtime>/<slug>` branch, shared `node_modules`/`dist` symlinked in from the main checkout, and per-session `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR` exports.
+`worktree-session.sh` detects whether the invoking process is a top-level session or an orchestrated child (`AI_SESSION_CHILD=1`, or already inside a linked worktree) and only isolates the former; a child execs in place inside its parent's worktree instead of nesting. A top-level session gets a numbered ephemeral worktree on a `work/<runtime>/<slug>` branch, shared `node_modules`/`dist` symlinked in from the main checkout, and per-session `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR` exports.
 
 #### Source Files
 

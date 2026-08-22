@@ -19,7 +19,6 @@ const FRESHNESS_PACKAGE_ID = 'system-spec-kit/mcp-server';
 const staleDistRoots = [
   'system-spec-kit',
   'system-skill-advisor',
-  'system-code-graph',
   'tests',
   'database',
 ];

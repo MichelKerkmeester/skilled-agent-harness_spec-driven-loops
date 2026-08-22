@@ -18,7 +18,7 @@ version: 3.6.0.1
 
 A CLI nobody's runtime calls does not close the transport-down incident class, so every 028 CLI workstream shipped paired runtime integrations. Prompt-time hooks for Claude Code and OpenCode gained a shared warm-only CLI fallback helper per system: the hook probes the daemon socket first, uses the CLI when the daemon is warm, and fails open in about a millisecond when no socket exists. Cold spawn stays confined to SessionStart, explicit prewarm, cron, or non-prompt maintenance contexts.
 
-OpenCode gained a per-system plugin route: a NEW `system-spec-memory` plugin (memory access in OpenCode was MCP-only before 028), a REPAIRED `system-code-graph` bridge that replaced the reverted in-process dist/DB imports with the CLI route and blocks maintenance tools at prompt time, and a CLI fallback route in `system-skill-advisor` that leaves the primary bridge path untouched. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier revert cannot return.
+OpenCode gained a per-system plugin route: a NEW `system-spec-memory` plugin (memory access in OpenCode was MCP-only before 028) and a CLI fallback route in `system-skill-advisor` that leaves the primary bridge path untouched. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier revert cannot return.
 
 ---
 
@@ -53,9 +53,7 @@ Claude adapters `session-prime.ts`, `compact-inject.ts`, and `session-stop.ts` p
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Hook adapter | Claude advisor hook with CLI fallback |
 | `mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Plugin bridge | OpenCode advisor bridge with CLI fallback |
 | `.opencode/plugins/system-spec-memory.js` | OpenCode plugin | New spec-memory plugin surface |
-| `mcp-server/plugin-bridges/system-spec-memory-bridge.mjs` | Plugin bridge | CLI/IPC bridge, zero in-process DB imports |
-| `.opencode/plugins/system-code-graph.js` | OpenCode plugin | Synthesizes its transport contract from the status payload |
-| `.opencode/plugins/system-skill-advisor.js` | OpenCode plugin | Advisor plugin with CLI fallback routing |
+| `mcp-server/plugin-bridges/system-spec-memory-bridge.mjs` | Plugin bridge | CLI/IPC bridge, zero in-process DB imports || `.opencode/plugins/system-skill-advisor.js` | OpenCode plugin | Advisor plugin with CLI fallback routing |
 | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Plugin bridge | CLI fallback route with primary path untouched |
 | `.opencode/settings.json` | Runtime config | OpenCode allowlist for CLI use |
 

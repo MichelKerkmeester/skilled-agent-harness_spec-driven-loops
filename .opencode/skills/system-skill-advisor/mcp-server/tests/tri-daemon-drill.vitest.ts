@@ -239,7 +239,6 @@ function serviceEnv(sandbox: TriSandbox, socketDir: string): NodeJS.ProcessEnv {
     SPECKIT_DAEMON_REELECTION: 'on',
     SPECKIT_IPC_SOCKET_DIR: socketDir,
     MEMORY_DB_PATH: sandbox.memoryDbPath,
-    SPECKIT_CODE_GRAPH_DB_DIR: sandbox.codeIndexDbDir,
     SYSTEM_SKILL_ADVISOR_DB_DIR: sandbox.skillAdvisorDbDir,
     SPECKIT_LEASE_PROBE_RETRIES: '1',
     SPECKIT_PROBE_TIMEOUT_MS: '250',
