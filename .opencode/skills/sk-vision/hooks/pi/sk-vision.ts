@@ -1,8 +1,8 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: sk-vision Pi Extension (host adapter)                          ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Register the 13 sk_vision_* tools with Pi and auto-inspect       ║
-// ║          attached images, backed by the shared vision-runtime core.       ║
+// ║ PURPOSE: Provide hidden or visible sk_vision_* tools backed by the shared  ║
+// ║          vision-runtime core, with optional attached-image inspection.     ║
 // ║          Pi loads this TypeScript source directly, so it imports the      ║
 // ║          runtime from src/ (no build step, unlike the OpenCode adapter).  ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -11,7 +11,10 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
+import type {
+  ExtensionAPI,
+  ExtensionContext,
+} from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
 import { RuntimeClient, SkVisionError } from "../../.opencode/skills/sk-vision/vision-runtime/src/runtime/client.ts";
 import { PhotonProvider } from "../../.opencode/skills/sk-vision/vision-runtime/src/providers/photon.ts";
@@ -94,10 +97,24 @@ function parseBBox(s: string): BBox {
  * Wrap plain text in the Pi tool-result envelope.
  *
  * @param text - The rendered evidence or error text.
- * @returns The `{ content: [...] }` result Pi expects.
+ * @returns The `{ content: [...], details }` result Pi expects.
  */
 function textResult(text: string) {
-  return { content: [{ type: "text" as const, text }] };
+  return { content: [{ type: "text" as const, text }], details: undefined };
+}
+
+async function teardownVision(
+  client: RuntimeClient,
+  provider: PhotonProvider,
+): Promise<void> {
+  // Unset or "close" hard-closes; "unload" frees the model; "keep" leaves the process warm.
+  const mode = process.env.SK_VISION_TEARDOWN;
+  if (mode === "keep") return;
+  if (mode === "unload") {
+    await provider.unload();
+    return;
+  }
+  await client.close();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -105,27 +122,45 @@ function textResult(text: string) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Pi extension entry point. Opens one runtime client for the extension's
- * lifetime, registers the 13 `sk_vision_*` tools plus the attached-image
- * auto-inspect hook, and closes the client on session shutdown.
+ * Pi extension entry point. Registers hidden tools for the native prompt by
+ * default and enables the visible tools plus attached-image auto-inspect path
+ * only when explicitly requested; any persistent client closes on shutdown.
  *
  * @param pi - The Pi extension API used to register tools and event handlers.
  */
 export default function skVision(pi: ExtensionAPI): void {
-  // One long-lived runtime client for the whole extension; the Python
-  // subprocess and its warm model are reused across every tool call and closed
-  // once on `session_shutdown`.
-  const client = new RuntimeClient();
+  // SK_VISION_AUTOINSPECT=1 restores visible tools and the persistent runtime;
+  // default tool calls create and tear down their own runtime client.
+  const autoInspect = process.env.SK_VISION_AUTOINSPECT === "1";
+  const client = autoInspect ? new RuntimeClient() : undefined;
 
-  // A fresh provider per call binds the shared client to the caller's cwd so
-  // relative image paths resolve against the active project, not the extension.
-  function provider(ctx: ExtensionContext): PhotonProvider {
-    return new PhotonProvider(client, { projectDir: ctx.cwd });
+  async function withVisionProvider<T>(
+    ctx: ExtensionContext,
+    operation: (provider: PhotonProvider) => Promise<T>,
+  ): Promise<T> {
+    const callClient = client ?? new RuntimeClient();
+    const callProvider = new PhotonProvider(callClient, { projectDir: ctx.cwd });
+    try {
+      return await operation(callProvider);
+    } finally {
+      if (!client) await teardownVision(callClient, callProvider);
+    }
   }
+
+  const registerTool: ExtensionAPI["registerTool"] = (tool) => {
+    pi.registerTool(
+      autoInspect
+        ? {
+            ...tool,
+            promptSnippet: tool.promptSnippet ?? `Use ${tool.name} for image analysis.`,
+          }
+        : tool,
+    );
+  };
 
   // ── Tools ── each registration validates params, calls the provider, and
   // renders a <SK-VISION> evidence block; all failures route through fail().
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_inspect",
     label: "sk-vision inspect",
     description:
@@ -136,32 +171,33 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const label = sourceLabel(params);
-        const p = provider(ctx);
-        if (params.question) {
-          const res = await p.query({ source: src, question: params.question });
-          return textResult(contextBuilder.renderQuery(res, { source: label, question: params.question }));
-        }
-        const [cap, scene, ocr] = await Promise.all([
-          p.caption({ source: src }),
-          p.scene({ source: src }),
-          p.ocr({ source: src }),
-        ]);
-        return textResult(
-          [
-            contextBuilder.renderScene(scene, { source: label }),
-            contextBuilder.renderCaption(cap, { source: label }),
-            contextBuilder.renderOCR(ocr, { source: label }),
-          ].join("\n"),
-        );
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const label = sourceLabel(params);
+          if (params.question) {
+            const res = await p.query({ source: src, question: params.question });
+            return textResult(contextBuilder.renderQuery(res, { source: label, question: params.question }));
+          }
+          const [cap, scene, ocr] = await Promise.all([
+            p.caption({ source: src }),
+            p.scene({ source: src }),
+            p.ocr({ source: src }),
+          ]);
+          return textResult(
+            [
+              contextBuilder.renderScene(scene, { source: label }),
+              contextBuilder.renderCaption(cap, { source: label }),
+              contextBuilder.renderOCR(ocr, { source: label }),
+            ].join("\n"),
+          );
+        });
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_detect",
     label: "sk-vision detect",
     description:
@@ -172,21 +208,23 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const res = await provider(ctx).detect({ source: src, target: params.target });
-        return textResult(
-          contextBuilder.renderDetection(res, {
-            source: sourceLabel(params),
-            title: `Detect:${params.target}`,
-          }),
-        );
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const res = await p.detect({ source: src, target: params.target });
+          return textResult(
+            contextBuilder.renderDetection(res, {
+              source: sourceLabel(params),
+              title: `Detect:${params.target}`,
+            }),
+          );
+        });
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_point",
     label: "sk-vision point",
     description:
@@ -197,16 +235,18 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const res = await provider(ctx).point({ source: src, target: params.target });
-        return textResult(contextBuilder.renderPoint(res, { source: sourceLabel(params) }));
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const res = await p.point({ source: src, target: params.target });
+          return textResult(contextBuilder.renderPoint(res, { source: sourceLabel(params) }));
+        });
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_ocr",
     label: "sk-vision ocr",
     description:
@@ -221,17 +261,19 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const kindArg = params.kind ?? "all";
-        const res = await provider(ctx).ocr({ source: src, kind: kindArg });
-        return textResult(contextBuilder.renderOCR(res, { source: sourceLabel(params) }));
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const kindArg = params.kind ?? "all";
+          const res = await p.ocr({ source: src, kind: kindArg });
+          return textResult(contextBuilder.renderOCR(res, { source: sourceLabel(params) }));
+        });
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_status",
     label: "sk-vision status",
     description:
@@ -239,15 +281,17 @@ export default function skVision(pi: ExtensionAPI): void {
     parameters: Type.Object({}),
     async execute(_toolCallId, _params, _signal, _onUpdate, ctx) {
       try {
-        const health: VisionHealth = await provider(ctx).health();
-        return textResult(contextBuilder.renderHealth(health));
+        return await withVisionProvider(ctx, async (p) => {
+          const health: VisionHealth = await p.health();
+          return textResult(contextBuilder.renderHealth(health));
+        });
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_segment",
     label: "sk-vision segment",
     description:
@@ -258,21 +302,23 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const res = await provider(ctx).segment({ source: src, target: params.target });
-        return textResult(
-          contextBuilder.renderSegment(res, {
-            source: sourceLabel(params),
-            title: `Segment:${params.target}`,
-          }),
-        );
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const res = await p.segment({ source: src, target: params.target });
+          return textResult(
+            contextBuilder.renderSegment(res, {
+              source: sourceLabel(params),
+              title: `Segment:${params.target}`,
+            }),
+          );
+        });
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_metadata",
     label: "sk-vision metadata",
     description:
@@ -280,16 +326,18 @@ export default function skVision(pi: ExtensionAPI): void {
     parameters: Type.Object({ ...PathImageParams }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const res = await provider(ctx).metadata({ source: src });
-        return textResult(contextBuilder.renderMetadata(res, { source: sourceLabel(params) }));
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const res = await p.metadata({ source: src });
+          return textResult(contextBuilder.renderMetadata(res, { source: sourceLabel(params) }));
+        });
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_crop",
     label: "sk-vision crop",
     description:
@@ -302,17 +350,19 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const bbox = parseBBox(params.bbox);
-        const res = await provider(ctx).crop({ source: src, bbox });
-        return textResult(contextBuilder.renderCrop(res, { source: sourceLabel(params) }));
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const bbox = parseBBox(params.bbox);
+          const res = await p.crop({ source: src, bbox });
+          return textResult(contextBuilder.renderCrop(res, { source: sourceLabel(params) }));
+        });
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_zoom",
     label: "sk-vision zoom",
     description:
@@ -333,22 +383,24 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const res = await provider(ctx).zoom({
-          source: src,
-          region: params.region ? parseBBox(params.region) : undefined,
-          scale: params.scale ?? 2,
-          analyze: params.analyze ?? "none",
-          question: params.question,
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const res = await p.zoom({
+            source: src,
+            region: params.region ? parseBBox(params.region) : undefined,
+            scale: params.scale ?? 2,
+            analyze: params.analyze ?? "none",
+            question: params.question,
+          });
+          return textResult(contextBuilder.renderZoom(res, { source: sourceLabel(params) }));
         });
-        return textResult(contextBuilder.renderZoom(res, { source: sourceLabel(params) }));
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_colors",
     label: "sk-vision colors",
     description:
@@ -361,19 +413,21 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const res = await provider(ctx).colors({
-          source: src,
-          region: params.region ? parseBBox(params.region) : undefined,
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const res = await p.colors({
+            source: src,
+            region: params.region ? parseBBox(params.region) : undefined,
+          });
+          return textResult(contextBuilder.renderColors(res, { source: sourceLabel(params) }));
         });
-        return textResult(contextBuilder.renderColors(res, { source: sourceLabel(params) }));
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_diff",
     label: "sk-vision diff",
     description:
@@ -388,26 +442,28 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const other = makeImageSource(params.otherPath, params.otherImage);
-        const res = await provider(ctx).diff({
-          source: src,
-          other,
-          describe: params.describe ?? false,
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const other = makeImageSource(params.otherPath, params.otherImage);
+          const res = await p.diff({
+            source: src,
+            other,
+            describe: params.describe ?? false,
+          });
+          return textResult(
+            contextBuilder.renderDiff(res, {
+              source: sourceLabel(params),
+              other: params.otherPath ?? "inline-image",
+            }),
+          );
         });
-        return textResult(
-          contextBuilder.renderDiff(res, {
-            source: sourceLabel(params),
-            other: params.otherPath ?? "inline-image",
-          }),
-        );
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_annotate",
     label: "sk-vision annotate",
     description:
@@ -425,24 +481,26 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const res = await provider(ctx).annotate({
-          source: src,
-          boxes: params.boxes ? (JSON.parse(params.boxes) as Array<BBox & { label?: string }>) : [],
-          points: params.points
-            ? (JSON.parse(params.points) as Array<{ x: number; y: number; label?: string }>)
-            : [],
-          color: params.color,
-          label: params.label,
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const res = await p.annotate({
+            source: src,
+            boxes: params.boxes ? (JSON.parse(params.boxes) as Array<BBox & { label?: string }>) : [],
+            points: params.points
+              ? (JSON.parse(params.points) as Array<{ x: number; y: number; label?: string }>)
+              : [],
+            color: params.color,
+            label: params.label,
+          });
+          return textResult(contextBuilder.renderAnnotate(res, { source: sourceLabel(params) }));
         });
-        return textResult(contextBuilder.renderAnnotate(res, { source: sourceLabel(params) }));
       } catch (err) {
         return textResult(fail(err));
       }
     },
   });
 
-  pi.registerTool({
+  registerTool({
     name: "sk_vision_reverse",
     label: "sk-vision reverse",
     description:
@@ -459,14 +517,16 @@ export default function skVision(pi: ExtensionAPI): void {
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       try {
-        const src = makeImageSource(params.path, params.image);
-        const res = await provider(ctx).reverse({
-          source: src,
-          providers: params.providers ? params.providers.split(",").map((p) => p.trim()) : undefined,
-          dir: params.dir,
-          limit: params.limit,
+        return await withVisionProvider(ctx, async (p) => {
+          const src = makeImageSource(params.path, params.image);
+          const res = await p.reverse({
+            source: src,
+            providers: params.providers ? params.providers.split(",").map((p) => p.trim()) : undefined,
+            dir: params.dir,
+            limit: params.limit,
+          });
+          return textResult(contextBuilder.renderReverse(res));
         });
-        return textResult(contextBuilder.renderReverse(res));
       } catch (err) {
         return textResult(fail(err));
       }
@@ -511,19 +571,20 @@ export default function skVision(pi: ExtensionAPI): void {
         const pending = (async () => {
           try {
             const source = makeImageSource(undefined, img.data);
-            const p = provider(ctx);
-            // Each analyzer is independent: a failure in one (e.g. OCR on a model
-            // that cannot do it) must not discard the evidence the others produced.
-            const [capR, sceneR, ocrR] = await Promise.allSettled([
-              p.caption({ source }),
-              p.scene({ source }),
-              p.ocr({ source }),
-            ]);
-            const parts: string[] = [];
-            if (sceneR.status === "fulfilled") parts.push(contextBuilder.renderScene(sceneR.value, { source: "inline-image" }));
-            if (capR.status === "fulfilled") parts.push(contextBuilder.renderCaption(capR.value, { source: "inline-image" }));
-            if (ocrR.status === "fulfilled") parts.push(contextBuilder.renderOCR(ocrR.value, { source: "inline-image" }));
-            return parts.length > 0 ? parts.join("\n") : undefined;
+            return await withVisionProvider(ctx, async (p) => {
+              // Each analyzer is independent: a failure in one (e.g. OCR on a model
+              // that cannot do it) must not discard the evidence the others produced.
+              const [capR, sceneR, ocrR] = await Promise.allSettled([
+                p.caption({ source }),
+                p.scene({ source }),
+                p.ocr({ source }),
+              ]);
+              const parts: string[] = [];
+              if (sceneR.status === "fulfilled") parts.push(contextBuilder.renderScene(sceneR.value, { source: "inline-image" }));
+              if (capR.status === "fulfilled") parts.push(contextBuilder.renderCaption(capR.value, { source: "inline-image" }));
+              if (ocrR.status === "fulfilled") parts.push(contextBuilder.renderOCR(ocrR.value, { source: "inline-image" }));
+              return parts.length > 0 ? parts.join("\n") : undefined;
+            });
           } catch {
             return undefined;
           }
@@ -578,6 +639,7 @@ export default function skVision(pi: ExtensionAPI): void {
       if (event.streamingBehavior === "steer") return { action: "continue" as const };
       const images = event.images ?? [];
       if (images.length === 0) return { action: "continue" as const };
+      if (!autoInspect) return { action: "continue" as const };
       // The active model decides the wait policy: a text-only model (by declared input
       // modality or the operator allowlist) gets a guaranteed, fully-awaited analysis; any
       // other model keeps the non-blocking grace.
@@ -599,6 +661,6 @@ export default function skVision(pi: ExtensionAPI): void {
   // Release the Python subprocess and its GPU-resident model back to the host
   // when the session ends.
   pi.on("session_shutdown", async () => {
-    await client.close();
+    if (client) await client.close();
   });
 }

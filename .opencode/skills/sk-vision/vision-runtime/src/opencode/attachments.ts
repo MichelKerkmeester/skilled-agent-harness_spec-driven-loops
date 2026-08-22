@@ -168,46 +168,14 @@ export class AttachmentInjector {
   }
 
   private keyFor(part: FilePart): string {
-    const stat = part.url.startsWith("/") ? statSafe(part.url) : undefined;
-    return createHash("sha1")
-      .update(part.url)
-      .update(stat ? `${stat.size}:${stat.mtimeMs}` : "")
-      .digest("hex");
+    return createImagePartKey(part);
   }
 
-  /** Filesystem path (or undefined for plain file URLs). */
-  private filePath(part: FilePart): string | undefined {
-    const url = part.url;
-    if (url.startsWith("data:") || url.includes(";base64,")) return undefined;
-    return url;
-  }
-
-  /**
-   * Clipboard images come as base64 data URLs that never touch disk, so the
-   * coding model (text-only) can't reference them. Write them to the OS temp
-   * dir as `<sha>.png` so tool calls can use a real path.
-   */
   private materialize(
     part: FilePart,
     key: string,
   ): { source: ImageSource; path?: string } {
-    const existing = this.filePath(part);
-    if (existing) return { source: { type: "path", path: resolvePath(existing) } };
-
-    const b64 = part.url.includes(",") ? part.url.split(",", 2)[1] : part.url;
-    if (!b64) return { source: { type: "data", data: part.url } };
-    const data = Buffer.from(b64, "base64");
-    const ext = mimeExt(part.mime);
-    const file = joinPath(tmpdir(), `sk-vision-${key}.${ext}`);
-    try {
-      writeFileSync(file, data);
-      return { source: { type: "path", path: file }, path: file };
-    } catch (err) {
-      if (process.env.SK_VISION_DEBUG === "1") {
-        process.stderr.write(`[sk-vision] couldn't materialize paste to ${file}: ${(err as Error).message}\n`);
-      }
-      return { source: { type: "data", data: part.url } };
-    }
+    return materializeImagePart(part, key);
   }
 
   private async analyze(
@@ -253,6 +221,33 @@ function isImageFilePart(part: Part): part is FilePart {
   );
 }
 
+/**
+ * Materialize an OpenCode file part using the same temp-file policy as the
+ * attachment injector.
+ */
+export function materializeImagePart(
+  part: FilePart,
+  key = createImagePartKey(part),
+): { source: ImageSource; path?: string } {
+  const existing = filePath(part);
+  if (existing) return { source: { type: "path", path: resolvePath(existing) } };
+
+  const b64 = part.url.includes(",") ? part.url.split(",", 2)[1] : part.url;
+  if (!b64) return { source: { type: "data", data: part.url } };
+  const data = Buffer.from(b64, "base64");
+  const ext = mimeExt(part.mime);
+  const file = joinPath(tmpdir(), `sk-vision-${key}.${ext}`);
+  try {
+    writeFileSync(file, data);
+    return { source: { type: "path", path: file }, path: file };
+  } catch (err) {
+    if (process.env.SK_VISION_DEBUG === "1") {
+      process.stderr.write(`[sk-vision] couldn't materialize paste to ${file}: ${(err as Error).message}\n`);
+    }
+    return { source: { type: "data", data: part.url } };
+  }
+}
+
 export function isImagePart(part: Part): part is FilePart {
   return isImageFilePart(part);
 }
@@ -264,6 +259,21 @@ function statSafe(p: string): { size: number; mtimeMs: number } | undefined {
   } catch {
     return undefined;
   }
+}
+
+function createImagePartKey(part: FilePart): string {
+  const stat = part.url.startsWith("/") ? statSafe(part.url) : undefined;
+  return createHash("sha1")
+    .update(part.url)
+    .update(stat ? `${stat.size}:${stat.mtimeMs}` : "")
+    .digest("hex");
+}
+
+/** Filesystem path (or undefined for plain file URLs). */
+function filePath(part: FilePart): string | undefined {
+  const url = part.url;
+  if (url.startsWith("data:") || url.includes(";base64,")) return undefined;
+  return url;
 }
 
 const MIME_EXT: Record<string, string> = {
