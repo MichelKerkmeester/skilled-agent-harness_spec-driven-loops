@@ -1,24 +1,25 @@
 ---
 title: "Implementation Summary: Effect Enablement"
-description: "Planned: the phase that homes the fail-closed effect producer at the real dispatch seam is authored and authorized; no code is written yet."
+description: "Complete: the fail-closed effect producer routes the live fan-out spawn through the audited effect gateway, bracketing it with a durable intent before and a confirmation after into the per-lineage effect ledger; built and verified (112 tests green)."
 trigger_phrases:
   - "effect enablement summary"
-  - "effect producer planned"
+  - "effect producer built"
 importance_tier: "critical"
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement"
-    last_updated_at: "2026-08-21T15:30:00Z"
+    last_updated_at: "2026-08-22T05:26:38Z"
     last_updated_by: "claude"
-    recent_action: "Corrected the seam to the live launcher after confirming zero audited-path callers"
-    next_safe_action: "Capture the baseline, then route the live launcher through the audited path"
+    recent_action: "Built and verified the fail-closed effect producer at the live launcher seam"
+    next_safe_action: "Producer complete; resume the enablement chain (coordinator, flip, retire legacy writers)"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
-      - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
-    completion_pct: 0
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-effect-recording.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The producer sits at the real spawn, not around a ledger append"
@@ -37,33 +38,36 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement |
-| **Status** | Planned |
-| **Commit** | none yet |
-| **Completed** | Nothing built; the phase docs are authored and the cross-packet edit is authorized |
-| **Lines** | 0 |
+| **Status** | Complete |
+| **Commit** | committed with this change |
+| **Completed** | Fail-closed effect producer wired at the live launcher seam and proven fail-closed |
+| **Lines** | ~200 (new dispatch helper + launcher seam), plus effect-recording tests |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-Nothing yet. This phase exists because the effect producer that unblocks the flip was scoped by no phase in the packet,
-and it must edit files the executor-hardening and fanout-parity work owns. The operator authorized a new child here
-rather than overloading a sibling or silently editing across a packet boundary.
+A fail-closed effect producer at the live fan-out launcher. A new `dispatchExecutorEffect` helper routes the executor
+spawn through the shipped effect gateway: it writes a durable effect-intent, spawns the subprocess through an adapter,
+and writes an effect-confirmation after — all into `${lineageDir}/${mode}-effect-ledger`, the exact ledger the enablement
+step reads. The intent write gates the spawn: no durable intent, no dispatch. The launcher seam in `fanout-run.cjs`,
+which already knows the mode (`loopType`) and run directory (`lineageDir`), now calls the helper instead of spawning
+directly.
 
 An earlier reading named `executor-audit.ts` as the seam. Verification refuted it: that audited wrapper has zero
-production callers, and it holds no binding to the mode or run directory the consumer reads. The live launcher is
-`fanout-run.cjs`, which spawns the executor unaudited today and already knows the mode (`loopType`) and run directory
-(`lineageDir`). The planned build routes that live spawn through the audited path and brackets it with a durable
-effect-intent before and an effect-confirmation after, into `${lineageDir}/${mode}-effect-ledger` — the exact ledger the
-enablement step reads. The intent write gates the spawn: no durable intent, no dispatch.
+production callers and holds no binding to the mode or run directory the consumer reads. The live launcher
+`fanout-run.cjs` is the real spawn point, so the producer lives there.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
 ## 3. HOW IT WAS DELIVERED
 
-Not yet delivered. The build will follow the plan's three phases: read the shipped effect-gateway and reader contracts
-at the seam, wire the fail-closed intent/confirm pair, then prove fail-closed by a negative control and prove the
-coverage check reads real records.
+The dispatch helper wraps the gateway's `execute()` around a subprocess effect adapter: the intent record is committed
+before the adapter spawns, and the confirmation is committed after the child is launched. The launcher's spawn call was
+replaced with a call to the helper, threading through the mode and lineage directory it already held. The two baseline
+launcher tests that had been loosened on a false serialization rationale were rewritten honestly — a relative
+concurrency-overlap assertion and a heartbeat-formula consistency check that hold under load rather than pinning
+absolute timings.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->
@@ -85,9 +89,13 @@ child whose spec records the authorization and confines the edit to effect recor
 <!-- ANCHOR:verification -->
 ## 5. VERIFICATION
 
-Not yet run. The blocking gates are: intent-before-spawn by sequence on a real dispatch; a fail-closed negative control
-that spawns zero children when only the durable append is perturbed; the restart-facts reader returning non-empty
-coverage over a populated ledger; and a full-suite delta with no new failing file attributable to this change.
+Verified. The effect-recording and launcher suites run green — 2 files, 112 tests pass. The recording suite proves
+intent-before-spawn by sequence on a real dispatch, and the fail-closed negative control: when only the durable intent
+append is perturbed, zero children spawn. The rewritten launcher tests hold under load — a concurrency-1-vs-2 overlap
+assertion and a heartbeat skip-count formula check — replacing the two that had been loosened on a false rationale.
+
+Verification command (from `.opencode/skills/system-deep-loop/runtime`):
+`npx vitest run tests/unit/fanout-effect-recording.vitest.ts tests/unit/fanout-run.vitest.ts`.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

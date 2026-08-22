@@ -2524,45 +2524,60 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
 });
 
 describe('fanout-run.cjs — lineages run concurrently (not serialized by spawnSync)', () => {
-  it('runs two ~1s lineages in roughly 1s wall-clock with concurrency 2', async () => {
+  it('overlaps the lineage sleeps: concurrency 2 saves ~one sleep versus a serial run of the same lineages', async () => {
     const binDir = makeTempDir('fanout-run-parallel-bin-');
-    writeSleepingStubBinary(binDir, 'opencode', 1);
-    const baseDir = makeTempDir('fanout-run-parallel-base-');
+    writeSleepingStubBinary(binDir, 'opencode', 3);
 
-    const fanoutConfig = JSON.stringify({
-      executors: [
-        { label: 'sleep-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
-        { label: 'sleep-b', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
-      ],
-      concurrency: 2,
-    });
+    // The executor spawn routes through the shipped effect gateway, which
+    // records a durable intent before and a confirmation after each lineage.
+    // That recording is synchronous per-lineage bookkeeping, so an absolute
+    // wall-clock bound would move with machine load and stop proving anything.
+    // Instead we compare the SAME two lineages at concurrency 1 and 2: the
+    // recording cost is identical in both runs and cancels, so the difference
+    // isolates whether the two 3s sleeps overlapped. Serial runs them back to
+    // back (~6s of sleep); concurrency 2 overlaps them (~3s of sleep). The
+    // concurrent run must therefore save at least ~one sleep, which no
+    // serialized run could — this is what "run concurrently" means here, and
+    // it holds regardless of how slow the ledger bookkeeping runs.
+    const runLineages = async (concurrency: number): Promise<number> => {
+      const baseDir = makeTempDir(`fanout-run-parallel-base-c${concurrency}-`);
+      const fanoutConfig = JSON.stringify({
+        executors: [
+          { label: 'sleep-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
+          { label: 'sleep-b', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
+        ],
+        concurrency,
+      });
+      const hermetic = useHermeticEnv(`parallel-lineages-c${concurrency}`);
+      const startedAt = Date.now();
+      const result = await spawnCjs(
+        fanoutRunScript,
+        [
+          '--spec-folder',
+          'specs/test-fanout-run-parallel',
+          '--loop-type',
+          'research',
+          '--fanout-config-json',
+          fanoutConfig,
+          '--base-artifact-dir',
+          baseDir,
+        ],
+        {
+          cwd: hermetic.tmpDir,
+          env: envWithBin(hermetic, binDir),
+          timeoutMs: 30_000,
+        },
+      );
+      expect(result.exitCode).toBe(0);
+      return Date.now() - startedAt;
+    };
 
-    const startedAt = Date.now();
-    const hermetic = useHermeticEnv('parallel-lineages');
-    const result = await spawnCjs(
-      fanoutRunScript,
-      [
-        '--spec-folder',
-        'specs/test-fanout-run-parallel',
-        '--loop-type',
-        'research',
-        '--fanout-config-json',
-        fanoutConfig,
-        '--base-artifact-dir',
-        baseDir,
-      ],
-      {
-        cwd: hermetic.tmpDir,
-        env: envWithBin(hermetic, binDir),
-        timeoutMs: 15_000,
-      },
-    );
-    const elapsedMs = Date.now() - startedAt;
+    const serialMs = await runLineages(1);
+    const concurrentMs = await runLineages(2);
 
-    expect(result.exitCode).toBe(0);
-    // Serial execution would take ~2s; parallel ~1s. Allow generous headroom for
-    // process startup while still proving the two ~1s sleeps overlapped (< 1.9s).
-    expect(elapsedMs).toBeLessThan(1900);
+    // Overlapping the two 3s sleeps saves ~3s; require at least ~2s of saving
+    // to tolerate scheduling noise while still proving the sleeps overlapped.
+    expect(concurrentMs).toBeLessThan(serialMs - 2_000);
   });
 });
 
@@ -3149,13 +3164,22 @@ describe('fanout-run.cjs — slot overrun accounting', () => {
 
   it('records missed fixed-rate slots without launching catch-up lineages', async () => {
     const binDir = makeTempDir('fanout-run-overrun-slot-bin-');
-    writeDelayedNodeStubBinary(binDir, 'opencode', 3_100);
+    // A stub that runs longer than one heartbeat overruns its fixed-rate slot;
+    // the accounting must record every whole slot missed and launch no catch-up
+    // lineage. The executor spawn now also records a durable effect intent and
+    // confirmation per lineage, which adds bounded per-lineage overhead to the
+    // slot duration but only ever lengthens it. So the exact missed-slot count
+    // is a function of the observed slot duration, not a fixed number: the stub
+    // (4200ms) alone already overruns a 2s heartbeat by at least one slot, and
+    // the assertion below checks the count against the observed duration rather
+    // than pinning a value that recording overhead would shift across a band.
+    writeDelayedNodeStubBinary(binDir, 'opencode', 4_200);
     const baseDir = makeTempDir('fanout-run-overrun-slot-base-');
 
     const fanoutConfig = JSON.stringify({
       executors: [{ label: 'overrun', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
-      progressHeartbeatSeconds: 1,
+      progressHeartbeatSeconds: 2,
     });
 
     const hermetic = useHermeticEnv('overrun-slot-accounting');
@@ -3185,21 +3209,25 @@ describe('fanout-run.cjs — slot overrun accounting', () => {
       .map((line) => JSON.parse(line) as Record<string, unknown>);
     const startedEvents = ledgerEvents.filter((event) => event.event === 'started' && event.label === 'overrun');
     const completedEvents = ledgerEvents.filter((event) => event.event === 'completed' && event.label === 'overrun');
+    // Exactly one lineage started: an overrun records missed slots, it does not
+    // launch catch-up lineages.
     expect(startedEvents).toHaveLength(1);
     expect(completedEvents).toHaveLength(1);
-    expect(completedEvents[0]).toEqual(expect.objectContaining({
-      skippedCount: 2,
-      slotDurationMs: expect.any(Number),
-    }));
-    expect(Number(completedEvents[0].slotDurationMs)).toBeGreaterThanOrEqual(3_000);
+    // The missed-slot count must match the whole slots the observed duration
+    // overran (minus the one slot the lineage occupied). Checking it against the
+    // real duration keeps the assertion honest whatever the recording overhead.
+    const heartbeatMs = 2_000;
+    const completedSlotMs = Number(completedEvents[0].slotDurationMs);
+    expect(completedEvents[0].skippedCount).toBe(Math.floor(completedSlotMs / heartbeatMs) - 1);
+    expect(Number(completedEvents[0].skippedCount)).toBeGreaterThanOrEqual(1);
+    expect(completedSlotMs).toBeGreaterThanOrEqual(4_200);
 
     const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
       results?: Array<{ output?: { skippedCount?: number; slotDurationMs?: number } }>;
     };
-    expect(payload.results?.[0]?.output).toEqual(expect.objectContaining({
-      skippedCount: 2,
-      slotDurationMs: expect.any(Number),
-    }));
+    const output = payload.results?.[0]?.output ?? {};
+    expect(output.skippedCount).toBe(Math.floor(Number(output.slotDurationMs) / heartbeatMs) - 1);
+    expect(Number(output.skippedCount)).toBeGreaterThanOrEqual(1);
   });
 });
 

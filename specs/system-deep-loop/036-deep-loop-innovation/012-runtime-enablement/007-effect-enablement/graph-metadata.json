@@ -22,7 +22,7 @@
       "effect enablement checklist",
       "fail-closed producer verification",
       "effect enablement summary",
-      "effect producer planned"
+      "effect producer built"
     ],
     "key_topics": [
       "effect",
@@ -39,7 +39,7 @@
       "verification"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "implementation-summary.md",
       "spec.md",
@@ -157,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "test",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -164,12 +170,6 @@
       },
       {
         "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A cutover certificate attests that a run's external effects were recorded and confirmed, deriving that from an effect",
     "created_at": "2026-08-21T20:04:08.398Z",
-    "last_save_at": "2026-08-22T04:13:27.744Z",
+    "last_save_at": "2026-08-22T05:26:38.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:580ff18ca80a696936bb21b105345d1e331f5069dd5d55a9fa8bd96527c3d808",
+    "source_fingerprint": "sha256:d5b50cefb621f0b71bd916fa398c20d453fe495db1746917b2b062577f691eb5",
     "source_doc_hashes": {
-      "spec.md": "aa8bcee5ce3cac622f3cc19f7a0cfebde3ef6fad15d2d1972a22d85d4e2f10de",
-      "plan.md": "e410e531625fa9b047d0ca7485a2973cfbfcb69aa2ed10c5ccaa3feb37830f72",
-      "tasks.md": "8fac12c6fc9d7f8073293eda13eb24d502ff9f0bd23dcf5fdfde715b2af79b7a",
-      "checklist.md": "4fe8f07c35d685099b34e61bbfebab84f2ccafae1a39e93717174e508c9891a6",
-      "implementation-summary.md": "9445a5392abd5a0e3b5d48891e1a878e0c8910fe179170b2fb786148748e3882"
+      "spec.md": "08919e1991dfa71596a611cad2ff03ce53b5275c9a0922b2c1a3ac9722ed3115",
+      "plan.md": "486b32aaa9bb351325349d4fec554285279c09d7e1b2f39c6dadc43196948028",
+      "tasks.md": "e1fbcc51ff6864068932a6f31dd1dcc93a253e049d5070099138f1a56c942881",
+      "checklist.md": "5c13c5f3a9c75c66c7063556d8d113131491079da2ce48e557678a401ac2c155",
+      "implementation-summary.md": "87c7c654fa5f755b1601e8f2d8e0c70c879a3939ac523fe8e1dfca11cc7a3144"
     },
     "last_active_child_id": null,
     "last_active_at": null
