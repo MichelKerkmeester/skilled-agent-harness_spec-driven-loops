@@ -14,6 +14,7 @@ import type { JsonObject } from '../event-envelope/index.js';
 import type {
   DeepResearchCompatibilityDecision,
   DeepResearchEventStem,
+  DeepResearchScope,
   LegacyUpcastContext,
   LegacyUpcastResult,
 } from './deep-research-ledger-types.js';
@@ -31,6 +32,7 @@ const LEGACY_EVENT_STEMS = Object.freeze({
   resumed: 'deep_research.run_resumed',
   restarted: 'deep_research.run_restarted',
   blocked_stop: 'deep_research.convergence_blocked',
+  question_registered: 'deep_research.question_registered',
 } as const satisfies Readonly<Record<string, DeepResearchEventStem>>);
 
 const PINNED_LEGACY_TYPES = new Set([
@@ -54,10 +56,26 @@ const PINNED_LEGACY_EVENTS = new Set([
   'idea_observed',
   'idea_promoted',
   'idea_rejected',
+  // Reducer aliases and operational records have no lossless research-event
+  // target. Pinning preserves their legacy address without inventing ledger
+  // semantics for cache maintenance, conflicts, pivots, or advisories.
+  'ideaObserved',
+  'ideaPromoted',
+  'ideaRejected',
+  'idea_rejected_removed',
+  'idea_rejected_reset',
   'ideaRejectedRemoved',
   'ideaRejectedReset',
   'stuckRecovery',
   'userPaused',
+  'question_conflict',
+  'novelty_signal_inert',
+  'trend_flatline',
+  'pivot_started',
+  'pivot_selected',
+  'pivot_completed',
+  'pivot_failed',
+  'pivot_override_accepted',
   // Spec-protocol side effects emitted by the runtime have no lossless research-event
   // target: the canonical stems describe run lifecycle and research semantics, not
   // spec-folder mutations, seeds, preinit context, or guard outcomes. Pinning keeps
@@ -123,6 +141,21 @@ function recordTarget(record: Record<string, unknown>): DeepResearchEventStem | 
   return LEGACY_EVENT_STEMS[record.event as keyof typeof LEGACY_EVENT_STEMS] ?? null;
 }
 
+function stringArray(value: unknown): string[] | null {
+  if (!Array.isArray(value) || !value.every(isNonEmptyString)) return null;
+  return [...value];
+}
+
+function hasQuestionRegistrationData(record: Record<string, unknown>): boolean {
+  return hasStableIdentity(record)
+    && isNonEmptyString(record.questionId)
+    && isNonEmptyString(record.normalizedQuestionDigest)
+    && stringArray(record.dependencyQuestionIds) !== null
+    && stringArray(record.requiredSourceClasses) !== null
+    && stringArray(record.disconfirmingQueryRecipeIds) !== null
+    && isNonEmptyString(record.budgetRef);
+}
+
 function stableTargetIdentity(
   record: Record<string, unknown>,
   targetStem: DeepResearchEventStem,
@@ -130,6 +163,9 @@ function stableTargetIdentity(
   if (targetStem === 'deep_research.iteration_completed'
     || targetStem === 'deep_research.convergence_blocked') {
     return hasIterationIdentity(record);
+  }
+  if (targetStem === 'deep_research.question_registered') {
+    return hasQuestionRegistrationData(record);
   }
   return hasStableIdentity(record);
 }
@@ -200,7 +236,11 @@ export function decideDeepResearchCompatibility(
   const targetStem = recordTarget(input);
   if (!targetStem) return decision('blocked', 'unknown-legacy-record', null, version);
   if (!stableTargetIdentity(input, targetStem)) {
-    return decision('pin-old-runtime', 'stable-identity-missing', targetStem, version);
+    const reasonCode = targetStem === 'deep_research.question_registered'
+      && hasStableIdentity(input)
+      ? 'question-registration-fields-missing'
+      : 'stable-identity-missing';
+    return decision('pin-old-runtime', reasonCode, targetStem, version);
   }
   return decision('migrate', 'registered-pure-upcaster', targetStem, version);
 }
@@ -218,8 +258,37 @@ export function upcastLegacyDeepResearchRecord(
   const iteration = iterationFromContext(context);
   const warnings: string[] = [];
   let data: JsonObject;
+  let scope: DeepResearchScope = context.scope;
 
   switch (compatibility.targetStem) {
+    case 'deep_research.question_registered': {
+      const dependencyQuestionIds = stringArray(input.dependencyQuestionIds);
+      const requiredSourceClasses = stringArray(input.requiredSourceClasses);
+      const disconfirmingQueryRecipeIds = stringArray(input.disconfirmingQueryRecipeIds);
+      if (!hasQuestionRegistrationData(input)
+        || dependencyQuestionIds === null
+        || requiredSourceClasses === null
+        || disconfirmingQueryRecipeIds === null) {
+        return Object.freeze({
+          status: 'refused',
+          decision: decision(
+            'pin-old-runtime',
+            'question-registration-fields-missing',
+            compatibility.targetStem,
+            compatibility.sourceVersion,
+          ),
+        });
+      }
+      scope = { ...context.scope, questionId: input.questionId as string };
+      data = {
+        normalizedQuestionDigest: input.normalizedQuestionDigest as string,
+        dependencyQuestionIds,
+        requiredSourceClasses,
+        disconfirmingQueryRecipeIds,
+        budgetRef: input.budgetRef as string,
+      };
+      break;
+    }
     case 'deep_research.run_initialized':
       data = {
         generation: positiveInteger(input.generation, 1),
@@ -335,7 +404,7 @@ export function upcastLegacyDeepResearchRecord(
     originalRecordDigest: recordDigest,
     upcasterFingerprint: LEGACY_UPCASTER_FINGERPRINT,
     warnings: Object.freeze(warnings),
-    scope: context.scope,
+    scope,
     prevEventHash: context.prevEventHash,
     replay: context.replay,
     data,

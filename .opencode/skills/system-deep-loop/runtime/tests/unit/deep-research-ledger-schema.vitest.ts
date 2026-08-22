@@ -994,6 +994,61 @@ describe('deep-research typed ledger schema', () => {
     });
   });
 
+  it('registers a complete question registration row without changing its payload fields', () => {
+    const record = {
+      type: 'event',
+      event: 'question_registered',
+      schemaVersion: 1,
+      sessionId: 'run-question-1',
+      parentSessionId: 'lineage-question-1',
+      questionId: 'question-1',
+      normalizedQuestionDigest: 'question-digest-1',
+      dependencyQuestionIds: ['question-0'],
+      requiredSourceClasses: ['academic-paper', 'primary-source'],
+      disconfirmingQueryRecipeIds: ['query-recipe-1'],
+      budgetRef: 'budget-1',
+    };
+    const compatibility = decideDeepResearchCompatibility(record);
+    expect(compatibility).toMatchObject({
+      status: 'migrate',
+      targetStem: 'deep_research.question_registered',
+      reasonCode: 'registered-pure-upcaster',
+    });
+
+    const result = upcastLegacyDeepResearchRecord(record, {
+      scope: { runId: 'run-question-1', lineageId: 'lineage-question-1' },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-question'),
+    });
+    expect(result.status).toBe('migrated');
+    if (result.status !== 'migrated') throw new Error(result.decision.reasonCode);
+    expect(result.targetStem).toBe('deep_research.question_registered');
+    expect(result.scope).toMatchObject({ questionId: 'question-1' });
+    expect(result.data).toMatchObject({
+      normalizedQuestionDigest: 'question-digest-1',
+      dependencyQuestionIds: ['question-0'],
+      requiredSourceClasses: ['academic-paper', 'primary-source'],
+      disconfirmingQueryRecipeIds: ['query-recipe-1'],
+      budgetRef: 'budget-1',
+    });
+  });
+
+  it('pins an incomplete question registration row instead of fabricating payload evidence', () => {
+    expect(decideDeepResearchCompatibility({
+      type: 'event',
+      event: 'question_registered',
+      schemaVersion: 1,
+      sessionId: 'run-question-1',
+      parentSessionId: 'lineage-question-1',
+      questionId: 'question-1',
+      requiredSourceClasses: ['academic-paper'],
+    })).toMatchObject({
+      status: 'pin-old-runtime',
+      reasonCode: 'question-registration-fields-missing',
+      targetStem: 'deep_research.question_registered',
+    });
+  });
+
   it('pins spec-protocol side effects emitted by the runtime with no lossless target', () => {
     const eventShapes = [
       'migration',
@@ -1026,6 +1081,36 @@ describe('deep-research typed ledger schema', () => {
       reasonCode: 'legacy-record-has-no-lossless-mode-event',
       targetStem: null,
     });
+  });
+
+  it('pins every reducer-side legacy event shape without a lossless ledger target', () => {
+    const reducerEventShapes = [
+      'ideaObserved',
+      'ideaPromoted',
+      'ideaRejected',
+      'idea_rejected_removed',
+      'idea_rejected_reset',
+      'question_conflict',
+      'novelty_signal_inert',
+      'trend_flatline',
+      'pivot_started',
+      'pivot_selected',
+      'pivot_completed',
+      'pivot_failed',
+      'pivot_override_accepted',
+    ] as const;
+
+    for (const event of reducerEventShapes) {
+      expect(decideDeepResearchCompatibility({
+        type: 'event',
+        event,
+        schemaVersion: 1,
+      })).toMatchObject({
+        status: 'pin-old-runtime',
+        reasonCode: 'legacy-event-has-no-lossless-mode-event',
+        targetStem: null,
+      });
+    }
   });
 
   it('upcasts legacy JSONL purely while preserving source and upcaster digests', () => {
