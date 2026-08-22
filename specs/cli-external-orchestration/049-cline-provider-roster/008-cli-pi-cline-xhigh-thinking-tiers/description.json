@@ -1,0 +1,30 @@
+{
+  "specFolder": "cli-external-orchestration/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers",
+  "level": "1",
+  "description": "In pi's interactive model picker, the cline-pass DeepSeek V4 Flash (and Pro) effort could not be cycled past `high` — `xhigh` was unreachable — while",
+  "keywords": [
+    "interactive",
+    "model",
+    "picker",
+    "cline-pass",
+    "deepseek",
+    "flash",
+    "pro",
+    "effort",
+    "cycled",
+    "past",
+    "high",
+    "xhigh",
+    "unreachable",
+    "while"
+  ],
+  "lastUpdated": "2026-08-22T11:36:05.381Z",
+  "specId": "008",
+  "folderSlug": "cli-pi-cline-xhigh-thinking-tiers",
+  "parentChain": [
+    "cli-external-orchestration",
+    "049-cline-provider-roster"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

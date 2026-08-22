@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers",
+  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers",
+  "parent_id": "cli-external-orchestration/049-cline-provider-roster",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi cline picker capped at high",
+      "pi thinkingLevelMap xhigh cline",
+      "cannot tab to xhigh pi cline",
+      "cline-pass xhigh picker fix",
+      "pi cline xhigh plan",
+      "thinkingLevelMap plan",
+      "pi cline xhigh tasks",
+      "thinkingLevelMap tasks",
+      "pi cline xhigh picker fixed",
+      "thinkingLevelMap cline-pass done"
+    ],
+    "key_topics": [
+      "cline",
+      "picker",
+      "capped",
+      "high",
+      "thinkinglevelmap",
+      "xhigh",
+      "cannot",
+      "tab",
+      "cline-pass",
+      "plan",
+      "tasks",
+      "done"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cline Provider Roster",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "documented",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In pi's interactive model picker, the cline-pass DeepSeek V4 Flash (and Pro) effort could not be cycled past `high` — `xhigh` was unreachable — while opencode's official cline-pass support reaches `xhigh`",
+    "created_at": "2026-08-22T11:36:23.896Z",
+    "last_save_at": "2026-08-22T11:37:15.856Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:098300254c607ee3d5eb0045fa255be1f7ba87cd0d3739cf5f244e8d315abf80",
+    "source_doc_hashes": {
+      "spec.md": "cfae0a8fbde4080a5f60cdab593f2b0b49265590cf346e5928e8294beb274983",
+      "plan.md": "af76c0f40c7209cffee70e89baf7c27efad4430d4bf1773d564bf7e69161eca0",
+      "tasks.md": "3a4b5d9027dadb00410b8480b52bab095597e20a4db6204569305958a09870e5",
+      "implementation-summary.md": "c131e019a37a29c29c5526985915883a1626f0fec106746d263659029ca04d9d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
