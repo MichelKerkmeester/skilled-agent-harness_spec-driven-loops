@@ -13,6 +13,12 @@ import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it, vi } from 'vitest';
 
+import {
+  ClassificationReasonCodes,
+  createClassificationManifest,
+  InflightDisposition,
+} from '../../lib/inflight-state-classification/index.js';
+
 // Holds the evidence record handed to createClassificationManifest while
 // the real classifier runs unchanged. vi.hoisted keeps it available inside
 // the hoisted vi.mock factory below.
@@ -76,6 +82,13 @@ const restart: MixedVersionRestartMetadata = {
   ],
 };
 
+const quiescentRestart: MixedVersionRestartMetadata = {
+  ...restart,
+  pendingEffects: [],
+  receipts: [{ effectId: 'effect-completed', receiptId: 'receipt-completed' }],
+  leases: [{ leaseId: 'lease-quiescent', fencingToken: 5, state: 'quiescent' }],
+};
+
 describe('restartClassificationEvidence characterization', () => {
   it('produces the pinned evidence record for the fixed restart input', () => {
     // Running the real classifier drives the internal evidence builder and
@@ -106,8 +119,10 @@ describe('restartClassificationEvidence characterization', () => {
       identityCoverage: true,
       orderCoverage: true,
       idempotencyCoverage: true,
-      budgetCoverage: true,
+      // Corrected: restart facts carry no budget dimension, so this observation cannot attest budget coverage.
+      budgetCoverage: false,
       receiptCoverage: true,
+      // Corrected: successful evidence means the effect dimension was observed; empty ledgers are rejected first.
       pendingWorkCoverage: true,
       isCorrupt: false,
       rollbackAnchor: {
@@ -135,5 +150,30 @@ describe('restartClassificationEvidence characterization', () => {
         terminalReceiptRequired: true,
       },
     });
+  });
+
+  it('marks observed pending work independently from pending-work presence', () => {
+    createFrozenInflightResumeClassifier(resumeClassifierConfig(), quiescentRestart)();
+
+    const quiescentEvidence = evidenceCapture.evidence as ClassificationEvidence;
+    expect(quiescentEvidence.receiptCoverage).toBe(true);
+    expect(quiescentEvidence.pendingWorkCoverage).toBe(true);
+    expect(quiescentEvidence.budgetCoverage).toBe(false);
+
+    // The old presence formula is false for this no-pending state; the new
+    // coverage flag remains true because the effect dimension was observed.
+    expect(quiescentRestart.pendingEffects.length > 0).toBe(false);
+    expect(quiescentEvidence.pendingWorkCoverage).toBe(true);
+
+    createFrozenInflightResumeClassifier(resumeClassifierConfig(), restart)();
+    const pinEvidence = evidenceCapture.evidence as ClassificationEvidence;
+    const { rowId, ...manifestInput } = resumeClassifierConfig();
+    const pinManifest = createClassificationManifest({
+      ...manifestInput,
+      evidence: [pinEvidence],
+    }).manifest;
+    const pinRow = pinManifest.rows.find((row) => row.rowId === rowId);
+    expect(pinRow?.disposition).toBe(InflightDisposition.PIN);
+    expect(pinRow?.reasonCode).toBe(ClassificationReasonCodes.PIN_LEGACY_BOUNDED);
   });
 });

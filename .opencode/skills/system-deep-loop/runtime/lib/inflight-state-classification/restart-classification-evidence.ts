@@ -108,9 +108,13 @@ export function deriveRestartClassificationEvidence(
     identityCoverage: input.restart.continuityId !== null,
     orderCoverage: input.restart.stopSequence !== null,
     idempotencyCoverage: receiptCoverage,
-    budgetCoverage: true,
+    // Restart facts contain no budget dimension, so this observation cannot
+    // honestly attest budget coverage.
+    budgetCoverage: false,
     receiptCoverage,
-    pendingWorkCoverage: input.restart.pendingEffects.length > 0,
+    // Successful derivation means the effect dimension was observed; the
+    // restart reader rejects empty effect ledgers before evidence is built.
+    pendingWorkCoverage: true,
     isCorrupt: false,
     rollbackAnchor: {
       anchorId: input.restart.continuityId ?? 'missing-continuity-anchor',
