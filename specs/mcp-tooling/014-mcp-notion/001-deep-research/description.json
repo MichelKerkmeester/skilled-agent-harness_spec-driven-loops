@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/014-mcp-notion/001-deep-research",
+  "description": "The `mcp-tooling` hub covers ClickUp, Chrome DevTools, Obsidian, and several design transports, but has no Notion support",
+  "keywords": [
+    "mcp-tooling",
+    "hub",
+    "covers",
+    "clickup",
+    "chrome",
+    "devtools",
+    "obsidian",
+    "several",
+    "design",
+    "transports",
+    "notion",
+    "support"
+  ],
+  "lastUpdated": "2026-08-21T15:51:38.545Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "mcp-tooling",
+    "014-mcp-notion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

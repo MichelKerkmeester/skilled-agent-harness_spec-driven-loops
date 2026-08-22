@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration",
+  "parent_id": null,
+  "children_ids": [
+    "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015-notion-to-obisidian-migration",
+      "notion to obsidian migration",
+      "migrate notion obsidian",
+      "flawless notion obsidian migration",
+      "complex notion workspace migration"
+    ],
+    "key_topics": [
+      "015-notion-to-obisidian-migration",
+      "notion",
+      "obsidian",
+      "migration",
+      "migrate",
+      "flawless",
+      "complex",
+      "workspace",
+      "phase",
+      "parent",
+      "complex-notion",
+      "capability"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-deep-research/spec.md",
+      "001-deep-research/prior-findings.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "prior-findings.md",
+        "kind": "doc",
+        "path": "001-deep-research/prior-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-devin",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "prior",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for a flawless complex-Notion→Obsidian migration capability: research first (20 iterations, GLM-5.2 via cli-devin + DeepSeek V4 Flash xhigh via cli-opencode/Cline, no early convergence), then synthesize into whatever phase children mcp-obsidian + mcp-notion need — including any Obsidian plugins that close a gap.",
+    "created_at": "2026-08-21T10:35:33.158Z",
+    "last_save_at": "2026-08-21T20:10:21.034Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:c979a4b9438dde429c2331a331aef71ab99675eafaeeb4ebda2374983723bb9d",
+    "source_doc_hashes": {
+      "spec.md": "34ad1ec933ee82ddaf77083f1e4a46091346124d365e6841da38b7155d18ecd9"
+    },
+    "last_active_child_id": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
+    "last_active_at": null
+  }
+}

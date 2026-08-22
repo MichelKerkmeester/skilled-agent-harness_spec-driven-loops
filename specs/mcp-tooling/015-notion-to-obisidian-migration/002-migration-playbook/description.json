@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/002-migration-playbook",
+  "description": "The 001 research verdict decided the flawless-migration method, but nothing in `mcp-obsidian` or `mcp-notion` carries it",
+  "keywords": [
+    "research",
+    "verdict",
+    "decided",
+    "flawless-migration",
+    "method",
+    "nothing",
+    "mcp-obsidian",
+    "mcp-notion",
+    "carries"
+  ],
+  "lastUpdated": "2026-08-22T03:40:40.271Z",
+  "specId": "002",
+  "folderSlug": "migration-playbook",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

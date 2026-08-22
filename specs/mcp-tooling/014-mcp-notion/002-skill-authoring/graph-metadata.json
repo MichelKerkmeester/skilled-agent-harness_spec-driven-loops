@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/014-mcp-notion/002-skill-authoring",
+  "spec_folder": "mcp-tooling/014-mcp-notion/002-skill-authoring",
+  "parent_id": "mcp-tooling/014-mcp-notion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-notion skill authoring",
+      "mcp-notion SKILL.md",
+      "notion mode package",
+      "mcp-notion skill plan",
+      "mcp-notion SKILL.md plan",
+      "notion mode package plan",
+      "mcp-notion skill tasks",
+      "mcp-notion SKILL.md tasks",
+      "notion mode package tasks",
+      "mcp-notion skill summary",
+      "mcp-notion SKILL.md summary",
+      "notion mode package summary"
+    ],
+    "key_topics": [
+      "mcp-notion",
+      "skill",
+      "authoring",
+      "notion",
+      "mode",
+      "package",
+      "plan",
+      "tasks",
+      "summary",
+      "phase",
+      "research",
+      "verdict"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Agent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "hyphen-safe",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After Phase 1, the research verdict exists but nothing tells an agent how to reach Notion: which backend to use (headless stdio vs interactive OAuth), which of the 24 tools serves which operation, where the 5 direct-API gaps are, or how the API 2.0 data-source model differs from a plain database id",
+    "created_at": "2026-08-21T15:00:45.750Z",
+    "last_save_at": "2026-08-21T15:51:37.685Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d064c5233a7849fc4a2e9820095524c7f64cceae5ee17243c4e76ce465f59c98",
+    "source_doc_hashes": {
+      "spec.md": "5ded9527fa690fc6732af0f476fafe225aaf03f35e5c66319fe6baed36077176",
+      "plan.md": "f95e6c1f08fc330713c325c20ecbdba264c58c506a6c3901711702138a62c2e3",
+      "tasks.md": "98fd19dc7f0b1fd1a18569a7b85bd078a34e16043d5b71ed4a609114edca0d24",
+      "implementation-summary.md": "e29e15cf3587ccb091e7c0fe5cd962a0ecef7d2cd6e65d2e1193327b5e9b0f4d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,5 @@
+{"type":"iteration","run":3,"status":"complete","focus":"mcp-obsidian write surface mapping","findingsCount":5,"newInfoRatio":0.64,"keyQuestions":["Q3"],"answeredQuestions":["Q3"],"timestamp":"2026-08-21T22:49:00Z"}
+{"type":"finding","id":"f3-headless-primary","label":"Unattended migration defaults to notesmd-cli + file Read/Edit; MCP needs live app+token","iteration":3}
+{"type":"finding","id":"f3-base-filelayer-only","label":".base and Dataview authoring is pure file-layer; no CLI/MCP tool","iteration":3}
+{"type":"finding","id":"f3-two-mcp-servers","label":"cyanheads obsidian_* (14) vs Local REST API vault_* (16) — confirm with list_tools()","iteration":3}
+{"type":"ruledOut","approach":"MCP as default write path for unattended migration","reason":"needs running app + Local REST API + OBSIDIAN_API_KEY","evidence":"mcp-obsidian/SKILL.md §2","iteration":3}

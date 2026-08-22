@@ -1,0 +1,5 @@
+{"type":"iteration","run":10,"status":"complete","focus":"Parity & verification + final method decision","findingsCount":4,"newInfoRatio":0.45,"keyQuestions":["Q10"],"answeredQuestions":["Q10"],"timestamp":"2026-08-21T23:38:00Z"}
+{"type":"finding","id":"f10-parity-checks","label":"11 programmatic parity checks mapping mcp-notion source reads to mcp-obsidian/grep target checks","iteration":10}
+{"type":"finding","id":"f10-auto-vs-reconstruct","label":"Auto-preserved vs needs-reconstruction matrix (REQ-004)","iteration":10}
+{"type":"finding","id":"f10-final-method","label":"Final flawless-migration method decision: inventory -> human Importer -> headless reconstruction -> verify","iteration":10}
+{"type":"ruledOut","approach":"Full parity for form/map/dashboard views","reason":"no Obsidian equivalent — document as lost","evidence":"iteration 7","iteration":10}

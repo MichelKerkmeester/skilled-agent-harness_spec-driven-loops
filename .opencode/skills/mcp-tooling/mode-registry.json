@@ -308,6 +308,48 @@
    "advisorRouting": {
     "routingClass": "metadata"
    }
+  },
+  {
+   "workflowMode": "mcp-notion",
+   "packetKind": "workflow",
+   "backendKind": "code-mode-remote-mcp",
+   "toolSurface": {
+    "allowed": [
+     "Read",
+     "Write",
+     "Edit",
+     "Bash",
+     "Glob",
+     "Grep",
+     "mcp__code_mode__call_tool_chain"
+    ],
+    "forbidden": [],
+    "mutatesWorkspace": true,
+    "bashAllowlist": []
+   },
+   "packet": "mcp-notion",
+   "packetSkillName": "mcp-notion",
+   "grandfatheredFolderMismatch": false,
+   "command": null,
+   "aliases": [
+    "notion",
+    "notion mcp",
+    "notion api",
+    "notion database",
+    "notion data source",
+    "notion page",
+    "notion token",
+    "ntn_",
+    "notion property",
+    "notion relation",
+    "notion rollup",
+    "notion formula",
+    "notion search",
+    "notion markdown"
+   ],
+   "advisorRouting": {
+    "routingClass": "metadata"
+   }
   }
  ]
 }

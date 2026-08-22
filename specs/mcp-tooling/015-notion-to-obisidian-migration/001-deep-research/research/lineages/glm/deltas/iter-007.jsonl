@@ -1,0 +1,5 @@
+{"type":"iteration","run":7,"status":"complete","focus":"Multi-view databases & nested hierarchy","findingsCount":5,"newInfoRatio":0.66,"keyQuestions":["Q7"],"answeredQuestions":["Q7"],"timestamp":"2026-08-21T23:17:00Z"}
+{"type":"finding","id":"f7-view-fate-matrix","label":"10 Notion view types: only table imports; core Bases covers 4/10, Notion Bases plugin 7/10, 3/10 gap","iteration":7}
+{"type":"finding","id":"f7-nested-preserved","label":"Nested page hierarchy preserved (page->folder when children); synced blocks -> separate files","iteration":7}
+{"type":"finding","id":"f7-views-filelayer","label":"View reconstruction is file-layer only (.base views array / _database.md schema)","iteration":7}
+{"type":"ruledOut","approach":"All Notion views import","reason":"only default table view imports","evidence":"deepwiki database-views + bounty issue","iteration":7}

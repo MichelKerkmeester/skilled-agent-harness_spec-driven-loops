@@ -57,6 +57,18 @@
     },
     {
       "leaves": [
+        "references/api-gap-tools.md",
+        "references/database-model.md",
+        "references/mcp-tools.md",
+        "references/migration-inventory.md",
+        "references/property-types.md",
+        "references/troubleshooting.md"
+      ],
+      "packet": "mcp-notion",
+      "workflowMode": "mcp-notion"
+    },
+    {
+      "leaves": [
         "assets/brat-data-entry.example.json",
         "assets/plugins/beancount-finance/example.beancount",
         "assets/plugins/beancount-finance/example.data.json",
@@ -79,6 +91,7 @@
         "assets/plugins/outliner/outliner-settings.partial.example.json",
         "assets/workflows.md",
         "references/mcp-tools.md",
+        "references/notion-migration.md",
         "references/obsidian-cli-commands.md",
         "references/plugins/beancount-finance/beancount-finance.md",
         "references/plugins/beancount-finance/data-model.md",
@@ -112,6 +125,10 @@
         "references/plugins/minimal/minimal.md",
         "references/plugins/minimal/troubleshooting.md",
         "references/plugins/minimal/workflows.md",
+        "references/plugins/notion-bases/data-model.md",
+        "references/plugins/notion-bases/notion-bases.md",
+        "references/plugins/notion-bases/troubleshooting.md",
+        "references/plugins/notion-bases/workflows.md",
         "references/plugins/obsidian-tables/data-model.md",
         "references/plugins/obsidian-tables/obsidian-tables.md",
         "references/plugins/obsidian-tables/troubleshooting.md",

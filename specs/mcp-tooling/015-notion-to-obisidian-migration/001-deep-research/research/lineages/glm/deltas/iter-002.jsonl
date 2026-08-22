@@ -1,0 +1,5 @@
+{"type":"iteration","run":2,"status":"complete","focus":"mcp-notion read surface mapping","findingsCount":4,"newInfoRatio":0.68,"keyQuestions":["Q2"],"answeredQuestions":["Q2"],"timestamp":"2026-08-21T22:42:00Z"}
+{"type":"finding","id":"f2-read-surface-map","label":"24 MCP tools + 5 API gaps mapped to inventory reads","iteration":2}
+{"type":"finding","id":"f2-views-gap-inventory","label":"Views must be inventoried via the views API gap (importer drops secondary views)","iteration":2}
+{"type":"finding","id":"f2-truncation-25","label":"retrieve-a-page truncates relations/people/text at 25 refs; use property-item gap","iteration":2}
+{"type":"ruledOut","approach":"Content-based inventory via search","reason":"search is title-only","evidence":"mcp-notion/SKILL.md NEVER #6","iteration":2}

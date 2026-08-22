@@ -20,8 +20,8 @@ skill_pointer: SKILL.md
 This is mcp-tooling's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub selects a workflow
 mode in [`hub-router.json`](hub-router.json) (`mcp-chrome-devtools`,
-`mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-figma`,
-`mcp-refero`, or `mcp-mobbin`); this doc maps a request's tool-bridge intent to the exact
+`mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`,
+`mcp-figma`, `mcp-refero`, or `mcp-mobbin`); this doc maps a request's tool-bridge intent to the exact
 packet-local leaf resources that mode should load. Every path is
 packet-qualified (`<packet>/references|assets/…`, where `<packet>` is the mode's
 `mode-registry.json` `packet` field) and converts to the canonical
@@ -50,6 +50,10 @@ emits leaf paths, and this router never re-decides the mode.
 - **mcp-aside-devtools leaves** — the Aside CLI command reference and the
   MCP-wiring guide a request to hand a browser task to the agentic Aside runtime
   (sign in, click through a flow autonomously, capture REPL evidence) loads.
+- **mcp-notion leaves** — the 24-tool MCP catalog and the direct-API gap
+  reference a request to create or query Notion pages and data sources, read or
+  write page markdown, or reach a capability the MCP does not expose (file
+  uploads, views, non-truncated property items) loads.
 - **mcp-figma leaves** — the Figma CLI command reference and the MCP-wiring
   guide a request to render a component in Figma Desktop or export design tokens
   / assets over the local Figma daemon loads.
@@ -88,6 +92,7 @@ INTENT_SIGNALS = {
     "CLICK_UP":        {"weight": 4, "keywords": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking", "project tracker", "clickup task", "log time", "clickup documents", "bulk tasks"]},
     "OBSIDIAN":        {"weight": 4, "keywords": ["obsidian", "mcp-obsidian", "obsidian vault", "notesmd-cli", "obsidian mcp", "note management", "markdown notes", "create note", "vault search", "backlinks", "daily note", "knowledge base", "note crud"]},
     "ASIDE_DEVTOOLS":  {"weight": 4, "keywords": ["aside", "aside browser", "aside cli", "aside mcp", "aside repl", "ai browser automation", "agentic browser", "agentic browser task", "browser agent", "aside daemon", "click through"]},
+    "NOTION":          {"weight": 4, "keywords": ["notion", "notion mcp", "notion api", "notion page", "notion token", "ntn_", "notion database", "notion data source", "query notion", "notion property", "notion relation", "notion rollup", "notion formula", "notion markdown"]},
     "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp", "figma daemon", "export from figma", "design tokens", "design file"]},
     "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products"]},
     "MOBBIN":          {"weight": 4, "keywords": ["mobbin", "mobbin mcp", "app design research", "ux flow references", "mobile design patterns", "mobile ux research", "onboarding flow examples", "ios app examples", "phone apps"]},
@@ -109,6 +114,10 @@ RESOURCE_MAP = {
     "ASIDE_DEVTOOLS": [
         "mcp-aside-devtools/references/aside-cli-reference.md",
         "mcp-aside-devtools/references/mcp-wiring.md"
+    ],
+    "NOTION": [
+        "mcp-notion/references/mcp-tools.md",
+        "mcp-notion/references/api-gap-tools.md"
     ],
     "FIGMA": [
         "mcp-figma/references/figma-cli-reference.md",
@@ -138,5 +147,5 @@ RESOURCE_MAP = {
   discovery fixtures, env templates) load on demand inside the packet, not on the
   first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target tool
-  (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`, `mcp-figma`,
-  `mcp-refero`, or `mcp-mobbin`) before loading anything.
+  (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`, `mcp-notion`,
+  `mcp-figma`, `mcp-refero`, or `mcp-mobbin`) before loading anything.

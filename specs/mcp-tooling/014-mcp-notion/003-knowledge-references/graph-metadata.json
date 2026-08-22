@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/014-mcp-notion/003-knowledge-references",
+  "spec_folder": "mcp-tooling/014-mcp-notion/003-knowledge-references",
+  "parent_id": "mcp-tooling/014-mcp-notion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-notion references",
+      "notion knowledge layer",
+      "notion property types database model",
+      "mcp-notion references plan",
+      "notion knowledge layer plan",
+      "mcp-notion phase 3 plan",
+      "mcp-notion references tasks",
+      "notion knowledge layer tasks",
+      "mcp-notion phase 3 tasks",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "mcp-notion",
+      "references",
+      "notion",
+      "knowledge",
+      "layer",
+      "property",
+      "types",
+      "database",
+      "model",
+      "plan",
+      "phase",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Notion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Take",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the Code Mode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "endpoints",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After Phase 2 the `mcp-notion` mode has a routing contract but no knowledge layer, so it is a thin transport",
+    "created_at": "2026-08-21T15:00:46.060Z",
+    "last_save_at": "2026-08-21T15:54:11.604Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aee865efe9c5d87c9cd082028fdcfa839ee65d61e2994e6e8fe5dc95feb594f9",
+    "source_doc_hashes": {
+      "spec.md": "4ae9af48fc5e39375391cadf046e727be331956bf19b420ca9172830db8c9cf9",
+      "plan.md": "c8bda3fdf13c9f69eee424b6af9941f4659eb26e2ee8e5e9cb8ef63940436857",
+      "tasks.md": "48ea3efcd4b2ff471282e5e3bb5a0ff4d3e5ff6fbb3b30acf5ba31559fbb9403",
+      "implementation-summary.md": "748722cc20c41af17acf5a135d1413cbb5a5ec62e3cdd8fc4d345520073fb5af"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/014-mcp-notion/004-hub-registration-and-advisor",
+  "spec_folder": "mcp-tooling/014-mcp-notion/004-hub-registration-and-advisor",
+  "parent_id": "mcp-tooling/014-mcp-notion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-notion hub registration",
+      "mcp-notion mode-registry advisor",
+      "notion mode routing",
+      "mcp-notion hub registration plan",
+      "mcp-notion router advisor plan",
+      "mcp-notion phase 4 plan",
+      "mcp-notion hub registration tasks",
+      "mcp-notion router advisor tasks",
+      "mcp-notion phase 4 tasks",
+      "mcp-notion hub registration summary",
+      "mcp-notion advisor routing result",
+      "mcp-notion phase 4 summary"
+    ],
+    "key_topics": [
+      "mcp-notion",
+      "hub",
+      "registration",
+      "mode-registry",
+      "advisor",
+      "notion",
+      "mode",
+      "routing",
+      "plan",
+      "router",
+      "phase",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Register",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Notion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode Notion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcp-notion` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for Notion prompts (its hub keywords/intentsignals lack Notion vocabulary), and the in-hub router has no `mcp-notion` mode entry, tie-break, or router signals — so even if the hub is chosen, the mode cannot be picked",
+    "created_at": "2026-08-21T15:00:46.362Z",
+    "last_save_at": "2026-08-21T15:52:07.636Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1a3d12b291811dcddceae52fb78d3d7b78773c2ce83afc6ced64429f8aa8dbe0",
+    "source_doc_hashes": {
+      "spec.md": "d9fc980292292148bbf9e31e8bf4ac1042e5b7df4a3d20d3edc943c1a16bc033",
+      "plan.md": "4b04bee3573e5b6022e11233a3a2887702bd2b20735c5661ac6132114a61d8fe",
+      "tasks.md": "0fb5fd7c820e799d772637b95c9462aa0147e7cb0e0e7ef454c2ada803a551f5",
+      "implementation-summary.md": "bb153ff04aa02c391eb81f7e1f6f44efbd17b9cd6717e89723f5fd3157d122e0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

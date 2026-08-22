@@ -1,0 +1,5 @@
+{"type":"iteration","run":8,"status":"complete","focus":"Required vs optional Obsidian plugins (ranked)","findingsCount":6,"newInfoRatio":0.58,"keyQuestions":["Q8"],"answeredQuestions":["Q8"],"timestamp":"2026-08-21T23:24:00Z"}
+{"type":"finding","id":"f8-notion-bases-required","label":"Notion Bases community plugin required for relational/view parity (two-way relations, rollup/lookup columns, gallery/timeline/chart views)","iteration":8}
+{"type":"finding","id":"f8-dataview-already-known","label":"Dataview already in mcp-obsidian knowledge + enabled; no new install needed","iteration":8}
+{"type":"finding","id":"f8-no-parity-features","label":"Form/Map/Dashboard views + Database buttons have no Obsidian plugin parity (document as lost)","iteration":8}
+{"type":"ruledOut","approach":"Notion Bases plugin as optional for complex relational workspace","reason":"required for two-way relations + 6 non-table view types","evidence":"iterations 4 + 7","iteration":8}

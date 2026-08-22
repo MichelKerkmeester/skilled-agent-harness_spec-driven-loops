@@ -1,0 +1,29 @@
+{
+  "level": "phase",
+  "specFolder": "mcp-tooling/014-mcp-notion",
+  "description": "Phase parent for adding Notion support to the mcp-tooling hub: first validate whether the official Notion MCP (@notionhq/notion-mcp-server, 24 tools)",
+  "keywords": [
+    "phase",
+    "parent",
+    "notion",
+    "support",
+    "mcp-tooling",
+    "hub",
+    "first",
+    "validate",
+    "whether",
+    "official",
+    "mcp",
+    "notionhq",
+    "notion-mcp-server",
+    "tools"
+  ],
+  "lastUpdated": "2026-08-21T15:58:07.333Z",
+  "specId": "014",
+  "folderSlug": "mcp-notion",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,22 @@
+{
+  "run_id": "1787310357505-x3f1wo",
+  "loop_type": "research",
+  "spec_folder": "specs/mcp-tooling/014-mcp-notion/001-deep-research",
+  "base_artifact_dir": "specs/mcp-tooling/014-mcp-notion/001-deep-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}
