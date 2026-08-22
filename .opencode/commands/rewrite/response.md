@@ -26,11 +26,11 @@ The `/rewrite:response` command instructs the active AI to rewrite its own most 
 
 **Outputs:** Formatted plain-English projection followed by structured status.
 
-| Output Status | Condition |
-| ------------- | --------- |
-| `STATUS=OK` | Successfully generated plain-English projection |
+| Output Status                                     | Condition                                         |
+| ---------------------------------------------------| ---------------------------------------------------|
+| `STATUS=OK`                                       | Successfully generated plain-English projection   |
 | `STATUS=NOOP REASON="no prior assistant message"` | No previous assistant turn exists in conversation |
-| `STATUS=FAIL ERROR="<message>"` | Invalid arguments or unrecoverable error |
+| `STATUS=FAIL ERROR="<message>"`                   | Invalid arguments or unrecoverable error          |
 
 ---
 
