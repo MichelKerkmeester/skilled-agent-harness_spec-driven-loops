@@ -1,20 +1,20 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
-  "description": "Record the global hook-parity repair and packet-metadata remediation that restored strict recursive validation for the completed root-router phase and its full program",
+  "description": "The plan-named gate `validate.sh .../015-router-unification-program --recursive --strict` exited 2 and blocked publication of the completed",
   "keywords": [
+    "plan-named",
+    "gate",
+    "validate",
+    "015-router-unification-program",
     "recursive",
-    "validation",
-    "remediation",
-    "runtime",
-    "mirror",
-    "hook",
-    "parity",
-    "metadata",
     "strict",
-    "phase",
-    "chain"
+    "exited",
+    "blocked",
+    "publication",
+    "completed"
   ],
-  "lastUpdated": "2026-08-16T00:00:00.000Z",
+  "lastUpdated": "2026-08-17T08:29:24.170Z",
   "specId": "021",
   "folderSlug": "recursive-validation-remediation",
   "parentChain": [
@@ -23,6 +23,5 @@
     "015-router-unification-program"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

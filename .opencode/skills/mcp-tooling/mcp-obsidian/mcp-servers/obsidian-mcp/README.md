@@ -22,7 +22,7 @@ version: 0.1.0.0
 | **Use it for** | Confirming how the Obsidian MCP server is configured. There is no local package to install. |
 | **Invoke with** | Code Mode `call_tool_chain({ code: "..." })` once the `obsidian` manual is registered. |
 | **Works on** | `npx -y obsidian-mcp-server@latest` (cyanheads, v3.2.9) over stdio, launched by Code Mode on demand. |
-| **Produces** | Note, search and tag tools under the `obsidian.obsidian_*` namespace once registered. Registered by a later phase, see Section 4. |
+| **Produces** | Note, search and tag tools under the `obsidian.obsidian_*` namespace. Already registered in `.utcp_config.json`, see Section 4. |
 
 ---
 
@@ -67,7 +67,7 @@ obsidian_OBSIDIAN_BASE_URL=http://127.0.0.1:27123
 obsidian_OBSIDIAN_VERIFY_SSL=false
 ```
 
-**Step 3: Confirm registration.** The `obsidian` manual is registered in `.utcp_config.json` by a later phase — this folder does not edit that file. Once registered:
+**Step 3: Confirm registration.** The `obsidian` manual is already registered in `.utcp_config.json` — this folder does not edit that file. To confirm:
 
 ```typescript
 list_tools()
@@ -87,7 +87,7 @@ Never hardcode a tool name without confirming it this way first. See `../../refe
 
 ## 4. VERIFICATION
 
-> **Registration note:** the `obsidian` manual is registered in `.utcp_config.json` by a later gated phase, not by this folder. For reference, the manual it registers is:
+> **Registration note:** the `obsidian` manual is already registered in `.utcp_config.json`, not by this folder. For reference, the registered manual is:
 
 ```json
 {

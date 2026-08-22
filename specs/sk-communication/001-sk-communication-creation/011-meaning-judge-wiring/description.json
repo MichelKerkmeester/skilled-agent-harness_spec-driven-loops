@@ -1,20 +1,19 @@
 {
   "level": "3",
   "specFolder": "sk-communication/001-sk-communication-creation/011-meaning-judge-wiring",
-  "description": "Compose the missing production path so a local reject-only meaning judge runs after restoration with any failure staying exact-original and no hosted egress of restored values",
+  "description": "No production source connects the candidate to `validateProjectionCandidate`, `evaluateFidelityVeto`, or `runProxyReviewers` outside evaluation",
   "keywords": [
-    "meaning",
-    "judge",
-    "wiring",
-    "reject-only",
-    "fidelity",
     "production",
-    "composition",
-    "exact-original",
-    "projection",
-    "quality"
+    "source",
+    "connects",
+    "candidate",
+    "validateprojectioncandidate",
+    "evaluatefidelityveto",
+    "runproxyreviewers",
+    "outside",
+    "evaluation"
   ],
-  "lastUpdated": "2026-08-13T00:00:00.000Z",
+  "lastUpdated": "2026-08-15T14:40:57.305Z",
   "specId": "011",
   "folderSlug": "meaning-judge-wiring",
   "parentChain": [

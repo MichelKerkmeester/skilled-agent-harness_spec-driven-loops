@@ -19,7 +19,7 @@
     "onnx",
     "shutdown-crash"
   ],
-  "lastUpdated": "2026-07-21T05:58:28.261Z",
+  "lastUpdated": "2026-08-15T14:41:08.237Z",
   "specId": "009",
   "folderSlug": "embedder-onnx-hardening-round2",
   "parentChain": [

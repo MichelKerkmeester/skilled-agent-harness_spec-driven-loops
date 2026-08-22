@@ -2,7 +2,7 @@
 name: mcp-obsidian
 description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Excalidraw, Git, Outliner, Minimal) operated at the file layer. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.17.0.0
+version: 0.18.0.0
 ---
 
 <!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, excalidraw, excalidraw.md, drawing note, obsidian-git, vault git, auto backup, outliner, list editing, minimal theme, css theme, theme snippet -->
@@ -579,7 +579,7 @@ The default MCP is cyanheads' `obsidian-mcp-server` (npm **@3.2.9**), launched o
 }
 ```
 
-The `obsidian_` env prefix matches the manual name `obsidian`, so `${obsidian_OBSIDIAN_API_KEY}` resolves correctly. This skill documents that registration; a later gated phase writes it into `.utcp_config.json` and `.env.example`.
+The `obsidian_` env prefix matches the manual name `obsidian`, so `${obsidian_OBSIDIAN_API_KEY}` resolves correctly. This registration is already in place: the `obsidian` manual lives in `.utcp_config.json` and the `obsidian_OBSIDIAN_*` keys in `.env.example`. This skill documents that wiring; it does not rewrite those files.
 
 **Tools:** the server exposes **14 `obsidian_*` tools**. The core five are `obsidian_get_note`, `obsidian_write_note`, `obsidian_search_notes`, `obsidian_manage_tags`, `obsidian_delete_note`; the full 14-tool catalog with per-tool inputs lives in `references/mcp-tools.md`. Confirm every name with `tool_info()`/`list_tools()` before calling — never guess it from a description.
 
@@ -625,7 +625,7 @@ const result = await call_tool_chain({
 1. **Never assume a running app for the default path** — `notesmd-cli` is filesystem-only and needs no app; do not launch Obsidian just to run a headless note op.
 2. **Never confuse the two CLIs** — `notesmd-cli` (Yakitrak, headless) and `obsidian` (official, app-backed) are different binaries with different behavior. The official one requires and controls a running app.
 3. **Never use the StevenStavrakis `obsidian-mcp` as the default MCP** — this skill's MCP path is the cyanheads `obsidian-mcp-server`. The Stavrakis server is only the documented headless alternative.
-4. **Never auto-modify `.utcp_config.json`, `.env.example`, `opencode.json`, or hub files** — this skill documents the `obsidian` manual; a later gated phase applies it. Print the config for the user; never write config files programmatically.
+4. **Never auto-modify `.utcp_config.json`, `.env.example`, `opencode.json`, or hub files** — the `obsidian` manual is already registered there; this skill only documents it. If the wiring ever needs changing, print the config for the user; never write these files programmatically.
 5. **Never hardcode the API key or base URL in commands or notes** — read them from `obsidian_OBSIDIAN_API_KEY` / `obsidian_OBSIDIAN_BASE_URL` in the Code Mode environment.
 6. **Never fabricate notes** — if `notesmd-cli list`/`search` returns empty, the vault or query is genuinely empty. Report it clearly.
 7. **Never enable `OBSIDIAN_VERIFY_SSL` blindly** — it defaults to `false`; only turn it on behind a trusted TLS endpoint.

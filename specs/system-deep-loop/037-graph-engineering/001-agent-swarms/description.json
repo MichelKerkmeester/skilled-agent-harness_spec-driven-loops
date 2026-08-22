@@ -1,22 +1,17 @@
 {
   "level": 1,
   "specFolder": "system-deep-loop/037-graph-engineering/001-agent-swarms",
-  "description": "20-iteration deep-research study (gpt-5.6-sol high/fast) of the agent-swarms reference implementation and the 12 graph-engineering blog posts; extracts a versioned graph-IR design for evolving system-deep-loop into a graph-based agent-loop layered as a projection over the 036 authority plane, with a 9-step staged delivery order and explicit when-not-to-use boundaries.",
+  "description": "The 037 corpus grew well past what the gen-1 research studied",
   "keywords": [
-    "agent-swarms",
-    "graph-engineering",
-    "deep-loop",
-    "graph-ir",
-    "036-authority-plane",
-    "blog-corpus",
-    "gate-verdict",
-    "loop-subgraph",
-    "shadow-parity",
+    "corpus",
+    "grew",
+    "well",
+    "past",
+    "gen-1",
     "research",
-    "gpt-5.6-sol",
-    "reference-implementation"
+    "studied"
   ],
-  "lastUpdated": "2026-08-13T20:00:00Z",
+  "lastUpdated": "2026-08-15T14:41:04.446Z",
   "specId": "001",
   "folderSlug": "agent-swarms",
   "parentChain": [

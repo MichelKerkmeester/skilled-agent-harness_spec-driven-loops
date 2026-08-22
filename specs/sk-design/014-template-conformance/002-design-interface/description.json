@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/014-template-conformance/002-design-interface",
   "description": "The `design-interface` mode (`.opencode/skills/sk-design/design-interface/`) grew nine top-level folders — packet root, `references/`, `assets/`,",
   "keywords": [
@@ -16,7 +17,7 @@
     "references",
     "assets"
   ],
-  "lastUpdated": "2026-07-27T14:43:52.483Z",
+  "lastUpdated": "2026-08-15T14:40:58.226Z",
   "specId": "002",
   "folderSlug": "design-interface",
   "parentChain": [
@@ -24,6 +25,5 @@
     "014-template-conformance"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

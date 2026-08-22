@@ -14,7 +14,7 @@
     "release-blocking",
     "p1s"
   ],
-  "lastUpdated": "2026-07-21T05:58:28.590Z",
+  "lastUpdated": "2026-08-15T14:41:10.342Z",
   "specId": "002",
   "folderSlug": "fix-deep-review-findings-for-causal-graph-channel-routing",
   "parentChain": [

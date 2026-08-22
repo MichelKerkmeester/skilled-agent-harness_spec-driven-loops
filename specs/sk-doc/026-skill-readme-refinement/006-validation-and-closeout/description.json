@@ -1,16 +1,20 @@
 {
   "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/006-validation-and-closeout",
-  "description": "Fleet-wide validation and closeout of the skill README program",
+  "description": "Phases 001 through 005 refined the shared README template, created the parent-skill README template, updated the creation workflow, and rewrote every",
   "keywords": [
-    "fleet-wide",
-    "validation",
-    "closeout",
-    "skill",
+    "phases",
+    "refined",
+    "shared",
     "readme",
-    "program"
+    "template",
+    "parent-skill",
+    "creation",
+    "workflow",
+    "rewrote",
+    "every"
   ],
-  "lastUpdated": "2026-08-05T08:09:10.461Z",
+  "lastUpdated": "2026-08-15T14:41:01.750Z",
   "specId": "006",
   "folderSlug": "validation-and-closeout",
   "parentChain": [

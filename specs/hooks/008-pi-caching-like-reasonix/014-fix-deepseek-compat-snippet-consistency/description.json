@@ -1,19 +1,22 @@
 {
   "level": "1",
   "specFolder": "hooks/008-pi-caching-like-reasonix/014-fix-deepseek-compat-snippet-consistency",
-  "description": "Align the pi-cache-optimizer DeepSeek compat path with the verify-first OpenAI-proxy pattern so supportsLongCacheRetention is optional, not required/auto-written.",
+  "description": "In the vendored `pi-cache-optimizer` fork, the DeepSeek compat path treated `supportsLongCacheRetention` as a required/missing flag: it appeared in",
   "keywords": [
+    "vendored",
+    "pi-cache-optimizer",
+    "fork",
     "deepseek",
     "compat",
+    "path",
+    "treated",
     "supportslongcacheretention",
-    "verify-first",
-    "optional",
-    "pi-cache-optimizer",
-    "snippet",
-    "cache-optimizer",
-    "fix"
+    "required",
+    "missing",
+    "flag",
+    "appeared"
   ],
-  "lastUpdated": "2026-08-13T00:00:00.000Z",
+  "lastUpdated": "2026-08-15T14:40:55.856Z",
   "specId": "014",
   "folderSlug": "fix-deepseek-compat-snippet-consistency",
   "parentChain": [

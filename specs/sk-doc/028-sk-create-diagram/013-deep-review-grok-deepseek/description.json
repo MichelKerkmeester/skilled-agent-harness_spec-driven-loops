@@ -1,18 +1,24 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek",
   "description": "Every prior phase in this packet was orchestrator-verified against real files, but never run through an independent, adversarial multi-model review",
   "keywords": [
-    "deep-review",
-    "grok",
-    "deepseek",
-    "fan-out",
-    "conditional",
-    "verdict",
-    "leaf-manifest",
-    "cli-cursor",
-    "opencode-go"
+    "every",
+    "prior",
+    "phase",
+    "packet",
+    "orchestrator-verified",
+    "against",
+    "real",
+    "files",
+    "never",
+    "run",
+    "independent",
+    "adversarial",
+    "multi-model",
+    "review"
   ],
-  "lastUpdated": "2026-08-13T05:55:33.000Z",
+  "lastUpdated": "2026-08-15T14:41:01.881Z",
   "specId": "013",
   "folderSlug": "deep-review-grok-deepseek",
   "parentChain": [
@@ -20,6 +26,5 @@
     "028-sk-create-diagram"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

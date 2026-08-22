@@ -1,26 +1,22 @@
 {
   "level": "3",
   "specFolder": "cli-external-orchestration/036-grok-4.6-support",
-  "description": "Add Grok 4.6 to cli-cursor and cli-devin's enforced deep-loop allowlists alongside the still-supported Grok 4.5, including a new xhigh tier neither platform's 4.5 roster had, sort every touched roster alphabetically, and update every skill doc and cross-reference that named Grok.",
+  "description": "cli-cursor's enforced `CURSORSUPPORTEDMODELS` allowlist and cli-devin's enforced `DEVINSUPPORTEDMODELS` allowlist both curated only Grok 4.5 (6 ids on",
   "keywords": [
-    "grok",
-    "4.5",
-    "4.6",
     "cli-cursor",
-    "cli-devin",
-    "cursor-agent",
-    "devin",
-    "executor-config",
-    "fanout-run",
+    "enforced",
+    "cursorsupportedmodels",
     "allowlist",
-    "xhigh",
-    "model roster",
-    "providers-and-models",
-    "alphabetical sort"
+    "cli-devin",
+    "devinsupportedmodels",
+    "curated",
+    "only",
+    "grok",
+    "ids"
   ],
-  "lastUpdated": "2026-08-12T17:19:23.000Z",
+  "lastUpdated": "2026-08-15T14:40:55.254Z",
   "specId": "036",
-  "folderSlug": "grok-4.6-support",
+  "folderSlug": "grok-4-6-support",
   "parentChain": [
     "cli-external-orchestration"
   ],

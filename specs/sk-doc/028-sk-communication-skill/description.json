@@ -1,20 +1,21 @@
 {
   "level": "1",
   "specFolder": "sk-doc/028-sk-communication-skill",
-  "description": "Author a standalone advisor-routable skill that surfaces the portable CLI communication-projection package",
+  "description": "The portable CLI communication-projection capability lived only as a package under `packages/cli-communication-projection/`, so the skill advisor",
   "keywords": [
-    "sk-communication",
-    "skill",
-    "communication",
-    "projection",
-    "standalone",
-    "advisor",
-    "wrapper",
+    "portable",
+    "cli",
+    "communication-projection",
+    "capability",
+    "lived",
+    "only",
     "package",
-    "routable",
-    "cli"
+    "packages",
+    "cli-communication-projection",
+    "skill",
+    "advisor"
   ],
-  "lastUpdated": "2026-08-12T13:10:00Z",
+  "lastUpdated": "2026-08-15T14:41:01.826Z",
   "specId": "028",
   "folderSlug": "sk-communication-skill",
   "parentChain": [

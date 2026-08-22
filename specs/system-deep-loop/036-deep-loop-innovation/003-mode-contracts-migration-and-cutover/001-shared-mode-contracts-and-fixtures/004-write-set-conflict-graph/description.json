@@ -18,13 +18,9 @@
     "read",
     "write",
     "resources",
-    "derived",
-    "conflicts",
-    "pair",
-    "classifications",
-    "artifacts"
+    "derived"
   ],
-  "lastUpdated": "2026-08-15T08:27:44.452Z",
+  "lastUpdated": "2026-08-19T19:14:43.893Z",
   "specId": "004",
   "folderSlug": "write-set-conflict-graph",
   "parentChain": [

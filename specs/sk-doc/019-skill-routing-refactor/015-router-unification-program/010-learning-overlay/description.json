@@ -1,6 +1,6 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay",
   "level": 2,
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay",
   "description": "The refactor's route decisions are compiled from authored sources and are static per generation",
   "keywords": [
     "refactor",
@@ -13,7 +13,7 @@
     "per",
     "generation"
   ],
-  "lastUpdated": "2026-07-24T13:05:44.476Z",
+  "lastUpdated": "2026-08-16T18:06:00.691Z",
   "specId": "010",
   "folderSlug": "learning-overlay",
   "parentChain": [

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/014-template-conformance/004-design-md-generator/005-backend",
   "description": "`backend/` is structurally unlike every other sk-design mode folder: it is a real TypeScript package (`package.json`, `tsconfig.json`,",
   "keywords": [
@@ -15,7 +16,7 @@
     "json",
     "tsconfig"
   ],
-  "lastUpdated": "2026-07-27T15:06:55.753Z",
+  "lastUpdated": "2026-08-15T14:40:58.297Z",
   "specId": "005",
   "folderSlug": "backend",
   "parentChain": [
@@ -24,6 +25,5 @@
     "004-design-md-generator"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

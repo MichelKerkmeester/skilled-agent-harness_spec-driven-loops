@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/019-skill-routing-refactor/024-create-journey-gate-fixes",
   "description": "Two review lenses independently proved the parent-hub creation journey cannot succeed as documented",
   "keywords": [
@@ -14,7 +15,7 @@
     "succeed",
     "documented"
   ],
-  "lastUpdated": "2026-07-28T15:11:49.845Z",
+  "lastUpdated": "2026-08-15T14:41:00.113Z",
   "specId": "024",
   "folderSlug": "create-journey-gate-fixes",
   "parentChain": [
@@ -22,6 +23,5 @@
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

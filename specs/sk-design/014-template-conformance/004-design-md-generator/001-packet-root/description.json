@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/014-template-conformance/004-design-md-generator/001-packet-root",
   "description": "`design-md-generator`'s packet root is unusual among sk-design modes: it carries three root markdown files, not two",
   "keywords": [
@@ -15,7 +16,7 @@
     "files",
     "two"
   ],
-  "lastUpdated": "2026-07-27T15:01:42.010Z",
+  "lastUpdated": "2026-08-15T14:40:58.292Z",
   "specId": "001",
   "folderSlug": "packet-root",
   "parentChain": [
@@ -24,6 +25,5 @@
     "004-design-md-generator"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -197,7 +197,7 @@ obsidian_OBSIDIAN_BASE_URL=http://127.0.0.1:27123
 obsidian_OBSIDIAN_VERIFY_SSL=false
 ```
 
-The `obsidian_` prefix matches the manual name. This documentation phase does not modify `.utcp_config.json` or `.env.example`; the later configuration phase owns that registration. Once it is registered, restart the AI client, enumerate `list_tools()`, then use the confirmed form `obsidian.obsidian_<tool_name>` through `call_tool_chain({ code })`.
+The `obsidian_` prefix matches the manual name. The `obsidian` manual and these keys are already registered in `.utcp_config.json` and `.env.example`; these install steps stay read-only and do not rewrite them. With the manual registered, restart the AI client, enumerate `list_tools()`, then use the confirmed form `obsidian.obsidian_<tool_name>` through `call_tool_chain({ code })`.
 
 ---
 

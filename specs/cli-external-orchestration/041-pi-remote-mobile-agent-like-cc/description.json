@@ -1,18 +1,19 @@
 {
   "level": "phase",
   "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
-  "description": "Nine-phase program for a private Claude-app-style mobile control plane over Pi CLI.",
+  "description": "Pi CLI exposes a persistent local RPC subprocess, not a secure mobile product",
   "keywords": [
-    "nine-phase",
-    "program",
-    "private",
-    "claude-app-style",
+    "cli",
+    "exposes",
+    "persistent",
+    "local",
+    "rpc",
+    "subprocess",
+    "secure",
     "mobile",
-    "control",
-    "plane",
-    "cli"
+    "product"
   ],
-  "lastUpdated": "2026-08-10T18:46:06.594Z",
+  "lastUpdated": "2026-08-15T14:40:55.321Z",
   "specId": "041",
   "folderSlug": "pi-remote-mobile-agent-like-cc",
   "parentChain": [
