@@ -36,7 +36,6 @@ SKILL_FAMILIES = (
     'sk-prompt',
     'mcp-code-mode',
     'mcp-tooling',
-    'system-code-graph',
     'system-deep-loop',
     'system-skill-advisor',
     'system-spec-kit',

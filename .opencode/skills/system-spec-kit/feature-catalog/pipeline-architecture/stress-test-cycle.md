@@ -128,5 +128,4 @@ Each cycle compares against the prior version's rubric where possible. The compa
 
 - Companion playbook: `.opencode/skills/system-spec-kit/manual-testing-playbook/stress-testing/run-stress-cycle.md`
 Related references:
-- [code-graph-phase-dag-runner.md](../../feature-catalog/pipeline-architecture/code-graph-phase-dag-runner.md) — Code Graph phase-DAG runner
 - [routing-telemetry-and-channel-invocation-rates.md](../../feature-catalog/pipeline-architecture/routing-telemetry-and-channel-invocation-rates.md) — Routing telemetry and channel invocation rates

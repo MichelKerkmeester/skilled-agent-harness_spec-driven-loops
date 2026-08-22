@@ -139,13 +139,12 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Lane champion backfill | OFF | `SPECKIT_LANE_CHAMPION_BACKFILL` | Appends each base retrieval lane's strongest missed candidate into available tail slots after fusion | built-but-held |
 | Relevance-aware gap | ON | `SPECKIT_RELEVANCE_AWARE_GAP` | Uses noise-floor-subtracted absolute relevance rather than Z-score peakedness for evidence-gap decisions | current |
 | Rollout percentage | 100 | `SPECKIT_ROLLOUT_PERCENT` | Global rollout percentage applied by `isFeatureEnabled()` feature gates | graduated |
-<!-- PHASE-007-ENV-SLOT: SPECKIT_CODE_GRAPH_INTENT_* flags inserted here (027/007) -->
 <!-- PHASE-008-ENV-SLOT: SPECKIT_SEMANTIC_TRIGGERS_* flags inserted here (027/008) -->
-<!-- PHASE-009-ENV-SLOT: SPECKIT_FEEDBACK_* / SPECKIT_CODE_GRAPH_FEEDBACK_RERANK_* / SPECKIT_SESSION_TRACE_CAUSAL_* / SPECKIT_FEEDBACK_RETENTION_* flags inserted here (027/009) -->
+<!-- PHASE-009-ENV-SLOT: SPECKIT_FEEDBACK_* / SPECKIT_SESSION_TRACE_CAUSAL_* / SPECKIT_FEEDBACK_RETENTION_* flags inserted here (027/009) -->
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
-<!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
+<!-- PHASE-011-ENV-SLOT: SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 354, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
+Total unique variables documented: 351, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
 
 ### Data Quality and Generator Hardening (028/005)
 
@@ -698,21 +697,6 @@ Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer a
 | `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED` | unset (OFF) | boolean (`1`/`true`) | Enables shadow-delta collection at the default path. Setting `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` alone also enables it. | `mcp-server/lib/shadow/shadow-sink.ts` |
 | `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` | unset | string (path, under workspace root) | Override path for the shadow-delta sink. Setting this enables shadow-delta collection on its own. | `mcp-server/lib/shadow/shadow-sink.ts` |
 | `SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS` | `75` | number (ms) | Warn threshold for advisor hook cache-hit p95 latency. | `mcp-server/lib/metrics.ts` |
-
----
-
-## CODE GRAPH
-
-Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed as positive integers. Object values accept JSON partial-override strings.  Malformed JSON logs a warning and falls back to the hardcoded defaults below.
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD` | `100` | number (positive int) | File-count threshold above which the advisory `post-commit` git hook (`.opencode/scripts/git-hooks/post-commit`) invalidates the code-graph SQLite + lease files. Forces the next Claude Code session to run an inline full scan at launcher boot, preventing accumulated drift. Only effective when the hook is installed via `bash .opencode/scripts/install-git-hooks.sh`. | `.opencode/scripts/git-hooks/post-commit` |
-| `SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT` | unset (treated as `0`) | boolean (string `"1"`) | One-shot bypass: when set to `"1"`, the `post-commit` git hook exits silently without inspecting the commit. Useful for fast-iteration cycles where the operator does not want to invalidate the graph after every batch. | `.opencode/scripts/git-hooks/post-commit` |
-| `SPECKIT_CODE_GRAPH_POST_COMMIT_DRY_RUN` | unset (treated as `0`) | boolean (string `"1"`) | Dry-run mode for the `post-commit` hook: prints the would-invalidate advisory but does NOT delete the SQLite. Useful for verifying the threshold + advisory text before relying on the hook in real commits. | `.opencode/scripts/git-hooks/post-commit` |
-
----
-
 
 ---
 

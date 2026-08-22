@@ -352,7 +352,7 @@ The validator machine-checks the root-catalog structure and each leaf's Validati
 
 ### Package Validator Enforcement
 
-`scripts/validate_catalog_package.py` is the package-level enforcement surface. Discovery is presence-based: every canonical `feature-catalog/` directory below `.opencode/skills/` is a package, keyed by its path relative to that root. The measured starting corpus is 26 packages and 804 leaves. `system-code-graph` is the only explicit exclusion because it is runtime data and has no `feature-catalog/` directory; the exclusion carries its reason in the validator.
+`scripts/validate_catalog_package.py` is the package-level enforcement surface. Discovery is presence-based: every canonical `feature-catalog/` directory below `.opencode/skills/` is a package, keyed by its path relative to that root. The measured starting corpus is 26 packages and 804 leaves. The validator carries explicit runtime-data exclusion rulings for any root that could gain a same-named directory without a skill contract.
 
 The validator compares root filenames and root-link targets case-insensitively. This preserves the `mcp-click-up` package's uppercase `FEATURE-CATALOG.md` without counting the root itself as an orphan.
 

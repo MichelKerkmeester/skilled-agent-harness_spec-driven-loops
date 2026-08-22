@@ -889,14 +889,6 @@ const embedderStatus: ToolDefinition = {
   },
 };
 
-// Code Graph - Structural code analysis tools
-// Code-graph tool schemas migrated to system-code-graph standalone MCP server.
-
-
-
-
-
-
 // Session health diagnostic tool
 const sessionHealth: ToolDefinition = {
   name: 'session_health',
@@ -1001,6 +993,5 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   embedderList,
   embedderSet,
   embedderStatus,
-  // L8: Code Graph schemas live in system-code-graph
   // L8: Skill Graph schemas live in system-skill-advisor
 ];
