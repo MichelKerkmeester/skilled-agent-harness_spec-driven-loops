@@ -35,7 +35,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -81,12 +81,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -106,6 +100,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -165,6 +165,18 @@
         "source": "derived"
       },
       {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Real Install Execution",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -175,23 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Edge Cases",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation column it cannot yet write, because neither Notion Bases nor (potentially) Dataview is confirmed present in the operator's actual vault",
     "created_at": "2026-08-21T22:01:25.732Z",
-    "last_save_at": "2026-08-22T04:29:21.045Z",
+    "last_save_at": "2026-08-22T04:44:52.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c448beb0496738e1323948c0e168d259ce670eee463446a4680b5856602176ca",
+    "source_fingerprint": "sha256:0fa57a62914aacdf7db3220ab5615e78dd36b257d8903c2ca8929628c5374afa",
     "source_doc_hashes": {
-      "spec.md": "f0580b719ee42681bdd858ae75a03237e5d3a5ff0c480b2e0a2c98b80386e266",
+      "spec.md": "85bf56315640a0c35db9349f98382efff0c7ae12ed10ddfe1b2eaec60cc957a4",
       "plan.md": "525e275973b5de6efd39bf8ca31a99a5ab10fc0684646ea497d390e89d78d721",
-      "tasks.md": "dd9f25adaa58600185873cb8c3181104eddfce3538137c3437c33b51114c1bcd",
-      "checklist.md": "abc8764e2cf3136395c7c2846896ba943da099440fb94f0274fec7b5952c99bd",
-      "implementation-summary.md": "1e0e9fe48d8b502f2e322a7890c1c485e3a141afa7c397973da00c9c8f659c53"
+      "tasks.md": "21aca8d5c0164a2460e8db3133855a1ea89d4a604cc51e8aab88da33ac3cf8de",
+      "checklist.md": "dab6874d540bb383956227362157dabf957e3967c8f7a06b950ebe0bcdfdfb8a",
+      "implementation-summary.md": "b8a05c9f4ac7724f88f619dcf4f913fc173653ca0f51e50b07c54e7f9ad7f941"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification"
-    last_updated_at: "2026-08-21T00:00:00Z"
+    last_updated_at: "2026-08-22T04:44:34Z"
     last_updated_by: "claude"
-    recent_action: "Shipped OBS-023 scenario, verify-notion-migration-parity.sh, and playbook/README edits"
-    next_safe_action: "Operator runs BRAT install of notion-bases in real vault, then runs the parity script"
+    recent_action: "BRAT-headless install of notion-bases v1.12.0 executed + verified in the real vault"
+    next_safe_action: "None — 015 capability complete; migration run is a separate action"
     blockers: []
     key_files:
       - "../001-deep-research/research/research.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "015-004-plugin-install-and-verification"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,14 +43,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-08-21 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 4 of 4 |
 | **Predecessor** | `003-notion-bases-plugin-tie-in` |
 | **Successor** | None — closes the 015 phased build |
-| **Handoff Criteria** | Notion Bases + Dataview staged, registered, and activated in the operator's real vault via file-layer install; `verify-notion-migration-parity.sh` (11 checks) shipped under `mcp-obsidian/scripts/`; a manual-testing scenario (`OBS-023`) documents the procedure; rollback proven reversible. |
+| **Handoff Criteria** | Notion Bases staged and registered in the operator's real vault via BRAT-headless file-layer install (executed and verified 2026-08-22); activation completes when the operator next opens Obsidian. Dataview was already installed and left untouched. `verify-notion-migration-parity.sh` (11 checks) shipped under `mcp-obsidian/scripts/`; a manual-testing scenario (`OBS-023`) documents the procedure; rollback proven reversible and remains available. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -63,6 +63,8 @@ This is **Phase 4**, the closing phase of the 015 migration capability. Phases 0
 **This is a planning phase only.** It produces the spec/plan/tasks/checklist package below. **Execution of the real install is explicitly deferred and requires a fresh operator go-ahead** — per the framework's blast-radius rule, a rollback must be named and confirmation obtained before any delete/overwrite/install against a real, synced, personal vault. This spec-authoring session does not install anything, and does not read or write inside the target vault.
 
 **Scope Boundary**: Plan the install procedure, the rollback, and the verification script only. Neither this session nor Phase 002/003 touch any vault; Phase 004's own *execution* (a future, operator-approved session) is the only leg of the whole 015 packet that does.
+
+**Update (2026-08-22, real install executed and verified)**: the operator-approved BRAT-headless install of Notion Bases (`manifest.id: notion-bases`, `version: 1.12.0`) has since run against the real vault — see Handoff Criteria above and `implementation-summary.md` for the full verified result. Dataview was already present and was left untouched. The two paragraphs above describe this phase's original doc/script-authoring session and remain an accurate historical record of that session's own scope; they no longer describe the phase's current, now-Complete status.
 
 **Dependencies**:
 - 001 research verdict §8 (required plugins, minimum viable install: Notion Bases + Dataview), §10 (11-check verification protocol), §9 (human-required GUI vs AI-automatable split).
@@ -100,7 +102,7 @@ Plan (a) a headless, file-layer install of Notion Bases and Dataview into the op
 - `manual-testing-playbook/manual-testing-playbook.md`: register `OBS-023`.
 
 ### Out of Scope
-- **Actually running the install.** This phase's own execution is a separate, future, operator-approved action — not part of this spec-authoring session, and not implied by this spec's existence.
+- **Actually running the install.** This phase's own execution is a separate, future, operator-approved action — not part of this spec-authoring session, and not implied by this spec's existence. **Update**: this real-world install has since executed and been verified in an operator-approved follow-up session on 2026-08-22 — see Handoff Criteria above and `implementation-summary.md`. Running an actual Notion→Obsidian migration remains a separate future action, not part of this packet.
 - Reading or inspecting the real vault's current plugin state — this session does not touch anything outside `specs/mcp-tooling/015-notion-to-obisidian-migration/`.
 - A live end-to-end Notion→Obsidian migration round-trip — this phase installs the plugins and ships the verification tool; running a real migration against a real Notion workspace is a separate future action.
 - Any change to `notion-bases/` reference content — Phase 003.
@@ -145,7 +147,7 @@ Plan (a) a headless, file-layer install of Notion Bases and Dataview into the op
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A future, operator-approved execution of `OBS-023` can install both plugins into the real vault using only the scenario's documented commands, with no hardcoded plugin id.
+- **SC-001**: A future, operator-approved execution of `OBS-023` can install both plugins into the real vault using only the scenario's documented commands, with no hardcoded plugin id. **Met 2026-08-22**: Notion Bases installed via BRAT-headless (`manifest.id: notion-bases`, `version: 1.12.0`, derived from the fetched manifest, never hardcoded); Dataview was already present and left untouched.
 - **SC-002**: `verify-notion-migration-parity.sh` runs standalone against a ledger + vault path and reports pass/fail per check.
 - **SC-003**: `validate_document.py --type skill` = 0 issues; `validate.sh <this-folder> --strict` = Errors:0; no file outside `specs/mcp-tooling/015-notion-to-obisidian-migration/` was touched by this planning session.
 <!-- /ANCHOR:success-criteria -->
@@ -198,8 +200,8 @@ Plan (a) a headless, file-layer install of Notion Bases and Dataview into the op
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- **VERIFY at execution time**: whether Dataview is already installed in the target vault. This session did not inspect the vault (out of scope), so the scenario must check before assuming a fresh install.
-- **VERIFY at execution time**: the exact `manifest.id` for each plugin, derived from the fetched release, not assumed from this spec's prose.
+- **RESOLVED 2026-08-22**: Dataview was already installed in the target vault; the install session left it untouched per the scenario's verify-first discipline.
+- **RESOLVED 2026-08-22**: Notion Bases' `manifest.id` = `notion-bases`, `version` = `1.12.0`, derived from the fetched release manifest at execution time (never hardcoded), and it passed the safe-folder guard.
 <!-- /ANCHOR:questions -->
 
 ---

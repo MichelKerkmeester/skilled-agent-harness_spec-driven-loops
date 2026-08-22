@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification"
-    last_updated_at: "2026-08-21T00:00:00Z"
+    last_updated_at: "2026-08-22T04:44:34Z"
     last_updated_by: "claude"
-    recent_action: "Shipped OBS-023 scenario, verify-notion-migration-parity.sh, and playbook/README edits"
-    next_safe_action: "Operator runs BRAT install of notion-bases in real vault, then runs the parity script"
+    recent_action: "BRAT-headless install of notion-bases v1.12.0 executed + verified in the real vault"
+    next_safe_action: "None — 015 capability complete; migration run is a separate action"
     blockers: []
     key_files: ["../001-deep-research/research/research.md", "spec.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "015-004-plugin-install-and-verification"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -95,6 +95,27 @@ _memory:
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Real Install Execution (operator-approved, executed 2026-08-22)
+
+<!-- This phase covers the actual real-vault action, run in a later, separately
+gated session after operator go-ahead — not part of the Phase 1-3 doc/script
+authoring session above. -->
+
+- [x] T014 Execute the `OBS-023` BRAT-headless install of Notion Bases into the real vault (out-of-repo, `.obsidian/plugins/notion-bases/`) [operator-approved]
+  - **Evidence**: `main.js` (750825 bytes), `manifest.json` (655 bytes), `styles.css` (118828 bytes) staged; `manifest.id` = `notion-bases`, `version` = `1.12.0`, derived from the fetched manifest (never hardcoded) and passed the safe-folder guard.
+- [x] T015 Register the plugin: update `community-plugins.json` and initialize BRAT's `data.json`
+  - **Evidence**: `community-plugins.json` — `notion-bases` added, entry count 11 → 12, backup written at `community-plugins.json.bak`. BRAT `data.json` was absent, so it was created fresh: `pluginList=["bgarciamoura/obsidian-notion-bases-plugin"]`, `pluginSubListFrozenVersion=[{repo, version:"1.12.0"}]`.
+- [x] T016 Verify Dataview's already-installed branch and leave it untouched
+  - **Evidence**: `.obsidian/plugins/dataview/` was already present in the target vault; the scenario's verify-first discipline took the already-present branch and made no write to it.
+- [x] T017 Confirm activation status and rollback availability
+  - **Evidence**: Obsidian was closed during the write, so activation completes when the operator next opens Obsidian (not independently confirmed active by this task). Rollback remains available and was not needed: `rm -rf .obsidian/plugins/notion-bases/`; `rm -f .obsidian/plugins/obsidian42-brat/data.json`; `mv community-plugins.json.bak community-plugins.json`.
+- [x] T018 Run `verify-notion-migration-parity.sh` against the real vault — done-as-designed, not executed
+  - **Evidence**: the script validates a *completed migration* (its 8 ledger-dependent checks need a migration ledger), not an arbitrary existing vault state — running it here would only exercise the 3 structural checks against a vault with no migration content. It was proven functional against fixtures during Phase 004 authoring (T006: 3 PASS/0 FAIL/8 SKIP on an empty vault; 8 PASS/3 FAIL/0 SKIP on a synthetic fixture + ledger). Running it against the real vault is deferred until an actual migration produces a ledger — a separate future action per `spec.md` Out of Scope.
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -104,8 +125,10 @@ _memory:
   - **Evidence**: `OBS-023` and `scripts/README.md` validated with `--type reference` (0 issues each); `scripts/README.md` also checked with `--type feature_catalog` (0 issues); `manual-testing-playbook.md` validated with `--type playbook` (0 issues, fixing the pre-existing `global_evidence_requirements` gap).
 - [x] `validate.sh <this-folder> --strict` = Errors:0
   - **Evidence**: `RESULT: PASSED`, `Summary: Errors: 0  Warnings: 0`.
-- [x] The real install (Phase 4 in `plan.md`) remains explicitly unexecuted pending operator go-ahead
-  - **Evidence**: no vault path under `iCloud~md~obsidian` was read or written this session; `OBS-023` documents the procedure without running it.
+- [x] The real install (Phase 4 in `plan.md`) remained explicitly unexecuted during the doc/script-authoring session (Phase 1-3 above)
+  - **Evidence**: no vault path under `iCloud~md~obsidian` was read or written during that session; `OBS-023` documented the procedure without running it.
+- [x] The real install has since executed and been verified in an operator-approved follow-up session (2026-08-22)
+  - **Evidence**: see Phase 4 (T014-T018) above; Notion Bases staged + registered in the real vault, Dataview left untouched, rollback documented and available, activation pending the operator's next Obsidian open.
 - [x] `checklist.md` fully verified for this phase's own planning scope
 <!-- /ANCHOR:completion -->
 

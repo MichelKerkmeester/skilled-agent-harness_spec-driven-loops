@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 004 — Notion Bases + Dataview real-vault install and verification"
-description: "Documentation + script pass: OBS-023 real-vault install scenario, the 11-check verify-notion-migration-parity.sh script, and the playbook/README index edits are shipped and validated. No vault was touched; the real install remains the sole, separately gated remaining step."
+description: "Documentation + script pass: OBS-023 real-vault install scenario, the 11-check verify-notion-migration-parity.sh script, and the playbook/README index edits are shipped and validated. The real install has since executed and been verified in the operator's real vault; activation completes on the operator's next Obsidian open."
 trigger_phrases:
   - "015 plugin install summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification"
-    last_updated_at: "2026-08-22T00:00:00Z"
+    last_updated_at: "2026-08-22T04:44:34Z"
     last_updated_by: "claude"
-    recent_action: "Shipped OBS-023 scenario, verify-notion-migration-parity.sh, and playbook/README edits"
-    next_safe_action: "Operator runs BRAT install of notion-bases in real vault, then runs the parity script"
+    recent_action: "BRAT-headless install of notion-bases v1.12.0 executed + verified in the real vault"
+    next_safe_action: "None — 015 capability complete; migration run is a separate action"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "015-004-plugin-install-and-verification"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,9 +36,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-plugin-install-and-verification |
-| **Completed** | Documentation + script deliverables complete 2026-08-22 — see Known Limitations for the one remaining leg |
+| **Completed** | Documentation + script deliverables complete 2026-08-22; real-vault install executed and verified the same day — see Verification and Known Limitations for the activation-on-next-open detail |
 | **Level** | 2 |
-| **Actual Effort** | ~1 hour (spec-authoring) + ~2.5 hours (doc + script implementation) |
+| **Actual Effort** | ~1 hour (spec-authoring) + ~2.5 hours (doc + script implementation) + real-vault install execution (operator-approved, 2026-08-22) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -46,7 +46,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This session shipped the three runtime deliverables the Phase 004 spec package planned: the `OBS-023` real-vault headless-install scenario, the `verify-notion-migration-parity.sh` 11-check verification script, and the two index edits that register them in `mcp-obsidian`. **No vault was read or written by this session** — `OBS-023` documents the install procedure; it does not execute it. The real install of Notion Bases (and, if genuinely absent, Dataview) into the operator's real vault is a separate, further-gated action for a future session with an explicit operator go-ahead.
+The Phase 004 doc-authoring session shipped the three runtime deliverables the spec package planned: the `OBS-023` real-vault headless-install scenario, the `verify-notion-migration-parity.sh` 11-check verification script, and the two index edits that register them in `mcp-obsidian`. That session did not read or write inside the vault — `OBS-023` documented the install procedure without executing it.
+
+**Update (2026-08-22): the real install has since executed and been verified.** In an operator-approved follow-up session, the `OBS-023` procedure was run against the real vault. Notion Bases (`manifest.id: notion-bases`, `version: 1.12.0`) was staged and registered via BRAT-headless install; Dataview was already present and left untouched per the scenario's verify-first discipline. Obsidian was closed during the write, so activation completes when the operator next opens Obsidian. Rollback remains available and was not needed. Running an actual Notion→Obsidian migration against this now-capable vault is a separate future action, not part of this packet.
 
 ### Files Changed
 
@@ -98,7 +100,12 @@ This session shipped the three runtime deliverables the Phase 004 spec package p
 | Script run against an empty `mktemp -d` vault, no ledger | 3 PASS, 0 FAIL, 8 SKIP, exit 0; temp dir removed after |
 | Script run against a synthetic fixture vault + ledger | 8 PASS, 3 FAIL, 0 SKIP, exit 1 — confirms the comparison logic actually catches mismatches, not just SKIPs |
 | `validate.sh <this-folder> --strict` | `RESULT: PASSED`, `Summary: Errors: 0  Warnings: 0` |
-| Real vault install | **NOT RUN, NOT AUTHORIZED** — gated behind a future, explicit operator go-ahead |
+| Real vault install — Notion Bases staged | Executed 2026-08-22 (operator-approved): `main.js` (750825 bytes), `manifest.json` (655 bytes), `styles.css` (118828 bytes) written to `.obsidian/plugins/notion-bases/`; `manifest.id`/`version` derived from the fetched manifest, not hardcoded |
+| Real vault install — registration | `community-plugins.json` — `notion-bases` added, entry count 11 → 12, backup at `community-plugins.json.bak`; BRAT `data.json` was absent so it was created fresh (`pluginList=["bgarciamoura/obsidian-notion-bases-plugin"]`, `pluginSubListFrozenVersion=[{repo, version:"1.12.0"}]`) |
+| Real vault install — Dataview | Already installed; verify-already-present branch taken, left untouched |
+| Real vault install — activation | Obsidian was closed during the write; activation completes on the operator's next Obsidian open — not independently confirmed active by this session |
+| Real vault install — rollback | Documented and available (`rm -rf .obsidian/plugins/notion-bases/`; `rm -f .obsidian/plugins/obsidian42-brat/data.json`; `mv community-plugins.json.bak community-plugins.json`); not needed — install succeeded |
+| `verify-notion-migration-parity.sh` against the real vault | **Not run — done-as-designed.** The script validates a completed migration (8 of 11 checks are ledger-dependent); it was proven functional against fixtures during Phase 004 authoring, not run against an arbitrary existing vault with no migration content |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -106,11 +113,11 @@ This session shipped the three runtime deliverables the Phase 004 spec package p
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The real install has not run.** `OBS-023` and `verify-notion-migration-parity.sh` are shipped and validated, but neither has been executed against the real vault at `/Users/michelkerkmeester/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester`. This session never read or wrote inside that vault.
-2. **Plugin ids remain unconfirmed until execution time.** The scenario derives both ids from a live release fetch by design; this summary does not assert a specific on-disk folder name for either plugin.
-3. **Whether Dataview is already present in the target vault is unverified by this session.** `OBS-023` checks for it at execution time rather than assuming either state.
-4. **The parity script has not been run against real migrated content or a real ledger.** Its 11 checks were exercised against an empty throwaway vault and a synthetic fixture only, per the dispatch scope — this proves the script executes and its comparison logic works, not that it has verified an actual migration.
-5. **This is the closing phase of the 015 packet's planning and authoring scope.** The one remaining action — the operator-approved real install, followed by running the parity script against real migrated content — is intentionally out of scope for this session and requires a fresh go-ahead per the framework's blast-radius rule.
+1. **Activation is pending the operator's next Obsidian open.** Notion Bases was staged and registered while Obsidian was closed; this session did not independently confirm the plugin loads and runs, only that the file-layer install and registration succeeded.
+2. **Plugin id confirmed for Notion Bases only.** `manifest.id` = `notion-bases`, `version` = `1.12.0`, derived from the fetched release (never hardcoded). Dataview's id was not re-derived because it was already installed and left untouched.
+3. **Dataview's presence is now confirmed, not assumed.** `OBS-023`'s verify-first check found Dataview already installed in the target vault and took the already-present branch; no write was made to it.
+4. **The parity script has not been run against real migrated content or a real ledger.** Its 11 checks were exercised against an empty throwaway vault and a synthetic fixture only. Running it against the real vault now would only exercise its 3 structural checks (no migration content exists yet to feed the 8 ledger-dependent checks) — this is deferred until an actual migration produces a ledger.
+5. **This closes the 015 packet's plugin-capability build.** The real install that this phase's own doc-authoring session deferred has since executed and been verified (2026-08-22). The one remaining action — running an actual Notion→Obsidian migration using the now-installed capability, then running the parity script against its ledger — is a separate future action, not part of this packet.
 <!-- /ANCHOR:limitations -->
 
 ---
