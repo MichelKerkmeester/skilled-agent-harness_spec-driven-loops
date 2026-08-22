@@ -39,19 +39,14 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "blocked",
+    "status": "complete",
     "key_files": [
       "implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "scratch/seam-executed.md",
-      "scratch/directive-to-command-gap.md",
       "scratch/parity-blocks-flip.md",
-      "scratch/missing-cutover-ready-producer.md",
-      "scratch/effects-have-no-producer.md",
-      "scratch/effect-producer-is-not-an-append-wrapper.md",
-      "scratch/full-suite-delta.md",
       "tasks.md"
     ],
     "entities": [
@@ -86,39 +81,9 @@
         "source": "derived"
       },
       {
-        "name": "directive-to-command-gap.md",
-        "kind": "doc",
-        "path": "scratch/directive-to-command-gap.md",
-        "source": "derived"
-      },
-      {
         "name": "parity-blocks-flip.md",
         "kind": "doc",
         "path": "scratch/parity-blocks-flip.md",
-        "source": "derived"
-      },
-      {
-        "name": "missing-cutover-ready-producer.md",
-        "kind": "doc",
-        "path": "scratch/missing-cutover-ready-producer.md",
-        "source": "derived"
-      },
-      {
-        "name": "effects-have-no-producer.md",
-        "kind": "doc",
-        "path": "scratch/effects-have-no-producer.md",
-        "source": "derived"
-      },
-      {
-        "name": "effect-producer-is-not-an-append-wrapper.md",
-        "kind": "doc",
-        "path": "scratch/effect-producer-is-not-an-append-wrapper.md",
-        "source": "derived"
-      },
-      {
-        "name": "full-suite-delta.md",
-        "kind": "doc",
-        "path": "scratch/full-suite-delta.md",
         "source": "derived"
       },
       {
@@ -198,11 +163,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "negative",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "empty",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deep-research state is produced by agents following prose",
     "created_at": "2026-08-19T06:57:07.880Z",
-    "last_save_at": "2026-08-20T18:58:08.818Z",
+    "last_save_at": "2026-08-22T19:15:15.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5d72437f5f1fe936fd88eddff8a7aeef752dfbbe12796864fac1e74a1d2ed46",
+    "source_fingerprint": "sha256:955a64fff3fe2db544bd0603b900c05b565d51c99d3e9e8b35c7b687b52194ad",
     "source_doc_hashes": {
-      "spec.md": "aa7305d8347d7b7b7ec3b0746fb1c9cc8a64e91d13eea4f0ed1c5ad14c483e15",
-      "plan.md": "6b5a5c48fcec891c8cdc1ef1bbeec86cd83ca63260904abdda3ef0fbf3434a44",
-      "tasks.md": "efc52c900dfdd83c9b2d08b2e894718408a1317ce192591988f42de3db585984",
-      "checklist.md": "d9a20beecbc41e17585282d0889502e2e0165d066972d6dce50a167fb9d58593",
-      "implementation-summary.md": "a895ca9fce5c4237b1897a4ede98a1ebfa9b81bd2b682de9e70044d2deae9d81"
+      "spec.md": "ac8f796d28f76c2887c91b79abf4d14954c43af4f65ce75162f9313bf3cb40c0",
+      "plan.md": "25baa795a753e6d149f8a6d4b7b08e2953d40bdcb1bc985ec8ecfd668099e9ea",
+      "tasks.md": "1dfe2d95861d540a4bedf1ab00f6493712d8f34eec2c57984cdabdd34eea1c54",
+      "checklist.md": "73ca71e2dea355133734ecb6d6410202042de4efb7c86dba9dc04382863f0dea",
+      "implementation-summary.md": "2e25cecfefb06eb7d8c3c74482b55029941d0063459877f11c6b41311a13246d"
     },
     "last_active_child_id": null,
     "last_active_at": null
