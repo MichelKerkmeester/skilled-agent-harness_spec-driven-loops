@@ -16,7 +16,7 @@ version: "0.1.0.0"
 
 # Notion Bases Plugin File-Layer Data Model
 
-The plugin persists a database's schema and view config in one `_database.md` file per database folder, and one column value per row `.md` file's frontmatter. Nothing lives outside vault markdown. Every shape below is the documented conceptual schema — exact key spelling is `VERIFY` against the installed plugin (see §7).
+The plugin persists a database's schema and view config in one `_database.md` file per database folder, and one column value per row `.md` file's frontmatter. Nothing lives outside vault markdown. This storage model, the 18 column types, the 7 view types, the 7 rollup functions and the `nb-database` embed syntax are all confirmed by the plugin's own README (v1.12.0, installed in the operator's vault). Only the exact per-column frontmatter key spelling inside a `_database.md` relation/rollup/lookup/subtask declaration remains a single open item — **VERIFY against a real database** before writing a production schema file (see §7).
 
 ---
 
@@ -28,7 +28,8 @@ The plugin persists a database's schema and view config in one `_database.md` fi
 | --- | --- | --- |
 | Schema + views | `<database-folder>/_database.md` frontmatter | Yes — read, back up, merge |
 | Row data | Every other `.md` file in that folder, one file per row | Yes — read/write frontmatter per column |
-| Column types (18 total) | Declared per column in `_database.md`; adds Relation, Lookup, Rollup, Formula, Image, Audio and Video beyond core Bases' 6 (title, text, number, select, multi-select, checkbox, date) | Yes for every text-representable type |
+| Column types (18 total, confirmed) | Declared per column in `_database.md`: `title, text, number, select, multiselect, checkbox, date, url, email, phone, status, formula, relation, lookup, image, rollup, audio, video`. Relation, Lookup and Rollup exist **only** through this plugin (or hand-authored Dataview) — core Obsidian Bases has none of them | Yes for every text-representable type |
+| View embed | `nb-database` fenced code block in any note (§6) | Yes — write, read, validate the block |
 | Enablement | `.obsidian/community-plugins.json` | Yes (already enabled when this reference set is loaded for a live vault) |
 | Rendering | The open Obsidian window | No — file-layer writes prove the schema, not the pixels |
 
@@ -44,7 +45,7 @@ The plugin persists a database's schema and view config in one `_database.md` fi
 
 A Relation column links rows across two databases (or within one, for subtasks — §4). As of v1.3.0+ the relation is **two-way**: declaring the back-reference on both sides keeps a forward and reverse column in sync.
 
-### Documented shape (illustrative — VERIFY exact keys)
+### Example schema (key spelling per §1 note)
 
 ```yaml
 # Projects/_database.md
@@ -85,19 +86,19 @@ The AI verifies a two-way relation by reading **both** notes: the Task's `projec
 
 A Rollup column aggregates one property across every row reached through a Relation column, and keeps the aggregate visible inline in the table view without a query block.
 
-### The 7 functions
+### The 7 functions (confirmed exact keywords)
 
 | Function | What it computes |
 | --- | --- |
 | `sum` | Total of a numeric property across related rows |
 | `count` | Number of related rows |
-| `average` | Mean of a numeric property across related rows |
+| `avg` | Mean of a numeric property across related rows |
 | `min` | Smallest value of a numeric property across related rows |
 | `max` | Largest value of a numeric property across related rows |
 | `count_values` (distinct) | Count of distinct values for a property across related rows |
 | `list` | Concatenated / clickable list of a property's values across related rows |
 
-### Documented shape (illustrative — VERIFY exact keys)
+### Example schema (key spelling per §1 note)
 
 ```yaml
 # Projects/_database.md
@@ -117,7 +118,7 @@ Because the aggregate is computed from ordinary frontmatter on ordinary notes, t
 
 A Lookup column pulls one literal property value from a single related row through a Relation column — it does not aggregate, it copies. This is the plugin's answer to Notion's `show_original` rollup function and to Bases' `asFile().properties` formula pattern.
 
-### Documented shape (illustrative — VERIFY exact keys)
+### Example schema (key spelling per §1 note)
 
 ```yaml
 # Tasks/_database.md
@@ -136,7 +137,7 @@ The AI resolves a Lookup value the same way as a Rollup: read the single related
 
 Subtasks reuse the Relation column type, targeting the **same** database, and the plugin's UI adds expand/collapse for the resulting hierarchy. The documented nesting limit is **3 levels**.
 
-### Documented shape (illustrative — VERIFY exact keys)
+### Example schema (key spelling per §1 note)
 
 ```yaml
 # Tasks/_database.md
@@ -165,21 +166,21 @@ The AI verifies a subtask chain by walking `parent_task` wikilinks from a leaf n
 
 ---
 
-## 6. THE 7 VIEW TYPES
+## 6. THE 7 VIEW TYPES (confirmed exact keywords)
 
 | View | Core Bases | Notion Bases plugin | Notes |
 | --- | --- | --- | --- |
-| Table | Yes | Yes | Default view; the only one the Obsidian Importer writes automatically |
-| Board (Kanban) | Yes | Yes | Groups rows by a select-type column |
-| List | Yes | Yes | — |
-| Calendar | Yes | Yes | Needs a date-type column |
-| Gallery | No | Yes | Core Bases has no gallery view |
-| Timeline / Gantt | No | Yes | Core Bases has no timeline view |
-| Chart | No | Yes (bar/line/pie) | v1.5.0+; core Bases has none, the Charts plugin is the file-layer alternative |
+| `table` | Yes | Yes | Default view; the only one the Obsidian Importer writes automatically |
+| `board` (Kanban) | Yes | Yes | Groups rows by a select-type column |
+| `list` | Yes | Yes | — |
+| `calendar` | Yes | Yes | Needs a date-type column |
+| `gallery` | No | Yes | Core Bases has no gallery view |
+| `timeline` | No | Yes | Core Bases has no timeline view; sometimes described as Gantt-style in the plugin's own UI copy |
+| `chart` | No | Yes (bar/line/pie) | v1.5.0+; core Bases has none, the Charts plugin is the file-layer alternative |
 
 This is 7 of Notion's 10 view types. **Form, Map and Dashboard have no Obsidian equivalent through this plugin or any other** — document them as lost per the migration research, not as a pending recipe.
 
-### Documented view-block shape (illustrative — VERIFY exact keys)
+### Example view-block schema (key spelling per §1 note)
 
 ```yaml
 # Projects/_database.md
@@ -191,11 +192,24 @@ views:
 
 The AI validates a view block structurally: the `type` is one of the 7 supported values above, and any column it references (`group_by`, a calendar/timeline date field, …) exists in the same schema's `columns` map. Confirming the view actually renders needs a running Obsidian and a reload.
 
+### Embedding a view in a note (confirmed syntax)
+
+A view is rendered in any note through the plugin's own **`nb-database`** fenced code block — this is confirmed by the plugin's README, distinct from a core Obsidian `.base` embed:
+
+````markdown
+```nb-database
+path: "Projects"
+type: board
+```
+````
+
+`path` names the database folder; `type` is optional and, when present, must be one of the 7 values in the table above.
+
 ---
 
 ## 7. WHAT THE AI MUST NOT DO
 
-- Never present the illustrative YAML shapes above as byte-verified plugin syntax — they are the documented conceptual schema, confirmed by the migration research's plugin evidence but not yet checked against an installed `main.js`/manifest. Mark exact key spelling `VERIFY` until an install confirms it.
+- Never present the per-column key names inside a `_database.md` relation/rollup/lookup/subtask example as byte-verified plugin syntax. The database definition, the 18 column types, the 7 view types, the 7 rollup functions, and the `nb-database` embed syntax are all confirmed by the plugin's own README (v1.12.0, installed in the operator's vault). Only the exact per-column YAML key spelling remains `VERIFY` against a real database.
 - Never claim a Rollup, Lookup or subtask feature works on a plugin version below v1.5.0, or a two-way Relation on a version below v1.3.0.
 - Never invent an 8th view type or claim Form/Map/Dashboard parity — the migration research is explicit that these have no Obsidian equivalent.
 - Never claim a schema or row edit rendered in the plugin's table/board/gallery/chart UI. File-layer verification proves the write; a reload proves the render, and that belongs to the plugin-install phase.

@@ -15,7 +15,7 @@ version: "0.1.0.0"
 
 # Notion Bases Plugin File-Layer Workflows
 
-These recipes change the **`_database.md` schema file and the frontmatter of row notes** the plugin reads. File writes are the operation; an in-app reload is the render step. Every schema key below is the documented conceptual shape — `VERIFY` exact spelling against the installed plugin before writing a production file (see `data-model.md` §7).
+These recipes change the **`_database.md` schema file and the frontmatter of row notes** the plugin reads. File writes are the operation; an in-app reload is the render step. The database definition, the column/view/rollup/lookup shapes and the `nb-database` embed syntax below are confirmed by the plugin's own README (v1.12.0, installed in the operator's vault). Only the exact per-column YAML key spelling remains a single open item — `VERIFY` against a real database before writing a production file (see `data-model.md` §1/§7).
 
 ---
 
@@ -232,6 +232,7 @@ Goal: add a named view to a database's `_database.md`.
 2. Confirm every column the view references (`group_by`, a date field, …) already exists in the schema.
 3. Add the view block to `_database.md`.
 4. Re-read the file and validate the view's `type` and referenced columns per step 1–2.
+5. To render the view in a note, embed it with the confirmed `nb-database` fenced code block (`data-model.md` §6), naming the database's `path` and, optionally, a `type`.
 
 ### Before
 
@@ -254,15 +255,24 @@ views:
     group_by: status
 ```
 
+Embedded in a note:
+
+````markdown
+```nb-database
+path: "Projects"
+type: board
+```
+````
+
 ### Checkpoint
 
-`view_block_valid`: `type` is one of the 7 supported values, and every referenced column exists in the same schema's `columns` map.
+`view_block_valid`: `type` is one of the 7 supported values, and every referenced column exists in the same schema's `columns` map. `nb_database_embed_valid`: the embedded block's `path` resolves to a real database folder and its optional `type` (if given) is one of the 7 supported values.
 
 ---
 
 ## 7. DATASOURCE SUPPLEMENT: DATAVIEW FOR AGGREGATIONS THE PLUGIN DOESN'T COVER
 
-The Notion Bases plugin's 7 rollup functions (`sum`, `count`, `average`, `min`, `max`, `count_values`, `list`) cover most Notion rollup patterns, but not every one. When a Notion rollup or cross-database aggregation has no matching plugin function — a custom filter-then-aggregate, a multi-hop rollup through more than one relation, or a computed value the plugin's spreadsheet-style formulas cannot express — fall back to a read-only Dataview query instead of forcing it into the plugin schema.
+The Notion Bases plugin's 7 rollup functions (`sum`, `count`, `avg`, `min`, `max`, `count_values`, `list`) cover most Notion rollup patterns, but not every one. When a Notion rollup or cross-database aggregation has no matching plugin function — a custom filter-then-aggregate, a multi-hop rollup through more than one relation, or a computed value the plugin's spreadsheet-style formulas cannot express — fall back to a read-only Dataview query instead of forcing it into the plugin schema.
 
 **Do not edit `references/plugins/dataview/*`.** This section only points to it: read `../dataview/workflows.md` for the query-authoring recipes and `../dataview/data-model.md` for the verified DQL grammar.
 
@@ -314,6 +324,7 @@ Run these named checkpoints after any Notion Bases operation:
 | `lookup_hand_resolved` | The lookup resolves to exactly one related row's real value |
 | `subtask_chain_within_limit` | The self-relation chain resolves and terminates within 3 levels |
 | `view_block_valid` | The view type is one of the 7 supported values and its referenced columns exist |
+| `nb_database_embed_valid` | The `nb-database` embed block's `path` resolves to a real database folder and its optional `type` is one of the 7 supported values |
 | `dataview_supplement_used_correctly` | Dataview was used only after the plugin's own columns were ruled out, and static fallbacks are labeled |
 
 The file layer proves the write. The render proves itself in-app after the user reloads the note — that check belongs to the plugin-install phase, not this reference set.

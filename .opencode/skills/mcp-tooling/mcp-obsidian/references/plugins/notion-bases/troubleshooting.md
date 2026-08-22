@@ -28,6 +28,7 @@ Diagnose the `_database.md` schema, the row notes and the relation graph separat
 | Lookup shows nothing or the wrong value | The relation resolves to zero or more than one related row |
 | Subtask nesting looks broken | Chain exceeds 3 levels, or a `parent_task` wikilink doesn't resolve |
 | A requested view never renders | The requested type is Form, Map or Dashboard — no Obsidian equivalent exists |
+| Embedded view shows nothing | The `nb-database` block's `path` doesn't match a real database folder, or its optional `type` is invalid |
 | Schema edit has no effect | `_database.md` invalid YAML, or Obsidian not reloaded |
 | Old values on screen | The note or pane needs a reload |
 
@@ -40,7 +41,8 @@ Diagnose the `_database.md` schema, the row notes and the relation graph separat
 3. For a relation, resolve the forward wikilink and confirm the target database's schema declares the matching `back_reference`.
 4. For a rollup or lookup, resolve the underlying relation first, then the target property, by hand.
 5. For a view, confirm its `type` is one of the 7 supported values and every referenced column exists.
-6. Check the render step last: the user must reload the note or pane after any file change.
+6. For an embedded view, confirm the `nb-database` block's `path` resolves to a real database folder and its optional `type` (if given) is one of the 7 supported values.
+7. Check the render step last: the user must reload the note or pane after any file change.
 
 ---
 
@@ -101,6 +103,7 @@ Two-way population is an in-app compute step — before the plugin runs, only th
 | Requested view type is Form, Map or Dashboard | Compare the request against the 7 supported types in `data-model.md` §6 | Document the request as lost — no Obsidian equivalent exists through this plugin or any other. For Dashboard, offer a note that embeds multiple Bases/Dataview blocks as an approximation, and say plainly that it is an approximation |
 | View type spelled incorrectly (`gant` for `timeline`) | Grep the schema for the exact `type` value | Correct to the exact supported value |
 | View references a column that doesn't exist | Compare `group_by` or a date field against the schema's `columns` map | Add the missing column, or fix the view to reference an existing one |
+| `nb-database` embed block's `path` doesn't match a real database folder | Compare the block's `path` against the vault's actual folder names | Correct the `path` value, or create the missing database folder |
 
 ---
 
@@ -124,6 +127,7 @@ Two-way population is an in-app compute step — before the plugin runs, only th
 | Lookup ambiguous | Fix the relation's cardinality or switch to a `list` rollup |
 | Subtask chain too deep | Flatten to within 3 levels; the plugin's documented limit is 3 |
 | Unsupported view requested | Document as lost (Form/Map) or offer an embedded-blocks approximation (Dashboard) |
+| `nb-database` embed shows nothing | Fix the block's `path` to a real database folder, or its `type` to a supported value |
 | Broken `_database.md` | Restore from `.bak` and re-apply only the intended edit |
 | Stale results | Reload the note or pane |
 
@@ -140,6 +144,7 @@ Two-way population is an in-app compute step — before the plugin runs, only th
 | `lookup_single_row_resolved` | The lookup's relation resolves to exactly one related row |
 | `subtask_chain_within_limit` | The self-relation chain resolves and terminates within 3 levels |
 | `view_type_supported` | The view's `type` is one of the 7 supported values, never Form/Map/Dashboard |
+| `nb_database_embed_valid` | The `nb-database` embed block's `path` resolves to a real database folder and its optional `type` is one of the 7 supported values |
 | `reload_advised` | The user knows a note or pane reload is required to see the render |
 
 ---
@@ -147,7 +152,7 @@ Two-way population is an in-app compute step — before the plugin runs, only th
 ## 9. LIMITS
 
 - The AI verifies files and computes aggregates by hand. The plugin renders in-app, so visual confirmation of a table/board/gallery/chart needs the user.
-- Exact `_database.md` key spelling is `VERIFY` until checked against the installed plugin (see `data-model.md` §7).
+- The database definition, the 18 column types, the 7 view types, the 7 rollup functions and the `nb-database` embed syntax are confirmed against the plugin's own README (v1.12.0, installed in the operator's vault). Only the exact per-column `_database.md` key spelling is `VERIFY` against a real database (see `data-model.md` §1/§7).
 - Form, Map and Dashboard views have no Obsidian equivalent through this plugin or any other — never present a workaround as parity.
 - Two-way relation population and rollup/lookup rendering both happen in-app; file-layer checks prove the schema and the underlying data, not the computed render.
 - Never fabricate a rollup, lookup or relation result. If the related rows on disk do not support the answer, report the gap.

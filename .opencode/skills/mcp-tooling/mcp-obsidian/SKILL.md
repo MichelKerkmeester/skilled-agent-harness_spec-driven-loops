@@ -2,7 +2,7 @@
 name: mcp-obsidian
 description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Excalidraw, Git, Outliner, Minimal) operated at the file layer. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.18.0.0
+version: 0.19.0.0
 ---
 
 <!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, excalidraw, excalidraw.md, drawing note, obsidian-git, vault git, auto backup, outliner, list editing, minimal theme, css theme, theme snippet -->
@@ -115,6 +115,11 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/notion-bases/data-model.md
              references/plugins/notion-bases/workflows.md
              references/plugins/notion-bases/troubleshooting.md
+           Local REST API:
+             references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md  (plugin index)
+             references/plugins/obsidian-local-rest-api/data-model.md
+             references/plugins/obsidian-local-rest-api/workflows.md
+             references/plugins/obsidian-local-rest-api/troubleshooting.md
 ```
 
 ### Two Decisions This Router Makes
@@ -278,6 +283,12 @@ INTENT_SIGNALS = {
                      "notion bases relation", "notion bases view", "database.md schema",
                      "self-relation subtask"],
     },
+    "PLUGIN_LOCAL_REST_API": {
+        "weight": 5,
+        "keywords": ["obsidian-local-rest-api", "local rest api plugin", "coddingtonbear",
+                     "rest api plugin", "vault rest api", "obsidian_verify_ssl",
+                     "vault_read", "vault_write", "vault_patch"],
+    },
     "PLUGINS": {
         "weight": 5,
         "keywords": ["plugin", "plugin automation", "community plugin"],
@@ -308,7 +319,7 @@ INTENT_SIGNALS = {
 }
 
 # NOTE: no "DEFAULT" entry — route_obsidian_resources() never indexes RESOURCE_MAP
-# by that key. The selected `intent` is one of the eighteen INTENT_SIGNALS keys above.
+# by that key. The selected `intent` is one of the nineteen INTENT_SIGNALS keys above.
 # Specific plugin intents always supersede generic PLUGINS whenever any specific signal matches: the highest specific score wins, a tie between specific intents disambiguates, and generic PLUGINS is considered only when no specific plugin signal matches.
 # The no-match case is owned by DEFAULT_RESOURCE, whose declared
 # fallback-only semantics mean it is SUGGESTED beside the disambiguation checklist,
@@ -377,6 +388,11 @@ RESOURCE_MAP = {
                        "references/plugins/notion-bases/data-model.md",
                        "references/plugins/notion-bases/workflows.md",
                        "references/plugins/notion-bases/troubleshooting.md"],
+    "PLUGIN_LOCAL_REST_API": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md",
+                       "references/plugins/obsidian-local-rest-api/data-model.md",
+                       "references/plugins/obsidian-local-rest-api/workflows.md",
+                       "references/plugins/obsidian-local-rest-api/troubleshooting.md"],
     "PLUGINS":        ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/beancount-finance/beancount-finance.md",
                        "references/plugins/obsidian-tables/obsidian-tables.md",
@@ -389,7 +405,8 @@ RESOURCE_MAP = {
                        "references/plugins/git/git.md",
                        "references/plugins/outliner/outliner.md",
                        "references/plugins/minimal/minimal.md",
-                       "references/plugins/notion-bases/notion-bases.md"],
+                       "references/plugins/notion-bases/notion-bases.md",
+                       "references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md"],
     "NOTION_MIGRATION": ["references/notion-migration.md"],
     "INSTALL":       ["references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
@@ -452,7 +469,7 @@ def route_obsidian_resources(request: str) -> dict:
         specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT", "PLUGIN_ICONIC",
                                    "PLUGIN_CHARTS", "PLUGIN_DATAVIEW", "PLUGIN_EXCALIDRAW",
                                    "PLUGIN_GIT", "PLUGIN_OUTLINER", "PLUGIN_MINIMAL", "PLUGIN_HEALTH",
-                                   "PLUGIN_NOTION_BASES")
+                                   "PLUGIN_NOTION_BASES", "PLUGIN_LOCAL_REST_API")
         matched_specific_plugin_intents = [
             plugin_intent
             for plugin_intent in specific_plugin_intents
@@ -737,6 +754,10 @@ await call_tool_chain({
 - `references/plugins/notion-bases/data-model.md` — `_database.md` schema: two-way relation columns, the 7 rollup functions, lookup columns, self-relation subtasks, and the 7 view types
 - `references/plugins/notion-bases/workflows.md` — Notion Bases file-layer recipes plus a Dataview supplement for aggregations the plugin doesn't cover
 - `references/plugins/notion-bases/troubleshooting.md` — Notion Bases failure and recovery recipes: schema mismatch, missing back-reference, unsupported view type
+- `references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md` — Local REST API plugin index (repo `coddingtonbear/obsidian-local-rest-api`), the HTTP/HTTPS backend the cyanheads MCP rides on
+- `references/plugins/obsidian-local-rest-api/data-model.md` — `data.json` config surface, the `OBSIDIAN_API_KEY`/`OBSIDIAN_BASE_URL`/`OBSIDIAN_VERIFY_SSL` env keys, and the two loopback endpoints
+- `references/plugins/obsidian-local-rest-api/workflows.md` — Enable the plugin, read the API key, wire the MCP, and the app-must-be-running boundary
+- `references/plugins/obsidian-local-rest-api/troubleshooting.md` — MCP-not-found, auth, SSL/`OBSIDIAN_VERIFY_SSL`, and port-conflict recovery recipes
 
 Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc for both CLI profiles and the MCP; `references/troubleshooting.md` is the router's INSTALL/TROUBLESHOOT-intent target.
 

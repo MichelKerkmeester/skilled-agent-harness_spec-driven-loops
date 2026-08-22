@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in"
-    last_updated_at: "2026-08-22T04:06:26Z"
+    last_updated_at: "2026-08-22T08:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Built notion-bases 4-file tree, catalog entry, OBS-022 scenario, router intent, manifest regen"
+    recent_action: "Reopened: de-hedged notion-bases refs, added local-rest-api folder + router intent"
     next_safe_action: "Phase 004: real-vault install + verification script"
     blockers: []
     key_files: ["../001-deep-research/research/research.md", "spec.md"]
@@ -87,12 +87,31 @@ _memory:
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Post-Install Verification + Local REST API (Reopened 2026-08-22)
+
+- [x] T018 Re-read `notion-bases/{notion-bases,data-model,workflows,troubleshooting}.md` and de-hedge every `VERIFY`/"assume"/"likely" claim confirmed by the plugin's own README (database definition, 18 column types, 7 view types, 7 rollup functions, `nb-database` embed syntax) [45m]
+- [x] T019 Correct rollup function `average` → `avg` (exact plugin keyword) across `data-model.md` and `workflows.md` [10m]
+- [x] T020 Add the `nb-database` embed syntax to `notion-bases.md` §2, `data-model.md` §6, and a workflow step + checkpoint in `workflows.md` §6, plus matching failure modes in `troubleshooting.md` [30m]
+- [x] T021 Consolidate the repeated per-example `VERIFY exact keys` headers into a single up-front note per file, keeping the per-column frontmatter key spelling as the one remaining `VERIFY` item [15m]
+- [x] T022 Author `references/plugins/obsidian-local-rest-api/{obsidian-local-rest-api,data-model,workflows,troubleshooting}.md`, mirroring the Dataview 4-file shape, grounded in `SKILL.md`/`references/mcp-tools.md`/`references/troubleshooting.md` [1h]
+- [x] T023 Edit `mcp-obsidian/SKILL.md`: add `PLUGIN_LOCAL_REST_API` intent (§2, `INTENT_SIGNALS`, `RESOURCE_MAP`, `PLUGINS` aggregate, `specific_plugin_intents`, §8 References), additive-only; bump `version` 0.18.0.0 → 0.19.0.0 [20m]
+- [x] T024 Author `changelog/v0.19.0.0.md` [15m]
+- [x] T025 Regenerate `leaf-manifest.json` (`generate-leaf-manifest.cjs --write .opencode/skills/mcp-tooling`) [5m]
+- [x] T026 Run `validate_document.py --type feature_catalog` on all 4 `notion-bases/*.md` + all 4 `obsidian-local-rest-api/*.md` (8/8, 0 issues each), `--type skill` on `SKILL.md`, `--type changelog` on `v0.19.0.0.md` [15m]
+- [x] T027 Run `ci-leaf-manifest-freshness.cjs` — confirm `OK mcp-tooling` [5m]
+- [x] T028 Regenerate `description.json` (`generate-description.js`) and `graph-metadata.json` (`backfill-graph-metadata.js`) to clear the source-fingerprint drift from the reopened edits, then run `validate.sh <this-folder> --strict` — Errors:0 [10m]
+- [x] T029 Reconcile `spec.md`/`tasks.md`/`checklist.md`/`implementation-summary.md`/`_memory.continuity` to the reopened-then-closed state [15m]
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] `validate_document.py` = 0 issues on all created/edited files (per-type breakdown in T014)
+- [x] `validate_document.py` = 0 issues on all created/edited files (per-type breakdown in T014, T026)
 - [x] `ci-leaf-manifest-freshness.cjs` reports `OK mcp-tooling`
 - [x] `checklist.md` fully verified
 <!-- /ANCHOR:completion -->
