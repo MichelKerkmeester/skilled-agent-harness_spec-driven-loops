@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 plugin install verification",
+      "notion bases dataview install real vault",
+      "migration parity verification script",
+      "015 plugin install plan",
+      "verify-notion-migration-parity plan",
+      "015 plugin install tasks",
+      "015 plugin install checklist",
+      "015 plugin install summary"
+    ],
+    "key_topics": [
+      "plugin",
+      "install",
+      "verification",
+      "notion",
+      "bases",
+      "dataview",
+      "real",
+      "vault",
+      "migration",
+      "parity",
+      "script",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mobile Documents",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Michel Kerkmeester",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Orchestration Process",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Cases",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation column it cannot yet write, because neither Notion Bases nor (potentially) Dataview is confirmed present in the operator's actual vault",
+    "created_at": "2026-08-21T22:01:25.732Z",
+    "last_save_at": "2026-08-22T04:29:21.045Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c448beb0496738e1323948c0e168d259ce670eee463446a4680b5856602176ca",
+    "source_doc_hashes": {
+      "spec.md": "f0580b719ee42681bdd858ae75a03237e5d3a5ff0c480b2e0a2c98b80386e266",
+      "plan.md": "525e275973b5de6efd39bf8ca31a99a5ab10fc0684646ea497d390e89d78d721",
+      "tasks.md": "dd9f25adaa58600185873cb8c3181104eddfce3538137c3437c33b51114c1bcd",
+      "checklist.md": "abc8764e2cf3136395c7c2846896ba943da099440fb94f0274fec7b5952c99bd",
+      "implementation-summary.md": "1e0e9fe48d8b502f2e322a7890c1c485e3a141afa7c397973da00c9c8f659c53"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

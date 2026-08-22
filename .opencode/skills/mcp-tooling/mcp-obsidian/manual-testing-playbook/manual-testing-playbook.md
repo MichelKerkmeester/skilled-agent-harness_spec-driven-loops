@@ -34,7 +34,7 @@ This package provides 19 deterministic scenarios across 6 categories:
 | Official app-backed CLI | `OBS-009..OBS-010` | Obsidian desktop v1.12.4+ and registered `obsidian` CLI |
 | MCP round-trip | `MCP-H001..MCP-H004` | Running Obsidian, Local REST API v4.0.0+, token, Code Mode manual |
 | MCP verification boundary | `MCP-M001..MCP-M002` | Same MCP prerequisites for live inventory; no-app boundary can be tested headlessly |
-| Community-plugin tie-ins | `OBS-011..OBS-022` | File-layer fixtures; app reload is required only for the render/activation check |
+| Community-plugin tie-ins | `OBS-011..OBS-023` | File-layer fixtures; app reload is required only for the render/activation check |
 
 The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the Local REST API + token setup, which may still be pending in an operator environment; those scenarios must be recorded as `SKIP` with that blocker rather than treated as an MCP failure.
 
@@ -63,7 +63,7 @@ The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the L
 
 ---
 
-## 3. EXECUTION POLICY AND EVIDENCE
+## 3. GLOBAL EVIDENCE REQUIREMENTS
 
 ### Execution Policy
 
@@ -75,15 +75,16 @@ The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the L
 
 ### Evidence Requirements
 
-Capture the following for every run:
+Each scenario MUST capture:
 
-- User request and exact prompt.
-- Shell transcript or Code Mode response.
-- Exit codes for CLI commands.
-- Tool discovery and schema output for MCP scenarios.
-- Relevant note path, vault name, or ledger path.
-- User-visible result, including the app state for official CLI scenarios.
-- Final verdict and rationale. A `SKIP` must name its missing prerequisite or sandbox constraint.
+1. User request and exact prompt.
+2. Shell transcript or Code Mode response, and exit codes for CLI commands.
+3. The relevant vault path, note path, or ledger path.
+4. For any scenario that edits a vault JSON file (`community-plugins.json`, a plugin's own `data.json`, `appearance.json`): the pre-write backup path and the resulting diff, or an explicit note that the file was created fresh (no prior backup existed) when it did not exist before the run.
+5. `jq empty` (or equivalent) re-parse output confirming every edited JSON file is still valid.
+6. Tool discovery and schema output for MCP scenarios; user-visible result, including the app state for official CLI scenarios.
+7. Final verdict and rationale. A `SKIP` must name its missing prerequisite or sandbox constraint.
+8. No credential, token, or secret value written to a vault file or captured in evidence.
 
 ---
 
@@ -228,7 +229,7 @@ Every scenario in this category needs a running Obsidian app with the target vau
 
 ---
 
-## 12. COMMUNITY-PLUGIN FILE-LAYER TIE-INS (`OBS-011..OBS-022`)
+## 12. COMMUNITY-PLUGIN FILE-LAYER TIE-INS (`OBS-011..OBS-023`)
 
 ### OBS-011 | Beancount file-layer transaction
 
@@ -374,6 +375,21 @@ Build a throwaway two-database fixture, declare a two-way relation, a `sum` roll
 > **Feature File:** [`plugin-tie-ins/notion-bases-relation-rollup.md`](plugin-tie-ins/notion-bases-relation-rollup.md) — owns the exact prompt, command sequence, and grading.
 > **Catalog:** [`../feature-catalog/plugins/notion-bases.md`](../feature-catalog/plugins/notion-bases.md)
 
+### OBS-023 | Notion Bases + Dataview real-vault headless install
+
+#### Description
+
+Stage a tagged Notion Bases release via BRAT into the operator's real vault, verify Dataview's presence rather than assuming a fresh install, activate both plugin IDs, and verify each file-layer stage plus the rollback.
+
+#### Scenario Contract
+
+Prompt: `Install Notion Bases and Dataview into my real Obsidian vault headlessly — stage Notion Bases through BRAT from its tagged GitHub release, verify Dataview is already installed and skip staging it if so, activate both plugin IDs, and report every verified stage plus the rollback if anything needs to be undone.`
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/notion-bases-dataview-install.md`](plugin-tie-ins/notion-bases-dataview-install.md)
+> **Catalog:** [`../feature-catalog/plugins/notion-bases.md`](../feature-catalog/plugins/notion-bases.md) and [`../feature-catalog/plugins/dataview.md`](../feature-catalog/plugins/dataview.md) — the scenario validates the real-vault BRAT install for Notion Bases and the verify-already-present path for Dataview.
+
 ---
 
 ## 13. AUTOMATED TEST CROSS-REFERENCE
@@ -423,3 +439,4 @@ The current mode package has no dedicated automated test suite for these externa
 | `OBS-020` | Outliner settings and defaults | Dedicated plugin reference in [`outliner-settings-defaults.md`](plugin-tie-ins/outliner-settings-defaults.md) |
 | `OBS-021` | Minimal theme activation | Dedicated plugin reference in [`minimal-theme-activation.md`](plugin-tie-ins/minimal-theme-activation.md) |
 | `OBS-022` | Notion Bases plugin relation/rollup/view round-trip | Dedicated plugin reference in [`notion-bases-relation-rollup.md`](plugin-tie-ins/notion-bases-relation-rollup.md) |
+| `OBS-023` | Notion Bases + Dataview real-vault headless install | Dedicated plugin reference in [`notion-bases-dataview-install.md`](plugin-tie-ins/notion-bases-dataview-install.md) |

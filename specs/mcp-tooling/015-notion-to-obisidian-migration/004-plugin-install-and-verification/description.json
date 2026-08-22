@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+  "description": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation",
+  "keywords": [
+    "phase",
+    "plans",
+    "notion",
+    "bases",
+    "knowledge",
+    "layer",
+    "without",
+    "plugin",
+    "installed",
+    "inert",
+    "agent",
+    "describe",
+    "two-way",
+    "relation"
+  ],
+  "lastUpdated": "2026-08-22T04:28:39.683Z",
+  "specId": "004",
+  "folderSlug": "plugin-install-and-verification",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
