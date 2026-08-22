@@ -42,6 +42,8 @@ Select flash with `--provider cline-pass --model cline-pass/cline-pass/deepseek-
 
 Both are reasoning models (`reasoning: true`) and inherit the global `defaultThinkingLevel: "xhigh"` from `.pi/settings.json`, so they run at Extra High by default. The Cline provider has no `max` tier for either, so `xhigh` is the top thinking level and the only one these entries use. The `compat.thinkingFormat: "deepseek"` hint matches how the DeepSeek Flash sibling is configured for the OpenRouter route, so thinking tokens parse correctly.
 
+Each model also carries a `thinkingLevelMap` (`{ "high": "high", "xhigh": "xhigh", … }`). Without it, pi's interactive picker cannot cycle past `high`: it derives a model's selectable thinking tiers from that map, and a bare `reasoning: true` custom model falls back to a `high` ceiling. The map exposes `high` and `xhigh` (Cline has no `max`); `--thinking xhigh` on the CLI works either way, but the picker needs the map to offer it. Mirrors the OpenRouter DeepSeek Flash map, which is how opencode's official cline-pass entry reaches `xhigh`.
+
 ### Two Gotchas That Silently Break It
 
 The provider `api` MUST be `"openai-completions"`, never a bare `"openai"`. A bare `openai` passes `pi auth check` and `--list-models` but throws at stream time (`No API provider registered for api: openai`). Every builtin OpenAI-compatible model, for example deepseek, uses `openai-completions`.

@@ -14,14 +14,16 @@
           "name": "DeepSeek V4 Flash",
           "reasoning": true,
           "contextWindow": 1000000,
-          "maxTokens": 393216
+          "maxTokens": 393216,
+          "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "max": null, "xhigh": "xhigh" }
         },
         {
           "id": "cline-pass/deepseek-v4-pro",
           "name": "DeepSeek V4 Pro",
           "reasoning": true,
           "contextWindow": 1000000,
-          "maxTokens": 384000
+          "maxTokens": 384000,
+          "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "max": null, "xhigh": "xhigh" }
         }
       ]
     },
