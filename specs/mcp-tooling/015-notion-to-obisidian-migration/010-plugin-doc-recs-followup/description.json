@@ -1,0 +1,25 @@
+{
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+  "description": "Phase 009 left five documentation items and one sibling-packet error unresolved",
+  "keywords": [
+    "phase",
+    "left",
+    "five",
+    "documentation",
+    "items",
+    "one",
+    "sibling-packet",
+    "error",
+    "unresolved"
+  ],
+  "lastUpdated": "2026-08-22T20:20:03.860Z",
+  "specId": "010",
+  "folderSlug": "plugin-doc-recs-followup",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

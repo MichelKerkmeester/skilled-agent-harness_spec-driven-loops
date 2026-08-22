@@ -45,7 +45,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Map
+## Phase 1: Setup
 
 - [x] T001 Grep the whole skill for `excalidraw` to inventory every artifact and wiring point (`.opencode/skills/mcp-tooling/mcp-obsidian/`) [15m]
   - **Evidence**: inventory = reference tree (4), catalog card, assets (2), manual tie-in; wiring in `SKILL.md` (loading map, INTENT_SIGNALS, RESOURCE_MAP, PLUGINS aggregate, tuple, headline list, keyword comment, count comment), README (4 spots), FEATURE-CATALOG (card + counts), plugin-operation-logic (list + artifact row), playbook (OBS-018 + summary row + count).
@@ -54,7 +54,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Remove
+## Phase 2: Implementation
 
 - [x] T002 Delete the four Excalidraw artifact groups (`references/plugins/excalidraw/`, `feature-catalog/plugins/excalidraw.md`, `assets/plugins/excalidraw/`, `manual-testing-playbook/plugin-tie-ins/excalidraw-drawing-note.md`) [10m]
   - **Evidence**: all verified gone on disk after `rm`.

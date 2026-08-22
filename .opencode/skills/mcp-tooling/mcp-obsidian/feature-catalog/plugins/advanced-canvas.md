@@ -47,7 +47,7 @@ The mode edits the `.canvas` JSON: it adds a `styleAttributes` object to nodes (
 ## 4. GUARDRAILS
 
 - Use only the confirmed `styleAttributes` values for `shape`, `border`, `path`, `arrow` and `pathfindingMethod` (`data-model.md` §3–§4); an unlisted value silently falls back to the default.
-- A portal is `portal: true` on a `file` node. A cross-portal ("interdimensional") edge lives in an `interdimensionalEdges` array on the portal `file` node with composite `portalId-nodeId` endpoints (`data-model.md` §5), never in the top-level `edges` array. The exact endpoint encoding is inferred, not byte-verified — confirm against a real portal file before hand-authoring.
+- A portal is `portal: true` on a `file` node. A cross-portal ("interdimensional") edge lives in an `interdimensionalEdges` array on the portal `file` node with composite `portalId-nodeId` endpoints (`data-model.md` §5), never in the top-level `edges` array. The exact endpoint encoding is confirmed from the plugin's own serialization code, only not yet byte-verified against a captured portal `.canvas` file (none exists — the vault is read-only).
 - The presentation start slide lives in `metadata.startNode` (canvas-level), never a per-node `isStartNode` flag.
 - Respect the version floor: Advanced Canvas 6.5.4 needs Obsidian 1.13.0+.
 - Never remove or rename native fields (`nodes`/`edges`/`id`/`type`/`x`/`y`/`width`/`height`) — that breaks the file for both the plugin and vanilla Obsidian.

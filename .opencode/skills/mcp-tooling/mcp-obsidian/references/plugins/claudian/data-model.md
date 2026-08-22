@@ -33,7 +33,7 @@ The paths in this document were **observed as literal strings in the compiled pl
 | Slash commands | `<scope>/commands/` — one command definition per file (Claude Code scope: `.claude/commands/`) | Yes — author, read, validate |
 | Reusable skills | `<scope>/skills/<name>/SKILL.md` — one folder per skill with a `SKILL.md` (Claude Code scope: `.claude/skills/`) | Yes — author, read, validate |
 | Subagents | `<scope>/agents/` (Claude Code `.claude/agents/`, Codex `.codex/agents/`, OpenCode `.opencode/agent/`) — reachable via `@` | Yes — author, read, validate |
-| MCP servers | The provider CLI's own native MCP config. **Not** a Claudian-authored file — Claudian does not write `.claude/mcp.json` (it removes that legacy file at init) | Read the provider CLI's own MCP config; **VERIFY** the exact path/shape against the CLI's docs (§5) |
+| MCP servers | The provider CLI's own native MCP config. **Not** a Claudian-authored file — Claudian does not write `.claude/mcp.json` (it removes that legacy file at init). For Claude Code it passes an in-memory `mcpServers` array to the runtime, not a file | For Claude Code the positive add-a-server surface is **UNKNOWN** (§5); for other CLIs read that CLI's own MCP config and **VERIFY** the exact path/shape against its docs (§5) |
 | Plan-mode output | `<vault>/.claude/plans/` (observed) — plans the agent writes in plan mode | Read — the agent authors these |
 | Rendering + agent loop | The open Obsidian window and the launched CLI | No — file writes prove the config, not the run |
 
@@ -155,7 +155,9 @@ When Claudian touches the Claude Code provider's own `.claude/settings.json`, it
 
 Claudian connects external tools **through each coding agent's own native, CLI-managed MCP configuration** — there is no Claudian-specific MCP registry, and Claudian does **not** author an MCP file of its own. In particular, `<vault>/.claude/mcp.json` is a **legacy** path that Claudian removes at storage init: do not write it, and do not tell an operator to merge a server into it (Claudian will delete it).
 
-MCP for a given provider is declared in **that provider CLI's own** MCP config, in the CLI's native shape, and the CLI picks it up on restart. The exact on-disk path and shape for each provider is the CLI's own — **VERIFY** it against that CLI's documentation before authoring. This reference deliberately does not pin a positive Claude-provider MCP path, because the removed `.claude/mcp.json` was never the right one and the correct positive mechanism is not established here.
+MCP for a given provider is declared in **that provider CLI's own** MCP config, in the CLI's native shape, and the CLI picks it up on restart. For a non-Claude provider, the exact on-disk path and shape are the CLI's own — **VERIFY** them against that CLI's documentation before authoring.
+
+For the **Claude Code** provider specifically, the installed `realclaudian` v2.2.4 `main.js` settles the question with a definitive negative: Claudian authors **no** on-disk MCP config for Claude Code. It removes the legacy `<vault>/.claude/mcp.json` at storage init and passes the server set to the Claude Code runtime as an in-memory `mcpServers` array (empty `[]` by default). The **positive** surface — how an operator adds a server so it reaches that runtime array — is **UNKNOWN**: it cannot be determined from the minified build, so this reference names no file path for it. Do not invent one.
 
 Prefer editing the provider CLI's existing MCP configuration (the same one the operator already uses in a terminal session) over inventing a parallel file.
 
@@ -182,5 +184,5 @@ These are the Claude Code CLI's own directories, surfaced because the vault is t
 - Never present a provider config path, filename or key as byte-verified when it is `VERIFY`. The `.claude/`, `.codex/`, `.opencode/` paths were observed in the compiled plugin, but the exact schema inside each file must be checked against a live install before authoring a production artifact.
 - Never assume one provider's config layout applies to another. Each CLI owns its own format.
 - Never claim a command, skill or MCP declaration took effect in the running agent. A file write proves the config; the agent picking it up needs a restart in-app, which is the operator's step.
-- Never author `.claude/mcp.json` for Claudian, and never invent a Claudian MCP registry. Claudian removes `.claude/mcp.json` at init; MCP is configured in the provider CLI's own native MCP config (§5).
+- Never author `.claude/mcp.json` for Claudian, and never invent a Claudian MCP registry. Claudian removes `.claude/mcp.json` at init; MCP is configured in the provider CLI's own native MCP config (§5). For the Claude Code provider, Claudian writes no MCP file at all — it passes an in-memory `mcpServers` array to the runtime, and the positive add-a-server surface is UNKNOWN (§5).
 - Never document a mobile path or a workflow for a provider whose CLI is not installed — desktop-only, CLI-prerequisite.

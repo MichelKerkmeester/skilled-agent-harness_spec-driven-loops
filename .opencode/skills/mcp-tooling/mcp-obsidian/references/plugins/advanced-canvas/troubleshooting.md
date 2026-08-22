@@ -82,7 +82,7 @@ After (valid `shape`, nested correctly):
 | `portal` not set | Read the node for `portal: true` | Add `portal: true` to the `file` node |
 | Node is not a file node | Confirm `type: "file"` | A portal must be a `file` node whose `file` is a `.canvas` |
 | `file` path does not resolve | Compare the `file` value against the vault's real paths | Correct the path, or create the missing `.canvas` |
-| Cross-portal edge malformed | Look for an interdimensional edge in the top-level `edges` array, or a bad composite endpoint id | Move the edge into the portal node's `interdimensionalEdges[]`; its nested endpoint must be a composite `portalId-nestedNodeId` id. The container is confirmed; the exact endpoint encoding is inferred, so confirm against a real portal file, or let the plugin manage portal-internal edges after a reload |
+| Cross-portal edge malformed | Look for an interdimensional edge in the top-level `edges` array, or a bad composite endpoint id | Move the edge into the portal node's `interdimensionalEdges[]`; its nested endpoint must be a composite `portalId-nestedNodeId` id. The container is confirmed; the exact endpoint encoding is confirmed from the plugin's own serialization code and only lacks a byte-check against a captured portal `.canvas` file, or let the plugin manage portal-internal edges after a reload |
 
 ---
 
@@ -117,7 +117,7 @@ Advanced Canvas keys are additive, so a canvas stays openable in vanilla Obsidia
 | Style ignored | Correct the value to a confirmed enumeration and nest it in `styleAttributes` |
 | Floating edge snaps to a side | Remove the competing `fromSide`/`toSide` |
 | Portal blank | Set `portal: true` on a `file` node with a resolving `.canvas` path |
-| Cross-portal edge wrong | Move the edge into the portal node's `interdimensionalEdges[]` with a composite `portalId-nestedNodeId` endpoint; confirm the encoding against a real portal file, or let the plugin manage portal-internal edges |
+| Cross-portal edge wrong | Move the edge into the portal node's `interdimensionalEdges[]` with a composite `portalId-nestedNodeId` endpoint; the encoding is confirmed from the plugin's own serialization code and only lacks a byte-check against a captured portal `.canvas` file, or let the plugin manage portal-internal edges |
 | Presentation dead | Set `metadata.startNode` to a real node id; number branch edge labels |
 | Canvas will not open | Restore from `.bak`; re-apply only the intended edit; confirm native fields intact |
 | Feature absent | Update Obsidian to 1.13.0+ and enable the feature in settings |
@@ -144,7 +144,7 @@ Advanced Canvas keys are additive, so a canvas stays openable in vanilla Obsidia
 ## 9. LIMITS
 
 - The AI verifies the `.canvas` JSON and computes structure by hand. The plugin renders in-app, so visual confirmation of a shape, portal, presentation or export needs the user.
-- Every extended node/edge key and every `styleAttributes` value is confirmed against the installed build (`main.js` 6.5.4). Cross-portal ("interdimensional") edges live in an `interdimensionalEdges` array on the portal `file` node (`data-model.md` §5); the container is confirmed and only the exact composite endpoint-id encoding is inferred — confirm it against a real portal file before hand-authoring.
+- Every extended node/edge key and every `styleAttributes` value is confirmed against the installed build (`main.js` 6.5.4). Cross-portal ("interdimensional") edges live in an `interdimensionalEdges` array on the portal `file` node (`data-model.md` §5); the container is confirmed and the exact composite endpoint-id encoding is confirmed from the plugin's own serialization code, only lacking a byte-check against a captured portal `.canvas` file (none exists — the vault is read-only).
 - Export (PNG/SVG) is an in-app command with no file-layer key; the AI can only prepare the canvas JSON, not trigger the export.
 - Extended keys are additive and native-compatible, but a third-party tool that only understands native canvas can strip them — back up first.
 - Never claim a shape, edge, portal, presentation or export rendered in the plugin's UI. The JSON write proves the shape; a reload proves the render.

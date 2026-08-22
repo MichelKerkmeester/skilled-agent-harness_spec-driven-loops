@@ -10,7 +10,7 @@ trigger_phrases:
   - "notion bases subtasks recipe"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.1.0.0"
+version: "0.1.1.0"
 ---
 
 # Notion Bases Plugin File-Layer Workflows
@@ -304,6 +304,63 @@ The calendar is built entirely from the database's own notes: creating or editin
 
 `calendar_view_valid`: the view `type` is `calendar`, and the `calendarDateField` names a date frontmatter key that exists on the row notes.
 
+### 6b. Full Notion-style calendar — quick date entry, month/week modes, and an agenda supplement
+
+Goal: make the §6a calendar feel the way Notion's calendar does to *use* — set a date by clicking instead of hand-typing an ISO string, switch between month and week layouts, and keep a running agenda list beside the grid. Three plugins cooperate, each on its own layer, and §6a is the prerequisite: build the plain `calendar` view first, then layer these on. Do not repeat the §6a base steps here — this recipe only adds to them.
+
+#### What each layer contributes
+
+| Layer | Adds | Grounded in |
+| --- | --- | --- |
+| Notion Bases | The `calendar` view, the date field it keys on, and the month/week layout toggle | `notion-bases` installed `main.js` (v1.12.0) |
+| Meta Bind | A date-picker widget so a row's date is set by clicking, not typed | the Meta Bind reference set (`../meta-bind/workflows.md` §3) |
+| Dataview | An optional read-only agenda list beside the grid | the Dataview reference set (`../dataview/`) |
+
+#### Step 1 — add the month/week layout toggle
+
+Extend the §6a `calendar` view with `calendarViewMode`. The plugin reads it as the initial layout and shows an in-pane toggle; when the key is absent it defaults to `month`:
+
+```yaml
+# Tasks/_database.md  (frontmatter)
+notion-bases: true
+views:
+  - name: "Calendar"
+    type: calendar
+    calendarDateField: dueDate   # a type:date column id — the field the grid keys on
+    calendarViewMode: month      # initial layout; the toggle switches month and week
+```
+
+`calendarDateField` must name a column whose `type` is `date` — the plugin only offers date-type columns for it. `calendarViewMode` accepts `month` (the default) or `week`; the v1.12.0 layout toggle exposes only those two. A day or agenda layout is **not** a calendar mode the plugin renders — use the Step 3 Dataview agenda for a linear list rather than asserting a mode that does not exist. There is likewise no confirmed start/end-field pair for multi-day event spans: a row sits on the single day named by its `calendarDateField`, so treat a spanned event as UNCONFIRMED and model it as a single dated note.
+
+#### Step 2 — quick date entry with a Meta Bind date picker
+
+Typing `dueDate: 2026-08-24` by hand is the file-layer fallback; the Notion feel is a click-to-pick control. Put a Meta Bind date picker in the row note's body, bound to the same frontmatter key the calendar keys on:
+
+```markdown
+Due: `INPUT[datePicker:dueDate]`
+```
+
+Editing the picker writes `dueDate`; once the pane reloads, the calendar places the note on that day. The `INPUT[datePicker:...]` widget shape is owned and confirmed by the Meta Bind reference set (`../meta-bind/workflows.md` §3) — this recipe points to it and never edits the Meta Bind docs. A note that is also a Meta Bind task-timer row can key the calendar on the timer's `startTime` instead (`../meta-bind/workflows.md` §2) — one note, one date, both surfaces.
+
+#### Step 3 — an optional Dataview agenda beside the grid
+
+The calendar grid answers "what falls on this day"; an agenda answers "what is coming up, in order". Dataview supplies the linear view the calendar's own toggle does not. Keep it read-only and in a **separate note or pane** — never fold it into `_database.md`:
+
+````markdown
+```dataview
+TABLE dueDate AS "Due"
+FROM "Tasks"
+WHERE dueDate >= date(today)
+SORT dueDate ASC
+```
+````
+
+Resolve the query by hand from the row notes before promising a result (`../dataview/workflows.md` §2), and read `../dataview/data-model.md` for the verified `date(today)`/`SORT` grammar. This stays a supplement per §7 and the guardrails: the calendar view is the primary surface, and Dataview only adds the agenda.
+
+#### Checkpoint
+
+`calendar_recipe_wired`: the `_database.md` carries `notion-bases: true` and a `calendar` view whose `calendarDateField` names an existing `type: date` column; `calendarViewMode`, if set, is `month` or `week`; the Meta Bind `datePicker`, if used, binds the same date key; and any Dataview agenda is a read-only block outside `_database.md`, hand-resolved against real row notes.
+
 ---
 
 ## 7. DATASOURCE SUPPLEMENT: DATAVIEW FOR AGGREGATIONS THE PLUGIN DOESN'T COVER
@@ -361,6 +418,7 @@ Run these named checkpoints after any Notion Bases operation:
 | `subtask_chain_within_limit` | The self-relation chain resolves and terminates within 3 levels |
 | `view_block_valid` | The view type is one of the 7 supported values and its referenced columns exist |
 | `calendar_view_valid` | The calendar view's `calendarDateField` names a date key that exists on the row notes |
+| `calendar_recipe_wired` | The full calendar recipe (§6b) is wired: `notion-bases: true` plus a `calendar` view on an existing `type: date` column, `calendarViewMode` (if set) is `month`/`week`, any Meta Bind `datePicker` binds the same date key, and any Dataview agenda is a hand-resolved read-only block outside `_database.md` |
 | `nb_database_embed_valid` | The `nb-database` embed block's `path` resolves to a real database folder and its optional `type` is one of the 7 supported values |
 | `dataview_supplement_used_correctly` | Dataview was used only after the plugin's own columns were ruled out, and static fallbacks are labeled |
 

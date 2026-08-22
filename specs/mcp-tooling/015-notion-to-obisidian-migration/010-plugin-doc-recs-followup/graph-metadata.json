@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
   "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
@@ -11,50 +11,44 @@
   },
   "derived": {
     "trigger_phrases": [
-      "015 excalidraw deprecation",
-      "remove excalidraw from obsidian skill",
-      "deprecate excalidraw plugin",
-      "excalidraw skill footprint removal",
-      "015 excalidraw deprecation plan",
-      "remove excalidraw wiring plan",
-      "015 excalidraw deprecation tasks",
-      "015 excalidraw deprecation checklist",
-      "015 excalidraw deprecation summary"
+      "015 plugin doc recs followup",
+      "dataview file.day folder fix",
+      "claudian positive mcp path unknown",
+      "advanced-canvas interdimensional caveat tighten",
+      "015 plugin doc recs followup plan",
+      "mcp-obsidian deferred docs plan",
+      "015 plugin doc recs followup tasks",
+      "015 plugin doc recs followup checklist",
+      "015 plugin doc recs followup summary"
     ],
     "key_topics": [
-      "excalidraw",
-      "deprecation",
-      "remove",
-      "obsidian",
-      "skill",
-      "deprecate",
       "plugin",
-      "footprint",
-      "removal",
-      "plan",
-      "wiring",
-      "tasks"
+      "doc",
+      "recs",
+      "followup",
+      "dataview",
+      "file",
+      "day",
+      "folder",
+      "claudian",
+      "positive",
+      "mcp",
+      "path"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "plan.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -76,9 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "Deprecate Excalidraw",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -94,19 +88,25 @@
         "source": "derived"
       },
       {
-        "name": "Every Excalidraw",
+        "name": "Phase Context Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Project Manager",
+        "name": "Purpose Resolve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -124,25 +124,25 @@
         "source": "derived"
       },
       {
-        "name": "Overview Excalidraw",
+        "name": "Overview Read",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Meta Bind",
+        "name": "Pattern Facts",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "All Excalidraw",
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Pure",
+        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,7 +160,19 @@
         "source": "derived"
       },
       {
-        "name": "Remove Excalidraw",
+        "name": "Adding Metadata",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary Errors",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -172,27 +184,15 @@
         "source": "derived"
       },
       {
-        "name": "All Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The `mcp-obsidian` skill carried a full Excalidraw integration (a four-file reference tree, a feature-catalog card, two assets, a manual-testing tie-in, and router wiring across `SKILL.md`, README, FEATURE-CATALOG, plugin-operation-logic and the playbook)",
-    "created_at": "2026-08-22T13:09:10.941Z",
-    "last_save_at": "2026-08-22T20:11:41.390Z",
+    "causal_summary": "Phase 009 left five documentation items and one sibling-packet error unresolved",
+    "created_at": "2026-08-22T20:16:22.967Z",
+    "last_save_at": "2026-08-22T20:20:20.008Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fd41bf3315bd0ab2629a05233786c9ebdeb7601c309027dace57221ba6e7627",
+    "source_fingerprint": "sha256:ab7ebf4fe0617a03d0bc2025a427d5537c191734561ea057e879903a978e3f05",
     "source_doc_hashes": {
-      "spec.md": "ce1d4f6adb183ad945c5ddfea94fb1d2f2f05c3b22586fb0f72a1a1692ab268c",
-      "plan.md": "0209c0b6c802075a6bd7e751421cf2424dec90f37165215fb44c1b6d1b5559b5",
-      "tasks.md": "0a29c392154d1e72df12ee9a66fdefe261a1041b8b1df9bad2934e5fa4257118",
-      "checklist.md": "bff0588a69b9fc83e4c0b4946887d6ea8cab9d86da6b79313268f0592a659d0a",
-      "implementation-summary.md": "4664cac73e38c438a3dee5718414e39e1f73c38708e7bc42d39e44ae848f1a5f"
+      "spec.md": "bdd498cfb10d0e7c2eae0659f1b81b4001d30443801048326b54d52fd6ddad87",
+      "plan.md": "cfad787951898f5b4c0fac5f881bad347c2504c4f550fe17541820ad8650ded1",
+      "tasks.md": "2515b00ad8deffd3b5bc4d56f97bbf88c5956a84c12f2b106ed5e458dd007667",
+      "checklist.md": "34a3adc5933c6c35005489d6f41a9bb384256bc40e27a77e0570a27f6d76f421",
+      "implementation-summary.md": "b2a52235184c12e02526d35feab6538e5bdebb85da7ab453c7fb0540f0dbd01d"
     },
     "last_active_child_id": null,
     "last_active_at": null

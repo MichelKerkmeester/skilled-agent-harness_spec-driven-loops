@@ -122,7 +122,7 @@ Goal: expose an external MCP tool to the agent through the provider CLI's **own*
 ### Steps
 
 1. Identify the active provider CLI's **own** MCP config mechanism (Claude Code, Codex, OpenCode, … each have their own). Do **not** author `<vault>/.claude/mcp.json` — Claudian removes that legacy file at init, so a server declared there never loads (`data-model.md` §5).
-2. **VERIFY** the provider CLI's actual MCP config path and shape against that CLI's own documentation before editing; this reference does not pin a positive Claude-provider MCP path.
+2. For a non-Claude provider, **VERIFY** the CLI's actual MCP config path and shape against that CLI's own documentation before editing. For **Claude Code**, Claudian authors no on-disk MCP file — it passes an in-memory `mcpServers` array to the runtime (empty by default), and the positive surface for adding a server is **UNKNOWN** from the installed build (`data-model.md` §5); do not invent `.claude/mcp.json` or any other path for it.
 3. Back up the CLI's real MCP config (`.bak`), then merge the server entry key by key into its existing server map — do not overwrite other servers.
 4. Re-read the file, confirm it is valid JSON/TOML and the command it names exists, and tell the operator to restart the agent so the CLI reloads its MCP config.
 

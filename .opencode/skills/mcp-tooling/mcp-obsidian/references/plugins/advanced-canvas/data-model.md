@@ -182,7 +182,7 @@ The embedded canvas's nodes are loaded and rendered inside the portal at runtime
 }
 ```
 
-The `interdimensionalEdges` container is confirmed from the JSON Canvas typings and the installed build. The exact persisted endpoint-id encoding (`portalId-nestedNodeId`) is derived from the plugin's runtime rewrite and has not been byte-verified against a captured portal `.canvas` — confirm the endpoint syntax against one real portal file before relying on a hand-authored recipe. The conservative path remains to author edges between top-level nodes and let the plugin manage portal-internal edges.
+The `interdimensionalEdges` container is confirmed from the JSON Canvas typings and the installed build. The exact persisted endpoint-id encoding (`portalId-nestedNodeId`) is confirmed from the plugin's own serialization code — it builds the endpoint by joining the portal id and the nested node id with a `-` delimiter — and is only unverified at the byte level, since no captured portal `.canvas` file exists to diff against (the vault is read-only). The conservative path remains to author edges between top-level nodes and let the plugin manage portal-internal edges.
 
 ---
 
@@ -222,7 +222,7 @@ Older canvases stored the start slide as a per-node `isStartNode` flag; the plug
 ## 7. WHAT THE AI MUST NOT DO
 
 - Never write a `shape`, `border`, `path`, `arrow` or `pathfindingMethod` value outside the confirmed enumerations in §3–§4. An unknown value silently falls back to the default.
-- Cross-portal ("interdimensional") edges live in an `interdimensionalEdges` array on the portal `file` node, with composite `portalId-nestedNodeId` endpoints (§5) — never put them in the top-level `edges` array, and never use `-` in a manually-chosen node id (it collides with the composite-id scheme). The exact endpoint encoding is inferred, not byte-verified; confirm against a real portal file before hand-authoring, or let the plugin manage portal-internal edges.
+- Cross-portal ("interdimensional") edges live in an `interdimensionalEdges` array on the portal `file` node, with composite `portalId-nestedNodeId` endpoints (§5) — never put them in the top-level `edges` array, and never use `-` in a manually-chosen node id (it collides with the composite-id scheme). The exact endpoint encoding is confirmed from the plugin's own serialization code but not yet byte-verified against a captured portal `.canvas` file; for a fully byte-verified path, let the plugin manage portal-internal edges.
 - Never write the presentation start slide as a per-node `isStartNode` flag. It belongs in `metadata.startNode` on this build.
 - Never remove or rename the native `nodes`/`edges` arrays or a node's core `id`/`type`/`x`/`y`/`width`/`height` fields — that breaks the file for both the plugin and vanilla Obsidian.
 - Never claim a node, edge, portal, presentation or export rendered in the plugin's UI. The JSON write proves the shape; a canvas reload proves the render, and that belongs to the plugin-install phase.

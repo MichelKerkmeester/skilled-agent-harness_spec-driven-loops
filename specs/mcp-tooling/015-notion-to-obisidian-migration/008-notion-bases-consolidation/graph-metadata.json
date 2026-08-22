@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-consolidation",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-consolidation",
   "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
@@ -11,50 +11,44 @@
   },
   "derived": {
     "trigger_phrases": [
-      "015 excalidraw deprecation",
-      "remove excalidraw from obsidian skill",
-      "deprecate excalidraw plugin",
-      "excalidraw skill footprint removal",
-      "015 excalidraw deprecation plan",
-      "remove excalidraw wiring plan",
-      "015 excalidraw deprecation tasks",
-      "015 excalidraw deprecation checklist",
-      "015 excalidraw deprecation summary"
+      "015 notion bases consolidation",
+      "notion bases calendar recipe",
+      "mcp-obsidian calendar workflow",
+      "notion-style calendar obsidian recipe",
+      "015 notion bases consolidation plan",
+      "notion bases calendar recipe plan",
+      "015 notion bases consolidation tasks",
+      "015 notion bases consolidation checklist",
+      "015 notion bases consolidation summary"
     ],
     "key_topics": [
-      "excalidraw",
-      "deprecation",
-      "remove",
+      "notion",
+      "bases",
+      "consolidation",
+      "calendar",
+      "recipe",
+      "mcp-obsidian",
+      "workflow",
+      "notion-style",
       "obsidian",
-      "skill",
-      "deprecate",
-      "plugin",
-      "footprint",
-      "removal",
       "plan",
-      "wiring",
-      "tasks"
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "plan.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -76,7 +70,31 @@
         "source": "derived"
       },
       {
-        "name": "Deprecate Excalidraw",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Project Manager",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Meta Bind",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases Calendar",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -94,24 +112,6 @@
         "source": "derived"
       },
       {
-        "name": "Every Excalidraw",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Project Manager",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -124,25 +124,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Excalidraw",
+        "name": "Overview Confirm",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Meta Bind",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "All Excalidraw",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Pure",
+        "name": "Pattern Verify",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,19 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "Remove Excalidraw",
+        "name": "Record Project Manager",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "All Phase",
+        "name": "Record Meta Bind",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -188,11 +170,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Cases",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The `mcp-obsidian` skill carried a full Excalidraw integration (a four-file reference tree, a feature-catalog card, two assets, a manual-testing tie-in, and router wiring across `SKILL.md`, README, FEATURE-CATALOG, plugin-operation-logic and the playbook)",
-    "created_at": "2026-08-22T13:09:10.941Z",
-    "last_save_at": "2026-08-22T20:11:41.390Z",
+    "causal_summary": "Phase 007 deferred four consolidation items to `008-notion-bases-consolidation`, but that folder was never built, so 007's prose pointed at a phantom sibling and one real content gap stayed open: the shipped `mcp-obsidian` notion-bases docs had a basic calendar view (`workflows.md` §6a) but no end-to-end Notion-style calendar recipe — no quick date entry, no month/week layout guidance, and no agenda companion",
+    "created_at": "2026-08-22T19:53:19.275Z",
+    "last_save_at": "2026-08-22T19:56:25.280Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fd41bf3315bd0ab2629a05233786c9ebdeb7601c309027dace57221ba6e7627",
+    "source_fingerprint": "sha256:c9c5944c253ff744b181bf885e3a15034ae37113bce2367ffff23397594a18a9",
     "source_doc_hashes": {
-      "spec.md": "ce1d4f6adb183ad945c5ddfea94fb1d2f2f05c3b22586fb0f72a1a1692ab268c",
-      "plan.md": "0209c0b6c802075a6bd7e751421cf2424dec90f37165215fb44c1b6d1b5559b5",
-      "tasks.md": "0a29c392154d1e72df12ee9a66fdefe261a1041b8b1df9bad2934e5fa4257118",
-      "checklist.md": "bff0588a69b9fc83e4c0b4946887d6ea8cab9d86da6b79313268f0592a659d0a",
-      "implementation-summary.md": "4664cac73e38c438a3dee5718414e39e1f73c38708e7bc42d39e44ae848f1a5f"
+      "spec.md": "17d97213e5aab75408c18d727585c142ff89da98d813c330b6cb0c91240a5fd6",
+      "plan.md": "cf68f3d84fe0799a68fa6e048e59127b5e09788b6cf63cbfecdad20213299ae7",
+      "tasks.md": "ab66bbe72726f7bc9f2ff2a724177daad2f69b417143d6c3a42082a842269f69",
+      "checklist.md": "79f75787d9f14ace21a25473f579b8ef4e3d67e5501203dc53907825b2f28862",
+      "implementation-summary.md": "451c66a305cde18329d13249fce34f82871182a3470b0cc79dbc15ed19cb294a"
     },
     "last_active_child_id": null,
     "last_active_at": null

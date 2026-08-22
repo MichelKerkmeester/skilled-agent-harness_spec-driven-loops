@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation"
-    last_updated_at: "2026-08-22T18:34:50Z"
+    last_updated_at: "2026-08-22T20:11:12Z"
     last_updated_by: "claude"
-    recent_action: "removed the Excalidraw skill footprint (files + router wiring + narrative docs)"
-    next_safe_action: "None — phase complete; the broader consolidation is 008"
+    recent_action: "Renamed tasks.md phase headers to canonical Setup/Implementation; refreshed generated metadata"
+    next_safe_action: "None — phase complete; validate --strict clean"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:

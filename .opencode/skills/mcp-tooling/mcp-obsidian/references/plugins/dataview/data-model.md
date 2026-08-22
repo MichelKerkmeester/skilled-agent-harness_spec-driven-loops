@@ -168,7 +168,7 @@ Progress:: 70
 ```
 
 - The key is trimmed, the value is trimmed.
-- An inline field value is terminated by the line break — it is single-line. To store multi-line text, use a YAML frontmatter field with the pipe (`|`) block scalar instead; indenting a continuation line does **not** extend an inline value.
+- An inline field value is terminated by the line break — it is single-line. This is confirmed against the official Dataview "Adding Metadata" documentation: "All content after the `::` is the value of the field until the next line break." To store multi-line text, use a YAML frontmatter field with the pipe (`|`) block scalar instead; indenting a continuation line does **not** extend an inline value.
 - Inline fields merge with frontmatter fields into one field space. A plain query references the field name without any prefix.
 - `prettyRenderInlineFields` controls how the raw `Key:: Value` text displays in reading view.
 - The same key in frontmatter and inline body is ambiguous. Keep one source per key to avoid confusion.
@@ -224,9 +224,9 @@ Every note exposes a `file` object. The keys below were verified in the installe
 | `file.size` | number | Note size in bytes |
 | `file.starred` | boolean | Starred state of the note |
 | `file.frontmatter` | object | Raw frontmatter as key/value text pairs — for raw-value checks, not typed access (query the field by name for a typed value) |
-| `file.day` | date | Derived day, present only when the note structure yields one |
+| `file.day` | date | Derived day; present only when the filename carries a date or the note has a `Date` field |
 
-- `file.day` appears when a date can be derived from the note: its filename contains a date (`yyyy-mm-dd` / `yyyymmdd`), **or** the note has a Date field. (The exact "folder vs filename" trigger for the name case is not confirmed against the official docs — do not rely on a folder-name trigger.) Do not assume it exists.
+- `file.day` appears only when a date can be derived from the note: its filename contains a date (`yyyy-mm-dd` or `yyyymmdd`), **or** the note has a `Date` field or inline field. This is confirmed against the official Dataview "Metadata on Pages" documentation, which lists exactly those two triggers — there is no folder-name trigger. Do not assume it exists.
 - Fields in frontmatter or the body never override the `file` object keys.
 
 ### Task and list implicit fields
@@ -447,5 +447,5 @@ DQL expressions support arithmetic, comparisons, string operations, list/object 
 - Never claim a query rendered. Rendering happens in-app. The AI validates the block and the data, then asks for a reload.
 - Never rewrite user notes casually. Metadata additions are append-first. Edits preserve everything else in the note.
 - Never replace `data.json` wholesale unless restoring the documented defaults after a backup.
-- Never promise `file.day` exists. It is conditional on note structure.
+- Never promise `file.day` exists. It is conditional on a filename date or a `Date` field.
 - Never fabricate results. If a query cannot be evaluated from the files on disk, say so and mark the gap.

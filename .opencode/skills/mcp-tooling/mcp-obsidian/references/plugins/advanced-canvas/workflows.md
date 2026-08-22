@@ -16,7 +16,7 @@ version: "0.1.0.0"
 
 # Advanced Canvas Plugin File-Layer Workflows
 
-These recipes change the **`.canvas` JSON file** the plugin reads — the `nodes` array, the `edges` array and the top-level `metadata` object. The JSON write is the operation; an in-app canvas reload is the render step. Every extended key and every style value below was read from the installed `main.js` (6.5.4). Cross-portal edges are confirmed: they live in an `interdimensionalEdges` array on the portal `file` node (`data-model.md` §5). Only the exact endpoint-id encoding is inferred — confirm it against a real portal file before relying on a hand-authored recipe.
+These recipes change the **`.canvas` JSON file** the plugin reads — the `nodes` array, the `edges` array and the top-level `metadata` object. The JSON write is the operation; an in-app canvas reload is the render step. Every extended key and every style value below was read from the installed `main.js` (6.5.4). Cross-portal edges are confirmed: they live in an `interdimensionalEdges` array on the portal `file` node (`data-model.md` §5). The exact endpoint-id encoding is confirmed from the plugin's own serialization code and is only unverified at the byte level, since no captured portal `.canvas` file exists to diff against.
 
 ---
 
@@ -140,7 +140,7 @@ Goal: embed another `.canvas` inside this one as a live portal.
 1. Confirm the target `.canvas` file exists at the vault path you will reference.
 2. Add (or convert) a `file` node whose `file` is the target `.canvas`, and set `portal: true`.
 3. Re-read and confirm the `file` path resolves and `portal` is `true`.
-4. To connect a top-level node to a node **inside** the portal, add the edge to the portal node's `interdimensionalEdges` array with composite `portalId-nestedNodeId` endpoints (see the recipe below). The container is confirmed; the exact endpoint encoding is inferred, so confirm it against a real portal file first. Otherwise connect top-level nodes only and let the plugin manage portal-internal edges after a reload.
+4. To connect a top-level node to a node **inside** the portal, add the edge to the portal node's `interdimensionalEdges` array with composite `portalId-nestedNodeId` endpoints (see the recipe below). The container is confirmed; the exact endpoint encoding is confirmed from the plugin's own serialization code and only lacks a byte-check against a captured portal `.canvas` file. For a fully byte-verified path, connect top-level nodes only and let the plugin manage portal-internal edges after a reload.
 
 ### Before
 
@@ -168,7 +168,7 @@ An edge from a top-level node to a node **inside** the portal is not a top-level
 }
 ```
 
-The `interdimensionalEdges` container is confirmed; the exact endpoint encoding is inferred from the plugin's runtime rewrite, so capture and inspect one real portal `.canvas` to confirm the `portalId-nestedNodeId` syntax before relying on this recipe in production.
+The `interdimensionalEdges` container is confirmed, and the exact endpoint encoding is confirmed from the plugin's own serialization code (it joins the portal id and the nested node id with a `-` delimiter). The only remaining gap is a byte-check against a captured portal `.canvas` file; none exists, because the vault is read-only.
 
 ### Checkpoint
 
