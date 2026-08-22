@@ -1423,10 +1423,10 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'mimo-v2.5-pro': 'xiaomi',
       'mimo-v2.5-pro-ultraspeed': 'xiaomi',
       'qwen3.8-max': 'opencode-go',
-      'ox-alpha-free': 'opencode-go',
-      // OpenRouter routes only DeepSeek V4 Flash, dispatched as openrouter/<upstream>/<id>;
-      // the -latest Flash stays on the max thinking pin.
+      // OpenRouter routes DeepSeek V4 Flash and the Ox Alpha stealth tune, each dispatched
+      // as openrouter/<upstream>/<id>; the -latest Flash stays on the max thinking pin.
       'deepseek/deepseek-v4-flash-latest': 'openrouter',
+      'stealth/ox-alpha': 'openrouter',
     };
     for (const [model, provider] of Object.entries(providerByModel)) {
       const command = buildLineageCommand(

@@ -1,20 +1,20 @@
 ---
-title: "Feature Specification: opencode-go Ox Alpha Free for cli-pi & cli-opencode"
-description: "Register the opencode-go Ox Alpha Free (unlimited) model in the cli-pi fan-out roster and the cli-opencode roster docs: allowlist ox-alpha-free in the cli-pi enforcement points, map it to the opencode-go provider, and document both routes."
+title: "Feature Specification: Ox Alpha for cli-pi & cli-opencode (OpenRouter route)"
+description: "Register the Ox Alpha model in the cli-pi and cli-opencode rosters via the OpenRouter provider (openrouter/stealth/ox-alpha). The opencode-go/ox-alpha-free route was added first, then dropped per operator decision; the opencode zen provider has no ox model."
 trigger_phrases:
-  - "ox-alpha-free roster"
-  - "opencode-go ox alpha"
-  - "cli-pi ox-alpha-free"
-  - "cli-opencode ox-alpha-free"
+  - "ox-alpha roster"
+  - "openrouter stealth ox-alpha"
+  - "cli-pi ox-alpha"
+  - "cli-opencode ox-alpha"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster"
-    last_updated_at: "2026-08-22T10:20:00Z"
+    last_updated_at: "2026-08-22T11:20:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored spec for opencode-go ox-alpha-free in cli-pi and cli-opencode"
-    next_safe_action: "Packet complete pending operator review; end-to-end turn deferred by opencode-go monthly quota"
+    recent_action: "Reframed packet: dropped opencode-go route, added openrouter/stealth/ox-alpha"
+    next_safe_action: "Commit when operator approves"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
@@ -27,7 +27,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Feature Specification: opencode-go Ox Alpha Free for cli-pi & cli-opencode
+# Feature Specification: Ox Alpha for cli-pi & cli-opencode (OpenRouter route)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
@@ -44,6 +44,8 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-08-22 |
 | **Branch** | `skilled/v4.0.0.0` |
+
+> **Folder-name note:** the slug still reads `opencode-go-ox-alpha-free-roster` from the packet's original framing. The delivered route is **OpenRouter**, not opencode-go — see Scope. The slug is kept as a stable identifier only.
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -52,10 +54,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The OpenCode Go gateway now offers **Ox Alpha Free (unlimited)**, listed by `opencode models opencode-go` as `opencode-go/ox-alpha-free`. It was undocumented in both CLI roster references and absent from cli-pi's enforced deep-loop fan-out roster (`PI_SUPPORTED_MODELS` and its `fanout-run.cjs` mirror), so a fan-out dispatch of that model on cli-pi was rejected before command construction.
+The **Ox Alpha** model needed to be dispatchable from cli-pi and cli-opencode. It first appeared in the operator's opencode picker under the OpenCode Go gateway as `opencode-go/ox-alpha-free`, so that route was added. The operator then decided to **drop the opencode-go route** and instead route Ox Alpha through **OpenRouter**. A live check confirmed the OpenCode zen provider (`opencode`) offers **no** ox model, so zen is not a viable route.
 
 ### Purpose
-Register `ox-alpha-free` via the `opencode-go` provider so both CLIs can select it: allowlist it in the two synced cli-pi enforcement points, map it to `opencode-go` in the fan-out provider map, and document the route under each skill's `### opencode-go` section.
+Register Ox Alpha via OpenRouter (`openrouter/stealth/ox-alpha`) in both CLIs: allowlist it in the two synced cli-pi enforcement points mapped to the `openrouter` provider, relax the cli-pi "OpenRouter = DeepSeek Flash only" policy to permit it, remove the earlier opencode-go/ox-alpha-free entries, and document the route in both skills.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -64,26 +66,27 @@ Register `ox-alpha-free` via the `opencode-go` provider so both CLIs can select 
 ## 3. SCOPE
 
 ### In Scope
-- `executor-config.ts` `PI_SUPPORTED_MODELS` — add `ox-alpha-free`.
-- `fanout-run.cjs` `PI_ALLOWED_MODELS` (mirror) — add `ox-alpha-free`; `PI_MODEL_PROVIDERS` — add `ox-alpha-free → opencode-go`.
-- cli-pi + cli-opencode `providers-and-models.md` — add a row under the existing `### opencode-go` section.
-- Guard tests (`executor-config.vitest.ts`, `fanout-run.vitest.ts`) — extend roster/provider expectations.
+- `executor-config.ts` `PI_SUPPORTED_MODELS` — remove `ox-alpha-free`; add `stealth/ox-alpha` (OpenRouter literal keeps its upstream path).
+- `fanout-run.cjs` `PI_ALLOWED_MODELS` (mirror) + `PI_MODEL_PROVIDERS` — same removal/addition; map `stealth/ox-alpha → openrouter`.
+- Relax the "OpenRouter = DeepSeek Flash only" policy (comments in both files, blockquotes in both docs) to "Flash + Ox Alpha".
+- cli-pi + cli-opencode `providers-and-models.md` — drop the opencode-go ox row; add the OpenRouter `stealth/ox-alpha` row.
+- Guard tests (`executor-config.vitest.ts`, `fanout-run.vitest.ts`) — swap the roster/provider pins.
 
 ### Out of Scope
-- cli-cursor / cli-devin — Ox Alpha Free is an opencode-go model, not offered by those providers' rosters.
-- Re-pointing or changing any existing model's route.
-- Forcing `ox-alpha-free` into pi's cached `models-store.json`. Pi's catalog is machine state; pi already dispatches the model via its custom-model-id fallback, and a catalog refresh (operator-side) clears the benign warning. Not a code change.
+- The **opencode zen** (`opencode`) provider — it has no ox model (live `opencode models opencode` + two `Model not found` dispatch errors); nothing to add.
+- Any other OpenRouter model — the allowlist stays limited to Flash + Ox Alpha.
+- cli-cursor / cli-devin — their rosters do not carry Ox Alpha.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Modify | Add `ox-alpha-free` to `PI_SUPPORTED_MODELS` |
-| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Add `ox-alpha-free` to the mirror + provider map (→ opencode-go) |
-| `.opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md` | Modify | Add `ox-alpha-free` row to the `### opencode-go` table |
-| `.opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md` | Modify | Add `opencode-go/ox-alpha-free` row to the `### opencode-go` table |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Modify | Extend the exact-roster assertion |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Extend the `providerByModel` coverage map |
+| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Modify | `PI_SUPPORTED_MODELS`: −`ox-alpha-free`, +`stealth/ox-alpha`; relax OpenRouter policy comment |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Mirror + provider map: −opencode-go ox, +`stealth/ox-alpha → openrouter` |
+| `.opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md` | Modify | Drop opencode-go ox row; add OpenRouter ox row; relax blockquote |
+| `.opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md` | Modify | Drop opencode-go ox row; add OpenRouter ox row; relax blockquote |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Modify | Exact-roster assertion swap |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | `providerByModel` coverage swap |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -95,16 +98,17 @@ Register `ox-alpha-free` via the `opencode-go` provider so both CLIs can select 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | `ox-alpha-free` accepted by the cli-pi fan-out roster | Present in `PI_SUPPORTED_MODELS` AND the `fanout-run.cjs` `PI_ALLOWED_MODELS` mirror (byte-synced; guard asserts equality) |
-| REQ-002 | `ox-alpha-free` routes via `opencode-go` in the fan-out provider map | `PI_MODEL_PROVIDERS` maps `ox-alpha-free → opencode-go`; builder emits `pi -p --offline --model opencode-go/ox-alpha-free` |
-| REQ-003 | Runtime stays green | `node --check fanout-run.cjs` passes; both guard vitest files pass |
+| REQ-001 | `stealth/ox-alpha` accepted by the cli-pi fan-out roster | Present in `PI_SUPPORTED_MODELS` AND the `fanout-run.cjs` `PI_ALLOWED_MODELS` mirror (byte-synced; guard asserts equality) |
+| REQ-002 | `stealth/ox-alpha` routes via `openrouter` | `PI_MODEL_PROVIDERS` maps `stealth/ox-alpha → openrouter`; builder emits `pi -p --offline --model openrouter/stealth/ox-alpha` |
+| REQ-003 | opencode-go ox fully removed | No `ox-alpha-free` remains in either enforcement file or either roster doc |
+| REQ-004 | Runtime stays green | `node --check fanout-run.cjs` passes; both guard vitest files pass |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | `ox-alpha-free` documented under `opencode-go` in both skills | A row for the model present in cli-pi and cli-opencode `providers-and-models.md` |
-| REQ-005 | Model existence + routing confirmed live | `opencode models opencode-go` lists `opencode-go/ox-alpha-free`; a real dispatch on each CLI reaches the opencode-go gateway (routing confirmed) rather than being rejected as an unknown model |
+| REQ-005 | Ox Alpha documented under OpenRouter in both skills | A row for `openrouter/stealth/ox-alpha` present in cli-pi and cli-opencode `providers-and-models.md`; blockquotes updated to "Flash + Ox Alpha" |
+| REQ-006 | Route confirmed live on both CLIs | `opencode run` and `pi` dispatches of `openrouter/stealth/ox-alpha` each complete a real turn (returned `PONG`) |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -112,9 +116,9 @@ Register `ox-alpha-free` via the `opencode-go` provider so both CLIs can select 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A deep-loop cli-pi fan-out dispatch of `ox-alpha-free` is accepted and constructed as `opencode-go/ox-alpha-free`.
-- **SC-002**: The two enforcement points (`executor-config.ts`, `fanout-run.cjs`) stay in sync; guard tests prove it.
-- **SC-003**: Operators find the model under `### opencode-go` in either skill's roster doc.
+- **SC-001**: A deep-loop cli-pi fan-out dispatch of `stealth/ox-alpha` is accepted and constructed as `openrouter/stealth/ox-alpha`.
+- **SC-002**: The two enforcement points stay in sync; guard tests prove it; no opencode-go ox residue remains.
+- **SC-003**: Operators find Ox Alpha under `### openrouter` in either skill's roster doc.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -124,10 +128,10 @@ Register `ox-alpha-free` via the `opencode-go` provider so both CLIs can select 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Mirror drift between `executor-config.ts` and `fanout-run.cjs` | Fan-out rejects an allowlisted model | Guard asserts both rosters equal; add `ox-alpha-free` to both |
-| Risk | Missing provider-map entry | Fan-out builds `pi` command with no provider prefix and throws | Add `ox-alpha-free → opencode-go` to `PI_MODEL_PROVIDERS` |
-| Risk | pi store staleness | pi warns `Model "ox-alpha-free" not found for provider "opencode-go"` | Benign: pi's custom-model-id fallback still routes it; documented; a pi catalog refresh clears the warning |
-| Dependency | opencode-go monthly free-tier quota | A full end-to-end turn could not complete (429 `GoUsageLimitError`, resets ~16 days) at implementation time | Account-level, transient; routing was confirmed independent of quota. Model existence confirmed via `opencode models` |
+| Risk | Relaxing the OpenRouter allowlist too far | Unintended models routed via OpenRouter | Allowlist stays exactly Flash + Ox Alpha; blockquotes and comments state the two-model limit |
+| Risk | Mirror drift between `executor-config.ts` and `fanout-run.cjs` | Fan-out rejects an allowlisted model | Guard asserts both rosters equal |
+| Risk | Missing provider-map entry | Builder throws at command construction | `PI_MODEL_PROVIDERS` gains `stealth/ox-alpha → openrouter` |
+| Dependency | OpenRouter provider auth | Cannot dispatch | Confirmed live — real `PONG` turns on both CLIs 2026-08-22 |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -146,8 +150,9 @@ Register `ox-alpha-free` via the `opencode-go` provider so both CLIs can select 
 ## 8. EDGE CASES
 
 ### Dispatch
-- **pi store-miss warning**: a `pi --model opencode-go/ox-alpha-free` dispatch emits `Warning: Model "ox-alpha-free" not found for provider "opencode-go". Using custom model id.` — pi's cached catalog does not (yet) list the model, but it still routes the custom id to the gateway. Benign; not a failure.
-- **opencode-go quota exhaustion**: while the monthly free-tier quota is spent, dispatch reaches the gateway and returns a `429 GoUsageLimitError` (routing confirmed) instead of producing a completion.
+- **OpenRouter 3-segment id**: the pi roster literal is `stealth/ox-alpha` (keeps the upstream path), so `${provider}/${model}` composes the three-segment `openrouter/stealth/ox-alpha` selector — the same shape as the DeepSeek Flash `-latest` entry.
+- **Not a reasoning model**: Ox Alpha carries no thinking/variant pin, unlike the OpenRouter DeepSeek Flash entry.
+- **Zen has no ox**: `opencode/ox-alpha-free` and `opencode/ox-alpha` both return `Model not found` — the zen provider is not a route.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -155,7 +160,7 @@ Register `ox-alpha-free` via the `opencode-go` provider so both CLIs can select 
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- Should `ox-alpha-free` be added to both cli-pi and cli-opencode rosters? **RESOLVED: Yes — operator directive (screenshot of the opencode-go picker entry).**
+- Which provider should carry Ox Alpha? **RESOLVED: OpenRouter (`openrouter/stealth/ox-alpha`), both CLIs. opencode-go dropped per operator; zen has no ox model.**
 <!-- /ANCHOR:questions -->
 
 ---

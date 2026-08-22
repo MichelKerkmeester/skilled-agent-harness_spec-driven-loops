@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: opencode-go Ox Alpha Free roster"
-description: "Add ox-alpha-free to the cli-pi fan-out roster (two synced enforcement points) mapped to opencode-go, plus opencode-go doc rows in both skills."
+title: "Implementation Plan: Ox Alpha via OpenRouter roster"
+description: "Remove the opencode-go ox route, add openrouter/stealth/ox-alpha to the cli-pi roster (two synced points) and both CLI docs, and relax the cli-pi OpenRouter=Flash-only policy."
 trigger_phrases:
-  - "ox-alpha-free roster plan"
-  - "ox-alpha-free fanout"
+  - "ox-alpha roster plan"
+  - "openrouter stealth ox-alpha"
   - "implementation"
   - "plan"
 importance_tier: "normal"
@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster"
-    last_updated_at: "2026-08-22T10:20:00Z"
+    last_updated_at: "2026-08-22T11:20:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Documented the roster + provider-map + docs plan"
-    next_safe_action: "Packet complete pending operator review"
+    recent_action: "Documented the openrouter-route plan (opencode-go dropped)"
+    next_safe_action: "Commit when operator approves"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
@@ -27,7 +27,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: opencode-go Ox Alpha Free roster
+# Implementation Plan: Ox Alpha via OpenRouter roster
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
@@ -47,7 +47,7 @@ _memory:
 | **Testing** | `npx vitest run` + fanout builder probe + live CLI dispatch |
 
 ### Overview
-Add `ox-alpha-free` to cli-pi's enforced fan-out roster (two synced places) mapped to the `opencode-go` provider, then document the route under the existing `### opencode-go` section in each skill's roster doc. cli-opencode enforces no code-level allowlist — its roster change is docs only.
+Route Ox Alpha through OpenRouter (`openrouter/stealth/ox-alpha`) on both CLIs: swap it into cli-pi's two synced enforcement points (mapped to `openrouter`), remove the earlier opencode-go/ox-alpha-free entries, relax the cli-pi "OpenRouter = Flash only" policy to "Flash + Ox Alpha", and document the route. cli-opencode has no code-level allowlist — its change is docs only.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -56,14 +56,14 @@ Add `ox-alpha-free` to cli-pi's enforced fan-out roster (two synced places) mapp
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] opencode-go offers the model (live `opencode models opencode-go` lists `opencode-go/ox-alpha-free`)
-- [x] Enforcement points and their sync invariant identified (from 034 prior art + direct read)
-- [x] Operator directive to add both rosters confirmed (screenshot)
+- [x] OpenRouter offers the model (`opencode models` lists `openrouter/stealth/ox-alpha`)
+- [x] Zen provider ruled out (two `Model not found` dispatch errors)
+- [x] Enforcement points + OpenRouter policy sites identified
 
 ### Definition of Done
-- [x] Both cli-pi enforcement points carry `ox-alpha-free`; provider map routes it via opencode-go
-- [x] Guard tests green; fanout builder emits the correct provider-prefixed command
-- [x] Routing live-confirmed on both CLIs (full turn deferred by opencode-go monthly quota)
+- [x] cli-pi roster carries `stealth/ox-alpha → openrouter`; opencode-go ox removed
+- [x] OpenRouter policy relaxed to exactly Flash + Ox Alpha
+- [x] Guard tests green; both CLIs live-verified (real `PONG`)
 - [x] Packet validates `--strict`
 <!-- /ANCHOR:quality-gates -->
 
@@ -73,14 +73,14 @@ Add `ox-alpha-free` to cli-pi's enforced fan-out roster (two synced places) mapp
 ## 3. ARCHITECTURE
 
 ### Pattern
-Fail-closed roster mirrored in two files. `executor-config.ts` `PI_SUPPORTED_MODELS` is the source of truth; `fanout-run.cjs` hand-duplicates it as `PI_ALLOWED_MODELS` (synchronous, no TS import) plus a `PI_MODEL_PROVIDERS` map so every model dispatches as `<provider>/<id>`.
+Fail-closed roster mirrored in two files. `executor-config.ts` `PI_SUPPORTED_MODELS` is source of truth; `fanout-run.cjs` mirrors it as `PI_ALLOWED_MODELS` plus a `PI_MODEL_PROVIDERS` map. OpenRouter literals keep their upstream path so `${provider}/${model}` composes a three-segment selector.
 
 ### Key Components
 - **`PI_SUPPORTED_MODELS`** (executor-config.ts): the enforced allowlist.
-- **`PI_ALLOWED_MODELS` + `PI_MODEL_PROVIDERS`** (fanout-run.cjs): the mirror + model→provider routing.
+- **`PI_ALLOWED_MODELS` + `PI_MODEL_PROVIDERS`** (fanout-run.cjs): mirror + model→provider routing.
 
 ### Data Flow
-Fan-out reads model id → checks `PI_ALLOWED_MODELS` → looks up `PI_MODEL_PROVIDERS` → builds `pi -p --offline --model opencode-go/ox-alpha-free`.
+Fan-out reads model id → checks `PI_ALLOWED_MODELS` → looks up `PI_MODEL_PROVIDERS` → builds `pi -p --offline --model openrouter/stealth/ox-alpha`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -90,11 +90,11 @@ Fan-out reads model id → checks `PI_ALLOWED_MODELS` → looks up `PI_MODEL_PRO
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `executor-config.ts` `PI_SUPPORTED_MODELS` | Source-of-truth allowlist | add `ox-alpha-free` | `executor-config.vitest.ts` roster assertion |
-| `fanout-run.cjs` `PI_ALLOWED_MODELS` | Synchronous mirror | add `ox-alpha-free` | `node --check` + fanout vitest mirror-sync test |
-| `fanout-run.cjs` `PI_MODEL_PROVIDERS` | model→provider map | add `ox-alpha-free → opencode-go` | fanout builder probe (provider-prefixed command) |
-| cli-pi / cli-opencode `providers-and-models.md` | Operator roster docs | add `### opencode-go` row | grep + read |
-| `*.vitest.ts` guards | Pin roster/provider | extend expectations | `npx vitest run` |
+| `executor-config.ts` `PI_SUPPORTED_MODELS` | Source-of-truth allowlist | −`ox-alpha-free`, +`stealth/ox-alpha` | roster assertion |
+| `fanout-run.cjs` mirror + map | Sync mirror + routing | swap ox entry; map → openrouter | `node --check` + fanout vitest |
+| OpenRouter policy (2 comments, 2 blockquotes) | "Flash only" guard text | relax to "Flash + Ox Alpha" | grep + read |
+| cli-pi / cli-opencode docs | Operator roster docs | drop opencode-go ox row; add OpenRouter row | grep + read |
+| `*.vitest.ts` guards | Pin roster/provider | swap expectations | `npx vitest run` |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -103,12 +103,12 @@ Fan-out reads model id → checks `PI_ALLOWED_MODELS` → looks up `PI_MODEL_PRO
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [x] Live-probe opencode-go + pi for the model; read both enforcement points + docs
+- [x] Live-probe zen (no ox) + OpenRouter (ox works) on both CLIs; locate enforcement + policy sites
 
 ### Phase 2: Core Implementation
-- [x] Edit executor-config.ts + fanout-run.cjs (roster + provider map)
-- [x] Add `ox-alpha-free` rows to both skills' `### opencode-go` sections
-- [x] Extend guard test expectations (after watching the roster guard fail)
+- [x] Swap roster/provider entries in executor-config.ts + fanout-run.cjs; relax policy comments
+- [x] Drop opencode-go ox rows, add OpenRouter rows, relax blockquotes in both docs
+- [x] Swap guard test expectations
 
 ### Phase 3: Verification
 - [x] `node --check`, run both vitest files, fanout builder probe, live CLI dispatch, `validate.sh --strict`
@@ -123,8 +123,8 @@ Fan-out reads model id → checks `PI_ALLOWED_MODELS` → looks up `PI_MODEL_PRO
 |-----------|-------|-------|
 | Unit | roster + provider map | `executor-config.vitest.ts`, `fanout-run.vitest.ts` |
 | Syntax | fanout module | `node --check` |
-| Wiring | builder emits provider-prefixed command | `node -e` fanout builder probe |
-| Live | real dispatch routes to the gateway | `opencode run`, `pi --model opencode-go/ox-alpha-free` |
+| Wiring | builder emits 3-segment selector | `node -e` builder probe |
+| Live | real dispatch completes a turn | `opencode run`, `pi` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -134,9 +134,8 @@ Fan-out reads model id → checks `PI_ALLOWED_MODELS` → looks up `PI_MODEL_PRO
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| opencode-go provider (model catalog) | External | Green | Model unavailable (confirmed listed live) |
-| opencode-go monthly free-tier quota | External | Amber | A completed turn is deferred until quota resets (~16 days); routing confirmed regardless |
-| pi `models-store.json` opencode-go block | Internal | Amber | Store lacks the model; pi's custom-model-id fallback still routes it (benign warning) |
+| OpenRouter provider (stealth channel) | External | Green | Model unavailable; live-verified 2026-08-22 |
+| OpenRouter auth on the machine | External | Green | Cannot dispatch (confirmed working) |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -154,7 +153,7 @@ Fan-out reads model id → checks `PI_ALLOWED_MODELS` → looks up `PI_MODEL_PRO
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-change Checklist
-- [x] Both enforcement points identified and their sync invariant understood
+- [x] Enforcement points + OpenRouter policy sites identified
 - [x] Guard tests located
 
 ### Rollback Procedure

@@ -11,12 +11,11 @@
   },
   "derived": {
     "trigger_phrases": [
-      "ox-alpha-free roster",
-      "opencode-go ox alpha",
-      "cli-pi ox-alpha-free",
-      "cli-opencode ox-alpha-free",
-      "ox-alpha-free roster plan",
-      "ox-alpha-free fanout",
+      "ox-alpha roster",
+      "openrouter stealth ox-alpha",
+      "cli-pi ox-alpha",
+      "cli-opencode ox-alpha",
+      "ox-alpha roster plan",
       "implementation",
       "plan",
       "tasks",
@@ -25,18 +24,18 @@
       "implementation summary"
     ],
     "key_topics": [
-      "ox-alpha-free",
+      "ox-alpha",
       "roster",
-      "opencode-go",
-      "alpha",
+      "openrouter",
+      "stealth",
       "cli-pi",
       "cli-opencode",
       "plan",
-      "fanout",
       "implementation",
       "tasks",
       "verification",
-      "checklist"
+      "checklist",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -85,7 +84,7 @@
         "source": "derived"
       },
       {
-        "name": "Ox Alpha Free",
+        "name": "Ox Alpha",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -97,7 +96,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Register",
+        "name": "Purpose Register Ox Alpha",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,7 +126,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Add",
+        "name": "Overview Route Ox Alpha",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -163,14 +162,14 @@
         "source": "derived"
       },
       {
-        "name": "executor-config",
+        "name": "OpenRouter",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "executor-config",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -193,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The OpenCode Go gateway now offers Ox Alpha Free (unlimited), listed by `opencode models opencode-go` as `opencode-go/ox-alpha-free`",
+    "causal_summary": "The Ox Alpha model needed to be dispatchable from cli-pi and cli-opencode",
     "created_at": "2026-08-22T10:23:23.561Z",
-    "last_save_at": "2026-08-22T10:27:26.119Z",
+    "last_save_at": "2026-08-22T11:20:44.784Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f09953c00daccbadeacd5e102c3ff2421ac8653148c4ff597b1c755af1e1bbd4",
+    "source_fingerprint": "sha256:da15eb9c438706d866785f6e4f954871d42177110751507a7fecf3ec971f0180",
     "source_doc_hashes": {
-      "spec.md": "4e981568fa83f8fee1900b8f446b90b9b24f4c8d4dd40db7d932a7e8da171d32",
-      "plan.md": "1a25cc272ce24132529b98f34a3d5a3e2150525cc4d2d224dbe3a578f2438bee",
-      "tasks.md": "ce1c157c18c912941e2de89d9c1ef89eed68e4314993da9e466d581bee293de7",
-      "checklist.md": "93ed929c749609e6c2dbc320dc662a9a92fe9960f2c06ea2cc60e7f81bf669da",
-      "implementation-summary.md": "9eaf2fdf30a3b202fee020ea1118288e189dfcc9d8d81fef755cfa6f508acda9"
+      "spec.md": "b98f3f480b3ee1051c4849dc52e981856f3377f5c7a9a814285b8787c08e19f8",
+      "plan.md": "4cbad429ab009386c2077283a94b5f3f05e7f70e80d3dfb8ce24f979c6b7ad3a",
+      "tasks.md": "6afc3293d2d99e62e14e3bf1bed61b9ac9cdd7aa8c813f45b92a28c6405b3edc",
+      "checklist.md": "8e86db2f4aa1e79b0101dc3909aa85301e46528f7abc867f4a0116f6b848dc6a",
+      "implementation-summary.md": "8bb02ff197029d48d62348255d002ebab938cad0a679a1a3b52dac2e733247bd"
     },
     "last_active_child_id": null,
     "last_active_at": null
