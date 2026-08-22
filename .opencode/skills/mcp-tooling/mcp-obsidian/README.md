@@ -7,7 +7,7 @@ trigger_phrases:
   - "notesmd-cli"
   - "obsidian mcp"
   - "local rest api"
-version: 0.12.0.0
+version: 0.18.0.0
 ---
 
 # mcp-obsidian
@@ -179,7 +179,7 @@ A: Use it for structured note reads, writes, search or tag operations against a 
 
 **Q: Does the install script change `.utcp_config.json` or `.env`?**
 
-A: No. `scripts/install.sh` prints the exact Code Mode manual and `obsidian_OBSIDIAN_*` environment keys. It never writes configuration files. The mode documents the wiring. Registration is owned by a later configuration phase.
+A: No. `scripts/install.sh` prints the exact Code Mode manual and `obsidian_OBSIDIAN_*` environment keys, and stays read-only. The `obsidian` manual and those keys are already registered in `.utcp_config.json` and `.env.example`; the installer never rewrites them.
 
 **Q: Are all 14 MCP tool names documented?**
 
@@ -218,7 +218,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime router, agent invariants, quick reference and resource map |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step installation and configuration for both CLI profiles and the MCP |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every CLI, MCP and plugin capability |
+| [`feature-catalog/FEATURE-CATALOG.md`](./feature-catalog/FEATURE-CATALOG.md) | Current-state inventory of every CLI, MCP and plugin capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate each catalog entry |
 | [`references/plugins/plugin-operation-logic.md`](./references/plugins/plugin-operation-logic.md) | The file-layer operating model shared by all plugin references |
 | [`references/obsidian-cli-commands.md`](./references/obsidian-cli-commands.md) | Detailed `notesmd-cli` and official `obsidian` CLI reference, including `VERIFY` boundaries |

@@ -228,7 +228,7 @@ grep -A12 '"obsidian"' .utcp_config.json
 ```
 
 **Fix:**
-1. Confirm the `obsidian` manual is registered in `.utcp_config.json` under `manual_call_templates` (a later gated phase performs this wiring).
+1. Confirm the `obsidian` manual is registered in `.utcp_config.json` under `manual_call_templates` (it is already wired there; re-add it only if the entry is missing).
 2. Set `OBSIDIAN_API_KEY`, `OBSIDIAN_BASE_URL`, and `OBSIDIAN_VERIFY_SSL` in the environment available to Code Mode.
 3. Reconnect Code Mode and verify the stdio server starts.
 4. Enumerate with `list_tools()` — the server should report **14 tools**; confirm the exact callable name with `tool_info("obsidian.obsidian_get_note")` before hardcoding it. The callable form is `obsidian.obsidian_<tool>` (one `obsidian_` after the dot), NOT a doubled `obsidian.obsidian_obsidian_<tool>`.

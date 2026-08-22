@@ -46,7 +46,7 @@ Use this reference when:
 - Node.js 18+ and npx available (the manual launches `obsidian-mcp-server@latest` on demand via `npx -y`)
 - AI client restarted after config change
 
-> **Registration note:** the `obsidian` manual is added to `.utcp_config.json` by a later gated phase — this document describes the wiring but does not perform it.
+> **Registration note:** the `obsidian` manual is already registered in `.utcp_config.json` — this document describes that wiring but does not modify it.
 
 ---
 
