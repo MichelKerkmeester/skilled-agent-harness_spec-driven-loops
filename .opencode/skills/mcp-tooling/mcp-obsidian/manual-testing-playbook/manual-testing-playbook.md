@@ -8,7 +8,7 @@ version: 0.1.0.0
 
 > **EXECUTION POLICY:** Every scenario is executed against real commands, files, app state, or Code Mode tools. Valid statuses are `PASS`, `FAIL`, or `SKIP` with a specific prerequisite or sandbox blocker. `UNAUTOMATABLE` is not a valid status.
 
-This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for twelve community plugins — Beancount Ledger (`beancount-finance`), Obsidian Tables (`obsidian-tables`), BRAT (`obsidian42-brat`), Health.md Visualizations (`health-md`), Iconic (`iconic`), Charts (`charts`), Dataview (`dataview`), Excalidraw (`excalidraw`), Obsidian Git (`git`), Outliner (`outliner`), the Minimal theme (`minimal`), and Notion Bases (`notion-bases`).
+This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for eleven community plugins — Beancount Ledger (`beancount-finance`), Obsidian Tables (`obsidian-tables`), BRAT (`obsidian42-brat`), Health.md Visualizations (`health-md`), Iconic (`iconic`), Charts (`charts`), Dataview (`dataview`), Obsidian Git (`git`), Outliner (`outliner`), the Minimal theme (`minimal`), and Notion Bases (`notion-bases`).
 
 The [feature catalog](../feature-catalog/FEATURE-CATALOG.md) is the current-behavior inventory. These scenario files own exact prompts, command sequences, expected signals, evidence, grading, and triage.
 
@@ -320,17 +320,6 @@ Add inline/frontmatter metadata and a Dataview query block to throwaway notes an
 > **Feature File:** [`plugin-tie-ins/dataview-metadata-query.md`](plugin-tie-ins/dataview-metadata-query.md) — owns the exact prompt, command sequence, and grading.
 > **Catalog:** [`../feature-catalog/plugins/dataview.md`](../feature-catalog/plugins/dataview.md)
 
-### OBS-018 | Excalidraw drawing-note round-trip
-
-#### Description
-
-Create an Excalidraw drawing note at the file layer, validate its embedded JSON, and confirm the file opens as a drawing.
-
-#### Test Execution
-
-> **Feature File:** [`plugin-tie-ins/excalidraw-drawing-note.md`](plugin-tie-ins/excalidraw-drawing-note.md) — owns the exact prompt, command sequence, and grading.
-> **Catalog:** [`../feature-catalog/plugins/excalidraw.md`](../feature-catalog/plugins/excalidraw.md)
-
 ### OBS-019 | Obsidian Git status round-trip
 
 #### Description
@@ -434,7 +423,6 @@ The current mode package has no dedicated automated test suite for these externa
 | `OBS-015` | Iconic rulebook merge round-trip | Dedicated plugin reference in [`iconic-rules.md`](plugin-tie-ins/iconic-rules.md) |
 | `OBS-016` | Charts render-block round-trip | Dedicated plugin reference in [`charts-render-block.md`](plugin-tie-ins/charts-render-block.md) |
 | `OBS-017` | Dataview metadata and query round-trip | Dedicated plugin reference in [`dataview-metadata-query.md`](plugin-tie-ins/dataview-metadata-query.md) |
-| `OBS-018` | Excalidraw drawing-note round-trip | Dedicated plugin reference in [`excalidraw-drawing-note.md`](plugin-tie-ins/excalidraw-drawing-note.md) |
 | `OBS-019` | Obsidian Git status round-trip | Dedicated plugin reference in [`git-status-roundtrip.md`](plugin-tie-ins/git-status-roundtrip.md) |
 | `OBS-020` | Outliner settings and defaults | Dedicated plugin reference in [`outliner-settings-defaults.md`](plugin-tie-ins/outliner-settings-defaults.md) |
 | `OBS-021` | Minimal theme activation | Dedicated plugin reference in [`minimal-theme-activation.md`](plugin-tie-ins/minimal-theme-activation.md) |

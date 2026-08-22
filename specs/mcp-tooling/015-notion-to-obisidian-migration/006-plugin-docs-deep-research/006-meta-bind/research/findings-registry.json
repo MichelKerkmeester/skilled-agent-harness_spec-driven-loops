@@ -1,0 +1,529 @@
+{
+  "sessionId": "deep-research-20260822T153153-40999-77aa0e5c",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-how-does-the-js-action-couple-with-js-engine-s-api-surface-engine-setmetadata-en",
+      "inboxId": null,
+      "text": "How does the js action couple with JS Engine's API surface (engine.setMetadata, engine.getMetadata)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-what-workflows-and-gotchas-are-missing-from-the-current-reference-docs",
+      "inboxId": null,
+      "text": "What workflows and gotchas are missing from the current reference docs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-how-does-the-js-action-couple-with-js-engine-s-api-surface-engine-setmetadata-en",
+      "inboxId": null,
+      "text": "How does the js action couple with JS Engine's API surface (engine.setMetadata, engine.getMetadata)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-what-workflows-and-gotchas-are-missing-from-the-current-reference-docs",
+      "inboxId": null,
+      "text": "What workflows and gotchas are missing from the current reference docs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "How does the js action couple with JS Engine's API surface (engine.setMetadata, engine.getMetadata)?",
+    "What workflows and gotchas are missing from the current reference docs?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-7-context-args-the-args-from-the-button-config-e-g-context-args-greeting",
+      "text": "`context.args` — the `args` from the button config (e.g., `context.args.greeting`)",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-8-context-buttonconfig-the-full-button-configuration-read-only",
+      "text": "`context.buttonConfig` — the full button configuration (read-only)",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-9-context-buttoncontext-additional-button-information-see-buttoncontext-interface",
+      "text": "`context.buttonContext` — additional button information (see ButtonContext interface)",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-16-file-propname-another-note-s-frontmatter",
+      "text": "`file#propName` — another note's frontmatter",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-17-memory-propname-in-memory-only-not-persisted",
+      "text": "`memory^propName` — in-memory only (not persisted)",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-14-propname-this-note-s-frontmatter",
+      "text": "`propName` — this note's frontmatter",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-15-scope-prop-name-property-with-spaces",
+      "text": "`scope['prop name']` — property with spaces",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-12-toggle-text-number-datepicker-timepicker-in-reference-docs",
+      "text": "`toggle`, `text`, `number`, `datePicker`, `timePicker` (in reference docs)",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-3-value-getmetadata-otherprop-reads-another-property",
+      "text": "`value: \"getMetadata('otherProp')\"` reads another property",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-1-value-new-date-toisostring-is-the-correct-way-to-stamp-a-current-timestamp",
+      "text": "`value: \"new Date().toISOString()\"` is the correct way to stamp a current timestamp",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-2-value-x-1-increments-the-current-value",
+      "text": "`value: \"x + 1\"` increments the current value",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-21-view-a-b-math-c-compute-and-save-result-to-bind-target-c",
+      "text": "`VIEW[{a} * {b}][math:c]` — compute and save result to bind target `c`",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-20-view-bindtarget-2-mathjs-expression-with-bind-targets-in-curly-brackets",
+      "text": "`VIEW[{bindTarget} * 2]` — mathjs expression with bind targets in curly brackets",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-18-view-bindtarget-plain-display-of-bound-value",
+      "text": "`VIEW[bindTarget]` — plain display of bound value",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-19-view-content-viewfieldtype-with-explicit-type-default-math",
+      "text": "`VIEW[content][viewFieldType]` — with explicit type (default: `math`)",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-13-additional-date-datetime-editor-imagelistsuggester-imagesuggester-inlinelist-inl",
+      "text": "Additional: `date`, `dateTime`, `editor`, `imageListSuggester`, `imageSuggester`, `inlineList`, `inlineListSuggester`, `inlineSelect`, `list`, `listSuggester`, `multiSelect`, `progressBar`, `select`, `slider`, `suggester`, `textArea`, `time`",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-11-javascript-must-be-enabled-in-meta-bind-settings",
+      "text": "JavaScript must be enabled in Meta Bind settings",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-10-js-engine-plugin-mprojectscode-obsidian-js-engine-plugin-must-be-installed-and-e",
+      "text": "JS Engine plugin (`mProjectsCode/obsidian-js-engine-plugin`) must be installed and enabled",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-now-and-now-format-patterns-in-the-current-reference-docs-are-incorrect-they",
+      "text": "The `=now()` and `=now().format(...)` patterns in the current reference docs are **incorrect** — they appear to be a Dataview convention mistakenly applied to Meta Bind",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-evaluate-option-requires-javascript-to-be-enabled-in-meta-bind-settings",
+      "text": "The `evaluate` option requires JavaScript to be enabled in Meta Bind settings",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    },
+    {
+      "id": "finding-1-5-there-is-no-special-now-function-plain-javascript-date-is-used",
+      "text": "There is no special `now()` function; plain JavaScript `Date` is used",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/ — Official Meta Bind documentation site",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/updatemetadata/ — Update Metadata action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/runjavascript/ — Run JavaScript File action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/buttonactions/inlinejs/ — Run Inline JavaScript action reference",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/buttons/ — Buttons guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/inputfields/ — Input Fields guide",
+        "https://moritzjung.dev/obsidian-meta-bind-plugin-docs/guides/viewfields/ — View Fields guide",
+        "https://github.com/mProjectsCode/obsidian-meta-bind-plugin — Plugin GitHub repository (README)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/data-model.md` — Current reference docs (VERIFY items)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/workflows.md` — Current workflow docs",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/meta-bind/meta-bind.md` — Current plugin index"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-48bcedbf58ac",
+      "text": "Attempted to fetch example vault `Button.md` — 404; example vault structure differs from expected path",
+      "contentHash": "48bcedbf58ac",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-5d9c4f74fdc6",
+      "text": "Attempted to fetch plugin docs from GitHub `docs/` folder — 404; docs are hosted externally at `moritzjung.dev/obsidian-meta-bind-plugin-docs`",
+      "contentHash": "5d9c4f74fdc6",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-ad4ce3527e12",
+      "text": "Direct GitHub docs path (`/docs/Button Actions.md`, `/docs/Expressions.md`) — the plugin repo does not ship docs in a flat `docs/` folder; they are a separate documentation site",
+      "contentHash": "ad4ce3527e12",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-88ad9bc61f24",
+      "text": "Example vault direct file access — the example vault exists but file paths differ from expected",
+      "contentHash": "88ad9bc61f24",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-65983cd01584",
+      "text": "The `=now()` prefix pattern from the reference docs is ruled out as incorrect for Meta Bind; it's a Dataview convention",
+      "contentHash": "65983cd01584",
+      "addedAtIteration": 1
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 2,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 21,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.9,
+    "coverageBySources": {
+      "github.com": 2,
+      "moritzjung.dev": 13,
+      "other": 6
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

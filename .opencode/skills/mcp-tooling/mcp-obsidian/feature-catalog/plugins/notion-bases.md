@@ -46,7 +46,7 @@ The mode edits `_database.md` schema files (append or merge relation, rollup, lo
 
 ## 4. GUARDRAILS
 
-- Never invent `_database.md` key names. Every schema example in this reference set is the documented conceptual shape, flagged `VERIFY` against the installed plugin.
+- Use the confirmed `_database.md` keys (`refDatabasePath`, `refColumnId`, `pairedColumnId`, `rollupRelationColumnId`, `rollupTargetColumnId`, `rollupFunction`, `refMatchColumnId`, `isHierarchical`, `groupByColumnId`, `calendarDateField`) and the required `notion-bases: true` marker — all confirmed against the plugin's `src/types.ts` and the installed `main.js` (v1.12.0). Snake-case guesses are silently ignored.
 - Respect the version pin: two-way relations need v1.3.0+; rollup, lookup, subtask and chart-view coverage need v1.5.0+.
 - Never claim Form, Map or Dashboard view parity — the migration research is explicit these have no Obsidian equivalent through this plugin or any other.
 - Resolve rollups and lookups by hand from the real related rows before reporting a value; never fabricate an aggregate.

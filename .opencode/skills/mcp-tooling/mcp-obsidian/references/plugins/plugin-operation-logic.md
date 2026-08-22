@@ -23,7 +23,7 @@ The `mcp-obsidian` mode operates Obsidian community plugins by editing the data 
 
 ### Purpose
 
-Ships in the `mcp-obsidian` mode at `references/plugins/`. It defines one operating model for every plugin the mode covers: locate the plugin's persisted data, edit the data directly, and let the app re-render. The per-plugin references (`beancount-finance`, `obsidian-tables`, `obsidian42-brat`, `health-md`, `iconic`, `charts`, `dataview`, `excalidraw`, `git`, `outliner`, `minimal`) apply this model to their specific file shapes; this document is the general contract.
+Ships in the `mcp-obsidian` mode at `references/plugins/`. It defines one operating model for every plugin the mode covers: locate the plugin's persisted data, edit the data directly, and let the app re-render. The per-plugin references (`beancount-finance`, `obsidian-tables`, `obsidian42-brat`, `health-md`, `iconic`, `charts`, `dataview`, `git`, `outliner`, `minimal`, `meta-bind`) apply this model to their specific file shapes; this document is the general contract.
 
 ### Core Principle
 
@@ -69,7 +69,7 @@ For any plugin, locate its data by checking, in order:
 | `iconic` | `.obsidian/plugins/iconic/data.json` (rulebook + settings) | merge rules/toggles with backup-before-write; preserve unrelated keys; rendering is in-app |
 | `charts` | `chart`/`advanced-chart` render blocks (JSON body) + `.obsidian/plugins/obsidian-charts/data.json` | author/validate render-block JSON; edit settings with backup-before-write; the Charts View pane is in-app |
 | `dataview` | inline metadata in notes (frontmatter + `Key:: Value`) + `.obsidian/plugins/dataview/data.json` | author DQL/dataviewjs query blocks; add or patch metadata fields; edit settings with backup-before-write |
-| `excalidraw` | `.excalidraw.md` drawing notes (frontmatter + embedded JSON) + plugin `data.json` | create/patch drawing notes at the file layer; validate embedded JSON; settings edits with backup-before-write; never hand-edit element coordinates |
+| `meta-bind` | `INPUT[]`/`BUTTON[]`/`VIEW[]` fields + fenced `meta-bind`/`meta-bind-button` blocks in notes + `.obsidian/plugins/obsidian-meta-bind-plugin/data.json` | author inline field/button syntax; define button-action lists that patch frontmatter; pair with JS Engine (```js-engine) for computed values (e.g. timer timestamps); edit settings with backup-before-write; rendering is in-app |
 | `git` | the vault git repository (`.git` at vault root) + `.obsidian/plugins/obsidian-git/data.json` | read status/log/diff; edit settings with backup-before-write; never run destructive git ops on a real vault (throwaway repos only) |
 | `outliner` | no note format of its own; only `.obsidian/plugins/obsidian-outliner/data.json` | settings edits with backup-before-write; editor behavior is in-app |
 | `minimal` | theme: `.obsidian/themes/Minimal/theme.css` + `appearance.json` `cssTheme` key | verify install/activation; propose snippet-based tweaks (`.obsidian/snippets/`); never edit `theme.css` in a real vault |

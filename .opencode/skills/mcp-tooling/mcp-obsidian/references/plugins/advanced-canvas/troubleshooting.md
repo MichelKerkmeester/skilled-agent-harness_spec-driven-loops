@@ -27,9 +27,10 @@ Diagnose the `.canvas` JSON, the individual node/edge objects and the `metadata`
 | Edge style ignored | `path`/`arrow`/`pathfindingMethod` value misspelled, or written outside a `styleAttributes` object |
 | Floating edge snaps to a fixed side | A `fromSide`/`toSide` is still pinned alongside `fromFloating`/`toFloating` |
 | Portal shows nothing | `portal` not `true`, node not `type: "file"`, or the `file` path does not resolve to a real `.canvas` |
-| Cross-portal edge is wrong or lost | Hand-authored interdimensional edge — its serialized shape is unconfirmed (`VERIFY`) |
+| Cross-portal edge is wrong or lost | The edge was placed in the top-level `edges` array instead of the portal node's `interdimensionalEdges[]`, or its composite `portalId-nestedNodeId` endpoint is malformed |
 | Presentation will not start | `metadata.startNode` missing, or it names a node id that no longer exists |
 | Slide order wrong | Branch edges missing numeric `label`s to disambiguate multiple outgoing edges |
+| Group member nodes missing from `nodes[]` | The group is collapsed — its members are nested in the runtime `collapsedData` payload, not deleted. Read `collapsedData`; do not recreate the members |
 | Canvas will not open at all | Invalid JSON, or a native field (`id`/`type`/`x`/`y`/`width`/`height`) removed |
 | Feature absent entirely | Obsidian below `minAppVersion` 1.13.0, or the feature disabled in plugin settings |
 | Old look on screen | The canvas pane needs a reload |
@@ -81,7 +82,7 @@ After (valid `shape`, nested correctly):
 | `portal` not set | Read the node for `portal: true` | Add `portal: true` to the `file` node |
 | Node is not a file node | Confirm `type: "file"` | A portal must be a `file` node whose `file` is a `.canvas` |
 | `file` path does not resolve | Compare the `file` value against the vault's real paths | Correct the path, or create the missing `.canvas` |
-| Cross-portal edge hand-authored | Look for an edge whose endpoint targets a node inside the portal | Remove the hand-authored interdimensional edge; connect top-level nodes only and let the plugin manage portal-internal edges after a reload. The exact serialized shape is `VERIFY` |
+| Cross-portal edge malformed | Look for an interdimensional edge in the top-level `edges` array, or a bad composite endpoint id | Move the edge into the portal node's `interdimensionalEdges[]`; its nested endpoint must be a composite `portalId-nestedNodeId` id. The container is confirmed; the exact endpoint encoding is inferred, so confirm against a real portal file, or let the plugin manage portal-internal edges after a reload |
 
 ---
 
@@ -116,7 +117,7 @@ Advanced Canvas keys are additive, so a canvas stays openable in vanilla Obsidia
 | Style ignored | Correct the value to a confirmed enumeration and nest it in `styleAttributes` |
 | Floating edge snaps to a side | Remove the competing `fromSide`/`toSide` |
 | Portal blank | Set `portal: true` on a `file` node with a resolving `.canvas` path |
-| Cross-portal edge wrong | Remove the hand-authored interdimensional edge; connect top-level nodes only |
+| Cross-portal edge wrong | Move the edge into the portal node's `interdimensionalEdges[]` with a composite `portalId-nestedNodeId` endpoint; confirm the encoding against a real portal file, or let the plugin manage portal-internal edges |
 | Presentation dead | Set `metadata.startNode` to a real node id; number branch edge labels |
 | Canvas will not open | Restore from `.bak`; re-apply only the intended edit; confirm native fields intact |
 | Feature absent | Update Obsidian to 1.13.0+ and enable the feature in settings |
@@ -143,7 +144,7 @@ Advanced Canvas keys are additive, so a canvas stays openable in vanilla Obsidia
 ## 9. LIMITS
 
 - The AI verifies the `.canvas` JSON and computes structure by hand. The plugin renders in-app, so visual confirmation of a shape, portal, presentation or export needs the user.
-- Every extended node/edge key and every `styleAttributes` value is confirmed against the installed build (`main.js` 6.5.4). The one open item is the serialized shape of a cross-portal ("interdimensional") edge — `VERIFY` before hand-authoring one (`data-model.md` §5/§7).
+- Every extended node/edge key and every `styleAttributes` value is confirmed against the installed build (`main.js` 6.5.4). Cross-portal ("interdimensional") edges live in an `interdimensionalEdges` array on the portal `file` node (`data-model.md` §5); the container is confirmed and only the exact composite endpoint-id encoding is inferred — confirm it against a real portal file before hand-authoring.
 - Export (PNG/SVG) is an in-app command with no file-layer key; the AI can only prepare the canvas JSON, not trigger the export.
 - Extended keys are additive and native-compatible, but a third-party tool that only understands native canvas can strip them — back up first.
 - Never claim a shape, edge, portal, presentation or export rendered in the plugin's UI. The JSON write proves the shape; a reload proves the render.

@@ -1,15 +1,19 @@
 ---
 name: mcp-obsidian
-description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Excalidraw, Git, Outliner, Minimal) operated at the file layer. Embedded install and agent safety invariants.
+description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Minimal, Notion Bases, Meta Bind) operated at the file layer. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.20.0.0
+version: 0.21.0.0
 ---
 
-<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, excalidraw, excalidraw.md, drawing note, obsidian-git, vault git, auto backup, outliner, list editing, minimal theme, css theme, theme snippet -->
+<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, obsidian-git, vault git, auto backup, outliner, list editing, minimal theme, css theme, theme snippet, notion bases, meta bind, meta-bind, input field, inline button, js engine, task timer -->
 
 # mcp-obsidian Skill
 
-The skill that makes AI use inside Obsidian effective. It operates notes and vaults through three surfaces (headless `notesmd-cli`, the app-backed official `obsidian` CLI, and the cyanheads MCP) and knows the eleven plugin and theme file formats at the file layer, so an agent can read, write, search, and extend what the vault contains without guessing.
+The skill that makes AI use inside Obsidian effective. It operates notes and vaults through three surfaces (headless `notesmd-cli`, the app-backed official `obsidian` CLI, and the cyanheads MCP) and knows the twelve plugin and theme file formats at the file layer, so an agent can read, write, search, and extend what the vault contains without guessing.
+
+<!-- Plugin file-layer coverage extends beyond this headline list to Advanced Canvas, Claudian, and Local REST API; see §2 RESOURCE_MAP and references/plugins/installed-plugins.md for the full roster. -->
+
+
 
 ---
 
@@ -92,11 +96,6 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/dataview/data-model.md
              references/plugins/dataview/workflows.md
              references/plugins/dataview/troubleshooting.md
-           Excalidraw:
-             references/plugins/excalidraw/excalidraw.md                 (plugin index)
-             references/plugins/excalidraw/data-model.md
-             references/plugins/excalidraw/workflows.md
-             references/plugins/excalidraw/troubleshooting.md
            Obsidian Git:
              references/plugins/git/git.md                               (plugin index)
              references/plugins/git/data-model.md
@@ -132,11 +131,11 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/claudian/data-model.md
              references/plugins/claudian/workflows.md
              references/plugins/claudian/troubleshooting.md
-           Project Manager:
-             references/plugins/project-manager/project-manager.md       (plugin index)
-             references/plugins/project-manager/data-model.md
-             references/plugins/project-manager/workflows.md
-             references/plugins/project-manager/troubleshooting.md
+           Meta Bind:
+             references/plugins/meta-bind/meta-bind.md                   (plugin index)
+             references/plugins/meta-bind/data-model.md
+             references/plugins/meta-bind/workflows.md
+             references/plugins/meta-bind/troubleshooting.md
 ```
 
 ### Two Decisions This Router Makes
@@ -267,11 +266,6 @@ INTENT_SIGNALS = {
         "keywords": ["dataview", "dql", "dataviewjs", "inline field", "metadata query",
                      "frontmatter query", "task query", "list query", "table query", "dataview query"],
     },
-    "PLUGIN_EXCALIDRAW": {
-        "weight": 5,
-        "keywords": ["excalidraw", "drawing", "excalidraw.md", "drawing note",
-                     "embedded drawing", "whiteboard", "excalidraw automate", "drawing script"],
-    },
     "PLUGIN_GIT": {
         "weight": 5,
         "keywords": ["obsidian git", "obsidian-git", "git plugin", "auto backup",
@@ -318,11 +312,12 @@ INTENT_SIGNALS = {
                      "coding agent in obsidian", "claudian slash command", "claudian skill",
                      "claudian mcp", "agent working directory vault"],
     },
-    "PLUGIN_PROJECT_MANAGER": {
+    "PLUGIN_META_BIND": {
         "weight": 5,
-        "keywords": ["project manager", "obsidian-pm", "project-manager", "gantt",
-                     "kanban board", "task dependency", "task dependencies",
-                     "project management", "time tracking", "obsidian project manager"],
+        "keywords": ["meta bind", "meta-bind", "metabind", "obsidian-meta-bind-plugin",
+                     "input field", "inline button", "button block", "meta bind button",
+                     "frontmatter button", "js engine", "js-engine", "task timer",
+                     "start timer", "stop timer", "note timer"],
     },
     "PLUGINS": {
         "weight": 5,
@@ -354,7 +349,7 @@ INTENT_SIGNALS = {
 }
 
 # NOTE: no "DEFAULT" entry — route_obsidian_resources() never indexes RESOURCE_MAP
-# by that key. The selected `intent` is one of the twenty-two INTENT_SIGNALS keys above.
+# by that key. The selected `intent` is one of the twenty-one INTENT_SIGNALS keys above.
 # Specific plugin intents always supersede generic PLUGINS whenever any specific signal matches: the highest specific score wins, a tie between specific intents disambiguates, and generic PLUGINS is considered only when no specific plugin signal matches.
 # The no-match case is owned by DEFAULT_RESOURCE, whose declared
 # fallback-only semantics mean it is SUGGESTED beside the disambiguation checklist,
@@ -393,11 +388,6 @@ RESOURCE_MAP = {
                        "references/plugins/dataview/data-model.md",
                        "references/plugins/dataview/workflows.md",
                        "references/plugins/dataview/troubleshooting.md"],
-    "PLUGIN_EXCALIDRAW": ["references/plugins/plugin-operation-logic.md",
-                       "references/plugins/excalidraw/excalidraw.md",
-                       "references/plugins/excalidraw/data-model.md",
-                       "references/plugins/excalidraw/workflows.md",
-                       "references/plugins/excalidraw/troubleshooting.md"],
     "PLUGIN_GIT":     ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/git/git.md",
                        "references/plugins/git/data-model.md",
@@ -438,11 +428,11 @@ RESOURCE_MAP = {
                        "references/plugins/claudian/data-model.md",
                        "references/plugins/claudian/workflows.md",
                        "references/plugins/claudian/troubleshooting.md"],
-    "PLUGIN_PROJECT_MANAGER": ["references/plugins/plugin-operation-logic.md",
-                       "references/plugins/project-manager/project-manager.md",
-                       "references/plugins/project-manager/data-model.md",
-                       "references/plugins/project-manager/workflows.md",
-                       "references/plugins/project-manager/troubleshooting.md"],
+    "PLUGIN_META_BIND": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/meta-bind/meta-bind.md",
+                       "references/plugins/meta-bind/data-model.md",
+                       "references/plugins/meta-bind/workflows.md",
+                       "references/plugins/meta-bind/troubleshooting.md"],
     "PLUGINS":        ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/installed-plugins.md",
                        "references/plugins/beancount-finance/beancount-finance.md",
@@ -452,7 +442,6 @@ RESOURCE_MAP = {
                        "references/plugins/health-md/health-md.md",
                        "references/plugins/charts/charts.md",
                        "references/plugins/dataview/dataview.md",
-                       "references/plugins/excalidraw/excalidraw.md",
                        "references/plugins/git/git.md",
                        "references/plugins/outliner/outliner.md",
                        "references/plugins/minimal/minimal.md",
@@ -460,7 +449,7 @@ RESOURCE_MAP = {
                        "references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md",
                        "references/plugins/advanced-canvas/advanced-canvas.md",
                        "references/plugins/claudian/claudian.md",
-                       "references/plugins/project-manager/project-manager.md"],
+                       "references/plugins/meta-bind/meta-bind.md"],
     "NOTION_MIGRATION": ["references/notion-migration.md"],
     "INSTALL":       ["references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
@@ -521,10 +510,10 @@ def route_obsidian_resources(request: str) -> dict:
         intent = "INSTALL"
     else:
         specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT", "PLUGIN_ICONIC",
-                                   "PLUGIN_CHARTS", "PLUGIN_DATAVIEW", "PLUGIN_EXCALIDRAW",
+                                   "PLUGIN_CHARTS", "PLUGIN_DATAVIEW",
                                    "PLUGIN_GIT", "PLUGIN_OUTLINER", "PLUGIN_MINIMAL", "PLUGIN_HEALTH",
                                    "PLUGIN_NOTION_BASES", "PLUGIN_LOCAL_REST_API",
-                                   "PLUGIN_ADVANCED_CANVAS", "PLUGIN_CLAUDIAN", "PLUGIN_PROJECT_MANAGER")
+                                   "PLUGIN_ADVANCED_CANVAS", "PLUGIN_CLAUDIAN", "PLUGIN_META_BIND")
         matched_specific_plugin_intents = [
             plugin_intent
             for plugin_intent in specific_plugin_intents
@@ -822,10 +811,10 @@ await call_tool_chain({
 - `references/plugins/claudian/data-model.md` — Claudian in-vault artifacts: slash commands, skills/prompt templates, provider and MCP config, and where they live on disk
 - `references/plugins/claudian/workflows.md` — Claudian recipes: register a provider CLI, author a reusable skill/command, connect an MCP server, plan mode and @-mentions
 - `references/plugins/claudian/troubleshooting.md` — Claudian failure and recovery recipes, the three-name disambiguation, and the resolved-but-unconfirmed in-app-search issue
-- `references/plugins/project-manager/project-manager.md` — Project Manager plugin index (repo `StepanKropachev/obsidian-pm`), the file-layer PM data model
-- `references/plugins/project-manager/data-model.md` — Project Manager task frontmatter schema: status/priority vocab, dependencies, custom fields, subtask hierarchy, time tracking
-- `references/plugins/project-manager/workflows.md` — Project Manager recipes: create a task, set a dependency, build a subtask tree, drive Table/Gantt/Kanban views
-- `references/plugins/project-manager/troubleshooting.md` — Project Manager failure and recovery recipes plus the Dataview/Notion-Bases overlap note
+- `references/plugins/meta-bind/meta-bind.md` — Meta Bind plugin index (repo `mProjectsCode/obsidian-meta-bind-plugin`), the inline input/button/view field syntax
+- `references/plugins/meta-bind/data-model.md` — Meta Bind field syntax: `INPUT[]`/`BUTTON[]`/`VIEW[]` widgets, button action lists, and the JS Engine companion for computed timestamps
+- `references/plugins/meta-bind/workflows.md` — Meta Bind recipes: the Notion-style task-timer build (Notion Bases DB + Start/End buttons + Total-Time formula) and frontmatter-driven buttons
+- `references/plugins/meta-bind/troubleshooting.md` — Meta Bind failure and recovery recipes: button action errors, JS Engine evaluation, and field-binding pitfalls
 
 Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc for both CLI profiles and the MCP; `references/troubleshooting.md` is the router's INSTALL/TROUBLESHOOT-intent target.
 

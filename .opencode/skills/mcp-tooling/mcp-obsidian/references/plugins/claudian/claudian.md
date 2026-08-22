@@ -66,4 +66,4 @@ The general file-layer operating model (locate the artifact, edit it, verify at 
 - **Respect the CLI prerequisite.** Claudian cannot run a provider whose CLI is not installed and on `PATH`. Confirm the CLI exists before promising a provider works.
 - **Respect desktop-only.** There is no mobile Claudian. Never document a mobile workflow.
 - **Keep the three Claudians distinct.** This plugin is `YishenTu/claudian`, id `realclaudian`. It is not ClaudianIA (id `claudian`) and not Claudian Plus — see `troubleshooting.md` §6 before acting on any "claudian" folder.
-- **MCP is provider-native.** Claudian connects MCP servers through each agent's own CLI-managed MCP config, not a Claudian-specific registry. Author the MCP declaration in the provider's native config, not an invented one.
+- **MCP is provider-native, and Claudian authors no MCP file.** Claudian connects MCP servers through each agent's own CLI-managed MCP config, not a Claudian-specific registry — and it removes the legacy `.claude/mcp.json` at init, so never author that path. Declare MCP in the provider CLI's own native config (`data-model.md` §5).

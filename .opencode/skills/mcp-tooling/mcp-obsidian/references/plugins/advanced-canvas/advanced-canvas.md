@@ -29,9 +29,9 @@ The `mcp-obsidian` mode operates the Advanced Canvas community plugin by **editi
 | Version pin | **6.5.4 installed; minAppVersion 1.13.0** | The plugin requires Obsidian **1.13.0+**; below it the plugin will not load. The Advanced JSON Canvas spec marker written into `metadata.version` is `"1.0-1.0"` on this build |
 | Installed version (operator vault) | **6.5.4** | Confirmed against `manifest.json` on disk — every extended key documented here was read from this build's `main.js`, not inferred |
 | Storage model | One `.canvas` JSON file per canvas: `{ "nodes": [...], "edges": [...], "metadata": {...} }`. Advanced Canvas is backward-compatible with the native format and adds extra keys on nodes, edges and a top-level `metadata` object | A canvas edited by Advanced Canvas still opens in vanilla Obsidian — the native reader ignores the extra keys. The plugin persists nothing outside the `.canvas` file |
-| Coverage claim | Custom node shapes/borders, edge path/arrow styles, 4 edge pathfinding methods, floating edges, portals (canvas-in-canvas), collapsible groups, a presentation start node, `.canvas` frontmatter + metadata-cache integration, and PNG/SVG export | This is why the canvas is fully AI-operable at the JSON layer — none of it needs the UI |
+| Coverage claim | Custom node shapes/borders, edge path/arrow styles, 4 edge pathfinding methods, floating edges, portals (canvas-in-canvas) with cross-portal `interdimensionalEdges`, collapsible groups (and their runtime `collapsedData`), node draw order (`zIndex`), a presentation start node, `.canvas` frontmatter + metadata-cache integration, and PNG/SVG export | This is why the canvas is fully AI-operable at the JSON layer — none of it needs the UI |
 
-Every extended key name below was read from the installed `main.js` (6.5.4). The native node/edge fields match the published JSON Canvas 1.0 spec. The single detail marked `VERIFY` is the exact serialized shape of a cross-portal ("interdimensional") edge — an edge whose endpoint is a node nested inside a portal (see §4 Guardrails and `data-model.md` §7).
+Every extended key name below was read from the installed `main.js` (6.5.4). The native node/edge fields match the published JSON Canvas 1.0 spec. Cross-portal ("interdimensional") edges are confirmed: they live in an `interdimensionalEdges` array on the portal `file` node with composite `portalId-nodeId` endpoints (see §4 Guardrails and `data-model.md` §5). The one residual precision caveat is that the exact endpoint-id encoding is inferred from the plugin's runtime rewrite, not byte-verified against a captured portal file.
 
 ---
 
@@ -39,7 +39,7 @@ Every extended key name below was read from the installed `main.js` (6.5.4). The
 
 A `.canvas` file is a JSON document. Native Obsidian stores two arrays — `nodes` and `edges`. Advanced Canvas keeps both and adds three things: extra keys on individual node objects, extra keys on individual edge objects, and a top-level `metadata` object (`{ version, frontmatter, startNode }`).
 
-A **styled or typed node** carries a `styleAttributes` object — `shape` and `textAlign` (text nodes) and `border` (any node). A **collapsible group** carries `collapsed: true`. A **portal** is a `file` node carrying `portal: true`, embedding another `.canvas` as canvas-in-canvas. The **presentation start slide** is not a per-node flag — its node id lives in `metadata.startNode`, and slide order follows the edge graph out of that node (number the edge labels to disambiguate branches).
+A **styled or typed node** carries a `styleAttributes` object — `shape` and `textAlign` (text nodes) and `border` (any node). A **collapsible group** carries `collapsed: true`; when collapsed, its member nodes and edges move into a runtime `collapsedData` payload and leave the top-level arrays. A **portal** is a `file` node carrying `portal: true`, embedding another `.canvas` as canvas-in-canvas. The **presentation start slide** is not a per-node flag — its node id lives in `metadata.startNode`, and slide order follows the edge graph out of that node (number the edge labels to disambiguate branches).
 
 A **styled edge** carries a `styleAttributes` object — `path`, `arrow` and `pathfindingMethod`. A **floating edge** carries `fromFloating: true` and/or `toFloating: true`, letting the plugin pick the optimal connection side at render time instead of pinning `fromSide`/`toSide`.
 
@@ -51,7 +51,7 @@ The AI writes these keys into the JSON and validates structurally — valid node
 
 | File | Use it for |
 | --- | --- |
-| [`data-model.md`](data-model.md) | The Advanced JSON Canvas schema: the native node/edge fields, the extended node keys (`styleAttributes`, `collapsed`, `portal`, `dynamicHeight`, `ratio`), the extended edge keys (`styleAttributes`, `fromFloating`, `toFloating`), the `metadata` block, and every confirmed `styleAttributes` value |
+| [`data-model.md`](data-model.md) | The Advanced JSON Canvas schema: the native node/edge fields, the extended node keys (`styleAttributes`, `collapsed`, `collapsedData`, `portal`, `dynamicHeight`, `zIndex`, `ratio`), the extended edge keys (`styleAttributes`, `fromFloating`, `toFloating`), cross-portal `interdimensionalEdges`, the `metadata` block, and every confirmed `styleAttributes` value |
 | [`workflows.md`](workflows.md) | Numbered file-layer recipes: add a styled/typed node, style an edge and set its pathfinding, make a floating edge, create a portal, build a presentation, wire auto file-node edges, and export |
 | [`troubleshooting.md`](troubleshooting.md) | Failure modes and recovery: node/edge not rendering, invalid style value, broken portal, presentation not starting, version-gated features and native-reader compatibility |
 
@@ -62,7 +62,7 @@ The general file-layer operating model (locate data, edit data, never drive the 
 ## 4. GUARDRAILS
 
 - **Use only the confirmed style values.** `shape`, `border`, `path`, `arrow` and `pathfindingMethod` each have a fixed enumeration read from the installed build (`data-model.md` §3–§4). An unlisted value renders as the default, not the shape you wanted — never invent a value.
-- **A portal is `portal: true` on a `file` node.** The exact serialized shape of a *cross-portal edge* (an edge whose endpoint is a node inside a portal) is the one detail marked `VERIFY` — do not hand-author interdimensional edges as fact; author edges between top-level nodes and let the plugin manage portal-internal edges.
+- **A portal is `portal: true` on a `file` node.** A *cross-portal edge* (an edge whose endpoint is a node inside a portal) lives in an `interdimensionalEdges` array on the portal `file` node, using composite `portalId-nodeId` endpoints (`data-model.md` §5) — never place it in the top-level `edges` array. The exact endpoint encoding is inferred, not byte-verified; confirm against a real portal file before hand-authoring, or let the plugin manage portal-internal edges.
 - **`startNode` is canvas-level, not per-node.** The presentation start slide is `metadata.startNode` (a node id). Older canvases used a per-node `isStartNode`; the plugin migrates it away on save. Write the start node id into `metadata`, never a per-node flag.
 - **Respect the version floor.** Advanced Canvas 6.5.4 needs Obsidian **1.13.0+** (`minAppVersion`). Confirm the app version before promising any feature.
 - **Stay native-compatible.** Every extra key is additive; vanilla Obsidian ignores it. Never remove or rename the native `nodes`/`edges`/`id`/`type`/`x`/`y`/`width`/`height` fields — that breaks the file for both readers.

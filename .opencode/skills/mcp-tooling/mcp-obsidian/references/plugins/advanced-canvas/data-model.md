@@ -17,7 +17,7 @@ version: "0.1.0.0"
 
 # Advanced Canvas Plugin File-Layer Data Model
 
-A `.canvas` file is a JSON document. Native Obsidian stores `{ "nodes": [...], "edges": [...] }`; Advanced Canvas keeps both arrays, adds extra keys to individual node and edge objects, and adds a top-level `metadata` object. It calls the extended format **Advanced JSON Canvas** and stamps `metadata.version` (`"1.0-1.0"` on the installed 6.5.4 build). Every extended key, and every `styleAttributes` value, below was read from the installed `main.js` (6.5.4). The native fields match the JSON Canvas 1.0 spec. The single open item is the serialized shape of a cross-portal edge — **VERIFY** before hand-authoring one (§7).
+A `.canvas` file is a JSON document. Native Obsidian stores `{ "nodes": [...], "edges": [...] }`; Advanced Canvas keeps both arrays, adds extra keys to individual node and edge objects, and adds a top-level `metadata` object. It calls the extended format **Advanced JSON Canvas** and stamps `metadata.version` (`"1.0-1.0"` on the installed 6.5.4 build). Every extended key, and every `styleAttributes` value, below was read from the installed `main.js` (6.5.4). The native fields match the JSON Canvas 1.0 spec. Cross-portal ("interdimensional") edges are confirmed: they are stored in an `interdimensionalEdges` array on the portal `file` node, not the top-level `edges` array (§5).
 
 ---
 
@@ -39,6 +39,7 @@ A `.canvas` file is a JSON document. Native Obsidian stores `{ "nodes": [...], "
 - A `.canvas` edited by Advanced Canvas still opens in vanilla Obsidian. Every extra key is **additive**; the native reader ignores what it does not recognise.
 - Never remove or rename the native `nodes`/`edges` arrays or a node's `id`/`type`/`x`/`y`/`width`/`height`. That breaks the file for both readers.
 - The plugin persists everything inside the single `.canvas` file. There is no side-car database.
+- **Array position is not visual draw order.** When some nodes carry `zIndex` and others do not, `nodes[0]` is not guaranteed to be the bottom-most node. Read `zIndex` explicitly instead of assuming array order, and never silently reorder the `nodes` array — that can change the stacking of nodes that rely on it (§3).
 
 ---
 
@@ -50,7 +51,7 @@ These are the fields vanilla Obsidian already writes. Advanced Canvas builds on 
 
 | Field | Type | Notes |
 | --- | --- | --- |
-| `id` | string | Unique within the canvas |
+| `id` | string | Unique within the canvas. Do not use `-` in a manually-chosen id — the plugin builds portal composite ids as `portalId-nodeId`, so a dashed id can be misread as a portal-node reference. Prefer `_`, camelCase or alphanumeric ids |
 | `type` | string | One of `text`, `file`, `link`, `group` |
 | `x`, `y` | integer | Top-left pixel position |
 | `width`, `height` | integer | Pixel size |
@@ -72,7 +73,7 @@ These are the fields vanilla Obsidian already writes. Advanced Canvas builds on 
 | `id` | string | Unique within the canvas |
 | `fromNode`, `toNode` | string | Node ids |
 | `fromSide`, `toSide` | string | Optional. `top` / `right` / `bottom` / `left` |
-| `fromEnd`, `toEnd` | string | Optional. `none` / `arrow` (`toEnd` defaults to `arrow`) |
+| `fromEnd`, `toEnd` | string | Optional. `none` / `arrow`. `fromEnd` defaults to `none`; `toEnd` defaults to `arrow` |
 | `color` | string | Optional. Same hex-or-`"1"`–`"6"` rule as nodes |
 | `label` | string | Optional. Also used to number presentation slide branches (§6) |
 
@@ -86,9 +87,11 @@ Advanced Canvas adds these keys to node objects. All are optional; a node withou
 | --- | --- | --- |
 | `styleAttributes` | object | Node styling — `shape`, `textAlign`, `border` (see below). Written when the node-styling feature is enabled |
 | `collapsed` | boolean | `true` collapses a `group` node (collapsible groups) |
+| `collapsedData` | object | **Runtime-only, not in the JSON Canvas spec.** When `collapsed: true`, the plugin moves the group's member nodes and edges out of the top-level `nodes`/`edges` arrays into this nested payload with offset coordinates; expanding the group deletes `collapsedData` and restores the members. Treat it as read-only — never author or "restore" members from it, or an AI can duplicate/corrupt the group |
 | `portal` | boolean | `true` on a `file` node turns it into a portal — embeds the referenced `.canvas` as canvas-in-canvas (§5) |
 | `dynamicHeight` | boolean | Per-node auto-resize toggle — the node grows to fit its content |
-| `ratio` | number | Aspect ratio used when the node auto-resizes |
+| `zIndex` | integer | Draw order — higher draws on top; should be unique. Absent → the plugin auto-assigns from an internal counter. The spec requires `nodes[]` sorted ascending by `zIndex` |
+| `ratio` | number \| "No ratio enforcement" | Aspect ratio used when the node auto-resizes. Reading tolerates both the number and the internal string sentinel; when writing, use a numeric ratio or omit the key — never write the string sentinel |
 
 ### `styleAttributes` values for nodes (confirmed enumerations)
 
@@ -101,6 +104,8 @@ Advanced Canvas adds these keys to node objects. All are optional; a node withou
 Flowchart shape names map to these values: **terminal → `pill`**, **decision → `diamond`**, **input/output → `parallelogram`**, **on-page reference → `circle`**, plus `predefined-process`, `document` and `database`. The default rectangle (no `shape` key) is the flowchart "process" box.
 
 To set an attribute, write its string value; to leave it at the default, omit the key (an unset attribute is absent, not the literal `null`).
+
+> `styleAttributes` is typed `{ [key: string]: string | null }` — `null` is a valid value the plugin's own templates use to *unset* an attribute. When hand-authoring, prefer omitting a key over writing `null`.
 
 ```json
 {
@@ -162,7 +167,22 @@ A portal embeds one `.canvas` inside another. It is a native `file` node (its `f
 }
 ```
 
-The embedded canvas's nodes are loaded and rendered inside the portal at runtime. Edges can connect a top-level node to a node **inside** a portal ("interdimensional edges"), but the exact serialized shape of such an edge — how its endpoint references a nested portal node — is not confirmed from the installed build. **VERIFY** against a real portal file before hand-authoring one; the safe path is to author edges between top-level nodes and let the plugin manage portal-internal edges (§7).
+The embedded canvas's nodes are loaded and rendered inside the portal at runtime. Edges can connect a top-level node to a node **inside** a portal ("interdimensional edges"). These are **not** stored in the top-level `edges` array — they live in an `interdimensionalEdges` array **on the portal `file` node**, and their endpoints use composite ids of the form `portalId-nestedNodeId`:
+
+```json
+{
+  "id": "p1",
+  "type": "file",
+  "file": "Maps/Sub-canvas.canvas",
+  "x": 0, "y": 0, "width": 600, "height": 400,
+  "portal": true,
+  "interdimensionalEdges": [
+    { "id": "ie1", "fromNode": "topLevelNodeId", "toNode": "p1-nestedNodeId" }
+  ]
+}
+```
+
+The `interdimensionalEdges` container is confirmed from the JSON Canvas typings and the installed build. The exact persisted endpoint-id encoding (`portalId-nestedNodeId`) is derived from the plugin's runtime rewrite and has not been byte-verified against a captured portal `.canvas` — confirm the endpoint syntax against one real portal file before relying on a hand-authored recipe. The conservative path remains to author edges between top-level nodes and let the plugin manage portal-internal edges.
 
 ---
 
@@ -202,7 +222,7 @@ Older canvases stored the start slide as a per-node `isStartNode` flag; the plug
 ## 7. WHAT THE AI MUST NOT DO
 
 - Never write a `shape`, `border`, `path`, `arrow` or `pathfindingMethod` value outside the confirmed enumerations in §3–§4. An unknown value silently falls back to the default.
-- Never hand-author a cross-portal ("interdimensional") edge as byte-verified syntax — that serialized shape is the one `VERIFY` item (§5). Author top-level edges and let the plugin manage portal-internal ones.
+- Cross-portal ("interdimensional") edges live in an `interdimensionalEdges` array on the portal `file` node, with composite `portalId-nestedNodeId` endpoints (§5) — never put them in the top-level `edges` array, and never use `-` in a manually-chosen node id (it collides with the composite-id scheme). The exact endpoint encoding is inferred, not byte-verified; confirm against a real portal file before hand-authoring, or let the plugin manage portal-internal edges.
 - Never write the presentation start slide as a per-node `isStartNode` flag. It belongs in `metadata.startNode` on this build.
 - Never remove or rename the native `nodes`/`edges` arrays or a node's core `id`/`type`/`x`/`y`/`width`/`height` fields — that breaks the file for both the plugin and vanilla Obsidian.
 - Never claim a node, edge, portal, presentation or export rendered in the plugin's UI. The JSON write proves the shape; a canvas reload proves the render, and that belongs to the plugin-install phase.

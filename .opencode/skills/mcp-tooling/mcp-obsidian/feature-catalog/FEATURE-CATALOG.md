@@ -198,7 +198,7 @@ See [`mcp/additional-tools-verify.md`](mcp/additional-tools-verify.md).
 
 ## 14. PLUGINS
 
-The plugin category records file-layer operations for the eleven community artifacts covered by the mode: the original five plugins (Beancount, Tables, BRAT, Health.md, Iconic), the five newly installed plugins (Charts, Dataview, Excalidraw, Git, Outliner) and the Minimal theme. Each card points to the slim plugin index, deep data/workflow/troubleshooting references, copyable assets, and its manual tie-in scenario.
+The plugin category records file-layer operations for the eleven community artifacts narrated below: Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Meta Bind, and the Minimal theme. Each card points to the slim plugin index, deep data/workflow/troubleshooting references, copyable assets, and (where one exists) its manual tie-in scenario. The router carries dedicated references for further file-layer plugins beyond this narrated set — Advanced Canvas, Claudian, Notion Bases, and Local REST API; see `references/plugins/installed-plugins.md` for the full roster.
 
 ### Beancount Ledger
 
@@ -242,11 +242,11 @@ Add and patch note metadata (frontmatter and inline fields) and author DQL query
 
 See [`plugins/dataview.md`](plugins/dataview.md).
 
-### Excalidraw
+### Meta Bind
 
-Create and patch `.excalidraw.md` drawing notes and validate their embedded JSON documents.
+Author `INPUT[]`/`BUTTON[]`/`VIEW[]` widgets and button-action lists in notes and, with the JS Engine companion, build the Notion-style task timer: Start/End buttons that stamp frontmatter timestamps over a Notion Bases task database, with a formula column totalling elapsed time.
 
-See [`plugins/excalidraw.md`](plugins/excalidraw.md).
+See [`plugins/meta-bind.md`](plugins/meta-bind.md).
 
 ### Git
 

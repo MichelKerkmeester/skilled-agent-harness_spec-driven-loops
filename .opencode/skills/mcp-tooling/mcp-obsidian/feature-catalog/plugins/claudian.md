@@ -21,7 +21,7 @@ The Claudian community plugin (repo `YishenTu/claudian`, manifest id **`realclau
 
 ## 2. HOW IT WORKS
 
-The mode authors and validates the artifacts the plugin reads, all in each provider CLI's native layout under user-level (`~/.claude/`, global) and vault-level (`<vault>/.claude/`, this vault) scopes: reusable skills (`skills/<name>/SKILL.md`), slash commands (`commands/<name>.md`), provider config, and provider-native MCP declarations (`.claude/mcp.json` for Claude Code). These paths were observed in the compiled plugin; their exact file schema is `VERIFY` against a live install. Running the agent, approving inline word-level diffs, driving `@`-mentions and plan mode (`Shift+Tab`) all happen in-app — the file layer proves the config was authored, not that the agent ran it.
+The mode authors and validates the artifacts the plugin reads, all in each provider CLI's native layout under user-level (`~/.claude/`, global) and vault-level (`<vault>/.claude/`, this vault) scopes: reusable skills (`skills/<name>/SKILL.md`), slash commands (`commands/<name>.md`), provider config, and provider-native MCP declarations — in each provider CLI's own MCP config, **not** a Claudian-authored `.claude/mcp.json` (Claudian removes that legacy file at init). Claudian's own settings live at `<vault>/.claudian/claudian-settings.json` (current; `.claude/claudian-settings.json` is legacy). The provider CLIs' exact MCP config paths and schemas are `VERIFY` against each CLI's docs. Running the agent, approving inline word-level diffs, driving `@`-mentions and plan mode (`Shift+Tab`) all happen in-app — the file layer proves the config was authored, not that the agent ran it.
 
 ---
 
@@ -50,5 +50,5 @@ The mode authors and validates the artifacts the plugin reads, all in each provi
 - Never claim the mode ran or rendered the agent. It configures Claudian and authors the files it reads; running the loop and approving diffs are in-app operator steps.
 - Never present a provider config path or key as byte-verified. The observed paths follow each CLI's native layout; the exact schema is `VERIFY` against a live install.
 - Never assume one provider's config shape for another — Claude Code, Codex, OpenCode, Grok and Pi each own their native config.
-- Never invent a Claudian MCP registry — MCP is declared in the provider CLI's native MCP config.
+- Never author `.claude/mcp.json` or invent a Claudian MCP registry — Claudian removes that legacy file at init; MCP is declared in the provider CLI's own native MCP config.
 - Keep the three "Claudian" plugins distinct: this is `realclaudian` by YishenTu, not ClaudianIA (id `claudian`) or Claudian Plus. Desktop-only, CLI-prerequisite.

@@ -48,7 +48,7 @@ Goal: answer a question the user could ask Dataview, without rendering.
 1. Read the query or restate the user ask as a DQL query.
 2. Resolve the `FROM` source: list the folder, the tag matches, or the link targets.
 3. Read every matching note and collect the referenced fields.
-4. Apply `WHERE`, then `SORT`, then `GROUP BY` and `FLATTEN`, then `LIMIT`.
+4. Apply the data commands **in the order they are written in the query** — DQL executes commands top-to-bottom, and order is significant (e.g. `FLATTEN` before vs after `WHERE` yields different rows, and a command may appear more than once). Do not assume a fixed WHERE→SORT→GROUP BY→FLATTEN→LIMIT order.
 5. Report the rows with the same columns the query would show.
 
 ### Example
@@ -140,6 +140,8 @@ Date:: 2026-06-30
 ### Checkpoint
 
 `inline_fields_appended`: each `Key:: Value` line uses the `::` separator, keys are unique and the note body before the addition is unchanged.
+
+> **Adding a field to a task or list item requires bracket syntax**: `- [ ] Task [priority:: high]`, not an own-line `Key:: Value` (which attaches to the note, not the task). See `data-model.md` §4.
 
 ---
 
@@ -292,6 +294,8 @@ Goal: allow `dataviewjs` blocks and `$=` inline JS to run.
 ### Checkpoint
 
 `dataviewjs_enabled`: the two keys are `true`, the rest of `data.json` is byte-identical and the JSON parses.
+
+> While JS is disabled, a `dataviewjs` / `$=` block renders as **raw, unrendered code with no error** — a silent failure. Confirm `enableDataviewJs` (and `enableInlineDataviewJs` for `$=`) is `true` before relying on JS output. (Also noted in `troubleshooting.md` §6 and `dataview.md` §5.)
 
 ---
 

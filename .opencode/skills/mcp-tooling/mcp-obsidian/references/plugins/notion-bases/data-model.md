@@ -16,7 +16,7 @@ version: "0.1.0.0"
 
 # Notion Bases Plugin File-Layer Data Model
 
-The plugin persists a database's schema and view config in one `_database.md` file per database folder, and one column value per row `.md` file's frontmatter. Nothing lives outside vault markdown. This storage model, the 18 column types, the 7 view types, the 7 rollup functions and the `nb-database` embed syntax are all confirmed by the plugin's own README (v1.12.0, installed in the operator's vault). Only the exact per-column frontmatter key spelling inside a `_database.md` relation/rollup/lookup/subtask declaration remains a single open item — **VERIFY against a real database** before writing a production schema file (see §7).
+The plugin persists a database's schema and view config in one `_database.md` file per database folder, and one column value per row `.md` file's frontmatter. Nothing lives outside vault markdown. This storage model, the 18 column types, the 7 view types, the 7 rollup functions and the `nb-database` embed syntax are all confirmed by the plugin's own source (v1.12.0, installed in the operator's vault). The exact per-column frontmatter keys for relation/rollup/lookup/subtask/view declarations are also confirmed against the plugin's `src/types.ts` and the installed `main.js` — they are the source-key spellings documented in §2–§6. Every `_database.md` must additionally carry the required `notion-bases: true` marker (§1 Database marker).
 
 ---
 
@@ -39,22 +39,35 @@ The plugin persists a database's schema and view config in one `_database.md` fi
 - Relation, Rollup and Lookup columns exist **only** through this plugin or hand-authored Dataview queries; core Obsidian Bases has none of them.
 - Two-way relations, Rollup columns, self-relation subtasks and Chart views require **v1.5.0+** (Rollup/subtasks/charts) or **v1.3.0+** (two-way relations only).
 
+### Database marker (required)
+
+A folder becomes a Notion Bases database **only** when its `_database.md` frontmatter carries the boolean marker `notion-bases: true`. The plugin tests this with a strict `=== true` check, so the key must be present and boolean — a missing marker, or a string `"true"`, means the plugin does not treat the folder as a database at all. Every `_database.md` you author or edit must include it alongside the `columns` and `views` maps:
+
+```yaml
+# Projects/_database.md  (frontmatter)
+notion-bases: true
+columns:
+  ...
+views:
+  ...
+```
+
 ---
 
 ## 2. RELATION COLUMNS (two-way)
 
 A Relation column links rows across two databases (or within one, for subtasks — §4). As of v1.3.0+ the relation is **two-way**: declaring the back-reference on both sides keeps a forward and reverse column in sync.
 
-### Example schema (key spelling per §1 note)
+### Example schema
 
 ```yaml
 # Projects/_database.md
 columns:
   tasks:
     type: relation
-    target: "Tasks"        # sibling database folder
-    two_way: true
-    back_reference: project
+    refDatabasePath: "Tasks/_database.md"  # the related database's _database.md
+    refColumnId: "_title"                   # match column on the related row (defaults to _title = basename)
+    pairedColumnId: project                 # reverse column on the other side — makes it two-way
 ```
 
 ```yaml
@@ -62,9 +75,9 @@ columns:
 columns:
   project:
     type: relation
-    target: "Projects"
-    two_way: true
-    back_reference: tasks
+    refDatabasePath: "Projects/_database.md"
+    refColumnId: "_title"
+    pairedColumnId: tasks
 ```
 
 At the row level, a relation value is a wikilink (or a list of wikilinks for one-to-many/many-to-many):
@@ -76,7 +89,7 @@ project: "[[Website Relaunch]]"
 ---
 ```
 
-The AI verifies a two-way relation by reading **both** notes: the Task's `project` field must resolve to the Project note, and — once the plugin has run — the Project note's `tasks` field should list the Task back. At the file layer, before the plugin renders anything, the AI can only confirm the forward reference and the schema's declared `back_reference` name; full reciprocal-list population is an in-app compute step.
+The AI verifies a two-way relation by reading **both** notes: the Task's `project` field must resolve to the Project note, and — once the plugin has run — the Project note's `tasks` field should list the Task back. At the file layer, before the plugin renders anything, the AI can only confirm the forward reference and the schema's declared `pairedColumnId`; full reciprocal-list population is an in-app compute step.
 
 **Cardinality**: one-to-one, one-to-many and many-to-many all use the same `relation` column type — cardinality is a property of how many wikilinks a row lists, not a separate schema field.
 
@@ -98,16 +111,16 @@ A Rollup column aggregates one property across every row reached through a Relat
 | `count_values` (distinct) | Count of distinct values for a property across related rows |
 | `list` | Concatenated / clickable list of a property's values across related rows |
 
-### Example schema (key spelling per §1 note)
+### Example schema
 
 ```yaml
 # Projects/_database.md
 columns:
   estimate_hours_total:
     type: rollup
-    relation: tasks          # the Relation column to aggregate through
-    property: estimate_hours # the property on the related row
-    function: sum
+    rollupRelationColumnId: tasks          # the Relation column to aggregate through
+    rollupTargetColumnId: estimate_hours   # the property on the related row
+    rollupFunction: sum
 ```
 
 Because the aggregate is computed from ordinary frontmatter on ordinary notes, the AI can resolve a rollup's value by hand — read every row the relation column reaches, apply the declared function, and report the result — exactly the way `dataview/workflows.md` §2 resolves a DQL query without rendering it. This is what makes the rollup verifiable at the file layer before the plugin ever runs (see `workflows.md` §3 and the `OBS-022` manual scenario).
@@ -118,15 +131,16 @@ Because the aggregate is computed from ordinary frontmatter on ordinary notes, t
 
 A Lookup column pulls one literal property value from a single related row through a Relation column — it does not aggregate, it copies. This is the plugin's answer to Notion's `show_original` rollup function and to Bases' `asFile().properties` formula pattern.
 
-### Example schema (key spelling per §1 note)
+### Example schema
 
 ```yaml
 # Tasks/_database.md
 columns:
   project_status:
     type: lookup
-    relation: project      # the Relation column to look through
-    property: status       # the property to copy from the related row
+    refDatabasePath: "Projects/_database.md"  # the related database to look into
+    refColumnId: status                        # the property to copy from the related row
+    refMatchColumnId: "_title"                 # the column matched against the relation (defaults to _title)
 ```
 
 The AI resolves a Lookup value the same way as a Rollup: read the single related row's `status` field and report it. A Lookup column with a one-to-many relation is ambiguous (which related row's value?) — treat that as a schema error, not a value to guess.
@@ -137,15 +151,15 @@ The AI resolves a Lookup value the same way as a Rollup: read the single related
 
 Subtasks reuse the Relation column type, targeting the **same** database, and the plugin's UI adds expand/collapse for the resulting hierarchy. The documented nesting limit is **3 levels**.
 
-### Example schema (key spelling per §1 note)
+### Example schema
 
 ```yaml
 # Tasks/_database.md
 columns:
   parent_task:
     type: relation
-    target: "Tasks"     # self-relation: same folder as this schema file
-    self_relation: true
+    refDatabasePath: "Tasks/_database.md"  # self-relation: points back at this same database
+    isHierarchical: true                    # marks it as a subtask/self-relation hierarchy
 ```
 
 ```yaml
@@ -180,17 +194,20 @@ The AI verifies a subtask chain by walking `parent_task` wikilinks from a leaf n
 
 This is 7 of Notion's 10 view types. **Form, Map and Dashboard have no Obsidian equivalent through this plugin or any other** — document them as lost per the migration research, not as a pending recipe.
 
-### Example view-block schema (key spelling per §1 note)
+### Example view-block schema
 
 ```yaml
 # Projects/_database.md
 views:
   - name: "By status"
     type: board
-    group_by: status
+    groupByColumnId: status
+  - name: "Schedule"
+    type: calendar
+    calendarDateField: dueDate
 ```
 
-The AI validates a view block structurally: the `type` is one of the 7 supported values above, and any column it references (`group_by`, a calendar/timeline date field, …) exists in the same schema's `columns` map. Confirming the view actually renders needs a running Obsidian and a reload.
+The AI validates a view block structurally: the `type` is one of the 7 supported values above, and any column it references (`groupByColumnId` for a board, `calendarDateField` for a calendar, a timeline date field, …) exists in the same schema's `columns` map. Confirming the view actually renders needs a running Obsidian and a reload.
 
 ### Embedding a view in a note (confirmed syntax)
 
@@ -207,10 +224,74 @@ type: board
 
 ---
 
-## 7. WHAT THE AI MUST NOT DO
+## 7. ADVANCED SCHEMA KEYS
 
-- Never present the per-column key names inside a `_database.md` relation/rollup/lookup/subtask example as byte-verified plugin syntax. The database definition, the 18 column types, the 7 view types, the 7 rollup functions, and the `nb-database` embed syntax are all confirmed by the plugin's own README (v1.12.0, installed in the operator's vault). Only the exact per-column YAML key spelling remains `VERIFY` against a real database.
+Beyond columns and views, `_database.md` supports several confirmed keys (from the plugin's `src/types.ts` and the installed `main.js`). All are optional.
+
+### System columns (read-only, file-stat backed)
+
+`created` and `modified` columns are backed by file stats, **not** frontmatter — never hand-author their values:
+
+```yaml
+columns:
+  created:  { type: date, systemField: ctime }   # from file.stat.ctime
+  modified: { type: date, systemField: mtime }   # from file.stat.mtime
+```
+
+### Number format
+
+A `number` column can carry a `numberFormat`:
+
+```yaml
+columns:
+  budget:
+    type: number
+    numberFormat: { decimals: 2, thousandsSeparator: true, prefix: "$", suffix: "" }
+```
+
+### Templates
+
+New-row templates are declared at the database level with `templatePath` (or `templateFolder`, plus `askTemplateOnCreate: true`):
+
+```yaml
+templatePath: "Templates/task.md"
+```
+
+Placeholders `{{title}}`, `{{folder}}`, `{{date}}`, `{{time}}` are expanded when a row is created (`applyTemplate`).
+
+### Folder arrangement (auto-files rows into subfolders)
+
+```yaml
+folderArrangement:
+  enabled: true
+  propertyIds: [status, priority]
+```
+
+When enabled, the plugin **relocates** each row's `.md` file into a subfolder computed from its column values (`computeArrangedPath`, e.g. `Done/High/row.md`). An AI editing a row must know the file can move — do not assume a fixed path.
+
+### Full ViewConfig surface
+
+Beyond `groupByColumnId` and `calendarDateField` (§6), a view block can carry, by view type: `calendarViewMode`; `timelineStartField` / `timelineEndField` / `timelineZoom` / `timelineGroupByField`; `chartType` / `chartXAxis` / `chartYAxis` / `chartAggregation`; `galleryCoverField` / `galleryCardSize`; `boardColumnOrder` / `boardColumnLimits` / `boardHideEmpty` / `boardHideNoValue`; and shared `pinnedColumnId` / `columnOrder` / `rowHeight` / `wrapText` / `aggregations` / `includeSubfolders` / `conditionalFormats`.
+
+### Embed state storage
+
+An embedded view's state does not live in the database's `_database.md` — it persists in the **hosting note's** frontmatter under `notion-bases-embeds` (key `EMBED_FM_KEY`), a map of embed id → `ViewConfig`/`EmbedState`. Editing a note that hosts an `nb-database` embed means that map may be present; do not strip it.
+
+### Live placeholders
+
+`{{columnId}}` tokens in a note body render the current cell value for that column in reading view (`createLivePlaceholderProcessor`) — a distinct mechanism from the `nb-database` embed system.
+
+### Inline field support
+
+When `readInlineFields` is enabled in the plugin's settings, Dataview-style `Key:: Value` inline fields in a row note are read alongside its frontmatter (`getNoteData`) — so a column value can come from an inline field, not only frontmatter.
+
+---
+
+## 8. WHAT THE AI MUST NOT DO
+
+- Always author `_database.md` frontmatter with the confirmed source keys (`refDatabasePath`, `refColumnId`, `pairedColumnId`, `rollupRelationColumnId`, `rollupTargetColumnId`, `rollupFunction`, `refMatchColumnId`, `isHierarchical`, `groupByColumnId`, `calendarDateField`) shown in §2–§6, and always include the required `notion-bases: true` marker (§1). These keys are confirmed against the plugin's `src/types.ts` and the installed `main.js` (v1.12.0). Snake-case guesses like `target`, `two_way`, `back_reference`, `relation`, `property`, `function`, `group_by`, `date_field` are **not** plugin keys — the plugin silently ignores them, so the column has no effect.
 - Never claim a Rollup, Lookup or subtask feature works on a plugin version below v1.5.0, or a two-way Relation on a version below v1.3.0.
 - Never invent an 8th view type or claim Form/Map/Dashboard parity — the migration research is explicit that these have no Obsidian equivalent.
 - Never claim a schema or row edit rendered in the plugin's table/board/gallery/chart UI. File-layer verification proves the write; a reload proves the render, and that belongs to the plugin-install phase.
+- Never hand-author a **system-column** (`created`/`modified`), **rollup** or **lookup** value — they are derived (file stats, `resolveRollupsForRows`, `resolveLookupsForRows`), so a written value is ignored or overwritten (§7).
 - Never fabricate a rollup or lookup result. If the related rows on disk do not support the computed value, report the gap.

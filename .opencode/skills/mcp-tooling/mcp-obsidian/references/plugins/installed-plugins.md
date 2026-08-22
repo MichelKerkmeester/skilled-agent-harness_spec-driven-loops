@@ -12,7 +12,7 @@ trigger_phrases:
   - "plugins we support"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.1.0.0"
+version: "0.2.0.0"
 ---
 
 # Installed Obsidian Plugins Roster (`installed-plugins`)
@@ -21,10 +21,10 @@ This is the single source of truth for **every community plugin enabled in the o
 
 ## 1. OVERVIEW
 
-The vault has **21 community plugins** enabled (`.obsidian/community-plugins.json`). They split into two operating classes:
+The vault has **24 community plugins** enabled (`.obsidian/community-plugins.json`). They split into two operating classes:
 
-- **File-layer plugins (15)** — persist their state as markdown, frontmatter, or a structured file (`.canvas`, `_database.md`, `.excalidraw.md`, ledgers). The AI operates these at the file layer, so each has a dedicated four-file integration reference under `references/plugins/<name>/`.
-- **UI / automatic plugins (6)** — change the editor UI or apply automatic behavior with no vault syntax or data model an AI authors against. These are installed and listed here for completeness but intentionally carry **no dedicated integration docs** — there is nothing for an AI to author against.
+- **File-layer plugins (15)** — persist their state as markdown, frontmatter, or a structured file (`.canvas`, `_database.md`, inline `INPUT[]`/`BUTTON[]` fields, ledgers). The AI operates these at the file layer, so each has a dedicated four-file integration reference under `references/plugins/<name>/` (a companion plugin may share its primary's tree, noted inline).
+- **UI / automatic plugins (9)** — change the editor UI or apply automatic behavior with no vault syntax or data model an AI authors against. These are installed and listed here for completeness but intentionally carry **no dedicated integration docs** — there is nothing for an AI to author against.
 
 Ground-truth identity (id, version, `minAppVersion`) always comes from each plugin's on-disk `manifest.json` under `.obsidian/plugins/<manifest.id>/`. The operator's Obsidian app is **1.13.4**, which clears every plugin's minimum-version floor (the highest here is 1.13.1).
 
@@ -39,10 +39,10 @@ Each row's reference tree is `references/plugins/<folder>/` with four files: ind
 | Notion Bases | `notion-bases` | 1.12.0 | `bgarciamoura/obsidian-notion-bases-plugin` | Notion-style relational databases: two-way relations, rollups, lookups, subtasks, multi-view | `notion-bases/` |
 | Dataview | `dataview` | 0.5.68 | `blacksmithgu/obsidian-dataview` | Query/aggregation engine (DQL + JS) over notes and frontmatter | `dataview/` |
 | Tables | `tables` | 1.5.0 | `aztekgold/obsidian-tables` | Spreadsheet-style editor for markdown tables | `obsidian-tables/` |
-| Excalidraw | `obsidian-excalidraw-plugin` | 2.26.2 | `zsviczian/obsidian-excalidraw-plugin` | Freeform hand-drawn diagrams and sketches (`.excalidraw.md`) | `excalidraw/` |
 | Advanced Canvas | `advanced-canvas` | 6.5.4 | `developer-mike/obsidian-advanced-canvas` | Extends the native `.canvas` JSON: node types, portals, presentations, edge routing | `advanced-canvas/` |
 | Charts | `obsidian-charts` | 3.9.0 | `phibr0/obsidian-charts` | Chart.js charts rendered from fenced code blocks | `charts/` |
-| Project Manager | `project-manager` | 1.8.0 | `StepanKropachev/obsidian-pm` | Project-management layer: Table/Gantt/Kanban over tasks with dependencies and time tracking | `project-manager/` |
+| Meta Bind | `obsidian-meta-bind-plugin` | 1.5.1 | `mProjectsCode/obsidian-meta-bind-plugin` | Inline `INPUT[]`/`BUTTON[]`/`VIEW[]` fields that read & write frontmatter; the button engine behind the Notion-style task timer | `meta-bind/` |
+| JS Engine | `js-engine` | 0.3.6 | `mProjectsCode/obsidian-js-engine-plugin` | Runs JS in `js-engine` blocks and Meta Bind actions; computes timer timestamps and dynamic field values | `meta-bind/` (companion) |
 | Health.md Visualizations | `health-md` | 2.1.0 | `codybontecou/health-md-visualizations` | Apple/Android Health data charts from `health.md` blocks | `health-md/` |
 | Beancount Ledger | `beancount-finance` | 2.3.1 | `mkshp-dev/obsidian-finance-plugin` | Beancount plain-text accounting ledgers inside the vault | `beancount-finance/` |
 | Outliner | `obsidian-outliner` | 4.10.2 | `vslinko/obsidian-outliner` | Structured bullet-list outlining: zoom, fold, move-by-tree | `outliner/` |
@@ -68,13 +68,18 @@ These are enabled in the vault and supported operationally, but they have no vau
 | Quick Switcher++ | `darlal-switcher-plus` | 6.1.6 | `darlal/obsidian-switcher-plus` | Extends core Quick Switcher with heading/symbol/editor/bookmark modes | Switcher UI only; no persisted data model |
 | Custom Frames | `obsidian-custom-frames` | 2.6.0 | `Ellpeck/ObsidianCustomFrames` | Embeds external web apps as panes via iframe | Config is a URL + CSS string per frame |
 | Link Favicons | `link-favicon` | 1.8.5 | `joethei/obsidian-link-favicon` | Renders a favicon next to external links | Purely visual; no content/data model |
+| Dragger | `dragger` | 2.0.0 | `Ariestar/obsidian-dragger` | Notion-style drag handle to reorder blocks/lines in the editor | Editor UI gesture; no vault syntax or data model |
+| Bullet Depth Markers | `bullet-depth-markers` | 1.0.0 | `michaelnguyen5653/Bullet-Depth-Markers` | Renders a distinct bullet glyph per indent depth | Automatic on edit; no AI-authored syntax (note: it rewrites the literal `-`/`*`/`+` characters in files) |
+| Dynamic Outline | `dynamic-outline` | 1.19.0 | `theopavlove/obsidian-dynamic-outline` | Notion/GitHub-style floating table-of-contents panel, per note | Navigation UI; no vault syntax or data model |
 
 ---
 
 ## 4. NOTES AND RELATED
 
 - **Minimal theme.** `references/plugins/minimal/` documents the Minimal *theme*, not a community plugin. Themes live under `.obsidian/themes/` and appearance settings, not in `community-plugins.json`, so Minimal is not a row in this roster.
-- **Overlap decisions (kept, not removed).** Two installed plugins overlap others by design and coexist: Claudian (`realclaudian`) runs an agent inside Obsidian while Local REST API serves external agents — different use cases; Project Manager overlaps Dataview and Notion Bases for task tracking specifically but is purpose-built for PM (dependencies, Gantt, time tracking). None of the three is redundant.
+- **Overlap decisions.** Claudian (`realclaudian`) runs an agent inside Obsidian while Local REST API serves external agents — different use cases, both kept. **Project Manager was removed** (deprecated 2026-08-22): its task-tracking role is consolidated onto Notion Bases (relations, rollups, Table/Board/Timeline/Calendar views) plus Meta Bind + JS Engine for the live start/stop task timer, which made a dedicated PM plugin redundant. **Excalidraw was removed** the same day — freeform drawing/whiteboard use was retired from the vault.
+- **Notion-parity stack (2026-08-22).** The vault standardizes on Notion Bases as the database and calendar foundation. The Notion-style task timer (Start/End buttons that stamp frontmatter + a Total-Time formula column) is built with Meta Bind + JS Engine over a Bases task database. See `references/plugins/meta-bind/` and `references/plugins/notion-bases/`.
+- **Dynamic Outline activation.** Selected and pinned to v1.19.0 (repo `theopavlove/obsidian-dynamic-outline`) for a Notion-style floating table of contents; install it via BRAT and reload Obsidian to activate. Until that install runs, the live `community-plugins.json` shows 23 enabled ids rather than the 24 this roster documents.
 - **Compatibility watch.** Notebook Navigator replaces the core file-explorer pane; Iconic injects icons into that pane. Confirm Iconic's icons still render inside Notebook Navigator's row UI when relying on both.
 
 ---

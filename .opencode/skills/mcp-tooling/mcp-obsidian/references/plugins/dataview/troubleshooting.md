@@ -40,7 +40,7 @@ Diagnose the note data, the query block and the settings file separately. A vali
 2. Read the settings file or confirm it is absent so defaults apply.
 3. Resolve the FROM source: list the folder, tag matches, or link targets.
 4. Read the source notes and check the referenced field names exist.
-5. Apply WHERE, SORT, GROUP BY, FLATTEN and LIMIT by hand and compare with the expected rows.
+5. Apply the data commands by hand **in the query's written order** (DQL runs commands top-to-bottom; order is significant and a command may repeat), then compare with the expected rows.
 6. For JavaScript, confirm the enabling setting is `true`.
 7. Check the render step: the user must reload the note or pane after a file change.
 
@@ -68,7 +68,7 @@ FROM "Projects"
 ```
 ````
 
-The notes store `Due:: 2026-06-30`. DQL matches fields case-insensitively in most setups, but when in doubt use the exact key from the note. VERIFY the note key first, then fix the query:
+The notes store `Due:: 2026-06-30`. A capitalized key gets a lowercase alias via sanitization, so `Due` and `due` both resolve — but spaces and punctuation are hyphenated (`Due Date` → `due-date`), so use the sanitized name when the key is not a simple word:
 
 ````markdown
 ```dataview
@@ -76,6 +76,10 @@ TABLE Due
 FROM "Projects"
 ```
 ````
+
+### Null-comparison trap (over-matching, not empty)
+
+`null <= date(today)` returns `true`, so a filter over a sparsely-populated (migrated) field **leaks rows** rather than returning nothing. Guard with a type check: `WHERE typeof(field) = "date" AND field <= date(today)`. The symptom here is *over*-matching — the opposite of this section's empty-result frame.
 
 ---
 
@@ -100,7 +104,7 @@ A raw-code render means Obsidian does not see a registered code block language. 
 | Key collision | Same key in frontmatter and body | Keep one source per key |
 | Inline queries disabled | Check `enableInlineDataview` | Set it to `true` |
 | Field in a code block | Inline fields inside fenced blocks do not parse | Move the field into the note body |
-| Malformed value | Multi-line value without indentation | Indent the continuation lines |
+| Multi-line value not captured | An inline field value is single-line (terminated by the line break) | Move multi-line text to a YAML frontmatter field using the `|` block scalar; an inline `Key:: Value` cannot span lines |
 
 ---
 
@@ -114,7 +118,7 @@ The default is `enableDataviewJs: false`. A `dataviewjs` block renders as code u
 4. Back up the file before writing, then merge only these keys.
 5. Ask the user to reload Obsidian so the setting takes effect.
 
-Use only verified API methods (`dv.pages`, `dv.current`, `dv.list`, `dv.table`, `dv.taskList`). Anything else: VERIFY against the official documentation before promising output.
+Use the API surface in `data-model.md` §6. The core five (`dv.pages`, `dv.current`, `dv.list`, `dv.table`, `dv.taskList`) are verified in the installed build; confirm an uncommon method against the official Dataview docs before promising output.
 
 ---
 

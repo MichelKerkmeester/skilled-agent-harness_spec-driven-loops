@@ -1,0 +1,11 @@
+{
+  "owner_pid": 76229,
+  "started_at_iso": "2026-08-22T14:31:21.084Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-08-22T14:31:21.084Z",
+  "packet_id": "specs/mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-08-22T14:31:21.084Z",
+  "acquire_nonce": "76229-1787409081085-ec323356-055b-487b-a7aa-2ad728af4e5f"
+}

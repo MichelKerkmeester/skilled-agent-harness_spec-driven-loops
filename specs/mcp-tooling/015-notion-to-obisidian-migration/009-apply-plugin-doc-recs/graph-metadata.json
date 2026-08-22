@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 apply plugin doc recs",
+      "mcp-obsidian plugin docs remediation",
+      "notion bases wrong keys fix",
+      "meta-bind now() bug fix",
+      "015 apply plugin doc recs plan",
+      "mcp-obsidian docs remediation plan",
+      "015 apply plugin doc recs tasks",
+      "015 apply plugin doc recs checklist",
+      "015 apply plugin doc recs summary"
+    ],
+    "key_topics": [
+      "apply",
+      "plugin",
+      "doc",
+      "recs",
+      "mcp-obsidian",
+      "docs",
+      "remediation",
+      "notion",
+      "bases",
+      "wrong",
+      "keys",
+      "meta-bind"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Priority",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Meta Bind",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "YAML",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped `mcp-obsidian` plugin docs carried real correctness defects the 006 research surfaced: advanced-canvas told the AI to never author cross-portal edges (a now-resolved, operation-blocking `VERIFY`); every notion-bases `database.md` column key was a wrong guess the plugin silently ignores, and the mandatory `notion-bases: true` marker was documented nowhere; meta-bind taught a `=now()` timestamp the plugin has no function for; claudian instructed operators to author `.claude/mcp.json`, a file Claudian deletes; dataview stated two facts (inline-field multiline, fixed DQL command order)",
+    "created_at": "2026-08-22T17:53:35.681Z",
+    "last_save_at": "2026-08-22T18:42:48.921Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eb35f187437d1e1d185d306a0f5ba992d57cca49f6c682e4fba1ec9d7c563894",
+    "source_doc_hashes": {
+      "spec.md": "c68e6f36a143ede070f08798d0d07a307a1eecd42407d0565e9ac613a359d9aa",
+      "plan.md": "36fcaad24716c890e4d5a73bd3344d79e38e151a71f896bcbc05d734d7784562",
+      "tasks.md": "aa7c3e1376b8be89696343152d22298023f311e12f760015daa6f67f5f451d22",
+      "checklist.md": "babb11e80df6d35052658b55198c392ca591ad67a5124acedc4b60ee808b77d4",
+      "implementation-summary.md": "c9cdc78cd1f481f24cab046daaadf0598e7b17f2b850280cd617013e573ec8e7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -16,7 +16,7 @@ version: "0.1.0.0"
 
 # Advanced Canvas Plugin File-Layer Workflows
 
-These recipes change the **`.canvas` JSON file** the plugin reads — the `nodes` array, the `edges` array and the top-level `metadata` object. The JSON write is the operation; an in-app canvas reload is the render step. Every extended key and every style value below was read from the installed `main.js` (6.5.4). The one open item is the serialized shape of a cross-portal edge — `VERIFY` before hand-authoring one (`data-model.md` §5/§7).
+These recipes change the **`.canvas` JSON file** the plugin reads — the `nodes` array, the `edges` array and the top-level `metadata` object. The JSON write is the operation; an in-app canvas reload is the render step. Every extended key and every style value below was read from the installed `main.js` (6.5.4). Cross-portal edges are confirmed: they live in an `interdimensionalEdges` array on the portal `file` node (`data-model.md` §5). Only the exact endpoint-id encoding is inferred — confirm it against a real portal file before relying on a hand-authored recipe.
 
 ---
 
@@ -140,7 +140,7 @@ Goal: embed another `.canvas` inside this one as a live portal.
 1. Confirm the target `.canvas` file exists at the vault path you will reference.
 2. Add (or convert) a `file` node whose `file` is the target `.canvas`, and set `portal: true`.
 3. Re-read and confirm the `file` path resolves and `portal` is `true`.
-4. Do **not** hand-author edges into nodes inside the portal — that serialized shape is unconfirmed (`data-model.md` §5). Connect top-level nodes only, and let the plugin manage portal-internal edges after a reload.
+4. To connect a top-level node to a node **inside** the portal, add the edge to the portal node's `interdimensionalEdges` array with composite `portalId-nestedNodeId` endpoints (see the recipe below). The container is confirmed; the exact endpoint encoding is inferred, so confirm it against a real portal file first. Otherwise connect top-level nodes only and let the plugin manage portal-internal edges after a reload.
 
 ### Before
 
@@ -154,9 +154,25 @@ Goal: embed another `.canvas` inside this one as a live portal.
 { "id": "p1", "type": "file", "file": "Maps/Sub-canvas.canvas", "x": 0, "y": 0, "width": 600, "height": 400, "portal": true }
 ```
 
+### Add a cross-portal (interdimensional) edge
+
+An edge from a top-level node to a node **inside** the portal is not a top-level edge — it goes in the portal node's `interdimensionalEdges` array, with the nested endpoint written as a composite `portalId-nestedNodeId` id:
+
+```json
+{
+  "id": "p1", "type": "file", "file": "Maps/Sub-canvas.canvas",
+  "x": 0, "y": 0, "width": 600, "height": 400, "portal": true,
+  "interdimensionalEdges": [
+    { "id": "ie1", "fromNode": "n1", "toNode": "p1-innerNodeId" }
+  ]
+}
+```
+
+The `interdimensionalEdges` container is confirmed; the exact endpoint encoding is inferred from the plugin's runtime rewrite, so capture and inspect one real portal `.canvas` to confirm the `portalId-nestedNodeId` syntax before relying on this recipe in production.
+
 ### Checkpoint
 
-`portal_node_valid`: the node is `type: "file"`, `portal` is `true`, and `file` resolves to a real `.canvas` in the vault. No hand-authored cross-portal edge.
+`portal_node_valid`: the node is `type: "file"`, `portal` is `true`, and `file` resolves to a real `.canvas` in the vault; any cross-portal edge is a well-formed entry in the portal node's `interdimensionalEdges[]`, not the top-level `edges` array.
 
 ---
 
@@ -233,7 +249,23 @@ Advanced Canvas exports **PNG and SVG** with options for transparency, a privacy
 
 ---
 
-## 9. VERIFYING
+## 9. CONTROL NODE Z-ORDER
+
+Goal: make a node draw on top of (or behind) overlapping nodes.
+
+### Steps
+
+1. Assign each overlapping node a unique integer `zIndex` — higher draws on top.
+2. Sort the `nodes` array ascending by `zIndex` so array order matches the spec's requirement.
+3. Re-read and confirm every `zIndex` is unique and the array is sorted ascending.
+
+### Checkpoint
+
+`z_order_valid`: overlapping nodes carry unique integer `zIndex` values and the `nodes` array is sorted ascending by `zIndex`.
+
+---
+
+## 10. VERIFYING
 
 Run these named checkpoints after any Advanced Canvas operation:
 
@@ -246,5 +278,6 @@ Run these named checkpoints after any Advanced Canvas operation:
 | `portal_node_valid` | The portal is a `file` node with `portal: true` and a resolving `.canvas` path |
 | `presentation_startnode_valid` | `metadata.startNode` names a real node and slide edges resolve |
 | `auto_edge_frontmatter_valid` | The auto-edge frontmatter key lists real notes present as file nodes |
+| `z_order_valid` | Overlapping nodes carry unique integer `zIndex` values and `nodes[]` is sorted ascending by `zIndex` |
 
 The file layer proves the write. The render proves itself in-app after the user reloads the canvas — that check belongs to the plugin-install phase, not this reference set.

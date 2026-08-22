@@ -47,7 +47,7 @@ Goal: make a provider usable in Claudian by confirming its CLI and, if auto-dete
 1. Confirm the CLI is installed: `which claude` (macOS/Linux) or `where.exe claude` on Windows — substitute the provider's binary (`codex`, `opencode`, …). On Windows, avoid `.cmd`/`.ps1` wrappers; use the real executable.
 2. In Claudian, leave the CLI path empty first so it can auto-detect.
 3. If auto-detection fails, set the absolute path under **Settings → Advanced → (provider) CLI path**, and any needed variables under **Settings → Environment**.
-4. Claudian persists the choice in `<vault>/.claude/claudian-settings.json` (observed; keys `VERIFY`). Back it up before editing it by hand.
+4. Claudian persists the choice in `<vault>/.claudian/claudian-settings.json` (current; `<vault>/.claude/claudian-settings.json` is the legacy path it migrates from). Back it up before editing it by hand.
 
 ### Checkpoint
 
@@ -117,36 +117,18 @@ Summarize the note at $ARGUMENTS in five bullet points, then list open questions
 
 ## 5. CONNECT AN MCP SERVER
 
-Goal: expose an external MCP tool to the agent through the provider's **native** MCP config.
+Goal: expose an external MCP tool to the agent through the provider CLI's **own** native MCP config — not through a Claudian-authored file.
 
 ### Steps
 
-1. Identify the active provider's native MCP config — for Claude Code, `.claude/mcp.json` (observed) at vault or user scope; for another provider, its own MCP config file (**VERIFY** the path and shape against that CLI's docs).
-2. Back up the file (`.bak`), then merge the server entry key by key into the existing `mcpServers` map — do not overwrite other servers.
-3. Re-read the file and confirm it is valid JSON/TOML and the command it names exists.
-4. Tell the operator to restart the agent so the CLI reloads its MCP config.
-
-### Before
-
-```json
-// <vault>/.claude/mcp.json  (shape VERIFY)
-{ "mcpServers": {} }
-```
-
-### After
-
-```json
-// <vault>/.claude/mcp.json  (shape VERIFY)
-{
-  "mcpServers": {
-    "example": { "command": "node", "args": ["./server.js"] }
-  }
-}
-```
+1. Identify the active provider CLI's **own** MCP config mechanism (Claude Code, Codex, OpenCode, … each have their own). Do **not** author `<vault>/.claude/mcp.json` — Claudian removes that legacy file at init, so a server declared there never loads (`data-model.md` §5).
+2. **VERIFY** the provider CLI's actual MCP config path and shape against that CLI's own documentation before editing; this reference does not pin a positive Claude-provider MCP path.
+3. Back up the CLI's real MCP config (`.bak`), then merge the server entry key by key into its existing server map — do not overwrite other servers.
+4. Re-read the file, confirm it is valid JSON/TOML and the command it names exists, and tell the operator to restart the agent so the CLI reloads its MCP config.
 
 ### Checkpoint
 
-`mcp_declared_provider_native`: the entry was merged into the provider's own MCP config (not a Claudian-invented file), the file parses, and the operator has been told a restart is required for it to load.
+`mcp_declared_provider_native`: the entry was merged into the **provider CLI's own** MCP config (never a Claudian-authored `.claude/mcp.json`), the file parses, and the operator has been told a restart is required for it to load.
 
 ---
 
