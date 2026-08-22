@@ -5,6 +5,15 @@
 export { AuthorityRegistry } from './authority-registry.js';
 export { isValidAuthorityRecord, selectAuthorityRoute } from './authority-selector.js';
 export { AuthorityFlipCoordinator } from './cutover-coordinator.js';
+export { createAuthorityFlipCoordinator } from './coordinator-factory.js';
+export {
+  AUTHORITY_FLIP_ACTOR_RULE_ID,
+  AUTHORITY_FLIP_EVENT_RULE_ID,
+  AUTHORITY_FLIP_POLICY_ID,
+  AUTHORITY_FLIP_POLICY_VERSION,
+  AUTHORITY_FLIP_STATE_RULE_ID,
+  createAuthorityFlipTransitionPolicyRegistry,
+} from './authority-flip-policy.js';
 export {
   appendAuthorityTransitionEvent,
   buildAuthorityTransitionEvent,
@@ -35,6 +44,11 @@ export type {
   AuthorityFlipCoordinatorOptions,
   AuthorityFlipExpectedIdentity,
 } from './cutover-coordinator.js';
+export type {
+  AuthorityFlipCoordinatorBundle,
+  AuthorityFlipCoordinatorFactoryOptions,
+} from './coordinator-factory.js';
+export type { AuthorityFlipPolicyOptions } from './authority-flip-policy.js';
 export type {
   AuthorityTransitionEnvelopeFields,
   AuthorityTransitionFactsInput,

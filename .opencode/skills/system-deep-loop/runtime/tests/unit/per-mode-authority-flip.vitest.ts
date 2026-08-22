@@ -4,7 +4,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { chmodSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -36,8 +36,10 @@ import {
   AUTHORITY_FLIP_COMMON_MODE,
   AUTHORITY_FLIP_EVENT_TYPE,
   AUTHORITY_FLIP_MODE_ORDER,
+  AUTHORITY_FLIP_POLICY_ID,
   AuthorityRegistry,
   checkManifestOrder,
+  createAuthorityFlipCoordinator,
   createAuthorityTransitionEventRegistry,
   deriveFlippedModes,
   evaluateCutoverPreflight,
@@ -433,8 +435,8 @@ async function fixtureMigrationReceiptForMode(mode: CutoverCertificateMode, labe
 
 async function fixtureCutoverCertificate(
   overrides: Readonly<Partial<CutoverCertificateEvidenceSources>> = {},
+  policy: ReturnType<typeof fixturePolicy> = fixturePolicy(),
 ): Promise<CutoverCertificate> {
-  const policy = fixturePolicy();
   const result = await buildCutoverCertificate({
     mode: MODE,
     candidateSha: CANDIDATE_SHA,
@@ -480,8 +482,9 @@ async function fixtureCutoverCertificate(
 async function fixturePreflightInput(
   overrides: Readonly<Partial<CutoverPreflightInput>> = {},
   handoff: InflightMigrationHandoff,
+  policy: ReturnType<typeof fixturePolicy> = fixturePolicy(),
 ): Promise<CutoverPreflightInput> {
-  const certificate = await fixtureCutoverCertificate();
+  const certificate = await fixtureCutoverCertificate({}, policy);
   return {
     mode: MODE,
     expectedAuthorityEpoch: AUTHORITY_EPOCH,
@@ -1699,6 +1702,55 @@ describe('AuthorityFlipCoordinator', () => {
       decidedAt: '2026-08-09T00:15:00Z',
     };
   }
+
+  it('denies an unauthorized policy request without changing the durable record or domain ledger', async () => {
+    const root = temporaryRoot('real-policy-denial');
+    const registryRoot = join(root, 'authority-registry');
+    const ledgerRoot = join(root, 'ledger');
+    seedAuthorityRecord(registryRoot, cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
+    const expectedIdentity = Object.freeze({
+      actorId: 'per-mode-authority-flip-tests',
+      capabilityId: 'write',
+    });
+    const factory = createAuthorityFlipCoordinator({
+      rootDirectory: ledgerRoot,
+      ledgerId: 'authority-flip-domain',
+      auditLedgerId: 'authority-flip-audit',
+      registry: new AuthorityRegistry(registryRoot),
+      expectedIdentity,
+      authorizedActorIds: ['production-authority-flip'],
+      authorizedCapabilityIds: ['write'],
+    });
+    const policy = factory.policies.resolve(AUTHORITY_FLIP_POLICY_ID, 1);
+    const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff, policy);
+    const request = buildRequest(policy, preflight);
+    const recordPath = join(registryRoot, `authority-${MODE}.json`);
+    const pendingPath = join(registryRoot, `authority-flip-prepare-${MODE}.json`);
+    const beforeBytes = readFileSync(recordPath);
+    const beforeRecord = JSON.parse(beforeBytes.toString('utf8')) as AuthorityRecord;
+
+    const decision = await factory.coordinator.requestCutover(request);
+    const afterBytes = readFileSync(recordPath);
+    const afterRecord = JSON.parse(afterBytes.toString('utf8')) as AuthorityRecord;
+
+    if (process.env.AUTHORITY_FLIP_NEGATIVE_CONTROL === '1') {
+      expect(decision.disposition).toBe('flipped');
+      if (decision.disposition !== 'flipped') throw new Error('expected flipped negative control');
+      expect(afterRecord.state).toBe('new_authoritative_reversible');
+      expect(afterRecord.epoch).toBe(AUTHORITY_EPOCH + 1);
+      expect(await factory.ledger.readVerifiedEvents()).toHaveLength(1);
+      return;
+    }
+
+    expect(decision).toEqual({ disposition: 'denied', reasonCode: 'AUTHORIZATION_DENIED' });
+    expect(afterBytes).toEqual(beforeBytes);
+    expect(afterRecord).toEqual(beforeRecord);
+    expect(afterRecord.state).toBe('cutover_ready');
+    expect(afterRecord.epoch).toBe(AUTHORITY_EPOCH);
+    expect(existsSync(pendingPath)).toBe(false);
+    expect(await factory.ledger.readVerifiedEvents()).toHaveLength(0);
+  });
 
   it('flips one mode atomically: one ledger event, one epoch increment, dark canonical route', async () => {
     const root = temporaryRoot('flip');

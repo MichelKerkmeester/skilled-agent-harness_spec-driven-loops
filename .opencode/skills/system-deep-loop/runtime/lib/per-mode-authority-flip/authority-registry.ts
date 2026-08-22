@@ -5,9 +5,9 @@
 // One durable, mode-keyed authority record per canonical workstream, with
 // monotonic-epoch compare-and-swap and crash-safe atomic writes. A mode
 // this registry has never written reads back as its default:
-// `legacy_authoritative` at epoch 1, selected writer `legacy`. Nothing in
-// this file is invoked against a real mode's root by this build; every
-// caller in this package is a unit test supplying its own temporary root.
+// `legacy_authoritative` at epoch 1, selected writer `legacy`. The coordinator
+// factory can bind this store to production roots; tests use isolated
+// temporary roots to prove the crash-safe behavior independently.
 
 import {
   closeSync,

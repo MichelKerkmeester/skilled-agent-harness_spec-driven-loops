@@ -4,11 +4,9 @@
 //
 // Ties the preflight, the transition authorization gateway, the
 // authority-transition ledger event, and the mode-keyed authority registry
-// into one per-mode transaction. This coordinator is never invoked against
-// a real mode's registry root or a real ledger by this build — every call
-// site in this package is a unit test supplying its own temporary root and
-// fixture evidence. Wiring a live mode adapter to call this coordinator is
-// a separate, explicitly out-of-scope, operator-gated step.
+// into one per-mode transaction. The package factory binds these dependencies
+// for production callers, while live mode adapters remain responsible for
+// deciding when a validated cutover request is submitted.
 
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
 import { AuthorityRegistry } from './authority-registry.js';
