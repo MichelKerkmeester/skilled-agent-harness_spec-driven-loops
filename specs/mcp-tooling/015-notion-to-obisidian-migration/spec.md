@@ -14,18 +14,20 @@ _memory:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration"
     last_updated_at: "2026-08-21T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "converted 015 to phase parent; 001-deep-research child scaffolded, seeded with prior findings"
-    next_safe_action: "launch 20-iter deep research bound to 001-deep-research"
+    recent_action: "built all phases + installed Notion Bases v1.12.0 into the real vault"
+    next_safe_action: "None — capability build complete; running an actual migration is a separate future use"
     blockers: []
     key_files:
       - "spec.md"
-      - "001-deep-research/spec.md"
-      - "001-deep-research/prior-findings.md"
+      - "001-deep-research/research/research.md"
+      - "002-migration-playbook/spec.md"
+      - "003-notion-bases-plugin-tie-in/spec.md"
+      - "004-plugin-install-and-verification/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "015-notion-to-obisidian-migration"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -66,7 +68,40 @@ A prior single-pass web-research note (preserved as `001-deep-research/prior-fin
 
 | Phase | Folder | Outcome |
 |---|---|---|
-| **001 — Deep research** | `001-deep-research/` | 20-iteration deep research (10x GLM-5.2 via cli-devin + 10x DeepSeek V4 Flash xhigh via cli-opencode/Cline, no early convergence), seeded by the preserved prior findings — everything needed for a flawless complex Notion→Obsidian migration. |
-| 002+ — provisional | *(pending 001 verdict)* | Synthesize the research recommendations, author phase children, and implement into `mcp-obsidian` + `mcp-notion` plus install any proven Obsidian plugins. Their exact shape is decided by the 001 research verdict. |
+| **001 — Deep research** | `001-deep-research/` | Done. 20-iteration deep research (10x GLM-5.2 via cli-devin + 10x DeepSeek V4 Flash xhigh via cli-opencode/Cline, no early convergence), seeded by the preserved prior findings — everything needed for a flawless complex Notion→Obsidian migration. |
+| **002 — Migration playbook** | `002-migration-playbook/` | Done. Built `mcp-obsidian/references/notion-migration.md` (8-step reconstruction + verification method) and `mcp-notion/references/migration-inventory.md` (7-step inventory + API-gap reads), plus additive `NOTION_MIGRATION` router entries in both SKILL.md files. |
+| **003 — Notion Bases plugin tie-in** | `003-notion-bases-plugin-tie-in/` | Done. Built the `mcp-obsidian` Notion Bases community-plugin reference tree (two-way relations, 7 rollups, 7 views, subtasks, Lookup columns) plus a Dataview supplement, a feature-catalog entry, the OBS-022 manual scenario, and a `PLUGIN_NOTION_BASES` router intent. |
+| **004 — Plugin install and verification** | `004-plugin-install-and-verification/` | Done. Shipped the OBS-023 headless real-vault install scenario and the 11-check `verify-notion-migration-parity.sh`, and executed the real BRAT install of Notion Bases v1.12.0 into the operator's vault (Dataview already present). |
 
-Later phases are intentionally left provisional: their structure depends on the 001 verdict, so decomposing them now would presume the answer.
+Phases 002-004 are complete: the migration/inventory references, the Notion Bases plugin knowledge tree, and the parity verifier are built into `mcp-obsidian`/`mcp-notion`, and Notion Bases v1.12.0 is installed in the operator's vault. Running an actual Notion→Obsidian migration of a live workspace is a separate future use of this capability.
+
+---
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 001 | `001-deep-research/` | 20-iteration deep research into the flawless migration method | Done |
+| 002 | `002-migration-playbook/` | `mcp-obsidian`/`mcp-notion` migration + inventory reference docs | Done |
+| 003 | `003-notion-bases-plugin-tie-in/` | Notion Bases plugin knowledge tree + Dataview supplement | Done |
+| 004 | `004-plugin-install-and-verification/` | Real-vault plugin install scenario + 11-check parity script | Done |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume mcp-tooling/015-notion-to-obisidian-migration/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on the parent to validate all phases as an integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001 | 002 | Research verdict decided (no open design blockers) | `research.md` §13-15 (Divergence Map, Open Questions, Recommendations) |
+| 002 | 003 | Migration playbook build complete: both reference docs + routers built | `validate_document.py --type skill` = 0 issues; `ci-leaf-manifest-freshness.cjs` OK |
+| 003 | 004 | Notion Bases plugin reference tree built; `mcp-obsidian` router routes to it | `validate_document.py --type skill` = 0 issues; `ci-leaf-manifest-freshness.cjs` OK |
+| 004 | Done | Planning artifacts built AND the real install has executed with an explicit operator go-ahead | `OBS-023` scenario verify step passes; `verify-notion-migration-parity.sh` runs against a live vault |
+<!-- /ANCHOR:phase-map -->

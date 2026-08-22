@@ -53,9 +53,9 @@ FAILURE MODES:
 | **Created** | 2026-08-21 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of N (later phases provisional) |
+| **Phase** | 1 of 4 |
 | **Predecessor** | None |
-| **Successor** | 002+ (shape TBD, pending this phase's verdict) |
+| **Successor** | 002-migration-playbook |
 | **Handoff Criteria** | `research/research.md` synthesized from 20 iterations with a decided migration method: importer choice, what survives vs breaks, the relation/rollup/formula recovery path, file/comment/view handling, the mcp-notion-reads / mcp-obsidian-writes division of labor, and any required Obsidian plugins. |
 <!-- /ANCHOR:metadata -->
 
