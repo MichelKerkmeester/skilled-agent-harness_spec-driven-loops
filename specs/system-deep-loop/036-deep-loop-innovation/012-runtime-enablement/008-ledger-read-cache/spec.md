@@ -12,16 +12,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache"
-    last_updated_at: "2026-08-22T00:00:00Z"
+    last_updated_at: "2026-08-22T05:17:32Z"
     last_updated_by: "claude"
-    recent_action: "Authored spec"
-    next_safe_action: "Design the opt-in cache and its invalidation contract, then implement behind a default-off flag"
+    recent_action: "Built, verified, and measured the opt-in read cache; status Complete"
+    next_safe_action: "Phase complete; reconcile and commit 007, then resume the enablement chain"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts"
-      - ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts"
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The per-read cost is the frame store's exclusive-lock round-trip, not fsync and not the scan"
@@ -42,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-22 |
 | **Owner skill** | system-deep-loop |
 | **Authority posture** | No authority moves; a read-path performance change to a shared primitive, default-off |

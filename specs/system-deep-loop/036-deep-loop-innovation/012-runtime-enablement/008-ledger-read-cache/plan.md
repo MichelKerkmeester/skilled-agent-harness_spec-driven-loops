@@ -10,7 +10,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-le
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache"
-    last_updated_at: "2026-08-22T00:00:00Z"
+    last_updated_at: "2026-08-22T05:17:32Z"
     last_updated_by: "claude"
     recent_action: "Broke the fix into read-path, invalidation/enablement, and proof phases"
     next_safe_action: "Read the read and append methods, then add the default-off cache field"
@@ -70,11 +70,16 @@ derived from it). It lives on the `AppendOnlyLedger` instance, gated by a defaul
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-1. **Read path.** Add the default-off option and the memo; serve `readVerifiedEvents`/`getVerifiedHead` from it when on.
-2. **Invalidation + enablement.** Invalidate on the instance's own successful append; enable the flag on the
-   effect-dispatch helper's per-lineage ledgers.
-3. **Proof.** Cache hit/invalidation, default-off inertness, single-writer byte-equality, full ledger + effect suites,
-   and the before/after measurement.
+### Phase 1: Read path
+Add the default-off option and the memo; serve `readVerifiedEvents`/`getVerifiedHead` from it when on.
+
+### Phase 2: Invalidation + enablement
+Invalidate on the instance's own successful append; enable the flag on the effect-dispatch helper's per-lineage
+ledgers.
+
+### Phase 3: Proof
+Cache hit/invalidation, default-off inertness, single-writer byte-equality, full ledger + effect suites, and the
+before/after measurement.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
