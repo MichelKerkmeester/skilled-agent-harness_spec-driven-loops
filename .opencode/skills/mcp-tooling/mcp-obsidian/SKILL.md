@@ -110,6 +110,11 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/minimal/data-model.md
              references/plugins/minimal/workflows.md
              references/plugins/minimal/troubleshooting.md
+           Notion Bases:
+             references/plugins/notion-bases/notion-bases.md             (plugin index)
+             references/plugins/notion-bases/data-model.md
+             references/plugins/notion-bases/workflows.md
+             references/plugins/notion-bases/troubleshooting.md
 ```
 
 ### Two Decisions This Router Makes
@@ -266,6 +271,13 @@ INTENT_SIGNALS = {
                      "android health", "health chart", "health visualization",
                      "healthkit", "health export", "healthmd"],
     },
+    "PLUGIN_NOTION_BASES": {
+        "weight": 5,
+        "keywords": ["notion bases", "notion-bases plugin", "obsidian-notion-bases-plugin",
+                     "lookup column", "two-way relation", "notion bases rollup",
+                     "notion bases relation", "notion bases view", "database.md schema",
+                     "self-relation subtask"],
+    },
     "PLUGINS": {
         "weight": 5,
         "keywords": ["plugin", "plugin automation", "community plugin"],
@@ -296,7 +308,7 @@ INTENT_SIGNALS = {
 }
 
 # NOTE: no "DEFAULT" entry — route_obsidian_resources() never indexes RESOURCE_MAP
-# by that key. The selected `intent` is one of the seventeen INTENT_SIGNALS keys above.
+# by that key. The selected `intent` is one of the eighteen INTENT_SIGNALS keys above.
 # Specific plugin intents always supersede generic PLUGINS whenever any specific signal matches: the highest specific score wins, a tie between specific intents disambiguates, and generic PLUGINS is considered only when no specific plugin signal matches.
 # The no-match case is owned by DEFAULT_RESOURCE, whose declared
 # fallback-only semantics mean it is SUGGESTED beside the disambiguation checklist,
@@ -360,6 +372,11 @@ RESOURCE_MAP = {
                        "references/plugins/health-md/data-model.md",
                        "references/plugins/health-md/workflows.md",
                        "references/plugins/health-md/troubleshooting.md"],
+    "PLUGIN_NOTION_BASES": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/notion-bases/notion-bases.md",
+                       "references/plugins/notion-bases/data-model.md",
+                       "references/plugins/notion-bases/workflows.md",
+                       "references/plugins/notion-bases/troubleshooting.md"],
     "PLUGINS":        ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/beancount-finance/beancount-finance.md",
                        "references/plugins/obsidian-tables/obsidian-tables.md",
@@ -371,7 +388,8 @@ RESOURCE_MAP = {
                        "references/plugins/excalidraw/excalidraw.md",
                        "references/plugins/git/git.md",
                        "references/plugins/outliner/outliner.md",
-                       "references/plugins/minimal/minimal.md"],
+                       "references/plugins/minimal/minimal.md",
+                       "references/plugins/notion-bases/notion-bases.md"],
     "NOTION_MIGRATION": ["references/notion-migration.md"],
     "INSTALL":       ["references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
@@ -433,7 +451,8 @@ def route_obsidian_resources(request: str) -> dict:
     else:
         specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT", "PLUGIN_ICONIC",
                                    "PLUGIN_CHARTS", "PLUGIN_DATAVIEW", "PLUGIN_EXCALIDRAW",
-                                   "PLUGIN_GIT", "PLUGIN_OUTLINER", "PLUGIN_MINIMAL", "PLUGIN_HEALTH")
+                                   "PLUGIN_GIT", "PLUGIN_OUTLINER", "PLUGIN_MINIMAL", "PLUGIN_HEALTH",
+                                   "PLUGIN_NOTION_BASES")
         matched_specific_plugin_intents = [
             plugin_intent
             for plugin_intent in specific_plugin_intents
@@ -714,6 +733,10 @@ await call_tool_chain({
 - `references/plugins/iconic/data-model.md` — Iconic `data.json` keys, rule schema, and the merge-only rulebook contract
 - `references/plugins/iconic/workflows.md` — Iconic file-layer recipes: add/edit/disable rules, flip toggles, apply the canonical rulebook
 - `references/plugins/iconic/troubleshooting.md` — Iconic failure and recovery recipes
+- `references/plugins/notion-bases/notion-bases.md` — Notion Bases plugin index (repo `bgarciamoura/obsidian-notion-bases-plugin`, version pin v1.5.0+)
+- `references/plugins/notion-bases/data-model.md` — `_database.md` schema: two-way relation columns, the 7 rollup functions, lookup columns, self-relation subtasks, and the 7 view types
+- `references/plugins/notion-bases/workflows.md` — Notion Bases file-layer recipes plus a Dataview supplement for aggregations the plugin doesn't cover
+- `references/plugins/notion-bases/troubleshooting.md` — Notion Bases failure and recovery recipes: schema mismatch, missing back-reference, unsupported view type
 
 Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc for both CLI profiles and the MCP; `references/troubleshooting.md` is the router's INSTALL/TROUBLESHOOT-intent target.
 
