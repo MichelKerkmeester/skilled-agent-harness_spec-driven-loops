@@ -120,6 +120,7 @@ dist/
 .opencode/skills/system-deep-loop/runtime/database/*.sqlite-shm
 .opencode/skills/system-deep-loop/runtime/database/*.sqlite-wal
 .opencode/skills/system-deep-loop/runtime/database/*.sqlite.bak*
+.opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl
 
 # ───────────────────────────────────────────
 # Database: system-skill-advisor
