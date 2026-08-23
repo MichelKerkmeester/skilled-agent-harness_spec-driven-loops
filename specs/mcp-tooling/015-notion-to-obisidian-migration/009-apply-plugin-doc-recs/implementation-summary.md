@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs"
-    last_updated_at: "2026-08-23T03:54:00Z"
+    last_updated_at: "2026-08-23T06:00:00Z"
     last_updated_by: "claude"
     recent_action: "Applied deferred notion-bases dataview and claudian P1 and P2 content"
     next_safe_action: "None — optional advanced-config split and version bumps remain deferred"
@@ -91,7 +91,7 @@ Each synthesis edit table was read, its correctness-critical rows verified again
 | notion-bases wrong keys confirmed as i18n-only | The "wrong" keys (`two_way`/`group_by`/`date_field`) appear in `main.js` ONLY as UI translation strings; the corrected camelCase keys are the real schema props — so the wrong→correct mapping is solid. |
 | Keep inferred caveats intact | The advanced-canvas endpoint-id encoding and claudian's positive MCP path stay flagged inferred/unresolved rather than replaced with a confident new claim, per the syntheses. |
 | Land all P0 first, then the additive P1/P2 | P0 correctness landed and validated in the first pass; the additive notion-bases P1 feature docs, the dataview DataviewJS-API expansion, and the full claudian schema/validation content were then applied in a second pass per the operator's "apply ALL" decision. Only the 2 dataview VERIFY rows (SKIP-by-instruction) and optional notion-bases splits/version bumps remain. |
-| Repoint only the 007 lineage-pointer successor fields | `007`'s `**Successor**` fields named the never-built `008-notion-bases-consolidation`; repointed both to `009-apply-plugin-doc-recs`. The prose scope-descriptions in 007 that name `008` for specific deferred consolidation work (Project Manager deprecation, Meta Bind reference, roster sync, calendar recipe) were NOT repointed — 009 does not perform that work, so a repoint would assert false coverage; left as-is and flagged. |
+| Repoint only the 007 lineage-pointer successor fields | `007`'s `**Successor**` fields named the never-built `008-notion-bases-closeout`; repointed both to `009-apply-plugin-doc-recs`. The prose scope-descriptions in 007 that name `008` for specific deferred consolidation work (Project Manager deprecation, Meta Bind reference, roster sync, calendar recipe) were NOT repointed — 009 does not perform that work, so a repoint would assert false coverage; left as-is and flagged. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -122,7 +122,7 @@ Each synthesis edit table was read, its correctness-critical rows verified again
 2. **Two optional notion-bases items are deferred by design.** P2-7 (splitting the large `ViewConfig`/advanced-config surface into a dedicated `advanced-config.md`) is a structural nicety the synthesis marked optional, and P2-8 (version-frontmatter bumps on the edited docs) is cosmetic; neither is a correctness or content gap.
 3. **Two claims remain intentionally inferred/unresolved.** The advanced-canvas interdimensional-edge endpoint encoding (`portalId-nestedNodeId`) is inferred from the plugin's runtime rewrite, not byte-verified against a captured `.canvas`; claudian's positive Claude-provider on-disk MCP path is not established. Both are flagged in the docs rather than replaced with a confident claim.
 4. **dataview P0/P1/P2 content rests on research + documented Dataview semantics, not an installed-bundle schema.** DQL grammar, execution order, and the API surface are not schema keys in an installed `main.js` the way notion-bases keys are, and dataview was not on the mandatory verification list; the dataview corrections and additions rest on the research findings plus documented Dataview behavior. Uncommon DataviewJS methods carry a "confirm against official docs" caveat in the docs themselves.
-5. **007 prose still names the never-built `008` for its deferred scope.** Only 007's two `**Successor**` lineage-pointer fields were repointed to `009`. The 007 spec.md prose that describes the deferred consolidation work (Project Manager deprecation, Meta Bind reference authoring, roster sync, calendar recipe) still names `008-notion-bases-consolidation`; 009 does not perform that work, so those lines were left for the operator to resolve rather than falsely repointed. 007 additionally carries a pre-existing `TEMPLATE_HEADERS` validate error (its tasks.md uses `## Phase 1: Map` / `## Phase 2: Remove` instead of the canonical `Setup`/`Implementation`) that is outside this packet's authorized scope.
+5. **007 prose still names the never-built `008` for its deferred scope.** Only 007's two `**Successor**` lineage-pointer fields were repointed to `009`. The 007 spec.md prose that describes the deferred consolidation work (Project Manager deprecation, Meta Bind reference authoring, roster sync, calendar recipe) still names `008-notion-bases-closeout`; 009 does not perform that work, so those lines were left for the operator to resolve rather than falsely repointed. 007 additionally carries a pre-existing `TEMPLATE_HEADERS` validate error (its tasks.md uses `## Phase 1: Map` / `## Phase 2: Remove` instead of the canonical `Setup`/`Implementation`) that is outside this packet's authorized scope.
 <!-- /ANCHOR:limitations -->
 
 ---

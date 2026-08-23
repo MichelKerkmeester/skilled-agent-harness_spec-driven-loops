@@ -118,7 +118,7 @@ Vault deprecation event → skip-note (`research/research.md`) → fresh-reviewe
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase `008-notion-bases-consolidation` | Internal (packet) | Green | Owns the actual doc removal this leg scopes |
+| Phase `008-notion-bases-closeout` | Internal (packet) | Green | Owns the actual doc removal this leg scopes |
 | Vault deprecation record | Internal (vault) | Green | Confirms the plugin is genuinely gone, not just flagged |
 <!-- /ANCHOR:dependencies -->
 

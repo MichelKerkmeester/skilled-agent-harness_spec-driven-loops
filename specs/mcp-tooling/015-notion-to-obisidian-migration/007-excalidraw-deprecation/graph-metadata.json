@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The `mcp-obsidian` skill carried a full Excalidraw integration (a four-file reference tree, a feature-catalog card, two assets, a manual-testing tie-in, and router wiring across `SKILL.md`, README, FEATURE-CATALOG, plugin-operation-logic and the playbook)",
     "created_at": "2026-08-22T13:09:10.941Z",
-    "last_save_at": "2026-08-22T20:11:41.390Z",
+    "last_save_at": "2026-08-23T05:57:23.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fd41bf3315bd0ab2629a05233786c9ebdeb7601c309027dace57221ba6e7627",
+    "source_fingerprint": "sha256:9622aff61cb18f3a6ec8dadb6459d822787c4aa542a67fa2a2ec9a4ba1eb2c42",
     "source_doc_hashes": {
-      "spec.md": "ce1d4f6adb183ad945c5ddfea94fb1d2f2f05c3b22586fb0f72a1a1692ab268c",
+      "spec.md": "f1b4f5ff2338f337a95344ca273c7ad2a205687b82157caf3ae1b69b0793bcdd",
       "plan.md": "0209c0b6c802075a6bd7e751421cf2424dec90f37165215fb44c1b6d1b5559b5",
       "tasks.md": "0a29c392154d1e72df12ee9a66fdefe261a1041b8b1df9bad2934e5fa4257118",
       "checklist.md": "bff0588a69b9fc83e4c0b4946887d6ea8cab9d86da6b79313268f0592a659d0a",
-      "implementation-summary.md": "4664cac73e38c438a3dee5718414e39e1f73c38708e7bc42d39e44ae848f1a5f"
+      "implementation-summary.md": "611202a865b430d8c25db4af964fc31bdaadad1fd9a301c655c26ce89892e3dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

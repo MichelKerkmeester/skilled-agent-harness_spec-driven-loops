@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-consolidation"
+    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout"
     last_updated_at: "2026-08-22T21:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored notion-bases calendar recipe and recorded three prior-phase items"
@@ -19,7 +19,7 @@ _memory:
       - "../../../../.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/workflows.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "015-008-notion-bases-consolidation"
+      session_id: "015-008-notion-bases-closeout"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

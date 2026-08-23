@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-consolidation"
+    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout"
     last_updated_at: "2026-08-23T03:52:43Z"
     last_updated_by: "claude"
     recent_action: "Authored notion-bases calendar recipe and recorded three prior-phase items"
@@ -23,7 +23,7 @@ _memory:
       - "../../../../.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/workflows.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "015-008-notion-bases-consolidation"
+      session_id: "015-008-notion-bases-closeout"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -58,7 +58,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-Phase 007 (`007-excalidraw-deprecation`) removed the Excalidraw footprint and, in both its `Phase Context` and `Out of Scope` sections, deferred a four-item **Notion Bases consolidation** to a sibling phase named `008-notion-bases-consolidation`: Project Manager deprecation, Meta Bind reference authoring, roster sync, and the Notion Bases calendar recipe. This is that phase — building it makes 007's prose references resolve to a real folder.
+Phase 007 (`007-excalidraw-deprecation`) removed the Excalidraw footprint and, in both its `Phase Context` and `Out of Scope` sections, deferred a four-item **Notion Bases consolidation** to a sibling phase named `008-notion-bases-closeout`: Project Manager deprecation, Meta Bind reference authoring, roster sync, and the Notion Bases calendar recipe. This is that phase — building it makes 007's prose references resolve to a real folder.
 
 Three of the four items were already completed in earlier phases before this folder existed, so this phase does **not** re-perform them; it records them for an honest consolidation ledger. The single item with no prior coverage — the **Notion Bases calendar recipe** — is built here as the only shipped-doc change this phase authors.
 
@@ -71,7 +71,7 @@ Three of the four items were already completed in earlier phases before this fol
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 007 deferred four consolidation items to `008-notion-bases-consolidation`, but that folder was never built, so 007's prose pointed at a phantom sibling and one real content gap stayed open: the shipped `mcp-obsidian` notion-bases docs had a basic calendar view (`workflows.md` §6a) but no end-to-end **Notion-style calendar recipe** — no quick date entry, no month/week layout guidance, and no agenda companion. An AI asked to reproduce Notion's calendar in Obsidian had only the bare view block to work from.
+Phase 007 deferred four consolidation items to `008-notion-bases-closeout`, but that folder was never built, so 007's prose pointed at a phantom sibling and one real content gap stayed open: the shipped `mcp-obsidian` notion-bases docs had a basic calendar view (`workflows.md` §6a) but no end-to-end **Notion-style calendar recipe** — no quick date entry, no month/week layout guidance, and no agenda companion. An AI asked to reproduce Notion's calendar in Obsidian had only the bare view block to work from.
 
 ### Purpose
 Build the missing Notion Bases calendar recipe into the shipped notion-bases docs — Calendar view plus Meta Bind quick date entry plus an optional Dataview agenda, every calendar key verified against the installed plugin `main.js` — and record all four consolidation items honestly so the 007 deferral is closed with a truthful ledger rather than false coverage.
@@ -191,7 +191,7 @@ Build the missing Notion Bases calendar recipe into the shipped notion-bases doc
   - *Roster sync* — ALREADY DONE in phase 005 (the `installed-plugins.md` roster). 008 records it only.
   - *Notion Bases calendar recipe* — NEWLY BUILT here (`workflows.md` §6b).
 - **Deferred by design (optional):** a dedicated feature-catalog/manual-testing pointer for the calendar recipe — the catalog card already points to `workflows.md` (Recipes), so a subsection-specific pointer would duplicate the generic one; left untouched.
-- **Left for the operator:** 007's prose scope-descriptions naming `008-notion-bases-consolidation` for the deferred work now resolve to this real folder; whether to further edit 007's prose is the operator's call and outside this packet's authorized write scope.
+- **Left for the operator:** 007's prose scope-descriptions naming `008-notion-bases-closeout` for the deferred work now resolve to this real folder; whether to further edit 007's prose is the operator's call and outside this packet's authorized write scope.
 <!-- /ANCHOR:questions -->
 
 ---

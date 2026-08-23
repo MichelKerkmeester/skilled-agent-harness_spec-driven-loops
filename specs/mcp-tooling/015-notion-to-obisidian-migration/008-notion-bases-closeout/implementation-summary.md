@@ -7,8 +7,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-consolidation"
-    last_updated_at: "2026-08-23T03:54:00Z"
+    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout"
+    last_updated_at: "2026-08-23T06:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored notion-bases calendar recipe and recorded three prior-phase items"
     next_safe_action: "Complete and closed; no further build work in this phase"
@@ -16,7 +16,7 @@ _memory:
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "015-008-notion-bases-consolidation"
+      session_id: "015-008-notion-bases-closeout"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 008-notion-bases-consolidation |
+| **Spec Folder** | 008-notion-bases-closeout |
 | **Completed** | The one build item (Notion Bases calendar recipe) shipped and validated; the other three consolidation items were completed in prior phases and are recorded here, not re-performed |
 | **Level** | 2 |
 | **Actual Effort** | ~2 hours (main.js key verification + §6b recipe authoring + validation + consolidation ledger + phase package) |
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase closes the four-item Notion Bases consolidation that phase 007 deferred to a sibling named `008-notion-bases-consolidation`. Three of the four items were already shipped in earlier phases, so the only newly-authored change is the **Notion Bases calendar recipe** in the shipped `mcp-obsidian` notion-bases docs.
+This phase closes the four-item Notion Bases consolidation that phase 007 deferred to a sibling named `008-notion-bases-closeout`. Three of the four items were already shipped in earlier phases, so the only newly-authored change is the **Notion Bases calendar recipe** in the shipped `mcp-obsidian` notion-bases docs.
 
 ### The consolidation ledger (all four items, honestly)
 
@@ -107,7 +107,7 @@ The existing notion-bases tree was read first to locate current calendar coverag
 | `main.js` confirmation — `calendar` view type + `notion-bases` marker | `"calendar"` present (4 occ); `notion-bases` present (7 occ) — CONFIRMED |
 | `main.js` — event-span (start/end) field | No `calendar*` key beyond the two above exists in the bundle — UNCONFIRMED, documented as absent (single dated note only) |
 | `validate_document.py` — `workflows.md` (`--type reference`) | `Total issues: 0`, exit 0 |
-| `validate.sh 008-notion-bases-consolidation --strict` | `RESULT: PASSED`, `Errors: 0` |
+| `validate.sh 008-notion-bases-closeout --strict` | `RESULT: PASSED`, `Errors: 0` |
 | Scope containment | `git status` shows only `references/plugins/notion-bases/workflows.md` and this phase folder; the parent `015/spec.md` and `015/graph-metadata.json` were not modified; no dataview/advanced-canvas/claudian/meta-bind doc, deep-loop/runtime, research tree, or vault path was written |
 | Vault safety | read-only — only plugin `main.js`/`manifest.json` read; no vault write, no `.env`/token read |
 <!-- /ANCHOR:verification -->

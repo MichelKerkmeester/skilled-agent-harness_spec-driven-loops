@@ -61,7 +61,7 @@ _memory:
 
 This is **Phase 7**, a deprecation phase requested by the operator ("deprecate the Excalidraw plugin and its references in the obsidian skill — new phase"). Excalidraw was uninstalled from the operator's real vault in the same plugin-management session; this phase removes its footprint from the `mcp-obsidian` skill so the skill no longer documents or routes a plugin the vault no longer runs.
 
-The parent packet is a phase parent; per lean-trio policy, all implementation detail lives here in the child. The broader Notion-Bases consolidation (Project Manager deprecation, Meta Bind reference, roster sync, calendar recipe) is the sibling phase `008-notion-bases-consolidation`.
+The parent packet is a phase parent; per lean-trio policy, all implementation detail lives here in the child. The broader Notion-Bases consolidation (Project Manager deprecation, Meta Bind reference, roster sync, calendar recipe) is the sibling phase `008-notion-bases-closeout`.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -87,7 +87,7 @@ Remove the entire Excalidraw footprint from the skill so its documentation and r
 - Remove Excalidraw from `README.md`, `feature-catalog/FEATURE-CATALOG.md`, `references/plugins/plugin-operation-logic.md`, and `manual-testing-playbook/manual-testing-playbook.md` (scenario `OBS-018` and the summary row).
 
 ### Out of Scope
-- Project Manager deprecation, Meta Bind reference authoring, roster sync, and the Notion Bases calendar recipe — all in `008-notion-bases-consolidation`.
+- Project Manager deprecation, Meta Bind reference authoring, roster sync, and the Notion Bases calendar recipe — all in `008-notion-bases-closeout`.
 - Editing the historical changelogs (v0.10/v0.14/v0.20) that mention Excalidraw — they record what was true at those versions.
 - The vault-side uninstall itself (executed in an earlier plugin-management session).
 

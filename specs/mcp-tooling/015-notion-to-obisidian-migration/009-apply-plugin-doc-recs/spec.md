@@ -89,7 +89,7 @@ Apply the seven syntheses' edit tables to the shipped docs — P0 first — so t
 - Apply the advanced-canvas VERIFY-lift as a coherent five-file set (incl. the feature-catalog card), and the meta-bind/js-engine cross-leg reconciliation as one merged recipe.
 - Apply the P1/P2 additive content in full for advanced-canvas, meta-bind, notion-bases (P1×8), dataview (P1×15/P2×3), and claudian (P1-7/9/10/11 + P2-12) per the operator's "apply ALL" decision — skipping only the 2 dataview VERIFY rows that rest on official Dataview docs and the optional notion-bases advanced-config split / version bumps.
 - Confirm each correctness-critical row against the installed plugin `main.js` before applying it (extended to the claudian v2.2.4 P1/P2 tokens).
-- Repoint 007's two `**Successor**` lineage-pointer fields from the never-built `008-notion-bases-consolidation` to this phase; refresh 007's generated metadata for that edit.
+- Repoint 007's two `**Successor**` lineage-pointer fields from the never-built `008-notion-bases-closeout` to this phase; refresh 007's generated metadata for that edit.
 - This new phase folder's documentation.
 
 ### Out of Scope
@@ -97,7 +97,7 @@ Apply the seven syntheses' edit tables to the shipped docs — P0 first — so t
 - **The 006 research trees** (001-007 syntheses/research) — done and read-only here.
 - **Any write to the iCloud-synced vault** — plugin `main.js`/`manifest.json` were read only; no vault file was written.
 - **The 2 SKIP-by-instruction dataview VERIFY rows and the optional notion-bases advanced-config split / version bumps** (see §9 Open Questions) — the only content intentionally not applied.
-- **007 prose scope-descriptions** naming `008-notion-bases-consolidation` for its deferred consolidation work — only the two `**Successor**` lineage fields were repointed; the prose was left for the operator since 009 does not perform that consolidation work.
+- **007 prose scope-descriptions** naming `008-notion-bases-closeout` for its deferred consolidation work — only the two `**Successor**` lineage fields were repointed; the prose was left for the operator since 009 does not perform that consolidation work.
 
 ### Files to Change
 
@@ -193,7 +193,7 @@ Apply the seven syntheses' edit tables to the shipped docs — P0 first — so t
 - **Applied (this packet):** notion-bases P1×8 undocumented-feature docs (folderArrangement, templates, system columns, numberFormat, full ViewConfig, embed-state, live placeholders, inline fields) + P2-4/5/6 troubleshooting; dataview P1×15 / P2×3 (DataviewJS API expansion, type-inference tables, DQL grammar, null-comparison trap, silent-render note); full claudian `ClaudianSettings` schema (P1-7), slash-command/skill validation (P1-9/P1-10), `.claude/settings.json` write-scope (P1-11), per-provider defaults (P2-12).
 - **Skipped by operator instruction:** the 2 dataview VERIFY rows (`file.day` "folder" term, inline-multiline contradiction) that rest on official Dataview docs.
 - **Deferred by design (optional):** notion-bases P2-7 (split the advanced-config surface into a dedicated `advanced-config.md`) and P2-8 (version-frontmatter bumps) — structural/cosmetic niceties, not content gaps.
-- **Left for the operator:** 007's prose scope-descriptions still name the never-built `008-notion-bases-consolidation` for its deferred consolidation work (only the two `**Successor**` lineage fields were repointed to 009, since 009 does not perform that work), plus 007's pre-existing `TEMPLATE_HEADERS` validate error — both outside this packet's authorized write scope.
+- **Left for the operator:** 007's prose scope-descriptions still name the never-built `008-notion-bases-closeout` for its deferred consolidation work (only the two `**Successor**` lineage fields were repointed to 009, since 009 does not perform that work), plus 007's pre-existing `TEMPLATE_HEADERS` validate error — both outside this packet's authorized write scope.
 <!-- /ANCHOR:questions -->
 
 ---

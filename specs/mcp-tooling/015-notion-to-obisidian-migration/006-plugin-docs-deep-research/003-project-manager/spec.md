@@ -78,7 +78,7 @@ Deliberately skip the 4-iteration research cycle (`research/research.md` records
 ### Out of Scope
 - Running the originally-planned 4-iteration research cycle against a plugin already scheduled for removal.
 - Editing `references/plugins/installed-plugins.md` or changelog entries — they are already correct.
-- Any removal work itself, which is tracked under phase `008-notion-bases-consolidation`.
+- Any removal work itself, which is tracked under phase `008-notion-bases-closeout`.
 
 ### Files to Change
 
@@ -126,7 +126,7 @@ Deliberately skip the 4-iteration research cycle (`research/research.md` records
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase `008-notion-bases-consolidation` owns the actual doc removal | A verdict without a clear handoff could leave stale docs undiscovered | `synthesis.md` explicitly names phase `008` as the removal owner |
+| Dependency | Phase `008-notion-bases-closeout` owns the actual doc removal | A verdict without a clear handoff could leave stale docs undiscovered | `synthesis.md` explicitly names phase `008` as the removal owner |
 | Risk | Skipping research entirely could hide a real correctness gap | An AI could still hit a stale doc before removal lands | Fresh-reviewer pass independently re-checks the surviving shipped mentions rather than trusting the skip alone |
 <!-- /ANCHOR:risks -->
 

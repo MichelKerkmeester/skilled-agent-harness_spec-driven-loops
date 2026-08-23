@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout",
+  "description": "Phase 007 deferred four consolidation items to `008-notion-bases-closeout`, but that folder was never built, so 007's prose pointed at a phantom",
+  "keywords": [
+    "phase",
+    "deferred",
+    "four",
+    "consolidation",
+    "items",
+    "008-notion-bases-closeout",
+    "folder",
+    "never",
+    "prose",
+    "pointed",
+    "phantom"
+  ],
+  "lastUpdated": "2026-08-23T05:55:22.975Z",
+  "specId": "008",
+  "folderSlug": "notion-bases-closeout",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

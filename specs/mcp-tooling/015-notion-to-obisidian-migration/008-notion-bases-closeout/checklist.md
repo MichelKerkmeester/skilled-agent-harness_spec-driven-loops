@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-consolidation"
+    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout"
     last_updated_at: "2026-08-22T21:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored notion-bases calendar recipe and recorded three prior-phase items"
@@ -16,7 +16,7 @@ _memory:
     key_files: ["spec.md", "tasks.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "015-008-notion-bases-consolidation"
+      session_id: "015-008-notion-bases-closeout"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -121,7 +121,7 @@ _memory:
 - [x] CHK-050 [P1] No temp files created outside a scratch directory
   - **Evidence**: verification used inline `python3`/grep against the read-only vault; nothing written outside the two allowed surfaces.
 - [x] CHK-051 [P1] Changes confined to this phase folder and the one notion-bases shipped doc
-  - **Evidence**: `git status --short` shows only `008-notion-bases-consolidation/` (new) and the `notion-bases/workflows.md` edit; the parent `015/spec.md` and `015/graph-metadata.json` were not modified — the new phase is discoverable via its own `graph-metadata.json`.
+  - **Evidence**: `git status --short` shows only `008-notion-bases-closeout/` (new) and the `notion-bases/workflows.md` edit; the parent `015/spec.md` and `015/graph-metadata.json` were not modified — the new phase is discoverable via its own `graph-metadata.json`.
 <!-- /ANCHOR:file-org -->
 
 ---
