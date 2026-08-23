@@ -1,0 +1,31 @@
+{
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
+  "description": "The shipped mcp-obsidian Advanced Canvas file-layer reference docs (`references/plugins/advanced-canvas/`) carried a `VERIFY`-flagged unknown for the",
+  "keywords": [
+    "shipped",
+    "mcp-obsidian",
+    "advanced",
+    "canvas",
+    "file-layer",
+    "reference",
+    "docs",
+    "references",
+    "plugins",
+    "advanced-canvas",
+    "carried",
+    "verify",
+    "flagged",
+    "unknown"
+  ],
+  "lastUpdated": "2026-08-23T03:39:13.924Z",
+  "specId": "001",
+  "folderSlug": "advanced-canvas",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration",
+    "006-plugin-docs-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

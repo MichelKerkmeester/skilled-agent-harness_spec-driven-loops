@@ -1,0 +1,38 @@
+{
+  "topic": "Optimize the mcp-obsidian claudian file-layer reference docs for AI operation. Research the real plugin (repo YishenTu/claudian, id realclaudian, docs, and the installed main.js v2.2.4) to confirm the in-vault .claude config schemas (mcp.json, claudian-settings.json, settings.json, commands, skills), provider setup, and MCP wiring currently flagged VERIFY. Recommend concrete additions or updates to references/plugins/claudian/. BANNED OPERATIONS: do not delete, move, rename, or edit any file outside the bound spec folder's research/ directory; do NOT touch references/plugins/ or any shipped doc (this run is research-only). ALLOWED WRITE PATHS: the bound spec folder's research/ subtree only.",
+  "maxIterations": 4,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "specFolder": "specs/mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-08-22T11:42:15Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "lineage": {
+    "sessionId": "claudian-dr-20260822T114215Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "cline-pass/cline-pass/deepseek-v4-flash",
+    "reasoningEffort": "xhigh",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  }
+}

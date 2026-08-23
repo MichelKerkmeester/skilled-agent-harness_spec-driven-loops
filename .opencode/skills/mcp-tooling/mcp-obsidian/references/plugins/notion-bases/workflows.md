@@ -10,12 +10,12 @@ trigger_phrases:
   - "notion bases subtasks recipe"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.1.0.0"
+version: "0.1.1.0"
 ---
 
 # Notion Bases Plugin File-Layer Workflows
 
-These recipes change the **`_database.md` schema file and the frontmatter of row notes** the plugin reads. File writes are the operation; an in-app reload is the render step. Every schema key below is the documented conceptual shape — `VERIFY` exact spelling against the installed plugin before writing a production file (see `data-model.md` §7).
+These recipes change the **`_database.md` schema file and the frontmatter of row notes** the plugin reads. File writes are the operation; an in-app reload is the render step. The database definition, the column/view/rollup/lookup shapes, the exact per-column YAML keys, and the `nb-database` embed syntax below are confirmed against the plugin's `src/types.ts` and the installed `main.js` (v1.12.0). Every `_database.md` must carry the required `notion-bases: true` marker (`data-model.md` §1).
 
 ---
 
@@ -47,8 +47,8 @@ Goal: link two databases so a forward reference on one side and a declared back-
 ### Steps
 
 1. Read both databases' `_database.md` files (or confirm absence).
-2. Add a `relation` column to the source database naming its `target` folder and `back_reference` column name.
-3. Add the matching `relation` column to the target database, with its own `back_reference` pointing back.
+2. Add a `relation` column to the source database naming its `refDatabasePath` (the related `_database.md`) and its `pairedColumnId` (the reverse column on the other side).
+3. Add the matching `relation` column to the target database, with its own `pairedColumnId` pointing back.
 4. On a row in the source database, write the forward value as a wikilink (or a list of wikilinks) to the target row.
 5. Re-read both `_database.md` files and the touched row; confirm the schema and the forward value parse.
 
@@ -74,9 +74,9 @@ columns:
   status: { type: select }
   tasks:
     type: relation
-    target: "Tasks"
-    two_way: true
-    back_reference: project
+    refDatabasePath: "Tasks/_database.md"
+    refColumnId: "_title"
+    pairedColumnId: project
 ```
 
 ```yaml
@@ -85,9 +85,9 @@ columns:
   title: { type: title }
   project:
     type: relation
-    target: "Projects"
-    two_way: true
-    back_reference: tasks
+    refDatabasePath: "Projects/_database.md"
+    refColumnId: "_title"
+    pairedColumnId: tasks
 ```
 
 ```yaml
@@ -99,7 +99,7 @@ project: "[[Website Relaunch]]"
 
 ### Checkpoint
 
-`relation_schema_reciprocal`: both `_database.md` files declare the relation with matching `back_reference` names, and the row's forward wikilink resolves to an existing note in the target folder.
+`relation_schema_reciprocal`: both `_database.md` files declare the relation with matching `pairedColumnId` names, and the row's forward wikilink resolves to an existing note in the target folder.
 
 ---
 
@@ -110,7 +110,7 @@ Goal: aggregate a property across every row a Relation column reaches, and prove
 ### Steps
 
 1. Confirm the Relation column the rollup will aggregate through already exists (§2).
-2. Add the `rollup` column to the schema: `relation` (the relation column name), `property` (the field on related rows), `function` (one of the 7 in `data-model.md` §3).
+2. Add the `rollup` column to the schema: `rollupRelationColumnId` (the relation column name), `rollupTargetColumnId` (the field on related rows), `rollupFunction` (one of the 7 in `data-model.md` §3).
 3. Read every related row and apply the function by hand.
 4. Re-read the schema and report the computed value alongside the declaration, not as an in-app render.
 
@@ -119,7 +119,7 @@ Goal: aggregate a property across every row a Relation column reaches, and prove
 ```yaml
 # Projects/_database.md
 columns:
-  tasks: { type: relation, target: "Tasks", two_way: true, back_reference: project }
+  tasks: { type: relation, refDatabasePath: "Tasks/_database.md", refColumnId: "_title", pairedColumnId: project }
 ```
 
 ### After
@@ -127,12 +127,12 @@ columns:
 ```yaml
 # Projects/_database.md
 columns:
-  tasks: { type: relation, target: "Tasks", two_way: true, back_reference: project }
+  tasks: { type: relation, refDatabasePath: "Tasks/_database.md", refColumnId: "_title", pairedColumnId: project }
   estimate_hours_total:
     type: rollup
-    relation: tasks
-    property: estimate_hours
-    function: sum
+    rollupRelationColumnId: tasks
+    rollupTargetColumnId: estimate_hours
+    rollupFunction: sum
 ```
 
 Hand-resolution: if `Tasks/Design homepage.md` has `estimate_hours: 8` and `Tasks/Write copy.md` has `estimate_hours: 5`, and both list `project: "[[Website Relaunch]]"`, the `sum` rollup on the Website Relaunch project resolves to `13` — read from the files, not rendered by the plugin.
@@ -150,7 +150,7 @@ Goal: copy one property's literal value from a single related row.
 ### Steps
 
 1. Confirm the Relation column the lookup will read through already exists, and that it resolves to exactly one related row per source row (a one-to-many relation makes a lookup ambiguous — flag it instead of guessing).
-2. Add the `lookup` column: `relation` (the relation column name), `property` (the field to copy).
+2. Add the `lookup` column: `refDatabasePath` (the related `_database.md`), `refColumnId` (the field to copy), and `refMatchColumnId` (the match column, defaults `_title`).
 3. Read the single related row and report its value as the lookup's resolved value.
 
 ### Before
@@ -158,7 +158,7 @@ Goal: copy one property's literal value from a single related row.
 ```yaml
 # Tasks/_database.md
 columns:
-  project: { type: relation, target: "Projects", two_way: true, back_reference: tasks }
+  project: { type: relation, refDatabasePath: "Projects/_database.md", refColumnId: "_title", pairedColumnId: tasks }
 ```
 
 ### After
@@ -166,11 +166,12 @@ columns:
 ```yaml
 # Tasks/_database.md
 columns:
-  project: { type: relation, target: "Projects", two_way: true, back_reference: tasks }
+  project: { type: relation, refDatabasePath: "Projects/_database.md", refColumnId: "_title", pairedColumnId: tasks }
   project_status:
     type: lookup
-    relation: project
-    property: status
+    refDatabasePath: "Projects/_database.md"
+    refColumnId: status
+    refMatchColumnId: "_title"
 ```
 
 ### Checkpoint
@@ -185,7 +186,7 @@ Goal: nest tasks up to 3 levels using a self-relation column.
 
 ### Steps
 
-1. Add a `relation` column to the database's own `_database.md` with `target` set to the same folder and `self_relation: true`.
+1. Add a `relation` column to the database's own `_database.md` with `refDatabasePath` pointing back at this same database and `isHierarchical: true`.
 2. On each child row, write the parent as a single wikilink in that column.
 3. Walk the chain from a leaf row upward and confirm it terminates within 3 hops at a row with no parent value.
 
@@ -205,8 +206,8 @@ columns:
   title: { type: title }
   parent_task:
     type: relation
-    target: "Tasks"
-    self_relation: true
+    refDatabasePath: "Tasks/_database.md"
+    isHierarchical: true
 ```
 
 ```yaml
@@ -229,9 +230,10 @@ Goal: add a named view to a database's `_database.md`.
 ### Steps
 
 1. Pick one of the 7 supported view types (`data-model.md` §6). Form, Map and Dashboard are not valid choices — document the request as lost instead.
-2. Confirm every column the view references (`group_by`, a date field, …) already exists in the schema.
+2. Confirm every column the view references (`groupByColumnId`, `calendarDateField`, …) already exists in the schema.
 3. Add the view block to `_database.md`.
 4. Re-read the file and validate the view's `type` and referenced columns per step 1–2.
+5. To render the view in a note, embed it with the confirmed `nb-database` fenced code block (`data-model.md` §6), naming the database's `path` and, optionally, a `type`.
 
 ### Before
 
@@ -251,18 +253,119 @@ columns:
 views:
   - name: "By status"
     type: board
-    group_by: status
+    groupByColumnId: status
 ```
+
+Embedded in a note:
+
+````markdown
+```nb-database
+path: "Projects"
+type: board
+```
+````
 
 ### Checkpoint
 
-`view_block_valid`: `type` is one of the 7 supported values, and every referenced column exists in the same schema's `columns` map.
+`view_block_valid`: `type` is one of the 7 supported values, and every referenced column exists in the same schema's `columns` map. `nb_database_embed_valid`: the embedded block's `path` resolves to a real database folder and its optional `type` (if given) is one of the 7 supported values.
+
+### 6a. Calendar view — a Notion-style inline calendar from notes/tasks
+
+Goal: reproduce Notion's inline calendar — a month grid of your own notes/tasks — with **no external calendar sync**. Every entry is a vault note, placed on the grid by a date column.
+
+#### Steps
+
+1. Ensure the database's row notes carry a date column in frontmatter (e.g. `dueDate`, or the task timer's `startTime` from `../meta-bind/workflows.md` §1) as ISO date strings — this is what the calendar keys on.
+2. Add a `calendar` view to `_database.md` naming that date field.
+3. Embed it in any note with an `nb-database` block, `type: calendar`.
+
+#### After
+
+```yaml
+# Tasks/_database.md
+views:
+  - name: "Calendar"
+    type: calendar
+    calendarDateField: dueDate   # the frontmatter date field the calendar keys on
+```
+
+Embedded in a note:
+
+````markdown
+```nb-database
+path: "Tasks"
+type: calendar
+```
+````
+
+The calendar is built entirely from the database's own notes: creating or editing a note with a `dueDate` places it on the grid — no Google/iCloud calendar is involved, which is exactly the "from notes/tasks, no real calendar integration" requirement. Task notes that also carry the Meta Bind start/stop timer appear on this calendar (keyed on their date) **and** in the Table/Board views — one set of notes, many Notion-style views.
+
+#### Checkpoint
+
+`calendar_view_valid`: the view `type` is `calendar`, and the `calendarDateField` names a date frontmatter key that exists on the row notes.
+
+### 6b. Full Notion-style calendar — quick date entry, month/week modes, and an agenda supplement
+
+Goal: make the §6a calendar feel the way Notion's calendar does to *use* — set a date by clicking instead of hand-typing an ISO string, switch between month and week layouts, and keep a running agenda list beside the grid. Three plugins cooperate, each on its own layer, and §6a is the prerequisite: build the plain `calendar` view first, then layer these on. Do not repeat the §6a base steps here — this recipe only adds to them.
+
+#### What each layer contributes
+
+| Layer | Adds | Grounded in |
+| --- | --- | --- |
+| Notion Bases | The `calendar` view, the date field it keys on, and the month/week layout toggle | `notion-bases` installed `main.js` (v1.12.0) |
+| Meta Bind | A date-picker widget so a row's date is set by clicking, not typed | the Meta Bind reference set (`../meta-bind/workflows.md` §3) |
+| Dataview | An optional read-only agenda list beside the grid | the Dataview reference set (`../dataview/`) |
+
+#### Step 1 — add the month/week layout toggle
+
+Extend the §6a `calendar` view with `calendarViewMode`. The plugin reads it as the initial layout and shows an in-pane toggle; when the key is absent it defaults to `month`:
+
+```yaml
+# Tasks/_database.md  (frontmatter)
+notion-bases: true
+views:
+  - name: "Calendar"
+    type: calendar
+    calendarDateField: dueDate   # a type:date column id — the field the grid keys on
+    calendarViewMode: month      # initial layout; the toggle switches month and week
+```
+
+`calendarDateField` must name a column whose `type` is `date` — the plugin only offers date-type columns for it. `calendarViewMode` accepts `month` (the default) or `week`; the v1.12.0 layout toggle exposes only those two. A day or agenda layout is **not** a calendar mode the plugin renders — use the Step 3 Dataview agenda for a linear list rather than asserting a mode that does not exist. There is likewise no confirmed start/end-field pair for multi-day event spans: a row sits on the single day named by its `calendarDateField`, so treat a spanned event as UNCONFIRMED and model it as a single dated note.
+
+#### Step 2 — quick date entry with a Meta Bind date picker
+
+Typing `dueDate: 2026-08-24` by hand is the file-layer fallback; the Notion feel is a click-to-pick control. Put a Meta Bind date picker in the row note's body, bound to the same frontmatter key the calendar keys on:
+
+```markdown
+Due: `INPUT[datePicker:dueDate]`
+```
+
+Editing the picker writes `dueDate`; once the pane reloads, the calendar places the note on that day. The `INPUT[datePicker:...]` widget shape is owned and confirmed by the Meta Bind reference set (`../meta-bind/workflows.md` §3) — this recipe points to it and never edits the Meta Bind docs. A note that is also a Meta Bind task-timer row can key the calendar on the timer's `startTime` instead (`../meta-bind/workflows.md` §2) — one note, one date, both surfaces.
+
+#### Step 3 — an optional Dataview agenda beside the grid
+
+The calendar grid answers "what falls on this day"; an agenda answers "what is coming up, in order". Dataview supplies the linear view the calendar's own toggle does not. Keep it read-only and in a **separate note or pane** — never fold it into `_database.md`:
+
+````markdown
+```dataview
+TABLE dueDate AS "Due"
+FROM "Tasks"
+WHERE dueDate >= date(today)
+SORT dueDate ASC
+```
+````
+
+Resolve the query by hand from the row notes before promising a result (`../dataview/workflows.md` §2), and read `../dataview/data-model.md` for the verified `date(today)`/`SORT` grammar. This stays a supplement per §7 and the guardrails: the calendar view is the primary surface, and Dataview only adds the agenda.
+
+#### Checkpoint
+
+`calendar_recipe_wired`: the `_database.md` carries `notion-bases: true` and a `calendar` view whose `calendarDateField` names an existing `type: date` column; `calendarViewMode`, if set, is `month` or `week`; the Meta Bind `datePicker`, if used, binds the same date key; and any Dataview agenda is a read-only block outside `_database.md`, hand-resolved against real row notes.
 
 ---
 
 ## 7. DATASOURCE SUPPLEMENT: DATAVIEW FOR AGGREGATIONS THE PLUGIN DOESN'T COVER
 
-The Notion Bases plugin's 7 rollup functions (`sum`, `count`, `average`, `min`, `max`, `count_values`, `list`) cover most Notion rollup patterns, but not every one. When a Notion rollup or cross-database aggregation has no matching plugin function — a custom filter-then-aggregate, a multi-hop rollup through more than one relation, or a computed value the plugin's spreadsheet-style formulas cannot express — fall back to a read-only Dataview query instead of forcing it into the plugin schema.
+The Notion Bases plugin's 7 rollup functions (`sum`, `count`, `avg`, `min`, `max`, `count_values`, `list`) cover most Notion rollup patterns, but not every one. When a Notion rollup or cross-database aggregation has no matching plugin function — a custom filter-then-aggregate, a multi-hop rollup through more than one relation, or a computed value the plugin's spreadsheet-style formulas cannot express — fall back to a read-only Dataview query instead of forcing it into the plugin schema.
 
 **Do not edit `references/plugins/dataview/*`.** This section only points to it: read `../dataview/workflows.md` for the query-authoring recipes and `../dataview/data-model.md` for the verified DQL grammar.
 
@@ -314,6 +417,9 @@ Run these named checkpoints after any Notion Bases operation:
 | `lookup_hand_resolved` | The lookup resolves to exactly one related row's real value |
 | `subtask_chain_within_limit` | The self-relation chain resolves and terminates within 3 levels |
 | `view_block_valid` | The view type is one of the 7 supported values and its referenced columns exist |
+| `calendar_view_valid` | The calendar view's `calendarDateField` names a date key that exists on the row notes |
+| `calendar_recipe_wired` | The full calendar recipe (§6b) is wired: `notion-bases: true` plus a `calendar` view on an existing `type: date` column, `calendarViewMode` (if set) is `month`/`week`, any Meta Bind `datePicker` binds the same date key, and any Dataview agenda is a hand-resolved read-only block outside `_database.md` |
+| `nb_database_embed_valid` | The `nb-database` embed block's `path` resolves to a real database folder and its optional `type` is one of the 7 supported values |
 | `dataview_supplement_used_correctly` | Dataview was used only after the plugin's own columns were ruled out, and static fallbacks are labeled |
 
 The file layer proves the write. The render proves itself in-app after the user reloads the note — that check belongs to the plugin-install phase, not this reference set.

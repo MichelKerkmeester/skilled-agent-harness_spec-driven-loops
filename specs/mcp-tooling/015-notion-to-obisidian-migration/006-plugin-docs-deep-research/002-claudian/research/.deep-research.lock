@@ -1,0 +1,11 @@
+{
+  "owner_pid": 16242,
+  "started_at_iso": "2026-08-22T11:42:14.359Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-08-22T11:42:14.359Z",
+  "packet_id": "specs/mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-08-22T11:42:14.359Z",
+  "acquire_nonce": "16242-1787398934359-0b715557-2e1d-4ce7-bd3b-fc32f56fbb77"
+}

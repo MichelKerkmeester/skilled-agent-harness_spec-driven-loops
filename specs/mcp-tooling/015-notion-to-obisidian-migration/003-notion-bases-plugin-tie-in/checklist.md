@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in"
-    last_updated_at: "2026-08-22T04:06:26Z"
+    last_updated_at: "2026-08-22T08:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Built notion-bases 4-file tree, catalog entry, OBS-022 scenario, router intent, manifest regen"
+    recent_action: "Reopened: de-hedged notion-bases refs, added local-rest-api folder + router intent"
     next_safe_action: "Phase 004: real-vault install + verification script"
     blockers: []
     key_files: ["spec.md", "tasks.md"]
@@ -138,17 +138,46 @@ compliance rather than left blank. -->
 
 ---
 
+<!-- ANCHOR:post-install -->
+## Post-Install Verification + Local REST API (Reopened 2026-08-22)
+
+- [x] CHK-060 [P0] `notion-bases/*` hedged claims verified and de-hedged against the plugin's own README (v1.12.0 installed in the operator's vault)
+  - **Evidence**: `notion-bases.md` §1 identity table adds an "Installed version (operator vault)" row (`v1.12.0`); the database definition, 18 column types, 7 view types, 7 rollup functions, and `nb-database` embed syntax are now stated as confirmed rather than illustrative-only; only the exact per-column YAML key spelling remains a single consolidated `VERIFY` note (`grep -c -i VERIFY` on the 4 files: 3/2/3/2 — down from the pre-reopen repeated per-example hedge)
+- [x] CHK-061 [P0] Rollup function `average` corrected to the plugin's exact keyword `avg`
+  - **Evidence**: `grep -n -i '\baverage\b' notion-bases/*.md` returns 0 matches post-edit; `data-model.md` §3 and `workflows.md` §7 both read `avg`
+- [x] CHK-062 [P0] `nb-database` embed syntax documented where previously missing
+  - **Evidence**: `grep -c nb-database` on the 4 files: `notion-bases.md`=5, `data-model.md`=5, `workflows.md`=4, `troubleshooting.md`=6 (0 before this reopen)
+- [x] CHK-063 [P0] `references/plugins/obsidian-local-rest-api/` 4-file tree created, mirroring the Dataview shape, grounded in already-documented skill knowledge
+  - **Evidence**: `{obsidian-local-rest-api,data-model,workflows,troubleshooting}.md` all present; no `SKILL.md`/`mcp-tools.md`/`troubleshooting.md` content duplicated or moved — only a routing pointer added
+- [x] CHK-064 [P0] `SKILL.md` `PLUGIN_LOCAL_REST_API` intent additive-only
+  - **Evidence**: `git diff --unified=0 SKILL.md` shows only additions plus the two intentional replacements (`version:` 0.18.0.0→0.19.0.0, count comment `eighteen`→`nineteen`); every existing `PLUGIN_DATAVIEW`/other-intent line is byte-identical
+- [x] CHK-065 [P0] `validate_document.py --type feature_catalog` = 0 issues on all 4 `notion-bases/*.md` + all 4 `obsidian-local-rest-api/*.md`
+  - **Evidence**: 8/8 runs report `✅ VALID` / `Total issues: 0`
+- [x] CHK-066 [P0] `validate_document.py --type skill` = 0 issues on `SKILL.md`
+  - **Evidence**: `✅ VALID` / `Total issues: 0`
+- [x] CHK-067 [P1] `ci-leaf-manifest-freshness.cjs` reports `OK mcp-tooling` after regeneration
+  - **Evidence**: `OK    mcp-tooling  98e5e095f2f0d2ba8c25872332f5bdc990883afd55361cd382d278a056efad33`; `checked=13 fresh=13 failed=0`; `leaf-manifest.json` diff is 4 additive lines (the 4 new local-rest-api leaves)
+- [x] CHK-068 [P1] `changelog/v0.19.0.0.md` authored and validates clean
+  - **Evidence**: `validate_document.py --type changelog` = `✅ VALID` / `Total issues: 0`
+- [x] CHK-069 [P1] `validate.sh <this-folder> --strict` reports Errors:0 after reopening
+  - **Evidence**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/mcp-tooling/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in --strict` → `Summary: Errors: 0  Warnings: 0` / `RESULT: PASSED`, after `generate-description.js` + `backfill-graph-metadata.js` cleared a `SOURCE_FINGERPRINT_MISMATCH` drift and a `recent_action` frontmatter length fix on `spec.md`/`tasks.md`/`checklist.md`
+- [x] CHK-070 [P1] Scope-lock respected — no file touched outside `references/plugins/notion-bases/*`, the new `references/plugins/obsidian-local-rest-api/*`, `SKILL.md`, `changelog/v0.19.0.0.md`, `leaf-manifest.json`, and this `003-...` phase folder
+  - **Evidence**: `git status --short` for this session (see `implementation-summary.md` Verification table)
+<!-- /ANCHOR:post-install -->
+
+---
+
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 9/9 |
-| P1 Items | 9 | 9/9 |
+| P0 Items | 18 | 18/18 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: 2026-08-21/22 (spec-authoring pass, then implementation pass in the same session)
-**Verified By**: AI Assistant (Claude) — implementation session
+**Verification Date**: 2026-08-21/22 (spec-authoring + implementation), reopened + reconciled 2026-08-22 (post-install de-hedge + local-rest-api folder)
+**Verified By**: AI Assistant (Claude) — implementation session, reopened by @markdown
 <!-- /ANCHOR:summary -->
 
 ---

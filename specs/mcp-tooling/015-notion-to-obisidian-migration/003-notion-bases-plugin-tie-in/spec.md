@@ -1,19 +1,21 @@
 ---
 title: "Phase 003: Notion Bases plugin knowledge tie-in (mcp-obsidian)"
-description: "Plan the mcp-obsidian plugin knowledge gap: a new references/plugins/notion-bases/ tree, feature-catalog entry, manual-testing-playbook scenario, and SKILL.md router entry for the Notion Bases community plugin (two-way relations, 7 rollup functions, 7 view types, subtasks, Lookup columns), plus a Dataview supplement for aggregations it doesn't cover."
+description: "Plan the mcp-obsidian plugin knowledge gap: a new references/plugins/notion-bases/ tree, feature-catalog entry, manual-testing-playbook scenario, and SKILL.md router entry for the Notion Bases community plugin (two-way relations, 7 rollup functions, 7 view types, subtasks, Lookup columns), plus a Dataview supplement for aggregations it doesn't cover. Reopened post-install to de-hedge notion-bases against the plugin's own README and to add the missing obsidian-local-rest-api reference folder."
 trigger_phrases:
   - "015 notion bases plugin tie-in"
   - "notion bases plugin reference"
   - "obsidian-notion-bases-plugin"
   - "notion bases rollup relation"
+  - "notion bases post-install de-hedge"
+  - "local rest api reference folder"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in"
-    last_updated_at: "2026-08-22T04:06:26Z"
+    last_updated_at: "2026-08-22T08:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Built notion-bases 4-file tree, catalog entry, OBS-022 scenario, router intent, manifest regen"
+    recent_action: "Reopened: de-hedged notion-bases refs, added local-rest-api folder + router intent"
     next_safe_action: "Phase 004: real-vault install + verification script"
     blockers: []
     key_files:
@@ -51,7 +53,7 @@ _memory:
 | **Phase** | 3 of 4 |
 | **Predecessor** | `002-migration-playbook` |
 | **Successor** | `004-plugin-install-and-verification` |
-| **Handoff Criteria** | `mcp-obsidian/references/plugins/notion-bases/` (4 files), `feature-catalog/plugins/notion-bases.md`, and a new `manual-testing-playbook/plugin-tie-ins/` scenario all exist; `SKILL.md` routes to them; `leaf-manifest.json` regenerated; `validate_document.py --type skill` = 0 issues. |
+| **Handoff Criteria** | `mcp-obsidian/references/plugins/notion-bases/` (4 files), `feature-catalog/plugins/notion-bases.md`, and a new `manual-testing-playbook/plugin-tie-ins/` scenario all exist; `SKILL.md` routes to them; `leaf-manifest.json` regenerated; `validate_document.py --type skill` = 0 issues. **Reopened (2026-08-22)**: `notion-bases/*` de-hedged against the plugin's confirmed README (v1.12.0 installed), `references/plugins/obsidian-local-rest-api/` (4 files) created, `SKILL.md` routes to it via `PLUGIN_LOCAL_REST_API`, `leaf-manifest.json` regenerated, `changelog/v0.19.0.0.md` authored. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -69,6 +71,8 @@ This is **Phase 3** of the 015 migration capability. Phase 002 planned the gener
 - `mcp-obsidian`'s existing manual-testing scenario pattern (`manual-testing-playbook/plugin-tie-ins/brat-headless-install.md`, OBS-013) as the scenario shape.
 
 **Deliverables** (this phase): `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, plus the runtime build — the `notion-bases/` 4-file reference tree, the feature-catalog entry, the `OBS-022` manual scenario, the `SKILL.md` router intent, and the regenerated `leaf-manifest.json`.
+
+**Reopened (2026-08-22)**: two related follow-up jobs surfaced after this phase originally closed. **Job 1** — the Notion Bases plugin (`bgarciamoura/obsidian-notion-bases-plugin` v1.12.0) is now actually installed in the operator's vault, so the ~16 hedged `VERIFY`/"assume" claims across `notion-bases/{notion-bases,data-model,workflows,troubleshooting}.md` were verified and de-hedged against the plugin's own README: the database definition, the 18 exact column types, the 7 exact view types, the 7 exact rollup functions (correcting `average` to the plugin's actual `avg` keyword), and the previously undocumented `nb-database` embed syntax. Only the exact per-column YAML key spelling inside `_database.md` remains a single, consolidated `VERIFY` note. **Job 2** — `obsidian-local-rest-api` was the one enabled vault plugin with no dedicated `references/plugins/<name>/` tree; a 4-file folder was authored consolidating what `SKILL.md`/`references/mcp-tools.md`/`references/troubleshooting.md` already documented, plus a matching `PLUGIN_LOCAL_REST_API` router intent (additive-only) and `changelog/v0.19.0.0.md`.
 <!-- /ANCHOR:phase-context -->
 
 ---

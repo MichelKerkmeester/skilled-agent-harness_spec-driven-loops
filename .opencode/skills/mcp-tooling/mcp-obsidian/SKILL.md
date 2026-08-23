@@ -1,15 +1,19 @@
 ---
 name: mcp-obsidian
-description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Excalidraw, Git, Outliner, Minimal) operated at the file layer. Embedded install and agent safety invariants.
+description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Minimal, Notion Bases, Meta Bind) operated at the file layer. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.18.0.0
+version: 0.21.0.0
 ---
 
-<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, excalidraw, excalidraw.md, drawing note, obsidian-git, vault git, auto backup, outliner, list editing, minimal theme, css theme, theme snippet -->
+<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, obsidian-git, vault git, auto backup, outliner, list editing, obsidian theme, theme system, css theme, css snippet, css variables, theme development, plugin development, notion bases, meta bind, meta-bind, input field, inline button, js engine, task timer -->
 
 # mcp-obsidian Skill
 
-The skill that makes AI use inside Obsidian effective. It operates notes and vaults through three surfaces (headless `notesmd-cli`, the app-backed official `obsidian` CLI, and the cyanheads MCP) and knows the eleven plugin and theme file formats at the file layer, so an agent can read, write, search, and extend what the vault contains without guessing.
+The skill that makes AI use inside Obsidian effective. It operates notes and vaults through three surfaces (headless `notesmd-cli`, the app-backed official `obsidian` CLI, and the cyanheads MCP) and knows the twelve plugin and theme file formats at the file layer, so an agent can read, write, search, and extend what the vault contains without guessing.
+
+<!-- Plugin file-layer coverage extends beyond this headline list to Advanced Canvas, Claudian, and Local REST API; see §2 RESOURCE_MAP and references/plugins/installed-plugins.md for the full roster. -->
+
+
 
 ---
 
@@ -55,6 +59,8 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
            references/notion-migration.md               (Notion→Obsidian migration reconstruction method)
            Plugin operation logic:
              references/plugins/plugin-operation-logic.md (plugin-driven note automation)
+           Installed plugins roster:
+             references/plugins/installed-plugins.md    (all 21 enabled vault plugins; which carry dedicated docs)
            Beancount Finance:
              references/plugins/beancount-finance/beancount-finance.md      (plugin index)
              references/plugins/beancount-finance/data-model.md
@@ -90,11 +96,6 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/dataview/data-model.md
              references/plugins/dataview/workflows.md
              references/plugins/dataview/troubleshooting.md
-           Excalidraw:
-             references/plugins/excalidraw/excalidraw.md                 (plugin index)
-             references/plugins/excalidraw/data-model.md
-             references/plugins/excalidraw/workflows.md
-             references/plugins/excalidraw/troubleshooting.md
            Obsidian Git:
              references/plugins/git/git.md                               (plugin index)
              references/plugins/git/data-model.md
@@ -105,16 +106,36 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/outliner/data-model.md
              references/plugins/outliner/workflows.md
              references/plugins/outliner/troubleshooting.md
-           Minimal (theme):
-             references/plugins/minimal/minimal.md                       (plugin index)
-             references/plugins/minimal/data-model.md
-             references/plugins/minimal/workflows.md
-             references/plugins/minimal/troubleshooting.md
+           Themes (theme system):
+             references/themes/themes.md                                 (theme system index)
+             references/themes/customization.md
+             references/themes/theme-development.md
+             references/themes/plugin-development.md
            Notion Bases:
              references/plugins/notion-bases/notion-bases.md             (plugin index)
              references/plugins/notion-bases/data-model.md
              references/plugins/notion-bases/workflows.md
              references/plugins/notion-bases/troubleshooting.md
+           Local REST API:
+             references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md  (plugin index)
+             references/plugins/obsidian-local-rest-api/data-model.md
+             references/plugins/obsidian-local-rest-api/workflows.md
+             references/plugins/obsidian-local-rest-api/troubleshooting.md
+           Advanced Canvas:
+             references/plugins/advanced-canvas/advanced-canvas.md       (plugin index)
+             references/plugins/advanced-canvas/data-model.md
+             references/plugins/advanced-canvas/workflows.md
+             references/plugins/advanced-canvas/troubleshooting.md
+           Claudian:
+             references/plugins/claudian/claudian.md                     (plugin index)
+             references/plugins/claudian/data-model.md
+             references/plugins/claudian/workflows.md
+             references/plugins/claudian/troubleshooting.md
+           Meta Bind:
+             references/plugins/meta-bind/meta-bind.md                   (plugin index)
+             references/plugins/meta-bind/data-model.md
+             references/plugins/meta-bind/workflows.md
+             references/plugins/meta-bind/troubleshooting.md
 ```
 
 ### Two Decisions This Router Makes
@@ -245,11 +266,6 @@ INTENT_SIGNALS = {
         "keywords": ["dataview", "dql", "dataviewjs", "inline field", "metadata query",
                      "frontmatter query", "task query", "list query", "table query", "dataview query"],
     },
-    "PLUGIN_EXCALIDRAW": {
-        "weight": 5,
-        "keywords": ["excalidraw", "drawing", "excalidraw.md", "drawing note",
-                     "embedded drawing", "whiteboard", "excalidraw automate", "drawing script"],
-    },
     "PLUGIN_GIT": {
         "weight": 5,
         "keywords": ["obsidian git", "obsidian-git", "git plugin", "auto backup",
@@ -260,10 +276,11 @@ INTENT_SIGNALS = {
         "keywords": ["outliner", "obsidian outliner", "list editing", "list zoom",
                      "outline plugin", "fold list", "list indentation"],
     },
-    "PLUGIN_MINIMAL": {
+    "THEME_SYSTEM": {
         "weight": 5,
-        "keywords": ["minimal", "minimal theme", "theme", "css theme", "appearance",
-                     "theme snippet", "style settings", "snippets"],
+        "keywords": ["theme", "themes", "obsidian theme", "css theme", "community theme",
+                     "appearance", "css snippet", "snippets", "css variable", "theme development",
+                     "build a theme", "plugin development", "minimal theme"],
     },
     "PLUGIN_HEALTH": {
         "weight": 5,
@@ -277,6 +294,31 @@ INTENT_SIGNALS = {
                      "lookup column", "two-way relation", "notion bases rollup",
                      "notion bases relation", "notion bases view", "database.md schema",
                      "self-relation subtask"],
+    },
+    "PLUGIN_LOCAL_REST_API": {
+        "weight": 5,
+        "keywords": ["obsidian-local-rest-api", "local rest api plugin", "coddingtonbear",
+                     "rest api plugin", "vault rest api", "obsidian_verify_ssl",
+                     "vault_read", "vault_write", "vault_patch"],
+    },
+    "PLUGIN_ADVANCED_CANVAS": {
+        "weight": 5,
+        "keywords": ["advanced canvas", "advanced-canvas", "canvas node", "canvas edge",
+                     "canvas portal", "canvas presentation", "canvas group", "flowchart node",
+                     "edge pathfinding", ".canvas json"],
+    },
+    "PLUGIN_CLAUDIAN": {
+        "weight": 5,
+        "keywords": ["claudian", "realclaudian", "claude code plugin", "in-vault agent",
+                     "coding agent in obsidian", "claudian slash command", "claudian skill",
+                     "claudian mcp", "agent working directory vault"],
+    },
+    "PLUGIN_META_BIND": {
+        "weight": 5,
+        "keywords": ["meta bind", "meta-bind", "metabind", "obsidian-meta-bind-plugin",
+                     "input field", "inline button", "button block", "meta bind button",
+                     "frontmatter button", "js engine", "js-engine", "task timer",
+                     "start timer", "stop timer", "note timer"],
     },
     "PLUGINS": {
         "weight": 5,
@@ -308,7 +350,7 @@ INTENT_SIGNALS = {
 }
 
 # NOTE: no "DEFAULT" entry — route_obsidian_resources() never indexes RESOURCE_MAP
-# by that key. The selected `intent` is one of the eighteen INTENT_SIGNALS keys above.
+# by that key. The selected `intent` is one of the twenty-one INTENT_SIGNALS keys above.
 # Specific plugin intents always supersede generic PLUGINS whenever any specific signal matches: the highest specific score wins, a tie between specific intents disambiguates, and generic PLUGINS is considered only when no specific plugin signal matches.
 # The no-match case is owned by DEFAULT_RESOURCE, whose declared
 # fallback-only semantics mean it is SUGGESTED beside the disambiguation checklist,
@@ -347,11 +389,6 @@ RESOURCE_MAP = {
                        "references/plugins/dataview/data-model.md",
                        "references/plugins/dataview/workflows.md",
                        "references/plugins/dataview/troubleshooting.md"],
-    "PLUGIN_EXCALIDRAW": ["references/plugins/plugin-operation-logic.md",
-                       "references/plugins/excalidraw/excalidraw.md",
-                       "references/plugins/excalidraw/data-model.md",
-                       "references/plugins/excalidraw/workflows.md",
-                       "references/plugins/excalidraw/troubleshooting.md"],
     "PLUGIN_GIT":     ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/git/git.md",
                        "references/plugins/git/data-model.md",
@@ -362,11 +399,10 @@ RESOURCE_MAP = {
                        "references/plugins/outliner/data-model.md",
                        "references/plugins/outliner/workflows.md",
                        "references/plugins/outliner/troubleshooting.md"],
-    "PLUGIN_MINIMAL": ["references/plugins/plugin-operation-logic.md",
-                       "references/plugins/minimal/minimal.md",
-                       "references/plugins/minimal/data-model.md",
-                       "references/plugins/minimal/workflows.md",
-                       "references/plugins/minimal/troubleshooting.md"],
+    "THEME_SYSTEM":   ["references/themes/themes.md",
+                       "references/themes/customization.md",
+                       "references/themes/theme-development.md",
+                       "references/themes/plugin-development.md"],
     "PLUGIN_HEALTH":  ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/health-md/health-md.md",
                        "references/plugins/health-md/data-model.md",
@@ -377,7 +413,28 @@ RESOURCE_MAP = {
                        "references/plugins/notion-bases/data-model.md",
                        "references/plugins/notion-bases/workflows.md",
                        "references/plugins/notion-bases/troubleshooting.md"],
+    "PLUGIN_LOCAL_REST_API": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md",
+                       "references/plugins/obsidian-local-rest-api/data-model.md",
+                       "references/plugins/obsidian-local-rest-api/workflows.md",
+                       "references/plugins/obsidian-local-rest-api/troubleshooting.md"],
+    "PLUGIN_ADVANCED_CANVAS": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/advanced-canvas/advanced-canvas.md",
+                       "references/plugins/advanced-canvas/data-model.md",
+                       "references/plugins/advanced-canvas/workflows.md",
+                       "references/plugins/advanced-canvas/troubleshooting.md"],
+    "PLUGIN_CLAUDIAN": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/claudian/claudian.md",
+                       "references/plugins/claudian/data-model.md",
+                       "references/plugins/claudian/workflows.md",
+                       "references/plugins/claudian/troubleshooting.md"],
+    "PLUGIN_META_BIND": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/meta-bind/meta-bind.md",
+                       "references/plugins/meta-bind/data-model.md",
+                       "references/plugins/meta-bind/workflows.md",
+                       "references/plugins/meta-bind/troubleshooting.md"],
     "PLUGINS":        ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/installed-plugins.md",
                        "references/plugins/beancount-finance/beancount-finance.md",
                        "references/plugins/obsidian-tables/obsidian-tables.md",
                        "references/plugins/obsidian42-brat/obsidian42-brat.md",
@@ -385,11 +442,14 @@ RESOURCE_MAP = {
                        "references/plugins/health-md/health-md.md",
                        "references/plugins/charts/charts.md",
                        "references/plugins/dataview/dataview.md",
-                       "references/plugins/excalidraw/excalidraw.md",
                        "references/plugins/git/git.md",
                        "references/plugins/outliner/outliner.md",
-                       "references/plugins/minimal/minimal.md",
-                       "references/plugins/notion-bases/notion-bases.md"],
+                       "references/themes/themes.md",
+                       "references/plugins/notion-bases/notion-bases.md",
+                       "references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md",
+                       "references/plugins/advanced-canvas/advanced-canvas.md",
+                       "references/plugins/claudian/claudian.md",
+                       "references/plugins/meta-bind/meta-bind.md"],
     "NOTION_MIGRATION": ["references/notion-migration.md"],
     "INSTALL":       ["references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
@@ -450,9 +510,10 @@ def route_obsidian_resources(request: str) -> dict:
         intent = "INSTALL"
     else:
         specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT", "PLUGIN_ICONIC",
-                                   "PLUGIN_CHARTS", "PLUGIN_DATAVIEW", "PLUGIN_EXCALIDRAW",
-                                   "PLUGIN_GIT", "PLUGIN_OUTLINER", "PLUGIN_MINIMAL", "PLUGIN_HEALTH",
-                                   "PLUGIN_NOTION_BASES")
+                                   "PLUGIN_CHARTS", "PLUGIN_DATAVIEW",
+                                   "PLUGIN_GIT", "PLUGIN_OUTLINER", "THEME_SYSTEM", "PLUGIN_HEALTH",
+                                   "PLUGIN_NOTION_BASES", "PLUGIN_LOCAL_REST_API",
+                                   "PLUGIN_ADVANCED_CANVAS", "PLUGIN_CLAUDIAN", "PLUGIN_META_BIND")
         matched_specific_plugin_intents = [
             plugin_intent
             for plugin_intent in specific_plugin_intents
@@ -737,6 +798,23 @@ await call_tool_chain({
 - `references/plugins/notion-bases/data-model.md` — `_database.md` schema: two-way relation columns, the 7 rollup functions, lookup columns, self-relation subtasks, and the 7 view types
 - `references/plugins/notion-bases/workflows.md` — Notion Bases file-layer recipes plus a Dataview supplement for aggregations the plugin doesn't cover
 - `references/plugins/notion-bases/troubleshooting.md` — Notion Bases failure and recovery recipes: schema mismatch, missing back-reference, unsupported view type
+- `references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md` — Local REST API plugin index (repo `coddingtonbear/obsidian-local-rest-api`), the HTTP/HTTPS backend the cyanheads MCP rides on
+- `references/plugins/obsidian-local-rest-api/data-model.md` — `data.json` config surface, the `OBSIDIAN_API_KEY`/`OBSIDIAN_BASE_URL`/`OBSIDIAN_VERIFY_SSL` env keys, and the two loopback endpoints
+- `references/plugins/obsidian-local-rest-api/workflows.md` — Enable the plugin, read the API key, wire the MCP, and the app-must-be-running boundary
+- `references/plugins/obsidian-local-rest-api/troubleshooting.md` — MCP-not-found, auth, SSL/`OBSIDIAN_VERIFY_SSL`, and port-conflict recovery recipes
+- `references/plugins/installed-plugins.md` — Roster of all 21 enabled vault plugins: file-layer plugins (with dedicated docs) vs UI/automatic plugins (no dedicated docs)
+- `references/plugins/advanced-canvas/advanced-canvas.md` — Advanced Canvas plugin index (repo `developer-mike/obsidian-advanced-canvas`), extends the native `.canvas` JSON
+- `references/plugins/advanced-canvas/data-model.md` — The extended `.canvas` node/edge schema: node types, edge pathfinding, presentation order, portals, groups
+- `references/plugins/advanced-canvas/workflows.md` — Advanced Canvas file-layer recipes: styled/typed nodes, portals, presentations, export
+- `references/plugins/advanced-canvas/troubleshooting.md` — Advanced Canvas failure and recovery recipes
+- `references/plugins/claudian/claudian.md` — Claudian plugin index (repo `YishenTu/claudian`, manifest id `realclaudian`), embeds coding-agent CLIs in the vault
+- `references/plugins/claudian/data-model.md` — Claudian in-vault artifacts: slash commands, skills/prompt templates, provider and MCP config, and where they live on disk
+- `references/plugins/claudian/workflows.md` — Claudian recipes: register a provider CLI, author a reusable skill/command, connect an MCP server, plan mode and @-mentions
+- `references/plugins/claudian/troubleshooting.md` — Claudian failure and recovery recipes, the three-name disambiguation, and the resolved-but-unconfirmed in-app-search issue
+- `references/plugins/meta-bind/meta-bind.md` — Meta Bind plugin index (repo `mProjectsCode/obsidian-meta-bind-plugin`), the inline input/button/view field syntax
+- `references/plugins/meta-bind/data-model.md` — Meta Bind field syntax: `INPUT[]`/`BUTTON[]`/`VIEW[]` widgets, button action lists, and the JS Engine companion for computed timestamps
+- `references/plugins/meta-bind/workflows.md` — Meta Bind recipes: the Notion-style task-timer build (Notion Bases DB + Start/End buttons + Total-Time formula) and frontmatter-driven buttons
+- `references/plugins/meta-bind/troubleshooting.md` — Meta Bind failure and recovery recipes: button action errors, JS Engine evaluation, and field-binding pitfalls
 
 Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc for both CLI profiles and the MCP; `references/troubleshooting.md` is the router's INSTALL/TROUBLESHOOT-intent target.
 

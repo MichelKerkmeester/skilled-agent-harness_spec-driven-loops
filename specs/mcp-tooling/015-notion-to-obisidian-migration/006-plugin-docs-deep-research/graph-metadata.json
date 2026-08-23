@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "children_ids": [
+    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
+    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
+    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
+    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
+    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006 plugin docs deep research",
+      "per-plugin deep research mcp-obsidian",
+      "optimize plugin references research"
+    ],
+    "key_topics": [
+      "plugin",
+      "docs",
+      "deep",
+      "research",
+      "per-plugin",
+      "mcp-obsidian",
+      "optimize",
+      "references",
+      "phase",
+      "parent",
+      "seven",
+      "deep-research"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-advanced-canvas/synthesis.md",
+      "002-claudian/synthesis.md",
+      "003-project-manager/synthesis.md",
+      "004-dataview/synthesis.md",
+      "005-notion-bases/synthesis.md",
+      "006-meta-bind/synthesis.md",
+      "007-js-engine/synthesis.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "001-advanced-canvas/synthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advanced Canvas",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Project Manager",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Meta Bind",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Transition Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for seven per-plugin deep-research legs (GLM-5.2 via cli-devin for the first five, ox-alpha via cli-opencode/OpenRouter for the last two) that investigate what to add, update, or create in the mcp-obsidian file-layer plugin references to optimize an AI's ability to operate each plugin. Research only; doc edits are the phase 009 follow-up build.",
+    "created_at": "2026-08-22T20:29:43.463Z",
+    "last_save_at": "2026-08-23T03:49:29.903Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:509ba972eaf94c0145ae531db2f6694999d756d91bf3b716e315cc34c393a40d",
+    "source_doc_hashes": {
+      "spec.md": "5ddb0142717a277cef8249ffb3127294baf1eace16e7f1760f0c7734e75952e1"
+    },
+    "last_active_child_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine",
+    "last_active_at": null
+  }
+}

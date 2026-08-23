@@ -194,7 +194,7 @@
     ],
     "causal_summary": "We need to flawlessly migrate a COMPLEX Notion environment — databases, relations, rollups, formulas, nested pages, files, comments, views — fully into Obsidian, using `mcp-notion` (the 24-tool Notion MCP mode) and `mcp-obsidian` (Local REST API + notesmd CLI + plugins) as the migration engine",
     "created_at": "2026-08-21T20:10:21.172Z",
-    "last_save_at": "2026-08-21T22:04:42.769Z",
+    "last_save_at": "2026-08-23T03:33:51.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7189d05e931b95bbae20cae5efca2dc1b00021156afd05ecb555545aea3af2c8",
+    "source_fingerprint": "sha256:db7dad989fd8d27a4923d12158fe47be3baf4db0c9a451895c734ead8daf1b40",
     "source_doc_hashes": {
-      "spec.md": "1eba7d167eaa03cc6f4d8f0a29e44a55167f16687a431cb2b779cca07b33b239",
-      "plan.md": "5ff857b3cd476b9c7167a47debedfbde1489761864a47a50704be4bb4d8441ff",
-      "tasks.md": "124495af0ca5198c7b1148ea4fb1de37dd4f8ff6b3948c39434c5bc8abb2934b",
-      "research/research.md": "07888a17f1022446a89a264ee22494d3334fdcd33388a692b886396caabeb2f4"
+      "spec.md": "153c0074a2244213ca66aaa511c3e4762b4fc42ebf79af6e03373975bd33bd24",
+      "plan.md": "d0abb2a10f2363b32c0ed9445c68d86d28200500d594c94493c907457a866be6",
+      "tasks.md": "412b165b7eb33b2ba65a224ca0207805f9a82e8fad7648d3a7f2349d94fc5913",
+      "research/research.md": "02c6ddc2cca7fe3aea1d6b53314ddf7ebdbcb27fd7ac48aca1bc79baa2431751"
     },
     "last_active_child_id": null,
     "last_active_at": null

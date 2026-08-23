@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006 notion-bases deep research",
+      "Notion Bases reference optimization research",
+      "006 notion-bases research plan",
+      "notion bases deep research plan",
+      "006 notion-bases research tasks",
+      "notion bases deep research tasks"
+    ],
+    "key_topics": [
+      "notion-bases",
+      "deep",
+      "research",
+      "notion",
+      "bases",
+      "reference",
+      "optimization",
+      "plan",
+      "tasks",
+      "mcp-obsidian",
+      "file-layer",
+      "tree"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ran",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "citations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sources All",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Research question and verdict",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Confirmed findings",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-obsidian Notion Bases file-layer reference tree omitted exact plugin syntax needed for reliable AI-authored files",
+    "created_at": "2026-08-23T03:44:43.265Z",
+    "last_save_at": "2026-08-23T03:44:43.265Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:47811e6f6e4e9a821441756d89e6154306bfd9ca1539c2a3fc6748ea66ed55f8",
+    "source_doc_hashes": {
+      "spec.md": "4a1b2d986a3c2ad7f06fa48ada82c79acc61d2981817b1f9e780be7f027ac362",
+      "plan.md": "e6e2e4ef3a504466e3c5b8ddb9a761027a63e76085f6e28170f3b025f1ec11ea",
+      "tasks.md": "5ab7b85f9a89a808ce69689e16ef215c46fad601de639ca5d918c44f2c0abe6d",
+      "research/research.md": "e09db10fbbf7eed1dcf4f102e86bcd8059230f1757194c8c056fb41afc971bba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

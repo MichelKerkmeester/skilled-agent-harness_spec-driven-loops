@@ -23,7 +23,7 @@ _memory:
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "015-001-deep-research"
-      parent_session_id: "015-notion-to-obisidian-migration"
+      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []

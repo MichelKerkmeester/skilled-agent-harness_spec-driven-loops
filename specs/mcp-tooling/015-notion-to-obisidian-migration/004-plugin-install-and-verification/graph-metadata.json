@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation column it cannot yet write, because neither Notion Bases nor (potentially) Dataview is confirmed present in the operator's actual vault",
     "created_at": "2026-08-21T22:01:25.732Z",
-    "last_save_at": "2026-08-22T04:44:52.007Z",
+    "last_save_at": "2026-08-22T07:15:12.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,9 +201,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fa57a62914aacdf7db3220ab5615e78dd36b257d8903c2ca8929628c5374afa",
+    "source_fingerprint": "sha256:371ed4eda61c6295f9b7bf09d2b4045ffa3f1b093d1f887c3076f4e24cc1f581",
     "source_doc_hashes": {
-      "spec.md": "85bf56315640a0c35db9349f98382efff0c7ae12ed10ddfe1b2eaec60cc957a4",
+      "spec.md": "3a024cb89490c4b38f521c8d8b56ab363d956aa84e4ac5d55bf3b59405c8ce9d",
       "plan.md": "525e275973b5de6efd39bf8ca31a99a5ab10fc0684646ea497d390e89d78d721",
       "tasks.md": "21aca8d5c0164a2460e8db3133855a1ea89d4a604cc51e8aab88da33ac3cf8de",
       "checklist.md": "dab6874d540bb383956227362157dabf957e3967c8f7a06b950ebe0bcdfdfb8a",

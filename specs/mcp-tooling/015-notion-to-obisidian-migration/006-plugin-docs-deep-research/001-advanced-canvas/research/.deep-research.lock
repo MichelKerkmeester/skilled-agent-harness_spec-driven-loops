@@ -1,0 +1,11 @@
+{
+  "owner_pid": 1650,
+  "started_at_iso": "2026-08-22T10:27:08.067Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-08-22T10:27:08.067Z",
+  "packet_id": "specs/mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-08-22T10:27:08.067Z",
+  "acquire_nonce": "1650-1787394428067-0352706c-56dc-42e9-9e1f-71268500f14e"
+}

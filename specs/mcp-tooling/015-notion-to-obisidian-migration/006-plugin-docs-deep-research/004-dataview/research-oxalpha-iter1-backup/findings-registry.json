@@ -1,0 +1,304 @@
+{
+  "sessionId": "dr-004-dataview-1787409080",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-kq1-which-dql-query-patterns-table-list-task-calendar-plus-from-where-sort-group",
+      "inboxId": null,
+      "text": "KQ1: Which DQL query patterns (TABLE/LIST/TASK/CALENDAR plus FROM/WHERE/SORT/GROUP BY/FLATTEN/LIMIT clauses) must `references/plugins/dataview/*` document so an AI authors valid queries against migrated notes, and what syntax gotchas apply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-kq2-which-dataviewjs-apis-dv-pages-dv-pagepaths-dv-page-dv-table-dv-list-dv-task",
+      "inboxId": null,
+      "text": "KQ2: Which DataviewJS APIs (`dv.pages`/`dv.pagePaths`/`dv.page`, `dv.table`/`dv.list`/`dv.task`, renderers, `dv.el`/`dv.paragraph`/`dv.span`, `dv.luxon`/`dv.date`) are essential for AI-authored embedded views, and how do they differ from DQL?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-kq3-what-frontmatter-and-inline-field-conventions-field-types-coercion-rules-dat",
+      "inboxId": null,
+      "text": "KQ3: What frontmatter and inline-field conventions (field types, coercion rules, dates, links, lists, tags/aliases, inline fields in tasks/lists) does Dataview index, and which matter most when notes are migrated from Notion?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-kq4-what-common-failure-modes-and-gotchas-null-missing-fields-type-coercion-mism",
+      "inboxId": null,
+      "text": "KQ4: What common failure modes and gotchas (null/missing fields, type coercion mismatches, date math, source/path scoping, metadata cache staleness, DQL-vs-DataviewJS differences) most often break AI-authored queries?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-kq5-what-concrete-additions-updates-or-new-documents-should-be-made-to-reference",
+      "inboxId": null,
+      "text": "KQ5: What concrete additions, updates, or new documents should be made to `references/plugins/dataview/*` to close these gaps against the current file inventory?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-kq1-which-dql-query-patterns-table-list-task-calendar-plus-from-where-sort-group",
+      "inboxId": null,
+      "text": "KQ1: Which DQL query patterns (TABLE/LIST/TASK/CALENDAR plus FROM/WHERE/SORT/GROUP BY/FLATTEN/LIMIT clauses) must `references/plugins/dataview/*` document so an AI authors valid queries against migrated notes, and what syntax gotchas apply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-kq2-which-dataviewjs-apis-dv-pages-dv-pagepaths-dv-page-dv-table-dv-list-dv-task",
+      "inboxId": null,
+      "text": "KQ2: Which DataviewJS APIs (`dv.pages`/`dv.pagePaths`/`dv.page`, `dv.table`/`dv.list`/`dv.task`, renderers, `dv.el`/`dv.paragraph`/`dv.span`, `dv.luxon`/`dv.date`) are essential for AI-authored embedded views, and how do they differ from DQL?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-kq3-what-frontmatter-and-inline-field-conventions-field-types-coercion-rules-dat",
+      "inboxId": null,
+      "text": "KQ3: What frontmatter and inline-field conventions (field types, coercion rules, dates, links, lists, tags/aliases, inline fields in tasks/lists) does Dataview index, and which matter most when notes are migrated from Notion?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-kq4-what-common-failure-modes-and-gotchas-null-missing-fields-type-coercion-mism",
+      "inboxId": null,
+      "text": "KQ4: What common failure modes and gotchas (null/missing fields, type coercion mismatches, date math, source/path scoping, metadata cache staleness, DQL-vs-DataviewJS differences) most often break AI-authored queries?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-kq5-what-concrete-additions-updates-or-new-documents-should-be-made-to-reference",
+      "inboxId": null,
+      "text": "KQ5: What concrete additions, updates, or new documents should be made to `references/plugins/dataview/*` to close these gaps against the current file inventory?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "KQ1: Which DQL query patterns (TABLE/LIST/TASK/CALENDAR plus FROM/WHERE/SORT/GROUP BY/FLATTEN/LIMIT clauses) must `references/plugins/dataview/*` document so an AI authors valid queries against migrated notes, and what syntax gotchas apply?",
+    "KQ2: Which DataviewJS APIs (`dv.pages`/`dv.pagePaths`/`dv.page`, `dv.table`/`dv.list`/`dv.task`, renderers, `dv.el`/`dv.paragraph`/`dv.span`, `dv.luxon`/`dv.date`) are essential for AI-authored embedded views, and how do they differ from DQL?",
+    "KQ3: What frontmatter and inline-field conventions (field types, coercion rules, dates, links, lists, tags/aliases, inline fields in tasks/lists) does Dataview index, and which matter most when notes are migrated from Notion?",
+    "KQ4: What common failure modes and gotchas (null/missing fields, type coercion mismatches, date math, source/path scoping, metadata cache staleness, DQL-vs-DataviewJS differences) most often break AI-authored queries?",
+    "KQ5: What concrete additions, updates, or new documents should be made to `references/plugins/dataview/*` to close these gaps against the current file inventory?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-9-bracket-inline-field-syntax-key-value-inside-tasks-list-items-is-absent-from-the",
+      "text": "**Bracket inline-field syntax `[key:: value]` inside tasks/list items is absent from the local metadata docs** - surfaced by the official nav entry \"Metadata on Tasks and Lists\"; directly relevant to TASK queries against migrated Notion notes. Deferred to the KQ3 iteration; recorded here so it is not lost. [SOURCE: https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ (nav: annotation/metadata-tasks) ; absence checked in data-model.md §3-§5]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md (full read)",
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md (full read)",
+        "https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ (official Structure of a Query)",
+        "Glob inventories: `.claude/skills/mcp-tooling/mcp-obsidian/**` (empty), `**/plugins/dataview/**` (6 hits)"
+      ]
+    },
+    {
+      "id": "finding-1-3-gap-boolean-parenthesized-source-composition-is-absent-locally-official-docs-doc",
+      "text": "**GAP - Boolean/parenthesized source composition is absent locally.** Official docs document `FROM #status/open OR #status/wip` and `FROM (#assignment AND \"30 School\") OR (\"30 School/32 Homeworks\" AND outgoing([[School Dashboard Current To Dos]]))`; `data-model.md` lists only single atomic sources. An AI following the local doc cannot compose multi-source queries. [SOURCE: https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ ; absence verified at data-model.md:260-270]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md (full read)",
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md (full read)",
+        "https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ (official Structure of a Query)",
+        "Glob inventories: `.claude/skills/mcp-tooling/mcp-obsidian/**` (empty), `**/plugins/dataview/**` (6 hits)"
+      ]
+    },
+    {
+      "id": "finding-1-4-gap-data-command-multiplicity-and-ordering-semantics-are-absent-locally-official",
+      "text": "**GAP - Data-command multiplicity and ordering semantics are absent locally.** Official rule: only the query type is mandatory; zero-or-one FROM immediately after it; every other data command may appear multiple times in any order and executes in written order. Local docs present clauses as a fixed-role table with no ordering/multiplicity statement. [SOURCE: https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ ; data-model.md:271-280]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md (full read)",
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md (full read)",
+        "https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ (official Structure of a Query)",
+        "Glob inventories: `.claude/skills/mcp-tooling/mcp-obsidian/**` (empty), `**/plugins/dataview/**` (6 hits)"
+      ]
+    },
+    {
+      "id": "finding-1-6-gap-group-by-post-group-variables-key-and-rows-are-never-explained-locally-yet-o",
+      "text": "**GAP - GROUP BY post-group variables `key` and `rows` are never explained locally**, yet official examples sort on `rows.file.ctime` and select `rows.c` after grouping. Without `rows`/`key`, any grouped query an AI writes from the local docs alone is guesswork. [INFERENCE: official examples on the fetched structure page use `rows.*`; neither local file mentions `rows` or `key` (checked data-model.md §7 and dataview.md §8)]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md (full read)",
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md (full read)",
+        "https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ (official Structure of a Query)",
+        "Glob inventories: `.claude/skills/mcp-tooling/mcp-obsidian/**` (empty), `**/plugins/dataview/**` (6 hits)"
+      ]
+    },
+    {
+      "id": "finding-1-5-gap-task-query-semantics-are-under-explained-official-example-task-where-complet",
+      "text": "**GAP - TASK-query semantics are under-explained.** Official example `TASK WHERE !completed SORT created ASC LIMIT 10 GROUP BY file.link SORT rows.file.ctime ASC` shows WHERE filtering individual tasks (not pages), task-level fields such as `completed`/`created`, and the group-then-sort-rows pattern. Local TASK row reads only \"Task list from matching notes\". [SOURCE: https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ ; data-model.md:257]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md (full read)",
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md (full read)",
+        "https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ (official Structure of a Query)",
+        "Glob inventories: `.claude/skills/mcp-tooling/mcp-obsidian/**` (empty), `**/plugins/dataview/**` (6 hits)"
+      ]
+    },
+    {
+      "id": "finding-1-2-local-dql-grammar-baseline-is-solid-on-the-skeleton-all-four-view-types-table-li",
+      "text": "**Local DQL grammar baseline is solid on the skeleton: all four view types (TABLE/LIST/TASK/CALENDAR), six FROM source forms (folder, tag, link, specific file, outgoing, incoming), the six clauses (WHERE/SORT/GROUP BY/FLATTEN/LIMIT/AS), inline `=` / `$=` prefixes with their enable flags, and a 23-function verified subset, all stated as verified against installed main.js 0.5.68.** [SOURCE: .opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md:245-360]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md (full read)",
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md (full read)",
+        "https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ (official Structure of a Query)",
+        "Glob inventories: `.claude/skills/mcp-tooling/mcp-obsidian/**` (empty), `**/plugins/dataview/**` (6 hits)"
+      ]
+    },
+    {
+      "id": "finding-1-8-no-factual-conflicts-found-between-the-two-deep-read-local-files-and-the-fetched",
+      "text": "**No factual conflicts found between the two deep-read local files and the fetched official page**; local strengths worth preserving: the 25-key settings contract, implicit `file.*` schema (incl. conditional `file.day`), and AI guardrails (never fabricate output; rendering is in-app). Items flagged VERIFY for later iterations: `TABLE WITHOUT ID`, source negation (`-#tag`, `-\"folder\"`), `contains` vs `econtains`/`icontains` variants - referenced by official nav but not on the fetched page and absent locally. [SOURCE: .opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md:153-163 ; data-model.md:363-370 ; https://blacksmithgu.github.io/obsidian-dataview/queries/structure/]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md (full read)",
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md (full read)",
+        "https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ (official Structure of a Query)",
+        "Glob inventories: `.claude/skills/mcp-tooling/mcp-obsidian/**` (empty), `**/plugins/dataview/**` (6 hits)"
+      ]
+    },
+    {
+      "id": "finding-1-7-partial-gaps-four-smaller-omissions-a-flatten-file-lists-as-l-aliasing-form-b-li",
+      "text": "**PARTIAL GAPS - four smaller omissions:** (a) `FLATTEN file.lists AS L` aliasing form; (b) LIST-with-output-field form (`LIST rows.c`, \"output one field for each page\"); (c) null-guard WHERE idiom `WHERE due AND due < date(today)` (existence check before comparison); (d) performance warning that unscoped `LIST`/`TASK` over a whole vault can freeze Obsidian - official page carries an explicit warning box, local docs do not. [SOURCE: https://blacksmithgu.github.io/obsidian-dataview/queries/structure/]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md (full read)",
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md (full read)",
+        "https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ (official Structure of a Query)",
+        "Glob inventories: `.claude/skills/mcp-tooling/mcp-obsidian/**` (empty), `**/plugins/dataview/**` (6 hits)"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-live-reference-tree-is-at-opencode-skills-mcp-tooling-mcp-obsidian-reference",
+      "text": "**The live reference tree is at `.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/` (4 files: `dataview.md`, `data-model.md`, `workflows.md`, `troubleshooting.md`) plus 2 asset examples (`assets/plugins/dataview/dataview-query.example.md`, `dataview-metadata.example.md`). The strategy/prompt-pack pointer to `.claude/skills/...` resolves to nothing.** [SOURCE: glob `.claude/skills/mcp-tooling/mcp-obsidian/**` returned no files; glob `**/plugins/dataview/**` returned the six paths above]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md (full read)",
+        ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md (full read)",
+        "https://blacksmithgu.github.io/obsidian-dataview/queries/structure/ (official Structure of a Query)",
+        "Glob inventories: `.claude/skills/mcp-tooling/mcp-obsidian/**` (empty), `**/plugins/dataview/**` (6 hits)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-f59591b0ef7f",
+      "text": "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/` as the audit target: path does not exist in this repo; the live tree is under `.opencode/`. All later iterations should use the `.opencode/` path.",
+      "contentHash": "f59591b0ef7f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-87652ef9e716",
+      "text": "None. No approach was exhausted this iteration.",
+      "contentHash": "87652ef9e716",
+      "addedAtIteration": 1
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 9,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "blacksmithgu.github.io": 2,
+      "code": 1,
+      "other": 4
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

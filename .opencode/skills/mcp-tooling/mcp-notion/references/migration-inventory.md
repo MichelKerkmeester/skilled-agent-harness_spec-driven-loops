@@ -40,6 +40,21 @@ A migration inventory has to see more than the official MCP surface exposes. The
 
 Run steps 2-3 per database before moving to the next; steps 4-7 can run in parallel once the data-source ids from step 2 are known, subject to the rate-limit budget in section 4.
 
+### Recovery routing — inventoried feature → Obsidian plugin
+
+Each item this inventory surfaces maps to a specific reconstruction plugin on the Obsidian side. This is a routing summary so the inventory flags what every dropped or at-risk feature will need after the import; the recipes themselves live in the write-side method (`../../mcp-obsidian/references/notion-migration.md` §4) and the plugin references it points to. Route from this table — do not build from it.
+
+| Inventoried feature | Obsidian recovery | Where the recipe lives |
+|---|---|---|
+| Relations & rollups (steps 2, 7) | Notion Bases plugin, with Dataview as a supplement for aggregations it can't express | `notion-migration.md` §4; `../../mcp-obsidian/references/plugins/notion-bases/` |
+| Saved views (step 4) | Notion Bases view configs (board / gallery / timeline / chart), with a Core-Bases / Dataview fallback | `notion-migration.md` §4 view recovery |
+| Calendar view (step 4) | The Notion Bases calendar recipe (calendar view + Meta Bind date entry + optional Dataview agenda) | `../../mcp-obsidian/references/plugins/notion-bases/workflows.md` |
+| Interactive elements (buttons, date widgets) | Meta Bind + JS Engine reconstruction | `notion-migration.md` §4 interactive-element recovery; `../../mcp-obsidian/references/plugins/meta-bind/` |
+| Formulas (step 2) | Notion Bases formulas, or a hand-translated static value where no Obsidian equivalent exists | `notion-migration.md` §4 |
+| Comments (step 6) | `[!comment]` callout reconstruction | `notion-migration.md` §5 |
+
+The importer drops secondary views and interactive elements entirely, so those two rows are always reconstruction, never verification. Relations, rollups, and formulas are partly auto-converted — verify first, then supplement.
+
 ---
 
 ## 3. THE 5 API-GAP READS USED FOR MIGRATION

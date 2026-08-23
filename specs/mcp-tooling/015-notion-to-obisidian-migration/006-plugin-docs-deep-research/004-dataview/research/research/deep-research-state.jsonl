@@ -1,0 +1,2 @@
+{"type":"event","event":"resumed","sessionId":"dr-004-dataview-1787412000","parentSessionId":"dr-004-dataview-1787412000","generation":1,"reason":"auto-resume: config, state log, and strategy agree; continuing same lineage at iteration 3 of 4","timestamp":"2026-08-22T16:17:49.697Z"}
+{"type":"event","event":"graph_convergence","run":3,"iteration":3,"decision":"continue","timestamp":"2026-08-22T16:23:08.794Z"}

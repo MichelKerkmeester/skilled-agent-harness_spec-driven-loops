@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 plugin doc recs followup",
+      "dataview file.day folder fix",
+      "claudian positive mcp path unknown",
+      "advanced-canvas interdimensional caveat tighten",
+      "015 plugin doc recs followup plan",
+      "mcp-obsidian deferred docs plan",
+      "015 plugin doc recs followup tasks",
+      "015 plugin doc recs followup checklist",
+      "015 plugin doc recs followup summary"
+    ],
+    "key_topics": [
+      "plugin",
+      "doc",
+      "recs",
+      "followup",
+      "dataview",
+      "file",
+      "day",
+      "folder",
+      "claudian",
+      "positive",
+      "mcp",
+      "path"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Resolve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Facts",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adding Metadata",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary Errors",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 009 left five documentation items and one sibling-packet error unresolved",
+    "created_at": "2026-08-22T20:16:22.967Z",
+    "last_save_at": "2026-08-23T05:04:53.692Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0c8746b3f309ad009c8c4fa0a548c805b0a329bd0a70177432fffd0f3c941df5",
+    "source_doc_hashes": {
+      "spec.md": "65b58f4865374b9d7bf4077ffbe9c4d321915ac804eddb6de06f53fc2856e041",
+      "plan.md": "cfad787951898f5b4c0fac5f881bad347c2504c4f550fe17541820ad8650ded1",
+      "tasks.md": "2515b00ad8deffd3b5bc4d56f97bbf88c5956a84c12f2b106ed5e458dd007667",
+      "checklist.md": "34a3adc5933c6c35005489d6f41a9bb384256bc40e27a77e0570a27f6d76f421",
+      "implementation-summary.md": "4ab4d5c26426ca479fa6bde20fd6ef19d4d23fec3ff2e43019d4f46050c88717"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
