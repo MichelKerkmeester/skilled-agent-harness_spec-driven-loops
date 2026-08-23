@@ -1,0 +1,31 @@
+{
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+  "description": "The mcp-obsidian Notion Bases file-layer reference tree omitted exact plugin syntax needed for reliable AI-authored files",
+  "keywords": [
+    "mcp-obsidian",
+    "notion",
+    "bases",
+    "file-layer",
+    "reference",
+    "tree",
+    "omitted",
+    "exact",
+    "plugin",
+    "syntax",
+    "needed",
+    "reliable",
+    "ai-authored",
+    "files"
+  ],
+  "lastUpdated": "2026-08-23T03:44:35.229Z",
+  "specId": "005",
+  "folderSlug": "notion-bases",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration",
+    "006-plugin-docs-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

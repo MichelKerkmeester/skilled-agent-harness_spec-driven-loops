@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
+  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,30 +11,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "015 deep research notion obsidian migration",
-      "flawless notion obsidian migration research",
-      "complex notion workspace migration research",
-      "mcp-notion mcp-obsidian migration engine",
-      "notion obsidian migration research plan",
-      "deep research notion obsidian migration",
-      "015 phase 1 plan",
-      "notion obsidian migration research tasks",
-      "015 phase 1 tasks",
-      "deep research notion obsidian tasks"
+      "006 meta-bind deep research",
+      "Meta Bind reference optimization research",
+      "006 meta-bind research plan",
+      "meta bind deep research plan",
+      "006 meta-bind research tasks",
+      "meta bind deep research tasks"
     ],
     "key_topics": [
+      "meta-bind",
       "deep",
       "research",
-      "notion",
-      "obsidian",
-      "migration",
-      "flawless",
-      "complex",
-      "workspace",
-      "mcp-notion",
-      "mcp-obsidian",
-      "engine",
-      "plan"
+      "meta",
+      "bind",
+      "reference",
+      "optimization",
+      "plan",
+      "tasks",
+      "shipped",
+      "docs",
+      "teach"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -42,8 +38,6 @@
       "spec.md",
       "research/research.md",
       "plan.md",
-      "research/findings-registry.json",
-      "research/fanout-attribution.md",
       "tasks.md"
     ],
     "entities": [
@@ -66,27 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "findings-registry.json",
-        "kind": "config",
-        "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-attribution.md",
-        "kind": "doc",
-        "path": "research/fanout-attribution.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Meta Bind",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -102,21 +84,21 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Purpose Research",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Notion Bases",
+        "name": "In Scope",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -132,25 +114,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Drive",
+        "name": "Overview Ran",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Two",
+        "name": "Pattern Single",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -168,33 +144,51 @@
         "source": "derived"
       },
       {
-        "name": "Obsidian Importer",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "cli-devin",
+        "name": "cli-opencode",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Notion Markdown",
+        "name": "citations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Synthesis Provenance",
         "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "View Fields",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "typescript",
+        "kind": "technology",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "javascript",
+        "kind": "technology",
         "path": "research/research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "We need to flawlessly migrate a COMPLEX Notion environment — databases, relations, rollups, formulas, nested pages, files, comments, views — fully into Obsidian, using `mcp-notion` (the 24-tool Notion MCP mode) and `mcp-obsidian` (Local REST API + notesmd CLI + plugins) as the migration engine",
-    "created_at": "2026-08-21T20:10:21.172Z",
-    "last_save_at": "2026-08-23T03:33:51.202Z",
+    "causal_summary": "The shipped Meta Bind docs teach a correctness bug: they stamp a button-written timestamp with `value: \"=now()\"`, citing it as \"the documented pattern.\" Meta Bind has no `now()` function and no `=`-prefixed expression language — `=now()` is a Dataview convention misapplied",
+    "created_at": "2026-08-23T03:46:01.410Z",
+    "last_save_at": "2026-08-23T03:46:01.410Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +197,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:db7dad989fd8d27a4923d12158fe47be3baf4db0c9a451895c734ead8daf1b40",
+    "source_fingerprint": "sha256:90bcbfb62e27ed3e23c457f471b5ac5c0a129c3d4e88d068d80dd0b45b1638b1",
     "source_doc_hashes": {
-      "spec.md": "153c0074a2244213ca66aaa511c3e4762b4fc42ebf79af6e03373975bd33bd24",
-      "plan.md": "d0abb2a10f2363b32c0ed9445c68d86d28200500d594c94493c907457a866be6",
-      "tasks.md": "412b165b7eb33b2ba65a224ca0207805f9a82e8fad7648d3a7f2349d94fc5913",
-      "research/research.md": "02c6ddc2cca7fe3aea1d6b53314ddf7ebdbcb27fd7ac48aca1bc79baa2431751"
+      "spec.md": "3df34f92e98649ccd9a7787685f4c412147d59451a849c18d7008f35207b6ccf",
+      "plan.md": "adfe9de40febc580888b337c571d53c26f581c2992e5b22f217ab81ecb0da0d8",
+      "tasks.md": "83468d99469f15d0ecc5d3f0afc5db7f1a87ea2b08d7258e555a2089830fed72",
+      "research/research.md": "b26ccc9ac3734839c2e0b479d8ce1bceb4b58a4de2d458110efd721993e5a079"
     },
     "last_active_child_id": null,
     "last_active_at": null

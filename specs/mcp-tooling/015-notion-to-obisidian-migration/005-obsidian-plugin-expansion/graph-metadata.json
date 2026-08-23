@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The `mcp-obsidian` skill documented thirteen plugins (twelve community plugins plus the Minimal theme), but the operator's vault stack was growing",
     "created_at": "2026-08-22T06:59:23.392Z",
-    "last_save_at": "2026-08-22T07:10:40.140Z",
+    "last_save_at": "2026-08-23T03:54:24.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b1f09b33d9cc03adf72b7e31d74f09c578f2a34a3d0bfaa6a3320bbb1d5eea5f",
+    "source_fingerprint": "sha256:ed0b4f104a8329f4f4e7307cfa908888177541b98b93e768908ab60df2d72981",
     "source_doc_hashes": {
-      "spec.md": "0154d07a2da5e6157e54568a163a0dc8eed2823c86ff50f3a845ed0942064cbe",
+      "spec.md": "58f2544ebe15295c8efb0ed163123ae7e5c613e20b0035b5899660747c6d208b",
       "plan.md": "2342dc67093a163ef29884837c361f22329fea16447677d258e2e3e703ff1166",
       "tasks.md": "435ff2adc415898edfa0d9c928dbcfc4199cc38e6c9534cf1683af74d05f53f2",
       "checklist.md": "ed371d68bc7671514969145a41e9182130ed41883f6067ac81d7851d88c4126a",
-      "implementation-summary.md": "6cbc9608fdb66e4abb7af353dd9bb3ca37e20d3f0a107236e1012f4885970d50"
+      "implementation-summary.md": "c2aa7ea9885e4b4949ee453cb57812b9bc5e5041fa45fe2e0af131035c538a1f"
     },
     "last_active_child_id": null,
     "last_active_at": null

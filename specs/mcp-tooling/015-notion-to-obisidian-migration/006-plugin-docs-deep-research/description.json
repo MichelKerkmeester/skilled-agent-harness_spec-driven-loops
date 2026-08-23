@@ -1,23 +1,25 @@
 {
   "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
-  "description": "Phase parent for five per-plugin deep-research runs (4 iterations each, GLM-5.2 via cli-devin, early convergence allowed) that investigate what to",
+  "description": "Phase parent for seven per-plugin deep-research legs (GLM-5.2 via cli-devin for the first five, ox-alpha via cli-opencode/OpenRouter for the last two)",
   "keywords": [
     "phase",
     "parent",
-    "five",
+    "seven",
     "per-plugin",
     "deep-research",
-    "runs",
-    "iterations",
+    "legs",
     "glm-5",
     "via",
     "cli-devin",
-    "early",
-    "convergence",
-    "allowed",
-    "investigate"
+    "first",
+    "five",
+    "ox-alpha",
+    "cli-opencode",
+    "openrouter",
+    "last",
+    "two"
   ],
-  "lastUpdated": "2026-08-22T08:35:25.731Z",
+  "lastUpdated": "2026-08-23T03:49:16.597Z",
   "specId": "006",
   "folderSlug": "plugin-docs-deep-research",
   "parentChain": [
@@ -25,5 +27,6 @@
     "015-notion-to-obisidian-migration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

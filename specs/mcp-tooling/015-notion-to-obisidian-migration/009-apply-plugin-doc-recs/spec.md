@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs"
-    last_updated_at: "2026-08-22T18:35:00Z"
+    last_updated_at: "2026-08-23T03:52:43Z"
     last_updated_by: "claude"
     recent_action: "Applied deferred notion-bases dataview and claudian P1 and P2 content"
     next_safe_action: "None — optional advanced-config split and version bumps remain deferred"
@@ -51,7 +51,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | Apply-recs follow-up to phase 006 research |
 | **Predecessor** | `006-plugin-docs-deep-research` |
-| **Successor** | None — closes the plugin-docs research→apply loop |
+| **Successor** | None for this phase's own scope (closes the plugin-docs research→apply loop) — the packet's next sequential phase is `010-plugin-doc-recs-followup` |
 | **Handoff Criteria** | Every P0 correctness row from the seven 006 syntheses is applied to the shipped `mcp-obsidian` docs, each correctness-critical row confirmed against the installed plugin `main.js`, and every changed shipped doc passes `validate_document.py` with 0 issues. |
 <!-- /ANCHOR:metadata -->
 

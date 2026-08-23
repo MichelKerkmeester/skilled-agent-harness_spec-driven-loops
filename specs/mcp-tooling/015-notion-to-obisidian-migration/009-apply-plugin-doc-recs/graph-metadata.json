@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The shipped `mcp-obsidian` plugin docs carried real correctness defects the 006 research surfaced: advanced-canvas told the AI to never author cross-portal edges (a now-resolved, operation-blocking `VERIFY`); every notion-bases `database.md` column key was a wrong guess the plugin silently ignores, and the mandatory `notion-bases: true` marker was documented nowhere; meta-bind taught a `=now()` timestamp the plugin has no function for; claudian instructed operators to author `.claude/mcp.json`, a file Claudian deletes; dataview stated two facts (inline-field multiline, fixed DQL command order)",
     "created_at": "2026-08-22T17:53:35.681Z",
-    "last_save_at": "2026-08-22T18:42:48.921Z",
+    "last_save_at": "2026-08-23T03:54:25.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb35f187437d1e1d185d306a0f5ba992d57cca49f6c682e4fba1ec9d7c563894",
+    "source_fingerprint": "sha256:365b5ab70d39f8266a9cc87db081771b3257c2780608491ae5fcb3830e516b31",
     "source_doc_hashes": {
-      "spec.md": "c68e6f36a143ede070f08798d0d07a307a1eecd42407d0565e9ac613a359d9aa",
+      "spec.md": "590b17151262c251ea2e4e77357dfa0a78ca3df2a152aa2e1c80da75416259be",
       "plan.md": "36fcaad24716c890e4d5a73bd3344d79e38e151a71f896bcbc05d734d7784562",
       "tasks.md": "aa7c3e1376b8be89696343152d22298023f311e12f760015daa6f67f5f451d22",
       "checklist.md": "babb11e80df6d35052658b55198c392ca591ad67a5124acedc4b60ee808b77d4",
-      "implementation-summary.md": "c9cdc78cd1f481f24cab046daaadf0598e7b17f2b850280cd617013e573ec8e7"
+      "implementation-summary.md": "91954f56380e3fbe8ac67b5597a6d702d55aa7573b87bdec45d11cf22d8f5f45"
     },
     "last_active_child_id": null,
     "last_active_at": null

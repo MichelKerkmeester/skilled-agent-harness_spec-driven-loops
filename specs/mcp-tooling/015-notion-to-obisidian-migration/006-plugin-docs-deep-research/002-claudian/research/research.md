@@ -3,6 +3,22 @@ title: "Claudian Reference Docs — Research Synthesis"
 description: "Progressive synthesis of findings for the Claudian (realclaudian) file-layer reference docs optimization."
 contextType: "research"
 version: "0.1.0.0"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian"
+    last_updated_at: "2026-08-22T09:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Synthesized Claudian research findings"
+    next_safe_action: "Apply recs in a later phase"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "015-006-002-claudian"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 
 # Claudian Reference Docs — Research Synthesis

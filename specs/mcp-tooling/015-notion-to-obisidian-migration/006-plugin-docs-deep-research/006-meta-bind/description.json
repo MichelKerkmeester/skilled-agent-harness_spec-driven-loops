@@ -1,0 +1,31 @@
+{
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
+  "description": "The shipped Meta Bind docs teach a correctness bug: they stamp a button-written timestamp with `value: \"=now()\"`, citing it as \"the documented",
+  "keywords": [
+    "shipped",
+    "meta",
+    "bind",
+    "docs",
+    "teach",
+    "correctness",
+    "bug",
+    "stamp",
+    "button-written",
+    "timestamp",
+    "value",
+    "now",
+    "citing",
+    "documented"
+  ],
+  "lastUpdated": "2026-08-23T03:45:53.154Z",
+  "specId": "006",
+  "folderSlug": "meta-bind",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration",
+    "006-plugin-docs-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

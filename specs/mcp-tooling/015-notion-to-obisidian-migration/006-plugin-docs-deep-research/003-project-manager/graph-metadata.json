@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
+  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006 project-manager deep research",
+      "Project Manager reference optimization research",
+      "006 project-manager research plan",
+      "project manager deep research plan",
+      "006 project-manager research tasks",
+      "project manager deep research tasks"
+    ],
+    "key_topics": [
+      "project-manager",
+      "deep",
+      "research",
+      "project",
+      "manager",
+      "reference",
+      "optimization",
+      "plan",
+      "tasks",
+      "leg",
+      "originally",
+      "scoped"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Project Manager",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Meta Bind",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Project Manager",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why this leg was skipped",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "To re-enable",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This leg was originally scoped to optimize `references/plugins/project-manager/` — the pm-task frontmatter schema, `customFields` non-scalar encoding, and recurrence fields were flagged `VERIFY`",
+    "created_at": "2026-08-23T03:41:50.836Z",
+    "last_save_at": "2026-08-23T03:41:50.836Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:588955bb6f99eaecd810ff81f7cf38718754ca5b47a23db55368904536042e45",
+    "source_doc_hashes": {
+      "spec.md": "872a247d1a7b302ac3bfe6b2d92470c664bc97d82154c677959f265e4e004554",
+      "plan.md": "9f8836e4e2a76f381840fbb4e4b8a2fa13891d475a325c8d866a0fbe7519c8cd",
+      "tasks.md": "584efd5c72e9879b46dce5199311ef84e4eac3eaa490b190aa386533d7bbdef0",
+      "research/research.md": "2386c561a1d6b15f0671065d2e6a9722425163774b7cdac370078ef27a6aa4f8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

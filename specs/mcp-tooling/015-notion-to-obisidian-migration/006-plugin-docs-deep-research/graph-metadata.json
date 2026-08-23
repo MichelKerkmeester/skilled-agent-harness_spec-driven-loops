@@ -34,18 +34,37 @@
       "references",
       "phase",
       "parent",
-      "five",
+      "seven",
       "deep-research"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "001-advanced-canvas/synthesis.md",
+      "002-claudian/synthesis.md",
+      "003-project-manager/synthesis.md",
+      "004-dataview/synthesis.md",
+      "005-notion-bases/synthesis.md",
+      "006-meta-bind/synthesis.md",
+      "007-js-engine/synthesis.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "001-advanced-canvas/synthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -68,37 +87,31 @@
         "source": "derived"
       },
       {
-        "name": "cli-devin",
-        "kind": "key_phrase",
+        "name": "Meta Bind",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. ROOT PURPOSE",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. WHAT NEEDS DONE",
-        "kind": "heading",
+        "name": "Phase Transition Rules",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase parent for five per-plugin deep-research runs (4 iterations each, GLM-5.2 via cli-devin, early convergence allowed) that investigate what to add, update, or create in the mcp-obsidian file-layer plugin references to optimize an AI's ability to operate each plugin. Research only; doc edits are a separate follow-up build.",
+    "causal_summary": "Phase parent for seven per-plugin deep-research legs (GLM-5.2 via cli-devin for the first five, ox-alpha via cli-opencode/OpenRouter for the last two) that investigate what to add, update, or create in the mcp-obsidian file-layer plugin references to optimize an AI's ability to operate each plugin. Research only; doc edits are the phase 009 follow-up build.",
     "created_at": "2026-08-22T20:29:43.463Z",
-    "last_save_at": "2026-08-22T20:29:43.463Z",
+    "last_save_at": "2026-08-23T03:49:29.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c7968387ce94cf73374751a9c232912547a9b14ca2fcdc5bae0677710d16777b",
+    "source_fingerprint": "sha256:509ba972eaf94c0145ae531db2f6694999d756d91bf3b716e315cc34c393a40d",
     "source_doc_hashes": {
-      "spec.md": "6efb351805010d906964d4b32c1cc52f939c0e619e55120b7e2d9c1e195d5027"
+      "spec.md": "5ddb0142717a277cef8249ffb3127294baf1eace16e7f1760f0c7734e75952e1"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine",
     "last_active_at": null
   }
 }

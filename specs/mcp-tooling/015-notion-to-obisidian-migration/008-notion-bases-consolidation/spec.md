@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-consolidation"
-    last_updated_at: "2026-08-22T21:00:00Z"
+    last_updated_at: "2026-08-23T03:52:43Z"
     last_updated_by: "claude"
     recent_action: "Authored notion-bases calendar recipe and recorded three prior-phase items"
     next_safe_action: "Complete and closed; no further build work in this phase"
@@ -49,7 +49,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | Notion Bases consolidation follow-up to phase 007 |
 | **Predecessor** | `007-excalidraw-deprecation` |
-| **Successor** | None — closes the Notion Bases consolidation the 007 deprecation deferred |
+| **Successor** | None for this phase's own scope (closes the Notion Bases consolidation the 007 deprecation deferred) — the packet's next sequential phase is `009-apply-plugin-doc-recs` |
 | **Handoff Criteria** | The Notion Bases calendar recipe is authored into the shipped `mcp-obsidian` notion-bases docs, every calendar view key confirmed against the installed plugin `main.js` before it is documented, the changed shipped doc passes `validate_document.py` with 0 issues, and the three already-completed consolidation items (Project Manager deprecation, Meta Bind reference authoring, roster sync) are recorded here honestly without being re-performed. |
 <!-- /ANCHOR:metadata -->
 

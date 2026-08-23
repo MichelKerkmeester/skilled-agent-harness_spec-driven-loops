@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs"
-    last_updated_at: "2026-08-22T18:35:00Z"
+    last_updated_at: "2026-08-23T03:54:00Z"
     last_updated_by: "claude"
     recent_action: "Applied deferred notion-bases dataview and claudian P1 and P2 content"
     next_safe_action: "None — optional advanced-config split and version bumps remain deferred"

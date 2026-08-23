@@ -26,7 +26,6 @@ _memory:
       - "005-obsidian-plugin-expansion/spec.md"
       - "006-plugin-docs-deep-research/spec.md"
       - "007-excalidraw-deprecation/spec.md"
-      - "008-notion-bases-consolidation/spec.md"
       - "009-apply-plugin-doc-recs/spec.md"
       - "010-plugin-doc-recs-followup/spec.md"
     session_dedup:
@@ -81,7 +80,7 @@ A prior single-pass web-research note (preserved as `001-deep-research/prior-fin
 | **005 — Obsidian plugin-stack expansion** | `005-obsidian-plugin-expansion/` | Done. Installed nine more community plugins into the operator's vault via BRAT-headless, authored dedicated file-layer references for the three with an AI-authorable data model (Advanced Canvas, Claudian, Project Manager), added an all-plugins roster covering every enabled plugin, and wired three new router intents into `mcp-obsidian`. |
 | **006 — Plugin-docs deep research** | `006-plugin-docs-deep-research/` | Done. Seven-plugin deep-research sub-packet (advanced-canvas, claudian, project-manager, dataview, notion-bases, meta-bind, js-engine): per-leg research + prioritized synthesis auditing the mcp-obsidian reference docs against each installed plugin build. |
 | **007 — Excalidraw deprecation** | `007-excalidraw-deprecation/` | Done. Removed the Excalidraw footprint from the skill (reference tree, catalog card, assets, manual-testing tie-in, router wiring) after the plugin was uninstalled from the vault. |
-| **008 — Notion Bases consolidation** | `008-notion-bases-consolidation/` | Done. Authored the Notion Bases calendar recipe (Calendar view + Meta Bind date entry + Dataview supplement) and recorded the completed consolidation items (Project Manager deprecation, Meta Bind reference, roster sync). |
+| **008 — Notion Bases consolidation** | `008-notion-bases-consolidation/` | Done. Authored the Notion Bases calendar recipe (Calendar view + Meta Bind date entry + Dataview supplement) and recorded the completed closeout items (Project Manager deprecation, Meta Bind reference, roster sync). |
 | **009 — Apply plugin doc recs** | `009-apply-plugin-doc-recs/` | Done. Applied the 006 synthesis to the shipped mcp-obsidian docs — P0 correctness fixes verified against each installed main.js, plus P1/P2 additions across five plugins. |
 | **010 — Plugin doc-recs followup** | `010-plugin-doc-recs-followup/` | Done. Resolved the deferred/inferred recs (dataview `file.day` + inline-multiline confirmations, advanced-canvas endpoint-encoding precision, claudian positive-MCP-path UNKNOWN, notion-bases P2 items) and fixed the 007 template headers. |
 
@@ -103,7 +102,7 @@ Phases 002-004 completed the migration capability: the migration/inventory refer
 | 005 | `005-obsidian-plugin-expansion/` | Nine-plugin vault install + three file-layer references + all-plugins roster + router wiring | Done |
 | 006 | `006-plugin-docs-deep-research/` | Seven-plugin deep-research + synthesis auditing the mcp-obsidian docs | Done |
 | 007 | `007-excalidraw-deprecation/` | Remove the Excalidraw footprint from the skill | Done |
-| 008 | `008-notion-bases-consolidation/` | Notion Bases calendar recipe + consolidation ledger | Done |
+| 008 | `008-notion-bases-consolidation/` | Notion Bases calendar recipe + closeout ledger | Done |
 | 009 | `009-apply-plugin-doc-recs/` | Apply the 006 synthesis (P0/P1/P2) to shipped docs | Done |
 | 010 | `010-plugin-doc-recs-followup/` | Resolve deferred/inferred recs + 007 template fix | Done |
 

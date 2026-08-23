@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion"
-    last_updated_at: "2026-08-22T09:00:00Z"
+    last_updated_at: "2026-08-23T03:52:43Z"
     last_updated_by: "claude"
     recent_action: "installed 9 plugins in the vault; authored 3 references + roster + router wiring"
     next_safe_action: "None — phase complete; per-plugin deep research is a separate follow-up"
@@ -50,7 +50,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 5 of 5 |
 | **Predecessor** | `004-plugin-install-and-verification` |
-| **Successor** | None |
+| **Successor** | `006-plugin-docs-deep-research` |
 | **Handoff Criteria** | Nine plugins staged, registered in BRAT, and activated in the operator's real vault via BRAT-headless (executed and verified 2026-08-22; activation completes when the operator next opens Obsidian). Three dedicated file-layer references (Advanced Canvas, Claudian, Project Manager) plus catalog entries authored and `validate_document.py --type feature_catalog` clean (15 files); `installed-plugins.md` roster covers all twenty-one enabled plugins; the three new plugins are wired into `mcp-obsidian/SKILL.md` (resource map, `INTENT_SIGNALS`, `RESOURCE_MAP`, `PLUGINS` aggregate, §8, intent-count comment, version bump to 0.20.0.0); leaf-manifest freshness green; `validate.sh --strict` clean. |
 <!-- /ANCHOR:metadata -->
 

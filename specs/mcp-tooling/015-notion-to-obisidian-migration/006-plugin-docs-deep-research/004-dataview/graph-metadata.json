@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,30 +11,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "015 deep research notion obsidian migration",
-      "flawless notion obsidian migration research",
-      "complex notion workspace migration research",
-      "mcp-notion mcp-obsidian migration engine",
-      "notion obsidian migration research plan",
-      "deep research notion obsidian migration",
-      "015 phase 1 plan",
-      "notion obsidian migration research tasks",
-      "015 phase 1 tasks",
-      "deep research notion obsidian tasks"
+      "006 dataview deep research",
+      "Dataview reference optimization research",
+      "006 dataview research plan",
+      "dataview deep research plan",
+      "006 dataview research tasks",
+      "dataview deep research tasks"
     ],
     "key_topics": [
+      "dataview",
       "deep",
       "research",
-      "notion",
-      "obsidian",
-      "migration",
-      "flawless",
-      "complex",
-      "workspace",
-      "mcp-notion",
+      "reference",
+      "optimization",
+      "plan",
+      "tasks",
+      "shipped",
       "mcp-obsidian",
-      "engine",
-      "plan"
+      "docs",
+      "disciplined",
+      "file-layer"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -42,8 +38,6 @@
       "spec.md",
       "research/research.md",
       "plan.md",
-      "research/findings-registry.json",
-      "research/fanout-attribution.md",
       "tasks.md"
     ],
     "entities": [
@@ -66,27 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "findings-registry.json",
-        "kind": "config",
-        "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-attribution.md",
-        "kind": "doc",
-        "path": "research/fanout-attribution.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -102,21 +78,27 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Purpose Research",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Notion Bases",
+        "name": "In Scope",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -132,13 +114,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Drive",
+        "name": "Overview Ran",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Two",
+        "name": "Pattern Single",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -150,7 +132,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Plugin",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -168,12 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "Obsidian Importer",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -186,15 +162,33 @@
         "source": "derived"
       },
       {
-        "name": "Notion Markdown",
+        "name": "YAML",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "citations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dataview Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Grammar",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "We need to flawlessly migrate a COMPLEX Notion environment — databases, relations, rollups, formulas, nested pages, files, comments, views — fully into Obsidian, using `mcp-notion` (the 24-tool Notion MCP mode) and `mcp-obsidian` (Local REST API + notesmd CLI + plugins) as the migration engine",
-    "created_at": "2026-08-21T20:10:21.172Z",
-    "last_save_at": "2026-08-23T03:33:51.202Z",
+    "causal_summary": "The shipped mcp-obsidian Dataview reference docs are a disciplined file-layer contract but are materially thin on the query language itself: the DataviewJS API section documents roughly 5 methods against the plugin's real ~30+, and two existing statements (inline-field multiline continuation, and an implied fixed DQL command-resolution order) are contradicted by the plugin's actual behavior",
+    "created_at": "2026-08-23T03:43:07.446Z",
+    "last_save_at": "2026-08-23T03:43:07.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +197,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:db7dad989fd8d27a4923d12158fe47be3baf4db0c9a451895c734ead8daf1b40",
+    "source_fingerprint": "sha256:a5729e1193fc4031b4b876cdbcea243df3dce07b2deeb379dd8a35349277f1eb",
     "source_doc_hashes": {
-      "spec.md": "153c0074a2244213ca66aaa511c3e4762b4fc42ebf79af6e03373975bd33bd24",
-      "plan.md": "d0abb2a10f2363b32c0ed9445c68d86d28200500d594c94493c907457a866be6",
-      "tasks.md": "412b165b7eb33b2ba65a224ca0207805f9a82e8fad7648d3a7f2349d94fc5913",
-      "research/research.md": "02c6ddc2cca7fe3aea1d6b53314ddf7ebdbcb27fd7ac48aca1bc79baa2431751"
+      "spec.md": "f0893ebacfac7e3f35c2e86469fe045cf3b2a6b752ad73aa71808d6cbf372d1a",
+      "plan.md": "7a9d7f6184542f9db2588100f23a7a7348d5e8af9641f932789dcab54a821314",
+      "tasks.md": "2efdf6322b5804e5a073356e3ee1b50e17b5dbbcbe922016d03293382da8d3e9",
+      "research/research.md": "24b2a29cef94666b1fc3574b1af000ce2df9638cfe23ff918db5733cbcf29d6c"
     },
     "last_active_child_id": null,
     "last_active_at": null
