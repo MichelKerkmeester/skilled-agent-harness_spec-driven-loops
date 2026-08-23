@@ -8,14 +8,7 @@
 // authority for any mode this registry has never written is legacy.
 
 import type { AuthorityState } from '../authorized-ledger/index.js';
-import type {
-  CutoverCertificate,
-  CutoverCertificateMode,
-  CutoverCertificateVerificationExpectation,
-} from '../cutover-certificate/index.js';
 import type { JsonObject } from '../event-envelope/index.js';
-import type { InflightClassificationManifest } from '../inflight-state-classification/index.js';
-import type { InflightMigrationHandoff } from '../inflight-state-migration/index.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IDENTITY AND CONSTANTS
@@ -23,6 +16,16 @@ import type { InflightMigrationHandoff } from '../inflight-state-migration/index
 
 export const AUTHORITY_FLIP_SCHEMA_VERSION = 1;
 export const AUTHORITY_FLIP_EVENT_TYPE = 'deep-loop-authority-flip.ledger.transition-recorded';
+
+export type CutoverCertificateMode =
+  | 'agent-improvement'
+  | 'deep-ai-council'
+  | 'deep-alignment'
+  | 'deep-improvement-common'
+  | 'deep-research'
+  | 'deep-review'
+  | 'model-benchmark'
+  | 'skill-benchmark';
 
 /** Route a selector may hand a mode adapter; there is never more than one canonical route. */
 export type AuthorityRoute = 'legacy' | 'dark';
@@ -144,116 +147,3 @@ export const AUTHORITY_FLIP_COMMON_VARIANTS: ReadonlySet<CutoverCertificateMode>
   'model-benchmark',
   'skill-benchmark',
 ]);
-
-// ───────────────────────────────────────────────────────────────────
-// 5. PREFLIGHT
-// ───────────────────────────────────────────────────────────────────
-
-export interface CutoverCertificateEvidence {
-  readonly certificate: CutoverCertificate;
-  readonly expectation: CutoverCertificateVerificationExpectation;
-}
-
-export interface MigrationHandoffEvidence {
-  readonly handoff: InflightMigrationHandoff;
-  readonly classificationManifest: InflightClassificationManifest;
-}
-
-export interface CutoverPreflightInput {
-  readonly mode: CutoverCertificateMode;
-  readonly expectedAuthorityEpoch: number;
-  readonly alreadyFlippedModes: ReadonlySet<CutoverCertificateMode>;
-  readonly cutover: CutoverCertificateEvidence;
-  readonly migration: MigrationHandoffEvidence;
-  readonly rollbackAssetDigests: readonly string[];
-}
-
-export type CutoverPreflightResult =
-  | Readonly<{ verdict: 'ready'; cutoverCertificateDigest: string; classificationManifestDigest: string }>
-  | Readonly<{ verdict: 'blocked'; reasonCode: AuthorityFlipDenialReasonCode }>;
-
-// ───────────────────────────────────────────────────────────────────
-// 6. CUTOVER REQUEST AND DECISION
-// ───────────────────────────────────────────────────────────────────
-
-export interface CutoverRequest {
-  readonly requestedModes: readonly CutoverCertificateMode[];
-  readonly preflight: CutoverPreflightInput;
-  readonly requestId: string;
-  readonly actorId: string;
-  readonly capabilityId: string;
-  readonly policyId: string;
-  readonly policyVersion: number;
-  readonly policyDigest: string;
-  readonly streamId: string;
-  readonly correlationId: string;
-  readonly decidedAt: string;
-}
-
-export interface AuthorityTransitionFacts extends JsonObject {
-  readonly schemaVersion: typeof AUTHORITY_FLIP_SCHEMA_VERSION;
-  readonly eventKind: 'authority-transition-flip';
-  readonly mode: CutoverCertificateMode;
-  readonly fromAuthorityState: 'cutover_ready';
-  readonly toAuthorityState: 'new_authoritative_reversible';
-  readonly fromAuthorityEpoch: number;
-  readonly toAuthorityEpoch: number;
-  readonly candidateSha: string;
-  readonly policyId: string;
-  readonly policyVersion: number;
-  readonly policyDigest: string;
-  readonly cutoverCertificateDigest: string;
-  readonly modeGateCertificateDigest: string;
-  readonly rollbackDrillCertificateDigest: string;
-  readonly shadowParityEvidenceDigest: string;
-  readonly classificationManifestDigest: string;
-  readonly migrationHandoffDigest: string;
-  readonly rollbackAssetSetDigest: string;
-  readonly rollbackWindowMinimumCalendarDays: number;
-  readonly rollbackWindowMinimumSuccessfulExecutions: number;
-  readonly actorId: string;
-  readonly requestDigest: string;
-  readonly decidedAt: string;
-  readonly transitionDigest: string;
-}
-
-export interface AuthorityTransitionEvent {
-  readonly facts: AuthorityTransitionFacts;
-  readonly eventDigest: string;
-}
-
-/**
- * The durable facts a window-free finalize records: the transition from
- * `new_authoritative_reversible` to `new_authoritative_final` that drops
- * the legacy shadow. Finalize is window-free by operator decision — no
- * rollback window, drill, certificate, or execution-count precondition
- * is required or simulated. The digests are content bindings over the
- * actual transition facts, not gate receipts claiming a satisfied window,
- * and `rollbackWindowRequired` records that plainly.
- */
-export interface AuthorityFinalizeTransitionFacts extends JsonObject {
-  readonly schemaVersion: typeof AUTHORITY_FLIP_SCHEMA_VERSION;
-  readonly eventKind: 'authority-transition-finalize';
-  readonly mode: CutoverCertificateMode;
-  readonly fromAuthorityState: 'new_authoritative_reversible';
-  readonly toAuthorityState: 'new_authoritative_final';
-  readonly fromAuthorityEpoch: number;
-  readonly toAuthorityEpoch: number;
-  readonly candidateSha: string;
-  readonly policyVersion: number;
-  readonly cutoverCertificateDigest: string;
-  readonly lastTransitionDigest: string;
-  readonly rollbackWindowRequired: false;
-  readonly transitionDigest: string;
-}
-
-export type CutoverDecision =
-  | Readonly<{
-    disposition: 'flipped';
-    record: AuthorityRecord;
-    transitionEvent: AuthorityTransitionEvent;
-    resumed: boolean;
-  }>
-  | Readonly<{ disposition: 'denied'; reasonCode: AuthorityFlipDenialReasonCode }>;
-
-export type { CutoverCertificateMode };
