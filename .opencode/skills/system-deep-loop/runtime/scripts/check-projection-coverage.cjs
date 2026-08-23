@@ -32,16 +32,57 @@ const fs = require('fs');
 const path = require('path');
 
 const MANIFEST_REL = path.join('lib', 'legacy-projections', 'legacy-projection-manifest.ts');
-const CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-research-contract.ts');
+const RESEARCH_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-research-contract.ts');
+const RESEARCH_DELTAS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-research-deltas-contract.ts');
+const RESEARCH_PROJECTIONS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-research-projections-contract.ts');
+const REVIEW_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-review-state-contract.ts');
+const REVIEW_DELTAS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-review-deltas-contract.ts');
+const REVIEW_PROJECTIONS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-review-projections-contract.ts');
+const ALIGNMENT_STATE_DELTAS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-alignment-state-deltas-contract.ts');
+const IMPROVEMENT_LEDGERS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-improvement-ledgers-contract.ts');
+const COUNCIL_CONFIG_STATE_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-ai-council-config-state-contract.ts');
 
-// The single projection contract factory that exists in the library today.
+// Each projection contract factory that exists in the library today.
 // Declared here so the guard can prove the factory is actually exported by
-// reading its module, not just named. If the export disappears, that is a
-// violation, not a pass.
+// reading its own module, not just named. If the export disappears, that is a
+// violation, not a pass. A covered entry points at the module that owns its
+// factory so the export check reads the right file per surface.
 const COVERED = Object.freeze({
   'research-state': {
-    module: CONTRACT_REL,
+    module: RESEARCH_CONTRACT_REL,
     factory: 'createDeepResearchProjectionContract',
+  },
+  'research-deltas': {
+    module: RESEARCH_DELTAS_CONTRACT_REL,
+    factory: 'createDeepResearchDeltasProjectionContract',
+  },
+  'research-projections': {
+    module: RESEARCH_PROJECTIONS_CONTRACT_REL,
+    factory: 'createDeepResearchProjectionsProjectionContract',
+  },
+  'review-state': {
+    module: REVIEW_CONTRACT_REL,
+    factory: 'createDeepReviewStateProjectionContract',
+  },
+  'review-deltas': {
+    module: REVIEW_DELTAS_CONTRACT_REL,
+    factory: 'createDeepReviewDeltasProjectionContract',
+  },
+  'review-projections': {
+    module: REVIEW_PROJECTIONS_CONTRACT_REL,
+    factory: 'createDeepReviewProjectionsProjectionContract',
+  },
+  'alignment-state-deltas': {
+    module: ALIGNMENT_STATE_DELTAS_CONTRACT_REL,
+    factory: 'createDeepAlignmentStateDeltasProjectionContract',
+  },
+  'improvement-ledgers': {
+    module: IMPROVEMENT_LEDGERS_CONTRACT_REL,
+    factory: 'createDeepImprovementLedgersProjectionContract',
+  },
+  'council-config-state': {
+    module: COUNCIL_CONFIG_STATE_CONTRACT_REL,
+    factory: 'createDeepAiCouncilConfigStateProjectionContract',
   },
 });
 
@@ -50,17 +91,8 @@ const COVERED = Object.freeze({
 // projectable, not covered, and absent from this list, so it surfaces as
 // UNDECLARED_UNCOVERED_SURFACE rather than passing quietly.
 const UNCOVERED_DECLARED = Object.freeze([
-  'research-deltas',
-  'research-projections',
-  'research-strategy-inbox',
-  'review-state',
-  'review-deltas',
-  'review-projections',
-  'alignment-state-deltas',
   'alignment-projections',
-  'council-config-state',
   'council-round-ledgers',
-  'improvement-ledgers',
   'improvement-derived-state',
   'model-grader-cache',
   'runtime-observability',
@@ -78,20 +110,23 @@ const UNCOVERED_DECLARED = Object.freeze([
 // looks consistent. The count is stated independently and checked against the
 // derived uncovered total, so a dropped or added surface surfaces as a
 // mismatch rather than passing quietly.
-const UNCOVERED_DECLARED_COUNT = 21;
+const UNCOVERED_DECLARED_COUNT = 12;
 
 // Legacy-writer retirement is scoped to mode-owned surfaces — those whose
 // legacyWriter is owned by one of the deep-loop modes. Surfaces written by
 // runtime infrastructure (fanout, dispatch guards, command renderers, etc.)
 // are not part of that retirement at all, so a missing projection contract on
 // an infrastructure surface is not a blocker for it. A raw uncovered total
-// mixes those two populations and is therefore not actionable: it reports 21
-// gaps when only the 9 mode-owned uncovered surfaces are actually waiting on a
-// contract. Ownership — derived from the legacyWriter prefix — is what decides
-// whether a missing contract blocks retirement, so the breakdown below splits
-// the uncovered set along that line. The prefixes are declared once here so a
-// reclassification or a new mode surface cannot slip in through a scattered
-// string literal.
+// mixes those two populations and is therefore not actionable: it reports 12
+// gaps when none of the 9 mode-owned projectable surfaces are uncovered — the
+// one mode-owned surface that is not a ledger-fold projection (authored
+// strategy prose plus the operator inbox) is reclassified as
+// retain-legacy-input, so only the 12 infrastructure uncovered surfaces remain
+// in the raw uncovered total. Ownership — derived from the legacyWriter prefix
+// — is what decides whether a missing contract blocks retirement, so the
+// breakdown below splits the uncovered set along that line. The prefixes are
+// declared once here so a reclassification or a new mode surface cannot slip
+// in through a scattered string literal.
 const MODE_OWNER_PREFIXES = Object.freeze([
   'deep-research',
   'deep-review',
@@ -106,7 +141,7 @@ const MODE_OWNER_PREFIXES = Object.freeze([
 // appearing would shift the derived mode-owned total off this declared
 // constant, surfacing as MODE_OWNED_COUNT_MISMATCH rather than being absorbed
 // into a single uncovered number that still happens to add up.
-const MODE_OWNED_EXPECTED_COUNT = 10;
+const MODE_OWNED_EXPECTED_COUNT = 9;
 
 function isModeOwned(legacyWriter) {
   return MODE_OWNER_PREFIXES.some((prefix) => legacyWriter.startsWith(prefix));
@@ -234,7 +269,7 @@ function contractExportsFactory(contractText, factoryName) {
   return forms.some((re) => re.test(contractText));
 }
 
-function evaluate(entries, contractText) {
+function evaluate(entries, contractTexts) {
   const violations = [];
   const info = [];
 
@@ -267,11 +302,14 @@ function evaluate(entries, contractText) {
   const infrastructureUncoveredIds = uncoveredIds.filter((id) => !modeOwnedSet.has(id));
 
   // R1: MISSING_CONTRACT_EXPORT — a factory named in the covered map is not
-  // exported by its module. The covered declaration is only meaningful while
-  // the factory it names actually exists.
+  // exported by its own module. Each covered entry points at the module that
+  // owns its factory, so the export check reads the right file per surface.
+  // A missing module file yields empty text and therefore fails the export
+  // check, surfacing as MISSING_CONTRACT_EXPORT rather than a script error.
   for (const id of Object.keys(COVERED)) {
     const entry = COVERED[id];
-    if (!contractExportsFactory(contractText, entry.factory)) {
+    const text = contractTexts.get(entry.module) ?? '';
+    if (!contractExportsFactory(text, entry.factory)) {
       violations.push({
         surfaceId: id,
         rule: 'MISSING_CONTRACT_EXPORT',
@@ -372,7 +410,6 @@ function main() {
     const dir = args.dir ? path.resolve(args.dir) : defaultDir();
 
     const manifestPath = path.join(dir, MANIFEST_REL);
-    const contractPath = path.join(dir, CONTRACT_REL);
 
     let manifestText;
     try {
@@ -382,12 +419,18 @@ function main() {
       return;
     }
 
-    let contractText;
-    try {
-      contractText = fs.readFileSync(contractPath, 'utf8');
-    } catch (e) {
-      fail(e);
-      return;
+    // Read every covered contract module into a map keyed by its repo-relative
+    // path so R1 can check each factory against the module that owns it. A
+    // missing module is not a script error here: it yields empty text and R1
+    // reports MISSING_CONTRACT_EXPORT for the surface that pointed at it.
+    const contractTexts = new Map();
+    for (const entry of Object.values(COVERED)) {
+      if (contractTexts.has(entry.module)) continue;
+      try {
+        contractTexts.set(entry.module, fs.readFileSync(path.join(dir, entry.module), 'utf8'));
+      } catch (e) {
+        contractTexts.set(entry.module, '');
+      }
     }
 
     let entries;
@@ -398,7 +441,7 @@ function main() {
       return;
     }
 
-    const result = evaluate(entries, contractText);
+    const result = evaluate(entries, contractTexts);
     const ok = result.violations.length === 0;
     emit({
       ok,

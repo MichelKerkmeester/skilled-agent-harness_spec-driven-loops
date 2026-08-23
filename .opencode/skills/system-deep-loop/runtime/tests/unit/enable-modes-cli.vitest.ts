@@ -17,7 +17,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import 'tsx';
 
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -25,6 +25,8 @@ import { createRequire } from 'node:module';
 
 import { canonicalBytes, sha256Bytes } from '../../lib/event-envelope/index.js';
 import { buildObservedClassificationManifest } from '../../lib/restart-observation/observed-classification.js';
+import { AuthorityRegistry, AUTHORITY_FLIP_MODE_ORDER } from '../../lib/per-mode-authority-flip/index.js';
+import { runFleetEnablement } from '../../lib/fleet-enablement/index.js';
 import type {
   LedgerReadPort,
   ObserveRestartFactsOptions,
@@ -38,6 +40,7 @@ const requireFromTest = createRequire(import.meta.url);
 const {
   buildRunStep,
   enforceObservedClassificationVerdict,
+  __setCompareAndSwapEnabled,
 } = requireFromTest('../../scripts/enable-modes.cjs') as {
   buildRunStep: (
     registry: { read: (mode: string) => { state: string } },
@@ -61,6 +64,7 @@ const {
     reason: string | null;
   }>;
   enforceObservedClassificationVerdict: (built: unknown) => { ok: boolean; reason?: string };
+  __setCompareAndSwapEnabled: (value: boolean) => void;
 };
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -449,12 +453,16 @@ describe('enable-modes CLI', () => {
     // clean the ledger. This test threads a real ledger through the exact
     // observation, evidence derivation, and verdict enforcement buildRunStep
     // uses, with the run's continuity identity supplied, and asserts the step
-    // clears the gate and reaches the authority state check.
+    // clears the gate and reaches the registry-direct flip.
     const mode = 'deep-review';
     const runDir = mkdtempSync(join(tmpdir(), 'enable-modes-parity-'));
     temporaryDirectories.push(runDir);
     mkdirSync(join(runDir, `${mode}-ledger`));
     mkdirSync(join(runDir, `${mode}-effect-ledger`));
+
+    const authorityRoot = mkdtempSync(join(tmpdir(), 'enable-modes-parity-auth-'));
+    temporaryDirectories.push(authorityRoot);
+    const registry = new AuthorityRegistry(authorityRoot);
 
     const effectId = 'effect-done';
     const effectEvents = [
@@ -497,7 +505,7 @@ describe('enable-modes CLI', () => {
     };
 
     const step = buildRunStep(
-      { read: () => ({ state: 'cutover_ready' }) },
+      registry as unknown as { read: (mode: string) => { state: string } },
       () => ({
         surfaceIds: ['surface-a'],
         projectableSurfaceIds: ['surface-a'],
@@ -517,9 +525,17 @@ describe('enable-modes CLI', () => {
     const result = await step(mode);
 
     // The parity gate passed (no 'parity' failure) and the step moved on to
-    // the authority state check, which passes for a cutover_ready record.
+    // the registry-direct flip, which writes new_authoritative_reversible to
+    // disk with selectedWriter 'dark'.
     expect(result.ok).toBe(true);
     expect(result.failedCheck).toBeNull();
+
+    const recordPath = join(authorityRoot, `authority-${mode}.json`);
+    expect(existsSync(recordPath)).toBe(true);
+    const onDisk = JSON.parse(readFileSync(recordPath, 'utf8')) as Record<string, unknown>;
+    expect(onDisk.state).toBe('new_authoritative_reversible');
+    expect(onDisk.epoch).toBe(2);
+    expect(onDisk.selectedWriter).toBe('dark');
   });
 
   it('mkdir bypass: empty ledger directories cause EFFECT_LEDGER_EMPTY refusal and completedModes: []', async () => {
@@ -733,5 +749,400 @@ describe('enable-modes CLI', () => {
       expect(verdict.ok).toBe(true);
       expect(verdict.reason).toBeUndefined();
     });
+  });
+});
+
+describe('pilot registry-direct flip (deep-research)', () => {
+  it('writes new_authoritative_reversible with selectedWriter dark to disk after a pilot enablement step', async () => {
+    const authorityRoot = makeTempDir();
+    const runDir = makeTempDir();
+    mkdirSync(join(runDir, 'deep-research-ledger'));
+    mkdirSync(join(runDir, 'deep-research-effect-ledger'));
+
+    const registry = new AuthorityRegistry(authorityRoot);
+
+    const effectId = 'effect-done';
+    const effectEvents = [
+      {
+        event: {
+          effective: {
+            envelope: {
+              event_type: 'deep-loop.effect.intent-recorded',
+              payload: { effect_id: effectId },
+            },
+          },
+        },
+      },
+      {
+        event: {
+          effective: {
+            envelope: {
+              event_type: 'deep-loop.effect.confirmed',
+              payload: { effect_id: effectId },
+            },
+          },
+        },
+      },
+    ];
+    const modeLedgerPort: LedgerReadPort = {
+      async getVerifiedHead() {
+        return { sequence: 7 };
+      },
+      async readVerifiedEvents() {
+        return [];
+      },
+    };
+    const effectLedgerPort: LedgerReadPort = {
+      async getVerifiedHead() {
+        return { sequence: 0 };
+      },
+      async readVerifiedEvents() {
+        return effectEvents;
+      },
+    };
+
+    const step = buildRunStep(
+      registry as unknown as { read: (mode: string) => { state: string } },
+      () => ({
+        surfaceIds: ['surface-a'],
+        projectableSurfaceIds: ['surface-a'],
+        readers: [],
+        hasProjectableSurface: true,
+        sharedWith: [],
+      }),
+      runDir,
+      CENSUS_PATH,
+      'lineage-pilot',
+      {
+        modeLedger: () => modeLedgerPort,
+        effectLedger: () => effectLedgerPort,
+      },
+    );
+
+    const result = await step('deep-research');
+
+    // The step must report success.
+    expect(result.ok).toBe(true);
+    expect(result.failedCheck).toBeNull();
+
+    // Assert on the ON-DISK record, not on the step's ok flag alone.
+    // The default record is legacy_authoritative at epoch 1; after the
+    // flip it must be new_authoritative_reversible at epoch 2 with
+    // selectedWriter 'dark'.
+    const recordPath = join(authorityRoot, 'authority-deep-research.json');
+    expect(existsSync(recordPath)).toBe(true);
+    const onDisk = JSON.parse(readFileSync(recordPath, 'utf8')) as Record<string, unknown>;
+    expect(onDisk.state).toBe('new_authoritative_reversible');
+    expect(onDisk.epoch).toBe(2);
+    expect(onDisk.selectedWriter).toBe('dark');
+
+    // Also confirm the registry reads back the same record from disk.
+    const reread = registry.read('deep-research');
+    expect(reread.state).toBe('new_authoritative_reversible');
+    expect(reread.epoch).toBe(2);
+    expect(reread.selectedWriter).toBe('dark');
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// Shared helpers for the fleet-wide flip proofs
+// ───────────────────────────────────────────────────────────────────
+
+function makePassingLedgerPorts(): {
+  modeLedger: () => LedgerReadPort;
+  effectLedger: () => LedgerReadPort;
+} {
+  const effectId = 'effect-done';
+  const effectEvents = [
+    {
+      event: {
+        effective: {
+          envelope: {
+            event_type: 'deep-loop.effect.intent-recorded',
+            payload: { effect_id: effectId },
+          },
+        },
+      },
+    },
+    {
+      event: {
+        effective: {
+          envelope: {
+            event_type: 'deep-loop.effect.confirmed',
+            payload: { effect_id: effectId },
+          },
+        },
+      },
+    },
+  ];
+  const modeLedgerPort: LedgerReadPort = {
+    async getVerifiedHead() {
+      return { sequence: 7 };
+    },
+    async readVerifiedEvents() {
+      return [];
+    },
+  };
+  const effectLedgerPort: LedgerReadPort = {
+    async getVerifiedHead() {
+      return { sequence: 0 };
+    },
+    async readVerifiedEvents() {
+      return effectEvents;
+    },
+  };
+  return { modeLedger: () => modeLedgerPort, effectLedger: () => effectLedgerPort };
+}
+
+function makeRunDirWithLedgers(runDir: string, modes: readonly string[]): void {
+  for (const mode of modes) {
+    mkdirSync(join(runDir, `${mode}-ledger`), { recursive: true });
+    mkdirSync(join(runDir, `${mode}-effect-ledger`), { recursive: true });
+  }
+}
+
+function makeStubSurfaceSet() {
+  return () => ({
+    surfaceIds: ['surface-a'],
+    projectableSurfaceIds: ['surface-a'],
+    readers: [],
+    hasProjectableSurface: true,
+    sharedWith: [],
+  });
+}
+
+// ───────────────────────────────────────────────────────────────────
+// All 8 modes in frozen order — on-disk proof
+// ───────────────────────────────────────────────────────────────────
+
+describe('fleet registry-direct flip (all 8 modes in frozen order)', () => {
+  // Covers all 8 modes end-to-end: deep-research, deep-review,
+  // deep-ai-council, deep-improvement-common, agent-improvement,
+  // model-benchmark, skill-benchmark, deep-alignment.
+
+  it('flips every mode in AUTHORITY_FLIP_MODE_ORDER to new_authoritative_reversible on disk', async () => {
+    const authorityRoot = resolve(makeTempDir());
+    const runDir = resolve(makeTempDir());
+    const registry = new AuthorityRegistry(authorityRoot);
+    const ledgerPorts = makePassingLedgerPorts();
+
+    makeRunDirWithLedgers(runDir, AUTHORITY_FLIP_MODE_ORDER);
+
+    const step = buildRunStep(
+      registry as unknown as { read: (mode: string) => { state: string } },
+      makeStubSurfaceSet(),
+      runDir,
+      CENSUS_PATH,
+      'lineage-fleet-all',
+      ledgerPorts,
+    );
+
+    for (const mode of AUTHORITY_FLIP_MODE_ORDER) {
+      const result = await step(mode);
+      expect(result.ok).toBe(true);
+      expect(result.failedCheck).toBeNull();
+
+      // Assert on the ON-DISK record, not on the step's ok flag alone.
+      const recordPath = join(authorityRoot, `authority-${mode}.json`);
+      expect(existsSync(recordPath)).toBe(true);
+      const onDisk = JSON.parse(readFileSync(recordPath, 'utf8')) as Record<string, unknown>;
+      expect(onDisk.state).toBe('new_authoritative_reversible');
+      expect(onDisk.epoch).toBe(2);
+      expect(onDisk.selectedWriter).toBe('dark');
+    }
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// Order + stop-at-first-failure proof
+// ───────────────────────────────────────────────────────────────────
+
+describe('fleet registry-direct flip (order + stop-at-first-failure)', () => {
+  it('stops at a mid-order flip failure and leaves later modes untouched on disk', async () => {
+    const authorityRoot = resolve(makeTempDir());
+    const runDir = resolve(makeTempDir());
+    const statePath = resolve(join(authorityRoot, 'state.json'));
+    const registry = new AuthorityRegistry(authorityRoot);
+    const ledgerPorts = makePassingLedgerPorts();
+
+    const fleetOrder = AUTHORITY_FLIP_MODE_ORDER.filter((m) => m !== 'deep-research');
+    makeRunDirWithLedgers(runDir, fleetOrder);
+
+    // Pre-write a shadowing record for deep-improvement-common (mid-order
+    // in FLEET_MODE_ORDER) so prepareCutover finds a state that is neither
+    // legacy_authoritative nor cutover_ready and throws CAS_CONFLICT. The
+    // record must carry a valid recordDigest so the registry's integrity
+    // verification passes.
+    const failingMode = 'deep-improvement-common';
+    const core = {
+      schemaVersion: 1,
+      mode: failingMode,
+      state: 'shadowing',
+      epoch: 1,
+      selectedWriter: 'legacy',
+      candidateSha: null,
+      policyVersion: 0,
+      cutoverCertificateDigest: null,
+      lastTransitionDigest: null,
+      updatedAt: '2026-08-09T00:00:00Z',
+    };
+    const prewritten = {
+      ...core,
+      recordDigest: sha256Bytes(canonicalBytes(core as never)),
+    };
+    writeFileSync(
+      join(authorityRoot, `authority-${failingMode}.json`),
+      JSON.stringify(prewritten),
+      'utf8',
+    );
+
+    const step = buildRunStep(
+      registry as unknown as { read: (mode: string) => { state: string } },
+      makeStubSurfaceSet(),
+      runDir,
+      CENSUS_PATH,
+      'lineage-fleet-stop',
+      ledgerPorts,
+    );
+
+    const result = await runFleetEnablement({
+      statePath,
+      dryRun: false,
+      runStep: step as unknown as (mode: never) => Promise<{ ok: boolean; failedCheck: string | null; reason: string | null }>,
+    });
+
+    // The run stopped at the failing mode.
+    expect(result.failure).not.toBeNull();
+    expect(result.failure!.mode).toBe(failingMode);
+    expect(result.failure!.check).toBe('flip');
+
+    // Modes before the failure flipped successfully on disk.
+    const beforeFailure = fleetOrder.slice(0, fleetOrder.indexOf(failingMode));
+    for (const mode of beforeFailure) {
+      const recordPath = join(authorityRoot, `authority-${mode}.json`);
+      expect(existsSync(recordPath)).toBe(true);
+      const onDisk = JSON.parse(readFileSync(recordPath, 'utf8')) as Record<string, unknown>;
+      expect(onDisk.state).toBe('new_authoritative_reversible');
+      expect(onDisk.epoch).toBe(2);
+      expect(onDisk.selectedWriter).toBe('dark');
+    }
+
+    // The failing mode's on-disk record is NOT advanced — it remains at
+    // the pre-written shadowing state, not new_authoritative_reversible.
+    const failingPath = join(authorityRoot, `authority-${failingMode}.json`);
+    const failingOnDisk = JSON.parse(readFileSync(failingPath, 'utf8')) as Record<string, unknown>;
+    expect(failingOnDisk.state).toBe('shadowing');
+    expect(failingOnDisk.state).not.toBe('new_authoritative_reversible');
+
+    // Later modes are untouched — no authority record on disk at all,
+    // which means the registry default (legacy_authoritative) applies.
+    const afterFailure = fleetOrder.slice(fleetOrder.indexOf(failingMode) + 1);
+    for (const mode of afterFailure) {
+      const recordPath = join(authorityRoot, `authority-${mode}.json`);
+      expect(existsSync(recordPath)).toBe(false);
+    }
+
+    // The driver's own untouchedModes list matches the on-disk evidence.
+    expect(result.untouchedModes).toEqual(afterFailure);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// Negative control — disable only the compareAndSwap
+// ───────────────────────────────────────────────────────────────────
+
+describe('fleet registry-direct flip (negative control: CAS disabled)', () => {
+  it('RED when CAS is disabled, GREEN after restore with process-trap guarantee', async () => {
+    // Process-trap restore: if the test is interrupted (SIGINT/SIGTERM) or
+    // exits unexpectedly, the CAS toggle must be restored to true so no
+    // later test inherits a disabled CAS.
+    const restoreCas = () => { __setCompareAndSwapEnabled(true); };
+    process.on('exit', restoreCas);
+    process.on('SIGINT', restoreCas);
+    process.on('SIGTERM', restoreCas);
+
+    try {
+      // ── RED: disable only the compareAndSwap ──
+      __setCompareAndSwapEnabled(false);
+
+      const redRoot = resolve(makeTempDir());
+      const redRunDir = resolve(makeTempDir());
+      const redRegistry = new AuthorityRegistry(redRoot);
+      const ledgerPorts = makePassingLedgerPorts();
+      makeRunDirWithLedgers(redRunDir, AUTHORITY_FLIP_MODE_ORDER);
+
+      const redStep = buildRunStep(
+        redRegistry as unknown as { read: (mode: string) => { state: string } },
+        makeStubSurfaceSet(),
+        redRunDir,
+        CENSUS_PATH,
+        'lineage-fleet-red',
+        ledgerPorts,
+      );
+
+      let redFailures = 0;
+      for (const mode of AUTHORITY_FLIP_MODE_ORDER) {
+        const result = await redStep(mode);
+        if (!result.ok) {
+          redFailures += 1;
+        }
+
+        // The on-disk record must NOT be new_authoritative_reversible.
+        // prepareCutover ran (moving to cutover_ready) but the CAS was
+        // skipped, so the post-flip re-read found the wrong state.
+        const recordPath = join(redRoot, `authority-${mode}.json`);
+        expect(existsSync(recordPath)).toBe(true);
+        const onDisk = JSON.parse(readFileSync(recordPath, 'utf8')) as Record<string, unknown>;
+        expect(onDisk.state).not.toBe('new_authoritative_reversible');
+      }
+
+      // Every mode must fail when the CAS is disabled.
+      expect(redFailures).toBe(AUTHORITY_FLIP_MODE_ORDER.length);
+      // eslint-disable-next-line no-console
+      console.log(`NEGATIVE CONTROL RED: ${redFailures}/${AUTHORITY_FLIP_MODE_ORDER.length} modes failed (CAS disabled)`);
+
+      // ── RESTORE: re-enable the CAS ──
+      __setCompareAndSwapEnabled(true);
+
+      // ── GREEN: fresh authority root, CAS restored ──
+      const greenRoot = resolve(makeTempDir());
+      const greenRunDir = resolve(makeTempDir());
+      const greenRegistry = new AuthorityRegistry(greenRoot);
+      makeRunDirWithLedgers(greenRunDir, AUTHORITY_FLIP_MODE_ORDER);
+
+      const greenStep = buildRunStep(
+        greenRegistry as unknown as { read: (mode: string) => { state: string } },
+        makeStubSurfaceSet(),
+        greenRunDir,
+        CENSUS_PATH,
+        'lineage-fleet-green',
+        ledgerPorts,
+      );
+
+      let greenSuccesses = 0;
+      for (const mode of AUTHORITY_FLIP_MODE_ORDER) {
+        const result = await greenStep(mode);
+        if (result.ok) {
+          greenSuccesses += 1;
+        }
+
+        const recordPath = join(greenRoot, `authority-${mode}.json`);
+        expect(existsSync(recordPath)).toBe(true);
+        const onDisk = JSON.parse(readFileSync(recordPath, 'utf8')) as Record<string, unknown>;
+        expect(onDisk.state).toBe('new_authoritative_reversible');
+        expect(onDisk.epoch).toBe(2);
+        expect(onDisk.selectedWriter).toBe('dark');
+      }
+
+      expect(greenSuccesses).toBe(AUTHORITY_FLIP_MODE_ORDER.length);
+      // eslint-disable-next-line no-console
+      console.log(`NEGATIVE CONTROL GREEN: ${greenSuccesses}/${AUTHORITY_FLIP_MODE_ORDER.length} modes flipped (CAS restored)`);
+    } finally {
+      // Absolute restore — the toggle is always true when this test exits.
+      __setCompareAndSwapEnabled(true);
+      process.off('exit', restoreCas);
+      process.off('SIGINT', restoreCas);
+      process.off('SIGTERM', restoreCas);
+    }
   });
 });

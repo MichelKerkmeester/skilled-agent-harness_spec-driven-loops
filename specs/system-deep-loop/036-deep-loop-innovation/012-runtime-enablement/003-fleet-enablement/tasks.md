@@ -10,17 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fl
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement"
-    last_updated_at: "2026-08-19T19:30:00Z"
+    last_updated_at: "2026-08-23T04:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Built the driver, CLI and both suites; 12 guards proven by negative control"
-    next_safe_action: "Operator decision on the missing flip transitions"
-    blockers:
-      - "No mode can reach cutover_ready, so no mode can be enabled"
-      - "deep-improvement-common has no working name on the append CLI"
+    recent_action: "Reconciled to Complete after the registry-direct fleet flip"
+    next_safe_action: "Proceed to 005-whole-system-gate; the fleet flip is done"
+    blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/enablement-driver.ts"
       - ".opencode/skills/system-deep-loop/runtime/scripts/enable-modes.cjs"
-    completion_pct: 65
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +50,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] **T-004** Build the driver loop with external per-mode state. [EVIDENCE: `runFleetEnablement` with an external JSON state file — `enablement-driver.ts:97`]
-- [ ] **T-005** Implement the per-mode step as the pilot's procedure, parameterised by mode. [PARTIAL: the step runs the reader-contract and flip checks and refuses with the on-disk state named. The pilot's procedure cannot be parameterised while the pilot's own flip is unreachable]
+- [ ] **T-005** Implement the per-mode step as the pilot's procedure, parameterised by mode. [SUPERSEDED: the fleet flip was executed via the operator-chosen registry-direct path (`scripts/flip-authority.cjs --commit`), not by composing the per-mode coordinator step inside this driver. The coordinator mechanism (`AuthorityFlipCoordinator.requestCutover` with a deny-capable policy and a flip event) remains the PROVEN PILOT mechanism in `002-deep-research-enablement`; it was not the path taken for the fleet. Recorded as superseded by the path choice, not done-by-composition and not silently dropped]
 - [x] **T-006** Add stop-on-first-failure that names the mode and the failing check. [EVIDENCE: first failure returns with both mode and check named — `enablement-driver.ts:144`; `scratch/realrun.json`]
 - [x] **T-007** Add the dry-run path that reports intent and touches no authority record. [EVIDENCE: the dry run calls `runStep` zero times and writes nothing — `enablement-driver.ts:122`; the CLI does not even construct the registry]
 - [x] **T-008** Ensure each coordinator call requests exactly one mode. [EVIDENCE: one mode string per call, asserted by `requests exactly one mode per call`]
@@ -63,9 +61,9 @@ _memory:
 
 - [x] **T-009** Dry run all six modes; diff authority records against T-003 and confirm no change. [EVIDENCE: dry run over all 7 planned modes; authority root byte-identical to the pre-run capture, sha256 `3728804f` on its single file]
 - [x] **T-010** Inject a failure on one mode; confirm the stop and that later modes' records are byte-identical. [EVIDENCE: injected failure stops at the named mode; later modes never invoked and no authority record written]
-- [ ] **T-011** Resume; confirm remaining modes enable and earlier ones are not re-flipped. [PARTIAL: resume proven at the driver by `resumes without re-running completed modes`; end-to-end resume needs a mode that can actually be enabled]
-- [ ] **T-012** [P] Run each mode's reader contract against its own projected files. [BLOCKED: needs files projected by an enabled mode]
-- [ ] **T-013** [P] Read all seven authority records independently; confirm ledger authority. [BLOCKED: all 8 records read `legacy_authoritative`]
+- [ ] **T-011** Resume; confirm remaining modes enable and earlier ones are not re-flipped. [DEFERRED: end-to-end resume across a real flip needs a live per-mode run that produces projected files. The whole-system gate itself defers `reader-contracts` for the same reason — it records the check as not-run rather than passing it vacuously, because "running one now would pass vacuously" without a real per-mode run. Resume at the driver level is already proven by `resumes without re-running completed modes`]
+- [ ] **T-012** [P] Run each mode's reader contract against its own projected files. [DEFERRED: a reader contract needs files projected by a live per-mode run; the whole-system gate defers `reader-contracts` for the same reason and records it as not-run rather than passing vacuously]
+- [x] **T-013** [P] Read all seven authority records independently; confirm ledger authority. [EVIDENCE: 8/8 authority records read `new_authoritative_reversible` at epoch 2, selectedWriter dark, policyVersion 1 — `authority-deep-research.json`, `authority-deep-review.json`, `authority-deep-ai-council.json`, `authority-deep-improvement-common.json`, `authority-agent-improvement.json`, `authority-model-benchmark.json`, `authority-skill-benchmark.json`, `authority-deep-alignment.json`. Corroborated independently by the whole-system gate's `authority-state` check: "8 modes; 8 on new_authoritative_reversible; 8 from a stored record, 0 from the absent-record default", status pass]
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

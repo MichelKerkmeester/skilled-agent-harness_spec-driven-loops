@@ -1009,7 +1009,7 @@ describe('shadow parity execution', () => {
     }));
     expect(result.ok).toBe(true);
     if (!result.ok) throw new Error('Expected complete legacy-shape parity');
-    expect(projectionIds).toHaveLength(22);
+    expect(projectionIds).toHaveLength(21);
     expect(result.runs.every((run) => (
       run.legacyProjectionDigest === run.darkProjectionDigest
     ))).toBe(true);

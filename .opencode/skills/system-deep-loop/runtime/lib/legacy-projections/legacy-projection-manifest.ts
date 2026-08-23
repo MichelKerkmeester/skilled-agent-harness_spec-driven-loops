@@ -96,8 +96,9 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
     surfaceId: 'research-strategy-inbox', format: 'mixed',
     pathTemplate: '{spec_folder}/research/{deep-research-strategy.md,inbox.jsonl}',
     legacyWriter: 'deep-research', readers: ['deep-research loop'],
-    fixture: EVENT_FIXTURE, disposition: 'project', serializerId: 'legacy-jsonl-row-v1',
-    refreshBoundary: 'event', nonProjectableReason: null, laterOwner: null,
+    fixture: EVENT_FIXTURE, disposition: 'retain-legacy-input', serializerId: null,
+    refreshBoundary: null, nonProjectableReason: 'Authored strategy prose and operator inbox input are not ledger-derived',
+    laterOwner: 'in-flight state classification',
   },
   {
     surfaceId: 'review-config', format: 'json',

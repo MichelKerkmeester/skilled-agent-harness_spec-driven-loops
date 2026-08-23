@@ -20,7 +20,7 @@ import type {
 // ───────────────────────────────────────────────────────────────────
 
 /** Exact output family whose existing reader contract must remain unchanged. */
-export type LegacyProjectionFormat = 'json' | 'jsonl';
+export type LegacyProjectionFormat = 'json' | 'jsonl' | 'md';
 
 /** Existing writer boundary at which a shadow artifact becomes eligible to refresh. */
 export type LegacyProjectionRefreshBoundary = 'event' | 'lifecycle';
@@ -57,6 +57,20 @@ export interface LegacyProjectionContract<TState extends JsonObject> {
     event: Readonly<EventReadResult>,
   ) => TState;
   readonly serialize: (state: Readonly<TState>) => Uint8Array | string;
+}
+
+// A census surface that projects more than one file composes a set of
+// single-artifact contracts rather than rewriting the fold engine. The
+// surface receives the verified events so a per-iteration delta surface can
+// partition them into one artifact per iteration; a static multi-file
+// surface ignores them and returns a fixed artifact set. Each artifact's
+// reduce remains the authority over which events it absorbs.
+export interface LegacyProjectionSurfaceContract {
+  readonly surfaceId: string;
+  readonly ledgerId: string;
+  readonly buildArtifacts: (
+    events: readonly EventReadResult[],
+  ) => readonly LegacyProjectionContract<any>[];
 }
 
 /** Exact immutable oracle and replay binding for one requested shadow refresh. */

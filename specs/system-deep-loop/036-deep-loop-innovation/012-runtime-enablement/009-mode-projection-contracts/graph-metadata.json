@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mode projection contracts",
+      "legacy projection coverage",
+      "projection contract build",
+      "mode projection contracts plan",
+      "mode projection contracts tasks",
+      "mode projection contracts checklist",
+      "mode projection contracts summary",
+      "projection surface contracts",
+      "ledger-fold projection coverage"
+    ],
+    "key_topics": [
+      "projection",
+      "contracts",
+      "ledger",
+      "fold",
+      "surface",
+      "coverage",
+      "reclassification",
+      "deep-loop"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six ledger-fold projection contracts built and proven; three non-foldable surfaces reclassified to retain-legacy-input",
+    "created_at": "2026-08-23T06:30:00.000Z",
+    "last_save_at": "2026-08-23T06:30:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5b97618f7d1102ed021a06162ce1eb4cb6892f50e11ff94388b2a8defcb6004a",
+    "source_doc_hashes": {
+      "spec.md": "1cf19d5995a35c0bce713f1159fad16879aaa5d389eee669fc73e6543b04003f",
+      "plan.md": "a9c148c13ed76b379d8ef17b87328a35ab4d514d03e75e9bcb4745a868231c6f",
+      "tasks.md": "8cce39edd842061744f3c5b15364e8472bee1485aa7ce7c9cba7b0088902e19f",
+      "checklist.md": "f3044afd34c808b5c68154073aa2bffd89cefc9e349b1437d6f634a90f9d4b0e",
+      "decision-record.md": "26def3f38e1fa438fffced26569e637e06df8e3c80c462076e554efa115524e9",
+      "implementation-summary.md": "56050194f4c193279f257900f18a8862e0fcba094d5d10301ff5092f1a03fc81"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
