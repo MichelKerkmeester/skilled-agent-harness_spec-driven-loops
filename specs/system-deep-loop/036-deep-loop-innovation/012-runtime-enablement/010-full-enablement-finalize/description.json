@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize",
+  "description": "The reversible flip moved all eight modes to `newauthoritativereversible`, which already routes every",
+  "keywords": [
+    "reversible",
+    "flip",
+    "moved",
+    "eight",
+    "modes",
+    "newauthoritativereversible",
+    "already",
+    "routes",
+    "every"
+  ],
+  "lastUpdated": "2026-08-23T16:59:07.220Z",
+  "specId": "010",
+  "folderSlug": "full-enablement-finalize",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

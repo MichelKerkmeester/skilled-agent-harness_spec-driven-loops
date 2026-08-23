@@ -139,6 +139,17 @@ export interface AuthorityCompareAndSwapRollbackInput {
   readonly at: string;
 }
 
+export interface AuthorityCompareAndSwapFinalizeInput {
+  readonly mode: CutoverCertificateMode;
+  readonly expectedState: 'new_authoritative_reversible';
+  readonly expectedEpoch: number;
+  readonly candidateSha: string;
+  readonly policyVersion: number;
+  readonly cutoverCertificateDigest: string;
+  readonly lastTransitionDigest: string;
+  readonly at: string;
+}
+
 /** File-scoped, lock-guarded, mode-keyed authority CAS store. */
 export class AuthorityRegistry {
   readonly #root: string;
@@ -517,6 +528,75 @@ export class AuthorityRegistry {
     const next: AuthorityRecord = Object.freeze({ ...core, recordDigest: digest(core) });
     writeCanonicalJsonAtomic(path, next as unknown as JsonObject);
     return next;
+  }
+
+  /**
+   * Execute the finalize edge that drops the legacy shadow:
+   * `new_authoritative_reversible(epoch N) -> new_authoritative_final(epoch N+1)`.
+   * Finalize is window-free by operator decision: no rollback window, drill,
+   * certificate, or execution-count precondition is required or simulated.
+   * The record digests over the actual transition facts and claims no
+   * certificate — the digests are content bindings, not gate receipts. A
+   * resumed call against a record already reflecting the exact target
+   * completes idempotently rather than re-running the CAS.
+   */
+  public compareAndSwapFinalize(input: AuthorityCompareAndSwapFinalizeInput): Readonly<{
+    record: AuthorityRecord;
+    resumed: boolean;
+  }> {
+    const path = this.#recordPath(input.mode);
+    const lockPath = this.#lockPath(input.mode);
+    const descriptor = this.#acquireLock(
+      lockPath,
+      'Another writer holds this mode\'s authority record lock',
+      { mode: input.mode },
+    );
+    try {
+      const current = this.read(input.mode);
+      const nextEpoch = input.expectedEpoch + 1;
+
+      if (
+        current.state === 'new_authoritative_final'
+        && current.epoch === nextEpoch
+        && current.cutoverCertificateDigest === input.cutoverCertificateDigest
+        && current.lastTransitionDigest === input.lastTransitionDigest
+      ) {
+        // Already finalized to this exact target — idempotent resume.
+        return Object.freeze({ record: current, resumed: true });
+      }
+
+      if (current.state !== input.expectedState || current.epoch !== input.expectedEpoch) {
+        throw new AuthorityFlipError(
+          'CAS_CONFLICT',
+          'Authority record no longer matches the expected reversible state/epoch for finalize',
+          {
+            mode: input.mode,
+            expectedState: input.expectedState,
+            expectedEpoch: input.expectedEpoch,
+            actualState: current.state,
+            actualEpoch: current.epoch,
+          },
+        );
+      }
+
+      const core = Object.freeze({
+        schemaVersion: AUTHORITY_FLIP_SCHEMA_VERSION,
+        mode: input.mode,
+        state: 'new_authoritative_final' as const,
+        epoch: nextEpoch,
+        selectedWriter: current.selectedWriter,
+        candidateSha: input.candidateSha,
+        policyVersion: input.policyVersion,
+        cutoverCertificateDigest: input.cutoverCertificateDigest,
+        lastTransitionDigest: input.lastTransitionDigest,
+        updatedAt: input.at,
+      });
+      const next: AuthorityRecord = Object.freeze({ ...core, recordDigest: digest(core) });
+      writeCanonicalJsonAtomic(path, next as unknown as JsonObject);
+      return Object.freeze({ record: next, resumed: false });
+    } finally {
+      this.#releaseLock(descriptor, lockPath);
+    }
   }
 
   /**

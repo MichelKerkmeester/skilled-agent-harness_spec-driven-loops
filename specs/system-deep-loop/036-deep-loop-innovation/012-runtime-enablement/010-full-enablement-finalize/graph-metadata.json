@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "full enablement finalize",
+      "authority finalize",
+      "reader contract enablement"
+    ],
+    "key_topics": [
+      "full",
+      "enablement",
+      "finalize",
+      "authority",
+      "reader",
+      "contract",
+      "reversible",
+      "flip",
+      "moved",
+      "eight",
+      "modes",
+      "newauthoritativereversible"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Enablement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Advance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. APPROACH",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "integrity",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. TASKS",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. ACCEPTANCE CHECKS",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "QA Checklist: Full Enablement and Finalize",
+        "kind": "quoted",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "contextType:",
+        "kind": "quoted",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The reversible flip moved all eight modes to `newauthoritativereversible`, which already routes every",
+    "created_at": "2026-08-23T17:06:54.597Z",
+    "last_save_at": "2026-08-23T17:06:54.597Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:7aae4570abd961834ec549ba968d05799e8a95ae1e63aa10450d663116eaad2a",
+    "source_doc_hashes": {
+      "spec.md": "8c2897f80076b7abd72565759e37f6836b4b1dde17c9b399d2fb7b80888d3a22",
+      "plan.md": "f428b3c655df16066dd2eac8ab5de0cdc3d895d3a5da17e1452290bc974bf483",
+      "tasks.md": "f9c61bb0fa998b3089fce55b308e922c4d5103e53c519bf48826139fd8057c71",
+      "checklist.md": "8d4c4490c1839c151a8d56b6186f3f34143bd8ca3e1580b8f5829623154ca42e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

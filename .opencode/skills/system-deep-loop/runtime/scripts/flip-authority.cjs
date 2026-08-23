@@ -264,6 +264,172 @@ async function flipOneMode(registry, mode) {
   };
 }
 
+// The finalize step for one mode. Reads the current record first; a record
+// already at the final state is skipped idempotently so a resumed run does
+// not re-finalize modes that already landed. Only a reversible/dark record
+// is eligible; any other state is a controlled failure that stops the run
+// before later modes are touched. Finalize is window-free by operator
+// decision — no rollback window, drill, or certificate precondition is
+// required or simulated; the digests are content bindings over the actual
+// transition facts, not gate receipts.
+async function finalizeOneMode(registry, mode) {
+  let record;
+  try {
+    record = registry.read(mode);
+  } catch (error) {
+    const reasonCode = error && error.reasonCode ? error.reasonCode : 'RECORD_MALFORMED';
+    const detail = error instanceof Error ? error.message : String(error);
+    return {
+      mode,
+      from: null,
+      to: null,
+      result: 'failed',
+      reasonCode,
+      reason: `read failed: ${detail}`,
+    };
+  }
+
+  const fromState = record.state;
+  const fromEpoch = record.epoch;
+
+  // Idempotent skip: a record already finalized is not re-finalized.
+  if (
+    record.state === 'new_authoritative_final'
+    && record.selectedWriter === 'dark'
+  ) {
+    return {
+      mode,
+      from: { state: fromState, epoch: fromEpoch, selectedWriter: record.selectedWriter },
+      to: { state: record.state, epoch: record.epoch, selectedWriter: record.selectedWriter },
+      result: 'already-final',
+    };
+  }
+
+  // Finalize only applies to a reversible/dark record. Any other state is
+  // a controlled failure so the run stops without touching later modes.
+  if (
+    record.state !== 'new_authoritative_reversible'
+    || record.selectedWriter !== 'dark'
+  ) {
+    return {
+      mode,
+      from: { state: fromState, epoch: fromEpoch, selectedWriter: record.selectedWriter },
+      to: null,
+      result: 'failed',
+      reasonCode: 'CAS_CONFLICT',
+      reason: `record is state='${record.state}', selectedWriter='${record.selectedWriter}', expected new_authoritative_reversible/dark to finalize`,
+    };
+  }
+
+  const at = new Date().toISOString();
+  const { canonicalBytes, sha256Bytes } = await import('../lib/event-envelope/index.js');
+  const transitionFacts = {
+    mode,
+    finalizePath: 'registry-direct',
+    fromState: record.state,
+    toState: 'new_authoritative_final',
+    fromEpoch,
+    toEpoch: fromEpoch + 1,
+    selectedWriter: 'dark',
+    candidateSha: CANDIDATE_SHA,
+    policyVersion: POLICY_VERSION,
+    rollbackWindowRequired: false,
+  };
+  // Honest sha256 over the actual transition facts. These are content
+  // digests, not certificate digests — finalize is window-free by
+  // operator decision, and the digests transparently record that.
+  const cutoverCertificateDigest = sha256Bytes(canonicalBytes(transitionFacts));
+  const lastTransitionDigest = sha256Bytes(canonicalBytes({ ...transitionFacts, at }));
+
+  try {
+    if (COMMIT_CAS) {
+      registry.compareAndSwapFinalize({
+        mode,
+        expectedState: 'new_authoritative_reversible',
+        expectedEpoch: fromEpoch,
+        candidateSha: CANDIDATE_SHA,
+        policyVersion: POLICY_VERSION,
+        cutoverCertificateDigest,
+        lastTransitionDigest,
+        at,
+      });
+    } else {
+      // Negative-control path: the CAS is intentionally disabled, so the
+      // record is left at new_authoritative_reversible. The runner reports
+      // this as a controlled failure so the proof can observe records that
+      // did not finalize.
+      return {
+        mode,
+        from: { state: fromState, epoch: fromEpoch, selectedWriter: record.selectedWriter },
+        to: { state: 'new_authoritative_reversible', epoch: fromEpoch, selectedWriter: 'dark' },
+        result: 'cas-disabled',
+        reasonCode: 'CAS_DISABLED',
+        reason: 'compare-and-swap disabled by negative-control toggle; record left at new_authoritative_reversible',
+      };
+    }
+  } catch (error) {
+    const reasonCode = error && error.reasonCode ? error.reasonCode : 'CAS_CONFLICT';
+    const detail = error instanceof Error ? error.message : String(error);
+    return {
+      mode,
+      from: { state: fromState, epoch: fromEpoch, selectedWriter: record.selectedWriter },
+      to: null,
+      result: 'failed',
+      reasonCode,
+      reason: `${reasonCode}: ${detail}`,
+    };
+  }
+
+  // Re-read the record FROM DISK and confirm the finalize actually landed.
+  // A reported success without a written record matching the expected
+  // final state is impossible — the step must fail if the finalize did
+  // not persist.
+  let finalizedRecord;
+  try {
+    finalizedRecord = registry.read(mode);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    return {
+      mode,
+      from: { state: fromState, epoch: fromEpoch, selectedWriter: record.selectedWriter },
+      to: null,
+      result: 'failed',
+      reasonCode: 'RECORD_MALFORMED',
+      reason: `post-finalize read failed: ${detail}`,
+    };
+  }
+
+  if (
+    finalizedRecord.state !== 'new_authoritative_final'
+    || finalizedRecord.epoch !== fromEpoch + 1
+    || finalizedRecord.selectedWriter !== 'dark'
+  ) {
+    return {
+      mode,
+      from: { state: fromState, epoch: fromEpoch, selectedWriter: record.selectedWriter },
+      to: {
+        state: finalizedRecord.state,
+        epoch: finalizedRecord.epoch,
+        selectedWriter: finalizedRecord.selectedWriter,
+      },
+      result: 'failed',
+      reasonCode: 'CAS_CONFLICT',
+      reason: `post-finalize record is state='${finalizedRecord.state}', epoch=${finalizedRecord.epoch}, selectedWriter='${finalizedRecord.selectedWriter}', expected state='new_authoritative_final', epoch=${fromEpoch + 1}, selectedWriter='dark'`,
+    };
+  }
+
+  return {
+    mode,
+    from: { state: fromState, epoch: fromEpoch, selectedWriter: record.selectedWriter },
+    to: {
+      state: finalizedRecord.state,
+      epoch: finalizedRecord.epoch,
+      selectedWriter: finalizedRecord.selectedWriter,
+    },
+    result: 'finalized',
+  };
+}
+
 async function main() {
   let args;
   try {
@@ -289,6 +455,7 @@ OPTIONS:
   --authority-root <path>     Path to the authority-state directory (resolved automatically if not provided)
   --dry-run                   Plan the flips without making any changes (default)
   --commit                    Actually perform the flips
+  --finalize                  Finalize reversible/dark records to new_authoritative_final (window-free)
   --help                      Show this help message
 
 EXIT CODES:
@@ -306,7 +473,7 @@ EXIT CODES:
   // something unintended.
   const kebab = (key) => key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
   const valueArgs = ['authorityRoot'];
-  const flagArgs = ['dryRun', 'commit', 'help'];
+  const flagArgs = ['dryRun', 'commit', 'finalize', 'help'];
   const knownArgs = [...valueArgs, ...flagArgs];
   for (const key of Object.keys(args)) {
     if (!knownArgs.includes(key)) {
@@ -347,6 +514,7 @@ EXIT CODES:
   // commit and a dry-run in the same invocation.
   const commit = args.commit === true;
   const dryRun = !commit;
+  const finalize = args.finalize === true;
   if (args.dryRun === true && commit) {
     jsonOut({
       ok: false,
@@ -356,7 +524,7 @@ EXIT CODES:
     });
     process.exit(1);
   }
-  const mode = commit ? 'commit' : 'dry-run';
+  const mode = commit ? (finalize ? 'finalize-commit' : 'commit') : (finalize ? 'finalize-dry-run' : 'dry-run');
 
   const { resolveAuthorityRoot } = await import(
     '../lib/authority-root/resolve-authority-root.ts'
@@ -395,32 +563,56 @@ EXIT CODES:
       const fromState = current ? current.state : 'legacy_authoritative';
       const fromEpoch = current ? current.epoch : 1;
       const fromWriter = current ? current.selectedWriter : 'legacy';
-      const alreadyFlipped = fromState === 'new_authoritative_reversible' && fromWriter === 'dark';
-      plan.push({
-        mode: modeName,
-        from: { state: fromState, epoch: fromEpoch, selectedWriter: fromWriter },
-        to: alreadyFlipped
-          ? { state: fromState, epoch: fromEpoch, selectedWriter: fromWriter }
-          : { state: 'new_authoritative_reversible', epoch: fromEpoch + 1, selectedWriter: 'dark' },
-        result: alreadyFlipped ? 'already-flipped' : 'would-flip',
-      });
+      if (finalize) {
+        // A finalize dry-run plans the reversible->final edge. Only a
+        // reversible/dark record is eligible; an already-final record is
+        // a no-op; anything else cannot be finalized and is reported as
+        // such so the operator sees the plan honestly.
+        const alreadyFinal = fromState === 'new_authoritative_final' && fromWriter === 'dark';
+        const canFinalize = fromState === 'new_authoritative_reversible' && fromWriter === 'dark';
+        plan.push({
+          mode: modeName,
+          from: { state: fromState, epoch: fromEpoch, selectedWriter: fromWriter },
+          to: alreadyFinal || canFinalize
+            ? { state: 'new_authoritative_final', epoch: fromEpoch + 1, selectedWriter: 'dark' }
+            : { state: fromState, epoch: fromEpoch, selectedWriter: fromWriter },
+          result: alreadyFinal ? 'already-final' : canFinalize ? 'would-finalize' : 'not-reversible',
+        });
+      } else {
+        const alreadyFlipped = fromState === 'new_authoritative_reversible' && fromWriter === 'dark';
+        plan.push({
+          mode: modeName,
+          from: { state: fromState, epoch: fromEpoch, selectedWriter: fromWriter },
+          to: alreadyFlipped
+            ? { state: fromState, epoch: fromEpoch, selectedWriter: fromWriter }
+            : { state: 'new_authoritative_reversible', epoch: fromEpoch + 1, selectedWriter: 'dark' },
+          result: alreadyFlipped ? 'already-flipped' : 'would-flip',
+        });
+      }
     }
+    const allDone = finalize
+      ? plan.every((entry) => entry.result === 'already-final')
+      : plan.every((entry) => entry.result === 'already-flipped');
     jsonOut({
       ok: true,
       mode,
       authorityRoot,
       plan,
-      allFlipped: plan.every((entry) => entry.result === 'already-flipped'),
+      allFlipped: allDone,
     });
     return;
   }
 
-  // --commit path: construct the registry and flip every mode in order.
+  // --commit path: construct the registry and transition every mode in
+  // order. --finalize selects the finalize edge; otherwise the forward
+  // flip edge runs.
   const registry = new AuthorityRegistry(authorityRoot);
   const results = [];
   let stoppedAt = null;
   for (const modeName of AUTHORITY_FLIP_MODE_ORDER) {
-    const outcome = await flipOneMode(registry, modeName);
+    const outcome = finalize
+      ? await finalizeOneMode(registry, modeName)
+      : await flipOneMode(registry, modeName);
     results.push(outcome);
     if (outcome.result === 'failed' || outcome.result === 'cas-disabled') {
       // Stop at the first failure: later modes must not be touched. The
@@ -430,7 +622,10 @@ EXIT CODES:
     }
   }
 
-  const allFlipped = results.every((r) => r.result === 'flipped' || r.result === 'already-flipped')
+  const successResults = finalize
+    ? ['finalized', 'already-final']
+    : ['flipped', 'already-flipped'];
+  const allFlipped = results.every((r) => successResults.includes(r.result))
     && results.length === AUTHORITY_FLIP_MODE_ORDER.length
     && stoppedAt === null;
 
@@ -467,4 +662,4 @@ if (require.main === module && isTsxLoaded) {
   });
 }
 
-module.exports = { parseArgs, flipOneMode, main, __setCommitCas };
+module.exports = { parseArgs, flipOneMode, finalizeOneMode, main, __setCommitCas };

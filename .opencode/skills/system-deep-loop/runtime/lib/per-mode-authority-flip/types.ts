@@ -222,6 +222,31 @@ export interface AuthorityTransitionEvent {
   readonly eventDigest: string;
 }
 
+/**
+ * The durable facts a window-free finalize records: the transition from
+ * `new_authoritative_reversible` to `new_authoritative_final` that drops
+ * the legacy shadow. Finalize is window-free by operator decision — no
+ * rollback window, drill, certificate, or execution-count precondition
+ * is required or simulated. The digests are content bindings over the
+ * actual transition facts, not gate receipts claiming a satisfied window,
+ * and `rollbackWindowRequired` records that plainly.
+ */
+export interface AuthorityFinalizeTransitionFacts extends JsonObject {
+  readonly schemaVersion: typeof AUTHORITY_FLIP_SCHEMA_VERSION;
+  readonly eventKind: 'authority-transition-finalize';
+  readonly mode: CutoverCertificateMode;
+  readonly fromAuthorityState: 'new_authoritative_reversible';
+  readonly toAuthorityState: 'new_authoritative_final';
+  readonly fromAuthorityEpoch: number;
+  readonly toAuthorityEpoch: number;
+  readonly candidateSha: string;
+  readonly policyVersion: number;
+  readonly cutoverCertificateDigest: string;
+  readonly lastTransitionDigest: string;
+  readonly rollbackWindowRequired: false;
+  readonly transitionDigest: string;
+}
+
 export type CutoverDecision =
   | Readonly<{
     disposition: 'flipped';
