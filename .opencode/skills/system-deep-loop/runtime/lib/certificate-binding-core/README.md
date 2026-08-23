@@ -24,13 +24,13 @@ A certificate emitter binds a body's semantic fields to the verified typed paylo
 
 ## 3. CONSUMERS
 
-`deep-improvement-common-certificates` (offline semantic body-field re-derivation). Other certificate emitters (`deep-ai-council-certificates`, `deep-alignment-certificates`, `deep-review-certificates`) are candidates to adopt the same compare loop for their own local binding checks; none are wired to it yet.
+None currently. The certificate emitters that would have consumed this compare loop have been removed; the module is retained as a standalone primitive with no live importer.
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-certificates.vitest.ts`
+None currently.
 
 ---
 

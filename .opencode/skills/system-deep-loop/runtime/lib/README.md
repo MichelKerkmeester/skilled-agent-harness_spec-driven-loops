@@ -36,10 +36,8 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `fleet-enablement/` | Derives each mode's projected surfaces from the shared manifest and drives the remaining modes through enablement one at a time, stopping at the first failure with resumable state. |
 | `health-degeneration-harness/` | Turns normalized budget, cycle and coverage signals into a per-mode health state and a recommended response action. |
 | `hierarchical-budgets/` | Reserves, settles and replays token, cost, iteration and wall-time budgets across a four-level scope hierarchy. |
-| `inflight-state-classification/` | Classifies in-flight legacy state rows against a frozen census into upcast, pin, fork, migrate or block dispositions. |
 | `legacy-projections/` | Folds verified ledger events into disposable legacy JSON or JSONL bytes so existing readers keep working during migration. |
 | `locks-and-fencing/` | Grants leases with monotonic fence tokens and gates ledger and state writes behind them to prevent split-brain writers. |
-| `mixed-version-fixtures/` | Authors, compiles and oracle-verifies fixture cases that mix old and new runtime versions across a mode cutover boundary. |
 | `mode-contracts/` | Defines the contract shape, required substrate ports, conformance runner and version compatibility policy for a workflow mode. |
 | `next-focus/` | Derives, scores and durably records the next research or review focus region as a replayable ledger decision. |
 | `partial-failure-policy/` | Decides whether a fan-out orchestration should abort, wait, proceed or proceed degraded when some branches fail. |
@@ -48,10 +46,8 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `receipts-and-effect-recovery/` | Certifies boundary receipts and recovers idempotently from side effects across mode and phase boundaries, verified by replay. |
 | `replay-fingerprint/` | Derives and verifies a versioned canonical fingerprint that commits an authorized ledger replay to its projection output. |
 | `result-envelopes/` | Records the durable outcome of a dispatched leaf task, including salvage and recovery evidence, as authorized ledger events. |
-| `rollback-drills/` | Runs fault-injected forward-detect-reverse-resume drills against an isolated sandbox ledger and certifies the rollback. |
 | `sealed-reference-artifacts/` | Content-addressed sealing, storage and lifecycle tracking for reference artifacts such as prompt sets, fixtures and configuration. |
 | `semantic-communities/` | Groups semantically equivalent claims into namespaced communities through an incremental versioned projection. |
-| `shadow-parity/` | Runs a candidate implementation against its legacy baseline and issues a parity certificate only when every case closes with zero divergence. |
 | `stopping-clocks/` | Arbitrates five independent loop-termination signals into one deterministic termination declaration. |
 | `stream-fold-gauges/` | Deterministic replay-verifiable streaming metric folds computed from ledger events, compared against legacy dark-run values. |
 | `transactional-projections/` | Applies verified ledger events into one atomic fenced multi-view projection bundle and publishes committed snapshot manifests. |

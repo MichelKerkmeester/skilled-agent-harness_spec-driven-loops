@@ -24,22 +24,21 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
 import { canonicalBytes, sha256Bytes } from '../../lib/event-envelope/index.js';
-import { buildObservedClassificationManifest } from '../../lib/restart-observation/observed-classification.js';
 import { AuthorityRegistry, AUTHORITY_FLIP_MODE_ORDER } from '../../lib/per-mode-authority-flip/index.js';
 import { runFleetEnablement } from '../../lib/fleet-enablement/index.js';
-import type {
-  LedgerReadPort,
-  ObserveRestartFactsOptions,
-} from '../../lib/restart-observation/restart-facts-reader.js';
 
-// The verdict-enforcement helper lives in the CLI script (one of the four
-// files this change may touch). It is pure JS with no module-load side
-// effects, so requiring it directly is safe and lets the regression test
-// exercise the exact function buildRunStep calls after observation.
+// A minimal read-port shape for the ledger stubs the flip proofs inject.
+// buildRunStep no longer reads these ports — the registry-direct flip
+// depends only on the authority registry — so the stubs are an inert
+// argument the kept proofs still pass positionally.
+type LedgerReadPort = {
+  getVerifiedHead(): Promise<{ sequence: number }>;
+  readVerifiedEvents(): Promise<readonly unknown[]>;
+};
+
 const requireFromTest = createRequire(import.meta.url);
 const {
   buildRunStep,
-  enforceObservedClassificationVerdict,
   __setCompareAndSwapEnabled,
 } = requireFromTest('../../scripts/enable-modes.cjs') as {
   buildRunStep: (
@@ -63,7 +62,6 @@ const {
     failedCheck: string | null;
     reason: string | null;
   }>;
-  enforceObservedClassificationVerdict: (built: unknown) => { ok: boolean; reason?: string };
   __setCompareAndSwapEnabled: (value: boolean) => void;
 };
 
@@ -244,63 +242,6 @@ describe('enable-modes CLI', () => {
     expect(agentImprovement.sharedWith).toEqual(['deep-improvement-common']);
   });
 
-  it('stops at the first failing mode and names it', () => {
-    const tmp = makeTempDir();
-    const statePath = join(tmp, 'state.json');
-    const authority = join(tmp, 'authority');
-    const runDir = join(tmp, 'run');
-    const { exitCode, json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
-
-    expect(exitCode).toBe(2);
-    expect(json.ok).toBe(false);
-    expect(json.phase).toBe('enablement');
-    expect(json.code).toBe('MODE_STEP_FAILED');
-    expect(json.statePath).toBe(statePath);
-
-    const failure = json.failure as Record<string, unknown>;
-    expect(failure.mode).toBe('deep-review');
-    expect(failure.check).toBe('parity');
-    expect(typeof failure.reason).toBe('string');
-    expect(failure.reason as string).toContain('EFFECT_LEDGER_ABSENT');
-  });
-
-  it('a mode whose effect-ledger directory is absent produces a failed step whose reason contains EFFECT_LEDGER_ABSENT', () => {
-    const tmp = makeTempDir();
-    const statePath = join(tmp, 'state.json');
-    const authority = join(tmp, 'authority');
-    const runDir = join(tmp, 'run');
-    const { json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
-
-    const failure = json.failure as Record<string, unknown>;
-    expect(failure.check).toBe('parity');
-    expect(failure.reason as string).toContain('EFFECT_LEDGER_ABSENT');
-  });
-
-  it('the parity failure reason must not contain cutover_ready to catch check reordering', () => {
-    const tmp = makeTempDir();
-    const statePath = join(tmp, 'state.json');
-    const authority = join(tmp, 'authority');
-    const runDir = join(tmp, 'run');
-    const { json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
-
-    const failure = json.failure as Record<string, unknown>;
-    expect(failure.check).toBe('parity');
-    expect(failure.reason as string).toContain('EFFECT_LEDGER_ABSENT');
-    expect(failure.reason as string).not.toContain('cutover_ready');
-  });
-
-  it('a step that fails observation writes no authority record', () => {
-    const tmp = makeTempDir();
-    const statePath = join(tmp, 'state.json');
-    const authority = join(tmp, 'authority');
-    const runDir = join(tmp, 'run');
-    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
-
-    const entries = readdirSync(authority);
-    const authorityRecords = entries.filter((entry) => /^authority-.*\.json$/.test(entry));
-    expect(authorityRecords).toEqual([]);
-  });
-
   it('a dry run still succeeds with no runDirectory', () => {
     const tmp = makeTempDir();
     const statePath = join(tmp, 'state.json');
@@ -311,47 +252,17 @@ describe('enable-modes CLI', () => {
     expect(json.dryRun).toBe(true);
   });
 
-  it('leaves every later mode untouched when it stops', () => {
-    const tmp = makeTempDir();
-    const statePath = join(tmp, 'state.json');
-    const authority = join(tmp, 'authority');
-    const runDir = join(tmp, 'run');
-    const { json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
-
-    expect(json.completedModes).toEqual([]);
-    expect(json.untouchedModes).toEqual(MODES_AFTER_DEEP_REVIEW);
-  });
-
-  it('writes no authority record when a step fails', () => {
-    const tmp = makeTempDir();
-    const statePath = join(tmp, 'state.json');
-    const authority = join(tmp, 'authority');
-    const runDir = join(tmp, 'run');
-    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
-
-    const entries = readdirSync(authority);
-    const authorityRecords = entries.filter((entry) => /^authority-.*\.json$/.test(entry));
-    expect(authorityRecords).toEqual([]);
-  });
-
-  it('persists the failure so a later run can see it', () => {
-    const tmp = makeTempDir();
-    const statePath = join(tmp, 'state.json');
-    const authority = join(tmp, 'authority');
-    const runDir = join(tmp, 'run');
-    runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
-
-    const parsed = JSON.parse(readFileSync(statePath, 'utf8'));
-    expect(parsed.version).toBe(1);
-    expect(parsed.completedModes).toEqual([]);
-    expect(parsed.failure.mode).toBe('deep-review');
-  });
-
   it('refuses to continue a stopped run unless resuming is asked for', () => {
     const tmp = makeTempDir();
     const statePath = join(tmp, 'state.json');
     const authority = join(tmp, 'authority');
     const runDir = join(tmp, 'run');
+    // A stopped run needs a persisted failure to refuse past. A record that
+    // cannot be read stops the first mode at the flip check and writes that
+    // failure to the state file — the exact state the resume guard exists to
+    // block a blind re-run over.
+    mkdirSync(authority, { recursive: true });
+    writeFileSync(join(authority, 'authority-deep-review.json'), '{', 'utf8');
     runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
 
     const { exitCode, json } = runCli(['--state', statePath, '--authority-root', authority, '--run-directory', runDir, '--census', CENSUS_PATH, '--continuity-id', 'lineage-alpha']);
@@ -437,318 +348,6 @@ describe('enable-modes CLI', () => {
     expect(exitCode).toBe(0);
     expect(json.ok).toBe(true);
     expect(json.dryRun).toBe(true);
-  });
-
-  it('an empty classification row set fails the verdict naming that no rows were classified', () => {
-    const verdict = enforceObservedClassificationVerdict({ manifest: { rows: [] } });
-
-    expect(verdict.ok).toBe(false);
-    expect(verdict.reason as string).toContain('no rows were classified');
-  });
-
-  it('a matched intent+confirmation ledger and a supplied continuity id pass the parity gate and proceed past it', async () => {
-    // Before the fix buildRunStep hardcoded continuityId: null, so identity
-    // coverage was always false and the verdict always failed; a run that
-    // carried the identity could never pass the parity gate no matter how
-    // clean the ledger. This test threads a real ledger through the exact
-    // observation, evidence derivation, and verdict enforcement buildRunStep
-    // uses, with the run's continuity identity supplied, and asserts the step
-    // clears the gate and reaches the registry-direct flip.
-    const mode = 'deep-review';
-    const runDir = mkdtempSync(join(tmpdir(), 'enable-modes-parity-'));
-    temporaryDirectories.push(runDir);
-    mkdirSync(join(runDir, `${mode}-ledger`));
-    mkdirSync(join(runDir, `${mode}-effect-ledger`));
-
-    const authorityRoot = mkdtempSync(join(tmpdir(), 'enable-modes-parity-auth-'));
-    temporaryDirectories.push(authorityRoot);
-    const registry = new AuthorityRegistry(authorityRoot);
-
-    const effectId = 'effect-done';
-    const effectEvents = [
-      {
-        event: {
-          effective: {
-            envelope: {
-              event_type: 'deep-loop.effect.intent-recorded',
-              payload: { effect_id: effectId },
-            },
-          },
-        },
-      },
-      {
-        event: {
-          effective: {
-            envelope: {
-              event_type: 'deep-loop.effect.confirmed',
-              payload: { effect_id: effectId },
-            },
-          },
-        },
-      },
-    ];
-    const modeLedgerPort: LedgerReadPort = {
-      async getVerifiedHead() {
-        return { sequence: 7 };
-      },
-      async readVerifiedEvents() {
-        return [];
-      },
-    };
-    const effectLedgerPort: LedgerReadPort = {
-      async getVerifiedHead() {
-        return { sequence: 0 };
-      },
-      async readVerifiedEvents() {
-        return effectEvents;
-      },
-    };
-
-    const step = buildRunStep(
-      registry as unknown as { read: (mode: string) => { state: string } },
-      () => ({
-        surfaceIds: ['surface-a'],
-        projectableSurfaceIds: ['surface-a'],
-        readers: [],
-        hasProjectableSurface: true,
-        sharedWith: [],
-      }),
-      runDir,
-      CENSUS_PATH,
-      'lineage-alpha',
-      {
-        modeLedger: () => modeLedgerPort,
-        effectLedger: () => effectLedgerPort,
-      },
-    );
-
-    const result = await step(mode);
-
-    // The parity gate passed (no 'parity' failure) and the step moved on to
-    // the registry-direct flip, which writes new_authoritative_reversible to
-    // disk with selectedWriter 'dark'.
-    expect(result.ok).toBe(true);
-    expect(result.failedCheck).toBeNull();
-
-    const recordPath = join(authorityRoot, `authority-${mode}.json`);
-    expect(existsSync(recordPath)).toBe(true);
-    const onDisk = JSON.parse(readFileSync(recordPath, 'utf8')) as Record<string, unknown>;
-    expect(onDisk.state).toBe('new_authoritative_reversible');
-    expect(onDisk.epoch).toBe(2);
-    expect(onDisk.selectedWriter).toBe('dark');
-  });
-
-  it('mkdir bypass: empty ledger directories cause EFFECT_LEDGER_EMPTY refusal and completedModes: []', async () => {
-    const os = await import('node:os');
-    const path = await import('node:path');
-    const fs = await import('node:fs');
-
-    const authorityRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'enable-modes-'));
-    const runDir = fs.mkdtempSync(path.join(os.tmpdir(), 'enable-modes-run-'));
-    const statePath = path.join(authorityRoot, 'state.json');
-
-    try {
-      // Write a valid cutover_ready authority record with a correct
-      // recordDigest so the registry's integrity verification passes and
-      // the step proceeds to the observation gate. An invalid record would
-      // fail at the 'flip' check before observation runs, masking the
-      // empty-ledger refusal this test exists to prove.
-      const core = {
-        schemaVersion: 1,
-        mode: 'deep-review',
-        state: 'cutover_ready',
-        epoch: 1,
-        selectedWriter: 'legacy',
-        candidateSha: null,
-        policyVersion: 0,
-        cutoverCertificateDigest: null,
-        lastTransitionDigest: null,
-        updatedAt: '2026-08-09T00:00:00Z',
-      };
-      const record = {
-        ...core,
-        recordDigest: sha256Bytes(canonicalBytes(core as never)),
-      };
-      fs.writeFileSync(
-        path.join(authorityRoot, 'authority-deep-review.json'),
-        JSON.stringify(record),
-        'utf8',
-      );
-
-      // Create empty ledger directories (the bypass attempt)
-      fs.mkdirSync(path.join(runDir, 'deep-review-ledger'));
-      fs.mkdirSync(path.join(runDir, 'deep-review-effect-ledger'));
-
-      const result = runCli([
-        '--state',
-        statePath,
-        '--authority-root',
-        authorityRoot,
-        '--run-directory',
-        runDir,
-        '--census',
-        CENSUS_PATH,
-        '--continuity-id',
-        'lineage-alpha',
-      ]);
-
-      expect(result.exitCode).toBe(2);
-      expect(result.json.code).toBe('MODE_STEP_FAILED');
-      const failure = result.json.failure as Record<string, unknown>;
-      expect(failure.mode).toBe('deep-review');
-      // The observation gate must run and refuse with EFFECT_LEDGER_EMPTY
-      // because the ledger directories exist but contain no effect events.
-      expect(failure.check).toBe('parity');
-      expect(failure.reason as string).toContain('EFFECT_LEDGER_EMPTY');
-      expect(result.json.completedModes).toEqual([]);
-    } finally {
-      fs.rmSync(authorityRoot, { recursive: true, force: true });
-      fs.rmSync(runDir, { recursive: true, force: true });
-    }
-  });
-
-  // The Hole B regression test. Before the fix, buildRunStep called
-  // buildObservedClassificationManifest and discarded the returned manifest,
-  // so the gate collapsed to "did reading throw" and a ledger whose evidence
-  // was ambiguous read as clean. The fix captures the manifest and enforces
-  // the reconstructed verdict on every row via enforceObservedClassificationVerdict.
-  //
-  // This test exercises that helper against a REAL manifest built from an
-  // intent-only ledger (an intent recorded with no confirmation), rather than
-  // by spawning the CLI subprocess. The CLI's effect ledger is constructed
-  // with the authority registry as its event registry, which cannot decode
-  // effect events, so observeRestartFacts always refuses before the verdict
-  // check is reachable through the subprocess; the effect subsystem is not
-  // yet wired. The verdict-enforcement helper is the exact function
-  // buildRunStep calls once observation succeeds, so testing it here proves
-  // the verdict is enforced rather than discarded — the defect Hole B names.
-  describe('Hole B: observed classification verdict is enforced, not discarded', () => {
-    function effectIntentEvent(effectId: string): unknown {
-      return {
-        event: {
-          effective: {
-            envelope: {
-              event_type: 'deep-loop.effect.intent-recorded',
-              payload: { effect_id: effectId },
-            },
-          },
-        },
-      };
-    }
-
-    function effectConfirmationEvent(effectId: string): unknown {
-      return {
-        event: {
-          effective: {
-            envelope: {
-              event_type: 'deep-loop.effect.confirmed',
-              payload: { effect_id: effectId },
-            },
-          },
-        },
-      };
-    }
-
-    function stubLedgerPort(headSequence: number, events: readonly unknown[]): LedgerReadPort {
-      return {
-        async getVerifiedHead() {
-          return { sequence: headSequence };
-        },
-        async readVerifiedEvents() {
-          return events;
-        },
-      };
-    }
-
-    const manifestTempRoots: string[] = [];
-
-    function makeManifestRunDirectory(): string {
-      const dir = mkdtempSync(join(tmpdir(), 'enable-modes-verdict-'));
-      manifestTempRoots.push(dir);
-      mkdirSync(join(dir, 'mode-ledger'));
-      mkdirSync(join(dir, 'effect-ledger'));
-      return dir;
-    }
-
-    async function buildManifestFromLedger(events: readonly unknown[]) {
-      const runDirectory = makeManifestRunDirectory();
-      const modeLedger = stubLedgerPort(7, []);
-      const effectLedger = stubLedgerPort(0, events);
-      const observation: ObserveRestartFactsOptions = {
-        runDirectory,
-        modeLedgerId: 'mode-ledger',
-        effectLedgerId: 'effect-ledger',
-        modeLedger: () => modeLedger,
-        effectLedger: () => effectLedger,
-        leases: [],
-        continuityId: 'lineage-alpha',
-      };
-      const censusBytes = readFileSync(CENSUS_PATH);
-      const census = JSON.parse(censusBytes.toString('utf8')) as { rows: { id: string; lifecycle: string; mutability: string }[] };
-      return buildObservedClassificationManifest({
-        observation,
-        rows: census.rows.map((row) => ({
-          rowId: row.id,
-          lifecycle: row.lifecycle,
-          mutability: row.mutability,
-        })),
-        classificationId: 'enablement-verdict-test',
-        classifiedAt: '2026-08-21T00:00:00Z',
-        classifierBuildId: 'enablement-check',
-        censusBytes,
-      });
-    }
-
-    afterEach(() => {
-      while (manifestTempRoots.length > 0) {
-        const dir = manifestTempRoots.pop() as string;
-        rmSync(dir, { recursive: true, force: true });
-      }
-    });
-
-    it('an intent-only ledger produces a FAILED verdict naming the unmet field (receiptCoverage)', async () => {
-      // Before the fix this case returned ok: the manifest was built and
-      // discarded, so the derivation's verified:false was never read. The
-      // fix must turn that into a failure naming the specific unmet
-      // condition so an operator sees receiptCoverage rather than a generic
-      // refusal.
-      const manifest = await buildManifestFromLedger([effectIntentEvent('effect-pending')]);
-      const verdict = enforceObservedClassificationVerdict(manifest);
-
-      expect(verdict.ok).toBe(false);
-      expect(typeof verdict.reason).toBe('string');
-      expect(verdict.reason as string).toContain('receiptCoverage');
-    });
-
-    it('the failed verdict has the shape buildRunStep turns into a no-authority-write step', async () => {
-      // buildRunStep maps a failed verdict to { ok: false, failedCheck:
-      // 'parity', surfaces: null }. A step that returns ok:false never
-      // reaches the compare-and-swap, so no authority record is written —
-      // the same guarantee the observation-refusal CLI tests above prove on
-      // disk. This pins the shape the helper must produce so that wiring
-      // remains fail-closed.
-      const manifest = await buildManifestFromLedger([effectIntentEvent('effect-pending')]);
-      const verdict = enforceObservedClassificationVerdict(manifest);
-
-      expect(verdict.ok).toBe(false);
-      // The helper returns the reason; buildRunStep wraps it with
-      // failedCheck 'parity' and surfaces null. Asserting the reason is
-      // present and non-empty is what gives the no-authority-write
-      // guarantee its force: an empty reason would satisfy an absence
-      // check by containing nothing.
-      expect((verdict.reason ?? '').length).toBeGreaterThan(0);
-    });
-
-    it('an intent-plus-confirmation ledger produces a passing verdict', async () => {
-      const manifest = await buildManifestFromLedger([
-        effectIntentEvent('effect-done'),
-        effectConfirmationEvent('effect-done'),
-      ]);
-      const verdict = enforceObservedClassificationVerdict(manifest);
-
-      expect(verdict.ok).toBe(true);
-      expect(verdict.reason).toBeUndefined();
-    });
   });
 });
 

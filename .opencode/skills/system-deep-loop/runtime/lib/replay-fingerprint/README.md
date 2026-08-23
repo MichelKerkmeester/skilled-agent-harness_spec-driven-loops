@@ -30,7 +30,7 @@ Deterministic replay-integrity primitive for the convergent-architecture runtime
 
 ## 3. CONSUMERS
 
-Foundational primitive imported by most other `runtime/lib` domains. Direct consumers in this batch: `rollback-drills` (drill ledger harness), `shadow-parity` (harness and types) and `stream-fold-gauges` (gauge replay). It is also imported by `blinded-adjudication`, `claim-continuity`, `compatibility-shadow`, `contradiction-supersession`, `hierarchical-budgets`, `legacy-projections`, `locks-and-fencing`, `mode-contracts`, `path-coverage-termination`, `receipts-and-effect-recovery` and `semantic-communities`.
+Foundational primitive imported by most other `runtime/lib` domains. Direct consumer in this batch: `stream-fold-gauges` (gauge replay). It is also imported by `blinded-adjudication`, `claim-continuity`, `compatibility-shadow`, `contradiction-supersession`, `hierarchical-budgets`, `legacy-projections`, `locks-and-fencing`, `mode-contracts`, `path-coverage-termination`, `receipts-and-effect-recovery` and `semantic-communities`.
 
 ---
 

@@ -225,8 +225,8 @@ function dispatchObservation(
 // 4. AUTHORIZED WRITER
 // ───────────────────────────────────────────────────────────────────
 //
-// Mirrors the rollback-drill effect writer: each append authorizes through
-// the transition gateway and commits through a one-shot fence. A one-shot
+// Each append authorizes through the transition gateway and commits through
+// a one-shot fence. A one-shot
 // fence per append (rather than a long-lived lease) is required because the
 // dispatch can run for hours; the intent append and the confirmation append
 // must each take their own short-lived lease rather than sharing one that

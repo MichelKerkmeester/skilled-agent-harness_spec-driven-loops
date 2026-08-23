@@ -28,8 +28,7 @@ Migration boundary between a legacy read model and a dark, additive replacement.
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/fixture-corpus.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/compatibility-adapter.ts`
+None currently. The mixed-version fixture corpus that consumed this dual-read boundary has been removed; the module is retained with no live importer.
 
 ---
 

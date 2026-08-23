@@ -22,12 +22,9 @@ The table is the complete direct-file inventory. Test names are the public navig
 
 | File | Coverage |
 |---|---|
-| `agent-improvement-certificates.vitest.ts` | Executable checks for the agent improvement certificates runtime contract. |
 | `agent-improvement-ledger-schema.vitest.ts` | Executable checks for the agent improvement ledger schema runtime contract. |
 | `agent-improvement-reducers.vitest.ts` | Executable checks for the agent improvement reducers runtime contract. |
-| `agent-improvement-resume-adapter.vitest.ts` | Executable checks for the agent improvement resume adapter runtime contract. |
 | `agent-improvement-sealed-artifacts.vitest.ts` | Executable checks for the agent improvement sealed artifacts runtime contract. |
-| `agent-improvement-shadow-parity.vitest.ts` | Executable checks for the agent improvement shadow parity runtime contract. |
 | `artifact-root.vitest.ts` | Executable checks for the artifact root runtime contract. |
 | `atomic-state.vitest.ts` | Executable checks for the atomic state runtime contract. |
 | `authorized-ledger.vitest.ts` | Executable checks for the authorized ledger runtime contract. |
@@ -52,40 +49,25 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `coverage-graph-signals.vitest.ts` | Executable checks for the coverage graph signals runtime contract. |
 | `cross-mode-closures.vitest.ts` | Executable checks for the cross mode closures runtime contract. |
 | `cycle-detection.vitest.ts` | Executable checks for the cycle detection runtime contract. |
-| `deep-ai-council-certificates.vitest.ts` | Executable checks for the deep ai council certificates runtime contract. |
 | `deep-ai-council-ledger-schema.vitest.ts` | Executable checks for the deep ai council ledger schema runtime contract. |
 | `deep-ai-council-reducers.vitest.ts` | Executable checks for the deep ai council reducers runtime contract. |
-| `deep-ai-council-resume-adapter.vitest.ts` | Executable checks for the deep ai council resume adapter runtime contract. |
 | `deep-ai-council-sealed-artifacts.vitest.ts` | Executable checks for the deep ai council sealed artifacts runtime contract. |
-| `deep-ai-council-shadow-parity.vitest.ts` | Executable checks for the deep ai council shadow parity runtime contract. |
-| `deep-alignment-certificates.vitest.ts` | Executable checks for the deep alignment certificates runtime contract. |
 | `deep-alignment-ledger-schema.vitest.ts` | Executable checks for the deep alignment ledger schema runtime contract. |
 | `deep-alignment-reducers.vitest.ts` | Executable checks for the deep alignment reducers runtime contract. |
-| `deep-alignment-resume-adapter.vitest.ts` | Executable checks for the deep alignment resume adapter runtime contract. |
 | `deep-alignment-sealed-artifacts.vitest.ts` | Executable checks for the deep alignment sealed artifacts runtime contract. |
-| `deep-alignment-shadow-parity.vitest.ts` | Executable checks for the deep alignment shadow parity runtime contract. |
-| `deep-improvement-common-certificates.vitest.ts` | Executable checks for the deep improvement common certificates runtime contract. |
 | `deep-improvement-common-ledger-schema.vitest.ts` | Executable checks for the deep improvement common ledger schema runtime contract. |
 | `deep-improvement-common-reducers.vitest.ts` | Executable checks for the deep improvement common reducers runtime contract. |
-| `deep-improvement-common-resume-adapter.vitest.ts` | Executable checks for the deep improvement common resume adapter runtime contract. |
 | `deep-improvement-common-sealed-artifacts.vitest.ts` | Executable checks for the deep improvement common sealed artifacts runtime contract. |
-| `deep-improvement-common-shadow-parity.vitest.ts` | Executable checks for the deep improvement common shadow parity runtime contract. |
-| `deep-research-certificates.vitest.ts` | Executable checks for the deep research certificates runtime contract. |
 | `deep-research-convergence-floor.vitest.ts` | Executable checks for the deep research convergence floor runtime contract. |
 | `deep-research-ledger-schema.vitest.ts` | Executable checks for the deep research ledger schema runtime contract. |
 | `deep-research-memory-upsert-yaml.vitest.ts` | Executable checks for the deep research memory upsert yaml runtime contract. |
 | `deep-research-novelty-inertness.vitest.ts` | Executable checks for the deep research novelty inertness runtime contract. |
 | `deep-research-reduce-state.vitest.ts` | Executable checks for the deep research reduce state runtime contract. |
 | `deep-research-reducers.vitest.ts` | Executable checks for the deep research reducers runtime contract. |
-| `deep-research-resume-adapter.vitest.ts` | Executable checks for the deep research resume adapter runtime contract. |
 | `deep-research-sealed-artifacts.vitest.ts` | Executable checks for the deep research sealed artifacts runtime contract. |
-| `deep-research-shadow-parity.vitest.ts` | Executable checks for the deep research shadow parity runtime contract. |
-| `deep-review-certificates.vitest.ts` | Executable checks for the deep review certificates runtime contract. |
 | `deep-review-ledger-schema.vitest.ts` | Executable checks for the deep review ledger schema runtime contract. |
 | `deep-review-reducers.vitest.ts` | Executable checks for the deep review reducers runtime contract. |
-| `deep-review-resume-adapter.vitest.ts` | Executable checks for the deep review resume adapter runtime contract. |
 | `deep-review-sealed-artifacts.vitest.ts` | Executable checks for the deep review sealed artifacts runtime contract. |
-| `deep-review-shadow-parity.vitest.ts` | Executable checks for the deep review shadow parity runtime contract. |
 | `deep-review-strategy-heading.vitest.ts` | Executable checks for the deep review strategy heading runtime contract. |
 | `dependency-seams.vitest.ts` | Executable checks for the dependency seams runtime contract. |
 | `dispatch-failure.vitest.ts` | Executable checks for the dispatch failure runtime contract. |
@@ -103,7 +85,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `fanout-salvage.vitest.ts` | Executable checks for the fanout salvage runtime contract. |
 | `health-degeneration-harness.vitest.ts` | Executable checks for the health degeneration harness runtime contract. |
 | `host-driven-improvement.vitest.ts` | Executable checks for the host driven improvement runtime contract. |
-| `inflight-state-classification.vitest.ts` | Executable checks for the inflight state classification runtime contract. |
 | `jsonl-repair.vitest.ts` | Executable checks for the jsonl repair runtime contract. |
 | `leaf-artifact-writer.vitest.ts` | Executable checks for the leaf artifact writer runtime contract. |
 | `legacy-projections.test.ts` | Executable checks for the legacy projections runtime contract. |
@@ -114,14 +95,10 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `locks-and-fencing.vitest.ts` | Executable checks for the locks and fencing runtime contract. |
 | `loop-lock-cli.vitest.ts` | Executable checks for the loop lock cli runtime contract. |
 | `loop-lock.vitest.ts` | Executable checks for the loop lock runtime contract. |
-| `mixed-version-fixtures.vitest.ts` | Executable checks for the mixed version fixtures runtime contract. |
 | `mode-contracts.vitest.ts` | Executable checks for the mode contracts runtime contract. |
-| `model-benchmark-certificates.vitest.ts` | Executable checks for the model benchmark certificates runtime contract. |
 | `model-benchmark-ledger-schema.vitest.ts` | Executable checks for the model benchmark ledger schema runtime contract. |
 | `model-benchmark-reducers.vitest.ts` | Executable checks for the model benchmark reducers runtime contract. |
-| `model-benchmark-resume-adapter.vitest.ts` | Executable checks for the model benchmark resume adapter runtime contract. |
 | `model-benchmark-sealed-artifacts.vitest.ts` | Executable checks for the model benchmark sealed artifacts runtime contract. |
-| `model-benchmark-shadow-parity.vitest.ts` | Executable checks for the model benchmark shadow parity runtime contract. |
 | `next-focus.vitest.ts` | Executable checks for the next focus runtime contract. |
 | `observability-events.vitest.ts` | Executable checks for the observability events runtime contract. |
 | `optimizer-manifest-anti-convergence.vitest.ts` | Executable checks for the optimizer manifest anti convergence runtime contract. |
@@ -137,19 +114,14 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `render-command-contract.vitest.ts` | Executable checks for the render command contract runtime contract. |
 | `replay-fingerprint.vitest.ts` | Executable checks for the replay fingerprint runtime contract. |
 | `result-envelopes.vitest.ts` | Executable checks for the result envelopes runtime contract. |
-| `rollback-drills.vitest.ts` | Executable checks for the rollback drills runtime contract. |
 | `run-now-yaml-control.vitest.ts` | Executable checks for the run now yaml control runtime contract. |
 | `runtime-capabilities-matrix-conformance.vitest.ts` | Executable checks for the runtime capabilities matrix conformance runtime contract. |
 | `runtime-capabilities.vitest.ts` | Executable checks for the runtime capabilities runtime contract. |
 | `sealed-reference-artifacts.vitest.ts` | Executable checks for the sealed reference artifacts runtime contract. |
 | `semantic-communities.vitest.ts` | Executable checks for the semantic communities runtime contract. |
-| `shadow-parity-harness.vitest.ts` | Executable checks for the shadow parity harness runtime contract. |
-| `skill-benchmark-certificates.vitest.ts` | Executable checks for the skill benchmark certificates runtime contract. |
 | `skill-benchmark-ledger-schema.vitest.ts` | Executable checks for the skill benchmark ledger schema runtime contract. |
 | `skill-benchmark-reducers.vitest.ts` | Executable checks for the skill benchmark reducers runtime contract. |
-| `skill-benchmark-resume-adapter.vitest.ts` | Executable checks for the skill benchmark resume adapter runtime contract. |
 | `skill-benchmark-sealed-artifacts.vitest.ts` | Executable checks for the skill benchmark sealed artifacts runtime contract. |
-| `skill-benchmark-shadow-parity.vitest.ts` | Executable checks for the skill benchmark shadow parity runtime contract. |
 | `sleep.vitest.ts` | Executable checks for the sleep runtime contract. |
 | `spawn-cjs.vitest.ts` | Executable checks for the spawn cjs runtime contract. |
 | `speckit-autopilot-contract.vitest.ts` | Executable checks for the speckit autopilot contract runtime contract. |

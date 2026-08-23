@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "delete overengineering",
+      "remove rollback machinery",
+      "delete migration scaffolding"
+    ],
+    "key_topics": [
+      "delete",
+      "overengineering",
+      "remove",
+      "rollback",
+      "machinery",
+      "migration",
+      "scaffolding",
+      "about",
+      "quarter",
+      "runtime",
+      "256k",
+      "loc"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delete Over",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Engineered Rollback",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migration Machinery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement About",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Delete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "About a quarter of the runtime (~256k LOC) is one-time-use migration scaffolding and reversibility ceremony:",
+    "created_at": "2026-08-23T19:32:08.669Z",
+    "last_save_at": "2026-08-23T19:32:08.669Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9cc6ceb408aa327e864792e74f7863b36cf8e275383491801e0b3c95d4e4d3f9",
+    "source_doc_hashes": {
+      "spec.md": "08a134f907d317f93b7a714d3e09a297eebeab65977d544742e33b8b6d83bd16"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
