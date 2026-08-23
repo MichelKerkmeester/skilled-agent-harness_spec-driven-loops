@@ -6,8 +6,8 @@ trigger_phrases:
   - "notesmd-cli features"
   - "obsidian MCP tools"
   - "Obsidian plugin file-layer operations"
-last_updated: "2026-08-03"
-version: 0.1.1.0
+last_updated: "2026-08-23"
+version: 0.1.2.0
 ---
 
 # mcp-obsidian: Feature Catalog
@@ -20,9 +20,9 @@ The inventory records current behavior only. Exact `notesmd-cli` flags for `crea
 
 ## 1. OVERVIEW
 
-The mode has 31 catalog entries: 14 CLI cards (11 headless operations and 3 official app-backed capabilities), 6 MCP cards (5 confirmed cyanheads core tools plus 1 inventory boundary for the remaining 9 tools), and 11 plugin and theme file-layer cards. The headless profile is the default when no running app is available; the official CLI and MCP are app-backed surfaces.
+The mode has 34 catalog entries: 14 CLI cards (11 headless operations and 3 official app-backed capabilities), 6 MCP cards (5 confirmed cyanheads core tools plus 1 inventory boundary for the remaining 9 tools), and 14 plugin and theme file-layer cards. The headless profile is the default when no running app is available; the official CLI and MCP are app-backed surfaces.
 
-The catalog groups cards by execution surface: `cli/` (14), `mcp/` (6), and `plugins/` (11). Display order below preserves operating sequence and priority context without making directory names part of the contract.
+The catalog groups cards by execution surface: `cli/` (14), `mcp/` (6), and `plugins/` (14). Display order below preserves operating sequence and priority context without making directory names part of the contract.
 
 ---
 
@@ -198,7 +198,7 @@ See [`mcp/additional-tools-verify.md`](mcp/additional-tools-verify.md).
 
 ## 14. PLUGINS
 
-The plugin category records file-layer operations for the eleven artifacts narrated below: Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Meta Bind, and the Obsidian theme system. Each card points to the slim index, deep references, copyable assets where they exist, and (where one exists) its manual tie-in scenario. The router carries dedicated references for further file-layer plugins beyond this narrated set — Advanced Canvas, Claudian, Notion Bases, and Local REST API; see `references/plugins/installed-plugins.md` for the full roster. The theme system's references live outside the plugin tree under `references/themes/`.
+The plugin category records file-layer operations for the fourteen artifacts narrated below: Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Meta Bind, Advanced Canvas, Claudian, Notion Bases, and the Obsidian theme system. Each card points to the slim index, deep references, copyable assets where they exist, and (where one exists) its manual tie-in scenario. Beyond this narrated set, the router carries a dedicated reference for Local REST API — the MCP transport backbone rather than a file-layer authoring target, so it has no catalog card; see `references/plugins/installed-plugins.md` for the full roster. The theme system's references live outside the plugin tree under `references/themes/`.
 
 ### Beancount Ledger
 
@@ -259,6 +259,24 @@ See [`plugins/git.md`](plugins/git.md).
 Operate the Outliner settings file (editor-behavior contract only; the plugin has no note format of its own).
 
 See [`plugins/outliner.md`](plugins/outliner.md).
+
+### Advanced Canvas
+
+Extend the native `.canvas` JSON with Advanced JSON Canvas keys — node shapes and borders, edge path/arrow/pathfinding styles, floating edges, portals, collapsible groups, and a presentation start node — all at the file layer.
+
+See [`plugins/advanced-canvas.md`](plugins/advanced-canvas.md).
+
+### Claudian
+
+Configure the Claudian providers and author the in-vault artifacts it reads — slash commands, reusable skills, subagents, and provider-native config — at the file layer, never running the agent loop or authoring a `.claude/mcp.json`.
+
+See [`plugins/claudian.md`](plugins/claudian.md).
+
+### Notion Bases
+
+Author and validate `_database.md` schemas — two-way relations, the seven rollup functions, lookup columns, self-relation subtasks, and the seven supported view types — resolving relations and rollups by hand from the real related rows.
+
+See [`plugins/notion-bases.md`](plugins/notion-bases.md).
 
 ### Obsidian theme system
 
