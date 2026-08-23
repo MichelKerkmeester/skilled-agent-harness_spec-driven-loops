@@ -69,9 +69,9 @@ Total AI autonomous time runs from roughly 30 minutes to several hours, driven b
 
 ---
 
-## 4. RELATIONS, ROLLUPS & FORMULAS — THREE-WAY RECOVERY
+## 4. RELATIONS, ROLLUPS, FORMULAS, VIEWS & INTERACTIVE ELEMENTS — RECOVERY
 
-Bases alone is not sufficient for a workspace with relations, rollups, or formulas — the **Notion Bases community plugin** (`bgarciamoura/obsidian-notion-bases-plugin`) recovers over 90% of Notion's relational feature set on top of Core Bases, and Dataview supplements custom aggregations neither plugin covers natively.
+Bases alone is not sufficient for a workspace with relations, rollups, or formulas — the **Notion Bases community plugin** (`bgarciamoura/obsidian-notion-bases-plugin`) recovers over 90% of Notion's relational feature set on top of Core Bases, and Dataview supplements custom aggregations neither plugin covers natively. The same plugin also rebuilds the secondary database views the importer drops (view recovery, below), and the **Meta Bind** plugin plus its **JS Engine** companion rebuild the interactive elements — buttons, date pickers, live timers — the importer has no surface for at all (interactive-element recovery, below). Both are reconstruction tasks, exactly like comments (section 5).
 
 ### Recovery by feature
 
@@ -99,6 +99,39 @@ Bases alone is not sufficient for a workspace with relations, rollups, or formul
 | Views | 7 types (table/board/gallery/list/calendar/timeline/chart) | 2-3 types | `TABLE`/`LIST`/`CALENDAR` |
 
 **Do not overstate parity.** The `style()`, `name()`, and `email()` formula functions have no Obsidian equivalent at all — document them as a hand-translated static fallback, never as "converted." `dateBetween()`/`dateRange()` conversions must be spot-checked against the Notion source before being trusted.
+
+### View recovery (secondary Notion views → Notion Bases view configs)
+
+The importer converts only the default **table** view; every other saved view is dropped. `migration-inventory.md` step 4 inventories those dropped views, and step 7 of the method above reconstructs them. Rebuild each one as a Notion Bases view block in the target database's `_database.md`, using the plugin's confirmed per-view config keys.
+
+| Notion view | Notion Bases view + confirmed config keys | Parity |
+|---|---|---|
+| Table / List | `table` / `list` | Faithful |
+| Board (Kanban) | `board` — `groupByColumnId`, plus `boardColumnOrder` / `boardColumnLimits` | Faithful |
+| Calendar | `calendar` — `calendarDateField` (a `type: date` column) + `calendarViewMode` (`month`/`week`) | Faithful — use the calendar recipe below |
+| Timeline / Gantt | `timeline` — `timelineStartField` / `timelineEndField` / `timelineGroupByField` | Faithful |
+| Gallery | `gallery` — `galleryCoverField` / `galleryCardSize` | Faithful |
+| Chart | `chart` — `chartType` / `chartXAxis` / `chartYAxis` | Faithful |
+| Form / Map / Dashboard | No Obsidian equivalent through any plugin | **None — document as lost** |
+
+The **calendar recipe** — a Notion-style month/week grid built from the database's own dated notes, with a Meta Bind date picker for click-to-pick entry and an optional read-only Dataview agenda beside it — lives in `references/plugins/notion-bases/workflows.md`. Point to it rather than re-deriving the calendar view block here.
+
+**Core-Bases / Dataview fallback.** When the Notion Bases plugin is not installed, Core Bases covers only `table` / `board` / `list` / `calendar` (no gallery, timeline, or chart), and Dataview supplies read-only `TABLE` / `LIST` / `CALENDAR` blocks as a last resort. A Dataview block is a fallback, not a faithful conversion — it cannot reproduce a board, gallery, timeline, or chart.
+
+**Do not overstate view parity.** Notion Bases gives faithful parity for 7 of Notion's 10 view types (table, board, list, calendar, gallery, timeline, chart). **Form, Map and Dashboard have no Obsidian equivalent** — record them as lost, never as a pending recipe.
+
+### Interactive-element recovery (Notion buttons and date widgets → Meta Bind + JS Engine)
+
+The importer has no surface for Notion's interactive database controls — buttons, date-entry widgets, and in-row action controls are dropped entirely. Rebuild them with the **Meta Bind** plugin (the widgets) and its **JS Engine** companion (frontmatter writes and computed values). Like comments and secondary views, this is reconstruction, not conversion.
+
+| Notion element | Obsidian reconstruction |
+|---|---|
+| Button that runs an action | A Meta Bind `meta-bind-button` block, or the button's `js` action running a vault file as-is |
+| Date-entry widget / date picker | A Meta Bind `INPUT[datePicker:<frontmatter-key>]` bound to the row's date field |
+| Timestamp / "now" control, live timer | A Meta Bind button `updateMetadata` action with `evaluate: true` and `value: "new Date().toISOString()"`, or a JS Engine block writing `new Date().toISOString()` to frontmatter |
+| Inline edit panel (interactive fields) | Meta Bind `INPUT[…]` fields (text / number / toggle / datePicker) bound to the note's frontmatter |
+
+**Do not overstate interactive parity.** Meta Bind rebuilds the interaction at the file layer: the AI authors the widget text and the frontmatter it binds to, never the click, and a reload in a running Obsidian is what renders it. Meta Bind has no `now()` function — a timestamp is a plain-JavaScript `updateMetadata` value — and its `js` / `inlineJS` actions need JS Engine installed plus JavaScript enabled in Meta Bind's own settings. Frame every rebuilt control as an equivalent, never as a faithful conversion of the Notion button.
 
 ---
 
@@ -152,6 +185,8 @@ Load this reference when a request involves:
 
 | File | Use it for |
 |---|---|
+| `references/plugins/notion-bases/notion-bases.md` | The primary DB-replacement plugin tree: two-way relations, the 7 rollup functions, lookups, subtasks, the 7 view types (section 4's view recovery), and the calendar recipe (in its `workflows.md`) |
+| `references/plugins/meta-bind/meta-bind.md` | Reconstructing dropped interactive elements — buttons, date pickers, and live timers via Meta Bind + JS Engine (section 4's interactive-element recovery) |
 | `references/plugins/dataview/dataview.md` | Authoring the Dataview queries this method uses for back-reference lookups and custom aggregations |
 | `references/plugins/plugin-operation-logic.md` | The general file-layer model for writing `.base` files and plugin schemas |
 | `../../mcp-notion/references/migration-inventory.md` | The read-side counterpart: the 7-step inventory procedure that must run before and during this method |
@@ -161,6 +196,8 @@ Load this reference when a request involves:
 ## 8. RELATED RESOURCES
 
 - `../../mcp-notion/references/migration-inventory.md` — `mcp-notion`'s read-side inventory method (7-step procedure, API-gap reads, and read-limit constraints) that feeds step 1 of this method.
+- `references/plugins/notion-bases/notion-bases.md` — the Notion Bases plugin tree (data model, workflows including the calendar recipe, troubleshooting): the P0 DB-replacement behind section 4's relation, rollup, lookup, and view recovery.
+- `references/plugins/meta-bind/meta-bind.md` — the Meta Bind + JS Engine tree: the interactive-element reconstruction (buttons, date pickers, live timers) in section 4.
 - `references/plugins/dataview/dataview.md` — Dataview plugin index, used for back-reference queries and rollup supplementation (section 4).
 - `references/plugins/plugin-operation-logic.md` — the general file-layer model this method's `.base`/plugin-schema writes follow.
 - `references/mcp-tools.md` — the cyanheads MCP catalog, an optional accelerator for step 6/8 when a live Obsidian session is available.

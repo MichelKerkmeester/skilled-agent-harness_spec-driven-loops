@@ -1,0 +1,21 @@
+{
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+  "description": "The migration playbook lagged the 006 plugin research",
+  "keywords": [
+    "migration",
+    "playbook",
+    "lagged",
+    "plugin",
+    "research"
+  ],
+  "lastUpdated": "2026-08-23T04:52:02.627Z",
+  "specId": "011",
+  "folderSlug": "migration-playbook-refresh",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

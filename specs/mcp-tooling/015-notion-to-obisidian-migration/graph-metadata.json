@@ -13,7 +13,8 @@
     "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
     "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-consolidation",
     "mcp-tooling/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
-    "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup"
+    "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+    "mcp-tooling/015-notion-to-obisidian-migration/011-migration-playbook-refresh"
   ],
   "manual": {
     "depends_on": [],
@@ -55,6 +56,7 @@
       "007-excalidraw-deprecation/spec.md",
       "009-apply-plugin-doc-recs/spec.md",
       "010-plugin-doc-recs-followup/spec.md",
+      "011-migration-playbook-refresh/spec.md",
       "001-deep-research/prior-findings.md"
     ],
     "entities": [
@@ -109,15 +111,15 @@
     ],
     "causal_summary": "Phase parent for a flawless complex-Notion→Obsidian migration capability: research first (20 iterations, GLM-5.2 via cli-devin + DeepSeek V4 Flash xhigh via cli-opencode/Cline, no early convergence), then synthesize into whatever phase children mcp-obsidian + mcp-notion need — including any Obsidian plugins that close a gap.",
     "created_at": "2026-08-21T10:35:33.158Z",
-    "last_save_at": "2026-08-23T03:51:37.415Z",
+    "last_save_at": "2026-08-23T05:00:03.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5566b9da55c15629c7060641822639fca7f6ce11a494996c13ce334da9dba7cc",
+    "source_fingerprint": "sha256:286b9ffd07c1adb66f126465d4d6451557d9bf2dace83a24dd3f1b98285645e8",
     "source_doc_hashes": {
-      "spec.md": "be76a6202b87728fee6eb4263d0c01ba29e390c609a1c39a14fa2fe1aebf9ac0"
+      "spec.md": "f962036b781d1df2ea039a3ef80fc0a944ef2e4cfd0934c50f78817563f866ad"
     },
     "last_active_child_id": "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
     "last_active_at": "2026-08-22T09:00:00.000Z"

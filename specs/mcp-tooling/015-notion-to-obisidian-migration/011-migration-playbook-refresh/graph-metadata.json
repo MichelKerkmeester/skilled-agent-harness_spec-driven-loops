@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
   "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
@@ -11,29 +11,29 @@
   },
   "derived": {
     "trigger_phrases": [
-      "015 plugin doc recs followup",
-      "dataview file.day folder fix",
-      "claudian positive mcp path unknown",
-      "advanced-canvas interdimensional caveat tighten",
-      "015 plugin doc recs followup plan",
-      "mcp-obsidian deferred docs plan",
-      "015 plugin doc recs followup tasks",
-      "015 plugin doc recs followup checklist",
-      "015 plugin doc recs followup summary"
+      "015 migration playbook refresh",
+      "notion migration view recovery",
+      "notion migration interactive elements meta bind",
+      "migration inventory recovery routing",
+      "015 migration playbook refresh plan",
+      "notion migration playbook refresh plan",
+      "015 migration playbook refresh tasks",
+      "015 migration playbook refresh checklist",
+      "015 migration playbook refresh summary"
     ],
     "key_topics": [
-      "plugin",
-      "doc",
-      "recs",
-      "followup",
-      "dataview",
-      "file",
-      "day",
-      "folder",
-      "claudian",
-      "positive",
-      "mcp",
-      "path"
+      "migration",
+      "playbook",
+      "refresh",
+      "notion",
+      "view",
+      "recovery",
+      "interactive",
+      "elements",
+      "meta",
+      "bind",
+      "inventory",
+      "routing"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -41,8 +41,8 @@
       "spec.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "plan.md"
+      "plan.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -64,15 +64,27 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Meta Bind",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -88,25 +100,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context Phase",
+        "name": "Phase Context The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Resolve",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -130,19 +130,13 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Facts",
+        "name": "Pattern Source",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,26 +154,14 @@
         "source": "derived"
       },
       {
-        "name": "Adding Metadata",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Summary Errors",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -188,11 +170,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Cases",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Phase 009 left five documentation items and one sibling-packet error unresolved",
-    "created_at": "2026-08-22T20:16:22.967Z",
-    "last_save_at": "2026-08-23T05:04:53.692Z",
+    "causal_summary": "The migration playbook lagged the 006 plugin research",
+    "created_at": "2026-08-23T04:48:36.563Z",
+    "last_save_at": "2026-08-23T04:53:11.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c8746b3f309ad009c8c4fa0a548c805b0a329bd0a70177432fffd0f3c941df5",
+    "source_fingerprint": "sha256:78bd36dd469361487d9afaa6baade99fe62dafbc3c6cbfafca476304e344d0bb",
     "source_doc_hashes": {
-      "spec.md": "65b58f4865374b9d7bf4077ffbe9c4d321915ac804eddb6de06f53fc2856e041",
-      "plan.md": "cfad787951898f5b4c0fac5f881bad347c2504c4f550fe17541820ad8650ded1",
-      "tasks.md": "2515b00ad8deffd3b5bc4d56f97bbf88c5956a84c12f2b106ed5e458dd007667",
-      "checklist.md": "34a3adc5933c6c35005489d6f41a9bb384256bc40e27a77e0570a27f6d76f421",
-      "implementation-summary.md": "4ab4d5c26426ca479fa6bde20fd6ef19d4d23fec3ff2e43019d4f46050c88717"
+      "spec.md": "4a010ea13336dbe48dee1da5baaf63df5e373495b4948991d26990acd40b0327",
+      "plan.md": "1854506ba3fdbb4163426a2d8cf687466bcb38336e02fe3c1115fcc35d4877da",
+      "tasks.md": "2c46258854196eec06e654553fd77dffda9832a6fb99c83bc844236040f146a6",
+      "checklist.md": "72948eb87f73686046fdeb88a71edf0fbc051254bd0359dc12cec1d79520e502",
+      "implementation-summary.md": "fbbcc6389cae11ab4dafb84b98b2ab10fbf65ea0b99baf5f58af6fd33e1e0881"
     },
     "last_active_child_id": null,
     "last_active_at": null

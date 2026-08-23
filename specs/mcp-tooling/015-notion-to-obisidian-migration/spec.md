@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration"
-    last_updated_at: "2026-08-22T00:00:00Z"
+    last_updated_at: "2026-08-23T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "authored phases 006-010: plugin research, deprecations, doc-rec apply"
-    next_safe_action: "None — phases 001-010 complete; packet ready for review"
+    recent_action: "authored phases 006-011: research, deprecations, doc + migration-playbook refresh"
+    next_safe_action: "None — phases 001-011 complete; packet ready for review"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,6 +28,7 @@ _memory:
       - "007-excalidraw-deprecation/spec.md"
       - "009-apply-plugin-doc-recs/spec.md"
       - "010-plugin-doc-recs-followup/spec.md"
+      - "011-migration-playbook-refresh/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "015-notion-to-obisidian-migration"
@@ -83,6 +84,7 @@ A prior single-pass web-research note (preserved as `001-deep-research/prior-fin
 | **008 — Notion Bases consolidation** | `008-notion-bases-consolidation/` | Done. Authored the Notion Bases calendar recipe (Calendar view + Meta Bind date entry + Dataview supplement) and recorded the completed closeout items (Project Manager deprecation, Meta Bind reference, roster sync). |
 | **009 — Apply plugin doc recs** | `009-apply-plugin-doc-recs/` | Done. Applied the 006 synthesis to the shipped mcp-obsidian docs — P0 correctness fixes verified against each installed main.js, plus P1/P2 additions across five plugins. |
 | **010 — Plugin doc-recs followup** | `010-plugin-doc-recs-followup/` | Done. Resolved the deferred/inferred recs (dataview `file.day` + inline-multiline confirmations, advanced-canvas endpoint-encoding precision, claudian positive-MCP-path UNKNOWN, notion-bases P2 items) and fixed the 007 template headers. |
+| **011 — Migration playbook refresh** | `011-migration-playbook-refresh/` | Done. Wired the 006 plugin research into the migration playbook: added view-recovery (calendar/timeline/gallery/board via Notion Bases) and interactive-element recovery (Meta Bind + JS Engine) to `notion-migration.md`, plus a feature→plugin recovery map in `mcp-notion`'s `migration-inventory.md`. |
 
 Phases 002-004 completed the migration capability: the migration/inventory references, the Notion Bases plugin knowledge tree, and the parity verifier are built into `mcp-obsidian`/`mcp-notion`, and Notion Bases v1.12.0 is installed in the operator's vault. Phase 005 extends the same skill beyond migration to the operator's broader plugin stack — nine more plugins installed, and dedicated docs for the three with a file-layer data model. Running an actual Notion→Obsidian migration of a live workspace is a separate future use of this capability.
 
@@ -105,6 +107,7 @@ Phases 002-004 completed the migration capability: the migration/inventory refer
 | 008 | `008-notion-bases-consolidation/` | Notion Bases calendar recipe + closeout ledger | Done |
 | 009 | `009-apply-plugin-doc-recs/` | Apply the 006 synthesis (P0/P1/P2) to shipped docs | Done |
 | 010 | `010-plugin-doc-recs-followup/` | Resolve deferred/inferred recs + 007 template fix | Done |
+| 011 | `011-migration-playbook-refresh/` | Wire 006 plugin research into the migration playbook (both skills) | Done |
 
 ### Phase Transition Rules
 
