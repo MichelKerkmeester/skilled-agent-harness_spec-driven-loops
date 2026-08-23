@@ -10,7 +10,7 @@ trigger_phrases:
   - "health md mock data"
 importance_tier: "normal"
 contextType: "general"
-version: 0.4.1.0
+version: 0.5.0.0
 ---
 
 # Health.md File-Layer Troubleshooting
@@ -26,7 +26,7 @@ Diagnose data files, folder settings, platform boundaries, and render blocks sep
 | "No data found" in the chart | Data folder path or file pattern setting doesn't cover the files |
 | Chart shows bundled example data | Data folder missing or empty — plugin falls back to deterministic bundled example data; verify against an authentic source file |
 | Chart renders but is empty | No records, denied permission, disabled export selection, absent platform capability, or unsupported visualization |
-| Files ignored | Format mismatch (`auto` misdetect) or schema version > 7 (best-effort) |
+| Files ignored | Format mismatch (`auto` misdetect), or a schema version the installed build does not read (current exporter: daily v8 / roll-up v9; plugin v2.1.0 ceiling is VERIFY — historically v7) |
 | Wrong numbers | Roll-up duplicates daily records, or mixed timezone contexts |
 | Platform-specific surface missing | iOS-only feature on Android, or a known Android gap (see §3) |
 | Plugin settings lost | `data.json` edited into invalid JSON |
@@ -38,7 +38,7 @@ Diagnose data files, folder settings, platform boundaries, and render blocks sep
 1. Read the plugin settings file (`.obsidian/plugins/health-md/data.json`) — folder, structure, pattern, format. After export-setting changes, run the explicit diagnostic: Settings → Health.md Visualizations → Health.md schema compatibility → **Scan now**.
 2. Resolve the actual selected data folder; check that it exists and is non-empty (the mock-fallback trap hides here).
 3. List the data folder — do the files exist and match the pattern?
-4. Read one file — does it parse (JSON/YAML), and does its `schema_version` exist (0–7)?
+4. Read one file — does it parse (JSON/YAML), and is its `schema_version` one the installed build reads? (Current exporter: daily v8 / roll-up v9; v2.1.0 historically read v0–v7 — VERIFY the ceiling on the installed build.)
 5. Identify the file layer — daily summary vs roll-up (under `Rollups/`) vs lossless/raw archive vs individual entry note; diagnose them separately.
 6. Check the note's render block — is `type` a registered renderer, and does the referenced metric resolve (see `_healthmd_data_dictionary.json`)?
 7. Check the platform dimension — an iOS-only surface on Android is expected behavior, not a bug.
@@ -65,7 +65,7 @@ Diagnose data files, folder settings, platform boundaries, and render blocks sep
 | Folder missing/empty (mock data showing) | Create the folder and place an authentic export, or point settings at the real data folder |
 | Empty/placeholder data file | Delete it; never fabricate data |
 | Unknown schema version | Treat as best-effort; do not promise rendering; do not relabel historical files |
-| Render block with wrong type or metric | Copy a known-good block from the vault; verify the renderer and metric first |
+| Render block with wrong type or metric | Check `type` against the renderer catalog ([`health-md.md`](health-md.md) §4) and copy a known-good block from the vault; verify the renderer and metric first |
 | iOS-only surface on Android | Expected — no fix; document the platform gap |
 | Permission/consent missing (routes, samples) | User must grant granular data permission/consent, then re-export |
 | Invalid `data.json` | Restore from backup or re-create with the known defaults, then reload Obsidian |
@@ -78,3 +78,4 @@ Diagnose data files, folder settings, platform boundaries, and render blocks sep
 - A rendered chart is not verification: with a missing/empty data folder it shows bundled example data.
 - Large JSON/CSV/lossless files receive a bounded preview in-app; the AI should query the file directly for full values, and keep archives out of ingestion and search.
 - Never infer that absence means zero, and never treat a plugin chart as diagnosis, a safe/unsafe threshold, or a recommendation.
+- The companion app may manage daily-note frontmatter keys and HTML-comment-wrapped sections; edits inside them are overwritten on the next export. Diagnose "my daily-note edit disappeared" as expected app behavior, not data loss.
