@@ -198,7 +198,7 @@ See [`mcp/additional-tools-verify.md`](mcp/additional-tools-verify.md).
 
 ## 14. PLUGINS
 
-The plugin category records file-layer operations for the eleven community artifacts narrated below: Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Meta Bind, and the Minimal theme. Each card points to the slim plugin index, deep data/workflow/troubleshooting references, copyable assets, and (where one exists) its manual tie-in scenario. The router carries dedicated references for further file-layer plugins beyond this narrated set — Advanced Canvas, Claudian, Notion Bases, and Local REST API; see `references/plugins/installed-plugins.md` for the full roster.
+The plugin category records file-layer operations for the eleven artifacts narrated below: Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Meta Bind, and the Obsidian theme system. Each card points to the slim index, deep references, copyable assets where they exist, and (where one exists) its manual tie-in scenario. The router carries dedicated references for further file-layer plugins beyond this narrated set — Advanced Canvas, Claudian, Notion Bases, and Local REST API; see `references/plugins/installed-plugins.md` for the full roster. The theme system's references live outside the plugin tree under `references/themes/`.
 
 ### Beancount Ledger
 
@@ -260,8 +260,8 @@ Operate the Outliner settings file (editor-behavior contract only; the plugin ha
 
 See [`plugins/outliner.md`](plugins/outliner.md).
 
-### Minimal
+### Obsidian theme system
 
-Verify theme installation and activation and propose snippet-based tweaks, never editing `theme.css` in a real vault.
+Operate the theme system at the file layer — activate a community theme via `cssTheme`, customize with CSS snippets and the 400+ CSS variables, and build or publish themes — never editing a shipped theme's own files. Minimal is the worked example.
 
-See [`plugins/minimal.md`](plugins/minimal.md).
+See [`plugins/theme-system.md`](plugins/theme-system.md).

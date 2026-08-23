@@ -20,7 +20,7 @@ version: 0.18.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Note and vault operations in Obsidian, plus file-layer automation of community plugins and the Minimal theme (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases, Meta Bind) |
+| **Use it for** | Note and vault operations in Obsidian, plus file-layer automation of community plugins (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases, Meta Bind) and the Obsidian theme system |
 | **Invoke with** | "obsidian", "notesmd-cli", "obsidian vault", "daily note", "local rest api", a plugin name or an `obsidian_*` MCP operation |
 | **Works on** | Vault files directly with no running app or through the live desktop app and its Local REST API when the situation needs it |
 | **Produces** | Created, moved and tagged notes, daily notes, vault registrations, live-app opens and plugin data files edited at the file layer |
@@ -43,7 +43,7 @@ The skill gives an agent three ways to touch a vault, chosen by what the request
 - The official `obsidian` CLI (ships with Obsidian desktop v1.12.4+) remote-controls a running app for in-app opens and `obsidian://` URI actions.
 - The cyanheads Obsidian MCP exposes a structured 14-tool `obsidian_*` surface through Code Mode when the live app and Local REST API are available.
 
-On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: Beancount ledgers, `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, Obsidian Git repositories and the Minimal theme file layer. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
+On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: Beancount ledgers, `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, and Obsidian Git repositories. Alongside the plugins it operates the Obsidian theme system at the file layer — the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
 
 ### The Plugin Knowledge Layer
 
@@ -58,7 +58,7 @@ On top of those surfaces sits the plugin knowledge layer. The mode treats each c
 | **Dataview** | add and patch note metadata (frontmatter and inline fields) and author DQL query blocks |
 | **Git** | read vault git state and operate settings. Destructive operations only on throwaway repos |
 | **Outliner** | operate the minimal settings file. The plugin is an editor-behavior contract with no note format |
-| **Minimal** | verify theme install and activation and propose snippet tweaks, never editing `theme.css` in a real vault |
+| **Theme system** | operate the Obsidian theme system at the file layer — activate a community theme via `cssTheme`, customize with CSS snippets and variables, and build or publish themes, never editing a shipped theme's own files (Minimal as the worked example) |
 | **Meta Bind** | author `INPUT`/`VIEW` fields and `meta-bind-button` blocks whose `updateMetadata` actions read and write note frontmatter, with the JS Engine companion powering the Notion-style start/stop task timer |
 | **Notion Bases** | operate `_database.md` schemas — two-way relations, rollups, lookups, self-relation subtasks and the seven view types including calendar — as the Notion-database replacement |
 | **Advanced Canvas** | extend `.canvas` files at the JSON layer with styled nodes, pathfinding edges, portals, collapsible groups and the presentation start node per the Advanced JSON Canvas data model |
@@ -194,7 +194,7 @@ A: No. Empty output means the selected vault has no match. Verify the vault and 
 
 **Q: What does the skill know about my plugins?**
 
-A: It ships reference sets for Beancount, Obsidian Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner and the Minimal theme. Each set covers the data model, file-layer workflows and troubleshooting. The operation-logic reference generalizes the pattern to future plugins.
+A: It ships reference sets for Beancount, Obsidian Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases and Meta Bind, plus a general Obsidian theme-system reference set under `references/themes/`. Each set covers the data model, file-layer workflows and troubleshooting. The operation-logic reference generalizes the pattern to future plugins.
 
 ---
 

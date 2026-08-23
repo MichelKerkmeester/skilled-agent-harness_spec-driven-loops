@@ -5,7 +5,7 @@ allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, W
 version: 0.21.0.0
 ---
 
-<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, obsidian-git, vault git, auto backup, outliner, list editing, minimal theme, css theme, theme snippet, notion bases, meta bind, meta-bind, input field, inline button, js engine, task timer -->
+<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, obsidian-git, vault git, auto backup, outliner, list editing, obsidian theme, theme system, css theme, css snippet, css variables, theme development, plugin development, notion bases, meta bind, meta-bind, input field, inline button, js engine, task timer -->
 
 # mcp-obsidian Skill
 
@@ -106,11 +106,11 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/outliner/data-model.md
              references/plugins/outliner/workflows.md
              references/plugins/outliner/troubleshooting.md
-           Minimal (theme):
-             references/plugins/minimal/minimal.md                       (plugin index)
-             references/plugins/minimal/data-model.md
-             references/plugins/minimal/workflows.md
-             references/plugins/minimal/troubleshooting.md
+           Themes (theme system):
+             references/themes/themes.md                                 (theme system index)
+             references/themes/customization.md
+             references/themes/theme-development.md
+             references/themes/plugin-development.md
            Notion Bases:
              references/plugins/notion-bases/notion-bases.md             (plugin index)
              references/plugins/notion-bases/data-model.md
@@ -276,10 +276,11 @@ INTENT_SIGNALS = {
         "keywords": ["outliner", "obsidian outliner", "list editing", "list zoom",
                      "outline plugin", "fold list", "list indentation"],
     },
-    "PLUGIN_MINIMAL": {
+    "THEME_SYSTEM": {
         "weight": 5,
-        "keywords": ["minimal", "minimal theme", "theme", "css theme", "appearance",
-                     "theme snippet", "style settings", "snippets"],
+        "keywords": ["theme", "themes", "obsidian theme", "css theme", "community theme",
+                     "appearance", "css snippet", "snippets", "css variable", "theme development",
+                     "build a theme", "plugin development", "minimal theme"],
     },
     "PLUGIN_HEALTH": {
         "weight": 5,
@@ -398,11 +399,10 @@ RESOURCE_MAP = {
                        "references/plugins/outliner/data-model.md",
                        "references/plugins/outliner/workflows.md",
                        "references/plugins/outliner/troubleshooting.md"],
-    "PLUGIN_MINIMAL": ["references/plugins/plugin-operation-logic.md",
-                       "references/plugins/minimal/minimal.md",
-                       "references/plugins/minimal/data-model.md",
-                       "references/plugins/minimal/workflows.md",
-                       "references/plugins/minimal/troubleshooting.md"],
+    "THEME_SYSTEM":   ["references/themes/themes.md",
+                       "references/themes/customization.md",
+                       "references/themes/theme-development.md",
+                       "references/themes/plugin-development.md"],
     "PLUGIN_HEALTH":  ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/health-md/health-md.md",
                        "references/plugins/health-md/data-model.md",
@@ -444,7 +444,7 @@ RESOURCE_MAP = {
                        "references/plugins/dataview/dataview.md",
                        "references/plugins/git/git.md",
                        "references/plugins/outliner/outliner.md",
-                       "references/plugins/minimal/minimal.md",
+                       "references/themes/themes.md",
                        "references/plugins/notion-bases/notion-bases.md",
                        "references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md",
                        "references/plugins/advanced-canvas/advanced-canvas.md",
@@ -511,7 +511,7 @@ def route_obsidian_resources(request: str) -> dict:
     else:
         specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT", "PLUGIN_ICONIC",
                                    "PLUGIN_CHARTS", "PLUGIN_DATAVIEW",
-                                   "PLUGIN_GIT", "PLUGIN_OUTLINER", "PLUGIN_MINIMAL", "PLUGIN_HEALTH",
+                                   "PLUGIN_GIT", "PLUGIN_OUTLINER", "THEME_SYSTEM", "PLUGIN_HEALTH",
                                    "PLUGIN_NOTION_BASES", "PLUGIN_LOCAL_REST_API",
                                    "PLUGIN_ADVANCED_CANVAS", "PLUGIN_CLAUDIAN", "PLUGIN_META_BIND")
         matched_specific_plugin_intents = [

@@ -8,7 +8,7 @@ version: 0.1.0.0
 
 > **EXECUTION POLICY:** Every scenario is executed against real commands, files, app state, or Code Mode tools. Valid statuses are `PASS`, `FAIL`, or `SKIP` with a specific prerequisite or sandbox blocker. `UNAUTOMATABLE` is not a valid status.
 
-This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for eleven community plugins — Beancount Ledger (`beancount-finance`), Obsidian Tables (`obsidian-tables`), BRAT (`obsidian42-brat`), Health.md Visualizations (`health-md`), Iconic (`iconic`), Charts (`charts`), Dataview (`dataview`), Obsidian Git (`git`), Outliner (`outliner`), the Minimal theme (`minimal`), and Notion Bases (`notion-bases`).
+This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for ten community plugins plus the Obsidian theme system — Beancount Ledger (`beancount-finance`), Obsidian Tables (`obsidian-tables`), BRAT (`obsidian42-brat`), Health.md Visualizations (`health-md`), Iconic (`iconic`), Charts (`charts`), Dataview (`dataview`), Obsidian Git (`git`), Outliner (`outliner`), and Notion Bases (`notion-bases`), plus the Obsidian theme system (`references/themes/`).
 
 The [feature catalog](../feature-catalog/FEATURE-CATALOG.md) is the current-behavior inventory. These scenario files own exact prompts, command sequences, expected signals, evidence, grading, and triage.
 
@@ -353,16 +353,16 @@ Inspect the Outliner plugin `data.json` (or confirm its absence means defaults) 
 > **Feature File:** [`plugin-tie-ins/outliner-settings-defaults.md`](plugin-tie-ins/outliner-settings-defaults.md) — owns the exact prompt, command sequence, and grading.
 > **Catalog:** [`../feature-catalog/plugins/outliner.md`](../feature-catalog/plugins/outliner.md)
 
-### OBS-021 | Minimal theme activation
+### OBS-021 | Theme install and activation
 
 #### Description
 
-Activate the Minimal theme via `appearance.json` and apply a snippet-based tweak, verifying at the file layer.
+Activate a community theme (Minimal as the example) via the `cssTheme` key in `appearance.json` and apply a CSS-snippet customization, verifying at the file layer.
 
 #### Test Execution
 
-> **Feature File:** [`plugin-tie-ins/minimal-theme-activation.md`](plugin-tie-ins/minimal-theme-activation.md) — owns the exact prompt, command sequence, and grading.
-> **Catalog:** [`../feature-catalog/plugins/minimal.md`](../feature-catalog/plugins/minimal.md)
+> **Feature File:** [`plugin-tie-ins/theme-activation.md`](plugin-tie-ins/theme-activation.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/theme-system.md`](../feature-catalog/plugins/theme-system.md)
 
 ### OBS-022 | Notion Bases plugin relation/rollup/view round-trip
 
@@ -437,6 +437,6 @@ The current mode package has no dedicated automated test suite for these externa
 | `OBS-018` | Meta Bind field and button round-trip | Dedicated plugin reference in [`meta-bind-file-layer.md`](plugin-tie-ins/meta-bind-file-layer.md) |
 | `OBS-019` | Obsidian Git status round-trip | Dedicated plugin reference in [`git-status-roundtrip.md`](plugin-tie-ins/git-status-roundtrip.md) |
 | `OBS-020` | Outliner settings and defaults | Dedicated plugin reference in [`outliner-settings-defaults.md`](plugin-tie-ins/outliner-settings-defaults.md) |
-| `OBS-021` | Minimal theme activation | Dedicated plugin reference in [`minimal-theme-activation.md`](plugin-tie-ins/minimal-theme-activation.md) |
+| `OBS-021` | Theme install and activation | Dedicated theme-system reference in [`theme-activation.md`](plugin-tie-ins/theme-activation.md) |
 | `OBS-022` | Notion Bases plugin relation/rollup/view round-trip | Dedicated plugin reference in [`notion-bases-relation-rollup.md`](plugin-tie-ins/notion-bases-relation-rollup.md) |
 | `OBS-023` | Notion Bases + Dataview real-vault headless install | Dedicated plugin reference in [`notion-bases-dataview-install.md`](plugin-tie-ins/notion-bases-dataview-install.md) |
