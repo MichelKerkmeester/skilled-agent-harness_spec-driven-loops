@@ -26,7 +26,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `agent-improvement-ledger-schema.vitest.ts` | Executable checks for the agent improvement ledger schema runtime contract. |
 | `agent-improvement-reducers.vitest.ts` | Executable checks for the agent improvement reducers runtime contract. |
 | `agent-improvement-resume-adapter.vitest.ts` | Executable checks for the agent improvement resume adapter runtime contract. |
-| `agent-improvement-rollback-gate.vitest.ts` | Executable checks for the agent improvement rollback gate runtime contract. |
 | `agent-improvement-sealed-artifacts.vitest.ts` | Executable checks for the agent improvement sealed artifacts runtime contract. |
 | `agent-improvement-shadow-parity.vitest.ts` | Executable checks for the agent improvement shadow parity runtime contract. |
 | `artifact-root.vitest.ts` | Executable checks for the artifact root runtime contract. |
@@ -57,21 +56,18 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `deep-ai-council-ledger-schema.vitest.ts` | Executable checks for the deep ai council ledger schema runtime contract. |
 | `deep-ai-council-reducers.vitest.ts` | Executable checks for the deep ai council reducers runtime contract. |
 | `deep-ai-council-resume-adapter.vitest.ts` | Executable checks for the deep ai council resume adapter runtime contract. |
-| `deep-ai-council-rollback-gate.vitest.ts` | Executable checks for the deep ai council rollback gate runtime contract. |
 | `deep-ai-council-sealed-artifacts.vitest.ts` | Executable checks for the deep ai council sealed artifacts runtime contract. |
 | `deep-ai-council-shadow-parity.vitest.ts` | Executable checks for the deep ai council shadow parity runtime contract. |
 | `deep-alignment-certificates.vitest.ts` | Executable checks for the deep alignment certificates runtime contract. |
 | `deep-alignment-ledger-schema.vitest.ts` | Executable checks for the deep alignment ledger schema runtime contract. |
 | `deep-alignment-reducers.vitest.ts` | Executable checks for the deep alignment reducers runtime contract. |
 | `deep-alignment-resume-adapter.vitest.ts` | Executable checks for the deep alignment resume adapter runtime contract. |
-| `deep-alignment-rollback-gate.vitest.ts` | Executable checks for the deep alignment rollback gate runtime contract. |
 | `deep-alignment-sealed-artifacts.vitest.ts` | Executable checks for the deep alignment sealed artifacts runtime contract. |
 | `deep-alignment-shadow-parity.vitest.ts` | Executable checks for the deep alignment shadow parity runtime contract. |
 | `deep-improvement-common-certificates.vitest.ts` | Executable checks for the deep improvement common certificates runtime contract. |
 | `deep-improvement-common-ledger-schema.vitest.ts` | Executable checks for the deep improvement common ledger schema runtime contract. |
 | `deep-improvement-common-reducers.vitest.ts` | Executable checks for the deep improvement common reducers runtime contract. |
 | `deep-improvement-common-resume-adapter.vitest.ts` | Executable checks for the deep improvement common resume adapter runtime contract. |
-| `deep-improvement-common-rollback-gate.vitest.ts` | Executable checks for the deep improvement common rollback gate runtime contract. |
 | `deep-improvement-common-sealed-artifacts.vitest.ts` | Executable checks for the deep improvement common sealed artifacts runtime contract. |
 | `deep-improvement-common-shadow-parity.vitest.ts` | Executable checks for the deep improvement common shadow parity runtime contract. |
 | `deep-research-certificates.vitest.ts` | Executable checks for the deep research certificates runtime contract. |
@@ -82,14 +78,12 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `deep-research-reduce-state.vitest.ts` | Executable checks for the deep research reduce state runtime contract. |
 | `deep-research-reducers.vitest.ts` | Executable checks for the deep research reducers runtime contract. |
 | `deep-research-resume-adapter.vitest.ts` | Executable checks for the deep research resume adapter runtime contract. |
-| `deep-research-rollback-gate.vitest.ts` | Executable checks for the deep research rollback gate runtime contract. |
 | `deep-research-sealed-artifacts.vitest.ts` | Executable checks for the deep research sealed artifacts runtime contract. |
 | `deep-research-shadow-parity.vitest.ts` | Executable checks for the deep research shadow parity runtime contract. |
 | `deep-review-certificates.vitest.ts` | Executable checks for the deep review certificates runtime contract. |
 | `deep-review-ledger-schema.vitest.ts` | Executable checks for the deep review ledger schema runtime contract. |
 | `deep-review-reducers.vitest.ts` | Executable checks for the deep review reducers runtime contract. |
 | `deep-review-resume-adapter.vitest.ts` | Executable checks for the deep review resume adapter runtime contract. |
-| `deep-review-rollback-gate.vitest.ts` | Executable checks for the deep review rollback gate runtime contract. |
 | `deep-review-sealed-artifacts.vitest.ts` | Executable checks for the deep review sealed artifacts runtime contract. |
 | `deep-review-shadow-parity.vitest.ts` | Executable checks for the deep review shadow parity runtime contract. |
 | `deep-review-strategy-heading.vitest.ts` | Executable checks for the deep review strategy heading runtime contract. |
@@ -126,7 +120,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `model-benchmark-ledger-schema.vitest.ts` | Executable checks for the model benchmark ledger schema runtime contract. |
 | `model-benchmark-reducers.vitest.ts` | Executable checks for the model benchmark reducers runtime contract. |
 | `model-benchmark-resume-adapter.vitest.ts` | Executable checks for the model benchmark resume adapter runtime contract. |
-| `model-benchmark-rollback-gate.vitest.ts` | Executable checks for the model benchmark rollback gate runtime contract. |
 | `model-benchmark-sealed-artifacts.vitest.ts` | Executable checks for the model benchmark sealed artifacts runtime contract. |
 | `model-benchmark-shadow-parity.vitest.ts` | Executable checks for the model benchmark shadow parity runtime contract. |
 | `next-focus.vitest.ts` | Executable checks for the next focus runtime contract. |
@@ -155,7 +148,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `skill-benchmark-ledger-schema.vitest.ts` | Executable checks for the skill benchmark ledger schema runtime contract. |
 | `skill-benchmark-reducers.vitest.ts` | Executable checks for the skill benchmark reducers runtime contract. |
 | `skill-benchmark-resume-adapter.vitest.ts` | Executable checks for the skill benchmark resume adapter runtime contract. |
-| `skill-benchmark-rollback-gate.vitest.ts` | Executable checks for the skill benchmark rollback gate runtime contract. |
 | `skill-benchmark-sealed-artifacts.vitest.ts` | Executable checks for the skill benchmark sealed artifacts runtime contract. |
 | `skill-benchmark-shadow-parity.vitest.ts` | Executable checks for the skill benchmark shadow parity runtime contract. |
 | `sleep.vitest.ts` | Executable checks for the sleep runtime contract. |

@@ -24,19 +24,6 @@ afterEach(() => {
 });
 
 describe('spawnCjs helper', () => {
-  it('does not import independently discovered sibling suites from aggregate files', () => {
-    const aggregateFiles = [
-      'agent-improvement-rollback-gate.vitest.ts',
-      'model-benchmark-rollback-gate.vitest.ts',
-      'skill-benchmark-rollback-gate.vitest.ts',
-    ];
-
-    for (const file of aggregateFiles) {
-      const source = readFileSync(new URL(`./${file}`, import.meta.url), 'utf8');
-      expect(source).not.toMatch(/^import .*\.vitest\.js';$/mu);
-    }
-  });
-
   it('scopes and resets long file-wide timeout overrides', () => {
     const resumeFiles = [
       'model-benchmark-resume-adapter.vitest.ts',
