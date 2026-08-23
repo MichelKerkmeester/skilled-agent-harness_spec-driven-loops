@@ -59,6 +59,10 @@ On top of those surfaces sits the plugin knowledge layer. The mode treats each c
 | **Git** | read vault git state and operate settings. Destructive operations only on throwaway repos |
 | **Outliner** | operate the minimal settings file. The plugin is an editor-behavior contract with no note format |
 | **Minimal** | verify theme install and activation and propose snippet tweaks, never editing `theme.css` in a real vault |
+| **Meta Bind** | author `INPUT`/`VIEW` fields and `meta-bind-button` blocks whose `updateMetadata` actions read and write note frontmatter, with the JS Engine companion powering the Notion-style start/stop task timer |
+| **Notion Bases** | operate `_database.md` schemas — two-way relations, rollups, lookups, self-relation subtasks and the seven view types including calendar — as the Notion-database replacement |
+| **Advanced Canvas** | extend `.canvas` files at the JSON layer with styled nodes, pathfinding edges, portals, collapsible groups and the presentation start node per the Advanced JSON Canvas data model |
+| **Claudian** | operate the `.claudian/` settings file and the provider-native `.claude/` slash-command and reusable-skill files for the in-vault coding-agent chat plugin |
 
 ---
 
