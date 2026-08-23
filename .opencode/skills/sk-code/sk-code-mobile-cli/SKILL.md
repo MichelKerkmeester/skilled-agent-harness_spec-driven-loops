@@ -157,6 +157,35 @@ surface MUST honor them:
 
 ---
 
+## 3b. FILE AND COMPONENT NAMING (the shipped grammar)
+
+The tree was renamed after this surface was last audited. Until the full refresh lands, **this
+section is the authority on naming and the rest of this surface is not** — several references still
+name `apps/pi-remote-web`, `apps/pi-remote-relay` and `src/style.css`, none of which exist.
+
+- **Kebab-case for every file and folder** under `app-mobile/src/`, with `routes/**` excepted. This
+  deliberately leaves Svelte's PascalCase ecosystem convention: the import identifier is chosen at
+  the import site, so a kebab-case file is still imported as `SheetContent`.
+- **`routes/**` is excluded because the route tree is the URL contract.** SvelteKit reads `+page`,
+  `+layout`, `+error` and `[param]` segments as routing directives; renaming one changes a URL.
+- **The kind comes first in a component name**, from a closed list: `sheet-`, `menu-`, `dialog-`,
+  `card-`, `button-`, `toggle-`, `radio-`, `screen-`. So `sheet-model-effort.svelte`, not
+  `model-effort-sheet.svelte`. A prefix search then reaches every instance of a kind.
+- **Screens carry `screen-`** — `screen-chat.svelte`, `screen-home.svelte`, `screen-review.svelte`,
+  `screen-attention-inbox.svelte`, `screen-enrollment.svelte`. They are a kind like any other, which
+  removes the "is this a kind or a screen" boundary case entirely.
+- **A feature component takes no prefix**, because its name already is the thing. Only an instance of
+  a listed kind leads with that kind.
+- **`shared/` splits by reason to change**, not by layer: `transport/` moves when the wire contract
+  moves, `state/` when a reducer does, and `fixtures/` is separate from every runtime folder because
+  its data ships to stories rather than to users.
+
+The grammar is executable rather than remembered: `scripts/naming/scan-naming.mjs` in the app
+repository reports any in-scope path that does not match, and renames are generated from a manifest
+rather than typed.
+
+---
+
 ## 4. ASSETS (on-demand, deferred from the first slice)
 
 - Retint pre-flight + proof checklist — `assets/token-retint-checklist.md`
