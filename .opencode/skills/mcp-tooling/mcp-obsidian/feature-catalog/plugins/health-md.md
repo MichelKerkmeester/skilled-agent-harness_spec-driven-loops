@@ -8,14 +8,14 @@ trigger_phrases:
   - "health chart block"
   - "health data folder"
   - "health-viz render block"
-version: 0.4.1.0
+version: 0.5.0.0
 ---
 
 # Health.md file-layer data operations (`health-md`)
 
 ## 1. OVERVIEW
 
-Health.md Visualizations (repo `codybontecou/health-md-visualizations`, installed v2.1.0 in every vault by Phase 11) renders Apple Health and Android Health exports from plain data files in a vault folder (default `Health/`). The mode operates the **data files**, never the chart UI. Formats: JSON (`healthmd.health_data` schema v0–v7), CSV, Markdown frontmatter (Bases-style), Obsidian Bases. Compatibility profiles: Apple v7, Android frozen v4, and Android analytical v5 — format names are shared, but version and semantic differences stay explicit. Chart coverage is shared across platforms for common activity, heart, respiratory/vitals, sleep, mobility, workout, body, nutrition, and hearing fields; Mood/State of Mind and HealthKit-style medication events are iOS-only; Android walking symmetry is partial and Android Stand can use an explicit steps-derived proxy when `standHours` is missing. Roll-ups live under `Health/Rollups/`; `_healthmd_data_dictionary.json` holds canonical metric ids/units. The plugin watches the folder and refreshes its cache on file changes.
+Health.md Visualizations (repo `codybontecou/health-md-visualizations`, installed v2.1.0 in every vault by Phase 11) renders Apple Health and Android Health exports from plain data files in a vault folder (default `Health/`). The mode operates the **data files**, never the chart UI. Formats: JSON (`healthmd.health_data` daily schema through v8), CSV, Markdown frontmatter (Bases-style), Obsidian Bases; roll-ups are `healthmd.rollup_summary` v9. Compatibility profiles: Apple current export daily v8 / roll-up v9 (whether installed plugin v2.1.0 reads v8/v9 is VERIFY — historically v0–v7), Android frozen v4, and Android analytical v5 — format names are shared, but version and semantic differences stay explicit. Chart coverage is shared across platforms for common activity, heart, respiratory/vitals, sleep, mobility, workout, body, nutrition, and hearing fields; Mood/State of Mind and HealthKit-style medication events are iOS-only; Android walking symmetry is partial and Android Stand can use an explicit steps-derived proxy when `standHours` is missing. Roll-ups live under `Health/Rollups/`; `_healthmd_data_dictionary.json` holds canonical metric ids/units. The plugin watches the folder and refreshes its cache on file changes. A `health-viz` block's `type` must be a registered renderer (43 documented across 18 categories — catalog in `references/plugins/health-md/health-md.md` §4). Beyond the plugin, the companion app (`healthmd.app`) can merge metrics into Obsidian daily-note frontmatter and ships a `healthmd` CLI and a `healthmd-mcp` MCP server (21 tools reading iPhone HealthKit via a Mac loopback) — separate from this plugin; see `references/plugins/health-md/health-md.md` §7.
 
 ---
 
