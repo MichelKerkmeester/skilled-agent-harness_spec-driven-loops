@@ -1,3 +1,15 @@
+---
+title: Mobile AI Chat Visual Teardown
+description: Observed mobile AI chat screens and reconstructed spacing, typography, controls, and composer patterns for the Pi Remote redesign.
+trigger_phrases:
+  - 'Claude mobile visual reference'
+  - 'AI chat composer measurements'
+  - 'assistant message flow patterns'
+importance_tier: normal
+contextType: general
+version: 1.2.0.3
+---
+
 # Mobile AI Chat — Visual Teardown
 
 Ground-truth analysis of real reference screens (staged in `./screens/`). The primary

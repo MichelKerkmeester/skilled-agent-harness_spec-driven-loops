@@ -1,3 +1,15 @@
+---
+title: Pi Remote Installation and Onboarding
+description: Provides the prerequisite, build, Tailscale Serve, phone enrollment, PWA installation, verification, and troubleshooting steps for Pi Remote.
+trigger_phrases:
+  - 'Pi Remote phone enrollment'
+  - 'Tailscale Serve PWA install'
+  - 'Pi Remote deployment verification'
+importance_tier: normal
+contextType: implementation
+version: 1.2.0.4
+---
+
 # Pi Remote Installation Guide
 
 Complete installation and configuration guide for Pi Remote, a private installable PWA that remote-controls the Pi coding agent from an enrolled phone over a Tailscale tailnet. Covers the loopback relay with its redacted SQLite ledger, prompt steering, exact-action approval for protected tool calls, and the offline-capable PWA shell. Uses a foreground deployment script that configures tailnet-only Tailscale Serve routes. Lets you watch and steer Pi from your phone without exposing any service to the public internet.

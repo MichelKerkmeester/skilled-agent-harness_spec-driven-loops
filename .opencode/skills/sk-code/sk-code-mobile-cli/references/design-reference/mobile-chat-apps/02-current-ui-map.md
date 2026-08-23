@@ -1,3 +1,15 @@
+---
+title: Pi Remote Current UI to Target Map
+description: Maps current Pi Remote components to their Claude-style mobile targets, relocation decisions, implementation sequence, and verification gates.
+trigger_phrases:
+  - 'move runtime controls out of chat flow'
+  - 'Pi Remote composer island'
+  - 'current component target mapping'
+importance_tier: normal
+contextType: implementation
+version: 1.2.0.3
+---
+
 # Current UI → Target Component Map
 
 Maps each existing component to the Claude-style target and the concrete change. Source files
