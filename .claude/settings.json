@@ -12,7 +12,7 @@
   },
   "skillListingBudgetFraction": 0.02,
   "autoCompactEnabled": true,
-  "autoCompactWindow": 500000,
+  "autoCompactWindow": 1000000,
   "hooks": {
     "PreToolUse": [
       {
