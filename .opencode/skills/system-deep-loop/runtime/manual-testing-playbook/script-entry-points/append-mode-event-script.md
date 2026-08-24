@@ -25,7 +25,7 @@ The append gateway is the sanctioned way every canonical record reaches a mode's
 - Objective: Confirm append-mode-event.cjs behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: script entry points runtime.
 - Real user request: `Validate append-mode-event.cjs and report whether the current source, script surface, and tests agree with the runtime/ contract.`
-- Expected signals: stdout JSON with `"ok":true` and a receipt carrying `ledger_id`, `sequence`, `event_id`, `event_type`, `canonicalEventHash`, `recordHash`, and an `authorizationRef` with `audit_ledger_id` / `audit_sequence` / `decision_digest` / `policy_digest`; exit code 0 for an authorized, prefixed-stem event; exit code 2 when the write is refused and the refusal names the failing check; no authority record written so the mode stays on legacy authority.
+- Expected signals: stdout JSON with `"ok":true` and a receipt carrying `ledger_id`, `sequence`, `event_id`, `event_type`, `canonicalEventHash`, `recordHash`, and an `authorizationRef` with `audit_ledger_id` / `audit_sequence` / `decision_digest` / `policy_digest`; exit code 0 for an authorized, prefixed-stem event; exit code 2 when the write is refused and the refusal names the failing check; this path writes no authority record, so it behaves the same whether the mode is still on legacy authority or has reached `new_authoritative_final`.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
 ---
@@ -89,7 +89,7 @@ append-mode-event.cjs matches the documented current reality, the source anchors
   ```
 
 - The watermark carries `ledger_sequence` 1, a `ledger_record_hash`, `projection_version` `"legacy-research-state@1"`, and `reducer_version` `"deep-research-state-reducer@1"`.
-- No authority record is written, so the mode stays on legacy authority and this works before any cutover.
+- This path writes no authority record, so it works the same before a cutover and after the mode reaches `new_authoritative_final`; authority is moved by the separate flip, not by an append.
 - Exit 1 and exit 2 mean different things and must not be treated interchangeably: exit 1 is a script error where the input never reached authority, exit 2 is a refusal at the authority boundary.
 - Exit 0 means the event is durable, not that the legacy file was projected. `projectionRefreshed` is the signal for whether the legacy projection file was actually refreshed; it must be checked separately from the exit status, and `projectionError` carries the named reason when it is `false`. A caller that inspects only the exit code can leave the legacy file silently stale while every signal it looked at says success.
 

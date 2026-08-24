@@ -25,9 +25,9 @@ This feature belongs to the state safety group and is catalogued as F054 in the 
 
 ## 2. HOW IT WORKS
 
-`AUTHORITY_FLIP_MODE_ORDER` freezes the mode order. A mode outside it is refused: the gateway CLI exits 2 with `AUTHORITY_DENIED` and writes nothing. The record states the type admits are `legacy_authoritative`, `shadowing`, `cutover_ready`, `new_authoritative_reversible`, and `rollback_pending`.
+`AUTHORITY_FLIP_MODE_ORDER` freezes the mode order. A mode outside it is refused: the gateway CLI exits 2 with `AUTHORITY_DENIED` and writes nothing. The record states the type admits are `legacy_authoritative`, `shadowing`, `cutover_ready`, `new_authoritative_reversible`, `new_authoritative_final`, and `rollback_pending`.
 
-Constructing the registry writes no record. A mode with no persisted record reads as `legacy_authoritative`, the default a read falls back to rather than a stored value. No mode is on ledger authority; reading `legacy_authoritative` for every mode is the state of the system as it ships, not a step waiting to be taken.
+Constructing the registry writes no record. A mode with no persisted record reads as `legacy_authoritative`, the default a read falls back to rather than a stored value. As the system ships, every mode in the frozen order holds a stored `new_authoritative_final` record: authority has moved to the ledger and the legacy shadow writer has been dropped. A `legacy_authoritative` read now means an absent record, not the shipped state of an enabled mode.
 
 The exit contract of the gateway CLI is: 0 = the event is durable in the ledger, 1 = script error where the input never reached authority, 2 = refused at the authority boundary. Exit 0 speaks only to ledger durability; it says nothing about the legacy projection.
 
