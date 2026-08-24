@@ -155,7 +155,7 @@ OPTIONS:
   --help                      Show this help message
 
 EXIT CODES:
-  0 = all modes on ledger (new_authoritative_reversible / dark)
+  0 = all modes on ledger (new_authoritative_reversible or new_authoritative_final / dark)
   1 = script error
   2 = not all modes on ledger
 `);
@@ -211,13 +211,15 @@ EXIT CODES:
 
   const records = AUTHORITY_FLIP_MODE_ORDER.map((mode) => readRecordFromDisk(authorityRoot, mode));
 
-  // allOnLedger is true ONLY if every mode's on-disk record is the
-  // flipped target state with the dark writer. A synthesized-default
-  // mode (no file) counts as NOT on ledger, as does any malformed or
-  // partially-flipped record.
+  // allOnLedger is true ONLY if every mode's on-disk record is a
+  // ledger-authoritative target state with the dark writer. Both the
+  // reversible tier and the terminal final tier count as enabled — final
+  // is strictly more enabled than reversible, not a regression. A
+  // synthesized-default mode (no file) counts as NOT on ledger, as does
+  // any malformed or partially-flipped record.
   const allOnLedger = records.every(
     (r) => r.source === 'stored'
-      && r.state === 'new_authoritative_reversible'
+      && (r.state === 'new_authoritative_reversible' || r.state === 'new_authoritative_final')
       && r.selectedWriter === 'dark',
   );
 
