@@ -217,6 +217,47 @@ Keep feature-specific composition in `app-mobile/src/pages/`. A module belongs i
 whose reason to change matches the change. The grouping is an ownership boundary, not a claim that all
 shared code has the same runtime layer.
 
+### Styles: co-located CSS files
+
+Each component's styles live in a co-located `.css` file the component imports, not in a Svelte
+`<style>` block — `card-code.svelte` imports `./card-code.css`, so the CSS is a browsable file per
+component. The trade is deliberate: a plain imported `.css` is global, not Svelte-scoped. The class
+names are unique semantic names that were global before the migration, so global scope is safe, and the
+token-identity gate is the standing proof that no name collides.
+
+- `app.css` keeps only the global foundation: tokens, theme remaps, resets, the genuinely shared classes
+  (2+ renderers), and the cross-component a11y guardrail blocks (44px targets, reduced-motion, contrast,
+  forced-colors) that several tests assert there.
+- A class used in one component's markup lives in that component's `.css`. A class passed as a `class`
+  prop to a child primitive is a plain global rule in the owner's `.css` — there is no `<style>` to
+  scope, so no `:global()` wrapper is needed.
+- Do not use CSS Modules. They scope, but by rewriting markup to `class={styles.x}`, which breaks the
+  tests, token identity, and CDP — all of which assert the real class names.
+- `app-mobile/tests/support/css-corpus.ts` assembles `app.css` plus every component `.css`; a test that
+  needs a component's rules reads its `.css`, never a `<style>` block.
+
+### CSS comment structure
+
+Every component `.css` opens with a file-header banner and groups its rules under numbered section
+banners, in the same box-drawing style the source files use, keeping the `@ds` seam comments as the
+per-rule reason:
+
+```css
+/* ───────────────────────────────────────────────────────────────────
+   CODE CARD
+─────────────────────────────────────────────────────────────────── */
+
+/* ───────────────────────────────────────────────────────────────────
+   1. CODE PREVIEW
+─────────────────────────────────────────────────────────────────── */
+/* @ds slot: code-preview — horizontally panning code viewport. */
+.rich-code-preview { ... }
+```
+
+The file header names the component in upper case; section titles are short upper-case noun phrases,
+numbered from 1, grouping rules by purpose. The `@ds` comments are preserved verbatim — they are the
+searchable design-system contract, and `scan-comments.mjs` counts the guardrail fences across `.css` too.
+
 ### Module and comment grammar
 
 Every source file opens with a `MODULE:` banner. Sections are numbered and use a paired box-drawing
@@ -241,6 +282,13 @@ Apply the comment grammar actually present in the tree:
   `variant`, `edit`, `guardrail`, `catalog`, and `theme`. They are searchable contract annotations.
 - `scripts/naming/scan-comments.mjs` is the executable check for banners, sentence starts, commented-out
   code, `@ds guardrail:` shape, and section-rule coverage.
+
+Test files carry the same structure as source: a `MODULE:` header and numbered sections for the parts
+present — `1. IMPORTS`, `2. FIXTURES` (data builders, mock DTOs, shims), `3. HELPERS`, `4. SETUP`
+(beforeEach/afterEach), `5. TESTS` once before the first `describe(`; the describe/it titles self-label
+the individual suites. A test filename mirrors its source in kebab-case — `card-code.svelte.test.ts`
+tests `card-code.svelte`; a collision takes a qualifier (`sheet-model-effort.switcher.svelte.test.ts`);
+`.test.ts` for logic and component suites, `.test.tsx` only where a test actually uses JSX.
 
 ### Folder documentation
 
