@@ -39,7 +39,7 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "scratch/negative-controls.md",
       "scratch/finding-improvement-mode-unroutable.md",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The mode registry names seven canonical modes",
     "created_at": "2026-08-19T06:57:08.040Z",
-    "last_save_at": "2026-08-24T08:00:07.835Z",
+    "last_save_at": "2026-08-24T08:57:40.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +212,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49250db39b16791cf770c70d9ebc6f6979aa01c3428a2822e530abee47d45567",
+    "source_fingerprint": "sha256:a222190bf091013ae44729952c0d059d43b6842cf21c86cc2d57beb2073dae8d",
     "source_doc_hashes": {
       "spec.md": "87053dee8415c5884f05547e715ce1e9d9cf984582359c90d8fafe0f3eae5a77",
       "plan.md": "af87fbeaaa1a9687a249f6cfc9f3c5f52dbd6047c77c956459dbc174aed3b9e9",
       "tasks.md": "0378543e7db3f6812d3119fc9d68e8bde0fadaab175ffcdfd8c52d1ceae68e21",
-      "checklist.md": "94a0f09175d517a39263a388859de619193b9814dd42d04cdfa5e4d12b0a2885",
+      "checklist.md": "581c9a6c6070ffcfe4d5bd8ab35afb7b89e19da403e6c5299a21c2ae13bc48e9",
       "implementation-summary.md": "8b0f96e0984d18e3a6e206a8ff211aac54135df803770f0ef9897c4f61c6fd3d"
     },
     "last_active_child_id": null,

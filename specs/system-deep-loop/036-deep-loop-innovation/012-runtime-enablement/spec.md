@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
-    last_updated_at: "2026-08-19T07:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Decomposed enablement into six sequenced phases"
-    next_safe_action: "Build phase 001 append gateway and projection"
+    last_updated_at: "2026-08-24T08:56:14Z"
+    last_updated_by: "claude"
+    recent_action: "All 11 phases complete; finalize landed and whole-system gate passes"
+    next_safe_action: "None; epic complete pending the operator ff-merge gate"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator ratified a direct flip with no rollback window"
@@ -56,14 +56,17 @@ execution-time binding resolved from the environment rather than requested from 
 
 | # | Phase | Purpose | Status |
 |---|-------|---------|--------|
-| 001 | `001-append-gateway-and-projection/` | Build the write path the modes lack: an append gateway that authorizes and fences every event, plus the per-event projection that keeps the legacy state files readable for their six consumers. | Planned |
-| 002 | `002-deep-research-enablement/` | Migrate the deep-research write protocol onto the gateway and flip its authority. The pilot mode proves the pattern end to end on a live mode. | Planned |
-| 003 | `003-fleet-enablement/` | Apply the proven pattern to the remaining six modes, serially, as an automated loop the operator does not drive by hand. | Planned |
-| 004 | `004-legacy-writer-retirement/` | Retire the direct-append protocol paths once every mode reads and writes through the gateway. | Planned |
-| 005 | `005-whole-system-gate/` | Execute the frozen-SHA whole-system gate against the enabled runtime and record a blocking verifier receipt. | Planned |
-| 006 | `006-enablement-closeout/` | Reconcile status across the epic and document the enabled system: feature catalog, manual-testing playbook, and mode READMEs. | Planned |
-| 007 | `007-effect-enablement/` | Record a durable, fail-closed effect intent and confirmation around the real executor dispatch, so a cutover certificate observes real effect evidence instead of an empty list. Late-allocated dependency of the `002`/`003` flip, not a post-closeout step. | Planned |
-| 008 | `008-ledger-read-cache/` | Give `AppendOnlyLedger` an opt-in, default-off verified-events read cache so the effect producer's per-lineage ledger stops paying the exclusive-lock read floor on every read. Dependency of `007`: removes the serialization the effect producer otherwise adds to the fan-out pool. | Planned |
+| 001 | `001-append-gateway-and-projection/` | Build the write path the modes lack: an append gateway that authorizes and fences every event, plus the per-event projection that keeps the legacy state files readable for their six consumers. | Complete |
+| 002 | `002-deep-research-enablement/` | Migrate the deep-research write protocol onto the gateway and flip its authority. The pilot mode proves the pattern end to end on a live mode. | Complete |
+| 003 | `003-fleet-enablement/` | Apply the proven pattern to the remaining six modes, serially, as an automated loop the operator does not drive by hand. | Complete |
+| 004 | `004-legacy-writer-retirement/` | Retire the direct-append protocol paths once every mode reads and writes through the gateway. | Complete |
+| 005 | `005-whole-system-gate/` | Execute the frozen-SHA whole-system gate against the enabled runtime and record a blocking verifier receipt. | Complete |
+| 006 | `006-enablement-closeout/` | Reconcile status across the epic and document the enabled system: feature catalog, manual-testing playbook, and mode READMEs. | Complete |
+| 007 | `007-effect-enablement/` | Record a durable, fail-closed effect intent and confirmation around the real executor dispatch, so a cutover certificate observes real effect evidence instead of an empty list. Late-allocated dependency of the `002`/`003` flip, not a post-closeout step. | Complete |
+| 008 | `008-ledger-read-cache/` | Give `AppendOnlyLedger` an opt-in, default-off verified-events read cache so the effect producer's per-lineage ledger stops paying the exclusive-lock read floor on every read. Dependency of `007`: removes the serialization the effect producer otherwise adds to the fan-out pool. | Complete |
+| 009 | `009-mode-projection-contracts/` | Give each mode a projection contract so the whole-system gate can fold the ledger, materialize the legacy file, and read it through the real consumer, per mode. | Complete |
+| 010 | `010-full-enablement-finalize/` | Finalize all eight modes to `new_authoritative_final` and drop the legacy shadow writer, then re-measure the whole-system gate to a literal PASS. | Complete |
+| 011 | `011-delete-overengineering/` | Delete the over-engineered rollback ceremony and one-time migration scaffolding the executed direct flip made dead weight, proven safe by the import graph. | Complete |
 <!-- /ANCHOR:phase-map -->
 
 <!-- ANCHOR:what-needs-done -->
