@@ -1,19 +1,32 @@
 {
   "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
-  "description": "About a quarter of the runtime (~256k LOC) is one-time-use migration scaffolding and reversibility ceremony:",
+  "description": "Remove the rollback ceremony (windows, drills, certificates) and one-time migration scaffolding (shadow-parity, inflight-state-classification, cutover",
   "keywords": [
-    "about",
-    "quarter",
-    "runtime",
-    "256k",
-    "loc",
-    "one-time-use",
+    "remove",
+    "rollback",
+    "ceremony",
+    "windows",
+    "drills",
+    "certificates",
+    "one-time",
     "migration",
     "scaffolding",
-    "reversibility",
-    "ceremony"
+    "shadow-parity",
+    "inflight-state-classification",
+    "cutover",
+    "evidence",
+    "never",
+    "needed",
+    "system-deep-loop",
+    "keeping",
+    "live",
+    "ledger",
+    "loop",
+    "consumer-facing",
+    "projections",
+    "intact"
   ],
-  "lastUpdated": "2026-08-23T19:08:27.153Z",
+  "lastUpdated": "2026-08-24T03:32:38.921Z",
   "specId": "011",
   "folderSlug": "delete-overengineering",
   "parentChain": [
@@ -22,5 +35,6 @@
     "012-runtime-enablement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

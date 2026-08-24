@@ -11,16 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
-    last_updated_at: "2026-08-23T17:15:00Z"
+    last_updated_at: "2026-08-24T03:36:58Z"
     last_updated_by: "claude"
-    recent_action: "Opened the deletion phase; audited the import graph; verified rollback-gates are leaf (test-only importers)"
-    next_safe_action: "Wave 1 — delete the 8 rollback-gate modules + their 8 test files"
+    recent_action: "Deleted the rollback and migration scaffolding across five commits"
+    next_safe_action: "010-full-enablement-finalize holds the finalized-gate PASS; U2 deferred by operator"
     blockers: []
     key_files:
-      - ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts"
-      - ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification"
-      - ".opencode/skills/system-deep-loop/runtime/lib/shadow-parity"
-    completion_pct: 0
+      - ".opencode/skills/system-deep-loop/runtime/scripts/enable-modes.cjs"
+      - ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/index.ts"
+    completion_pct: 100
     open_questions:
       - "Category C (legacy-projections + upcaster suites) — keep as consumer surface or migrate consumers off? Deferred."
     answered_questions:
@@ -41,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-23 |
 | **Owner skill** | system-deep-loop |
 | **Authority posture** | No authority moves; removes machinery, keeps the live loop and projections |

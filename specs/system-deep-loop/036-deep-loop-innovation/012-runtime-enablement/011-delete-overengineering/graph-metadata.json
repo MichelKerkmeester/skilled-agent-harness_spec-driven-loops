@@ -13,7 +13,14 @@
     "trigger_phrases": [
       "delete overengineering",
       "remove rollback machinery",
-      "delete migration scaffolding"
+      "delete migration scaffolding",
+      "delete overengineering plan",
+      "remove rollback machinery plan",
+      "delete overengineering tasks",
+      "delete overengineering checklist",
+      "delete overengineering summary",
+      "rollback migration scaffolding removed",
+      "runtime deletion wave"
     ],
     "key_topics": [
       "delete",
@@ -23,22 +30,50 @@
       "machinery",
       "migration",
       "scaffolding",
-      "about",
-      "quarter",
-      "runtime",
-      "256k",
-      "loc"
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "removed"
     ],
-    "importance_tier": "critical",
-    "status": "planned",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -76,19 +111,99 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "unchanged",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "About a quarter of the runtime (~256k LOC) is one-time-use migration scaffolding and reversibility ceremony:",
     "created_at": "2026-08-23T19:32:08.669Z",
-    "last_save_at": "2026-08-23T19:32:08.669Z",
+    "last_save_at": "2026-08-24T03:36:59.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cc6ceb408aa327e864792e74f7863b36cf8e275383491801e0b3c95d4e4d3f9",
+    "source_fingerprint": "sha256:4c0961ffcff00b1d0e0cec8fb4730e4fa2332d72847d4bb32657d98708e5fe40",
     "source_doc_hashes": {
-      "spec.md": "08a134f907d317f93b7a714d3e09a297eebeab65977d544742e33b8b6d83bd16"
+      "spec.md": "c658c21ada4318bc400573fbb575080d9d103d5c13094b1944f8bf2e63b18778",
+      "plan.md": "24a82e03d8ef48d3d0d6364a8dea7ba3b80de156556c2f6b9c10b5ac67583d92",
+      "tasks.md": "a750db8af18cd75ba802c6ca3c7a39558a7541412aaf04c3c119956fd5a942d7",
+      "checklist.md": "65ce9768799629da5c2f870f6673dd1e8bb7b0119938d0a9b30b26e1b4f3fc8d",
+      "implementation-summary.md": "67788323c420b282e9d78afac3e68df11b34f191c9a46955056e15519e2d5286"
     },
     "last_active_child_id": null,
     "last_active_at": null
