@@ -2,7 +2,7 @@
 name: sk-code-mobile-cli
 description: "Read-only Svelte design-system and source-convention evidence for the Pi Remote Mobile-CLI app."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.2.0.0
+version: 1.3.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -239,16 +239,29 @@ Apply the comment grammar actually present in the tree:
 
 ### Folder documentation
 
-Every source-bearing folder under `app-mobile/src/` carries both `README.md` and `CODE.md`:
+A source-bearing folder under `app-mobile/src/` owes a `CODE.md` only when it has three or more direct
+source files or has child source folders. Those folders carry both `README.md` and `CODE.md`:
 
 - `README.md` uses sk-doc's `readme-template.md` and answers what the folder does for someone using the
   app, what belongs there, and where to start.
 - `CODE.md` uses sk-doc's `readme-code-template.md` and answers how the logic is arranged: topology,
   boundaries, entrypoints, flow, and validation.
 
-The pair is current-state orientation, not migration history. `scripts/naming/scan-folder-docs.mjs`
-reports missing pairs and unresolvable references. Keep both documents aligned when a source folder's
-ownership or file map changes.
+A folder with fewer than three direct source files and no child source folders carries only `README.md`.
+It still explains what its files own, the boundary with its caller, and where a change of a given kind
+belongs. The reason matters: a rule without its reason gets optimised away by the next reader. The
+threshold exists because documentation ceremony reads as content and rots the same way. The paired documents shared
+one sentence in 2,877, so the split was duplicating nothing — it was scaling badly. Across the 29 folders, one leaf with a single component carried 266 lines
+describing it twice. Folders with one or two source files averaged about 221
+documentation lines per source file against about 36 in folders with three or more. Ten folders therefore
+collapsed to one README, each about 45% shorter than the pair it replaced, while retaining the orientation
+a reader needs and dropping a directory tree that repeated the key-files table. Orientation hubs such as
+`pages/chat/` keep both documents when their child source folders make the code map useful.
+
+The documents are current-state orientation, not migration history. `scripts/naming/scan-folder-docs.mjs`
+enforces both directions: it reports a missing `CODE.md` where the threshold is met and a stray `CODE.md`
+where it is not. Keep each folder's documents aligned when its source ownership, direct file count, or
+child-folder structure changes.
 
 ### Runes effects: prevent self-invalidation
 
