@@ -29,7 +29,6 @@ Runtime primitives that keep legacy JSON and JSONL readers fed while a `system-d
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/mode-surface-map.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts`
 
 ---
