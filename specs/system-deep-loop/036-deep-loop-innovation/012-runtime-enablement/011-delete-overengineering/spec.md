@@ -13,10 +13,10 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
     last_updated_at: "2026-08-24T22:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Executed phase 003 F2 removal plus authorization-matcher relocation; all gates green"
-    next_safe_action: "Execute phase 004 rollout and flip tooling removal via GLM-5.2-High, then verify"
+    recent_action: "Removed F3 fleet-enablement stack; F4 resequenced to phase 005; gates green"
+    next_safe_action: "Execute phase 005 combined F4 and F7 removal, then verify"
     blockers: []
-    completion_pct: 60
+    completion_pct: 80
     open_questions: []
     answered_questions:
       - "The removal set is proven by a 10-iteration audit plus a repo-wide zero-caller re-proof; findings live in research/research.md"
@@ -66,8 +66,12 @@ per-finding import-graph proof, KEEP list, and wave plan live in **`research/res
 | `001-leaf-removals` | F5, F6, F8 | shadow-adapters, recovery manifest, dead constants | ~460 | Lowest | Complete |
 | `002-legacy-compat-converters` | F1 | 7 per-mode `legacy-compatibility.ts` (keep deep-research) | ~4,306 | Low-Med | Complete |
 | `003-mode-contracts-value-layer` | F2 | conformance engine value files (keep `mode-contract-types.ts` + `substrate-ports.ts`) | ~2,988 | Low-Med | Complete |
-| `004-rollout-flip-tooling` | F3, F4 | fleet-enablement + `flip-authority.cjs` | ~3,026 | Med | Planned |
-| `005-authority-registry-cas-reduction` | F7 | CAS mutators in `authority-registry.ts` (keep read path) | ~500 | High-adjacency | Planned |
+| `004-rollout-flip-tooling` | F3 | fleet-enablement stack (`enable-modes.cjs` + `lib/fleet-enablement/`) | ~869 | Low-Med | Complete |
+| `005-authority-registry-cas-reduction` | F4, F7 | `flip-authority.cjs` + CAS mutators (keep read path) | ~2,157 | High-adjacency | Planned |
+
+> **Phase 004 resequencing:** F4 (`flip-authority.cjs`) moved from phase 004 into phase 005. Its test
+> (`authority-finalize.vitest.ts`) also exercises the phase-005 CAS mutator `compareAndSwapFinalize`, so
+> F4 and F7 remove together — one whole-file test deletion instead of splitting it across two waves.
 
 Resume follows `derived.last_active_child_id` in `graph-metadata.json`; when absent, list children by status and pick the lowest-numbered Planned wave.
 

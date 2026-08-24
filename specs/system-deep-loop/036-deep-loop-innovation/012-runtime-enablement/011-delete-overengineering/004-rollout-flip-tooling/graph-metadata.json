@@ -13,7 +13,10 @@
     "trigger_phrases": [
       "rollout flip tooling delete",
       "fleet enablement removal",
-      "flip-authority removal"
+      "enable-modes removal",
+      "phase 004 rollout tooling",
+      "fleet enablement removed",
+      "enable-modes removed"
     ],
     "key_topics": [
       "rollout",
@@ -23,19 +26,20 @@
       "fleet",
       "enablement",
       "removal",
-      "flip-authority",
+      "enable-modes",
+      "phase",
+      "removed",
       "wave",
-      "over-engineering",
-      "program",
-      "one-time"
+      "over-engineering"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "tasks.md",
       "spec.md",
       "checklist.md",
-      "plan.md"
+      "plan.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,7 +67,19 @@
         "source": "derived"
       },
       {
-        "name": "Flip Tooling",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollout Tooling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enablement Removal",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -81,21 +97,21 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. METADATA",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. PROBLEM & PURPOSE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "Flip Tooling",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -147,7 +163,7 @@
         "source": "derived"
       },
       {
-        "name": "T1 — Re-confirm zero callers (remover, read-only)",
+        "name": "T1 — Re-confirm zero callers (read-only)",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -169,37 +185,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Wave 4 of the over-engineering removal program: delete the one-time fleet-enablement stack (F3) and the one-time flip-authority.cjs runner (F4) and their tests. Both drove modes from legacy to new_authoritative_final; all 8 modes are already there, so both have zero operational callers. Removing them makes the authority-registry CAS mutators dead (deferred to phase 005) but does not touch authority-registry.ts.",
+    "causal_summary": "Wave 4 of the over-engineering removal program: delete the one-time fleet-enablement stack (F3) — enable-modes.cjs plus lib/fleet-enablement/ — and its two tests. It drove modes from legacy to new_authoritative_final; all 8 modes are already there, so it has zero operational callers. F4 (flip-authority.cjs) was resequenced into phase 005 because it shares the authority-finalize.vitest.ts test file with the phase-005 CAS mutators, so the two remove together as one whole-file test deletion.",
     "created_at": "2026-08-24T17:06:19.731Z",
-    "last_save_at": "2026-08-24T17:06:19.731Z",
+    "last_save_at": "2026-08-24T19:26:35.766Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4f900f41346489e01e9f75a310882b5ec32274cb4c06f1260753e593177337e",
+    "source_fingerprint": "sha256:a47ab209e2100b4a1847099195b941a6401f018a3872efdf79ab465bbf4f630f",
     "source_doc_hashes": {
-      "spec.md": "bff315fdbf6cf33cd533cb0a5db3d3bbe9d81efa39fd43d11c6c42472c640c9b",
+      "spec.md": "c0ffa4090117737286549dc8b9e33a7accd261ca7b7d84c39b239f7b71bc19a1",
       "plan.md": "1d831648b92d6fd86816880788cdf7992e58850f64cf17c3292ce284569c3291",
-      "tasks.md": "426c6d2f8582a311fed69a7708c576360ebd8deb6d56f2036ec353346b62e011",
-      "checklist.md": "d62cc346fdeb4035f2935b3c58a1a214e70bfba88e9b53e3067a0822ba44d76a"
+      "tasks.md": "219da25c2dc1ba1a9f18e662018e197de19041eb2fb829842558e84a081e9774",
+      "checklist.md": "2d94bcdb0c37fd9b63b6fd9f10550cd4059f64fc8627f23134d9c7774e90202c",
+      "implementation-summary.md": "d18d0ab097d13c2875c2a0cb1f23a7c24a90c35a296e9c76a00161d2ae1c532a"
     },
     "last_active_child_id": null,
     "last_active_at": null

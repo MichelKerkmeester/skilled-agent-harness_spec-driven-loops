@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Phase 004 Rollout & Flip Tooling"
-description: "Ordered removal manifest for F3/F4 — sever doc cross-refs first, then delete, then verify."
+title: "Tasks: Phase 004 Rollout Tooling"
+description: "Ordered removal manifest for F3 — sever doc cross-refs first, then delete, then verify."
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling"
 ---
@@ -8,7 +8,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-de
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
-# Tasks: Phase 004 Rollout & Flip Tooling
+# Tasks: Phase 004 Rollout Tooling
 
 ---
 
@@ -31,18 +31,14 @@ pointing at a deleted path. All paths are under `.opencode/skills/system-deep-lo
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-### T1 — Re-confirm zero callers (remover, read-only)
-- [ ] `rg -n "enable-modes|fleet-enablement"` across `lib/` + `scripts/` — expect only `fleet-enablement/`
-  self + its own tests + its own README.
-- [ ] `rg -n "flip-authority"` across `lib/` + `scripts/` — expect only `scripts/flip-authority.cjs` self +
-  its own test + the non-dependency comment in `verify-authority.cjs` ("does not import or reuse
-  flip-authority.cjs").
-- [ ] `rg -n "prepareCutover|compareAndSwap|compareAndSwapFinalize"` — confirm the **only** callers outside
-  `authority-registry.ts` itself are `scripts/enable-modes.cjs` and `scripts/flip-authority.cjs`. Do not
-  touch `authority-registry.ts` — leaving these mutators dead is expected and correct (phase 005 reduces
-  them, not this phase).
-- [ ] STOP and report if any hit lands outside the module's own files, its tests, or the expected
-  non-dependency comment.
+### T1 — Re-confirm zero callers (read-only)
+- [x] `rg -n "enable-modes|fleet-enablement"` across `lib/` + `scripts/` — only `fleet-enablement/` self +
+  its own tests + its own README, plus the three doc rows severed in T2.
+- [x] `rg -n "flip-authority"` — confirmed F4 stays for phase 005; `authority-finalize.vitest.ts` directly
+  tests `flip-authority.cjs`, which drove the resequencing (see `spec.md` §2/§8).
+- [x] `rg -n "prepareCutover|compareAndSwap|compareAndSwapFinalize"` — the only callers are
+  `scripts/enable-modes.cjs` and `scripts/flip-authority.cjs`. `authority-registry` left untouched.
+- [x] No hit landed outside the module's own files, its tests, or the expected non-dependency comment.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -51,21 +47,19 @@ pointing at a deleted path. All paths are under `.opencode/skills/system-deep-lo
 ## Phase 2: Implementation
 
 ### T2 — Sever doc cross-references (edits first)
-- [ ] `scripts/README.md`: remove the `enable-modes.cjs` FILES row. (No `flip-authority.cjs` row exists —
-  confirmed pre-existing gap; do not add one.)
-- [ ] `lib/README.md`: remove the `fleet-enablement/` FILES row.
-- [ ] `lib/legacy-projections/README.md` § CONSUMERS: remove the
-  `.opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/mode-surface-map.ts` bullet; leave the
+- [x] `scripts/README.md`: `enable-modes.cjs` FILES row removed. (No `flip-authority.cjs` row exists.)
+- [x] `lib/README.md`: `fleet-enablement/` FILES row removed.
+- [x] `lib/legacy-projections/README.md` § CONSUMERS: `fleet-enablement/mode-surface-map.ts` bullet removed;
   `append-mode-event.ts` bullet intact.
 
-### T3 — Delete targets
-- [ ] Delete `scripts/enable-modes.cjs`.
-- [ ] Delete `lib/fleet-enablement/` (whole directory: `enablement-driver.ts`, `mode-surface-map.ts`,
+### T3 — Delete targets (F3 only)
+- [x] Deleted `scripts/enable-modes.cjs`.
+- [x] Deleted `lib/fleet-enablement/` (whole directory: `enablement-driver.ts`, `mode-surface-map.ts`,
   `index.ts`, `README.md`).
-- [ ] Delete `tests/unit/enable-modes-cli.vitest.ts`.
-- [ ] Delete `tests/unit/fleet-enablement.vitest.ts`.
-- [ ] Delete `scripts/flip-authority.cjs`.
-- [ ] Delete `tests/unit/flip-authority-cli.vitest.ts`.
+- [x] Deleted `tests/unit/enable-modes-cli.vitest.ts`.
+- [x] Deleted `tests/unit/fleet-enablement.vitest.ts`.
+- [x] `scripts/flip-authority.cjs` and `tests/unit/flip-authority-cli.vitest.ts` **NOT** deleted — F4
+  resequenced into phase 005.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,15 +68,15 @@ pointing at a deleted path. All paths are under `.opencode/skills/system-deep-lo
 ## Phase 3: Verification
 
 ### T4 — Verify (orchestrator runs; devin cannot run vitest)
-- [ ] `node .../typescript/bin/tsc -p runtime/tsconfig.json` → no new `TS2307`; error count ≤ fresh
-  baseline.
-- [ ] `node runtime/scripts/verify-authority.cjs` → 8 modes `new_authoritative_final`.
-- [ ] Runtime suite (`vitest run --reporter=dot`) → failing set unchanged by name vs baseline.
-- [ ] `rg` re-scan of every deleted symbol/path (`enable-modes`, `fleet-enablement`, `runFleetEnablement`,
-  `flip-authority`) → zero non-deleted references.
+- [x] `tsc -p runtime/tsconfig.json` → 56 errors (57 → 56, the dead `enablement-driver.ts` error gone),
+  0 `TS2307`.
+- [x] `node runtime/scripts/verify-authority.cjs` → 8 modes `new_authoritative_final`, `allOnLedger` true.
+- [x] Runtime suite (`vitest run --reporter=dot`) → failing set unchanged by name vs baseline.
+- [x] `rg` re-scan of `enable-modes`, `fleet-enablement`, `runFleetEnablement` → zero non-deleted
+  references.
 
 ### T5 — Commit
-- [ ] One conventional commit, `<100` files, mass-deletion guard respected (not overridden).
+- [x] One conventional commit, `<100` files, mass-deletion guard respected (not overridden).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -90,10 +84,10 @@ pointing at a deleted path. All paths are under `.opencode/skills/system-deep-lo
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] All verification gates pass (see `spec.md` SUCCESS CRITERIA / `plan.md` TESTING STRATEGY)
-- [ ] `checklist.md` fully verified
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] All verification gates pass (see `spec.md` SUCCESS CRITERIA / `plan.md` TESTING STRATEGY)
+- [x] `checklist.md` fully verified
 <!-- /ANCHOR:completion -->
 
 ---

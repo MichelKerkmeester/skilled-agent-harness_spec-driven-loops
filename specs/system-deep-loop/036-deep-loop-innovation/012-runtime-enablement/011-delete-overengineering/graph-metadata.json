@@ -73,12 +73,6 @@
         "source": "derived"
       },
       {
-        "name": "GLM-5.2-High",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "cli-devin",
         "kind": "key_phrase",
         "path": "spec.md",
@@ -86,6 +80,12 @@
       },
       {
         "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. ROOT PURPOSE",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
@@ -129,19 +129,19 @@
     ],
     "causal_summary": "Phase parent for removing the migration, rollback, and over-built machinery left in the deep-loop runtime after all 8 modes were finalized to new_authoritative_final. A prior wave removed the rollback ceremony and one-time scaffolding (now in scratch/); this program removes the second-order residue an evidence-backed audit surfaced, as five dependency-ordered deletion waves.",
     "created_at": "2026-08-23T19:32:08.669Z",
-    "last_save_at": "2026-08-24T18:48:14.467Z",
+    "last_save_at": "2026-08-24T19:26:36.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c0861f92f6b546d2b1adfc3c720808e70b6b784781ac08d54e2ad4a864ce228d",
+    "source_fingerprint": "sha256:0a1ebf23c1931cbad8a5966c6bc34dd93bfb39fceb05143636098c0a594fcd0a",
     "source_doc_hashes": {
-      "spec.md": "7bcdee333f2f756ac21963621cbf1d5dfc9eaa5da2039dd1ec5910d197550349",
+      "spec.md": "0da635470bd56ebda9db4d10122fc484b269a92c7dbd708d604a74a018355e90",
       "research/research.md": "bad0e564753f14bf24d083bcfe549497893e5c707cdd073ae331bda9ce778825"
     },
-    "last_active_child_id": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer",
-    "last_active_at": "2026-08-24T22:00:00.000Z"
+    "last_active_child_id": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling",
+    "last_active_at": "2026-08-24T23:30:00.000Z"
   }
 }
