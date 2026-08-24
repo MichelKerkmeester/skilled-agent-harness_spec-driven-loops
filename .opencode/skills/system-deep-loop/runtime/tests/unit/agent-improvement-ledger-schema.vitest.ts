@@ -18,9 +18,7 @@ import {
   AgentImprovementExtensionEventStems,
   AgentImprovementWireEventTypes,
   createAgentImprovementEventRegistry,
-  decideAgentImprovementCompatibility,
   prepareAgentImprovementEvent,
-  upcastLegacyAgentImprovementRecord,
 } from '../../lib/agent-improvement-ledger-schema/index.js';
 import {
   AppendOnlyLedger,
@@ -1346,96 +1344,5 @@ describe('agent-improvement typed ledger schema', () => {
     await appendAuthorizedForTest(harness.ledger, event, proof);
     const [verified] = await harness.ledger.readVerifiedEvents();
     expect(verified.event.stored.envelope.payload.data).toEqual(originalData);
-  });
-
-  // ─────────────────────────────────────────────────────────────────
-  // 4. COMPATIBILITY AND VERSION BOUNDARIES
-  // ─────────────────────────────────────────────────────────────────
-
-  it('fails closed on unknown stems and independent envelope or payload versions', () => {
-    expect(decideAgentImprovementCompatibility({
-      format: 'agent-improvement-ledger',
-      stem: 'agent_improvement.agent_ir_compiled',
-      eventVersion: 1,
-    }).status).toBe('exact');
-    expect(decideAgentImprovementCompatibility({
-      format: 'agent-improvement-ledger',
-      stem: 'agent_improvement.unknown',
-      eventVersion: 1,
-    }).status).toBe('blocked');
-    expect(decideAgentImprovementCompatibility({
-      eventType: 'agent_definition_snapshot',
-      schemaVersion: 99,
-      sessionId: 'run-1',
-      parentSessionId: 'lineage-1',
-      definitionId: 'agent-definition-1',
-    }).status).toBe('blocked');
-
-    const registry = createAgentImprovementEventRegistry();
-    const prepared = prepareAgentImprovementEvent(
-      eventInput(
-        'agent_improvement.definition_snapshot_sealed',
-        1,
-        '0'.repeat(64),
-      ),
-      registry,
-    );
-    expect(() => prepareEventWrite({
-      ...prepared.envelope,
-      envelope_version: 99,
-    }, registry)).toThrow();
-    expect(() => prepareEventWrite({
-      ...prepared.envelope,
-      event_version: 99,
-    }, registry)).toThrow();
-    expect(() => prepareEventWrite({
-      ...prepared.envelope,
-      payload: {
-        ...prepared.envelope.payload,
-        eventVersion: 99,
-      },
-    }, registry)).toThrow();
-  });
-
-  it('upcasts legacy JSONL purely with source and upcaster digests retained', () => {
-    const record = {
-      eventType: 'agent_definition_snapshot',
-      schemaVersion: 1,
-      sessionId: 'run-1',
-      parentSessionId: 'lineage-1',
-      definitionId: 'agent-definition-1',
-      definitionRef: 'legacy:agent-definition-1',
-      details: {
-        definitionBody: 'Mutable legacy definition remains outside the typed payload.',
-      },
-    };
-    const context = {
-      scope: scopeFor('agent_improvement.definition_snapshot_sealed'),
-      prevEventHash: '0'.repeat(64),
-      replay: replayMetadata('legacy-definition'),
-    };
-    const first = upcastLegacyAgentImprovementRecord(record, context);
-    const second = upcastLegacyAgentImprovementRecord(record, context);
-    expect(second).toEqual(first);
-    expect(first.status).toBe('migrated');
-    if (first.status !== 'migrated') throw new Error(first.decision.reasonCode);
-    expect(first.targetStem).toBe(
-      'agent_improvement.definition_snapshot_sealed',
-    );
-    expect(first.originalRecordDigest).toBe(digest(record));
-    expect(first.upcasterFingerprint).toMatch(/^[a-f0-9]{64}$/);
-    expect(() => prepareAgentImprovementEvent({
-      ...eventInput(
-        'agent_improvement.definition_snapshot_sealed',
-        1,
-        context.prevEventHash,
-      ),
-      scope: context.scope,
-      replay: context.replay,
-      data: first.data as AgentImprovementPayloadMap[
-        'agent_improvement.definition_snapshot_sealed'
-      ],
-    }, createAgentImprovementEventRegistry())).not.toThrow();
-    expect(record.details.definitionBody).toContain('Mutable legacy definition');
   });
 });

@@ -3,11 +3,6 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-import {
-  REAL_LEGACY_LOGS,
-  readRealJsonl,
-  unknownLegacyRecords,
-} from '../helpers/legacy-real-log.js';
 
 import {
   mkdtempSync,
@@ -27,9 +22,7 @@ import {
   DeepAiCouncilEventStems,
   DeepAiCouncilWireEventTypes,
   createDeepAiCouncilEventRegistry,
-  decideDeepAiCouncilCompatibility,
   prepareDeepAiCouncilEvent,
-  upcastLegacyDeepAiCouncilRecord,
 } from '../../lib/deep-ai-council-ledger-schema/index.js';
 import {
   canonicalBytes,
@@ -782,118 +775,6 @@ describe('deep-ai-council typed ledger schema', () => {
         safeRelativePath: path,
       }), registry)).toThrow();
     }
-  });
-
-  // ─────────────────────────────────────────────────────────────────
-  // 4. COMPATIBILITY AND LEGACY UPCASTING
-  // ─────────────────────────────────────────────────────────────────
-
-  it('covers every compatibility outcome and blocks unknown inputs', () => {
-    expect(decideDeepAiCouncilCompatibility({
-      format: 'deep-ai-council-ledger',
-      stem: 'ai_council.round_started',
-      eventVersion: 1,
-    }).status).toBe('exact');
-    expect(decideDeepAiCouncilCompatibility({
-      type: 'audit',
-      event: 'artifact_verified',
-      schemaVersion: 1,
-    }).status).toBe('compatible');
-    expect(decideDeepAiCouncilCompatibility({
-      event: 'round_start',
-      runId: 'run-1',
-      roundId: 'round-1',
-      schemaVersion: 1,
-    }).status).toBe('migrate');
-    expect(decideDeepAiCouncilCompatibility({
-      event: 'seat_returned',
-      runId: 'run-1',
-      roundId: 'round-1',
-      schemaVersion: 1,
-    }).status).toBe('pin-old-runtime');
-    expect(decideDeepAiCouncilCompatibility({
-      event: 'unknown_event',
-      runId: 'run-1',
-      roundId: 'round-1',
-      schemaVersion: 1,
-    }).status).toBe('blocked');
-    expect(decideDeepAiCouncilCompatibility({
-      event: 'round_start',
-      runId: 'run-1',
-      roundId: 'round-1',
-      schemaVersion: 99,
-    }).status).toBe('blocked');
-    expect(decideDeepAiCouncilCompatibility({
-      format: 'deep-ai-council-ledger',
-      stem: 'ai_council.round_started',
-      eventVersion: 1,
-      payloadVersion: 2,
-    }).status).toBe('blocked');
-  });
-
-  it('replays captured council state logs without unknown legacy blocks', () => {
-    const records = [
-      ...readRealJsonl(REAL_LEGACY_LOGS.council),
-      ...readRealJsonl(REAL_LEGACY_LOGS.councilArchive),
-    ];
-    const unknown = unknownLegacyRecords(records, decideDeepAiCouncilCompatibility);
-    expect(records).toHaveLength(26);
-    expect(unknown).toEqual([]);
-  });
-
-  it('accepts the live heartbeat and registers both terminal record types', () => {
-    expect(decideDeepAiCouncilCompatibility({
-      type: 'progress_record',
-      event: 'session_heartbeat',
-      progress_delta: 0,
-      schemaVersion: 1,
-    })).toMatchObject({ status: 'compatible', targetStem: null });
-    for (const type of ['topic_completed', 'round_completed']) {
-      expect(decideDeepAiCouncilCompatibility({
-        type,
-        runId: 'run-1',
-        roundId: 'round-1',
-        schemaVersion: 1,
-      })).toMatchObject({
-        status: 'migrate',
-        targetStem: 'ai_council.round_ended',
-      });
-    }
-  });
-
-  it('upcasts registered legacy rows with source and upcaster digests retained', async () => {
-    const legacy = {
-      event: 'round_start',
-      runId: 'run-1',
-      roundId: 'round-1',
-      roundNumber: 1,
-      schemaVersion: 1,
-    };
-    const context = {
-      scope: { runId: 'run-1', roundId: 'round-1' },
-      prevEventHash: '0'.repeat(64),
-      replay: replayMetadata('legacy-round'),
-    };
-    const first = upcastLegacyDeepAiCouncilRecord(legacy, context);
-    const second = upcastLegacyDeepAiCouncilRecord(legacy, context);
-    expect(first.status).toBe('migrated');
-    expect(second).toEqual(first);
-    if (first.status !== 'migrated') throw new Error('legacy upcast refused');
-    expect(first.originalRecordDigest).toBe(digest(legacy));
-    expect(first.upcasterFingerprint).toMatch(/^[a-f0-9]{64}$/);
-
-    const harness = createHarness();
-    const event = prepareDeepAiCouncilEvent({
-      ...eventInput('ai_council.round_started', 1),
-      scope: first.scope,
-      prevEventHash: first.prevEventHash,
-      replay: first.replay,
-      data: first.data,
-    } as DeepAiCouncilEventInput<'ai_council.round_started'>, harness.registry);
-    const proof = await authorize(harness, event, 'legacy-request');
-    await expect(appendAuthorizedForTest(harness.ledger, event, proof)).resolves.toMatchObject({
-      event_id: 'event-1',
-    });
   });
 
   it('rejects unregistered envelope and payload versions without guessing', () => {

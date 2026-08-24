@@ -17,10 +17,6 @@ export {
   DeepAiCouncilEventStems,
   DeepAiCouncilWireEventTypes,
 } from './deep-ai-council-ledger-types.js';
-export {
-  decideDeepAiCouncilCompatibility,
-  upcastLegacyDeepAiCouncilRecord,
-} from './legacy-compatibility.js';
 
 export type * from './deep-ai-council-ledger-schema.js';
 export type * from './deep-ai-council-ledger-types.js';

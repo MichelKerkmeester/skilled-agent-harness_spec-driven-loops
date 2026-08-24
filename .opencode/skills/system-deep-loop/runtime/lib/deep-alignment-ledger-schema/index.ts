@@ -18,10 +18,6 @@ export {
   DeepAlignmentEventStems,
   DeepAlignmentWireEventTypes,
 } from './deep-alignment-ledger-types.js';
-export {
-  decideDeepAlignmentCompatibility,
-  upcastLegacyDeepAlignmentRecord,
-} from './legacy-compatibility.js';
 
 export type * from './deep-alignment-ledger-schema.js';
 export type * from './deep-alignment-ledger-types.js';

@@ -24,10 +24,6 @@ export {
   SkillBenchmarkSpecificWireEventTypes,
   SkillBenchmarkWireEventTypes,
 } from './skill-benchmark-ledger-types.js';
-export {
-  decideSkillBenchmarkCompatibility,
-  upcastLegacySkillBenchmarkRecord,
-} from './legacy-compatibility.js';
 
 export type * from './skill-benchmark-ledger-schema.js';
 export type * from './skill-benchmark-ledger-types.js';

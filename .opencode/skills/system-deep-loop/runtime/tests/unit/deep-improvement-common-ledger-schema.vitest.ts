@@ -3,11 +3,6 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-import {
-  REAL_LEGACY_LOGS,
-  readRealJsonl,
-  unknownLegacyRecords,
-} from '../helpers/legacy-real-log.js';
 
 import {
   mkdtempSync,
@@ -30,9 +25,7 @@ import {
   DeepImprovementCommonEventStems,
   DeepImprovementCommonWireEventTypes,
   createDeepImprovementCommonEventRegistry,
-  decideDeepImprovementCommonCompatibility,
   prepareDeepImprovementCommonEvent,
-  upcastLegacyDeepImprovementCommonRecord,
 } from '../../lib/deep-improvement-common-ledger-schema/index.js';
 import {
   EVENT_ENVELOPE_FIELDS,
@@ -984,119 +977,5 @@ describe('deep-improvement-common typed ledger schema', () => {
         },
       },
     }, registry)).toThrow();
-  });
-
-  // ─────────────────────────────────────────────────────────────────
-  // 4. LEGACY COMPATIBILITY AND VERSION BOUNDARIES
-  // ─────────────────────────────────────────────────────────────────
-
-  it('covers compatibility outcomes and blocks unknown events and versions', () => {
-    expect(decideDeepImprovementCommonCompatibility({
-      format: 'deep-improvement-common-ledger',
-      stem: 'deep_improvement_common.run_started',
-      eventVersion: 1,
-    }).status).toBe('exact');
-    expect(decideDeepImprovementCommonCompatibility({
-      type: 'progress',
-      schemaVersion: 1,
-    }).status).toBe('compatible');
-    expect(decideDeepImprovementCommonCompatibility({
-      eventType: 'session_start',
-      schemaVersion: 1,
-      sessionId: 'run-1',
-      parentSessionId: 'lineage-1',
-    }).status).toBe('migrate');
-    expect(decideDeepImprovementCommonCompatibility({
-      eventType: 'gate_evaluation',
-      schemaVersion: 1,
-    }).status).toBe('pin-old-runtime');
-    expect(decideDeepImprovementCommonCompatibility({
-      eventType: 'unknown',
-      schemaVersion: 1,
-    }).status).toBe('blocked');
-    expect(decideDeepImprovementCommonCompatibility({
-      eventType: 'session_start',
-      schemaVersion: 99,
-      sessionId: 'run-1',
-      parentSessionId: 'lineage-1',
-    }).status).toBe('blocked');
-  });
-
-  it('replays the captured common lifecycle log without unknown legacy blocks', () => {
-    const records = readRealJsonl(REAL_LEGACY_LOGS.common);
-    const unknown = unknownLegacyRecords(records, decideDeepImprovementCommonCompatibility);
-    expect(records).toHaveLength(19);
-    expect(unknown).toEqual([]);
-  });
-
-  it('upcasts legacy JSONL purely with source and upcaster digests retained', () => {
-    const record = {
-      eventType: 'session_start',
-      schemaVersion: 1,
-      sessionId: 'run-1',
-      parentSessionId: 'lineage-1',
-      operatorId: 'legacy-operator',
-      maxIterations: 5,
-      details: { charter: 'legacy mutable body remains outside the typed payload' },
-    };
-    const context = {
-      scope: scopeFor('deep_improvement_common.run_started'),
-      prevEventHash: '0'.repeat(64),
-      replay: replayMetadata('legacy-session-start'),
-    };
-    const first = upcastLegacyDeepImprovementCommonRecord(record, context);
-    const second = upcastLegacyDeepImprovementCommonRecord(record, context);
-    expect(second).toEqual(first);
-    expect(first.status).toBe('migrated');
-    if (first.status !== 'migrated') throw new Error(first.decision.reasonCode);
-    expect(first.targetStem).toBe('deep_improvement_common.run_started');
-    expect(first.originalRecordDigest).toBe(digest(record));
-    expect(first.upcasterFingerprint).toMatch(/^[a-f0-9]{64}$/);
-
-    expect(() => prepareDeepImprovementCommonEvent({
-      ...eventInput(
-        'deep_improvement_common.run_started',
-        1,
-        context.prevEventHash,
-      ),
-      scope: context.scope,
-      replay: context.replay,
-      data: first.data as DeepImprovementCommonPayloadMap[
-        'deep_improvement_common.run_started'
-      ],
-    }, createDeepImprovementCommonEventRegistry())).not.toThrow();
-    expect(record.details.charter).toContain('legacy mutable body');
-  });
-
-  it('keeps envelope and payload version failures independent and fail-closed', () => {
-    const registry = createDeepImprovementCommonEventRegistry();
-    const prepared = prepareDeepImprovementCommonEvent(
-      eventInput(
-        'deep_improvement_common.run_started',
-        1,
-        '0'.repeat(64),
-      ),
-      registry,
-    );
-    expect(() => prepareEventWrite({
-      ...prepared.envelope,
-      envelope_version: 99,
-    }, registry)).toThrow();
-    expect(() => prepareEventWrite({
-      ...prepared.envelope,
-      event_version: 99,
-    }, registry)).toThrow();
-    expect(() => prepareEventWrite({
-      ...prepared.envelope,
-      payload: {
-        ...prepared.envelope.payload,
-        eventVersion: 99,
-      },
-    }, registry)).toThrow();
-    expect(decideDeepImprovementCommonCompatibility({
-      format: 'deep-improvement-common-ledger',
-      stem: 'deep_improvement_common.unknown_event',
-      eventVersion: 1,
-    }).status).toBe('blocked');
   });
 });

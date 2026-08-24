@@ -29,7 +29,6 @@ The module is current runtime infrastructure. It observes legacy-compatible shap
 | `effect-gateway.ts` | Coordinates effect intent, confirmation, conflict, reconciliation and operator resolution. |
 | `errors.ts` | Defines stable error codes for receipt and effect boundaries. |
 | `event-contracts.ts` | Defines receipt and effect lifecycle event contracts and registries. |
-| `legacy-compatibility.ts` | Parses compatible legacy fields without assigning them new write ownership. |
 | `replay-projection.ts` | Projects receipt and effect events for replay-fingerprint verification. |
 | `types.ts` | Defines boundary, action, intent, confirmation and recovery-verdict contracts. |
 | `index.ts` | Public barrel for the receipt and effect recovery API. |

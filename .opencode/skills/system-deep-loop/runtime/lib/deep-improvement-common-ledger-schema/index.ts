@@ -18,10 +18,6 @@ export {
   DeepImprovementCommonEventStems,
   DeepImprovementCommonWireEventTypes,
 } from './deep-improvement-common-ledger-types.js';
-export {
-  decideDeepImprovementCommonCompatibility,
-  upcastLegacyDeepImprovementCommonRecord,
-} from './legacy-compatibility.js';
 
 export type * from './deep-improvement-common-ledger-schema.js';
 export type * from './deep-improvement-common-ledger-types.js';

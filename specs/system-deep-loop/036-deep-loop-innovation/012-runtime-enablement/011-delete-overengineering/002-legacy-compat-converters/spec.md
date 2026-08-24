@@ -7,6 +7,7 @@ trigger_phrases:
   - "ledger schema legacy upcasters delete"
 importance_tier: "important"
 contextType: "implementation"
+status: complete
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
 ---
 
@@ -25,7 +26,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-de
 | **Packet** | .../011-delete-overengineering/002-legacy-compat-converters |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Risk** | Low-Medium — seven modules + their barrels + their tests, no live-loop adjacency |
 | **Findings** | F1 (see parent `research/research.md`) |
 <!-- /ANCHOR:metadata -->

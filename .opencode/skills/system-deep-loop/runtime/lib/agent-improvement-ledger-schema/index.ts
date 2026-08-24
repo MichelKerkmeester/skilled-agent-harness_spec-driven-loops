@@ -21,10 +21,6 @@ export {
   AgentImprovementExtensionWireEventTypes,
   AgentImprovementWireEventTypes,
 } from './agent-improvement-ledger-types.js';
-export {
-  decideAgentImprovementCompatibility,
-  upcastLegacyAgentImprovementRecord,
-} from './legacy-compatibility.js';
 
 export type * from './agent-improvement-ledger-schema.js';
 export type * from './agent-improvement-ledger-types.js';

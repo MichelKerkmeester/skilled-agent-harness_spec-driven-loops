@@ -3,11 +3,6 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-import {
-  REAL_LEGACY_LOGS,
-  readRealJsonl,
-  unknownLegacyRecords,
-} from '../helpers/legacy-real-log.js';
 
 import {
   mkdtempSync,
@@ -44,9 +39,7 @@ import {
   SkillBenchmarkSpecificEventStems,
   SkillBenchmarkWireEventTypes,
   createSkillBenchmarkEventRegistry,
-  decideSkillBenchmarkCompatibility,
   prepareSkillBenchmarkEvent,
-  upcastLegacySkillBenchmarkRecord,
 } from '../../lib/skill-benchmark-ledger-schema/index.js';
 
 import type {
@@ -1308,141 +1301,5 @@ describe('skill-benchmark typed ledger schema', () => {
         data: { ...assignment.data, treatmentArm },
       }, registry)).not.toThrow();
     }
-  });
-
-  it('fails closed on unknown stems and every version boundary', () => {
-    expect(decideSkillBenchmarkCompatibility({
-      format: 'skill-benchmark-ledger',
-      stem: 'skill_benchmark.run_planned',
-      eventVersion: 1,
-    }).status).toBe('exact');
-    expect(decideSkillBenchmarkCompatibility({
-      format: 'skill-benchmark-ledger',
-      stem: 'deep_improvement_common.run_started',
-      eventVersion: 1,
-    }).status).toBe('exact');
-    expect(decideSkillBenchmarkCompatibility({
-      type: 'progress',
-      schemaVersion: 1,
-    }).status).toBe('compatible');
-    expect(decideSkillBenchmarkCompatibility({
-      eventType: 'ranking_published',
-      schemaVersion: 1,
-    }).status).toBe('pin-old-runtime');
-    expect(decideSkillBenchmarkCompatibility({
-      eventType: 'unknown',
-      schemaVersion: 1,
-    }).status).toBe('blocked');
-    expect(decideSkillBenchmarkCompatibility({
-      eventType: 'benchmark_run_planned',
-      schemaVersion: 99,
-      runId: 'run-1',
-      lineageId: 'lineage-1',
-      benchmarkDesignId: 'design-1',
-    }).status).toBe('blocked');
-
-    const registry = createSkillBenchmarkEventRegistry();
-    const prepared = prepareSkillBenchmarkEvent(
-      eventInput(
-        'skill_benchmark.run_planned',
-        1,
-        '0'.repeat(64),
-      ),
-      registry,
-    );
-    expect(() => prepareEventWrite({
-      ...prepared.envelope,
-      envelope_version: 99,
-    }, registry)).toThrow();
-    expect(() => prepareEventWrite({
-      ...prepared.envelope,
-      event_version: 99,
-    }, registry)).toThrow();
-    expect(() => prepareEventWrite({
-      ...prepared.envelope,
-      payload: { ...prepared.envelope.payload, eventVersion: 99 },
-    }, registry)).toThrow();
-  });
-
-  it('classifies stable legacy planning records for migration', () => {
-    expect(decideSkillBenchmarkCompatibility({
-      eventType: 'benchmark_run_planned',
-      schemaVersion: 1,
-      runId: 'run-1',
-      lineageId: 'lineage-1',
-      benchmarkDesignId: 'design-1',
-    })).toMatchObject({
-      status: 'migrate',
-      reasonCode: 'registered-pure-upcaster',
-    });
-  });
-
-  it('pins legacy planning records without stable design identity', () => {
-    expect(decideSkillBenchmarkCompatibility({
-      eventType: 'benchmark_run_planned',
-      schemaVersion: 1,
-    })).toMatchObject({
-      status: 'pin-old-runtime',
-      reasonCode: 'stable-design-identity-missing',
-    });
-  });
-
-  it('replays the captured common lifecycle log through the skill vocabulary', () => {
-    const records = readRealJsonl(REAL_LEGACY_LOGS.common);
-    const unknown = unknownLegacyRecords(records, decideSkillBenchmarkCompatibility);
-    expect(records).toHaveLength(19);
-    expect(unknown).toEqual([]);
-    expect(decideSkillBenchmarkCompatibility(records[0])).toMatchObject({
-      status: 'pin-old-runtime',
-      reasonCode: 'stable-identity-missing',
-      targetStem: 'deep_improvement_common.run_started',
-    });
-  });
-
-  it('upcasts registered legacy planning records without mutating source facts', () => {
-    const record = {
-      eventType: 'benchmark_run_planned',
-      schemaVersion: 1,
-      runId: 'run-1',
-      lineageId: 'lineage-1',
-      benchmarkDesignId: 'design-1',
-      randomizationSeed: 42,
-      replicateCount: 2,
-      designPolicyVersion: 'legacy-design@1',
-      details: {
-        transcript: 'mutable legacy material remains outside typed payloads',
-      },
-    };
-    const context = {
-      scope: {
-        runId: 'run-1',
-        lineageId: 'lineage-1',
-        variant: 'skill-benchmark' as const,
-        benchmarkDesignId: 'design-1',
-      },
-      prevEventHash: '0'.repeat(64),
-      replay: replayMetadata('legacy-design'),
-    };
-    const first = upcastLegacySkillBenchmarkRecord(record, context);
-    const second = upcastLegacySkillBenchmarkRecord(record, context);
-    expect(second).toEqual(first);
-    expect(first.status).toBe('migrated');
-    if (first.status !== 'migrated') throw new Error(first.decision.reasonCode);
-    expect(first.targetStem).toBe('skill_benchmark.run_planned');
-    expect(first.originalRecordDigest).toBe(digest(record));
-    expect(first.upcasterFingerprint).toMatch(/^[a-f0-9]{64}$/);
-    expect(() => prepareSkillBenchmarkEvent({
-      ...eventInput(
-        'skill_benchmark.run_planned',
-        1,
-        context.prevEventHash,
-      ),
-      scope: context.scope,
-      replay: context.replay,
-      data: first.data as SkillBenchmarkPayloadMap[
-        'skill_benchmark.run_planned'
-      ],
-    }, createSkillBenchmarkEventRegistry())).not.toThrow();
-    expect(record.details.transcript).toContain('mutable legacy material');
   });
 });

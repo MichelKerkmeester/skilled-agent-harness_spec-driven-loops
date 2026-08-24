@@ -129,19 +129,19 @@
     ],
     "causal_summary": "Phase parent for removing the migration, rollback, and over-built machinery left in the deep-loop runtime after all 8 modes were finalized to new_authoritative_final. A prior wave removed the rollback ceremony and one-time scaffolding (now in scratch/); this program removes the second-order residue an evidence-backed audit surfaced, as five dependency-ordered deletion waves.",
     "created_at": "2026-08-23T19:32:08.669Z",
-    "last_save_at": "2026-08-24T17:09:34.907Z",
+    "last_save_at": "2026-08-24T18:09:08.765Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3749d653e3680ab47e1e5384bbdfc2079d8123c73d95b1b4a3f56e5c760910f6",
+    "source_fingerprint": "sha256:b3043afcbb8f4b7ad52bf9c4e1a93b85d4b6895926702a7b77ea0768c0b98066",
     "source_doc_hashes": {
-      "spec.md": "991762e5ae59b06e2e0aa8e7a2f09924ceb653b8e69812ee7f2e9bc164860b50",
+      "spec.md": "42e2c457a8e6893906f9dc2ea7a35b7fe17f1b1284ce388cf424e72a3b2f69c8",
       "research/research.md": "945d7d110a686c84acf7ab3c175a04c05e1b16f8b08fb49f1566b0a1eee31cf9"
     },
-    "last_active_child_id": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals",
-    "last_active_at": "2026-08-24T19:00:00.000Z"
+    "last_active_child_id": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters",
+    "last_active_at": "2026-08-24T20:30:00.000Z"
   }
 }

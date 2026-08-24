@@ -21,10 +21,6 @@ export {
   ModelBenchmarkSpecificWireEventTypes,
   ModelBenchmarkWireEventTypes,
 } from './model-benchmark-ledger-types.js';
-export {
-  decideModelBenchmarkCompatibility,
-  upcastLegacyModelBenchmarkRecord,
-} from './legacy-compatibility.js';
 
 export type * from './model-benchmark-ledger-schema.js';
 export type * from './model-benchmark-ledger-types.js';
