@@ -9,7 +9,7 @@ description: "Content-addressed sealing, storage and lifecycle tracking for refe
 
 ## 1. OVERVIEW
 
-Gives replay and shadow-parity comparisons something stable to bind to. An artifact such as a prompt set, fixture, prior-run output or configuration value is canonicalized, digested and sealed once, then tracked through a lifecycle of sealed, superseded, retired and restored states with a retention sweep. A bound reference set proves that two runs consumed byte-identical inputs.
+Gives replay and parity comparisons something stable to bind to. An artifact such as a prompt set, fixture, prior-run output or configuration value is canonicalized, digested and sealed once, then tracked through a lifecycle of sealed, superseded, retired and restored states with a retention sweep. A bound reference set proves that two runs consumed byte-identical inputs.
 
 ---
 
@@ -29,9 +29,7 @@ Gives replay and shadow-parity comparisons something stable to bind to. An artif
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/shadow-parity/` (harness and types)
-- `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/`
-- `.opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/`
+- The per-mode `*-sealed-artifacts` modules (artifact material, sets and types)
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
 
 ---
@@ -39,7 +37,6 @@ Gives replay and shadow-parity comparisons something stable to bind to. An artif
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts`
-- Also exercised by `mixed-version-fixtures.vitest.ts` and `shadow-parity-harness.vitest.ts`.
 
 ---
 

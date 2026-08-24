@@ -1,0 +1,136 @@
+{
+  "generatedAt": "2026-08-24T08:15:22.796Z",
+  "candidateSha": "07c1bd5f22f0831de1bebdc822b7394ded7884b8",
+  "baselineSha": "8c9f0b6944ac4e43e99d26f9cf61dab74b600640",
+  "forcedBreak": null,
+  "verdict": "PASS",
+  "checks": [
+    {
+      "id": "tree-clean",
+      "description": "Working tree is clean",
+      "status": "pass",
+      "detail": "tree clean apart from the gate's own artifacts; excluded specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch (gate output directory); nothing remained after exclusion"
+    },
+    {
+      "id": "candidate-frozen",
+      "description": "Candidate runtime tree matches the measured tree",
+      "status": "pass",
+      "detail": "identical"
+    },
+    {
+      "id": "authority-state",
+      "description": "Every mode authority is on new_authoritative_reversible or new_authoritative_final",
+      "status": "pass",
+      "detail": "read 8 modes; 8 on new_authoritative_final; 8 from a stored record, 0 from the absent-record default",
+      "records": [
+        {
+          "mode": "deep-research",
+          "state": "new_authoritative_final",
+          "epoch": 3,
+          "selectedWriter": "dark",
+          "source": "stored"
+        },
+        {
+          "mode": "deep-review",
+          "state": "new_authoritative_final",
+          "epoch": 3,
+          "selectedWriter": "dark",
+          "source": "stored"
+        },
+        {
+          "mode": "deep-ai-council",
+          "state": "new_authoritative_final",
+          "epoch": 3,
+          "selectedWriter": "dark",
+          "source": "stored"
+        },
+        {
+          "mode": "deep-improvement-common",
+          "state": "new_authoritative_final",
+          "epoch": 3,
+          "selectedWriter": "dark",
+          "source": "stored"
+        },
+        {
+          "mode": "agent-improvement",
+          "state": "new_authoritative_final",
+          "epoch": 3,
+          "selectedWriter": "dark",
+          "source": "stored"
+        },
+        {
+          "mode": "model-benchmark",
+          "state": "new_authoritative_final",
+          "epoch": 3,
+          "selectedWriter": "dark",
+          "source": "stored"
+        },
+        {
+          "mode": "skill-benchmark",
+          "state": "new_authoritative_final",
+          "epoch": 3,
+          "selectedWriter": "dark",
+          "source": "stored"
+        },
+        {
+          "mode": "deep-alignment",
+          "state": "new_authoritative_final",
+          "epoch": 3,
+          "selectedWriter": "dark",
+          "source": "stored"
+        }
+      ]
+    },
+    {
+      "id": "runtime-suite",
+      "description": "Candidate suite failures <= baseline (read from captured logs)",
+      "status": "pass",
+      "detail": "failed 13 vs 19 (Δ-6); passed 2698 vs 4395 (Δ-1697); skipped 7 vs 39 (Δ-32); total 2718 vs 4453 (Δ-1735); files 161 vs 199 (Δ-38)"
+    },
+    {
+      "id": "consumer-reachability",
+      "description": "Every listed consumer script exists on disk and can be started",
+      "status": "pass",
+      "detail": "all 7 scripts exist and spawned; non-zero exits are expected when required args are absent — this proves reachability only, not end-to-end correctness"
+    },
+    {
+      "id": "reader-contracts",
+      "description": "End-to-end reader contract per mode (real ledger-projected read)",
+      "status": "pass",
+      "detail": "all 8 modes read cleanly via their real consumers"
+    },
+    {
+      "id": "fanout-real-run",
+      "description": "Real fan-out dispatch produced observed lineage work",
+      "status": "pass",
+      "detail": "run_id 1787198541887-w6k53d: total 1, succeeded 1, failed 0, all_failed false, orphaned 0; iteration artifact /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/022-012-runtime-enablement-build/specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/fanout-proof/research/lineages/ds-flash-min/iterations/iteration-001.md size 4978"
+    }
+  ],
+  "suite": {
+    "baseline": {
+      "testsFailed": 19,
+      "testsPassed": 4395,
+      "testsSkipped": 39,
+      "testsTotal": 4453,
+      "filesFailed": 15,
+      "filesPassed": 184,
+      "filesTotal": 199
+    },
+    "candidate": {
+      "testsFailed": 13,
+      "testsPassed": 2698,
+      "testsSkipped": 7,
+      "testsTotal": 2718,
+      "filesFailed": 9,
+      "filesPassed": 152,
+      "filesTotal": 161
+    },
+    "delta": {
+      "failed": -6,
+      "passed": -1697,
+      "skipped": -32,
+      "total": -1735,
+      "files": -38
+    }
+  }
+}

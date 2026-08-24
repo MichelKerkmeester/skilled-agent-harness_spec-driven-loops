@@ -1,5 +1,5 @@
 {
-  "level": "2",
+  "level": "3",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
   "description": "Turn the dark deep-loop substrate on: build the append gateway and legacy projection the modes lack, migrate each mode's write protocol onto it, flip",
   "keywords": [
@@ -20,34 +20,13 @@
     "onto",
     "flip"
   ],
-  "lastUpdated": "2026-08-21T12:49:25.439Z",
+  "lastUpdated": "2026-08-24T08:56:39.769Z",
   "specId": "012",
   "folderSlug": "runtime-enablement",
   "parentChain": [
     "system-deep-loop",
     "036-deep-loop-innovation"
   ],
-  "memorySequence": 38,
-  "memoryNameHistory": [
-    "20-08-26_19-36__correction-and-one-finding-that-survives-it-i-was.md",
-    "20-08-26_19-38__waiting-on-the-003-baseline-pid-81454-at.md",
-    "20-08-26_20-59__progressing-not-stuck-worker-35719-accumulated.md",
-    "20-08-26_22-03__progressing-worker-2832-burned-cpu-0-05-75-0-25.md",
-    "20-08-26_22-47__progressing-pid-90558-confirmed-as-my-dispatch-by.md",
-    "20-08-26_23-25__progressing-worker-cpu-is-accumulating-pid-19785.md",
-    "21-08-26_01-33__phase-003-boundary-report-commit-7bed55628e-9.md",
-    "21-08-26_01-37__phase-004-boundary-report-commit-b8cf7ab74e-4.md",
-    "21-08-26_01-41__phase-005-boundary-report-commit-af72e1e44f-6.md",
-    "21-08-26_01-45__phase-006-boundary-report-and-the-program-s-real.md",
-    "21-08-26_01-46__adversarial-verify-dispatched-pid-12058-waiter.md",
-    "21-08-26_05-58__progressing-i-measured-the-wrong-process-the.md",
-    "21-08-26_07-47__progressing-normally-the-33-minute-figure-is-the.md",
-    "21-08-26_08-52__progressing-two-live-fork-workers-burning-cpu.md",
-    "21-08-26_09-53__progressing-and-near-the-finish-elapsed-2h01m.md",
-    "21-08-26_11-17__progressing-elapsed-21s-worker-77870-at-22-9-cpu.md",
-    "21-08-26_11-29__measured-and-the-recorded-reason-is-out-of-date.md",
-    "21-08-26_11-31__the-census-is-measured-and-it-replaces-the-note-s.md",
-    "21-08-26_11-34__baseline-wait-armed-here-s-where-phase-002-stands.md",
-    "21-08-26_13-49__step-1-is-built-verified-and-committed-as.md"
-  ]
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

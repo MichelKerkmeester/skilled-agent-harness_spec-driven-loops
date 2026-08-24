@@ -170,7 +170,7 @@ function resolveModeSurfaceId(mode: string): string {
   if (mode === 'deep-review' || mode === 'review') return 'review-state';
   if (mode === 'deep-alignment' || mode === 'alignment') return 'alignment-state-deltas';
   if (mode === 'deep-ai-council' || mode === 'ai-council') return 'council-config-state';
-  if (mode === 'deep-improvement' || mode === 'improvement') return 'improvement-ledgers';
+  if (mode === 'deep-improvement' || mode === 'improvement' || mode === 'deep-improvement-common') return 'improvement-ledgers';
   const directMatch = LEGACY_PROJECTION_MANIFEST.find((entry) => (
     entry.disposition === 'project' && (
       entry.surfaceId === mode

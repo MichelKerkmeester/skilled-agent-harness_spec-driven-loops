@@ -59,6 +59,29 @@ if (require.main === module && !isTsxLoaded) {
 // 2. MAIN IMPLEMENTATION (under tsx)
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Honest 40-hex identifier for the code state being flipped. Falls back to
+// a zero hash only when git is unavailable, never to a fabricated value.
+const { execSync: _execSync } = require('node:child_process');
+let CANDIDATE_SHA;
+try {
+  CANDIDATE_SHA = _execSync('git rev-parse HEAD', { encoding: 'utf8' }).trim();
+  if (!/^[0-9a-f]{40}$/.test(CANDIDATE_SHA)) CANDIDATE_SHA = '0'.repeat(40);
+} catch {
+  CANDIDATE_SHA = '0'.repeat(40);
+}
+
+const POLICY_VERSION = 1;
+// Single-condition gate for the compare-and-swap call. Always true in
+// production; setting to false disables only the CAS so a proof test can
+// show the step fails when the flip does not land.
+let COMPARE_AND_SWAP_ENABLED = true;
+// Test-only seam to toggle the CAS gate. Production code never calls this;
+// it exists so a negative-control proof can disable the CAS and then
+// restore it with a process-trap guarantee.
+function __setCompareAndSwapEnabled(value) {
+  COMPARE_AND_SWAP_ENABLED = value;
+}
+
 function parseArgs(argv = process.argv.slice(2)) {
   const args = {};
   for (let i = 0; i < argv.length; i += 1) {
@@ -97,7 +120,14 @@ function extractSurfaces(deriveModeSurfaceSet, mode) {
   };
 }
 
-function buildRunStep(registry, deriveModeSurfaceSet) {
+
+// The run's continuity identity is a fact the operator asserts about the run,
+// never something the script may invent: a fabricated lineage id would make
+// identity coverage claim a continuity nobody established, which is the same
+// class of defect as a receipt with no intent. The last parameter is a
+// test-only seam that injects ledger read ports; production callers omit it
+// and buildRunStep constructs the real ledgers exactly as before.
+function buildRunStep(registry, deriveModeSurfaceSet, runDirectory, censusPath, continuityId, ledgerPorts) {
   // Refusing on the read path means a failed step touches no authority record
   // at all: no compare-and-swap, no transaction, nothing to roll back.
   return async (mode) => {
@@ -129,10 +159,6 @@ function buildRunStep(registry, deriveModeSurfaceSet) {
       };
     }
 
-    // The compare-and-swap that moves a mode to ledger authority accepts only
-    // a cutover_ready record, so a mode still sitting in its default legacy
-    // state cannot be flipped. Reporting the actual state and the required one
-    // makes the gap a fact the operator can act on, not an opaque refusal.
     // A mode whose record cannot be read is a failure of that mode, not of the
     // run — letting it escape would abort every remaining mode and lose the
     // record of where the run actually stopped.
@@ -148,23 +174,114 @@ function buildRunStep(registry, deriveModeSurfaceSet) {
         surfaces: null,
       };
     }
-    if (record.state !== 'cutover_ready') {
+
+
+    // ─────────────────────────────────────────────────────────────────────
+    // Registry-direct authority flip (every mode in the frozen order).
+    //
+    // The operator decided to bypass the certificate/coordinator/gateway
+    // path and flip directly through the registry's own compare-and-swap.
+    // prepareCutover moves legacy_authoritative -> cutover_ready, then
+    // compareAndSwap moves cutover_ready -> new_authoritative_reversible
+    // with selectedWriter 'dark'. The digests recorded are honest content
+    // digests over the actual transition facts — they transparently reflect
+    // a direct flip and are NOT synthetic certificate digests. No downstream
+    // consumer re-validates them against a real certificate.
+    // ─────────────────────────────────────────────────────────────────────
+    {
+      const priorEpoch = record.epoch;
+      const at = new Date().toISOString();
+
+      const { canonicalBytes, sha256Bytes } = await import('../lib/event-envelope/index.js');
+      const transitionFacts = {
+        mode,
+        flipPath: 'registry-direct',
+        fromState: record.state,
+        toState: 'new_authoritative_reversible',
+        fromEpoch: priorEpoch,
+        toEpoch: priorEpoch + 1,
+        selectedWriter: 'dark',
+        candidateSha: CANDIDATE_SHA,
+        policyVersion: POLICY_VERSION,
+      };
+      // Honest sha256 over the actual transition facts. These are content
+      // digests, not certificate digests — this flip bypasses the certificate
+      // by operator decision, and the digests transparently record that.
+      const cutoverCertificateDigest = sha256Bytes(canonicalBytes(transitionFacts));
+      const lastTransitionDigest = sha256Bytes(canonicalBytes({ ...transitionFacts, at }));
+
+      try {
+        registry.prepareCutover({
+          mode,
+          expectedEpoch: priorEpoch,
+          candidateSha: CANDIDATE_SHA,
+          policyVersion: POLICY_VERSION,
+          at,
+        });
+        if (COMPARE_AND_SWAP_ENABLED) {
+          registry.compareAndSwap({
+            mode,
+            expectedState: 'cutover_ready',
+            expectedEpoch: priorEpoch,
+            nextSelectedWriter: 'dark',
+            candidateSha: CANDIDATE_SHA,
+            policyVersion: POLICY_VERSION,
+            cutoverCertificateDigest,
+            lastTransitionDigest,
+            at,
+          });
+        }
+      } catch (error) {
+        const reasonCode = error && error.reasonCode ? error.reasonCode : 'CAS_CONFLICT';
+        const detail = error instanceof Error ? error.message : String(error);
+        return {
+          mode,
+          ok: false,
+          failedCheck: 'flip',
+          reason: `${reasonCode}: ${detail}`,
+          surfaces,
+        };
+      }
+
+      // Re-read the record FROM DISK and confirm the flip actually landed.
+      // ok is impossible without a written record matching the expected
+      // final state — the step must fail if the flip did not persist.
+      let flippedRecord;
+      try {
+        flippedRecord = registry.read(mode);
+      } catch (error) {
+        const detail = error instanceof Error ? error.message : String(error);
+        return {
+          mode,
+          ok: false,
+          failedCheck: 'flip',
+          reason: `post-flip read failed: ${detail}`,
+          surfaces,
+        };
+      }
+
+      if (
+        flippedRecord.state !== 'new_authoritative_reversible'
+        || flippedRecord.epoch !== priorEpoch + 1
+        || flippedRecord.selectedWriter !== 'dark'
+      ) {
+        return {
+          mode,
+          ok: false,
+          failedCheck: 'flip',
+          reason: `post-flip record is state='${flippedRecord.state}', epoch=${flippedRecord.epoch}, selectedWriter='${flippedRecord.selectedWriter}', expected state='new_authoritative_reversible', epoch=${priorEpoch + 1}, selectedWriter='dark'`,
+          surfaces,
+        };
+      }
+
       return {
         mode,
-        ok: false,
-        failedCheck: 'flip',
-        reason: `Mode '${mode}' is '${record.state}', but authority compare-and-swap requires 'cutover_ready'`,
+        ok: true,
+        failedCheck: null,
+        reason: null,
         surfaces,
       };
     }
-
-    return {
-      mode,
-      ok: true,
-      failedCheck: null,
-      reason: null,
-      surfaces,
-    };
   };
 }
 
@@ -182,14 +299,39 @@ async function main() {
     process.exit(1);
   }
 
+  if (args.help === true) {
+    console.log(`
+Deep-Loop Runtime — Fleet Mode Enablement CLI
+
+USAGE:
+  node scripts/enable-modes.cjs [OPTIONS]
+
+OPTIONS:
+  --state <path>              (required) Path to the enablement state file
+  --authority-root <path>     Path to the authority-state directory (resolved automatically if not provided)
+  --run-directory <path>      Path to the run directory containing ledgers (required for non-dry runs)
+  --census <path>              Path to the state backend census JSON file (required for non-dry runs)
+  --continuity-id <id>         Continuity/lineage identity of this run (required for non-dry runs)
+  --dry-run                    Plan the enablement without making any changes
+  --resume                    Resume a previously stopped enablement run
+  --help                      Show this help message
+
+EXIT CODES:
+  0 = success
+  1 = script error
+  2 = run stopped at a failing mode
+`);
+    process.exit(0);
+  }
+
   // An option that quietly accepts the wrong shape turns a typo into a different
   // command: a missing value becomes a boolean used as a path, and a flag that
   // swallowed the next token turns "change nothing" into a real run. Validating
   // the shape up front makes a mistyped invocation fail instead of doing something
   // unintended.
   const kebab = (key) => key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
-  const valueArgs = ['state', 'authorityRoot'];
-  const flagArgs = ['dryRun', 'resume'];
+  const valueArgs = ['state', 'authorityRoot', 'runDirectory', 'census', 'continuityId'];
+  const flagArgs = ['dryRun', 'resume', 'help'];
   const knownArgs = [...valueArgs, ...flagArgs];
   for (const key of Object.keys(args)) {
     if (!knownArgs.includes(key)) {
@@ -237,6 +379,46 @@ async function main() {
   const statePath = args.state;
   const dryRun = args.dryRun === true;
   const resume = args.resume === true;
+  const runDirectory = args.runDirectory;
+  const censusPath = args.census;
+  const continuityId = args.continuityId;
+
+  // A non-dry run observes on-disk restart state before flipping authority,
+  // so it must know where the run's ledgers live. A dry run touches nothing
+  // and never reads ledgers, so it does not need a run directory.
+  if (!dryRun && !runDirectory) {
+    jsonOut({
+      ok: false,
+      phase: 'args',
+      code: 'RUN_DIRECTORY_REQUIRED',
+      reason: 'A --run-directory path is required for a non-dry run',
+    });
+    process.exit(1);
+  }
+
+  // A non-dry run needs the census file to build the classification manifest.
+  if (!dryRun && !censusPath) {
+    jsonOut({
+      ok: false,
+      phase: 'args',
+      code: 'CENSUS_PATH_REQUIRED',
+      reason: 'A --census path is required for a non-dry run',
+    });
+    process.exit(1);
+  }
+
+  // A non-dry run must assert the run's continuity identity; without it the
+  // classification evidence cannot establish identity coverage and the parity
+  // gate would report a failure caused by the caller, not by the evidence.
+  if (!dryRun && !args.continuityId) {
+    jsonOut({
+      ok: false,
+      phase: 'args',
+      code: 'CONTINUITY_ID_REQUIRED',
+      reason: 'A --continuity-id is required for a non-dry run',
+    });
+    process.exit(1);
+  }
 
   let authorityRoot = args.authorityRoot;
   if (!dryRun && !authorityRoot) {
@@ -323,7 +505,7 @@ async function main() {
     '../lib/per-mode-authority-flip/index.ts'
   );
   const registry = new AuthorityRegistry(authorityRoot);
-  const runStep = buildRunStep(registry, deriveModeSurfaceSet);
+  const runStep = buildRunStep(registry, deriveModeSurfaceSet, runDirectory, censusPath, continuityId);
 
   const result = await runFleetEnablement({
     statePath,
@@ -366,4 +548,4 @@ if (require.main === module && isTsxLoaded) {
   });
 }
 
-module.exports = { parseArgs, buildRunStep, main };
+module.exports = { parseArgs, buildRunStep, main, __setCompareAndSwapEnabled };

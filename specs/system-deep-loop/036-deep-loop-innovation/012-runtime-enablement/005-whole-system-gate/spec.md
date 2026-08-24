@@ -11,17 +11,18 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-19T07:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Authored the whole-system gate contract"
-    next_safe_action: "Wait for retirement to complete"
-    blockers:
-      - "Predecessor 004-legacy-writer-retirement must pass first"
-    key_files: []
-    completion_pct: 0
+    last_updated_at: "2026-08-24T08:22:20Z"
+    last_updated_by: "claude"
+    recent_action: "Re-measured the gate on the finalized tree; it returns a literal PASS, all forward-fixes closed"
+    next_safe_action: "None; gate passes and the epic is reconciled, pending the operator ff-merge gate"
+    blockers: []
+    key_files:
+      - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Bindings resolve from the environment; no SHA is typed by hand"
+      - "All eight modes read new_authoritative_final from stored records; the gate returns a literal PASS on the finalized tree"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -37,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-19 |
 | **Owner skill** | system-deep-loop |
 | **Authority posture** | No authority moves; this phase measures the enabled system |

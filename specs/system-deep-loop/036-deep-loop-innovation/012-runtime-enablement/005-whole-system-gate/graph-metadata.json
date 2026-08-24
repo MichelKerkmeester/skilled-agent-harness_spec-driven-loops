@@ -17,7 +17,10 @@
       "whole system gate plan",
       "frozen sha gate plan",
       "whole system gate tasks",
-      "whole system gate checklist"
+      "whole system gate checklist",
+      "whole system gate summary",
+      "gate verdict fail",
+      "enablement receipt"
     ],
     "key_topics": [
       "whole",
@@ -31,17 +34,43 @@
       "plan",
       "tasks",
       "checklist",
-      "preceding"
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "scratch/receipt.md",
+      "scratch/receipt.json",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/baseline-raw.txt",
+      "scratch/candidate-raw.txt",
+      "scratch/fanout-real-run.md",
+      "scratch/authority-check-never-ran.md",
+      "scratch/run-gate.mjs",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "receipt.md",
+        "kind": "doc",
+        "path": "scratch/receipt.md",
+        "source": "derived"
+      },
+      {
+        "name": "receipt.json",
+        "kind": "config",
+        "path": "scratch/receipt.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -58,6 +87,36 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-raw.txt",
+        "kind": "file",
+        "path": "scratch/baseline-raw.txt",
+        "source": "derived"
+      },
+      {
+        "name": "candidate-raw.txt",
+        "kind": "file",
+        "path": "scratch/candidate-raw.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-real-run.md",
+        "kind": "doc",
+        "path": "scratch/fanout-real-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "authority-check-never-ran.md",
+        "kind": "doc",
+        "path": "scratch/authority-check-never-ran.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-gate.mjs",
+        "kind": "file",
+        "path": "scratch/run-gate.mjs",
         "source": "derived"
       },
       {
@@ -137,73 +196,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "status",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Each preceding phase verified its own surface",
     "created_at": "2026-08-19T06:57:08.364Z",
-    "last_save_at": "2026-08-19T06:57:08.364Z",
+    "last_save_at": "2026-08-24T08:22:20.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f599dd4b7a6d37caa3b768e66e0b7aa5c81b3468ddf122b1cd89c1f87af71c50",
+    "source_fingerprint": "sha256:9636708689c716e4458c676d028bc8901607184cad05969bd29c520232ce8402",
     "source_doc_hashes": {
-      "spec.md": "ad55187fc1c14c7e086017ed1b95f6701b965a3afb417bc587926f8334738dd2",
-      "plan.md": "d2da6ca966413d47f552f945842f3747f6918bf733a1724188440b86a35b837a",
-      "tasks.md": "311659e29f9267294597fd09ff784c4bfdc713605b64250a3b744f2095171ef4",
-      "checklist.md": "43aed32903371aa5082a4a5f991f95f21b7f88affe0a2c0fa08932347fa31961"
+      "spec.md": "dc6c0a4d0aeb7238b9916db2d57cbe43262af6f025416ff8afaa532fed3ca5be",
+      "plan.md": "3c52b3ae745c7648119fb2a16c775945b6896b2cf7935e7b9ec6605b73b847a3",
+      "tasks.md": "38aad202922b90c31650ef1256b1a832a7af2bebce73f0347eb7833a98ad0f65",
+      "checklist.md": "d00d903910241d4ba318537fd95656e484ef47c7353eb9d816a7dfac088104be",
+      "implementation-summary.md": "182c638703c51bdc9ed403b2331156fa975d6030f92c58e459229b8fec97c4a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

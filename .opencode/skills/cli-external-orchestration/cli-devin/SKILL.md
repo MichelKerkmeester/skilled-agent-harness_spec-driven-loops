@@ -201,30 +201,44 @@ then confirm when login finishes — the skill will retry the original dispatch.
 
 ### Default Invocation (Skill Default)
 
-**Default model + permission mode**: `swe` (alias → `swe-1-7-lightning`) · `accept-edits` permission mode. Balances speed, cost, and quality for the typical delegation.
+**Default model + permission mode**: `swe` (alias → `swe-1-7-lightning`) · `dangerous` permission mode.
 
 ```bash
 devin -p \
   --model swe \
-  --permission-mode accept-edits \
+  --permission-mode dangerous \
   -- \
   "<prompt>"
 ```
+
+> **Why `dangerous` is the default for implementation work.** Under `accept-edits` Devin may
+> edit files but every other tool call is refused with
+> `warning: rejected a tool call that requires confirmation`. In a non-interactive `-p` session
+> there is nobody to confirm, so the dispatch cannot read a module to check an export, cannot
+> grep, and cannot run the tests it was asked to run. The observed failure is not an error —
+> it is a dispatch that spends its whole budget exploring, writes nothing, and exits 0. A
+> caller who does not diff the worktree afterwards will read that as success.
+>
+> The marginal risk is smaller than the name suggests: `accept-edits` already grants arbitrary
+> file modification, which is the destructive capability. `dangerous` adds the ability to run
+> commands, which is what lets the executor verify its own work instead of handing back
+> unverified edits. Use `auto` for read-only review, analysis, and research, where no
+> elevation is needed.
 
 **User override** (honor explicit user phrasing verbatim):
 
 | User says | Resolve to |
 |-----------|------------|
-| (nothing specified) | `--model swe --permission-mode accept-edits` |
-| "Use glm" | `--model glm-5-2 --permission-mode accept-edits` |
-| "Use glm max" | `--model glm-5-2-max --permission-mode accept-edits` |
-| "Use grok high" | `--model grok-4-6-high --permission-mode accept-edits` |
-| "Use deepseek" | `--model deepseek-v4-pro --permission-mode accept-edits` |
-| "Use swe max" | `--model swe-1-7 --permission-mode accept-edits` |
-| "Use glm dangerous" | `--model glm-5-2 --permission-mode dangerous` |
+| (nothing specified) | `--model swe --permission-mode dangerous` |
+| "Use glm" | `--model glm-5-2 --permission-mode dangerous` |
+| "Use glm max" | `--model glm-5-2-max --permission-mode dangerous` |
+| "Use grok high" | `--model grok-4-6-high --permission-mode dangerous` |
+| "Use deepseek" | `--model deepseek-v4-pro --permission-mode dangerous` |
+| "Use swe max" | `--model swe-1-7 --permission-mode dangerous` |
+| "Use glm accept-edits" | `--model glm-5-2 --permission-mode accept-edits` |
 | "Use autonomous sandbox" | `--sandbox --permission-mode autonomous` |
 
-Honor whichever dimensions the user names. Model stays on `swe` and permission mode stays on `accept-edits` unless the user explicitly names a different model or mode.
+Honor whichever dimensions the user names. Model stays on `swe` and permission mode stays on `dangerous` unless the user explicitly names a different model or mode.
 
 ### Model Selection
 
@@ -313,8 +327,8 @@ Devin's unique `/handoff` command transfers the current session to a cloud Devin
 The full flag glossary, permission modes, unique capabilities (`/handoff`, `run_subagent`, `devin mcp`, session resume/continue, `--sandbox`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Four gotchas that silently break a dispatch and must be honored at routing time:
 
 - **`devin -p` is non-interactive and exits after one turn** — it prints the response to stdout and exits. For multi-turn work, use `devin -c` (continue) or `devin -r <session-id>` (resume). Do not expect a REPL from `-p`.
-- **`--permission-mode` defaults to `auto` (read-only auto-approve)** — file-modification tasks silently prompt or no-op without elevated mode. Pass `--permission-mode accept-edits` (or `dangerous` for full auto-approve) whenever the task requires edits. The `--sandbox` flag selects `autonomous` mode and is the only mode available in sandbox sessions.
-- **`devin -p` rejects MCP tool calls under `auto`/`accept-edits`** (and `smart` may be unavailable). Rather than `--permission-mode dangerous`, grant a least-privilege MCP allowlist in a machine-local config:
+- **`--permission-mode` defaults to `auto` (read-only auto-approve)** — file-modification tasks silently prompt or no-op without elevated mode. Pass `--permission-mode dangerous` whenever the task requires edits, and note that `accept-edits` is only half a grant: it permits writes but refuses the reads and commands an implementer needs, so a dispatch under it can burn its whole budget and exit 0 having written nothing. The `--sandbox` flag selects `autonomous` mode and is the only mode available in sandbox sessions.
+- **`devin -p` rejects MCP tool calls under `auto`/`accept-edits`** (and `smart` may be unavailable). When a least-privilege MCP allowlist is preferable to blanket elevation, grant it in a machine-local config:
 ```json
 // .devin/config.local.json
 { "permissions": { "allow": ["mcp__<server>__*"] } }
@@ -331,11 +345,11 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 
 1. Verify Devin CLI is installed before first invocation (`command -v devin`).
 2. Delegate orchestrated execution to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-devin`; never build a second adapter in this packet.
-3. Use `--permission-mode auto` (or default) for review/analysis/research; `--permission-mode accept-edits` (or `dangerous`) for code generation/file modification — `devin -p` defaults to `auto`, so omitting causes silent no-op on edit tasks.
+3. Use `--permission-mode auto` for review/analysis/research; `--permission-mode dangerous` for code generation and file modification — `devin -p` itself defaults to `auto`, so omitting the flag causes a silent no-op on edit tasks. Prefer `dangerous` over `accept-edits` for any task that must read files or run its own verification; `accept-edits` refuses those calls and the dispatch fails silently.
 4. Validate Devin-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
 6. **Redirect devin stdin from `/dev/null`** when dispatching in a `while read` loop. Pattern: `devin -p -- "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded devin process inherits the loop's stdin and silently consumes the remaining lines. See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
-7. **Specify model + permission mode explicitly** — never rely on caller environment. Default: `--model swe --permission-mode accept-edits`. Honor user overrides verbatim. Use `grok-4-6-high` for reasoning-heavy tasks (architecture, security, deep planning).
+7. **Specify model + permission mode explicitly** — never rely on caller environment. Default: `--model swe --permission-mode dangerous`. Honor user overrides verbatim. Use `grok-4-6-high` for reasoning-heavy tasks (architecture, security, deep planning).
 8. Route to the appropriate subagent profile when the task matches a specialization (see Section 3 routing table); use `subagent_explore` for read-only research, `subagent_general` for code changes.
 9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in non-interactive `-p` mode.
 10. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../../sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md`:

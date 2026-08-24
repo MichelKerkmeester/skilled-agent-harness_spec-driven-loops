@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache",
+  "description": "Routing the live fan-out executor spawn through the shipped effect gateway (phase `007`) records a fail-closed intent",
+  "keywords": [
+    "routing",
+    "live",
+    "fan-out",
+    "executor",
+    "spawn",
+    "shipped",
+    "effect",
+    "gateway",
+    "phase",
+    "records",
+    "fail-closed",
+    "intent"
+  ],
+  "lastUpdated": "2026-08-24T06:19:12.259Z",
+  "specId": "008",
+  "folderSlug": "ledger-read-cache",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

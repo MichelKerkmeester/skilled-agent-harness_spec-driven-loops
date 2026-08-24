@@ -1,0 +1,248 @@
+---
+title: "Implementation Summary: Enablement Closeout"
+description: "The closeout sweep ran, and measurement refuted its own first conclusion: the forward authority flip fires end to end, and what actually blocks production is that the per-mode step calls neither registry method."
+trigger_phrases:
+  - "enablement closeout summary"
+  - "claim sweep results"
+  - "unreachable authority flip"
+importance_tier: "critical"
+contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout"
+    last_updated_at: "2026-08-24T08:03:13Z"
+    last_updated_by: "claude"
+    recent_action: "Operator chose registry-direct; the flip executed and finalized, closeout reconciled"
+    next_safe_action: "None; closeout complete against the finalized runtime, recursive validate clean"
+    blockers: []
+    key_files:
+      - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/claim-sweep.md"
+      - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/probe-reachability.mjs"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Why every downstream phase blocked on the same root cause"
+      - "Why the drills and parity harnesses stayed green while production could not move"
+      - "The forward flip fires: prepareCutover then compareAndSwap reaches epoch 2 and reads back"
+      - "The blocker is not a missing edge; it is that the per-mode step calls neither method"
+      - "compareAndSwap now shares the replay path's writer predicate; ordering proven, not asserted"
+      - "The runtime suite's failing set is unstable: identical conditions gave 5 failed and 163 passed"
+---
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
+
+# Implementation Summary: Enablement Closeout
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout |
+| **Status** | Complete |
+| **Commit** | see `git log` on `worktrees/022-012-runtime-enablement-build` |
+| **Completed** | The `036` statuses, feature catalog and playbook are reconciled against the finalized runtime; the operator chose the registry-direct flip, it executed and was finalized by `010`, and the whole-system gate passes |
+| **Lines** | 1 sweep document, 1 probe script; closeout doc edits, 0 runtime code changes |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+The closeout sweep, and the evidence behind it. No runtime code was changed.
+
+The sweep found the root cause that every blocked phase in this epic shares.
+The forward authority flip requires a record already in `cutover_ready`, and no
+production writer ever persists that state. The flip is therefore not merely
+unexercised — it is structurally unreachable.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+A reachability census over every authority-record writer, then a runtime probe
+that drove a real registry and recorded what it would actually persist. The
+census located the claim; the probe made it a measurement rather than a reading.
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
+## 4. KEY DECISIONS
+
+| Decision | Rationale |
+|----------|-----------|
+| Refuse T-006, T-007, T-008 | Each requires describing an enabled runtime. The measurement says the runtime is not enabled, so writing them would record something known to be false. |
+| Test the predecessor's grading claim rather than inherit it | The flip packet graded every other authority edge as already implemented. That grading is load-bearing for this whole epic, so it was checked against code instead of trusted — and it does not hold. |
+| Keep the parity harness finding narrow | The harness supplying its own authority snapshot is legitimate test scaffolding. The reportable consequence is only that its green carries no information about real authority state. |
+| Record a claim correction rather than a supersession | The flip packet's Known Limitations already stated that no adapter consults the selector and no real authority record was ever created. Only its grading claim about the remaining edges is wrong, so its content stays intact, its status stays Complete, and the correction is an additive pointer. |
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
+## 5. VERIFICATION
+
+**The census.** `AuthorityRegistry` is the sole production writer of authority
+records; `fenced-lease-coordinator.ts`, `leaf-artifact-writer.ts`, and
+`enablement-driver.ts` write zero. Its four state writes are
+`authority-registry.ts:66` (`legacy_authoritative`, seed),
+`authority-registry.ts:308` (`new_authoritative_reversible`),
+`authority-registry.ts:386` (`rollback_pending`), and
+`authority-registry.ts:414` (`legacy_authoritative`, restore).
+Neither `shadowing` nor `cutover_ready` is ever written as a record state. The
+record path is constructed in exactly one place, `authority-registry.ts:140`.
+
+**The precondition.** `authority-registry.ts:80` types the flip input as
+`readonly expectedState: 'cutover_ready'`.
+
+**The probe.** `scratch/probe-reachability.mjs` drove a live registry in a temp
+root. The public surface is seven methods; only `compareAndSwap` and
+`compareAndSwapRollback` mutate record state. Driving the forward flip produced
+`compareAndSwap REFUSED: Authority record no longer matches the expected state/epoch`
+and left `(no record)` on disk. `compareAndSwapRollback` requires
+`new_authoritative_reversible`, reachable only through the refused flip, so the
+mutation graph past the seed is entirely dead.
+
+**Adversarially tested.** The claim was dispatched read-free to DeepSeek V4 Flash
+with instructions to refute it. It returned REFUTED, arguing that an audit of
+literal `state:` assignments could miss a spread or sidecar. It was right about
+the mechanism: `preparePendingTransition` persists `cutover_ready` through
+`Object.freeze({ ...input, preparedAt })`. `scratch/probe-pending-transition.mjs`
+then tested whether that makes the flip reachable — it does not. The string lands
+in `authority-flip-prepare-<mode>.json`, the record stays `legacy_authoritative`,
+and `compareAndSwap` is still refused after a prepare. The claim's wording was
+corrected; the claim stands. Recorded in `scratch/adversarial-refutation.md`.
+
+**Corroboration.** An early gate receipt independently measured `read 8 modes; 8 on
+legacy_authoritative`, corroborating the pre-flip census below. The current gate receipt at
+`005-whole-system-gate/scratch/receipt.json` reads all eight modes on `new_authoritative_final`
+from stored records — the flip has since been executed and finalized (see the resolution note in §6).
+
+**Why the green signals were green.** `sandbox-authority-store.ts:398` seeds
+`cutover_ready` directly inside a drill-owned root, so the drills start where
+production cannot arrive. The eight parity harnesses each hardcode
+`{ state: 'shadowing', epoch: 1 }` — for example
+`deep-research-shadow-parity/harness-adapter.ts:1976` — and never read the registry.
+
+**Recursive gate.** `validate.sh --recursive --strict` over `036` validated 10
+folders and reported `Errors: 0` in every one. Overall exit is 2, from four
+`PHASE_LINKS` warnings in the `036` root and packets `006`, `007`, and `008`.
+Those folders have zero modified files in this phase's diff, so the warnings
+pre-date this work; fixing another packet's navigation refs would breach scope.
+
+**Both touched packets pass individually.** `006-enablement-closeout` and the
+flip packet each report `Errors: 0  Warnings: 0` under `--strict`. The flip
+packet needed its generated metadata regenerated after the edit; that the edit
+was the cause was confirmed by reverting it (green), restoring it (red), and
+regenerating (green).
+
+**Mode-facing documents.** Two documents reference `append-mode-event`, and both
+reference the gateway alongside it. One further hit, `profiling-audit-log.md:112`,
+uses `appendFileSync` to write `profile-selection.log` — a profiling log, not a
+mode ledger surface — so it is out of scope rather than an unfixed violation.
+
+**No runtime change.** The scoped diff is documentation and evidence only.
+**The gate used to certify every phase disagrees with itself.** `validate.sh --strict` returns exit 2
+for every folder in the repository, including packets unrelated to this one, while printing
+`Errors: 0  Warnings: 0` and `RESULT: PASSED`. Traced by execution: a strict-only command-tree parity
+rule runs after the summary is printed, its failure is never added to the error tally, and its status
+becomes the script's exit code. That rule appears zero times in the validator's own report, so the
+half that fails is invisible and the half that is visible cannot show it.
+
+The failure is command-mirror drift in an unrelated command tree, predating this work and untouched
+by any commit here. It is reported rather than repaired because it is outside this packet and
+outward-facing for other runtimes.
+
+Earlier records in this packet reading "exit 0" were taking the status of a pipeline's last stage
+rather than the validator's. The `Errors: 0` readings themselves are accurate, and the orchestrator
+run directly against a phase folder returns passed with zero errors and exit 0. Detail:
+`scratch/validator-exit-vs-summary.md`.
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
+## 6. KNOWN LIMITATIONS
+
+T-006, T-007, and T-008 are not done, and the checklist items that depend on
+them (CHK-008, CHK-009, CHK-017, CHK-018) remain unchecked. They ask for a
+feature catalog and a manual-testing playbook describing an enabled runtime.
+The runtime is not enabled, so those documents cannot be written honestly yet.
+
+T-009's second sweep cannot return empty while the flip is unreachable, because
+the invalidated claim it would find is the one this phase just confirmed.
+
+The closeout does not resolve the blocker. It identifies it precisely and
+locates the decision: who builds the `legacy_authoritative -> cutover_ready`
+edges, and on what evidence a mode is judged ready.
+
+**The blocker recorded here was false, and false in the dangerous direction.** It read: no production
+writer persists `cutover_ready`, so the forward flip can never fire. Driven directly against a live
+registry in a temp root, the sequence completes: `prepareCutover` moves the record to `cutover_ready`
+at epoch 1, `compareAndSwap` moves it to `new_authoritative_reversible` at epoch 2, and `read()`
+returns that state. Anyone resuming on the old text would have believed the transition impossible and
+gone looking for an edge that already exists.
+
+**The probe that produced that conclusion never exercised the promotion.** Its header claims it drives
+every mutator against a live registry. It drove one: it attempted the flip from the default record,
+which correctly refuses because the starting state is wrong, and stopped there. `prepareCutover` was
+sitting in the public surface it printed. The probe now runs the full sequence.
+
+**A writer value the reader rejects is accepted and persisted — but not from production today.**
+`compareAndSwap` was given `nextSelectedWriter: 'spine'` and wrote it. `isValidAuthorityRecord`
+accepts only `legacy` or `dark`, so every subsequent `read()` throws `RECORD_MALFORMED` and the
+record is unusable. The same sequence with `dark` succeeds and reads back cleanly.
+
+That finding was first recorded here as a production-bricking blocker, and adversarial review refuted
+that reading. `nextSelectedWriter` is declared `AuthorityRoute`, which is the union of exactly those
+two values, so a typed caller cannot reach it; the only production caller hardcodes `'dark' as const`.
+It is reachable only by calling the registry directly from untyped code. This is a defence-in-depth
+gap, not an active defect, and it was demoted accordingly. It has since been closed: both paths now
+share one named predicate, and the validation runs before the lock so a rejected input contends for
+nothing.
+
+What keeps it worth closing is where the gap sits. The predicate that rejects `'spine'` already exists
+in the same file and is applied to the pending transition replayed from disk during crash recovery —
+so a value the recovery path refuses is accepted on the live path that writes the record. And the
+enablement CLI, the caller this epic is about to extend to perform the flip, is a `.cjs` file, which
+is precisely the untyped caller the type argument does not protect. On a path that is irreversible by
+design, a mistyped argument brands the record permanently and surfaces only on the next read.
+
+**The runtime suite's failing set is not stable, and a delta can accuse a change that did nothing.**
+A full-suite delta after the writer fix read 21 failed files against a baseline of 17, with five files
+newly failing. Every one of those failures sat on a 30-second or 60-second timeout, and the failing
+test names shifted between runs of the same condition. Running the five suspects across four
+conditions settled it: at the base commit 163 passed in 562s; with the guard alone 163 passed in 531s;
+with guard and tests 5 failed in 789s; and with the identical pair repeated 163 passed in 515s. The
+same condition produced opposite results, and the red run was the slowest by half again.
+
+The delta was therefore measuring machine speed, not the change. Two intermediate conclusions along
+the way — that load explained it, then that the test file explained it — were both wrong, and the
+bisect that appeared to isolate the test file was an artifact of one run per condition. A wall-clock
+failure mode needs a repeated condition before any regression is claimed, and a failing set must be
+compared by name rather than by count.
+
+**What actually blocks production is narrower than this phase recorded, but wider than a missing call.**
+Both registry methods work and the per-mode step calls neither, which is what this phase first
+concluded. Counting the callers shows that conclusion was still too kind.
+
+`AuthorityFlipCoordinator` has no production caller at all: every reference to `requestCutover`
+outside its own module is in one unit test. `buildCutoverCertificate` is referenced only by its own
+module and its barrel. The pilot's composition root exports one function, `admitCanonicalWrite`, and
+its own header says it is read-only and performs no authority mutation.
+
+So there are two different flips, and they are not variants of one task. Calling the registry
+directly is the two calls this phase proved; it also bypasses the gate, the certificate check, the
+transition event and the mode-order constraint — the entire safety margin. Going through the
+coordinator is the flip the plan describes, and it has never been composed in production, on top of
+a certificate that has no production producer. Which of those the enablement step should perform is
+an operator decision, not an implementation detail, because the transition is irreversible.
+
+**Resolution — the operator decision was made and executed.** The operator chose the registry-direct
+flip (`scripts/flip-authority.cjs --commit`), recorded in `003-fleet-enablement`'s key decisions. It
+ran for all eight modes, then `010-full-enablement-finalize` advanced every mode to
+`new_authoritative_final` and dropped the legacy shadow writer. The whole-system gate
+(`005-whole-system-gate`) now returns a literal PASS across all seven checks, including a real
+per-mode `reader-contracts` check. With the flip no longer unreachable, the second `036` sweep this
+phase deferred (CHK-007) returns empty: the one invalidated claim it would have found — the
+"structurally unreachable flip" recorded in §2 — is exactly the claim the executed finalize resolves.
+The feature catalog and playbook were corrected to describe the finalized authority state. This phase
+is therefore Complete; the §2–§6 narrative above is retained verbatim as the honest record of how the
+understanding evolved, not edited to read as though it always said this.
+<!-- /ANCHOR:limitations -->

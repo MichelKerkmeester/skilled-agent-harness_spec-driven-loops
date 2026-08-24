@@ -95,6 +95,33 @@ agent_config:
 # ─────────────────────────────────────────────────────────────────
 # STATE FILE PATHS
 # ─────────────────────────────────────────────────────────────────
+state_write_protocol:
+  mechanism: "append-gateway"
+  command: "node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode alignment --run-directory {artifact_dir} --event-json <record file>"
+  applies_to: "append_jsonl"
+  refusal_handling: "halt on exit 2; never fall back to a direct file write"
+  contract: |
+    Every canonical record named by an append_jsonl directive below is
+    intended to reach the log by invoking the command above with that record as the event JSON.
+    Those directives specify WHAT to record; this block specifies the mechanism they are moving
+    to, so it is stated once rather than repeated at each site where it could drift.
+
+    The gateway authorizes the write against the mode's durable authority record, serialises it
+    behind the ledger fence, and returns a receipt. It does NOT refresh this mode's legacy state
+    file: no projection contract is registered for this mode, so `projectionRefreshed` comes back
+    false and the legacy file is left untouched. Exit 0 therefore means the event is durable in
+    the ledger, and nothing more. Exit 2 means it was refused and the refusal names the check
+    that failed.
+
+    Because the legacy file is what this workflow's existing readers consume, this block declares
+    the mechanism these records are INTENDED to move to. It is not yet a live cutover for this
+    mode, and the existing direct writes must stay until a projection contract exists for it.
+    Switching them over before then would leave the legacy file silently stale.
+
+    Writing state_log directly bypasses ordering, authorization, and the receipt. Two writers
+    can then interleave with no shared ordering, and a record nobody authorized carries no
+    receipt, so a later reader cannot tell an accepted record from an invented one. A refusal
+    is a halt, never a reason to write the file directly.
 state_paths:
   packet_dir: "{artifact_dir}"
   local_packet_dir: "{spec_folder}/alignment"

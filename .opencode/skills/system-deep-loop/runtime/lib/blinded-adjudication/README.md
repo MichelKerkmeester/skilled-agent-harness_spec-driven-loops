@@ -35,7 +35,6 @@ Additive-dark service for `system-deep-loop` modes that need a counterfactual ve
 
 - `.opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/reducer.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/adjudication.ts` (shared adjudication closure)
 
 ---
 
@@ -49,4 +48,3 @@ Additive-dark service for `system-deep-loop` modes that need a counterfactual ve
 
 - [`runtime/lib README`](../README.md)
 - [`authorized-ledger`](../authorized-ledger/README.md)
-- [`cross-mode-closures`](../cross-mode-closures/README.md)

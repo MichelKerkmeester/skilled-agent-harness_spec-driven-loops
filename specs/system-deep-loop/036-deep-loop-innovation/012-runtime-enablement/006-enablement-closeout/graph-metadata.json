@@ -16,7 +16,10 @@
       "document the enabled system",
       "enablement closeout plan",
       "enablement closeout tasks",
-      "enablement closeout checklist"
+      "enablement closeout checklist",
+      "enablement closeout summary",
+      "claim sweep results",
+      "unreachable authority flip"
     ],
     "key_topics": [
       "enablement",
@@ -30,17 +33,61 @@
       "plan",
       "tasks",
       "checklist",
-      "documentation"
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "scratch/probe-reachability.mjs",
+      "scratch/probe-pending-transition.mjs",
+      "scratch/adversarial-refutation.md",
+      "scratch/validator-exit-vs-summary.md",
+      "scratch/claim-sweep.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/catalog-spot-check.md",
+      "scratch/playbook-walkthrough.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "probe-reachability.mjs",
+        "kind": "file",
+        "path": "scratch/probe-reachability.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "probe-pending-transition.mjs",
+        "kind": "file",
+        "path": "scratch/probe-pending-transition.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial-refutation.md",
+        "kind": "doc",
+        "path": "scratch/adversarial-refutation.md",
+        "source": "derived"
+      },
+      {
+        "name": "validator-exit-vs-summary.md",
+        "kind": "doc",
+        "path": "scratch/validator-exit-vs-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "claim-sweep.md",
+        "kind": "doc",
+        "path": "scratch/claim-sweep.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -57,6 +104,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalog-spot-check.md",
+        "kind": "doc",
+        "path": "scratch/catalog-spot-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-walkthrough.md",
+        "kind": "doc",
+        "path": "scratch/playbook-walkthrough.md",
         "source": "derived"
       },
       {
@@ -136,73 +195,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Documentation",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After enablement, the epic's documentation describes a system that no longer exists",
     "created_at": "2026-08-19T06:57:08.525Z",
-    "last_save_at": "2026-08-19T06:57:08.525Z",
+    "last_save_at": "2026-08-24T08:03:14.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61443a188f05e511c183213890ea47d6ac18c3779b31c3e924a39f42a6cc02c8",
+    "source_fingerprint": "sha256:b43ed59d5083ea37c50db2e877d6a87a00e94f31e90cd1a3f2259bb8de523624",
     "source_doc_hashes": {
-      "spec.md": "22311f7beb64951acee75867685150c71991b0fc101e4bf7a4a7c75d8b674e45",
-      "plan.md": "580d1f46cee9dc9230b049bf4899d159cc172a6bc7cf17a8e5ebffb6ca412297",
-      "tasks.md": "9260ef23ce2d98091d23fbe70a21de41d91e663001648f32949cc844bbbaec49",
-      "checklist.md": "3c6d5038ccc34a5f5baa9fade013c8c9d6a768b2b3e1c2846d7a1f234bd7db70"
+      "spec.md": "8d549f24060c2053f1a3061dec98f4b3e1cfe0f8f0abdcbf82336df9c102a92c",
+      "plan.md": "cbc2b7684b734029dc9d071ac965f61547897f48ce93efc873a407d32fdc69ff",
+      "tasks.md": "7936cd160ea74f9817fe34806e29603b861cd937252a7477085ee30909096f97",
+      "checklist.md": "428f83a1aeded4edf0370bc74ef151d2ff6c9feeadae24ce59a472594f92acd5",
+      "implementation-summary.md": "0545c9f2b6113a717557e4ce404ab55a90e427c4f8fedfecc7f56c2ff259a93c"
     },
     "last_active_child_id": null,
     "last_active_at": null

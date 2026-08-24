@@ -1,3 +1,15 @@
+---
+title: Senior Mobile Product-Design Council
+description: Ranks Pi Remote chat redesign decisions for the composer, message flow, controls, accessibility, responsive behavior, and regression gates.
+trigger_phrases:
+  - 'Claude-style Pi Remote chat hierarchy'
+  - 'mobile composer interaction states'
+  - 'message-flow implementation priorities'
+importance_tier: normal
+contextType: planning
+version: 1.2.0.3
+---
+
 # Senior Mobile Product-Design Council: Pi Remote Chat UX
 
 ## Decision

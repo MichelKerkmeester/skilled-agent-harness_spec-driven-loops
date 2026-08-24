@@ -338,6 +338,8 @@ export class AppendOnlyLedger {
   readonly #store: ImmutableFrameStore;
   readonly #auditLedgerId: string;
   readonly #now: () => Date;
+  readonly #singleWriterReadCache: boolean;
+  #readCache: { readonly head: LedgerHead; readonly events: readonly VerifiedLedgerEvent[] } | null = null;
 
   public constructor(
     options: AuthorizedLedgerOptions,
@@ -351,6 +353,7 @@ export class AppendOnlyLedger {
     this.rootDirectory = options.rootDirectory;
     this.#auditLedgerId = options.auditLedgerId ?? DEFAULT_AUDIT_LEDGER_ID;
     this.#now = options.now ?? (() => new Date());
+    this.#singleWriterReadCache = options.singleWriterReadCache ?? false;
     if (this.ledgerId === this.#auditLedgerId) {
       throw new AuthorizedLedgerError(
         AuthorizedLedgerErrorCodes.INPUT_INVALID,
@@ -367,12 +370,38 @@ export class AppendOnlyLedger {
 
   /** Return the fully verified current head without exposing unchecked records. */
   public async getVerifiedHead(): Promise<LedgerHead> {
-    return this.#store.withExclusiveLock(async () => (await this.#scanUnlocked(false)).head);
+    return (await this.#scanForRead()).head;
   }
 
   /** Return all events only after framing, chain, envelope, and allow linkage pass. */
   public async readVerifiedEvents(): Promise<readonly VerifiedLedgerEvent[]> {
-    return this.#store.withExclusiveLock(async () => (await this.#scanUnlocked(false)).events);
+    return (await this.#scanForRead()).events;
+  }
+
+  /**
+   * Verified scan for reads. With the single-writer read cache off (the
+   * default) this is exactly one lock-and-scan per call. With it on, a hit
+   * returns the memoized scan without re-taking the lock; a miss takes the
+   * lock, scans, and memoizes the result.
+   */
+  async #scanForRead(): Promise<LedgerScanResult> {
+    if (this.#singleWriterReadCache) {
+      const cached = this.#readCache;
+      if (cached) {
+        return {
+          head: cached.head,
+          events: cached.events,
+          tornTail: null,
+        };
+      }
+    }
+    return this.#store.withExclusiveLock(async () => {
+      const scan = await this.#scanUnlocked(false);
+      if (this.#singleWriterReadCache) {
+        this.#readCache = scan;
+      }
+      return scan;
+    });
   }
 
   /**
@@ -481,6 +510,11 @@ export class AppendOnlyLedger {
         canonicalBytes(frame),
         this.#options.faultInjection?.afterFrameFsyncBeforeCommit,
       );
+      // The committed frame changed the verified head, so the next read must
+      // rescan rather than return the pre-append memo.
+      if (this.#singleWriterReadCache) {
+        this.#readCache = null;
+      }
       return durableReceipt(frame);
     });
   }

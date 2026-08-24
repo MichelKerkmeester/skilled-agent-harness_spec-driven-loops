@@ -170,6 +170,12 @@ export const PI_SUPPORTED_MODELS = [
   // stealth tune (openrouter/stealth/ox-alpha). No other model routes through OpenRouter.
   'deepseek/deepseek-v4-flash-latest',
   'stealth/ox-alpha',
+  // Cline (ClinePass) fronts the free Ox Alpha tune as a config-wired provider. Its Cline
+  // id carries the vendor prefix `x-ai/ox-alpha` (NOT the `cline-pass/` prefix the DeepSeek
+  // entries use), so `${provider}/${model}` composes the three-segment cline-pass/x-ai/ox-alpha
+  // selector the Cline API requires (live-verified). Cline has no `max` tier here — this id
+  // is dispatched at `xhigh`, and is not caught by the Flash max-pin.
+  'x-ai/ox-alpha',
 ] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 

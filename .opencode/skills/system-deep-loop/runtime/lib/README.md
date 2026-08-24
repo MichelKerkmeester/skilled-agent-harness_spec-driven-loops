@@ -23,12 +23,10 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `blinded-adjudication/` | Reviewer-blind adjudication comparing a baseline judgment with a policy-linked intervention without exposing candidate identity. |
 | `branch-leases-waves/` | Durable fan-out admission, fenced branch ownership and immutable wave compilation for parallel branch execution. |
 | `claim-continuity/` | Tracks claim identity across loop iterations by matching, folding and replaying claim events into a disposable frontier projection. |
-| `compatibility-shadow/` | Dual-read comparison and versioned upcasting so legacy and dark stores can be evaluated side by side without changing legacy reads. |
 | `conditional-fanin/` | Decides when a fan-out wave has enough branch results to proceed and plans continuation for the branches left outstanding. |
 | `contradiction-supersession/` | Isolated shadow ledger recording contradiction and supersession between claims, with an audited replay-verified status projection. |
 | `council/` | Multi-seat dispatch, adjudicator-verdict stability and cost guards for the deep-ai-council mode. |
 | `coverage-graph/` | Schema, queries and Bayesian signals for deep-loop convergence detection. |
-| `cross-mode-closures/` | Five shared-implementation closures with a manifest-complete catalog mapping them to every deep-loop mode ID, designed to replace per-mode reimplementation of shared mechanics. No mode packet invokes them yet outside the domain's own unit test. |
 | `cycle-detection/` | Detects unproductive repetition across iterations by comparing bounded state-signature history against a versioned policy. |
 | `deep-loop/` | Atomic state, loop locking, JSONL repair and executor config for the deep-loop runtime backend. |
 | `dispatch-receipts/` | Records a durable integrity-checked receipt before a dispatch crosses the process-spawn boundary, so a resumed session recognizes an already-launched run. |
@@ -36,10 +34,8 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `fleet-enablement/` | Derives each mode's projected surfaces from the shared manifest and drives the remaining modes through enablement one at a time, stopping at the first failure with resumable state. |
 | `health-degeneration-harness/` | Turns normalized budget, cycle and coverage signals into a per-mode health state and a recommended response action. |
 | `hierarchical-budgets/` | Reserves, settles and replays token, cost, iteration and wall-time budgets across a four-level scope hierarchy. |
-| `inflight-state-classification/` | Classifies in-flight legacy state rows against a frozen census into upcast, pin, fork, migrate or block dispositions. |
 | `legacy-projections/` | Folds verified ledger events into disposable legacy JSON or JSONL bytes so existing readers keep working during migration. |
 | `locks-and-fencing/` | Grants leases with monotonic fence tokens and gates ledger and state writes behind them to prevent split-brain writers. |
-| `mixed-version-fixtures/` | Authors, compiles and oracle-verifies fixture cases that mix old and new runtime versions across a mode cutover boundary. |
 | `mode-contracts/` | Defines the contract shape, required substrate ports, conformance runner and version compatibility policy for a workflow mode. |
 | `next-focus/` | Derives, scores and durably records the next research or review focus region as a replayable ledger decision. |
 | `partial-failure-policy/` | Decides whether a fan-out orchestration should abort, wait, proceed or proceed degraded when some branches fail. |
@@ -48,10 +44,8 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `receipts-and-effect-recovery/` | Certifies boundary receipts and recovers idempotently from side effects across mode and phase boundaries, verified by replay. |
 | `replay-fingerprint/` | Derives and verifies a versioned canonical fingerprint that commits an authorized ledger replay to its projection output. |
 | `result-envelopes/` | Records the durable outcome of a dispatched leaf task, including salvage and recovery evidence, as authorized ledger events. |
-| `rollback-drills/` | Runs fault-injected forward-detect-reverse-resume drills against an isolated sandbox ledger and certifies the rollback. |
 | `sealed-reference-artifacts/` | Content-addressed sealing, storage and lifecycle tracking for reference artifacts such as prompt sets, fixtures and configuration. |
 | `semantic-communities/` | Groups semantically equivalent claims into namespaced communities through an incremental versioned projection. |
-| `shadow-parity/` | Runs a candidate implementation against its legacy baseline and issues a parity certificate only when every case closes with zero divergence. |
 | `stopping-clocks/` | Arbitrates five independent loop-termination signals into one deterministic termination declaration. |
 | `stream-fold-gauges/` | Deterministic replay-verifiable streaming metric folds computed from ledger events, compared against legacy dark-run values. |
 | `transactional-projections/` | Applies verified ledger events into one atomic fenced multi-view projection bundle and publishes committed snapshot manifests. |

@@ -16,17 +16,17 @@ This document combines the current feature inventory for the `runtime/` skill in
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 52 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 55 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
 | [executor](executor/) | 4 features | `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `lib/deep-loop/fallback-router.ts` |
 | [prompt-rendering](../feature-catalog/prompt-rendering) | 1 features | `lib/deep-loop/prompt-pack.ts` |
-| [validation](validation/) | 4 features | `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/plugins/system-deep-loop-guard.js`, `lib/mode-contracts/strict-gate-validator.ts` |
-| [state-safety](../feature-catalog/state-safety) | 11 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
+| [validation](validation/) | 3 features | `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/plugins/system-deep-loop-guard.js`, `lib/mode-contracts/strict-gate-validator.ts` |
+| [state-safety](../feature-catalog/state-safety) | 13 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
 | [scoring](scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
 | [coverage-graph](../feature-catalog/coverage-graph) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
-| [script-entry-points](../feature-catalog/script-entry-points) | 4 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
+| [script-entry-points](../feature-catalog/script-entry-points) | 5 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
 | [council](council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
 | [fanout](fanout/) | 8 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
 | [lifecycle](lifecycle/) | 2 features | `lib/deep-loop/sleep.ts`, `lib/deep-loop/lifecycle-taxonomy.cjs` |
@@ -174,22 +174,6 @@ A `tool.execute.before` hook resolves the real target agent (`orchestrate` alway
 #### Source Files
 
 See [`validation/system-deep-loop-guard.md`](../feature-catalog/validation/system-deep-loop-guard.md) for full implementation and validation file listings.
-
----
-
-### Rollback-gate shared strict validator
-
-#### Description
-
-Deep-research and deep-review rollback mode gates stopped carrying their own hand-copied `hasExactKeys` helper and now consume the shared strict validator (`hasExactKeys`, `validateRows`) exported from `lib/mode-contracts/index.js`.
-
-#### How It Works
-
-`evaluateDeepReviewRollbackWindow` / `evaluateDeepResearchRollbackWindow` split one row predicate that used to filter structural validity, success selection, and (review gate only) authentication membership together: structural validity now rejects the whole evidence set through `validateRows` on a malformed row, while success/authentication selection stays a `.filter(...)` with unchanged semantics.
-
-#### Source Files
-
-See [`validation/rollback-gate-shared-strict-validator.md`](../feature-catalog/validation/rollback-gate-shared-strict-validator.md) for full implementation and validation file listings.
 
 ---
 
@@ -370,6 +354,38 @@ Writes the durable torn-tail recovery marker before renaming the torn frame into
 #### Source Files
 
 See [`state-safety/torn-tail-recovery-marker-ordering.md`](../feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md) for full implementation and validation file listings.
+
+---
+
+### Legacy projection
+
+#### Description
+
+Projects the append-only ledger into the legacy state file that existing readers consume; the append-gateway refresh is wired for deep-research only.
+
+#### How It Works
+
+`LegacyProjectionEngine.project()` writes the projected bytes from a replay fold; `appendModeEvent` resolves a projection contract whose default resolver returns a contract for research and null for every other mode, so a caller must read `projectionRefreshed`, not the exit code, to know whether the legacy file was refreshed.
+
+#### Source Files
+
+See [`state-safety/legacy-projection.md`](../feature-catalog/state-safety/legacy-projection.md) for full implementation and validation file listings.
+
+---
+
+### Ledger authority
+
+#### Description
+
+`AuthorityRegistry` is the sole production writer of per-mode authority records; every canonical append is authorized against the mode's durable record.
+
+#### How It Works
+
+`AUTHORITY_FLIP_MODE_ORDER` freezes the mode order and refuses out-of-order modes with exit 2 `AUTHORITY_DENIED`; every mode's record currently reads `legacy_authoritative`, and the gateway exit contract is 0 = durable in ledger, 1 = script error, 2 = refused at the authority boundary.
+
+#### Source Files
+
+See [`state-safety/ledger-authority.md`](../feature-catalog/state-safety/ledger-authority.md) for full implementation and validation file listings.
 
 ---
 
@@ -574,6 +590,22 @@ Direct replacement for `deep_loop_graph_status`; reports counts, schema, DB size
 #### Source Files
 
 See [`script-entry-points/status-script.md`](../feature-catalog/script-entry-points/status-script.md) for full implementation and validation file listings.
+
+---
+
+### append-mode-event.cjs
+
+#### Description
+
+Authorizes a mode event against the mode's durable authority record, appends it to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection.
+
+#### How It Works
+
+The sanctioned way every canonical record reaches a mode's state log; it authorizes against the authority record, appends to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file.
+
+#### Source Files
+
+See [`script-entry-points/append-mode-event-script.md`](../feature-catalog/script-entry-points/append-mode-event-script.md) for full implementation and validation file listings.
 
 ---
 

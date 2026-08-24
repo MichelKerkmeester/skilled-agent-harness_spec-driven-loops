@@ -1,6 +1,6 @@
 ---
 title: "Changelog: system-deep-loop Recommendations Implementation [036-deep-loop-innovation/root]"
-description: "Narrative release notes for the 036 deep-loop-innovation program: a typed event-ledger substrate landed dark under all eight deep-loop modes, a hermetic CLI-adapter stress program, and a clean whole-system gate — additive-dark throughout, with the authority cutovers deliberately held for operator approval."
+description: "Narrative release notes for the 036 deep-loop-innovation program: a typed event-ledger substrate landed dark under all eight deep-loop modes, a hermetic CLI-adapter stress program, and a clean whole-system gate — additive-dark through phase 011, then phase 012 executed the operator-ratified cutover: all eight modes on new_authoritative_final, the legacy shadow writer dropped, and the whole-system gate green."
 trigger_phrases:
   - "root changelog"
   - "packet changelog"
@@ -12,9 +12,25 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/root.md | v1.0 -->
 
+## 2026-08-24
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
+
+The switch-over ran. Phase `012-runtime-enablement` turned the dark substrate on. It built the append gateway and the per-mode projection the modes never had, migrated every mode's write protocol onto the gateway, and — under an operator-ratified direct flip — moved all eight modes to `new_authoritative_final`, dropped the legacy shadow writer, and deleted the rollback and one-time migration scaffolding the direct flip made dead weight.
+
+The ledger is now authoritative for `research`, `review`, `ai-council`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `alignment`, and `deep-improvement-common`. The legacy files stay readable for their consumers — the fan-out orchestration among them — but they are now produced by projection from the ledger rather than by a separate legacy writer. A direct-append guard fails closed on any out-of-band write to a projected file, and it is negative-controlled: neutering the digest comparison makes the same append pass undetected.
+
+The whole-system gate was re-measured on the finalized tree and returns a literal PASS — all seven checks, none not-run: authority-state reads eight modes on `new_authoritative_final` from stored records, the reader-contracts check reads all eight modes cleanly through their real consumers, the runtime suite carries no new failures against its baseline, and the working tree is clean. The `012` subtree passes recursive strict validation with Errors 0.
+
+This is the line the 2026-08-16 entry below held as gated: the cutovers and retirements it described as waiting on a human decision were executed here. The change lands on the mainline with the `012` packet's merge.
+
+---
+
 ## 2026-08-16
 
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation` (Phase Parent)
+
+> **Superseded 2026-08-24:** the cutovers and legacy-writer retirements this entry describes as gated and not-executed were carried out by `012-runtime-enablement` — see the 2026-08-24 entry above. The additive-dark statements below are preserved as the record of what was true on this date.
 
 The center of this program is a new spine for the deep loops, and the spine runs dark. One hundred and seventy-eight research recommendations — drawn from two research packets that mapped the loop-engineering state of the art and deepened it into mechanism-backed advice — converged on a single architecture: a typed, append-only event ledger that records what a loop actually did, a fail-closed gateway that authorizes every state transition, and a set of sealed reference artifacts that make the record tamper-evident and replayable. All eight deep-loop modes were migrated onto that substrate, each one ending in its own rollback-guarded mode gate, and every one of them verified green.
 

@@ -16,9 +16,10 @@ const OPEN_CODE_ROOT = resolve(
 );
 
 export const REAL_LEGACY_LOGS = Object.freeze({
-  research: 'specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation/research/lineages/sol/deep-research-state.jsonl',
-  review: 'specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/review/lineages/luna/deep-review-state.jsonl',
-  alignment: 'specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/alignment/deep-alignment-state.jsonl',
+  research: 'specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/research/lineages/sol/deep-research-state.jsonl',
+  // The count below tracks a real captured review log; re-measure it if the log is ever replaced.
+  review: 'specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/review/deep-review-state.jsonl',
+  alignment: 'specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/alignment/deep-alignment-state.jsonl',
   council: 'specs/system-deep-loop/z_archive/025-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke/ai-council/session-state.jsonl',
   councilArchive: 'specs/system-deep-loop/z_archive/024-deep-loop-improved/012-deep-loop-divergent-mode/ai-council/ai-council-state.jsonl',
   common: 'specs/system-deep-loop/z_archive/013-agent-deep-review-optimization/improvement/improvement-journal.jsonl',

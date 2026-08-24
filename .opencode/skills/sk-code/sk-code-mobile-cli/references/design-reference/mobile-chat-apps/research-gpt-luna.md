@@ -1,3 +1,15 @@
+---
+title: Mobile AI Chat UI/UX Research
+description: Compares major mobile AI conversation screens to derive composer, message, action-row, and streaming targets for Pi Remote.
+trigger_phrases:
+  - 'cross-app mobile chat patterns'
+  - 'Claude composer measurements'
+  - 'AI chat action-row behavior'
+importance_tier: normal
+contextType: general
+version: 1.2.0.3
+---
+
 # Mobile AI chat UI/UX research: conversation screen + composer
 
 Research snapshot: 2026-08-15. Priority order follows the brief, with Claude treated as the primary reference.

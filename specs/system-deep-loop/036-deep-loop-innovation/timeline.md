@@ -60,7 +60,7 @@ Sort: `created_at` (graph-metadata) primary, `git_first_add` cross-check, origin
 
 ---
 
-## Current program state (2026-08-16)
+## Current program state (2026-08-24)
 
 The table above is the frozen M0 baseline — original identity and creation order, with the `status`
 column captured when the baseline was generated. Those baseline folders were consolidated into the
@@ -81,9 +81,11 @@ Post-consolidation, here is where the program actually stands:
 - **Whole-system gate — run.** Recursive strict validation clean; an independent blocking acceptance
   review confirmed the additive-dark claim, with one accepted, deliberate exception (autonomous
   model-benchmark promotion made advisory-only).
-- **Still gated — not done.** No mode authority has flipped and no legacy writer has been retired.
-  The staged per-mode authority cutover, the legacy-writer retirement, and the final closeout are
-  held for explicit operator approval.
+- **Enablement — executed.** Phase `012-runtime-enablement` built the append gateway and per-mode
+  projection the modes lacked, migrated every mode's write protocol onto it, then flipped all eight
+  modes to `new_authoritative_final`, dropped the legacy shadow writer, ran the whole-system gate to
+  a literal PASS, and deleted the rollback and migration scaffolding the direct flip made dead weight.
 
-The ledger records everything in parallel with the legacy path, but the legacy path is still
-authoritative. The new machine is watching; the old machine is still driving.
+The ledger is now authoritative for all eight modes; the legacy files remain readable, produced by
+projection from the ledger rather than by a separate legacy writer. The new machine is driving; the
+old writers are retired. This lands on the mainline with the `012` packet's merge.

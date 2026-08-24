@@ -197,6 +197,6 @@ Direct children after grouping: eight thematic group parents plus the later clos
 | 9 | `009-innovation-gap-remediation/` | planned |
 | 10 | `010-weak-model-loop-adherence/` | complete |
 | 11 | `011-cli-pi-fanout-execution/` | complete |
-| 12 | `012-runtime-enablement/` | planned |
+| 12 | `012-runtime-enablement/` | complete |
 
 <!-- /ANCHOR:phase-map -->

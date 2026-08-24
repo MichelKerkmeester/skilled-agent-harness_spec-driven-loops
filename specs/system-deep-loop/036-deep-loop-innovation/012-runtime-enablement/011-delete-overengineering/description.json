@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
+  "description": "About a quarter of the runtime (~256k LOC) is one-time-use migration scaffolding and reversibility ceremony:",
+  "keywords": [
+    "about",
+    "quarter",
+    "runtime",
+    "256k",
+    "loc",
+    "one-time-use",
+    "migration",
+    "scaffolding",
+    "reversibility",
+    "ceremony"
+  ],
+  "lastUpdated": "2026-08-24T08:00:14.899Z",
+  "specId": "011",
+  "folderSlug": "delete-overengineering",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

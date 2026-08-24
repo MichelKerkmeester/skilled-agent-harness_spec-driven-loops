@@ -440,9 +440,9 @@ describe('legacy projection census and byte contracts', () => {
 
     expect(censusIds).toEqual(manifestIds);
     expect(LEGACY_PROJECTION_MANIFEST).toHaveLength(28);
-    expect(LEGACY_PROJECTION_MANIFEST.filter((row) => row.disposition === 'project')).toHaveLength(22);
+    expect(LEGACY_PROJECTION_MANIFEST.filter((row) => row.disposition === 'project')).toHaveLength(21);
     expect(LEGACY_PROJECTION_MANIFEST.filter((row) => row.disposition === 'retain-legacy-input'))
-      .toHaveLength(6);
+      .toHaveLength(7);
     expect(LEGACY_PROJECTION_MANIFEST_DIGEST).toMatch(/^[a-f0-9]{64}$/u);
     for (const entry of LEGACY_PROJECTION_MANIFEST) {
       const censusRow = censusRows.get(entry.surfaceId);

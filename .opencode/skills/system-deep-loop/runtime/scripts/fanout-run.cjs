@@ -1863,6 +1863,10 @@ const PI_ALLOWED_MODELS = new Set([
   // openrouter/<upstream>/<model> selector. No other model routes through OpenRouter.
   'deepseek/deepseek-v4-flash-latest',
   'stealth/ox-alpha',
+  // Cline (ClinePass) fronts the free Ox Alpha tune; its Cline id carries the vendor prefix
+  // `x-ai/ox-alpha` (not `cline-pass/`), so `${provider}/${model}` composes the three-segment
+  // cline-pass/x-ai/ox-alpha selector. Cline has no `max` tier — dispatch this id at `xhigh`.
+  'x-ai/ox-alpha',
 ]);
 const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
 
@@ -2073,6 +2077,9 @@ const PI_MODEL_PROVIDERS = new Map([
   // the 3-segment openrouter/<upstream>/<model> selector Pi's OpenRouter roster expects.
   ['deepseek/deepseek-v4-flash-latest', 'openrouter'],
   ['stealth/ox-alpha', 'openrouter'],
+  // Cline (ClinePass): the Ox Alpha id carries the vendor prefix `x-ai/ox-alpha`, so
+  // `${provider}/${model}` yields the three-segment cline-pass/x-ai/ox-alpha selector Pi's cline-pass roster expects.
+  ['x-ai/ox-alpha', 'cline-pass'],
 ]);
 // Map each shared reasoningEffort level to the name Pi's `--thinking` uses (from the
 // installed `pi --help`): the config's 'none' is Pi's 'off', and the config's 'ultra'
@@ -2241,6 +2248,10 @@ async function main() {
     DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
     checkLineageTimestampWindow,
   } = await import('../lib/deep-loop/lineage-timestamp-window.ts');
+  // Route the executor spawn through the shipped effect gateway so a
+  // fail-closed intent is recorded before the subprocess runs and a
+  // confirmation after, into the effect ledger the enablement step reads.
+  const { dispatchExecutorEffect } = await import('../lib/deep-loop/fanout-effect-dispatch.ts');
 
   maybeThrowTestFault();
 
@@ -2621,7 +2632,12 @@ async function main() {
 
       let result;
       try {
-        result = await runLineageProcess(command, cmdArgs, {
+        // The dispatch options carry the liveness callbacks, abort signal, and
+        // streaming hooks the runner needs; they are forwarded verbatim through
+        // the effect gateway so liveness tracking stays identical to a direct
+        // spawn. The canonical mode name (not the raw loopType) keys the effect
+        // ledger so the enablement consumer can read it back.
+        const dispatchOpts = {
           cwd: process.cwd(),
           timeoutMs,
           env: dispatchEnv,
@@ -2635,6 +2651,17 @@ async function main() {
             lineageProcessLiveness.set(livenessKey, { alive: false, pid, exitedAtMs });
           },
           ...(typeof input === 'string' ? { input } : {}),
+        };
+        result = await dispatchExecutorEffect({
+          lineageDir,
+          canonicalMode: loopType === 'review' ? 'deep-review' : 'deep-research',
+          sessionId,
+          lineageLabel: lineage.label,
+          attempt,
+          command,
+          cmdArgs,
+          dispatchOpts,
+          dispatch: (cmd, args, opts) => runLineageProcess(cmd, args, opts),
         });
       } finally {
         stopArtifactProgressPoller();

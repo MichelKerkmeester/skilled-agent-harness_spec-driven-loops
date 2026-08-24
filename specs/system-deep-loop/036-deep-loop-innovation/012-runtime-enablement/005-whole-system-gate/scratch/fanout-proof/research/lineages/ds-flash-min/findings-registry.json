@@ -1,0 +1,76 @@
+{
+  "openQuestions": [
+    {
+      "id": "q-vacuity-guard",
+      "text": "Would the two currently-not-run REQUIRED checks convert a would-be PASS into not-run, or does REQ-006 alone already forbid a vacuous PASS?",
+      "source": "iteration-001.md",
+      "iteration": 1
+    },
+    {
+      "id": "q-required-marker",
+      "text": "Should 'required for PASS' be an explicit property of each enumerated check, separate from 'executes'?",
+      "source": "iteration-001.md",
+      "iteration": 1
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q-load-bearing-check",
+      "text": "Which check is load-bearing for the PASS verdict?",
+      "answer": "authority-state; its FAIL drives verdict FAIL even with two not-run checks",
+      "source": "iteration-001.md",
+      "iteration": 1
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f1",
+      "text": "authority-state is the load-bearing check; its FAIL drives the verdict",
+      "source": "specs/.../005-whole-system-gate/scratch/receipt.json",
+      "iteration": 1
+    },
+    {
+      "id": "f2",
+      "text": "Failure root cause is a missing compiled authority-registry.js artifact, not a policy conflict",
+      "source": "receipt.json checks[2]; file:.opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/",
+      "iteration": 1
+    },
+    {
+      "id": "f3",
+      "text": "Durable authority states exist (legacy_authoritative, new_authoritative_reversible, new_authoritative_final); declared PASS condition unmet",
+      "source": "file:.opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-selector.ts:87",
+      "iteration": 1
+    },
+    {
+      "id": "f4",
+      "text": "Frozen-candidate contract holds for executable checks (tree-clean, candidate-frozen, runtime-suite all pass)",
+      "source": "receipt.json checks[0,1,3,4]",
+      "iteration": 1
+    },
+    {
+      "id": "f5",
+      "text": "not-run is recorded honestly and cannot manufacture a PASS because the decisive check already FAILED",
+      "source": "receipt.json checks[5,6]; plan.md §5",
+      "iteration": 1
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Treating authority-state module-resolution as a semantic authority disagreement",
+      "reason": "Compiled registry .js artifact is absent, not a demonstrated state conflict",
+      "evidence": "file:.opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/",
+      "iteration": 1
+    },
+    {
+      "approach": "Requiring fanout-real-run to force FAIL",
+      "reason": "Its not-run reason explicitly defers to the already-determined verdict",
+      "evidence": "receipt.json checks[6]",
+      "iteration": 1
+    }
+  ],
+  "promotedIdeas": [],
+  "rejectedPatterns": [],
+  "status": "complete",
+  "sessionGenerated": "2026-08-20T04:03:59Z",
+  "updatedAt": "2026-08-20T04:11:00Z"
+}

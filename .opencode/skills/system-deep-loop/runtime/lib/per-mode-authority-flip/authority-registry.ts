@@ -5,9 +5,9 @@
 // One durable, mode-keyed authority record per canonical workstream, with
 // monotonic-epoch compare-and-swap and crash-safe atomic writes. A mode
 // this registry has never written reads back as its default:
-// `legacy_authoritative` at epoch 1, selected writer `legacy`. Nothing in
-// this file is invoked against a real mode's root by this build; every
-// caller in this package is a unit test supplying its own temporary root.
+// `legacy_authoritative` at epoch 1, selected writer `legacy`. The coordinator
+// factory can bind this store to production roots; tests use isolated
+// temporary roots to prove the crash-safe behavior independently.
 
 import {
   closeSync,
@@ -87,6 +87,14 @@ export interface AuthorityCompareAndSwapInput {
   readonly at: string;
 }
 
+export interface AuthorityPrepareCutoverInput {
+  readonly mode: CutoverCertificateMode;
+  readonly expectedEpoch: number;
+  readonly candidateSha: string;
+  readonly policyVersion: number;
+  readonly at: string;
+}
+
 /**
  * Every durable fact `compareAndSwap` needs to finish a forward transition,
  * captured before the ledger append so a crash between the append and the
@@ -97,13 +105,25 @@ export interface AuthorityPendingTransition extends AuthorityCompareAndSwapInput
   readonly preparedAt: string;
 }
 
+/**
+ * The only writer identities a durable authority record may ever carry. Both
+ * the live compare-and-swap input and the crash-recovery replay of a pending
+ * transition route through this one predicate so the write path and the
+ * recovery path can never again accept different writer sets: the original
+ * defect was the live path writing a value the recovery path would refuse,
+ * leaving a record every subsequent read rejected as malformed.
+ */
+function isAdmittedAuthorityWriter(value: unknown): value is AuthorityRoute {
+  return value === 'legacy' || value === 'dark';
+}
+
 function isValidPendingTransition(value: unknown): value is AuthorityPendingTransition {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
   const record = value as Partial<AuthorityPendingTransition>;
   return record.expectedState === 'cutover_ready'
     && typeof record.mode === 'string'
     && Number.isSafeInteger(record.expectedEpoch)
-    && (record.nextSelectedWriter === 'legacy' || record.nextSelectedWriter === 'dark')
+    && isAdmittedAuthorityWriter(record.nextSelectedWriter)
     && typeof record.candidateSha === 'string'
     && Number.isSafeInteger(record.policyVersion)
     && typeof record.cutoverCertificateDigest === 'string'
@@ -116,6 +136,17 @@ export interface AuthorityCompareAndSwapRollbackInput {
   readonly mode: CutoverCertificateMode;
   readonly expectedEpoch: number;
   readonly rollbackCertificateDigest: string;
+  readonly at: string;
+}
+
+export interface AuthorityCompareAndSwapFinalizeInput {
+  readonly mode: CutoverCertificateMode;
+  readonly expectedState: 'new_authoritative_reversible';
+  readonly expectedEpoch: number;
+  readonly candidateSha: string;
+  readonly policyVersion: number;
+  readonly cutoverCertificateDigest: string;
+  readonly lastTransitionDigest: string;
   readonly at: string;
 }
 
@@ -269,6 +300,17 @@ export class AuthorityRegistry {
     record: AuthorityRecord;
     resumed: boolean;
   }> {
+    // Validate the writer before any lock is acquired or byte is written: a
+    // rejected input must leave no lock file and touch no record. This shares
+    // the recovery path's predicate so the live write and the crash replay
+    // can never accept different writer sets.
+    if (!isAdmittedAuthorityWriter(input.nextSelectedWriter)) {
+      throw new AuthorityFlipError(
+        'RECORD_MALFORMED',
+        'compareAndSwap received a nextSelectedWriter the authority record reader would reject',
+        { mode: input.mode, nextSelectedWriter: input.nextSelectedWriter },
+      );
+    }
     const path = this.#recordPath(input.mode);
     const lockPath = this.#lockPath(input.mode);
     const descriptor = this.#acquireLock(
@@ -312,6 +354,69 @@ export class AuthorityRegistry {
         policyVersion: input.policyVersion,
         cutoverCertificateDigest: input.cutoverCertificateDigest,
         lastTransitionDigest: input.lastTransitionDigest,
+        updatedAt: input.at,
+      });
+      const next: AuthorityRecord = Object.freeze({ ...core, recordDigest: digest(core) });
+      writeCanonicalJsonAtomic(path, next as unknown as JsonObject);
+      return Object.freeze({ record: next, resumed: false });
+    } finally {
+      this.#releaseLock(descriptor, lockPath);
+    }
+  }
+
+  /**
+   * Promote a mode's durable record from `legacy_authoritative` to
+   * `cutover_ready`, the pre-state the flip CAS requires. A record already at
+   * `cutover_ready` for the same epoch resumes idempotently without writing —
+   * the candidate SHA is intentionally not compared, since the flip's CAS
+   * overwrites it from the validated certificate anyway; any other state or a
+   * mismatched epoch is a conflict.
+   */
+  public prepareCutover(input: AuthorityPrepareCutoverInput): { record: AuthorityRecord; resumed: boolean } {
+    const path = this.#recordPath(input.mode);
+    const lockPath = this.#lockPath(input.mode);
+    const descriptor = this.#acquireLock(
+      lockPath,
+      'Another writer holds this mode\'s authority record lock',
+      { mode: input.mode },
+    );
+    try {
+      const current = this.read(input.mode);
+
+      // A record already sitting at cutover_ready for this epoch is left
+      // exactly as it is: the flip's compare-and-swap overwrites the
+      // candidate SHA from the validated certificate, and the preflight that
+      // ran immediately before this point already bound that certificate to
+      // the candidate being flipped. Comparing the candidate here would
+      // reject a record that a previous, legitimate preparation step had
+      // written.
+      if (current.state === 'cutover_ready' && current.epoch === input.expectedEpoch) {
+        return Object.freeze({ record: current, resumed: true });
+      }
+
+      if (current.state !== 'legacy_authoritative' || current.epoch !== input.expectedEpoch) {
+        throw new AuthorityFlipError('CAS_CONFLICT', 'Authority record no longer matches the expected state/epoch', {
+          mode: input.mode,
+          expectedState: 'legacy_authoritative',
+          expectedEpoch: input.expectedEpoch,
+          actualState: current.state,
+          actualEpoch: current.epoch,
+        });
+      }
+
+      // The epoch does NOT change here. The flip CAS expects cutover_ready at
+      // epoch N and writes new_authoritative_reversible at N+1; bumping now
+      // would make every flip fail with CAS_CONFLICT.
+      const core = Object.freeze({
+        schemaVersion: AUTHORITY_FLIP_SCHEMA_VERSION,
+        mode: input.mode,
+        state: 'cutover_ready' as const,
+        epoch: input.expectedEpoch,
+        selectedWriter: 'legacy' as const,
+        candidateSha: input.candidateSha,
+        policyVersion: input.policyVersion,
+        cutoverCertificateDigest: null,
+        lastTransitionDigest: null,
         updatedAt: input.at,
       });
       const next: AuthorityRecord = Object.freeze({ ...core, recordDigest: digest(core) });
@@ -423,6 +528,75 @@ export class AuthorityRegistry {
     const next: AuthorityRecord = Object.freeze({ ...core, recordDigest: digest(core) });
     writeCanonicalJsonAtomic(path, next as unknown as JsonObject);
     return next;
+  }
+
+  /**
+   * Execute the finalize edge that drops the legacy shadow:
+   * `new_authoritative_reversible(epoch N) -> new_authoritative_final(epoch N+1)`.
+   * Finalize is window-free by operator decision: no rollback window, drill,
+   * certificate, or execution-count precondition is required or simulated.
+   * The record digests over the actual transition facts and claims no
+   * certificate — the digests are content bindings, not gate receipts. A
+   * resumed call against a record already reflecting the exact target
+   * completes idempotently rather than re-running the CAS.
+   */
+  public compareAndSwapFinalize(input: AuthorityCompareAndSwapFinalizeInput): Readonly<{
+    record: AuthorityRecord;
+    resumed: boolean;
+  }> {
+    const path = this.#recordPath(input.mode);
+    const lockPath = this.#lockPath(input.mode);
+    const descriptor = this.#acquireLock(
+      lockPath,
+      'Another writer holds this mode\'s authority record lock',
+      { mode: input.mode },
+    );
+    try {
+      const current = this.read(input.mode);
+      const nextEpoch = input.expectedEpoch + 1;
+
+      if (
+        current.state === 'new_authoritative_final'
+        && current.epoch === nextEpoch
+        && current.cutoverCertificateDigest === input.cutoverCertificateDigest
+        && current.lastTransitionDigest === input.lastTransitionDigest
+      ) {
+        // Already finalized to this exact target — idempotent resume.
+        return Object.freeze({ record: current, resumed: true });
+      }
+
+      if (current.state !== input.expectedState || current.epoch !== input.expectedEpoch) {
+        throw new AuthorityFlipError(
+          'CAS_CONFLICT',
+          'Authority record no longer matches the expected reversible state/epoch for finalize',
+          {
+            mode: input.mode,
+            expectedState: input.expectedState,
+            expectedEpoch: input.expectedEpoch,
+            actualState: current.state,
+            actualEpoch: current.epoch,
+          },
+        );
+      }
+
+      const core = Object.freeze({
+        schemaVersion: AUTHORITY_FLIP_SCHEMA_VERSION,
+        mode: input.mode,
+        state: 'new_authoritative_final' as const,
+        epoch: nextEpoch,
+        selectedWriter: current.selectedWriter,
+        candidateSha: input.candidateSha,
+        policyVersion: input.policyVersion,
+        cutoverCertificateDigest: input.cutoverCertificateDigest,
+        lastTransitionDigest: input.lastTransitionDigest,
+        updatedAt: input.at,
+      });
+      const next: AuthorityRecord = Object.freeze({ ...core, recordDigest: digest(core) });
+      writeCanonicalJsonAtomic(path, next as unknown as JsonObject);
+      return Object.freeze({ record: next, resumed: false });
+    } finally {
+      this.#releaseLock(descriptor, lockPath);
+    }
   }
 
   /**

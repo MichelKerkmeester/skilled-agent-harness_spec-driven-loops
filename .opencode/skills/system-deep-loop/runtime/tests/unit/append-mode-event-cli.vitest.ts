@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 import { AppendOnlyLedger } from '../../lib/authorized-ledger/index.js';
 import { createDeepResearchEventRegistry } from '../../lib/deep-research-ledger-schema/index.js';
+import { AUTHORITY_FLIP_MODE_ORDER } from '../../lib/per-mode-authority-flip/index.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const CLI_PATH = resolve(here, '..', '..', 'scripts', 'append-mode-event.cjs');
@@ -285,10 +286,14 @@ describe('append-mode-event CLI subprocess execution', () => {
     expect(existsSync(join(runDir, 'ledger'))).toBe(false);
   });
 
-  it('names the frozen order when a mode is outside it, rather than blaming the record', () => {
-    // A mode with no entry in the frozen order has no authority record to read,
-    // and the selector reports that absence as a malformed record. Reporting the
-    // real cause keeps an operator from hunting a corrupt file that never existed.
+  it('rejects an unrecognized mode by name, rather than blaming a malformed record', () => {
+    // The mode adapter runs before the authority-order check, and the adapter's
+    // mode set is identical to the frozen authority order. Any mode the adapter
+    // accepts is therefore already in the order, so the authority-order branch
+    // is structurally unreachable from the CLI: no input can be accepted by the
+    // adapter yet rejected by the order. An unknown mode dies at the adapter
+    // with the offending name in the reason, which keeps an operator from
+    // hunting a corrupt authority file that never existed.
     const runDir = createTempDir('unknown-mode');
     const authorityRoot = createTempDir('unknown-mode-root');
     const eventJsonPath = join(runDir, 'event.json');
@@ -296,18 +301,96 @@ describe('append-mode-event CLI subprocess execution', () => {
 
     const result = runCli([
       '--mode',
-      'deep-improvement',
+      'deep-nonexistent-mode',
       '--run-directory',
       runDir,
       '--event-json',
       eventJsonPath,
     ], { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot });
 
-    expect(result.exitCode).toBe(2);
-    expect(result.json.phase).toBe('authority');
-    expect(result.json.code).toBe('AUTHORITY_DENIED');
-    expect(String(result.json.reason)).toContain('not in the frozen authority order');
+    expect(result.exitCode).toBe(1);
+    expect(result.json.phase).toBe('runtime');
+    expect(result.json.code).toBe('RUNTIME_ERROR');
+    expect(String(result.json.reason)).toContain('deep-nonexistent-mode');
     expect(String(result.json.reason)).not.toContain('RECORD_MALFORMED');
+  });
+
+  it('routes deep-improvement-common past the adapter and authority-order gates', () => {
+    // The authority order is the canonical spelling; a private CLI alias that
+    // disagrees with it makes a real fleet mode unreachable. This test proves
+    // the mode clears both the adapter switch and the frozen-order check, so
+    // it is never rejected as 'Unsupported mode' or as outside the authority
+    // order.
+    const runDir = createTempDir('improvement-common-routable');
+    const authorityRoot = createTempDir('improvement-common-root');
+    const eventJsonPath = join(runDir, 'event.json');
+    writeFileSync(eventJsonPath, JSON.stringify(sampleRunInitializedEvent()), 'utf8');
+
+    const result = runCli([
+      '--mode',
+      'deep-improvement-common',
+      '--run-directory',
+      runDir,
+      '--event-json',
+      eventJsonPath,
+    ], { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot });
+
+    // Routable means the mode is refused by NEITHER the adapter switch NOR the
+    // frozen-order check. Where it is refused after those two gates is a
+    // property of that mode's own ledger schema, not of routing, so this test
+    // deliberately does not pin it. Asserting a present, non-empty reason first
+    // is what gives the two absence checks their force: a missing reason would
+    // otherwise satisfy both by containing nothing at all.
+    expect(result.exitCode).toBe(1);
+    expect(result.json.phase).toBe('runtime');
+    expect(typeof result.json.reason).toBe('string');
+    expect(String(result.json.reason).length).toBeGreaterThan(0);
+    // Must not be rejected as an unsupported mode by the adapter switch.
+    expect(String(result.json.reason)).not.toContain('Unsupported mode');
+    // Must not be rejected as outside the frozen authority order.
+    expect(String(result.json.reason)).not.toContain('not in the frozen authority order');
+  });
+
+  it('routes every mode in the frozen authority order through the CLI', () => {
+    // The frozen authority order is the canonical mode vocabulary, so every
+    // mode it names must be reachable through the canonical write path. A mode
+    // the order blesses but the CLI cannot route is unreachable in production:
+    // the adapter would refuse it as 'Unsupported mode', or the order check
+    // would refuse it as 'not in the frozen authority order'. Iterating the
+    // order itself catches either drift at the mode that drifted.
+    // A mode is routable when the write either completed or was refused for a
+    // reason of its own. The two refusals the guard forbids are the ones that
+    // mean the mode never reached its schema at all. A missing reason on the
+    // refusal branch is itself a failure, because an absence check over a
+    // missing reason passes by containing nothing.
+    for (const mode of AUTHORITY_FLIP_MODE_ORDER) {
+      const runDir = createTempDir(`order-routable-${mode}`);
+      const authorityRoot = createTempDir(`order-routable-${mode}-root`);
+      const eventJsonPath = join(runDir, 'event.json');
+      writeFileSync(eventJsonPath, JSON.stringify(sampleRunInitializedEvent()), 'utf8');
+
+      const result = runCli([
+        '--mode',
+        mode,
+        '--run-directory',
+        runDir,
+        '--event-json',
+        eventJsonPath,
+      ], { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot });
+
+      if (result.json.ok === true) {
+        // Routed all the way: the write completed. Nothing further to assert for this mode.
+        expect(result.json.ok, `mode '${mode}' routed and completed`).toBe(true);
+      } else {
+        // Refused after routing: the refusal must be attributable, and it must not be either of
+        // the two refusals that mean the mode never routed at all.
+        expect(typeof result.json.reason, `mode '${mode}' must report a reason`).toBe('string');
+        expect(String(result.json.reason).length, `mode '${mode}' must report a reason`).toBeGreaterThan(0);
+        const reason = String(result.json.reason);
+        expect(reason, `mode '${mode}' must be routable through the CLI`).not.toContain('Unsupported mode');
+        expect(reason, `mode '${mode}' must be routable through the CLI`).not.toContain('not in the frozen authority order');
+      }
+    }
   });
 
   it('does not treat the run directory as the authority root', () => {

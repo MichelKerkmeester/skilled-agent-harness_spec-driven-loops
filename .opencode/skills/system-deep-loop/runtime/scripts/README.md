@@ -35,6 +35,8 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 |---|---|
 | `append-state-record.cjs` | Appends a validated state record to the durable state stream. |
 | `check-contract-drift.cjs` | Checks command and runtime contract surfaces for drift. |
+| `check-direct-append.cjs` | Detects a write to a legacy state file that bypassed the gateway, once a mode's authority has moved. |
+| `check-protocol-append-sites.cjs` | Fails a workflow asset that records canonical state without declaring the append gateway, or that appends directly without declaring the exception. |
 | `codex-dispatch.cjs` | Runs the Codex executor dispatch boundary and records its result. |
 | `compile-command-contracts.cjs` | Compiles command contract inputs into the runtime validation surface. |
 | `convergence.cjs` | Computes typed convergence decisions from graph state. |

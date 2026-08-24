@@ -101,6 +101,16 @@ export interface LedgerStorageOptions {
   readonly auditLedgerId?: string;
   readonly lockTimeoutMs?: number;
   readonly faultInjection?: LedgerFaultInjection;
+  /**
+   * Serve verified reads from an in-instance memo, skipping the
+   * cross-process lock round-trip on a cache hit. Correct ONLY when this
+   * instance is the sole writer of its ledger directory for the instance's
+   * lifetime: the memo is invalidated by this instance's own append, so a
+   * concurrent writer in another process would let a reader miss that
+   * process's append until the next miss forces a rescan. Default off keeps
+   * every read lock-and-scan, byte-for-byte unchanged.
+   */
+  readonly singleWriterReadCache?: boolean;
 }
 
 /** Domain-ledger options including the authority source rechecked under lock. */

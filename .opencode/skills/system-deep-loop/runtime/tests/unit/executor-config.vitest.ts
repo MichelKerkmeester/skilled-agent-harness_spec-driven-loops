@@ -789,7 +789,7 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
 });
 
 describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
-  it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash variant', () => {
+  it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash variant and the Cline-routed Ox Alpha', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
       'deepseek-v4-flash',
       'deepseek-v4-pro',
@@ -802,6 +802,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'minimax-m3',
       'qwen3.8-max',
       'stealth/ox-alpha',
+      'x-ai/ox-alpha',
     ]);
   });
 

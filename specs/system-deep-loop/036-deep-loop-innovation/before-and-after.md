@@ -12,11 +12,11 @@ So the change lands in stages, and the word **"after" in this document means "af
 
 - **Landed:** the shared foundation — the new ledger, the gateway, the evidence services, the safety net — is built and running.
 - **Landed:** all eight deep-loop modes now carry their own typed schema on that foundation — schema, reducers, sealed artifacts, certificates, resume adapter, shadow-parity harness, and rollback gate — each built additive-dark and verified green. The hermetic CLI-adapter stress program and the whole-system acceptance gate landed alongside.
-- **Still ahead — and deliberately gated:** the actual switch-over, where the new system takes charge one mode at a time and the old writers get retired. Not one authority has flipped; the first flip is held for an explicit operator go-ahead.
+- **Executed by `012-runtime-enablement`:** the switch-over ran. The operator ratified a direct flip, and every one of the eight modes was moved to `new_authoritative_final`, the legacy shadow writer was dropped, and the whole-system gate passed. The new system is now in charge and the old writers are retired.
 
-Crucially, **everything built so far runs "dark."** It records everything in parallel with the old system but is **not in charge of anything yet**. The old code is still the source of truth. Nothing flips to the new machinery until a mode passes a parity check and an operator approves its cutover. So when you read "after" below, read it as *"how it's designed to work once each mode has safely cut over"* — not *"how it behaves in production today."*
+Everything built through phase 011 first ran **"dark"** — recording in parallel with the old system, **not in charge of anything**, with the legacy code as the source of truth — until each mode had *proven*, run for run, that it did the same thing. Phase `012-runtime-enablement` then executed the operator-ratified cutover across all eight modes, so the ledger is now authoritative and the old writers are retired. The legacy files stay readable, but they are now produced by projection from the ledger rather than by a separate legacy writer.
 
-That caution is the whole point. The old behavior stays authoritative until its replacement has *proven*, run for run, that it does the same thing.
+So when you read "after" below — written while the system still ran dark — read it as the behavior that cutover has now put in charge. That staged caution was the whole point: the old behavior stayed authoritative until its replacement earned the switch.
 
 ---
 

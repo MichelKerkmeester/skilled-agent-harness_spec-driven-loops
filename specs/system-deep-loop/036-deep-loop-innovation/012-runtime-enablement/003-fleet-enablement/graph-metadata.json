@@ -19,7 +19,10 @@
       "fleet enablement tasks",
       "enablement driver tasks",
       "fleet enablement checklist",
-      "fleet driver verification"
+      "fleet driver verification",
+      "fleet enablement summary",
+      "enablement driver built",
+      "fleet flip complete"
     ],
     "key_topics": [
       "fleet",
@@ -36,14 +39,58 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "scratch/negative-controls.md",
+      "scratch/finding-improvement-mode-unroutable.md",
+      "scratch/adversarial-review.md",
+      "scratch/dryrun.json",
+      "scratch/authority-prerun-capture.md",
+      "scratch/realrun.json",
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/false-completion-proven.md",
+      "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "negative-controls.md",
+        "kind": "doc",
+        "path": "scratch/negative-controls.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding-improvement-mode-unroutable.md",
+        "kind": "doc",
+        "path": "scratch/finding-improvement-mode-unroutable.md",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial-review.md",
+        "kind": "doc",
+        "path": "scratch/adversarial-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "dryrun.json",
+        "kind": "config",
+        "path": "scratch/dryrun.json",
+        "source": "derived"
+      },
+      {
+        "name": "authority-prerun-capture.md",
+        "kind": "doc",
+        "path": "scratch/authority-prerun-capture.md",
+        "source": "derived"
+      },
+      {
+        "name": "realrun.json",
+        "kind": "config",
+        "path": "scratch/realrun.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,6 +107,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "false-completion-proven.md",
+        "kind": "doc",
+        "path": "scratch/false-completion-proven.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -139,73 +198,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "external",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Assertions",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mode registry names seven canonical modes",
     "created_at": "2026-08-19T06:57:08.040Z",
-    "last_save_at": "2026-08-19T06:57:08.040Z",
+    "last_save_at": "2026-08-24T08:57:40.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6516e19e8c18deeaa998266ed41e3581fcfb83d4998fb867b5a688bb5de39e66",
+    "source_fingerprint": "sha256:a222190bf091013ae44729952c0d059d43b6842cf21c86cc2d57beb2073dae8d",
     "source_doc_hashes": {
-      "spec.md": "40a5bb200e924f894bb83cc50ce9fca9dbaa9169f5fc5cf7bb33f7825fbeec05",
-      "plan.md": "0ebb8e14d6a6fa023bb451592dc4fbcae26570d8925505f23390c93eeb015f9b",
-      "tasks.md": "8d3f50d87cb0ba76b35ab10ac422f24db52f808b563e46a628d1c906bec6a506",
-      "checklist.md": "87d263e9337d8433540cf5c0f68623f6c9ce6edb1ebeda0783991f03e934af58"
+      "spec.md": "87053dee8415c5884f05547e715ce1e9d9cf984582359c90d8fafe0f3eae5a77",
+      "plan.md": "af87fbeaaa1a9687a249f6cfc9f3c5f52dbd6047c77c956459dbc174aed3b9e9",
+      "tasks.md": "0378543e7db3f6812d3119fc9d68e8bde0fadaab175ffcdfd8c52d1ceae68e21",
+      "checklist.md": "581c9a6c6070ffcfe4d5bd8ab35afb7b89e19da403e6c5299a21c2ae13bc48e9",
+      "implementation-summary.md": "8b0f96e0984d18e3a6e206a8ff211aac54135df803770f0ef9897c4f61c6fd3d"
     },
     "last_active_child_id": null,
     "last_active_at": null

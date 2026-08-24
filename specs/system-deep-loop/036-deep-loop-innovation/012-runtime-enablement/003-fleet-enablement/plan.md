@@ -10,7 +10,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fl
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement"
-    last_updated_at: "2026-08-19T19:30:00Z"
+    last_updated_at: "2026-08-24T08:00:07Z"
     last_updated_by: "claude"
     recent_action: "Built the driver, CLI and both suites; 12 guards proven by negative control"
     next_safe_action: "Operator decision on the missing flip transitions"
@@ -117,7 +117,7 @@ times.
 |------------|-------|------|
 | `002-deep-research-enablement` | Predecessor | Supplies the proven per-mode procedure |
 | Projection manifest | Landed | Source of each mode's reader set |
-| `AuthorityFlipCoordinator` | Wired by the pilot | Serial constraint enforced by the coordinator itself |
+| `AuthorityFlipCoordinator` | NOT wired | Assumed wired by the pilot; it has no production caller, so the serial constraint it would enforce is unenforced |
 | Mode registry | Landed | Source of the canonical mode list |
 <!-- /ANCHOR:dependencies -->
 

@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/053-cline-ox-alpha-cli-pi-roster",
+  "description": "pi's interactive Cline picker already discovers Ox Alpha as a free model (`Free — Try with limited usage, separate from ClinePass quota`) and can run",
+  "keywords": [
+    "interactive",
+    "cline",
+    "picker",
+    "already",
+    "discovers",
+    "alpha",
+    "free",
+    "model",
+    "try",
+    "limited",
+    "usage",
+    "separate",
+    "clinepass",
+    "quota",
+    "run"
+  ],
+  "lastUpdated": "2026-08-24T10:24:07.923Z",
+  "specId": "053",
+  "folderSlug": "cline-ox-alpha-cli-pi-roster",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

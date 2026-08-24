@@ -184,7 +184,7 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 
 ## 8. VALIDATION
 
-This category covers 4 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-005 | Post-dispatch validate
 
@@ -228,21 +228,6 @@ Expected signals: Hook fires and logs a warning on mismatch or loop-repeat (defa
 
 #### Test Execution
 > **Feature File:** [DLR-052](../manual-testing-playbook/validation/system-deep-loop-guard.md)
-
----
-
-### DLR-053 | Rollback-gate shared strict validator adoption
-
-#### Description
-Deep-research and deep-review rollback mode gates stopped carrying their own hand-copied `hasExactKeys` helper and now consume the shared strict validator (`hasExactKeys`, `validateRows`) exported from `lib/mode-contracts/index.js`.
-
-#### Scenario Contract
-Prompt: `Validate Rollback-gate shared strict validator adoption and report whether the current source, script surface, and tests agree with the runtime/ contract.`
-
-Expected signals: A rollback row that violates its declared type rejects the whole evidence set with a `TypeError`; a well-formed but legitimately incomplete/abstained/unauthenticated row is excluded from the successful-execution count instead of rejecting the set; neither gate defines a local `hasExactKeys` anymore.
-
-#### Test Execution
-> **Feature File:** [DLR-053](../manual-testing-playbook/validation/rollback-gate-shared-strict-validator.md)
 
 ---
 

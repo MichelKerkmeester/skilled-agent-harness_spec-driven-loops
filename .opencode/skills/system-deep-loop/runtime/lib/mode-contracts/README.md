@@ -27,7 +27,7 @@ The shared plug-in interface that every `system-deep-loop` workflow mode (resear
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/`
+None currently — this module is orphaned (its only importer was removed as dead scaffolding) and is itself a follow-up deletion candidate.
 
 ---
 

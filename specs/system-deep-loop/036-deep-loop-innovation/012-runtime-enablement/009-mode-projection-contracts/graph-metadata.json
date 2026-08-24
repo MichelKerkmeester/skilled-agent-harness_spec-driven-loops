@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mode projection contracts",
+      "legacy projection coverage",
+      "projection contract build",
+      "mode projection contracts plan",
+      "projection contract build plan",
+      "mode projection contracts tasks",
+      "mode projection contracts checklist",
+      "projection contract decisions",
+      "surface projection composition",
+      "mode projection contracts summary",
+      "projection surface contracts",
+      "ledger-fold projection coverage"
+    ],
+    "key_topics": [
+      "mode",
+      "projection",
+      "contracts",
+      "legacy",
+      "coverage",
+      "contract",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "surface",
+      "composition"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Projection Contracts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Each",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fleet flip moved all eight modes to ledger authority, but the projection library ships exactly one",
+    "created_at": "2026-08-23T06:30:00.000Z",
+    "last_save_at": "2026-08-24T06:19:12.842Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:21f7c4fd0b6b6953042b4b8de52b0edfb2ae0877892b9a130f3cd1bc86d5cb07",
+    "source_doc_hashes": {
+      "spec.md": "4fb4fcc82666e285a138c4ed17a61db2a1f14c0e1ae2407812c12fa235688cc4",
+      "plan.md": "8971074aae7d28d74e76cace1306603cc7ff5b9613585694276585eb01deb086",
+      "tasks.md": "8f35b37af572e96955d481ec1a5fd2c0fbb8e0c9a4b9001e8f6425e131a18055",
+      "checklist.md": "d09add636a8bf2d04d29f29f7ba40364a0424c65343efa7e91487ca782c94c0f",
+      "decision-record.md": "4a557f38cca4080a6158c38df9479a8b87bde54f4c965b8c66c2fca9bcf70954",
+      "implementation-summary.md": "22b7ecb2e424a7e01a62ab410495d6bb395be1b7fbe92874721479567dd000ca"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

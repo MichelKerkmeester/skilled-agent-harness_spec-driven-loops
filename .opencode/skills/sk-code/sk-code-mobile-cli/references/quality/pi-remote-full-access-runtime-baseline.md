@@ -1,3 +1,15 @@
+---
+title: Pi Remote Full-Access Runtime Baseline
+description: Records the live verifier evidence required to prove the relay launches full-access Pi RPC and that /plan produces a visible mode transition before phone-control work proceeds.
+trigger_phrases:
+  - 'full-access runtime verifier'
+  - 'Pi RPC mode transition'
+  - 'relay baseline evidence'
+importance_tier: normal
+contextType: general
+version: 1.2.0.3
+---
+
 # Full-Access Runtime Baseline
 
 > Evidence that the deployed relay launches the intended full-access (desktop-parity)

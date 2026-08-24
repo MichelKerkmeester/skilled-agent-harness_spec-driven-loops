@@ -117,11 +117,24 @@ state_write_protocol:
   command: "node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode research --run-directory {artifact_dir} --event-json <record file>"
   applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
   refusal_handling: "halt on exit 2; never fall back to a direct file write"
+  migration_exception: "Embedded lifecycle writers append run-now and pause sentinel records directly; no ledger event stem exists for them yet, so the gateway would reject them."
+  exempt_append_sites: 1
   contract: |
-    Every canonical record named by an append_to_jsonl or append_jsonl directive below is
-    written by invoking the command above with that record as the event JSON. Those directives
-    specify WHAT to record; this block specifies HOW every record reaches the log, so the
-    mechanism is stated once rather than repeated at each site where it could drift.
+    The directives below specify WHAT to record; this block specifies the mechanism. The
+    command accepts a canonical event envelope — a `stem` with `scope` and `data`, or an
+    `event_type` with a `payload` — and for this mode it also accepts a legacy-shaped row,
+    which it upcasts before appending. Where the upcast is lossy it returns a warning, and
+    the warning is surfaced rather than swallowed. Only a small number of the directives
+    below currently reach the log this way: of nineteen, one routes through the gateway,
+    four are deliberately pinned to the legacy path by the schema and refused by the
+    upcaster on purpose — a decision, not an omission — and the remaining fourteen have no
+    registered stem, because the ledger models research semantics and those rows are
+    workflow bookkeeping. Whether they should become ledger events is unsettled. A
+    refusal names its own reason, so the caller can tell a deliberate pin from a missing
+    stem. A row the upcaster refuses returns exit 1 and writes nothing, with the reason
+    naming why. Exit 1 is distinct from the exit 2 refusal described in the next
+    paragraph: exit 1 means the input never reached authority, exit 2 means authority
+    refused it.
 
     The gateway authorizes the write against the mode's durable authority record, serialises it
     behind the ledger fence, returns a receipt, and refreshes state_log from the ledger. Exit 0
@@ -132,6 +145,16 @@ state_write_protocol:
     can then interleave with no shared ordering, and a record nobody authorized carries no
     receipt, so a later reader cannot tell an accepted record from an invented one. A refusal
     is a halt, never a reason to write the file directly.
+
+    One exception exists and is deliberate. The embedded lifecycle writers append run-now and
+    pause sentinel records straight to the log, because those records have no registered event
+    type in this mode's ledger schema and the gateway would refuse them. They record that a
+    sentinel changed, not research progress. Every record the workflow itself produces goes
+    through the gateway, and these move to it once the schema names them.
+
+    The exempt_append_sites count names how many direct-append sites this exception currently
+    covers; introducing a further site causes the conformance check to fail until that site is
+    reviewed and the count is intentionally updated to reflect it.
 
 state_paths:
   # Template paths document the canonical packet layout. Runtime resolution happens via

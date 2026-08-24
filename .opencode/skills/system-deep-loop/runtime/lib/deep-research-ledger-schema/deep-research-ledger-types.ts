@@ -480,7 +480,7 @@ export interface DeepResearchCompatibilityDecision {
 }
 
 export interface LegacyUpcastContext {
-  readonly scope: DeepResearchBaseScope | DeepResearchIterationScope;
+  readonly scope: DeepResearchScope;
   readonly prevEventHash: Digest;
   readonly replay: DeepResearchReplayMetadata;
 }
@@ -492,7 +492,7 @@ export interface LegacyUpcastCandidate {
   readonly originalRecordDigest: Digest;
   readonly upcasterFingerprint: Fingerprint;
   readonly warnings: readonly string[];
-  readonly scope: DeepResearchBaseScope | DeepResearchIterationScope;
+  readonly scope: DeepResearchScope;
   readonly prevEventHash: Digest;
   readonly replay: DeepResearchReplayMetadata;
   readonly data: JsonObject;

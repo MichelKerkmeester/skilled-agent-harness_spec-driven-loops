@@ -18,7 +18,10 @@
       "legacy writer retirement tasks",
       "direct append removal tasks",
       "legacy writer retirement checklist",
-      "direct append guard verification"
+      "direct append guard verification",
+      "legacy writer retirement summary",
+      "direct append guard",
+      "direct append retirement complete"
     ],
     "key_topics": [
       "legacy",
@@ -32,17 +35,42 @@
       "checklist",
       "guard",
       "verification",
-      "fleet"
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "scratch/inventory.md",
+      "scratch/authority-unchanged.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
+      "scratch/append-site-conformance.md",
+      "scratch/append-site-census.md",
+      "scratch/full-suite-delta.md",
+      "scratch/guard-probe.mjs",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "scratch/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "authority-unchanged.md",
+        "kind": "doc",
+        "path": "scratch/authority-unchanged.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -59,6 +87,30 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "append-site-conformance.md",
+        "kind": "doc",
+        "path": "scratch/append-site-conformance.md",
+        "source": "derived"
+      },
+      {
+        "name": "append-site-census.md",
+        "kind": "doc",
+        "path": "scratch/append-site-census.md",
+        "source": "derived"
+      },
+      {
+        "name": "full-suite-delta.md",
+        "kind": "doc",
+        "path": "scratch/full-suite-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "guard-probe.mjs",
+        "kind": "file",
+        "path": "scratch/guard-probe.mjs",
         "source": "derived"
       },
       {
@@ -144,67 +196,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Two",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After the fleet is enabled, every mode's canonical writes go through the gateway, but the direct-append paths still",
     "created_at": "2026-08-19T06:57:08.198Z",
-    "last_save_at": "2026-08-19T06:57:08.198Z",
+    "last_save_at": "2026-08-24T08:57:40.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6dfa02f307c21361e3f429d7c3eedfdb2c2ec2aeaa86521bc1888116e526aae1",
+    "source_fingerprint": "sha256:1d5bc8685ecd45858c8f10782e2a2ba8c294eec49d60b4f578189b87d2d72f28",
     "source_doc_hashes": {
-      "spec.md": "3bf32662ab8b7e0d6f36238d7dc5bc703d7d5252e11f6f291b6e16d4300fd6e8",
-      "plan.md": "bfaf7d722552dbf625a626d4fd56445458db17d830e9152d19fa2f7fc60823b8",
-      "tasks.md": "6dbcb1cb1b744da46916b4bbbda90bbf7c81c07b7144c9a54087632db8b9a103",
-      "checklist.md": "d7cd1108f9ce46f014b633ebcf1c9e01825fa40b6e2aa1de9590660ff874f26b"
+      "spec.md": "7c3394271a2e37fc251a8e42ce94d106a032b8ea5f9184596ff74ce7b2053f28",
+      "plan.md": "c8e0bf8ec8d0a29359d9ad919306b947641822972b31b4c8c76e1ec7a6afa513",
+      "tasks.md": "663571a93b53e6c36acdc18b86e93c3950b2f3f1fed1c6331aaadfb46373274d",
+      "checklist.md": "6c1dea8b6ce78da13216826ed2074e74b55e739cbf662b3debee08970e7f5b61",
+      "implementation-summary.md": "35db193f5f5e59713c79eabb9e8269a5c90a089d5c443ef900f7ee5dad8c7935"
     },
     "last_active_child_id": null,
     "last_active_at": null

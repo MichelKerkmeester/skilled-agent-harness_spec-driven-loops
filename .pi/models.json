@@ -24,6 +24,14 @@
           "contextWindow": 1000000,
           "maxTokens": 384000,
           "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "max": null, "xhigh": "xhigh" }
+        },
+        {
+          "id": "x-ai/ox-alpha",
+          "name": "Ox Alpha",
+          "reasoning": true,
+          "contextWindow": 1000000,
+          "maxTokens": 131072,
+          "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "max": null, "xhigh": "xhigh" }
         }
       ]
     },

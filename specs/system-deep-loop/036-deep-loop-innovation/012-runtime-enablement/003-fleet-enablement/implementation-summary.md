@@ -1,33 +1,38 @@
 ---
 title: "Implementation Summary: Fleet Enablement"
-description: "The serial enablement driver, its CLI, and their tests are built and independently verified; the fleet cannot actually be enabled because the authority flip has no reachable entry edge, and one mode has no working name on the append path."
+description: "The serial enablement driver, its CLI, and their tests are built and independently verified; the fleet flip was executed via the operator-chosen registry-direct path, and all eight authority modes now hold durable new_authoritative_reversible records on disk."
 trigger_phrases:
   - "fleet enablement summary"
   - "enablement driver built"
-  - "improvement mode unroutable"
+  - "fleet flip complete"
 importance_tier: "critical"
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement"
-    last_updated_at: "2026-08-19T19:30:00Z"
+    last_updated_at: "2026-08-24T08:58:00Z"
     last_updated_by: "claude"
-    recent_action: "Built the driver, the CLI and both test suites; proved every guard with a negative control"
-    next_safe_action: "Operator decision on the missing flip transitions, which block this phase and 004 through 006"
-    blockers:
-      - "No mode can reach cutover_ready, so no mode can be enabled"
-      - "deep-improvement-common has no working name on the append CLI; the fix crosses into the gateway and the projection manifest"
+    recent_action: "Reconciled to Complete after the registry-direct fleet flip"
+    next_safe_action: "Proceed to 005-whole-system-gate; the fleet flip is done"
+    blockers: []
     key_files:
-      - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/mode-surface-map.ts"
-      - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/enablement-driver.ts"
       - ".opencode/skills/system-deep-loop/runtime/scripts/enable-modes.cjs"
-    completion_pct: 65
-    open_questions:
-      - "Who builds the legacy-to-cutover-ready edges, and under what evidence?"
-      - "Does the improvement-mode rename return to 001, given it touches the gateway and the manifest?"
+      - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/enablement-driver.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/mode-surface-map.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/restart-observation/restart-facts-reader.ts"
+      - "scratch/false-completion-proven.md"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "Every fleet mode has at least one manifest surface; skill-benchmark's projectable set is empty and is reported as such"
+      - "The legacy-to-cutover-ready edge is built, as prepareCutover on the registry"
+      - "The gap in the step is unwritten code, not a blocked precondition"
+      - "A gate that cannot go green is as untested as one that cannot go red"
+      - "The fleet flip used the registry-direct path (flip-authority.cjs --commit), not the coordinator"
+      - "All 8 modes hold new_authoritative_reversible records at epoch 2, selectedWriter dark"
+      - "deep-improvement-common's authority record exists and flipped"
+      - "T-005 superseded by the registry-direct path; coordinator stays the proven pilot in 002"
+      - "T-011/T-012 deferred, matching the whole-system gate's reader-contracts deferral"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -41,9 +46,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement |
-| **Status** | Blocked |
+| **Status** | Complete |
 | **Commit** | see `git log` on `worktrees/022-012-runtime-enablement-build`, not pushed |
-| **Completed** | Partial — the driver is built and proven; no mode is enabled |
+| **Completed** | The driver, CLI and tests are built and proven; the fleet flip was executed via the operator-chosen registry-direct path and all eight authority modes hold durable `new_authoritative_reversible` records on disk |
 | **Lines** | 6 files added or changed |
 <!-- /ANCHOR:metadata -->
 
@@ -68,6 +73,55 @@ registry at all. A real run performs the checks the runtime can actually perform
 flip on the read path, so a failed step reaches no compare-and-swap. Resuming is an explicit
 `--resume`: a state file that already exists means an earlier run stopped part-way, and continuing
 by default would let an operator miss that a failure ever happened.
+
+**An evidence gate in front of the flip check.** The step now observes classification evidence
+before it looks at authority state, and fails closed on four distinct conditions. The order matters:
+reporting a state mismatch first was misleading once a promotion path existed, because it named a
+condition that might not even be the obstacle.
+
+Three of the four are refusals raised by the reader. A ledger directory that does not exist refuses,
+because an absent producer read as an empty one makes `every()` over an empty list report full
+coverage. A directory that exists but holds no effect events refuses, because directory existence is
+not evidence — that guard was passed with `mkdir`, and a mode was recorded enabled on two empty
+directories with its authority record byte-identical either side. A confirmation whose effect id
+never appeared in an intent refuses, because a receipt for an unrecorded effect leaves the pending
+list empty and produces a verified verdict from a history that is missing its own beginning.
+
+The fourth is enforcement rather than refusal. The classification manifest was previously built and
+discarded, so the gate collapsed to whether reading threw: a run whose derived verdict was
+`verified: false` still passed. The manifest's verdict is now read per row, and any row whose order,
+identity or receipt coverage is not true, or whose lease state is null or uncertain, fails the step
+naming the row and the field. A null field fails, because an unasserted verdict must not read as a
+passing one.
+
+The ledger ports are constructed lazily, after both existence checks. Constructing an
+`AppendOnlyLedger` creates its storage directory — including on a construction that throws part-way
+— so an eagerly built port would answer the question by changing the answer.
+
+**The gate that could not go green.** Enforcing the verdict introduced the mirror image of the
+defect it was built to close. The observation passed a hardcoded `null` continuity id, and identity
+coverage is derived as `continuityId !== null`, so every row failed identity coverage before any
+evidence was consulted. Every refusal above was therefore unreachable: no input could get past the
+first field, and a gate that no input can pass proves nothing about the inputs it claims to
+discriminate. The run's continuity identity is now an operator-supplied argument, required for a
+non-dry run and refused up front when absent, because a fabricated lineage id would assert a
+continuity nobody established — the same class of defect as a receipt with no intent. A test now
+drives matched intent-and-confirmation evidence with a supplied identity all the way past the gate,
+so the passing direction is exercised and not merely assumed.
+
+**An empty row set asserts nothing.** The per-row loop shared the weakness that motivated the
+reader's refusals: with no rows, every row's verdict passes. An empty classification row set is now
+rejected by name, so an empty census cannot satisfy a step that would go on to move authority
+without having looked at evidence at all.
+
+The census is an explicit argument rather than a path resolved from the script's own location. The
+previous resolution reached the file only through a symlink, and embedded folder numbers that this
+repository does renumber.
+
+What was NOT built into the driver: the flip call itself. The per-mode step runs the reader-contract
+and flip checks and refuses with the on-disk state named, but it contains no write path. The fleet
+flip was instead executed out-of-band via the operator-chosen registry-direct path (see §4 and §6),
+not by composing the per-mode coordinator step inside this driver.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -99,6 +153,18 @@ directory still does not exist afterwards.
 dry run changes nothing and a failed step leaves authority as it found it. Tests that only read the
 CLI's own JSON would be trusting the thing under test, so they assert the absence of the state file
 and the absence of any authority record.
+
+**The fleet flip took the registry-direct path, not the coordinator path.** When the flip decision
+was escalated, the operator was offered two paths: call the registry directly through
+`scripts/flip-authority.cjs --commit`, or compose `AuthorityFlipCoordinator.requestCutover` with a
+deny-capable policy and a flip event. The operator chose registry-direct. That path calls
+`registry.prepareCutover` (moving `legacy_authoritative` to `cutover_ready` at the same epoch) and
+then writes `new_authoritative_reversible` at epoch+1 with `selectedWriter` `dark`, verifying the
+post-flip record. It does not route through `AuthorityFlipCoordinator.requestCutover`. This is
+recorded as the decision that closed the phase, not as a gap: the coordinator mechanism remains the
+PROVEN PILOT mechanism in `002-deep-research-enablement`, and was not the path taken for the fleet.
+The per-mode coordinator step inside this driver (T-005) is therefore superseded by this path
+choice, not done-by-composition and not silently dropped.
 <!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:verification -->
@@ -139,32 +205,67 @@ sha256 `3728804f`.
 **Real run stops where it must.** Exit `2` at `deep-review` on check `flip`, with the six later
 modes reported untouched and no `authority-*.json` written for any mode.
 
-**Targeted suites.** 41 tests across `enable-modes-cli.vitest.ts` and `fleet-enablement.vitest.ts`,
-vitest exit `0`, re-run green from the restored tree after every control pass.
+**Full suite, as a delta.** Baseline before any edit: `17 failed / 4111 passed / 39 skipped (4165)`, 7894s. After: `17 failed / 4152 passed / 39 skipped (4206)`, 7486s. The gain is exactly this phase's 2 files and 41 tests. The failing-file sets from the two runs diff identical, which is the part that matters — an unchanged failure count can hide a swap, and this one does not.
+
+**Two more guards, two more reds.** Restoring the hardcoded `null` continuity id turns exactly one
+test red — the one that drives matched evidence past the gate — and nothing else, which is the
+discriminating half: the perturbation is visible only where the passing direction is asserted.
+Disabling the empty-row-set rejection by its condition alone, leaving every declaration in place so
+the failure cannot be a compile error, turns exactly its own test red. Both restored green at
+`28 passed (28)`.
+
+**Targeted suites.** 71 tests across `enable-modes-cli.vitest.ts` (28), `fleet-enablement.vitest.ts`
+(25), `restart-facts-reader.vitest.ts` (14) and `observed-classification.vitest.ts` (4), vitest exit
+`0` on each, re-run green from the restored tree after every control pass. `--help` exits `0`.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
-**No mode can be enabled.** `AuthorityCompareAndSwapInput.expectedState` is the literal type
-`'cutover_ready'`, and a never-flipped mode reads back `legacy_authoritative`. Only the last edge
-of the declared machine exists in code. This blocks the reader contracts against projected files,
-the independent read showing ledger authority, end-to-end resume, and the parity-gate-per-mode
-property — each is untested rather than satisfied. It equally blocks phases `004` through `006`,
-all of which presuppose a fleet that has flipped.
+**Superseded by the finalize.** The reversible records this phase established were
+subsequently advanced to `new_authoritative_final` (epoch 3) by
+`010-full-enablement-finalize`, so the whole-system gate now reads all eight modes on
+`new_authoritative_final`. The per-mode reader-contract items deferred below (T-011,
+T-012) are discharged by the gate's real `reader-contracts` check, which reads all eight
+modes cleanly through their real consumers. The `new_authoritative_reversible`/epoch-2
+readings quoted below are the state this phase left the system in, retained as the
+historical record rather than the current live state.
 
-**One mode has no working name on the append path.** `--mode improvement` is denied by the frozen
-authority order, and `--mode deep-improvement-common` is refused by the adapter resolver — each
-layer rejects the spelling the other requires. The predecessor recorded this as belonging to this
-phase; running it shows the fix does not fit here, because the name is load-bearing in the gateway
-and in the projection manifest, both of which this phase's scope routes back to `001`. Renaming
-only the CLI would make the gateway's surface mapping miss. Full blast radius in
-`scratch/finding-improvement-mode-unroutable.md`.
+**The fleet flip is done, via the registry-direct path.** All eight modes of
+`AUTHORITY_FLIP_MODE_ORDER` (deep-research, deep-review, deep-ai-council, deep-improvement-common,
+agent-improvement, model-benchmark, skill-benchmark, deep-alignment) now hold on-disk durable
+authority records at `.opencode/skills/.authority-state/authority-<mode>.json`, each in state
+`new_authoritative_reversible`, epoch 2, `selectedWriter` `dark`, the same `candidateSha`, and
+`policyVersion` 1. This was verified two independent ways: reading all eight JSON records, and the
+whole-system gate's `authority-state` check, which reports "8 modes; 8 on new_authoritative_reversible;
+8 from a stored record, 0 from the absent-record default", status pass. The flip was executed through
+`scripts/flip-authority.cjs --commit` (registry-direct), the operator-selected path, not through
+`AuthorityFlipCoordinator.requestCutover`.
 
-**The fleet driver is unaffected by that today, and will not be.** It takes mode names from the
-authority order directly and never passes through the CLI's normaliser, which the dry run confirms.
-But `deep-improvement-common` is third in the fleet order and its enablement requires appending
-through exactly that path, so the fleet run would stop there the moment the flip exists.
+**The per-mode coordinator step (T-005) is superseded, not done.** The fleet flip did not compose the
+per-mode coordinator step inside this driver. The coordinator mechanism (`AuthorityFlipCoordinator.
+requestCutover` with a deny-capable policy and a flip event) remains the PROVEN PILOT mechanism in
+`002-deep-research-enablement`; it was not the path taken for the fleet. T-005 is recorded as
+superseded by the registry-direct path choice, not as done-by-composition and not as silently
+dropped. The driver's per-mode step still contains no flip write path by design — the flip was
+performed out-of-band — so CHK-008's original framing ("the step is the pilot's procedure
+parameterised") is superseded by the same decision.
+
+**The deep-improvement-common mode-name mismatch is resolved.** The recorded blocker — `--mode
+improvement` denied by the frozen authority order while `--mode deep-improvement-common` is refused
+by the adapter resolver — no longer blocks the fleet flip. Its authority record exists and flipped
+(`authority-deep-improvement-common.json` at `new_authoritative_reversible`). The CLI-adapter
+spelling tension documented in `scratch/finding-improvement-mode-unroutable.md` remains a
+load-bearing naming question routed back to `001`, but it did not prevent the flip, which takes mode
+names from the authority order directly.
+
+**Per-mode reader contracts over projected files (T-011, T-012) are deferred.** Running a reader
+contract against a mode's own projected files needs a live per-mode run that produces those files.
+The whole-system gate itself defers `reader-contracts` for the same reason: it records the check as
+not-run rather than passing it vacuously, because "running one now would pass vacuously" without a
+real per-mode run. This phase makes the same deferral. T-013 (read all authority records
+independently; confirm ledger authority) is done: 8/8 records read `new_authoritative_reversible`
+and the gate's `authority-state` check passes with "8 from a stored record".
 
 **Eight manifest surfaces belong to no mode.** Every one is `disposition: project`, so each is meant
 to be projected from the ledger, yet no mode's enablement covers it — their writers are runtime-wide
