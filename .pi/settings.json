@@ -2,7 +2,7 @@
   "lastChangelogVersion": "0.84.2",
   "theme": "dark",
   "defaultProvider": "cline-pass",
-  "defaultModel": "cline-pass/deepseek-v4-flash",
+  "defaultModel": "x-ai/ox-alpha",
   "defaultThinkingLevel": "xhigh",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
@@ -19,13 +19,14 @@
     "opencode-go/deepseek-v4-pro",
     "cline-pass/cline-pass/deepseek-v4-flash",
     "cline-pass/cline-pass/deepseek-v4-pro",
+    "cline-pass/x-ai/ox-alpha",
+    "openrouter/stealth/ox-alpha",
     "deepseek/deepseek-v4-flash",
     "deepseek/deepseek-v4-pro",
     "openrouter/~deepseek/deepseek-v4-flash-latest",
     "minimax/MiniMax-M3",
     "xiaomi/mimo-v2.5-pro",
-    "xiaomi/mimo-v2.5-pro-ultraspeed",
-    "openrouter/stealth/ox-alpha"
+    "xiaomi/mimo-v2.5-pro-ultraspeed"
   ],
   "packages": [
     "extensions/deep-pi",

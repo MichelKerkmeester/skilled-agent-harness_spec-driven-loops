@@ -23,7 +23,7 @@ The `mcp-obsidian` mode operates Obsidian community plugins by editing the data 
 
 ### Purpose
 
-Ships in the `mcp-obsidian` mode at `references/plugins/`. It defines one operating model for every plugin the mode covers: locate the plugin's persisted data, edit the data directly, and let the app re-render. The per-plugin references (`beancount-finance`, `obsidian-tables`, `obsidian42-brat`, `health-md`, `iconic`, `charts`, `dataview`, `git`, `outliner`, `minimal`, `meta-bind`) apply this model to their specific file shapes; this document is the general contract.
+Ships in the `mcp-obsidian` mode at `references/plugins/`. It defines one operating model for every plugin the mode covers: locate the plugin's persisted data, edit the data directly, and let the app re-render. The per-plugin references (`obsidian-tables`, `obsidian42-brat`, `health-md`, `iconic`, `charts`, `dataview`, `git`, `outliner`, `minimal`, `meta-bind`) apply this model to their specific file shapes; this document is the general contract.
 
 ### Core Principle
 
@@ -50,7 +50,7 @@ The mode has no headless UI bridge, so command-palette actions and in-app button
 For any plugin, locate its data by checking, in order:
 
 1. A **document convention** — a dedicated file extension (`.table.md`), a fenced code-block language, or a frontmatter key.
-2. A **plain-text ledger/sidecar** the plugin renders (e.g. a `.beancount` file at a configured path).
+2. A **plain-text ledger/sidecar** the plugin renders (e.g. a structured data file at a configured path).
 3. **Plugin settings/state** at `<vault>/.obsidian/plugins/{plugin-id}/data.json`.
 4. **Vault-level plugin state** — `community-plugins.json` (enabled ids), `app.json`, `appearance.json`.
 
@@ -58,11 +58,10 @@ For any plugin, locate its data by checking, in order:
 
 ---
 
-## 3. THE ELEVEN ARTIFACTS — DATA MAP
+## 3. THE TEN ARTIFACTS — DATA MAP
 
 | Artifact | Data the AI edits | Operation |
 |--------|-------------------|-----------|
-| `beancount-finance` | the structured `*.beancount` ledger | append/patch balanced Beancount directives |
 | `obsidian-tables` | `*.table.md` (JSON) | edit `columns`/`rows`/`views` JSON (`VERIFY` schema) |
 | `obsidian42-brat` | `.obsidian/plugins/{id}/` + `community-plugins.json` + BRAT `data.json` | install = write plugin assets + enable id + register in BRAT |
 | `health-md` | Apple + Android Health export files in the data folder (default `Health/`), JSON/CSV/Markdown/Bases | `health-viz` render blocks; create/append/patch data files; verify real folder + authentic source (bundled mock-data fallback renders on empty folder); NEVER fabricate data |
@@ -106,7 +105,7 @@ Write the data, then tell the user (or a smoke step) to open/reload the relevant
 
 1. Fetch the plugin's README + manifest; record repo id, author, data convention.
 2. Generate one real artifact in-app, then **match its on-disk shape** (this removes schema guesswork).
-3. Write a per-plugin reference mirroring `beancount-finance.md` / `obsidian-tables.md`: identity → what it does → data model → settings → file-layer recipes → gotchas/VERIFY → sources.
+3. Write a per-plugin reference mirroring `obsidian-tables.md` / `notion-bases.md`: identity → what it does → data model → settings → file-layer recipes → gotchas/VERIFY → sources.
 4. Add a row to the plugin data map above and an example asset.
 
 **Validation**: `plugin_reference_complete` — a real artifact's on-disk shape was matched, the per-plugin reference exists, and the data map row plus asset landed.
@@ -115,4 +114,4 @@ Write the data, then tell the user (or a smoke step) to open/reload the relevant
 
 ## 6. RELATION TO THE MODE
 
-These references are loaded on demand by the `mcp-obsidian` SKILL.md router when a request mentions finance/beancount, tables, beta-plugin install, health data, or icon rules. See `assets/workflows.md` for end-to-end procedures.
+These references are loaded on demand by the `mcp-obsidian` SKILL.md router when a request mentions tables, beta-plugin install, health data, or icon rules. See `assets/workflows.md` for end-to-end procedures.

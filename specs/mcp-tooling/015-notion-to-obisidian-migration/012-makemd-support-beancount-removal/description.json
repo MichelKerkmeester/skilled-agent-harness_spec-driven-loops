@@ -1,0 +1,22 @@
+{
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+  "description": "Retire the beancount-finance plugin from the mcp-obsidian skill and add first-class Make.md (make-md) support mirroring notion-bases.",
+  "keywords": [
+    "mcp-obsidian",
+    "make-md",
+    "make.md",
+    "beancount",
+    "plugin-support",
+    "notion-bases"
+  ],
+  "lastUpdated": "2026-08-23T17:57:38.254Z",
+  "specId": "012",
+  "folderSlug": "makemd-support-beancount-removal",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}

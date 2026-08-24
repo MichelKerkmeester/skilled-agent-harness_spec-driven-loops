@@ -37,6 +37,7 @@ Each row's reference tree is `references/plugins/<folder>/` with four files: ind
 | Plugin | Manifest id | Ver | Repository | Purpose | Docs folder |
 | --- | --- | --- | --- | --- | --- |
 | Notion Bases | `notion-bases` | 1.12.0 | `bgarciamoura/obsidian-notion-bases-plugin` | Notion-style relational databases: two-way relations, rollups, lookups, subtasks, multi-view | `notion-bases/` |
+| Make.md | `make-md` | 1.3.5 | `Make-md/makemd` | Notion-like Spaces/Contexts: table/board/gallery/calendar/chart views, relations, formulas (UI-driven config, heavier than Notion Bases) | `make-md/` |
 | Dataview | `dataview` | 0.5.68 | `blacksmithgu/obsidian-dataview` | Query/aggregation engine (DQL + JS) over notes and frontmatter | `dataview/` |
 | Tables | `tables` | 1.5.0 | `aztekgold/obsidian-tables` | Spreadsheet-style editor for markdown tables | `obsidian-tables/` |
 | Advanced Canvas | `advanced-canvas` | 6.5.4 | `developer-mike/obsidian-advanced-canvas` | Extends the native `.canvas` JSON: node types, portals, presentations, edge routing | `advanced-canvas/` |
@@ -44,7 +45,6 @@ Each row's reference tree is `references/plugins/<folder>/` with four files: ind
 | Meta Bind | `obsidian-meta-bind-plugin` | 1.5.1 | `mProjectsCode/obsidian-meta-bind-plugin` | Inline `INPUT[]`/`BUTTON[]`/`VIEW[]` fields that read & write frontmatter; the button engine behind the Notion-style task timer | `meta-bind/` |
 | JS Engine | `js-engine` | 0.3.6 | `mProjectsCode/obsidian-js-engine-plugin` | Runs JS in `js-engine` blocks and Meta Bind actions; computes timer timestamps and dynamic field values | `meta-bind/` (companion) |
 | Health.md Visualizations | `health-md` | 2.1.0 | `codybontecou/health-md-visualizations` | Apple/Android Health data charts from `health.md` blocks | `health-md/` |
-| Beancount Ledger | `beancount-finance` | 2.3.1 | `mkshp-dev/obsidian-finance-plugin` | Beancount plain-text accounting ledgers inside the vault | `beancount-finance/` |
 | Outliner | `obsidian-outliner` | 4.10.2 | `vslinko/obsidian-outliner` | Structured bullet-list outlining: zoom, fold, move-by-tree | `outliner/` |
 | Iconic | `iconic` | 1.1.10 | `gfxholo/iconic` | Custom icons on files, folders, ribbon, and tabs | `iconic/` |
 | Claudian | `realclaudian` | 2.2.4 | `YishenTu/claudian` | Embeds coding-agent CLIs (Claude Code, Codex, …) as in-vault collaborators | `claudian/` |

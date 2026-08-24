@@ -246,7 +246,7 @@ Full diagnosis and recovery: [`references/troubleshooting.md`](references/troubl
 | [`references/obsidian-cli-commands.md`](references/obsidian-cli-commands.md) | Complete headless and app-backed CLI reference |
 | [`references/mcp-tools.md`](references/mcp-tools.md) | Cyanheads MCP tool inventory, prerequisites, and invocation pattern |
 | [`references/troubleshooting.md`](references/troubleshooting.md) | Diagnostics for PATH, vault, app, REST API, and MCP failures |
-| [`examples/README.md`](examples/README.md) | Three example workflows: headless notes, MCP roundtrip, and Beancount transactions |
+| [`examples/README.md`](examples/README.md) | Two example workflows: headless notes and MCP roundtrip |
 | [`mcp-servers/obsidian-cli/README.md`](mcp-servers/obsidian-cli/README.md) | Two-profile CLI install pointer |
 | [`mcp-servers/obsidian-mcp/README.md`](mcp-servers/obsidian-mcp/README.md) | Config-only cyanheads MCP install pointer |
 

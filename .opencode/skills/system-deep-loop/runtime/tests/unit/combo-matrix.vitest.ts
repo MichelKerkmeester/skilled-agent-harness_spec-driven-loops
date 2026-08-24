@@ -144,7 +144,7 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
         '--workspace', join(tmpdir(), 'deep-loop-cursor-neutral-workspace'), '--add-dir', process.cwd(),
       ];
     case 'cli-devin':
-      return ['-p', MATRIX_PROMPT, '--model', model ?? '', '--permission-mode', 'auto'];
+      return ['-p', MATRIX_PROMPT, '--model', model ?? '', '--permission-mode', 'auto', '--respect-workspace-trust', 'false'];
     case 'cli-pi':
       return ['-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', MATRIX_PROMPT];
   }
