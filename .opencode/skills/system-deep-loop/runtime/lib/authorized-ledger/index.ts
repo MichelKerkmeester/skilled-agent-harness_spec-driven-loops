@@ -12,6 +12,7 @@ export {
   createAuthorizationDecisionRegistry,
 } from './authorization-decision-event.js';
 export { verifyAuthorizationReplay } from './authorization-replay.js';
+export { matchesPreparedAuthorizationDecision } from './prepared-authorization-matcher.js';
 export {
   TypedReducerRegistry,
   rebuildProjection,

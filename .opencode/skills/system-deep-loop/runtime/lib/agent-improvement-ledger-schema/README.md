@@ -25,7 +25,6 @@ The module is documentation-only at this boundary. Callers should use the export
 | `agent-improvement-ledger-schema.ts` | event definitions, payload construction and schema validation |
 | `agent-improvement-ledger-types.ts` | Lane-specific types, constants and contract values. |
 | `index.ts` | Public barrel for the lane-specific API and types. |
-| `legacy-compatibility.ts` | Compatibility decisions and upcasting for older lane records. |
 
 ---
 

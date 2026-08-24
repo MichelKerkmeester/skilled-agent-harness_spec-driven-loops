@@ -29,9 +29,7 @@ import {
   ModelBenchmarkSpecificEventStems,
   ModelBenchmarkWireEventTypes,
   createModelBenchmarkEventRegistry,
-  decideModelBenchmarkCompatibility,
   prepareModelBenchmarkEvent,
-  upcastLegacyModelBenchmarkRecord,
 } from '../../lib/model-benchmark-ledger-schema/index.js';
 import {
   canonicalBytes,
@@ -1518,105 +1516,5 @@ describe('model-benchmark typed ledger schema', () => {
     await appendAuthorizedForTest(harness.ledger, event, proof);
     const [verified] = await harness.ledger.readVerifiedEvents();
     expect(verified.event.stored.envelope.payload.data).toEqual(original);
-  });
-
-  // ─────────────────────────────────────────────────────────────────
-  // 4. LEGACY COMPATIBILITY
-  // ─────────────────────────────────────────────────────────────────
-
-  it('covers all compatibility outcomes and blocks unknown stems and versions', () => {
-    expect(decideModelBenchmarkCompatibility({
-      format: 'model-benchmark-ledger',
-      stem: 'model_benchmark.run_declared',
-      eventVersion: 1,
-    }).status).toBe('exact');
-    expect(decideModelBenchmarkCompatibility({
-      type: 'progress',
-      schemaVersion: 1,
-    }).status).toBe('compatible');
-    expect(decideModelBenchmarkCompatibility({
-      event: 'benchmark_declared',
-      schemaVersion: 1,
-      runId: 'run-1',
-      lineageId: 'lineage-1',
-    }).status).toBe('migrate');
-    expect(decideModelBenchmarkCompatibility({
-      event: 'model_ranked',
-      schemaVersion: 1,
-    }).status).toBe('pin-old-runtime');
-    expect(decideModelBenchmarkCompatibility({
-      event: 'unknown',
-      schemaVersion: 1,
-    }).status).toBe('blocked');
-    expect(decideModelBenchmarkCompatibility({
-      format: 'model-benchmark-ledger',
-      stem: 'model_benchmark.unknown',
-      eventVersion: 1,
-    }).status).toBe('blocked');
-    expect(decideModelBenchmarkCompatibility({
-      event: 'benchmark_declared',
-      schemaVersion: 99,
-      runId: 'run-1',
-      lineageId: 'lineage-1',
-    }).status).toBe('blocked');
-  });
-
-  it('upcasts legacy trials purely and retains source and upcaster digests', () => {
-    const key = trialMatrixKey();
-    const record = {
-      event: 'trial_result',
-      schemaVersion: 1,
-      runId: 'run-1',
-      lineageId: 'lineage-1',
-      trialId: 'trial-1',
-      taskInstanceId: key.taskInstanceId,
-      taskFamilyId: key.taskFamilyId,
-      candidateId: key.candidateId,
-      modelFingerprint: key.modelFingerprint,
-      executionPath: key.executionPath,
-      pairedBlockId: key.pairedBlockId,
-      protocolVariant: key.protocolVariant,
-      seed: key.seed,
-      perturbationId: key.perturbationId,
-      workloadProfileId: key.workloadProfileId,
-      promptRecipeFingerprint: key.promptRecipeFingerprint,
-      routeFingerprint: key.routeFingerprint,
-      frameworkFingerprint: key.frameworkFingerprint,
-      toolRecipeFingerprint: key.toolRecipeFingerprint,
-      attempt: 1,
-      rawResultRef: 'legacy-result:1',
-      rawResultDigest: digest('legacy-result'),
-      inputDigest: digest('legacy-input'),
-      outputDigest: digest('legacy-output'),
-      completedAt: TIMESTAMP,
-    };
-    const scope: ModelBenchmarkTrialScope = specificScopeFor(
-      'model_benchmark.trial_completed',
-    );
-    const context = {
-      scope,
-      prevEventHash: '0'.repeat(64),
-      replay: replayMetadata('legacy-trial'),
-    };
-    const first = upcastLegacyModelBenchmarkRecord(record, context);
-    const second = upcastLegacyModelBenchmarkRecord(record, context);
-    expect(second).toEqual(first);
-    expect(first.status).toBe('migrated');
-    if (first.status !== 'migrated') throw new Error(first.decision.reasonCode);
-    expect(first.targetStem).toBe('model_benchmark.trial_completed');
-    expect(first.originalRecordDigest).toBe(digest(record));
-    expect(first.upcasterFingerprint).toMatch(/^[a-f0-9]{64}$/);
-
-    const registry = createModelBenchmarkEventRegistry();
-    expect(() => prepareModelBenchmarkEvent({
-      ...eventInput('model_benchmark.trial_completed', 1, '0'.repeat(64)),
-      scope,
-      data: first.data as ModelBenchmarkPayloadMap[
-        'model_benchmark.trial_completed'
-      ],
-    }, registry)).not.toThrow();
-    expect(record).toEqual(expect.objectContaining({
-      rawResultRef: 'legacy-result:1',
-    }));
   });
 });

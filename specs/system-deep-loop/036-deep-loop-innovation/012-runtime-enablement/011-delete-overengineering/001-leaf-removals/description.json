@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals",
+  "description": "Wave 1 of the over-engineering removal program: delete the three lowest-risk, zero-caller leaves (F5 hierarchical-budgets shadow-adapters, F6 receipts",
+  "keywords": [
+    "wave",
+    "over-engineering",
+    "removal",
+    "program",
+    "delete",
+    "three",
+    "lowest-risk",
+    "zero-caller",
+    "leaves",
+    "hierarchical-budgets",
+    "shadow-adapters",
+    "receipts"
+  ],
+  "lastUpdated": "2026-08-24T17:12:14.231Z",
+  "specId": "001",
+  "folderSlug": "leaf-removals",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement",
+    "011-delete-overengineering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

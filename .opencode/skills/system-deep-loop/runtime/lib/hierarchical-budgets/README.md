@@ -22,7 +22,6 @@ Runtime primitives for `system-deep-loop` that reserve, settle, release and canc
 | `budget-reducer.ts` | Reduces budget lifecycle events into a `BudgetProjection` of per-scope balances and reservations |
 | `budget-replay.ts` | Registers the budget reducer and projection schema for replay-fingerprint verification |
 | `budget-types.ts` | Budget vector primitives (tokens, cost, iterations, wall-time) across the program, mode, lineage and iteration scope hierarchy |
-| `shadow-adapters.ts` | FanOut and value-of-computation shadow adapters that compare new budget decisions against legacy guard modules |
 | `index.ts` | Public API barrel |
 
 ---

@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "authority registry cas reduction",
+      "authority registry mutator removal",
+      "reduce authority-registry.ts"
+    ],
+    "key_topics": [
+      "authority",
+      "registry",
+      "cas",
+      "reduction",
+      "mutator",
+      "removal",
+      "reduce",
+      "authority-registry",
+      "wave",
+      "final",
+      "over-engineering",
+      "program"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "checklist.md",
+      "tasks.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authority Registry",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Delete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Investigation Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Investigation   Findings",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reduction",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components Unaffected",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T0 — Gate on Phase 004 (orchestrator, read-only)",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Survivor Fix",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Wave 5 (final) of the over-engineering removal program: remove the CAS-mutator methods (prepareCutover, compareAndSwap, compareAndSwapRollback, compareAndSwapFinalize) from per-mode-authority-flip/authority-registry.ts once their only production callers (phase 004's enable-modes.cjs and flip-authority.cjs) are gone, keeping the load-bearing read path and the lock-reclaim machinery intact. High-adjacency to the fail-closed authorization gateway; runs last and only after phase 004 is green.",
+    "created_at": "2026-08-24T17:06:20.053Z",
+    "last_save_at": "2026-08-24T17:06:20.053Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:75b453f4dc25d7e8c4cd065f608ccedfc2de85c77ca722ca3b8f83b3f2b848d7",
+    "source_doc_hashes": {
+      "spec.md": "2bf07d1f38c5c0a2d56e16245492451b9041cac62b7c03552c641311f0b39d53",
+      "plan.md": "0b7b5342c5e128b1ec24a0aea5639107035206fa04150fdf63b7b3f99f998212",
+      "tasks.md": "b8cca2509a4f80f1e11d26e310a9cd0e1c3ab69843ccabe2d5a4851beeb0e439",
+      "checklist.md": "db66ea4a35861dc13ef122f6a332357fb26214a49058331b424415317b1a620c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

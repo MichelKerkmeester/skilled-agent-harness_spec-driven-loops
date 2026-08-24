@@ -25,7 +25,6 @@ Callers should use the exported API in `index.ts`. Filesystem, ledger and workfl
 | `model-benchmark-ledger-schema.ts` | Lane event definitions, payload builders and schema guards. |
 | `model-benchmark-ledger-types.ts` | Lane-specific event, payload and compatibility types. |
 | `index.ts` | Public barrel for schema builders, guards and types. |
-| `legacy-compatibility.ts` | Compatibility parsing for older lane payload shapes. |
 
 ---
 

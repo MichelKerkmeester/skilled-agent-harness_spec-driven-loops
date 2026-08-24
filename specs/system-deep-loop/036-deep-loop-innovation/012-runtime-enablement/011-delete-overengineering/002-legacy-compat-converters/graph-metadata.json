@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "legacy compat converters delete",
+      "per-mode legacy compatibility removal",
+      "ledger schema legacy upcasters delete",
+      "phase 002 legacy compat converters",
+      "per-mode legacy compatibility removed",
+      "ledger schema upcasters removed"
+    ],
+    "key_topics": [
+      "legacy",
+      "compat",
+      "converters",
+      "delete",
+      "per-mode",
+      "compatibility",
+      "removal",
+      "ledger",
+      "schema",
+      "upcasters",
+      "phase",
+      "removed"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "tasks.md",
+      "spec.md",
+      "checklist.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compat Converters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Seven Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Ledger Upcasters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Seven",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deletion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components Unaffected",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T1 — Re-confirm zero callers (remover, read-only)",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Wave 2 of the over-engineering removal program: delete the seven per-mode legacy-format converters (F1) — decide<Mode>Compatibility + upcastLegacy<Mode>Record and their legacy-compatibility.ts modules — now the ledger is the single writer, and their now-dead test blocks. The deep-research variant is live (append-mode-event.cjs) and stays, along with the shared tests/helpers/legacy-real-log.ts fixture it depends on.",
+    "created_at": "2026-08-24T17:06:19.066Z",
+    "last_save_at": "2026-08-24T17:54:00.891Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:88a377b303feac4411ac8b96cef12f9e16f21b0331ba53b379251b91743408d4",
+    "source_doc_hashes": {
+      "spec.md": "9acc853407e483b34a146e64b1393c83ca1fd231fe947046113f60e7d781eade",
+      "plan.md": "1f2abcf1a707bf728cbedc588a70b6a1d0a2183cf01d24ced6ece46b447d4b0c",
+      "tasks.md": "926113823a2dcbd1a6bb82ad616929a07e99ad1b4449fa9087272533e682da17",
+      "checklist.md": "08c68b9e38b2b1ee46aee12d107f4ad5f09703119020b7ee52b4bb02fd22890a",
+      "implementation-summary.md": "98c8957bce2a9d2f3c349cd611c0d42a3752687f1b8cf8017455a2ff89983693"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

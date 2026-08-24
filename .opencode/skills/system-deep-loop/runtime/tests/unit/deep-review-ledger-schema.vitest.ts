@@ -3,11 +3,6 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-import {
-  REAL_LEGACY_LOGS,
-  readRealJsonl,
-  unknownLegacyRecords,
-} from '../helpers/legacy-real-log.js';
 
 import {
   mkdtempSync,
@@ -28,9 +23,7 @@ import {
   DeepReviewEventStems,
   DeepReviewWireEventTypes,
   createDeepReviewEventRegistry,
-  decideDeepReviewCompatibility,
   prepareDeepReviewEvent,
-  upcastLegacyDeepReviewRecord,
 } from '../../lib/deep-review-ledger-schema/index.js';
 import {
   canonicalBytes,
@@ -948,136 +941,5 @@ describe('deep-review typed ledger schema', () => {
         },
       },
     }, registry)).toThrow();
-  });
-
-  // ─────────────────────────────────────────────────────────────────
-  // 4. LEGACY COMPATIBILITY
-  // ─────────────────────────────────────────────────────────────────
-
-  it('covers every compatibility outcome and blocks unknown inputs', () => {
-    expect(decideDeepReviewCompatibility({
-      format: 'deep-review-ledger',
-      stem: 'deep_review.run_initialized',
-      eventVersion: 1,
-    }).status).toBe('exact');
-    expect(decideDeepReviewCompatibility({ type: 'progress', schemaVersion: 1 }).status)
-      .toBe('compatible');
-    expect(decideDeepReviewCompatibility({
-      type: 'iteration',
-      schemaVersion: 1,
-      runId: 'run-1',
-      sessionId: 'session-1',
-      run: 1,
-      dimension: 'correctness',
-    }).status).toBe('migrate');
-    expect(decideDeepReviewCompatibility({
-      type: 'event',
-      event: 'severity_changed',
-      schemaVersion: 1,
-    }).status).toBe('pin-old-runtime');
-    expect(decideDeepReviewCompatibility({ type: 'unknown', schemaVersion: 1 }).status)
-      .toBe('blocked');
-    expect(decideDeepReviewCompatibility({
-      type: 'iteration',
-      schemaVersion: 99,
-      runId: 'run-1',
-      sessionId: 'session-1',
-      run: 1,
-      dimension: 'correctness',
-    }).status).toBe('blocked');
-    expect(decideDeepReviewCompatibility({
-      format: 'deep-review-ledger',
-      stem: 'deep_review.unknown',
-      eventVersion: 1,
-    }).status).toBe('blocked');
-  });
-
-  it('replays the captured review state log without unknown legacy blocks', () => {
-    const records = readRealJsonl(REAL_LEGACY_LOGS.review);
-    const unknown = unknownLegacyRecords(records, decideDeepReviewCompatibility);
-    expect(records).toHaveLength(41);
-    expect(unknown).toEqual([]);
-  });
-
-  it('upcasts registered legacy JSONL purely and drives the real append path', async () => {
-    const record = {
-      type: 'iteration',
-      schemaVersion: 1,
-      runId: 'run-1',
-      sessionId: 'session-1',
-      run: 1,
-      dimension: 'correctness',
-      status: 'complete',
-      filesReviewed: ['src/review.ts'],
-      findingCounts: { candidates: 1, adjudicated: 1, p0: 0, p1: 1, p2: 0 },
-    };
-    const context = {
-      scope: {
-        runId: 'run-1',
-        sessionId: 'session-1',
-        generation: 1,
-        iterationId: 'iteration-1',
-        dimensionId: 'correctness',
-      },
-      prevEventHash: '0'.repeat(64),
-      replay: replayMetadata('legacy-iteration'),
-    };
-    const first = upcastLegacyDeepReviewRecord(record, context);
-    const second = upcastLegacyDeepReviewRecord(record, context);
-    expect(second).toEqual(first);
-    expect(first.status).toBe('migrated');
-    if (first.status !== 'migrated') throw new Error(first.decision.reasonCode);
-    expect(first.targetStem).toBe('deep_review.dimension_pass_completed');
-    if (first.targetStem !== 'deep_review.dimension_pass_completed') {
-      throw new Error(first.targetStem);
-    }
-    expect(first.originalRecordDigest).toBe(digest(record));
-    expect(first.upcasterFingerprint).toMatch(/^[a-f0-9]{64}$/);
-    expect(first.replay.final_digest).toBe(context.replay.final_digest);
-    expect(record.filesReviewed).toEqual(['src/review.ts']);
-
-    const harness = createHarness();
-    const event = prepareDeepReviewEvent({
-      stem: first.targetStem,
-      scope: first.scope as DeepReviewScopeMap['deep_review.dimension_pass_completed'],
-      prevEventHash: first.prevEventHash,
-      replay: first.replay,
-      data: first.data as unknown as DeepReviewPayloadMap['deep_review.dimension_pass_completed'],
-      eventId: 'legacy-event-1',
-      streamId: 'deep-review-legacy-run-1',
-      streamSequence: 1,
-      occurredAt: TIMESTAMP,
-      recordedAt: TIMESTAMP,
-      producer: { name: 'deep-review-legacy-upcaster', version: '1' },
-      authorityEpoch: 1,
-      correlationId: 'run-1',
-      causationId: null,
-      idempotencyKey: 'deep-review-legacy-event-1',
-    }, harness.registry);
-    const proof = await authorize(harness, event, 'legacy-upcast-request');
-    await appendAuthorizedForTest(harness.ledger, event, proof);
-    const [verified] = await harness.ledger.readVerifiedEvents();
-    expect(verified.event.stored.envelope.payload.data).toEqual(first.data);
-  });
-
-  it('rejects unregistered envelope and payload versions without guessing', () => {
-    const registry = createDeepReviewEventRegistry();
-    const event = prepareDeepReviewEvent(
-      eventInput('deep_review.run_initialized', 1, '0'.repeat(64)),
-      registry,
-    );
-    expect(() => prepareEventWrite({
-      ...event.envelope,
-      event_version: 2,
-    }, registry)).toThrow();
-    expect(decideDeepReviewCompatibility({
-      format: 'deep-review-ledger',
-      stem: 'deep_review.run_initialized',
-      eventVersion: 2,
-    })).toMatchObject({
-      status: 'blocked',
-      reasonCode: 'unknown-event-version',
-      targetStem: null,
-    });
   });
 });

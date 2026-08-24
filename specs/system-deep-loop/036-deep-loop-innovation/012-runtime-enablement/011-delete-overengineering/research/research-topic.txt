@@ -1,0 +1,12 @@
+READ-ONLY audit of the deep-loop runtime (.opencode/skills/system-deep-loop/runtime/ — lib/, scripts/, tests/) for UNNEEDED or OVER-ENGINEERED migration and rollback machinery left behind after the rollback/back-compat scaffolding was deleted and all 8 modes were flipped to new_authoritative_final (the ledger is now the single write authority; the legacy files remain readable only as projections, produced by projection from the ledger rather than by a separate legacy writer).
+
+Hunt three categories:
+(1) MIGRATION residue — dual-read/dual-write shims, legacy-compat event vocabulary, version-fixup/upgrade paths, resume-migration adapters, mixed-version fixtures — that no longer have live callers now the ledger is the single authority.
+(2) ROLLBACK / reversibility residue — rollback drills, shadow-parity independent-derivation, cutover certificates, authority-flip-back paths, reversible-authority bookkeeping — that is dead weight after the direct finalize to new_authoritative_final.
+(3) OVER-BUILT abstraction — unused config knobs, speculative extensibility, multi-path fallbacks with a single real path, defensive layers with no current consumer.
+
+For EACH candidate: (a) prove disuse by import graph — cite that it has zero live importers and no reachable call from a shipped mode entrypoint (grep the symbol, widen the pattern, do not trust a single hit); (b) give exact file path(s) and rough LOC; (c) classify deletion risk; (d) rank by (deletion safety × LOC saved).
+
+Do NOT touch the live ledger loop — typed append-only event ledger, versioned envelope, fail-closed transition-authorization gateway, sealed-reference artifacts keyed by the reference-set digest, per-mode reducers/projections, replay fingerprints, and receipts/certificates that gate real writes are load-bearing and must be preserved. Explicitly mark anything adjacent to them as KEEP with a reason.
+
+Deliver a ranked findings report of concrete removable/reducible candidates with rationale and rough line savings. This is investigation only — no edits or deletions during the loop.

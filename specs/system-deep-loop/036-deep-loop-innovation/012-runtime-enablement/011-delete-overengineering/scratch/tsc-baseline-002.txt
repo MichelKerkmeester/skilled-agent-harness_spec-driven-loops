@@ -1,0 +1,174 @@
+.opencode/skills/system-deep-loop/runtime/lib/fleet-enablement/enablement-driver.ts(103,18): error TS2352: Conversion of type 'object & Record<"version", unknown>' to type '{ completedModes: unknown; failure: unknown; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'object & Record<"version", unknown>' is missing the following properties from type '{ completedModes: unknown; failure: unknown; }': completedModes, failure
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts(54,12): error TS2411: Property 'rows' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts(58,12): error TS2411: Property 'rows' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts(500,7): error TS2322: Type 'Readonly<{ rows: readonly never[]; }>' is not assignable to type 'Readonly<CouncilStateProjectionState>'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts(531,7): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'CouncilStateProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts(573,7): error TS2322: Type 'Readonly<{ rows: readonly never[]; }>' is not assignable to type 'Readonly<CouncilSessionStateProjectionState>'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts(604,7): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'CouncilSessionStateProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-alignment-state-deltas-contract.ts(35,12): error TS2411: Property 'rows' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-alignment-state-deltas-contract.ts(283,7): error TS2322: Type 'Readonly<{ rows: readonly never[]; }>' is not assignable to type 'Readonly<DeepAlignmentStateDeltasProjectionState>'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-alignment-state-deltas-contract.ts(314,7): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepAlignmentStateDeltasProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-alignment-state-deltas-contract.ts(359,7): error TS2322: Type 'Readonly<{ rows: readonly never[]; }>' is not assignable to type 'Readonly<DeepAlignmentStateDeltasProjectionState>'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-alignment-state-deltas-contract.ts(395,7): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepAlignmentStateDeltasProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-improvement-ledgers-contract.ts(36,12): error TS2411: Property 'rows' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-improvement-ledgers-contract.ts(330,7): error TS2322: Type 'Readonly<{ rows: readonly never[]; }>' is not assignable to type 'Readonly<DeepImprovementLedgersProjectionState>'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-improvement-ledgers-contract.ts(361,7): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepImprovementLedgersProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-improvement-ledgers-contract.ts(403,7): error TS2322: Type 'Readonly<{ rows: readonly never[]; }>' is not assignable to type 'Readonly<DeepImprovementLedgersProjectionState>'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-improvement-ledgers-contract.ts(434,7): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepImprovementLedgersProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts(27,12): error TS2411: Property 'rows' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts(76,7): error TS2322: Type 'Readonly<{ rows: readonly never[]; }>' is not assignable to type 'Readonly<DeepResearchProjectionState>'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts(100,9): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepResearchProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts(241,7): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepResearchProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-deltas-contract.ts(35,12): error TS2411: Property 'rows' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-deltas-contract.ts(140,7): error TS2322: Type 'Readonly<{ rows: readonly never[]; }>' is not assignable to type 'Readonly<DeepResearchDeltasProjectionState>'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-deltas-contract.ts(176,7): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepResearchDeltasProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(56,12): error TS2411: Property 'sources' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(57,12): error TS2411: Property 'evidence' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(58,12): error TS2411: Property 'claims' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(59,12): error TS2411: Property 'supersessions' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(136,3): error TS2322: Type 'Readonly<{ iteration: number; sourceVersionId: string; evidenceId: string; disposition: string; atomicClaimRefs: readonly string[]; derivativeSourceGroup: string; admissionPolicyVersion: string; contaminationStatus: string; reasonCode: string; producerEventTimestamp: string; }>' is not assignable to type 'JsonObject'.
+  Property 'atomicClaimRefs' is incompatible with index signature.
+    Type 'readonly string[]' is not assignable to type 'JsonValue'.
+      The type 'readonly string[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(164,3): error TS2322: Type 'Readonly<{ iteration: number; claimVersionId: string; claimId: string; relatedClaimVersionId: string; relation: string; normalizedClaimDigest: string; evidenceIds: readonly string[]; independenceGroup: string; rawConfidence: number; claimStatus: string; producerEventTimestamp: string; }>' is not assignable to type 'JsonObject'.
+  Property 'evidenceIds' is incompatible with index signature.
+    Type 'readonly string[]' is not assignable to type 'JsonValue'.
+      The type 'readonly string[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(186,3): error TS2322: Type 'Readonly<{ iteration: number; priorClaimVersionId: string; successorClaimVersionId: string; supersessionReason: string; effectiveAt: string; replacementEvidenceIds: readonly string[]; invalidationScope: string; producerEventTimestamp: string; }>' is not assignable to type 'JsonObject'.
+  Property 'replacementEvidenceIds' is incompatible with index signature.
+    Type 'readonly string[]' is not assignable to type 'JsonValue'.
+      The type 'readonly string[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(238,7): error TS2322: Type 'Readonly<{ sources: readonly never[]; evidence: readonly never[]; claims: readonly never[]; supersessions: readonly never[]; }>' is not assignable to type 'Readonly<DeepResearchProjectionsProjectionState>'.
+  Property 'sources' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(267,9): error TS2322: Type '{ sources: readonly JsonObject[]; evidence: readonly JsonObject[]; claims: readonly JsonObject[]; supersessions: readonly JsonObject[]; }' is not assignable to type 'DeepResearchProjectionsProjectionState'.
+  Property 'sources' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(273,9): error TS2322: Type '{ evidence: readonly JsonObject[]; sources: readonly JsonObject[]; claims: readonly JsonObject[]; supersessions: readonly JsonObject[]; }' is not assignable to type 'DeepResearchProjectionsProjectionState'.
+  Property 'evidence' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(287,9): error TS2322: Type '{ claims: readonly JsonObject[]; sources: readonly JsonObject[]; evidence: readonly JsonObject[]; supersessions: readonly JsonObject[]; }' is not assignable to type 'DeepResearchProjectionsProjectionState'.
+  Property 'claims' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-projections-contract.ts(293,9): error TS2322: Type '{ supersessions: readonly JsonObject[]; sources: readonly JsonObject[]; evidence: readonly JsonObject[]; claims: readonly JsonObject[]; }' is not assignable to type 'DeepResearchProjectionsProjectionState'.
+  Property 'supersessions' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-deltas-contract.ts(35,12): error TS2411: Property 'rows' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-deltas-contract.ts(192,7): error TS2322: Type 'Readonly<{ rows: readonly never[]; }>' is not assignable to type 'Readonly<DeepReviewDeltasProjectionState>'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-deltas-contract.ts(228,7): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepReviewDeltasProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(55,12): error TS2411: Property 'findings' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(56,12): error TS2411: Property 'evidence' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(57,12): error TS2411: Property 'adjudications' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(58,12): error TS2411: Property 'lineage' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(106,3): error TS2322: Type 'Readonly<{ candidateId: string; dimensionId: string; findingClass: string; claimTextDigest: string; evidenceRefs: readonly string[]; targetRefs: readonly string[]; impact: number; rawConfidence: number; reachability: number; ... 5 more ...; producerEventTimestamp: string; }>' is not assignable to type 'JsonObject'.
+  Property 'evidenceRefs' is incompatible with index signature.
+    Type 'readonly string[]' is not assignable to type 'JsonValue'.
+      The type 'readonly string[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(165,3): error TS2322: Type 'Readonly<{ findingId: string; candidateId: string; dimensionId: string; claimDigest: string; evidenceRefs: readonly string[]; finalSeverity: string; impact: number; confidence: number; adjudicationOutcome: string; transition: string; downgradeTrigger: string; predecessorAdjudicationEventId: string; producerEventTime...' is not assignable to type 'JsonObject'.
+  Property 'evidenceRefs' is incompatible with index signature.
+    Type 'readonly string[]' is not assignable to type 'JsonValue'.
+      The type 'readonly string[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(237,7): error TS2322: Type 'Readonly<{ findings: readonly never[]; evidence: readonly never[]; adjudications: readonly never[]; lineage: readonly never[]; }>' is not assignable to type 'Readonly<DeepReviewProjectionsProjectionState>'.
+  Property 'findings' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(273,9): error TS2322: Type '{ findings: readonly JsonObject[]; evidence: readonly JsonObject[]; adjudications: readonly JsonObject[]; lineage: readonly JsonObject[]; }' is not assignable to type 'DeepReviewProjectionsProjectionState'.
+  Property 'findings' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(280,9): error TS2322: Type '{ evidence: readonly JsonObject[]; findings: readonly JsonObject[]; adjudications: readonly JsonObject[]; lineage: readonly JsonObject[]; }' is not assignable to type 'DeepReviewProjectionsProjectionState'.
+  Property 'evidence' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(286,9): error TS2322: Type '{ adjudications: readonly JsonObject[]; findings: readonly JsonObject[]; evidence: readonly JsonObject[]; lineage: readonly JsonObject[]; }' is not assignable to type 'DeepReviewProjectionsProjectionState'.
+  Property 'adjudications' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts(292,9): error TS2322: Type '{ lineage: readonly JsonObject[]; findings: readonly JsonObject[]; evidence: readonly JsonObject[]; adjudications: readonly JsonObject[]; }' is not assignable to type 'DeepReviewProjectionsProjectionState'.
+  Property 'lineage' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts(34,12): error TS2411: Property 'rows' of type 'readonly JsonObject[]' is not assignable to 'string' index type 'JsonValue'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts(83,7): error TS2322: Type 'Readonly<{ rows: readonly never[]; }>' is not assignable to type 'Readonly<DeepReviewProjectionState>'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly never[]' is not assignable to type 'JsonValue'.
+      The type 'readonly never[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts(107,9): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepReviewProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts(148,11): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepReviewProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts(245,7): error TS2322: Type '{ rows: readonly JsonObject[]; }' is not assignable to type 'DeepReviewProjectionState'.
+  Property 'rows' is incompatible with index signature.
+    Type 'readonly JsonObject[]' is not assignable to type 'JsonValue'.
+      The type 'readonly JsonObject[]' is 'readonly' and cannot be assigned to the mutable type 'JsonValue[]'.
+.opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts(352,22): error TS2339: Property 'reasonCode' does not exist on type 'GatewayAuthorizationResult'.
+  Property 'reasonCode' does not exist on type 'GatewayAllowResult'.
+.opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts(358,53): error TS2339: Property 'reasonCode' does not exist on type 'GatewayAuthorizationResult'.
+  Property 'reasonCode' does not exist on type 'GatewayAllowResult'.

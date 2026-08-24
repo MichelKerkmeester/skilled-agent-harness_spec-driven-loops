@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "leaf removals wave",
+      "shadow adapters delete",
+      "dead authority constants delete",
+      "phase 001 leaf removals",
+      "shadow adapters removed",
+      "recovery manifest removed"
+    ],
+    "key_topics": [
+      "leaf",
+      "removals",
+      "wave",
+      "shadow",
+      "adapters",
+      "delete",
+      "dead",
+      "authority",
+      "constants",
+      "phase",
+      "removed",
+      "recovery"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "tasks.md",
+      "spec.md",
+      "checklist.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Leaf Removals",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shadow Adapters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recovery Manifest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dead Constants",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deletion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components Unaffected",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T1 — Re-confirm zero callers (remover, read-only)",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Wave 1 of the over-engineering removal program: delete the three lowest-risk, zero-caller leaves (F5 hierarchical-budgets shadow-adapters, F6 receipts legacy-recovery manifest, F8 dead AUTHORITY_FLIP_COMMON constants) and their tests, severing barrel exports first. No live-loop adjacency.",
+    "created_at": "2026-08-24T17:06:18.731Z",
+    "last_save_at": "2026-08-24T17:12:30.570Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:42ce27e7156edf01e9cf7e979d6fd724abdde7bb46c5ddb8cfbf016a1154cd62",
+    "source_doc_hashes": {
+      "spec.md": "332a65264424a9cbbb373b7a57df2072747695c7797203074275d094b8775d78",
+      "plan.md": "a6af15ec5648c0bce0d4d1d8f52b74973f576633746402d8f9056e731c742fce",
+      "tasks.md": "4d328986f0254269d7c7363a35c70430cc88814878436609c60ecccd1c3b0eb5",
+      "checklist.md": "05810d353ce76c6d01c979b42d3b575af0f980b3a8d8219816ea0c866f626f2e",
+      "implementation-summary.md": "3ed1c537899e4814f1fa36319a0c8e1375492c164c105e2cf00ed82ccdd10a28"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

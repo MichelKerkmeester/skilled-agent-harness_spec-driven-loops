@@ -17,9 +17,7 @@ import { canonicalBytes, sha256Bytes } from '../../lib/event-envelope/index.js';
 import {
   BudgetEventTypes,
   BudgetReasonCodes,
-  FanOutBudgetShadowAdapter,
   HierarchicalBudgetAuthority,
-  ValueOfComputationBudgetShadowAdapter,
   addBudgetValues,
   budgetEvidenceDigest,
   budgetVector,
@@ -28,8 +26,6 @@ import {
   createBudgetEventRegistry,
   createBudgetReplayComponentRegistry,
   createBudgetReplayExecutionInput,
-  evaluateLegacyCouncilGuard,
-  evaluateLegacyFanOutAggregate,
   iterationBudget,
   tokenBudget,
   wallTimeBudget,
@@ -912,69 +908,6 @@ describe('fail-closed evidence and dark migration', () => {
 
     expect(second.descriptor).toEqual(first.descriptor);
     expect(Buffer.from(second.descriptorBytes)).toEqual(Buffer.from(first.descriptorBytes));
-  });
-
-  it('pins the shipped council and aggregate fan-out baselines', () => {
-    expect(evaluateLegacyCouncilGuard({})).toMatchObject({
-      continue_allowed: true,
-      stop_reasons: [],
-      upper_bound: { max_rounds: 15, max_seat_outputs: 45 },
-    });
-    expect(evaluateLegacyFanOutAggregate({
-      lineages: Array.from({ length: 5 }, (_, index) => ({ label: `lineage-${index + 1}` })),
-      maxRetries: 5,
-    })).toMatchObject({
-      continue_allowed: false,
-      stop_reasons: ['max_aggregate_cost_units'],
-      upper_bound: { estimated_cost_units: 360, max_aggregate_cost_units: 288 },
-    });
-  });
-
-  it('keeps legacy fan-out authoritative while exposing a typed accounting delta', async () => {
-    const harness = createHarness();
-    await createTree(harness, {
-      programTokens: 2,
-      modeTokens: 2,
-      lineageTokens: 2,
-      iterationTokens: 2,
-    });
-    const adapter = new FanOutBudgetShadowAdapter(harness.authority);
-    const comparison = await adapter.admit({
-      reservation: reservation(harness, 'fanout-shadow', 'fanout-shadow', vector(harness, 3)),
-      lineage: { label: 'shadow', iterations: 1 },
-      guards: { maxCostUnitsPerLineage: 72, costUnitsPerIteration: 1 },
-      maxRetries: 0,
-    });
-
-    expect(comparison).toMatchObject({
-      authority: 'legacy',
-      authoritativeDispatchAllowed: true,
-      parity: 'typed-accounting-delta',
-      shadowStopReason: 'incomplete-budget-exhausted',
-      converged: false,
-    });
-  });
-
-  it('reports convergence budget exhaustion as incomplete without calling it converged', async () => {
-    const harness = createHarness();
-    await createTree(harness, {
-      programTokens: 1,
-      modeTokens: 1,
-      lineageTokens: 1,
-      iterationTokens: 1,
-    });
-    const adapter = new ValueOfComputationBudgetShadowAdapter(harness.authority);
-    const comparison = await adapter.admit(
-      true,
-      reservation(harness, 'voc-shadow', 'voc-shadow', vector(harness, 2)),
-    );
-
-    expect(comparison).toMatchObject({
-      authority: 'legacy',
-      authoritativeSampleAllowed: true,
-      shadowStopReason: 'incomplete-budget-exhausted',
-      converged: false,
-    });
   });
 
   it('exposes remaining capacity, reservation age, and settlement lag as read-only data', async () => {

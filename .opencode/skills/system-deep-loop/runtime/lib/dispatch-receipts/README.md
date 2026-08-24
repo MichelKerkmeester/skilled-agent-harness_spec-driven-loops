@@ -35,7 +35,6 @@ Launch-boundary substrate for `system-deep-loop` dispatch. The barrier resolves,
 - `.opencode/skills/system-deep-loop/runtime/lib/result-envelopes/resume-reducer.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/policy.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/legacy-compatibility.ts`
 
 ---
 

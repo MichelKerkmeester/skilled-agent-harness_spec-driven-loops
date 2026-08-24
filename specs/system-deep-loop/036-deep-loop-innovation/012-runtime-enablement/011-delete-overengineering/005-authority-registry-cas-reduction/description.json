@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction",
+  "description": "Wave 5 (final) of the over-engineering removal program: remove the CAS-mutator methods (prepareCutover, compareAndSwap, compareAndSwapRollback,",
+  "keywords": [
+    "wave",
+    "final",
+    "over-engineering",
+    "removal",
+    "program",
+    "remove",
+    "cas-mutator",
+    "methods",
+    "preparecutover",
+    "compareandswap",
+    "compareandswaprollback"
+  ],
+  "lastUpdated": "2026-08-24T16:52:31.883Z",
+  "specId": "005",
+  "folderSlug": "authority-registry-cas-reduction",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement",
+    "011-delete-overengineering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
