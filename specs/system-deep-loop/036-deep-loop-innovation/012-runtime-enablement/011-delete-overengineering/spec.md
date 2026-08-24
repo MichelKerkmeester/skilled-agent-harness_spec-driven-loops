@@ -11,12 +11,12 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
-    last_updated_at: "2026-08-24T20:30:00Z"
+    last_updated_at: "2026-08-24T22:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Executed phase 002 F1 removal of seven per-mode legacy-compatibility converters; all gates green"
-    next_safe_action: "Execute phase 003 (F2 mode-contracts value layer) via GLM-5.2-High, then verify"
+    recent_action: "Executed phase 003 F2 removal plus authorization-matcher relocation; all gates green"
+    next_safe_action: "Execute phase 004 rollout and flip tooling removal via GLM-5.2-High, then verify"
     blockers: []
-    completion_pct: 40
+    completion_pct: 60
     open_questions: []
     answered_questions:
       - "The removal set is proven by a 10-iteration audit plus a repo-wide zero-caller re-proof; findings live in research/research.md"
@@ -65,7 +65,7 @@ per-finding import-graph proof, KEEP list, and wave plan live in **`research/res
 |-------|----------|---------|------|------|--------|
 | `001-leaf-removals` | F5, F6, F8 | shadow-adapters, recovery manifest, dead constants | ~460 | Lowest | Complete |
 | `002-legacy-compat-converters` | F1 | 7 per-mode `legacy-compatibility.ts` (keep deep-research) | ~4,306 | Low-Med | Complete |
-| `003-mode-contracts-value-layer` | F2 | conformance engine value files (keep `mode-contract-types.ts`) | ~2,988 | Low-Med | Planned |
+| `003-mode-contracts-value-layer` | F2 | conformance engine value files (keep `mode-contract-types.ts` + `substrate-ports.ts`) | ~2,988 | Low-Med | Complete |
 | `004-rollout-flip-tooling` | F3, F4 | fleet-enablement + `flip-authority.cjs` | ~3,026 | Med | Planned |
 | `005-authority-registry-cas-reduction` | F7 | CAS mutators in `authority-registry.ts` (keep read path) | ~500 | High-adjacency | Planned |
 

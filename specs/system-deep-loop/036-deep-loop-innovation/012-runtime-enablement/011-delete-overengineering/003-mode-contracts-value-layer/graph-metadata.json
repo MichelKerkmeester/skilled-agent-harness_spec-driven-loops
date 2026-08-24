@@ -13,7 +13,10 @@
     "trigger_phrases": [
       "mode contracts value layer delete",
       "conformance engine removal",
-      "strict gate validator delete"
+      "strict gate validator delete",
+      "phase 003 mode contracts value layer",
+      "mode contracts conformance removed",
+      "prepared authorization matcher relocated"
     ],
     "key_topics": [
       "mode",
@@ -27,15 +30,16 @@
       "strict",
       "gate",
       "validator",
-      "wave"
+      "phase"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "tasks.md",
       "spec.md",
       "checklist.md",
-      "plan.md"
+      "plan.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,6 +64,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -175,31 +185,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Wave 3 of the over-engineering removal program: delete the F2 mode-contracts VALUE engine (conformance.ts, strict-gate-validator.ts, compatibility-policy.ts, substrate-ports.ts) and its test, sever index.ts to types-only, keep mode-contract-types.ts (imported import type by all 8 reducers). One export — matchesPreparedAuthorizationDecision — has a live consumer outside the deletion set and is relocated, not deleted.",
     "created_at": "2026-08-24T17:06:19.403Z",
-    "last_save_at": "2026-08-24T17:06:19.403Z",
+    "last_save_at": "2026-08-24T18:48:14.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d7c75c07e3accab70ad0466e4b697bdff2904c8df0a5e4643daeb50d60d5fdb",
+    "source_fingerprint": "sha256:ea0f67577fcf702164645d9a54744f1263006cfa6b689a8ba48258f1ab2496a2",
     "source_doc_hashes": {
-      "spec.md": "9fb9f98a59d4ff3244f14d70c87d64cd4e73b3a86042505fed8f7d77d65e8220",
+      "spec.md": "ef60acae0c387a2fd96a173ef08c79ee34efff4455be19b170d1080345d6b991",
       "plan.md": "929fb49c2ae28e509eb2c97eb26c25be07c7f8d6dec261730eb46a6f43cf3990",
-      "tasks.md": "e436365a1f97d509fa11b1c36098203d069be6988dfa6120beea5572b71ab36d",
-      "checklist.md": "046649c7c8143159c1e46fbe8ffdbf66ba14c44ef43089872aba344b188e920e"
+      "tasks.md": "6e345dce3c3e66bc98c016b418e598f3fd0b7cf491d7cb4722ccd80ea435d9a5",
+      "checklist.md": "7bd85712ede32ed23c3237ccd82dfcff892d7def9dba1986298b53e3713514be",
+      "implementation-summary.md": "a7e143f6d8e198f67ecfa8ed4829ce9b45ea24b6bf81ab5c9b82f9911d298600"
     },
     "last_active_child_id": null,
     "last_active_at": null

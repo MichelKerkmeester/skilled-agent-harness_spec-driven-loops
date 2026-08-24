@@ -33,7 +33,7 @@ import {
   readAuthorizationAudit,
   verifyAuthorizationReplay,
 } from '../../lib/authorized-ledger/index.js';
-import { matchesPreparedAuthorizationDecision } from '../../lib/mode-contracts/index.js';
+import { matchesPreparedAuthorizationDecision } from '../../lib/authorized-ledger/index.js';
 import { canonicalBytes, sha256Bytes } from '../../lib/event-envelope/index.js';
 import {
   AtomicityDomains,
