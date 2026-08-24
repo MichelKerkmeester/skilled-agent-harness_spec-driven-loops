@@ -44,18 +44,17 @@ registerHooks({
 const RUNTIME =
   '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/022-012-runtime-enablement-build/.opencode/skills/system-deep-loop/runtime';
 
-// Suite logs from a real two-hour run. Re-running the suite here would burn
-// >2h for a number we already captured; the gate reads the captured artifacts.
-// Declared as constants so they are trivial to repoint when a run moves.
-const BASELINE_LOG =
-  '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/3d8efc78-2cdf-42fa-9383-4eb62a229b9b/scratchpad/p003/baseline-raw.txt';
-const CANDIDATE_LOG =
-  '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/3d8efc78-2cdf-42fa-9383-4eb62a229b9b/scratchpad/p005b/candidate-raw.txt';
+// Suite logs from a real full-suite run captured as artifacts the gate reads,
+// rather than re-running the multi-minute suite inline on every gate. Co-located
+// with the gate so they travel with the receipt and are trivial to repoint when
+// a run moves.
+const BASELINE_LOG = join(SCRIPT_DIR, 'baseline-raw.txt');
+const CANDIDATE_LOG = join(SCRIPT_DIR, 'candidate-raw.txt');
 
 // The commit whose tree the suite was measured against. The candidate must be
 // byte-identical to this tree on the runtime path, or the suite numbers are
 // numbers about a different commit than the one we are shipping.
-const SUITE_TREE_REF = '5511e4eac2';
+const SUITE_TREE_REF = '46346369d2';
 const DEFAULT_BASELINE_REF = '8c9f0b6944';
 
 // A nonexistent path used to force git commands to fail for --break falsifiability.

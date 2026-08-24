@@ -10,16 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-fu
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize"
-    last_updated_at: "2026-08-24T06:19:12Z"
+    last_updated_at: "2026-08-24T07:21:02Z"
     last_updated_by: "claude"
-    recent_action: "Conformed the plan to the v2.2 template; the finalize work stays Planned and U2-deferred"
-    next_safe_action: "Build the reversible-to-final CAS once the operator lifts the U2 deferral"
-    blockers:
-      - "U2 finalize is deferred by operator decision; all 8 modes stay new_authoritative_reversible"
+    recent_action: "Executed the finalize and re-measured the gate to a literal PASS"
+    next_safe_action: "Close out 005 and 006 against the finalized runtime, then recursive-validate"
+    blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.ts"
       - ".opencode/skills/system-deep-loop/runtime/scripts/flip-authority.cjs"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The rollback-window ceremony is not required; finalize is window-free by operator decision, recorded honestly"
@@ -41,9 +40,9 @@ _memory:
 | **Blast radius** | High and model-irreversible: finalize drops the legacy path. Confined to a not-pushed worktree; deferred (U2) by operator decision |
 
 The reversible flip already routes every canonical write to the ledger (`dark`) writer, so the finalize
-state and the reader-contract check — not any new write path — are what remain. This plan sequences them in
-four bounded units, verifying each before the next. It is **Planned and U2-deferred**: all eight modes stay
-`new_authoritative_reversible` until the operator lifts the deferral.
+state and the reader-contract check — not any new write path — were what remained. This plan sequenced them in
+four bounded units, verifying each before the next. **The operator lifted the deferral and the plan executed**:
+all eight modes are now `new_authoritative_final` and the whole-system gate reaches a literal PASS.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -85,7 +84,7 @@ Each build unit is a link the next depends on, so each is verified before the ne
 ### Phase 2: Execute finalize and widen the gate (U2, U3)
 
 - Run the finalize for all eight modes; capture the record set; confirm `verify-authority.cjs` shows eight on
-  `new_authoritative_final` from stored records. **This step is the U2 deferral point.**
+  `new_authoritative_final` from stored records. **This was the U2 deferral point; the operator lifted it and it executed.**
 - Widen `run-gate.mjs` authority-state to accept `new_authoritative_final` while still failing on the
   absent-record default.
 
@@ -113,17 +112,18 @@ Each build unit is a link the next depends on, so each is verified before the ne
 
 || Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `005-whole-system-gate` | Predecessor | Blocked (authority precondition met; gate re-point is a forward-fix) | The reader-contract check lives in the gate |
+| `005-whole-system-gate` | Predecessor | Reconciled to PASS on the finalized tree alongside this phase | The reader-contract check lives in the gate |
 | `009-mode-projection-contracts` | Predecessor | Complete | A projection contract per mode is required for the real reader-contract fold |
-| Operator U2 lift | Input | Deferred | Finalize is model-irreversible; it does not run until the operator lifts the deferral |
+| Operator U2 lift | Input | Lifted | Finalize is model-irreversible; the operator lifted the deferral and it executed |
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Not pushed. The `.authority-state` records and every edited file are restorable from git in the worktree; a
-`git checkout HEAD -- <path>` reverts any unit. Finalize is model-irreversible but physically reversible here.
-Because U2 is deferred, no finalize has run: all eight modes remain `new_authoritative_reversible`.
+Not pushed. Every edited file is restorable from git in the worktree; a `git checkout HEAD -- <path>` reverts
+any unit. Finalize is model-irreversible but physically reversible here: the `.authority-state` records are
+gitignored, so they were backed up outside the tree before the flip, and the named rollback is to restore that
+backup. The finalize has run; all eight modes are `new_authoritative_final`.
 <!-- /ANCHOR:rollback -->
 
 <!-- ANCHOR:cross-refs -->

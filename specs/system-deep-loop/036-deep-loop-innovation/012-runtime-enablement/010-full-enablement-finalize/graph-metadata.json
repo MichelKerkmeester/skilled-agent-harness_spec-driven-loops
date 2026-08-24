@@ -17,7 +17,10 @@
       "full enablement finalize plan",
       "authority finalize plan",
       "full enablement finalize tasks",
-      "full enablement finalize checklist"
+      "full enablement finalize checklist",
+      "full enablement finalize summary",
+      "authority finalize executed",
+      "whole-system gate literal pass"
     ],
     "key_topics": [
       "full",
@@ -29,16 +32,17 @@
       "plan",
       "tasks",
       "checklist",
-      "reversible",
-      "flip",
-      "moved"
+      "summary",
+      "executed",
+      "whole-system"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "tasks.md",
       "checklist.md",
+      "implementation-summary.md",
       "plan.md"
     ],
     "entities": [
@@ -58,6 +62,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -179,31 +189,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Summary",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The reversible flip moved all eight modes to `newauthoritativereversible`, which already routes every",
     "created_at": "2026-08-23T17:06:54.597Z",
-    "last_save_at": "2026-08-24T06:19:13.153Z",
+    "last_save_at": "2026-08-24T07:21:02.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c6c7d05e509f70593078e5bd3966be2308a15f5b9a4d0ce5440dd851610cab0",
+    "source_fingerprint": "sha256:896f64ca2565764972a05fe0580208e59711904cf1f3d7d6292c03f9738a7717",
     "source_doc_hashes": {
-      "spec.md": "b1678fc6eb7cf4da544d83cacdaa79c882bfd6521bb3427a8c28a498cc56511a",
-      "plan.md": "3b6269196a0f708a3294fb0ccfa76ebcd6db214f6f4223e4008d8b93e2f2728c",
-      "tasks.md": "ce3254ad736e8410f4341cd66a79f33b7567dabd838e53cb2513d5e64ce0ab2c",
-      "checklist.md": "57e08107b0a456d17b7081f0fc2b96f5e86230fa9a3b1211bfa922554a6b8ad8"
+      "spec.md": "67392ceb0141568d3bd434560a66c1a3efbcab4f1dbccfa6f3c01332a5b42e02",
+      "plan.md": "343a7afbbc50a495fb53498f42dcc2673033c79d3356b5a84ab6402b5b377de9",
+      "tasks.md": "29ac93d2722c7f805bb73b577a9a1e0eeb0e222040028130ed0faf87daee3d8d",
+      "checklist.md": "f34d3a84107b18191781126c616e0ecddba355cb984bf731e69231f1f6d87235",
+      "implementation-summary.md": "b668bef9d76b38be915135fa269085bc83dc5073fa7d53264bb26e4d0d1b59f6"
     },
     "last_active_child_id": null,
     "last_active_at": null

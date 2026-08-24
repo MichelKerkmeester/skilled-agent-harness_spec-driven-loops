@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-08-23T17:41:57.047Z",
-  "candidateSha": "f2d4d01d083f1df30d9d973d4e2c4ec65145c50b",
+  "generatedAt": "2026-08-24T07:07:39.559Z",
+  "candidateSha": "46346369d243dc2865a76a39971502d7d30a98fb",
   "baselineSha": "8c9f0b6944ac4e43e99d26f9cf61dab74b600640",
   "forcedBreak": null,
-  "verdict": "FAIL",
+  "verdict": "PASS",
   "checks": [
     {
       "id": "tree-clean",
       "description": "Working tree is clean",
-      "status": "fail",
-      "detail": "excluded specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch (gate output directory); remaining after exclusion:\nM .opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.ts\n M .opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts\n M .opencode/skills/system-deep-loop/runtime/scripts/flip-authority.cjs\n?? .opencode/skills/system-deep-loop/runtime/tests/unit/authority-finalize.vitest.ts\n?? specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize/"
+      "status": "pass",
+      "detail": "tree clean apart from the gate's own artifacts; excluded specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch (gate output directory); nothing remained after exclusion"
     },
     {
       "id": "candidate-frozen",
@@ -21,61 +21,61 @@
       "id": "authority-state",
       "description": "Every mode authority is on new_authoritative_reversible or new_authoritative_final",
       "status": "pass",
-      "detail": "read 8 modes; 8 on new_authoritative_reversible; 8 from a stored record, 0 from the absent-record default",
+      "detail": "read 8 modes; 8 on new_authoritative_final; 8 from a stored record, 0 from the absent-record default",
       "records": [
         {
           "mode": "deep-research",
-          "state": "new_authoritative_reversible",
-          "epoch": 2,
+          "state": "new_authoritative_final",
+          "epoch": 3,
           "selectedWriter": "dark",
           "source": "stored"
         },
         {
           "mode": "deep-review",
-          "state": "new_authoritative_reversible",
-          "epoch": 2,
+          "state": "new_authoritative_final",
+          "epoch": 3,
           "selectedWriter": "dark",
           "source": "stored"
         },
         {
           "mode": "deep-ai-council",
-          "state": "new_authoritative_reversible",
-          "epoch": 2,
+          "state": "new_authoritative_final",
+          "epoch": 3,
           "selectedWriter": "dark",
           "source": "stored"
         },
         {
           "mode": "deep-improvement-common",
-          "state": "new_authoritative_reversible",
-          "epoch": 2,
+          "state": "new_authoritative_final",
+          "epoch": 3,
           "selectedWriter": "dark",
           "source": "stored"
         },
         {
           "mode": "agent-improvement",
-          "state": "new_authoritative_reversible",
-          "epoch": 2,
+          "state": "new_authoritative_final",
+          "epoch": 3,
           "selectedWriter": "dark",
           "source": "stored"
         },
         {
           "mode": "model-benchmark",
-          "state": "new_authoritative_reversible",
-          "epoch": 2,
+          "state": "new_authoritative_final",
+          "epoch": 3,
           "selectedWriter": "dark",
           "source": "stored"
         },
         {
           "mode": "skill-benchmark",
-          "state": "new_authoritative_reversible",
-          "epoch": 2,
+          "state": "new_authoritative_final",
+          "epoch": 3,
           "selectedWriter": "dark",
           "source": "stored"
         },
         {
           "mode": "deep-alignment",
-          "state": "new_authoritative_reversible",
-          "epoch": 2,
+          "state": "new_authoritative_final",
+          "epoch": 3,
           "selectedWriter": "dark",
           "source": "stored"
         }
@@ -85,7 +85,7 @@
       "id": "runtime-suite",
       "description": "Candidate suite failures <= baseline (read from captured logs)",
       "status": "pass",
-      "detail": "failed 15 vs 19 (Δ-4); passed 4437 vs 4395 (Δ+42); skipped 39 vs 39 (Δ+0); total 4491 vs 4453 (Δ+38); files 209 vs 199 (Δ+10)"
+      "detail": "failed 14 vs 19 (Δ-5); passed 2696 vs 4395 (Δ-1699); skipped 7 vs 39 (Δ-32); total 2717 vs 4453 (Δ-1736); files 161 vs 199 (Δ-38)"
     },
     {
       "id": "consumer-reachability",
@@ -96,8 +96,8 @@
     {
       "id": "reader-contracts",
       "description": "End-to-end reader contract per mode (real ledger-projected read)",
-      "status": "fail",
-      "detail": "1 of 8 mode(s) failed: deep-research (verify-iteration: iter1 ok=false reason=delta_file_malformed; iter2 ok=true reason=null)"
+      "status": "pass",
+      "detail": "all 8 modes read cleanly via their real consumers"
     },
     {
       "id": "fanout-real-run",
@@ -117,20 +117,20 @@
       "filesTotal": 199
     },
     "candidate": {
-      "testsFailed": 15,
-      "testsPassed": 4437,
-      "testsSkipped": 39,
-      "testsTotal": 4491,
-      "filesFailed": 11,
-      "filesPassed": 198,
-      "filesTotal": 209
+      "testsFailed": 14,
+      "testsPassed": 2696,
+      "testsSkipped": 7,
+      "testsTotal": 2717,
+      "filesFailed": 10,
+      "filesPassed": 151,
+      "filesTotal": 161
     },
     "delta": {
-      "failed": -4,
-      "passed": 42,
-      "skipped": 0,
-      "total": 38,
-      "files": 10
+      "failed": -5,
+      "passed": -1699,
+      "skipped": -32,
+      "total": -1736,
+      "files": -38
     }
   }
 }

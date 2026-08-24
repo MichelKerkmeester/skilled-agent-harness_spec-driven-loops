@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Whole-System Gate"
-description: "The gate is built and was run against the real system; its decisive authority-state check now passes — all eight modes read ledger authority from stored records — so the summary's earlier legacy-authority verdict is corrected. A clean whole-system PASS is still pending on forward-fix items (the gate script is pinned to a pre-deletion tree; one reader-contract flags a malformed delta), which belong to the successor closeout."
+description: "The gate is built and was run against the real finalized system, and it returns a literal PASS: all seven checks pass with none not-run — authority-state reads eight modes on new_authoritative_final from stored records, the reader-contracts check reads all eight cleanly through their real consumers, and the earlier forward-fix items (a pre-deletion tree pin, tree-clean DB residue, a malformed delta) are all resolved by re-measuring the suite on the finalized tree and re-pinning the gate to it."
 trigger_phrases:
   - "whole system gate summary"
   - "gate verdict fail"
@@ -11,23 +11,21 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-24T05:59:15Z"
+    last_updated_at: "2026-08-24T07:34:24Z"
     last_updated_by: "claude"
-    recent_action: "Corrected the stale legacy-authority verdict; authority-state now passes on the current system"
-    next_safe_action: "Re-point the stale gate to HEAD and address the reader-contract finding in the closeout"
-    blockers:
-      - "The gate script is pinned to a pre-deletion tree (SUITE_TREE_REF 5511e4eac2, 10 commits behind HEAD); re-pointing is a forward-fix"
-      - "reader-contracts flags deep-research delta_file_malformed — a gate finding for the forward-fix closeout"
+    recent_action: "Re-measured the gate on the finalized tree; it returns a literal PASS, all forward-fixes closed"
+    next_safe_action: "Reconcile the 006 closeout narrative against the finalized runtime, then recursive-validate"
+    blockers: []
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
-    completion_pct: 80
-    open_questions:
-      - "Should the gate hardcode session-scoped tmp paths for the suite logs it reads?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "The frozen authority order contains eight modes, not the seven this phase assumed"
-      - "All eight modes now read new_authoritative_reversible from stored records — the legacy-authority verdict is stale and corrected"
+      - "All eight modes read new_authoritative_final from stored records; the gate authority-state check passes on the finalized tree"
       - "The fan-out did run and passed; the receipt records a real lineage with an artifact on disk"
-      - "The gate turns red on demand: tree-clean, candidate-frozen and runtime-suite were each proven"
+      - "The gate turns red on demand: tree-clean, candidate-frozen, runtime-suite and reader-contracts were each proven"
+      - "The stale pin, tree-clean residue and malformed delta were forward-fixes, all closed by re-measuring on the finalized tree and re-pinning the gate"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -41,10 +39,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate |
-| **Status** | Blocked |
+| **Status** | Complete |
 | **Commit** | see `git log` on `worktrees/022-012-runtime-enablement-build` |
-| **Completed** | Partial — the gate is built and ran; its authority-state check now passes (all 8 modes on ledger), and a clean whole-system PASS is pending the forward-fix items handed to the closeout |
-| **Lines** | 1 gate script, 2 receipts |
+| **Completed** | The gate is built and returns a literal PASS on the finalized tree — all seven checks pass, none not-run; the earlier forward-fix items are all closed |
+| **Lines** | 1 gate script, 2 receipts, 2 co-located suite logs |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
@@ -89,32 +87,33 @@ nothing about the gate. Both controls were aimed at green checks.
 ## 5. VERIFICATION
 
 **Authority-state passes on the current system.** `node scripts/verify-authority.cjs` at the current HEAD
-reports all 8 modes on `new_authoritative_reversible`, epoch 2, `source: stored`, `allOnLedger: true`, exit 0 —
+reports all 8 modes on `new_authoritative_final`, epoch 3, `source: stored`, `allOnLedger: true`, exit 0 —
 each read from a stored record, not the absent-record default. This is the decisive check for a gate ordered to
-run after authority has moved, and it holds.
+run after authority has moved, and it holds at the terminal tier.
 
-The gate's most recent full receipt (`scratch/receipt.md`) records the check set at candidate `f2d4d01d08`:
+The gate's most recent full receipt (`scratch/receipt.md`) records the check set at candidate `46346369d2`,
+the finalized tree:
 
 | Check | Status | What it found |
 |-------|--------|---------------|
-| `authority-state` | pass | 8 modes on `new_authoritative_reversible`; 8 from a stored record, 0 from the absent-record default |
+| `authority-state` | pass | 8 modes on `new_authoritative_final`; 8 from a stored record, 0 from the absent-record default |
 | `candidate-frozen` | pass | runtime tree identical to the measured tree |
-| `runtime-suite` | pass | failed 15 vs 19 (Δ−4); passed 4437 vs 4395 (Δ+42); files 209 vs 199 |
+| `runtime-suite` | pass | failed 14 vs 19 (Δ−5); all failures pre-existing/env by name, zero `MODULE_NOT_FOUND` |
 | `consumer-reachability` | pass | all 7 scripts exist and spawned |
-| `fanout-real-run` | pass | real lineage `1787198541887-w6k53d`; 1 total, 1 succeeded, artifact on disk |
-| `tree-clean` | fail | runtime-DB suite residue outside the gate's own scratch — a suite side-effect, not a system defect |
-| `reader-contracts` | fail | 1 of 8 modes: deep-research `verify-iteration` reports `delta_file_malformed` on iter1 |
+| `reader-contracts` | pass | all 8 modes read cleanly via their real consumers |
+| `fanout-real-run` | pass | a real lineage; 1 total, 1 succeeded, artifact on disk |
+| `tree-clean` | pass | clean apart from the gate's own excluded output directory |
 
-**Verdict: FAIL, and the two failing checks are forward-fix items, not authority regressions.** `tree-clean`
-fails on the graph databases and observability JSONL the suite itself writes; `reader-contracts` flags a malformed
-deep-research delta. This phase's Non-Goals hand fixing what the gate finds to the successor closeout, not to the
-gate run.
+**Verdict: PASS — all seven checks pass and none is not-run.** The three forward-fix items the earlier receipt
+carried are closed: the suite was re-measured on the finalized tree and `SUITE_TREE_REF` re-pointed to it, the
+test-dirtied database files were restored so `tree-clean` measures the system rather than the run's residue, and
+the `reader-contracts` check now reads all eight modes cleanly (the earlier `delta_file_malformed` was in the
+stale reader-contract materialization and is gone once the check runs against the finalized ledger).
 
-**The gate script is pinned to a pre-deletion tree.** `SUITE_TREE_REF` is `5511e4eac2`, 10 commits and a
-303-file / 180k-line runtime-tree diff behind HEAD after the delete-overengineering waves. A fresh full run at
-HEAD would fail `candidate-frozen` and read stale suite logs from that pin alone, so re-pointing the gate to the
-current candidate — and regenerating its baseline/candidate suite logs — is the forward-fix a clean whole-system
-PASS now depends on.
+**The gate script was re-pinned to the finalized tree by re-measuring, not by repointing.** `SUITE_TREE_REF` now
+names the finalized candidate; the frozen ref moved only because the full suite was actually re-run on that tree
+and a fresh candidate log captured, so `candidate-frozen` and `runtime-suite` describe the tree that ships. The
+baseline and candidate logs were co-located into the gate's own directory so they travel with the receipt.
 
 **The gate can fail, and was seen to.** `--break tree-clean` and `--break candidate-frozen` each turned a
 passing check red, kept exit 1, stamped `forcedBreak`, and still wrote the receipt. A clean re-run
@@ -167,9 +166,9 @@ now been shown to fail on a real event rather than only under a forced break.
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
-**The authority precondition is met.** All eight modes read `new_authoritative_reversible` from stored records,
-so the ordering premise of this gate — that it runs after authority has moved — now holds. The original blocker,
-modes reading legacy authority, is resolved.
+**The authority precondition is met.** All eight modes read `new_authoritative_final` from stored records, so
+the ordering premise of this gate — that it runs after authority has moved — holds at the terminal tier. The
+original blocker, modes reading legacy authority, is resolved.
 
 **The check set is enumerated in the receipt rather than implied.** Every check, including the real fan-out
 (now `pass`), is named in the receipt with its status, so the breadth of what ran is visible rather than assumed.
@@ -180,10 +179,10 @@ it can be started, nothing more. A real contract needs files projected by an ena
 **The phase says seven modes; the frozen order contains eight.** The gate records the count it actually
 read. The discrepancy is in the specification, not the measurement.
 
-**A clean whole-system PASS is still pending, but not on authority.** The latest receipt's FAIL comes from
-`tree-clean` (runtime-DB suite residue) and `reader-contracts` (a malformed deep-research delta), and from the
-gate script being pinned to a pre-deletion tree (see §5). These are forward-fix items for the successor closeout,
-which this phase's Non-Goals assign there rather than to the gate run.
+**A clean whole-system PASS was reached.** The earlier receipt's FAIL came from `tree-clean` (runtime-DB suite
+residue), `reader-contracts` (a stale malformed delta), and the gate being pinned to a pre-deletion tree (see
+§5). All three were closed by re-measuring the suite on the finalized tree, restoring the dirtied databases, and
+re-pinning the gate to the shipped candidate; the latest receipt is verdict PASS.
 
 **Four of the gate's checks have now been shown to turn red.** `tree-clean` and `candidate-frozen`
 were forced through the harness's own `--break`, which had never been used before — the field
@@ -193,9 +192,9 @@ candidate log carrying more failures than its baseline: it reported `fail` at Δ
 consumer script. `authority-state` reads the live authority store directly and is confirmed independently by
 `verify-authority.cjs` at the current HEAD.
 
-**The gate reads its suite numbers from two hardcoded absolute paths under a session-scoped
-temporary directory.** Those files are not part of the repository and do not survive the session
-that produced them. A later run in a fresh session reports `fail: baseline log missing` — a defect
-in the harness that would read as a defect in the system. Regenerating this receipt required
-placing the current logs at those exact paths.
+**The gate now reads its suite numbers from logs co-located in its own directory.** The earlier receipt
+depended on two hardcoded paths under a session-scoped temporary directory that did not survive the session that
+produced them — a later run reported `fail: baseline log missing`. The baseline and candidate logs are now
+placed beside the gate script (`join(SCRIPT_DIR, ...)`) so they travel with the receipt; a future run on a
+changed tree must still re-capture the candidate log, which `candidate-frozen` exists to force.
 <!-- /ANCHOR:limitations -->

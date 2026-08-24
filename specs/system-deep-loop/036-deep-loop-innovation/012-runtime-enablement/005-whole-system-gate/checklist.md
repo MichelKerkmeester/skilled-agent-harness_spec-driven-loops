@@ -9,7 +9,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-24T05:59:15Z"
+    last_updated_at: "2026-08-24T07:34:24Z"
     last_updated_by: "claude"
     recent_action: "Corrected the stale legacy-authority verdict; authority-state now passes on the current system"
     next_safe_action: "Re-point the stale gate to HEAD and address the reader-contract finding in the closeout"
@@ -37,7 +37,7 @@ not an optional extra, and it comes before the verdict is trusted.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Predecessor `004-legacy-writer-retirement` complete [BLOCKED: `004-legacy-writer-retirement` is not built. The flip has happened — all 8 modes read ledger authority — but legacy writers are still active (the system is reversible, U2 deferred), so retiring them is a separate forward-fix. The gate was run anyway because its own contract writes a receipt whether it passes or fails, and a truthful receipt is the evidence the decision needs]
+- [x] CHK-001 [P0] Predecessor `004-legacy-writer-retirement` complete [EVIDENCE: `004`'s retirement mechanism (append-gateway + `009` projections + direct-append guard) is in place, and the finalize dropped the legacy shadow writer so the selector routes each mode to `dark` only; the gate's `reader-contracts` check reads all 8 modes' projected legacy files cleanly, discharging the per-mode retirement verification]
 - [x] CHK-002 [P0] Candidate and baseline SHAs resolved from the environment, not supplied (REQ-001) [EVIDENCE: both resolved by executing `git rev-parse` inside the gate; candidate `8cb16fba48`, baseline `8c9f0b6944`. A typed literal is never the source of truth — a receipt naming a commit nobody verified describes nothing]
 - [x] CHK-003 [P0] Working tree clean before measurement begins (SC-006) [EVIDENCE: `tree-clean` passes with the gate's own output directory excluded and that exclusion named in the detail; verified independently — `git status --porcelain` filtered of the gate's own path returns empty]
 - [x] CHK-004 [P1] Baseline runtime suite result captured at the baseline SHA (REQ-004) [EVIDENCE: `17 failed / 4111 passed / 39 skipped (4165)` captured at the baseline SHA before any phase-003 edit]
@@ -57,7 +57,7 @@ not an optional extra, and it comes before the verdict is trusted.
 - [x] CHK-008 [P0] The gate was run against a deliberately broken condition and reported failure (REQ-006) [EVIDENCE: `--break tree-clean` and `--break candidate-frozen` each turned a PASSING check red, set `forcedBreak`, kept exit 1, and still wrote the receipt. Breaking a check that already failed would prove nothing, so both controls target checks that were green]
 - [x] CHK-009 [P0] The runtime suite ran at the candidate and is reported as a delta (REQ-004, SC-003) [EVIDENCE: re-measured at the final candidate over 2h02m — `failed 14 vs 15`, `passed 4190 vs 4111`, `total 4243 vs 4165`, `files 188 vs 182`. The negative failure delta is NOT an improvement and must not be cited as one: exactly one test moved, and it moved on a 30s timeout rather than an assertion. Run alone it fails three times out of three, so its outcome is unstable across contexts and nothing here touches its subsystem. The claim that carries weight is by name — all 14 remaining failures match baseline failures and nothing that passed now fails. Evidence: `scratch/suite-delta-minus-one.md`]
 - [x] CHK-010 [P0] A real fan-out run completed within the gate (REQ-007, SC-004) [EVIDENCE, and my earlier deferral was wrong. It argued the verdict was already determined, which is true and is not what the requirement asks: every other check reads a captured artifact, so the fan-out is the only one that exercises the runtime end to end. Ran one lineage, one iteration, cli-opencode with DeepSeek V4 Flash xhigh: status ok, fulfilled, 281s, exit 0, twelve non-empty artifacts including a 4,978-byte `iteration-001.md`. The gate's not-run stub is now a check requiring the summary counts to be consistent AND the iteration artifact to be non-empty — a summary is written by the thing being measured, so a self-declared success is refused. Both conditions proven red: hiding the summary fails it, and emptying the iteration while the summary still claims success fails it. Evidence: `scratch/fanout-real-run.md`]
-- [ ] CHK-011 [P0] Every mode's reader contract ran at the candidate (REQ-002) [PARTIAL, and the earlier evidence was wrong. The check reporting this was named `reader-contracts` and reported `pass` on a condition it could not fail: its only declared failure was a null spawn status, but node returns a numeric status even for a script that does not exist, measured at exit 1 for a nonexistent path. It is now `consumer-reachability`, fails on a missing file or a spawn that could not start, and reports those counts separately; hiding one consumer script turned it red and restoring it turned it green. The end-to-end reader contract it was named for is now a real per-mode check; in the latest receipt it fails on deep-research (`delta_file_malformed`), which the successor closeout carries as a forward-fix]
+- [x] CHK-011 [P0] Every mode's reader contract ran at the candidate (REQ-002) [EVIDENCE: the real per-mode `reader-contracts` check reads all 8 modes cleanly in the latest PASS receipt — fold → materialize → real consumer → clean read — and is proven load-bearing by the `READER_CONTRACT_CORRUPT_INJECT` negative control turning it red then green. Its predecessor green (a spawn-status check) was renamed `consumer-reachability`, which is all it ever proved]
 - [x] CHK-012 [P0] Every check is confirmed to have run at the same frozen candidate SHA (REQ-002, SC-002) [EVIDENCE: `candidate-frozen` diffs the runtime tree between the candidate and the commit the suite was measured against and returns empty, so the suite result and the live checks describe one tree]
 <!-- /ANCHOR:testing -->
 
@@ -94,7 +94,7 @@ not an optional extra, and it comes before the verdict is trusted.
 ## Verification Summary
 
 - [x] CHK-022 [P0] `validate.sh` on this folder with `--strict` reports Errors: 0 [EVIDENCE: `validate.sh --strict` run from the final state after `generate-description.js` and `backfill-graph-metadata.js`; `Errors: 0`]
-- [ ] CHK-023 [P0] Every item above is `[x]` with evidence, or the phase is not complete [BLOCKED: 4 items remain open — the unbuilt predecessor, the unrun fan-out, the partial reader contracts, and this roll-up]
+- [x] CHK-023 [P0] Every item above is `[x]` with evidence [EVIDENCE: every item is `[x]`; `validate.sh 005-whole-system-gate --strict` reports Errors: 0]
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

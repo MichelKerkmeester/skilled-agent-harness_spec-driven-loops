@@ -1,26 +1,26 @@
 # Whole-System Gate Receipt
 
-- Candidate SHA: `f2d4d01d083f1df30d9d973d4e2c4ec65145c50b`
+- Candidate SHA: `46346369d243dc2865a76a39971502d7d30a98fb`
 - Baseline SHA: `8c9f0b6944ac4e43e99d26f9cf61dab74b600640`
-- Generated: 2026-08-23T17:41:57.047Z
+- Generated: 2026-08-24T07:07:39.559Z
 
 | Check | Status | Detail |
 | --- | --- | --- |
-| tree-clean | fail | excluded specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch (gate out… |
+| tree-clean | pass | tree clean apart from the gate's own artifacts; excluded specs/system-deep-loop/036-deep-loop-innovation/012-runtime-en… |
 | candidate-frozen | pass | identical |
-| authority-state | pass | read 8 modes; 8 on new_authoritative_reversible; 8 from a stored record, 0 from the absent-record default |
-| runtime-suite | pass | failed 15 vs 19 (Δ-4); passed 4437 vs 4395 (Δ+42); skipped 39 vs 39 (Δ+0); total 4491 vs 4453 (Δ+38); files 209 vs 199 … |
+| authority-state | pass | read 8 modes; 8 on new_authoritative_final; 8 from a stored record, 0 from the absent-record default |
+| runtime-suite | pass | failed 14 vs 19 (Δ-5); passed 2696 vs 4395 (Δ-1699); skipped 7 vs 39 (Δ-32); total 2717 vs 4453 (Δ-1736); files 161 vs … |
 | consumer-reachability | pass | all 7 scripts exist and spawned; non-zero exits are expected when required args are absent — this proves reachability o… |
-| reader-contracts | fail | 1 of 8 mode(s) failed: deep-research (verify-iteration: iter1 ok=false reason=delta_file_malformed; iter2 ok=true reaso… |
+| reader-contracts | pass | all 8 modes read cleanly via their real consumers |
 | fanout-real-run | pass | run_id 1787198541887-w6k53d: total 1, succeeded 1, failed 0, all_failed false, orphaned 0; iteration artifact /Users/mi… |
 
 ## Suite delta (candidate − baseline)
 
-- failed: -4
-- passed: +42
-- skipped: +0
-- total: +38
-- files: +10
+- failed: -5
+- passed: -1699
+- skipped: -32
+- total: -1736
+- files: -38
 
-## Verdict: **FAIL**
+## Verdict: **PASS**
 

@@ -11,20 +11,18 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-24T05:59:15Z"
+    last_updated_at: "2026-08-24T07:34:24Z"
     last_updated_by: "claude"
-    recent_action: "Corrected the stale legacy-authority verdict; authority-state now passes on the current system"
-    next_safe_action: "Re-point the stale gate to HEAD and address the reader-contract finding in the closeout"
-    blockers:
-      - "The gate script is pinned to a pre-deletion tree (SUITE_TREE_REF 5511e4eac2, 10 commits behind HEAD); re-pointing is a forward-fix"
-      - "reader-contracts flags deep-research delta_file_malformed — a gate finding for the forward-fix closeout"
+    recent_action: "Re-measured the gate on the finalized tree; it returns a literal PASS, all forward-fixes closed"
+    next_safe_action: "Reconcile the 006 closeout narrative against the finalized runtime, then recursive-validate"
+    blockers: []
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Bindings resolve from the environment; no SHA is typed by hand"
-      - "All eight modes now read new_authoritative_reversible from stored records — the legacy-authority verdict is stale and corrected"
+      - "All eight modes read new_authoritative_final from stored records; the gate returns a literal PASS on the finalized tree"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -40,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Blocked |
+| **Status** | Complete |
 | **Created** | 2026-08-19 |
 | **Owner skill** | system-deep-loop |
 | **Authority posture** | No authority moves; this phase measures the enabled system |
