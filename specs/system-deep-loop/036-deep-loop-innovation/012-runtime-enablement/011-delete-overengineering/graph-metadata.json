@@ -131,6 +131,12 @@
         "source": "derived"
       },
       {
+        "name": "Added Wave",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -143,12 +149,6 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -156,12 +156,6 @@
       },
       {
         "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -187,7 +181,7 @@
     ],
     "causal_summary": "About a quarter of the runtime (~256k LOC) is one-time-use migration scaffolding and reversibility ceremony:",
     "created_at": "2026-08-23T19:32:08.669Z",
-    "last_save_at": "2026-08-24T03:36:59.259Z",
+    "last_save_at": "2026-08-24T05:45:00.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +191,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c0961ffcff00b1d0e0cec8fb4730e4fa2332d72847d4bb32657d98708e5fe40",
+    "source_fingerprint": "sha256:e6020e143f2c51ffaa22c5c481d11171d84f40cd5287584ca8bccbc91fb8f9d3",
     "source_doc_hashes": {
-      "spec.md": "c658c21ada4318bc400573fbb575080d9d103d5c13094b1944f8bf2e63b18778",
-      "plan.md": "24a82e03d8ef48d3d0d6364a8dea7ba3b80de156556c2f6b9c10b5ac67583d92",
-      "tasks.md": "a750db8af18cd75ba802c6ca3c7a39558a7541412aaf04c3c119956fd5a942d7",
-      "checklist.md": "65ce9768799629da5c2f870f6673dd1e8bb7b0119938d0a9b30b26e1b4f3fc8d",
-      "implementation-summary.md": "67788323c420b282e9d78afac3e68df11b34f191c9a46955056e15519e2d5286"
+      "spec.md": "132fc84437cc599804d4fedb2595d54d409f341b1dc46f4b2c782ac82dac5d76",
+      "plan.md": "f97f204fd0fe726146613ef216c8c50598af4b768ffe9073e6dc1c06bc82ea60",
+      "tasks.md": "67671e5fd92136c21be953622ca379800980dc9072b5db93c3181cf1817d1ae4",
+      "checklist.md": "39eb57e629d573a2a7091858eb68fb0965d93d166d75e57d6371cdfeb480e27b",
+      "implementation-summary.md": "08c43c8d1e9d1ee5b9072a2013c7c557572176ededa725303cc442ed95bfefe7"
     },
     "last_active_child_id": null,
     "last_active_at": null

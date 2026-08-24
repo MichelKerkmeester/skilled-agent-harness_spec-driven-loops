@@ -10,10 +10,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-de
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
-    last_updated_at: "2026-08-24T03:36:58Z"
+    last_updated_at: "2026-08-24T05:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Deleted the rollback and migration scaffolding across five commits"
-    next_safe_action: "Whole-system-gate PASS on a finalized system belongs to 010; U2 finalize deferred by operator"
+    recent_action: "Deleted three orphaned modules in a follow-up wave"
+    next_safe_action: "mode-contracts is newly orphaned by the closures removal — next follow-up deletion candidate"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/enable-modes.cjs"
@@ -23,6 +23,7 @@ _memory:
     answered_questions:
       - "The rollback/migration ceremony is deleted, not fabricated as satisfied"
       - "Every deletion is proven safe by the import graph before removal"
+      - "The three modules orphaned by the scaffolding removal are deleted; the failing set is unchanged by name"
 ---
 
 # Implementation Plan: Delete Over-Engineered Rollback & Migration Machinery
@@ -104,6 +105,16 @@ inflight-classification observation machinery it used to call is dead weight, no
 - Re-simplify the whole-system gate: drop the shadow-parity/rollback/inflight checks, keep authority-state,
   reader-contracts, runtime-suite, tree-clean, candidate-frozen, consumer-reachability, and fanout-real-run.
 - Refresh the runtime, lib, and cross-referencing module READMEs so no doc names a deleted module or test.
+
+### Phase 4: Orphan cleanup (Wave 3)
+
+- Re-audit the import graph worktree-wide and confirm `certificate-binding-core`, `compatibility-shadow`, and
+  `cross-mode-closures` have zero importers (the scaffolding removal was their only consumer).
+- Delete the three modules and their two unit suites; clear the stale references from the nine kept module
+  READMEs and `tests/unit/README.md`; drop the one `dependency-seams` seam-test that guarded the deleted barrel.
+- Re-verify: dangling-import scan 0, typecheck unchanged, authority unchanged, live-path suites green, and the
+  full runtime suite's failing set unchanged by name. Flag `mode-contracts` (newly orphaned) for a later wave
+  rather than cascading.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

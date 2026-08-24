@@ -9,16 +9,17 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-de
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
-    last_updated_at: "2026-08-24T03:36:58Z"
+    last_updated_at: "2026-08-24T05:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Reconciled the checklist to the verified final state"
-    next_safe_action: "010-full-enablement-finalize holds the finalized-gate PASS; U2 deferred"
+    recent_action: "Added Wave 3 checks: three orphaned modules deleted, failing set unchanged by name"
+    next_safe_action: "mode-contracts is newly orphaned by the closures removal — next follow-up deletion candidate"
     blockers: []
     key_files: []
     completion_pct: 100
     open_questions: []
     answered_questions:
       - "No authority record changed; all 8 modes remain reversible"
+      - "The three modules orphaned by the scaffolding removal are deleted; the failing set is unchanged by name"
 ---
 # Checklist: Delete Over-Engineered Rollback & Migration Machinery
 
@@ -82,6 +83,16 @@ fabricated as closed: the ceremony is deleted, not faked as satisfied. No item h
 
 - [x] CHK-014 [P2] The scoped diff removes only scaffolding modules, their suites, the pilot script, the observation gate, and doc ripples; the live loop and authority store are untouched (REQ-003) [EVIDENCE: the 3 in-session commits split 197 deletions + kept-file severs; the authority store is byte-identical; the whole-system-gate scratch is a separate concern held out of the deletion commits]
 <!-- /ANCHOR:file-org -->
+
+<!-- ANCHOR:wave-3 -->
+## Wave 3: Orphan Cleanup
+
+- [x] CHK-018 [P0] The three orphaned modules were proven dead by the import graph before removal (REQ-001) [EVIDENCE: worktree-wide `import|require|from` scan → 0 import sites for `certificate-binding-core`, `compatibility-shadow`, `cross-mode-closures`; they do not import one another; the kept `legacy-projections` surface holds 0 references to `compatibility-shadow`]
+- [x] CHK-019 [P0] No dangling import remains and no kept runtime file names a deleted module (REQ-001, SC-002) [EVIDENCE: post-delete dangling-import scan 0; CHK-013 re-scan of `lib tests scripts` finds only a pre-existing `shipped-census.ts` spec-contract path (folder already absent), not an import of the deleted module]
+- [x] CHK-020 [P0] Typecheck and authority are unchanged after removal (REQ-002, REQ-003, SC-003, SC-005) [EVIDENCE: `tsc` 57 errors / 11 files before and after, identical (transient `--ignoreDeprecations 6.0` for pre-existing config drift; the three modules were in neither set); `verify-authority.cjs` all 8 modes `new_authoritative_reversible`, exit 0]
+- [x] CHK-021 [P0] The full runtime suite's failing set does not grow by name (REQ-002, SC-004) [EVIDENCE: live-path suites 7 files / 100 tests; full suite 161 files (152 pass, 9 fail) / 2717 tests (2697 pass, 13 fail, 7 skip), exit 1 — same 9 files / 13 tests by name; delta fully accounted (−2 test files, −48 passing tests: 47 from the deleted suites + 1 dead seam-test)]
+- [x] CHK-022 [P1] Doc hygiene complete and the cascade flagged (REQ-005) [EVIDENCE: stale references cleared from nine kept module READMEs + `tests/unit/README.md`; the dead `dependency-seams` seam-test removed; `mode-contracts` (newly orphaned) flagged as a follow-up candidate, not cascaded]
+<!-- /ANCHOR:wave-3 -->
 
 <!-- ANCHOR:summary -->
 ## Verification Summary

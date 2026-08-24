@@ -11,26 +11,25 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-de
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
-    last_updated_at: "2026-08-24T03:36:58Z"
+    last_updated_at: "2026-08-24T05:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Reconciled the packet to complete: five commits, live loop verified intact, docs authored"
-    next_safe_action: "010-full-enablement-finalize holds the finalized-gate PASS; U2 deferred by operator"
+    recent_action: "Deleted three orphaned modules in a follow-up wave; failing set unchanged by name"
+    next_safe_action: "mode-contracts is newly orphaned by the closures removal — next follow-up deletion candidate"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/enable-modes.cjs"
       - ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/index.ts"
-      - ".opencode/skills/system-deep-loop/runtime/lib/certificate-binding-core/"
-      - ".opencode/skills/system-deep-loop/runtime/lib/compatibility-shadow/"
-      - ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/"
+      - ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/"
     completion_pct: 100
     open_questions:
       - "Category C (legacy-projections) keep-vs-migrate — deferred to an explicit operator decision"
-      - "certificate-binding-core / compatibility-shadow / cross-mode-closures are now orphaned (zero importers) — next-wave deletion candidates"
+      - "mode-contracts is newly orphaned (its sole importer was the removed cross-mode-closures) — next follow-up deletion candidate"
     answered_questions:
       - "The rollback/migration ceremony is deleted, not fabricated as satisfied"
       - "Every deletion is proven safe by the import graph; no commit leaves a dangling import"
       - "The live loop survived: all 8 modes remain on ledger authority"
       - "U2 finalize is deferred; all 8 modes stay reversible"
+      - "The three modules orphaned by the scaffolding removal were deleted in a follow-up wave; the runtime suite's failing set is unchanged by name"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -45,9 +44,9 @@ _memory:
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering |
 | **Status** | Complete |
-| **Commits** | `90df8cfa67`, `376aec67b3`, `20665c8d98`, `f3a42a2af3`, `8371855fbb` on `worktrees/022-012-runtime-enablement-build`, not pushed |
-| **Completed** | Rollback ceremony and migration scaffolding removed; live ledger loop verified intact |
-| **Lines** | 274 files changed, 315 insertions, 174,631 deletions across the phase |
+| **Commits** | `90df8cfa67`, `376aec67b3`, `20665c8d98`, `f3a42a2af3`, `8371855fbb`, `947467ecc7` on `worktrees/022-012-runtime-enablement-build`, not pushed |
+| **Completed** | Rollback ceremony, migration scaffolding, and the modules they orphaned removed; live ledger loop verified intact |
+| **Lines** | 312 files changed, 319 insertions, 180,014 deletions across the phase |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
@@ -76,6 +75,18 @@ observation gate — was severed and the build re-greened before the module was 
 **The whole-system gate was re-simplified**: the shadow-parity, rollback, and inflight checks are gone; the
 kept checks are `tree-clean`, `candidate-frozen`, `authority-state`, `runtime-suite`,
 `consumer-reachability`, `reader-contracts`, and `fanout-real-run`.
+
+**Wave 3 — the orphan cleanup** (`947467ecc7`, +4/−5,383, 38 files). Removing the scaffolding left three
+modules with zero importers, whose only consumers had themselves been deleted:
+`certificate-binding-core` (cutover-certificate core), `compatibility-shadow` (the dual-read / versioned-upcaster
+comparison harness the shadow-parity cutover used), and `cross-mode-closures` (a speculative shared-implementation
+layer no mode packet ever wired in). A worktree-wide import scan proved all three dead (0 import sites) before
+removal. The 25 module files and their two unit suites (47 tests) were deleted; the now-stale references were
+cleared from nine kept module READMEs; and the one `dependency-seams` test that guarded the deleted barrel's
+internal boundary was dropped. `cross-mode-closures` was `mode-contracts`' sole importer, so `mode-contracts`
+is now orphaned in turn — left in place as the next follow-up candidate rather than cascaded into this wave.
+`compatibility-shadow` is distinct from the retained `legacy-projections` consumer surface (Category C): the
+kept surface holds zero references to it, so its removal does not touch Category C.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -145,16 +156,32 @@ node_modules-symlink resolution); `check-contract-drift` + `render-command-contr
 cannot touch it); `legacy-projections` (1, reads the unchanged census with unchanged source);
 `authorized-ledger` (1, concurrency timing); and the stress `cli-devin` / `fanout` / `combo-matrix` suites
 (3, external-executor availability). The failing set shrank from the captured baseline (16 files / 14 tests).
+
+**Wave 3 re-verification.** After the orphan removal: the dangling-import scan is 0 across the whole worktree;
+typecheck is byte-for-byte unchanged at 57 errors / 11 files (the three removed modules were type-clean and in
+neither the before nor after erroring set) — note the shared toolchain's TypeScript now hard-errors on the
+`moduleResolution=node10` config, so this run needs a transient `--ignoreDeprecations 6.0` to execute at all, a
+pre-existing config drift unrelated to the deletion; `verify-authority.cjs` still reports all 8 modes on
+`new_authoritative_reversible`, epoch 2, `allOnLedger:true`, exit 0; the live-path suites pass 7 files / 100
+tests. The full runtime suite ran 161 files (152 passed, 9 failed) / 2717 tests (2697 passed, 13 failed, 7
+skipped), exit 1 — the **same 9 files / 13 tests, identical by name** to the set above, none referencing a
+deleted module. The whole delta is accounted for: −2 test files (the two deleted suites) and −48 passing tests
+(47 from those suites plus the one dead `dependency-seams` seam-test), so the deletion introduced no new failure.
+One pre-existing residual was surfaced but left out of scope: `write-set-conflict-graph/shipped-census.ts` cites a
+spec-contract path (`002-cross-mode-closures/spec.md`) whose folder was already absent before this wave — a
+provenance string, not an import of the deleted module.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
-**Three modules are now orphaned.** Deleting the scaffolding left `certificate-binding-core`,
-`compatibility-shadow`, and `cross-mode-closures` with zero importers — their only consumers were the
-deleted `*-certificates` and `mixed-version-fixtures` modules. Their READMEs are marked "no live importer".
-They are strong candidates for a follow-up deletion wave, held out of this phase's scope rather than removed
-unasked.
+**The three orphaned modules were removed in Wave 3; `mode-contracts` is now orphaned in turn.** The
+`certificate-binding-core`, `compatibility-shadow`, and `cross-mode-closures` modules that the scaffolding
+removal orphaned were deleted in `947467ecc7` after a worktree-wide import scan proved them dead. Because
+`cross-mode-closures` was the sole importer of `mode-contracts`, that module now has zero importers — it was
+left in place as the next follow-up candidate rather than cascaded, since the operator scoped this wave to the
+three named modules. Whether `mode-contracts` (and any speculative subtree that only its now-removed importer
+reached) should follow is the open next-wave question.
 
 **U2 finalize is deferred; the finalized gate PASS is 010's scope.** By operator decision, all eight modes
 remain on `new_authoritative_reversible`; none were flipped to `new_authoritative_final` and the legacy

@@ -11,20 +11,22 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
-    last_updated_at: "2026-08-24T03:36:58Z"
+    last_updated_at: "2026-08-24T05:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Deleted the rollback and migration scaffolding across five commits"
-    next_safe_action: "010-full-enablement-finalize holds the finalized-gate PASS; U2 deferred by operator"
+    recent_action: "Deleted three orphaned modules in a follow-up wave"
+    next_safe_action: "mode-contracts is newly orphaned by the closures removal — next follow-up deletion candidate"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/enable-modes.cjs"
       - ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/index.ts"
     completion_pct: 100
     open_questions:
-      - "Category C (legacy-projections + upcaster suites) — keep as consumer surface or migrate consumers off? Deferred."
+      - "Category C (legacy-projections) — keep as consumer surface or migrate consumers off? Deferred."
+      - "mode-contracts is newly orphaned (sole importer was the removed cross-mode-closures) — next follow-up deletion candidate"
     answered_questions:
       - "The rollback-window/drill/certificate ceremony is not required for this system and is deleted, not fabricated as satisfied"
       - "rollback-gates are leaf modules (imported only by their own tests) — safe first deletion"
+      - "The three modules orphaned by the scaffolding removal are deleted; compatibility-shadow is distinct from the retained legacy-projections surface"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -73,8 +75,10 @@ projections intact.
 
 ### Non-Goals
 
-- Deleting `legacy-projections` or the upcaster suites (Category C) — that is a consumer-migration project,
-  decided separately.
+- Deleting `legacy-projections` (Category C — the consumer-facing projection surface) — that is a
+  consumer-migration project, decided separately. `compatibility-shadow`'s dual-read / versioned-upcaster
+  adapters are *not* that surface: they are the dead shadow-parity comparison harness (the retained
+  `legacy-projections` holds zero references to them) and were removed in Wave 3.
 - Deleting the live loop: authority selector/registry/finalize CAS, append-gateway, event ledger/envelope.
 - Fabricating that any safety window closed. The ceremony is removed, not faked as satisfied.
 <!-- /ANCHOR:problem -->
@@ -90,6 +94,10 @@ projections intact.
   dirs, and finally `inflight-state-classification` — after severing its live-loop importers
   (`per-mode-authority-flip/types.ts`, `preflight.ts`).
 - Re-simplifying the whole-system gate to drop the shadow-parity/rollback/inflight checks.
+- **Wave 3:** the three modules the scaffolding removal orphaned — `certificate-binding-core`,
+  `compatibility-shadow`, `cross-mode-closures` — and their two unit suites, after a worktree-wide import scan
+  proved zero importers; plus the doc-hygiene ripple (nine kept module READMEs, `tests/unit/README.md`, and the
+  one dead `dependency-seams` seam-test).
 
 ### Out of Scope
 
@@ -105,6 +113,9 @@ projections intact.
 | `lib/per-mode-authority-flip/{types,preflight}.ts` | Import of inflight-classification severed |
 | `005-whole-system-gate/scratch/run-gate.mjs` | Shadow-parity/rollback/inflight checks removed |
 | `tests/unit/` | Deleted suites for every removed module |
+| `lib/certificate-binding-core/`, `lib/compatibility-shadow/`, `lib/cross-mode-closures/` | Deleted (Wave 3 — orphaned by the scaffolding removal) |
+| Nine kept module READMEs + `tests/unit/README.md` | Stale references to the Wave 3 modules cleared |
+| `tests/unit/dependency-seams.vitest.ts` | Dead seam-test for the deleted barrel removed |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -144,6 +155,10 @@ projections intact.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Category C (legacy-projections + upcaster suites): keep as the consumer surface, or migrate every consumer to
-read the ledger directly and remove legacy entirely? Deferred to an explicit operator decision.
+Category C (`legacy-projections`): keep as the consumer surface, or migrate every consumer to read the ledger
+directly and remove legacy entirely? Deferred to an explicit operator decision.
+
+`mode-contracts` is newly orphaned by the Wave 3 removal of its sole importer (`cross-mode-closures`). Should it
+— and any speculative subtree only that importer reached — be removed in a further wave? Deferred; left in place
+rather than cascaded.
 <!-- /ANCHOR:questions -->

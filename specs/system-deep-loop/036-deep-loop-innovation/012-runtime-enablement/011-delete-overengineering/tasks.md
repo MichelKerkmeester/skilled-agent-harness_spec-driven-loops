@@ -9,16 +9,17 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-de
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
-    last_updated_at: "2026-08-24T03:36:58Z"
+    last_updated_at: "2026-08-24T05:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Reconciled tasks to the final state: five commits, 41 module dirs and 47 suites removed"
-    next_safe_action: "010-full-enablement-finalize holds the finalized-gate PASS; U2 deferred"
+    recent_action: "Added Wave 3: three orphaned modules deleted, failing set unchanged by name"
+    next_safe_action: "mode-contracts is newly orphaned by the closures removal — next follow-up deletion candidate"
     blockers: []
     key_files: []
     completion_pct: 100
     open_questions: []
     answered_questions:
       - "The live loop survived: all 8 modes remain on ledger authority"
+      - "The three modules orphaned by the scaffolding removal are deleted; mode-contracts is newly orphaned"
 ---
 # Tasks: Delete Over-Engineered Rollback & Migration Machinery
 
@@ -67,6 +68,16 @@ The migration scaffolding is removed in importer-before-importee order so no com
 - [x] **T-014** The whole-system gate is re-simplified: shadow-parity/rollback/inflight checks dropped; the kept checks remain. [EVIDENCE: `git grep` on `005-whole-system-gate/scratch/run-gate.mjs` for deleted-check references returns only a `rollbackRef: null` fixture field; the live check ids are `tree-clean`, `candidate-frozen`, `authority-state`, `runtime-suite`, `consumer-reachability`, `reader-contracts`, `fanout-real-run`. The end-to-end gate PASS on a finalized system is 010's scope (U2 deferred)]
 - [x] **T-015** `validate.sh 011-delete-overengineering --strict` — Errors: 0. [EVIDENCE: `validate.sh --strict` on this folder — Errors: 0, after completing the Level-2 doc set and regenerating the metadata]
 <!-- /ANCHOR:phase-3 -->
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Orphan cleanup (Wave 3)
+
+- [x] **T-018** Re-audit the import graph worktree-wide; confirm `certificate-binding-core`, `compatibility-shadow`, and `cross-mode-closures` have zero importers. [EVIDENCE: worktree-wide `import|require|from` scan → 0 import sites for each; the three do not import one another; `cross-mode-closures` was `mode-contracts`' sole importer]
+- [x] **T-019** Delete the three modules (25 files) and their two unit suites (47 tests). [EVIDENCE: commit `947467ecc7`; 27 staged deletions, all in scope]
+- [x] **T-020** Clear the stale references from nine kept module READMEs and `tests/unit/README.md`; drop the dead `dependency-seams` seam-test that guarded the deleted barrel. [EVIDENCE: `947467ecc7`; CHK-013 re-scan clean except a pre-existing `shipped-census.ts` spec-contract path, left out of scope]
+- [x] **T-021** Re-verify the wave. [EVIDENCE: dangling-import scan 0; `tsc` unchanged 57 errors / 11 files (transient `--ignoreDeprecations 6.0` for the pre-existing config drift); `verify-authority.cjs` all 8 on ledger, exit 0; live-path suites 7 files / 100 tests; full suite 161 files (152 pass, 9 fail) / 2717 tests (2697 pass, 13 fail, 7 skip), failing set unchanged by name]
+- [x] **T-022** Flag `mode-contracts` (now orphaned by the closures removal) as a follow-up candidate rather than cascading it into this wave. [EVIDENCE: `implementation-summary.md` §6; `spec.md` §7]
+<!-- /ANCHOR:phase-4 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
