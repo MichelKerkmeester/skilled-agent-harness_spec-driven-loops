@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer",
+  "description": "Wave 3 of the over-engineering removal program: delete the F2 mode-contracts VALUE engine (conformance.ts, strict-gate-validator.ts,",
+  "keywords": [
+    "wave",
+    "over-engineering",
+    "removal",
+    "program",
+    "delete",
+    "mode-contracts",
+    "value",
+    "engine",
+    "conformance",
+    "strict-gate-validator"
+  ],
+  "lastUpdated": "2026-08-24T16:48:43.829Z",
+  "specId": "003",
+  "folderSlug": "mode-contracts-value-layer",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement",
+    "011-delete-overengineering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

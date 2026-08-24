@@ -13,6 +13,5 @@ export * from './effect-adapters.js';
 export * from './effect-gateway.js';
 export * from './errors.js';
 export * from './event-contracts.js';
-export * from './legacy-compatibility.js';
 export * from './replay-projection.js';
 export type * from './types.js';

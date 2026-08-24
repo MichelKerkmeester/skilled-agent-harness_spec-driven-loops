@@ -3,7 +3,13 @@
   "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
-  "children_ids": [],
+  "children_ids": [
+    "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals",
+    "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters",
+    "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer",
+    "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling",
+    "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -12,40 +18,36 @@
   "derived": {
     "trigger_phrases": [
       "delete overengineering",
-      "remove rollback machinery",
-      "delete migration scaffolding",
-      "delete overengineering plan",
-      "remove rollback machinery plan",
-      "delete overengineering tasks",
-      "delete overengineering checklist",
-      "delete overengineering summary",
-      "rollback migration scaffolding removed",
-      "runtime deletion wave"
+      "runtime residue removal",
+      "overengineering removal waves"
     ],
     "key_topics": [
       "delete",
       "overengineering",
-      "remove",
-      "rollback",
-      "machinery",
+      "runtime",
+      "residue",
+      "removal",
+      "waves",
+      "phase",
+      "parent",
+      "removing",
       "migration",
-      "scaffolding",
-      "plan",
-      "tasks",
-      "checklist",
-      "summary",
-      "removed"
+      "rollback",
+      "over-built"
     ],
-    "importance_tier": "important",
-    "status": "complete",
+    "importance_tier": "critical",
+    "status": "in_progress",
     "key_files": [
-      "spec.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "plan.md"
+      "research/research.md",
+      "spec.md"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -53,31 +55,7 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
+        "name": "Phase Parent",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -89,117 +67,81 @@
         "source": "derived"
       },
       {
-        "name": "Engineered Rollback",
+        "name": "Runtime Residue Removal Program",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Migration Machinery",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement About",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Delete",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "their",
+        "name": "GLM-5.2-High",
         "kind": "key_phrase",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Added Wave",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation The",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "zero",
+        "name": "cli-devin",
         "kind": "key_phrase",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "unchanged",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Migration",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Engineering Residue Audit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confidence Three",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranked Candidates",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Independent Import",
+        "kind": "proper_noun",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "About a quarter of the runtime (~256k LOC) is one-time-use migration scaffolding and reversibility ceremony:",
+    "causal_summary": "Phase parent for removing the migration, rollback, and over-built machinery left in the deep-loop runtime after all 8 modes were finalized to new_authoritative_final. A prior wave removed the rollback ceremony and one-time scaffolding (now in scratch/); this program removes the second-order residue an evidence-backed audit surfaced, as five dependency-ordered deletion waves.",
     "created_at": "2026-08-23T19:32:08.669Z",
-    "last_save_at": "2026-08-24T08:00:15.189Z",
+    "last_save_at": "2026-08-24T17:09:34.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:cd2eceb6f20aff8f110a1cb619dba460eee376c92683ea4fdc10c20da2ee6e68",
+    "source_fingerprint": "sha256:3749d653e3680ab47e1e5384bbdfc2079d8123c73d95b1b4a3f56e5c760910f6",
     "source_doc_hashes": {
-      "spec.md": "575e48ae6f5028ebab554aef636fa14381434616756c617562c0fbb09f900b3d",
-      "plan.md": "2f528b518c6ca978de5b7dc4d0e178301de4103ef1ad4c5913fab43e3b6df8c2",
-      "tasks.md": "26cb509e1bc0460d3de3b475b971ad9f5e8a678091a0ffff9313d0532264acc2",
-      "checklist.md": "1361a354790a9c560e1608fc4d4461e05d5a3acffbc6696dd82341d8957c4c01",
-      "implementation-summary.md": "481a66a5ac00b47ae9bf37e0b631d3a0f0e6bab07de264c38e5b8144b5531de2"
+      "spec.md": "991762e5ae59b06e2e0aa8e7a2f09924ceb653b8e69812ee7f2e9bc164860b50",
+      "research/research.md": "945d7d110a686c84acf7ab3c175a04c05e1b16f8b08fb49f1566b0a1eee31cf9"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals",
+    "last_active_at": "2026-08-24T19:00:00.000Z"
   }
 }

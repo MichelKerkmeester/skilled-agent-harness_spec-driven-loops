@@ -138,12 +138,3 @@ export const AUTHORITY_FLIP_MODE_ORDER: readonly CutoverCertificateMode[] = Obje
   'skill-benchmark',
   'deep-alignment',
 ]);
-
-export const AUTHORITY_FLIP_COMMON_MODE: CutoverCertificateMode = 'deep-improvement-common';
-
-/** The three shared-backend variants that may never flip before the common workstream. */
-export const AUTHORITY_FLIP_COMMON_VARIANTS: ReadonlySet<CutoverCertificateMode> = new Set([
-  'agent-improvement',
-  'model-benchmark',
-  'skill-benchmark',
-]);

@@ -5,8 +5,6 @@
 export { AuthorityRegistry } from './authority-registry.js';
 export { isValidAuthorityRecord, selectAuthorityRoute } from './authority-selector.js';
 export {
-  AUTHORITY_FLIP_COMMON_MODE,
-  AUTHORITY_FLIP_COMMON_VARIANTS,
   AUTHORITY_FLIP_EVENT_TYPE,
   AUTHORITY_FLIP_MODE_ORDER,
   AUTHORITY_FLIP_SCHEMA_VERSION,

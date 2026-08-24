@@ -37,12 +37,6 @@ export {
   createBudgetReplayExecutionInput,
 } from './budget-replay.js';
 export {
-  FanOutBudgetShadowAdapter,
-  ValueOfComputationBudgetShadowAdapter,
-  evaluateLegacyCouncilGuard,
-  evaluateLegacyFanOutAggregate,
-} from './shadow-adapters.js';
-export {
   BUDGET_ENVELOPE_VERSION,
   BUDGET_SCOPE_ORDER,
   addBudgetValues,
@@ -92,11 +86,6 @@ export type {
   BudgetScopeProjection,
   MaterializedBudgetTransition,
 } from './budget-reducer.js';
-export type {
-  DarkAdmissionComparison,
-  FanOutAggregateBaselineInput,
-  FanOutShadowInput,
-} from './shadow-adapters.js';
 export type {
   BudgetDimensionValue,
   BudgetEnvelope,

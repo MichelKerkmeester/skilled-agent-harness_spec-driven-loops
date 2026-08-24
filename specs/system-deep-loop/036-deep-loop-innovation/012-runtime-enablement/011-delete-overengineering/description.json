@@ -1,20 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
-  "description": "About a quarter of the runtime (~256k LOC) is one-time-use migration scaffolding and reversibility ceremony:",
+  "description": "Phase parent for removing the migration, rollback, and over-built machinery left in the deep-loop runtime after all 8 modes were finalized to",
   "keywords": [
-    "about",
-    "quarter",
-    "runtime",
-    "256k",
-    "loc",
-    "one-time-use",
+    "phase",
+    "parent",
+    "removing",
     "migration",
-    "scaffolding",
-    "reversibility",
-    "ceremony"
+    "rollback",
+    "over-built",
+    "machinery",
+    "left",
+    "deep-loop",
+    "runtime",
+    "modes",
+    "finalized"
   ],
-  "lastUpdated": "2026-08-24T08:00:14.899Z",
+  "lastUpdated": "2026-08-24T17:06:55.849Z",
   "specId": "011",
   "folderSlug": "delete-overengineering",
   "parentChain": [

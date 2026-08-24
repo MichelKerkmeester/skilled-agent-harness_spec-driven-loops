@@ -53,10 +53,7 @@ import {
   EFFECT_RECONCILED_EVENT_TYPE,
   EFFECT_RECOVERY_STARTED_EVENT_TYPE,
   EffectRecoveryGateway,
-  LEGACY_RECOVERY_SURFACES,
-  LEGACY_RECOVERY_SURFACE_MANIFEST_DIGEST,
   ReceiptEffectErrorCodes,
-  assessLegacyDispatchReceipt,
   atomicFileTargetIdentity,
   createAtomicFileEffectAdapter,
   createBoundaryRegistry,
@@ -1436,41 +1433,6 @@ describe('crash and recovery', () => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('adapter conformance and replay', () => {
-  it('pins the key-free candidate service manifests', () => {
-    const harness = createHarness('candidate-manifests');
-    const file = fileFixture('candidate-file-manifest');
-    const subprocess = createSubprocessEffectAdapter<ApiRequest>({
-      adapterId: 'fixture-subprocess',
-      adapterVersion: '1',
-      hasDurableOutcomeQuery: true,
-      dispatch: async (_request, invocation) => observation(invocation),
-      queryOutcome: async () => ({
-        verdict: 'not_applied',
-        reason_code: 'manifest_only',
-        evidence_digest: EVIDENCE_DIGEST,
-        observed_at: T3,
-        observation: null,
-      }),
-    });
-    const manifests = {
-      boundary_manifest: DEFAULT_BOUNDARY_MANIFEST_DIGEST,
-      boundary_registry: createBoundaryRegistry().digest,
-      certification_registry: providers().digest,
-      effect_adapter_manifest: effectAdapterManifestDigest([
-        apiTarget().adapter as EffectAdapter<unknown>,
-        file.adapter as EffectAdapter<unknown>,
-        subprocess as EffectAdapter<unknown>,
-      ]),
-      event_registry: harness.registry.digest,
-      legacy_surface_manifest: LEGACY_RECOVERY_SURFACE_MANIFEST_DIGEST,
-      policy_registry: harness.policies.digest,
-    };
-
-    console.info(`[receipt-effect-manifests] ${JSON.stringify(manifests)}`);
-    expect(Object.values(manifests).every((digest) => /^[a-f0-9]{64}$/u.test(digest)))
-      .toBe(true);
-  });
-
   it('publishes files atomically and reconciles by content rather than process state', async () => {
     const harness = createHarness('file-adapter');
     const targetRoot = temporaryRoot('file-target');
@@ -1583,34 +1545,5 @@ describe('adapter conformance and replay', () => {
     expect(first.projection.state.receipts).toHaveLength(1);
     expect(first.projection.state.confirmations).toHaveLength(1);
     expect(first.descriptor.event_count).toBe(4);
-  });
-
-  it('keeps legacy recovery surfaces authoritative and dispatch MACs advisory', () => {
-    expect(LEGACY_RECOVERY_SURFACES).toHaveLength(5);
-    expect(LEGACY_RECOVERY_SURFACES.every((surface) =>
-      surface.authority === 'legacy-authoritative'
-      && surface.dark_service_action === 'observe-only')).toBe(true);
-
-    const dispatchId = 'dispatch-fixture';
-    const key = deriveReceiptKey('process-local-secret', dispatchId);
-    const unsigned = {
-      version: 1,
-      type: 'dispatch_receipt',
-      phase: 'completion',
-      dispatchId,
-      issuedAt: T0,
-      facts: { exitStatus: 0 },
-    };
-    const record = { ...unsigned, mac: signReceipt(unsigned, key) };
-    expect(assessLegacyDispatchReceipt(record, key)).toEqual({
-      kind: 'legacy-dispatch-receipt',
-      trust_scope: 'process-local-advisory',
-      same_process_mac_valid: true,
-      durable_cross_resume_accepted: false,
-    });
-    expect(assessLegacyDispatchReceipt(record)).toMatchObject({
-      same_process_mac_valid: null,
-      durable_cross_resume_accepted: false,
-    });
   });
 });
