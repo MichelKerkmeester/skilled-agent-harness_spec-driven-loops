@@ -20,7 +20,7 @@ version: 0.18.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Note and vault operations in Obsidian, plus file-layer automation of community plugins (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases, Meta Bind) and the Obsidian theme system |
+| **Use it for** | Note and vault operations in Obsidian, plus file-layer automation of community plugins (Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases, Make.md, Meta Bind) and the Obsidian theme system |
 | **Invoke with** | "obsidian", "notesmd-cli", "obsidian vault", "daily note", "local rest api", a plugin name or an `obsidian_*` MCP operation |
 | **Works on** | Vault files directly with no running app or through the live desktop app and its Local REST API when the situation needs it |
 | **Produces** | Created, moved and tagged notes, daily notes, vault registrations, live-app opens and plugin data files edited at the file layer |
@@ -43,13 +43,12 @@ The skill gives an agent three ways to touch a vault, chosen by what the request
 - The official `obsidian` CLI (ships with Obsidian desktop v1.12.4+) remote-controls a running app for in-app opens and `obsidian://` URI actions.
 - The cyanheads Obsidian MCP exposes a structured 14-tool `obsidian_*` surface through Code Mode when the live app and Local REST API are available.
 
-On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: Beancount ledgers, `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, and Obsidian Git repositories. Alongside the plugins it operates the Obsidian theme system at the file layer — the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
+On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, and Obsidian Git repositories. Alongside the plugins it operates the Obsidian theme system at the file layer — the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
 
 ### The Plugin Knowledge Layer
 
 | Plugin | What the skill knows how to operate |
 |---|---|
-| **Beancount Ledger** | append and patch balanced transactions in the structured `.beancount` ledger |
 | **Obsidian Tables** | edit `columns`, `rows` and `views` inside `.table.md` JSON payloads |
 | **BRAT** | stage GitHub beta-plugin assets, register repos and activate manifest IDs |
 | **Health.md** | create and validate Apple and Android Health export files, place `health-viz` render blocks and detect the bundled mock-data fallback |
@@ -61,6 +60,7 @@ On top of those surfaces sits the plugin knowledge layer. The mode treats each c
 | **Theme system** | operate the Obsidian theme system at the file layer — activate a community theme via `cssTheme`, customize with CSS snippets and variables, and build or publish themes, never editing a shipped theme's own files (Minimal as the worked example) |
 | **Meta Bind** | author `INPUT`/`VIEW` fields and `meta-bind-button` blocks whose `updateMetadata` actions read and write note frontmatter, with the JS Engine companion powering the Notion-style start/stop task timer |
 | **Notion Bases** | operate `_database.md` schemas — two-way relations, rollups, lookups, self-relation subtasks and the seven view types including calendar — as the Notion-database replacement |
+| **Make.md** | operate Spaces and Contexts — table, board, gallery, calendar and chart views with relations and formulas — as a Notion-like workspace layer, noting that its configuration is UI-driven rather than fully file-scriptable |
 | **Advanced Canvas** | extend `.canvas` files at the JSON layer with styled nodes, pathfinding edges, portals, collapsible groups and the presentation start node per the Advanced JSON Canvas data model |
 | **Claudian** | operate the `.claudian/` settings file and the provider-native `.claude/` slash-command and reusable-skill files for the in-vault coding-agent chat plugin |
 
@@ -194,7 +194,7 @@ A: No. Empty output means the selected vault has no match. Verify the vault and 
 
 **Q: What does the skill know about my plugins?**
 
-A: It ships reference sets for Beancount, Obsidian Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases and Meta Bind, plus a general Obsidian theme-system reference set under `references/themes/`. Each set covers the data model, file-layer workflows and troubleshooting. The operation-logic reference generalizes the pattern to future plugins.
+A: It ships reference sets for Obsidian Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases, Make.md and Meta Bind, plus a general Obsidian theme-system reference set under `references/themes/`. Each set covers the data model, file-layer workflows and troubleshooting. The operation-logic reference generalizes the pattern to future plugins.
 
 ---
 
@@ -209,7 +209,7 @@ The mode-root scripts are the first checks because they separate required headle
 | Headless CLI | `notesmd-cli --version && notesmd-cli list-vaults && notesmd-cli list` succeeds. An empty note list is valid |
 | Official CLI | After in-app registration, `obsidian --help` prints its current command surface |
 | MCP health | With the manual registered, `list_tools()` shows `obsidian.obsidian_*` entries and `tool_info("obsidian.obsidian_get_note")` resolves a live schema |
-| Example scripts | `mcp-roundtrip.sh` preflights and prints a Code Mode reference. Run `headless-notes-workflow.sh` only against a chosen vault and `beancount-transaction.sh` against its scratch or designated ledger |
+| Example scripts | `mcp-roundtrip.sh` preflights and prints a Code Mode reference. Run `headless-notes-workflow.sh` only against a chosen vault |
 
 The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md`) runs every scenario behind these checks.
 
@@ -227,6 +227,6 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 | [`references/obsidian-cli-commands.md`](./references/obsidian-cli-commands.md) | Detailed `notesmd-cli` and official `obsidian` CLI reference, including `VERIFY` boundaries |
 | [`references/mcp-tools.md`](./references/mcp-tools.md) | Cyanheads MCP prerequisites, confirmed core tools and Code Mode invocation pattern |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | PATH, vault, Local REST API, auth and MCP recovery guide |
-| [`examples/README.md`](./examples/README.md) | Index for the headless notes, MCP roundtrip and Beancount workflows |
+| [`examples/README.md`](./examples/README.md) | Index for the headless notes and MCP roundtrip workflows |
 | [`scripts/install.sh`](./scripts/install.sh) | Installs the headless CLI when possible and prints the official CLI and MCP setup steps |
 | [`scripts/doctor.sh`](./scripts/doctor.sh) | Read-only environment diagnostics |

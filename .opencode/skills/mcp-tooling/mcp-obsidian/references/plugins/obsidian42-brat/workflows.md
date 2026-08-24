@@ -7,7 +7,7 @@ trigger_phrases:
   - "brat frozen release pin"
   - "brat update all frozen skip"
   - "brat beta theme install"
-  - "install beancount tables with brat"
+  - "install tables with brat"
   - "brat registration removal"
 importance_tier: "normal"
 contextType: "implementation"
@@ -260,36 +260,29 @@ For a theme, remove the matching object from `themesList` and leave `.obsidian/t
 
 ---
 
-## 7. INSTALL THE TWO SIBLING MODE PLUGINS THROUGH BRAT
+## 7. INSTALL THE SIBLING MODE PLUGIN THROUGH BRAT
 
-BRAT is the installer for the other two community plugins represented in this mode. Apply the same release-asset flow to each repository, then register the repository and activate the manifest ID separately.
+BRAT is the installer for the other BRAT-managed community plugin represented in this mode. Apply the release-asset flow to the repository, then register the repository and activate the manifest ID separately.
 
 | Plugin | BRAT repository path | Manifest ID | Stage target |
 |---|---|---|---|
-| Beancount Finance | `mkshp-dev/obsidian-finance-plugin` | `beancount-finance` | `.obsidian/plugins/beancount-finance/` |
 | Obsidian Tables | `aztekgold/obsidian-tables` | `tables` | `.obsidian/plugins/tables/` |
-
-### Beancount Finance
-
-Set `REPO=mkshp-dev/obsidian-finance-plugin`, select either `/releases/latest` or an exact `/releases/tags/<tag>` endpoint, and require `main.js`, `manifest.json`, and optional `styles.css`. Verify `manifest.id` is `beancount-finance`, stage the assets under `.obsidian/plugins/beancount-finance/`, upsert the repository in BRAT's two policy collections, and add `beancount-finance` to `.obsidian/community-plugins.json` when activation is requested. The mode-specific data contract is in [`beancount-finance/data-model.md`](../beancount-finance/data-model.md).
 
 ### Obsidian Tables
 
-Set `REPO=aztekgold/obsidian-tables`, use the same release endpoint and exact asset checks, and verify `manifest.id` is `tables`. Stage under `.obsidian/plugins/tables/`, register the repository in BRAT's `pluginList` and policy list, and add `tables` to `.obsidian/community-plugins.json` when activation is requested. The sibling workflow reference is [`obsidian-tables/workflows.md`](../obsidian-tables/workflows.md).
+Set `REPO=aztekgold/obsidian-tables`, use the release endpoint and exact asset checks, and verify `manifest.id` is `tables`. Stage under `.obsidian/plugins/tables/`, register the repository in BRAT's `pluginList` and policy list, and add `tables` to `.obsidian/community-plugins.json` when activation is requested. The sibling workflow reference is [`obsidian-tables/workflows.md`](../obsidian-tables/workflows.md).
 
-### Combined verification
+### Verification
 
 ```sh
 BRAT_DATA="/path/to/vault/.obsidian/plugins/obsidian42-brat/data.json"
 COMMUNITY="/path/to/vault/.obsidian/community-plugins.json"
-jq -e 'any(.pluginList[]; . == "mkshp-dev/obsidian-finance-plugin")' "$BRAT_DATA" >/dev/null
 jq -e 'any(.pluginList[]; . == "aztekgold/obsidian-tables")' "$BRAT_DATA" >/dev/null
-jq -e 'any(.[]; . == "beancount-finance") and any(.[]; . == "tables")' "$COMMUNITY" >/dev/null
-test -s "/path/to/vault/.obsidian/plugins/beancount-finance/main.js"
+jq -e 'any(.[]; . == "tables")' "$COMMUNITY" >/dev/null
 test -s "/path/to/vault/.obsidian/plugins/tables/main.js"
 ```
 
-This recipe is the file-layer bridge between BRAT's release installer and the two sibling plugin references. It does not modify their plugin files or their own references.
+This recipe is the file-layer bridge between BRAT's release installer and the sibling plugin reference. It does not modify its plugin files or its own reference.
 
 ---
 

@@ -8,7 +8,7 @@ version: 0.2.0.0
 
 > **EXECUTION POLICY:** Every scenario is executed against real commands, files, app state, or Code Mode tools. Valid statuses are `PASS`, `FAIL`, or `SKIP` with a specific prerequisite or sandbox blocker. `UNAUTOMATABLE` is not a valid status.
 
-This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for twelve community plugins plus the Obsidian theme system — Beancount Ledger (`beancount-finance`), Obsidian Tables (`obsidian-tables`), BRAT (`obsidian42-brat`), Health.md Visualizations (`health-md`), Iconic (`iconic`), Charts (`charts`), Dataview (`dataview`), Obsidian Git (`git`), Outliner (`outliner`), Notion Bases (`notion-bases`), Advanced Canvas (`advanced-canvas`), and Claudian (`realclaudian`), plus the Obsidian theme system (`references/themes/`).
+This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for eleven community plugins plus the Obsidian theme system — Obsidian Tables (`obsidian-tables`), BRAT (`obsidian42-brat`), Health.md Visualizations (`health-md`), Iconic (`iconic`), Charts (`charts`), Dataview (`dataview`), Obsidian Git (`git`), Outliner (`outliner`), Notion Bases (`notion-bases`), Advanced Canvas (`advanced-canvas`), and Claudian (`realclaudian`), plus the Obsidian theme system (`references/themes/`).
 
 The [feature catalog](../feature-catalog/FEATURE-CATALOG.md) is the current-behavior inventory. These scenario files own exact prompts, command sequences, expected signals, evidence, grading, and triage.
 
@@ -34,7 +34,7 @@ This package provides 21 deterministic scenarios across 6 categories:
 | Official app-backed CLI | `OBS-009..OBS-010` | Obsidian desktop v1.12.4+ and registered `obsidian` CLI |
 | MCP round-trip | `MCP-H001..MCP-H004` | Running Obsidian, Local REST API v4.0.0+, token, Code Mode manual |
 | MCP verification boundary | `MCP-M001..MCP-M002` | Same MCP prerequisites for live inventory; no-app boundary can be tested headlessly |
-| Community-plugin tie-ins | `OBS-011..OBS-025` | File-layer fixtures; app reload is required only for the render/activation check |
+| Community-plugin tie-ins | `OBS-012..OBS-025` | File-layer fixtures; app reload is required only for the render/activation check |
 
 The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the Local REST API + token setup, which may still be pending in an operator environment; those scenarios must be recorded as `SKIP` with that blocker rather than treated as an MCP failure.
 
@@ -57,9 +57,8 @@ The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the L
 5. Official CLI scenarios require Obsidian desktop v1.12.4+ with Settings → General → Command line interface → Register CLI completed. Exact app-action subcommands remain `VERIFY`.
 6. MCP scenarios require a running Obsidian app with the target vault open, Local REST API plugin v4.0.0+ enabled, a bearer token in `OBSIDIAN_API_KEY`, the correct `OBSIDIAN_BASE_URL` (default `http://127.0.0.1:27123`), and the `obsidian` Code Mode manual registered. Local REST API + token setup may be pending.
 7. `MCP-H004` deletes only the throwaway note created by `MCP-H001`. The operator must capture the exact path before execution.
-8. `OBS-011` uses a scratch `.beancount` ledger. The `bean-check` validator is optional; an explicit warning that it is unavailable is an acceptable signal.
-9. `OBS-012` uses a non-production vault and the Tables plugin; preserve the original `.table.md` asset and capture the app reload/render boundary.
-10. `OBS-013` uses a throwaway vault, `curl`, `jq`, a release fixture or GitHub access, and backups of BRAT `data.json` and `community-plugins.json`; close Obsidian before the file-layer writes.
+8. `OBS-012` uses a non-production vault and the Tables plugin; preserve the original `.table.md` asset and capture the app reload/render boundary.
+9. `OBS-013` uses a throwaway vault, `curl`, `jq`, a release fixture or GitHub access, and backups of BRAT `data.json` and `community-plugins.json`; close Obsidian before the file-layer writes.
 
 ---
 
@@ -145,7 +144,7 @@ Reserve one coordinator to own the vault fixture, evidence ledger, and final ver
 | 4 | `OBS-009..OBS-010` | Live Obsidian desktop app; capture visible app state |
 | 5 | `MCP-M001..MCP-M002` | Live app/token inventory, plus the no-app fallback boundary |
 | 6 | `MCP-H001..MCP-H004` | Live app and throwaway note; delete last |
-| 7 | `OBS-011..OBS-013` | Scratch ledger/table and throwaway BRAT fixture; reload only after file-layer evidence |
+| 7 | `OBS-012..OBS-013` | Scratch table and throwaway BRAT fixture; reload only after file-layer evidence |
 
 After each wave, save the transcript and evidence path, then reconcile the root index with the executed scenario files. Run the destructive MCP delete only after the round-trip evidence identifies the disposable note.
 
@@ -229,22 +228,7 @@ Every scenario in this category needs a running Obsidian app with the target vau
 
 ---
 
-## 12. COMMUNITY-PLUGIN FILE-LAYER TIE-INS (`OBS-011..OBS-025`)
-
-### OBS-011 | Beancount file-layer transaction
-
-#### Description
-
-Verify a balanced transaction can be appended to a scratch `.beancount` ledger and validated without driving the plugin UI.
-
-#### Scenario Contract
-
-Prompt: `Append a balanced grocery transaction to a scratch Beancount ledger and report whether the ledger validates.`
-
-#### Test Execution
-
-> **Feature File:** [`plugin-tie-ins/beancount-transaction.md`](plugin-tie-ins/beancount-transaction.md)
-> **Catalog:** [`../feature-catalog/plugins/beancount-finance.md`](../feature-catalog/plugins/beancount-finance.md) — the scenario links to the canonical beancount-finance plugin reference.
+## 12. COMMUNITY-PLUGIN FILE-LAYER TIE-INS (`OBS-012..OBS-025`)
 
 ### OBS-012 | Obsidian Tables file-layer round-trip
 
@@ -429,7 +413,6 @@ The current mode package has no dedicated automated test suite for these externa
 | Anchor | Coverage | Playbook overlap |
 |---|---|---|
 | [`../examples/headless-notes-workflow.sh`](../examples/headless-notes-workflow.sh) | Headless vault preflight, search, create, and read-back | `OBS-001`, `OBS-003`, `OBS-004` |
-| [`../examples/beancount-transaction.sh`](../examples/beancount-transaction.sh) | Balanced file-layer transaction and optional `bean-check` | `OBS-011` |
 | [`../references/plugins/obsidian-tables/workflows.md`](../references/plugins/obsidian-tables/workflows.md) | `.table.md` create/edit, parse, and reload contract | `OBS-012` |
 | [`../references/plugins/obsidian42-brat/workflows.md`](../references/plugins/obsidian42-brat/workflows.md) | Stage, register, activate, and verify beta-plugin files | `OBS-013` |
 | [`../examples/mcp-roundtrip.sh`](../examples/mcp-roundtrip.sh) | MCP prerequisite probe and Code Mode round-trip reference | `MCP-H001`, `MCP-M002` |
@@ -457,7 +440,6 @@ The current mode package has no dedicated automated test suite for these externa
 | `MCP-H004` | Delete throwaway note | [`delete-note`](../feature-catalog/mcp/delete-note.md) |
 | `MCP-M001` | Tool inventory | [`additional-tools-verify`](../feature-catalog/mcp/additional-tools-verify.md) |
 | `MCP-M002` | App/token boundary | [`additional-tools-verify`](../feature-catalog/mcp/additional-tools-verify.md) |
-| `OBS-011` | Beancount file-layer transaction | Dedicated plugin reference in [`beancount-transaction.md`](plugin-tie-ins/beancount-transaction.md) |
 | `OBS-012` | Obsidian Tables file-layer round-trip | Dedicated plugin reference in [`obsidian-tables-roundtrip.md`](plugin-tie-ins/obsidian-tables-roundtrip.md) |
 | `OBS-013` | BRAT headless beta-plugin install | Dedicated plugin reference in [`brat-headless-install.md`](plugin-tie-ins/brat-headless-install.md) |
 | `OBS-014` | Health.md file-layer data + render blocks | Dedicated plugin reference in [`health-md-data.md`](plugin-tie-ins/health-md-data.md) |

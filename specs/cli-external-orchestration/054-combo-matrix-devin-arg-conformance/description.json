@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/054-combo-matrix-devin-arg-conformance",
+  "description": "`fanout-run.cjs` unconditionally appends `--respect-workspace-trust false` to the `cli-devin` dispatch command (the packet-046 devin-CLI repair:",
+  "keywords": [
+    "fanout-run",
+    "cjs",
+    "unconditionally",
+    "appends",
+    "respect-workspace-trust",
+    "false",
+    "cli-devin",
+    "dispatch",
+    "command",
+    "packet-046",
+    "devin-cli",
+    "repair"
+  ],
+  "lastUpdated": "2026-08-24T13:40:15.059Z",
+  "specId": "054",
+  "folderSlug": "combo-matrix-devin-arg-conformance",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

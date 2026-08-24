@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 makemd support beancount removal",
+      "mcp-obsidian make-md plugin support",
+      "mcp-obsidian remove beancount finance",
+      "PLUGIN_MAKEMD router intent",
+      "phase 012 makemd beancount",
+      "015 makemd beancount plan",
+      "mcp-obsidian make-md support plan",
+      "PLUGIN_MAKEMD wiring plan",
+      "phase 012 plan",
+      "015 makemd beancount tasks",
+      "mcp-obsidian make-md support tasks",
+      "PLUGIN_MAKEMD wiring tasks"
+    ],
+    "key_topics": [
+      "makemd",
+      "support",
+      "beancount",
+      "removal",
+      "mcp-obsidian",
+      "make-md",
+      "plugin",
+      "remove",
+      "finance",
+      "router",
+      "intent",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Retire Beancount",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-obsidian skill still documented Beancount Finance as a supported plugin after its double-entry paradigm was dropped from the vault's finance workflow, and the plugin is `isDesktopOnly` so it cannot serve the mobile use case the skill targets",
+    "created_at": "2026-08-23T17:58:57.913Z",
+    "last_save_at": "2026-08-23T17:58:57.913Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:11c0626d7801478628042c9168dfd4e4f17d9b9012d38a34076cb083c55713ab",
+    "source_doc_hashes": {
+      "spec.md": "0e8952feeb105f8ed95ed64e59692481d93d427a1f556692ca99a16b3e6fb278",
+      "plan.md": "61e07f54b413906cdd2f40ec76a45a370e2401eafd36beb18b7d9837c87440e7",
+      "tasks.md": "2e6584aa97827f5a0b45809089d801b52e9d97ae2a5b3089ea4c5d286d46f231",
+      "implementation-summary.md": "583d3b9ece8f0e60a51b329cd0a2e50b1bdb2955c8ba44310a01b5ffce639df9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

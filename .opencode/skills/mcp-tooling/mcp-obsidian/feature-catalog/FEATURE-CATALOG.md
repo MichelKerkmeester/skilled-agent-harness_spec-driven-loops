@@ -198,13 +198,7 @@ See [`mcp/additional-tools-verify.md`](mcp/additional-tools-verify.md).
 
 ## 14. PLUGINS
 
-The plugin category records file-layer operations for the fourteen artifacts narrated below: Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Meta Bind, Advanced Canvas, Claudian, Notion Bases, and the Obsidian theme system. Each card points to the slim index, deep references, copyable assets where they exist, and (where one exists) its manual tie-in scenario. Beyond this narrated set, the router carries a dedicated reference for Local REST API — the MCP transport backbone rather than a file-layer authoring target, so it has no catalog card; see `references/plugins/installed-plugins.md` for the full roster. The theme system's references live outside the plugin tree under `references/themes/`.
-
-### Beancount Ledger
-
-Append, query, price, and validate the `beancount-finance` plugin's structured Beancount files.
-
-See [`plugins/beancount-finance.md`](plugins/beancount-finance.md).
+The plugin category records file-layer operations for the fourteen artifacts narrated below: Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Meta Bind, Advanced Canvas, Claudian, Notion Bases, Make.md, and the Obsidian theme system. Each card points to the slim index, deep references, copyable assets where they exist, and (where one exists) its manual tie-in scenario. Beyond this narrated set, the router carries a dedicated reference for Local REST API — the MCP transport backbone rather than a file-layer authoring target, so it has no catalog card; see `references/plugins/installed-plugins.md` for the full roster. The theme system's references live outside the plugin tree under `references/themes/`.
 
 ### Obsidian Tables
 
@@ -277,6 +271,12 @@ See [`plugins/claudian.md`](plugins/claudian.md).
 Author and validate `_database.md` schemas — two-way relations, the seven rollup functions, lookup columns, self-relation subtasks, and the seven supported view types — resolving relations and rollups by hand from the real related rows.
 
 See [`plugins/notion-bases.md`](plugins/notion-bases.md).
+
+### Make.md
+
+Operate Make.md Spaces and Contexts — table, board, gallery, calendar, and chart views with relations and formulas — as a Notion-like workspace layer, noting that its configuration is UI-driven rather than fully file-scriptable.
+
+See [`plugins/make-md.md`](plugins/make-md.md).
 
 ### Obsidian theme system
 

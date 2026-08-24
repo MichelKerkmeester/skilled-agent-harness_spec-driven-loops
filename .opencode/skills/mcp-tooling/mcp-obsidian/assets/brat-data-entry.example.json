@@ -1,14 +1,9 @@
 {
   "schemaVersion": 1,
   "pluginList": [
-    "mkshp-dev/obsidian-finance-plugin",
     "aztekgold/obsidian-tables"
   ],
   "pluginSubListFrozenVersion": [
-    {
-      "repo": "mkshp-dev/obsidian-finance-plugin",
-      "version": "2.3.1"
-    },
     {
       "repo": "aztekgold/obsidian-tables",
       "version": "latest"
