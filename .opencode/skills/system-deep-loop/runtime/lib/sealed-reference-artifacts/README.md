@@ -30,7 +30,6 @@ Gives replay and parity comparisons something stable to bind to. An artifact suc
 ## 3. CONSUMERS
 
 - The per-mode `*-sealed-artifacts` modules (artifact material, sets and types)
-- `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/`
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
 
 ---

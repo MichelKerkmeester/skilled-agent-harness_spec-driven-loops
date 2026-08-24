@@ -23,12 +23,10 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `blinded-adjudication/` | Reviewer-blind adjudication comparing a baseline judgment with a policy-linked intervention without exposing candidate identity. |
 | `branch-leases-waves/` | Durable fan-out admission, fenced branch ownership and immutable wave compilation for parallel branch execution. |
 | `claim-continuity/` | Tracks claim identity across loop iterations by matching, folding and replaying claim events into a disposable frontier projection. |
-| `compatibility-shadow/` | Dual-read comparison and versioned upcasting so legacy and dark stores can be evaluated side by side without changing legacy reads. |
 | `conditional-fanin/` | Decides when a fan-out wave has enough branch results to proceed and plans continuation for the branches left outstanding. |
 | `contradiction-supersession/` | Isolated shadow ledger recording contradiction and supersession between claims, with an audited replay-verified status projection. |
 | `council/` | Multi-seat dispatch, adjudicator-verdict stability and cost guards for the deep-ai-council mode. |
 | `coverage-graph/` | Schema, queries and Bayesian signals for deep-loop convergence detection. |
-| `cross-mode-closures/` | Five shared-implementation closures with a manifest-complete catalog mapping them to every deep-loop mode ID, designed to replace per-mode reimplementation of shared mechanics. No mode packet invokes them yet outside the domain's own unit test. |
 | `cycle-detection/` | Detects unproductive repetition across iterations by comparing bounded state-signature history against a versioned policy. |
 | `deep-loop/` | Atomic state, loop locking, JSONL repair and executor config for the deep-loop runtime backend. |
 | `dispatch-receipts/` | Records a durable integrity-checked receipt before a dispatch crosses the process-spawn boundary, so a resumed session recognizes an already-launched run. |

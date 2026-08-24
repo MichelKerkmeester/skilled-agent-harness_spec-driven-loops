@@ -30,7 +30,6 @@ Turns a stream of ledger events into a deterministic, replay-verifiable metric. 
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/transactional-projections/` (bundle registry and engine)
-- `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/`
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
 
 ---

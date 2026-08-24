@@ -37,7 +37,6 @@ Runtime primitives that stop two concurrent `system-deep-loop` processes from wr
 - `.opencode/skills/system-deep-loop/runtime/lib/transactional-projections/`
 - `.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/`
-- `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/`
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
 
 ---

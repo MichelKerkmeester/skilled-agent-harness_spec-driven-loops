@@ -36,7 +36,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `cli-guards-writer-lock.vitest.ts` | Executable checks for the cli guards writer lock runtime contract. |
 | `cli-matrix.vitest.ts` | Executable checks for the cli matrix runtime contract. |
 | `combo-matrix.vitest.ts` | Executable checks for the combo matrix runtime contract. |
-| `compatibility-shadow-adapters.vitest.ts` | Executable checks for the compatibility shadow adapters runtime contract. |
 | `compile-command-contracts.vitest.ts` | Executable checks for the compile command contracts runtime contract. |
 | `conditional-fanin.vitest.ts` | Executable checks for the conditional fanin runtime contract. |
 | `continuity-identities.vitest.ts` | Executable checks for the continuity identities runtime contract. |
@@ -47,7 +46,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `coverage-graph-db.vitest.ts` | Executable checks for the coverage graph db runtime contract. |
 | `coverage-graph-query.vitest.ts` | Executable checks for the coverage graph query runtime contract. |
 | `coverage-graph-signals.vitest.ts` | Executable checks for the coverage graph signals runtime contract. |
-| `cross-mode-closures.vitest.ts` | Executable checks for the cross mode closures runtime contract. |
 | `cycle-detection.vitest.ts` | Executable checks for the cycle detection runtime contract. |
 | `deep-ai-council-ledger-schema.vitest.ts` | Executable checks for the deep ai council ledger schema runtime contract. |
 | `deep-ai-council-reducers.vitest.ts` | Executable checks for the deep ai council reducers runtime contract. |

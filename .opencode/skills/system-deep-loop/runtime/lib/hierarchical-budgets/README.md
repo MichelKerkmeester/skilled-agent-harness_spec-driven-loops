@@ -30,7 +30,6 @@ Runtime primitives for `system-deep-loop` that reserve, settle, release and canc
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/voc-allocation/`
-- `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/`
 - `.opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/`
 - `.opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/`
 - `.opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/`

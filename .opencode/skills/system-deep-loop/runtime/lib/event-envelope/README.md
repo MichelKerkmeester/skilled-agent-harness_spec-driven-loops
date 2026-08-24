@@ -28,7 +28,7 @@ Base substrate for the `system-deep-loop` runtime library. Every other `runtime/
 
 ## 3. CONSUMERS
 
-Every other `runtime/lib/` domain builds on this module for canonical bytes, envelope validation and the schema registry. Direct import sites include `authorized-ledger`, `blinded-adjudication`, `branch-leases-waves`, `claim-continuity`, `compatibility-shadow`, `conditional-fanin`, `contradiction-supersession`, `cross-mode-closures`, `cycle-detection`, `deep-loop/continuity-identity` and `dispatch-receipts`.
+Every other `runtime/lib/` domain builds on this module for canonical bytes, envelope validation and the schema registry. Direct import sites include `authorized-ledger`, `blinded-adjudication`, `branch-leases-waves`, `claim-continuity`, `conditional-fanin`, `contradiction-supersession`, `cycle-detection`, `deep-loop/continuity-identity` and `dispatch-receipts`.
 
 ---
 
