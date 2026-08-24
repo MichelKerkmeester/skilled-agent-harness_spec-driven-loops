@@ -69,7 +69,10 @@ function writeAuthority(authRoot: string, state: string): void {
     mode: MODE,
     state,
     epoch: 1,
-    selectedWriter: state === 'new_authoritative_reversible' ? 'dark' : 'legacy',
+    selectedWriter:
+      state === 'new_authoritative_reversible' || state === 'new_authoritative_final'
+        ? 'dark'
+        : 'legacy',
     candidateSha: null,
     policyVersion: 0,
     cutoverCertificateDigest: null,
@@ -182,6 +185,19 @@ describe('check-direct-append CLI', () => {
     const r = run(fx);
     expect(r.exit).toBe(0);
     expect(r.j.status).toBe('not-enforced');
+  });
+
+  it('still enforces once the legacy shadow writer is dropped at finalize', () => {
+    // Finalize routes every canonical write to the ledger and drops the legacy
+    // shadow entirely, so an out-of-band append to the legacy file is a real
+    // finding under the final state — the guard must not fall inert here.
+    const fx = freshFixture();
+    publish(fx.legacyFile, fx.watermarkFile, '{"iteration":1}\n');
+    writeAuthority(fx.authRoot, 'new_authoritative_final');
+    appendFileSync(fx.legacyFile, '{"iteration":2,"injected":"direct append"}\n');
+    const r = run(fx);
+    expect(r.exit).toBe(2);
+    expect(r.j.status).toBe('violation');
   });
 
   it('treats a missing watermark as a violation', () => {

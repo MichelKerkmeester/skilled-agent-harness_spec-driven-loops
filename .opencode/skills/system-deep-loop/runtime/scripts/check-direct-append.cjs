@@ -154,8 +154,15 @@ async function main() {
   // The guard is inert before authority moves to the ledger. While the mode is on
   // legacy authority the direct writer is the sanctioned one, so a divergence here
   // is expected rather than a violation. Flagging it would be a false alarm that
-  // trains people to ignore the guard.
-  if (record.state !== 'new_authoritative_reversible') {
+  // trains people to ignore the guard. Both ledger authority states enforce: the
+  // reversible state runs the legacy file as a shadow projection, and the final
+  // state drops the legacy shadow writer entirely, so an out-of-band append under
+  // either is a real finding — the final state most of all, since nothing else is
+  // meant to be touching that file.
+  const onLedgerAuthority =
+    record.state === 'new_authoritative_reversible'
+    || record.state === 'new_authoritative_final';
+  if (!onLedgerAuthority) {
     jsonOut({
       ok: true,
       status: 'not-enforced',
