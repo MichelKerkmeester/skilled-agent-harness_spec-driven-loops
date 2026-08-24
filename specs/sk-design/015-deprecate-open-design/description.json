@@ -1,18 +1,23 @@
 {
   "level": "3",
   "specFolder": "sk-design/015-deprecate-open-design",
-  "description": "Deprecate sk-design mcp-open-design transport skill and remove all live references",
+  "description": "The Open Design transport (`sk-design-mcp-open-design` skill + `opendesign` MCP server registration in `.utcpconfig.json` + `od` CLI wiring) is being",
   "keywords": [
-    "deprecate",
-    "sk-design",
-    "mcp-open-design",
+    "open",
+    "design",
     "transport",
+    "sk-design-mcp-open-design",
     "skill",
-    "remove",
-    "live",
-    "references"
+    "opendesign",
+    "mcp",
+    "server",
+    "registration",
+    "utcpconfig",
+    "json",
+    "cli",
+    "wiring"
   ],
-  "lastUpdated": "2026-08-10T14:10:19.771Z",
+  "lastUpdated": "2026-08-15T14:40:58.381Z",
   "specId": "015",
   "folderSlug": "deprecate-open-design",
   "parentChain": [

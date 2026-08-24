@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/014-template-conformance/005-design-mcp-open-design",
   "description": "The Open Design MCP transport packet (`design-mcp-open-design/`) has not been audited against the create-skill template family",
   "keywords": [
@@ -14,7 +15,7 @@
     "template",
     "family"
   ],
-  "lastUpdated": "2026-07-27T15:02:49.627Z",
+  "lastUpdated": "2026-08-15T14:40:58.317Z",
   "specId": "005",
   "folderSlug": "design-mcp-open-design",
   "parentChain": [
@@ -22,6 +23,5 @@
     "014-template-conformance"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement",
-  "description": "Phase parent: revisit every skill README in the repo (standalone and child modes) on the mcp-obsidian standard, after refining the shared README templ",
+  "description": "Phase parent: revisit every skill README in the repo (standalone and child modes) on the mcp-obsidian standard, after refining the shared README",
   "keywords": [
     "phase",
     "parent",
@@ -16,13 +16,9 @@
     "mcp-obsidian",
     "standard",
     "refining",
-    "shared",
-    "template",
-    "parent-skill",
-    "creation",
-    "workflow"
+    "shared"
   ],
-  "lastUpdated": "2026-08-05T08:06:03.554Z",
+  "lastUpdated": "2026-08-15T14:41:01.756Z",
   "specId": "026",
   "folderSlug": "skill-readme-refinement",
   "parentChain": [

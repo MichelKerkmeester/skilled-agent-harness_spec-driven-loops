@@ -44,8 +44,8 @@ This reference documents the runtime-hook entrypoint pattern for OpenCode-family
 | Claude settings | `.claude/settings.json` | Live checked-in Claude hook wiring |
 | Cursor hooks | `.cursor/hooks.json` | Live checked-in Cursor CLI/editor hook wiring |
 | Cursor hook contract | `.opencode/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md` | Cursor-specific hook schema, discovery order, and event-delivery caveats |
-| OpenCode skill-advisor plugin | `.opencode/plugins/mk-skill-advisor.js` | OpenCode prompt-time advisor plugin using `experimental.chat.system.transform` |
-| OpenCode skill-advisor bridge | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | Subprocess bridge from plugin to the advisor server |
+| OpenCode skill-advisor plugin | `.opencode/plugins/system-skill-advisor.js` | OpenCode prompt-time advisor plugin using `experimental.chat.system.transform` |
+| OpenCode skill-advisor bridge | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Subprocess bridge from plugin to the advisor server |
 
 ---
 
@@ -118,7 +118,7 @@ Cursor CLI hook wiring is checked in at `.cursor/hooks.json` (project scope). Un
 | Event | Matcher | Command | Timeout | Purpose |
 |---|---|---:|---:|---|
 | `sessionStart` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-start.js` | 10 | Startup context priming (proxies to `session-prime.js`). |
-| `sessionStart` | none | `node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.mjs` | 10 | Validates `MK_SPEC_FOLDER` or opens explicitly enabled Gate-3 state for an identifiable top-level session. |
+| `sessionStart` | none | `node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.mjs` | 10 | Validates `SYSTEM_SPEC_FOLDER` or opens explicitly enabled Gate-3 state for an identifiable top-level session. |
 | `sessionStart` | none | `bash .opencode/bin/worktree-guard.sh` | 10 | Workspace safety guard. |
 | `sessionStart` | none | `bash .opencode/bin/check-git-hooks.sh` | 10 | Git-hooks-installed guard. |
 | `sessionStart` | none | `python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all` | 10 | Dist-staleness warning across every watched package. |
@@ -157,7 +157,7 @@ The flat shape (`hooks.<event>[]`, each entry optionally carrying `matcher`) is 
 
 ### Startup Prebinding Boundary
 
-`spec-gate-prebind.mjs` compensates only for Cursor CLI's missing prompt-classification delivery. It writes no state for disabled sessions, dispatched children, malformed input, or missing session identity; enforcement remains off unless `MK_SPEC_GATE_ENFORCE=1` is explicitly present.
+`spec-gate-prebind.mjs` compensates only for Cursor CLI's missing prompt-classification delivery. It writes no state for disabled sessions, dispatched children, malformed input, or missing session identity; enforcement remains off unless `SYSTEM_SPEC_GATE_ENFORCE=1` is explicitly present.
 
 ### MCP Config And The Split-Shape Caveat
 
@@ -177,12 +177,12 @@ The removed `system-spec-kit/mcp-server/hooks/opencode/` suite is not present in
 
 | Component | Path | Runtime surface |
 |---|---|---|
-| Skill advisor plugin | `.opencode/plugins/mk-skill-advisor.js` | Exposes `experimental.chat.system.transform`, an `event` handler, and `spec_kit_skill_advisor_status`. |
-| Skill advisor bridge | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | Subprocess bridge from the plugin to `mk_skill_advisor`; stdin JSON in, single stdout JSON response out. |
+| Skill advisor plugin | `.opencode/plugins/system-skill-advisor.js` | Exposes `experimental.chat.system.transform`, an `event` handler, and `spec_kit_skill_advisor_status`. |
+| Skill advisor bridge | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Subprocess bridge from the plugin to `system_skill_advisor`; stdin JSON in, single stdout JSON response out. |
 
-`system-spec-kit/mcp-server/hooks/README.md` is explicit: OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not by a subfolder in that directory. `hook-system.md` also describes OpenCode plugin-based transport through `.opencode/plugins/mk-skill-advisor.js`, `.opencode/plugins/mk-spec-memory.js`, `.opencode/plugins/mk-code-graph.js`, and `.opencode/plugins/mk-goal.js`.
+`system-spec-kit/mcp-server/hooks/README.md` is explicit: OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not by a subfolder in that directory. `hook-system.md` also describes OpenCode plugin-based transport through `.opencode/plugins/system-skill-advisor.js`, `.opencode/plugins/system-spec-memory.js`, and `.opencode/plugins/opencode-goal.js`.
 
-Deprecated/stale references to `system-spec-kit/mcp-server/hooks/opencode/*` should be treated as legacy documentation until the authoritative hook contract names a new migration path. The current advisor bridge path is `system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`.
+Deprecated/stale references to `system-spec-kit/mcp-server/hooks/opencode/*` should be treated as legacy documentation until the authoritative hook contract names a new migration path. The current advisor bridge path is `system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`.
 
 ---
 
@@ -246,7 +246,7 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 - Current helper inventory: `system-spec-kit/mcp-server/hooks/README.md`
 - Current hook contract: `system-spec-kit/references/config/hook-system.md`
 - Live Claude wiring: `.claude/settings.json`
-- OpenCode advisor plugin bridge: `.opencode/plugins/mk-skill-advisor.js` -> `system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`
+- OpenCode advisor plugin bridge: `.opencode/plugins/system-skill-advisor.js` -> `system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`
 
 ### Runtime-Specific Deep-Dives (do not duplicate)
 

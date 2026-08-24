@@ -24,7 +24,7 @@ A conformance audit is a read operation. The default surface is built so that fi
 
 ## 2. HOW IT WORKS
 
-The default surface exposes no `Write`/`Edit`. `SKILL.md`'s `allowed-tools` list carries `Task` and `Bash`, but its own header note states they are reserved for the gated, opt-in remediation pass, not the default read-only surface — and that loop-owned state writes route through shared runtime scripts into the bound `alignment/` directory, never as direct edits to an audited artifact. There is no `WebFetch`: alignment checks local artifacts against local authority standards, so no network read is needed either. Every adapter reinforces this at the tool level — sk-code explicitly excludes the tree-mutating `minify-webflow.mjs` from `check()`, and sk-design never invokes the rendering/extraction pipeline — so even the deterministic tooling the loop runs is chosen to be non-mutating.
+The default surface exposes no `Write`/`Edit`. `SKILL.md`'s `allowed-tools` list carries `Task` and `Bash`, but its own header note states they are reserved for the gated, opt-in remediation pass, not the default read-only surface — and that loop-owned state writes route through shared runtime scripts into the bound `alignment/` directory, never as direct edits to an audited artifact. There is no `WebFetch`: alignment checks local artifacts against local authority standards, so no network read is needed either. Every adapter reinforces this at the tool level — sk-code explicitly excludes the tree-mutating `minify-webflow.mjs` from `check()` — so even the deterministic tooling the loop runs is chosen to be non-mutating.
 
 The `alignment/` state files the loop does write (config, corpus, state log, registry, report) are its own bookkeeping under the bound spec folder, distinct from the audited artifacts; the config's `fileProtection` map records each as `immutable`, `auto-generated`, `append-only`, or `operator-controlled` to keep that separation explicit.
 
@@ -40,7 +40,6 @@ The `alignment/` state files the loop does write (config, corpus, state log, reg
 |---|---|---|
 | `SKILL.md` | Skill contract | The `allowed-tools` list, the read-only header note, §2 invariant 3, and the NEVER "modify an audited artifact during the default read-only loop" rule. |
 | `scripts/adapters/sk-code.cjs` | Adapter | `standardSource()`'s `excludedFromCheck` record keeps the tree-mutating minifier out of `check()`. |
-| `scripts/adapters/sk-design.cjs` | Adapter | Reads DESIGN.md/tokens.json only; never renders or runs the extraction pipeline (NFR-S01). |
 | `assets/deep-alignment-config-template.json` | Template | The `fileProtection` map separating loop-owned state files from audited artifacts. |
 
 ### Validation And Tests

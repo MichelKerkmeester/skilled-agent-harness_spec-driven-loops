@@ -53,8 +53,8 @@ Required files:
 | `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts` | `advisor_validate` handler (must surface `thresholdSemantics` + telemetry totals) |
 | `.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts` | Shared `renderAdvisorBrief(...)` invariants |
 | `.opencode/skills/system-skill-advisor/mcp-server/lib/metrics.ts` | Durable JSONL diagnostics sink + metric labels |
-| `.opencode/plugins/mk-skill-advisor.js` | OpenCode plugin |
-| `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | OpenCode plugin-helper bridge entrypoint |
+| `.opencode/plugins/system-skill-advisor.js` | OpenCode plugin |
+| `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | OpenCode plugin-helper bridge entrypoint |
 
 ---
 
@@ -115,7 +115,7 @@ Goal: confirm the plugin-helper bridge path is wired and routes through the shar
 
 ```bash
 node --input-type=module -e "
-  import('./.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs').then(async mod => {
+  import('./.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs').then(async mod => {
     const res = await mod.default({ prompt: 'implement a TypeScript hook', cwd: process.cwd() });
     console.log(JSON.stringify(res, null, 2));
   });
@@ -181,8 +181,8 @@ Confirm no runtime or plugin still routes through a bespoke formatter or a non-s
 ```bash
 rg -n "renderAdvisorBrief|effectiveThresholds|thresholdSemantics|workspaceRoot" \
   .opencode/skills/system-skill-advisor/mcp-server \
-  .opencode/plugins/mk-skill-advisor.js \
-  .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs \
+  .opencode/plugins/system-skill-advisor.js \
+  .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs \
   .opencode/skills/system-spec-kit/mcp-server/hooks
 
 rg -n "formatAdvisorBrief|legacyAdvisorRender|custom formatter" \

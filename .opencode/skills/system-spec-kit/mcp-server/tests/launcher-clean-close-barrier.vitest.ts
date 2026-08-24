@@ -3,7 +3,7 @@ import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
-const LAUNCHER = require.resolve('../../../../bin/mk-spec-memory-launcher.cjs');
+const LAUNCHER = require.resolve('../../../../bin/system-spec-memory-launcher.cjs');
 const launcher = require(LAUNCHER);
 const { cleanCloseAfterReap, uncleanShutdownMarkerPath, resolvedDbDir } = launcher;
 

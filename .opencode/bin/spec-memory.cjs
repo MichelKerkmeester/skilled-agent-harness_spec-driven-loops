@@ -2,7 +2,7 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: Spec Memory CLI Shim                                          ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Runs the built daemon-backed mk-spec-memory CLI.                ║
+// ║ PURPOSE: Runs the built daemon-backed system-spec-memory CLI.                ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -22,7 +22,7 @@ const opencodeDir = path.resolve(__dirname, '..');
 const mcpServerDir = path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp-server');
 const cliDist = path.join(mcpServerDir, 'dist', 'spec-memory-cli.js');
 const { checkPackageFreshness } = require(path.join(opencodeDir, 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs'));
-const defaultSocketDir = '/tmp/mk-spec-memory';
+const defaultSocketDir = '/tmp/system-spec-memory';
 const socketFileName = 'daemon-ipc.sock';
 const allowStale = process.env.SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE === '1';
 const EXIT_PROTOCOL = 69;

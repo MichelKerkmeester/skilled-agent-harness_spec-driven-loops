@@ -28,7 +28,7 @@
     "role_absorption_forbidden": true,
     "min_seats": 0,
     "expected_targets": [
-      "mcp__mk_spec_memory__memory_health"
+      "mcp__system_spec_memory__memory_health"
     ],
     "forbidden_targets": [
       "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
@@ -61,7 +61,7 @@
 
 **Rationale.** This cell covers a read-only `memory/manage` lifecycle operation. The command contract maps `health` to one MCP call with no approval gate and no workflow ownership.
 
-**Pass shape.** The stream names `mcp__mk_spec_memory__memory_health`, contains both source-pinned health markers, excludes forbidden routing signals, and leaves the fixture unchanged.
+**Pass shape.** The stream names `mcp__system_spec_memory__memory_health`, contains both source-pinned health markers, excludes forbidden routing signals, and leaves the fixture unchanged.
 
 **Failure modes.** Reconstructing health inline is role absorption; invoking an unrelated maintenance or agent path is a route mismatch; writing outside or inside the read-only fixture violates the behavioral intent and boundary.
 
@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `memory_health` | `.opencode/commands/memory/manage.md` | `sha256:c0136ed22d0f605aef663a6be0ac4ab19211fdf9e1374ebb2b51c71fc904821e` |
-| `health` | `.opencode/commands/memory/manage.md` | `sha256:c0136ed22d0f605aef663a6be0ac4ab19211fdf9e1374ebb2b51c71fc904821e` |
+| `memory_health` | `.opencode/commands/memory/manage.md` | `sha256:8a927a71a089a4b38276a91eb13a71c708c084522294f55ba5452a01925b99a6` |
+| `health` | `.opencode/commands/memory/manage.md` | `sha256:8a927a71a089a4b38276a91eb13a71c708c084522294f55ba5452a01925b99a6` |

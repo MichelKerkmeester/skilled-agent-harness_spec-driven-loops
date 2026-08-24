@@ -21,9 +21,9 @@ version: 1.0.0.1
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Auditing whether docs, code, designs or git history follow a *named authority's* own creation standards (sk-doc, sk-git, sk-design, sk-code): conformance, not general correctness |
+| **Use it for** | Auditing whether docs, code or git history follow a *named authority's* own creation standards (sk-doc, sk-git, sk-code): conformance, not general correctness |
 | **Invoke with** | `/deep:alignment :auto "target"` / `:confirm` (built and registered, with a full live run as the remaining acceptance step), supplying lanes via `--lane-config <file.json>` or the interactive three-axis scoping question. The engine scripts are also runnable directly. Keyword triggers include "deep alignment", "alignment lane" and "conformance review" |
-| **Works on** | Four artifact classes across four registered authorities: `docs` (sk-doc), `code` (sk-code), `designs` (sk-design) and `git-history` (sk-git), one or many in a single run |
+| **Works on** | Three artifact classes across three registered authorities: `docs` (sk-doc), `code` (sk-code) and `git-history` (sk-git), one or many in a single run |
 | **Produces** | One `alignment-report.md` with a dedicated section per lane plus a `deep-alignment-findings-registry.json`, both under `{spec_folder}/alignment/`, every finding carrying a P0/P1/P2 severity and a per-lane and overall verdict (PASS, CONDITIONAL, FAIL or NOT_APPLICABLE) |
 
 ---
@@ -131,11 +131,11 @@ An alignment lane is a `(authority, artifact-class, scope)` tuple. One run resol
 
 | Axis | Values | Notes |
 |---|---|---|
-| **ARTIFACT-CLASS** | `docs`, `code`, `designs`, `git-history` | Asked first. It narrows which authorities are offered next |
-| **AUTHORITY** | `sk-doc` (docs), `sk-git` (git-history), `sk-design` (designs), `sk-code` (code) | Registered in `scripts/scoping.cjs`, extensible per authority-governance |
+| **ARTIFACT-CLASS** | `docs`, `code`, `git-history` | Asked first. It narrows which authorities are offered next |
+| **AUTHORITY** | `sk-doc` (docs), `sk-git` (git-history), `sk-code` (code) | Registered in `scripts/scoping.cjs`, extensible per authority-governance |
 | **SCOPE** | `{type:"paths", values:[...]}`, `{type:"globs", values:[...]}`, `{type:"branchRange", from, to}` | `paths`/`globs` are validated against the repo root before any adapter sees them |
 
-One walk, meaning one artifact-class, one multi-selected authority set valid for that class and one scope, expands to one lane per selected authority. Auditing `sk-code`, `sk-git` and `sk-design` in one pass is three walks (`code`/`sk-code`, `git-history`/`sk-git`, `designs`/`sk-design`), each contributing one lane, all in one session. It is not a full cross-product. Only the combinations the operator names become lanes.
+One walk, meaning one artifact-class, one multi-selected authority set valid for that class and one scope, expands to one lane per selected authority. Auditing `sk-code`, `sk-git` and `sk-doc` in one pass is three walks (`code`/`sk-code`, `git-history`/`sk-git`, `docs`/`sk-doc`), each contributing one lane, all in one session. It is not a full cross-product. Only the combinations the operator names become lanes.
 
 Both the interactive path and the `--lane-config` file resolve to the exact same lane-tuple shape through the same `validateLane()` choke point, so a config lane and an interactively-answered lane are indistinguishable once resolved.
 
@@ -148,8 +148,7 @@ A `--lane-config` file is a bare JSON array of lane objects:
 ```json
 [
   { "authority": "sk-code", "artifactClass": "code", "scope": { "type": "globs", "values": ["src/**/*.ts"] } },
-  { "authority": "sk-git", "artifactClass": "git-history", "scope": { "type": "branchRange", "from": "main", "to": "HEAD" } },
-  { "authority": "sk-design", "artifactClass": "designs", "scope": { "type": "paths", "values": ["DESIGN.md"] } }
+  { "authority": "sk-git", "artifactClass": "git-history", "scope": { "type": "branchRange", "from": "main", "to": "HEAD" } }
 ]
 ```
 
@@ -165,7 +164,7 @@ Never hand-roll a bash or shell dispatcher to parallelize lanes, invoke a CLI ex
 
 ### When To Use This Skill
 
-Run `deep-alignment` when checking whether docs, code, configs or git history in a scope follow a named authority's own creation standards rather than general correctness. Run it to audit multiple authorities in one pass, for example sk-doc, sk-git and sk-design conformance together. Run it to verify a claimed "shipped to standard" state against live reality before trusting it. Run it for unattended or headless conformance sweeps across a repo or a spec folder, driven by a `--lane-config` file.
+Run `deep-alignment` when checking whether docs, code, configs or git history in a scope follow a named authority's own creation standards rather than general correctness. Run it to audit multiple authorities in one pass, for example sk-doc, sk-git and sk-code conformance together. Run it to verify a claimed "shipped to standard" state against live reality before trusting it. Run it for unattended or headless conformance sweeps across a repo or a spec folder, driven by a `--lane-config` file.
 
 Skip it for general code or doc correctness review with no specific named authority in mind, that is `deep-review`'s job. Skip it for checking hub structure such as folders, registries or routing wiring rather than artifact content, that is `parent-skill-check.cjs`'s job. Skip it for a single, already-known fix, go straight to implementation instead. Skip it for a quick one-file check too, a direct Grep or Read against the authority's own standards doc is faster.
 
@@ -265,9 +264,8 @@ Expected output: zero blocking errors.
 | [`references/state-machine-wiring.md`](./references/state-machine-wiring.md) | The concrete state-to-script wiring, `alignment/` file layout and the convergence formula |
 | [`references/adapters/sk-doc-adapter.md`](./references/adapters/sk-doc-adapter.md) | The reference sk-doc adapter specification (validators, sub-checks, severity mapping) |
 | [`references/adapters/sk-git-adapter.md`](./references/adapters/sk-git-adapter.md) | The sk-git adapter specification |
-| [`references/adapters/sk-design-adapter.md`](./references/adapters/sk-design-adapter.md) | The sk-design adapter specification |
 | [`references/adapters/sk-code-adapter.md`](./references/adapters/sk-code-adapter.md) | The sk-code adapter specification |
-| [`references/adapters/sk-doc-known-deviations.md`](./references/adapters/sk-doc-known-deviations.md) | Per-authority known-deviation suppression lists (also sk_git, sk_design, sk_code variants) |
+| [`references/adapters/sk-doc-known-deviations.md`](./references/adapters/sk-doc-known-deviations.md) | Per-authority known-deviation suppression lists (also sk_git, sk_code variants) |
 | [`scripts/scoping.cjs`](./scripts/scoping.cjs) | Lane resolution: `AUTHORITY_ARTIFACT_CLASSES`, `validateLane`, `resolveLanesFromConfig`/`FromSelections` |
 | [`scripts/check-convergence.cjs`](./scripts/check-convergence.cjs) | The coverage-AND-stability-AND-max-iterations CONVERGE decision |
 | [`scripts/partition-corpus.cjs`](./scripts/partition-corpus.cjs) | Round-robin lane slicing for the next iteration |

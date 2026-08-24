@@ -37,7 +37,6 @@ const DEFAULT_ON_HUBS = new Set([
   'mcp-tooling',
   'cli-external-orchestration',
   'sk-prompt',
-  'sk-design',
   'sk-doc',
 ]);
 

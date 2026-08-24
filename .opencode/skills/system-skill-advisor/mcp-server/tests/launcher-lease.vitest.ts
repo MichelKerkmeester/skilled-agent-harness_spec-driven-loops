@@ -22,7 +22,7 @@ interface Workspace {
 }
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const launcherRelativePath = '.opencode/bin/mk-skill-advisor-launcher.cjs';
+const launcherRelativePath = '.opencode/bin/system-skill-advisor-launcher.cjs';
 
 function leaseModuleSource(): string {
   return `
@@ -40,10 +40,10 @@ function canonicalizePath(pathValue) {
 }
 
 function leaseFile(workspaceRoot) {
-  const dir = process.env.MK_SKILL_ADVISOR_DB_DIR
-    ? canonicalizePath(process.env.MK_SKILL_ADVISOR_DB_DIR)
+  const dir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
+    ? canonicalizePath(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR)
     : path.join(workspaceRoot, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'database');
-  return path.join(dir, '.mk-skill-advisor-launcher.json');
+  return path.join(dir, '.system-skill-advisor-launcher.json');
 }
 
 function legacyLeaseFile(workspaceRoot) {
@@ -178,12 +178,12 @@ function countLauncherProcesses(launcherPath: string): number | null {
     .filter((line) => line.includes(launcherPath)).length;
 }
 
-describe('mk-skill-advisor launcher lease', () => {
+describe('system-skill-advisor launcher lease', () => {
   const tempDirs: string[] = [];
   const launcherRuns: LauncherRun[] = [];
 
   function createWorkspace(options: { ignoreChildSigterm?: boolean } = {}): Workspace {
-    const root = mkdtempSync(join(tmpdir(), 'mk-skill-advisor-lease-'));
+    const root = mkdtempSync(join(tmpdir(), 'system-skill-advisor-lease-'));
     tempDirs.push(root);
 
     const launcherPath = join(root, launcherRelativePath);
@@ -202,22 +202,22 @@ describe('mk-skill-advisor launcher lease', () => {
       root,
       launcherPath,
       dbDir,
-      leaseFilePath: join(dbDir, '.mk-skill-advisor-launcher.json'),
+      leaseFilePath: join(dbDir, '.system-skill-advisor-launcher.json'),
     };
   }
 
   function spawnLauncher(workspace: Workspace, env: NodeJS.ProcessEnv = {}): LauncherRun {
     const baseEnv = { ...process.env };
-    delete baseEnv.MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER;
-    delete baseEnv.MK_CODE_INDEX_STRICT_SINGLE_WRITER;
-    delete baseEnv.MK_SPEC_MEMORY_STRICT_SINGLE_WRITER;
-    delete baseEnv.MK_SKILL_ADVISOR_DB_DIR;
+    delete baseEnv.SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER;
+    delete baseEnv.SYSTEM_CODE_INDEX_STRICT_SINGLE_WRITER;
+    delete baseEnv.SYSTEM_SPEC_MEMORY_STRICT_SINGLE_WRITER;
+    delete baseEnv.SYSTEM_SKILL_ADVISOR_DB_DIR;
     delete baseEnv.SYSTEM_SKILL_ADVISOR_DB_DIR;
 
     const run: LauncherRun = {
       child: spawn(process.execPath, [workspace.launcherPath], {
         cwd: workspace.root,
-        env: { ...baseEnv, MK_SKILL_ADVISOR_DB_DIR: workspace.dbDir, ...env },
+        env: { ...baseEnv, SYSTEM_SKILL_ADVISOR_DB_DIR: workspace.dbDir, ...env },
         stdio: ['ignore', 'pipe', 'pipe'],
       }),
       stdout: '',
@@ -366,12 +366,12 @@ describe('mk-skill-advisor launcher lease', () => {
     symlinkSync(realDbDir, aliasOne, 'dir');
     symlinkSync(realDbDir, aliasTwo, 'dir');
     workspace.dbDir = aliasOne;
-    workspace.leaseFilePath = join(realDbDir, '.mk-skill-advisor-launcher.json');
+    workspace.leaseFilePath = join(realDbDir, '.system-skill-advisor-launcher.json');
 
     spawnLauncher(workspace);
     const ownerPid = await waitForLeaseOwner(workspace);
 
-    const second = spawnLauncher(workspace, { MK_SKILL_ADVISOR_DB_DIR: aliasTwo });
+    const second = spawnLauncher(workspace, { SYSTEM_SKILL_ADVISOR_DB_DIR: aliasTwo });
     await waitForStdoutClose(second);
     const exit = await waitForExit(second.child, 8000);
 
@@ -470,12 +470,12 @@ describe('mk-skill-advisor launcher lease', () => {
     const firstOwnerPid = await waitForLeaseOwner(workspace);
 
     const second = spawnLauncher(workspace, {
-      MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER: '0',
+      SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER: '0',
     });
     await waitFor(() => readLeasePid(workspace.leaseFilePath) !== firstOwnerPid, 2000, 'second lease owner');
 
     expect(second.child.exitCode).toBeNull();
-    expect(second.stderr).toContain('MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER is disabled; skipping lease check');
+    expect(second.stderr).toContain('SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER is disabled; skipping lease check');
     expect(existsSync(workspace.leaseFilePath)).toBe(true);
   });
 });

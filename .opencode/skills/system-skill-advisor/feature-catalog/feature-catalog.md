@@ -125,7 +125,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Claude Code `user-prompt-submit` hook | [hooks-and-plugin/claude-hook.md](../feature-catalog/hooks-and-plugin/claude-hook.md) |
 | OpenCode native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | hooks-and-plugin/opencode-hook.md (not yet authored) |
 | OpenCode plugin bridge | [hooks-and-plugin/opencode-plugin-bridge.md](../feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md) |
-| Goal OpenCode plugin (`/goal`, `mk_goal`, `mk_goal_status`) | [hooks-and-plugin/goal-opencode-plugin.md](../feature-catalog/hooks-and-plugin/goal-opencode-plugin.md) |
+| Goal OpenCode plugin (`/goal`, `opencode_goal`, `opencode_goal_status`) | [hooks-and-plugin/goal-opencode-plugin.md](../feature-catalog/hooks-and-plugin/goal-opencode-plugin.md) |
 
 ---
 

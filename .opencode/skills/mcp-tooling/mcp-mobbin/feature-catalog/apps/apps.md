@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 Carries app- and category-level research: how a named app, company, or product category handles a design problem, compared across real shipped screens. There is **no `search_apps` tool** — app research is a query intent over the single documented `search_screens` tool, compared through the `app_name` and `platform` fields of the returned metadata and the visible patterns in the inline images.
 
-The capability is READ-ONLY. Multiple results are evidence for comparison, never a design chooser: choosing belongs to `sk-design`.
+The capability is READ-ONLY. Multiple results are evidence for comparison, never a measured Style Reference: extracting design tokens belongs to `sk-design-md-generator`.
 
 ---
 
@@ -56,7 +56,7 @@ Compose the query from the app/company/category and the comparison goal — for 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/read-only/screens-search.md` | Manual playbook | The search contract app-intent queries run on |
-| `manual-testing-playbook/pairing/sk-design-pairing.md` | Manual playbook | App evidence routes through sk-design before any design verdict |
+| `manual-testing-playbook/pairing/design-pairing.md` | Manual playbook | App evidence pairs with sk-design-md-generator for a measured Style Reference |
 
 ---
 

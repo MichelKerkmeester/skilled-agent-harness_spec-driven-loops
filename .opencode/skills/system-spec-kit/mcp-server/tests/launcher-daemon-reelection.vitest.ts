@@ -3,7 +3,7 @@ import { createRequire } from 'node:module';
 import { describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
-const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
+const launcher = require('../../../../bin/system-spec-memory-launcher.cjs') as {
   daemonReelectionEnabled: (env?: Record<string, string | undefined>) => boolean;
   contextServerSpawnIo: (reelectionEnabled: boolean) => { detached: boolean; stdio: [string, string, string] };
   shouldReleaseDaemonForReelection: (args?: { enabled?: boolean; hasLiveDaemon?: boolean }) => boolean;

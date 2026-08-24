@@ -40,7 +40,7 @@ export interface AutoSelectMetadataStore {
 /**
  * Content type the cascade should optimize for.
  *
- * - `'text'`: prose-tuned embedders (default). Used by mk-spec-memory and
+ * - `'text'`: prose-tuned embedders (default). Used by system-spec-memory and
  *   skill-advisor, which index prose memory and skill metadata respectively.
  * - `'code'`: code-tuned embedders. Today the TS-side shared cascade has no
  *   code consumer. The parameter is reserved for a future TS code consumer.

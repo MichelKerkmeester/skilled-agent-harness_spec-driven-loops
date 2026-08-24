@@ -25,7 +25,7 @@ The hub's discriminator is `packetKind`, which separates packets that mutate thi
 
 ### Two-Axis Model
 
-`packetKind: "workflow"` covers `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, and `mcp-aside-devtools`, all of which mutate this repository's workspace (`mutatesWorkspace: true`). `packetKind: "transport"` covers `mcp-figma` (Figma Desktop), `mcp-refero`, and `mcp-mobbin` (both Code-Mode-mediated remote MCP surfaces), none of which mutate this workspace (`mutatesWorkspace: false`); each transport packet is declared on a `transport-axis` extension carrying a mandatory cross-hub judgment pairing back to `sk-design`, since a transport moves or fetches artifacts but never supplies design judgment itself.
+`packetKind: "workflow"` covers `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, and `mcp-aside-devtools`, all of which mutate this repository's workspace (`mutatesWorkspace: true`). `packetKind: "transport"` covers `mcp-figma` (Figma Desktop), `mcp-refero`, and `mcp-mobbin` (both Code-Mode-mediated remote MCP surfaces), none of which mutate this workspace (`mutatesWorkspace: false`); each transport packet is declared on a `transport-axis` extension carrying a mandatory cross-hub pairing back to `sk-design-md-generator` for a measured Style Reference (extracted design tokens), since a transport moves or fetches artifacts but never produces that measured reference itself.
 
 ### Routing Rule
 
@@ -51,7 +51,7 @@ The router resolves to `single` (one dominant tool signal), an `orderedBundle` (
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the transport-axis cross-hub judgment-pairing requirement. |
+| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the transport-axis cross-hub measured-reference-pairing requirement. |
 
 ---
 

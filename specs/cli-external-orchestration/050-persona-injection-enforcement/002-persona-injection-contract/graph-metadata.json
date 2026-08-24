@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
+  "spec_folder": "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
+  "parent_id": "cli-external-orchestration/050-persona-injection-enforcement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "persona injection contract design",
+      "native load vs inline persona rule",
+      "agent persona block format cli dispatch",
+      "persona injection contract plan",
+      "contract design synthesis plan",
+      "persona injection contract tasks",
+      "persona injection contract checklist",
+      "persona injection contract implementation summary"
+    ],
+    "key_topics": [
+      "persona",
+      "injection",
+      "contract",
+      "design",
+      "native",
+      "load",
+      "inline",
+      "rule",
+      "agent",
+      "block",
+      "format",
+      "cli"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "scratch/persona-injection-contract.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "persona-injection-contract.md",
+        "kind": "doc",
+        "path": "scratch/persona-injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Injection Contract Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Loading Protocol",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The P1 inventory confirmed the gap: only `cli-claude-code` `--agent` loads a resolved persona natively on the non-interactive path; the other five modes and the `fanout-run.cjs` runtime dispatch persona-less",
+    "created_at": "2026-08-19T09:34:02.744Z",
+    "last_save_at": "2026-08-19T11:22:48.124Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9d90258894203a4b59bcc724ea87217d85e444bbd7ec2d718cfc4901a22bead1",
+    "source_doc_hashes": {
+      "spec.md": "f4ac8e7a1f49bde9649d2fb66d749adcd8b226099efa3c1d84161f735092f8c4",
+      "plan.md": "9c693cabcc30866a8e4c0b05a19b6c3a68506c9d5283788f94b1b870cb3a8b8b",
+      "tasks.md": "04dc54593c4be9c8226ec1ee0e7400a69669be3d333b47b11e87b605fd33dcb2",
+      "checklist.md": "36c8113432a94caf7d7a7cadb2964a3eb03683abc7841f491dd53f07509071fe",
+      "implementation-summary.md": "b6e88e8736bd68dd6863d4306cce07469cba5f68a7006f2f22317ff58fb53096"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

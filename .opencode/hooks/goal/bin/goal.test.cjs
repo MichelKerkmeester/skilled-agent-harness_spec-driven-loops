@@ -35,8 +35,8 @@ function runCli(args) {
   const stdout = execFileSync('node', [CLI_PATH, ...args], {
     env: {
       ...process.env,
-      MK_GOAL_PLUGIN_DISABLED: undefined,
-      MK_GOAL_STATE_DIR: stateDir,
+      OPENCODE_GOAL_PLUGIN_DISABLED: undefined,
+      OPENCODE_GOAL_STATE_DIR: stateDir,
     },
     encoding: 'utf8',
   });
@@ -47,8 +47,8 @@ async function runCliAsync(args) {
   const result = await execFileAsync('node', [CLI_PATH, ...args], {
     env: {
       ...process.env,
-      MK_GOAL_PLUGIN_DISABLED: undefined,
-      MK_GOAL_STATE_DIR: stateDir,
+      OPENCODE_GOAL_PLUGIN_DISABLED: undefined,
+      OPENCODE_GOAL_STATE_DIR: stateDir,
     },
     encoding: 'utf8',
   });

@@ -17,7 +17,7 @@ vi.mock('node:child_process', () => ({
   spawn: mockedBridge.spawn,
 }));
 
-import MkSkillAdvisorPlugin from '../../../../../plugins/mk-skill-advisor.js';
+import MkSkillAdvisorPlugin from '../../../../../plugins/system-skill-advisor.js';
 
 function bridgeResponse(brief: string | null = 'Advisor: live; use system-spec-kit 0.91/0.18 pass.') {
   return JSON.stringify({

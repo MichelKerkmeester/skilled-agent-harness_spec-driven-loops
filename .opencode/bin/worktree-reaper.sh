@@ -58,7 +58,21 @@ COMMON="$(git rev-parse --git-common-dir 2>/dev/null || true)"
 MAIN_TOPLEVEL="$(cd "$(dirname "$COMMON")" && pwd -P)"
 case "$COMMON" in /*) COMMON_ABS="$COMMON" ;; *) COMMON_ABS="$(cd "$COMMON" && pwd -P)" ;; esac
 
-WT_BASE="$MAIN_TOPLEVEL/.worktrees"
+# Worktree base (canonical resolver: sk-git worktree-naming.sh _wn_base_dir;
+# inlined to keep the reaper self-contained). Must agree with the allocator and
+# launch wrapper so relocated worktrees are still found. Precedence: env >
+# git config > legacy in-checkout .worktrees.
+WT_BASE="${SPECKIT_WORKTREE_BASE:-$(git -C "$MAIN_TOPLEVEL" config --get speckit.worktreeBase 2>/dev/null || true)}"
+[ -n "$WT_BASE" ] || WT_BASE=".worktrees"
+case "$WT_BASE" in
+  "~")   WT_BASE="$HOME" ;;
+  "~/"*) WT_BASE="$HOME/${WT_BASE#\~/}" ;;
+esac
+case "$WT_BASE" in
+  /*) : ;;
+  *)  WT_BASE="$MAIN_TOPLEVEL/$WT_BASE" ;;
+esac
+[ -d "$WT_BASE" ] && WT_BASE="$(cd "$WT_BASE" && pwd -P)"
 MARKERS_DIR="$COMMON_ABS/worktree-sessions"
 
 # The live integration target is whatever commit the primary checkout actually
@@ -99,24 +113,38 @@ _wrapper_branch_matches_dir() {
   return 1
 }
 
+# Extract the worktree path a daemon cmdline points at, but only when it sits
+# directly under the resolved worktree base (WT_BASE). Anchors on WT_BASE by
+# CANONICALIZING each path token's ancestors and comparing to WT_BASE, so it
+# follows a relocated base and is immune to /var vs /private/var symlink skew
+# (the base dir itself resolves the same either way).
 _daemon_worktree_path_from_cmdline() {
-  local cmdline="$1" worktree_base worktree_name worktree_path canonical_base
-  if [[ "$cmdline" =~ (/.*/\.worktrees/)([A-Za-z0-9._-]+)(/[^[:space:]]*)? ]]; then
-    worktree_base="${BASH_REMATCH[1]%/}"
-    worktree_name="${BASH_REMATCH[2]}"
-    case "$worktree_name" in
-      ''|.|..) return 1 ;;
-    esac
-    canonical_base="$(cd "$worktree_base" 2>/dev/null && pwd -P)" || return 1
-    [ "$canonical_base" = "$WT_BASE" ] || return 1
-    worktree_path="$worktree_base/$worktree_name"
-    if [ -d "$worktree_path" ]; then
-      ( cd "$worktree_path" 2>/dev/null && pwd -P )
-    else
-      printf '%s/%s\n' "$canonical_base" "$worktree_name"
-    fi
-    return 0
-  fi
+  local cmdline="$1" tok cur parent canon_parent name worktree_path
+  for tok in $cmdline; do
+    case "$tok" in /*) ;; *) continue ;; esac
+    cur="$tok"
+    while :; do
+      parent="${cur%/*}"
+      [ -n "$parent" ] && [ "$parent" != "$cur" ] || break
+      if [ -d "$parent" ]; then
+        canon_parent="$(cd "$parent" 2>/dev/null && pwd -P)" || canon_parent="$parent"
+      else
+        canon_parent="$parent"
+      fi
+      if [ "$canon_parent" = "$WT_BASE" ]; then
+        name="${cur##*/}"
+        case "$name" in ''|.|..) break ;; esac
+        worktree_path="$WT_BASE/$name"
+        if [ -d "$worktree_path" ]; then
+          ( cd "$worktree_path" 2>/dev/null && pwd -P )
+        else
+          printf '%s\n' "$worktree_path"
+        fi
+        return 0
+      fi
+      cur="$parent"
+    done
+  done
   return 1
 }
 
@@ -137,7 +165,7 @@ log "pruning stale worktree admin entries"
 act git -C "$MAIN_TOPLEVEL" worktree prune
 
 if [ ! -d "$WT_BASE" ]; then
-  log "no .worktrees/ dir — nothing to prune"
+  log "no worktree base dir ($WT_BASE) — nothing to prune"
 else
   # Iterate registered worktrees under .worktrees/ only.
   while IFS= read -r line; do
@@ -191,7 +219,7 @@ fi
 # ───────────────────────────────────────────────────────────────
 
 # --- orphan daemon reporting (kill only with --reap-daemons) ---------------
-# A worktree daemon writes its lease under <worktree-db-dir>/.mk-spec-memory-launcher.json.
+# A worktree daemon writes its lease under <worktree-db-dir>/.system-spec-memory-launcher.json.
 # If that lease names a live childPid but the worktree DB dir is gone, it is orphaned.
 log "scanning for orphan worktree daemons"
 ORPHANS=0
@@ -236,7 +264,7 @@ while IFS= read -r pid; do
   else
     log "orphan daemon (report only; use --reap-daemons to kill) pid=$pid :: $cmdline"
   fi
-done < <(pgrep -f '\.worktrees/.*context-server\.js' 2>/dev/null || true)
+done < <(pgrep -f 'context-server\.js' 2>/dev/null || true)
 
 # ───────────────────────────────────────────────────────────────
 # 6. SOCKET DIRECTORY CLEANUP

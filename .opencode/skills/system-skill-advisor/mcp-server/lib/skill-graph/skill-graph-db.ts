@@ -268,7 +268,7 @@ let readOnlyDb: Database.Database | null = null;
 // defaults to the writer's cwd; a caller resolving for a specific workspace
 // (e.g. the status probe) passes that root so both sides target one file.
 export function resolveSkillGraphDbDir(baseRoot: string = process.cwd()): string {
-  const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  const overrideDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   if (overrideDbDir) {
     return resolve(overrideDbDir);
   }

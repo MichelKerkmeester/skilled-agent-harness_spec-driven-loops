@@ -41,7 +41,7 @@ const ALLOWLIST: Record<string, string> = {
     'authoring the doc:quality command set is a tracked follow-up (fix over ratchet, deferred).',
 };
 
-const HUBS = ['sk-code', 'sk-design', 'sk-doc', 'system-deep-loop'] as const;
+const HUBS = ['sk-code', 'sk-doc', 'system-deep-loop'] as const;
 
 function declaredCommandIds(): Array<{ id: string; source: string }> {
   const out: Array<{ id: string; source: string }> = [];
@@ -87,7 +87,6 @@ describe('command-binding existence', () => {
   it('sanity: the command namespaces the gate resolves against exist', () => {
     const namespaces = new Set(readdirSync(join(R, '.opencode', 'commands'), { withFileTypes: true })
       .filter((e) => e.isDirectory()).map((e) => e.name));
-    // The design command surface ships under the interface/ namespace.
-    for (const ns of ['create', 'deep', 'interface']) expect(namespaces.has(ns)).toBe(true);
+    for (const ns of ['create', 'deep']) expect(namespaces.has(ns)).toBe(true);
   });
 });

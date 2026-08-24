@@ -103,7 +103,7 @@ agent_config:
   model: opus
   leaf_only: true
   tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
-  mcp_servers: [mk-spec-memory]
+  mcp_servers: [system-spec-memory]
   tool_call_budget: { target: 8, max: 12 }
 
 # ─────────────────────────────────────────────────────────────────

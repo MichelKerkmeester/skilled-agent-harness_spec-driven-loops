@@ -1,0 +1,29 @@
+{
+  "level": "phase",
+  "specFolder": "cli-external-orchestration/042-improved-communication",
+  "description": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered",
+  "keywords": [
+    "reference",
+    "implementation",
+    "claude",
+    "code",
+    "output",
+    "easier",
+    "read",
+    "design",
+    "bound",
+    "claude-specific",
+    "hooks",
+    "local",
+    "ollama",
+    "disk-buffered"
+  ],
+  "lastUpdated": "2026-08-19T19:21:31.124Z",
+  "specId": "042",
+  "folderSlug": "improved-communication",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

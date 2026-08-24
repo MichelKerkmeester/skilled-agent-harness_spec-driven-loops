@@ -7,7 +7,7 @@ trigger_phrases:
   - "notesmd-cli"
   - "obsidian mcp"
   - "local rest api"
-version: 0.12.0.0
+version: 0.18.0.0
 ---
 
 # mcp-obsidian
@@ -20,7 +20,7 @@ version: 0.12.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Note and vault operations in Obsidian, plus file-layer automation of community plugins and the Minimal theme (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Excalidraw, Git, Outliner) |
+| **Use it for** | Note and vault operations in Obsidian, plus file-layer automation of community plugins (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases, Meta Bind) and the Obsidian theme system |
 | **Invoke with** | "obsidian", "notesmd-cli", "obsidian vault", "daily note", "local rest api", a plugin name or an `obsidian_*` MCP operation |
 | **Works on** | Vault files directly with no running app or through the live desktop app and its Local REST API when the situation needs it |
 | **Produces** | Created, moved and tagged notes, daily notes, vault registrations, live-app opens and plugin data files edited at the file layer |
@@ -43,7 +43,7 @@ The skill gives an agent three ways to touch a vault, chosen by what the request
 - The official `obsidian` CLI (ships with Obsidian desktop v1.12.4+) remote-controls a running app for in-app opens and `obsidian://` URI actions.
 - The cyanheads Obsidian MCP exposes a structured 14-tool `obsidian_*` surface through Code Mode when the live app and Local REST API are available.
 
-On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: Beancount ledgers, `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, Excalidraw drawing notes, Obsidian Git repositories and the Minimal theme file layer. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
+On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: Beancount ledgers, `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, and Obsidian Git repositories. Alongside the plugins it operates the Obsidian theme system at the file layer — the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
 
 ### The Plugin Knowledge Layer
 
@@ -56,10 +56,13 @@ On top of those surfaces sits the plugin knowledge layer. The mode treats each c
 | **Iconic** | merge the canonical 21 file rules and 11 folder rules into `data.json` with backup-before-write discipline |
 | **Charts** | author and validate chart render blocks and operate the settings file with backup discipline |
 | **Dataview** | add and patch note metadata (frontmatter and inline fields) and author DQL query blocks |
-| **Excalidraw** | create and patch `.excalidraw.md` drawing notes and validate embedded JSON documents |
 | **Git** | read vault git state and operate settings. Destructive operations only on throwaway repos |
 | **Outliner** | operate the minimal settings file. The plugin is an editor-behavior contract with no note format |
-| **Minimal** | verify theme install and activation and propose snippet tweaks, never editing `theme.css` in a real vault |
+| **Theme system** | operate the Obsidian theme system at the file layer — activate a community theme via `cssTheme`, customize with CSS snippets and variables, and build or publish themes, never editing a shipped theme's own files (Minimal as the worked example) |
+| **Meta Bind** | author `INPUT`/`VIEW` fields and `meta-bind-button` blocks whose `updateMetadata` actions read and write note frontmatter, with the JS Engine companion powering the Notion-style start/stop task timer |
+| **Notion Bases** | operate `_database.md` schemas — two-way relations, rollups, lookups, self-relation subtasks and the seven view types including calendar — as the Notion-database replacement |
+| **Advanced Canvas** | extend `.canvas` files at the JSON layer with styled nodes, pathfinding edges, portals, collapsible groups and the presentation start node per the Advanced JSON Canvas data model |
+| **Claudian** | operate the `.claudian/` settings file and the provider-native `.claude/` slash-command and reusable-skill files for the in-vault coding-agent chat plugin |
 
 ---
 
@@ -179,7 +182,7 @@ A: Use it for structured note reads, writes, search or tag operations against a 
 
 **Q: Does the install script change `.utcp_config.json` or `.env`?**
 
-A: No. `scripts/install.sh` prints the exact Code Mode manual and `obsidian_OBSIDIAN_*` environment keys. It never writes configuration files. The mode documents the wiring. Registration is owned by a later configuration phase.
+A: No. `scripts/install.sh` prints the exact Code Mode manual and `obsidian_OBSIDIAN_*` environment keys, and stays read-only. The `obsidian` manual and those keys are already registered in `.utcp_config.json` and `.env.example`; the installer never rewrites them.
 
 **Q: Are all 14 MCP tool names documented?**
 
@@ -191,7 +194,7 @@ A: No. Empty output means the selected vault has no match. Verify the vault and 
 
 **Q: What does the skill know about my plugins?**
 
-A: It ships reference sets for Beancount, Obsidian Tables, BRAT, Health.md, Iconic, Charts, Dataview, Excalidraw, Git, Outliner and the Minimal theme. Each set covers the data model, file-layer workflows and troubleshooting. The operation-logic reference generalizes the pattern to future plugins.
+A: It ships reference sets for Beancount, Obsidian Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Notion Bases and Meta Bind, plus a general Obsidian theme-system reference set under `references/themes/`. Each set covers the data model, file-layer workflows and troubleshooting. The operation-logic reference generalizes the pattern to future plugins.
 
 ---
 
@@ -218,7 +221,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime router, agent invariants, quick reference and resource map |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step installation and configuration for both CLI profiles and the MCP |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every CLI, MCP and plugin capability |
+| [`feature-catalog/FEATURE-CATALOG.md`](./feature-catalog/FEATURE-CATALOG.md) | Current-state inventory of every CLI, MCP and plugin capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate each catalog entry |
 | [`references/plugins/plugin-operation-logic.md`](./references/plugins/plugin-operation-logic.md) | The file-layer operating model shared by all plugin references |
 | [`references/obsidian-cli-commands.md`](./references/obsidian-cli-commands.md) | Detailed `notesmd-cli` and official `obsidian` CLI reference, including `VERIFY` boundaries |

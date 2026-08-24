@@ -28,7 +28,7 @@
     "role_absorption_forbidden": true,
     "min_seats": 0,
     "expected_targets": [
-      "mcp__mk_spec_memory__memory_list"
+      "mcp__system_spec_memory__memory_list"
     ],
     "forbidden_targets": [
       "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
@@ -61,7 +61,7 @@
 
 **Rationale.** This cell distinguishes the `memory/learn` list route from workflow-owned command execution. The router should call the memory list tool directly and render the command-owned presentation contract without creating or editing a rule.
 
-**Pass shape.** The captured stream names `mcp__mk_spec_memory__memory_list`, includes both pinned result markers, contains no forbidden dispatch or workflow target, and leaves the fixture unchanged.
+**Pass shape.** The captured stream names `mcp__system_spec_memory__memory_list`, includes both pinned result markers, contains no forbidden dispatch or workflow target, and leaves the fixture unchanged.
 
 **Failure modes.** Listing rules inline without the MCP target is role absorption; dispatching an agent or loading workflow YAML contradicts the topology; mutating the fixture or repository is a boundary violation.
 
@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `STATUS=OK ACTION=` | `.opencode/commands/memory/learn.md` | `sha256:930c9111acd7eeb2caff4e4192b6b5179402367b8afe71a11238ad6649c4c8c8` |
-| `listed` | `.opencode/commands/memory/learn.md` | `sha256:930c9111acd7eeb2caff4e4192b6b5179402367b8afe71a11238ad6649c4c8c8` |
+| `STATUS=OK ACTION=` | `.opencode/commands/memory/learn.md` | `sha256:240b285eaabaec89f1f20b51fd4d5eb52327986110c138c7db90cf0fe48c5eb0` |
+| `listed` | `.opencode/commands/memory/learn.md` | `sha256:240b285eaabaec89f1f20b51fd4d5eb52327986110c138c7db90cf0fe48c5eb0` |

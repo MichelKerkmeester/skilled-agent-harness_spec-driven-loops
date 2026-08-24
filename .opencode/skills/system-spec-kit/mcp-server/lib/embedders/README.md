@@ -1,6 +1,6 @@
 ---
 title: "MCP Embedders Library"
-description: "Runtime embedding orchestration, reindexing and reconciliation helpers for mk-spec-memory."
+description: "Runtime embedding orchestration, reindexing and reconciliation helpers for system-spec-memory."
 trigger_phrases:
   - "spec kit embedders"
   - "embedding execution router"
@@ -11,7 +11,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/embedders/` owns mk-spec-memory runtime embedding orchestration. It adapts the shared embedder registry into MCP server behavior, routes every provider (ollama, hf-local, cloud) through a single direct factory-backed adapter, coordinates reindex workflows, and reconciles stored embeddings against the active embedder. `index.ts` is the public barrel that MCP handlers and tests import.
+`lib/embedders/` owns system-spec-memory runtime embedding orchestration. It adapts the shared embedder registry into MCP server behavior, routes every provider (ollama, hf-local, cloud) through a single direct factory-backed adapter, coordinates reindex workflows, and reconciles stored embeddings against the active embedder. `index.ts` is the public barrel that MCP handlers and tests import.
 
 Current state:
 

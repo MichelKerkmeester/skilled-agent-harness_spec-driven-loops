@@ -1,9 +1,9 @@
 ---
 title: "Spec Memory OpenCode Plugin"
-description: "Manual validation for the mk-spec-memory OpenCode plugin and warm CLI bridge."
+description: "Manual validation for the system-spec-memory OpenCode plugin and warm CLI bridge."
 trigger_phrases:
   - "plg-001"
-  - "mk-spec-memory"
+  - "system-spec-memory"
   - "spec memory plugin"
   - "spec memory bridge"
   - "continuity injection"
@@ -21,25 +21,25 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-`mk-spec-memory` is the OpenCode plugin (auto-discovered by OpenCode from `.opencode/plugins/*.js`, no manual registration entry) that bridges the standalone Spec Kit Memory MCP daemon into the OpenCode chat runtime. It has two jobs:
+`system-spec-memory` is the OpenCode plugin (auto-discovered by OpenCode from `.opencode/plugins/*.js`, no manual registration entry) that bridges the standalone Spec Kit Memory MCP daemon into the OpenCode chat runtime. It has two jobs:
 
-1. `experimental.chat.system.transform` silently appends a bounded, digest-marked Spec Kit continuity brief (`[mk-spec-memory:continuity:<16-hex>]`) into every model turn's `output.system` array, sourced by spawning the warm CLI bridge (`mk-spec-memory-bridge.mjs`) rather than talking to the daemon directly.
-2. A `mk_spec_memory_status` tool exposes plugin/bridge health (cache stats, last bridge status, warm route) to the user without leaking local filesystem paths.
+1. `experimental.chat.system.transform` silently appends a bounded, digest-marked Spec Kit continuity brief (`[system-spec-memory:continuity:<16-hex>]`) into every model turn's `output.system` array, sourced by spawning the warm CLI bridge (`system-spec-memory-bridge.mjs`) rather than talking to the daemon directly.
+2. A `system_spec_memory_status` tool exposes plugin/bridge health (cache stats, last bridge status, warm route) to the user without leaking local filesystem paths.
 
-The bridge itself never blocks or dispatches into the daemon's mutation surface: `promptSafeSpecMemoryBridgePolicy()` in `mk-spec-memory-bridge.mjs` only allows `request:"brief"`/`"status"` paired with `toolName:"session_resume"`/`"memory_health"`, and every failure path (cold daemon, timeout, oversized stdout, EPIPE) fails open with an empty `output.system` rather than throwing. A sibling continuity path exists for the Claude Code runtime as compiled hooks under `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/` (`session-prime.js`, `compact-inject.js`, `user-prompt-submit.js`, `session-stop.js`), wired directly in `.claude/settings.json`; those are a separate delivery mechanism for the same continuity substrate, not this OpenCode plugin, and are covered here only as cross-reference.
+The bridge itself never blocks or dispatches into the daemon's mutation surface: `promptSafeSpecMemoryBridgePolicy()` in `system-spec-memory-bridge.mjs` only allows `request:"brief"`/`"status"` paired with `toolName:"session_resume"`/`"memory_health"`, and every failure path (cold daemon, timeout, oversized stdout, EPIPE) fails open with an empty `output.system` rather than throwing. A sibling continuity path exists for the Claude Code runtime as compiled hooks under `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/` (`session-prime.js`, `compact-inject.js`, `user-prompt-submit.js`, `session-stop.js`), wired directly in `.claude/settings.json`; those are a separate delivery mechanism for the same continuity substrate, not this OpenCode plugin, and are covered here only as cross-reference.
 
-This scenario validates: the plugin loads and exports only the factory function; config load handles missing/malformed/unreadable/valid `mk-spec-memory.json`; the continuity cache is stable, digest-marked, and session/TTL/race-safe; oversized bridge stdout and early-exit/EPIPE bridges fail open; the status tool's capability-boundary fields are honest; the kill-switch envs (`MK_SPEC_MEMORY_PLUGIN_DISABLED`, legacy `SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED`) actually prevent the bridge subprocess from spawning; and the real bridge script, invoked live against the current (cold) daemon, reports a truthful retryable `SOCKET_ABSENT` skip rather than a fabricated brief.
+This scenario validates: the plugin loads and exports only the factory function; config load handles missing/malformed/unreadable/valid `system-spec-memory.json`; the continuity cache is stable, digest-marked, and session/TTL/race-safe; oversized bridge stdout and early-exit/EPIPE bridges fail open; the status tool's capability-boundary fields are honest; the kill-switch envs (`SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED`, legacy `SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED`) actually prevent the bridge subprocess from spawning; and the real bridge script, invoked live against the current (cold) daemon, reports a truthful retryable `SOCKET_ABSENT` skip rather than a fabricated brief.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Plugin host file exists at `.opencode/plugins/mk-spec-memory.js`.
-- Bridge helper exists at `.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs`.
+- Plugin host file exists at `.opencode/plugins/system-spec-memory.js`.
+- Bridge helper exists at `.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs`.
 - Warm CLI shim exists at `.opencode/bin/spec-memory.cjs` (spawned by the bridge with `--warm-only`).
-- Unit test exists at `.opencode/plugins/tests/mk-spec-memory.test.cjs`.
-- Real user-facing trigger: a user has an OpenCode chat session open; on every turn the plugin's `system.transform` hook should quietly attach current Spec Kit continuity (or nothing, if the daemon is cold) to the model's system context, and the user (or an operator) can run the `mk_spec_memory_status` tool to check whether the warm bridge is healthy.
-- Expected signals: `plugin_id=mk-spec-memory`, `enabled=true|false`, `disabled_reason=`, `config_status=missing|loaded|parse_error|read_error`, `runtime_ready=`, `bridge_invocations=`, `last_bridge_status=ok|skipped|fail_open`, `last_error_code=`, `warm_status=`, `warm_route=warm_probe|cli`, `warm_exit_code=75` (retryable) on a cold daemon, `continuity_recovery=per_transform_warm`, `continuity_compaction=unsupported_runtime_event`, `continuity_autosave=unsupported_runtime_event`, and an injected `output.system` entry ending in `[mk-spec-memory:continuity:<16 hex chars>]` only when the bridge returns a non-empty brief.
+- Unit test exists at `.opencode/plugins/tests/system-spec-memory.test.cjs`.
+- Real user-facing trigger: a user has an OpenCode chat session open; on every turn the plugin's `system.transform` hook should quietly attach current Spec Kit continuity (or nothing, if the daemon is cold) to the model's system context, and the user (or an operator) can run the `system_spec_memory_status` tool to check whether the warm bridge is healthy.
+- Expected signals: `plugin_id=system-spec-memory`, `enabled=true|false`, `disabled_reason=`, `config_status=missing|loaded|parse_error|read_error`, `runtime_ready=`, `bridge_invocations=`, `last_bridge_status=ok|skipped|fail_open`, `last_error_code=`, `warm_status=`, `warm_route=warm_probe|cli`, `warm_exit_code=75` (retryable) on a cold daemon, `continuity_recovery=per_transform_warm`, `continuity_compaction=unsupported_runtime_event`, `continuity_autosave=unsupported_runtime_event`, and an injected `output.system` entry ending in `[system-spec-memory:continuity:<16 hex chars>]` only when the bridge returns a non-empty brief.
 - Pass/fail: PASS if the unit-test suite is fully green, the real bridge script (invoked directly and through the plugin factory) returns a well-formed, truthfully-labeled response for the daemon's actual live state, and the kill-switch envs prevent any bridge subprocess spawn. FAIL if the plugin fabricates a brief when the bridge fails, omits `disabled_reason`/`last_error_code`, lets a stale in-flight lookup overwrite a newer one, or the kill-switch envs are ignored.
 
 ---
@@ -49,7 +49,7 @@ This scenario validates: the plugin loads and exports only the factory function;
 1. Run the shipped regression suite:
 
 ```bash
-node .opencode/plugins/tests/mk-spec-memory.test.cjs
+node .opencode/plugins/tests/system-spec-memory.test.cjs
 ```
 
 Expected: TAP output, `# tests 13`, `# pass 13`, `# fail 0`.
@@ -66,7 +66,7 @@ Expected: `FAIL ERR_MODULE_NOT_FOUND`.
 
 ```bash
 printf '%s' '{"request":"status","workspaceRoot":"'"$PWD"'"}' \
-  | node .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs
+  | node .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs
 ```
 
 Expected signals: JSON with `"status":"skipped"` (or `"ok"` if a daemon happens to be warm), `"metadata":{"route":"warm_probe"|"cli", "retryable":true|false, ...}`.
@@ -75,19 +75,19 @@ Expected signals: JSON with `"status":"skipped"` (or `"ok"` if a daemon happens 
 
 ```bash
 printf '%s' '{"request":"brief","workspaceRoot":"'"$PWD"'"}' \
-  | node .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs
+  | node .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs
 ```
 
 5. Live-invoke the plugin factory itself (real bridge script, real cache/session logic; the only substitution is the same host-only `tool` import stub the shipped unit test performs, plus a literal `BRIDGE_PATH` because `new URL(..., import.meta.url)` cannot resolve relative to a `data:` module URL):
 
 ```bash
-cat > /tmp/mk-spec-memory-live-check.mjs <<'SCRIPT'
+cat > /tmp/system-spec-memory-live-check.mjs <<'SCRIPT'
 import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = process.cwd();
-const PLUGIN_PATH = path.join(ROOT, '.opencode', 'plugins', 'mk-spec-memory.js');
-const REAL_BRIDGE_PATH = path.join(ROOT, '.opencode', 'skills', 'system-spec-kit', 'mcp-server', 'plugin-bridges', 'mk-spec-memory-bridge.mjs');
+const PLUGIN_PATH = path.join(ROOT, '.opencode', 'plugins', 'system-spec-memory.js');
+const REAL_BRIDGE_PATH = path.join(ROOT, '.opencode', 'skills', 'system-spec-kit', 'mcp-server', 'plugin-bridges', 'system-spec-memory-bridge.mjs');
 const REAL_CLI_SHIM_PATH = path.join(ROOT, '.opencode', 'bin', 'spec-memory.cjs');
 
 const source = fs.readFileSync(PLUGIN_PATH, 'utf8')
@@ -100,15 +100,15 @@ const source = fs.readFileSync(PLUGIN_PATH, 'utf8')
 const pluginModule = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
 const hooks = await pluginModule.default({ directory: ROOT }, {});
 
-console.log('--- mk_spec_memory_status.execute() ---');
-console.log(await hooks.tool.mk_spec_memory_status.execute());
+console.log('--- system_spec_memory_status.execute() ---');
+console.log(await hooks.tool.system_spec_memory_status.execute());
 
 console.log('\n--- experimental.chat.system.transform() ---');
 const output = { system: [] };
 await hooks['experimental.chat.system.transform']({ sessionID: 'live-check-session' }, output);
 console.log(JSON.stringify(output, null, 2));
 SCRIPT
-node /tmp/mk-spec-memory-live-check.mjs
+node /tmp/system-spec-memory-live-check.mjs
 ```
 
 Keep the fixture in place — step 6 re-runs the very same script, so the single teardown lives at the end of step 6.
@@ -116,13 +116,13 @@ Keep the fixture in place — step 6 re-runs the very same script, so the single
 6. Kill-switch check — re-run the same script with the disable env set and confirm the bridge subprocess never spawns, then tear the fixture down:
 
 ```bash
-MK_SPEC_MEMORY_PLUGIN_DISABLED=1 node /tmp/mk-spec-memory-live-check.mjs
-rm /tmp/mk-spec-memory-live-check.mjs
+SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED=1 node /tmp/system-spec-memory-live-check.mjs
+rm /tmp/system-spec-memory-live-check.mjs
 ```
 
-Expected: `enabled=false`, `disabled_reason=MK_SPEC_MEMORY_PLUGIN_DISABLED`, `bridge_invocations=0`.
+Expected: `enabled=false`, `disabled_reason=SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED`, `bridge_invocations=0`.
 
-7. If a live OpenCode session is available, restart OpenCode after any plugin edit and run the `mk_spec_memory_status` tool directly, then compare its fields against step 5's output. If a live OpenCode session is unavailable (the common case for an automated operator), rely on steps 1, 3, 4, 5, and 6 as the evidentiary fallback and classify the live-session-only portion SKIP with that reason.
+7. If a live OpenCode session is available, restart OpenCode after any plugin edit and run the `system_spec_memory_status` tool directly, then compare its fields against step 5's output. If a live OpenCode session is unavailable (the common case for an automated operator), rely on steps 1, 3, 4, 5, and 6 as the evidentiary fallback and classify the live-session-only portion SKIP with that reason.
 
 ---
 
@@ -131,9 +131,9 @@ Expected: `enabled=false`, `disabled_reason=MK_SPEC_MEMORY_PLUGIN_DISABLED`, `br
 Preconditions observed (real `wc -l`):
 
 ```text
-.opencode/plugins/mk-spec-memory.js: 551 lines
-.opencode/plugins/tests/mk-spec-memory.test.cjs: 396 lines
-.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs: 387 lines
+.opencode/plugins/system-spec-memory.js: 551 lines
+.opencode/plugins/tests/system-spec-memory.test.cjs: 396 lines
+.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs: 387 lines
 .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/spec-kit-opencode-message-schema.mjs: 147 lines
 .opencode/bin/spec-memory.cjs: 168 lines
 ```
@@ -141,7 +141,7 @@ Preconditions observed (real `wc -l`):
 Unit test command:
 
 ```bash
-node .opencode/plugins/tests/mk-spec-memory.test.cjs
+node .opencode/plugins/tests/system-spec-memory.test.cjs
 ```
 
 Unit test output (tail):
@@ -194,11 +194,11 @@ node -e "import('@opencode-ai/plugin/tool').then(()=>console.log('resolved')).ca
 FAIL ERR_MODULE_NOT_FOUND
 ```
 
-Direct real-bridge invocation, `request:"status"` (daemon cold, no `/tmp/mk-spec-memory` socket present):
+Direct real-bridge invocation, `request:"status"` (daemon cold, no `/tmp/system-spec-memory` socket present):
 
 ```bash
 printf '%s' '{"request":"status","workspaceRoot":"'"$PWD"'"}' \
-  | node .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs
+  | node .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs
 ```
 
 ```json
@@ -209,7 +209,7 @@ Direct real-bridge invocation, `request:"brief"` (same cold-daemon state):
 
 ```bash
 printf '%s' '{"request":"brief","workspaceRoot":"'"$PWD"'"}' \
-  | node .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs
+  | node .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs
 ```
 
 ```json
@@ -219,8 +219,8 @@ printf '%s' '{"request":"brief","workspaceRoot":"'"$PWD"'"}' \
 Live plugin-factory invocation (real bridge script, real cache/session state, only the host-only `tool` import stubbed):
 
 ```text
---- mk_spec_memory_status.execute() ---
-plugin_id=mk-spec-memory
+--- system_spec_memory_status.execute() ---
+plugin_id=system-spec-memory
 enabled=true
 disabled_reason=none
 config_status=missing
@@ -256,8 +256,8 @@ warm_exit_code=75
   "system": []
 }
 
---- mk_spec_memory_status.execute() AFTER transform ---
-plugin_id=mk-spec-memory
+--- system_spec_memory_status.execute() AFTER transform ---
+plugin_id=system-spec-memory
 enabled=true
 disabled_reason=none
 config_status=missing
@@ -289,13 +289,13 @@ warm_retryable=true
 warm_exit_code=75
 ```
 
-Kill-switch check (`MK_SPEC_MEMORY_PLUGIN_DISABLED=1`, same script, fixture still present because the teardown now runs after this step):
+Kill-switch check (`SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED=1`, same script, fixture still present because the teardown now runs after this step):
 
 ```text
---- mk_spec_memory_status.execute() ---
-plugin_id=mk-spec-memory
+--- system_spec_memory_status.execute() ---
+plugin_id=system-spec-memory
 enabled=false
-disabled_reason=MK_SPEC_MEMORY_PLUGIN_DISABLED
+disabled_reason=SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED
 config_status=missing
 config_error_code=none
 cache_ttl_ms=5000
@@ -319,7 +319,7 @@ continuity_recovery=per_transform_warm
 continuity_compaction=unsupported_runtime_event
 continuity_autosave=unsupported_runtime_event
 warm_status=skipped
-warm_error=MK_SPEC_MEMORY_PLUGIN_DISABLED
+warm_error=SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED
 warm_route=unknown
 warm_retryable=false
 warm_exit_code=none
@@ -342,10 +342,10 @@ Stop         -> node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/clau
 OpenCode MCP daemon registration evidence from `opencode.json` (the standalone daemon this plugin's bridge probes; distinct from the plugin's own file-based auto-discovery):
 
 ```json
-"mk-spec-memory": {
+"system-spec-memory": {
   "type": "local",
-  "command": ["node", ".opencode/bin/mk-spec-memory-launcher.cjs"],
-  "environment": { "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory", "...": "..." }
+  "command": ["node", ".opencode/bin/system-spec-memory-launcher.cjs"],
+  "environment": { "SPECKIT_IPC_SOCKET_DIR": "/tmp/system-spec-memory", "...": "..." }
 }
 ```
 
@@ -353,9 +353,9 @@ OpenCode MCP daemon registration evidence from `opencode.json` (the standalone d
 
 ## 5. SOURCE FILES
 
-- `.opencode/plugins/mk-spec-memory.js`
-- `.opencode/plugins/tests/mk-spec-memory.test.cjs`
-- `.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs`
+- `.opencode/plugins/system-spec-memory.js`
+- `.opencode/plugins/tests/system-spec-memory.test.cjs`
+- `.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs`
 - `.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/spec-kit-opencode-message-schema.mjs`
 - `.opencode/bin/spec-memory.cjs`
 - `.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts`
@@ -385,6 +385,6 @@ OpenCode MCP daemon registration evidence from `opencode.json` (the standalone d
 
 PASS
 
-All 13 unit-test cases in `mk-spec-memory.test.cjs` passed (`# pass 13`, `# fail 0`). The real bridge script, invoked directly and through a live plugin-factory instantiation with only the host-only `@opencode-ai/plugin/tool` import stubbed (the same technique the shipped test itself uses, never a mock of plugin logic), truthfully reported the actual cold-daemon state (`status:"skipped"`, `error:"SOCKET_ABSENT"`, `retryable:true`, `exitCode:75`) instead of fabricating a continuity brief, and correctly produced an empty `output.system` for that turn. The kill-switch env (`MK_SPEC_MEMORY_PLUGIN_DISABLED=1`) suppressed the bridge entirely (`enabled=false`, `bridge_invocations=0`) as designed.
+All 13 unit-test cases in `system-spec-memory.test.cjs` passed (`# pass 13`, `# fail 0`). The real bridge script, invoked directly and through a live plugin-factory instantiation with only the host-only `@opencode-ai/plugin/tool` import stubbed (the same technique the shipped test itself uses, never a mock of plugin logic), truthfully reported the actual cold-daemon state (`status:"skipped"`, `error:"SOCKET_ABSENT"`, `retryable:true`, `exitCode:75`) instead of fabricating a continuity brief, and correctly produced an empty `output.system` for that turn. The kill-switch env (`SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED=1`) suppressed the bridge entirely (`enabled=false`, `bridge_invocations=0`) as designed.
 
-SKIP (documented, not blocking the PASS above): full end-to-end continuity-brief injection — a non-empty `output.system` entry ending in a real `[mk-spec-memory:continuity:...]` marker sourced from a warm daemon inside a live OpenCode session — was not observed, because no OpenCode session was live in this environment and the shared `mk-spec-memory` MCP daemon was cold (`/tmp/mk-spec-memory` had no daemon socket, only an unrelated `hf-embed.pid`/`relaunch.log`). That path is covered functionally by unit test 3 (`uses stable bounded markers and keeps ordinary message events inside the TTL`), which exercises the identical code path against a scripted warm bridge stand-in.
+SKIP (documented, not blocking the PASS above): full end-to-end continuity-brief injection — a non-empty `output.system` entry ending in a real `[system-spec-memory:continuity:...]` marker sourced from a warm daemon inside a live OpenCode session — was not observed, because no OpenCode session was live in this environment and the shared `system-spec-memory` MCP daemon was cold (`/tmp/system-spec-memory` had no daemon socket, only an unrelated `hf-embed.pid`/`relaunch.log`). That path is covered functionally by unit test 3 (`uses stable bounded markers and keeps ordinary message events inside the TTL`), which exercises the identical code path against a scripted warm bridge stand-in.

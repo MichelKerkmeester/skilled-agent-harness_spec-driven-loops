@@ -56,7 +56,7 @@ The Spec Kit Memory MCP server exposes **41 tools** overall across the 7-layer M
 
 **Owns** means the command is the primary home for those tools. **Shared** means the command borrows tools whose primary home is another command (typically `/memory:search` or `/memory:manage`).
 
-Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp-server/matrix-runners/`, the OpenCode `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the mk-spec-memory 41-tool `TOOL_DEFINITIONS` surface counted above.
+Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp-server/matrix-runners/`, the OpenCode `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the system-spec-memory 41-tool `TOOL_DEFINITIONS` surface counted above.
 
 ---
 
@@ -730,7 +730,7 @@ Over time, `memory_index` rows can drift out of sync with the `vec_memories` vec
 
 #### How It Works
 
-`memory_embedding_reconcile` is a net-new public MCP maintenance tool on the `mk-spec-memory` surface (spec 026, changelog 003-006, 2026-05-27). It operates in dry-run mode by default, so calling it without `mode: "apply"` will report what it would change without touching the database.
+`memory_embedding_reconcile` is a net-new public MCP maintenance tool on the `system-spec-memory` surface (spec 026, changelog 003-006, 2026-05-27). It operates in dry-run mode by default, so calling it without `mode: "apply"` will report what it would change without touching the database.
 
 Two correction paths run inside one `BEGIN IMMEDIATE` transaction. The convergence path finds rows that claim `embedding_status = 'stale'` or `'success'` while a matching vector is already present in `vec_memories` and resets those rows to `success` without re-embedding. The retry-reset path finds rows whose vector is genuinely absent and whose `embedding_status` is stuck at a non-pending value and resets those to `pending` so the background retry manager can pick them up cleanly.
 
@@ -3406,7 +3406,7 @@ AI assistants sometimes invent parameters that do not exist when calling tools. 
 
 #### How It Works
 
-**IMPLEMENTED (Sprint 019, later expanded by session/code-graph additions).** All 39 live mk-spec-memory MCP tool definitions (L1-L7) have Zod runtime schemas defined in `mcp-server/schemas/tool-input-schemas.ts` (re-exported via `tool-schemas.ts`), controlled by `SPECKIT_STRICT_SCHEMAS` (`.strict()` vs `.passthrough()`). Hallucinated parameters from calling LLMs are rejected with clear Zod errors and logged to stderr for audit trail (CHK-029). Adds `zod` dependency.
+**IMPLEMENTED (Sprint 019, later expanded by session/code-graph additions).** All 39 live system-spec-memory MCP tool definitions (L1-L7) have Zod runtime schemas defined in `mcp-server/schemas/tool-input-schemas.ts` (re-exported via `tool-schemas.ts`), controlled by `SPECKIT_STRICT_SCHEMAS` (`.strict()` vs `.passthrough()`). Hallucinated parameters from calling LLMs are rejected with clear Zod errors and logged to stderr for audit trail (CHK-029). Adds `zod` dependency.
 
 #### Source Files
 
@@ -3591,7 +3591,7 @@ See [`pipeline-architecture/mcp-launcher-front-proxy.md`](../feature-catalog/pip
 
 #### Description
 
-The launcher owns the shared mk-spec-memory daemon for the MCP host that spawned it. When that host disposed its session, the launcher's child-exit supervisor respawned the daemon on a short backoff under the disposing runtime, so the fresh daemon was killed again about a second later and every bridged session lost its MCP transport. The owner-disposal relaunch gate aborts that respawn when the owner is gone.
+The launcher owns the shared system-spec-memory daemon for the MCP host that spawned it. When that host disposed its session, the launcher's child-exit supervisor respawned the daemon on a short backoff under the disposing runtime, so the fresh daemon was killed again about a second later and every bridged session lost its MCP transport. The owner-disposal relaunch gate aborts that respawn when the owner is gone.
 
 #### How It Works
 
@@ -3609,7 +3609,7 @@ See [`pipeline-architecture/mcp-launcher-owner-disposal-relaunch-gate.md`](../fe
 
 #### Description
 
-The mk-spec-memory launcher's `log()` writes to stderr, which the MCP host captures inconsistently. It now also appends a timestamped, pid-stamped line to a bounded, best-effort durable file, so a daemon flap or owner-disposal race is attributable from disk after the fact.
+The system-spec-memory launcher's `log()` writes to stderr, which the MCP host captures inconsistently. It now also appends a timestamped, pid-stamped line to a bounded, best-effort durable file, so a daemon flap or owner-disposal race is attributable from disk after the fact.
 
 #### How It Works
 
@@ -4033,7 +4033,7 @@ See [`tooling-and-scripts/standalone-admin-cli.md`](../feature-catalog/tooling-a
 
 #### How It Works
 
-The shim defaults unset `SPECKIT_IPC_SOCKET_DIR` to `/tmp/mk-spec-memory`, guards Darwin socket-path length, and refuses missing or stale dist with exit 69 (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` is the development override). The entrypoint validates argv with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` on probe failure, and maps results to the shared exit taxonomy: 0 success, 1 runtime, 64 usage/validation, 69 protocol/dist-freshness, 75 retryable backend-unavailable. `--warm-only` (default-on via `SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`) probes the socket first and exits 75 instead of cold-spawning — the contract prompt-time hooks rely on. `spec-memory list-tools --format json` returns `{ status: "ok", data: { count: 39 } }` as the one-command parity check.
+The shim defaults unset `SPECKIT_IPC_SOCKET_DIR` to `/tmp/system-spec-memory`, guards Darwin socket-path length, and refuses missing or stale dist with exit 69 (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` is the development override). The entrypoint validates argv with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `system-spec-memory-launcher.cjs` on probe failure, and maps results to the shared exit taxonomy: 0 success, 1 runtime, 64 usage/validation, 69 protocol/dist-freshness, 75 retryable backend-unavailable. `--warm-only` (default-on via `SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`) probes the socket first and exits 75 instead of cold-spawning — the contract prompt-time hooks rely on. `spec-memory list-tools --format json` returns `{ status: "ok", data: { count: 39 } }` as the one-command parity check.
 
 #### Source Files
 
@@ -4078,11 +4078,11 @@ See [`tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md`](../featur
 
 #### Description
 
-Every 028 CLI workstream shipped paired runtime integrations, because a CLI nobody's runtime calls does not close the transport-down incident class. Claude and OpenCode prompt-time hooks gained warm-only CLI fallback helpers (socket probe first, fast fail-open when no socket exists, no prompt-time cold spawn), and OpenCode gained a per-system plugin route: a new `mk-spec-memory` plugin, a repaired `mk-code-graph` bridge on the CLI route, and CLI fallback routing in `mk-skill-advisor`.
+Every 028 CLI workstream shipped paired runtime integrations, because a CLI nobody's runtime calls does not close the transport-down incident class. Claude and OpenCode prompt-time hooks gained warm-only CLI fallback helpers (socket probe first, fast fail-open when no socket exists, no prompt-time cold spawn), and OpenCode gained a per-system plugin route: a new `system-spec-memory` plugin and CLI fallback routing in `system-skill-advisor`.
 
 #### How It Works
 
-The shared helpers (`spec-memory-cli-fallback.ts`, `code-index-cli-fallback.ts`, and the skill-advisor `skill-advisor-cli-fallback.ts`) wrap the CLIs with a socket probe plus `--warm-only --timeout-ms` invocation: no socket fails open in about a millisecond, warm calls measured 117-198 ms, and the 824.8 ms one-shot native bridge stays banned from the prompt path. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier mk-code-graph revert cannot return. `.opencode/settings.json` allowlists the CLI invocations; `AGENTS.md` carries the transport-down guidance.
+The shared helpers (`spec-memory-cli-fallback.ts`, `code-index-cli-fallback.ts`, and the skill-advisor `skill-advisor-cli-fallback.ts`) wrap the CLIs with a socket probe plus `--warm-only --timeout-ms` invocation: no socket fails open in about a millisecond, warm calls measured 117-198 ms, and the 824.8 ms one-shot native bridge stays banned from the prompt path. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier revert cannot return. `.opencode/settings.json` allowlists the CLI invocations; `AGENTS.md` carries the transport-down guidance.
 
 #### Source Files
 
@@ -4344,7 +4344,7 @@ The orphan MCP sweeper gives operators a dry-run-first way to inspect and later 
 
 #### Worktree-per-session isolation
 
-Three companion scripts under `.opencode/bin/` provide per-session git worktree isolation so concurrent agent sessions operate on separate working trees without sharing a `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` or `SPECKIT_IPC_SOCKET_DIR`.
+Three companion scripts under `.opencode/bin/` provide per-session git worktree isolation so concurrent agent sessions operate on separate working trees without sharing a `SPEC_KIT_DB_DIR` or `SPECKIT_IPC_SOCKET_DIR`.
 
 | Script | Role |
 |---|---|
@@ -4947,7 +4947,7 @@ The local `/goal` OpenCode plugin persists a session completion objective, injec
 
 #### How It Works
 
-`.opencode/plugins/mk-goal.js` registers OpenCode `event` and `experimental.chat.system.transform` hooks plus `mk_goal` and `mk_goal_status` tools. `.opencode/commands/goal-opencode.md` remains a state-free router. Runtime state lives under `.opencode/skills/.goal-state/`; the injected `[active_goal]` block includes a short raw `objective:` preview and an enhanced `goal_prompt:`. OpenCode must be restarted after plugin or command edits because local plugin and command files are loaded at startup.
+`.opencode/plugins/opencode-goal.js` registers OpenCode `event` and `experimental.chat.system.transform` hooks plus `opencode_goal` and `opencode_goal_status` tools. `.opencode/commands/goal-opencode.md` remains a state-free router. Runtime state lives under `.opencode/skills/.goal-state/`; the injected `[active_goal]` block includes a short raw `objective:` preview and an enhanced `goal_prompt:`. OpenCode must be restarted after plugin or command edits because local plugin and command files are loaded at startup.
 
 #### Source Files
 

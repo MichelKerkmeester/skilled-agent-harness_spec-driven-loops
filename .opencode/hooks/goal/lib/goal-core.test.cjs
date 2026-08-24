@@ -63,7 +63,7 @@ function runCli(args, envOverrides = {}) {
       'node',
       [CLI_PATH, '--runtime', 'cli', '--session', 'default-session', ...args],
       {
-        env: { ...process.env, MK_GOAL_STATE_DIR: stateDir, MK_GOAL_PLUGIN_DISABLED: undefined, ...envOverrides },
+        env: { ...process.env, OPENCODE_GOAL_STATE_DIR: stateDir, OPENCODE_GOAL_PLUGIN_DISABLED: undefined, ...envOverrides },
         encoding: 'utf8',
       },
     );
@@ -540,7 +540,7 @@ const FIXTURE_GOAL = {
   lastVerifierReason: null,
 };
 
-test('renderGoalBrief markers and field lines match the mk-goal template shape', () => {
+test('renderGoalBrief markers and field lines match the opencode-goal template shape', () => {
   const block = core.renderGoalBrief({ goal: FIXTURE_GOAL, runtimeLabel: 'Pi', maxChars: 4800 });
   const lines = block.split('\n');
   assert.equal(lines[0], '[active_goal:goal-fixture-0001]');
@@ -587,7 +587,7 @@ test('renderGoalBrief returns empty string for a non-active goal', () => {
 test('renderGoalBrief falls back to the compact block under a tight char budget', () => {
   // Below the full-form structural overhead (labels + goalId alone exceed this
   // budget), so promptBudget floors and the block always exceeds maxChars —
-  // the same condition that triggers mk-goal's compact fallback.
+  // the same condition that triggers opencode-goal's compact fallback.
   const block = core.renderGoalBrief({ goal: FIXTURE_GOAL, runtimeLabel: 'Pi', maxChars: 200 });
   const lines = block.split('\n');
   assert.equal(lines[0], '[active_goal:goal-fixture-0001]');
@@ -708,8 +708,8 @@ test('CLI set with only a budget flag and empty objective fails with INVALID_OBJ
   assert.equal(envelopeField(result.stdout, 'code'), 'INVALID_OBJECTIVE');
 });
 
-test('CLI honors MK_GOAL_PLUGIN_DISABLED=1 and fails closed with PLUGIN_DISABLED', () => {
-  const result = runCli(['show'], { MK_GOAL_PLUGIN_DISABLED: '1' });
+test('CLI honors OPENCODE_GOAL_PLUGIN_DISABLED=1 and fails closed with PLUGIN_DISABLED', () => {
+  const result = runCli(['show'], { OPENCODE_GOAL_PLUGIN_DISABLED: '1' });
   assert.ok(result.stdout.startsWith('STATUS=FAIL ACTION=show'));
   assert.equal(envelopeField(result.stdout, 'code'), 'PLUGIN_DISABLED');
 });

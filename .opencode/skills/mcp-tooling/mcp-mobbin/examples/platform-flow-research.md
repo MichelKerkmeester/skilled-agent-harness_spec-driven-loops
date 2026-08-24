@@ -67,4 +67,4 @@ Inspect the returned flows and their per-screen preview images:
 
 ## 5. WIDENING AND HANDOFF
 
-Five results too thin for the journey? Ask before widening (never past ~15 just for variety), and budget the 60-per-60s rate window across follow-up queries — on 429, honor `Retry-After`, then exponential backoff with jitter (tool-surface.md §3). If the findings will drive a design decision (choosing a recovery pattern for your product), load `sk-design` first: this walkthrough produces cited evidence, and the verdict belongs to the design skill.
+Five results too thin for the journey? Ask before widening (never past ~15 just for variety), and budget the 60-per-60s rate window across follow-up queries — on 429, honor `Retry-After`, then exponential backoff with jitter (tool-surface.md §3). If you also want a measured Style Reference of extracted design tokens, pair `sk-design-md-generator`: this walkthrough produces cited evidence, and the measured Style Reference belongs to that companion skill.

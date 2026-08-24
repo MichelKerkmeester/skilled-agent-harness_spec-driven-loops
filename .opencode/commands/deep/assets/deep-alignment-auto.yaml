@@ -90,7 +90,7 @@ agent_config:
   tools: [Read, Grep, Glob, Bash]
   # No Write/Edit -- mode-registry.json's toolSurface for "alignment" forbids both;
   # every state write this agent makes is Bash-mediated (heredoc/append), never tool-mediated.
-  mcp_servers: [mk-spec-memory]
+  mcp_servers: [system-spec-memory]
   tool_call_budget: { target: 9, soft_max: 12, hard_max: 13 }
 
 # ─────────────────────────────────────────────────────────────────
@@ -302,7 +302,7 @@ workflow:
         command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/{lane.adapter}.cjs discover {lane.scope_cli_args}"
         note: |
           Each adapter's discover CLI takes the lane's scope in its own authority-appropriate
-          form (sk-doc/sk-design/sk-code: `discover [--glob] <scope-value...>` for paths/globs
+          form (sk-doc/sk-code: `discover [--glob] <scope-value...>` for paths/globs
           scopes; sk-git: its own ref/range-shaped discover invocation for branchRange scopes).
           Every adapter returns the same `{artifacts, nodes}` shape (discover-contract.md §4)
           regardless of authority -- the loop never branches on which authority produced it.

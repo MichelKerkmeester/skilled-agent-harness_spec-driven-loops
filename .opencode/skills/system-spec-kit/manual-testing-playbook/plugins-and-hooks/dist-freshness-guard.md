@@ -1,8 +1,8 @@
 ---
 title: "Dist Freshness Guard"
-description: "Manual validation of the mk-dist-freshness-guard OpenCode plugin dist staleness warning."
+description: "Manual validation of the system-dist-freshness-guard OpenCode plugin dist staleness warning."
 trigger_phrases:
-  - "mk-dist-freshness-guard"
+  - "system-dist-freshness-guard"
   - "dist freshness guard"
   - "session.created stale dist warning"
   - "stale compiled dist"
@@ -20,7 +20,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-`mk-dist-freshness-guard` is an OpenCode plugin that warns when a locally compiled TypeScript
+`system-dist-freshness-guard` is an OpenCode plugin that warns when a locally compiled TypeScript
 `dist/` output is stale relative to its source, so a Bash dispatch or a new session never
 silently trusts an out-of-date build. It reuses the shared `checkAllFreshness()` /
 `checkPackageFreshness()` helpers from `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs`
@@ -59,7 +59,7 @@ the real repository state.
   injection channel -- never stdout/stderr, (c) refreshes on `session.created` and on a risky
   Bash command, and (d) the Claude-side `SessionStart` wrapper agrees with the same finding.
 - Preconditions: repository checked out at its current commit; Node available on `PATH`;
-  `.opencode/plugins/mk-dist-freshness-guard.js` and
+  `.opencode/plugins/system-dist-freshness-guard.js` and
   `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` present.
 - Real user-facing trigger: starting a new OpenCode session (fires `session.created`), or
   running a Bash command containing `validate.sh` or `opencode run` (fires the risky-bash
@@ -83,7 +83,7 @@ the real repository state.
 1. Run the plugin's own regression suite:
 
    ```bash
-   node .opencode/plugins/tests/mk-dist-freshness-guard.test.cjs
+   node .opencode/plugins/tests/system-dist-freshness-guard.test.cjs
    ```
 
    Expected: TAP output, `# tests 15`, `# pass 15`, `# fail 0`.
@@ -105,7 +105,7 @@ the real repository state.
    (async () => {
      const { pathToFileURL } = require("node:url");
      const path = require("node:path");
-     const url = pathToFileURL(path.join(process.cwd(), ".opencode/plugins/mk-dist-freshness-guard.js")).href;
+     const url = pathToFileURL(path.join(process.cwd(), ".opencode/plugins/system-dist-freshness-guard.js")).href;
      const mod = await import(url);
      const hooks = await mod.default({ directory: process.cwd() });
      const output = { system: [] };
@@ -126,7 +126,7 @@ the real repository state.
    (async () => {
      const { pathToFileURL } = require("node:url");
      const path = require("node:path");
-     const url = pathToFileURL(path.join(process.cwd(), ".opencode/plugins/mk-dist-freshness-guard.js")).href;
+     const url = pathToFileURL(path.join(process.cwd(), ".opencode/plugins/system-dist-freshness-guard.js")).href;
      const mod = await import(url);
      const hooks = await mod.default({ directory: process.cwd() });
      const captured = [];
@@ -155,7 +155,7 @@ the real repository state.
 
 6. Kill-switch / enforce check (Claude PostToolUse path only, out of scope for the OpenCode
    plugin which has no kill-switch flag): the sibling `claude-posttooluse.cjs` hook honors
-   `MK_POST_EDIT_QUALITY_DISABLED=1` as a full no-op for its comment-hygiene checks, but the
+   `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` as a full no-op for its comment-hygiene checks, but the
    legacy dist-staleness block in that same file runs unconditionally after the disabled
    early-return only when `DISABLED_ENV` is unset; setting it to `1` short-circuits the whole
    hook, including dist-staleness, before stdin is even read.
@@ -241,9 +241,9 @@ carries prior `inject:`-prefixed lines from an actual concurrently running OpenC
 using this same plugin, confirming the log is genuinely live, not a fixture):
 
 ```text
-2026-07-11T12:06:56.015Z [mk-dist-freshness-guard] inject: STALE DIST WARNING: @spec-kit/shared -- run: cd .opencode/skills/system-spec-kit/shared && npm run build; STALE DIST WARNING: @spec-kit/system-skill-advisor -- run: cd .opencode/skills/system-skill-advisor/mcp-server && npm run build; STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
-2026-07-11T12:40:11.580Z [mk-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
-2026-07-11T12:40:40.362Z [mk-dist-freshness-guard] risky-bash: STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
+2026-07-11T12:06:56.015Z [system-dist-freshness-guard] inject: STALE DIST WARNING: @spec-kit/shared -- run: cd .opencode/skills/system-spec-kit/shared && npm run build; STALE DIST WARNING: @spec-kit/system-skill-advisor -- run: cd .opencode/skills/system-skill-advisor/mcp-server && npm run build; STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
+2026-07-11T12:40:11.580Z [system-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
+2026-07-11T12:40:40.362Z [system-dist-freshness-guard] risky-bash: STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
 ```
 
 (The earlier `inject:` line also names `@spec-kit/shared` and
@@ -265,8 +265,8 @@ same shared `dist-freshness.cjs` core.
 
 ## 5. SOURCE FILES
 
-- Plugin: `.opencode/plugins/mk-dist-freshness-guard.js`
-- Plugin unit test: `.opencode/plugins/tests/mk-dist-freshness-guard.test.cjs`
+- Plugin: `.opencode/plugins/system-dist-freshness-guard.js`
+- Plugin unit test: `.opencode/plugins/tests/system-dist-freshness-guard.test.cjs`
 - Shared core: `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs`
 - Claude `SessionStart` wrapper: `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
 - Claude `PostToolUse(Write|Edit)` hook: `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs`

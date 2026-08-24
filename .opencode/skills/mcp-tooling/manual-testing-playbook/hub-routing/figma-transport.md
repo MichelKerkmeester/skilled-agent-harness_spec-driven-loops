@@ -23,8 +23,8 @@ Prompt: Render this component in Figma and export the design tokens.
 
 ## Expected Behavior
 
-Strong `figma-aliases`/`design-transport` signal (Figma, render, export) resolves `workflowMode: mcp-figma`; the hub loads `mcp-figma/SKILL.md`. Because `mcp-figma` is a transport (`packetKind: "transport"`), it never makes the design decision itself — a design-affecting operation still requires the mandatory `sk-design` cross-hub pairing.
+Strong `figma-aliases`/`design-transport` signal (Figma, render, export) resolves `workflowMode: mcp-figma`; the hub loads `mcp-figma/SKILL.md`. Because `mcp-figma` is a transport (`packetKind: "transport"`), it never produces the measured design reference itself — a design-affecting operation still requires the mandatory `sk-design-md-generator` cross-hub pairing for a measured Style Reference (extracted design tokens).
 
 ## Success Criteria
 
-The router resolves `mcp-figma` as a single dominant mode; the transport does not silently substitute for `sk-design`'s judgment.
+The router resolves `mcp-figma` as a single dominant mode; the transport does not silently substitute for the measured Style Reference `sk-design-md-generator` produces.

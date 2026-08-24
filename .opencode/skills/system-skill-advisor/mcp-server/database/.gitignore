@@ -5,8 +5,8 @@
 *.db
 *.db-*
 skill-graph.json
-.mk-skill-advisor-launcher.json
-.mk-skill-advisor-launcher.lockdir/
+.system-skill-advisor-launcher.json
+.system-skill-advisor-launcher.lockdir/
 
 # Runtime-quarantined SQLite copies (auto-recovery output). Never commit.
 *.corrupt

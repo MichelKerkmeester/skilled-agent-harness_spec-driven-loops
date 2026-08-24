@@ -479,10 +479,10 @@ This category covers 1 scenario summary while the linked feature file remains th
 ### mcp-route-guard | MCP Route Guard warns on native external MCP calls, allows internal/unrouteable ones
 
 #### Description
-Verify the warn-only, fail-open `mk-mcp-route-guard` guard nudges an agent toward Code Mode's `call_tool_chain` whenever it is about to call an external MCP tool natively instead of through Code Mode, while never blocking (no `permissionDecision`) and failing open to `allow` on any error path.
+Verify the warn-only, fail-open `mcp-route-guard` guard nudges an agent toward Code Mode's `call_tool_chain` whenever it is about to call an external MCP tool natively instead of through Code Mode, while never blocking (no `permissionDecision`) and failing open to `allow` on any error path.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, run the shared-core + Claude-hook unit-test suite, then live-invoke the core and the Claude PreToolUse hook against this repo's real `.utcp_config.json` manifest for a routable family (ClickUp) and an unrouteable one (Webflow), exercise the kill-switch (`MK_MCP_ROUTE_GUARD_DISABLED`) and broad-mode (`MK_MCP_ROUTE_GUARD_BROAD_MODE`) env flags, and confirm the OpenCode plugin adapter's log-write path is dormant in this repo. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, run the shared-core + Claude-hook unit-test suite, then live-invoke the core and the Claude PreToolUse hook against this repo's real `.utcp_config.json` manifest for a routable family (ClickUp) and an unrouteable one (Webflow), exercise the kill-switch (`MCP_ROUTE_GUARD_DISABLED`) and broad-mode (`MCP_ROUTE_GUARD_BROAD_MODE`) env flags, and confirm the OpenCode plugin adapter's log-write path is dormant in this repo. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Step 1: unit-test suite reports 16/16 assertions passed with exit 0; Step 2: live core call returns `decision:"warn"` naming `clickup_official` for ClickUp and `decision:"allow"` with zero warnings for Webflow and all internal-exempt servers; Step 3: the live Claude hook emits `additionalContext` naming `clickup_official` for the ClickUp payload, stays silent for Webflow, and never emits `permissionDecision`; Step 4: the kill-switch flag forces empty stdout even for the routable case; Step 5: the broad-mode flag turns the unrouteable Webflow case into a warn.
 

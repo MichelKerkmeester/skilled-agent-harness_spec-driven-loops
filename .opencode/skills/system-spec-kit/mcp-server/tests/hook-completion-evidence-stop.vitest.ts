@@ -145,7 +145,7 @@ describe('completion-evidence-stop.cjs (Claude Stop hook transport)', () => {
     expect(readAdvisoryLog(projectDir)).toBe('');
   });
 
-  it('kill switch: MK_COMPLETION_SENTINEL_DISABLED=1 makes the hook a full no-op even on a normal turn-end', () => {
+  it('kill switch: SYSTEM_COMPLETION_SENTINEL_DISABLED=1 makes the hook a full no-op even on a normal turn-end', () => {
     const projectDir = newProjectDir();
     const specFolder = newLevel1SpecFolder();
     const sessionId = 'stop-hook-kill-switch';
@@ -155,7 +155,7 @@ describe('completion-evidence-stop.cjs (Claude Stop hook transport)', () => {
       input: JSON.stringify({ stop_hook_active: false, session_id: sessionId, last_assistant_message: CLAIM_TEXT }),
       cwd: projectDir,
       encoding: 'utf8',
-      env: { ...process.env, MK_COMPLETION_SENTINEL_DISABLED: '1' },
+      env: { ...process.env, SYSTEM_COMPLETION_SENTINEL_DISABLED: '1' },
     });
 
     expect(result.status).toBe(0);

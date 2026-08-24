@@ -187,7 +187,7 @@ function positiveIntFromEnv(envName: string, fallback: number): number {
 // Rotates the telemetry file to a single backup generation when appending
 // would push it past the size cap, so the file never grows unbounded while
 // still preserving the most recent prior generation (never deleted outright).
-// Dependency-light rename, matching the mk-dist-freshness-guard / spec-gate
+// Dependency-light rename, matching the system-dist-freshness-guard / spec-gate
 // log-rotation idiom. Any failure here (e.g. a concurrent writer, an
 // unwritable backup target) is swallowed so the caller still appends the
 // record -- rotation is a best-effort space bound, never a reason to drop

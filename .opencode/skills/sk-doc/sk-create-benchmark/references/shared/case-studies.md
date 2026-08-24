@@ -1,6 +1,6 @@
 ---
 title: Benchmark Adoption Case Studies
-description: Two real skill-local benchmark adoptions - the promoted mk-spec-memory text-embedder bake-off and the archived experimental coco-index code-embedder bake-off - and the lessons each teaches about when and how to promote.
+description: Two real skill-local benchmark adoptions - the promoted system-spec-memory text-embedder bake-off and the archived experimental coco-index code-embedder bake-off - and the lessons each teaches about when and how to promote.
 trigger_phrases:
   - "benchmark case study"
   - "text embedder bake-off"
@@ -24,7 +24,7 @@ Each case study records what triggered the adoption decision, the load-bearing i
 
 ---
 
-## 2. CASE STUDY 1: TEXT-EMBEDDER BAKE-OFF (mk-spec-memory, May 17, 2026)
+## 2. CASE STUDY 1: TEXT-EMBEDDER BAKE-OFF (system-spec-memory, May 17, 2026)
 
 Path: `.opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-17--run--unspecified/`
 

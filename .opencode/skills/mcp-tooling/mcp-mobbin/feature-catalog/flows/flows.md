@@ -23,7 +23,7 @@ The capability is READ-ONLY, with one hard honesty rule: anything beyond the too
 
 ## 2. HOW IT WORKS
 
-Compose the query as one user journey — for example `"onboarding with personalization steps"` or `"forgot-password recovery"` — plus the platform (`"ios"`|`"web"`, inferred or asked), with a low `limit`. The confirmed callable is `mobbin.mobbin_search_flows({ query, platform, limit?, page? })` (2026-07-16 fixture; re-confirm with `tool_info` per session; `page` max 20). The response is flow objects with ordered per-screen previews — use the returned `position` ordering as retrieved fact, and label any interpolation beyond it (skipped screens, inferred intermediate states) explicitly as inference. For screens-level queries, `mobbin.mobbin_search_screens({ query, platform, limit? })` still applies with the old reconstruction-as-inference discipline. Cite every flow and screen used by its `mobbin_url`, report missing images as partial success, and hand any design-affecting conclusion to `sk-design`.
+Compose the query as one user journey — for example `"onboarding with personalization steps"` or `"forgot-password recovery"` — plus the platform (`"ios"`|`"web"`, inferred or asked), with a low `limit`. The confirmed callable is `mobbin.mobbin_search_flows({ query, platform, limit?, page? })` (2026-07-16 fixture; re-confirm with `tool_info` per session; `page` max 20). The response is flow objects with ordered per-screen previews — use the returned `position` ordering as retrieved fact, and label any interpolation beyond it (skipped screens, inferred intermediate states) explicitly as inference. For screens-level queries, `mobbin.mobbin_search_screens({ query, platform, limit? })` still applies with the old reconstruction-as-inference discipline. Cite every flow and screen used by its `mobbin_url`, report missing images as partial success, and pair `sk-design-md-generator` for a measured Style Reference of extracted design tokens.
 
 ### Query-intent recipes
 
@@ -56,7 +56,7 @@ Compose the query as one user journey — for example `"onboarding with personal
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/read-only/flow-intent.md` | Manual playbook | Flow-intent search with labeled reconstruction |
-| `manual-testing-playbook/pairing/sk-design-pairing.md` | Manual playbook | Flow evidence routes through sk-design before any design verdict |
+| `manual-testing-playbook/pairing/design-pairing.md` | Manual playbook | Flow evidence pairs with sk-design-md-generator for a measured Style Reference |
 
 ---
 

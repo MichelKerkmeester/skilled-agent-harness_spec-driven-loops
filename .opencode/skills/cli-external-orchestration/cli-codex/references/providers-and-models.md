@@ -113,13 +113,13 @@ codex exec --model gpt-5.5 -c model_reasoning_effort="high" "<prompt>"
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and terminate stdin:
 
 ```bash
-MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 codex exec \
+SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 codex exec \
   --model gpt-5.5 -c model_reasoning_effort="high" -c service_tier="fast" \
   -c approval_policy=never --sandbox workspace-write \
   "<prompt>" </dev/null > stdout.log 2>&1
 ```
 
-- `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer, and shares the parent's worktree instead of allocating its own.
+- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer, and shares the parent's worktree instead of allocating its own.
 - `</dev/null` — REQUIRED when backgrounding `codex exec` inside a `while read … done < file` loop; without it the backgrounded process inherits and drains the loop's stdin, silently dropping most dispatches. See [integration-patterns.md](./integration-patterns.md) §4 → "Silent Stdin Consumption".
 
 ### Self-invocation guard

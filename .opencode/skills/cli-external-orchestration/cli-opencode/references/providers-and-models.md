@@ -88,11 +88,12 @@ OpenCode Go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and 
 
 OpenRouter gateway (base `https://openrouter.ai/api/v1`); pass the full three-segment `openrouter/<upstream>/<model-id>` to `--model`. Confirm live slugs via `opencode models openrouter`. The DeepSeek Flash `-latest` variant is a reasoning model and is pinned to `--variant max` by the same policy as the direct and opencode-go flash ids.
 
-> **OpenRouter is currently restricted to a single model: DeepSeek V4 Flash (`openrouter/deepseek/deepseek-v4-flash-latest`).** Do not route any other model (e.g. GPT-5.6 Luna/Sol) through OpenRouter here — use their own providers (`openai`, etc.) instead.
+> **OpenRouter here carries exactly two models: DeepSeek V4 Flash (`openrouter/deepseek/deepseek-v4-flash-latest`) and Ox Alpha (`openrouter/stealth/ox-alpha`).** Do not route any other model (e.g. GPT-5.6 Luna/Sol) through OpenRouter here — use their own providers (`openai`, etc.) instead.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `openrouter/deepseek/deepseek-v4-flash-latest` | — | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--variant max` by policy. The ONLY OpenRouter-routed model. |
+| `openrouter/deepseek/deepseek-v4-flash-latest` | — | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--variant max` by policy. |
+| `openrouter/stealth/ox-alpha` | — | Ox Alpha (stealth channel) via OpenRouter. A live `opencode run --model openrouter/stealth/ox-alpha` turn completed 2026-08-22 (returned `PONG`, exit 0). Not a reasoning model; no `--variant max` pin. This is the ox route now that opencode-go/ox-alpha-free was dropped |
 
 ### cline-pass
 
@@ -149,12 +150,12 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and terminate stdin:
 
 ```bash
-MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode run \
+SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode run \
   --model deepseek/deepseek-v4-pro --variant high --format json \
   --dir "$REPO_ROOT" "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 
-- `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
+- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
 - `</dev/null` — REQUIRED before stdout/stderr redirects; opencode reads stdin at startup and hangs at 0% CPU without an EOF. See [integration-patterns.md](./integration-patterns.md) §6.
 
 ### Self-invocation guard

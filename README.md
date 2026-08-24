@@ -93,8 +93,8 @@ The framework adds three layers on top of the base platform:
          │  5 native servers - each one a separate  │
          │  process and MCP boundary                │
          │                                          │
-         │  mk-spec-memory      context + memory    │
-         │  mk_skill_advisor     skill routing      │
+         │  system-spec-memory      context + memory    │
+         │  system_skill_advisor     skill routing      │
          │  code_mode            external tools     │
          │  sequential_thinking  reasoning helper   │
          │                                          │
@@ -133,8 +133,8 @@ npm install
 
 # 3. Boot the native MCP servers via their committed launchers
 # Each launcher is a self-contained .cjs that vendors its own deps on first run.
-node .opencode/bin/mk-spec-memory-launcher.cjs --help
-node .opencode/bin/mk-skill-advisor-launcher.cjs --help
+node .opencode/bin/system-spec-memory-launcher.cjs --help
+node .opencode/bin/system-skill-advisor-launcher.cjs --help
 ```
 
 
@@ -161,8 +161,8 @@ export OPENAI_API_KEY="your-key-here"
 
 ```bash
 # Confirm the launcher binaries respond
-node .opencode/bin/mk-spec-memory-launcher.cjs --help
-node .opencode/bin/mk-skill-advisor-launcher.cjs --help
+node .opencode/bin/system-spec-memory-launcher.cjs --help
+node .opencode/bin/system-skill-advisor-launcher.cjs --help
 
 # Confirm the active runtime's MCP config references the launchers
   opencode.json .claude/mcp.json .vscode/mcp.json 2>/dev/null
@@ -365,7 +365,7 @@ The full MCP API reference is in the [MCP Server README](.opencode/skills/system
 &nbsp;
 #### Layered MCP Surface
 
-The `mk-spec-memory` tools are organized into a layered architecture. Skill-advisor tools moved to a standalone MCP server, so this table covers memory-owned tools only:
+The `system-spec-memory` tools are organized into a layered architecture. Skill-advisor tools moved to a standalone MCP server, so this table covers memory-owned tools only:
 
 | Layer  | Name            | Tools  | Token Budget | Purpose                                                                      |
 | ------ | --------------- | ------ | ------------ | ---------------------------------------------------------------------------- |
@@ -531,7 +531,7 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 &nbsp;
 #### Embedding Providers
 
-The mk-spec-memory text embedder layer is pluggable. Swap defaults through the memory embedder controls without touching code. Canonical narrative: [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/memory/embedder-pluggability.md).
+The system-spec-memory text embedder layer is pluggable. Swap defaults through the memory embedder controls without touching code. Canonical narrative: [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/memory/embedder-pluggability.md).
 
 - **Ollama (nomic-embed-text-v1.5)** - Default since 2026-05-19 (ADR-013/014). Free, local, 768d retrieval-tuned. Pull once with `ollama pull nomic-embed-text:v1.5`.
 - **HuggingFace Local** - Fallback when the Ollama probe fails. Free, local, 768d q8 ONNX.
@@ -542,7 +542,7 @@ The mk-spec-memory text embedder layer is pluggable. Swap defaults through the m
 
 ### 🎯 Skill Advisor
 
-The Skill Advisor matches what you type to the right skill before any tool runs. It is now a standalone MCP server named `mk_skill_advisor`, packaged under `.opencode/skills/system-skill-advisor/mcp-server/`. The server registers nine tools: eight on the public surface (four `advisor_*` tools for routing, freshness, rebuild and validation, plus four `skill_graph_*` tools for scan, query, status and graph validation), plus one internal propagation tool. A small Python compatibility shim still works as a fallback when the native path is unavailable.
+The Skill Advisor matches what you type to the right skill before any tool runs. It is now a standalone MCP server named `system_skill_advisor`, packaged under `.opencode/skills/system-skill-advisor/mcp-server/`. The server registers nine tools: eight on the public surface (four `advisor_*` tools for routing, freshness, rebuild and validation, plus four `skill_graph_*` tools for scan, query, status and graph validation), plus one internal propagation tool. A small Python compatibility shim still works as a fallback when the native path is unavailable.
 
 #### How It Works
 
@@ -616,7 +616,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 #### How Runtimes Talk To It
 
 - **Claude Code**: calls prompt-time hook adapters under `.opencode/skills/system-spec-kit/mcp-server/hooks/`.
-- **OpenCode**: uses `.opencode/plugins/mk-skill-advisor.js` with `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`, which imports the stable compat entry under `.opencode/skills/system-skill-advisor/mcp-server/compat/index.ts`.
+- **OpenCode**: uses `.opencode/plugins/system-skill-advisor.js` with `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`, which imports the stable compat entry under `.opencode/skills/system-skill-advisor/mcp-server/compat/index.ts`.
 - **Disable everywhere**: set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
 - **CLI front door**: `skill-advisor.cjs` exposes the same 9 tools over the warm daemon for hooks, cron and shell diagnostics; mutation commands (`advisor_rebuild`, `skill_graph_scan`) are gated behind `--trusted`.
@@ -750,7 +750,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loo
 **system-skill-advisor**
 - Gate 2 skill-routing subsystem at `.opencode/skills/system-skill-advisor/`
 - Owns prompt-time skill routing, the `skill_graph_*` tools, freshness and lifecycle checks, with advisor storage kept out of the memory server
-- Current MCP server name: `mk_skill_advisor`. Client namespace: `mcp__mk_skill_advisor__*`
+- Current MCP server name: `system_skill_advisor`. Client namespace: `mcp__system_skill_advisor__*`
 
 &nbsp;
 #### CODE WORKFLOW
@@ -800,15 +800,15 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - **`mcp-chrome-devtools` — drive a real browser from the assistant.** Chrome DevTools with smart 2-mode routing: CLI mode (`bdg`) runs in the terminal, supports Unix pipes and composes in CI/CD, with MCP mode as the fallback for multi-tool flows
 - **`mcp-click-up` — manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing. Agent-safe by design: per-list status resolution, dry-run before batch completion, `--json` output, empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
 - **`mcp-obsidian` — manage Obsidian notes from the assistant.** Dual CLI + MCP mode using `notesmd-cli` for headless vault operations, the official `obsidian` CLI for app-backed control, and cyanheads `obsidian-mcp-server` through the Local REST API
-- **`mcp-figma` _(transport)_ — drive Figma Desktop from the terminal.** Reads, authors, modifies, and exports designs, tokens, and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context. CLI-primary and gated: a local daemon brokers every command, read-only inspection and exports are free, authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Never decides design taste on its own — mandatory cross-hub pairing with `sk-design` for the judgment
+- **`mcp-figma` _(transport)_ — drive Figma Desktop from the terminal.** Reads, authors, modifies, and exports designs, tokens, and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context. CLI-primary and gated: a local daemon brokers every command, read-only inspection and exports are free, authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Never decides design taste on its own — pairs with `sk-design-md-generator` for the measured design reference
 
 &nbsp;
 #### OTHER
 
-**sk-design**
-- **Design-family parent hub for the full design surface.** A single advisor-routable identity that routes any design query to five design-judgment modes via `mode-registry.json`: `interface` (new visual direction, anti-templated critique; vendored from Anthropic's `frontend-design` skill, Apache-2.0), `foundations` (color, typography, layout, spacing, hierarchy, design tokens), `motion` (animation, transitions, micro-interactions), `audit` (accessibility, performance, anti-slop detection, quality scoring), and `md-generator` (crawls a live URL across five viewports and emits a v3 Style Reference `DESIGN.md` — named tokens, Type Scale, Components, Quick Start CSS/Tailwind — every value copied verbatim and script-validated against `tokens.json`)
-- **Grounds against real references:** `md-generator`'s `DESIGN.md` output feeds the judgment modes real, measured ground truth; the modes also critique against real-world shipped UI (Mobbin and Refero via Code Mode). Never a style chooser or a copy source
-- **Pairs with `sk-code`:** the hub owns the look, sk-code builds and verifies it
+**sk-design-md-generator**
+- **Standalone design-reference extraction skill.** Crawls a live URL across five viewports and emits a v3 Style Reference `DESIGN.md` — named tokens, Type Scale, Components, Surfaces, Elevation, Agent Prompt Guide, Quick Start CSS/Tailwind — with every value copied verbatim from the running page and script-validated against `tokens.json`. Carries a condensed general design-knowledge layer (Brand-vs-Product register, anti-slop principles, cognitive and numeric design laws, token vocabulary) so it reads design intent, not only CSS
+- **Measured ground truth, not invented direction:** captures what a site actually ships; it never authors a new visual direction from a brief. Its style corpus and SQLite/FTS5 style database resolve self-relatively under `styles/`
+- **Pairs with `sk-code`:** the skill supplies the measured reference, sk-code builds and verifies against it
 
 **sk-doc**
 - **Parent hub for documentation authoring, routed via `mode-registry.json` to ten workflow packets.** Markdown specialist with DQI quality scoring (Structure 40%, Content 35%, Style 25%) plus HVR compliance checking
@@ -1059,9 +1059,9 @@ The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 ### 🎯 Goal Plugin
 
 Gives a session a durable completion objective that survives across turns, instead of losing intent to context resets.
-- **Claude Code:** use the built-in native `/goal <condition>` — do not route through `mk_goal` (that tool does not exist in Claude Code sessions)
-- **OpenCode:** `/goal:goal-opencode <condition>` sets a session completion condition the agent keeps working toward across turns; show / pause / clear / complete via the `mk_goal` tools
-- **Backed by the `mk-goal` OpenCode plugin:** per-session goal state (atomic, fail-closed) plus active-goal injection into each turn; usage is accounted over the session lifecycle
+- **Claude Code:** use the built-in native `/goal <condition>` — do not route through `opencode_goal` (that tool does not exist in Claude Code sessions)
+- **OpenCode:** `/goal:goal-opencode <condition>` sets a session completion condition the agent keeps working toward across turns; show / pause / clear / complete via the `opencode_goal` tools
+- **Backed by the `opencode-goal` OpenCode plugin:** per-session goal state (atomic, fail-closed) plus active-goal injection into each turn; usage is accounted over the session lifecycle
 - **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.opencode/hooks/goal/goal-plugin.md` for the plugin contract (OpenCode only)
 
 ---
@@ -1076,8 +1076,8 @@ Canonical native server set:
 
 | Server                 | Tools | Purpose                                                                |
 | ---------------------- | ----- | ---------------------------------------------------------------------- |
-| `mk-spec-memory`      | 39    | Cognitive memory, session recovery, causal/eval tools and graph loops  |
-| `mk_skill_advisor`     | 9     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
+| `system-spec-memory`      | 39    | Cognitive memory, session recovery, causal/eval tools and graph loops  |
+| `system_skill_advisor`     | 9     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
 | `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
 | `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
 | **Total**              | **64** |                                                                        |
@@ -1125,7 +1125,7 @@ For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the
 
 The repo runs a live-sync loop around the worktree-per-session model. Every launch-wrapper session commits in its own isolated worktree and then auto-publishes each commit to a shared live branch. The main checkout auto-follows that branch, so the IDE always shows the combined state of every concurrent session's committed work.
 
-The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically. Disable the whole loop with `MK_LIVE_SYNC_DISABLED=1`. Finer switches stay available: `SPECKIT_AUTOSYNC=0` for one publish, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, and `MK_LIVE_FOLLOW_DISABLED=1` for the follower. See `sk-git/references/continuous-integration.md` for the full model.
+The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically. Disable the whole loop with `SYSTEM_LIVE_SYNC_DISABLED=1`. Finer switches stay available: `SPECKIT_AUTOSYNC=0` for one publish, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, and `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower. See `sk-git/references/continuous-integration.md` for the full model.
 
 <!-- /ANCHOR:features -->
 
@@ -1146,7 +1146,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | **`sk-code`**                                       | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres or React Native + Reanimated or Go + sqlc, etc.). Includes the findings-first `code-review` mode that reuses these surfaces as review evidence.   |
 | `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
 | `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
-| `sk-design`                               | ✅ Codebase-agnostic                        | Design-family parent hub: routes to five design-judgment modes (`interface`, `foundations`, `motion`, `audit`, `md-generator`). Grounds against real design systems and shipped-UI references (Mobbin/Refero via Code Mode). Pairs with `sk-code` for the build. Works for any project. |
+| `sk-design-md-generator`                  | ✅ Codebase-agnostic                        | Standalone design-reference extraction: crawls a live URL and emits a v3 Style Reference `DESIGN.md` (named tokens, type scale, components, Quick Start CSS/Tailwind), every value measured and validated against `tokens.json`. Pairs with `sk-code` for the build. Works for any project. |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
 | `system-deep-loop` | ✅ Codebase-agnostic                        | Parent hub for the unified deep-loop skill (research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking) over nested `runtime/` infrastructure. Work for any topic / target.     |
@@ -1225,10 +1225,10 @@ The runtime centers on a SQLite `memory_index` table (schema v37 baseline) plus 
 ```json
 {
   "mcp": {
-    "mk-spec-memory": {
+    "system-spec-memory": {
       "type": "local"
     },
-    "mk_skill_advisor": {
+    "system_skill_advisor": {
       "type": "local"
     },
       "type": "local"
@@ -1307,7 +1307,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 - **[→ MCP Server README](.opencode/skills/system-spec-kit/mcp-server/README.md)** - Memory API reference and runtime support docs
 - **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
 - **[→ Orphan MCP Leak Prevention Packet](specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)** - Canonical implementation summary and rollout state
-- **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `mk_skill_advisor` server, nine advisor/skill-graph tools and routing docs
+- **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `system_skill_advisor` server, nine advisor/skill-graph tools and routing docs
 - **[→ Install Guide](.opencode/skills/system-spec-kit/mcp-server/INSTALL-GUIDE.md)** - MCP server setup, embedding providers
 - **[→ Deployment Notes](DEPLOYMENT.md)** - Docker anti-patterns, Copilot notes and session-resume auth flag
 - **[→ Architecture](.opencode/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract

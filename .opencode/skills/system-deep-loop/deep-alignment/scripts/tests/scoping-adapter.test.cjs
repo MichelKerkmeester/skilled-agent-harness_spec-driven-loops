@@ -35,18 +35,18 @@ function readAdapterResourceMap() {
 // 1. Omitted adapter defaults to the authority's own module.
 function testAdapterDefaultsToAuthority() {
   const [lane] = resolveLanesFromConfig([
-    { authority: 'sk-design', artifactClass: 'designs', scope: { type: 'paths', values: ['DESIGN.md'] } },
+    { authority: 'sk-code', artifactClass: 'code', scope: { type: 'paths', values: ['src/'] } },
   ]);
-  assert.equal(lane.adapter, 'sk-design', 'omitted adapter defaults to the authority');
+  assert.equal(lane.adapter, 'sk-code', 'omitted adapter defaults to the authority');
 }
 
-// 2. An unknown design adapter is not selectable.
-function testUnknownDesignAdapterRejected() {
+// 2. An unknown adapter for a single-adapter authority is not selectable.
+function testUnknownSingleAdapterRejected() {
   assert.throws(
     () => resolveLanesFromConfig([
-      { authority: 'sk-design', artifactClass: 'designs', adapter: 'unknown-design-adapter', scope: { type: 'paths', values: ['DESIGN.md'] } },
+      { authority: 'sk-git', artifactClass: 'git-history', adapter: 'unknown-git-adapter', scope: { type: 'branchRange', from: 'main', to: 'HEAD' } },
     ]),
-    /is not a registered adapter for authority "sk-design"/,
+    /is not a registered adapter for authority "sk-git"/,
   );
 }
 
@@ -89,11 +89,12 @@ function testUnknownAdapterRejected() {
     /is not a registered adapter for authority "sk-doc"/,
   );
   assert.deepEqual(registeredAdapters('sk-doc'), ['sk-doc', 'sk-doc-command']);
-  assert.deepEqual(registeredAdapters('sk-design'), ['sk-design']);
+  // sk-design was removed as a registered authority: it resolves to no adapters.
+  assert.deepEqual(registeredAdapters('sk-design'), []);
 }
 
 testAdapterDefaultsToAuthority();
-testUnknownDesignAdapterRejected();
+testUnknownSingleAdapterRejected();
 testCommandAdapterSelectable();
 testPromptPackUsesSelectedAdapter();
 testUnknownAdapterRejected();

@@ -43,7 +43,7 @@ Claude Code registers the maintained compiled adapter in `.claude/settings.json`
 
 The other native registrations are `.codex/hooks.json`, `.cursor/hooks.json`, and `.devin/hooks.v1.json`. Each points at the maintained runtime directory under `system-spec-kit/mcp-server/`; the Codex prompt adapter is registered and present at `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/user-prompt-submit.js`.
 
-OpenCode prompt-time advisor delivery is registered through `.opencode/plugins/mk-skill-advisor.js`, which calls `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`. There is no checked-in `.opencode/settings.json` hook template and no native OpenCode source-hook adapter in this tree.
+OpenCode prompt-time advisor delivery is registered through `.opencode/plugins/system-skill-advisor.js`, which calls `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`. There is no checked-in `.opencode/settings.json` hook template and no native OpenCode source-hook adapter in this tree.
 
 ---
 
@@ -78,7 +78,7 @@ When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, 
 | Codex | `mcp-server/hooks/codex/*.ts` | `mcp-server/dist/hooks/codex/*.js` |
 | Cursor | `mcp-server/hooks/cursor/*.ts` | `mcp-server/dist/hooks/cursor/*.js` |
 | Devin | `mcp-server/hooks/devin/*.ts` | `mcp-server/dist/hooks/devin/*.js` |
-| OpenCode | `.opencode/plugins/mk-skill-advisor.js` and `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | Plugin bridge entrypoint |
+| OpenCode | `.opencode/plugins/system-skill-advisor.js` and `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Plugin bridge entrypoint |
 
 ---
 
@@ -90,7 +90,7 @@ When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, 
 | Codex | yes (`UserPromptSubmit`) | yes (`SessionStart`, `PreCompact`, `Stop`) | `.codex/hooks.json` | `/speckit:resume`, direct MCP tools |
 | Cursor | yes (`beforeSubmitPrompt`) | yes (`sessionStart`, `preCompact`, `sessionEnd`) | `.cursor/hooks.json` | `/speckit:resume`, direct MCP tools |
 | Devin | yes (`UserPromptSubmit`) | yes (`SessionStart`, `Stop`) | `.devin/hooks.v1.json` | `/speckit:resume`, direct MCP tools |
-| OpenCode | yes (`experimental.chat.system.transform`) | plugin events | `.opencode/plugins/mk-skill-advisor.js` | `/speckit:resume`, `session_bootstrap()`, direct MCP tools |
+| OpenCode | yes (`experimental.chat.system.transform`) | plugin events | `.opencode/plugins/system-skill-advisor.js` | `/speckit:resume`, `session_bootstrap()`, direct MCP tools |
 
 ---
 
@@ -108,7 +108,7 @@ The command checks project registration and project adapter paths. A report abou
 
 ## 8. OPENCODE TIMEOUT FALLBACK
 
-The timeout flag's ownership is the `system-skill-advisor` hub because its live consumers are `mcp-server/lib/subprocess.ts`, `mcp-server/lib/skill-advisor-brief.ts`, `mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`, and `mcp-server/scripts/skill_advisor.py`. See the advisor hub's runtime contract for `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` and its default `3000` ms. This sibling reference is a pointer, not the owner of that flag.
+The timeout flag's ownership is the `system-skill-advisor` hub because its live consumers are `mcp-server/lib/subprocess.ts`, `mcp-server/lib/skill-advisor-brief.ts`, `mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`, and `mcp-server/scripts/skill_advisor.py`. See the advisor hub's runtime contract for `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` and its default `3000` ms. This sibling reference is a pointer, not the owner of that flag.
 
 ---
 

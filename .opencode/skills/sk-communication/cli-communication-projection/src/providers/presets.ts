@@ -139,6 +139,75 @@ export function createLlamaCppModelRecord(
   });
 }
 
+const EXTERNAL_CLI_DOCS = 'https://external-cli.invalid/docs';
+
+/** Operator attestation for a single external CLI engine and model. */
+export interface ExternalCliPresetOptions {
+  readonly engine: string;
+  readonly modelId: string;
+  readonly observedAt: string;
+  readonly termsExpireAt: string;
+  readonly capabilitiesExpireAt: string;
+  readonly sourceUrl?: string;
+  readonly timeoutMs?: number;
+  readonly priority?: number;
+}
+
+/**
+ * External CLI agent routed as a hosted-retained provider. The engine selector
+ * lives in the provider id, and the endpoint is a non-resolving sentinel because
+ * no HTTP egress occurs — a CLI subprocess performs the rewrite. Inference-control
+ * capabilities are attested here because the transport honors them through the
+ * composed prompt rather than a remote wire field.
+ */
+export function createExternalCliModelRecord(
+  options: ExternalCliPresetOptions,
+): ProviderModelRecord {
+  const providerId = `external-cli-${options.engine}`;
+  const sourceUrl = options.sourceUrl ?? EXTERNAL_CLI_DOCS;
+  return createRecord({
+    recordVersion: 'provider-model/1.0.0',
+    family: ProviderFamilies.EXTERNAL_CLI,
+    controlProviderId: providerId,
+    provider: {
+      contractKind: 'provider',
+      schemaVersion: '1.0.0',
+      providerId,
+      deploymentMode: 'hosted',
+      protocol: 'openai-chat-completions',
+      endpoint: `https://external-cli.invalid/${options.engine}`,
+      modelId: options.modelId,
+      credentialReference: 'none:cli',
+      providerVersion: `operator-snapshot-${options.observedAt}`,
+      capabilities: externalCliCapabilities(),
+      privacyClass: PrivacyClasses.HOSTED_RETAINED,
+      termsCheckedAt: options.observedAt,
+      termsExpiresAt: options.termsExpireAt,
+      fallbackPolicy: noFallback(),
+    },
+    authorizationScheme: 'none',
+    timeoutMs: options.timeoutMs ?? 120_000,
+    priority: options.priority ?? 60,
+    capabilityEvidence: {
+      sourceUrl,
+      observedAt: options.observedAt,
+      expiresAt: options.capabilitiesExpireAt,
+    },
+    cost: unknownCost(sourceUrl, options.observedAt, options.capabilitiesExpireAt),
+    privacyFacts: unknownFacts(sourceUrl, options.observedAt),
+  });
+}
+
+function externalCliCapabilities(): readonly ProviderCapability[] {
+  return [
+    { name: 'chat', state: 'yes', confidence: 'confirmed' },
+    { name: 'streaming', state: 'no', confidence: 'confirmed' },
+    { name: 'temperature-control', state: 'yes', confidence: 'confirmed' },
+    { name: 'thinking-control', state: 'yes', confidence: 'confirmed' },
+    { name: 'cancellation', state: 'yes', confidence: 'confirmed' },
+  ];
+}
+
 function createRecord(record: ProviderModelRecord): ProviderModelRecord {
   return deepFreeze(structuredClone(record));
 }

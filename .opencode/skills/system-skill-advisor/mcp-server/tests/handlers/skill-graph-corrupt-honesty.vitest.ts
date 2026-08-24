@@ -28,19 +28,19 @@ function parseData(response: { content: Array<{ text: string }> }): Record<strin
 }
 
 describe('skill graph status corruption honesty', () => {
-  const priorDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR;
+  const priorDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 
   afterEach(() => {
     closeDb();
-    if (priorDbDir === undefined) delete process.env.MK_SKILL_ADVISOR_DB_DIR;
-    else process.env.MK_SKILL_ADVISOR_DB_DIR = priorDbDir;
+    if (priorDbDir === undefined) delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+    else process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = priorDbDir;
   });
 
   it('reports corruption and leaves the file in place instead of quarantining it', async () => {
     const dbDir = mkdtempSync(join(tmpdir(), 'sg-corrupt-status-'));
     const dbPath = join(dbDir, DB_FILENAME);
     writeFileSync(dbPath, GARBAGE);
-    process.env.MK_SKILL_ADVISOR_DB_DIR = dbDir;
+    process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = dbDir;
     closeDb();
 
     const data = parseData(await handleSkillGraphStatus());

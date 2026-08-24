@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/014-mcp-notion/002-skill-authoring",
+  "description": "After Phase 1, the research verdict exists but nothing tells an agent how to reach Notion: which backend to use (headless stdio vs interactive OAuth),",
+  "keywords": [
+    "phase",
+    "research",
+    "verdict",
+    "exists",
+    "nothing",
+    "tells",
+    "agent",
+    "reach",
+    "notion",
+    "backend",
+    "headless",
+    "stdio",
+    "interactive",
+    "oauth"
+  ],
+  "lastUpdated": "2026-08-21T15:51:28.347Z",
+  "specId": "002",
+  "folderSlug": "skill-authoring",
+  "parentChain": [
+    "mcp-tooling",
+    "014-mcp-notion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

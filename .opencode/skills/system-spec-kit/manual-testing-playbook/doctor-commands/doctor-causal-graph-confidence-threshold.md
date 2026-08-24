@@ -59,7 +59,7 @@ The state log or final report shows `threshold: 0.7`, the attempted count, inser
 ### Evidence
 
 - Command/read evidence for routed workflow contract:
-  - Read `.opencode/commands/doctor/speckit.md`; frontmatter allows `mcp__mk_spec_memory__memory_causal_stats`, `mcp__mk_spec_memory__memory_drift_why`, and `mcp__mk_spec_memory__memory_search` for `/doctor causal-graph`.
+  - Read `.opencode/commands/doctor/speckit.md`; frontmatter allows `mcp__system_spec_memory__memory_causal_stats`, `mcp__system_spec_memory__memory_drift_why`, and `mcp__system_spec_memory__memory_search` for `/doctor causal-graph`.
   - Read `.opencode/commands/doctor/_routes.yaml`; route `causal-graph` has `allowed_flags: ["--confidence-threshold=N"]`, `mutating: read-only`, and `gate3_location: "n/a (read-only diagnostic; samples causal_edges and recommends candidates, no writes)"`.
   - Read `.opencode/commands/doctor/assets/doctor-causal-graph.yaml`; lines observed in command output include `purpose: Read-only causal graph stats and drift sampling with user review gates. No mutations.` and `This command is READ-ONLY by contract. Any attempted write or delete halts with STATUS=FAIL and ERROR='confirm-mode-mutation-violation'.`
 - Baseline DB stat command:
@@ -80,7 +80,7 @@ The state log or final report shows `threshold: 0.7`, the attempted count, inser
   ```
 - Spec Memory plugin status after the failed `memory_causal_stats` attempt:
   ```
-  plugin_id=mk-spec-memory
+  plugin_id=system-spec-memory
   enabled=true
   disabled_reason=none
   cache_ttl_ms=5000

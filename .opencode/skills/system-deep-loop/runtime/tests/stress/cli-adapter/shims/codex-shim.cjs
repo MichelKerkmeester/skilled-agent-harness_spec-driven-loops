@@ -33,8 +33,8 @@ function capture(extra = {}) {
     stdin,
     env: {
       AI_SESSION_CHILD: process.env.AI_SESSION_CHILD || null,
-      MK_SPEC_GATE_ENFORCE: process.env.MK_SPEC_GATE_ENFORCE || null,
-      MK_SPEC_GATE_DISABLED: process.env.MK_SPEC_GATE_DISABLED || null,
+      SYSTEM_SPEC_GATE_ENFORCE: process.env.SYSTEM_SPEC_GATE_ENFORCE || null,
+      SYSTEM_SPEC_GATE_DISABLED: process.env.SYSTEM_SPEC_GATE_DISABLED || null,
     },
     ...extra,
   }));

@@ -19,7 +19,7 @@ contextType: "reference"
 
 The deep-improvement Lane C skill-benchmark harness can benchmark `cli-claude-code` against its own manual-testing-playbook scenarios across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This `benchmark/` tree holds the dual report each run writes, one run-label folder per run, per the fleet-wide storage convention (section 4).
 
-The first entry in this tree is **not** a Lane C harness run. It is a hand-authored, derived-after-the-fact record of manual-testing-playbook scenario `CC-029`: Claude Code ships its own native `/goal` session-goal feature, the cross-runtime goal-hook port at `.opencode/hooks/goal/` deliberately ships no `claude/` adapter directory, and `mk_goal()` is an OpenCode-only plugin tool with no matching Claude Code tool. There is no headless model-turn surface to dispatch against, so the live-validation leg of `CC-029` is a documentation-only **SKIP** by design, not a coverage gap. Full reasoning lives in the run folder's own `README.md` and `findings-and-recommendations.md`.
+The first entry in this tree is **not** a Lane C harness run. It is a hand-authored, derived-after-the-fact record of manual-testing-playbook scenario `CC-029`: Claude Code ships its own native `/goal` session-goal feature, the cross-runtime goal-hook port at `.opencode/hooks/goal/` deliberately ships no `claude/` adapter directory, and `opencode_goal()` is an OpenCode-only plugin tool with no matching Claude Code tool. There is no headless model-turn surface to dispatch against, so the live-validation leg of `CC-029` is a documentation-only **SKIP** by design, not a coverage gap. Full reasoning lives in the run folder's own `README.md` and `findings-and-recommendations.md`.
 
 ---
 

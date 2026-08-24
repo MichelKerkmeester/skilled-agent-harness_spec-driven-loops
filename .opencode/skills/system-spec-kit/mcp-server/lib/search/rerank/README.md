@@ -17,7 +17,7 @@ trigger_phrases:
 
 ## 2. OWNERSHIP
 
-The memory search stack owns this folder. Generic ranking algorithms belong in `@spec-kit/shared/algorithms`; this folder owns mk-spec-memory-specific rescue behavior.
+The memory search stack owns this folder. Generic ranking algorithms belong in `@spec-kit/shared/algorithms`; this folder owns system-spec-memory-specific rescue behavior.
 
 ---
 

@@ -1,0 +1,5 @@
+{"type":"iteration","run":5,"status":"complete","focus":"Formulas 2.0 recovery","findingsCount":7,"newInfoRatio":0.55,"keyQuestions":["Q5"],"answeredQuestions":["Q5"],"timestamp":"2026-08-21T23:03:00Z"}
+{"type":"finding","id":"f5-hybrid-static-strategy","label":"Importer formulaStrategy hybrid (live) vs static (computed value fallback)","iteration":5}
+{"type":"finding","id":"f5-family-map","label":"Function-family conversion map: logical/text/math/date/list mostly convert; person/style do not","iteration":5}
+{"type":"finding","id":"f5-no-equivalent","label":"style(), name(), email() have no Bases equivalent; dateBetween/dateRange VERIFY","iteration":5}
+{"type":"ruledOut","approach":"All formulas convert live","reason":"some need static fallback (style/name/email)","evidence":"importer formulaStrategy + prior-findings §1","iteration":5}

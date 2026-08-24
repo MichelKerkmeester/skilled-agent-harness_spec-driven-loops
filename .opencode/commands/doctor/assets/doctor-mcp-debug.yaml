@@ -39,8 +39,8 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
   install_guides:
-    mk-spec-memory: ".opencode/install-guides/MCP - Spec Kit Memory.md"
-    mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
+    system-spec-memory: ".opencode/install-guides/MCP - Spec Kit Memory.md"
+    system_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
     code_mode: ".opencode/install-guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install-guides/MCP - Sequential Thinking.md"
   scripts:
@@ -89,8 +89,8 @@ arguments:
 # REFERENCE: INSTALL GUIDES
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  mk-spec-memory: .opencode/install-guides/MCP - Spec Kit Memory.md
-  mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
+  system-spec-memory: .opencode/install-guides/MCP - Spec Kit Memory.md
+  system_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
   code_mode: .opencode/install-guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install-guides/MCP - Sequential Thinking.md
 
@@ -108,11 +108,11 @@ config_files:
 # ─────────────────────────────────────────────────────────────────
 repair_actions:
   # Rebuild EVERY MCP server's dist at once (instead of the per-server commands
-  # below) and transparently recycle mk-spec-memory in one step:
+  # below) and transparently recycle system-spec-memory in one step:
   #   bash .opencode/skills/system-spec-kit/scripts/deploy-mcp.sh --recycle
   # A launcher .cjs change is NOT picked up by a recycle; it needs a fresh
   # session (SIGHUP is a shutdown signal, not a reload).
-  mk-spec-memory:
+  system-spec-memory:
     dist_missing:
       command: "cd .opencode/skills/system-spec-kit && npm install && npm run build"
       description: "Install dependencies and rebuild dist"
@@ -122,7 +122,7 @@ repair_actions:
     better_sqlite3_fail:
       command: "cd .opencode/skills/system-spec-kit/mcp-server && npm rebuild better-sqlite3"
       description: "Rebuild better-sqlite3 native binding"
-  mk_skill_advisor:
+  system_skill_advisor:
     dist_missing:
       command: "cd .opencode/skills/system-skill-advisor/mcp-server && npm install && npm run build"
       description: "Install dependencies and rebuild advisor-server.js"
@@ -133,7 +133,7 @@ repair_actions:
       command: "cd .opencode/skills/system-skill-advisor/mcp-server && npm install && npm run build"
       description: "Restore the local @spec-kit/shared file dependency and rebuild compiled imports"
     launcher_missing:
-      command: "echo 'Launcher file .opencode/bin/mk-skill-advisor-launcher.cjs is missing — restore from git: git checkout .opencode/bin/mk-skill-advisor-launcher.cjs'"
+      command: "echo 'Launcher file .opencode/bin/system-skill-advisor-launcher.cjs is missing — restore from git: git checkout .opencode/bin/system-skill-advisor-launcher.cjs'"
       description: "Restore launcher from git history"
     db_dir_missing:
       command: "mkdir -p .opencode/skills/system-skill-advisor/mcp-server/database"

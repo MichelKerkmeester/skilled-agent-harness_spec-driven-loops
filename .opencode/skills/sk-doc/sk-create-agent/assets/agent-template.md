@@ -82,7 +82,7 @@ permission:
   patch: deny
   external_directory: deny
 mcpServers:
-  - mk-spec-memory
+  - system-spec-memory
   - code_graph
 ---
 ```
@@ -108,7 +108,7 @@ Decision rule: authoring for `.opencode/agents/` emits `permission:` (never bare
 | `mode` | string | Yes | `subagent`, `agent`, `primary`, or `all` as supported by runtime |
 | `temperature` | float | Yes | Usually `0.1`; use higher values only when variation is useful |
 | `permission` | object | Yes | Runtime capability boundary |
-| `mcpServers` | list | No | Explicit MCP servers available to the agent, for example `[mk-spec-memory, code_graph]` |
+| `mcpServers` | list | No | Explicit MCP servers available to the agent, for example `[system-spec-memory, code_graph]` |
 
 ### Mode Reference
 

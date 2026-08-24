@@ -18,7 +18,7 @@
     "restart",
     "re-exposing"
   ],
-  "lastUpdated": "2026-07-21T05:58:28.978Z",
+  "lastUpdated": "2026-08-15T14:41:11.566Z",
   "specId": "033",
   "folderSlug": "boot-wal-shm-sigbus-fix",
   "parentChain": [

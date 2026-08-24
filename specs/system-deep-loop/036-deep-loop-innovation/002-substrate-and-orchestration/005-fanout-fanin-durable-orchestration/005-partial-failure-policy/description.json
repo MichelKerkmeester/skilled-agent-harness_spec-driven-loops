@@ -19,7 +19,7 @@
     "durable",
     "fan-in"
   ],
-  "lastUpdated": "2026-08-14T04:22:10.514Z",
+  "lastUpdated": "2026-08-19T19:14:43.755Z",
   "specId": "005",
   "folderSlug": "partial-failure-policy",
   "parentChain": [

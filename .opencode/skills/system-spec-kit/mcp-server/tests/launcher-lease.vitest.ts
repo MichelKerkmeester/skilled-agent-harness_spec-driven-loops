@@ -30,12 +30,12 @@ interface Workspace {
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const require = createRequire(import.meta.url);
-const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
+const launcher = require('../../../../bin/system-spec-memory-launcher.cjs') as {
   writeLeaseForOwnedContextChild: () => boolean;
 };
-const launcherRelativePath = '.opencode/bin/mk-spec-memory-launcher.cjs';
+const launcherRelativePath = '.opencode/bin/system-spec-memory-launcher.cjs';
 const libRelativeDir = '.opencode/bin/lib';
-const pidFileRelativePath = '.opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.json';
+const pidFileRelativePath = '.opencode/skills/system-spec-kit/mcp-server/database/.system-spec-memory-launcher.json';
 const ownerLeaseRelativePath = '.opencode/skills/system-spec-kit/mcp-server/database/.spec-memory-owner.json';
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const HF_MODEL_SERVER_SOCKET_FILE_NAME = 'hf-embed.sock';
@@ -79,7 +79,7 @@ setInterval(() => {}, 1000);
 `;
 
 function createWorkspace(options: { childStub?: string } = {}): Workspace {
-  const root = mkdtempSync(join(tmpdir(), 'mk-spec-memory-lease-'));
+  const root = mkdtempSync(join(tmpdir(), 'system-spec-memory-lease-'));
   tempDirs.push(root);
 
   const launcherPath = join(root, launcherRelativePath);
@@ -100,7 +100,7 @@ function createWorkspace(options: { childStub?: string } = {}): Workspace {
   writeFileSync(descriptionGenerator, 'export {};\n', 'utf8');
 
   // Per-test isolated IPC socket dir INSIDE the temp root. Every spawned launcher binds/probes here,
-  // never the live /tmp/mk-spec-memory daemon socket. Removed with the temp root in afterEach.
+  // never the live /tmp/system-spec-memory daemon socket. Removed with the temp root in afterEach.
   const socketDir = join(root, 'ipc');
   mkdirSync(socketDir, { recursive: true });
 
@@ -109,9 +109,9 @@ function createWorkspace(options: { childStub?: string } = {}): Workspace {
 
 function spawnLauncher(workspace: Workspace, env: NodeJS.ProcessEnv = {}): LauncherRun {
   const baseEnv = { ...process.env };
-  delete baseEnv.MK_SKILL_ADVISOR_STRICT_SINGLE_WRITER;
-  delete baseEnv.MK_CODE_INDEX_STRICT_SINGLE_WRITER;
-  delete baseEnv.MK_SPEC_MEMORY_STRICT_SINGLE_WRITER;
+  delete baseEnv.SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER;
+  delete baseEnv.SYSTEM_CODE_INDEX_STRICT_SINGLE_WRITER;
+  delete baseEnv.SYSTEM_SPEC_MEMORY_STRICT_SINGLE_WRITER;
   // Pin the IPC socket dir per workspace so the recorded lease socketPath and every probe/bridge
   // stay inside the isolated temp root. A caller can override it to model a divergent worktree env.
   baseEnv.SPECKIT_IPC_SOCKET_DIR = workspace.socketDir;
@@ -244,7 +244,7 @@ function expectRetryableLeaseHeld(stdout: string, ownerPid: number, reason: stri
     error?: { message?: string; data?: { retryable?: boolean } };
   };
   expect(frame.error?.message).toBe(
-    `mk-spec-memory: lease held by pid ${ownerPid} but session bridge unavailable (${reason}); reconnect`,
+    `system-spec-memory: lease held by pid ${ownerPid} but session bridge unavailable (${reason}); reconnect`,
   );
   expect(frame.error?.data?.retryable).toBe(true);
 }
@@ -285,7 +285,7 @@ async function createLivePid(): Promise<ChildProcess> {
   return child;
 }
 
-describe('mk-spec-memory launcher lease', () => {
+describe('system-spec-memory launcher lease', () => {
   afterEach(async () => {
     // Reap every spawned launcher (SIGTERM then SIGKILL) before deleting temp dirs so the run never
     // leaks launcher/daemon processes.
@@ -460,7 +460,7 @@ describe('mk-spec-memory launcher lease', () => {
       'system-spec-kit',
       'mcp-server',
       'database',
-      '.mk-spec-memory-launcher.json',
+      '.system-spec-memory-launcher.json',
     );
 
     try {
@@ -502,12 +502,12 @@ describe('mk-spec-memory launcher lease', () => {
     await waitForLeasePid(workspace.pidFilePath, first.child.pid);
 
     const second = spawnLauncher(workspace, {
-      MK_SPEC_MEMORY_STRICT_SINGLE_WRITER: '0',
+      SYSTEM_SPEC_MEMORY_STRICT_SINGLE_WRITER: '0',
     });
     await waitForLeasePid(workspace.pidFilePath, second.child.pid);
 
     expect(second.child.exitCode).toBeNull();
-    expect(second.stderr).toContain('MK_SPEC_MEMORY_STRICT_SINGLE_WRITER is disabled; skipping lease check');
+    expect(second.stderr).toContain('SYSTEM_SPEC_MEMORY_STRICT_SINGLE_WRITER is disabled; skipping lease check');
     expect(existsSync(workspace.pidFilePath)).toBe(true);
   });
 
@@ -535,7 +535,7 @@ describe('mk-spec-memory launcher lease', () => {
     // Secondary launcher: SAME workspace root (reads the same lease file) but a DIVERGENT socket dir.
     // If the bridge recomputed from this dir it would find no socket and report no-bridge-socket;
     // honoring the stored socketPath makes it bridge to the owner's real socket instead.
-    const divergentSocketDir = mkdtempSync(join(tmpdir(), 'mk-spec-memory-divergent-'));
+    const divergentSocketDir = mkdtempSync(join(tmpdir(), 'system-spec-memory-divergent-'));
     tempDirs.push(divergentSocketDir);
     const second = spawnLauncher(owner, { SPECKIT_IPC_SOCKET_DIR: divergentSocketDir });
 

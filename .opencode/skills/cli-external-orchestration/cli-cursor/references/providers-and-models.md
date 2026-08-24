@@ -119,6 +119,8 @@ If Cursor is not authenticated, the mode ASKS the operator to run `cursor-agent 
 
 **Bracket syntax is rejected outright by the CLI.** Live-tested against installed `cursor-agent 2026.07.23-e383d2b` with `composer-2.5[effort=high]`, Cursor's own `--help` example (`claude-opus-4-8[context=1m,effort=high,fast=false]`), and `cursor-grok-4.5[effort=high]`; each returned `Cannot use this model: ...` with exit 1 before repository dispatch code runs. Use `cursor-grok-4.6-high`, never `cursor-grok-4.6[effort=high]`.
 
+**"Max Mode" = the `-max` id, where a model offers one.** Cursor's Max Mode (the 1M-context tier) is exposed as an enumerated `-max` model id — in this allowlist `glm-5.2-max` and `gpt-5.6-luna-max` (the wider roster's `claude-*-max` / `gpt-5.6-sol-max` are out of scope). It is NOT reachable via the `[context=1m]` bracket the CLI `--help` advertises — that bracket is rejected (above). **Composer 2.5 has no `-max` variant:** `--list-models` offers only `composer-2.5` and `composer-2.5-fast`, and `composer-2.5[context=1m]` returns `Cannot use this model` — so there is no Composer Max Mode on the CLI.
+
 **Id-form footgun.** The CLI-facing ids are DOTTED (`glm-5.2-high`, `glm-5.2-max`, `composer-2.5`) and are what you pass to `--model`. The deep-loop runtime's INTERNAL model uids use dashes instead (`glm-5-2` = "GLM-5.2 High", `glm-5-2-max` = "GLM-5.2 Max"). Do not pass an internal dash-form uid to `cursor-agent --model`, and do not pass a CLI dotted id where the runtime expects its uid — the two namespaces are not interchangeable.
 
 ---
@@ -134,12 +136,12 @@ cursor-agent -p --model composer-2.5 "<prompt>"
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and terminate stdin:
 
 ```bash
-MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 cursor-agent -p \
+SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 cursor-agent -p \
   --model composer-2.5 --auto-review --sandbox enabled --output-format text \
   "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 
-- `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer, and marks the dispatch as an orchestrated sub-session that SHARES the parent worktree (distinct from Cursor's own native `-w` worktree flag).
+- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer, and marks the dispatch as an orchestrated sub-session that SHARES the parent worktree (distinct from Cursor's own native `-w` worktree flag).
 - `</dev/null` — pair with `cursor-agent -p ... &` inside a `while read` loop so the backgrounded process cannot race the loop for stdin lines. See [integration-patterns.md](./integration-patterns.md) §4.
 
 ### Parallel / fan-out

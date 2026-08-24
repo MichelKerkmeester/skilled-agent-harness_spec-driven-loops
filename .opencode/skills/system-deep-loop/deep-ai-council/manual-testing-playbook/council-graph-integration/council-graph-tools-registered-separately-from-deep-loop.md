@@ -1,6 +1,6 @@
 ---
 title: "DAC-026 -- Council graph MCP surface retired"
-description: "This scenario validates that the council graph MCP tools are absent from the live mk-spec-memory registry and that council graph operations route through runtime/ --loop-type council."
+description: "This scenario validates that the council graph MCP tools are absent from the live system-spec-memory registry and that council graph operations route through runtime/ --loop-type council."
 version: 2.3.0.7
 ---
 
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the post-migration boundary: mk-spec-memory no longer exposes a dedicated council graph MCP family, and council graph writes/queries/status/convergence run through `runtime/` CLI scripts with `--loop-type council`.
+This scenario validates the post-migration boundary: system-spec-memory no longer exposes a dedicated council graph MCP family, and council graph writes/queries/status/convergence run through `runtime/` CLI scripts with `--loop-type council`.
 
 ### Why This Matters
 
-ADR-001 still rejects reusing the research/review graph semantics for council state. The migration keeps that semantic boundary but moves ownership out of mk-spec-memory: council state is now a runtime-owned derived SQLite projection, rebuilt from `ai-council/**` artifacts by the replay helper or direct runtime CLI calls.
+ADR-001 still rejects reusing the research/review graph semantics for council state. The migration keeps that semantic boundary but moves ownership out of system-spec-memory: council state is now a runtime-owned derived SQLite projection, rebuilt from `ai-council/**` artifacts by the replay helper or direct runtime CLI calls.
 
 ---
 
@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `DAC-026` and confirm th
 
 - Objective: Verify the council graph MCP surface is retired and runtime CLI council support is present.
 - Real user request: Confirm council graph operations no longer consume MCP tool slots.
-- Prompt: `As a council-graph integration validator, assert that mk-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the runtime/ council CLI scripts for upsert, query, status, and convergence support.`
+- Prompt: `As a council-graph integration validator, assert that system-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the runtime/ council CLI scripts for upsert, query, status, and convergence support.`
 - Expected execution process: Import `TOOL_DEFINITIONS` or inspect the source registry, grep live MCP source files for the escaped council graph tool-name pattern, then run runtime council script coverage.
 - Expected signals: `TOOL_DEFINITIONS.length === 36`; no live MCP registry/schema/dispatcher entries match `council[_]graph_(upsert|query|status|convergence)`; runtime council integration tests pass.
 - Desired user-visible outcome: The user sees that council graph behavior remains available while the MCP surface is smaller.
@@ -44,7 +44,7 @@ Operators run the exact prompt and command sequence for `DAC-026` and confirm th
 
 ### Prompt
 
-`As a council-graph integration validator, assert that mk-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the runtime/ council CLI scripts for upsert, query, status, and convergence support.`
+`As a council-graph integration validator, assert that system-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the runtime/ council CLI scripts for upsert, query, status, and convergence support.`
 
 ### Commands
 
@@ -71,7 +71,7 @@ If a council graph MCP entry remains, inspect `tools/index.ts`, `tool-schemas.ts
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-026 | Council graph MCP surface retired | Verify MCP removal plus runtime CLI replacement | `As a council-graph integration validator, assert that mk-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the runtime/ council CLI scripts for upsert, query, status, and convergence support.` | import tool definitions -> grep live MCP files -> run runtime council integration test | 35 tools, no council graph MCP entries, runtime council tests pass | Import output + grep output + Vitest result | PASS if retired from MCP and covered in runtime CLI | Inspect MCP registry/schema files or runtime scripts |
+| DAC-026 | Council graph MCP surface retired | Verify MCP removal plus runtime CLI replacement | `As a council-graph integration validator, assert that system-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the runtime/ council CLI scripts for upsert, query, status, and convergence support.` | import tool definitions -> grep live MCP files -> run runtime council integration test | 35 tools, no council graph MCP entries, runtime council tests pass | Import output + grep output + Vitest result | PASS if retired from MCP and covered in runtime CLI | Inspect MCP registry/schema files or runtime scripts |
 
 ---
 

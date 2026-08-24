@@ -111,7 +111,7 @@ async function startFakeDaemon(socketPath: string): Promise<FakeDaemon> {
             result: {
               protocolVersion: '2025-06-18',
               capabilities: {},
-              serverInfo: { name: 'fake-mk-spec-memory', version: identity },
+              serverInfo: { name: 'fake-system-spec-memory', version: identity },
             },
           })}\n`);
           continue;

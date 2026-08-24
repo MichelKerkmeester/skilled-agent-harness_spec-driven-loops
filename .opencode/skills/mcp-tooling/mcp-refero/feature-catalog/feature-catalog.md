@@ -11,7 +11,7 @@ version: 1.0.0.0
 
 # mcp-refero: Feature Catalog
 
-This document is the canonical capability inventory for the `mcp-refero` skill. The root catalog acts as the system-level directory: it summarizes each tool domain, names the canonical Code Mode callable for each tool, and tags every capability read-only, since the entire provider surface is read-only. The skill searches Refero's library of real shipped UI (styles, screens, flows) through the `refero` Code Mode manual as design-reference evidence, with `sk-design` as the mandatory judgment partner for any design-affecting use.
+This document is the canonical capability inventory for the `mcp-refero` skill. The root catalog acts as the system-level directory: it summarizes each tool domain, names the canonical Code Mode callable for each tool, and tags every capability read-only, since the entire provider surface is read-only. The skill searches Refero's library of real shipped UI (styles, screens, flows) through the `refero` Code Mode manual as design-reference evidence, with `sk-design-md-generator` as the measured Style Reference pairing (extracted design tokens) for any design-affecting use.
 
 > **Naming trap (read first).** Callables use the **DOUBLED prefix** `refero.refero_refero_<tool>(...)`, because Code Mode's `{manual}.{manual}_{tool}` rule applies to tools whose own names already begin with `refero_`. The doubled form is live-verified locally; a mandatory `tool_info` confirmation still precedes first use, and the packet fails closed on catalog drift.
 
@@ -25,7 +25,7 @@ Use this catalog as the inventory for the live `mcp-refero` surface. The numbere
 
 The capability surface has one hard prerequisite and three research layers. Everything depends on **access**: the remote endpoint requires authentication (HTTP 401 otherwise) and a Pro or higher plan, bridged by the already-registered `refero` manual (`npx -y mcp-remote`). From there the **styles** layer carries visual direction (web marketing/product pages only), the **screens** layer carries concrete UI patterns for web and iOS, and the **flows** layer carries multi-step journeys with ordered steps. "Apps" and "elements" are query and result facets (`site`, `ui_elements`), not tool families.
 
-A note on what stays out of scope. This skill is the retrieval transport, not the design judgment: taste, accessibility, responsiveness, and readiness verdicts belong to `sk-design`. The transport never mutates this workspace (`mutatesWorkspace: false`; Write/Edit/Task forbidden), never edits the `refero` manual, never touches auth state, and never invents rate limits beyond the published Pro quota of 8,000 calls per month.
+A note on what stays out of scope. This skill is the retrieval transport, not the design judgment: it issues no taste, accessibility, responsiveness, or readiness verdict. The transport never mutates this workspace (`mutatesWorkspace: false`; Write/Edit/Task forbidden), never edits the `refero` manual, never touches auth state, and never invents rate limits beyond the published Pro quota of 8,000 calls per month.
 
 ### Capability class
 

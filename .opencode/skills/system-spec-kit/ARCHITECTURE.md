@@ -157,7 +157,7 @@ Spec-kit ships a runtime hook surface that wires into each AI client's session l
 
 **Hook matrix.** Claude Code injects prompt-time briefs directly. OpenCode supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].opencode_hooks = true` in `~/opencode.json` and `~/.opencode/hooks.json` is wired. OpenCode delivers context through local plugins under `.opencode/plugins/`.
 
-**Plugin bridges and local plugins.** Bridge-backed OpenCode plugin entrypoints live under `.opencode/plugins/` and import thin helpers that call into `mcp-server/lib/hooks/` or sibling daemon surfaces. Standalone local plugins such as `.opencode/plugins/mk-goal.js` stay in the same plugin directory but own their state and hooks directly instead of using a daemon bridge.
+**Plugin bridges and local plugins.** Bridge-backed OpenCode plugin entrypoints live under `.opencode/plugins/` and import thin helpers that call into `mcp-server/lib/hooks/` or sibling daemon surfaces. Standalone local plugins such as `.opencode/plugins/opencode-goal.js` stay in the same plugin directory but own their state and hooks directly instead of using a daemon bridge.
 
 **Payload shape.** Hooks share the same compact JSON payload (`bootstrap.json` style) across runtimes so callers can rely on consistent fields regardless of transport.
 

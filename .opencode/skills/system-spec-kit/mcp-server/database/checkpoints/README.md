@@ -10,7 +10,7 @@ trigger_phrases:
 
 # Database Checkpoints: Snapshot and Restore Storage
 
-> Runtime home for checkpoint-v2 snapshots and the restore machinery. Written only by the mk-spec-memory daemon. Often empty between checkpoints.
+> Runtime home for checkpoint-v2 snapshots and the restore machinery. Written only by the system-spec-memory daemon. Often empty between checkpoints.
 
 ---
 
@@ -115,7 +115,7 @@ the sentinel's path plus a pointer to this section before exiting — see §5's 
 
 | Boundary | Rule |
 |---|---|
-| Writes | Only the mk-spec-memory daemon (`lib/storage/checkpoints.ts`) and the migration scripts write here. |
+| Writes | Only the system-spec-memory daemon (`lib/storage/checkpoints.ts`) and the migration scripts write here. |
 | Permissions | The directory is owner-only (`0700`). Do not loosen it; snapshots are full database copies. |
 | Manual edits | Do not hand-edit snapshots or the journal. A torn snapshot set makes a restore unsafe. |
 | Commits | Do not commit `.sqlite`, `-shm`, or `-wal` files. The repo-root `.gitignore` already covers `database/**/*.sqlite*`. |

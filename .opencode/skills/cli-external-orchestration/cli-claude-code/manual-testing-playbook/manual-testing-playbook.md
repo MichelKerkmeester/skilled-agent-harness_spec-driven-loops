@@ -641,7 +641,7 @@ This category covers one repository-boundary scenario. It verifies that Claude C
 
 #### Description
 
-Confirm the filtered Claude command tree excludes the OpenCode `mk-goal` router and the repository contains no Claude goal adapter or registration.
+Confirm the filtered Claude command tree excludes the OpenCode `opencode-goal` router and the repository contains no Claude goal adapter or registration.
 
 #### Scenario Contract
 

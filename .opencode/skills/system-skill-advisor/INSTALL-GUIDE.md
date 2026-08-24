@@ -7,7 +7,7 @@ description: "Bootstrap, verification, runtime hooks, compatibility shim, rollba
 
 <!-- sk-doc-template: skill_reference_install_guide -->
 
-This is the canonical install + setup guide for the standalone Skill Advisor MCP server. The advisor runs as `mk_skill_advisor`, separate from `mk-spec-memory`. It preserves the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` plus one internal trusted-caller tool `skill_graph_propagate_enhances`. This document merges the previously-separate `SET-UP_GUIDE.md` (runtime hooks, rollback CLI, operator states, reference commands) into the install bootstrap so there is a single source of truth.
+This is the canonical install + setup guide for the standalone Skill Advisor MCP server. The advisor runs as `system_skill_advisor`, separate from `system-spec-memory`. It preserves the public tool ids `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` plus one internal trusted-caller tool `skill_graph_propagate_enhances`. This document merges the previously-separate `SET-UP_GUIDE.md` (runtime hooks, rollback CLI, operator states, reference commands) into the install bootstrap so there is a single source of truth.
 
 ---
 
@@ -16,13 +16,13 @@ This is the canonical install + setup guide for the standalone Skill Advisor MCP
 Copy and paste this prompt to your AI assistant to get installation help:
 
 ```
-I want to install the Skill Advisor MCP server (mk_skill_advisor) from .opencode/skills/system-skill-advisor/mcp-server
+I want to install the Skill Advisor MCP server (system_skill_advisor) from .opencode/skills/system-skill-advisor/mcp-server
 
 Please help me:
 1. Verify Node.js and npm are installed
 2. Install dependencies and build the advisor MCP server
 3. Confirm the @spec-kit/shared package is linked (a missing link breaks startup with ERR_MODULE_NOT_FOUND)
-4. Register or refresh the mk_skill_advisor server in my runtime (I'm using: [OpenCode / Claude Code / OpenCode])
+4. Register or refresh the system_skill_advisor server in my runtime (I'm using: [OpenCode / Claude Code / OpenCode])
 5. Verify advisor_status and advisor_recommend respond
 
 Guide me through each step with the exact commands I need to run.
@@ -32,7 +32,7 @@ Your AI assistant will:
 - Verify Node.js and npm are available
 - Install and build the standalone advisor MCP server
 - Check the `@spec-kit/shared` dependency link
-- Configure `mk_skill_advisor` for your runtime
+- Configure `system_skill_advisor` for your runtime
 - Confirm the 8 public advisor tools register and respond
 
 **Expected setup time:** 3-5 minutes
@@ -49,8 +49,8 @@ The native advisor is a TypeScript package under `.opencode/skills/system-skill-
 
 - Node.js and npm available for the standalone system-skill-advisor MCP server.
 - Repository root as the working directory.
-- Runtime MCP configuration includes both `mk-spec-memory` and `mk_skill_advisor`.
-- Native MCP trusted mutations require `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon environment; callers cannot supply this trust grant per request.
+- Runtime MCP configuration includes both `system-spec-memory` and `system_skill_advisor`.
+- Native MCP trusted mutations require `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon environment; callers cannot supply this trust grant per request.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless intentionally testing rollback.
 - The local shared package at `.opencode/skills/system-spec-kit/shared` is present; `npm install` links it into `mcp-server/node_modules/@spec-kit/shared`.
 
@@ -71,25 +71,25 @@ Verify the local shared package link exists. Missing this link causes MCP startu
 test -e .opencode/skills/system-skill-advisor/mcp-server/node_modules/@spec-kit/shared && echo "shared dependency linked"
 ```
 
-Start or refresh the `mk_skill_advisor` MCP server in the active runtime. The launcher is:
+Start or refresh the `system_skill_advisor` MCP server in the active runtime. The launcher is:
 
 ```bash
-node .opencode/bin/mk-skill-advisor-launcher.cjs
+node .opencode/bin/system-skill-advisor-launcher.cjs
 ```
 
 ---
 
 ## 4. VERIFICATION
 
-Verify native tool registration through `mk_skill_advisor`:
+Verify native tool registration through `system_skill_advisor`:
 
 ```text
-mk_skill_advisor.advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
-mk_skill_advisor.advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":1}})
-mk_skill_advisor.advisor_validate({"confirmHeavyRun":true,"skillSlug":null})
+system_skill_advisor.advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+system_skill_advisor.advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":1}})
+system_skill_advisor.advisor_validate({"confirmHeavyRun":true,"skillSlug":null})
 ```
 
-Also verify the active runtime lists both MCP servers: `mk-spec-memory` for memory/context tools and `mk_skill_advisor` for advisor tools.
+Also verify the active runtime lists both MCP servers: `system-spec-memory` for memory/context tools and `system_skill_advisor` for advisor tools.
 
 Expected:
 
@@ -131,7 +131,7 @@ Prompt-time routing is available across runtime adapters:
 | Runtime | Hook Surface |
 | --- | --- |
 | Claude Code | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` |
-| OpenCode | `.opencode/plugins/mk-skill-advisor.js` plus the cross-process gateway at `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` |
+| OpenCode | `.opencode/plugins/system-skill-advisor.js` plus the cross-process gateway at `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` |
 
 The OpenCode bridge must use the stable package entrypoint:
 
@@ -172,10 +172,10 @@ python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.p
 python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local "save this context"
 ```
 
-The OpenCode plugin bridge follows the same pattern: MCP-level `mk_skill_advisor.advisor_recommend` delegation with prompt-safe fail-open behavior. Plugin consumers must use the stable bridge entrypoint:
+The OpenCode plugin bridge follows the same pattern: MCP-level `system_skill_advisor.advisor_recommend` delegation with prompt-safe fail-open behavior. Plugin consumers must use the stable bridge entrypoint:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs
+.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs
 ```
 
 If a package-level import is needed inside a subprocess fallback, it must target the standalone advisor package, never the old system-spec-kit advisor path. After build, the standalone server entrypoint is:
@@ -219,7 +219,7 @@ unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
 
 ## 9. OPERATOR CHECKS
 
-`skill_graph_*` tools are owned by the `mk_skill_advisor` MCP server as of `013/009/008`. Public tool ids remain unchanged.
+`skill_graph_*` tools are owned by the `system_skill_advisor` MCP server as of `013/009/008`. Public tool ids remain unchanged.
 
 Use `advisor_status` as the prompt-safe health source:
 
@@ -256,8 +256,8 @@ H5 operator scenarios live in the manual playbook under `operator-h5/`.
 
 | What You See | Cause | Fix |
 | --- | --- | --- |
-| MCP startup logs show `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared` from `semantic-shadow.js` | The advisor package was built, but its local shared package link is missing from `mcp-server/node_modules`. | Run `npm --prefix .opencode/skills/system-skill-advisor/mcp-server install` and `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build`, then restart `mk_skill_advisor`. |
-| `/doctor:mcp debug --server mk_skill_advisor` fails `shared_dependency` or `shared_import` | Doctor detected the same missing local package link before runtime startup. | Run `/doctor:mcp debug --server mk_skill_advisor --fix` or run the commands above manually. |
+| MCP startup logs show `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared` from `semantic-shadow.js` | The advisor package was built, but its local shared package link is missing from `mcp-server/node_modules`. | Run `npm --prefix .opencode/skills/system-skill-advisor/mcp-server install` and `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build`, then restart `system_skill_advisor`. |
+| `/doctor:mcp debug --server system_skill_advisor` fails `shared_dependency` or `shared_import` | Doctor detected the same missing local package link before runtime startup. | Run `/doctor:mcp debug --server system_skill_advisor --fix` or run the commands above manually. |
 
 ---
 
@@ -292,7 +292,7 @@ python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_r
 
 ## 12. CHOOSING AN EMBEDDER
 
-The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer. As of phase `003/006` the contract surface (adapter interface, types, manifest registry, Ollama adapter) lives in `@spec-kit/shared/embeddings/` and is shared with `mk-spec-memory`. Skill-advisor's local `mcp-server/lib/embedders/` files are thin re-export shims plus a skill-advisor-specific `schema.ts` integration that targets the package-local SQLite database at `mcp-server/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical multi-MCP narrative lives at [embedder-pluggability.md](../system-spec-kit/references/memory/embedder-pluggability.md).
+The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer. As of phase `003/006` the contract surface (adapter interface, types, manifest registry, Ollama adapter) lives in `@spec-kit/shared/embeddings/` and is shared with `system-spec-memory`. Skill-advisor's local `mcp-server/lib/embedders/` files are thin re-export shims plus a skill-advisor-specific `schema.ts` integration that targets the package-local SQLite database at `mcp-server/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical multi-MCP narrative lives at [embedder-pluggability.md](../system-spec-kit/references/memory/embedder-pluggability.md).
 
 ### 12.1 Current active default
 
@@ -351,7 +351,7 @@ Effect of the call:
 - `hasActiveEmbedderPointer(db)` returns `true`, so both read path (`semantic-shadow.ts`, `loadSkillEmbeddings()`) and write path (`refreshSkillEmbeddingsViaAdapter`) target `vec_<active.dim>`
 - The shared cascade is skipped on subsequent restarts (a manual override pins the pointer)
 
-The mk-spec-memory `embedder_set` / `embedder_status` MCP tools are intentionally NOT mirrored here. Skill-advisor's surface is one database helper plus the cascade-driven sentinel. Operator discipline owns any manual swap workflow; there is no async re-index orchestrator on the skill-advisor side.
+The system-spec-memory `embedder_set` / `embedder_status` MCP tools are intentionally NOT mirrored here. Skill-advisor's surface is one database helper plus the cascade-driven sentinel. Operator discipline owns any manual swap workflow; there is no async re-index orchestrator on the skill-advisor side.
 
 ### 12.4 Operator-safe swap runbook
 
@@ -379,7 +379,7 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 
 ### 12.6 Cross-references
 
-- Canonical shared-embedder narrative: [`embedder-pluggability.md`](../system-spec-kit/references/memory/embedder-pluggability.md) — covers `mk-spec-memory`, skill-advisor and shared design rationale.
+- Canonical shared-embedder narrative: [`embedder-pluggability.md`](../system-spec-kit/references/memory/embedder-pluggability.md) — covers `system-spec-memory`, skill-advisor and shared design rationale.
 - Shared contract surface: [`@spec-kit/shared/embeddings/`](../system-spec-kit/shared/embeddings/) — the canonical adapter, types, registry and Ollama adapter.
 - Shared cascade: [`@spec-kit/shared/embeddings/auto-select.ts`](../system-spec-kit/shared/embeddings/auto-select.ts) — file-locked Ollama → hf-local → OpenAI → Voyage probe chain (ADR-014 local-first). Accepts optional `contentType: 'text' \| 'code'` parameter (default `'text'`).
 - Memory-side analog (full MCP tool surface): [`system-spec-kit/mcp-server/INSTALL-GUIDE.md`](../system-spec-kit/mcp-server/INSTALL-GUIDE.md).
@@ -397,3 +397,65 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 | [Hook reference](./hooks/skill-advisor-hook.md) | Claude, Copilot, OpenCode and OpenCode plugin hook contract. |
 | [Manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
 | [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder-pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference. |
+
+---
+
+## 14. TUNING THE ADVISOR
+
+Installation makes the advisor run; tuning makes it route *your* skills accurately. The advisor scores each prompt against every skill's `graph-metadata.json` signals plus the scorer lane tables (`TOKEN_BOOSTS`, `PHRASE_BOOSTS`, `CATEGORY_HINTS`). There are two tuning paths — a fast signal-only loop and the full gated workflow.
+
+### 14.1 Quick tuning (no rebuild) — recommended for external clones
+
+Most "match my setup" needs are signal additions, not lane-weight changes:
+
+1. Edit `intent_signals` (and optionally `derived.trigger_phrases` / `derived.key_topics`) in the per-skill `graph-metadata.json`:
+   ```bash
+   $EDITOR .opencode/skills/<name>/graph-metadata.json
+   ```
+2. Re-index the SQLite graph — REQUIRED, or the edit has ZERO effect on routing:
+   - MCP tool: `skill_graph_scan({})`
+   - Trusted CLI: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`
+3. Verify: `advisor_recommend({ prompt: "your test phrase", options: { topK: 3 } })` — your skill should now appear.
+
+> **Critical:** the advisor reads scoring inputs from `.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without re-indexing produces identical pre-edit scores.
+
+### 14.2 Full tuning — `/doctor skill-advisor`
+
+For batch optimization across all skills plus lane-weight tuning, run the gated doctor workflow:
+
+| Use case | Command |
+| --- | --- |
+| First-time tuning / re-tune after adding a skill | `/doctor skill-advisor` |
+| Preview without writing | `/doctor skill-advisor --dry-run` |
+| Tune one lane only | `/doctor skill-advisor --scope=explicit` (or `derived` / `lexical`) |
+| Skip post-apply tests (not recommended) | `/doctor skill-advisor --skip-tests` |
+
+Five phases gated behind operator approval: Discovery → Analysis → Proposal → Apply → Verify. Phase 3 (Apply) rebuilds `dist/`, runs `skill_graph_scan`, runs the advisor test suite, and writes a per-run rollback script. Full reference: `.opencode/commands/doctor/speckit.md` and `.opencode/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`.
+
+### 14.3 What tuning touches
+
+Mutates only:
+
+- `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/explicit.ts` (`TOKEN_BOOSTS`, `PHRASE_BOOSTS`)
+- `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/lexical.ts` (`CATEGORY_HINTS`)
+- `.opencode/skills/<name>/graph-metadata.json` (`intent_signals`, `derived.trigger_phrases`, `derived.key_topics`)
+
+Never touches any `SKILL.md` content, `weights-config.ts`, the fusion scorer, or daemon code. Any MANUAL edit to these files (e.g. the Quick-tuning recipe above) requires a re-index (`skill_graph_scan`) — the SQLite graph is the runtime source of truth.
+
+### 14.4 Tuning rollback
+
+`/doctor skill-advisor` Phase 3 writes a per-run rollback script at `<packet_scratch>/rollback-<timestamp>.sh` (under `<spec-folder>/scratch/` or `.opencode/scratch/`) that restores only the files that run modified — unrelated WIP is preserved — and rebuilds the package at the end. Prefer it over a broad `git checkout HEAD -- ...`, which would discard unrelated WIP.
+
+If the per-run script is unavailable (the run failed before Phase 3 completed), stash unrelated WIP first, then restore from HEAD and rebuild:
+
+```bash
+git stash push -m "skill-advisor-rollback-safety" -- \
+  .opencode/skills/system-skill-advisor/mcp-server/lib/ \
+  .opencode/skills/*/graph-metadata.json
+
+git restore --source=HEAD -- \
+  .opencode/skills/system-skill-advisor/mcp-server/lib/ \
+  .opencode/skills/*/graph-metadata.json
+
+npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
+```

@@ -1,6 +1,15 @@
 ---
 title: Editability Guardrails
 description: The @ds guardrail do-not-edit fences and the architectural reason a presentation edit cannot reach logic or the security boundary.
+trigger_phrases:
+  - "do-not-edit fences"
+  - "design system guardrails"
+  - "editable seams and frozen lines"
+  - "presentation only edits"
+  - "frozen security posture"
+  - "guardrail audit checklist"
+importance_tier: normal
+contextType: implementation
 version: 1.0.0.0
 ---
 
@@ -12,7 +21,28 @@ the reason each fence matters.
 
 ---
 
-## 1. THE FENCES (`@ds guardrail: do-not-edit`)
+## 1. OVERVIEW
+
+### Core Principle
+
+CSS and token edits are presentation-only and structurally cannot reach state, logic, or the security
+boundary — the moment an edit stops being paint, it is fenced as a guardrail.
+
+### When to Use
+
+- Confirming which design-system elements are fenced from edits before making a change
+- Auditing a proposed CSS/token change against the guardrail list
+- Verifying no design-system edit crosses into logic or security enforcement
+- Understanding why an editable seam (tokens, slots, state presentation, layout) is safe to touch
+
+### Key Sources
+
+- `assets/guardrail-audit-checklist.md` — a checklist to confirm no fence in §2 moved after a
+  design-system change.
+
+---
+
+## 2. THE FENCES (`@ds guardrail: do-not-edit`)
 
 | Fenced | Why it is frozen |
 | --- | --- |
@@ -29,7 +59,7 @@ Across the app these fences number 75 in `style.css` and 255 in the components.
 
 ---
 
-## 2. WHY THE OTHER SEAMS ARE SAFE
+## 3. WHY THE OTHER SEAMS ARE SAFE
 
 CSS and token edits are **presentation-only**. They change what a surface looks like; they cannot reach
 state computation, the mutation/ticket path, redaction, or plan-mode enforcement, because all of that
@@ -40,7 +70,7 @@ no in-seam edit path crosses into logic or the security boundary.
 
 ---
 
-## 3. FROZEN SECURITY POSTURE (context a workflow must not weaken)
+## 4. FROZEN SECURITY POSTURE (context a workflow must not weaken)
 
 The app ships read-only by default; mutations are one-use, ticketed, revision-checked, and fail-closed;
 redaction is allowlist-based and structural; plan mode is host-enforced; pushes are content-free;
@@ -49,7 +79,7 @@ this — but a workflow bundling this surface must never let a presentation chan
 
 ---
 
-## 4. RELATED REFERENCES
+## 5. RELATED REFERENCES
 
-- `assets/guardrail-audit-checklist.md` — a checklist to confirm no fence in §1 moved after a
+- `assets/guardrail-audit-checklist.md` — a checklist to confirm no fence in §2 moved after a
   design-system change.

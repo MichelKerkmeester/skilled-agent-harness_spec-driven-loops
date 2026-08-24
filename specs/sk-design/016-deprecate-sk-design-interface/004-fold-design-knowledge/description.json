@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/016-deprecate-sk-design-interface/004-fold-design-knowledge",
+  "description": "Phase 004 distills a condensed general design-knowledge layer (Brand-vs-Product register, anti-slop principles, cognitive and numeric design laws,",
+  "keywords": [
+    "phase",
+    "distills",
+    "condensed",
+    "general",
+    "design-knowledge",
+    "layer",
+    "brand-vs-product",
+    "register",
+    "anti-slop",
+    "principles",
+    "cognitive",
+    "numeric",
+    "design",
+    "laws"
+  ],
+  "lastUpdated": "2026-08-19T17:04:10.994Z",
+  "specId": "004",
+  "folderSlug": "fold-design-knowledge",
+  "parentChain": [
+    "sk-design",
+    "016-deprecate-sk-design-interface"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "19-08-26_07-07__next-steps.md",
+    "19-08-26_07-09__next-steps.md",
+    "19-08-26_07-10__next-steps.md"
+  ]
+}

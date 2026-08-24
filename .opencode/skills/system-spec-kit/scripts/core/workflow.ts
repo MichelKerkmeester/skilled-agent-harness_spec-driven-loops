@@ -619,7 +619,7 @@ function formatStep115DaemonSkipMessage(
   daemonStatus: SpecMemoryDaemonStatus,
 ): string {
   const pidLabel = daemonStatus.pid !== undefined ? `pid ${daemonStatus.pid}` : 'pid unknown';
-  return 'Step 11.5 SKIPPED: mk-spec-memory daemon is running '
+  return 'Step 11.5 SKIPPED: system-spec-memory daemon is running '
     + `(${pidLabel}). A standalone index here would be a 2nd writer on `
     + 'context-index.sqlite (corruption-risk class, incident 026/004/012). '
     + `Finish indexing via MCP: ${formatMemoryIndexScanFollowUp(specFolderName)}.`;

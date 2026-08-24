@@ -34,7 +34,7 @@ Keyword triggers: `create diff report`, `document before/after review`, `before/
 Route elsewhere when:
 
 - The files are code or already tracked in Git — use `git`/`sk-git` for source diffs.
-- The comparison is visual or design-oriented (layout, pixels, screenshots) — use `sk-design`.
+- The comparison is visual or design-oriented (layout, pixels, screenshots) — out of scope; create-diff compares extracted text only.
 - The task is auditing, scoring, or validating a single existing document rather than comparing two states — use `create-quality-control`.
 - The deliverable is a README, skill, command, agent, changelog, or flowchart — use the matching `create-*` packet.
 
@@ -271,7 +271,7 @@ The task is successful when:
 - **Shared backbone** — `../shared/` provides sk-doc quality standards and the document validator for surrounding markdown when that is in scope.
 - **Canon gates** — `parent-skill-check.cjs`, `sk-create-skill/scripts/package_skill.py --check`, and `scripts/check-frontmatter-versions.sh` validate this packet's registration and shape.
 - **`/create:diff` command** — the mode is invocable as `/create:diff` (`:auto`/`:confirm`) via a full sibling-pattern router plus presentation and auto/confirm YAML assets under `.opencode/commands/create/`, alongside advisor-alias routing and direct script invocation.
-- **Sibling boundaries** — hands off to `sk-git` (code/Git diffs), `sk-design` (visual comparison), and `create-quality-control` (single-document audit).
+- **Sibling boundaries** — hands off to `sk-git` (code/Git diffs) and `create-quality-control` (single-document audit).
 
 ---
 

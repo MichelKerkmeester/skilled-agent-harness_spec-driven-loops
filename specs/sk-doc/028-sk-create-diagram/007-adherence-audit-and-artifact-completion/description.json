@@ -1,10 +1,13 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
-  "description": "Phase 006 ran `validate_skill_package.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` \u2014 all structural/metadata gates \u2014 but",
+  "description": "Phase 006 ran `validateskillpackage.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but",
   "keywords": [
     "phase",
-    "validate_skill_package",
+    "ran",
+    "validateskillpackage",
     "ci-skill-root-metadata",
+    "cjs",
     "validate",
     "recursive",
     "strict",
@@ -12,7 +15,7 @@
     "metadata",
     "gates"
   ],
-  "lastUpdated": "2026-08-12T18:40:07.000Z",
+  "lastUpdated": "2026-08-15T14:41:01.843Z",
   "specId": "007",
   "folderSlug": "adherence-audit-and-artifact-completion",
   "parentChain": [
@@ -20,6 +23,5 @@
     "028-sk-create-diagram"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

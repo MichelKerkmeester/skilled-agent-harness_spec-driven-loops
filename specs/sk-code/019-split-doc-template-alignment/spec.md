@@ -56,6 +56,10 @@ Oversized sk-code reference/asset docs were split by a mechanical line-slicer in
 
 **In scope:** the reference/asset `.md` split files under `.opencode/skills/sk-code/{code-opencode,code-webflow,code-quality}/{references,assets}/` — rename hyphen→underscore (snake_case), add the 5-field frontmatter + 4-part version, add H1+intro+`## 1. OVERVIEW`, renumber content sections, and update every in-hub reference to each renamed file.
 
+**In scope — 2026-08-19 increment:** the 10 hand-authored reference/asset files under `.opencode/skills/sk-code/sk-code-mobile-cli/{references,assets}/` (a surface created after this packet's original run). Same OVERVIEW + frontmatter conformance, **no renames** — these files are hand-authored and correctly kebab-case (unlike the mechanically-sliced snake_case files above), so the rename leg does not apply. Cross-file `§N` references were bumped +1 to track the OVERVIEW shift. See the implementation-summary increment.
+
+**In scope — 2026-08-19 increment 2 (app-doc restructure + parent hub freshness):** dissolve the flat `sk-code-mobile-cli/references/app-guide/` bucket into six purpose-named folders (`operations/ release/ setup/ standards/ design-reference/ quality/`), remove the two single-source pointer files (`feature-catalog.md`, `manual-testing-playbook.md`), repair the relocation-broken sibling cross-links, add `---` dividers between numbered sections across the relocated app docs, and de-stale the parent `sk-code` advisor artifacts (`leaf-manifest.json` regenerated; `description.json` + `graph-metadata.json` given the previously-missing mobile-cli surface signals). Documentation/metadata only; no app code, no routing-behavior change. See the implementation-summary increment.
+
 **Out of scope:** the sk-code surface SKILL.md header structure (surface-packet headers are deliberate — do not rewrite); any `feature_catalog`/`manual_testing_playbook` file already renamed by 027; anything under `system-deep-loop/deep-alignment` (live session); weakening `package_skill.py`.
 <!-- /ANCHOR:scope -->
 

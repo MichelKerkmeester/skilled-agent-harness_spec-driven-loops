@@ -19,7 +19,7 @@
     "filesystem",
     "names"
   ],
-  "lastUpdated": "2026-07-21T05:58:28.827Z",
+  "lastUpdated": "2026-08-15T14:41:11.163Z",
   "specId": "001",
   "folderSlug": "fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack",
   "parentChain": [

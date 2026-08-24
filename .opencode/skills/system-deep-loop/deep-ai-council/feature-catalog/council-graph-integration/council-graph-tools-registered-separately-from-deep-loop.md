@@ -5,7 +5,7 @@ trigger_phrases:
   - "council graph mcp surface retired"
   - "runtime/ --loop-type council"
   - "council graph no mcp context"
-  - "mk-spec-memory council graph absent"
+  - "system-spec-memory council graph absent"
   - "council graph runtime cli only"
 version: 2.3.0.10
 ---
@@ -16,9 +16,9 @@ version: 2.3.0.10
 
 ## 1. OVERVIEW
 
-Verify council graph operations no longer consume mk-spec-memory MCP tool slots and remain available through `runtime/ --loop-type council`.
+Verify council graph operations no longer consume system-spec-memory MCP tool slots and remain available through `runtime/ --loop-type council`.
 
-ADR-001 still keeps council graph semantics separate from research/review graph semantics; the ownership boundary moved from mk-spec-memory MCP handlers to runtime CLI scripts.
+ADR-001 still keeps council graph semantics separate from research/review graph semantics; the ownership boundary moved from system-spec-memory MCP handlers to runtime CLI scripts.
 
 Operators use this feature when the real request is: Confirm council graph operations no longer consume MCP context while still supporting replay/query/status/convergence.
 
@@ -30,7 +30,7 @@ The shipped surface is anchored by `runtime//scripts/{upsert,query,status,conver
 
 Current behavior is grounded in `.opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts`, where the live registry now imports at 35 tools and has no council graph entries. Validation is anchored by `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`, covering runtime script behavior for upsert, query, status, convergence, and error contracts.
 
-The user-visible contract is concrete: council graph behavior remains available, but mk-spec-memory no longer exposes a council graph MCP family.
+The user-visible contract is concrete: council graph behavior remains available, but system-spec-memory no longer exposes a council graph MCP family.
 
 ---
 

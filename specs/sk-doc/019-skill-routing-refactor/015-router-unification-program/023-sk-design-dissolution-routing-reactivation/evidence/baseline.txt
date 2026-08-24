@@ -1,0 +1,48 @@
+# Baseline (pre-change) — 2026-08-22T06:30:28Z
+
+## compiled-route-status --all --no-probe
+[{"hubId":"cli-external-orchestration","servingAuthority":"legacy","shadowOnly":false,"selectedPolicy":{"generation":5},"effectivePolicyHash":"9d92aa12a4a748223239408b7cc7d7828b342e83f121be0eb0e1eb928e5f8b01","fenceEpoch":2,"manifestFingerprint":"d8d80e7751a5bddda9df1e3288a2e688dd8fd05c7d1c03a4a339b4de1a5ec29c","causeCode":"stale-manifest","manifestFreshness":{"manifestValid":true,"fresh":false,"causeCode":"stale-manifest","currentPolicyHash":"78723d284d202ab2e3efb25b729fd3e731bfb94641ed7253f6902ccc4f9592b5"}},{"hubId":"mcp-tooling","servingAuthority":"legacy","shadowOnly":false,"selectedPolicy":{"generation":4},"effectivePolicyHash":"185f659af835e5cf43cfcdb286255df979d98c60a26f302452b45355cdf52d0a","fenceEpoch":4,"manifestFingerprint":"a63f327854e8d96570706b6131ad0e2cd4acaa07327ffc51d08878f784e10f9a","causeCode":"stale-manifest","manifestFreshness":{"manifestValid":true,"fresh":false,"causeCode":"compile-error","currentPolicyHash":null}},{"hubId":"sk-code","servingAuthority":"legacy","shadowOnly":false,"selectedPolicy":{"generation":2},"effectivePolicyHash":"2321504fec24541eb545181a55d68ccaf372940a6a8a36ae09b4e112391fd3cd","fenceEpoch":4,"manifestFingerprint":"9cfbf285610bed4810a3c7316437a30f69ef96012ca9c4c8828008f9b76a1130","causeCode":"stale-manifest","manifestFreshness":{"manifestValid":true,"fresh":false,"causeCode":"stale-manifest","currentPolicyHash":"160f4353f4fc83bf6f57a49d55860a11c2fe9eb2a8e8feac3a4a24c6ceec3f7b"}},{"hubId":"sk-design","servingAuthority":"legacy","shadowOnly":false,"selectedPolicy":{"generation":6},"effectivePolicyHash":"69f910371582674cf5837e44cb67540ec293e9f5bc1774230e14ddb468f79159","fenceEpoch":4,"manifestFingerprint":"82efc0bb3dd29d4d610448117d8027b74d5daa44a4c4656149ee636968dea803","causeCode":"stale-manifest","manifestFreshness":{"manifestValid":true,"fresh":false,"causeCode":"compile-error","currentPolicyHash":null}},{"hubId":"sk-doc","servingAuthority":"legacy","shadowOnly":false,"selectedPolicy":{"generation":5},"effectivePolicyHash":"11a8fe37e370aacab67b821f418c31c5ba590e73714155941efad3c883e38f9f","fenceEpoch":4,"manifestFingerprint":"7b79d5a7764e8524b49b43fdfec812aef753ee2c2fe9968e3200417834759e91","causeCode":"stale-manifest","manifestFreshness":{"manifestValid":true,"fresh":false,"causeCode":"stale-manifest","currentPolicyHash":"bd74a865e168618da71ed177b305def5e2496220d86661e40a79454835445884"}},{"hubId":"sk-prompt","servingAuthority":"legacy","shadowOnly":false,"selectedPolicy":{"generation":5},"effectivePolicyHash":"19ffb85d981b62e7a381cfa5d15e168774a063fc26e06900bef9545ab7e31dfa","fenceEpoch":4,"manifestFingerprint":"49e133412bf0e169ec2d19344d9b05719c6056ee42b785660b40e6b3fa9da4ef","causeCode":"stale-manifest","manifestFreshness":{"manifestValid":true,"fresh":false,"causeCode":"stale-manifest","currentPolicyHash":"2ac1a54b218fbd8036d3e6998da513c7b4f3e6d1f5dca5098db61de896dc760e"}},{"hubId":"system-deep-loop","servingAuthority":"legacy","shadowOnly":false,"selectedPolicy":{"generation":4},"effectivePolicyHash":"0854f3ecc3107235687c195a2c962000e9b4ae4d470491b25890f88b6b5e09dd","fenceEpoch":6,"manifestFingerprint":"434c1a3d152e8d57b5180fc6eef9b82dbac5ba3123f1c70bb4b6351238e759f5","causeCode":"stale-manifest","manifestFreshness":{"manifestValid":true,"fresh":false,"causeCode":"stale-manifest","currentPolicyHash":"4f4aba2fbf06bfcdccdb9f3b84a88489cd17c51ecfcf2a236e53c47a9294264a"}}]
+
+## compiled-route-guard --json (failures:7)
+{
+  "results": [
+    {
+      "hubId": "cli-external-orchestration",
+      "ok": false,
+      "reason": "stale-manifest"
+    },
+    {
+      "hubId": "mcp-tooling",
+      "ok": false,
+      "reason": "inputs-do-not-compile"
+    },
+    {
+      "hubId": "sk-code",
+      "ok": false,
+      "reason": "stale-manifest"
+    },
+    {
+      "hubId": "sk-design",
+      "ok": false,
+      "reason": "stale-manifest"
+    },
+    {
+      "hubId": "sk-doc",
+      "ok": false,
+      "reason": "stale-manifest"
+    },
+    {
+      "hubId": "sk-prompt",
+      "ok": false,
+      "reason": "stale-manifest"
+    },
+    {
+      "hubId": "system-deep-loop",
+      "ok": false,
+      "reason": "stale-manifest"
+    }
+  ],
+  "failures": 7
+}
+
+## compiled-route-manifest.test.cjs (16 fail / 26 pass baseline)

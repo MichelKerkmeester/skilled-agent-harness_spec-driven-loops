@@ -1,21 +1,21 @@
 {
   "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment",
-  "description": "Phase 036: deep-alignment mode README revisit on the refined template with version bump and changelog entry",
+  "description": "The deep-alignment README at `.opencode/skills/system-deep-loop/deep-alignment/README.md` still carries the older tabular reference-card style and",
   "keywords": [
-    "phase",
     "deep-alignment",
-    "mode",
     "readme",
-    "revisit",
-    "refined",
-    "template",
-    "version",
-    "bump",
-    "changelog",
-    "entry"
+    "opencode",
+    "skills",
+    "system-deep-loop",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style"
   ],
-  "lastUpdated": "2026-08-04T18:35:02.827Z",
+  "lastUpdated": "2026-08-15T14:41:01.740Z",
   "specId": "036",
   "folderSlug": "deep-alignment",
   "parentChain": [

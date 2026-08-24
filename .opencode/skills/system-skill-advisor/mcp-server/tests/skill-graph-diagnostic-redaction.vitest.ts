@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import MkSkillAdvisorPlugin from '../../../../plugins/mk-skill-advisor.js';
+import MkSkillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
 import { handleSkillGraphScan } from '../handlers/skill-graph/scan.js';
 import { runWithCallerContext } from '../lib/context/caller-context.js';
 import type { MCPCallerContext } from '../lib/context/caller-context.js';

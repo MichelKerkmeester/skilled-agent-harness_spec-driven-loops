@@ -6,7 +6,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 // PostToolUse(Bash) CLI dispatch audit trail for Claude Code.
 //
-// Claude's counterpart to the mk-cli-dispatch-audit OpenCode plugin: it observes a completed
+// Claude's counterpart to the cli-dispatch-audit OpenCode plugin: it observes a completed
 // Bash tool call, recognizes an `opencode run` / `claude -p` dispatch shape, and appends one
 // redacted, size-rotated JSONL audit line through the SAME shared dispatch-audit core both
 // runtimes use. This hook is strictly observational -- unlike the sibling PreToolUse preflight

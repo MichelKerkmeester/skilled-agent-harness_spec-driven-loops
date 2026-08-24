@@ -125,7 +125,7 @@
         "eventCount": 31,
         "activated": true,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "skill",
           "read",
           "read",
@@ -250,7 +250,7 @@
         "eventCount": 27,
         "activated": true,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "skill",
           "glob",
           "glob",

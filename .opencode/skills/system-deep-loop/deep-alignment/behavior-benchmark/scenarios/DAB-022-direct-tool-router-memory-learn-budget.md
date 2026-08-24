@@ -28,7 +28,7 @@
     "role_absorption_forbidden": true,
     "min_seats": 0,
     "expected_targets": [
-      "mcp__mk_spec_memory__memory_stats"
+      "mcp__system_spec_memory__memory_stats"
     ],
     "forbidden_targets": [
       "/\"(?:name|tool)\"\\s*:\\s*\"(?:Agent|Task|task)\"/i",
@@ -61,7 +61,7 @@
 
 **Rationale.** The budget route is a second `memory/learn` direct-dispatch behavior with a distinct target. It verifies that a dashboard request reaches memory statistics instead of being inferred from repository files or delegated to a workflow.
 
-**Pass shape.** The stream includes `mcp__mk_spec_memory__memory_stats` and both pinned markers, no forbidden target appears, and the read-only fixture sentinel survives with no escaped writes.
+**Pass shape.** The stream includes `mcp__system_spec_memory__memory_stats` and both pinned markers, no forbidden target appears, and the read-only fixture sentinel survives with no escaped writes.
 
 **Failure modes.** Computing a budget without the MCP call is role absorption; task dispatch or workflow loading is a topology mismatch; fixture mutation is a boundary violation.
 
@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `STATUS=OK ACTION=` | `.opencode/commands/memory/learn.md` | `sha256:930c9111acd7eeb2caff4e4192b6b5179402367b8afe71a11238ad6649c4c8c8` |
-| `budget` | `.opencode/commands/memory/learn.md` | `sha256:930c9111acd7eeb2caff4e4192b6b5179402367b8afe71a11238ad6649c4c8c8` |
+| `STATUS=OK ACTION=` | `.opencode/commands/memory/learn.md` | `sha256:240b285eaabaec89f1f20b51fd4d5eb52327986110c138c7db90cf0fe48c5eb0` |
+| `budget` | `.opencode/commands/memory/learn.md` | `sha256:240b285eaabaec89f1f20b51fd4d5eb52327986110c138c7db90cf0fe48c5eb0` |

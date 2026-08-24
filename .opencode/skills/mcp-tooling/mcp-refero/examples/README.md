@@ -42,7 +42,7 @@ Each walkthrough is a working sequence and an honest capability boundary: it exe
 **What it enforces:**
 - One search call answers metadata questions; detail is fetched only for shortlisted UUIDs
 - The elements facet (`ui_elements`, `ux_patterns`, `page_types`) replaces the non-existent `search_elements`
-- No taste verdict from the transport; design-affecting evidence routes to `sk-design`
+- No taste verdict from the transport; design-affecting evidence pairs with `sk-design-md-generator` for a measured Style Reference
 
 ---
 

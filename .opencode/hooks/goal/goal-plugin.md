@@ -3,7 +3,7 @@ title: "OpenCode Goal Plugin Contract"
 description: "Operator contract for the local /goal OpenCode plugin, session-goal state, prompt injection, lifecycle events, and validation surfaces."
 trigger_phrases:
   - "goal plugin"
-  - "mk-goal"
+  - "opencode-goal"
   - "/goal command"
   - "active_goal"
   - "session goal"
@@ -26,10 +26,10 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 
 | Surface | Path | Role |
 |---|---|---|
-| Plugin | `.opencode/plugins/mk-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `mk_goal`, and `mk_goal_status`. |
+| Plugin | `.opencode/plugins/opencode-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `opencode_goal`, and `opencode_goal_status`. |
 | Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
 | State | `.opencode/skills/.goal-state/` | Runtime JSON state, keyed by a fixed SHA-256 digest of the session id, intentionally outside spec docs. |
-| Tests | `.opencode/plugins/tests/mk-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
+| Tests | `.opencode/plugins/tests/opencode-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
 
 ## 3. BEHAVIOR CONTRACT
 
@@ -42,38 +42,38 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 - `experimental.chat.system.transform` injects one `[active_goal:<goalId>]` block only for active goals.
 - The injected block keeps a short raw `objective:` preview for auditability and uses `goal_prompt:` for model-facing steering.
 - The `event` hook restores active goals on `session.created`, records usage/evidence on `message.updated`, tracks prompt blockers, verifies on `session.idle`, and attempts continuation only when autonomy gates pass. Provider usage-limit recovery is lazy: a retry-after deadline recorded from a 429 payload is evaluated on the next `message.updated` or `session.idle`, with no timer.
-- Idle verification uses an injected `supervisorVerifier` when tests or callers provide one; otherwise it uses the production default verifier. The default is a fail-closed heuristic over the latest assistant evidence and the goal objective. Set `MK_GOAL_VERIFIER=llm` to opt into the model-backed verifier that calls `ctx.client.session.promptAsync` and parses a structured verdict.
-- `/goal show` and `mk_goal_status` expose the exact injection preview plus prompt metadata so operators can inspect what the model receives.
+- Idle verification uses an injected `supervisorVerifier` when tests or callers provide one; otherwise it uses the production default verifier. The default is a fail-closed heuristic over the latest assistant evidence and the goal objective. Set `OPENCODE_GOAL_VERIFIER=llm` to opt into the model-backed verifier that calls `ctx.client.session.promptAsync` and parses a structured verdict.
+- `/goal show` and `opencode_goal_status` expose the exact injection preview plus prompt metadata so operators can inspect what the model receives.
 
 ## 4. ENVIRONMENT VARIABLES
 
 | Variable | Default | Effect |
 |---|---|---|
-| `MK_GOAL_PLUGIN_DISABLED` | unset | Set `1` to disable goal injection and plugin behavior. |
-| `MK_GOAL_AUTONOMY` | unset | `active` enables guarded continuation; `smoke` logs would-fire decisions; unset or `passive` suppresses continuation. |
-| `MK_GOAL_DEBUG` | unset | Set `1` to append bounded debug events under `.goal-state`. |
-| `MK_GOAL_VERIFIER` | `heuristic` | `heuristic` uses the deterministic fail-closed verifier; `llm` opts into `ctx.client.session.promptAsync` semantic verdicts. |
-| `MK_GOAL_MAX_OBJECTIVE_CHARS` | `4000` | Caps stored raw objective text. |
-| `MK_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | Caps generated `goalPrompt`; values above 4000 are clamped. |
-| `MK_GOAL_MAX_INJECTION_CHARS` | `4800` | Caps the active-goal injection block. |
-| `MK_GOAL_MAX_EVIDENCE_CHARS` | `1200` | Caps verifier evidence retained in state. |
-| `MK_GOAL_MAX_AUTO_TURNS` | `8` | Caps guarded auto-continuation turns for new and normalized goals. |
-| `MK_GOAL_MAX_WALL_MS` | `1800000` | Caps guarded auto-continuation wall-clock duration in milliseconds. |
-| `MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS` | `90` | Days before an archived goal-state file is pruned. |
-| `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `2` | Age threshold before an orphaned active-state file is swept and archived. |
-| `MK_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | Minimum interval between orphaned-active-state sweep passes. |
+| `OPENCODE_GOAL_PLUGIN_DISABLED` | unset | Set `1` to disable goal injection and plugin behavior. |
+| `OPENCODE_GOAL_AUTONOMY` | unset | `active` enables guarded continuation; `smoke` logs would-fire decisions; unset or `passive` suppresses continuation. |
+| `OPENCODE_GOAL_DEBUG` | unset | Set `1` to append bounded debug events under `.goal-state`. |
+| `OPENCODE_GOAL_VERIFIER` | `heuristic` | `heuristic` uses the deterministic fail-closed verifier; `llm` opts into `ctx.client.session.promptAsync` semantic verdicts. |
+| `OPENCODE_GOAL_MAX_OBJECTIVE_CHARS` | `4000` | Caps stored raw objective text. |
+| `OPENCODE_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | Caps generated `goalPrompt`; values above 4000 are clamped. |
+| `OPENCODE_GOAL_MAX_INJECTION_CHARS` | `4800` | Caps the active-goal injection block. |
+| `OPENCODE_GOAL_MAX_EVIDENCE_CHARS` | `1200` | Caps verifier evidence retained in state. |
+| `OPENCODE_GOAL_MAX_AUTO_TURNS` | `8` | Caps guarded auto-continuation turns for new and normalized goals. |
+| `OPENCODE_GOAL_MAX_WALL_MS` | `1800000` | Caps guarded auto-continuation wall-clock duration in milliseconds. |
+| `OPENCODE_GOAL_STATE_ARCHIVE_RETENTION_DAYS` | `90` | Days before an archived goal-state file is pruned. |
+| `OPENCODE_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `2` | Age threshold before an orphaned active-state file is swept and archived. |
+| `OPENCODE_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | Minimum interval between orphaned-active-state sweep passes. |
 
 ## 5. OUTPUT FIELDS
 
-`mk_goal_status` and `/goal set` responses expose these status fields in addition to the injection preview and prompt metadata:
+`opencode_goal_status` and `/goal set` responses expose these status fields in addition to the injection preview and prompt metadata:
 
 | Field | Values | Meaning |
 |---|---|---|
 | `store_health` | `no_active_goal`, `state_age_ms:<N>` | Diagnostic on the active-goal state file: absent, or its age in milliseconds. |
 | `mutation` | `created`, `refreshed`, `replaced` | Set-time outcome: `created` when no goal existed, `refreshed` when the same objective was re-set, `replaced` when a different objective overwrote an existing goal. |
-| `max_auto_turns` | positive integer | Effective auto-turn cap after `MK_GOAL_MAX_AUTO_TURNS` and stored state normalization. |
+| `max_auto_turns` | positive integer | Effective auto-turn cap after `OPENCODE_GOAL_MAX_AUTO_TURNS` and stored state normalization. |
 | `remaining_auto_turns` | integer >= 0 | Auto-continuation turns still available before the cap suppresses continuation. |
-| `max_wall_ms` | positive integer | Effective wall-clock cap after `MK_GOAL_MAX_WALL_MS`. |
+| `max_wall_ms` | positive integer | Effective wall-clock cap after `OPENCODE_GOAL_MAX_WALL_MS`. |
 | `remaining_wall_ms` | integer >= 0 | Wall-clock budget still available for guarded continuation. |
 | `provider_retry_after_ms` | epoch ms or `none` | Stored retry-after recovery deadline for `usage_limited` goals. |
 | `verifier_source` | `none`, `injected`, `default-heuristic`, `default-llm` | Provenance for the last verifier verdict. Injected verifiers keep precedence over defaults. |
@@ -84,32 +84,32 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 
 ### Canonical Usage Fields
 
-`tokens_used` and `usage_source` are the canonical status-output fields for usage accounting. They mirror the stored `tokensUsed` and `usageSource` goal-state properties and appear before the budget-prefixed aliases in live `mk_goal_status` output.
+`tokens_used` and `usage_source` are the canonical status-output fields for usage accounting. They mirror the stored `tokensUsed` and `usageSource` goal-state properties and appear before the budget-prefixed aliases in live `opencode_goal_status` output.
 
 `budget_tokens_used` and `budget_usage_source` are legacy-compatible aliases for the same values. They remain in output for existing tests, docs, and operators that read the budget-prefixed field names, but new integrations should read `tokens_used` and `usage_source`.
 
 ## 6. BOUNDARIES
 
 - Keep `.opencode/commands/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
-- Do not route `mk-goal` through Spec Kit Memory or the code-index/skill-advisor daemon CLIs. Goal state is session-local plugin state.
+- Do not route `opencode-goal` through Spec Kit Memory or the code-index/skill-advisor daemon CLIs. Goal state is session-local plugin state.
 - Do not store objective-derived runtime state in spec docs or memory rows unless the user explicitly asks to save continuity.
 - Do not auto-run shell commands inferred from the goal objective. Verification evidence must come from explicit tests, command output, or supervisor-safe state.
-- Restart OpenCode after changing `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal-opencode.md`, or this plugin's load-time configuration.
+- Restart OpenCode after changing `.opencode/plugins/opencode-goal.js`, `.opencode/commands/goal-opencode.md`, or this plugin's load-time configuration.
 
 ## 7. VERIFICATION
 
 Run these checks after modifying goal-plugin behavior or docs that describe the plugin:
 
 ```bash
-node .opencode/plugins/tests/mk-goal-state.test.cjs
-node .opencode/plugins/tests/mk-goal-tool-path.test.cjs
-node .opencode/plugins/tests/mk-goal-export-contract.test.cjs
-node .opencode/plugins/tests/mk-goal-capabilities.test.cjs
-node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs
-node .opencode/plugins/tests/mk-goal-supervisor.test.cjs
-node .opencode/plugins/tests/mk-goal-continuation.test.cjs
+node .opencode/plugins/tests/opencode-goal-state.test.cjs
+node .opencode/plugins/tests/opencode-goal-tool-path.test.cjs
+node .opencode/plugins/tests/opencode-goal-export-contract.test.cjs
+node .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
+node .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs
+node .opencode/plugins/tests/opencode-goal-supervisor.test.cjs
+node .opencode/plugins/tests/opencode-goal-continuation.test.cjs
 python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/plugins
-python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .opencode/plugins/mk-goal.js
+python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .opencode/plugins/opencode-goal.js
 ```
 
 For documentation-only changes, also run the relevant `sk-doc` structure check and the active spec folder's strict validation.
@@ -118,7 +118,7 @@ For documentation-only changes, also run the relevant `sk-doc` structure check a
 
 This plugin is the OpenCode-native goal system. Cursor and Pi reach the same passive-goal behavior through a runtime-neutral sibling under `.opencode/hooks/goal/` — not this plugin.
 
-**State model.** `mk-goal` keeps per-OpenCode-session state and native token accounting under `<full-sha256-of-session-id>.json`. Valid files from the earlier reversible hex-key format migrate lazily on active reads, injection, orphan sweeps, and history access; occupied digest targets remain authoritative. The sibling core hashes the unambiguous serialization of repository root, runtime, and native session id into one opaque `<full-sha256>.json` basename with a matching archive namespace. Its legacy `active-goal.json` is diagnostic-only and never supplies prompt injection. Cross-runtime usage accounting remains `turn-count-estimate` because these adapters do not expose OpenCode's native token feed.
+**State model.** `opencode-goal` keeps per-OpenCode-session state and native token accounting under `<full-sha256-of-session-id>.json`. Valid files from the earlier reversible hex-key format migrate lazily on active reads, injection, orphan sweeps, and history access; occupied digest targets remain authoritative. The sibling core hashes the unambiguous serialization of repository root, runtime, and native session id into one opaque `<full-sha256>.json` basename with a matching archive namespace. Its legacy `active-goal.json` is diagnostic-only and never supplies prompt injection. Cross-runtime usage accounting remains `turn-count-estimate` because these adapters do not expose OpenCode's native token feed.
 
 **Current support matrix:**
 
@@ -134,7 +134,7 @@ This plugin is the OpenCode-native goal system. Cursor and Pi reach the same pas
 
 | Runtime | Command | Source | Drives |
 |---|---|---|---|
-| OpenCode | `/goal-opencode` | `.opencode/commands/goal-opencode.md` | `mk_goal` / `mk_goal_status` plugin tools |
+| OpenCode | `/goal-opencode` | `.opencode/commands/goal-opencode.md` | `opencode_goal` / `opencode_goal_status` plugin tools |
 | Cursor | `/goal-cursor` | `.cursor/commands/goal-cursor.md` | Fails with `UNSUPPORTED_SESSION_BINDING`; never calls the CLI |
 | Pi | `/goal-pi` | Registered by `.opencode/hooks/goal/pi/goal-context.ts` | Shared CLI with native runtime/session/workspace flags appended by the extension |
 

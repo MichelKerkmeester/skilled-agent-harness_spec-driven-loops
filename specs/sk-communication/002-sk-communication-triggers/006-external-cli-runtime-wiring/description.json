@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-communication/002-sk-communication-triggers/006-external-cli-runtime-wiring",
+  "description": "Phase 005 delivered the external-cli provider as a tested package path, but command 2's Branch B still dispatches to a cli- skill ad-hoc",
+  "keywords": [
+    "phase",
+    "delivered",
+    "external-cli",
+    "provider",
+    "tested",
+    "package",
+    "path",
+    "command",
+    "branch",
+    "still",
+    "dispatches",
+    "cli",
+    "skill",
+    "ad-hoc"
+  ],
+  "lastUpdated": "2026-08-20T21:06:27.722Z",
+  "specId": "006",
+  "folderSlug": "external-cli-runtime-wiring",
+  "parentChain": [
+    "sk-communication",
+    "002-sk-communication-triggers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

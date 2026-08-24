@@ -457,8 +457,8 @@ describe.sequential('fan-out scheduler contracts', () => {
     const run = await runAdapterFanout(fixture, { mode: 'gate' });
     expect(run.result.exitCode).toBe(0);
     expect(readAdapterCaptures(fixture)[0].env).toMatchObject({
-      MK_SPEC_GATE_ENFORCE: '0',
-      MK_SPEC_GATE_DISABLED: '1',
+      SYSTEM_SPEC_GATE_ENFORCE: '0',
+      SYSTEM_SPEC_GATE_DISABLED: '1',
       AI_SESSION_CHILD: '1',
     });
   });

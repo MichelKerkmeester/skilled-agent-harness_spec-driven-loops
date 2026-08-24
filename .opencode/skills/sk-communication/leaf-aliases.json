@@ -41,6 +41,11 @@
   },
   {
     "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/provider-and-privacy/external-cli-provider.md",
+    "diskPath": "feature-catalog/provider-and-privacy/external-cli-provider.md"
+  },
+  {
+    "workflowMode": "sk-communication",
     "leafResourceId": "feature-catalog/provider-and-privacy/privacy-first-provider-routing.md",
     "diskPath": "feature-catalog/provider-and-privacy/privacy-first-provider-routing.md"
   },
@@ -63,6 +68,11 @@
     "workflowMode": "sk-communication",
     "leafResourceId": "manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md",
     "diskPath": "manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/fidelity-and-privacy/external-cli-provider-fallback.md",
+    "diskPath": "manual-testing-playbook/fidelity-and-privacy/external-cli-provider-fallback.md"
   },
   {
     "workflowMode": "sk-communication",

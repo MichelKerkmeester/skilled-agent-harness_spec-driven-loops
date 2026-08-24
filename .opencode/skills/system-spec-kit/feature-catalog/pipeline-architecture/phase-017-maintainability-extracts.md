@@ -62,4 +62,3 @@ Taken together, the maintainability pass made the pipeline contracts more explic
 - Feature file path: `pipeline-architecture/phase-017-maintainability-extracts.md`
 Related references:
 - [embeddings-and-retry-api.md](../../feature-catalog/pipeline-architecture/embeddings-and-retry-api.md) — Embeddings and Retry API
-- [code-graph-phase-dag-runner.md](../../feature-catalog/pipeline-architecture/code-graph-phase-dag-runner.md) — Code Graph phase-DAG runner

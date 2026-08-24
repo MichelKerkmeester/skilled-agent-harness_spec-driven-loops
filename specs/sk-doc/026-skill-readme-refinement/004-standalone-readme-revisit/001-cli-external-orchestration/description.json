@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration",
   "description": "The cli-external-orchestration README still carries the older tabular reference-card style: a dense AT A GLANCE table, a feature-heavy pitch",
   "keywords": [
@@ -16,7 +17,7 @@
     "feature-heavy",
     "pitch"
   ],
-  "lastUpdated": "2026-08-04T07:43:49.613Z",
+  "lastUpdated": "2026-08-15T14:41:01.500Z",
   "specId": "001",
   "folderSlug": "cli-external-orchestration",
   "parentChain": [
@@ -25,6 +26,5 @@
     "004-standalone-readme-revisit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

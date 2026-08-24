@@ -9,6 +9,7 @@
    "mcp-click-up",
    "mcp-obsidian",
    "mcp-aside-devtools",
+   "mcp-notion",
    "mcp-figma",
    "mcp-refero",
    "mcp-mobbin"
@@ -77,6 +78,16 @@
    ],
    "resources": [
     "mcp-aside-devtools/SKILL.md"
+   ]
+  },
+  "mcp-notion": {
+   "weight": 4,
+   "classes": [
+    "notion-aliases",
+    "notion-data"
+   ],
+   "resources": [
+    "mcp-notion/SKILL.md"
    ]
   },
   "mcp-figma": {
@@ -230,6 +241,28 @@
     "repl evidence capture",
     "click through",
     "on its own"
+   ]
+  },
+  "notion-aliases": {
+   "keywords": [
+    "notion",
+    "notion mcp",
+    "notion api",
+    "notion page",
+    "notion token",
+    "ntn_"
+   ]
+  },
+  "notion-data": {
+   "keywords": [
+    "notion database",
+    "notion data source",
+    "query notion",
+    "notion property",
+    "notion relation",
+    "notion rollup",
+    "notion formula",
+    "notion markdown"
    ]
   },
   "refero-aliases": {

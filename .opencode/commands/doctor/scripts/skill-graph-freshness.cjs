@@ -44,7 +44,7 @@ function fromCompiledJson() {
 
 // id -> family from the SQLite graph (read-only; node:sqlite is stdlib, no dependency).
 function fromSqlite() {
-  const dbDir = process.env.MK_SKILL_ADVISOR_DB_DIR || process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  const dbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR || process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   const dbPath = dbDir ? path.join(dbDir, 'skill-graph.sqlite') : rel(DB_DEFAULT);
   if (!fs.existsSync(dbPath)) return { map: null, meta: 'absent' };
   try {

@@ -32,7 +32,7 @@ Cursor management is intentionally unsupported. The prompt command does not rece
 
 ### Recommended orchestration process
 
-1. Create a temporary `MK_GOAL_STATE_DIR`.
+1. Create a temporary `OPENCODE_GOAL_STATE_DIR`.
 2. Set Goal A and Goal B with explicit Cursor session flags.
 3. Invoke the adapter with `session_id: session-a` and `session_id: session-b`.
 4. Verify the response objectives and non-owner file bytes.
@@ -49,7 +49,7 @@ Set A and B with `node .opencode/hooks/goal/bin/goal.cjs --runtime cursor --sess
 
 ### Rollback
 
-Set `MK_GOAL_PLUGIN_DISABLED=1` or remove the Cursor goal registration as one controlled change. Preserve scoped and quarantined state. A disabled adapter must return only `{"permission":"allow"}` and must not increment any goal record.
+Set `OPENCODE_GOAL_PLUGIN_DISABLED=1` or remove the Cursor goal registration as one controlled change. Preserve scoped and quarantined state. A disabled adapter must return only `{"permission":"allow"}` and must not increment any goal record.
 
 ---
 

@@ -65,7 +65,7 @@ describe('command metadata dense e2e', () => {
       }
     }
 
-    expect(metadataCount).toBe(22);
+    expect(metadataCount).toBe(20);
   });
 
   it('resolves every hub and standalone leaf alias diskPath', () => {

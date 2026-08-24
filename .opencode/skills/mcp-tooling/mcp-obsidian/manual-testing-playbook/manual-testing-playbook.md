@@ -1,14 +1,14 @@
 ---
 title: "mcp-obsidian: Manual Testing Playbook"
-description: "Operator-facing scenarios for headless notesmd-cli operations, the official app-backed obsidian CLI, cyanheads MCP round-trips, and eleven community-plugin file-layer tie-ins."
-version: 0.1.0.0
+description: "Operator-facing scenarios for headless notesmd-cli operations, the official app-backed obsidian CLI, cyanheads MCP round-trips, and thirteen community-plugin and theme-system file-layer tie-ins."
+version: 0.2.0.0
 ---
 
 # mcp-obsidian: Manual Testing Playbook
 
 > **EXECUTION POLICY:** Every scenario is executed against real commands, files, app state, or Code Mode tools. Valid statuses are `PASS`, `FAIL`, or `SKIP` with a specific prerequisite or sandbox blocker. `UNAUTOMATABLE` is not a valid status.
 
-This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for eleven community plugins — Beancount Ledger (`beancount-finance`), Obsidian Tables (`obsidian-tables`), BRAT (`obsidian42-brat`), Health.md Visualizations (`health-md`), Iconic (`iconic`), Charts (`charts`), Dataview (`dataview`), Excalidraw (`excalidraw`), Obsidian Git (`git`), Outliner (`outliner`), and the Minimal theme (`minimal`).
+This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for twelve community plugins plus the Obsidian theme system — Beancount Ledger (`beancount-finance`), Obsidian Tables (`obsidian-tables`), BRAT (`obsidian42-brat`), Health.md Visualizations (`health-md`), Iconic (`iconic`), Charts (`charts`), Dataview (`dataview`), Obsidian Git (`git`), Outliner (`outliner`), Notion Bases (`notion-bases`), Advanced Canvas (`advanced-canvas`), and Claudian (`realclaudian`), plus the Obsidian theme system (`references/themes/`).
 
 The [feature catalog](../feature-catalog/FEATURE-CATALOG.md) is the current-behavior inventory. These scenario files own exact prompts, command sequences, expected signals, evidence, grading, and triage.
 
@@ -25,7 +25,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This package provides 19 deterministic scenarios across 6 categories:
+This package provides 21 deterministic scenarios across 6 categories:
 
 | Surface | Scenario IDs | Runtime requirement |
 |---|---|---|
@@ -34,7 +34,7 @@ This package provides 19 deterministic scenarios across 6 categories:
 | Official app-backed CLI | `OBS-009..OBS-010` | Obsidian desktop v1.12.4+ and registered `obsidian` CLI |
 | MCP round-trip | `MCP-H001..MCP-H004` | Running Obsidian, Local REST API v4.0.0+, token, Code Mode manual |
 | MCP verification boundary | `MCP-M001..MCP-M002` | Same MCP prerequisites for live inventory; no-app boundary can be tested headlessly |
-| Community-plugin tie-ins | `OBS-011..OBS-021` | File-layer fixtures; app reload is required only for the render/activation check |
+| Community-plugin tie-ins | `OBS-011..OBS-025` | File-layer fixtures; app reload is required only for the render/activation check |
 
 The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the Local REST API + token setup, which may still be pending in an operator environment; those scenarios must be recorded as `SKIP` with that blocker rather than treated as an MCP failure.
 
@@ -63,7 +63,7 @@ The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the L
 
 ---
 
-## 3. EXECUTION POLICY AND EVIDENCE
+## 3. GLOBAL EVIDENCE REQUIREMENTS
 
 ### Execution Policy
 
@@ -75,15 +75,16 @@ The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the L
 
 ### Evidence Requirements
 
-Capture the following for every run:
+Each scenario MUST capture:
 
-- User request and exact prompt.
-- Shell transcript or Code Mode response.
-- Exit codes for CLI commands.
-- Tool discovery and schema output for MCP scenarios.
-- Relevant note path, vault name, or ledger path.
-- User-visible result, including the app state for official CLI scenarios.
-- Final verdict and rationale. A `SKIP` must name its missing prerequisite or sandbox constraint.
+1. User request and exact prompt.
+2. Shell transcript or Code Mode response, and exit codes for CLI commands.
+3. The relevant vault path, note path, or ledger path.
+4. For any scenario that edits a vault JSON file (`community-plugins.json`, a plugin's own `data.json`, `appearance.json`): the pre-write backup path and the resulting diff, or an explicit note that the file was created fresh (no prior backup existed) when it did not exist before the run.
+5. `jq empty` (or equivalent) re-parse output confirming every edited JSON file is still valid.
+6. Tool discovery and schema output for MCP scenarios; user-visible result, including the app state for official CLI scenarios.
+7. Final verdict and rationale. A `SKIP` must name its missing prerequisite or sandbox constraint.
+8. No credential, token, or secret value written to a vault file or captured in evidence.
 
 ---
 
@@ -228,7 +229,7 @@ Every scenario in this category needs a running Obsidian app with the target vau
 
 ---
 
-## 12. COMMUNITY-PLUGIN FILE-LAYER TIE-INS (`OBS-011..OBS-021`)
+## 12. COMMUNITY-PLUGIN FILE-LAYER TIE-INS (`OBS-011..OBS-025`)
 
 ### OBS-011 | Beancount file-layer transaction
 
@@ -319,16 +320,16 @@ Add inline/frontmatter metadata and a Dataview query block to throwaway notes an
 > **Feature File:** [`plugin-tie-ins/dataview-metadata-query.md`](plugin-tie-ins/dataview-metadata-query.md) — owns the exact prompt, command sequence, and grading.
 > **Catalog:** [`../feature-catalog/plugins/dataview.md`](../feature-catalog/plugins/dataview.md)
 
-### OBS-018 | Excalidraw drawing-note round-trip
+### OBS-018 | Meta Bind field and button round-trip
 
 #### Description
 
-Create an Excalidraw drawing note at the file layer, validate its embedded JSON, and confirm the file opens as a drawing.
+Author a Meta Bind `INPUT` field and a `meta-bind-button` block (an `updateMetadata` action) in a throwaway note, then verify headlessly that the widget text is well-formed and every `bindTarget` references a frontmatter key present in the note — mirroring the field-agreement check from OBS-017. Rendering and button clicks are in-app, observable only after a reload.
 
 #### Test Execution
 
-> **Feature File:** [`plugin-tie-ins/excalidraw-drawing-note.md`](plugin-tie-ins/excalidraw-drawing-note.md) — owns the exact prompt, command sequence, and grading.
-> **Catalog:** [`../feature-catalog/plugins/excalidraw.md`](../feature-catalog/plugins/excalidraw.md)
+> **Feature File:** [`plugin-tie-ins/meta-bind-file-layer.md`](plugin-tie-ins/meta-bind-file-layer.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/meta-bind.md`](../feature-catalog/plugins/meta-bind.md)
 
 ### OBS-019 | Obsidian Git status round-trip
 
@@ -352,16 +353,72 @@ Inspect the Outliner plugin `data.json` (or confirm its absence means defaults) 
 > **Feature File:** [`plugin-tie-ins/outliner-settings-defaults.md`](plugin-tie-ins/outliner-settings-defaults.md) — owns the exact prompt, command sequence, and grading.
 > **Catalog:** [`../feature-catalog/plugins/outliner.md`](../feature-catalog/plugins/outliner.md)
 
-### OBS-021 | Minimal theme activation
+### OBS-021 | Theme install and activation
 
 #### Description
 
-Activate the Minimal theme via `appearance.json` and apply a snippet-based tweak, verifying at the file layer.
+Activate a community theme (Minimal as the example) via the `cssTheme` key in `appearance.json` and apply a CSS-snippet customization, verifying at the file layer.
 
 #### Test Execution
 
-> **Feature File:** [`plugin-tie-ins/minimal-theme-activation.md`](plugin-tie-ins/minimal-theme-activation.md) — owns the exact prompt, command sequence, and grading.
-> **Catalog:** [`../feature-catalog/plugins/minimal.md`](../feature-catalog/plugins/minimal.md)
+> **Feature File:** [`plugin-tie-ins/theme-activation.md`](plugin-tie-ins/theme-activation.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/theme-system.md`](../feature-catalog/plugins/theme-system.md)
+
+### OBS-022 | Notion Bases plugin relation/rollup/view round-trip
+
+#### Description
+
+Build a throwaway two-database fixture, declare a two-way relation, a `sum` rollup and a board view in `_database.md` schemas, and verify reciprocity, the hand-resolved rollup value, and the view's structural validity at the file layer.
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/notion-bases-relation-rollup.md`](plugin-tie-ins/notion-bases-relation-rollup.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/notion-bases.md`](../feature-catalog/plugins/notion-bases.md)
+
+### OBS-023 | Notion Bases + Dataview real-vault headless install
+
+#### Description
+
+Stage a tagged Notion Bases release via BRAT into the operator's real vault, verify Dataview's presence rather than assuming a fresh install, activate both plugin IDs, and verify each file-layer stage plus the rollback.
+
+#### Scenario Contract
+
+Prompt: `Install Notion Bases and Dataview into my real Obsidian vault headlessly — stage Notion Bases through BRAT from its tagged GitHub release, verify Dataview is already installed and skip staging it if so, activate both plugin IDs, and report every verified stage plus the rollback if anything needs to be undone.`
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/notion-bases-dataview-install.md`](plugin-tie-ins/notion-bases-dataview-install.md)
+> **Catalog:** [`../feature-catalog/plugins/notion-bases.md`](../feature-catalog/plugins/notion-bases.md) and [`../feature-catalog/plugins/dataview.md`](../feature-catalog/plugins/dataview.md) — the scenario validates the real-vault BRAT install for Notion Bases and the verify-already-present path for Dataview.
+
+### OBS-024 | Advanced Canvas file-layer node/edge styling round-trip
+
+#### Description
+
+Build a throwaway `.canvas` with two styled `text` nodes, a styled edge, and a `metadata.startNode` presentation marker, then verify at the file layer that the file is valid JSON, every edge endpoint and the start node reference an existing node id, and every `styleAttributes` value is drawn from the confirmed Advanced JSON Canvas enumerations.
+
+#### Scenario Contract
+
+Prompt: `Turn my throwaway canvas into a small flowchart — a pill "Start" node, a diamond "Decision?" node, a dashed A-star edge between them, and make Start the presentation's first slide.`
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/advanced-canvas-styling.md`](plugin-tie-ins/advanced-canvas-styling.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/advanced-canvas.md`](../feature-catalog/plugins/advanced-canvas.md)
+
+### OBS-025 | Claudian in-vault command and skill authoring round-trip
+
+#### Description
+
+Author one vault-level Claude Code slash command and one reusable skill in a throwaway `.claude/` tree, then verify at the file layer that the command filename maps to its command name, the skill `SKILL.md` satisfies the name/length/casing and non-empty description/body rules, and no legacy `.claude/mcp.json` was authored.
+
+#### Scenario Contract
+
+Prompt: `Add a Claudian summarize slash command and a vault-triage skill to this vault's .claude config so I can invoke them from the chat pane.`
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/claudian-command-skill.md`](plugin-tie-ins/claudian-command-skill.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/claudian.md`](../feature-catalog/plugins/claudian.md)
 
 ---
 
@@ -407,7 +464,11 @@ The current mode package has no dedicated automated test suite for these externa
 | `OBS-015` | Iconic rulebook merge round-trip | Dedicated plugin reference in [`iconic-rules.md`](plugin-tie-ins/iconic-rules.md) |
 | `OBS-016` | Charts render-block round-trip | Dedicated plugin reference in [`charts-render-block.md`](plugin-tie-ins/charts-render-block.md) |
 | `OBS-017` | Dataview metadata and query round-trip | Dedicated plugin reference in [`dataview-metadata-query.md`](plugin-tie-ins/dataview-metadata-query.md) |
-| `OBS-018` | Excalidraw drawing-note round-trip | Dedicated plugin reference in [`excalidraw-drawing-note.md`](plugin-tie-ins/excalidraw-drawing-note.md) |
+| `OBS-018` | Meta Bind field and button round-trip | Dedicated plugin reference in [`meta-bind-file-layer.md`](plugin-tie-ins/meta-bind-file-layer.md) |
 | `OBS-019` | Obsidian Git status round-trip | Dedicated plugin reference in [`git-status-roundtrip.md`](plugin-tie-ins/git-status-roundtrip.md) |
 | `OBS-020` | Outliner settings and defaults | Dedicated plugin reference in [`outliner-settings-defaults.md`](plugin-tie-ins/outliner-settings-defaults.md) |
-| `OBS-021` | Minimal theme activation | Dedicated plugin reference in [`minimal-theme-activation.md`](plugin-tie-ins/minimal-theme-activation.md) |
+| `OBS-021` | Theme install and activation | Dedicated theme-system reference in [`theme-activation.md`](plugin-tie-ins/theme-activation.md) |
+| `OBS-022` | Notion Bases plugin relation/rollup/view round-trip | Dedicated plugin reference in [`notion-bases-relation-rollup.md`](plugin-tie-ins/notion-bases-relation-rollup.md) |
+| `OBS-023` | Notion Bases + Dataview real-vault headless install | Dedicated plugin reference in [`notion-bases-dataview-install.md`](plugin-tie-ins/notion-bases-dataview-install.md) |
+| `OBS-024` | Advanced Canvas file-layer node/edge styling round-trip | Dedicated plugin reference in [`advanced-canvas-styling.md`](plugin-tie-ins/advanced-canvas-styling.md) |
+| `OBS-025` | Claudian in-vault command and skill authoring round-trip | Dedicated plugin reference in [`claudian-command-skill.md`](plugin-tie-ins/claudian-command-skill.md) |

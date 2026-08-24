@@ -13,11 +13,27 @@ version: 1.0.0.0
 
 # Guardrail Audit Checklist
 
-Use this checklist after any change to `apps/pi-remote-web/` presentation code, before claiming the
-change is complete. Every `@ds guardrail: do-not-edit` fence marks something that is not a styling
-concern — see `references/editability-guardrails.md` §1 for the full reason each one is frozen.
+Use this checklist after any change to `apps/pi-remote-web/` presentation code, before claiming the change is complete.
 
-## 1. BASELINE THE FENCE COUNT (before the change)
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+This checklist confirms every `@ds guardrail: do-not-edit` fence in the Pi Remote app is untouched
+after a design-system change. Each fence marks something that is not a styling concern — see
+`references/editability-guardrails.md` §2 for the full reason each one is frozen.
+
+### Usage
+
+Work through the sections in order: baseline the fence count before editing (§2), verify each fence
+category held (§3), re-count and diff after the change (§4), confirm the presentation-only boundary
+held (§5), and stop to escalate immediately if a red flag is true (§6).
+
+---
+
+## 2. BASELINE THE FENCE COUNT (before the change)
 
 □ Recorded the guardrail-fence count in `src/style.css` before editing:
   `grep -o '@ds guardrail: do-not-edit' apps/pi-remote-web/src/style.css | wc -l`
@@ -28,7 +44,9 @@ Do not hard-code a specific expected number in a completion claim — the codeba
 proof is that the count and the fenced regions are **unchanged** by this specific change, verified fresh
 each time.
 
-## 2. THE FENCE CATEGORIES TO VERIFY (untouched)
+---
+
+## 3. THE FENCE CATEGORIES TO VERIFY (untouched)
 
 For each category below, confirm none of the lines fenced `@ds guardrail: do-not-edit` were edited,
 removed, or worked around by the change:
@@ -44,11 +62,13 @@ removed, or worked around by the change:
 □ Bounded-reading overflow / `unicode-bidi` / scroll-anchoring rules
 □ Any theme-invariant literal explicitly fenced as such (e.g. `.artifact-diff-line.is-find-match`,
   fenced `@ds guardrail: do-not-edit — theme-invariant light literal; stays fixed` —
-  `references/component-tokens.md` §3)
+  `references/component-tokens.md` §4)
 
-## 3. RE-COUNT AFTER THE CHANGE
+---
 
-□ Re-ran the same two `grep` commands from §1 after the change
+## 4. RE-COUNT AFTER THE CHANGE
+
+□ Re-ran the same two `grep` commands from §2 after the change
 □ Confirmed the fence count in `style.css` is unchanged (or, if a new guardrail-worthy region was
   legitimately added by a separate, explicitly-approved change, that the delta is documented and
   understood — not a silent regression)
@@ -56,15 +76,19 @@ removed, or worked around by the change:
 □ Diffed the actual fenced line contents (not just the count) for every touched file — a count staying
   the same does not prove no fenced line was edited if another was added elsewhere
 
-## 4. WHY THE OTHER SEAMS ARE SAFE (confirm the boundary held)
+---
+
+## 5. WHY THE OTHER SEAMS ARE SAFE (confirm the boundary held)
 
 □ Confirmed the change is presentation-only: colour, spacing, typography, or layout — nothing that
   reaches state computation, the mutation/ticket path, redaction, or plan-mode enforcement
-  (`references/editability-guardrails.md` §2)
+  (`references/editability-guardrails.md` §3)
 □ Confirmed no CSS/token edit was used to work around a guardrail (e.g. hiding the redaction chip with
   `display: none`, or overriding a focus-ring colour to make it less visible)
 
-## 5. RED FLAGS — STOP AND ESCALATE
+---
+
+## 6. RED FLAGS — STOP AND ESCALATE
 
 □ A requested change cannot be made through a `@ds edit:` / `slot:` / `state:` / `variant:` seam without
   touching a guardrail-fenced region
@@ -74,7 +98,9 @@ removed, or worked around by the change:
 If any red flag is true, stop and escalate per `SKILL.md` §5 — do not remove or reword the guardrail
 comment to make the diff pass.
 
-## 6. RELATED RESOURCES
+---
+
+## 7. RELATED RESOURCES
 
 - [editability-guardrails.md](../references/editability-guardrails.md) — the fence list and why each matters
 - [ds-grammar.md](../references/ds-grammar.md) — how to read a `@ds` seam at the edit site

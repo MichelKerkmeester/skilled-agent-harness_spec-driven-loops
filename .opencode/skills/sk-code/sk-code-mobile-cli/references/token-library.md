@@ -1,18 +1,47 @@
 ---
 title: Pi Remote Token Library
 description: The primitive → semantic → component three-layer token model, the frozen ink-on-parchment values, and how a designer retint propagates.
+trigger_phrases:
+  - "three layer token model"
+  - "pi remote token layers"
+  - "frozen primitive tokens"
+  - "retint a semantic role"
+  - "retint a component token"
+  - "token propagation blast radius"
+  - "pi-clay accent token"
+  - "wcag aa retint contrast"
+importance_tier: normal
+contextType: implementation
 version: 1.0.0.0
 ---
 
 # Pi Remote Token Library
 
-Every color, and most spacing and radius, in `apps/pi-remote-web/` travels through three layers, in this
-order. Which layer you edit decides the blast radius. The full catalogue with resolved values per theme
-is `apps/pi-remote-web/src/design-system/tokens.md`; this reference is the model and the rules.
+Every color, and most spacing and radius, in `apps/pi-remote-web/` travels through three layers in order — primitive, semantic, component. This reference documents the model and the rules; the full catalogue with resolved values per theme lives in `apps/pi-remote-web/src/design-system/tokens.md`.
 
 ---
 
-## 1. THE THREE LAYERS
+## 1. OVERVIEW
+
+### Core Principle
+
+Which layer you edit decides the blast radius: primitive is frozen, semantic retints a role, component retints one surface.
+
+### When to Use
+
+- Retinting a color, spacing, or radius token in `apps/pi-remote-web/`
+- Deciding whether a change belongs at the semantic-role layer or the component layer
+- Proving a retint's propagation before/after with the browser-free resolvers
+- Checking that a retint keeps WCAG AA in both themes
+
+### Key Sources
+
+- `apps/pi-remote-web/src/design-system/tokens.md` — full catalogue with resolved values per theme
+- `verification.md` — the browser-free resolvers used to prove propagation
+
+---
+
+## 2. THE THREE LAYERS
 
 | Layer | Tokens | What it is | Editable? |
 | --- | --- | --- | --- |
@@ -54,7 +83,7 @@ want a single surface retinted and nothing else.
 
 ---
 
-## 2. PROPAGATION (measured, not guessed)
+## 3. PROPAGATION (measured, not guessed)
 
 - **Retinting the primitive `--pi-clay`** cascades to **45 rendered declarations** across light, dark,
   and system — every accent fill, accent text, and even `color-mix()`-derived accent borders move in
@@ -67,7 +96,7 @@ These two ends of the seam are the model: pick the layer whose blast radius matc
 
 ---
 
-## 3. RULES
+## 4. RULES
 
 - Retint at the **semantic** layer for a system-wide role change; at the **component** layer for one
   surface. Never edit a `--pi-*` primitive value.
@@ -78,7 +107,7 @@ These two ends of the seam are the model: pick the layer whose blast radius matc
 
 ---
 
-## 4. RELATED REFERENCES
+## 5. RELATED REFERENCES
 
 - `component-tokens.md` — the Layer-3 `--model-sheet-*` / `--slash-*` / `--diff-*` families in full,
   with the exact blast radius of retinting each.

@@ -319,7 +319,7 @@ describe('computeCompletionState -- strict flag pass-through', () => {
   });
 });
 
-describe('computeCompletionState -- kill switch (MK_SPECKIT_COMPLETION_DISABLED)', () => {
+describe('computeCompletionState -- kill switch (SYSTEM_SPECKIT_COMPLETION_DISABLED)', () => {
   it('is a full no-op when the kill-switch env is set to 1', () => {
     const result = computeCompletionState({
       specFolder: LEVEL2_COMPLETE_FIXTURE,

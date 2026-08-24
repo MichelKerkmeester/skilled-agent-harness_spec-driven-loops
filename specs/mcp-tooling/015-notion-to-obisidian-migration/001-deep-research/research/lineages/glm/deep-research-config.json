@@ -1,0 +1,50 @@
+{
+  "type": "config",
+  "topic": "Flawless complex Notion-to-Obsidian migration leveraging mcp-notion and mcp-obsidian plus Obsidian plugins; full scope is in the bound spec folder spec.md",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "stopPolicy": "max-iterations",
+  "convergenceMode": "off",
+  "specFolder": "specs/mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
+  "loopType": "research",
+  "sessionId": "fanout-glm-1787344059442-oo7ndm",
+  "parentSessionId": "fanout-glm-1787344059442-oo7ndm",
+  "lineageMode": "new",
+  "generation": 1,
+  "executor": {
+    "kind": "cli-devin",
+    "executable": "devin",
+    "model": "glm-5-2",
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits"
+  },
+  "lineage": {
+    "label": "glm",
+    "artifactDir": "specs/mcp-tooling/015-notion-to-obisidian-migration/001-deep-research/research/lineages/glm",
+    "fanout": true,
+    "sibling": "deepseek"
+  },
+  "reducer": {
+    "mode": "delta-refresh",
+    "strict": false
+  },
+  "resource_map_present": false,
+  "progressiveSynthesis": true,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "status": "complete",
+  "completedAt": "2026-08-21T23:45:00Z",
+  "stopReason": "maxIterationsReached",
+  "createdAt": "2026-08-21T22:30:00Z",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "findings-registry.json": "auto-generated",
+    "deep-research-dashboard.md": "auto-generated",
+    "iterations/iteration-NNN.md": "write-once",
+    "deltas/iter-NNN.jsonl": "write-once",
+    "research.md": "mutable"
+  }
+}

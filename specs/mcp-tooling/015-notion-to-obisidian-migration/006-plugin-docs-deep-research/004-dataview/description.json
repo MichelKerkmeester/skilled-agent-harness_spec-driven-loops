@@ -1,0 +1,30 @@
+{
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+  "description": "The shipped mcp-obsidian Dataview reference docs are a disciplined file-layer contract but are materially thin on the query language itself: the",
+  "keywords": [
+    "shipped",
+    "mcp-obsidian",
+    "dataview",
+    "reference",
+    "docs",
+    "disciplined",
+    "file-layer",
+    "contract",
+    "materially",
+    "thin",
+    "query",
+    "language",
+    "itself"
+  ],
+  "lastUpdated": "2026-08-23T03:42:57.984Z",
+  "specId": "004",
+  "folderSlug": "dataview",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration",
+    "006-plugin-docs-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

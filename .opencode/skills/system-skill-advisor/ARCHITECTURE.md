@@ -18,7 +18,7 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`system-skill-advisor` is the standalone routing runtime that picks the right skill for a non-trivial prompt. It runs as its own MCP server (`mk_skill_advisor`) and persists state to a local SQLite skill graph.
+`system-skill-advisor` is the standalone routing runtime that picks the right skill for a non-trivial prompt. It runs as its own MCP server (`system_skill_advisor`) and persists state to a local SQLite skill graph.
 
 The package owns three authored zones:
 

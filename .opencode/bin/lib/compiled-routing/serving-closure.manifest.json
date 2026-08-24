@@ -8,10 +8,9 @@
     "mcp-tooling",
     "cli-external-orchestration",
     "sk-prompt",
-    "sk-design",
     "sk-doc"
   ],
-  "fileCount": 62,
+  "fileCount": 55,
   "files": [
     "003-contract-schemas/lib/canonical.cjs",
     "003-contract-schemas/schemas/compiled-policy.v1.schema.json",
@@ -49,11 +48,6 @@
     "009-parent-hub-rollout/005-sk-prompt/lib/policy-card.cjs",
     "009-parent-hub-rollout/005-sk-prompt/lib/registry-compiler.cjs",
     "009-parent-hub-rollout/005-sk-prompt/lib/router.cjs",
-    "009-parent-hub-rollout/006-sk-design/fixtures/canary-cases.v1.json",
-    "009-parent-hub-rollout/006-sk-design/harness/build-artifacts.cjs",
-    "009-parent-hub-rollout/006-sk-design/lib/policy-card.cjs",
-    "009-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs",
-    "009-parent-hub-rollout/006-sk-design/lib/router.cjs",
     "009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json",
     "009-parent-hub-rollout/007-sk-doc/harness/build-artifacts.cjs",
     "009-parent-hub-rollout/007-sk-doc/lib/policy-card.cjs",
@@ -62,7 +56,6 @@
     "013-live-activation/activation/cli-external-orchestration/manifest.json",
     "013-live-activation/activation/mcp-tooling/manifest.json",
     "013-live-activation/activation/sk-code/manifest.json",
-    "013-live-activation/activation/sk-design/manifest.json",
     "013-live-activation/activation/sk-doc/manifest.json",
     "013-live-activation/activation/sk-prompt/manifest.json",
     "013-live-activation/activation/system-deep-loop/manifest.json",
@@ -73,7 +66,6 @@
     "013-live-activation/activation/mcp-tooling/fence-state.json",
     "013-live-activation/activation/cli-external-orchestration/fence-state.json",
     "013-live-activation/activation/sk-prompt/fence-state.json",
-    "013-live-activation/activation/sk-design/fence-state.json",
     "013-live-activation/activation/sk-doc/fence-state.json"
   ]
 }

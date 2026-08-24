@@ -43,19 +43,19 @@ const LOOP_GUARD_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.loop-guard-state';
 const LOOP_GUARD_ARCHIVE_DIR_NAME = '.archive';
 const WARN_LOG_FILENAME = 'guard-warnings.log';
 const WARN_LOG_BACKUP_SUFFIX = '.1';
-const WARN_LOG_MAX_BYTES_ENV = 'MK_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES';
-const REJECT_MODE_ENV = 'MK_DEEP_LOOP_GUARD_REJECT';
-const REJECT_LOOP_ENV = 'MK_DEEP_LOOP_GUARD_REJECT_LOOP';
+const WARN_LOG_MAX_BYTES_ENV = 'SYSTEM_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES';
+const REJECT_MODE_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT';
+const REJECT_LOOP_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP';
 const SWEEP_LOCK_DIR_NAME = '.sweep.lock';
 const LOOP_STATE_TEMP_FILE_REGEX = /^[0-9a-f]+\.json\.\d+\.\d+\.tmp$/;
 
-// Retention/cleanup env vars, mirroring the mk-goal.js sweep/archive/prune
+// Retention/cleanup env vars, mirroring the opencode-goal.js sweep/archive/prune
 // pattern: an active state file untouched past ACTIVE_RETENTION_DAYS is
 // archived, and an archived file untouched past ARCHIVE_RETENTION_DAYS is
 // deleted. Defaults match the goal plugin's current tuning.
-const LOOP_GUARD_ACTIVE_RETENTION_DAYS_ENV = 'MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS';
-const LOOP_GUARD_ARCHIVE_RETENTION_DAYS_ENV = 'MK_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS';
-const LOOP_GUARD_SWEEP_INTERVAL_MS_ENV = 'MK_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS';
+const LOOP_GUARD_ACTIVE_RETENTION_DAYS_ENV = 'SYSTEM_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS';
+const LOOP_GUARD_ARCHIVE_RETENTION_DAYS_ENV = 'SYSTEM_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS';
+const LOOP_GUARD_SWEEP_INTERVAL_MS_ENV = 'SYSTEM_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS';
 const DEFAULT_ACTIVE_RETENTION_DAYS = 2;
 const DEFAULT_ARCHIVE_RETENTION_DAYS = 90;
 const DEFAULT_SWEEP_INTERVAL_MS = 60 * 60 * 1000;
@@ -114,7 +114,7 @@ function declaredModeFromPrompt(promptText) {
 function mismatchDetail(subagentType, registryModes, declaredMode) {
   const allowedModes = [...registryModes].sort().join('|');
   return [
-    'mk-deep-loop-guard: Deep Route mode mismatch --',
+    'system-deep-loop-guard: Deep Route mode mismatch --',
     `dispatch targets subagent_type="${subagentType}"`,
     `(registry modes="${allowedModes}")`,
     `but the prompt declares mode="${declaredMode}"`,
@@ -270,7 +270,7 @@ function recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven) {
 
 function loopRepeatDetail(targetAgent, count) {
   return [
-    'mk-deep-loop-guard: loop-like repeated dispatch --',
+    'system-deep-loop-guard: loop-like repeated dispatch --',
     `"${targetAgent}" received ${count} non-command-driven hand-offs`,
     'in this session without a command-driven iteration marker;',
     'command-owned loop executors should be dispatched by their parent /deep:* command,',
@@ -284,7 +284,7 @@ function loopRepeatDetail(targetAgent, count) {
 // without corrupting the interactive session. Fail-open -- a logging error must
 // never affect or block the dispatch this hook guards.
 function appendWarningLog(stateDir, detail) {
-  const line = `${new Date().toISOString()} [mk-deep-loop-guard] WARN: ${detail}\n`;
+  const line = `${new Date().toISOString()} [system-deep-loop-guard] WARN: ${detail}\n`;
   try {
     mkdirSync(stateDir, { recursive: true });
     const logPath = join(stateDir, WARN_LOG_FILENAME);
@@ -303,7 +303,7 @@ function appendRejectModeDegradedAudit(stateDir, reason) {
 
   // A sibling fallback remains writable when the configured state path is a file.
   const fallbackPath = `${stateDir}.${WARN_LOG_FILENAME}`;
-  const line = `${new Date().toISOString()} [mk-deep-loop-guard] WARN: ${detail}\n`;
+  const line = `${new Date().toISOString()} [system-deep-loop-guard] WARN: ${detail}\n`;
   try {
     maintainWarningLogPath(fallbackPath, Buffer.byteLength(line));
     appendFileSync(fallbackPath, line, 'utf8');
@@ -417,7 +417,7 @@ function acquireSweepLock(stateDir, intervalMs, now) {
 /**
  * Archive per-session loop-guard state files that have gone untouched past the
  * active-retention window, then prune the archive itself. Throttled to once
- * per sweep interval via runtimeState, mirroring mk-goal.js's
+ * per sweep interval via runtimeState, mirroring opencode-goal.js's
  * sweepOrphanedActiveStates/maybePruneArchive pair.
  *
  * The state directory is shared by multiple OpenCode processes. An atomic

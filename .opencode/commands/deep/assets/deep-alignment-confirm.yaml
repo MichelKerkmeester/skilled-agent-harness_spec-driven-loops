@@ -89,7 +89,7 @@ agent_config:
   tools: [Read, Grep, Glob, Bash]
   # No Write/Edit -- mode-registry.json's toolSurface for "alignment" forbids both;
   # every state write this agent makes is Bash-mediated (heredoc/append), never tool-mediated.
-  mcp_servers: [mk-spec-memory]
+  mcp_servers: [system-spec-memory]
   tool_call_budget: { target: 9, soft_max: 12, hard_max: 13 }
 
 # ─────────────────────────────────────────────────────────────────

@@ -1,16 +1,23 @@
 {
   "level": "2",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/010-quality-gate",
-  "description": "Six phases of work (001-005 shipped, 006-009 amended) need one authoritative proof that the skill is aligned with sk-create-skill standards and the packet is coherent",
+  "description": "Six phases of work (001-005 shipped, 006-009 amended) need one authoritative proof that the skill is aligned with sk-create-skill standards and the",
   "keywords": [
-    "sk-vision",
-    "quality",
-    "gate",
-    "conformance",
-    "reconciliation",
-    "sweep"
+    "six",
+    "phases",
+    "work",
+    "shipped",
+    "amended",
+    "need",
+    "one",
+    "authoritative",
+    "proof",
+    "skill",
+    "aligned",
+    "sk-create-skill",
+    "standards"
   ],
-  "lastUpdated": "2026-08-16T12:00:00.000Z",
+  "lastUpdated": "2026-08-19T19:20:44.276Z",
   "specId": "010",
   "folderSlug": "quality-gate",
   "parentChain": [

@@ -87,10 +87,8 @@ WARN_PACKAGE_IDS = frozenset({
     'system-spec-kit',
 })
 
-# This explicit ruling excludes runtime data if it ever gains a same-named directory.
-EXCLUDED_PACKAGE_PREFIXES = {
-    'system-code-graph': 'runtime data root; it has no skill contract or feature catalog',
-}
+# Explicit rulings here exclude any runtime-data root that gains a same-named directory without a skill contract.
+EXCLUDED_PACKAGE_PREFIXES = {}
 
 WORKFLOW_MODE_INVENTORY_PATHS = {
     'root catalog': Path(CATALOG_DIRNAME) / ROOT_CATALOG_FILENAME,

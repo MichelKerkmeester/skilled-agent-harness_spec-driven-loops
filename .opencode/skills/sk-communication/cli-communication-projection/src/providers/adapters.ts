@@ -19,6 +19,7 @@ import type {
   ProviderWireResponse,
 } from './types.js';
 
+const externalCliAdapter = createOpenAiChatAdapter(ProviderFamilies.EXTERNAL_CLI);
 const openCodeGoAdapter = createOpenAiChatAdapter(ProviderFamilies.OPENCODE_GO);
 const genericHostedAdapter = createOpenAiChatAdapter(ProviderFamilies.GENERIC_HOSTED);
 const llamaCppAdapter = createOpenAiChatAdapter(ProviderFamilies.LLAMA_CPP);
@@ -37,6 +38,8 @@ const ollamaAdapter: ProviderAdapter = Object.freeze({
 /** Return the adapter with wire semantics matching one validated family. */
 export function getProviderAdapter(family: ProviderFamily): ProviderAdapter {
   switch (family) {
+    case ProviderFamilies.EXTERNAL_CLI:
+      return externalCliAdapter;
     case ProviderFamilies.OPENCODE_GO:
       return openCodeGoAdapter;
     case ProviderFamilies.GENERIC_HOSTED:

@@ -112,7 +112,6 @@ Validate passive context enrichment and confirm tool responses carry constitutio
   ```
 - Direct code graph status check returned no response `hints` envelope and reported:
   ```text
-  plugin_id=mk-code-graph
   cache_ttl_ms=5000
   spec_folder=auto
   resume_mode=minimal

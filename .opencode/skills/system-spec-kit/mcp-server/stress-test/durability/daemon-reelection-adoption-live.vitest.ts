@@ -8,7 +8,7 @@
 // shared daemon SURVIVES and a SECONDARY session keeps its MCP transport; with the
 // flag OFF the daemon DIES with its owner and the secondary loses transport.
 //
-// It runs TWO real mk-spec-memory launchers as MCP stdio servers against ONE
+// It runs TWO real system-spec-memory launchers as MCP stdio servers against ONE
 // isolated fake-root, speaks real MCP JSON-RPC to each, disposes the owner with
 // SIGTERM (what a host does on session end), and observes the shared daemon's pid
 // and the secondary's next call.
@@ -84,7 +84,7 @@ function buildFakeRoot(): { base: string; sockDir: string; dbDir: string; launch
   const fmcp = join(fkit, 'mcp-server');
   mkdirSync(fbin, { recursive: true });
   mkdirSync(fmcp, { recursive: true });
-  copyFileSync(join(realBin, 'mk-spec-memory-launcher.cjs'), join(fbin, 'mk-spec-memory-launcher.cjs'));
+  copyFileSync(join(realBin, 'system-spec-memory-launcher.cjs'), join(fbin, 'system-spec-memory-launcher.cjs'));
   symlinkSync(join(realBin, 'lib'), join(fbin, 'lib'));
   cpSync(join(realMcp, 'dist'), join(fmcp, 'dist'), { recursive: true });
   symlinkSync(join(realMcp, 'node_modules'), join(fmcp, 'node_modules'));
@@ -95,7 +95,7 @@ function buildFakeRoot(): { base: string; sockDir: string; dbDir: string; launch
   mkdirSync(dbDir, { recursive: true, mode: 0o700 });
   const sockDir = mkdtempSync(join(tmpdir(), 'rladsk.'));
   tempDirs.add(sockDir);
-  return { base, sockDir, dbDir, launcher: join(fbin, 'mk-spec-memory-launcher.cjs') };
+  return { base, sockDir, dbDir, launcher: join(fbin, 'system-spec-memory-launcher.cjs') };
 }
 
 type RpcResponse = { result?: unknown; error?: unknown; id?: number | null };
@@ -206,7 +206,7 @@ async function spawnCompetingLauncher(
 }
 
 function leaseDaemonPid(base: string): number | null {
-  const f = join(base, '.opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.json');
+  const f = join(base, '.opencode/skills/system-spec-kit/mcp-server/database/.system-spec-memory-launcher.json');
   try { return (JSON.parse(readFileSync(f, 'utf8')).childPid as number) ?? null; } catch { return null; }
 }
 async function statsOk(client: ReturnType<typeof makeClient>, timeoutMs = 15_000): Promise<boolean> {

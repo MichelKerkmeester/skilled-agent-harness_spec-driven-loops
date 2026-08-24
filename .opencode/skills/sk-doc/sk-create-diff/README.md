@@ -99,14 +99,14 @@ The lifecycle has one hard invariant: the baseline has to exist before the edit 
 
 ### When To Use This Skill
 
-Reach for create-diff when an AI or a person edited a document outside Git and you need proof of what changed, when you want a baseline captured before a risky edit or when a pre-composed multi-file bundle needs its transitions to stay visible in review. Skip it for code or anything already tracked in Git (`sk-git` owns that). Skip it for visual or pixel-level comparison (`sk-design` owns that). Skip it for scoring a single document with no second state to compare (`create-quality-control` owns that).
+Reach for create-diff when an AI or a person edited a document outside Git and you need proof of what changed, when you want a baseline captured before a risky edit or when a pre-composed multi-file bundle needs its transitions to stay visible in review. Skip it for code or anything already tracked in Git (`sk-git` owns that). Skip it for visual or pixel-level comparison (out of scope — create-diff compares extracted text only). Skip it for scoring a single document with no second state to compare (`create-quality-control` owns that).
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
 | `sk-git` | Owns diffs for code and Git-tracked files. create-diff is for everything outside that boundary. |
-| `sk-design` | Owns visual and pixel-level comparison. create-diff only compares extracted text. |
+| Visual / pixel-level comparison | Out of scope — create-diff only compares extracted text. |
 | `create-quality-control` | Audits one existing document. create-diff always compares two states. |
 
 ---

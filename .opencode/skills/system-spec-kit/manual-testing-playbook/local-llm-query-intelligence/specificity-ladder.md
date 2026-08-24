@@ -103,9 +103,9 @@ For each level, classify the top-3 results as:
     @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
     ```
   - Active provider could not be observed because `memory_health` was blocked by the stale Spec Kit MCP server dist.
-- Spec Kit Memory plugin status observed via `mk_spec_memory_status()`:
+- Spec Kit Memory plugin status observed via `system_spec_memory_status()`:
   ```
-  plugin_id=mk-spec-memory
+  plugin_id=system-spec-memory
   enabled=true
   disabled_reason=none
   cache_ttl_ms=5000

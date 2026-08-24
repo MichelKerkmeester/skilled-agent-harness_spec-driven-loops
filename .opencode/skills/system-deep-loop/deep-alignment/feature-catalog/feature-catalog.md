@@ -8,7 +8,7 @@ version: 1.0.0.2
 
 This document combines the current feature inventory for the `deep-alignment` system into a single reference. The root catalog acts as the system-level directory: it summarizes lane resolution, the pluggable adapter contract, the loop lifecycle, and the four-invariant alignment contract, and points to the per-feature files that carry the deeper protocol and source anchors.
 
-`deep-alignment` audits whether artifacts follow a **named authority's own creation standards** (sk-doc, sk-git, sk-design, sk-code), not general code correctness (that is `deep-review`) and not hub structure such as folders, registries, or routing wiring (that is `parent-skill-check.cjs`). Keep that boundary in mind while reading every entry below: a finding here is always "artifact X drifts from authority Y's documented standard," re-verified against live ground truth before it is asserted.
+`deep-alignment` audits whether artifacts follow a **named authority's own creation standards** (sk-doc, sk-git, sk-code), not general code correctness (that is `deep-review`) and not hub structure such as folders, registries, or routing wiring (that is `parent-skill-check.cjs`). Keep that boundary in mind while reading every entry below: a finding here is always "artifact X drifts from authority Y's documented standard," re-verified against live ground truth before it is asserted.
 
 ---
 
@@ -71,7 +71,7 @@ The `AUTHORITY_ARTIFACT_CLASSES` map binding each registered authority to the ar
 
 #### How It Works
 
-A frozen registry maps `sk-doc -> [docs]`, `sk-git -> [git-history]`, `sk-design -> [designs]`, `sk-code -> [code]`. A new authority registers by adding one entry, with no change to the tree or the loop. Values are arrays so a future authority may cover more than one class; every v1 authority covers exactly one.
+A frozen registry maps `sk-doc -> [docs]`, `sk-git -> [git-history]`, `sk-code -> [code]`. A new authority registers by adding one entry, with no change to the tree or the loop. Values are arrays so a future authority may cover more than one class; every registered authority covers exactly one.
 
 #### Source Files
 
@@ -192,22 +192,6 @@ The single-layer deterministic authority adapter for the `git-history` artifact-
 #### Source Files
 
 See [`adapter-contract/adapter-sk-git.md`](../feature-catalog/adapter-contract/adapter-sk-git.md) for full implementation and validation file listings.
-
----
-
-### sk-design adapter
-
-#### Description
-
-The static-only hybrid authority adapter for the `designs` artifact-class (DESIGN.md and tokens.json).
-
-#### How It Works
-
-`sk-design.cjs` checks DESIGN.md structural conformance against `design-md-format.md`'s Style Reference schema (required headings, banned extractor-leak patterns, Quick-Start color consistency) and tokens.json parse-validity, plus a verify-first reasoning-agent audit-rubric layer. It never renders and never invokes the extraction pipeline.
-
-#### Source Files
-
-See [`adapter-contract/adapter-sk-design.md`](../feature-catalog/adapter-contract/adapter-sk-design.md) for full implementation and validation file listings.
 
 ---
 

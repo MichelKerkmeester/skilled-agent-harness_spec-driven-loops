@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/002-sk-communication-triggers/001-research-contracts",
+  "spec_folder": "sk-communication/002-sk-communication-triggers/001-research-contracts",
+  "parent_id": "sk-communication/002-sk-communication-triggers",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-communication research",
+      "projection activation gate",
+      "trigger command contracts",
+      "cli roster"
+    ],
+    "key_topics": [
+      "sk-communication",
+      "research",
+      "projection",
+      "activation",
+      "gate",
+      "trigger",
+      "command",
+      "contracts",
+      "cli",
+      "roster",
+      "two",
+      "commands"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Building",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Building the two trigger commands safely requires knowing exactly how the projection layer activates, what runnable surface it exposes, which engines exist, and what invariants must hold",
+    "created_at": "2026-08-19T04:33:57.534Z",
+    "last_save_at": "2026-08-20T21:06:42.843Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:4f0d094bb4cf535702136d0d9bc0ab50ec85f1d28dc88db0019ba70fcf64b15c",
+    "source_doc_hashes": {
+      "spec.md": "351407486d61ff4e184b17a0ca35f0d02d43144e3302c1c1055bb1cc27504661",
+      "plan.md": "f4d4222505133e254542b353d47ec429002b85a47084e94f4d9157c892908f3b",
+      "tasks.md": "f867a50269302c94a7220918028aba09be542f2d04be04a23aa4c1bc31fc8773",
+      "implementation-summary.md": "a5120a5d0e0ecadb9f7263b82fe1facda3a037ced2e11b5e4e4fbf81fd199326",
+      "research/research.md": "b9c3d8e24902bbf17f9b163debcfcd5ab56b3e19eddcfeb2ad05bb3d6e99121d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

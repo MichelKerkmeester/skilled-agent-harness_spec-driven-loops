@@ -41,7 +41,7 @@ All four tools are READ-ONLY. Screen IDs are UUID strings, never numbers.
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/read-only/styles-funnel.md` | Manual playbook | Funnel ordering including the screens shortlist step |
-| `manual-testing-playbook/pairing/sk-design-pairing.md` | Manual playbook | Screen evidence routes through sk-design before any design verdict |
+| `manual-testing-playbook/pairing/design-pairing.md` | Manual playbook | Screen evidence pairs with sk-design-md-generator for a measured Style Reference before any design verdict |
 
 ---
 

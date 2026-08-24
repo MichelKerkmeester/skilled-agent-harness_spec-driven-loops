@@ -1,0 +1,40 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id":"KQ-1","text":"Importer choice: API vs HTML .zip — concrete losses per path","status":"confirmed","evidence":"iteration-001.md §F1.1 + iteration-005.md §F5.2 + prior-findings.md §1"},
+    {"id":"KQ-2","text":"Relations/rollups/formulas recovery method","status":"confirmed","evidence":"iteration-003.md §F3.1-F3.5 — Notion Bases plugin handles >90%, Dataview supplements"},
+    {"id":"KQ-3","text":"mcp-notion-reads / mcp-obsidian-writes division of labor","status":"confirmed","evidence":"iteration-001.md §F1.1-F1.4 + iteration-002.md §F2.1-F2.4"},
+    {"id":"KQ-4","text":"Files/attachments/comments/multi-view databases carry-over","status":"confirmed","evidence":"iteration-004.md §F4.1-F4.5"},
+    {"id":"KQ-5","text":"Required vs optional Obsidian plugins","status":"confirmed","evidence":"iteration-007.md §F7.1-F7.4 — Notion Bases P0, Dataview P1, Tasks conditional"},
+    {"id":"KQ-6","text":"Parity verification — no silent data loss checks","status":"confirmed","evidence":"iteration-008.md §F8.1-F8.4 — two-pass AI + human verification"},
+    {"id":"KQ-7","text":"Notion API 2.0 data-source model impact on inventory","status":"confirmed","evidence":"iteration-005.md §F5.1-F5.5 — database→data-source bridge required"},
+    {"id":"KQ-8","text":"Nested page hierarchy handling during import","status":"confirmed","evidence":"iteration-006.md §F6.1-F6.4 — preserved but ordering and breadcrumbs lost"},
+    {"id":"KQ-9","text":"AI agent programmatic migration vs human-in-the-loop","status":"confirmed","evidence":"iteration-009.md §F9.1-F9.5 — hybrid model; 3 GUI steps human, all else AI"},
+    {"id":"KQ-10","text":"Rate limits and batching for large workspaces","status":"confirmed","evidence":"iteration-010.md §F10.1-F10.5 — ~64 min for 5000 pages at 3 req/s"}
+  ],
+  "keyFindings": [
+    {"id":"F-001","text":"API importer preserves databases → Bases; HTML loses all DB structure","source":"prior-findings.md §1 + iteration-001.md","iterations":["seed","001"]},
+    {"id":"F-002","text":"Bases has no native relations/rollups — Notion Bases plugin or Dataview needed","source":"prior-findings.md §2-3 + iteration-003.md","iterations":["seed","003"]},
+    {"id":"F-003","text":"mcp-notion exposes 24 tools across 6 domains; 5 API gaps require direct API calls","source":"mcp-notion SKILL.md + iteration-001.md","iterations":["seed","001","005"]},
+    {"id":"F-004","text":"mcp-obsidian operates at file layer via notesmd-cli (headless) + MCP (live app, 14 tools)","source":"mcp-obsidian SKILL.md + iteration-002.md","iterations":["seed","002"]},
+    {"id":"F-005","text":"In-app Importer cannot be AI-driven; agent works around it via file-layer operations","source":"prior-findings.md §5 + iteration-009.md","iterations":["seed","009"]},
+    {"id":"F-006","text":"Notion Bases plugin (bgarciamoura/obsidian-notion-bases-plugin) is P0 required for relations/rollups/formulas/extra views","source":"iteration-003.md §F3.1-F3.5 + iteration-007.md §F7.1","iterations":["003","007"]},
+    {"id":"F-007","text":"Three-way plugin recovery matrix: Notion Bases > Dataview > .base files for every relation/rollup/formula pattern","source":"iteration-003.md §F3.1","iterations":["003"]},
+    {"id":"F-008","text":"Comment migration is not supported by the importer; reconstruction via callout blocks is the AI agent's task","source":"iteration-004.md §F4.3","iterations":["004"]},
+    {"id":"F-009","text":"API 2.0 data-source model requires database→data_source_id bridging during inventory","source":"iteration-005.md §F5.2","iterations":["005"]},
+    {"id":"F-010","text":"Notion page hierarchy is preserved by the API importer as folder nesting; ordering and breadcrumbs are lost","source":"iteration-006.md §F6.1-F6.2","iterations":["006"]},
+    {"id":"F-011","text":"Hybrid migration flow: human does 3 GUI actions (create integration, install plugins, run Import), AI does everything else","source":"iteration-009.md §F9.3-F9.4","iterations":["009"]},
+    {"id":"F-012","text":"Large workspace (5000 pages, 50 DBs) requires ~64 min API time at 3 req/s for full deep inventory","source":"iteration-010.md §F10.1","iterations":["010"]},
+    {"id":"F-013","text":"Two-pass verification: AI automated script (page count, link validation, attachment presence, row count, frontmatter check) + human sample (5% page quality, 10 critical formulas)","source":"iteration-008.md §F8.4","iterations":["008"]},
+    {"id":"F-014","text":"Relation reconstruction is the highest-value AI task — rewriting UUIDs to [[wikilinks]] across hundreds of notes saves hours vs manual","source":"iteration-009.md §F9.4 + prior-findings.md §5","iterations":["009"]},
+    {"id":"F-015","text":"Notion-specific formula functions (prop(), name(), style(), unstyle()) have no direct Obsidian equivalent and require manual translation","source":"iteration-003.md §F3.3","iterations":["003"]}
+  ],
+  "ruledOutDirections": [
+    {"approach":"HTML .zip export for database-heavy workspaces","reason":"Loses all database views, properties, formulas, relations, rollups","evidence":"prior-findings.md §1","iterations":["seed"]},
+    {"approach":"Notion Markdown export","reason":"Omits important data per official Obsidian docs","evidence":"prior-findings.md §1","iterations":["seed"]},
+    {"approach":".base-only approach for relational workspaces","reason":".base files (core Bases) support only 6 column types — no relations, rollups, formulas","evidence":"iteration-003.md §F3.4","iterations":["003"]},
+    {"approach":"Pure Dataview for multi-view databases","reason":"Dataview has TABLE/LIST/CALENDAR but no Board/Gantt/Chart/Gallery views","evidence":"iteration-003.md §F3.2","iterations":["003"]},
+    {"approach":"Full autonomous AI migration without human GUI actions","reason":"Importer and plugin installation are GUI-only in 2026; no CLI API exists","evidence":"iteration-009.md §F9.5","iterations":["009"]},
+    {"approach":"Expecting 100% automated verification","reason":"Formula parity and visual layout require human sample-check","evidence":"iteration-008.md §F8.3","iterations":["008"]}
+  ]
+}

@@ -24,7 +24,8 @@
     "openrouter/~deepseek/deepseek-v4-flash-latest",
     "minimax/MiniMax-M3",
     "xiaomi/mimo-v2.5-pro",
-    "xiaomi/mimo-v2.5-pro-ultraspeed"
+    "xiaomi/mimo-v2.5-pro-ultraspeed",
+    "openrouter/stealth/ox-alpha"
   ],
   "packages": [
     "extensions/deep-pi",

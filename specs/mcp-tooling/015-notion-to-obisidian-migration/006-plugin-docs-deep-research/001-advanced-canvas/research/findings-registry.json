@@ -1,0 +1,1145 @@
+{
+  "sessionId": "dr-ac-1787394444-3752",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-is-the-exact-extended-canvas-json-schema-for-nodes-and-edges-in-advanced-ca",
+      "inboxId": null,
+      "text": "What is the exact extended .canvas JSON schema for nodes and edges in Advanced Canvas v6.5.4, including all non-standard keys?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-how-does-cross-portal-interdimensional-edge-serialization-work-in-the-real-plugi",
+      "inboxId": null,
+      "text": "How does cross-portal (interdimensional) edge serialization work in the real plugin, and what are the VERIFY-flagged unknowns?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-what-missing-workflows-and-gotchas-exist-for-ai-operation-of-advanced-canvas-at-",
+      "inboxId": null,
+      "text": "What missing workflows and gotchas exist for AI operation of Advanced Canvas at the file layer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-what-concrete-additions-or-updates-are-needed-in-references-plugins-advanced-can",
+      "inboxId": null,
+      "text": "What concrete additions or updates are needed in references/plugins/advanced-canvas/ to optimize AI operation?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-are-the-differences-between-documented-behavior-and-actual-compiled-main-js",
+      "inboxId": null,
+      "text": "What are the differences between documented behavior and actual compiled main.js v6.5.4 behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-what-is-the-exact-extended-canvas-json-schema-for-nodes-and-edges-in-advanced-ca",
+      "inboxId": null,
+      "text": "What is the exact extended .canvas JSON schema for nodes and edges in Advanced Canvas v6.5.4, including all non-standard keys?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-how-does-cross-portal-interdimensional-edge-serialization-work-in-the-real-plugi",
+      "inboxId": null,
+      "text": "How does cross-portal (interdimensional) edge serialization work in the real plugin, and what are the VERIFY-flagged unknowns?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-what-missing-workflows-and-gotchas-exist-for-ai-operation-of-advanced-canvas-at-",
+      "inboxId": null,
+      "text": "What missing workflows and gotchas exist for AI operation of Advanced Canvas at the file layer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-what-concrete-additions-or-updates-are-needed-in-references-plugins-advanced-can",
+      "inboxId": null,
+      "text": "What concrete additions or updates are needed in references/plugins/advanced-canvas/ to optimize AI operation?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-are-the-differences-between-documented-behavior-and-actual-compiled-main-js",
+      "inboxId": null,
+      "text": "What are the differences between documented behavior and actual compiled main.js v6.5.4 behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "What is the exact extended .canvas JSON schema for nodes and edges in Advanced Canvas v6.5.4, including all non-standard keys?",
+    "How does cross-portal (interdimensional) edge serialization work in the real plugin, and what are the VERIFY-flagged unknowns?",
+    "What missing workflows and gotchas exist for AI operation of Advanced Canvas at the file layer?",
+    "What concrete additions or updates are needed in references/plugins/advanced-canvas/ to optimize AI operation?",
+    "What are the differences between documented behavior and actual compiled main.js v6.5.4 behavior?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-5-ratio-is-not-always-a-number-the-build-computes-ratio-width-height-and-has-a-sen",
+      "text": "**`ratio` is not always a number.** The build computes `ratio: width / height` and has a sentinel `NO_RATIO = \"No ratio enforcement\"`, implying the `ratio` key can hold a numeric ratio or a string sentinel for \"no ratio enforcement\". `data-model.md` §3 documents `ratio` as `number` only — partially incomplete. [SOURCE: main.js grep `ratio` matches]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/manifest.json` (id/version/minAppVersion)",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (index)"
+      ]
+    },
+    {
+      "id": "finding-1-1-cross-portal-edge-serialization-composite-endpoint-ids-portalid-nodeid-in-main-j",
+      "text": "**Cross-portal edge serialization: composite endpoint ids `${portalId}-${nodeId}`.** In `main.js`, when the plugin registers an edge into a node inside a portal, it rewrites the endpoint: `if (edge.fromNode !== node.id) edge.fromNode = `${portalId}-${edge.fromNode}`;` (same for `toNode`). These edges are collected per-portal in `globalInterdimensionalEdges[portalId]`. So an interdimensional edge is serialized with its portal-facing endpoint(s) as a composite id of the form `<portal-node-id>-<nested-node-id>` — a dash-joined string, not a nested object or a new key. [SOURCE: ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js — `for (const [portalId, edges] of Object.entries(edgesToNodeFromPortal))`, `edge.fromNode = `${portalId}-${edge.fromNode}``]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/manifest.json` (id/version/minAppVersion)",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (index)"
+      ]
+    },
+    {
+      "id": "finding-1-7-presentation-migration-confirmed-the-build-still-contains-delete-node-isstartnod",
+      "text": "**Presentation migration confirmed.** The build still contains `delete node.isStartNode` and reads `canvas.metadata[\"startNode...` — confirming the documented migration path (per-node `isStartNode` removed in favor of `metadata.startNode`). `data-model.md` §6 is correct. [SOURCE: main.js grep `isStartNode`/`startNode` matches]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/manifest.json` (id/version/minAppVersion)",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (index)"
+      ]
+    },
+    {
+      "id": "finding-1-6-style-enumerations-confirmed-docs-are-accurate-all-documented-values-appear-verb",
+      "text": "**Style enumerations confirmed — docs are accurate.** All documented values appear verbatim in the compiled build: arrows `triangle-outline`, `thin-triangle`, `halved-triangle`, `diamond-outline`, `circle-outline` (plus the other three documented values exist in the feature set); paths `short-dashed`, `long-dashed` (plus `dotted`); `pathfindingMethod` `a-star` (plus `direct`/`square`); shapes `predefined-process`, `parallelogram` (plus the other five). No unknown enum values found, so §3–§4 enumerations need no correction. [SOURCE: main.js grep enum values]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/manifest.json` (id/version/minAppVersion)",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (index)"
+      ]
+    },
+    {
+      "id": "finding-1-8-templates-carry-styleattributes-too-template-styleattributes-and-template-stylea",
+      "text": "**Templates carry `styleAttributes` too.** `...template.styleAttributes` and `...template.styleAttributes` spreads show the \"templates\" (paste-as-template) feature stores style overrides on template objects — an additional non-standard key surface not covered by the docs. [SOURCE: main.js grep `template.styleAttributes`]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/manifest.json` (id/version/minAppVersion)",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (index)"
+      ]
+    },
+    {
+      "id": "finding-1-4-undocumented-collapseddata-group-payload-collapsing-a-group-serializes-its-conta",
+      "text": "**Undocumented `collapsedData` group payload.** Collapsing a group serializes its contained nodes/edges into `groupNodeData.collapsedData` (with x/y offsets: `x: nodeData.x + collapsedGroupData.x`, `y: nodeData.y + collapsedGroupData.y`, and `data.edges.push(...collapsedData.edges)`), and on expand `delete groupNodeData.collapsedData`. The docs only mention `collapsed: true` on a group node; the actual collapsed-group serialization nests member data under `collapsedData` on the group node rather than flattening. This is load-bearing for AI ops: while a group is collapsed, its member nodes are NOT top-level `nodes[]` entries. [SOURCE: main.js grep `collapsedData` matches]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/manifest.json` (id/version/minAppVersion)",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (index)"
+      ]
+    },
+    {
+      "id": "finding-1-3-undocumented-persistent-node-key-zindex-the-build-persists-a-per-node-z-order-th",
+      "text": "**Undocumented persistent node key `zIndex`.** The build persists a per-node z-order: `this.zIndex = this.canvas.zIndexCounter + ...`, `const finalZIndex = zIndex + i`, `zIndex: value`, `this.nodeEl.style.zIndex = this.zIndex.toString()`. Nodes carry a numeric `zIndex` used for draw order (front/back arrangement). This key is absent from `data-model.md` §3. [SOURCE: main.js grep `zIndex` matches]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/manifest.json` (id/version/minAppVersion)",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (index)"
+      ]
+    },
+    {
+      "id": "finding-1-2-caveat-this-is-the-compiled-runtime-s-remapping-code-it-resolves-the-verify-item",
+      "text": "Caveat: this is the compiled runtime's remapping code. It resolves the VERIFY item at the code level, but byte-level confirmation still requires reading a real portal `.canvas` file that contains a cross-portal edge (see Questions Remaining).",
+      "addedAtIteration": 1,
+      "sources": [
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/manifest.json` (id/version/minAppVersion)",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.claude/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (index)"
+      ]
+    },
+    {
+      "id": "finding-2-29-inference-glob-and-find-returned-zero-results-across-the-entire-vault",
+      "text": "[INFERENCE: glob and find returned zero results across the entire vault]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-3-source-https-raw-githubusercontent-com-developer-mike-obsidian-advanced-canvas-m",
+      "text": "[SOURCE: `https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts` — `zIndex?: number // AdvancedJsonCanvas`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-2-source-https-raw-githubusercontent-com-developer-mike-obsidian-advanced-canvas-m",
+      "text": "[SOURCE: `https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md` — §Nodes, \"zIndex (optional, integer)\"]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-14-source-1-0-1-0-d-ts-collapsed-boolean-only-no-collapseddata",
+      "text": "[SOURCE: 1.0-1.0.d.ts — `collapsed?: boolean` only, no `collapsedData`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-7-source-1-0-1-0-d-ts-interdimensionaledges-canvasedgedata",
+      "text": "[SOURCE: 1.0-1.0.d.ts — `interdimensionalEdges?: CanvasEdgeData[]`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-18-source-1-0-1-0-d-ts-ratio-number",
+      "text": "[SOURCE: 1.0-1.0.d.ts — `ratio?: number`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-21-source-1-0-1-0-d-ts-styleattributes-key-string-string-null",
+      "text": "[SOURCE: 1.0-1.0.d.ts — `styleAttributes?: { [key: string]: string | null }`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-25-source-1-0-1-0-d-ts-zindex-number",
+      "text": "[SOURCE: 1.0-1.0.d.ts — `zIndex?: number`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-22-source-main-js-v6-5-4-template-styleattributes-iteration-1",
+      "text": "[SOURCE: main.js v6.5.4 — `...template.styleAttributes` (iteration 1)]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-8-source-main-js-v6-5-4-edge-fromnode-portalid-edge-fromnode-iteration-1",
+      "text": "[SOURCE: main.js v6.5.4 — `edge.fromNode = \\`${portalId}-${edge.fromNode}\\`` (iteration 1)]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-11-source-main-js-v6-5-4-edge-fromnode-portalid-edge-fromnode-iteration-1",
+      "text": "[SOURCE: main.js v6.5.4 — `edge.fromNode = \\`${portalId}-${edge.fromNode}\\`` (iteration 1)]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-19-source-main-js-v6-5-4-no-ratio-no-ratio-enforcement-iteration-1",
+      "text": "[SOURCE: main.js v6.5.4 — `NO_RATIO = \"No ratio enforcement\"` (iteration 1)]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-15-source-main-js-v6-5-4-x-nodedata-x-collapsedgroupdata-x-data-edges-push-collapse",
+      "text": "[SOURCE: main.js v6.5.4 — `x: nodeData.x + collapsedGroupData.x`, `data.edges.push(...collapsedData.edges)`, `delete groupNodeData.collapsedData` (iteration 1)]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-4-source-main-js-v6-5-4-grep-this-zindex-this-canvas-zindexcounter-zindex-value-it",
+      "text": "[SOURCE: main.js v6.5.4 grep — `this.zIndex = this.canvas.zIndexCounter`, `zIndex: value` (iteration 1 finding)]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-27-source-spec-1-0-1-0-md-edges-fromend-defaults-to-none-if-not-specified-toend-def",
+      "text": "[SOURCE: spec/1.0-1.0.md — §Edges: \"fromEnd: Defaults to none if not specified\", \"toEnd: Defaults to arrow if not specified\"]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-10-source-spec-1-0-1-0-md-nodes-generic-node-id-field-note",
+      "text": "[SOURCE: spec/1.0-1.0.md — §Nodes, Generic node, `id` field note]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-13-source-spec-1-0-1-0-md-nodes-group-type-nodes-only-collapsed-boolean-no-collapse",
+      "text": "[SOURCE: spec/1.0-1.0.md — §Nodes, Group type nodes: only `collapsed?: boolean`, no `collapsedData`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-24-source-spec-1-0-1-0-md-nodes-nodes-are-placed-in-the-array-in-ascending-order-by",
+      "text": "[SOURCE: spec/1.0-1.0.md — §Nodes: \"Nodes are placed in the array in ascending order by z-index\"]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-17-source-spec-1-0-1-0-md-ratio-optional-float-the-aspect-ratio-of-the-node-calcula",
+      "text": "[SOURCE: spec/1.0-1.0.md — `ratio (optional, float)`: \"the aspect ratio of the node... calculated as width / height\"]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-6-source-spec-1-0-1-0-md-file-type-nodes-interdimensionaledges-optional-array-of-e",
+      "text": "[SOURCE: spec/1.0-1.0.md — File type nodes: \"interdimensionalEdges (optional, array of edges) is an array of edges that connect a node from the current canvas to a node from the portal canvas.\"]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-12-collapseddata-is-a-runtime-only-payload-not-in-the-spec-gotcha-p0",
+      "text": "**`collapsedData` is a runtime-only payload — NOT in the spec.** [GOTCHA — P0]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-26-fromend-toend-defaults-documented-in-spec-missing-from-reference-docs-doc-gap-p2",
+      "text": "**`fromEnd`/`toEnd` defaults documented in spec, missing from reference docs.** [DOC GAP — P2]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-5-interdimensionaledges-array-is-the-official-cross-portal-edge-serialization-veri",
+      "text": "**`interdimensionalEdges` array is the official cross-portal edge serialization.** [VERIFY RESOLVED — P0]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-16-ratio-has-a-string-sentinel-not-reflected-in-the-spec-type-edge-case-p1",
+      "text": "**`ratio` has a string sentinel not reflected in the spec type.** [EDGE CASE — P1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-1-zindex-is-fully-official-and-missing-from-all-4-reference-docs-spec-gap-p0",
+      "text": "**`zIndex` is fully official and missing from all 4 reference docs.** [SPEC GAP — P0]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-9-composite-portal-id-pattern-confirmed-at-spec-level-gotcha-p1",
+      "text": "**Composite portal ID pattern confirmed at spec level.** [GOTCHA — P1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-28-no-canvas-files-exist-in-the-vault-byte-level-confirmation-blocked-blocked",
+      "text": "**No `.canvas` files exist in the vault — byte-level confirmation blocked.** [BLOCKED]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-20-template-styleattributes-and-the-null-value-workflow-gap-p2",
+      "text": "**Template `styleAttributes` and the `null` value.** [WORKFLOW GAP — P2]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-2-23-z-order-vs-array-order-double-bookkeeping-gotcha-p2",
+      "text": "**Z-order vs array-order: double bookkeeping.** [GOTCHA — P2]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/README.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md`",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md`",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited"
+      ]
+    },
+    {
+      "id": "finding-3-3-ai-reading-do-not-assume-nodes-0-is-the-bottom-most-node-read-zindex-values-expl",
+      "text": "**AI reading:** Do not assume `nodes[0]` is the bottom-most node. Read `zIndex` values explicitly.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (70 lines — read to map VERIFY item locations)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` (208 lines — read to map section-level insertion points for all 8 gaps)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` (250 lines — read to identify missing workflow recipes)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` (149 lines — read to map symptom-table additions)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` (prior findings re-cited)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` (8 gaps extracted)",
+        "`specs/.../001-advanced-canvas/research/research.md` (progressive synthesis baseline)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (iteration 2 evidence re-cited)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (iteration 2 evidence re-cited)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited; targeted greps for `dynamicHeight`, `metadata`, `template` confirmed"
+      ]
+    },
+    {
+      "id": "finding-3-4-ai-writing-prefer-setting-explicit-zindex-values-on-all-nodes-and-ensure-array-o",
+      "text": "**AI writing:** Prefer setting explicit `zIndex` values on all nodes, and ensure array order matches ascending zIndex.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (70 lines — read to map VERIFY item locations)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` (208 lines — read to map section-level insertion points for all 8 gaps)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` (250 lines — read to identify missing workflow recipes)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` (149 lines — read to map symptom-table additions)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` (prior findings re-cited)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` (8 gaps extracted)",
+        "`specs/.../001-advanced-canvas/research/research.md` (progressive synthesis baseline)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (iteration 2 evidence re-cited)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (iteration 2 evidence re-cited)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited; targeted greps for `dynamicHeight`, `metadata`, `template` confirmed"
+      ]
+    },
+    {
+      "id": "finding-3-7-interdimensional-edges-are-confirmed-an-edge-that-connects-into-or-out-of-a-port",
+      "text": "**Interdimensional edges are confirmed.** An edge that connects into or out of a portal lives in the portal node's `interdimensionalEdges` array, using composite IDs (`portalId-nestedNodeId`). Never use `-` in a manually-chosen node ID, as it conflicts with portal composite ID detection.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (70 lines — read to map VERIFY item locations)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` (208 lines — read to map section-level insertion points for all 8 gaps)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` (250 lines — read to identify missing workflow recipes)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` (149 lines — read to map symptom-table additions)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` (prior findings re-cited)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` (8 gaps extracted)",
+        "`specs/.../001-advanced-canvas/research/research.md` (progressive synthesis baseline)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (iteration 2 evidence re-cited)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (iteration 2 evidence re-cited)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited; targeted greps for `dynamicHeight`, `metadata`, `template` confirmed"
+      ]
+    },
+    {
+      "id": "finding-3-1-when-zindex-is-set-on-all-nodes-array-position-should-mirror-the-zindex-sort",
+      "text": "**When `zIndex` is set on all nodes:** array position should mirror the zIndex sort.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (70 lines — read to map VERIFY item locations)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` (208 lines — read to map section-level insertion points for all 8 gaps)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` (250 lines — read to identify missing workflow recipes)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` (149 lines — read to map symptom-table additions)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` (prior findings re-cited)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` (8 gaps extracted)",
+        "`specs/.../001-advanced-canvas/research/research.md` (progressive synthesis baseline)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (iteration 2 evidence re-cited)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (iteration 2 evidence re-cited)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited; targeted greps for `dynamicHeight`, `metadata`, `template` confirmed"
+      ]
+    },
+    {
+      "id": "finding-3-2-when-some-nodes-lack-zindex-the-plugin-auto-assigns-values-from-this-canvas-zind",
+      "text": "**When some nodes lack `zIndex`:** the plugin auto-assigns values from `this.canvas.zIndexCounter`. Array order and visual order can diverge.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (70 lines — read to map VERIFY item locations)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` (208 lines — read to map section-level insertion points for all 8 gaps)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` (250 lines — read to identify missing workflow recipes)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` (149 lines — read to map symptom-table additions)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` (prior findings re-cited)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` (8 gaps extracted)",
+        "`specs/.../001-advanced-canvas/research/research.md` (progressive synthesis baseline)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (iteration 2 evidence re-cited)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (iteration 2 evidence re-cited)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited; targeted greps for `dynamicHeight`, `metadata`, `template` confirmed"
+      ]
+    },
+    {
+      "id": "finding-3-5-cross-portal-edge-authoring-is-now-confirmed-use-the-interdimensionaledges-array",
+      "text": "Cross-portal edge authoring is now confirmed. Use the `interdimensionalEdges` array on the portal node with composite IDs (`${portalId}-${nodeId}`). Never use `-` in manually-chosen node IDs (see §5).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (70 lines — read to map VERIFY item locations)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` (208 lines — read to map section-level insertion points for all 8 gaps)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` (250 lines — read to identify missing workflow recipes)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` (149 lines — read to map symptom-table additions)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` (prior findings re-cited)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` (8 gaps extracted)",
+        "`specs/.../001-advanced-canvas/research/research.md` (progressive synthesis baseline)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (iteration 2 evidence re-cited)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (iteration 2 evidence re-cited)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited; targeted greps for `dynamicHeight`, `metadata`, `template` confirmed"
+      ]
+    },
+    {
+      "id": "finding-3-6-to-connect-a-top-level-node-to-a-node-inside-the-portal-add-an-edge-to-the-porta",
+      "text": "To connect a top-level node to a node inside the portal, add an edge to the portal node's `interdimensionalEdges` array. Use the composite ID pattern: `${portalId}-${nestedNodeId}` where `nestedNodeId` is the `id` of the target node inside the embedded `.canvas`. The `fromNode`/`toNode` endpoints use whichever side faces the portal.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` (70 lines — read to map VERIFY item locations)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` (208 lines — read to map section-level insertion points for all 8 gaps)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` (250 lines — read to identify missing workflow recipes)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` (149 lines — read to map symptom-table additions)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` (prior findings re-cited)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` (8 gaps extracted)",
+        "`specs/.../001-advanced-canvas/research/research.md` (progressive synthesis baseline)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (iteration 2 evidence re-cited)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (iteration 2 evidence re-cited)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1 evidence re-cited; targeted greps for `dynamicHeight`, `metadata`, `template` confirmed"
+      ]
+    },
+    {
+      "id": "finding-4-5-arrow-edges-triangle-outline-thin-triangle-halved-triangle-diamond-diamond-outli",
+      "text": "**`arrow`** (edges): `triangle-outline`, `thin-triangle`, `halved-triangle`, `diamond`, `diamond-outline`, `circle`, `circle-outline`, `blunt`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    },
+    {
+      "id": "finding-4-3-border-any-node-dashed-dotted-invisible",
+      "text": "**`border`** (any node): `dashed`, `dotted`, `invisible`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    },
+    {
+      "id": "finding-4-4-path-edges-dotted-short-dashed-long-dashed",
+      "text": "**`path`** (edges): `dotted`, `short-dashed`, `long-dashed`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    },
+    {
+      "id": "finding-4-6-pathfindingmethod-edges-direct-square-a-star",
+      "text": "**`pathfindingMethod`** (edges): `direct`, `square`, `a-star`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    },
+    {
+      "id": "finding-4-1-shape-text-nodes-pill-diamond-parallelogram-circle-predefined-process-document-d",
+      "text": "**`shape`** (text nodes): `pill`, `diamond`, `parallelogram`, `circle`, `predefined-process`, `document`, `database`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    },
+    {
+      "id": "finding-4-2-textalign-text-nodes-center-right",
+      "text": "**`textAlign`** (text nodes): `center`, `right`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    },
+    {
+      "id": "finding-4-7-dynamicheight-docs-document-it-correctly-matches-spec-and-main-js",
+      "text": "`dynamicHeight`: docs document it correctly — matches spec and main.js",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    },
+    {
+      "id": "finding-4-11-metadata-frontmatterposition-frontmatterlinks-runtime-only-internal-fields-corre",
+      "text": "`metadata.frontmatterPosition`/`frontmatterLinks`: runtime-only internal fields, correctly not documented",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    },
+    {
+      "id": "finding-4-9-presentation-migration-isstartnode-metadata-startnode-docs-are-correct",
+      "text": "Presentation migration (`isStartNode` → `metadata.startNode`): docs are correct",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    },
+    {
+      "id": "finding-4-8-style-enumerations-3-4-all-values-confirmed-verbatim-in-main-js",
+      "text": "Style enumerations (§3–§4): all values confirmed verbatim in main.js",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    },
+    {
+      "id": "finding-4-10-template-storage-model-templates-live-in-plugin-settings-not-canvas-json-correct",
+      "text": "Template storage model: templates live in plugin settings, not `.canvas` JSON — correct",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/advanced-canvas.md` — full read, VERIFY flag and coverage gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/data-model.md` — full read, VERIFY flag and gap mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/workflows.md` — full read, VERIFY flag mapping (this iteration)",
+        "`.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/advanced-canvas/troubleshooting.md` — full read, VERIFY flag mapping (this iteration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-001.md` — main.js findings (cross-portal composite IDs, zIndex, collapsedData, ratio sentinel, template styleAttributes, style enums, presentation migration)",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-002.md` — spec + .d.ts confirmations, 8 gap identifications",
+        "`specs/.../001-advanced-canvas/research/iterations/iteration-003.md` — 4 gotchas, 8 doc-update recommendations, template storage model, dynamicHeight verification",
+        "`specs/.../001-advanced-canvas/research/research.md` — progressive synthesis baseline",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.md) (re-cited, iteration 2)",
+        "[https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts](https://raw.githubusercontent.com/Developer-Mike/obsidian-advanced-canvas/main/assets/formats/advanced-json-canvas/spec/1.0-1.0.d.ts) (re-cited, iteration 2)",
+        "`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.obsidian/plugins/advanced-canvas/main.js` (v6.5.4, compiled) — iteration 1-3 evidence re-cited",
+        "`specs/.../001-advanced-canvas/research/deep-research-config.json` — progressiveSynthesis, maxIterations, convergenceThreshold",
+        "`specs/.../001-advanced-canvas/research/deep-research-state.jsonl` — iteration history",
+        "`specs/.../001-advanced-canvas/research/deep-research-strategy.md` — exhausted approaches, next-focus",
+        "`specs/.../001-advanced-canvas/research/findings-registry.json` — question and finding state"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-464cbe989452",
+      "text": "No approaches ruled out this iteration. The one failed action (`rg` missing from PATH) was recovered with `grep -E` — a tooling quirk, not a dead end.",
+      "contentHash": "464cbe989452",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f785f10feee0",
+      "text": "None. (Fetching the GitHub repo directly was deferred by budget, not eliminated.)",
+      "contentHash": "f785f10feee0",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-efcd5ae08e25",
+      "text": "**Direct byte-level `.canvas` file read**: Blocked — no `.canvas` files exist in the vault. Not a dead end for the research as a whole, since the specification + TypeScript types were fetched and confirmed, but the \"real file\" path is exhausted for this vault.",
+      "contentHash": "efcd5ae08e25",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-12ed948aa77f",
+      "text": "**GitHub source TypeScript files**: Returned 404 — the source tree uses filenames not discoverable from the README. The compiled `main.js` on disk remains the closest source-level evidence; the spec document is the authoritative format reference.",
+      "contentHash": "12ed948aa77f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-499327b25a4a",
+      "text": "**Vault `.canvas` file scan**: Exhausted. No files to read. Recommend moving this to the \"Byte-level confirmation\" question as \"confirmed by spec types, no vault files available.\"",
+      "contentHash": "499327b25a4a",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7d0bf90138a1",
+      "text": "No approaches ruled out. All targeted research actions (doc reads, main.js greps) produced useful evidence.",
+      "contentHash": "7d0bf90138a1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f851424e7e34",
+      "text": "None. The synthesis phase uses existing evidence; no new unproductive paths attempted.",
+      "contentHash": "f851424e7e34",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-d6ce994321f8",
+      "text": "The `dynamicHeight` verification confirmed the docs are already correct — no gap to add.",
+      "contentHash": "d6ce994321f8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9dad667bfefb",
+      "text": "No approaches ruled out this iteration. All evidence was drawn from existing sources (spec, types, main.js, reference docs).",
+      "contentHash": "9dad667bfefb",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e11a26fb3714",
+      "text": "None. The synthesis phase used existing evidence; no new research paths attempted.",
+      "contentHash": "e11a26fb3714",
+      "addedAtIteration": 4
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 55,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.37,
+    "coverageBySources": {
+      "code": 7,
+      "other": 50,
+      "raw.githubusercontent.com": 3
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

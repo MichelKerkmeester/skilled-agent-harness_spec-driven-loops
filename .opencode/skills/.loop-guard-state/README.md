@@ -10,13 +10,13 @@ version: 1.0.0.1
 
 # Deep Loop Guard Runtime State
 
-> Runtime storage for deep-loop dispatch enforcement managed by `mk-deep-loop-guard.js`.
+> Runtime storage for deep-loop dispatch enforcement managed by `system-deep-loop-guard.js`.
 
 ---
 
 ## 1. OVERVIEW
 
-This folder stores machine-specific state for the [`mk-deep-loop-guard.js`](../../plugins/mk-deep-loop-guard.js) OpenCode plugin and its shared [`dispatch-guard.cjs`](../../hooks/task-dispatch/lib/dispatch-guard.cjs) policy core. The guard checks `Task` dispatches that target deep-loop agents before OpenCode executes them. It uses per-session dispatch counts to distinguish a bounded external handoff from repeated handoffs that recreate a command-owned iteration loop outside its parent command.
+This folder stores machine-specific state for the [`system-deep-loop-guard.js`](../../plugins/system-deep-loop-guard.js) OpenCode plugin and its shared [`dispatch-guard.cjs`](../../hooks/task-dispatch/lib/dispatch-guard.cjs) policy core. The guard checks `Task` dispatches that target deep-loop agents before OpenCode executes them. It uses per-session dispatch counts to distinguish a bounded external handoff from repeated handoffs that recreate a command-owned iteration loop outside its parent command.
 
 The plugin is a transport adapter. It maps OpenCode's `tool.execute.before` and `session.created` events onto the shared core. The core resolves target identity, reads the deep-loop mode registry, evaluates dispatch policy, persists counters and maintains this directory. The adapter writes returned warnings and audits to the bounded log. It throws the core's rejection error only when an opt-in rejection setting applies.
 
@@ -29,7 +29,7 @@ Raw runtime data is git-ignored. Only this `README.md` is tracked, so external u
 | Path | Shape | Purpose |
 |---|---|---|
 | `<session-id-hex>.json` | Formatted JSON object | Stores `sessionId` and a `dispatches` object keyed by target agent. Each target entry contains `count`, `lastCommandDriven` and `lastTimestamp`. |
-| `guard-warnings.log` | Plain-text log | Stores timestamped warning and audit lines from `mk-deep-loop-guard`. |
+| `guard-warnings.log` | Plain-text log | Stores timestamped warning and audit lines from `system-deep-loop-guard`. |
 | `guard-warnings.log.1` | Plain-text log | Stores the previous rotated warning-log generation. |
 | `.archive/<session-id-hex>.json` | Formatted JSON object | Stores stale per-session guard state using the same shape as an active state file. |
 | `.sweep.lock/` | Temporary lock directory | Prevents concurrent cleanup passes across OpenCode processes. |
@@ -44,8 +44,8 @@ The shared core applies two checks to a resolved deep-loop target:
 
 | Check | Evidence | Default result | Opt-in rejection |
 |---|---|---|---|
-| Deep Route mode match | Compares a declared `mode=<value>` in the prompt with the target agent's `workflowMode` values in [`mode-registry.json`](../system-deep-loop/mode-registry.json). | Writes a warning when the declared mode does not belong to the target agent. | `MK_DEEP_LOOP_GUARD_REJECT=1` rejects the mismatch. |
-| Repeated loop-executor handoff | Counts non-command-driven dispatches to `deep-research`, `deep-review` or `deep-improvement` for the same session and target. A bounded `Iteration: N of M` or `Review Iteration: N of M` marker identifies command-driven work. | Allows the first handoff. It writes warnings from the second non-command-driven handoff onward. | `MK_DEEP_LOOP_GUARD_REJECT_LOOP=1` rejects the third and later non-command-driven handoffs. |
+| Deep Route mode match | Compares a declared `mode=<value>` in the prompt with the target agent's `workflowMode` values in [`mode-registry.json`](../system-deep-loop/mode-registry.json). | Writes a warning when the declared mode does not belong to the target agent. | `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` rejects the mismatch. |
+| Repeated loop-executor handoff | Counts non-command-driven dispatches to `deep-research`, `deep-review` or `deep-improvement` for the same session and target. A bounded `Iteration: N of M` or `Review Iteration: N of M` marker identifies command-driven work. | Allows the first handoff. It writes warnings from the second non-command-driven handoff onward. | `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` rejects the third and later non-command-driven handoffs. |
 
 The core resolves an agent from `target_agent=@<name>` or `Agent: @<name>` in the prompt before it falls back to a non-generic `subagent_type`. This supports dispatchers that use `subagent_type="general"` while naming the real agent in the prompt.
 
@@ -73,7 +73,7 @@ OpenCode and Claude Code consume the same policy core and state directory:
 
 | Runtime surface | Adapter behavior |
 |---|---|
-| OpenCode plugin | [`mk-deep-loop-guard.js`](../../plugins/mk-deep-loop-guard.js) evaluates lowercase-normalized `task` calls in `tool.execute.before`. It logs advisories and throws a confirmed rejection. Its `session.created` event requests state maintenance. |
+| OpenCode plugin | [`system-deep-loop-guard.js`](../../plugins/system-deep-loop-guard.js) evaluates lowercase-normalized `task` calls in `tool.execute.before`. It logs advisories and throws a confirmed rejection. Its `session.created` event requests state maintenance. |
 | Claude hook | [`task-dispatch-guard.cjs`](../../hooks/task-dispatch/claude/task-dispatch-guard.cjs) evaluates `PreToolUse(Task)` payloads. It logs to the same warning path, returns warnings as `additionalContext` and returns confirmed rejection through Claude's deny response. |
 
 The shared core returns a transport-free `allow`, `warn` or `reject` decision. Each adapter presents that decision through its runtime protocol. The core never writes standard output or standard error. The adapters keep warning signals in this directory so OpenCode warnings do not disrupt the interactive prompt line and both runtimes retain one bounded audit trail.
@@ -88,10 +88,10 @@ A session-start sweep moves stale active JSON files into `.archive/`, removes ex
 
 | Setting | Default | Purpose |
 |---|---|---|
-| `MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS` | `2` days | Controls when inactive session state moves into `.archive/`. |
-| `MK_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS` | `90` days | Controls archive and warning-log retention. |
-| `MK_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS` | `3600000` | Controls how often cleanup may run. |
-| `MK_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES` | `262144` bytes | Controls warning-log rotation. |
+| `SYSTEM_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS` | `2` days | Controls when inactive session state moves into `.archive/`. |
+| `SYSTEM_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS` | `90` days | Controls archive and warning-log retention. |
+| `SYSTEM_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS` | `3600000` | Controls how often cleanup may run. |
+| `SYSTEM_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES` | `262144` bytes | Controls warning-log rotation. |
 
 Rotation keeps the active warning log and one `.1` backup. Cleanup also removes stale temporary JSON files left by interrupted atomic writes.
 
@@ -103,7 +103,7 @@ Warnings never need to exist for the guard to enforce a confirmed opt-in rejecti
 
 ## 7. RELATED RESOURCES
 
-- [`mk-deep-loop-guard.js`](../../plugins/mk-deep-loop-guard.js) connects OpenCode events to the shared guard.
+- [`system-deep-loop-guard.js`](../../plugins/system-deep-loop-guard.js) connects OpenCode events to the shared guard.
 - [`dispatch-guard.cjs`](../../hooks/task-dispatch/lib/dispatch-guard.cjs) defines the state shape, logging rules and cleanup lifecycle.
 - [`system-deep-loop`](../system-deep-loop/SKILL.md) defines the related skill hub, registered workflow families and runtime boundary.
 - [`mode-registry.json`](../system-deep-loop/mode-registry.json) maps workflow modes to their commands, agents and mode packets.

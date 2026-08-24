@@ -180,11 +180,30 @@ expect_rc "created worktree branch valid"  0 is_valid_branch "$BR"
 expect_rc "created worktree pair valid"    0 is_valid_pair "$BR" "$DIR"
 DET="$(create_detached_worktree probe HEAD 2>/dev/null)"
 case "$DET" in *-detached-probe) expect_eq "detached dir shape" ok ok ;; *) expect_eq "detached dir shape" ok "bad:$DET" ;; esac
-expect_rc "detached has no branch" 128 git -C "$TMP/$DET" symbolic-ref HEAD
+expect_rc "detached has no branch" 128 git -C "$DET" symbolic-ref HEAD
 DED="$(create_branch dep HEAD 2>/dev/null)"
 case "$DED" in branches/*) expect_eq "dedicated branch shape" ok ok ;; *) expect_eq "dedicated branch shape" ok "bad:$DED" ;; esac
 expect_rc "dedicated branch has no worktree" 1 git worktree list --porcelain 2>/dev/null | grep -q "^worktree .*$DED"
 expect_rc "dedicated branch valid" 0 is_valid_branch "$DED"
+
+# ── relocated worktree base (speckit.worktreeBase / SPECKIT_WORKTREE_BASE) ─────
+# A configured base moves worktrees OUT of the checkout so the checkout's own
+# file-watchers stop scanning them. The allocator must create there, keep
+# counting relocated worktrees for numbering, and pair-validate the new path
+# while staying tolerant of the legacy in-checkout .worktrees layout.
+EXT="$(mktemp -d)"
+git config speckit.worktreeBase "$EXT"
+expect_eq "base resolver honors config" "$EXT" "$(_wn_base_dir)"
+ROUT="$(create_named_worktree relocated HEAD 2>/dev/null)"
+RBR="${ROUT%% *}"; RDIR="${ROUT##* }"
+expect_eq "relocated dir sits under configured base" "$EXT" "$(dirname "$RDIR")"
+expect_rc "relocated worktree dir exists"      0 test -d "$RDIR"
+expect_rc "relocated pair valid"               0 is_valid_pair "$RBR" "$RDIR"
+expect_rc "legacy .worktrees pair still valid" 0 is_valid_pair worktrees/002-foo .worktrees/002-foo
+expect_rc "same basename wrong parent rejected" 1 is_valid_pair "$RBR" "/tmp/${RBR#worktrees/}"
+git config --unset speckit.worktreeBase
+git -C "$TMP" worktree prune 2>/dev/null || true
+rm -rf "$EXT"
 
 # ── regression: an empty fixture dir must abort before any git init ────
 # `cd ""` returns 0 in Bash, so a bare `cd "$TMP" || exit 1` would silently

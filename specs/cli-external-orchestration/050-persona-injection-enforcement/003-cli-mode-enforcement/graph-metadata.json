@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/050-persona-injection-enforcement/003-cli-mode-enforcement",
+  "spec_folder": "cli-external-orchestration/050-persona-injection-enforcement/003-cli-mode-enforcement",
+  "parent_id": "cli-external-orchestration/050-persona-injection-enforcement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli mode persona injection enforcement",
+      "add persona rule to cli skill",
+      "hub always persona injection rule",
+      "cli mode enforcement plan",
+      "persona rule build verify plan",
+      "cli mode enforcement tasks",
+      "cli mode enforcement checklist",
+      "cli mode enforcement implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "mode",
+      "persona",
+      "injection",
+      "enforcement",
+      "rule",
+      "skill",
+      "hub",
+      "always",
+      "plan",
+      "verify",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Persona",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Injection Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pre",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "P2 produced the shared `persona-injection-contract.md`, but the six external-CLI mode SKILL.md files and the hub SKILL.md still document dispatch WITHOUT an enforcement rule requiring the resolved agent persona in the payload",
+    "created_at": "2026-08-19T11:14:30.997Z",
+    "last_save_at": "2026-08-19T11:18:34.731Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3878c875a022d667e0447f4f5de56bbc1b28bd9a841d813d5a2c8384a1ccb027",
+    "source_doc_hashes": {
+      "spec.md": "a86bd2618e11d8e7e14b2ba39d525d7fb33eb350c82d12a21af3a8b302269c50",
+      "plan.md": "50ffac7b49eade02ed8b2a678ef5f8a5a7e9ec4b365495080bdab2a985d0fad8",
+      "tasks.md": "b2cecaf4be7c1f5920e6279b1f2aba67511f2fb471769706b59c3b579109ceac",
+      "checklist.md": "166b23a112312f0d8012a78a46aef8c48740397ff9d02c5a2a6dd37c8aab2301",
+      "implementation-summary.md": "c76abe02c3bf8acd8975d61a47a8dda9715abed516f3fc5ca14396aa0d1d5f1e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

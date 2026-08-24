@@ -60,7 +60,7 @@ printf '%s' '{"prompt":"help me commit my changes","workspaceRoot":"'"$PWD"'"}' 
 4. One hook adapter:
 
 ```bash
-printf '%s' '{"prompt":"help me commit my changes","workspaceRoot":"'"$PWD"'","cwd":"'"$PWD"'"}' | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs
+printf '%s' '{"prompt":"help me commit my changes","workspaceRoot":"'"$PWD"'","cwd":"'"$PWD"'"}' | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs
 ```
 
 ### Expected Signals

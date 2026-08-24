@@ -100,7 +100,6 @@ Observed 2026-07-03 in `/Users/michelkerkmeester/MEGA/Development/Code_Environme
 
 
 ```text
-plugin_id=mk-code-graph
 cache_ttl_ms=5000
 spec_folder=auto
 resume_mode=minimal

@@ -59,7 +59,7 @@ rm -rf "$SANDBOX"
 
 - `ok 9` — manifest parity with `TOOL_DEFINITIONS`.
 - `warm-only exit=75` (`backend unavailable`) with no spawn and no socket created.
-- `untrusted exit=64` with `advisor_rebuild requires --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1`, refused client-side before IPC.
+- `untrusted exit=64` with `advisor_rebuild requires --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`, refused client-side before IPC.
 - `trusted exit=75` — the gate passed and only the absent daemon stopped the call.
 
 ### Evidence

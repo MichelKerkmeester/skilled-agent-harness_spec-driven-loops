@@ -103,7 +103,7 @@ const fs = require('fs');
 const path = require('path');
 
 function leasePath() {
-  const dir = process.env.MK_SKILL_ADVISOR_DB_DIR || path.join(process.cwd(), '.opencode/skills/system-skill-advisor/mcp-server/database');
+  const dir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR || path.join(process.cwd(), '.opencode/skills/system-skill-advisor/mcp-server/database');
   return path.join(dir, 'skill-graph-daemon-lease.sqlite');
 }
 
@@ -137,9 +137,9 @@ function createTriSandbox(): TriSandbox {
   for (const fileName of [
     'spec-memory.cjs',
     'skill-advisor.cjs',
-    'mk-spec-memory-launcher.cjs',
-    'mk-code-index-launcher.cjs',
-    'mk-skill-advisor-launcher.cjs',
+    'system-spec-memory-launcher.cjs',
+    'system-code-index-launcher.cjs',
+    'system-skill-advisor-launcher.cjs',
   ]) {
     copyFileSync(join(repoRoot, '.opencode/bin', fileName), join(binDir, fileName));
   }
@@ -174,14 +174,14 @@ function createTriSandbox(): TriSandbox {
 
   writeExecutable(
     join(root, '.opencode/skills/system-spec-kit/mcp-server/dist/spec-memory-cli.js'),
-    stubCliSource('../../../../..', 'mk-spec-memory-launcher.cjs', 'mk-spec-memory'),
+    stubCliSource('../../../../..', 'system-spec-memory-launcher.cjs', 'system-spec-memory'),
   );
   writeExecutable(
-    stubCliSource('../../../../..', 'mk-code-index-launcher.cjs', 'mk-code-index'),
+    stubCliSource('../../../../..', 'system-code-index-launcher.cjs', 'system-code-index'),
   );
   writeExecutable(
     join(root, '.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/skill-advisor-cli.js'),
-    stubCliSource('../../../../../..', 'mk-skill-advisor-launcher.cjs', 'mk-skill-advisor'),
+    stubCliSource('../../../../../..', 'system-skill-advisor-launcher.cjs', 'system-skill-advisor'),
   );
   writeFileSync(
     join(root, '.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js'),
@@ -239,8 +239,7 @@ function serviceEnv(sandbox: TriSandbox, socketDir: string): NodeJS.ProcessEnv {
     SPECKIT_DAEMON_REELECTION: 'on',
     SPECKIT_IPC_SOCKET_DIR: socketDir,
     MEMORY_DB_PATH: sandbox.memoryDbPath,
-    SPECKIT_CODE_GRAPH_DB_DIR: sandbox.codeIndexDbDir,
-    MK_SKILL_ADVISOR_DB_DIR: sandbox.skillAdvisorDbDir,
+    SYSTEM_SKILL_ADVISOR_DB_DIR: sandbox.skillAdvisorDbDir,
     SPECKIT_LEASE_PROBE_RETRIES: '1',
     SPECKIT_PROBE_TIMEOUT_MS: '250',
     SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS: '100',
@@ -293,7 +292,7 @@ function readPidFile(filePath: string): number | null {
 }
 
 function specLauncherLeasePath(sandbox: TriSandbox): string {
-  return join(sandbox.specMemoryDbDir, '.mk-spec-memory-launcher.json');
+  return join(sandbox.specMemoryDbDir, '.system-spec-memory-launcher.json');
 }
 
 function specOwnerLeasePath(sandbox: TriSandbox): string {
@@ -301,7 +300,7 @@ function specOwnerLeasePath(sandbox: TriSandbox): string {
 }
 
 function codeLauncherLeasePath(sandbox: TriSandbox): string {
-  return join(sandbox.codeIndexDbDir, '.mk-code-index-launcher.json');
+  return join(sandbox.codeIndexDbDir, '.system-code-index-launcher.json');
 }
 
 function codeOwnerLeasePath(sandbox: TriSandbox): string {
@@ -309,7 +308,7 @@ function codeOwnerLeasePath(sandbox: TriSandbox): string {
 }
 
 function advisorLauncherLeasePath(sandbox: TriSandbox): string {
-  return join(sandbox.skillAdvisorDbDir, '.mk-skill-advisor-launcher.json');
+  return join(sandbox.skillAdvisorDbDir, '.system-skill-advisor-launcher.json');
 }
 
 function advisorOwnerLeasePath(sandbox: TriSandbox): string {
@@ -388,9 +387,9 @@ describeTriDaemon('tri-daemon-drill program gate', () => {
     expect(leasePid(codeOwnerLeasePath(sandbox), 'ownerPid')).toEqual(expect.any(Number));
     expect(leasePid(advisorLauncherLeasePath(sandbox), 'pid')).toEqual(expect.any(Number));
     expect(leasePid(advisorOwnerLeasePath(sandbox), 'ownerPid')).toEqual(expect.any(Number));
-    expect(existsSync(join(sandbox.specMemoryDbDir, '.mk-spec-memory-launcher.lockdir'))).toBe(false);
-    expect(existsSync(join(sandbox.codeIndexDbDir, '.mk-code-index-launcher.lockdir'))).toBe(false);
-    expect(existsSync(join(sandbox.skillAdvisorDbDir, '.mk-skill-advisor-launcher.lockdir'))).toBe(false);
+    expect(existsSync(join(sandbox.specMemoryDbDir, '.system-spec-memory-launcher.lockdir'))).toBe(false);
+    expect(existsSync(join(sandbox.codeIndexDbDir, '.system-code-index-launcher.lockdir'))).toBe(false);
+    expect(existsSync(join(sandbox.skillAdvisorDbDir, '.system-skill-advisor-launcher.lockdir'))).toBe(false);
 
     const specLauncherPid = leasePid(specLauncherLeasePath(sandbox), 'pid');
     const specChildPid = leasePid(specLauncherLeasePath(sandbox), 'childPid');

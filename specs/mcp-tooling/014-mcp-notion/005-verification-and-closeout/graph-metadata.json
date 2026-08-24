@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/014-mcp-notion/005-verification-and-closeout",
+  "spec_folder": "mcp-tooling/014-mcp-notion/005-verification-and-closeout",
+  "parent_id": "mcp-tooling/014-mcp-notion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-notion verification",
+      "mcp-notion playbook doctor",
+      "notion mode closeout",
+      "mcp-notion verification plan",
+      "mcp-notion closeout plan",
+      "notion mode phase 5 plan",
+      "mcp-notion verification tasks",
+      "mcp-notion closeout tasks",
+      "notion mode phase 5 tasks",
+      "mcp-notion verification summary",
+      "mcp-notion closeout summary",
+      "notion mode phase 5 summary"
+    ],
+    "key_topics": [
+      "mcp-notion",
+      "verification",
+      "playbook",
+      "doctor",
+      "notion",
+      "mode",
+      "closeout",
+      "plan",
+      "phase",
+      "tasks",
+      "summary",
+      "registered"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Notion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Author",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After Phase 4 the mode is registered but unproven end-to-end: nothing has confirmed that every mode doc validates, that a fresh operator can install and diagnose the mode without touching a real workspace, that the mode's headline numbers agree across all docs, or that the packet's completion metadata is internally consistent",
+    "created_at": "2026-08-21T15:00:46.691Z",
+    "last_save_at": "2026-08-21T15:50:01.856Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7070c561f3e99c77c2330b3b92543cf8dec0211917a6e9b83f0ef1dcbb41b6db",
+    "source_doc_hashes": {
+      "spec.md": "73a32e101d44b628c3da8c5d28903cf820b04dc114a956a7e65e224cecc754b5",
+      "plan.md": "c5c3c2fa8c8b9fcdc5cf4f9d9c0634faab31b186ffd8477b7ac210d7fdd68ee2",
+      "tasks.md": "766445c19c8192f071e830d5a955c191572a3ac535a451ab4eab93afb362084a",
+      "implementation-summary.md": "09d6426bd54c4671514568ed57b2ca1c707fd946dab17a57ea5587dcf5111cd7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,6 @@
+{"type":"iteration","run":1,"status":"complete","focus":"Importer choice deep-dive (Notion API vs HTML zip)","findingsCount":5,"newInfoRatio":0.82,"noveltyJustification":"First source-level confirmation that the API importer auto-converts rollups to Bases formulas and resolves relations via multi-phase placeholder rounds; refines prior 'verify' flag into 'converts, verify post-import'.","keyQuestions":["Q1"],"answeredQuestions":["Q1"],"timestamp":"2026-08-21T22:35:00Z"}
+{"type":"finding","id":"f1-importer-live","label":"Notion API importer is live and converts databases to Bases","iteration":1}
+{"type":"finding","id":"f1-rollup-to-formula","label":"Rollups auto-converted to Bases formulas (count/sum/show_original/earliest_date/etc.)","iteration":1}
+{"type":"finding","id":"f1-comments-gap","label":"Discussion comments are a gap — importer does not carry them","iteration":1}
+{"type":"finding","id":"f1-secondary-views-gap","label":"Only default table view generated per .base; secondary views need reconstruction","iteration":1}
+{"type":"ruledOut","approach":"Notion Markdown export","reason":"Officially discouraged; omits important data","evidence":"prior-findings.md §1","iteration":1}

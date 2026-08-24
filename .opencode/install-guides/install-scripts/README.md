@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`install-scripts/` owns the repository's shell entrypoints for installing and validating local MCP components. Regular scripts provide shared helpers, the aggregate installer and the Sequential Thinking installer. Symlinked entrypoints delegate to installers owned by their component skill.
+`install-scripts/` owns the repository's shell entrypoints for installing and validating local MCP components. Regular scripts provide shared helpers and the aggregate installer. Symlinked entrypoints delegate to installers owned by their component skill.
 
 The Chrome DevTools entrypoint is currently unavailable because its symlink target is absent. It is not part of the available installer surface.
 
@@ -23,7 +23,6 @@ The Chrome DevTools entrypoint is currently unavailable because its symlink targ
 |---|---|---|
 | `_utils.sh` | Shared shell helpers for installer logging, prerequisites, JSON updates and verification. | Available |
 | `install-all.sh` | Coordinates component installation with selection and dry-run options. | Available |
-| `install-sequential-thinking.sh` | Installs the Sequential Thinking component. | Available |
 | `install-code-mode.sh` | Symlink to the Code Mode installer owned by `mcp-code-mode`. | Available |
 | `install-spec-kit-memory.sh` | Symlink to the Spec Kit Memory installer owned by `system-spec-kit`. | Available |
 

@@ -1,0 +1,118 @@
+{
+  "run_id": "1787344059442-oo7ndm",
+  "loop_type": "research",
+  "spec_folder": "specs/mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
+  "base_artifact_dir": "specs/mcp-tooling/015-notion-to-obisidian-migration/001-deep-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm",
+      "state_log": "specs/mcp-tooling/015-notion-to-obisidian-migration/001-deep-research/research/lineages/glm/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-21T20:27:39.446Z",
+        "end_at_iso": "2026-08-21T20:47:59.624Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 11,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-08-21T22:35:00Z",
+          "deltaMs": 6300376
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-08-21T22:42:00Z",
+          "deltaMs": 6720376
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-08-21T22:49:00Z",
+          "deltaMs": 7140376
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-08-21T22:56:00Z",
+          "deltaMs": 7560376
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-08-21T23:03:00Z",
+          "deltaMs": 7980376
+        }
+      ]
+    },
+    {
+      "label": "deepseek",
+      "state_log": "specs/mcp-tooling/015-notion-to-obisidian-migration/001-deep-research/research/lineages/deepseek/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-21T20:28:47.808Z",
+        "end_at_iso": "2026-08-21T20:42:55.419Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 11,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-08-21T00:05:00Z",
+          "deltaMs": 73307808
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-08-21T00:10:00Z",
+          "deltaMs": 73007808
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-08-21T00:15:00Z",
+          "deltaMs": 72707808
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-08-21T00:20:00Z",
+          "deltaMs": 72407808
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-08-21T00:25:00Z",
+          "deltaMs": 72107808
+        }
+      ]
+    }
+  ]
+}

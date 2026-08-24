@@ -1,17 +1,23 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/028-sk-create-diagram/015-flowchart-deprecation",
-  "description": "Delete the superseded sk-create-flowchart skill outright and purge every live hub, router, advisor, and doc reference to it, now that sk-create-diagram fully covers its capability.",
+  "description": "Phase 012 merged `sk-create-flowchart`'s ASCII/markdown capability into `sk-create-diagram` and left the source skill as a redirect stub, matching the",
   "keywords": [
-    "flowchart",
-    "deprecation",
-    "deletion",
-    "advisor",
-    "hub-router",
-    "mode-registry",
-    "leaf-manifest",
-    "post-edit-router"
+    "phase",
+    "merged",
+    "sk-create-flowchart",
+    "ascii",
+    "markdown",
+    "capability",
+    "sk-create-diagram",
+    "left",
+    "source",
+    "skill",
+    "redirect",
+    "stub",
+    "matching"
   ],
-  "lastUpdated": "2026-08-13T05:55:33.000Z",
+  "lastUpdated": "2026-08-19T19:14:46.897Z",
   "specId": "015",
   "folderSlug": "flowchart-deprecation",
   "parentChain": [
@@ -19,6 +25,5 @@
     "028-sk-create-diagram"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -136,7 +136,7 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 
 ## 8. SCOPE OF THIS LIST
 
-**In scope**: sk-code authority only. Each other authority adapter (sk-doc phase 005, sk-git and sk-design phase 006) owns its own known-deviation list under its own `standardSource`, per ADR-005's per-authority requirement. This document does not attempt to anticipate their conventions.
+**In scope**: sk-code authority only. Each other authority adapter (sk-doc phase 005, sk-git phase 006) owns its own known-deviation list under its own `standardSource`, per ADR-005's per-authority requirement. This document does not attempt to anticipate their conventions.
 
 **Not a dumping ground**: per `spec.md` REQ-004's acceptance criteria and the phase's own risk register, every entry here traces to real, already-live tool source or a real classification outcome this adapter's own build reproduced, never an invented convention. An entry that stops matching real repo state gets flagged for operator review at REPORT time (ADR-006's state machine), not silently dropped or silently kept. The Live-Reality Check notes above are exactly that kind of flag, surfaced at authoring time instead of waiting for a later review pass.
 

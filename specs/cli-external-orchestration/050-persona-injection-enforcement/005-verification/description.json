@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/050-persona-injection-enforcement/005-verification",
+  "description": "P3 and P4 added the persona-injection enforcement rule to the six mode SKILLs, the hub, and the canonical card",
+  "keywords": [
+    "persona-injection",
+    "enforcement",
+    "rule",
+    "six",
+    "mode",
+    "skills",
+    "hub",
+    "canonical",
+    "card"
+  ],
+  "lastUpdated": "2026-08-19T17:04:10.637Z",
+  "specId": "005",
+  "folderSlug": "verification",
+  "parentChain": [
+    "cli-external-orchestration",
+    "050-persona-injection-enforcement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

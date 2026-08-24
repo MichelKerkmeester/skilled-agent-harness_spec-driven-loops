@@ -1,21 +1,52 @@
 ---
 title: Pi Remote Theme Remap
 description: The @ds theme light / dark / system-dark semantic remap — which role reads which primitive per theme, and which roles stay literal.
+trigger_phrases:
+  - "theme remap roles"
+  - "primitive derived roles"
+  - "accent strong asymmetric"
+  - "surface code asymmetric"
+  - "literal roles per theme"
+  - "light dark system dark"
+importance_tier: normal
+contextType: implementation
 version: 1.0.0.0
 ---
 
 # Pi Remote Theme Remap
 
-`@ds theme:` marks a light/dark semantic-remap block: the point where the app decides, per theme, what
+`@ds theme:` marks a light/dark semantic-remap block — the point where the app decides, per theme, what
 each Layer-2 role (`--canvas`, `--ink`, `--accent`, …) resolves to. There are three such blocks in
-`style.css`, in this order: `:root` (light, the default), `:root[data-theme='dark']` (explicit dark), and
-`@media (prefers-color-scheme: dark) { :root[data-theme='system'] { … } }` (system-follows-OS, dark
-branch). The dark and system-dark blocks carry identical values today — this reference is the map of
-which role is primitive-derived, which stays a literal, and the two roles that behave asymmetrically.
+`style.css` — `:root` (light), `:root[data-theme='dark']` (dark), and the system-dark media query — and
+the dark and system-dark blocks carry identical values today.
 
 ---
 
-## 1. ROLES THAT ARE PRIMITIVE-DERIVED (`var(--pi-*)`)
+## 1. OVERVIEW
+
+### Core Principle
+
+This reference maps which Layer-2 role reads a frozen `--pi-*` primitive per theme, which roles stay a
+literal per theme block, and the two roles that behave asymmetrically between light and dark.
+
+### When to Use
+
+- Determining whether editing a semantic role or a primitive is the correct lever for a theme-wide retint
+- Investigating why `--accent-strong` or `--surface-code` resolves differently in light vs dark/system-dark
+- Locating which literal (non-primitive) roles must be edited in every theme block to retint
+- Verifying a theme-remap edit is correct in light, dark, and system-dark before considering it done
+
+### Key Sources
+
+- `token-library.md` — frozen `--pi-*` primitive definitions
+- `component-tokens.md` §2-4 — component tokens consuming these semantic roles
+- `verification.md` — resolver method for proving a theme-remap edit per theme
+- `style.css` — the three `@ds theme:` semantic-remap blocks (`:root`, `:root[data-theme='dark']`,
+  system-dark media query)
+
+---
+
+## 2. ROLES THAT ARE PRIMITIVE-DERIVED (`var(--pi-*)`)
 
 These roles read a `--pi-*` primitive and so follow it automatically in every theme — the primitive is
 the only lever that moves them all at once (and it is frozen; see `token-library.md`).
@@ -46,7 +77,7 @@ other; editing `--warning` alone does not move `--accent-ink`.
 
 ---
 
-## 2. THE ONE ASYMMETRIC ROLE — `--accent-strong`
+## 3. THE ONE ASYMMETRIC ROLE — `--accent-strong`
 
 `--accent-strong` is primitive-derived in light only:
 
@@ -59,12 +90,12 @@ other; editing `--warning` alone does not move `--accent-ink`.
 `--pi-accent-ui` has no distinct dark value (see `token-library.md`), so the dark and system-dark blocks
 fix `--accent-strong` to the same literal instead of aliasing a primitive that would not resolve
 per-theme. This is also why the `-ui-accent` component token in both `--model-sheet-*` and `--slash-*`
-points at `--accent-strong` in light but at `--accent-ink` in dark/system (`component-tokens.md` §1–2) —
+points at `--accent-strong` in light but at `--accent-ink` in dark/system (`component-tokens.md` §2–3) —
 `--accent-strong` is not the dark-mode AA UI accent, `--accent-ink` is.
 
 ---
 
-## 3. THE ONE ASYMMETRIC SURFACE ROLE — `--surface-code`
+## 4. THE ONE ASYMMETRIC SURFACE ROLE — `--surface-code`
 
 | Theme | Declaration | Resolves to |
 | --- | --- | --- |
@@ -78,7 +109,7 @@ the inline comment in `style.css`.
 
 ---
 
-## 4. ROLES THAT STAY LITERAL IN EVERY THEME (no primitive source)
+## 5. ROLES THAT STAY LITERAL IN EVERY THEME (no primitive source)
 
 These roles are the raw per-theme scales; each theme block re-declares its own value directly, so
 retinting one requires editing the value in every theme block it should change:
@@ -102,18 +133,18 @@ retinting one requires editing the value in every theme block it should change:
 | `--shadow-raised` | `0 4px 20px rgb(0 0 0 / 4%)` | `0 4px 20px rgb(0 0 0 / 24%)` |
 
 `--diff-add` / `--diff-remove` are listed here (literal, not primitive-derived) and again in
-`component-tokens.md` §3 (they are consumed as component tokens by two surfaces) — the two references
+`component-tokens.md` §4 (they are consumed as component tokens by two surfaces) — the two references
 describe the same declarations from different angles: this one is "where in the theme remap", that one
 is "which surfaces consume it and what breaks if you retint it".
 
 ---
 
-## 5. RULES
+## 6. RULES
 
 - To retint every surface that plays a role together: edit the semantic role in **all three** theme
   blocks it appears in (light, dark, system-dark are usually identical for a literal role — check both
   before assuming).
-- If the role is primitive-derived (§1), editing the role itself decouples it from the primitive; editing
+- If the role is primitive-derived (§2), editing the role itself decouples it from the primitive; editing
   the primitive instead (frozen, off-limits to a designer) is the only lever that moves every role
   sharing that primitive at once.
 - Never introduce a new asymmetry silently — if a role should diverge by theme the way `--accent-strong`

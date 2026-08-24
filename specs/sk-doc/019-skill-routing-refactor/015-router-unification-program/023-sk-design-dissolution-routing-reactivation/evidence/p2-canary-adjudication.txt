@@ -1,0 +1,17 @@
+# P2 canary re-baseline + adjudication — 2026-08-22T07:04:27Z
+
+## All 6 canaries GREEN after artifact regen + digest re-pin
+sk-code GREEN, system-deep-loop real-green, mcp-tooling GREEN, cli-external-orchestration GREEN, sk-prompt real-green, sk-doc REAL-GREEN
+
+## Digest re-pins (mechanical, source drift):
+system-deep-loop SKILL.md; sk-prompt sk-prompt-improve+models SKILL.md; sk-doc SKILL.md + packets/sk-create-diff/SKILL.md
+
+## Behavioral route-gold delta check (HEAD vs regenerated):
+[001-sk-code] no behavioral delta (targets/action/intents identical; only hashes changed)
+[002-system-deep-loop] no behavioral delta (targets/action/intents identical; only hashes changed)
+[003-mcp-tooling] no behavioral delta (targets/action/intents identical; only hashes changed)
+[004-cli-external-orchestration] no behavioral delta (targets/action/intents identical; only hashes changed)
+[005-sk-prompt] no behavioral delta (targets/action/intents identical; only hashes changed)
+[007-sk-doc] no behavioral delta (targets/action/intents identical; only hashes changed)
+
+=> NO behavioral deltas across any hub

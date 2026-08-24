@@ -73,7 +73,7 @@ Validate dual-level retrieval modes and confirm auto-mode fallback fires on weak
   ```
 - Spec Memory runtime status after the failure:
   ```
-  plugin_id=mk-spec-memory
+  plugin_id=system-spec-memory
   enabled=true
   disabled_reason=none
   cache_ttl_ms=5000
@@ -85,7 +85,7 @@ Validate dual-level retrieval modes and confirm auto-mode fallback fires on weak
   cli_timeout_ms=2500
   bridge_path=[spec-memory-bridge]
   last_bridge_status=skipped
-  last_error_code=CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK
+  last_error_code=CONNECT_ECONNREFUSED__TMP_SYSTEM_SPEC_MEMORY_DAEMON_IPC_SOCK
   last_duration_ms=24
   bridge_invocations=11
   continuity_lookups=10
@@ -94,7 +94,7 @@ Validate dual-level retrieval modes and confirm auto-mode fallback fires on weak
   cache_misses=10
   cache_hit_rate=0
   warm_status=skipped
-  warm_error=CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK
+  warm_error=CONNECT_ECONNREFUSED__TMP_SYSTEM_SPEC_MEMORY_DAEMON_IPC_SOCK
   warm_route=warm_probe
   warm_retryable=true
   warm_exit_code=75
@@ -103,7 +103,7 @@ Validate dual-level retrieval modes and confirm auto-mode fallback fires on weak
 
 ### Pass / Fail
 
-- **BLOCKED**: required `memory_search` trace collection could not execute because the Spec Memory runtime is unavailable (`runtime_ready=false`, `CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK`) and the CLI fallback reports stale dist (`@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build`).
+- **BLOCKED**: required `memory_search` trace collection could not execute because the Spec Memory runtime is unavailable (`runtime_ready=false`, `CONNECT_ECONNREFUSED__TMP_SYSTEM_SPEC_MEMORY_DAEMON_IPC_SOCK`) and the CLI fallback reports stale dist (`@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build`).
 
 ### Failure Triage
 

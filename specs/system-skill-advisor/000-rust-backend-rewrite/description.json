@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/000-rust-backend-rewrite",
   "description": "The `system-skill-advisor` backend is ~51K LOC of authored TypeScript across ~268 files (`mcpserver/`), run as a long-lived MCP server (plus a",
   "keywords": [
@@ -17,13 +18,12 @@
     "server",
     "plus"
   ],
-  "lastUpdated": "2026-08-14T07:49:41.931Z",
+  "lastUpdated": "2026-08-15T14:41:07.719Z",
   "specId": "000",
   "folderSlug": "rust-backend-rewrite",
   "parentChain": [
     "system-skill-advisor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

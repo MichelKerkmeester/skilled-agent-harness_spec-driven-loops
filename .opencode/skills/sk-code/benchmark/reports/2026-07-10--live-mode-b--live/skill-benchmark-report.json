@@ -389,8 +389,8 @@
         "eventCount": 18,
         "activated": false,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "read",
           "read",
           "read",
@@ -593,8 +593,8 @@
         "eventCount": 32,
         "activated": false,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "read",
           "read",
           "read",
@@ -709,8 +709,8 @@
         "eventCount": 21,
         "activated": false,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "read",
           "read",
           "read",
@@ -1027,8 +1027,8 @@
         "eventCount": 33,
         "activated": false,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "read",
           "read",
           "read",
@@ -1139,9 +1139,9 @@
         "eventCount": 10,
         "activated": false,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "read",
-          "mk-spec-memory_memory_match_triggers"
+          "system-spec-memory_memory_match_triggers"
         ],
         "observedReads": [],
         "statedRoutingParsed": true,
@@ -1232,8 +1232,8 @@
         "eventCount": 19,
         "activated": false,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "read",
           "read",
           "read",
@@ -1574,7 +1574,7 @@
         "eventCount": 31,
         "activated": true,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "skill",
           "glob",
           "glob",
@@ -1700,7 +1700,7 @@
         "eventCount": 34,
         "activated": false,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "read",
           "grep",
           "read",
@@ -1827,7 +1827,7 @@
         "eventCount": 7,
         "activated": false,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "read"
         ],
         "observedReads": [],
@@ -2041,8 +2041,8 @@
         "eventCount": 39,
         "activated": true,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "skill",
           "grep",
           "grep",
@@ -2395,8 +2395,8 @@
         "eventCount": 46,
         "activated": true,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "skill",
           "read",
           "read",
@@ -2521,7 +2521,7 @@
         "eventCount": 41,
         "activated": true,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "skill",
           "read",
           "read",
@@ -2846,8 +2846,8 @@
         "eventCount": 26,
         "activated": false,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "read",
           "read",
           "read",
@@ -2949,7 +2949,7 @@
         "eventCount": 25,
         "activated": true,
         "toolCalls": [
-          "mk-spec-memory_memory_match_triggers",
+          "system-spec-memory_memory_match_triggers",
           "skill",
           "glob",
           "glob",

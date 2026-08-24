@@ -159,7 +159,7 @@ function createClassifyFrame(options = {}) {
   };
 }
 
-// Default classifier uses the mk-spec-memory tool sets. memory_save is replayable on a
+// Default classifier uses the system-spec-memory tool sets. memory_save is replayable on a
 // commit-then-die backend because its primary row is protected by content-hash dedup AND the v28
 // active-row partial unique index (idx_memory_logical_key_active_unique): an identical-content replay
 // collapses to the same logical key and writes no new primary row. The KNOWN GAP is the secondary

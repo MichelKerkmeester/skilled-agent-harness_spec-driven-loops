@@ -69,7 +69,7 @@ sqlite3 .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sq
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Scan shows no `docs` counters with flag set in configs | `skill_docs` has 0 rows | Daemon child never received the flag: verify `CHILD_ENV_ALLOWLIST` in `mk-skill-advisor-launcher.cjs` and respawn via fresh session. |
+| Scan shows no `docs` counters with flag set in configs | `skill_docs` has 0 rows | Daemon child never received the flag: verify `CHILD_ENV_ALLOWLIST` in `system-skill-advisor-launcher.cjs` and respawn via fresh session. |
 | `matchedDocs` missing while harvest counters look right | Evidence shows no `doc:` entries | Inspect projection flag gate and `lanes/derived.ts` scoring. |
 | Doc-heavy skill outranks curated matches | doc evidence dominates attribution | Audit top-3/tier-weight/0.45-cap constants in `lanes/derived.ts`. |
 | Skill docs appear in memory results | `memory_match_triggers` returns skill paths | Block release — the memory boundary is an operator directive. |

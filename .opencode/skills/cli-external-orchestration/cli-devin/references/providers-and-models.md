@@ -133,12 +133,12 @@ cli-devin has **no headless reasoning-effort flag** — there is no `--variant` 
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env, keep the `--` separator, and terminate stdin:
 
 ```bash
-MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 devin -p \
+SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 devin -p \
   --model swe --permission-mode accept-edits \
   -- "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 
-- `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer, and marks the dispatch as an orchestrated sub-session so the worktree wrapper shares the parent worktree (SKILL.md §4 rules 15–16).
+- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer, and marks the dispatch as an orchestrated sub-session so the worktree wrapper shares the parent worktree (SKILL.md §4 rules 15–16).
 - `--` before the prompt — REQUIRED; without it the prompt can be parsed as CLI flags.
 - `</dev/null` — REQUIRED before stdout/stderr redirects (and inside any `while read` loop); `devin -p` inherits the caller's stdin and silently drains it, dropping later dispatches. See [integration-patterns.md](./integration-patterns.md) §4.
 

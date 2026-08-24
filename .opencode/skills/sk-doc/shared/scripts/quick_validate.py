@@ -109,10 +109,10 @@ def strip_matching_quotes(value: str) -> str:
 
 
 # Fully-qualified MCP tool reference: mcp__<server>__<tool>. Server and tool segments
-# may carry single underscores/hyphens (mk_spec_memory, code_graph_query) and the tool
+# may carry single underscores/hyphens (system_spec_memory, code_graph_query) and the tool
 # may be a bare "*" wildcard. A token in the mcp_ namespace that does not complete this
 # form (a server-only mcp__server grant, or a bare mcp_ token) is an under-specified
-# permission. A native tool (Read) or a non-namespaced plugin tool (mk_goal) never
+# permission. A native tool (Read) or a non-namespaced plugin tool (opencode_goal) never
 # begins with mcp_, so neither is matched.
 _MCP_NAMESPACE_RE = re.compile(r'^mcp_', re.IGNORECASE)
 _MCP_FULLY_QUALIFIED_RE = re.compile(

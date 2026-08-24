@@ -47,7 +47,7 @@ Validate constitutional sufficiency-gate exemption against memory_index_scan and
    { echo '{"jsonrpc":"2.0","id":0,"method":"initialize",...}'; sleep 0.5;
      echo '{"jsonrpc":"2.0","method":"notifications/initialized"}'; sleep 0.5;
      echo '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"memory_index_scan","arguments":{"includeConstitutional":true,"includeSpecDocs":true,"incremental":true,"force":false}}}';
-     sleep 300; } | node .opencode/bin/mk-spec-memory-launcher.cjs > /tmp/scan-out.log
+     sleep 300; } | node .opencode/bin/system-spec-memory-launcher.cjs > /tmp/scan-out.log
    ```
 3. Parse the scan result and count `INSUFFICIENT_CONTEXT_ABORT` rejections under `.opencode/skills/*/constitutional/`. Assert count is 0.
 
@@ -73,7 +73,7 @@ BLOCKED before command execution due an instruction conflict in the current run 
 The scenario commands require writes outside the single allowed scenario file:
 
 ```text
-47:      sleep 300; } | node .opencode/bin/mk-spec-memory-launcher.cjs > /tmp/scan-out.log
+47:      sleep 300; } | node .opencode/bin/system-spec-memory-launcher.cjs > /tmp/scan-out.log
 57: 5. Author a temporary markdown file at `/tmp/sufficiency-probe.md` with no ANCHOR tags, no primary-evidence section, and trivial body content.
 ```
 

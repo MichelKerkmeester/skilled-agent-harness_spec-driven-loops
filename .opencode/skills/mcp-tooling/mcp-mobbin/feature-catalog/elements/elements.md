@@ -23,7 +23,7 @@ The capability is READ-ONLY, with a hard fabrication boundary: element behavior 
 
 ## 2. HOW IT WORKS
 
-Compose the query from the component plus its context and state — for example `"bottom-sheet destructive confirmation"` or `"inline validation on signup"` — plus the platform (`ios`|`web`, inferred or asked), starting at `limit: 5`. The inferred callable is `mobbin.mobbin_search_screens({ query, platform, limit? })` (confirm with `tool_info` in a fresh Code Mode session). Analyze the element's behavior within the returned screens: placement, states, hierarchy, interaction cues visible in the inline images, compared across the `screens[]` records by `index` and `app_name`. Cite every screen used by its `mobbin_url`, report `failed[]` and missing images as partial success, and route any design-affecting conclusion through `sk-design` — element evidence informs a judgment, it never is one.
+Compose the query from the component plus its context and state — for example `"bottom-sheet destructive confirmation"` or `"inline validation on signup"` — plus the platform (`ios`|`web`, inferred or asked), starting at `limit: 5`. The inferred callable is `mobbin.mobbin_search_screens({ query, platform, limit? })` (confirm with `tool_info` in a fresh Code Mode session). Analyze the element's behavior within the returned screens: placement, states, hierarchy, interaction cues visible in the inline images, compared across the `screens[]` records by `index` and `app_name`. Cite every screen used by its `mobbin_url`, report `failed[]` and missing images as partial success, and pair `sk-design-md-generator` for a measured Style Reference of extracted design tokens — element evidence informs it, it is not itself a measured token set.
 
 ### Query-intent recipes
 
@@ -56,7 +56,7 @@ Compose the query from the component plus its context and state — for example 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/read-only/screens-search.md` | Manual playbook | The search contract element-intent queries run on |
-| `manual-testing-playbook/pairing/sk-design-pairing.md` | Manual playbook | Element evidence routes through sk-design before any design verdict |
+| `manual-testing-playbook/pairing/design-pairing.md` | Manual playbook | Element evidence pairs with sk-design-md-generator for a measured Style Reference |
 
 ---
 

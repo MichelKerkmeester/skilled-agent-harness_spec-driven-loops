@@ -90,13 +90,13 @@ test('router allowed-tools expose the expected goal tools only', () => {
     'commands/speckit/implement.md',
   ]) {
     const line = allowedToolsLine(relativePath);
-    assert.equal(hasBareTool(line, 'mk_goal'), true, `${relativePath} must allow mk_goal`);
-    assert.equal(hasBareTool(line, 'mk_goal_status'), true, `${relativePath} must allow mk_goal_status`);
+    assert.equal(hasBareTool(line, 'opencode_goal'), true, `${relativePath} must allow opencode_goal`);
+    assert.equal(hasBareTool(line, 'opencode_goal_status'), true, `${relativePath} must allow opencode_goal_status`);
   }
 
   const resumeLine = allowedToolsLine('commands/speckit/resume.md');
-  assert.equal(hasBareTool(resumeLine, 'mk_goal_status'), true, 'resume.md must allow mk_goal_status');
-  assert.equal(hasBareTool(resumeLine, 'mk_goal'), false, 'resume.md must not allow bare mk_goal');
+  assert.equal(hasBareTool(resumeLine, 'opencode_goal_status'), true, 'resume.md must allow opencode_goal_status');
+  assert.equal(hasBareTool(resumeLine, 'opencode_goal'), false, 'resume.md must not allow bare opencode_goal');
 });
 
 test('touched command files do not contain the stale goal command filename', () => {

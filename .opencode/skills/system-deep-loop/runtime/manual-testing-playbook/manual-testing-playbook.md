@@ -216,18 +216,18 @@ Expected signals: Retry behavior, neutral fallback card shape, quarantine skip p
 
 ---
 
-### DLR-052 | mk-deep-loop-guard
+### DLR-052 | system-deep-loop-guard
 
 #### Description
 Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the resolved target agent, and flags/blocks a session-scoped loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatch. Also sweeps/archives/prunes its own `.loop-guard-state` directory on `session.created` so it does not grow unbounded.
 
 #### Scenario Contract
-Prompt: `Verify mk-deep-loop-guard still detects a Deep Route mode mismatch and a loop-like repeated dispatch, and respects MK_DEEP_LOOP_GUARD_REJECT / MK_DEEP_LOOP_GUARD_REJECT_LOOP.`
+Prompt: `Verify system-deep-loop-guard still detects a Deep Route mode mismatch and a loop-like repeated dispatch, and respects SYSTEM_DEEP_LOOP_GUARD_REJECT / SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP.`
 
 Expected signals: Hook fires and logs a warning on mismatch or loop-repeat (default); throws and blocks the dispatch when the matching reject env var is set; stays silent on matching modes, command-driven iterations, non-deep/non-loop-executor `subagent_type` values, and when the registry/state directory is unreadable. A stale per-session state file is archived (not deleted) on the next `session.created` sweep.
 
 #### Test Execution
-> **Feature File:** [DLR-052](../manual-testing-playbook/validation/mk-deep-loop-guard.md)
+> **Feature File:** [DLR-052](../manual-testing-playbook/validation/system-deep-loop-guard.md)
 
 ---
 
@@ -930,5 +930,5 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-049 | [F047 Unified observability event envelope](../feature-catalog/observability/unified-observability-event-envelope.md) | [observability/unified-observability-event-envelope.md](../manual-testing-playbook/observability/unified-observability-event-envelope.md) |
 | DLR-050 | [F048 Hermetic test isolation](../feature-catalog/testing/hermetic-test-isolation.md) | [testing/hermetic-test-isolation.md](../manual-testing-playbook/testing/hermetic-test-isolation.md) |
 | DLR-051 | [F049 Record-replay cassette harness](../feature-catalog/testing/record-replay-cassette-harness.md) | [testing/record-replay-cassette-harness.md](../manual-testing-playbook/testing/record-replay-cassette-harness.md) |
-| DLR-052 | [F050 mk-deep-loop-guard](../feature-catalog/validation/mk-deep-loop-guard.md) | [validation/mk-deep-loop-guard.md](../manual-testing-playbook/validation/mk-deep-loop-guard.md) |
+| DLR-052 | [F050 system-deep-loop-guard](../feature-catalog/validation/system-deep-loop-guard.md) | [validation/system-deep-loop-guard.md](../manual-testing-playbook/validation/system-deep-loop-guard.md) |
 | DLR-054 | [F052 Torn-tail recovery marker ordering](../feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md) | [state-safety/torn-tail-recovery-marker-ordering.md](../manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md) |

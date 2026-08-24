@@ -1,7 +1,7 @@
 {
   "level": "3",
   "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
-  "description": "Builds the installable foreground mobile experience for sessions, streaming work, reconnect reconciliation, explicit controls, and offline read-only s",
+  "description": "Builds the installable foreground mobile experience for sessions, streaming work, reconnect reconciliation, explicit controls, and offline read-only",
   "keywords": [
     "installable",
     "foreground",
@@ -15,10 +15,9 @@
     "explicit",
     "controls",
     "offline",
-    "read-only",
-    "state"
+    "read-only"
   ],
-  "lastUpdated": "2026-08-10T18:46:06.623Z",
+  "lastUpdated": "2026-08-15T14:40:55.267Z",
   "specId": "005",
   "folderSlug": "mobile-pwa-and-reconciliation",
   "parentChain": [

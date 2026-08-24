@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/019-split-doc-template-alignment"
-    last_updated_at: "2026-07-13T07:19:48Z"
-    last_updated_by: "claude-code"
-    recent_action: "All checklist items verified"
-    next_safe_action: "Terminal gates"
+    last_updated_at: "2026-08-19T08:29:06Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Added mobile-cli app-doc restructure + parent hub freshness increment (verified)"
+    next_safe_action: "Commit + push (main + v4)"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -96,3 +96,34 @@ Every item carries a command + result. Deterministic checkers only.
 
 **Verification Date**: 2026-07-12
 <!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:increment-mobile-cli -->
+## Increment: sk-code-mobile-cli Surface (2026-08-19)
+- [x] 10 hand-authored ref/asset files conformed; 3 `workflow-*.md` symlinks correctly excluded [Test: `structural sweep 10/10 PASS`]
+- [x] `## 1. OVERVIEW` is the first numbered section on every file [Test: `first-`## N.`-heading == "## 1. OVERVIEW" 10/10`]
+- [x] 5-field frontmatter + 4-part version on every file (triad added to the 7 references) [Test: `trigger_phrases/importance_tier/contextType present 10/10; counts 3–8`]
+- [x] Content preserved verbatim; only intro compressed + headings renumbered [Test: `git diff non-heading body deletions = 0`]
+- [x] 22 cross-file `§N` references bumped +1 for the OVERVIEW shift; all resolve to the intended target section [Test: `ref→section-title resolver 22/22, 0 dangling`]
+- [x] `SKILL.md §N` (not realigned) and intra-file refs left correct [Test: `SKILL.md §5 unchanged; intra-refs verified`]
+- [x] No renames → leaf-manifest fresh, no in-hub reference churn [Test: `generate-leaf-manifest.cjs --check = OK`]
+- [x] `validate_document.py` 10/10 VALID [Test: `validate_document 10 passed, 0 failed`]
+- [x] Documentation-only; no `apps/`/`packages/`/tooling changes [Source: `diff scoped to sk-code-mobile-cli/{references,assets}`]
+<!-- /ANCHOR:increment-mobile-cli -->
+
+---
+
+<!-- ANCHOR:increment-restructure -->
+## Increment 2: App-Doc Restructure + Parent Hub Freshness (2026-08-19)
+- [x] `app-guide/` dissolved into 6 purpose-named folders; contents moved verbatim [Test: `find references shows operations/ release/ setup/ standards/ design-reference/ quality/`]
+- [x] 2 single-source pointer files removed; catalog+playbook stay canonical at app root [Test: `feature-catalog.md/manual-testing-playbook.md refs in leaf-manifest = 0`]
+- [x] 4 relocation-broken sibling cross-links repaired to subfolder-relative paths [Test: `broken-link scan = 10/10 resolve; 1 pre-existing ARCHITECTURE.md out of scope`]
+- [x] `---` dividers between numbered sections across relocated app docs + asset checklists [Test: `general_h2_separator issues = 0 across all authored refs+assets`]
+- [x] SKILL.md §2 rewritten to 6 folders, pointer links dropped, version 1.0.0.0→1.1.0.0 [Test: `changelog/v1.1.0.0.md present; validate_document SKILL non-authoritative flags pre-existing on HEAD`]
+- [x] README gains "Mobile CLI App Repository" subsection locating the app repo [Test: `validate_document README = 0 issues`]
+- [x] Parent `leaf-manifest.json` regenerated for relocated leaves + pointer removal [Test: `generate-leaf-manifest.cjs --check = OK; 0 app-guide paths`]
+- [x] Parent `description.json` + `graph-metadata.json` de-staled with mobile-cli signals; causal_summary 2→3 surfaces [Test: `ci-skill-root-metadata sk-code = OK [H]; Jaccard NOTE cleared`]
+- [x] No app/tooling change; routing behavior unchanged [Source: `diff scoped to sk-code/ metadata + sk-code-mobile-cli/ docs; regenerate-skill-derived unchanged`]
+- [x] Validator divider-gap root-caused (validate_document h2DividerRequired not set for ref/asset types) [Source: `validate_document.py:553`]
+<!-- /ANCHOR:increment-restructure -->

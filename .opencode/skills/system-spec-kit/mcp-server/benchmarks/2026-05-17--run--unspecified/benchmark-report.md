@@ -1,9 +1,9 @@
 ---
-title: "mk-spec-memory text-embedder bake-off — May 17, 2026"
-description: "Curated benchmark report for the 6-candidate mk-spec-memory text-embedder bake-off run on May 17, 2026. Winner: jina-embeddings-v3 + retrieval-rescue layer at 9/10 cat-24/409 top-3, ratified by ADR-012."
+title: "system-spec-memory text-embedder bake-off — May 17, 2026"
+description: "Curated benchmark report for the 6-candidate system-spec-memory text-embedder bake-off run on May 17, 2026. Winner: jina-embeddings-v3 + retrieval-rescue layer at 9/10 cat-24/409 top-3, ratified by ADR-012."
 trigger_phrases:
   - "spec memory benchmark"
-  - "mk-spec-memory embedder benchmark"
+  - "system-spec-memory embedder benchmark"
   - "spec memory bake-off"
   - "jina-embeddings-v3 spec memory"
   - "adr-012 production embedder"
@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 ---
 
-# mk-spec-memory text-embedder bake-off — May 17, 2026
+# system-spec-memory text-embedder bake-off — May 17, 2026
 
 > **Winner:** `jina-embeddings-v3` + retrieval-rescue layer, 9/10 cat-24/409 top-3, median 893 ms, p95 1465 ms. Ratified as production default in ADR-012 on May 17, 2026.
 
@@ -21,11 +21,11 @@ contextType: "implementation"
 
 ## 1. OVERVIEW & HEADLINE
 
-This is the skill-local curated record of the 6-candidate text-embedder bake-off run for `mk-spec-memory` on May 17, 2026. The authoritative audit trail lives in the spec packet (see [`SOURCE.md`](./SOURCE.md) and Section 10). This report exists so a future operator inside the MCP code can answer "which embedder won and why" without leaving the skill.
+This is the skill-local curated record of the 6-candidate text-embedder bake-off run for `system-spec-memory` on May 17, 2026. The authoritative audit trail lives in the spec packet (see [`SOURCE.md`](./SOURCE.md) and Section 10). This report exists so a future operator inside the MCP code can answer "which embedder won and why" without leaving the skill.
 
 ### What Shipped
 
-> **`jina-embeddings-v3` (Ollama Q4_K_M GGUF, 1024-dim) + the retrieval-rescue layer (default-on)** is the production embedder for `mk-spec-memory` as of May 17, 2026.
+> **`jina-embeddings-v3` (Ollama Q4_K_M GGUF, 1024-dim) + the retrieval-rescue layer (default-on)** is the production embedder for `system-spec-memory` as of May 17, 2026.
 
 Key numbers on the cat-24/409 paraphrase-recall fixture:
 
@@ -105,7 +105,7 @@ The single-shot 10-query fixture is the headline measurement. The 30-scenario st
 - Apple Silicon (M-series, Metal-active, `torch.backends.mps.is_available() == True`).
 - Ollama daemon for `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-m3`, and `snowflake-arctic-embed-l-v2.0`.
 - ollama for the `bge-base-en-v1.5` baseline.
-- `mk-spec-memory` MCP server (TypeScript and Node). This is a completely different stack from the code-side bake-off (Python and `sentence-transformers`). Do not cross-reference latency or recall numbers across the two stacks.
+- `system-spec-memory` MCP server (TypeScript and Node). This is a completely different stack from the code-side bake-off (Python and `sentence-transformers`). Do not cross-reference latency or recall numbers across the two stacks.
 
 ---
 
@@ -169,8 +169,8 @@ The single-shot 10-query fixture is the headline measurement. The 30-scenario st
 | Released | February 2024 |
 | Category | Multilingual (100+), dense plus sparse plus multivec retrieval modes |
 | Result | 2/10 raw on cat-24/409, below the baseline gemma and below nomic. |
-| Rollback rationale | The dense path alone underperforms on this paraphrase fixture. `mk-spec-memory` retrieval is single-vector dense, so the advertised sparse and multivec lanes were never exercised. The 1024-dim schema migration cost was paid without recall lift. |
-| Re-entry condition | Only if `mk-spec-memory` adds hybrid sparse and multivec retrieval lanes, which would require substantial implementation work. |
+| Rollback rationale | The dense path alone underperforms on this paraphrase fixture. `system-spec-memory` retrieval is single-vector dense, so the advertised sparse and multivec lanes were never exercised. The 1024-dim schema migration cost was paid without recall lift. |
+| Re-entry condition | Only if `system-spec-memory` adds hybrid sparse and multivec retrieval lanes, which would require substantial implementation work. |
 
 ### 4.5 `mixedbread-ai/mxbai-embed-large-v1` — rolled back (ADR-001..004)
 
@@ -264,7 +264,7 @@ Moving from `vec_768` to `vec_1024` ran tens of minutes on this Apple Silicon ma
 
 ### Finding 5 — bge-m3 lost the dense-only contest, not the multi-mode contest
 
-bge-m3 was measured on its dense lane only because `mk-spec-memory` is dense-only. Its sparse and multivec lanes were never exercised. If a future arc adds hybrid retrieval to the spec-memory stack, bge-m3 should be re-measured before being treated as failed.
+bge-m3 was measured on its dense lane only because `system-spec-memory` is dense-only. Its sparse and multivec lanes were never exercised. If a future arc adds hybrid retrieval to the spec-memory stack, bge-m3 should be re-measured before being treated as failed.
 
 ### Finding 6 — 402 and 408 stayed FAIL across every candidate
 
@@ -278,7 +278,7 @@ cat-24/402 (synonymy) and cat-24/408 (compound concept) did not close under any 
 - **Rescue layer changes the ranking.** Pre-rescue numbers (gemma 1/10, jina 4/10, nomic 5/10) suggest a very different leader. Always measure with rescue on if comparing against production.
 - **Schema migration cost is one-time but real.** Plan the `vec_1024` rebuild window once when activating jina-v3 in a fresh environment. Subsequent searches see no migration cost.
 - **Latency profile may shift if the rescue layer is optimized.** Current p95 of 1465 ms for jina-v3 is dominated by stage-3 rerank time, not by jina-v3's ~60 ms raw embed. A rescue-layer speedup would compress p95 for every candidate.
-- **Stack distinction.** `mk-spec-memory` uses Ollama as its primary backend for `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `bge-m3`, `mxbai-embed-large-v1`, and `snowflake-arctic-embed-l-v2.0`, plus ollama for the gemma baseline. The sibling code-side bake-off uses Python `sentence-transformers`. **Do not cross-reference performance numbers** between this report and the sibling bake-off at `.opencode/skills/mcp-coco-index/mcp-server/benchmarks/`.
+- **Stack distinction.** `system-spec-memory` uses Ollama as its primary backend for `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `bge-m3`, `mxbai-embed-large-v1`, and `snowflake-arctic-embed-l-v2.0`, plus ollama for the gemma baseline. The sibling code-side bake-off uses Python `sentence-transformers`. **Do not cross-reference performance numbers** between this report and the sibling bake-off at `.opencode/skills/mcp-coco-index/mcp-server/benchmarks/`.
 - **Per-probe row reuse for nomic.** The 8/10 nomic-with-rescue figure cited in Section 2 is a D-RETRY measurement reused from the ADR-011 sweep, not a fresh 10-row rerun. A one-row post-restore sanity check missed expected `4460` in top-3 with rerank timing still present. The row is preserved as historical baseline evidence rather than as a fresh measurement.
 - **nomic prefix discipline.** `nomic-embed-text-v1.5` requires `search_query: ` and `search_document: ` prefix tokens. The manifest in the registry already declares them. Any future swap path must preserve them.
 
@@ -288,7 +288,7 @@ cat-24/402 (synonymy) and cat-24/408 (compound concept) did not close under any 
 
 ### Tier 1 — apply now
 
-- **Keep `jina-embeddings-v3` as the production embedder for `mk-spec-memory`.** Set through `embedder_set({ name: "jina-embeddings-v3" })` and verify `active_embedder_name` in `vec_metadata` after activation.
+- **Keep `jina-embeddings-v3` as the production embedder for `system-spec-memory`.** Set through `embedder_set({ name: "jina-embeddings-v3" })` and verify `active_embedder_name` in `vec_metadata` after activation.
 - **Keep the retrieval-rescue layer default-on.** Do not unset `SPECKIT_RERANK_LAYER` unless an operator needs the kill switch. The 2.16x latency cost is documented and acceptable for the +1 net quality delta and the cat-24/409 closure.
 - **Keep `bge-base-en-v1.5` listed as `DEFAULT_ACTIVE_EMBEDDER` in `schema.ts:25`.** It remains the schema fallback for fresh installs that have not yet completed a `vec_1024` migration.
 - **Budget the `vec_1024` re-index window once per fresh environment.** Tens of minutes on Apple Silicon Metal for 7738 rows is the observed cost.
@@ -297,7 +297,7 @@ cat-24/402 (synonymy) and cat-24/408 (compound concept) did not close under any 
 
 - **New text-embedder swaps must measure with the rescue layer on.** Raw scores compare against history but the gate is "rescue on, vs jina-v3 plus rescue, on the deterministic cat-24/409 fixture."
 - **Document the per-model `maxInputChars` before any new Ollama swap.** Spec rows routinely exceed 5000 chars. New candidates should declare a `maxInputChars` cap in the registry that has been validated against the longest live row.
-- **Re-measure bge-m3 only if `mk-spec-memory` adds hybrid retrieval.** Its dense path lost decisively. Its sparse and multivec paths were never exercised.
+- **Re-measure bge-m3 only if `system-spec-memory` adds hybrid retrieval.** Its dense path lost decisively. Its sparse and multivec paths were never exercised.
 
 ### Tier 3 — future
 
@@ -332,7 +332,7 @@ embedder_list()
 #    Each query goes through memory_search with limit=3 includeTrace=true bypassCache=true.
 ```
 
-Expected outcome on a `mk-spec-memory` corpus of comparable size: 9/10 top-3 hits, median end-to-end around 900 ms, p95 around 1500 ms on Apple Silicon Metal.
+Expected outcome on a `system-spec-memory` corpus of comparable size: 9/10 top-3 hits, median end-to-end around 900 ms, p95 around 1500 ms on Apple Silicon Metal.
 
 ### Probe raw runtime characteristics
 
@@ -382,7 +382,7 @@ unset SPECKIT_RERANK_LAYER
 | [`results.csv`](./results.csv) | Raw aggregate scores, one row per candidate. |
 | [`per-probe-with-rescue.jsonl`](./per-probe-with-rescue.jsonl) | Per-probe rows for the final three-way comparison that backs ADR-012. |
 | [`runtime-measurements.md`](./runtime-measurements.md) | Live RAM, Metal residency, and raw inference latency for the final three candidates. |
-| [`../README.md`](../README.md) | Index of all `mk-spec-memory` benchmarks. |
+| [`../README.md`](../README.md) | Index of all `system-spec-memory` benchmarks. |
 | [`../FORMAT.md`](../../../../sk-doc/sk-create-benchmark/references/shared/README.md) | Convention these files follow. |
 
 ### Authoritative spec packet

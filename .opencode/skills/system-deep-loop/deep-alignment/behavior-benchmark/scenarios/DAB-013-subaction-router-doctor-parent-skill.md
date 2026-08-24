@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `parent-skill` | `.opencode/commands/doctor/speckit.md` | `sha256:40c9c35597b393c9a1847bb7d6a0da1e3eb57558ef70c14da8ce52c670c617c8` |
-| `doctor-parent-skill.yaml` | `.opencode/commands/doctor/speckit.md` | `sha256:40c9c35597b393c9a1847bb7d6a0da1e3eb57558ef70c14da8ce52c670c617c8` |
+| `parent-skill` | `.opencode/commands/doctor/speckit.md` | `sha256:e3568f5e91cd826d2d70a314cb46815b6f13ea2ce1986ac89b8b0e989a519571` |
+| `doctor-parent-skill.yaml` | `.opencode/commands/doctor/speckit.md` | `sha256:e3568f5e91cd826d2d70a314cb46815b6f13ea2ce1986ac89b8b0e989a519571` |

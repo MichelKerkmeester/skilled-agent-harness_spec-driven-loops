@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in",
+  "description": "`mcp-obsidian` already knows Core Bases and Dataview in full, but research §8 confirms it has no knowledge of the Notion Bases community plugin — the",
+  "keywords": [
+    "mcp-obsidian",
+    "already",
+    "knows",
+    "core",
+    "bases",
+    "dataview",
+    "full",
+    "research",
+    "confirms",
+    "knowledge",
+    "notion",
+    "community",
+    "plugin"
+  ],
+  "lastUpdated": "2026-08-22T06:17:58.114Z",
+  "specId": "003",
+  "folderSlug": "notion-bases-plugin-tie-in",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

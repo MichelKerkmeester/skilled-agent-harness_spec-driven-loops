@@ -1,6 +1,6 @@
 ---
 title: "Daemon ownership re-election"
-description: "A default-on path that lets the shared mk-spec-memory daemon outlive its owner. The owner spawns the daemon detached and on shutdown releases it for a live secondary to keep instead of killing it. A fresh session that finds the released daemon under a stale lease reaps it before respawn, so the database keeps a single writer."
+description: "A default-on path that lets the shared system-spec-memory daemon outlive its owner. The owner spawns the daemon detached and on shutdown releases it for a live secondary to keep instead of killing it. A fresh session that finds the released daemon under a stale lease reaps it before respawn, so the database keeps a single writer."
 trigger_phrases:
   - "daemon ownership re-election"
   - "shared daemon outlive owner"
@@ -16,7 +16,7 @@ version: 3.6.0.4
 
 ## 1. OVERVIEW
 
-This feature is default-on in the launcher code. It lets the shared mk-spec-memory daemon outlive the owner that spawned it, rather than dying when that owner's session ends, so concurrent sessions keep their MCP transport.
+This feature is default-on in the launcher code. It lets the shared system-spec-memory daemon outlive the owner that spawned it, rather than dying when that owner's session ends, so concurrent sessions keep their MCP transport.
 
 When `SPECKIT_DAEMON_REELECTION` is enabled, the owner spawns the daemon detached, and on shutdown it releases the daemon instead of killing it: it keeps the daemon lease and socket, drops only the owner lease, and detaches the exit handler so shutdown does not wipe the lease. A connected live secondary keeps its transport across the owner's exit. A fresh session started after the owner is gone reaps the released daemon before it spawns a replacement, so the database is never left with two writers. On by default in the launcher code; set `0` or `off` to revert to kill-on-disposal.
 
@@ -52,7 +52,7 @@ A released daemon that no live secondary keeps and no fresh session reaps is bou
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Defines `daemonReelectionEnabled` over `SPECKIT_DAEMON_REELECTION`, spawns the daemon detached via `contextServerSpawnIo`, releases rather than kills the daemon through `shouldReleaseDaemonForReelection` inside `shutdownLauncherForSignal`, and reaps the recorded child on stale-lease reclaim before respawn |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | Script | Defines `daemonReelectionEnabled` over `SPECKIT_DAEMON_REELECTION`, spawns the daemon detached via `contextServerSpawnIo`, releases rather than kills the daemon through `shouldReleaseDaemonForReelection` inside `shutdownLauncherForSignal`, and reaps the recorded child on stale-lease reclaim before respawn |
 
 ### Validation And Tests
 

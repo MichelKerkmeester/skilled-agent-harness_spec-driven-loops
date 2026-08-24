@@ -505,7 +505,7 @@ For generic MCP clients that use `mcpServers` syntax such as Claude Desktop, add
 ```json
 {
   "mcpServers": {
-    "mk-spec-memory": {
+    "system-spec-memory": {
       "command": "node",
       "args": [
         "/absolute/path/to/.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js"
@@ -637,7 +637,7 @@ node .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js
 node --version
 ```
 
-The server should start and Node.js should report 20.11 or newer. Verify `mk-spec-memory` appears in your `opencode.json` or equivalent MCP config file.
+The server should start and Node.js should report 20.11 or newer. Verify `system-spec-memory` appears in your `opencode.json` or equivalent MCP config file.
 
 ### Memory Save Fails or Creates an Empty File
 
@@ -672,7 +672,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[proje
 `memory_health` returns `corrupt` or the server logs show an FTS5 shadow index corruption at boot. When the `.unclean-shutdown` crash marker is present, the server runs two probes. A whole-database `PRAGMA quick_check` guards the main index and writes the checkpoint `.needs-rebuild` sentinel on failure, refusing to start rather than serving corrupted data. The `memory_fts` shadow check auto-heals by default because the shadow table is fully derived from `memory_index`. Set `SPECKIT_BOOT_FTS_AUTOHEAL=0` for detect-only mode. Clean shutdowns skip both probes.
 
 ```bash
-SPECKIT_BOOT_FTS_AUTOHEAL=1 node .opencode/bin/mk-spec-memory-launcher.cjs
+SPECKIT_BOOT_FTS_AUTOHEAL=1 node .opencode/bin/system-spec-memory-launcher.cjs
 ```
 
 If `degraded_needs_repair` appears in the `index.summary` field, run `memory_embedding_reconcile({ mode: "apply" })` after the rebuild.

@@ -882,7 +882,7 @@
     },
     {
       "id": 90,
-      "query": "why did mk-code-index surface a hard connection-closed on owner death and what proxy fixed it",
+      "query": "why did system-code-index surface a hard connection-closed on owner death and what proxy fixed it",
       "intentType": "fix_bug",
       "complexityTier": "moderate",
       "category": "causal_chain",

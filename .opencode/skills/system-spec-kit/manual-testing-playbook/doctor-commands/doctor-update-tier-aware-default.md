@@ -81,8 +81,8 @@ The command loads `doctor-update.yaml` and uses tier-aware interactive mode. Sho
 112:     - "mcp-server/database/.doctor-update.last-run.json"  # orchestrator state log
 386:   phase_5_dependency_order_execute:
 399:         action: "memory_index_scan({ incremental: false, force: true })"
-456:       skill-graph: "mk_skill_advisor.skill_graph_scan({})"
-457:       advisor: "mk_skill_advisor.advisor_rebuild({ force: true }) + mk_skill_advisor.advisor_validate({})"
+456:       skill-graph: "system_skill_advisor.skill_graph_scan({})"
+457:       advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"
 459:       speckit-eval: "eval_run_ablation({})"
 501:   phase_10_state_log_unlock_cleanup:
 503:     state.log: "write .doctor-update.last-run.json with timestamps, durations, snapshot paths"

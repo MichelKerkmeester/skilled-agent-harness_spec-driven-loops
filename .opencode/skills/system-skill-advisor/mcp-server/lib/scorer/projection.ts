@@ -55,7 +55,7 @@ export interface CommandBridgeProjection extends SkillProjection {
   readonly routingEnabled?: boolean;
 }
 
-const advisorDbDirOverride = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+const advisorDbDirOverride = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 const SKILL_GRAPH_DB = advisorDbDirOverride
   ? join(advisorDbDirOverride, 'skill-graph.sqlite')
   : join('.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'database', 'skill-graph.sqlite');
@@ -520,40 +520,6 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     family: 'system',
     category: 'command',
     name: 'command-deep-skill-benchmark',
-    description: '',
-    keywords: [],
-    domains: [],
-    intentSignals: [],
-    derivedTriggers: [],
-    derivedKeywords: [],
-    sourcePath: null,
-    lifecycleStatus: 'active',
-  },
-  {
-    inventoryId: 'command-interface-design',
-    routingEnabled: false,
-    id: 'command-interface-design',
-    kind: 'command',
-    family: 'system',
-    category: 'command',
-    name: 'command-interface-design',
-    description: '',
-    keywords: [],
-    domains: [],
-    intentSignals: [],
-    derivedTriggers: [],
-    derivedKeywords: [],
-    sourcePath: null,
-    lifecycleStatus: 'active',
-  },
-  {
-    inventoryId: 'command-interface-design-reference',
-    routingEnabled: false,
-    id: 'command-interface-design-reference',
-    kind: 'command',
-    family: 'system',
-    category: 'command',
-    name: 'command-interface-design-reference',
     description: '',
     keywords: [],
     domains: [],

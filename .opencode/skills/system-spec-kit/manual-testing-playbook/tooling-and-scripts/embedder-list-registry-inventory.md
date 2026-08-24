@@ -19,7 +19,7 @@ This scenario covers the new embedder inventory MCP surface from packet 016/003.
 ## 2. SCENARIO CONTRACT
 
 - Objective: Validate embedder_list happy path and registry shape.
-- Real user request: `List the available mk-spec-memory embedders and tell me which one is active.`
+- Real user request: `List the available system-spec-memory embedders and tell me which one is active.`
 - RCAF Prompt: `Run embedder_list and verify each embedder entry includes name, dimensions, provider, and active/install status.`
 - Expected execution process: Run the documented commands, capture output, compare against the expected signals, and return a cited verdict.
 - Expected signals: - At least one embedder is listed. - One active embedder is identifiable. - Dimension/provider metadata is present for every entry.

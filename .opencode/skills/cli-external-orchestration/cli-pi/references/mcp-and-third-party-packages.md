@@ -84,7 +84,7 @@ pi-mcp-extension is a community package, not a first-party Pi feature. Its packa
 pi install npm:pi-mcp-extension
 ~~~
 
-**Confirmed (phase 007):** `.pi/mcp.json`'s stdio-transport config shape (`{command, args, env, transport: "stdio", lifecycle}`) connects live. A `pi --offline --approve` session showed `sequential_thinking` and `mk-spec-memory` both connected, with `mk-spec-memory`'s full real tool surface present (`memory_context`, `session_resume`, `memory_save`, `memory_delete`, etc.). Other configured servers in that same file failed to connect in the test environment for an unrelated, already-diagnosed reason (a missing built TypeScript toolchain in that specific worktree, confirmed present in the main tree) — not a stdio-transport limitation.
+**Confirmed (phase 007):** `.pi/mcp.json`'s stdio-transport config shape (`{command, args, env, transport: "stdio", lifecycle}`) connects live. A `pi --offline --approve` session showed `sequential_thinking` and `system-spec-memory` both connected, with `system-spec-memory`'s full real tool surface present (`memory_context`, `session_resume`, `memory_save`, `memory_delete`, etc.). Other configured servers in that same file failed to connect in the test environment for an unrelated, already-diagnosed reason (a missing built TypeScript toolchain in that specific worktree, confirmed present in the main tree) — not a stdio-transport limitation.
 
 Per Pi docs, unconfirmed: streamable HTTP and SSE transport, and the package's documented global-vs-project config-override precedence. Neither has been live-tested in this packet.
 
@@ -105,7 +105,7 @@ Transport terms must not be conflated:
 
 | Transport | Status in this packet | Safe statement |
 |---|---|---|
-| stdio | **Confirmed live (phase 007)** | `sequential_thinking` and `mk-spec-memory` both connected via stdio |
+| stdio | **Confirmed live (phase 007)** | `sequential_thinking` and `system-spec-memory` both connected via stdio |
 | streamable HTTP | Documented-only for pi-mcp-extension | Do not claim live connection |
 | SSE | Documented-only for pi-mcp-extension | Do not claim live connection |
 | Pi RPC JSONL | Confirmed as Pi's process protocol | It is not MCP transport |

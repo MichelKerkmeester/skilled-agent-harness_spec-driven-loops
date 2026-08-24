@@ -187,12 +187,12 @@ describe('process sweep', () => {
       {
         pid: 9000,
         ppid: 1,
-        command: 'node .opencode/skills/system-code-graph/mcp-server/dist/index.js',
+        command: 'node .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js',
       },
       {
         pid: 9001,
         ppid: 1,
-        command: 'node system-code-graph/mcp-server/dist/index.js',
+        command: 'node system-spec-kit/mcp-server/dist/context-server.js',
       },
     ]);
 

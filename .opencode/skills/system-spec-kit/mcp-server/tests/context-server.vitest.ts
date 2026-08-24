@@ -2430,10 +2430,10 @@ describe('Context Server', () => {
   // =================================================================
   describe('Group 9: Server Configuration', () => {
     // Server name
-    it('T35: Server name is "mk-spec-memory"', () => {
+    it('T35: Server name is "system-spec-memory"', () => {
       const serverName = sourceCode.match(/name:\s*'([^']+)'/)
       expect(serverName).not.toBeNull()
-      expect(serverName![1]).toBe('mk-spec-memory')
+      expect(serverName![1]).toBe('system-spec-memory')
     })
 
     // Server version format

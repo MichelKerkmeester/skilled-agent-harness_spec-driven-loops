@@ -27,7 +27,7 @@ D1-D5 do not apply to this run — it validates whether the goal-hook `sessionSt
 | Captured | 2026-07-29 |
 | Executor / model | claude / composer-2.5 (paid) |
 | Canary | `GOALCANARY-CU-349522064` |
-| Command shape | `MK_GOAL_STATE_DIR=<iso> MK_GOAL_RUNTIME_LABEL=Cursor cursor-agent -p "<prompt>" --output-format text --model composer-2.5 --auto-review --sandbox enabled </dev/null` |
+| Command shape | `OPENCODE_GOAL_STATE_DIR=<iso> OPENCODE_GOAL_RUNTIME_LABEL=Cursor cursor-agent -p "<prompt>" --output-format text --model composer-2.5 --auto-review --sandbox enabled </dev/null` |
 
 ## Funnel
 
@@ -46,7 +46,7 @@ _None._
 ## Methodology / caveats
 
 - This is a manual-testing-playbook live-validation capture, not a Lane C router-replay or model-dispatch scoring pass.
-- Proof method: a canary token was seeded into the active-goal objective; a real `cursor-agent -p` session was dispatched under an isolated `MK_GOAL_STATE_DIR`, `turns_used` was confirmed to move `0` -> `1` (proving the `sessionStart` hook fired and called `recordTurn`), and the real Cursor agent-transcript JSONL was grepped for the canary and the `[active_goal` marker.
+- Proof method: a canary token was seeded into the active-goal objective; a real `cursor-agent -p` session was dispatched under an isolated `OPENCODE_GOAL_STATE_DIR`, `turns_used` was confirmed to move `0` -> `1` (proving the `sessionStart` hook fired and called `recordTurn`), and the real Cursor agent-transcript JSONL was grepped for the canary and the `[active_goal` marker.
 - **The PASS condition is deliberately two-part and inverted from a naive reading**: PASS requires BOTH the hook firing (adapter-level evidence) AND the injected content being absent from the model-visible transcript (`0`/`0` grep counts). Cursor's `sessionStart` `agent_message` channel is confirmed non-delivering to the model (n=3 across this run and prior phase-004 capability probes); `preToolUse` `agent_message` is also non-delivering and `stop` never fires, so `sessionStart` is the only adapter this runtime gets. A transcript match would indicate an undocumented behavior change requiring escalation, not this run's expected result.
 - Scenario count: 1.
 - The model reply itself was cut off by the harness command cap before completion; this does not affect the verdict since the turn-counter increment and the transcript-absence grep are the load-bearing, independently-confirmed signals.

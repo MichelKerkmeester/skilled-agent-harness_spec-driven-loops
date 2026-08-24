@@ -174,8 +174,8 @@ else
   warn "WARN: hook flag resolver unavailable; continuing with primary reconcile enabled."
 fi
 if [ "$FLAGS_LOADED" = "1" ]; then
-  hook_enabled live-sync || { record skip "disabled by MK_LIVE_SYNC_DISABLED"; exit 0; }
-  hook_enabled primary-reconcile || { record skip "disabled by MK_PRIMARY_RECONCILE_DISABLED"; exit 0; }
+  hook_enabled live-sync || { record skip "disabled by SYSTEM_LIVE_SYNC_DISABLED"; exit 0; }
+  hook_enabled primary-reconcile || { record skip "disabled by SYSTEM_PRIMARY_RECONCILE_DISABLED"; exit 0; }
 fi
 
 if ! try_acquire_lock; then
@@ -256,11 +256,31 @@ if [ "$TRACKED_DIRTY" = "1" ]; then
 fi
 
 ORIGINAL_HEAD="$LOCAL_TIP"
+
+# Never run over a rebase this reconcile did not start. A leftover rebase state
+# directory (a killed or stale rebase) makes the rebase below fail instantly, and
+# a blanket abort would then rewind the branch to THAT rebase's orig-head —
+# silently discarding every commit made since. Detect it first and refuse.
+PRE_REBASE_MERGE="$(git rev-parse --git-path rebase-merge 2>/dev/null || true)"
+PRE_REBASE_APPLY="$(git rev-parse --git-path rebase-apply 2>/dev/null || true)"
+if [ -e "$PRE_REBASE_MERGE" ] || [ -e "$PRE_REBASE_APPLY" ]; then
+  warn "BLOCK: a rebase is already in progress — refusing to rebase or abort it; $AHEAD local commit(s) preserved. Resolve: git status (then git rebase --continue or --abort)."
+  record block "pre-existing rebase in progress; refused to touch it; $AHEAD local commit(s) preserved"
+  exit 0
+fi
+
 if ! git rebase --quiet "$REMOTE_TIP" 2>/dev/null; then
   git rebase --abort >/dev/null 2>&1 || true
+  RESTORED_HEAD="$(git rev-parse --quiet --verify HEAD 2>/dev/null || true)"
+  # The abort must land back on the exact pre-rebase commit. If HEAD moved
+  # anywhere else, force it back before anything else — a detected rewind is
+  # never left in place. The tree is clean here, so this restores exactly.
+  if [ "$RESTORED_HEAD" != "$ORIGINAL_HEAD" ]; then
+    git reset --hard "$ORIGINAL_HEAD" >/dev/null 2>&1 || true
+    RESTORED_HEAD="$(git rev-parse --quiet --verify HEAD 2>/dev/null || true)"
+  fi
   REBASE_MERGE="$(git rev-parse --git-path rebase-merge 2>/dev/null || true)"
   REBASE_APPLY="$(git rev-parse --git-path rebase-apply 2>/dev/null || true)"
-  RESTORED_HEAD="$(git rev-parse --quiet --verify HEAD 2>/dev/null || true)"
   if [ "$RESTORED_HEAD" != "$ORIGINAL_HEAD" ] || [ -e "$REBASE_MERGE" ] || [ -e "$REBASE_APPLY" ] || \
      ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
     warn "CRITICAL BLOCK: rebase abort did not restore the original clean checkout. Run: git rebase --abort && git status"

@@ -57,7 +57,7 @@ The SQLite graph drifts from the source files when any of these happen:
 ### Via `skill_graph_status`
 
 ```text
-mcp__mk_skill_advisor__skill_graph_status({})
+mcp__system_skill_advisor__skill_graph_status({})
 ```
 
 Inspect:
@@ -71,7 +71,7 @@ If `dbStatus` is `stale` or `staleness.changedFiles[]` is non-empty, drift is pr
 ### Via `skill_graph_validate`
 
 ```text
-mcp__mk_skill_advisor__skill_graph_validate({})
+mcp__system_skill_advisor__skill_graph_validate({})
 ```
 
 Returns structural integrity checks:
@@ -97,7 +97,7 @@ Compare against the daemon's recorded signature stored alongside `mcp-server/dat
 ### Standard reconciliation
 
 ```text
-mcp__mk_skill_advisor__advisor_rebuild({ "force": true })
+mcp__system_skill_advisor__advisor_rebuild({ "force": true })
 ```
 
 Forces a full rebuild from source files. Generation counter bumps. Trust state transitions stale → live.
@@ -107,7 +107,7 @@ Forces a full rebuild from source files. Generation counter bumps. Trust state t
 If you only want to re-index without bumping generation (advanced):
 
 ```text
-mcp__mk_skill_advisor__skill_graph_scan({ "skillsRoot": ".opencode/skills" })
+mcp__system_skill_advisor__skill_graph_scan({ "skillsRoot": ".opencode/skills" })
 ```
 
 Re-indexes the graph from source plus updates the hash signature.
@@ -140,7 +140,7 @@ After hard reset, verify with `advisor_status` plus `skill_graph_validate` befor
 | Hash signature corruption | Daemon refuses to detect drift (signature unreadable) | Delete `.skill-graph.sig`. Daemon regenerates on next scan |
 | New skill added but never indexed | `skill_graph_query` returns empty for the new skill | Run `skill_graph_scan` manually. If still missing, verify the new graph-metadata.json passes JSON validation |
 | Drift after `git pull` brings new graph-metadata.json files | Common after upstream sync | Run `advisor_rebuild --force` once after `git pull` to re-sync |
-| Watcher fires repeatedly on the same file | Some editor saves trigger multiple change events | Daemon debounces (configurable). If debounce is too short, increase via `MK_SKILL_ADVISOR_WATCH_DEBOUNCE_MS` env var |
+| Watcher fires repeatedly on the same file | Some editor saves trigger multiple change events | Daemon debounces (configurable). If debounce is too short, increase via `SYSTEM_SKILL_ADVISOR_WATCH_DEBOUNCE_MS` env var |
 
 ---
 

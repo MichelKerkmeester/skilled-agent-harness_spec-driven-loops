@@ -1,7 +1,7 @@
 ---
 description: Save current conversation context into canonical spec-doc continuity surfaces with semantic indexing
 argument-hint: "<spec-folder>"
-allowed-tools: Read, Edit, Bash, Task, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_update
+allowed-tools: Read, Edit, Bash, Task, mcp__system_spec_memory__memory_save, mcp__system_spec_memory__memory_index_scan, mcp__system_spec_memory__memory_stats, mcp__system_spec_memory__memory_update
 ---
 
 # /memory:save
@@ -67,9 +67,9 @@ Tool map:
 | Need | Tool or Script |
 | --- | --- |
 | Metadata refresh and index handoff | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` |
-| Immediate index refresh | `mcp__mk_spec_memory__memory_index_scan` |
-| Single-file indexing fallback | `mcp__mk_spec_memory__memory_save` |
-| Trigger phrase correction | `mcp__mk_spec_memory__memory_update` |
+| Immediate index refresh | `mcp__system_spec_memory__memory_index_scan` |
+| Single-file indexing fallback | `mcp__system_spec_memory__memory_save` |
+| Trigger phrase correction | `mcp__system_spec_memory__memory_update` |
 
 ---
 

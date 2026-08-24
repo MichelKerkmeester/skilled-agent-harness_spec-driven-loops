@@ -7,6 +7,7 @@ export { compilePromptControls } from './controls.js';
 export { createProviderTelemetryEvent } from './evidence.js';
 export { executeProviderRoute } from './executor.js';
 export {
+  createExternalCliModelRecord,
   createLlamaCppModelRecord,
   createOllamaModelRecord,
   createOpenCodeGoDeepSeekV4FlashRecord,
@@ -25,6 +26,7 @@ export {
 export type { ControlCompilation } from './controls.js';
 export type { ExecuteProviderRouteInput } from './executor.js';
 export type {
+  ExternalCliPresetOptions,
   LocalProviderPresetOptions,
   OpenCodeGoPresetOptions,
 } from './presets.js';

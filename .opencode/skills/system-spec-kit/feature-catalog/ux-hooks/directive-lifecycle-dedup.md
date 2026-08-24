@@ -62,7 +62,7 @@ Kill switches:
 | `.opencode/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts` | Canonical trusted-boundary target. |
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Prompt adapter applying the canonical decision. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/claude/directive-lifecycle-boundary.ts` | Registered runtime-to-advisor boundary bridge. |
-| `.opencode/plugins/mk-skill-advisor.js` | OpenCode identity, generation, epoch, and directive-delivery mirror. |
+| `.opencode/plugins/system-skill-advisor.js` | OpenCode identity, generation, epoch, and directive-delivery mirror. |
 | `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | Pi lifecycle delivery. |
 
 ### Validation And Evidence
@@ -72,7 +72,7 @@ Kill switches:
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts` | High-water, uncertainty, generation, secure-store, contention, cleanup, and isolation tests. |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle-boundary.vitest.ts` | Identified and global boundary invalidation tests. |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Claude handler cadence, fallback, flag, and transcript integration. |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/mk-skill-advisor-plugin.vitest.ts` | OpenCode cadence, identity rejection, global invalidation, and status tests. |
+| `.opencode/skills/system-skill-advisor/mcp-server/tests/system-skill-advisor-plugin.vitest.ts` | OpenCode cadence, identity rejection, global invalidation, and status tests. |
 | `.opencode/skills/system-spec-kit/mcp-server/tests/directive-lifecycle-adapter-parity.vitest.ts` | Registered Claude/Codex/Cursor/Devin payload and envelope parity. |
 | `.opencode/skills/system-spec-kit/mcp-server/tests/directive-lifecycle-boundary-bridge.vitest.ts` | Registered host-boundary coupling. |
 | `.opencode/hooks/dispatch/pi` | Pi dispatch and lifecycle suite. |

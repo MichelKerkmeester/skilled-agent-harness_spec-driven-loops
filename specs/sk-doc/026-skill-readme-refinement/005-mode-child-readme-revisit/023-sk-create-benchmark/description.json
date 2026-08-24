@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark",
   "description": "The skill README at `.opencode/skills/sk-doc/sk-create-benchmark/README.md` predates the pilot standard",
   "keywords": [
@@ -12,7 +13,7 @@
     "pilot",
     "standard"
   ],
-  "lastUpdated": "2026-08-04T08:15:34.203Z",
+  "lastUpdated": "2026-08-15T14:41:01.701Z",
   "specId": "023",
   "folderSlug": "sk-create-benchmark",
   "parentChain": [
@@ -21,6 +22,5 @@
     "005-mode-child-readme-revisit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -140,6 +140,21 @@ amount: 1250
 - Numbers stay numeric for `WHERE` comparisons and aggregation functions.
 - Lists become arrays you can test with `contains(...)`.
 
+### Type mapping (how Dataview reads a frontmatter value)
+
+| YAML value | Dataview type |
+| --- | --- |
+| `"quoted"` | Text |
+| unquoted number (`70`) | Number |
+| `true` / `false` | Boolean |
+| ISO date (`2026-06-30`) | Date |
+| a YAML list | List |
+| nested map | Object |
+| quoted `"[[Link]]"` | Link |
+
+- **ISO-8601 auto-detection.** A value matching `YYYY-MM-DD`, `YYYY-MM-DDTHH:mm:ss` or `YYYY-MM` is parsed as a Date automatically. A **non-ISO** date such as `2026-04-17 18:00` becomes **Text**, which silently breaks date math — normalize migrated dates to ISO.
+- **Link caveat.** A quoted `"[[Link]]"` in frontmatter is a Dataview Link but **not** an Obsidian link: it creates no graph edge and is not rename-propagated. Use it for querying, not for the graph.
+
 ---
 
 ## 4. METADATA LAYER: INLINE FIELDS
@@ -153,10 +168,34 @@ Progress:: 70
 ```
 
 - The key is trimmed, the value is trimmed.
-- A value can span multiple lines when the continuation is indented.
+- An inline field value is terminated by the line break — it is single-line. This is confirmed against the official Dataview "Adding Metadata" documentation: "All content after the `::` is the value of the field until the next line break." To store multi-line text, use a YAML frontmatter field with the pipe (`|`) block scalar instead; indenting a continuation line does **not** extend an inline value.
 - Inline fields merge with frontmatter fields into one field space. A plain query references the field name without any prefix.
 - `prettyRenderInlineFields` controls how the raw `Key:: Value` text displays in reading view.
 - The same key in frontmatter and inline body is ambiguous. Keep one source per key to avoid confusion.
+
+### The three inline syntaxes
+
+| Syntax | Where | Notes |
+| --- | --- | --- |
+| `Key:: Value` | own line | the plain form; does **not** attach to a task or list item |
+| `[key:: value]` | inline, brackets | key stays visible; **required** to add a field to a task or list item |
+| `(key:: value)` | inline, parens | key hidden in Reader view |
+
+### Type inference
+
+Inline values are typed exactly like frontmatter: quoted → Text, unquoted number → Number, `true`/`false` → Boolean, ISO date → Date, `dur(...)`-shaped → Duration, `[[Link]]` → Link, comma list → List. A **non-ISO** date becomes Text.
+
+### Field-name sanitization
+
+Field names are normalized: spaces and punctuation → lowercase-hyphenated, formatting tokens stripped, and a capitalized key also gets a lowercase alias. A migrated `Due Date` is queryable as `due-date`, and `Due` resolves as `due` — names do not match naively, so sanitize when querying.
+
+### Reaching reserved-word or spaced fields
+
+Use bracket access for a reserved word or a spaced/awkward name: `row["keyword"]`, `row['Field With Space']`.
+
+### Duplicate keys
+
+The same key twice in one note collects into a **List** — Dataview does not keep only the last value.
 
 ---
 
@@ -184,11 +223,17 @@ Every note exposes a `file` object. The keys below were verified in the installe
 | `file.mday` | date | Modification time with time stripped |
 | `file.size` | number | Note size in bytes |
 | `file.starred` | boolean | Starred state of the note |
-| `file.frontmatter` | object | The raw frontmatter as an object |
-| `file.day` | date | Derived day, present only when the note structure yields one |
+| `file.frontmatter` | object | Raw frontmatter as key/value text pairs — for raw-value checks, not typed access (query the field by name for a typed value) |
+| `file.day` | date | Derived day; present only when the filename carries a date or the note has a `Date` field |
 
-- `file.day` appears only when a day can be derived from the note's folder or name. Do not assume it exists.
+- `file.day` appears only when a date can be derived from the note: its filename contains a date (`yyyy-mm-dd` or `yyyymmdd`), **or** the note has a `Date` field or inline field. This is confirmed against the official Dataview "Metadata on Pages" documentation, which lists exactly those two triggers — there is no folder-name trigger. Do not assume it exists.
 - Fields in frontmatter or the body never override the `file` object keys.
+
+### Task and list implicit fields
+
+Each item in `file.tasks` / `file.lists` exposes 18 fields: `status`, `checked`, `completed`, `fullyCompleted`, `text`, `visual`, `line`, `lineCount`, `path`, `section`, `tags`, `outlinks`, `link`, `children`, `task`, `annotated`, `parent`, `blockId`. A task also **inherits every page-level field** of its note, so a page's `project` is queryable on its tasks.
+
+**Emoji task-date shorthands** (dates only, no bracket needed): 🗓️ → `due`, ✅ → `completion`, ➕ → `created`, 🛫 → `start`, ⏳ → `scheduled`.
 
 ---
 
@@ -237,8 +282,24 @@ dv.list(dv.pages('"Journal"').map(p => p.file.link))
 ```
 ````
 
-- Verified API methods in the installed build: `dv.pages(query)`, `dv.current()`, `dv.list(...)`, `dv.table(...)`, `dv.taskList(tasks, groupByFile)`.
-- Full API semantics beyond these methods: VERIFY against the official documentation before writing a copyable example.
+### DataviewJS API surface
+
+The `dv` object exposes ~30+ methods across the groups below (default-off; `enableDataviewJs` required). Signatures follow the official `api/code-reference` and `api/data-array` docs.
+
+- **Query** — `dv.pages(source)` (source is a string; folders must be **double-quoted inside** it: `dv.pages('"Folder"')`), `dv.pagePaths(source)`, `dv.page(path)` (auto-resolves link + extension), `dv.current()`.
+- **Render** — `dv.header(level, text)`, `dv.paragraph(text)`, `dv.span(text)`, `dv.el(tag, text)`, `dv.execute(dql)`, `dv.executeJs(code)`, `dv.view(path, input)`, `dv.list(items)`, `dv.table(headers, rows)`, `dv.taskList(tasks, groupByFile)`.
+- **Markdown-string** — `dv.markdownTable(headers, rows)`, `dv.markdownList(items)`, `dv.markdownTaskList(tasks)` (return a string instead of rendering).
+- **Utility** — `dv.fileLink(path)`, `dv.sectionLink(...)`, `dv.blockLink(...)`, `dv.date(text)`, `dv.duration(text)`, `dv.compare(a, b)`, `dv.equal(a, b)`, `dv.clone(value)`, `dv.parse(value)`, `dv.array(value)`, `dv.isArray(value)`.
+- **Query-evaluation** — `dv.query(dql)`, `dv.tryQuery(dql)`, `dv.queryMarkdown(dql)`, `dv.evaluate(expr)`, `dv.tryEvaluate(expr)` → a `Result` `{ successful, value | error }`.
+- **DataArray** — the immutable proxied array `dv.pages(...)` returns: `.where(fn)`, `.map(fn)`, `.sort(fn)`, `.groupBy(fn)`, `.distinct()`, `.sum()`, `.avg()`, `.limit(n)`, `.first()`, … plus **field swizzling** (`array.field` collects that field across every element).
+- **File-I/O** (async — `await`) — `dv.io.csv(path)`, `dv.io.load(path)`, `dv.io.normalize(path)`.
+
+### Inline DQL vs inline JS semantics
+
+- Inline DQL `` `= expr` `` renders exactly **one** value blended into the surrounding text; `this.` means the current page, `[[page]].` another page. It supports expressions and functions but **not** Query Types or Data Commands (`WHERE` / `SORT` / `GROUP BY` / `FLATTEN` / `LIMIT`).
+- Inline JS `` `$= code` `` uses `dv.current()` as the analog of `this.` and **can** reach multiple pages.
+
+> The `dv.pages`/`dv.current`/`dv.list`/`dv.table`/`dv.taskList` core five are verified in the installed `main.js`; the fuller surface above follows the official Dataview API docs — confirm an uncommon method against those docs before shipping a production example.
 
 ---
 
@@ -326,6 +387,18 @@ FLATTEN tags
 ```
 ````
 
+### Grammar details and correctness rules
+
+- **FROM is zero-or-one and must immediately follow the Query Type.** A query has at most one `FROM`.
+- **Data commands run in written order** (see `workflows.md` §2) — `FLATTEN` before vs after `WHERE` changes the result, and a command may repeat.
+- **`WITHOUT ID`** (LIST + TABLE) drops the default id/link column.
+- **Source operators**: negate with `-` (`FROM -#archive`), group with parentheses, and use `[[]]` as shorthand for the current file.
+- **`SORT`** takes multiple fields: `SORT a ASC, b DESC`.
+- **`GROUP BY`** yields `key` + `rows`, and `rows.field` **swizzles** that field across the group.
+- **`FLATTEN expr AS name`** names the expanded value.
+- **`TASK`** operates at task level (child tasks inherit a parent match) and is the only DQL type that **writes files** (checkbox toggles).
+- **`CALENDAR`** requires a date field; `SORT` / `GROUP BY` have no effect on it.
+
 ---
 
 ## 8. VERIFIED FUNCTION SUBSET
@@ -358,6 +431,14 @@ Each function below exists in the installed `main.js`. Signatures follow the off
 | `average(...)` | `average(rows.amount)` | Mean over a list |
 | `total(...)` | `total(rows.amount)` | Sum over a list |
 
+### Expressions and literals
+
+DQL expressions support arithmetic, comparisons, string operations, list/object indexing, and lambdas (`(x) => …`). Literals include:
+
+- **Date shorthands**: `date(today)`, `date(now)`, `date(sow)` (start of week), `date(eom)` (end of month), and similar.
+- **Duration aliases**: `dur(1 day)`, `dur(2 hours 30 mins)`, `dur(1 h)`.
+- **Date property access**: `date(...).year` / `.month` / `.weekday` / `.day`.
+
 ---
 
 ## 9. WHAT THE AI MUST NOT DO
@@ -366,5 +447,5 @@ Each function below exists in the installed `main.js`. Signatures follow the off
 - Never claim a query rendered. Rendering happens in-app. The AI validates the block and the data, then asks for a reload.
 - Never rewrite user notes casually. Metadata additions are append-first. Edits preserve everything else in the note.
 - Never replace `data.json` wholesale unless restoring the documented defaults after a backup.
-- Never promise `file.day` exists. It is conditional on note structure.
+- Never promise `file.day` exists. It is conditional on a filename date or a `Date` field.
 - Never fabricate results. If a query cannot be evaluated from the files on disk, say so and mark the gap.

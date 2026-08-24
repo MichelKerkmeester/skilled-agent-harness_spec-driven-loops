@@ -57,8 +57,8 @@ Each array entry has three required keys, the same three ADR-011 names verbatim,
 
 | Key | Type | Constraint |
 |---|---|---|
-| `authority` | string | Must be one of the registered authorities (`scripts/scoping.cjs`'s `AUTHORITY_ARTIFACT_CLASSES` keys: `sk-doc`, `sk-git`, `sk-design`, `sk-code` in v1, extensible per ADR-012) |
-| `artifactClass` | string | Must be one of `docs`, `code`, `designs`, `git-history`, AND must be one the named `authority` actually supports (see §4) |
+| `authority` | string | Must be one of the registered authorities (`scripts/scoping.cjs`'s `AUTHORITY_ARTIFACT_CLASSES` keys: `sk-doc`, `sk-git`, `sk-code`, extensible per ADR-012) |
+| `artifactClass` | string | Must be one of `docs`, `code`, `git-history`, AND must be one the named `authority` actually supports (see §4) |
 | `scope` | object | One of the three shapes in §5, validated against the repo root for `paths`/`globs` |
 | `adapter` | string | **Optional.** One of the authority's registered adapter modules (`scripts/scoping.cjs`'s `AUTHORITY_ADAPTERS[authority]`). Defaults to the authority's own module. It is a discovery/check module selector, not part of the lane's identity (laneId is authority×artifactClass×scope). |
 
@@ -72,7 +72,6 @@ This is not a schema-only rule. It is the literal object `scripts/scoping.cjs`'s
 |---|---|
 | `sk-doc` | `docs` |
 | `sk-git` | `git-history` |
-| `sk-design` | `designs` |
 | `sk-code` | `code` |
 
 A lane naming a real authority with an artifact-class that authority does not support fails validation with both values named in the error (for example, `sk-git` paired with `docs`). This table is the config-file's version of the same rule the interactive tree enforces by only offering valid authorities once ARTIFACT-CLASS is picked (`scoping-protocol.md` §2.2). The config file has no such filtering at authoring time, so `scripts/scoping.cjs` enforces it at parse time instead.
@@ -111,8 +110,8 @@ The following is a machine-checkable restatement of §3-§5, for tooling that wa
     "required": ["authority", "artifactClass", "scope"],
     "additionalProperties": false,
     "properties": {
-      "authority": { "type": "string", "enum": ["sk-doc", "sk-git", "sk-design", "sk-code"] },
-      "artifactClass": { "type": "string", "enum": ["docs", "code", "designs", "git-history"] },
+      "authority": { "type": "string", "enum": ["sk-doc", "sk-git", "sk-code"] },
+      "artifactClass": { "type": "string", "enum": ["docs", "code", "git-history"] },
       "adapter": { "type": "string", "description": "Optional adapter-module discriminator; one of the authority's AUTHORITY_ADAPTERS entries (default: the authority's own module)." },
       "scope": {
         "oneOf": [
@@ -157,7 +156,7 @@ The `authority` enum grows by one value whenever ADR-012's governance process re
 
 ## 7. WORKED EXAMPLE, MULTI-AUTHORITY SINGLE RUN
 
-The operator precedent from `002-architecture-decision` ("sk-code and sk-git and/or sk-design" in one pass) as a `--lane-config` file:
+The operator precedent from `002-architecture-decision` ("sk-code and sk-git and/or sk-doc" in one pass) as a `--lane-config` file:
 
 ```json
 [
@@ -172,9 +171,9 @@ The operator precedent from `002-architecture-decision` ("sk-code and sk-git and
     "scope": { "type": "branchRange", "from": "main", "to": "HEAD" }
   },
   {
-    "authority": "sk-design",
-    "artifactClass": "designs",
-    "scope": { "type": "paths", "values": ["DESIGN.md"] }
+    "authority": "sk-doc",
+    "artifactClass": "docs",
+    "scope": { "type": "paths", "values": ["docs/"] }
   }
 ]
 ```

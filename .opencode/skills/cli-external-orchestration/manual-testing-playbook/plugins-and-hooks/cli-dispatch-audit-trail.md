@@ -1,8 +1,8 @@
 ---
 title: "CLI Dispatch Audit Trail"
-description: "Manual scenario validating the mk-cli-dispatch-audit plugin and Claude hook twin."
+description: "Manual scenario validating the cli-dispatch-audit plugin and Claude hook twin."
 trigger_phrases:
-  - "mk-cli-dispatch-audit"
+  - "cli-dispatch-audit"
   - "cli dispatch audit"
   - "dispatch audit trail"
   - "cli-dispatch-audit-trail"
@@ -22,21 +22,21 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`mk-cli-dispatch-audit` is a purely observational, fail-open telemetry surface that records completed `opencode run` / `claude -p` CLI dispatches to a redacted, size-rotated JSONL log. It ships as two thin transport adapters over one runtime-neutral core:
+`cli-dispatch-audit` is a purely observational, fail-open telemetry surface that records completed `opencode run` / `claude -p` CLI dispatches to a redacted, size-rotated JSONL log. It ships as two thin transport adapters over one runtime-neutral core:
 
-- OpenCode plugin adapter: `.opencode/plugins/mk-cli-dispatch-audit.js` (`tool.execute.after` on `bash` tool calls).
+- OpenCode plugin adapter: `.opencode/plugins/cli-dispatch-audit.js` (`tool.execute.after` on `bash` tool calls).
 - Claude PostToolUse(Bash) hook adapter: `.opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs` (reads the PostToolUse JSON payload from stdin, normalizes Claude's `Bash` tool-name casing against OpenCode's lowercase `bash`).
 - Shared core: `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` (`recordDispatch` / `matchDispatchShape` / `extractDispatchMeta` / `buildAuditLine` / `appendAuditLog`), which recognizes a dispatch shape via the `DISPATCH_SHAPES` registry (`opencode run`, `claude -p|--print`), pulls best-effort `--model` / `--agent` hints plus duration/exit/size hints out of the command and transport metadata, scrubs secret-shaped spans (API keys, bearer/basic headers, colon-form credential headers, provider key prefixes such as `sk-`/`ghp_`/`AKIA`), truncates the command to 500 chars, and appends one JSONL line to `.opencode/logs/cli-dispatch-audit.log`, rotating it to a `.1` backup at 512 KiB. The `DISPATCH_SHAPES` registry is the single source of truth shared with the sibling PreToolUse preflight lint (`dispatch-preflight-lint.mjs`), so the two can never disagree about what counts as a dispatch. Every exported function fails open (never throws past its own boundary), and both adapters never write to stdout/stderr and never block or alter the observed tool call. Per the plugin's own header comment, this surface is currently latent: no consumer reads the log yet.
 
-This scenario validates: the shared core's unit-test suite (real, isolated vitest run); a live in-process invocation of the OpenCode plugin's `tool.execute.after` hook against a scratch project directory; a live stdin invocation of the Claude PostToolUse(Bash) hook adapter against a scratch project directory, exactly as `.claude/settings.json` wires it; the kill-switch (`MK_CLI_DISPATCH_AUDIT_DISABLED`) forcing a full no-op; and a non-dispatch Bash command (`git status`) fast-exiting without writing anything.
+This scenario validates: the shared core's unit-test suite (real, isolated vitest run); a live in-process invocation of the OpenCode plugin's `tool.execute.after` hook against a scratch project directory; a live stdin invocation of the Claude PostToolUse(Bash) hook adapter against a scratch project directory, exactly as `.claude/settings.json` wires it; the kill-switch (`CLI_DISPATCH_AUDIT_DISABLED`) forcing a full no-op; and a non-dispatch Bash command (`git status`) fast-exiting without writing anything.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Preconditions: `.opencode/plugins/mk-cli-dispatch-audit.js`, `.opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs`, and `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` all exist (confirmed via Read, see Section 5). `.claude/settings.json` wires a `PostToolUse` hook with `matcher: "Bash"` to the Claude adapter. Node is on `PATH`; `npx vitest` is resolvable for the core's `.test.mjs` suite.
+- Preconditions: `.opencode/plugins/cli-dispatch-audit.js`, `.opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs`, and `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` all exist (confirmed via Read, see Section 5). `.claude/settings.json` wires a `PostToolUse` hook with `matcher: "Bash"` to the Claude adapter. Node is on `PATH`; `npx vitest` is resolvable for the core's `.test.mjs` suite.
 - Real user-facing trigger: an agent (Claude Code or OpenCode) runs a Bash tool call whose command matches an `opencode run` or `claude -p` / `claude --print` dispatch shape -- the same shape the `cli-external-orchestration` hub's `cli-opencode` / `cli-claude-code` modes compose.
-- Expected signals: the isolated core unit-test run reports `Test Files 1 passed (1)` and `Tests 38 passed (38)`; a live OpenCode plugin `tool.execute.after` invocation against a scratch project directory writes exactly one redacted JSONL line with `schema_version:1`, the matched `skill`, parsed `model`/`target`, and any secret-shaped span replaced with `[REDACTED]`; a live Claude hook stdin invocation against a separate scratch project directory writes an equivalent redacted line; the kill-switch env var (`MK_CLI_DISPATCH_AUDIT_DISABLED=1`) suppresses the write entirely (no log file created); a non-dispatch command (`git status`) is fast-exited with no log file created.
+- Expected signals: the isolated core unit-test run reports `Test Files 1 passed (1)` and `Tests 38 passed (38)`; a live OpenCode plugin `tool.execute.after` invocation against a scratch project directory writes exactly one redacted JSONL line with `schema_version:1`, the matched `skill`, parsed `model`/`target`, and any secret-shaped span replaced with `[REDACTED]`; a live Claude hook stdin invocation against a separate scratch project directory writes an equivalent redacted line; the kill-switch env var (`CLI_DISPATCH_AUDIT_DISABLED=1`) suppresses the write entirely (no log file created); a non-dispatch command (`git status`) is fast-exited with no log file created.
 - Desired user-visible outcome: a concise pass/fail verdict citing the exact captured command output, with no fabricated JSON.
 - Pass/fail: PASS if the core unit suite passes in full, both adapters write a correctly redacted line for a real dispatch-shaped command, the kill-switch fully suppresses the write, and a non-dispatch command produces no write. FAIL if any assertion fails, if a secret-shaped span survives unredacted in the written line, if the kill-switch is ignored, if a non-dispatch command still produces a write, or if either adapter throws instead of failing open.
 
@@ -76,7 +76,7 @@ cat "$SCRATCH_DIR/.opencode/logs/cli-dispatch-audit.log"
 SCRATCH_DIR2="$(mktemp -d)/opencode-sim"
 mkdir -p "$SCRATCH_DIR2"
 SCRATCH_PROJECT_DIR="$SCRATCH_DIR2" node --input-type=module -e '
-import plugin from "./.opencode/plugins/mk-cli-dispatch-audit.js";
+import plugin from "./.opencode/plugins/cli-dispatch-audit.js";
 const hooks = await plugin({ directory: process.env.SCRATCH_PROJECT_DIR });
 const input = {
   tool: "bash",
@@ -97,7 +97,7 @@ cat "$SCRATCH_DIR2/.opencode/logs/cli-dispatch-audit.log"
 SCRATCH_DIR3="$(mktemp -d)/kill-switch"
 mkdir -p "$SCRATCH_DIR3"
 PAYLOAD3='{"session_id":"sess-kill-003","tool_name":"Bash","tool_use_id":"call-kill-003","cwd":"'"$SCRATCH_DIR3"'","tool_input":{"command":"opencode run --model gpt-5.5 \"x\""},"tool_response":{"stdout":"ok","exitCode":0}}'
-printf '%s' "$PAYLOAD3" | MK_CLI_DISPATCH_AUDIT_DISABLED=1 node .opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs
+printf '%s' "$PAYLOAD3" | CLI_DISPATCH_AUDIT_DISABLED=1 node .opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs
 ls "$SCRATCH_DIR3/.opencode/logs/cli-dispatch-audit.log" 2>&1 || echo "no log file created"
 ```
 
@@ -205,7 +205,7 @@ Written log line (read back from the scratch directory's `.opencode/logs/cli-dis
 
 The `Authorization: Bearer abcdefLIVEBEARER123456` header was fully replaced with `Authorization: Bearer [REDACTED]`; `runtime` correctly reads `"opencode"` (the plugin's own literal, distinct from the Claude adapter's `"claude"`), and `skill` correctly resolved to `cli-claude-code` from the `claude -p` shape.
 
-Kill-switch check (`MK_CLI_DISPATCH_AUDIT_DISABLED=1`), real dispatch-shaped payload:
+Kill-switch check (`CLI_DISPATCH_AUDIT_DISABLED=1`), real dispatch-shaped payload:
 
 ```text
 adapter exit code: 0
@@ -237,7 +237,7 @@ This is real, unmocked confirmation that the same `DISPATCH_SHAPES` regex table 
 
 ## 5. SOURCE FILES
 
-- OpenCode plugin adapter: `.opencode/plugins/mk-cli-dispatch-audit.js`
+- OpenCode plugin adapter: `.opencode/plugins/cli-dispatch-audit.js`
 - Claude PostToolUse(Bash) hook adapter: `.opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs`
 - Runtime-neutral shared core: `.opencode/hooks/dispatch/lib/dispatch-audit.mjs`
 - Core unit-test suite: `.opencode/hooks/dispatch/lib/dispatch-audit.test.mjs`
@@ -261,4 +261,4 @@ This is real, unmocked confirmation that the same `DISPATCH_SHAPES` regex table 
 
 **PASS**
 
-The shared core's unit-test suite passed 38/38 in an isolated run scoped to the canonical file. A live in-process invocation of the OpenCode plugin's `tool.execute.after` hook against a scratch project directory wrote exactly one correctly redacted JSONL line (`schema_version:1`, `runtime:"opencode"`, `skill:"cli-claude-code"`, model/target parsed, bearer token redacted). A live stdin invocation of the Claude PostToolUse(Bash) hook adapter against a separate scratch project directory, run exactly as `.claude/settings.json` wires it, wrote an equivalent correctly redacted line (`runtime:"claude"`, `skill:"cli-opencode"`, API-key flag redacted). The kill-switch env var (`MK_CLI_DISPATCH_AUDIT_DISABLED=1`) fully suppressed the write, and a non-dispatch command (`git status`) produced no log file, confirming the fast-exit path. Both adapters ran to completion without throwing, matching the plugin's fail-open design. No fabricated output was used anywhere above; every JSON line shown was written by a real process invocation and read back from disk.
+The shared core's unit-test suite passed 38/38 in an isolated run scoped to the canonical file. A live in-process invocation of the OpenCode plugin's `tool.execute.after` hook against a scratch project directory wrote exactly one correctly redacted JSONL line (`schema_version:1`, `runtime:"opencode"`, `skill:"cli-claude-code"`, model/target parsed, bearer token redacted). A live stdin invocation of the Claude PostToolUse(Bash) hook adapter against a separate scratch project directory, run exactly as `.claude/settings.json` wires it, wrote an equivalent correctly redacted line (`runtime:"claude"`, `skill:"cli-opencode"`, API-key flag redacted). The kill-switch env var (`CLI_DISPATCH_AUDIT_DISABLED=1`) fully suppressed the write, and a non-dispatch command (`git status`) produced no log file, confirming the fast-exit path. Both adapters ran to completion without throwing, matching the plugin's fail-open design. No fabricated output was used anywhere above; every JSON line shown was written by a real process invocation and read back from disk.

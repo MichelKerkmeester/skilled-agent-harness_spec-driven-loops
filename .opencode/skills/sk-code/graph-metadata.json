@@ -15,11 +15,6 @@
     ],
     "siblings": [
       {
-        "target": "sk-design",
-        "weight": 0.4,
-        "context": "design-and-build pair: sk-design owns the look, sk-code owns the implementation"
-      },
-      {
         "target": "sk-prompt",
         "weight": 0.4,
         "context": "prompt-craft pairs with code standards on dispatched work"
@@ -143,7 +138,11 @@
     "check before done",
     "author quality gate",
     "pre-verification quality check",
-    "p0 p1 p2 review"
+    "p0 p1 p2 review",
+    "pi remote mobile ui",
+    "pi-remote-web design system",
+    "mobile cli design tokens",
+    "ds grammar editability"
   ],
   "derived": {
     "trigger_phrases": [
@@ -166,7 +165,11 @@
       "workflow doctrine",
       "review mode",
       "author quality gate",
-      "quality check"
+      "quality check",
+      "pi remote design system",
+      "mobile cli design tokens",
+      "ds grammar editability",
+      "ink-on-parchment retint"
     ],
     "key_topics": [
       "code",
@@ -185,14 +188,19 @@
       "workflow-doctrine",
       "quality-mode",
       "review-mode",
-      "quality-gate"
+      "quality-gate",
+      "mobile-cli",
+      "pi-remote",
+      "design-tokens"
     ],
     "intent_signals": [
       "implement code",
       "fix bug",
       "refactor",
       "detect code surface",
-      "verify after change"
+      "verify after change",
+      "retint pi remote design tokens",
+      "edit ds grammar surface"
     ],
     "source_docs": [
       "SKILL.md",
@@ -260,8 +268,8 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-code is the single public code skill that routes a request through mode-registry.json to two workflow modes (quality, code-review) or bundles one of two read-only surface evidence packets (code-webflow, code-opencode) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; code-webflow also carries the Motion.dev animation overlay. The shared router centralizes WEBFLOW, OPENCODE, and MOTION_DEV identity and precedence so the advisor sees exactly one code identity.",
+    "causal_summary": "sk-code is the single public code skill that routes a request through mode-registry.json to two workflow modes (quality, code-review) or bundles one of three read-only surface evidence packets (code-webflow, code-opencode, code-mobile-cli) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; code-webflow also carries the Motion.dev animation overlay, and code-mobile-cli carries the Pi Remote design-system evidence (the --pi-* token library, the @ds editability grammar, and the browser-free verification gate). The shared router centralizes WEBFLOW, OPENCODE, PI_REMOTE, and MOTION_DEV identity and precedence so the advisor sees exactly one code identity.",
     "created_at": "2026-04-30T08:30:00Z",
-    "last_updated_at": "2026-08-15T00:00:00Z"
+    "last_updated_at": "2026-08-19T00:00:00Z"
   }
 }

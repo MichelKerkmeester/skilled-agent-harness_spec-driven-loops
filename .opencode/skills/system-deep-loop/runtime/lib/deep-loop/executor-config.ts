@@ -164,12 +164,12 @@ export const PI_SUPPORTED_MODELS = [
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
-  // OpenRouter is currently restricted to DeepSeek V4 Flash only — no other model is
-  // routed through it. The id keeps the upstream provider path so `${provider}/${model}`
-  // composes to the full OpenRouter selector (openrouter/deepseek/deepseek-v4-flash-latest).
-  // It is a distinct entry from the bare deepseek-v4-flash id, which routes through
-  // opencode-go.
+  // OpenRouter carries two models here, each keeping its upstream provider path so
+  // `${provider}/${model}` composes the full three-segment OpenRouter selector:
+  // DeepSeek V4 Flash (openrouter/deepseek/deepseek-v4-flash-latest) and the Ox Alpha
+  // stealth tune (openrouter/stealth/ox-alpha). No other model routes through OpenRouter.
   'deepseek/deepseek-v4-flash-latest',
+  'stealth/ox-alpha',
 ] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 

@@ -1,11 +1,11 @@
 ---
 title: "Daemon-backed skill-advisor CLI"
-description: "CLI fallback over the advisor daemon: 9 commands with byte-identical schemas to TOOL_DEFINITIONS, a fail-closed trusted-mutation gate (--trusted / MK_SKILL_ADVISOR_CLI_TRUSTED, daemon-side MK_SKILL_ADVISOR_TRUST_DEFAULT), warm-only no-spawn probing, dist-freshness guard, and the shared 0/1/64/69/75 exit taxonomy."
+description: "CLI fallback over the advisor daemon: 9 commands with byte-identical schemas to TOOL_DEFINITIONS, a fail-closed trusted-mutation gate (--trusted / SYSTEM_SKILL_ADVISOR_CLI_TRUSTED, daemon-side SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT), warm-only no-spawn probing, dist-freshness guard, and the shared 0/1/64/69/75 exit taxonomy."
 trigger_phrases:
   - "skill-advisor cli"
   - "advisor cli fallback"
   - "trusted mutation gate"
-  - "MK_SKILL_ADVISOR_CLI_TRUSTED"
+  - "SYSTEM_SKILL_ADVISOR_CLI_TRUSTED"
 version: 0.8.0.2
 ---
 
@@ -23,11 +23,11 @@ The 028 MCP-to-CLI program shipped `node .opencode/bin/skill-advisor.cjs` as a C
 
 ### Fail-closed trusted-mutation gate
 
-Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `skill_graph_scan`, and `skill_graph_propagate_enhances` in real apply mode (`mode=apply` with `dryRun` not true; the schema defaults `dryRun` to true, keeping default apply-mode calls read-safe) — requires `--trusted` (alias `--maintainer`) or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`. Untrusted attempts are refused client-side with exit 64 before any IPC frame. The daemon enforces the gate independently via `_meta.callerAuthority`, defaulting untrusted unless `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` is set in the daemon's own environment.
+Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `skill_graph_scan`, and `skill_graph_propagate_enhances` in real apply mode (`mode=apply` with `dryRun` not true; the schema defaults `dryRun` to true, keeping default apply-mode calls read-safe) — requires `--trusted` (alias `--maintainer`) or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. Untrusted attempts are refused client-side with exit 64 before any IPC frame. The daemon enforces the gate independently via `_meta.callerAuthority`, defaulting untrusted unless `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` is set in the daemon's own environment.
 
 ### Shim guards and exit taxonomy
 
-`.opencode/bin/skill-advisor.cjs` defaults the socket dir to `/tmp/mk-skill-advisor`, walks the TypeScript source tree for mtimes and refuses stale dist with exit 69 (`MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override in development), and maps spawn failure to 75. The entrypoint shares the program taxonomy: 0 success, 1 runtime, 64 usage/validation/trust refusal, 69 protocol, 75 retryable. `--warm-only` (default via `MK_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`) probes the socket and exits 75 instead of auto-spawning.
+`.opencode/bin/skill-advisor.cjs` defaults the socket dir to `/tmp/system-skill-advisor`, walks the TypeScript source tree for mtimes and refuses stale dist with exit 69 (`SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override in development), and maps spawn failure to 75. The entrypoint shares the program taxonomy: 0 success, 1 runtime, 64 usage/validation/trust refusal, 69 protocol, 75 retryable. `--warm-only` (default via `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`) probes the socket and exits 75 instead of auto-spawning.
 
 ### Scan job semantics
 
@@ -44,8 +44,8 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 | `.opencode/bin/skill-advisor.cjs` | Script | Stable shim: socket-dir defaulting, recursive source-mtime dist guard, spawn-failure mapping |
 | `mcp-server/skill-advisor-cli.ts` | CLI entrypoint | Dispatcher, trusted-mutation gate, caller-authority tagging, warm-only probe, exit taxonomy |
 | `mcp-server/skill-advisor-cli-manifest.ts` | CLI manifest | Hand-maintained command registry, held byte-identical to `TOOL_DEFINITIONS` by the manifest parity suite |
-| `mcp-server/advisor-server.ts` | Daemon | Daemon-side trust default (`MK_SKILL_ADVISOR_TRUST_DEFAULT`) |
-| `mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | Plugin bridge | CLI fallback route with primary path untouched |
+| `mcp-server/advisor-server.ts` | Daemon | Daemon-side trust default (`SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`) |
+| `mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Plugin bridge | CLI fallback route with primary path untouched |
 | `hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared warm-only CLI fallback for Claude/OpenCode prompt-submit hooks |
 
 ### Validation And Tests

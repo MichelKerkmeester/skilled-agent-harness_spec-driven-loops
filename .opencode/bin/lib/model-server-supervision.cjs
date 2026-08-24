@@ -39,7 +39,7 @@ const HF_MODEL_SERVER_SOCKET_FILE_NAME = 'hf-embed.sock';
 // SPECKIT_IPC_SOCKET_DIR set) — the same directory both opencode.json and .claude/mcp.json
 // already pin explicitly, chosen to stay well under macOS's 104-byte sun_path limit regardless
 // of repo checkout location. Not derived from dbDir, which can be arbitrarily long/nested.
-const DEFAULT_MODEL_SERVER_SOCKET_DIR = '/tmp/mk-hf-embed';
+const DEFAULT_MODEL_SERVER_SOCKET_DIR = '/tmp/system-hf-embed';
 const DEFAULT_MODEL_SERVER_SOCKET_PATH = path.join(DEFAULT_MODEL_SERVER_SOCKET_DIR, HF_MODEL_SERVER_SOCKET_FILE_NAME);
 const HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME = 'hf-embed-respawn.lock';
 const HF_MODEL_SERVER_PID_FILE_NAME = 'hf-embed.pid';

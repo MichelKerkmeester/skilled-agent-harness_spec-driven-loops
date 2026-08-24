@@ -1,0 +1,21 @@
+{
+  "openQuestions": [
+    {"id": "q-parity-obsidian", "text": "How does each mcp-obsidian capability (note CRUD, search, tags, frontmatter, daily notes, plugin file-layer) map to a Notion-MCP equivalent, and what has no equivalent?"},
+    {"id": "q-adopt-vs-build", "text": "Can a thin transport mode wrapping the official MCP suffice (mcp-figma/mcp-mobbin pattern), or is a fuller skill with a Notion knowledge layer needed (mcp-obsidian pattern)?"},
+    {"id": "q-auth-runtime", "text": "What are the auth model (NOTION_TOKEN, ntn_ prefix), rate limits, hosted-OAuth-vs-local-stdio tradeoffs, and headless constraints for Code Mode?"},
+    {"id": "q-knowledge-layer", "text": "What Notion-specific knowledge must the mode encode — database schemas, property types, relations/rollups, formulas, API-version pinning — analogous to mcp-obsidian's plugin file-layer doctrine?"},
+    {"id": "q-migration-tiein", "text": "How does the 015 Notion→Obsidian migration relate: is mcp-notion also a migration enabler (reading Notion structure to drive an Obsidian import)?"}
+  ],
+  "resolvedQuestions": [
+    {"id": "q-capability-map", "text": "What do the official Notion MCP server's ~18 tools actually cover (pages, databases, blocks, search, comments, users, file uploads) and where are the gaps vs the full Notion API?", "resolvedAt": "iteration-1", "answer": "24 tools (not ~18): pages(7), blocks(5), databases/data-sources(6), comments(2), users(3), search(1). Gaps: file uploads, views, async tasks, page property items, agents, sessions, custom emojis, meeting notes. Open-source server is being deprecated in favor of remote Notion MCP."}
+  ],
+  "keyFindings": [
+    {"id": "f1-1", "text": "Official Notion MCP is v2.5.1 with 24 tools (not ~18), updated Aug 2026", "iteration": 1},
+    {"id": "f1-2", "text": "v2.0.0 migrated to Notion API 2025-09-03 with data sources replacing databases as primary abstraction", "iteration": 1},
+    {"id": "f1-3", "text": "Markdown round-trip tools (retrieve-page-markdown, update-page-markdown) require API 2026-03-11, designed for AI token efficiency", "iteration": 1},
+    {"id": "f1-4", "text": "CRITICAL: open-source local server is being deprecated; Notion prioritizes remote MCP at mcp.notion.com with OAuth", "iteration": 1},
+    {"id": "f1-5", "text": "Server supports stdio (default, headless-compatible) and Streamable HTTP transports with per-request token passthrough", "iteration": 1},
+    {"id": "f1-6", "text": "API domains NOT covered by MCP: file uploads, views, async tasks, page property items, agents, sessions, custom emojis, meeting notes", "iteration": 1}
+  ],
+  "ruledOutDirections": []
+}

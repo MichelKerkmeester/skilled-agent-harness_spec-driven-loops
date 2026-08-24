@@ -32,7 +32,7 @@ AI-browser automation through the Aside CLI: natural-language agent tasks and a 
 
 **Do not use for**:
 - Chrome/Chromium/Edge debugging with raw CDP primitives, HAR export, or `bdg` (use `mcp-chrome-devtools` — Aside has no CDP-domain parity and no dedicated console/network tools)
-- UI design judgment, visual direction, or design audits (use `sk-design`)
+- Extracting a measured Style Reference (design tokens) from a live website's real CSS (use `sk-design-md-generator`)
 - Application-code implementation the browser merely verifies (use `sk-code`)
 - Cross-browser test suites or heavyweight frameworks (use Playwright/Puppeteer/Selenium directly)
 - Non-macOS hosts — the official installer supports macOS (Darwin) arm64/x64 only

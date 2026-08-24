@@ -16,7 +16,27 @@ version: 1.0.0.0
 Use this checklist BEFORE claiming any design-system change to `apps/pi-remote-web/` is complete, fixed,
 or working. See `references/verification.md` for why this gate is browser-free and the full method.
 
-## 1. THE IRON LAW FOR THIS SURFACE
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+This checklist gates any design-system change to `apps/pi-remote-web/` before it can be claimed
+complete, fixed, or working. It exists because the app's strict CSP blocks Vite's injected styles under
+headless CDP, so screenshot-based verification is unreliable there — the checklist enforces the
+browser-free resolver method plus the command gate as the substitute evidence path.
+
+### Usage
+
+Work through the sections in order — the iron law, resolver proof, structural mount checks, command
+gate, and guardrail boundary — before claiming a design-system change is done, then confirm against
+the final gate. Check each box as you complete the step, and use the CLAIMING FORMAT section to report
+resolver diff counts and command exit statuses as evidence.
+
+---
+
+## 2. THE IRON LAW FOR THIS SURFACE
 
 **Evidence from the resolver and the command gate before claims, always.** Screenshot/pixel diffing
 proves nothing about colour here: the app's strict CSP blocks Vite's injected styles under headless
@@ -30,7 +50,9 @@ to final values — is immune to that problem.
 
 **If you cannot check all four boxes, the claim is premature.**
 
-## 2. RESOLVER PROOF (value preservation or intended change)
+---
+
+## 3. RESOLVER PROOF (value preservation or intended change)
 
 □ Ran the resolver on a **scratch copy** of `style.css`, not the real file, for the experiment itself
 □ Resolved BEFORE the change, per theme (light / dark / system)
@@ -45,9 +67,11 @@ to final values — is immune to that problem.
 **Known limitation:** the resolver proves selector→value identity, not element→computed-style identity.
 A className re-point or rule hoist changes which selector applies to an element and is not verifiable
 this way — defer such physical refactors until a real-browser visual-diff harness exists
-(`references/verification.md` §2).
+(`references/verification.md` §3).
 
-## 3. STRUCTURAL MOUNT CHECKS (against the built output)
+---
+
+## 4. STRUCTURAL MOUNT CHECKS (against the built output)
 
 `vite build` emits real linked CSS, which is CSP-safe — a headless mount check works here.
 
@@ -57,7 +81,9 @@ this way — defer such physical refactors until a real-browser visual-diff harn
 □ `scrollWidth == innerWidth` — zero horizontal overflow, both shell and catalog
 □ Zero uncaught exceptions during the mount check
 
-## 4. COMMAND GATE
+---
+
+## 5. COMMAND GATE
 
 □ `npm run typecheck` — `tsc -b`, exit 0
 □ `npm run build` — `tsc -b && vite build`, exit 0 (app + catalog entries)
@@ -69,20 +95,26 @@ this way — defer such physical refactors until a real-browser visual-diff harn
 focus-restore raced by a synchronous assertion) — it is not a design-system signal. Re-run it in
 isolation before treating a failure there as a real regression.
 
-## 5. GUARDRAIL BOUNDARY
+---
+
+## 6. GUARDRAIL BOUNDARY
 
 □ No `--pi-*` primitive value changed
 □ No security boundary changed
 □ No `@ds guardrail: do-not-edit` fence changed (see `assets/guardrail-audit-checklist.md` for the full
   fence-by-fence audit)
 
-## 6. THE GATE (all must hold)
+---
+
+## 7. THE GATE (all must hold)
 
 A change is "done" only when: `typecheck`, `build`, and `test:web` all pass; the resolver shows the
 intended value delta and nothing more; `contrast.test.tsx` is green in both themes; the structural mount
 checks pass; and no `--pi-*` value, security boundary, or guardrail fence changed.
 
-## 7. CLAIMING FORMAT
+---
+
+## 8. CLAIMING FORMAT
 
 ### Correct
 ```
@@ -97,7 +129,9 @@ both populated, zero horizontal overflow, zero console errors.
 Looks correct in the code, should render fine.
 ```
 
-## 8. RELATED RESOURCES
+---
+
+## 9. RELATED RESOURCES
 
 - [verification.md](../references/verification.md) — the full resolver method and command set
 - [retint-recipes.md](../references/retint-recipes.md) — the worked recipes this checklist gates

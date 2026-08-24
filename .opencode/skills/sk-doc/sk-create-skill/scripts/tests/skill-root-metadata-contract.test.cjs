@@ -41,7 +41,7 @@ const EXPECTED_CLASSES = {
   'mcp-code-mode': contract.CLASS_STANDALONE,
   'mcp-tooling': contract.CLASS_HUB,
   'sk-code': contract.CLASS_HUB,
-  'sk-design': contract.CLASS_HUB,
+  'sk-design-md-generator': contract.CLASS_STANDALONE,
   'sk-doc': contract.CLASS_HUB,
   'sk-git': contract.CLASS_STANDALONE,
   'sk-prompt': contract.CLASS_HUB,
@@ -216,7 +216,6 @@ function testCommandMetadataIsUniformAcrossHubs() {
     'leaf-manifest.json': true,
     'command-metadata.json': true,
   };
-  assert.deepEqual(contract.evaluateRoot('sk-design', conformingHub).violations, []);
   assert.deepEqual(contract.evaluateRoot('sk-doc', conformingHub).violations, []);
   assert.deepEqual(contract.OVERLAY_FILES, {});
 }
@@ -233,7 +232,6 @@ function testGeneratedIsClassSensitive() {
 
 function testLegalFilesForClass() {
   // Command metadata is class policy now, so every hub's legal set carries it.
-  assert.ok(contract.legalFilesForClass(contract.CLASS_HUB, 'sk-design').includes('command-metadata.json'));
   assert.ok(contract.legalFilesForClass(contract.CLASS_HUB, 'sk-doc').includes('command-metadata.json'));
   assert.ok(contract.legalFilesForClass(contract.CLASS_HUB, 'sk-doc').includes('leaf-aliases.json'));
   assert.ok(!contract.legalFilesForClass(contract.CLASS_STANDALONE, 'sk-git').includes('command-metadata.json'));

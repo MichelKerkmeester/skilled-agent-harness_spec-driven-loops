@@ -49,6 +49,16 @@ The **live** artifacts live in the app repo and this surface points at them rath
 `apps/pi-remote-web/catalog.html`. The surface's own `references/` distill the standards a workflow must
 apply; the app artifacts are the source of truth for the exact values and the browsable catalog.
 
+### The Mobile CLI App Repository
+
+The Pi Remote app is a **separate repository from this skills hub** — the **Mobile CLI app repo**. Its
+source (`apps/pi-remote-web/`, `apps/pi-remote-relay/`, `packages/pi-*`), its `specs/`, and the live
+design-system artifacts named above all live there; it is the source of truth. This surface is that
+repo's read-only design-system mirror inside `sk-code`. When a code workflow runs on the app, the Mobile
+CLI repo is the working tree, so every `apps/…` and `packages/…` path this packet cites resolves there —
+not against this hub. The design-system contract distilled here is specified in
+`specs/003-pi-remote-design-system/` in that repo.
+
 ---
 
 ## 3. QUICK START
@@ -134,4 +144,6 @@ the single `sk-code` identity and the hub bundles this surface.
 - `references/` — the token library, `@ds` grammar, guardrails, verification, and the workflow doctrine.
 - `changelog/` — release notes for this packet.
 - `../../ROUTER.md`, `../../mode-registry.json`, `../../hub-router.json` — the parent hub's routing.
-- The design-system spec: `specs/003-pi-remote-design-system/` in the Mobile-CLI app repo.
+- The **Mobile CLI app repo** — the app source, its `specs/` (including the design-system spec
+  `specs/003-pi-remote-design-system/`), and the live `tokens.md` / `designer-guide.md` / `catalog.html`.
+  This surface is its read-only evidence mirror; see §2 "The Mobile CLI App Repository".

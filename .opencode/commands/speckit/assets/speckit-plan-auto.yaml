@@ -96,7 +96,7 @@ user_inputs:
   environment: "[STAGING LINK] - Staging/production URL for browser testing. Leave empty to skip."
   scope: "[FILES] - Files or folders to focus on. Leave empty for default scope."
   goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer under :auto; set requires goal_objective."
-  goal_objective: "[TEXT] - Objective passed to mk_goal only when goal_prompt_choice is set."
+  goal_objective: "[TEXT] - Objective passed to opencode_goal only when goal_prompt_choice is set."
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -118,8 +118,8 @@ field_handling:
 goal_prompting:
   default_choice: offer
   choices:
-    offer: "Render the optional session-goal offer only; do not call mk_goal."
-    skip: "Suppress the optional session-goal offer; do not call mk_goal."
+    offer: "Render the optional session-goal offer only; do not call opencode_goal."
+    skip: "Suppress the optional session-goal offer; do not call opencode_goal."
     set: "Set a session goal only when goal_objective is provided."
   set_mutation:
     when:
@@ -127,9 +127,9 @@ goal_prompting:
       op: "=="
       value: set
     require: goal_objective
-    tool: mk_goal
-    invocation: 'mk_goal({ action: "set", objective: goal_objective })'
-  status_tool: mk_goal_status
+    tool: opencode_goal
+    invocation: 'opencode_goal({ action: "set", objective: goal_objective })'
+  status_tool: opencode_goal_status
 
 packet_graph_metadata:
   creation_contract:

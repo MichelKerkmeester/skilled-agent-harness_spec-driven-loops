@@ -41,7 +41,7 @@ describe('substrate stress harness (045 promoted)', () => {
     }
   });
 
-  it('runs scenarios 403/404/407/410 against the real mk-spec-memory daemon with no connection or scenario failures (tolerates a live-owner skip)', async () => {
+  it('runs scenarios 403/404/407/410 against the real system-spec-memory daemon with no connection or scenario failures (tolerates a live-owner skip)', async () => {
     await execFileAsync('node', [HARNESS, '--no-stderr-log', '--scenarios', '403,404,407,410'], {
       cwd: REPO_ROOT,
       timeout: 180_000,
@@ -63,7 +63,7 @@ describe('substrate stress harness (045 promoted)', () => {
     // connect for a reason the harness could not explain — a real substrate failure that must not
     // occur. A SKIP means a live operator daemon legitimately holds the single-writer lease while
     // bridging is disabled, so the harness could not spawn a dedicated child; that is expected
-    // during an interactive session and is tolerated. The runner starts the mk-spec-memory
+    // during an interactive session and is tolerated. The runner starts the system-spec-memory
     // daemon, so a connect failure surfaces here.
     const diagnostics = rows.filter((row) => row.scenario.startsWith('runner:'));
     const failedConnections = diagnostics.filter((row) => row.verdict === 'FAIL');
@@ -86,7 +86,7 @@ describe('substrate stress harness (045 promoted)', () => {
     // all-SKIP false green when the daemon connects but silently exposes no tools. The guard only
     // applies when the memory daemon actually connected; a tolerated live-owner skip legitimately
     // forces 410 to SKIP too, so it is exempted in that case.
-    const memoryOwnerSkipped = skippedConnections.some((row) => row.scenario === 'runner:mk-spec-memory');
+    const memoryOwnerSkipped = skippedConnections.some((row) => row.scenario === 'runner:system-spec-memory');
     if (!memoryOwnerSkipped) {
       const memoryScenario = scenarioRows.find((row) => row.scenario === '410');
       expect(['PASS', 'PARTIAL'], '410 (memory) should run, not SKIP/FAIL').toContain(memoryScenario?.verdict);

@@ -92,11 +92,12 @@ OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--pro
 
 OpenRouter passthrough (base `https://openrouter.ai/api/v1`). Select with `--provider openrouter --model <upstream>/<id>`; the deep-loop fan-out composes the full `openrouter/<upstream>/<id>` selector from the allowlisted model literal (the literal keeps its upstream provider path, so `${provider}/${model}` is three segments here). The DeepSeek Flash `-latest` variant is a reasoning model and is pinned to `--thinking max` by the same policy as the bare id.
 
-> **OpenRouter is currently restricted to a single model: DeepSeek V4 Flash (`deepseek/deepseek-v4-flash-latest`).** No other model may be routed through OpenRouter here — it is the only entry in the Pi OpenRouter allowlist. Other models (e.g. GPT-5.6 Luna/Sol) must go through their own providers (openai-codex, etc.), never OpenRouter.
+> **OpenRouter here carries exactly two models: DeepSeek V4 Flash (`deepseek/deepseek-v4-flash-latest`) and Ox Alpha (`stealth/ox-alpha`).** No other model may be routed through OpenRouter — these are the only two entries in the Pi OpenRouter allowlist. Other models (e.g. GPT-5.6 Luna/Sol) must go through their own providers (openai-codex, etc.), never OpenRouter.
 
 | Model id | Notes |
 |----------|-------|
-| `deepseek/deepseek-v4-flash-latest` | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--thinking max`. The ONLY OpenRouter-routed model. Distinct from the opencode-go-routed bare `deepseek-v4-flash`. Dispatched as `openrouter/deepseek/deepseek-v4-flash-latest` |
+| `deepseek/deepseek-v4-flash-latest` | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--thinking max`. Distinct from the opencode-go-routed bare `deepseek-v4-flash`. Dispatched as `openrouter/deepseek/deepseek-v4-flash-latest` |
+| `stealth/ox-alpha` | Ox Alpha (stealth channel) via OpenRouter. A live `pi -p --offline --model openrouter/stealth/ox-alpha` dispatch completed a real turn (returned `PONG`) 2026-08-22. Not a reasoning model; no thinking pin. Dispatched as `openrouter/stealth/ox-alpha` |
 
 ### cline-pass
 
@@ -169,13 +170,13 @@ Confirm the target model actually honors the requested tier before assuming it c
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and capture streams separately:
 
 ```bash
-MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 pi -p "<prompt>" \
+SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 pi -p "<prompt>" \
   --provider deepseek --model deepseek-v4-pro \
   --thinking high --mode text --offline \
   > stdout.log 2> stderr.log
 ```
 
-- `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
+- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
 - `--offline` — pass explicitly for any automated/CI dispatch; `pi --verbose` without `--offline` hung 2+ minutes with no reachable network path in the pinned contract. See [cli-reference.md](./cli-reference.md) §7 and [integration-patterns.md](./integration-patterns.md) §15.
 - **Exit code is never an availability/auth signal** — an identical unauthenticated `pi -p` returned exit `0` then exit `1` across runs. Classify the captured output text (`No API key found...`), never the exit code. See [cli-reference.md](./cli-reference.md) §9.
 

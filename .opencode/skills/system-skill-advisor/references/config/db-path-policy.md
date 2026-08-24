@@ -77,18 +77,18 @@ This separation gives cleaner mutation scope:
 
 ## 4. TEST AND CI OVERRIDE
 
-`MK_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only. `SYSTEM_SKILL_ADVISOR_DB_DIR` remains a legacy fallback for existing scripts.
+`SYSTEM_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only. `SYSTEM_SKILL_ADVISOR_DB_DIR` remains a legacy fallback for existing scripts.
 
 Production and operator docs should treat the package-local path as the default. A runtime override must not be used to silently re-collocate the advisor DB with `system-spec-kit/mcp-server/database/`.
 
 ### Child-process `MEMORY_DB_PATH` pointer
 
-`mk-skill-advisor-launcher.cjs`'s `createChildEnv()` sets the advisor MCP child's `MEMORY_DB_PATH` (the env var `@spec-kit/shared/embeddings/factory.ts` reads to resolve which database's `active_embedder_*` pointer to use) explicitly to this policy's package-local `skill-graph.sqlite` path by default. A bare ambient `MEMORY_DB_PATH` in the parent process — including one set for mk-spec-memory's own, unrelated use of that same name — is never honored as an override, since that would silently re-collocate the advisor's embedder-pointer resolution with `system-spec-kit`'s own database, defeating this policy's separation. To override for tests/CI only, set the dedicated `MK_SKILL_ADVISOR_MEMORY_DB_PATH` var instead.
+`system-skill-advisor-launcher.cjs`'s `createChildEnv()` sets the advisor MCP child's `MEMORY_DB_PATH` (the env var `@spec-kit/shared/embeddings/factory.ts` reads to resolve which database's `active_embedder_*` pointer to use) explicitly to this policy's package-local `skill-graph.sqlite` path by default. A bare ambient `MEMORY_DB_PATH` in the parent process — including one set for system-spec-memory's own, unrelated use of that same name — is never honored as an override, since that would silently re-collocate the advisor's embedder-pointer resolution with `system-spec-kit`'s own database, defeating this policy's separation. To override for tests/CI only, set the dedicated `SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH` var instead.
 
 ---
 
 ## 5. MIGRATION NOTES
 
-Current package state keeps the database under `mcp-server/database/` and exposes it through the standalone `mk_skill_advisor` MCP server.
+Current package state keeps the database under `mcp-server/database/` and exposes it through the standalone `system_skill_advisor` MCP server.
 
 The `skill_graph_*` handlers and the lower-level `lib/skill-graph/` database/query library are advisor-owned and package-local.

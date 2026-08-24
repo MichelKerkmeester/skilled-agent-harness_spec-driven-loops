@@ -1,6 +1,6 @@
 ---
 title: "Daemon-backed skill-advisor CLI surface"
-description: "Dual-stack CLI front door over the mk-skill-advisor daemon, with manifest-backed commands, warm-only fallback, and trusted mutation gating."
+description: "Dual-stack CLI front door over the system-skill-advisor daemon, with manifest-backed commands, warm-only fallback, and trusted mutation gating."
 trigger_phrases:
   - "daemon-backed skill-advisor CLI surface"
   - "skill-advisor cli"
@@ -38,7 +38,7 @@ Hook and plugin integrations use `--warm-only` so no prompt-time cold spawn occu
 | `.opencode/bin/skill-advisor.cjs` | Script | Stable executable shim for the skill-advisor CLI |
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | CLI entrypoint | IPC command execution, output rendering, and warm-only behavior |
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli-manifest.ts` | CLI manifest | Command definitions and trusted-mutation classification |
-| `.opencode/plugins/mk-skill-advisor.js` | Plugin bridge | OpenCode bridge using warm CLI fallback |
+| `.opencode/plugins/system-skill-advisor.js` | Plugin bridge | OpenCode bridge using warm CLI fallback |
 
 ### Validation And Tests
 

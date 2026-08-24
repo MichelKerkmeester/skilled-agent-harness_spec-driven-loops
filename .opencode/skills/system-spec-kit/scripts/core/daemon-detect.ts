@@ -33,7 +33,7 @@ interface LauncherLease {
 // ───────────────────────────────────────────────────────────────────
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
-const LAUNCHER_LEASE_FILE_NAME = '.mk-spec-memory-launcher.json';
+const LAUNCHER_LEASE_FILE_NAME = '.system-spec-memory-launcher.json';
 
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS

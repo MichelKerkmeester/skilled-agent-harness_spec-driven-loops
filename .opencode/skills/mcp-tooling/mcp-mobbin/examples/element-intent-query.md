@@ -59,7 +59,7 @@ For each returned screen (image correlated to its record by `index`):
 2. **Across apps:** compare those observations over the distinct `app_name` values in `screens[]` — repeats are signal (a convention), meaningful differences are signal too (a divergence worth noting).
 3. **Boundary:** anything not visible in a returned screen stays unknown. No detail tool exists to fetch interaction specs, and none is invented; unanswered questions are stated as unanswered.
 
-**Output discipline:** every observation cites its screen's `mobbin_url`; `failed[]` is reported as partial success; multiple results are comparison evidence, never a chooser — "which app does it best" is an `sk-design` verdict, not a transport output.
+**Output discipline:** every observation cites its screen's `mobbin_url`; `failed[]` is reported as partial success; multiple results are comparison evidence, never a measured Style Reference — a measured Style Reference of extracted design tokens is `sk-design-md-generator`'s output, not a transport output.
 
 ---
 

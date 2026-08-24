@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/014-template-conformance/004-design-md-generator/007-manual-testing-playbook",
   "description": "`manual-testing-playbook/` is the largest folder in `design-md-generator`: a root `manual-testing-playbook.md` plus 12 subdirectories",
   "keywords": [
@@ -10,7 +11,7 @@
     "plus",
     "subdirectories"
   ],
-  "lastUpdated": "2026-07-27T15:09:00.542Z",
+  "lastUpdated": "2026-08-15T14:40:58.299Z",
   "specId": "007",
   "folderSlug": "manual-testing-playbook",
   "parentChain": [
@@ -19,6 +20,5 @@
     "004-design-md-generator"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

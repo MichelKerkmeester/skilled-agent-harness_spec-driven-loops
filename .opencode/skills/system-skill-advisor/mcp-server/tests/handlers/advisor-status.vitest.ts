@@ -272,8 +272,8 @@ describe('advisor_status handler', () => {
     const overrideDir = mkdtempSync(join(tmpdir(), 'advisor-status-override-'));
     writeFileSync(join(overrideDir, 'skill-graph.sqlite'), 'not-a-sqlite-database-file-at-all-this-is-corrupt', 'utf8');
 
-    const previous = process.env.MK_SKILL_ADVISOR_DB_DIR;
-    process.env.MK_SKILL_ADVISOR_DB_DIR = overrideDir;
+    const previous = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+    process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = overrideDir;
     try {
       const status = readAdvisorStatus({ workspaceRoot: workspaceRootDir, checkArtifactIntegrity: true });
       // Corruption is read from the OVERRIDE artifact, not the healthy
@@ -282,9 +282,9 @@ describe('advisor_status handler', () => {
       expect(status.errors?.some((message) => message.includes('integrity check failed'))).toBe(true);
     } finally {
       if (previous === undefined) {
-        delete process.env.MK_SKILL_ADVISOR_DB_DIR;
+        delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
       } else {
-        process.env.MK_SKILL_ADVISOR_DB_DIR = previous;
+        process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = previous;
       }
     }
   });

@@ -7112,40 +7112,6 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/specs/system-code-graph/z_archive/013-tool-routing-enforcement/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/specs/system-code-graph/z_archive/014-session-start-injection-debug/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs-clean/README.md",

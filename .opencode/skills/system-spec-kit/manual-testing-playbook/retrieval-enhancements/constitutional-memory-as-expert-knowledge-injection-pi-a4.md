@@ -259,9 +259,9 @@ Command 3, inspect directive metadata, retrieval auto-surfaced constitutional me
         "id": 38292,
         "specFolder": "system-spec-kit",
         "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
-        "title": "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode mk-goal Plugin",
+        "title": "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode opencode-goal Plugin",
         "importanceTier": "constitutional",
-        "retrieval_directive": "Always surface when: rule applies — always resolved to the OpenCode markdown and instructed a call to `mk_goal()`, | Prioritize when: never existed: created as"
+        "retrieval_directive": "Always surface when: rule applies — always resolved to the OpenCode markdown and instructed a call to `opencode_goal()`, | Prioritize when: never existed: created as"
       },
       {
         "id": 16264,

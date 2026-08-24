@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata",
+  "description": "Phase 003 repairs the code paths broken by the 002 move, authors the standalone-root metadata (graph-metadata + leaf-manifest.config, generated",
+  "keywords": [
+    "phase",
+    "repairs",
+    "code",
+    "paths",
+    "broken",
+    "move",
+    "authors",
+    "standalone-root",
+    "metadata",
+    "graph-metadata",
+    "leaf-manifest",
+    "config"
+  ],
+  "lastUpdated": "2026-08-19T17:04:10.994Z",
+  "specId": "003",
+  "folderSlug": "standalone-rewire-and-metadata",
+  "parentChain": [
+    "sk-design",
+    "016-deprecate-sk-design-interface"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-08-26_06-52__next-steps.md"
+  ]
+}

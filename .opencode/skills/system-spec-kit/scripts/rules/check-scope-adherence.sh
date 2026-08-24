@@ -6,12 +6,12 @@
 # declared under its spec.md "Files to Change" section.
 #
 # Change-set contract (opt-in; the rule is a no-op when neither is set):
-#   MK_SCOPE_CHANGED_FILES  Whitespace/newline-separated list of repo-relative
+#   SYSTEM_SCOPE_CHANGED_FILES  Whitespace/newline-separated list of repo-relative
 #                           changed paths to audit directly.
-#   MK_SCOPE_BASE           A git ref (e.g. HEAD, a branch, or a SHA). When
-#                           MK_SCOPE_CHANGED_FILES is empty, the change-set is
-#                           derived from `git diff --name-only <MK_SCOPE_BASE>`.
-#   MK_SCOPE_CHANGED_FILES takes precedence when both are set.
+#   SYSTEM_SCOPE_BASE           A git ref (e.g. HEAD, a branch, or a SHA). When
+#                           SYSTEM_SCOPE_CHANGED_FILES is empty, the change-set is
+#                           derived from `git diff --name-only <SYSTEM_SCOPE_BASE>`.
+#   SYSTEM_SCOPE_CHANGED_FILES takes precedence when both are set.
 #
 # A packet's own canonical documents (spec.md, plan.md, tasks.md, checklist.md,
 # decision-record.md, implementation-summary.md, research.md, resource-map.md,
@@ -33,8 +33,8 @@ run_check() {
     RULE_DETAILS=()
     RULE_REMEDIATION=""
 
-    local changed_text="${MK_SCOPE_CHANGED_FILES:-}"
-    local scope_base="${MK_SCOPE_BASE:-}"
+    local changed_text="${SYSTEM_SCOPE_CHANGED_FILES:-}"
+    local scope_base="${SYSTEM_SCOPE_BASE:-}"
 
     if [[ -z "${changed_text//[[:space:]]/}" ]]; then
         if [[ -z "${scope_base//[[:space:]]/}" ]]; then

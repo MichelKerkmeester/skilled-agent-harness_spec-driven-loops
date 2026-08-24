@@ -1,0 +1,1153 @@
+{
+  "sessionId": "claudian-dr-20260822T114215Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-is-the-complete-schema-of-claudian-settings-json-all-keys-types-defaults",
+      "inboxId": null,
+      "text": "What is the complete schema of claudian-settings.json (all keys, types, defaults)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-how-does-claudian-write-manage-mcp-json-what-fields-does-it-set-and-what-wiring-",
+      "inboxId": null,
+      "text": "How does Claudian write/manage mcp.json — what fields does it set, and what wiring conventions does it follow?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-provider-configs-does-claudian-support-and-how-are-they-stored-settings-jso",
+      "inboxId": null,
+      "text": "What provider configs does Claudian support and how are they stored (settings.json vs claudian-settings.json)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-is-the-exact-schema-of-commands-and-skills-files-that-claudian-manages",
+      "inboxId": null,
+      "text": "What is the exact schema of commands and skills files that Claudian manages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-gotchas-edge-cases-or-undocumented-behaviors-exist-in-the-current-reference",
+      "inboxId": null,
+      "text": "What gotchas, edge cases, or undocumented behaviors exist in the current reference docs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-is-the-complete-schema-of-claudian-settings-json-all-keys-types-defaults",
+      "inboxId": null,
+      "text": "What is the complete schema of claudian-settings.json (all keys, types, defaults)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-how-does-claudian-write-manage-mcp-json-what-fields-does-it-set-and-what-wiring-",
+      "inboxId": null,
+      "text": "How does Claudian write/manage mcp.json — what fields does it set, and what wiring conventions does it follow?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-what-provider-configs-does-claudian-support-and-how-are-they-stored-settings-jso",
+      "inboxId": null,
+      "text": "What provider configs does Claudian support and how are they stored (settings.json vs claudian-settings.json)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-4-what-is-the-exact-schema-of-commands-and-skills-files-that-claudian-manages",
+      "inboxId": null,
+      "text": "What is the exact schema of commands and skills files that Claudian manages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-5-what-gotchas-edge-cases-or-undocumented-behaviors-exist-in-the-current-reference",
+      "inboxId": null,
+      "text": "What gotchas, edge cases, or undocumented behaviors exist in the current reference docs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-14-claudian-does-not-write-mcp-json-it-deletes-it-as-legacy-cleanup-deletelegacymcp",
+      "text": "**Claudian does NOT write `mcp.json` — it deletes it as legacy cleanup.** `deleteLegacyMcpConfig()` unconditionally deletes `.claude/mcp.json`. `[SOURCE: claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:3-8]` The Claude provider's AGENTS.md is explicit: \"Claude Code owns MCP configuration… the composition root invokes the Claude-owned legacy cleanup to delete `.claude/mcp.json`; no other Claudian code may read, write, inject, or migrate that path.\" `[SOURCE: claudian-repo/src/providers/claude/AGENTS.md:35]` MCP is now wired via the ACP (Agent Client Protocol) session, with `mcpServers: []` passed into session init. `[SOURCE: claudian-repo/src/providers/opencode/execution/OpencodeAcpSessionKernel.ts:288,303]` `[SOURCE: claudian-repo/src/providers/grok/execution/GrokExecutionSession.ts:633,658]` **This directly contradicts the shipped docs**, which state Claudian writes MCP entries into `.claude/mcp.json`.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-1-claudian-settings-path-migrated-to-claudian-the-current-path-is-vault-claudian-c",
+      "text": "**Claudian settings path migrated to `.claudian/`.** The current path is `<vault>/.claudian/claudian-settings.json`; `<vault>/.claude/claudian-settings.json` is the LEGACY path. The reference docs only document the legacy `.claude/claudian-settings.json` path. `[SOURCE: claudian-repo/src/core/bootstrap/storagePaths.ts:1-4]` Confirmed in installed binary: `main.js` contains both `.claudian/` and `.claude/claudian-settings.json`. `[SOURCE: main.js grep: .claudian/ present; .claude/claudian-settings.json present]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-15-claudian-writes-claude-settings-json-but-only-for-permissions-and-plugin-enablem",
+      "text": "**Claudian writes `.claude/settings.json` but ONLY for permissions and plugin enablement.** `CCSettingsStorage.save()` merges into existing `.claude/settings.json`, preserving unknown CC fields, and sets only `$schema`, `permissions`, and `enabledPlugins`. `[SOURCE: claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88]` `$schema` = `https://json.schemastore.org/claude-code-settings.json`. `CCPermissions` = `{ allow?, deny?, ask?, defaultMode?, additionalDirectories? }` where each of allow/deny/ask is `PermissionRule[]` (strings like `\"Bash(git *)\"`, `\"Read(*.md)\"`) and `defaultMode` is `'acceptEdits' | 'auto' | 'bypassPermissions' | 'default' | 'dontAsk' | 'plan'`. `[SOURCE: claudian-repo/src/providers/claude/types/settings.ts:24-58]` Plugin enablement is dual-written to `.claude/settings.json` `enabledPlugins` and `PluginManager.plugins[].enabled`. `[SOURCE: claudian-repo/src/providers/claude/AGENTS.md:36]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-2-complete-claudian-settings-json-schema-all-keys-types-defaults-the-claudiansetti",
+      "text": "**Complete `claudian-settings.json` schema (all keys + types + defaults).** The `ClaudianSettings` interface lists every key; `DEFAULT_CLAUDIAN_SETTINGS` gives defaults. See the full field inventory below. `[SOURCE: claudian-repo/src/core/types/settings.ts:127-201]` `[SOURCE: claudian-repo/src/app/settings/defaultSettings.ts:7-68]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-18-provider-configs-five-providers-opaque-per-provider-bags-providers-claude-defaul",
+      "text": "**Provider configs: five providers, opaque per-provider bags.** Providers = `claude` (default `settingsProvider`), `codex`, `grok`, `opencode`, `pi`. Each provider's defaults are seeded into `providerConfigs` at first save. `[SOURCE: claudian-repo/src/providers/defaultProviderConfigs.ts:8-15]` Provider defaults differ per provider and are NOT interchangeable (the docs already warn this):",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-17-skill-file-schema-skills-live-at-claude-skills-name-skill-md-source-claudian-rep",
+      "text": "**Skill file schema.** Skills live at `.claude/skills/<name>/SKILL.md`. `[SOURCE: claudian-repo/src/providers/claude/storage/SkillStorage.ts:5,17-18]` `SKILL.md` MUST start with YAML frontmatter containing a string `name` and string `description`, and `name` MUST equal the containing folder name. `[SOURCE: claudian-repo/src/core/skills/AgentSkillCodec.ts:39-55]` Name validation: lowercase letters/digits separated by single hyphens, ≤64 chars, not a YAML reserved word (`true/false/null/yes/no/on/off`). Description ≤1024 chars, non-empty. Instructions (body after frontmatter) must be non-empty. `[SOURCE: claudian-repo/src/core/skills/validateAgentSkill.ts:4-52]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-16-slash-command-file-schema-and-reversible-id-encoding-commands-live-one-per-file-",
+      "text": "**Slash command file schema and reversible ID encoding.** Commands live one-per-file at `.claude/commands/<safeName>.md`; `safeName` is the command name with any char outside `[a-zA-Z0-9_/-]` replaced by `-`. `[SOURCE: claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5,59-62]` The internal ID is a reversible encoding of the relative path: dashes → `-_`, slashes → `--`, prefixed `cmd-` (e.g. `a/b.md` → `cmd-a--b`). `[SOURCE: claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:75-89]` Frontmatter keys written/read: `name`, `description`, `argument-hint`, `allowed-tools` (list), `model`, `disable-model-invocation` (bool), `user-invocable` (bool), `context` (`'fork'`), `agent`, `hooks` (JSON). Kebab-case is the file format; camelCase aliases are accepted for back-compat. `[SOURCE: claudian-repo/src/utils/slashCommand.ts:59-152]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-24-storage-path-migration-gotcha-v2-2-4-sessions-also-moved-claude-sessions-legacy-",
+      "text": "**Storage-path migration gotcha (v2.2.4).** Sessions also moved: `.claude/sessions` (legacy) → `.claudian/sessions` (current), with `.inputs.json` and `.deleted.json` ledger suffixes. `[SOURCE: claudian-repo/src/core/bootstrap/storagePaths.ts:6-12]` An AI operating at the file layer must prefer `.claudian/` for Claudian-owned state and treat `.claude/*` as Claude Code's own (native) layout, not Claudian's.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-19-claude-enabled-true-safemode-acceptedits-clipath-clipathsbyhost-loadusersettings",
+      "text": "Claude: `enabled=true`, `safeMode='acceptEdits'`, `cliPath=''`, `cliPathsByHost={}`, `loadUserSettings=true`, `enableChrome=false`, `enableBangBash=false`, `customModels=''`, `defaultModel='opus'`, `lastModel='haiku'`, `modelEnvironmentType=''`, `titleModelEnvironmentType=''`, `environmentVariables=''`, `environmentHash=''`. `[SOURCE: claudian-repo/src/providers/claude/settings.ts:22-34]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-20-codex-enabled-false-safemode-workspace-write-reasoningsummary-detailed-enableult",
+      "text": "Codex: `enabled=false`, `safeMode='workspace-write'`, `reasoningSummary='detailed'`, `enableUltraEffort=false`, plus model-catalog and WSL/host-scoped fields. `[SOURCE: claudian-repo/src/providers/codex/settings.ts:105-119]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-12-commands-hiddenprovidercommands-a-record-string-string",
+      "text": "Commands: `hiddenProviderCommands` (a `Record<string,string[]>`).",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-5-content-excludedtags-mediafolder-systemprompt-persistentexternalcontextpaths",
+      "text": "Content: `excludedTags` ([]), `mediaFolder` (''), `systemPrompt` (''), `persistentExternalContextPaths` ([]).",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-6-environment-sharedenvironmentvariables-envsnippets-customcontextlimits-custommod",
+      "text": "Environment: `sharedEnvironmentVariables` (''), `envSnippets` ([]), `customContextLimits` ({}), `customModelAliases` ({}).",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-21-grok-enabled-false-planbasepermissionmode-normal-plus-host-scoped-catalogsbyhost",
+      "text": "Grok: `enabled=false`, `planBasePermissionMode='normal'`, plus host-scoped `catalogsByHost`. `[SOURCE: claudian-repo/src/providers/grok/settings.ts:34-45]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-8-i18n-locale-en",
+      "text": "i18n: `locale` ('en').",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-3-identity-security-username-permissionmode-yolo-plan-normal-default-yolo",
+      "text": "Identity/security: `userName` (''), `permissionMode` (`'yolo'` | `'plan'` | `'normal'`, default `yolo`).",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-4-model-thinking-model-haiku-thinkingbudget-off-effortlevel-default-reasoning-valu",
+      "text": "Model/thinking: `model` ('haiku'), `thinkingBudget` ('off'), `effortLevel` (DEFAULT_REASONING_VALUE), `serviceTier` ('default'), `enableAutoTitleGeneration` (true), `titleGenerationLocale` (''), `titleGenerationModel` ('').",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-22-opencode-enabled-false-environmentvariables-opencode-enable-exa-1-selectedmode-v",
+      "text": "OpenCode: `enabled=false`, `environmentVariables='OPENCODE_ENABLE_EXA=1'`, `selectedMode=''`, `visibleModels=[]`. `[SOURCE: claudian-repo/src/providers/opencode/settings.ts:38-47]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-23-pi-enabled-false-toolmode-all-visiblemodels-source-claudian-repo-src-providers-p",
+      "text": "Pi: `enabled=false`, `toolMode='all'`, `visibleModels=[]`. `[SOURCE: claudian-repo/src/providers/pi/settings.ts:27-36]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-9-provider-owned-providerconfigs-a-providerconfigmap-opaque-per-provider-bags-keye",
+      "text": "Provider-owned: `providerConfigs` (a `ProviderConfigMap` — opaque per-provider bags keyed by provider id), `settingsProvider` ('claude'), `lastSelectedChatModel` (null), `savedProviderModel/Effort/ServiceTier/ThinkingBudget/PermissionMode` (each `Partial<Record<string,string>>`), `pendingProviderSessionInvalidations` ({}).",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-10-state-lastcustommodel",
+      "text": "State: `lastCustomModel` ('').",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-13-the-interface-also-allows-key-string-unknown-extension-fields",
+      "text": "The interface also allows `[key: string]: unknown` extension fields.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-11-ui-prefs-maxwarmagentprocesses-5-enableautoscroll-true-defermathrenderingdurings",
+      "text": "UI prefs: `maxWarmAgentProcesses` (5), `enableAutoScroll` (true), `deferMathRenderingDuringStreaming` (true), `expandFileEditsByDefault` (false), `chatViewPlacement` ('right-sidebar' | 'left-sidebar' | 'main-tab'), `enableDualPane` (true), `dualPaneSide` ('right'), `restoreTabsOnStartup` (true), `collabEnabled` (false), `collabProjectsFolder` (default collab folder), `collabGitPath` (''), `sessionManagerOrganization` ('list' | 'linked-content'), `sessionManagerSort` ('last-updated' | 'created'), `pinnedLinkedContentPaths` ([]).",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-1-7-ui-keyboardnavigation-scrollupkey-w-scrolldownkey-s-focusinputkey-i-requirecomma",
+      "text": "UI: `keyboardNavigation` ({scrollUpKey:'w', scrollDownKey:'s', focusInputKey:'i'}), `requireCommandOrControlEnterToSend` (false).",
+      "addedAtIteration": 1,
+      "sources": [
+        "`claudian-repo/src/core/types/settings.ts:120-201` (ClaudianSettings schema)",
+        "`claudian-repo/src/app/settings/defaultSettings.ts:7-68` (defaults)",
+        "`claudian-repo/src/core/bootstrap/storagePaths.ts:1-12` (path migration)",
+        "`claudian-repo/src/providers/claude/storage/LegacyMcpConfigCleanup.ts:1-9` (mcp.json deletion)",
+        "`claudian-repo/src/providers/claude/AGENTS.md:34-39` (MCP ownership + settings merge scope)",
+        "`claudian-repo/src/providers/claude/storage/CCSettingsStorage.ts:12-88` (.claude/settings.json merge)",
+        "`claudian-repo/src/providers/claude/types/settings.ts:24-78` (CCPermissions/CCSettings)",
+        "`claudian-repo/src/providers/claude/storage/SlashCommandStorage.ts:5-95` (command paths + ID encoding)",
+        "`claudian-repo/src/providers/claude/storage/SkillStorage.ts:5-60` (skill paths)",
+        "`claudian-repo/src/core/skills/AgentSkillCodec.ts:39-109` (SKILL.md frontmatter)",
+        "`claudian-repo/src/core/skills/validateAgentSkill.ts:4-52` (skill validation)",
+        "`claudian-repo/src/utils/slashCommand.ts:59-152` (command serialize/parse)",
+        "`claudian-repo/src/providers/defaultProviderConfigs.ts:8-15` (provider list)",
+        "`claudian-repo/src/providers/{claude,codex,grok,opencode,pi}/settings.ts` (per-provider defaults)",
+        "Installed `main.js` v2.2.4 (grep: `.claudian/`, `.claude/mcp.json`, `.claude/claudian-settings.json` present)",
+        "Installed `manifest.json` (id `realclaudian`, v2.2.4, `isDesktopOnly:true`)"
+      ]
+    },
+    {
+      "id": "finding-2-21-claudian-md",
+      "text": "**`claudian.md`**",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-7-data-model-md",
+      "text": "**`data-model.md`**",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-24-troubleshooting-md",
+      "text": "**`troubleshooting.md`**",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-17-workflows-md",
+      "text": "**`workflows.md`**",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-6-line-targeted-doc-update-recommendations-per-shipped-file-research-only-not-appl",
+      "text": "**Line-targeted doc-update recommendations** (per shipped file; research-only, not applied):",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-5-live-claude-settings-json-exhibits-exactly-the-narrow-write-scope-ccsettingsstor",
+      "text": "**Live `~/.claude/settings.json` exhibits exactly the narrow write scope `CCSettingsStorage.save()` implements.** The file contains `permissions` (`allow: []`, `defaultMode: \"auto\"`) and `enabledPlugins` (3 entries: `gitkraken-hooks@gitkraken`, `swift-lsp@claude-plugins-official`, `warp@claude-code-warp`) alongside Claude Code's own keys (`env`, `hooks`, `model`, `statusLine`, `theme`, `tui`, …) — merge-with-preservation, set-only-`$schema`/`permissions`/`enabledPlugins`, confirmed live. Note the two independent permission axes: Claudian's own `permissionMode` (default `yolo`, stored in `.claudian/claudian-settings.json`) is distinct from Claude Code's `settings.json` `permissions.defaultMode` (live value `auto`). `[SOURCE: bash: python3 json parse of ~/.claude/settings.json — top-level keys, permissions.defaultMode=auto, enabledPlugins entries]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-2-live-claudian-settings-json-matches-the-extracted-schema-exactly-the-on-disk-fil",
+      "text": "**Live `claudian-settings.json` matches the extracted schema exactly.** The on-disk file has 45 top-level keys, all matching the `ClaudianSettings` interface keys mapped in iteration 1 (from `chatViewPlacement` through `userName`). `providerConfigs` is seeded with all five providers (`claude`, `codex`, `grok`, `opencode`, `pi`); `settingsProvider=claude`, `permissionMode=yolo`, `model=haiku` — exactly the documented defaults. `[SOURCE: bash: python3 json parse of vault/.claudian/claudian-settings.json — top-level keys + providerConfigs keys + selected values]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-1-live-vault-confirms-the-migration-claudian-exists-claude-does-not-exist-at-vault",
+      "text": "**Live vault confirms the migration: `.claudian/` exists, `.claude/` does not exist at vault level.** The vault contains `.claudian/claudian-settings.json` and `.claudian/opencode/metadata/`, and NO `.claude/` folder at all — every checked vault-level `.claude/*` path (`mcp.json`, `settings.json`, `commands/`, `skills/`) returns ENOENT. This is direct on-disk confirmation that v2.2.4 uses `.claudian/` as the Claudian-owned state root; the legacy `.claude/claudian-settings.json` path is not present in this vault. `[SOURCE: bash: ls \"<vault>/.claudian/\" → claudian-settings.json + opencode/; ls \"<vault>/.claude/\" → No such file or directory]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-3-provider-scoped-runtime-metadata-lives-under-claudian-provider-metadata-a-path-t",
+      "text": "**Provider-scoped runtime metadata lives under `.claudian/<provider>/metadata/` — a path the docs never mention.** `.claudian/opencode/metadata/` contains `config.json` (493 B) and `system.md` (2,430 B). Claudian keeps per-provider metadata under its own `.claudian/` root, not under `.claude/`. `[SOURCE: bash: ls -laR vault/.claudian/ — opencode/metadata/{config.json,system.md}]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-4-user-level-claude-remains-claude-code-s-native-layout-there-is-no-claudian-the-h",
+      "text": "**User-level `~/.claude/` remains Claude Code's native layout; there is no `~/.claudian/`.** The home `.claude/` holds the full Claude Code tree (`sessions/`, `plans/`, `plugins/`, `projects/`, `skills/`, `settings.json`, `history.jsonl`, …). `~/.claude/mcp.json` does NOT exist — consistent with the legacy-cleanup deletion applying at user scope too (or the file never being authored there). `~/.claudian/` does not exist at user level → Claudian's settings are vault-scoped, while Claude Code's native config stays user-scoped. `[SOURCE: bash: ls ~/.claude/ (full native tree); ls ~/.claude/mcp.json → ENOENT; ls ~/.claudian/ → ENOENT]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-15-l110-125-5-mcp-server-configuration-rewrite-state-that-claudian-v2-2-4-deletes-c",
+      "text": "L110-125 (§5 MCP server configuration): REWRITE — state that Claudian v2.2.4 DELETES `.claude/mcp.json` (`LegacyMcpConfigCleanup.ts`; \"Claude Code owns MCP configuration… no other Claudian code may read, write, inject, or migrate that path\") and wires MCP via ACP session init. The \"write an entry into `.claude/mcp.json`\" recipe is wrong for this version.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-20-l118-149-5-connect-an-mcp-server-rewrite-do-not-author-vault-level-claude-mcp-js",
+      "text": "L118-149 (§5 CONNECT AN MCP SERVER): REWRITE — do not author vault-level `.claude/mcp.json` (v2.2.4 deletes it). Correct route: configure MCP in the provider CLI's own user-level config (e.g. `claude mcp add` / `~/.claude.json`), since Claude Code owns MCP configuration and the session init passes `mcpServers: []`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-27-l126-checkpoint-mcp-declared-provider-native-redefine-against-the-acp-reality-de",
+      "text": "L126 (checkpoint `mcp_declared_provider_native`): redefine against the ACP reality (declared in the CLI's user-level config, not a file Claudian will delete).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-16-l138-6-table-claude-sessions-note-sessions-moved-to-claudian-sessions",
+      "text": "L138 (§6 table): `.claude/sessions` → note sessions moved to `.claudian/sessions`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-25-l30-symptom-table-mcp-tool-not-available-update-cause-v2-2-4-deletes-vault-level",
+      "text": "L30 (symptom table, \"MCP tool not available\"): update cause — v2.2.4 deletes vault-level `.claude/mcp.json`; MCP is wired via ACP, so a vault-level mcp.json authored by hand will disappear.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-8-l32-storage-model-table-claudian-settings-row-replace-vault-claude-claudian-sett",
+      "text": "L32 (storage-model table, \"Claudian settings\" row): replace `<vault>/.claude/claudian-settings.json (observed)` with `<vault>/.claudian/claudian-settings.json` as current; mark `.claude/claudian-settings.json` legacy. Drop the \"VERIFY exact keys\" — keys are now byte-verified (45-key schema).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-18-l35-backup-discipline-remove-or-annotate-mcp-json-from-the-backup-list-claudian-",
+      "text": "L35 (backup discipline): remove or annotate `mcp.json` from the backup list — Claudian deletes it; backing it up and restoring it fights the plugin's cleanup.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-22-l36-1-overview-add-the-claudian-current-vs-claude-claudian-settings-json-legacy-",
+      "text": "L36 (§1 overview): add the `.claudian/` (current) vs `.claude/claudian-settings.json` (legacy) path split to the identity/context table.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-9-l36-table-mcp-servers-row-claude-mcp-json-observed-is-wrong-for-v2-2-4-claudian-",
+      "text": "L36 (table, \"MCP servers\" row): `.claude/mcp.json (observed)` is WRONG for v2.2.4 — Claudian deletes that file. Replace with an ACP-wiring note (see L110-125).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-10-l42-scope-model-add-claudian-as-the-vault-level-claudian-owned-root-alongside-th",
+      "text": "L42 (scope model): add `.claudian/` as the vault-level Claudian-owned root alongside the provider-native `.claude/`/`.codex/` etc.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-26-l43-and-l111-diagnosis-recovery-clarify-provider-s-native-mcp-config-means-the-u",
+      "text": "L43 and L111 (diagnosis/recovery): clarify \"provider's native MCP config\" means the user-level, CLI-owned config — never vault-level `.claude/mcp.json` (deleted by Claudian).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-11-l47-core-contract-claudian-owns-no-proprietary-storage-needs-a-caveat-claudian-d",
+      "text": "L47 (core contract, \"Claudian owns no proprietary storage\"): needs a caveat — Claudian DOES own `.claudian/` (settings, sessions, provider metadata). Commands/skills/config survive uninstall, but `claudian-settings.json` is Claudian's own, not the provider CLI's.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-19-l50-2-path-claudian-claudian-settings-json",
+      "text": "L50 (§2): path → `.claudian/claudian-settings.json`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-12-l55-67-2-slash-commands-resolve-the-verify-document-the-full-frontmatter-key-set",
+      "text": "L55-67 (§2 Slash commands): resolve the VERIFY — document the full frontmatter key set (`name`, `description`, `argument-hint`, `allowed-tools`, `model`, `disable-model-invocation`, `user-invocable`, `context`, `agent`, `hooks`), the `safeName` derivation (chars outside `[a-zA-Z0-9_/-]` → `-`), and the reversible internal ID encoding (`cmd-` prefix, dash→`-_`, slash→`--`).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-23-l65-guardrails-relax-never-invent-an-exact-key-as-verified-fact-the-key-set-is-n",
+      "text": "L65 (guardrails): relax \"never invent an exact key as verified fact\" — the key set is now byte-verified from the repo source at the installed version plus the live vault; replace with a pointer to the verified schema.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-13-l71-88-3-skills-resolve-the-verify-document-name-must-equal-folder-name-lowercas",
+      "text": "L71-88 (§3 Skills): resolve the VERIFY — document `name`-must-equal-folder-name, lowercase-letters-digits-single-hyphens, ≤64 chars, no YAML reserved words (`true/false/null/yes/no/on/off`), description ≤1024 non-empty, non-empty body.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    },
+    {
+      "id": "finding-2-14-l95-4-update-the-claudian-settings-path-to-claudian-and-drop-the-verify-on-keys",
+      "text": "L95 (§4): update the Claudian settings path to `.claudian/` and drop the VERIFY on keys.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`references/plugins/claudian/data-model.md` (lines 19, 32, 36, 42, 47, 55-67, 71-88, 95, 110-125, 138)",
+        "`references/plugins/claudian/workflows.md` (lines 35, 50, 118-149)",
+        "`references/plugins/claudian/claudian.md` (lines 36, 65)",
+        "`references/plugins/claudian/troubleshooting.md` (lines 30, 43, 111, 126)",
+        "Live vault: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester/.claudian/` (ls -laR; claudian-settings.json parsed — 45 keys, 5 providers)",
+        "Live user scope: `~/.claude/` (ls -la; settings.json parsed — permissions + enabledPlugins among native keys; mcp.json ENOENT; ~/.claudian/ ENOENT)",
+        "Iteration 1 findings (iterations/iteration-001.md) for the source-derived facts being reconciled"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-68fc6453649b",
+      "text": "None. The repo source (TypeScript, manifest 2.2.4 == installed) resolved every VERIFY-flagged unknown directly. No approach was exhausted this iteration.",
+      "contentHash": "68fc6453649b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0a4ba3499f0c",
+      "text": "Reading only the compiled `main.js` (5 MB, minified) as the sole source — the unminified TypeScript repo at the same version is the cleaner, equally-authoritative source; `main.js` grep was used to confirm the same strings are present in the shipped binary, not to extract schemas.",
+      "contentHash": "0a4ba3499f0c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-00d680a6dd5f",
+      "text": "Treating the repo README as a schema source — it documents the auto-detect-first provider flow but not the on-disk JSON shapes; schemas had to come from `src/`.",
+      "contentHash": "00d680a6dd5f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c1e777e4cdd8",
+      "text": "Editing the shipped reference docs — out of scope by dispatch constraint (research-only); all corrections above are emitted as recommendations for the workflow's later edit phase.",
+      "contentHash": "c1e777e4cdd8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-0ea567ade5a0",
+      "text": "None this iteration.",
+      "contentHash": "0ea567ade5a0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4b26d5a770e9",
+      "text": "Re-deriving schemas from the repo — already done in iteration 1 (BLOCKED approach per strategy: don't re-read `main.js`-only or README-only).",
+      "contentHash": "4b26d5a770e9",
+      "addedAtIteration": 2
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 51,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.75,
+    "coverageBySources": {
+      "code": 17,
+      "github.com": 1,
+      "other": 25
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

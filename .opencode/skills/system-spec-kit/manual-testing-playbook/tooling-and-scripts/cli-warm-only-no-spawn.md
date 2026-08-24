@@ -13,7 +13,7 @@ expected_leaf_resources: []
 
 This scenario verifies the warm-only contract all prompt-time hook integrations rely on: a `--warm-only` CLI call probes the daemon socket first and, when no daemon is reachable, exits 75 (`EXIT_RETRYABLE`) with a `backend unavailable` error instead of auto-spawning the launcher. The sandbox uses a fresh empty socket directory, so the probe always misses and the no-spawn invariant is directly observable — the socket directory must stay empty after the calls.
 
-All three CLIs share the contract (`SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`, `SPECKIT_CODE_INDEX_CLI_WARM_ONLY`, and `MK_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` set the default; `--no-warm-only` re-enables auto-spawn per call).
+All three CLIs share the contract (`SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`, `SPECKIT_CODE_INDEX_CLI_WARM_ONLY`, and `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` set the default; `--no-warm-only` re-enables auto-spawn per call).
 
 ---
 

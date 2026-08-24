@@ -1,6 +1,6 @@
 ---
 title: "SOURCE — May 20, 2026 nomic-only re-bench"
-description: "Wayfinding pointer for the May 20, 2026 mk-spec-memory re-bench under the nomic-embed-text-v1.5 default (ADR-013) post the 016/002/016-019 fix arc."
+description: "Wayfinding pointer for the May 20, 2026 system-spec-memory re-bench under the nomic-embed-text-v1.5 default (ADR-013) post the 016/002/016-019 fix arc."
 trigger_phrases:
   - "spec memory re-bench 2026-05-20 source"
   - "nomic re-bench pointer"

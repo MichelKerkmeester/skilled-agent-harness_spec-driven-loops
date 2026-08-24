@@ -105,7 +105,7 @@ Six-tier system for prioritizing memory relevance:
 
 > **Note:** MCP tool names use plain names such as `memory_search`, `memory_save`, and `checkpoint_create`.
 
-### Tool Reference (41 `mk-spec-memory` MCP tools)
+### Tool Reference (41 `system-spec-memory` MCP tools)
 
 The public MCP surface is 41 local descriptors in `TOOL_DEFINITIONS` from `mcp-server/tool-schemas.ts`.
 Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, not this registry.

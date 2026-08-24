@@ -53,8 +53,8 @@ It resolves the live branch (`--live`, else `$SPECKIT_LIVE_BRANCH`) and the remo
 1. `git fetch` the live branch.
 2. If HEAD is already contained in the live tip → nothing to publish.
 3. If the live tip is an ancestor of HEAD → **fast-forward publish** (`git push origin HEAD:<live>`).
-4. Otherwise the live branch moved → **rebase** the session's commits onto it, then publish. The rebase runs only when tracked files are clean; untracked scratch files never block it.
-5. Any rebase conflict → `git rebase --abort` (restoring the exact pre-sync state) and a printed manual-resolution path; the commit stays local and unpublished.
+4. Otherwise the live branch moved → **rebase** the session's commits onto it, then publish. The rebase runs only when tracked files are clean, and only when no rebase is already in progress: a pre-existing `rebase-merge`/`rebase-apply` state directory (a stale or foreign rebase) is refused untouched, because aborting a rebase this hook did not start would rewind the branch to that rebase's orig-head and drop every commit made since. Untracked scratch files never block the rebase.
+5. Any rebase conflict → `git rebase --abort`, then an assertion that HEAD returned to the exact pre-rebase commit — restored with `git reset --hard` if the abort moved it — and a printed manual-resolution path; the commit stays local and unpublished.
 
 `--auto` (used by the hook) makes every exit code `0` so a blocked publish never fails the triggering commit. A push race retries the whole fetch→publish loop a bounded number of times.
 
@@ -70,7 +70,7 @@ Polls the live branch and fast-forwards the checkout when the local tip is an an
 
 Every runtime backgrounds the same script at SessionStart, so primary-checkout correctness does not depend on a long-running follower surviving between sessions. The script acts only when `git-dir` and `git-common-dir` resolve to the same path and the checkout is on the resolved live branch. Linked worktrees, detached HEADs, and intentional feature branches are zero-exit no-ops.
 
-A behind-only checkout fast-forwards through git's own `--ff-only`, which refuses to overwrite a modified tracked file — so a checkout carrying unrelated work-in-progress still follows for disjoint commits and is never clobbered on a collision. Untracked build output is intentionally ignored. Rebasing is the hard clean-tree boundary: because it rewrites commits across the working tree, unpublished local commits are rebased onto `origin/<live>` and published only when the tracked tree is clean; otherwise they are left preserved and unpublished. A conflict aborts and asserts the original HEAD and clean tracked state; a rejected push classifies the stable `[gate:<name>]` marker and leaves the local commit preserved but unpublished.
+A behind-only checkout fast-forwards through git's own `--ff-only`, which refuses to overwrite a modified tracked file — so a checkout carrying unrelated work-in-progress still follows for disjoint commits and is never clobbered on a collision. Untracked build output is intentionally ignored. Rebasing is the hard clean-tree boundary: because it rewrites commits across the working tree, unpublished local commits are rebased onto `origin/<live>` and published only when the tracked tree is clean; otherwise they are left preserved and unpublished. A pre-existing `rebase-merge`/`rebase-apply` state directory is refused untouched — the reconcile never aborts a rebase it did not start, so it cannot rewind the branch to a foreign orig-head and silently drop a just-made commit. A conflict aborts, then asserts HEAD returned to the exact pre-rebase commit — restoring it with `git reset --hard` if the abort moved it — and clean tracked state; a rejected push classifies the stable `[gate:<name>]` marker and leaves the local commit preserved but unpublished.
 
 The common-dir single-flight lock prevents concurrent SessionStarts from racing and treats a short-TTL stale lock as free. Fetch and push are time-bounded. Skips, advances, publications, and blocks append to `git-primary-reconcile.log`; every internal outcome exits zero so SessionStart cannot be blocked.
 
@@ -130,6 +130,7 @@ The naming and remote-permission helpers are one shared dependency. If that help
 |-----------|-----|
 | No session can clobber another's published work | Publication is **non-force**; a moved live branch is rebased onto, never overwritten |
 | A conflicting commit never half-applies | Any rebase conflict aborts cleanly, restoring the exact pre-sync branch and tree; the commit stays local |
+| A commit is never lost to a foreign rebase | A pre-existing (stale or killed) rebase state directory is refused untouched, never aborted; and any abort that moves HEAD off the pre-rebase commit is undone with `git reset --hard` before the outcome is reported |
 | Autosync never breaks a commit | `--auto` returns `0` on every path; the hook is non-fatal |
 | The primary checkout never autosyncs | The triple gate is satisfied only by wrapper-launched sessions in a linked worktree |
 | Un-committed work is never touched | Fast-forward follow uses git's own `--ff-only`, which refuses to overwrite a modified tracked file; the rebase/publish paths still require a clean tracked tree; untracked build output is ignored |
@@ -143,16 +144,16 @@ The naming and remote-permission helpers are one shared dependency. If that help
 
 Live-sync is **on by default** in the main checkout. No setup step is required: SessionStart self-heals the git hook install, backgrounds a bounded reconcile, and backgrounds the optional follower. All three legs are primary-checkout gated and never reconcile a linked session worktree.
 
-1. **Nothing to install** - when the hook symlinks are missing, `check-git-hooks.sh` runs the installer itself from the main checkout (self-heal). `MK_LIVE_SYNC_DISABLED=1` stops this leg.
+1. **Nothing to install** - when the hook symlinks are missing, `check-git-hooks.sh` runs the installer itself from the main checkout (self-heal). `SYSTEM_LIVE_SYNC_DISABLED=1` stops this leg.
 
-2. **Nothing to start** - the SessionStart chain backgrounds `git-primary-reconcile.sh` for reliable convergence and runs `git-live-follow.sh --start` for near-real-time following. `MK_PRIMARY_RECONCILE_DISABLED=1` stops only the reconcile leg; `MK_LIVE_FOLLOW_DISABLED=1` stops only the follower.
+2. **Nothing to start** - the SessionStart chain backgrounds `git-primary-reconcile.sh` for reliable convergence and runs `git-live-follow.sh --start` for near-real-time following. `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` stops only the reconcile leg; `SYSTEM_LIVE_FOLLOW_DISABLED=1` stops only the follower.
 
 3. **Glance at what's outstanding** any time:
    ```bash
    bash .opencode/bin/worktree-status.sh --fetch
    ```
 
-4. **Opt out** - the one master flag `MK_LIVE_SYNC_DISABLED=1` (truthy `1`/`true`/`on`) disables the whole loop: autosync publish, SessionStart reconcile, follower auto-start, and self-heal install. It honors the shared hook kill-switch convention, so `MK_HOOKS_DISABLED=1` or a line in `.opencode/hooks/hook-flags.env` also stops it. Finer per-leg switches stay available: `SPECKIT_AUTOSYNC=0` for a single publish, `MK_PRIMARY_RECONCILE_DISABLED=1` for SessionStart reconciliation, and `MK_LIVE_FOLLOW_DISABLED=1` for the follower alone.
+4. **Opt out** - the one master flag `SYSTEM_LIVE_SYNC_DISABLED=1` (truthy `1`/`true`/`on`) disables the whole loop: autosync publish, SessionStart reconcile, follower auto-start, and self-heal install. It honors the shared hook kill-switch convention, so `SYSTEM_HOOKS_DISABLED=1` or a line in `.opencode/hooks/hook-flags.env` also stops it. Finer per-leg switches stay available: `SPECKIT_AUTOSYNC=0` for a single publish, `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` for SessionStart reconciliation, and `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower alone.
 
 ---
 

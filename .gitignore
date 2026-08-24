@@ -120,6 +120,7 @@ dist/
 .opencode/skills/system-deep-loop/runtime/database/*.sqlite-shm
 .opencode/skills/system-deep-loop/runtime/database/*.sqlite-wal
 .opencode/skills/system-deep-loop/runtime/database/*.sqlite.bak*
+.opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl
 
 # ───────────────────────────────────────────
 # Database: system-skill-advisor
@@ -129,8 +130,8 @@ dist/
 .opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite
 .opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite-*
 .opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite.bak*
-.opencode/skills/system-skill-advisor/mcp-server/database/.mk-skill-advisor-launcher.json
-.opencode/skills/system-skill-advisor/mcp-server/database/.mk-skill-advisor-launcher.lockdir/
+.opencode/skills/system-skill-advisor/mcp-server/database/.system-skill-advisor-launcher.json
+.opencode/skills/system-skill-advisor/mcp-server/database/.system-skill-advisor-launcher.lockdir/
 .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.json
 .opencode/skills/system-skill-advisor/mcp_server/
 
@@ -149,8 +150,8 @@ dist/
 .opencode/skills/system-spec-kit/mcp-server/database/.maintenance-active.json
 .opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json
 .opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json.processing-*
-.opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.json
-.opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.lockdir/
+.opencode/skills/system-spec-kit/mcp-server/database/.system-spec-memory-launcher.json
+.opencode/skills/system-spec-kit/mcp-server/database/.system-spec-memory-launcher.lockdir/
 .opencode/skills/system-spec-kit/mcp-server/database/.unclean-shutdown
 .opencode/skills/system-spec-kit/mcp-server/dist/database/
 .opencode/skills/system-spec-kit/shared/mcp-server/database/*.sqlite
@@ -301,3 +302,8 @@ specs/z-future
 # Hook configuration
 # ───────────────────────────────────────────
 .opencode/hooks/hook-flags.env
+
+# ───────────────────────────────────────────
+# Skill-advisor runtime launcher state (transient build/launch records)
+# ───────────────────────────────────────────
+**/.mk-skill-advisor-launcher.json

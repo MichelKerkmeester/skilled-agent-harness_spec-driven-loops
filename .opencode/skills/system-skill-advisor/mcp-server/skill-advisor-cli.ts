@@ -18,7 +18,7 @@ import {
 
 const JSON_RPC_PROTOCOL_VERSION = '2025-06-18';
 const DEFAULT_TIMEOUT_MS = 30_000;
-const DEFAULT_SOCKET_DIR = '/tmp/mk-skill-advisor';
+const DEFAULT_SOCKET_DIR = '/tmp/system-skill-advisor';
 const ADVISOR_VALIDATE_MAX_ATTEMPTS = 3;
 const ADVISOR_VALIDATE_RETRY_BASE_DELAY_MS = 250;
 const RESERVED_COMMANDS = new Set(['list-tools', 'completion']);
@@ -177,12 +177,12 @@ function findRepoPaths(startFile = currentModulePath()): RepoPaths {
 
   while (true) {
     const directOpencodeDir = path.basename(current) === '.opencode' ? current : path.join(current, '.opencode');
-    const launcherPath = path.join(directOpencodeDir, 'bin', 'mk-skill-advisor-launcher.cjs');
+    const launcherPath = path.join(directOpencodeDir, 'bin', 'system-skill-advisor-launcher.cjs');
     const bridgePath = path.join(directOpencodeDir, 'bin', 'lib', 'launcher-ipc-bridge.cjs');
     if (existsSync(launcherPath) && existsSync(bridgePath)) {
       const repoRoot = path.dirname(directOpencodeDir);
       const mcpServerDir = path.join(directOpencodeDir, 'skills', 'system-skill-advisor', 'mcp-server');
-      const configuredDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+      const configuredDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
       return {
         opencodeDir: directOpencodeDir,
         repoRoot,
@@ -350,7 +350,7 @@ function parseJsonObject(raw: string): Record<string, unknown> {
 }
 
 function envTrustedDefault(): boolean {
-  return process.env.MK_SKILL_ADVISOR_CLI_TRUSTED === '1'
+  return process.env.SYSTEM_SKILL_ADVISOR_CLI_TRUSTED === '1'
     || process.env.SPECKIT_SKILL_ADVISOR_CLI_TRUSTED === '1';
 }
 
@@ -365,7 +365,7 @@ function envFlagEnabled(name: string): boolean {
 // prompt-time additionally forbids shared-state mutations regardless of trusted authority,
 // because a hook process must never be the thing that scans/rebuilds the skill graph.
 function defaultPromptTime(): boolean {
-  return envFlagEnabled('MK_SKILL_ADVISOR_CLI_PROMPT_TIME')
+  return envFlagEnabled('SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME')
     || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME')
     || envFlagEnabled('SPECKIT_CLI_PROMPT_TIME')
     || envFlagEnabled('OPENCODE_PROMPT_TIME')
@@ -374,7 +374,7 @@ function defaultPromptTime(): boolean {
 }
 
 function defaultWarmOnly(): boolean {
-  return envFlagEnabled('MK_SKILL_ADVISOR_CLI_WARM_ONLY')
+  return envFlagEnabled('SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY')
     || envFlagEnabled('SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY')
     || defaultPromptTime();
 }
@@ -702,7 +702,7 @@ function assertTrustedForMutation(toolName: string, args: Record<string, unknown
     throw new CliUsageError(`${toolName} is blocked at prompt-time (mutations require a non-prompt-time, trusted invocation)`);
   }
   if (trusted) return;
-  throw new CliUsageError(`${toolName} requires --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1`);
+  throw new CliUsageError(`${toolName} requires --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`);
 }
 
 function validateCommand(parsed: ParsedCommand): { readonly tool: SkillAdvisorCliToolDefinition; readonly args: Record<string, unknown> } | null {
@@ -749,7 +749,7 @@ ${JSON.stringify(tool.inputSchema, null, 2)}`;
     .map((entry) => `  ${entry.command} (${entry.kebabCommand}, ${entry.camelCommand})`)
     .join('\n');
 
-  return `skill-advisor - daemon-backed CLI for mk-skill-advisor
+  return `skill-advisor - daemon-backed CLI for system-skill-advisor
 
 Usage:
   skill-advisor list-tools [--format json|text|jsonl] [--compact|--names-only]
@@ -770,7 +770,7 @@ Examples:
   skill-advisor skill_graph_scan --trusted --format text
 
 Trusted context:
-  Mutation commands require --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1.
+  Mutation commands require --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1.
   Calls are sent as untrusted by default.
 
 Exit codes:
@@ -1244,7 +1244,7 @@ async function callTool(toolName: string, args: Record<string, unknown>, timeout
   ensureSocketEnvironment();
   const paths = findRepoPaths();
   const bridge = loadBridge(paths);
-  const socketPath = bridge.getIpcSocketPath('mk-skill-advisor', { dbDir: paths.dbDir });
+  const socketPath = bridge.getIpcSocketPath('system-skill-advisor', { dbDir: paths.dbDir });
   if (socketPathTooLong(socketPath)) {
     throw new CliProtocolError(`IPC socket path exceeds the Darwin sun_path limit: ${socketPath}`);
   }

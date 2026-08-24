@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/014-mcp-notion/001-deep-research",
+  "spec_folder": "mcp-tooling/014-mcp-notion/001-deep-research",
+  "parent_id": "mcp-tooling/014-mcp-notion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "014 deep research notion mcp",
+      "notion mcp coverage evaluation",
+      "mcp-notion adopt vs build",
+      "official notion mcp 24 tools parity",
+      "notion research plan",
+      "deep research notion mcp",
+      "mcp-notion phase 1 plan",
+      "notion research tasks",
+      "mcp-notion phase 1 tasks",
+      "deep research notion tasks",
+      "mcp-notion research verdict",
+      "notion mcp adopt vs build summary"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "notion",
+      "mcp",
+      "coverage",
+      "evaluation",
+      "mcp-notion",
+      "adopt",
+      "official",
+      "tools",
+      "parity",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Drive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Seed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-devin",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "citations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcp-tooling` hub covers ClickUp, Chrome DevTools, Obsidian, and several design transports, but has no Notion support",
+    "created_at": "2026-08-21T10:59:48.443Z",
+    "last_save_at": "2026-08-21T15:52:03.435Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:3a50e0d9ad8c9255a110bb1b176dd79a95be11cba42f4e299e41f160a10821b6",
+    "source_doc_hashes": {
+      "spec.md": "06eea5ec93dd81a2cac50f62e8a84354698211996cef9a8bd7a41827b91c9c50",
+      "plan.md": "4cac88a667392647c005fd67dc4be78e996c638b875dc98baa60f9ff44c581bf",
+      "tasks.md": "ce01cf9af67d930c3826c368910ae9dc5f2b2c148c9db64394dd86ba006d4d03",
+      "implementation-summary.md": "40ab38949475d74770240a9af394985f70ec242d67a5704649cb5e01a3c2fcdf",
+      "research/research.md": "7728300ce4b804ebcc2f28cafb5ab31b4ce39047965af2891dc2107cbe47ae19"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

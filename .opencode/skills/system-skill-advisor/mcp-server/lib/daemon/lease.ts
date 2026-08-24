@@ -81,7 +81,7 @@ function ensureCanonicalDir(dirPath: string): string {
 }
 
 function resolveSkillAdvisorDbDir(workspaceRoot: string): string {
-  const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  const overrideDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   if (overrideDbDir) {
     return canonicalizePath(overrideDbDir);
   }

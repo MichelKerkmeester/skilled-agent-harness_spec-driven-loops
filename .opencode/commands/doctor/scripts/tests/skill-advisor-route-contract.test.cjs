@@ -76,7 +76,7 @@ function skillAdvisorRouteMcpTools() {
 }
 
 function bareName(qualifiedToolName) {
-  // mcp__mk_skill_advisor__skill_graph_validate -> skill_graph_validate
+  // mcp__system_skill_advisor__skill_graph_validate -> skill_graph_validate
   const parts = qualifiedToolName.split('__');
   return parts[parts.length - 1];
 }
@@ -89,8 +89,8 @@ test('every advisor tool declared on the skill-advisor route exists in the live 
   const liveNames = liveAdvisorToolNames();
   assert.ok(liveNames.size >= 8, `expected at least 8 live advisor tools, found ${liveNames.size}: ${[...liveNames].join(', ')}`);
 
-  const declaredMcpTools = skillAdvisorRouteMcpTools().filter((name) => name.startsWith('mcp__mk_skill_advisor__'));
-  assert.ok(declaredMcpTools.length > 0, 'skill-advisor route must declare at least one mk_skill_advisor tool');
+  const declaredMcpTools = skillAdvisorRouteMcpTools().filter((name) => name.startsWith('mcp__system_skill_advisor__'));
+  assert.ok(declaredMcpTools.length > 0, 'skill-advisor route must declare at least one system_skill_advisor tool');
 
   for (const qualifiedName of declaredMcpTools) {
     const bare = bareName(qualifiedName);
@@ -111,14 +111,14 @@ test('the doctor router frontmatter allowed-tools also exposes skill_graph_valid
   const frontmatterLine = read(ROUTER_MD_PATH).split(/\r?\n/u).find((line) => line.startsWith('allowed-tools:'));
   assert.ok(frontmatterLine, 'doctor/speckit.md must have an allowed-tools frontmatter line');
   assert.ok(
-    frontmatterLine.includes('mcp__mk_skill_advisor__skill_graph_validate'),
-    'doctor/speckit.md allowed-tools must include mcp__mk_skill_advisor__skill_graph_validate',
+    frontmatterLine.includes('mcp__system_skill_advisor__skill_graph_validate'),
+    'doctor/speckit.md allowed-tools must include mcp__system_skill_advisor__skill_graph_validate',
   );
 });
 
 test('the route does not silently claim full-registry equality (ruled-out #11) — this stays a documented subset', () => {
   const liveNames = liveAdvisorToolNames();
-  const declaredBareNames = new Set(skillAdvisorRouteMcpTools().filter((n) => n.startsWith('mcp__mk_skill_advisor__')).map(bareName));
+  const declaredBareNames = new Set(skillAdvisorRouteMcpTools().filter((n) => n.startsWith('mcp__system_skill_advisor__')).map(bareName));
 
   // A live-only tool such as skill_graph_propagate_enhances is legal to omit;
   // this test fails only if the declared set and live set were EXACTLY

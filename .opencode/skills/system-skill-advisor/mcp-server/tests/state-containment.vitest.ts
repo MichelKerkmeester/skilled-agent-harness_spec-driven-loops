@@ -38,7 +38,7 @@ afterAll(() => {
 });
 
 beforeEach(() => {
-  delete process.env.MK_SKILL_ADVISOR_DB_DIR;
+  delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 });
 
@@ -61,7 +61,7 @@ describe('advisor state containment — skill-graph DB dir', () => {
 
   it('still honors an explicit DB dir override', () => {
     const { specDir } = repoWithSpecDir();
-    process.env.MK_SKILL_ADVISOR_DB_DIR = specDir;
+    process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = specDir;
     expect(resolveSkillGraphDbDir(specDir)).toBe(resolve(specDir));
   });
 });

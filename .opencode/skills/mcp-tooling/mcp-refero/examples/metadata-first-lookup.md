@@ -79,5 +79,5 @@ Never pass `image_size` or `include_similar` here (deprecated legacy surface); a
 
 - The question was answered from one search call's metadata; detail ran only for a justified shortlist.
 - Every cited screen carries its `refero_url`; the account tier for any live result was recorded.
-- No taste verdict was issued: "these five dashboards use illustration-plus-CTA empty states" is transport evidence; whether that is the right direction belongs to `sk-design`.
+- No taste verdict was issued: "these five dashboards use illustration-plus-CTA empty states" is transport evidence; whether that is the right direction is a design decision this transport never makes; pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens).
 - In an unauthenticated environment: Step 0 passed and Steps 1-3 were recorded as SKIP with the auth blocker.

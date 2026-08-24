@@ -106,7 +106,7 @@ Observed output:
 Spec Memory status observed after the failed production query attempts:
 
 ```text
-plugin_id=mk-spec-memory
+plugin_id=system-spec-memory
 enabled=true
 disabled_reason=none
 cache_ttl_ms=5000

@@ -1,7 +1,7 @@
 ---
 name: code
 description: Application-code implementation specialist via sk-code. LEAF, dispatched only by @orchestrate.
-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*
+tools: Read, Write, Edit, Bash, Grep, Glob, mcp__system_spec_memory__*
 ---
 
 # The Code Implementer: Stack-Aware Implementation Specialist

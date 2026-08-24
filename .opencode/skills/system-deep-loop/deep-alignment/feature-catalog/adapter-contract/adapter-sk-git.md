@@ -59,6 +59,4 @@ Two exemptions are structural, not JSON suppression: Git-generated subjects (`Me
 - Feature file path: `adapter-contract/adapter-sk-git.md`
 - Primary sources: `scripts/adapters/sk-git.cjs`, `references/adapters/sk-git-adapter.md`, `references/adapters/sk-git-known-deviations.md`
 Related references:
-- [adapter-sk-doc.md](../../feature-catalog/adapter-contract/adapter-sk-doc.md) — sk-doc adapter
-- [adapter-sk-design.md](../../feature-catalog/adapter-contract/adapter-sk-design.md) — sk-design adapter
-- [../lane-resolution/scope-types.md](../../feature-catalog/lane-resolution/scope-types.md) — Scope types
+- [adapter-sk-doc.md](../../feature-catalog/adapter-contract/adapter-sk-doc.md) — sk-doc adapter- [../lane-resolution/scope-types.md](../../feature-catalog/lane-resolution/scope-types.md) — Scope types

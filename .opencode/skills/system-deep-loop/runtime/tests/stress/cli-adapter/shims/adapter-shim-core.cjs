@@ -44,8 +44,8 @@ function runAdapterShim(kind) {
       stdin,
       env: {
         AI_SESSION_CHILD: process.env.AI_SESSION_CHILD || null,
-        MK_SPEC_GATE_ENFORCE: process.env.MK_SPEC_GATE_ENFORCE || null,
-        MK_SPEC_GATE_DISABLED: process.env.MK_SPEC_GATE_DISABLED || null,
+        SYSTEM_SPEC_GATE_ENFORCE: process.env.SYSTEM_SPEC_GATE_ENFORCE || null,
+        SYSTEM_SPEC_GATE_DISABLED: process.env.SYSTEM_SPEC_GATE_DISABLED || null,
         CLAUDE_CONFIG_DIR: process.env.CLAUDE_CONFIG_DIR || null,
         USER: process.env.USER || null,
         LOGNAME: process.env.LOGNAME || null,

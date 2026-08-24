@@ -16,9 +16,9 @@ version: 1.0.0.1
 
 ## 1. OVERVIEW
 
-The [`mk-skill-advisor.js`](../../plugins/mk-skill-advisor.js) OpenCode plugin requests a Skill Advisor brief for a user prompt before the model runs. It sends the prompt and routing thresholds to the advisor bridge, injects the returned brief into system context and falls back to a fixed safety directive when the advisor cannot return a brief. This prompt-time routing supports Gate 2, where the advisor recommends a matching skill before that skill handles the task.
+The [`system-skill-advisor.js`](../../plugins/system-skill-advisor.js) OpenCode plugin requests a Skill Advisor brief for a user prompt before the model runs. It sends the prompt and routing thresholds to the advisor bridge, injects the returned brief into system context and falls back to a fixed safety directive when the advisor cannot return a brief. This prompt-time routing supports Gate 2, where the advisor recommends a matching skill before that skill handles the task.
 
-The plugin keeps its prompt cache in memory. Its cache key includes the session, prompt, thresholds, workspace and a source signature computed from advisor implementation files, skill metadata and graph artifacts. That signature invalidates cached recommendations when the routing inputs change. The plugin does not read or write `.advisor-state` directly. The related [`system-skill-advisor`](../system-skill-advisor/SKILL.md) server and daemon own the state documented here, while the plugin reaches that logic through the [`mk-skill-advisor-bridge.mjs`](../system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs) bridge.
+The plugin keeps its prompt cache in memory. Its cache key includes the session, prompt, thresholds, workspace and a source signature computed from advisor implementation files, skill metadata and graph artifacts. That signature invalidates cached recommendations when the routing inputs change. The plugin does not read or write `.advisor-state` directly. The related [`system-skill-advisor`](../system-skill-advisor/SKILL.md) server and daemon own the state documented here, while the plugin reaches that logic through the [`system-skill-advisor-bridge.mjs`](../system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs) bridge.
 
 The bridge probes advisor status before it builds a native brief. Status combines the generation metadata in this folder with the skill graph database and source files to report freshness and trust. A usable graph can still serve recommendations when daemon evidence is unavailable if its trust state remains `live` or `stale`. In that case the bridge marks the native route as degraded rather than treating the graph as unusable.
 
@@ -137,11 +137,11 @@ Do not edit, archive or copy these files between machines. Stop the related daem
 ```text
 user prompt
   |
-  +-- mk-skill-advisor.js OpenCode system transform
+  +-- system-skill-advisor.js OpenCode system transform
         |
         +-- in-memory cache keyed by prompt and advisor source signature
         |
-        `-- mk-skill-advisor-bridge.mjs
+        `-- system-skill-advisor-bridge.mjs
               |
               +-- advisor_status reads generation and graph health
               |
@@ -159,7 +159,7 @@ skill source change
   `-- generation publication invalidates skill graph caches
 ```
 
-The standalone `mk_skill_advisor` MCP server exposes advisor and skill graph tools. `advisor_recommend` supplies prompt-time recommendations. `advisor_status` reads this generation state for diagnostics, and `advisor_rebuild` or `skill_graph_scan` can publish a fresh generation after updating the graph. The watcher handles ongoing source changes without requiring the prompt plugin to manage files or daemon ownership.
+The standalone `system_skill_advisor` MCP server exposes advisor and skill graph tools. `advisor_recommend` supplies prompt-time recommendations. `advisor_status` reads this generation state for diagnostics, and `advisor_rebuild` or `skill_graph_scan` can publish a fresh generation after updating the graph. The watcher handles ongoing source changes without requiring the prompt plugin to manage files or daemon ownership.
 
 This state supports routing but does not replace the recommended skill. For example, the advisor can recommend `sk-doc` for documentation work, then the caller loads and follows that skill. The state files make graph freshness, single-writer ownership and failed skill loading visible to the routing layer.
 
@@ -184,9 +184,9 @@ This state supports routing but does not replace the recommended skill. For exam
 
 | Resource | Purpose |
 |---|---|
-| [`mk-skill-advisor.js`](../../plugins/mk-skill-advisor.js) | OpenCode plugin that requests Skill Advisor briefs and tracks advisor source signatures. |
+| [`system-skill-advisor.js`](../../plugins/system-skill-advisor.js) | OpenCode plugin that requests Skill Advisor briefs and tracks advisor source signatures. |
 | [`system-skill-advisor/SKILL.md`](../system-skill-advisor/SKILL.md) | Gate 2 routing contract and standalone advisor MCP overview. |
-| [`mk-skill-advisor-bridge.mjs`](../system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs) | Connects the OpenCode plugin to advisor status and recommendation handlers. |
+| [`system-skill-advisor-bridge.mjs`](../system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs) | Connects the OpenCode plugin to advisor status and recommendation handlers. |
 | [`generation.ts`](../system-skill-advisor/mcp-server/lib/freshness/generation.ts) | Reads, validates and atomically publishes generation metadata. |
 | [`generation-metadata.ts`](../system-skill-advisor/mcp-server/schemas/generation-metadata.ts) | Defines the generation metadata schema. |
 | [`lease.ts`](../system-skill-advisor/mcp-server/lib/daemon/lease.ts) | Defines the daemon lease database, heartbeat and release behavior, including the legacy `.advisor-state` fallback path. |

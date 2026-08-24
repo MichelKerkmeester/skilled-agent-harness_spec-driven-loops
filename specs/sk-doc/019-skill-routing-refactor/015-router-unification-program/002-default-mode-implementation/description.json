@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
   "description": "Implement the vetted defaultMode recommendations from research child 001-research/007-default-mode-policy-research: keep sk-prompt, flip",
   "keywords": [
@@ -14,7 +15,7 @@
     "sk-prompt",
     "flip"
   ],
-  "lastUpdated": "2026-07-24T13:05:44.386Z",
+  "lastUpdated": "2026-08-16T18:06:00.644Z",
   "specId": "002",
   "folderSlug": "default-mode-implementation",
   "parentChain": [
@@ -23,6 +24,5 @@
     "015-router-unification-program"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

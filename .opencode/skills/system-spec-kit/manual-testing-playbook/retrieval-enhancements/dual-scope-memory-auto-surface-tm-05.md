@@ -57,10 +57,10 @@ Command 1, non-memory-aware tool path (`glob`):
 
 Observed result: the non-memory-aware `glob` tool returned only the matched file path. It did not return an auto-surface hook trace or surfaced memory list.
 
-Memory hook/status observation (`mk_spec_memory_status`):
+Memory hook/status observation (`system_spec_memory_status`):
 
 ```text
-plugin_id=mk-spec-memory
+plugin_id=system-spec-memory
 enabled=true
 disabled_reason=none
 cache_ttl_ms=5000
@@ -112,7 +112,7 @@ Surfaced memory list from the same `memory_match_triggers` output:
 
 ```text
 constitutional:
-- id 38292: GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode mk-goal Plugin
+- id 38292: GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode opencode-goal Plugin
 - id 21863: CLI DISPATCH — Skill Preload Mandate
 - id 18041: Recursion Control — Reason About the Problem, Audit Once, Don't Narrate the Self
 - id 18040: POST-IMPLEMENTATION DEEP-REVIEW — Mandatory after substantive ship

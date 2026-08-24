@@ -9,7 +9,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 const require = createRequire(import.meta.url);
 const fsModule = require('node:fs') as typeof fs;
 const mss = require('../../../../../bin/lib/model-server-supervision.cjs') as typeof import('../../../../../bin/lib/model-server-supervision.cjs');
-const launcher = require('../../../../../bin/mk-spec-memory-launcher.cjs') as {
+const launcher = require('../../../../../bin/system-spec-memory-launcher.cjs') as {
   acquireModelServerRespawnLockFile: (socketPath: string) => { acquired: boolean; fd?: number; path: string };
   modelServerRespawnLockPath: (socketPath: string) => string;
   resolveModelServerSocketPath: (env?: Record<string, string | undefined>, options?: { dbDir?: string }) => string;
@@ -168,7 +168,7 @@ describe('cross-launcher hf model server supervision', () => {
     return dir;
   }
 
-  it('resolves the shared model-server socket with mk-spec-memory precedence', () => {
+  it('resolves the shared model-server socket with system-spec-memory precedence', () => {
     const systemSpecKitDbDir = tempDir('system-spec-kit-db-');
     const defaultFromLib = mss.resolveModelServerSocketPath({}, { dbDir: systemSpecKitDbDir });
     const defaultFromLauncher = launcher.resolveModelServerSocketPath({}, { dbDir: systemSpecKitDbDir });
@@ -183,10 +183,10 @@ describe('cross-launcher hf model server supervision', () => {
   it('falls back to the canonical short default when neither env nor dbDir are configured (REQ-011)', () => {
     const truEmptyDefault = mss.resolveModelServerSocketPath({}, {});
     expect(truEmptyDefault).toBe(mss.DEFAULT_MODEL_SERVER_SOCKET_PATH);
-    expect(truEmptyDefault).toBe('/tmp/mk-hf-embed/hf-embed.sock');
+    expect(truEmptyDefault).toBe('/tmp/system-hf-embed/hf-embed.sock');
     // Darwin's sun_path field is 104 bytes including the NUL terminator (103 usable).
     expect(Buffer.byteLength(truEmptyDefault)).toBeLessThanOrEqual(103);
-    // mk-spec-memory-launcher.cjs's own wrapper intentionally keeps its own resolved
+    // system-spec-memory-launcher.cjs's own wrapper intentionally keeps its own resolved
     // dbDir as a fallback (research confirmed this specific path is not reachable via
     // normal MCP/CLI config, which always pins HF_EMBED_SERVER_URL) — it is deliberately
     // NOT asserted here to converge on the canonical default.
@@ -195,7 +195,7 @@ describe('cross-launcher hf model server supervision', () => {
   it('skill-advisor launcher also falls back to the canonical short default under an empty child env (REQ-011)', () => {
     // Reproduces the plugin bridge's filtered child env: HF_EMBED_SERVER_URL is never
     // forwarded and SPECKIT_IPC_SOCKET_DIR is absent from the plugin host's own env.
-    const skillAdvisorLauncher = require('../../../../../bin/mk-skill-advisor-launcher.cjs') as {
+    const skillAdvisorLauncher = require('../../../../../bin/system-skill-advisor-launcher.cjs') as {
       resolveModelServerSocketPath: (env?: Record<string, string | undefined>, options?: { dbDir?: string }) => string;
     };
     const result = skillAdvisorLauncher.resolveModelServerSocketPath({}, {});
@@ -258,12 +258,12 @@ describe('cross-launcher hf model server supervision', () => {
     await second.stopDemandListener();
   });
 
-  it('allows advisor-style absent-mk-spec-memory demand to launch and write the shared pid file', async () => {
+  it('allows advisor-style absent-system-spec-memory demand to launch and write the shared pid file', async () => {
     const socketDir = tempDir('hf-cross-absent-memory-');
     const socketPath = join(socketDir, 'hf-embed.sock');
     writeFileSync(socketPath, 'stale socket placeholder', 'utf8');
     const children: FakeChild[] = [];
-    const pidAccessors = createPidAccessors(socketPath, 'mk-skill-advisor');
+    const pidAccessors = createPidAccessors(socketPath, 'system-skill-advisor');
     const readPid = vi.fn(pidAccessors.read);
     const bridge = { probeModelServer: vi.fn(async () => ({ status: 'dead', reason: 'closed-before-reply' })) };
     const serverHarness = createFakeHttpServerHarness();
@@ -299,8 +299,8 @@ describe('cross-launcher hf model server supervision', () => {
     const socketPath = join(socketDir, 'hf-embed.sock');
     const aChildren: FakeChild[] = [];
     const bChildren: FakeChild[] = [];
-    const aPidAccessors = createPidAccessors(socketPath, 'mk-spec-memory');
-    const bPidAccessors = createPidAccessors(socketPath, 'mk-skill-advisor');
+    const aPidAccessors = createPidAccessors(socketPath, 'system-spec-memory');
+    const bPidAccessors = createPidAccessors(socketPath, 'system-skill-advisor');
     const controlA = mss.createModelServerControl({
       log: () => undefined,
       env: {},
@@ -357,7 +357,7 @@ describe('cross-launcher hf model server supervision', () => {
     // has not yet bound the UDS, so no socket file exists and the demand lock is momentarily free.
     const socketDir = tempDir('hf-cross-booting-window-');
     const socketPath = join(socketDir, 'hf-embed.sock');
-    const pidAccessors = createPidAccessors(socketPath, 'mk-spec-memory');
+    const pidAccessors = createPidAccessors(socketPath, 'system-spec-memory');
     const livePid = 6543;
     pidAccessors.write(livePid);
     const children: FakeChild[] = [];
@@ -398,7 +398,7 @@ describe('cross-launcher hf model server supervision', () => {
     // launcher proceeds to own the demand listener.
     const socketDir = tempDir('hf-cross-dead-pid-');
     const socketPath = join(socketDir, 'hf-embed.sock');
-    const pidAccessors = createPidAccessors(socketPath, 'mk-spec-memory');
+    const pidAccessors = createPidAccessors(socketPath, 'system-spec-memory');
     const deadPid = 6544;
     pidAccessors.write(deadPid);
     const children: FakeChild[] = [];
@@ -433,7 +433,7 @@ describe('cross-launcher hf model server supervision', () => {
     const socketPath = join(socketDir, 'hf-embed.sock');
     const children: FakeChild[] = [];
     const spawnFn = createSpawn(children);
-    const pidAccessors = createPidAccessors(socketPath, 'mk-spec-memory');
+    const pidAccessors = createPidAccessors(socketPath, 'system-spec-memory');
     const serverHarness = createFakeHttpServerHarness();
     let nowMs = 1000;
     const control = mss.createModelServerControl({
@@ -551,7 +551,7 @@ describe('cross-launcher hf model server supervision', () => {
     const socketPath = join(socketDir, 'hf-embed.sock');
     writeFileSync(socketPath, 'wedged model socket placeholder', 'utf8');
     const wedgedPid = 7777;
-    const pidAccessors = createPidAccessors(socketPath, 'mk-spec-memory');
+    const pidAccessors = createPidAccessors(socketPath, 'system-spec-memory');
     pidAccessors.write(wedgedPid);
     const children: FakeChild[] = [];
     const spawnFn = createSpawn(children);

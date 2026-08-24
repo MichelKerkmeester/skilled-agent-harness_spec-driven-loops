@@ -1,0 +1,1 @@
+../../../plugins/mcp-route-guard.js

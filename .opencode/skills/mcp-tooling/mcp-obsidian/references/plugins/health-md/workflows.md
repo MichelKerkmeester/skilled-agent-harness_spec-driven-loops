@@ -9,7 +9,7 @@ trigger_phrases:
   - "health-viz block"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.4.1.0
+version: 0.5.0.0
 ---
 
 # Health.md File-Layer Workflows
@@ -58,7 +58,7 @@ type: step-spiral
 last: 7
 ```
 
-- `type` is required and must name a registered renderer. Common optional keys: `width`, `height`, inclusive `from`/`to`, `last`, `clickAction`.
+- `type` is required and must name a registered renderer — pick from the renderer catalog in [`health-md.md`](health-md.md) §4 (43 documented types; the installed build may expose a subset, and iOS-only types render nothing on Android data). Common optional keys: `width`, `height`, inclusive `from`/`to`, `last`, `clickAction`.
 - Dates may be ISO dates/datetimes, built-in dynamic variables such as `{{today:YYYY-MM-DD}}`, or frontmatter variables; raw Templater or Dataview expressions are not a reliable substitute.
 - Prefer copying an existing working block from the vault over inventing keys; unknown block options render nothing.
 
@@ -79,6 +79,10 @@ last: 7
 
 - Search for workout, vitals, and platform-specific entries by declared frontmatter/tags — a separate discovery path from daily summaries.
 - Do not merge them into daily summaries or roll-ups.
+
+### Coexist with companion-managed daily notes
+
+The Health.md app can merge metrics into Obsidian daily-note frontmatter and inject app-managed markdown sections (HTML-comment-wrapped) on every export. Treat those managed frontmatter keys and comment-wrapped sections as **app-owned**: read them, but never hand-edit inside them — the next export overwrites the edit. Author your own content outside the managed blocks. See [`health-md.md`](health-md.md) §7 for the target-folder and filename-placeholder conventions.
 
 ### Privacy handling
 

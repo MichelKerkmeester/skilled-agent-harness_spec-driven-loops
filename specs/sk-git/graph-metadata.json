@@ -16,7 +16,9 @@
     "sk-git/015-remote-branch-policy",
     "sk-git/020-live-sync-harden-default-on",
     "sk-git/021-hook-gate-hardening",
-    "sk-git/022-worktree-branch-naming-overhaul"
+    "sk-git/022-worktree-branch-naming-overhaul",
+    "sk-git/024-rebase-abort-head-preservation",
+    "sk-git/026-worktree-hygiene-and-relocation"
   ],
   "manual": {
     "depends_on": [],
@@ -38,13 +40,13 @@
     "entities": [],
     "causal_summary": "Track metadata for the sk-git skill packets.",
     "created_at": "2026-07-14T21:34:01.000Z",
-    "last_save_at": "2026-08-16T07:03:13.556Z",
+    "last_save_at": "2026-08-21T14:16:48.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "sk-git/022-worktree-branch-naming-overhaul",
-    "last_active_at": "2026-08-16T07:03:13.556Z"
+    "last_active_child_id": "sk-git/026-worktree-hygiene-and-relocation",
+    "last_active_at": "2026-08-21T14:16:48.448Z"
   }
 }

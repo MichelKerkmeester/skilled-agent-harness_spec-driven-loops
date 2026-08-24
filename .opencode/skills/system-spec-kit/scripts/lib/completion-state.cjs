@@ -40,7 +40,7 @@ const EXEC_MAX_BUFFER_BYTES = 2 * 1024 * 1024;
 // this one core, so checking the env here -- rather than per-adapter -- keeps
 // the disabled behavior identical on both transports. Setting this to '1'
 // makes the whole surface a full no-op: no filesystem probe, no script exec.
-const DISABLED_ENV = 'MK_SPECKIT_COMPLETION_DISABLED';
+const DISABLED_ENV = 'SYSTEM_SPECKIT_COMPLETION_DISABLED';
 
 // Canonical-doc presence infers the spec level: checklist.md raises Level 1 to
 // 2, decision-record.md (or its dashed variant) raises it further to 3. This

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout",
+  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout",
+  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 notion bases consolidation",
+      "notion bases calendar recipe",
+      "mcp-obsidian calendar workflow",
+      "notion-style calendar obsidian recipe",
+      "015 notion bases consolidation plan",
+      "notion bases calendar recipe plan",
+      "015 notion bases consolidation tasks",
+      "015 notion bases consolidation checklist",
+      "015 notion bases consolidation summary"
+    ],
+    "key_topics": [
+      "notion",
+      "bases",
+      "consolidation",
+      "calendar",
+      "recipe",
+      "mcp-obsidian",
+      "workflow",
+      "notion-style",
+      "obsidian",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Project Manager",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Meta Bind",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases Calendar",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Confirm",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Record Project Manager",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Record Meta Bind",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Cases",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 007 deferred four consolidation items to `008-notion-bases-closeout`, but that folder was never built, so 007's prose pointed at a phantom sibling and one real content gap stayed open: the shipped `mcp-obsidian` notion-bases docs had a basic calendar view (`workflows.md` §6a) but no end-to-end Notion-style calendar recipe — no quick date entry, no month/week layout guidance, and no agenda companion",
+    "created_at": "2026-08-22T19:53:19.275Z",
+    "last_save_at": "2026-08-23T05:55:37.358Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c3080d0905109ec7d64dcf30258bb1cf9ab482857b3f1793be89be6f52990a48",
+    "source_doc_hashes": {
+      "spec.md": "2fe60edbb974f62306dfeed1b04fa3a4e99ef6427fe146ca9e373e59c235ffa2",
+      "plan.md": "6ca1bda6b8ff6390a2b8df494cd5714cfdfbd7e0133d6c68607d5cf3b396ebf0",
+      "tasks.md": "f4040f92fb6fe2317c3e7c5e7e6a1178ac00e62781fa58bfea789884a8f38ff8",
+      "checklist.md": "4b147cf1def10743de116dc134d86dea88ef25006c1a508c6e9c9efa53626c07",
+      "implementation-summary.md": "dad3e7792b1fc881ebadf09cbfa7a4ed5fb468979ee92a258bb7bd25ddd66d7e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

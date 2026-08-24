@@ -1,8 +1,8 @@
 ---
-title: "mk-deep-loop-guard"
+title: "system-deep-loop-guard"
 description: "Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch whose declared Deep Route mode disagrees with mode-registry.json's entry for the resolved target agent, and flags/blocks a session-scoped loop-like repeated orchestrate-to-command-owned-loop-executor dispatch. Also sweeps/archives/prunes its own per-session state so its directory does not grow unbounded."
 trigger_phrases:
-  - "mk-deep-loop-guard"
+  - "system-deep-loop-guard"
   - "deep route guard plugin"
   - "tool.execute.before dispatch guard"
   - "Deep Route mode mismatch detection"
@@ -12,7 +12,7 @@ trigger_phrases:
 version: 1.2.0.0
 ---
 
-# mk-deep-loop-guard (tool.execute.before plugin)
+# system-deep-loop-guard (tool.execute.before plugin)
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -38,11 +38,11 @@ For each `task` dispatch, the plugin reads `mode-registry.json` fresh (no cachin
 
 ### Check 2: loop-repeat detection
 
-For dispatches targeting a command-owned loop executor, the plugin persists a session-scoped dispatch count at `.opencode/skills/.loop-guard-state/{hex(sessionID)}.json` (atomic temp-file-then-rename write, following the `mk-goal.js` precedent). A dispatch carrying an `Iteration: N of M` or `STATE SUMMARY` marker is recognized as command-driven (owned by the parent `/deep:*` command's own loop) and never increments the count. Non-command-driven dispatches: 1st is silent, 2nd+ warns, 3rd+ additionally blocks when `MK_DEEP_LOOP_GUARD_REJECT_LOOP=1` is set. Counts are isolated per `sessionID` and reset per target-agent.
+For dispatches targeting a command-owned loop executor, the plugin persists a session-scoped dispatch count at `.opencode/skills/.loop-guard-state/{hex(sessionID)}.json` (atomic temp-file-then-rename write, following the `opencode-goal.js` precedent). A dispatch carrying an `Iteration: N of M` or `STATE SUMMARY` marker is recognized as command-driven (owned by the parent `/deep:*` command's own loop) and never increments the count. Non-command-driven dispatches: 1st is silent, 2nd+ warns, 3rd+ additionally blocks when `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` is set. Counts are isolated per `sessionID` and reset per target-agent.
 
 ### Warn vs. reject
 
-Default behavior for both checks is mutate-and-warn: on a mismatch or loop-repeat, the plugin appends a `[mk-deep-loop-guard] WARN: ...` line to `.opencode/skills/.loop-guard-state/guard-warnings.log` (never to stdout/stderr, which OpenCode's TUI paints onto the prompt input line during `tool.execute.before`) and lets the dispatch proceed. `MK_DEEP_LOOP_GUARD_REJECT=1` switches Check 1 to fail-closed; `MK_DEEP_LOOP_GUARD_REJECT_LOOP=1` independently switches Check 2 to fail-closed. Both throw-blocks-dispatch mechanisms are confirmed via live testing against the installed OpenCode host — throwing from `tool.execute.before` genuinely prevents the underlying tool call from executing, not merely logging a warning.
+Default behavior for both checks is mutate-and-warn: on a mismatch or loop-repeat, the plugin appends a `[system-deep-loop-guard] WARN: ...` line to `.opencode/skills/.loop-guard-state/guard-warnings.log` (never to stdout/stderr, which OpenCode's TUI paints onto the prompt input line during `tool.execute.before`) and lets the dispatch proceed. `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` switches Check 1 to fail-closed; `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` independently switches Check 2 to fail-closed. Both throw-blocks-dispatch mechanisms are confirmed via live testing against the installed OpenCode host — throwing from `tool.execute.before` genuinely prevents the underlying tool call from executing, not merely logging a warning.
 
 ### Fail-open guard
 
@@ -54,9 +54,9 @@ Cannot create hard runtime identity (that remains host/FIX-5 territory). Does no
 
 ### State-directory cleanup (sweep, archive, prune)
 
-Mirrors the `mk-goal.js` retention pattern. On every `session.created` event (a new `event` hook), the plugin sweeps `.opencode/skills/.loop-guard-state/` for per-session state files untouched past `MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS` (default 2 days) and archives them into `.loop-guard-state/.archive/`, then prunes (deletes) archived files untouched past `MK_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS` (default 90 days). The sweep itself is throttled to once per `MK_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS` (default 1 hour) via an in-memory per-plugin-instance timestamp. `guard-warnings.log` gets the same whole-file rotation as `mk-goal.js`'s JSONL logs: if it has gone untouched past the archive-retention window, it is deleted before the next append rather than growing forever.
+Mirrors the `opencode-goal.js` retention pattern. On every `session.created` event (a new `event` hook), the plugin sweeps `.opencode/skills/.loop-guard-state/` for per-session state files untouched past `SYSTEM_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS` (default 2 days) and archives them into `.loop-guard-state/.archive/`, then prunes (deletes) archived files untouched past `SYSTEM_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS` (default 90 days). The sweep itself is throttled to once per `SYSTEM_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS` (default 1 hour) via an in-memory per-plugin-instance timestamp. `guard-warnings.log` gets the same whole-file rotation as `opencode-goal.js`'s JSONL logs: if it has gone untouched past the archive-retention window, it is deleted before the next append rather than growing forever.
 
-Unlike `mk-goal.js`, this plugin needs no per-session mutation queue to make the sweep safe: every state-touching operation here is synchronous (`readdirSync`/`statSync`/`renameSync`/`writeFileSync`), and neither this hook nor `tool.execute.before` ever `await`s before touching a state file, so Node's single-threaded execution model already guarantees a sweep in progress cannot interleave with a concurrent dispatch's write.
+Unlike `opencode-goal.js`, this plugin needs no per-session mutation queue to make the sweep safe: every state-touching operation here is synchronous (`readdirSync`/`statSync`/`renameSync`/`writeFileSync`), and neither this hook nor `tool.execute.before` ever `await`s before touching a state file, so Node's single-threaded execution model already guarantees a sweep in progress cannot interleave with a concurrent dispatch's write.
 
 ---
 
@@ -66,13 +66,13 @@ Unlike `mk-goal.js`, this plugin needs no per-session mutation queue to make the
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/plugins/mk-deep-loop-guard.js` | Script | OpenCode plugin entrypoint; registers the `tool.execute.before` hook; implements identity resolution and both checks. |
+| `.opencode/plugins/system-deep-loop-guard.js` | Script | OpenCode plugin entrypoint; registers the `tool.execute.before` hook; implements identity resolution and both checks. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs` | Automated test | Hermetic regression coverage for export shape, identity resolution, both warn/reject toggles, command-driven/non-loop-executor exemptions, cross-session isolation, and both fail-open paths, run against a fixture registry (no live OpenCode session required). |
+| `.opencode/plugins/tests/system-deep-loop-guard.test.cjs` | Automated test | Hermetic regression coverage for export shape, identity resolution, both warn/reject toggles, command-driven/non-loop-executor exemptions, cross-session isolation, and both fail-open paths, run against a fixture registry (no live OpenCode session required). |
 
 Live-verified against a real `opencode` session during development (hook registration, warn-mode logging, reject-mode blocking for both checks, fail-open on a missing registry, and pass-through for non-deep `subagent_type` values) — see `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin/implementation-summary.md` (original mode-mismatch build) and `031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation/implementation-summary.md` (identity-resolution fix + loop-repeat detection) for the full evidence trail.
 
@@ -83,8 +83,8 @@ Live-verified against a real `opencode` session during development (hook registr
 - Group: Validation
 - Canonical catalog source: `feature-catalog.md`
 - Feature ID: F050
-- Feature file path: `validation/mk-deep-loop-guard.md`
-- Primary sources: `.opencode/plugins/mk-deep-loop-guard.js`, `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs`
+- Feature file path: `validation/system-deep-loop-guard.md`
+- Primary sources: `.opencode/plugins/system-deep-loop-guard.js`, `.opencode/plugins/tests/system-deep-loop-guard.test.cjs`
 
 Related references:
 - [post-dispatch-validate.md](../../feature-catalog/validation/post-dispatch-validate.md) — the post-dispatch counterpart this plugin complements from the pre-dispatch side.

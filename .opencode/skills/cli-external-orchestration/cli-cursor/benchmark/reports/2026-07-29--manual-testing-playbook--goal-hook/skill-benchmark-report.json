@@ -37,7 +37,7 @@
     "nonDeliveryConfirmationCount": "n=3 (2 prior phase-004 capability probes + this run)"
   },
   "executionContext": {
-    "commandShape": "MK_GOAL_STATE_DIR=<iso> MK_GOAL_RUNTIME_LABEL=Cursor cursor-agent -p \"<prompt>\" --output-format text --model composer-2.5 --auto-review --sandbox enabled </dev/null",
+    "commandShape": "OPENCODE_GOAL_STATE_DIR=<iso> OPENCODE_GOAL_RUNTIME_LABEL=Cursor cursor-agent -p \"<prompt>\" --output-format text --model composer-2.5 --auto-review --sandbox enabled </dev/null",
     "tier": "paid",
     "isolatedStateDir": true,
     "adaptersLiveExercised": [

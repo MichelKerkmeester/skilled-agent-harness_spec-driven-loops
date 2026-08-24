@@ -1,22 +1,21 @@
 {
   "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality",
-  "description": "The sk-code-quality mode README rewritten purpose-first on the refined template from phase 001 with a version bump and a changelog entry",
+  "description": "The sk-code-quality README still carries the older tabular reference-card style and predates the pilot standard",
   "keywords": [
     "sk-code-quality",
-    "mode",
     "readme",
-    "rewritten",
-    "purpose-first",
-    "refined",
-    "template",
-    "phase",
-    "version",
-    "bump",
-    "changelog",
-    "entry"
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "predates",
+    "pilot",
+    "standard"
   ],
-  "lastUpdated": "2026-08-04T14:42:53.568Z",
+  "lastUpdated": "2026-08-15T14:41:01.685Z",
   "specId": "016",
   "folderSlug": "sk-code-quality",
   "parentChain": [

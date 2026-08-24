@@ -1,16 +1,27 @@
 {
   "level": 2,
   "specFolder": "sk-git/021-hook-gate-hardening",
-  "description": "The live-sync publisher discards `git push` stderr",
+  "description": "Work Item 1 addressed silent live-sync gate failures: the publisher discarded `git push` stderr, misreported policy rejections as races, and lacked a",
   "keywords": [
+    "work",
+    "item",
+    "addressed",
+    "silent",
     "live-sync",
+    "gate",
+    "failures",
     "publisher",
-    "discards",
+    "discarded",
     "git",
     "push",
-    "stderr"
+    "stderr",
+    "misreported",
+    "policy",
+    "rejections",
+    "races",
+    "lacked"
   ],
-  "lastUpdated": "2026-08-15T15:02:21.396Z",
+  "lastUpdated": "2026-08-15T17:20:26.027Z",
   "specId": "021",
   "folderSlug": "hook-gate-hardening",
   "parentChain": [

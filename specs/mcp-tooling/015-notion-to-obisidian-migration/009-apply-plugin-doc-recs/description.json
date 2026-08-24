@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+  "description": "The shipped `mcp-obsidian` plugin docs carried real correctness defects the 006 research surfaced: advanced-canvas told the AI to never author",
+  "keywords": [
+    "shipped",
+    "mcp-obsidian",
+    "plugin",
+    "docs",
+    "carried",
+    "real",
+    "correctness",
+    "defects",
+    "research",
+    "surfaced",
+    "advanced-canvas",
+    "told",
+    "never",
+    "author"
+  ],
+  "lastUpdated": "2026-08-23T05:57:12.791Z",
+  "specId": "009",
+  "folderSlug": "apply-plugin-doc-recs",
+  "parentChain": [
+    "mcp-tooling",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -54,8 +54,8 @@ First run is a miss; second identical run is a hit; cache key is stable for iden
 Executed 2026-07-02 using the daemon-backed Spec Memory CLI because the initial MCP tool calls timed out:
 
 ```text
-MCP mk-spec-memory_memory_health(reportMode=full, includeFullReport=true): MCP error -32001: Request timed out
-MCP mk-spec-memory_memory_search(...): MCP error -32001: Request timed out
+MCP system-spec-memory_memory_health(reportMode=full, includeFullReport=true): MCP error -32001: Request timed out
+MCP system-spec-memory_memory_search(...): MCP error -32001: Request timed out
 ```
 
 Active cache settings confirmed from `mcp-server/lib/cache/tool-cache.ts`:
@@ -120,7 +120,7 @@ Cache/health inspection after the miss-then-hit pair:
   }
 }
 "ipc_bridge": {
-  "socket_path": "/private/tmp/mk-spec-memory/daemon-ipc.sock",
+  "socket_path": "/private/tmp/system-spec-memory/daemon-ipc.sock",
   "secondary_clients_count": 1,
   "total_secondary_messages_in": 21,
   "total_secondary_messages_out": 16

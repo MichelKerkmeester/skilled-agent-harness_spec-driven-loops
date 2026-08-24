@@ -201,7 +201,7 @@ MCP error -32001: backend recycled; retry
 Spec memory runtime status after backend recycle:
 
 ```text
-plugin_id=mk-spec-memory
+plugin_id=system-spec-memory
 enabled=true
 disabled_reason=none
 cache_ttl_ms=5000
@@ -213,7 +213,7 @@ bridge_timeout_ms=3000
 cli_timeout_ms=2500
 bridge_path=[spec-memory-bridge]
 last_bridge_status=skipped
-last_error_code=CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK
+last_error_code=CONNECT_ECONNREFUSED__TMP_SYSTEM_SPEC_MEMORY_DAEMON_IPC_SOCK
 last_duration_ms=50
 bridge_invocations=13
 continuity_lookups=11
@@ -222,7 +222,7 @@ cache_hits=0
 cache_misses=11
 cache_hit_rate=0
 warm_status=skipped
-warm_error=CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK
+warm_error=CONNECT_ECONNREFUSED__TMP_SYSTEM_SPEC_MEMORY_DAEMON_IPC_SOCK
 warm_route=warm_probe
 warm_retryable=true
 warm_exit_code=75
@@ -241,7 +241,7 @@ Daemon CLI fallback output:
 (Use `node --trace-warnings ...` to show where the warning was created)
 {
   "status": "error",
-  "error": "backend unavailable: connect ECONNREFUSED /tmp/mk-spec-memory/daemon-ipc.sock",
+  "error": "backend unavailable: connect ECONNREFUSED /tmp/system-spec-memory/daemon-ipc.sock",
   "exitCode": 75
 }
 ```
@@ -310,7 +310,7 @@ Targeted R6 automated test output:
 
 ### Pass / Fail
 
-- **BLOCKED**: The required live verbose stage metadata query could not be executed because the Spec Kit Memory backend was unavailable after recycle (`runtime_ready=false`, `CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK`) and both warm-only and non-warm daemon CLI fallbacks returned retryable `exitCode: 75`; source inspection and the targeted R6 test suite support the stage order and stage-4 invariant, but the scenario's Expected live metadata signal was not observable in the current runtime state.
+- **BLOCKED**: The required live verbose stage metadata query could not be executed because the Spec Kit Memory backend was unavailable after recycle (`runtime_ready=false`, `CONNECT_ECONNREFUSED__TMP_SYSTEM_SPEC_MEMORY_DAEMON_IPC_SOCK`) and both warm-only and non-warm daemon CLI fallbacks returned retryable `exitCode: 75`; source inspection and the targeted R6 test suite support the stage order and stage-4 invariant, but the scenario's Expected live metadata signal was not observable in the current runtime state.
 
 ### Failure Triage
 

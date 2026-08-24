@@ -7,7 +7,6 @@ import * as memoryTools from './memory-tools.js';
 import * as causalTools from './causal-tools.js';
 import * as checkpointTools from './checkpoint-tools.js';
 import * as lifecycleTools from './lifecycle-tools.js';
-// Code-graph MCP dispatch moved to standalone system_code_graph server
 import type { MCPCallerContext } from '../lib/context/caller-context.js';
 
 export { contextTools, memoryTools, causalTools, checkpointTools, lifecycleTools };
@@ -21,8 +20,7 @@ export const ALL_DISPATCHERS = [
   causalTools,
   checkpointTools,
   lifecycleTools,
-  // codeGraphTools intentionally omitted: standalone system_code_graph owns MCP dispatch
-  // skillGraphTools intentionally omitted: standalone mk_skill_advisor owns MCP dispatch
+  // skillGraphTools intentionally omitted: standalone system_skill_advisor owns MCP dispatch
 ] as const;
 
 /** Dispatch a tool call to the appropriate module. Returns null if unrecognized. */

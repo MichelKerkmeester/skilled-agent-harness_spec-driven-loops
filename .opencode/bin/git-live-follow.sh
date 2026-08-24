@@ -32,8 +32,8 @@
 #                 kill switches, prints the live-sync status line, and exits 0.
 #
 # Kill switches (see .opencode/hooks/shared/hook-flags.sh):
-#   MK_LIVE_SYNC_DISABLED   master off for the whole live-sync loop
-#   MK_LIVE_FOLLOW_DISABLED follower-only opt-out
+#   SYSTEM_LIVE_SYNC_DISABLED   master off for the whole live-sync loop
+#   SYSTEM_LIVE_FOLLOW_DISABLED follower-only opt-out
 
 set -uo pipefail
 
@@ -124,7 +124,7 @@ if [ "$START" = "1" ]; then
   fi
   # One-line status notice per session; starting is separate so an already
   # running follower (from an earlier session) still gets the notice once.
-  echo "[live-sync] live-sync active (commits auto-publish, checkout auto-follows); disable with MK_LIVE_SYNC_DISABLED=1" >&2
+  echo "[live-sync] live-sync active (commits auto-publish, checkout auto-follows); disable with SYSTEM_LIVE_SYNC_DISABLED=1" >&2
   if ! lock_held; then
     if [ -f "$__hf_root/.opencode/bin/git-live-follow.sh" ]; then
       mkdir -p "$LOCK_DIR" 2>/dev/null || true

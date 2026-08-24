@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies that the mk-spec-memory launcher writes its log lines to a persistent file instead of letting them vanish with the parent process, and that it rotates that file once it crosses the configured size cap. Without a durable launcher log, debugging daemon flap, relaunch decisions, and owner-disposal events after the fact was nearly impossible, because the only record lived in a transient parent's stderr.
+This scenario verifies that the system-spec-memory launcher writes its log lines to a persistent file instead of letting them vanish with the parent process, and that it rotates that file once it crosses the configured size cap. Without a durable launcher log, debugging daemon flap, relaunch decisions, and owner-disposal events after the fact was nearly impossible, because the only record lived in a transient parent's stderr.
 
 The check is automated-test-backed. A human runs the launcher syntax check, the persistent-log unit suite, and a grep that proves the persist and rotation helpers are defined and wired into the log path. Together they confirm the launcher both appends each line and trims the file when it grows too large.
 
@@ -21,7 +21,7 @@ The check is automated-test-backed. A human runs the launcher syntax check, the 
 
 - Objective: Confirm the launcher persists every log line to a durable file and rotates that file once it exceeds the configured maximum size.
 - Real user request: `I keep losing the launcher logs when a session ends, so I can't tell why the daemon flapped. Is the launcher writing a real log file now, and does it stay a sane size?`
-- Prompt: `Validate the mk-spec-memory launcher persistent log path and confirm log lines persist and rotation triggers past the size cap.`
+- Prompt: `Validate the system-spec-memory launcher persistent log path and confirm log lines persist and rotation triggers past the size cap.`
 - Expected execution process: Run the launcher syntax check, run the persistent-log unit tests, and grep for the persist and rotation helpers to confirm they are defined and called on the logging path.
 - Expected signals: `node --check` exits cleanly for the launcher. `launcher-persistent-log.vitest.ts` passes including the append and rotation cases. `persistLauncherLogLine` and `shouldRotateLauncherLog` appear at their definitions and at the logging call site.
 - Desired user-visible outcome: Launcher activity survives session end in a bounded, durable log that an operator can read to explain relaunch and disposal behavior.
@@ -34,14 +34,14 @@ The check is automated-test-backed. A human runs the launcher syntax check, the 
 ### Prompt
 
 ```text
-Validate the mk-spec-memory launcher persistent log path and confirm log lines persist and rotation triggers past the size cap.
+Validate the system-spec-memory launcher persistent log path and confirm log lines persist and rotation triggers past the size cap.
 ```
 
 ### Commands
 
-1. `node --check .opencode/bin/mk-spec-memory-launcher.cjs`
+1. `node --check .opencode/bin/system-spec-memory-launcher.cjs`
 2. `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-persistent-log.vitest.ts`
-3. `rg -n "persistLauncherLogLine|shouldRotateLauncherLog" .opencode/bin/mk-spec-memory-launcher.cjs`
+3. `rg -n "persistLauncherLogLine|shouldRotateLauncherLog" .opencode/bin/system-spec-memory-launcher.cjs`
 
 ### Expected
 
@@ -54,9 +54,9 @@ Validate the mk-spec-memory launcher persistent log path and confirm log lines p
 Shell transcript for all commands:
 
 ```text
-$ node --check .opencode/bin/mk-spec-memory-launcher.cjs
+$ node --check .opencode/bin/system-spec-memory-launcher.cjs
 [no stdout or stderr]
-$ node --check .opencode/bin/mk-spec-memory-launcher.cjs; exit_code=$?; printf 'exit status: %s\n' "$exit_code"
+$ node --check .opencode/bin/system-spec-memory-launcher.cjs; exit_code=$?; printf 'exit status: %s\n' "$exit_code"
 exit status: 0
 
 $ cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-persistent-log.vitest.ts
@@ -69,7 +69,7 @@ $ cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launche
    Start at  15:06:38
    Duration  101ms (transform 17ms, setup 16ms, import 12ms, tests 4ms, environment 0ms)
 
-$ rg -n "persistLauncherLogLine|shouldRotateLauncherLog" .opencode/bin/mk-spec-memory-launcher.cjs
+$ rg -n "persistLauncherLogLine|shouldRotateLauncherLog" .opencode/bin/system-spec-memory-launcher.cjs
 129:  persistLauncherLogLine(`${new Date().toISOString()} [pid ${process.pid}] ${message}\n`);
 163:function shouldRotateLauncherLog(currentSizeBytes, maxBytes) {
 166:function persistLauncherLogLine(line) {
@@ -101,7 +101,7 @@ If the syntax check fails, inspect the helper placement and the CommonJS exports
 
 | File | Role |
 |---|---|
-| `.opencode/bin/mk-spec-memory-launcher.cjs` | Primary implementation anchor |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | Primary implementation anchor |
 | `mcp-server/tests/launcher-persistent-log.vitest.ts` | Regression or validation anchor |
 
 ---

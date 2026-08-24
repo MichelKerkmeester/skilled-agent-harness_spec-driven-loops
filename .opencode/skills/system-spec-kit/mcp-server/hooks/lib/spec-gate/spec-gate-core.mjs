@@ -61,16 +61,16 @@ const GATE_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.spec-gate-state';
 const GATE_ARCHIVE_DIR_NAME = '.archive';
 const WARN_LOG_FILENAME = 'spec-gate-warnings.log';
 const WARN_LOG_BACKUP_SUFFIX = '.1';
-const WARN_LOG_MAX_BYTES_ENV = 'MK_SPEC_GATE_WARNING_LOG_MAX_BYTES';
+const WARN_LOG_MAX_BYTES_ENV = 'SYSTEM_SPEC_GATE_WARNING_LOG_MAX_BYTES';
 const SWEEP_LOCK_DIR_NAME = '.sweep.lock';
 const STATE_TEMP_FILE_REGEX = /^[0-9a-f]+\.json\.\d+\.\d+\.tmp$/;
 
 /** Deny is opt-in: unset (default) means classify-and-advise only, never deny. */
-export const ENFORCE_ENV = 'MK_SPEC_GATE_ENFORCE';
+export const ENFORCE_ENV = 'SYSTEM_SPEC_GATE_ENFORCE';
 /** Full no-op kill-switch: both classify and enforce become inert. */
-export const DISABLED_ENV = 'MK_SPEC_GATE_DISABLED';
+export const DISABLED_ENV = 'SYSTEM_SPEC_GATE_DISABLED';
 /** Independent opt-in for shadowing repeated Gate-3 delivery decisions. */
-export const GATE_3_DELIVERY_SUPPRESSION_ENV = 'MK_SPEC_GATE_3_DELIVERY_SUPPRESSION';
+export const GATE_3_DELIVERY_SUPPRESSION_ENV = 'SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION';
 export const GATE_3_DELIVERY_SHADOW_ID = 'shadow.gate3-delivery-suppression.v1';
 /**
  * Cross-runtime convention for an orchestrated child/dispatched sub-session
@@ -110,9 +110,9 @@ function specGateConcernDisabled(environment) {
  */
 export const UNKNOWN_SESSION_ID = '__unknown-session__';
 
-const GATE_ACTIVE_RETENTION_DAYS_ENV = 'MK_SPEC_GATE_ACTIVE_RETENTION_DAYS';
-const GATE_ARCHIVE_RETENTION_DAYS_ENV = 'MK_SPEC_GATE_ARCHIVE_RETENTION_DAYS';
-const GATE_SWEEP_INTERVAL_MS_ENV = 'MK_SPEC_GATE_SWEEP_INTERVAL_MS';
+const GATE_ACTIVE_RETENTION_DAYS_ENV = 'SYSTEM_SPEC_GATE_ACTIVE_RETENTION_DAYS';
+const GATE_ARCHIVE_RETENTION_DAYS_ENV = 'SYSTEM_SPEC_GATE_ARCHIVE_RETENTION_DAYS';
+const GATE_SWEEP_INTERVAL_MS_ENV = 'SYSTEM_SPEC_GATE_SWEEP_INTERVAL_MS';
 const DEFAULT_ACTIVE_RETENTION_DAYS = 2;
 const DEFAULT_ARCHIVE_RETENTION_DAYS = 90;
 const DEFAULT_SWEEP_INTERVAL_MS = 60 * 60 * 1000;
@@ -703,7 +703,7 @@ export function formatSpecGateEvent(event = {}) {
  */
 export function appendWarningLog(stateDir, detail) {
   const safeDetail = typeof detail === 'string' ? detail.replace(/[\r\n]+/g, ' ') : String(detail ?? '');
-  const line = `${new Date().toISOString()} [mk-spec-gate] ${safeDetail}\n`;
+  const line = `${new Date().toISOString()} [system-spec-gate] ${safeDetail}\n`;
   try {
     mkdirSync(stateDir, { recursive: true });
     const logPath = join(stateDir, WARN_LOG_FILENAME);

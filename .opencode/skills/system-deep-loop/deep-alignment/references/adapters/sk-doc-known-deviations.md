@@ -133,7 +133,7 @@ Each entry below was re-probed against live repo state while this list was autho
 
 ## 8. SCOPE OF THIS LIST
 
-**In scope**: sk-doc authority only. Each other authority adapter (sk-git, sk-design, sk-code, per phases 006/007) owns its own known-deviation list under its own `standardSource`, per ADR-005's per-authority requirement. This document does not attempt to anticipate their conventions.
+**In scope**: sk-doc authority only. Each other authority adapter (sk-git, sk-code, per phases 006/007) owns its own known-deviation list under its own `standardSource`, per ADR-005's per-authority requirement. This document does not attempt to anticipate their conventions.
 
 **Not a dumping ground**: per `spec.md` REQ-003's acceptance criteria and the phase's own risk register, every entry here traces to a real prior finding or an explicit repo-wide convention. An entry that stops matching real repo state gets flagged for operator review at REPORT time (`spec.md` L2 Edge Cases, "State Transitions"), not silently dropped or silently kept. The dormant-entry notes above are exactly that kind of flag, surfaced at authoring time instead of waiting for a REPORT-state review.
 

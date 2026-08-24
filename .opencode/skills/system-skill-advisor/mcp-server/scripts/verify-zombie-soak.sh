@@ -39,9 +39,9 @@ list_launcher_pids() {
   ps -eo pid,etime,command | grep -E "^[[:space:]]*[0-9]+.*node .*${pattern}" | grep -v grep
 }
 
-SKILL_ADVISOR_COUNT=$(count_launcher "mk-skill-advisor-launcher")
-CODE_INDEX_COUNT=$(count_launcher "mk-code-index-launcher")
-SPEC_MEMORY_COUNT=$(count_launcher "mk-spec-memory-launcher")
+SKILL_ADVISOR_COUNT=$(count_launcher "system-skill-advisor-launcher")
+CODE_INDEX_COUNT=$(count_launcher "system-code-index-launcher")
+SPEC_MEMORY_COUNT=$(count_launcher "system-spec-memory-launcher")
 CONTEXT_SERVER_COUNT=$(count_child_context_server)
 
 EXIT=0
@@ -51,23 +51,23 @@ printf "Timestamp: %s\n" "$(ts)"
 printf "Working tree: %s\n" "$(pwd)"
 printf "\n"
 printf "Launcher process counts (target: ≤ 1 each):\n"
-printf "  mk-skill-advisor-launcher: %s\n" "$SKILL_ADVISOR_COUNT"
-printf "  mk-code-index-launcher:    %s\n" "$CODE_INDEX_COUNT"
-printf "  mk-spec-memory-launcher:   %s\n" "$SPEC_MEMORY_COUNT"
+printf "  system-skill-advisor-launcher: %s\n" "$SKILL_ADVISOR_COUNT"
+printf "  system-code-index-launcher:    %s\n" "$CODE_INDEX_COUNT"
+printf "  system-spec-memory-launcher:   %s\n" "$SPEC_MEMORY_COUNT"
 printf "  context-server.js (child): %s\n" "$CONTEXT_SERVER_COUNT"
 printf "\n"
 
 # Verify each launcher count is at most 1.
 if [ "$SKILL_ADVISOR_COUNT" -gt 1 ]; then
-  printf "FAIL: mk-skill-advisor-launcher has %s instances (expected ≤ 1)\n" "$SKILL_ADVISOR_COUNT" >&2
+  printf "FAIL: system-skill-advisor-launcher has %s instances (expected ≤ 1)\n" "$SKILL_ADVISOR_COUNT" >&2
   EXIT=1
 fi
 if [ "$CODE_INDEX_COUNT" -gt 1 ]; then
-  printf "FAIL: mk-code-index-launcher has %s instances (expected ≤ 1)\n" "$CODE_INDEX_COUNT" >&2
+  printf "FAIL: system-code-index-launcher has %s instances (expected ≤ 1)\n" "$CODE_INDEX_COUNT" >&2
   EXIT=1
 fi
 if [ "$SPEC_MEMORY_COUNT" -gt 1 ]; then
-  printf "FAIL: mk-spec-memory-launcher has %s instances (expected ≤ 1)\n" "$SPEC_MEMORY_COUNT" >&2
+  printf "FAIL: system-spec-memory-launcher has %s instances (expected ≤ 1)\n" "$SPEC_MEMORY_COUNT" >&2
   EXIT=1
 fi
 # context-server.js is the spec-memory child; should match spec-memory launcher count.
@@ -88,12 +88,12 @@ fi
 
 if [ "$VERBOSE" -eq 1 ]; then
   printf "\n=== Detailed launcher PIDs ===\n"
-  printf "\n-- mk-skill-advisor-launcher --\n"
-  list_launcher_pids "mk-skill-advisor-launcher" || true
-  printf "\n-- mk-code-index-launcher --\n"
-  list_launcher_pids "mk-code-index-launcher" || true
-  printf "\n-- mk-spec-memory-launcher --\n"
-  list_launcher_pids "mk-spec-memory-launcher" || true
+  printf "\n-- system-skill-advisor-launcher --\n"
+  list_launcher_pids "system-skill-advisor-launcher" || true
+  printf "\n-- system-code-index-launcher --\n"
+  list_launcher_pids "system-code-index-launcher" || true
+  printf "\n-- system-spec-memory-launcher --\n"
+  list_launcher_pids "system-spec-memory-launcher" || true
 fi
 
 printf "\n"

@@ -45,7 +45,7 @@ export default function gitPreflightAdvisory(pi: ExtensionAPI): void {
 
   pi.on("tool_call", async (event, ctx) => {
     try {
-      // Kill-switch: master MK_HOOKS_DISABLED or MK_GIT_PREFLIGHT_DISABLED. The
+      // Kill-switch: master SYSTEM_HOOKS_DISABLED or SK_GIT_PREFLIGHT_DISABLED. The
       // advisory is advisory-only, so silence is a safe no-op. Fail-open: inside
       // the try, so a guard throw never disturbs a valid command.
       if (!isHookEnabled("git-preflight")) return;

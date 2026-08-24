@@ -38,7 +38,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 - Code implementation, tests, or debugging — use `sk-code`.
 - Git worktree, branch, commit, PR, or release work — use `sk-git`.
 - Spec-folder workflow / memory / save context — use `system-spec-kit`.
-- Design judgment, visual direction, motion, or UI audit — use `sk-design`.
+- A measured Style Reference (design tokens extracted from a live source) — use `sk-design-md-generator`.
 - The `shared/` backbone is consumed by the packets, not invoked as a user workflow.
 
 ---

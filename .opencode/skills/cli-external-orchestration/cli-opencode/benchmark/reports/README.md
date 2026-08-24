@@ -16,7 +16,7 @@ contextType: "general"
 
 ## 1. OVERVIEW
 
-Each row below is one run folder. This run captures the live-headless-dispatch slice of the `CO-039` scenario (mk-goal's `experimental.chat.system.transform` injection and `mk_goal` tool exposure under `opencode run`), not a Lane C skill-benchmark corpus, so there is no D1-D5 dimension score to report. CO-039's own direct-in-process PASS verdict lives in the playbook file, not in this tree.
+Each row below is one run folder. This run captures the live-headless-dispatch slice of the `CO-039` scenario (opencode-goal's `experimental.chat.system.transform` injection and `opencode_goal` tool exposure under `opencode run`), not a Lane C skill-benchmark corpus, so there is no D1-D5 dimension score to report. CO-039's own direct-in-process PASS verdict lives in the playbook file, not in this tree.
 
 ---
 

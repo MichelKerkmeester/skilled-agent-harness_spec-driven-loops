@@ -656,19 +656,19 @@ Desired user-visible outcome: A consolidated multi-file analysis demonstrating K
 
 > **Feature File:** [CO-036](../manual-testing-playbook/prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md)
 
-### CO-037 | MiniMax design dispatch carries context manifest and proof cards
+### CO-037 | MiniMax design build dispatch carries a measured Style Reference
 
 #### Description
 
-Verify a MiniMax-M3 design/UI dispatch is not sent with thin generic context: the dispatched prompt uses the MiniMax profile shape, embeds the sk-design context manifest, and requires Context Loaded and Proof Of Application cards.
+Verify a MiniMax-M3 design/UI build dispatch is not sent with thin generic context: the dispatched prompt uses the MiniMax profile shape, embeds the measured Style Reference extracted via `sk-design-md-generator`, and requires the child to build against the measured tokens and return fidelity proof.
 
 #### Scenario Contract
 
-Prompt: `Use MiniMax-M3 to review a SaaS onboarding redesign direction. Dispatch it with the sk-design context manifest, register/dials, contrast-pair, pre-flight, and audit-evidence proof requirements.`
+Prompt: `Use MiniMax-M3 to build a SaaS onboarding UI against a measured Style Reference. Dispatch it with the sk-design-md-generator Style Reference manifest (measured DESIGN.md tokens), the build-against-measured requirements, and the validate + sk-code-handoff proof requirements.`
 
-Expected signals: Advisor or operator consults `sk-prompt/sk-prompt-models` for MiniMax-M3. The composed prompt uses TIDD-EC plus dense pre-plan, names `sk-design/shared/context-loading-contract.md`, carries the Context Loaded card and Proof Of Application card requirements, and blocks accessibility, ready, or release claims when proof fields are incomplete.
+Expected signals: Advisor or operator consults `sk-prompt/sk-prompt-models` for MiniMax-M3. The composed prompt uses TIDD-EC plus dense pre-plan, names `sk-design-md-generator/references/creation-contract.md`, carries the measured-token manifest and fidelity-proof requirements, and blocks ready or handoff claims when the validate result or locked-value trace is incomplete.
 
-Desired user-visible outcome: A MiniMax dispatch packet whose child output can echo loaded context and proof-of-application sections, rather than a generic design-review prompt that omits the manifest.
+Desired user-visible outcome: A MiniMax dispatch packet whose child output can echo the loaded measured tokens and the fidelity/validation proof, rather than a generic design prompt that omits the Style Reference.
 
 #### Test Execution
 
@@ -786,17 +786,17 @@ Expected signals: Layer 1 trips. SKILL.md `has_parallel_session_keywords` is the
 
 ## 16. GOAL HOOK (`CO-039`)
 
-This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `mk-goal` plugin (`.opencode/plugins/mk-goal.js`) directly in-process: the `/goal-opencode` action set, two-session isolation, fixed SHA-256 state keys, long-session persistence, validated lazy migration from the earlier hex layout, native token accounting, and `experimental.chat.system.transform` injection. `mk-goal` remains separate from the runtime-neutral Pi/Cursor core validated as `CE-P03` in the hub playbook.
+This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `opencode-goal` plugin (`.opencode/plugins/opencode-goal.js`) directly in-process: the `/goal-opencode` action set, two-session isolation, fixed SHA-256 state keys, long-session persistence, validated lazy migration from the earlier hex layout, native token accounting, and `experimental.chat.system.transform` injection. `opencode-goal` remains separate from the runtime-neutral Pi/Cursor core validated as `CE-P03` in the hub playbook.
 
-### CO-039 | Goal hook native mk-goal validation
+### CO-039 | Goal hook native opencode-goal validation
 
 #### Description
 
-Verify the native `mk-goal` plugin's actions, opaque persistence, validated compatibility migration, session isolation, native token accounting, and passive `[active_goal]` injection against scratch state.
+Verify the native `opencode-goal` plugin's actions, opaque persistence, validated compatibility migration, session isolation, native token accounting, and passive `[active_goal]` injection against scratch state.
 
 #### Scenario Contract
 
-Prompt summary: As an OpenCode plugin validator, exercise the shipped mk-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior.
+Prompt summary: As an OpenCode plugin validator, exercise the shipped opencode-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior.
 
 Expected signals: `set` returns `mutation=created` with a populated RICCE `goal_prompt`; every new state basename is 64 lowercase hex characters plus `.json`; a 140-character id persists; a valid legacy file migrates only after embedded-session validation; A/B state remains isolated; native tokens total exactly with `usage_source=opencode-native-tokens`; one matching injection block appears; every disabled action fails closed; and all seven suites pass 125/125. A live headless `opencode run` attempt remains a documented SKIP, not a plugin failure.
 
@@ -885,4 +885,4 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### GOAL HOOK
 
-- CO-039: [Goal hook native mk-goal validation](../manual-testing-playbook/goal-hook/goal-hook.md)
+- CO-039: [Goal hook native opencode-goal validation](../manual-testing-playbook/goal-hook/goal-hook.md)

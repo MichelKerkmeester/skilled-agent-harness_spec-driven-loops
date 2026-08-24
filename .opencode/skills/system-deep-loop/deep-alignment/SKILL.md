@@ -18,7 +18,7 @@ Structured conformance-review loop that checks artifacts against a named standar
 
 Use this skill when:
 - Checking whether docs, code, configs, or git history in a scope follow a named authority's own creation standards, not general correctness
-- Auditing multiple authorities in one run (for example sk-doc and sk-git and sk-design conformance together)
+- Auditing multiple authorities in one run (for example sk-doc and sk-git and sk-code conformance together)
 - Verifying a claimed "shipped to standard" state against live reality before trusting it
 - Unattended or headless conformance sweeps across a repo or a spec folder
 
@@ -54,7 +54,7 @@ The general entry point for this skill is `/deep:alignment`. The specialized `/d
 - "alignment lane" / "alignment conformance audit"
 - "conformance review" / "standard authority check"
 - "deep alignment" / "deep-alignment"
-- "check against sk-doc/sk-git/sk-design/sk-code standards"
+- "check against sk-doc/sk-git/sk-code standards"
 - "structured scoping review"
 
 ### Keyword Triggers
@@ -120,7 +120,6 @@ ADAPTER_RESOURCE_MAP = {
     "sk-doc":    ["references/adapters/sk-doc-adapter.md", "references/adapters/sk-doc-known-deviations.md"],
     "sk-doc-command": ["references/adapters/sk-doc-command-adapter.md", "references/adapters/sk-doc-command-known-deviations.md"],
     "sk-git":    ["references/adapters/sk-git-adapter.md", "references/adapters/sk-git-known-deviations.md"],
-    "sk-design": ["references/adapters/sk-design-adapter.md", "references/adapters/sk-design-known-deviations.md"],
     "sk-code":   ["references/adapters/sk-code-adapter.md", "references/adapters/sk-code-known-deviations.md"],
 }
 
@@ -170,7 +169,7 @@ def get_routing_key(dispatch_context) -> str:
 
 def get_authority_key(dispatch_context) -> str:
     authority = str(getattr(dispatch_context, "authority", "")).strip().lower()
-    return authority if authority in {"sk-doc", "sk-git", "sk-design", "sk-code"} else ""
+    return authority if authority in {"sk-doc", "sk-git", "sk-code"} else ""
 
 def get_adapter_key(dispatch_context) -> str:
     adapter = str(getattr(dispatch_context, "adapter", "")).strip().lower()
@@ -304,8 +303,8 @@ Four invariants, enforced by the engine itself and not left to individual adapte
 - [lane-config-schema.md](./references/lane-config-schema.md) - `--lane-config` JSON shape, authority/artifact-class validity, and the error contract
 - [discover-contract.md](./references/discover-contract.md) - The authority-agnostic `discover(scope) -> artifacts` half of the adapter contract
 - [state-machine-wiring.md](./references/state-machine-wiring.md) - State-to-script wiring, the `alignment/` file layout, and the convergence formula
-- [adapters/sk-doc-adapter.md](./references/adapters/sk-doc-adapter.md), [adapters/sk-git-adapter.md](./references/adapters/sk-git-adapter.md), [adapters/sk-design-adapter.md](./references/adapters/sk-design-adapter.md), [adapters/sk-code-adapter.md](./references/adapters/sk-code-adapter.md) - Per-authority `standardSource`/`discover`/`check` specifications
-- [adapters/sk-doc-known-deviations.md](./references/adapters/sk-doc-known-deviations.md), [adapters/sk-git-known-deviations.md](./references/adapters/sk-git-known-deviations.md), [adapters/sk-design-known-deviations.md](./references/adapters/sk-design-known-deviations.md), [adapters/sk-code-known-deviations.md](./references/adapters/sk-code-known-deviations.md) - Per-authority known-deviation suppression lists
+- [adapters/sk-doc-adapter.md](./references/adapters/sk-doc-adapter.md), [adapters/sk-git-adapter.md](./references/adapters/sk-git-adapter.md), [adapters/sk-code-adapter.md](./references/adapters/sk-code-adapter.md) - Per-authority `standardSource`/`discover`/`check` specifications
+- [adapters/sk-doc-known-deviations.md](./references/adapters/sk-doc-known-deviations.md), [adapters/sk-git-known-deviations.md](./references/adapters/sk-git-known-deviations.md), [adapters/sk-code-known-deviations.md](./references/adapters/sk-code-known-deviations.md) - Per-authority known-deviation suppression lists
 
 ### Templates and Assets
 

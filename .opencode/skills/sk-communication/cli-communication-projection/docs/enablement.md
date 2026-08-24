@@ -131,20 +131,20 @@ provider records and the freshness facts before the first projected run.
 ## 5. OPENCODE PLUGIN SETUP
 
 OpenCode projects through the native hook in
-`.opencode/plugins/mk-communication-projection.js`. The plugin registers the
+`.opencode/plugins/sk-communication-projection.js`. The plugin registers the
 `chat.message` hook and, when the projection is opted in and the hook is not
 killed, replaces the assistant text parts with the projected text.
 
 To enable it:
 
 1. Confirm the plugin file exists at
-   `.opencode/plugins/mk-communication-projection.js`.
+   `.opencode/plugins/sk-communication-projection.js`.
 2. Set `COMMUNICATION_PROJECTION_ENABLED=1` for the OpenCode session. Or write
    the git-ignored local override file.
-3. Leave `MK_COMMUNICATION_PROJECTION_DISABLED` unset.
+3. Leave `SK_COMMUNICATION_PROJECTION_DISABLED` unset.
 4. Launch OpenCode and send a message.
 
-The per-plugin kill-switch is `MK_COMMUNICATION_PROJECTION_DISABLED=1`. Set it
+The per-plugin kill-switch is `SK_COMMUNICATION_PROJECTION_DISABLED=1`. Set it
 to disable the hook class without touching the enablement file. With the flag
 off or with the kill-switch set, the hook leaves the original parts untouched
 and renders the byte-exact original. The plugin writes no standard output and no

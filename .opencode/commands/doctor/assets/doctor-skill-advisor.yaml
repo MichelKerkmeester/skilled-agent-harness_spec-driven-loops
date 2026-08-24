@@ -33,7 +33,7 @@ skill_advisor_doctor_invariant: |
 upstream_assets:
   contract: "local command design contract"
   cli_health_command: "node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only"
-  cli_health_policy: "Warm-only: probe the existing mk-skill-advisor IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
+  cli_health_policy: "Warm-only: probe the existing system-skill-advisor IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
   files:
     spec: "spec.md"  # advisor system requirements
     decision_record: "decision-record.md"  # ADRs for scoring lanes + thresholds
@@ -87,7 +87,7 @@ mutation_boundaries:
     steps:
       - "For each target in proposal_diff: resolve via realpath; reject absolute paths; reject paths containing `..` or symlinks escaping repo root"
       - "Assert resolved target is repo-relative (under repo_root)"
-      - "Match resolved target against allowed_targets patterns: exact match for explicit.ts/lexical.ts; glob match for .opencode/skills/<name>/graph-metadata.json where <name> exists in mk_skill_advisor.skill_graph_status"
+      - "Match resolved target against allowed_targets patterns: exact match for explicit.ts/lexical.ts; glob match for .opencode/skills/<name>/graph-metadata.json where <name> exists in system_skill_advisor.skill_graph_status"
       - "Reject any match against forbidden_targets patterns"
       - "On first violation: abort phase 3 entirely, append violation to validation_log, exit STATUS=FAIL with diagnostic"
     on_pass: "proceed to baseline capture + edit activities"
@@ -221,7 +221,7 @@ workflow:
     activities:
       - "List all skill folders: ls -d .opencode/skills/*/"
       - "Read each SKILL.md frontmatter (name, description, trigger phrases)"
-      - "Check skill graph status: mk_skill_advisor.skill_graph_status({})"
+      - "Check skill graph status: system_skill_advisor.skill_graph_status({})"
       - "Apply upstream_assets.cli_health_policy, then run upstream_assets.cli_health_command only when the warm socket probe succeeds; report CLI availability, freshness, trustState, and exit code"
       - "Detect repo context: package.json, tsconfig.json, requirements.txt, language hints"
       - "Build skill inventory with current trigger coverage"
@@ -255,7 +255,7 @@ workflow:
   phase_2_proposal:
     purpose: Generate optimized triggers, tokens, phrases per skill
     activities:
-      - "STEP 0 apply_skill_filter (pre_phase_2 gate): If operator chose 'B <skill-list>' at pre_phase_2: parse the skill-name list (comma or space separated), validate each name exists in mk_skill_advisor.skill_graph_status({}).skills, and set skill_filter to that validated list; names that do not resolve to a real skill are dropped from skill_filter and recorded in skill_filter_warnings (not silently ignored). If operator chose 'A': skill_filter = 'none' (no filtering, all skills with gaps proceed)."
+      - "STEP 0 apply_skill_filter (pre_phase_2 gate): If operator chose 'B <skill-list>' at pre_phase_2: parse the skill-name list (comma or space separated), validate each name exists in system_skill_advisor.skill_graph_status({}).skills, and set skill_filter to that validated list; names that do not resolve to a real skill are dropped from skill_filter and recorded in skill_filter_warnings (not silently ignored). If operator chose 'A': skill_filter = 'none' (no filtering, all skills with gaps proceed)."
       - "For each skill with gaps, restricted to skill_filter when skill_filter != 'none': propose TOKEN_BOOSTS, PHRASE_BOOSTS, derived.trigger_phrases, derived.key_topics"
       - "Cross-check proposed tokens against existing TOKEN_BOOSTS to avoid collisions"
       - "Generate before/after diff per skill, per lane"
@@ -273,7 +273,7 @@ workflow:
       - confidence_by_skill: "{ skill_name: 0.0-1.0 }"
       - scope_filtered_proposal_diff: "subset of proposal_diff matching active scope flag"
       - skill_filter: "none | [skill_name, ...] (from pre_phase_2 gate response B)"
-      - skill_filter_warnings: "list of requested skill names that did not resolve to a real skill in mk_skill_advisor.skill_graph_status({}).skills"
+      - skill_filter_warnings: "list of requested skill names that did not resolve to a real skill in system_skill_advisor.skill_graph_status({}).skills"
       - diff_path: "{packet_scratch}/skill-advisor-proposal-{timestamp}.md"
     validation: proposal_complete
     proposal_validation:
@@ -282,7 +282,7 @@ workflow:
       token_max_length: 64
       phrase_max_length: 128
       phrase_forbidden: "control characters (0x00-0x1F + 0x7F)"
-      skill_id_check: "must exist in mk_skill_advisor.skill_graph_status({}).skills"
+      skill_id_check: "must exist in system_skill_advisor.skill_graph_status({}).skills"
       boost_range: "[0.0, 1.0]"
       on_violation: "exclude entry from proposal, append to schema_violations, do not silently coerce"
     gate_after: "pre_phase_3 (Apply)"

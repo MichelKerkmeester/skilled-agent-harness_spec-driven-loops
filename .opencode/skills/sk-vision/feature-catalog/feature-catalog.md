@@ -17,7 +17,7 @@ This document combines the current feature inventory for the `sk-vision` system 
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `sk-vision` feature surface. The numbered sections below group the system by capability area so readers can move from a top-level summary into per-feature reference files without losing implementation or validation context. sk-vision is a local-first vision skill: a Moondream-backed JSON-RPC runtime exposes 13 `sk_vision_*` tools to text-only coding models through an OpenCode plugin and a Pi extension.
+Use this catalog as the canonical inventory for the live `sk-vision` feature surface. The numbered sections below group the system by capability area so readers can move from a top-level summary into per-feature reference files without losing implementation or validation context. sk-vision is a local-first vision skill. A Moondream-backed JSON-RPC runtime exposes 13 `sk_vision_*` tools through OpenCode, Pi, Cursor and Devin. OpenCode and Pi stay idle by default and activate through `/vision`.
 
 ---
 
@@ -241,11 +241,11 @@ See [`system-health/reverse.md`](system-health/reverse.md) for full implementati
 
 #### Description
 
-Loads the vision runtime and 13 tools into OpenCode, with automatic inspection of attached images.
+Loads the vision runtime and handles `/vision` in OpenCode. Tools are not registered by default.
 
 #### Current Reality
 
-A real file at `.opencode/plugins/sk-vision.js` re-exports the built runtime plugin, which registers the 13 tools, preloads analysis on image paste with a 2s grace, and materializes clipboard images for the model.
+A real file at `.opencode/plugins/sk-vision.js` re-exports the built runtime plugin. By default the plugin registers the `/vision` command hook only. The hook fetches the latest image, injects a `<SK-VISION COMMAND>` evidence block and tears the runtime down after the call. `SK_VISION_AUTOINSPECT=1` restores visible tools and legacy attachment inspection.
 
 #### Source Files
 
@@ -257,11 +257,11 @@ See [`host-adapters/opencode-plugin.md`](host-adapters/opencode-plugin.md) for f
 
 #### Description
 
-Registers the 13 vision tools in Pi and auto-inspects attached images with a bounded grace window.
+Registers the 13 vision tools hidden by default in Pi and drives the hidden inspect tool through `/vision`.
 
 #### Current Reality
 
-A relative symlink from `.pi/extensions/sk-vision.ts` to the skill's factory registers the 13 tools, closes the runtime on session shutdown, and transforms attached-image input with a 2s bounded preload.
+A relative symlink from `.pi/extensions/sk-vision.ts` to the skill's factory registers the 13 tools hidden by default. The `/vision` prompt drives the hidden inspect tool and tears down a fresh runtime after each call. `SK_VISION_AUTOINSPECT=1` restores visible tools and legacy attachment inspection.
 
 #### Source Files
 
@@ -273,11 +273,11 @@ See [`host-adapters/pi-extension.md`](host-adapters/pi-extension.md) for full im
 
 #### Description
 
-Exposes all 13 sk-vision tools through one shared MCP stdio server used by Cursor and Devin.
+Exposes all 13 sk-vision tools through one shared MCP stdio server. Cursor drives `sk_vision_inspect` with `/vision`. Devin has no command surface and calls the tool directly.
 
 #### Current Reality
 
-The built `vision-runtime/dist/mcp-server.js` registers the 13 tools over MCP stdio and delegates through the shared provider and runtime client. Cursor starts it from `.cursor/mcp.json` and Devin from `.devin/mcp_config.json`. The server binds to its host's lifetime — an idempotent shutdown on transport close, stdin EOF, and signals, plus a reparent-to-init watchdog for the `SIGKILL` case — so it never lingers as an orphaned process.
+The built `vision-runtime/dist/mcp-server.js` registers the 13 tools over MCP stdio and delegates through the shared provider and runtime client. Cursor starts it from `.cursor/mcp.json` and its `/vision` command drives `sk_vision_inspect`. Devin starts it from `.devin/mcp_config.json` and calls the tool directly. The server binds to its host's lifetime and shuts down on transport close, stdin EOF and signals, with a reparent-to-init watchdog for the `SIGKILL` case.
 
 #### Source Files
 

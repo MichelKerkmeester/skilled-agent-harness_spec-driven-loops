@@ -86,7 +86,7 @@ The official workflow contract, merged across the provider docs and the official
 
 ### The local judgment boundary
 
-Upstream permits multi-reference comparison; the local `sk-design` contract is stricter for design-affecting use: resolve **ONE** matching live reference, name the category default, never show a chooser, never copy. Reconcile by allowing breadth during transport research while `sk-design` collapses evidence to one declared critique reference before design judgment. Multiple results may still be returned for explicit competitive research. Pure factual lookups ("list Refero screens matching X") may return evidence without a taste verdict; if that evidence will influence a design, it must route back through `sk-design`.
+Upstream permits multi-reference comparison; the local transport contract is stricter for design-affecting use: resolve **ONE** matching live reference, name the category default, never show a chooser, never copy. Reconcile by allowing breadth during transport research while a measured Style Reference (extracted design tokens) comes from `sk-design-md-generator` before any design decision. Multiple results may still be returned for explicit competitive research. Pure factual lookups ("list Refero screens matching X") may return evidence without a taste verdict; if that evidence will influence a design, pair with `sk-design-md-generator` for a measured Style Reference.
 
 ---
 

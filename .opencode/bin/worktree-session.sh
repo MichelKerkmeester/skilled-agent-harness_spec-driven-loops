@@ -143,9 +143,9 @@ exec_in_place() {
   # reach it -- neutralize it here as a belt-and-suspenders backstop even
   # though the core's own evaluateMutation() already narrows deny to
   # non-child sessions via AI_SESSION_CHILD.
-  export MK_SPEC_GATE_ENFORCE=0
+  export SYSTEM_SPEC_GATE_ENFORCE=0
   if [ "$DRY_RUN" = "1" ]; then
-    echo "DRY_RUN: would exec in place: $RUNTIME_EXEC $* (MK_SPEC_GATE_ENFORCE=0)"
+    echo "DRY_RUN: would exec in place: $RUNTIME_EXEC $* (SYSTEM_SPEC_GATE_ENFORCE=0)"
     exit 0
   fi
   exec "$RUNTIME_EXEC" "$@"
@@ -185,8 +185,25 @@ fi
 
 # Short unique slug (epoch + pid). bash has no Date.now restriction.
 SLUG="$(date +%Y%m%d-%H%M%S)-$$"
-WT_REL=".worktrees/${RUNTIME_ID}-${SLUG}"
-WT_ABS="$MAIN_ROOT/$WT_REL"
+
+# Resolve the worktree base (canonical resolver: sk-git worktree-naming.sh
+# _wn_base_dir; inlined here to keep the launch path dependency-free). Keeping
+# session worktrees out of the primary checkout stops its file-watchers from
+# scanning every worktree's node_modules. Precedence: env > git config > legacy
+# in-checkout .worktrees.
+WT_BASE_DIR="${SPECKIT_WORKTREE_BASE:-$(git -C "$MAIN_ROOT" config --get speckit.worktreeBase 2>/dev/null || true)}"
+[ -n "$WT_BASE_DIR" ] || WT_BASE_DIR=".worktrees"
+case "$WT_BASE_DIR" in
+  "~")   WT_BASE_DIR="$HOME" ;;
+  "~/"*) WT_BASE_DIR="$HOME/${WT_BASE_DIR#\~/}" ;;
+esac
+case "$WT_BASE_DIR" in
+  /*) : ;;
+  *)  WT_BASE_DIR="$MAIN_ROOT/$WT_BASE_DIR" ;;
+esac
+WT_ABS="$WT_BASE_DIR/${RUNTIME_ID}-${SLUG}"
+WT_REL="${WT_ABS#"$MAIN_ROOT"/}"   # display: relative when inside the checkout, else absolute
+mkdir -p "$WT_BASE_DIR"
 BRANCH="work/${RUNTIME_ID}/${SLUG}"
 
 # The "live" branch is whatever the primary checkout (MAIN_ROOT) currently has

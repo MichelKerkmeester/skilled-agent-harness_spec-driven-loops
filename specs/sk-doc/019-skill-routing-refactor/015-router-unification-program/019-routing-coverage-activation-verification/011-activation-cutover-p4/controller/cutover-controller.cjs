@@ -102,7 +102,6 @@ const RECOMMENDED_ORDER = [
   'cli-external-orchestration',
   'mcp-tooling',
   'system-deep-loop',
-  'sk-design',
   'sk-doc',
   'sk-code',
 ];

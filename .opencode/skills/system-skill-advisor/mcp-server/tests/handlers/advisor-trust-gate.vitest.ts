@@ -23,8 +23,8 @@ import {
 type MCPResponse = { content: Array<{ type: string; text: string }> };
 
 const MANAGED_ENV_KEYS = [
-  'MK_SKILL_ADVISOR_TRUST_DEFAULT',
-  'MK_SKILL_ADVISOR_DB_DIR',
+  'SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT',
+  'SYSTEM_SKILL_ADVISOR_DB_DIR',
   'SYSTEM_SKILL_ADVISOR_DB_DIR',
 ] as const;
 
@@ -64,10 +64,10 @@ function writeGraphMetadata(
 
 beforeEach(() => {
   savedEnv = new Map(MANAGED_ENV_KEYS.map((key) => [key, process.env[key]]));
-  delete process.env.MK_SKILL_ADVISOR_TRUST_DEFAULT;
+  delete process.env.SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT;
   delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   sandboxRoot = mkdtempSync(join(tmpdir(), 'advisor-trust-gate-'));
-  process.env.MK_SKILL_ADVISOR_DB_DIR = join(sandboxRoot, 'db');
+  process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = join(sandboxRoot, 'db');
   closeDb();
 });
 
@@ -130,7 +130,7 @@ describe('transport-absent _meta defaults to untrusted for mutations', () => {
   it('honors the daemon-owner env grant for transport-absent callers only', () => {
     expect(resolveTrustedCaller({})).toBe(false);
 
-    process.env.MK_SKILL_ADVISOR_TRUST_DEFAULT = 'trusted';
+    process.env.SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT = 'trusted';
     expect(resolveTrustedCaller({})).toBe(true);
     expect(buildCallerContext({}).trusted).toBe(true);
     expect(buildCallerContext(undefined).trusted).toBe(true);
@@ -138,7 +138,7 @@ describe('transport-absent _meta defaults to untrusted for mutations', () => {
     expect(resolveTrustedCaller({ trusted: false })).toBe(false);
     expect(resolveTrustedCaller({ callerAuthority: 'untrusted' })).toBe(false);
 
-    process.env.MK_SKILL_ADVISOR_TRUST_DEFAULT = 'untrusted';
+    process.env.SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT = 'untrusted';
     expect(resolveTrustedCaller({})).toBe(false);
   });
 

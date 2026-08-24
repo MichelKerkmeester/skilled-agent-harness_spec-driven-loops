@@ -57,7 +57,6 @@ const HUBS = [
   'mcp-tooling',
   'cli-external-orchestration',
   'sk-prompt',
-  'sk-design',
   'sk-doc',
 ];
 
