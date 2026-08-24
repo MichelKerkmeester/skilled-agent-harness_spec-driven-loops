@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Routing the live fan-out executor spawn through the shipped effect gateway (phase `007`) records a fail-closed intent",
     "created_at": "2026-08-22T04:10:32.128Z",
-    "last_save_at": "2026-08-22T05:17:33.085Z",
+    "last_save_at": "2026-08-24T06:19:12.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5b6db52cdad2570bb378f2ab9b6e9d48bf23f1cb8a6efe738666b1e6c26708a",
+    "source_fingerprint": "sha256:f1c73d095e3a6b9642b5cd0f1b72af4516f148aca723070138528bcbac2db2be",
     "source_doc_hashes": {
-      "spec.md": "2c68c065d8d800073597f32c658410b24f6be8f828f1e2b46faa47f5a1649bb2",
-      "plan.md": "2a2db0ccd7dde2b41f4becc0428230a0693795399462caa017a1ab9e66b07487",
-      "tasks.md": "b3727d71935d6c251574d1342ad1728782ca5bdb82768bc371458057de1bfaf4",
-      "checklist.md": "46e2cf8136fd6ceba561beacd7db67680ebeba77200af3af8b61251d9cd05220",
-      "implementation-summary.md": "950853f2d20d392a7b2cf4902adb4ebbfb8db119523da2fc95b776ffd35d0c9c"
+      "spec.md": "40ec0e920e577903239fedbeae7944307aae849e0853a310033c2a705a219194",
+      "plan.md": "36057a12f39848210c22ac00d6da9ba15ffb02dbd2bc6b1de3c5bd18fe6292d1",
+      "tasks.md": "c0e71b1c0c231a9d608125c22bac25c750f4e2a1bd116303a6125b698c89659d",
+      "checklist.md": "cefab3f16e08bad67ae49988e31bfb7bd58ded35c0ba5e02c110af626fc9560c",
+      "implementation-summary.md": "def562e1e125804e5c41dcb031e749ab8c7df65af65fdf118e8b0fe8ae630aa3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -15,39 +15,40 @@
       "legacy projection coverage",
       "projection contract build",
       "mode projection contracts plan",
+      "projection contract build plan",
       "mode projection contracts tasks",
       "mode projection contracts checklist",
+      "projection contract decisions",
+      "surface projection composition",
       "mode projection contracts summary",
       "projection surface contracts",
       "ledger-fold projection coverage"
     ],
     "key_topics": [
+      "mode",
       "projection",
       "contracts",
-      "ledger",
-      "fold",
-      "surface",
+      "legacy",
       "coverage",
-      "reclassification",
-      "deep-loop"
+      "contract",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "surface",
+      "composition"
     ],
-    "importance_tier": "critical",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
-      "plan.md",
+      "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "tasks.md"
+      "implementation-summary.md",
+      "plan.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -55,9 +56,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -73,15 +74,129 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Projection Contracts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Each",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Six ledger-fold projection contracts built and proven; three non-foldable surfaces reclassified to retain-legacy-input",
+    "causal_summary": "The fleet flip moved all eight modes to ledger authority, but the projection library ships exactly one",
     "created_at": "2026-08-23T06:30:00.000Z",
-    "last_save_at": "2026-08-23T06:30:00.000Z",
+    "last_save_at": "2026-08-24T06:19:12.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -92,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b97618f7d1102ed021a06162ce1eb4cb6892f50e11ff94388b2a8defcb6004a",
+    "source_fingerprint": "sha256:21f7c4fd0b6b6953042b4b8de52b0edfb2ae0877892b9a130f3cd1bc86d5cb07",
     "source_doc_hashes": {
-      "spec.md": "1cf19d5995a35c0bce713f1159fad16879aaa5d389eee669fc73e6543b04003f",
-      "plan.md": "a9c148c13ed76b379d8ef17b87328a35ab4d514d03e75e9bcb4745a868231c6f",
-      "tasks.md": "8cce39edd842061744f3c5b15364e8472bee1485aa7ce7c9cba7b0088902e19f",
-      "checklist.md": "f3044afd34c808b5c68154073aa2bffd89cefc9e349b1437d6f634a90f9d4b0e",
-      "decision-record.md": "26def3f38e1fa438fffced26569e637e06df8e3c80c462076e554efa115524e9",
-      "implementation-summary.md": "56050194f4c193279f257900f18a8862e0fcba094d5d10301ff5092f1a03fc81"
+      "spec.md": "4fb4fcc82666e285a138c4ed17a61db2a1f14c0e1ae2407812c12fa235688cc4",
+      "plan.md": "8971074aae7d28d74e76cace1306603cc7ff5b9613585694276585eb01deb086",
+      "tasks.md": "8f35b37af572e96955d481ec1a5fd2c0fbb8e0c9a4b9001e8f6425e131a18055",
+      "checklist.md": "d09add636a8bf2d04d29f29f7ba40364a0424c65343efa7e91487ca782c94c0f",
+      "decision-record.md": "4a557f38cca4080a6158c38df9479a8b87bde54f4c965b8c66c2fca9bcf70954",
+      "implementation-summary.md": "22b7ecb2e424a7e01a62ab410495d6bb395be1b7fbe92874721479567dd000ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,17 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
-  "description": "Six ledger-fold projection surface contracts were built and proven against their real consumers, and three surfaces the build proved are not ledger folds were honestly reclassified to retain-legacy-input",
+  "description": "The fleet flip moved all eight modes to ledger authority, but the projection library ships exactly one",
   "keywords": [
-    "projection",
-    "contracts",
+    "fleet",
+    "flip",
+    "moved",
+    "eight",
+    "modes",
     "ledger",
-    "fold",
-    "surface",
-    "reclassified",
-    "coverage"
+    "authority",
+    "projection",
+    "library",
+    "ships",
+    "exactly",
+    "one"
   ],
-  "lastUpdated": "2026-08-23T06:30:00.000Z",
+  "lastUpdated": "2026-08-24T06:19:12.570Z",
   "specId": "009",
   "folderSlug": "mode-projection-contracts",
   "parentChain": [

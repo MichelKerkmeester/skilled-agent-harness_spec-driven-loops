@@ -11,7 +11,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts"
-    last_updated_at: "2026-08-23T06:30:00Z"
+    last_updated_at: "2026-08-24T06:19:12Z"
     last_updated_by: "claude"
     recent_action: "Built six ledger-fold projection contracts; reclassified three non-foldable surfaces"
     next_safe_action: "Proceed to 004-legacy-writer-retirement"
@@ -45,7 +45,7 @@ _memory:
 | **Owner skill** | system-deep-loop |
 | **Authority posture** | No authority moves; a losing writer gains its projection replacement |
 
-> Phase adjacency under `012-runtime-enablement`: this child was created after `003-fleet-enablement` moved
+> Phase adjacency under `012-runtime-enablement` (navigation order): predecessor `008-ledger-read-cache`; successor `010-full-enablement-finalize`. This child was created after `003-fleet-enablement` moved
 > every mode to ledger authority, when the fleet's own reader-contract requirement (each mode's legacy files
 > must be produced by its projection) was found unmet for every mode except the pilot. It is a prerequisite
 > for `004-legacy-writer-retirement`.

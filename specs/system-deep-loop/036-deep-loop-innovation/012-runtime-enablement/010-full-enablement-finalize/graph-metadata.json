@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "full enablement finalize",
       "authority finalize",
-      "reader contract enablement"
+      "reader contract enablement",
+      "full enablement finalize plan",
+      "authority finalize plan",
+      "full enablement finalize tasks",
+      "full enablement finalize checklist"
     ],
     "key_topics": [
       "full",
@@ -22,32 +26,26 @@
       "authority",
       "reader",
       "contract",
+      "plan",
+      "tasks",
+      "checklist",
       "reversible",
       "flip",
-      "moved",
-      "eight",
-      "modes",
-      "newauthoritativereversible"
+      "moved"
     ],
-    "importance_tier": "critical",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "plan.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -60,6 +58,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -105,75 +109,87 @@
         "source": "derived"
       },
       {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "integrity",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. METADATA",
+        "name": "1. SUMMARY",
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. APPROACH",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Breakdown",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "integrity",
-        "kind": "key_phrase",
+        "name": "Setup Finalize",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "2. TASKS",
-        "kind": "heading",
+        "name": "Implementation Execute",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "no",
-        "kind": "key_phrase",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "2. ACCEPTANCE CHECKS",
-        "kind": "heading",
+        "name": "Code Quality",
+        "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "QA Checklist: Full Enablement and Finalize",
-        "kind": "quoted",
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "contextType:",
-        "kind": "quoted",
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary",
+        "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The reversible flip moved all eight modes to `newauthoritativereversible`, which already routes every",
     "created_at": "2026-08-23T17:06:54.597Z",
-    "last_save_at": "2026-08-23T17:06:54.597Z",
+    "last_save_at": "2026-08-24T06:19:13.153Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,12 +198,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7aae4570abd961834ec549ba968d05799e8a95ae1e63aa10450d663116eaad2a",
+    "source_fingerprint": "sha256:0c6c7d05e509f70593078e5bd3966be2308a15f5b9a4d0ce5440dd851610cab0",
     "source_doc_hashes": {
-      "spec.md": "8c2897f80076b7abd72565759e37f6836b4b1dde17c9b399d2fb7b80888d3a22",
-      "plan.md": "f428b3c655df16066dd2eac8ab5de0cdc3d895d3a5da17e1452290bc974bf483",
-      "tasks.md": "f9c61bb0fa998b3089fce55b308e922c4d5103e53c519bf48826139fd8057c71",
-      "checklist.md": "8d4c4490c1839c151a8d56b6186f3f34143bd8ca3e1580b8f5829623154ca42e"
+      "spec.md": "b1678fc6eb7cf4da544d83cacdaa79c882bfd6521bb3427a8c28a498cc56511a",
+      "plan.md": "3b6269196a0f708a3294fb0ccfa76ebcd6db214f6f4223e4008d8b93e2f2728c",
+      "tasks.md": "ce3254ad736e8410f4341cd66a79f33b7567dabd838e53cb2513d5e64ce0ab2c",
+      "checklist.md": "57e08107b0a456d17b7081f0fc2b96f5e86230fa9a3b1211bfa922554a6b8ad8"
     },
     "last_active_child_id": null,
     "last_active_at": null

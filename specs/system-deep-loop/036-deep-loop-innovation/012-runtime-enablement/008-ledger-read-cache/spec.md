@@ -12,7 +12,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache"
-    last_updated_at: "2026-08-22T05:17:32Z"
+    last_updated_at: "2026-08-24T06:19:12Z"
     last_updated_by: "claude"
     recent_action: "Built, verified, and measured the opt-in read cache; status Complete"
     next_safe_action: "Phase complete; reconcile and commit 007, then resume the enablement chain"
@@ -48,7 +48,7 @@ _memory:
 | **Authority posture** | No authority moves; a read-path performance change to a shared primitive, default-off |
 
 > Phase adjacency under `012-runtime-enablement` (navigation order): predecessor `007-effect-enablement`;
-> successor `none` (latest sibling). This phase is a dependency of the effect producer in `007`: it removes the
+> successor `009-mode-projection-contracts`. This phase is a dependency of the effect producer in `007`: it removes the
 > per-read lock floor that makes the producer serialize the fan-out pool.
 <!-- /ANCHOR:metadata -->
 

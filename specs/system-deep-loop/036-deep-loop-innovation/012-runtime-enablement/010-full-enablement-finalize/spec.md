@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize"
-    last_updated_at: "2026-08-23T16:30:00Z"
+    last_updated_at: "2026-08-24T06:19:12Z"
     last_updated_by: "claude"
-    recent_action: "Scoped the finalize transition, gate authority-state widening, and the real reader-contract check"
+    recent_action: "Scoped the window-free finalize, gate widening, and reader-contract check"
     next_safe_action: "Build the window-free reversible-to-final CAS in the authority registry"
     blockers: []
     key_files:
@@ -45,7 +45,7 @@ _memory:
 | **Owner skill** | system-deep-loop |
 | **Authority posture** | All eight modes advance reversible → final; the legacy shadow writer is dropped |
 
-> Phase adjacency under `012-runtime-enablement`: this child was created after `005-whole-system-gate`
+> Phase adjacency under `012-runtime-enablement` (navigation order): predecessor `009-mode-projection-contracts`; successor `011-delete-overengineering`. This child was created after `005-whole-system-gate`
 > reached an honest INCOMPLETE-clean verdict (six checks pass, reader-contracts recorded not-run because no
 > mode was fully enabled). The operator directed that the improved ledger loop go live and the legacy path be
 > dropped, and that the rollback-window migration ceremony — an over-engineering for this system's risk
@@ -158,7 +158,7 @@ behaviour.
 | Finalizing breaks consumers assuming reversible | Suite regressions | Full-suite re-run measured against the captured baseline; fix root causes before claiming PASS |
 
 **Dependencies**: `005-whole-system-gate` (honest INCOMPLETE-clean baseline), `009-mode-projection-contracts`
-(a projection contract per mode). No successor; this is the epic's terminal enabling phase.
+(a projection contract per mode). Successor `011-delete-overengineering` is follow-up cleanup, not further enablement; this is the epic's terminal enabling phase.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
