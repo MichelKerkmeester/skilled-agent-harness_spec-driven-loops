@@ -2,7 +2,7 @@
 name: sk-code-mobile-cli
 description: "Read-only Svelte design-system and source-convention evidence for the Pi Remote Mobile-CLI app."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.3.0.0
+version: 1.4.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -158,6 +158,11 @@ surface MUST honor them:
 - **CSS ownership is scoped.** Every surface's CSS lives in its component's scoped `<style>` block.
   `app-mobile/src/app.css` holds only rules shared by two or more renderers, including shared tokens,
   theme remaps, and resets.
+- **Every component change updates its story.** Adding or changing a renderable component includes
+  creating or updating its co-located `*.stories.ts` (scaffold: `npm run story:new`), so the
+  Storybook catalog stays trustworthy; the coverage gate (`npm run story:coverage`) enforces it and a
+  red coverage gate is a failing test. A story must show what the app actually renders — never invented
+  values. See the repo-root `STORYBOOK.md`.
 - **Verification is browser-free.** Because the app's strict CSP renders it unstyled under headless CDP,
   value-preservation is proven by resolving `app-mobile/src/app.css` together with the changed
   component's scoped `<style>` block to final values per theme, not by screenshots. Structural mount
