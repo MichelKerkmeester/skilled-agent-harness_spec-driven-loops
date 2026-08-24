@@ -1,11 +1,11 @@
 ---
 name: mcp-obsidian
-description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Minimal, Notion Bases, Meta Bind) operated at the file layer. Embedded install and agent safety invariants.
+description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Tables, BRAT, Health.md, Iconic, Charts, Dataview, Git, Outliner, Minimal, Notion Bases, Make.md, Meta Bind) operated at the file layer. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.21.0.0
+version: 0.22.0.0
 ---
 
-<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, obsidian-git, vault git, auto backup, outliner, list editing, obsidian theme, theme system, css theme, css snippet, css variables, theme development, plugin development, notion bases, meta bind, meta-bind, input field, inline button, js engine, task timer -->
+<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, obsidian-git, vault git, auto backup, outliner, list editing, obsidian theme, theme system, css theme, css snippet, css variables, theme development, plugin development, notion bases, make.md, make-md, makemd, meta bind, meta-bind, input field, inline button, js engine, task timer -->
 
 # mcp-obsidian Skill
 
@@ -25,7 +25,7 @@ The skill that makes AI use inside Obsidian effective. It operates notes and vau
 - "note", "notes", "markdown note", "daily note", "vault"
 - "create a note", "open a note", "search notes", "search my vault"
 - "add a tag to a note", "manage frontmatter", "delete a note", "move a note"
-- "obsidian plugin", "beancount", "beancount finance", "obsidian tables", "brat"
+- "obsidian plugin", "make.md", "make-md", "obsidian tables", "brat"
 - "health", "health data", "apple health", "health chart", "health-md", "health.md"
 - "iconic", "icons", "icon color", "file icons", "folder icons", "icon rules", "iconic rulebook", "iconic ruleset", "iconic data json", "icon automation"
 - "local rest api", "obsidian api key"
@@ -61,11 +61,6 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/plugin-operation-logic.md (plugin-driven note automation)
            Installed plugins roster:
              references/plugins/installed-plugins.md    (all 21 enabled vault plugins; which carry dedicated docs)
-           Beancount Finance:
-             references/plugins/beancount-finance/beancount-finance.md      (plugin index)
-             references/plugins/beancount-finance/data-model.md
-             references/plugins/beancount-finance/workflows.md
-             references/plugins/beancount-finance/troubleshooting.md
            Obsidian Tables:
              references/plugins/obsidian-tables/obsidian-tables.md         (plugin index)
              references/plugins/obsidian-tables/data-model.md
@@ -116,6 +111,11 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/notion-bases/data-model.md
              references/plugins/notion-bases/workflows.md
              references/plugins/notion-bases/troubleshooting.md
+           Make.md:
+             references/plugins/make-md/make-md.md                       (plugin index)
+             references/plugins/make-md/data-model.md
+             references/plugins/make-md/workflows.md
+             references/plugins/make-md/troubleshooting.md
            Local REST API:
              references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md  (plugin index)
              references/plugins/obsidian-local-rest-api/data-model.md
@@ -233,11 +233,11 @@ INTENT_SIGNALS = {
                      "semantic search", "global search", "live app", "rest api note",
                      "structured note", "read note via mcp", "write note via mcp"],
     },
-    "PLUGIN_FINANCE": {
+    "PLUGIN_MAKEMD": {
         "weight": 5,
-        "keywords": ["beancount", "beancount finance", "beancount-finance", "ledger",
-                     "double-entry", "bql", "bean-query", "bean-price", "net worth",
-                     "transaction"],
+        "keywords": ["make.md", "make-md", "makemd", "make.md space", "make.md context",
+                     "make.md database", "obsidian spaces", "space context", "make.md table",
+                     "notion-like obsidian"],
     },
     "PLUGIN_TABLES": {
         "weight": 5,
@@ -359,11 +359,11 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "NOTES_CLI":     ["references/obsidian-cli-commands.md"],
     "MCP_ADVANCED":  ["references/mcp-tools.md"],
-    "PLUGIN_FINANCE": ["references/plugins/plugin-operation-logic.md",
-                       "references/plugins/beancount-finance/beancount-finance.md",
-                       "references/plugins/beancount-finance/data-model.md",
-                       "references/plugins/beancount-finance/workflows.md",
-                       "references/plugins/beancount-finance/troubleshooting.md"],
+    "PLUGIN_MAKEMD": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/make-md/make-md.md",
+                       "references/plugins/make-md/data-model.md",
+                       "references/plugins/make-md/workflows.md",
+                       "references/plugins/make-md/troubleshooting.md"],
     "PLUGIN_TABLES":  ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/obsidian-tables/obsidian-tables.md",
                        "references/plugins/obsidian-tables/data-model.md",
@@ -435,7 +435,6 @@ RESOURCE_MAP = {
                        "references/plugins/meta-bind/troubleshooting.md"],
     "PLUGINS":        ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/installed-plugins.md",
-                       "references/plugins/beancount-finance/beancount-finance.md",
                        "references/plugins/obsidian-tables/obsidian-tables.md",
                        "references/plugins/obsidian42-brat/obsidian42-brat.md",
                        "references/plugins/iconic/iconic.md",
@@ -446,6 +445,7 @@ RESOURCE_MAP = {
                        "references/plugins/outliner/outliner.md",
                        "references/themes/themes.md",
                        "references/plugins/notion-bases/notion-bases.md",
+                       "references/plugins/make-md/make-md.md",
                        "references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md",
                        "references/plugins/advanced-canvas/advanced-canvas.md",
                        "references/plugins/claudian/claudian.md",
@@ -509,7 +509,7 @@ def route_obsidian_resources(request: str) -> dict:
     elif scores.get("INSTALL", 0) > 4:
         intent = "INSTALL"
     else:
-        specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT", "PLUGIN_ICONIC",
+        specific_plugin_intents = ("PLUGIN_MAKEMD", "PLUGIN_TABLES", "PLUGIN_BRAT", "PLUGIN_ICONIC",
                                    "PLUGIN_CHARTS", "PLUGIN_DATAVIEW",
                                    "PLUGIN_GIT", "PLUGIN_OUTLINER", "THEME_SYSTEM", "PLUGIN_HEALTH",
                                    "PLUGIN_NOTION_BASES", "PLUGIN_LOCAL_REST_API",
@@ -778,10 +778,6 @@ await call_tool_chain({
 - `references/troubleshooting.md` — Install, vault, auth, Local REST API and MCP failures
 - `references/notion-migration.md` — Notion→Obsidian migration reconstruction method: 8-step method, division of labor, relation/rollup/formula recovery, comment reconstruction, verification protocol
 - `references/plugins/plugin-operation-logic.md` — How plugin-driven note automation is operated
-- `references/plugins/beancount-finance/beancount-finance.md` — Beancount Ledger / beancount-finance plugin index
-- `references/plugins/beancount-finance/data-model.md` — Beancount Ledger settings, layout, directives, and BQL data model
-- `references/plugins/beancount-finance/workflows.md` — Beancount Ledger file-layer recipes
-- `references/plugins/beancount-finance/troubleshooting.md` — Beancount Ledger failure and recovery recipes
 - `references/plugins/obsidian-tables/obsidian-tables.md` — Obsidian Tables plugin index
 - `references/plugins/obsidian-tables/data-model.md` — `.table.md` envelope, columns, rows, formulas, and views
 - `references/plugins/obsidian-tables/workflows.md` — Obsidian Tables file-layer recipes
@@ -798,6 +794,10 @@ await call_tool_chain({
 - `references/plugins/notion-bases/data-model.md` — `_database.md` schema: two-way relation columns, the 7 rollup functions, lookup columns, self-relation subtasks, and the 7 view types
 - `references/plugins/notion-bases/workflows.md` — Notion Bases file-layer recipes plus a Dataview supplement for aggregations the plugin doesn't cover
 - `references/plugins/notion-bases/troubleshooting.md` — Notion Bases failure and recovery recipes: schema mismatch, missing back-reference, unsupported view type
+- `references/plugins/make-md/make-md.md` — Make.md plugin index (repo `Make-md/makemd`, id `make-md`, v1.3.5+): Notion-like Spaces + Contexts
+- `references/plugins/make-md/data-model.md` — Make.md `.space` on-disk format: `def.json`, `context.mdb`/`views.mdb` SQLite (`m_schema`/`m_fields`), field types, and frontmatter→column mapping
+- `references/plugins/make-md/workflows.md` — Make.md file-layer recipes: create a Space, configure a table/board/chart, and the golden-sample clone approach
+- `references/plugins/make-md/troubleshooting.md` — Make.md failure and recovery recipes: mobile performance, stale `.makemd` cache, columns not showing
 - `references/plugins/obsidian-local-rest-api/obsidian-local-rest-api.md` — Local REST API plugin index (repo `coddingtonbear/obsidian-local-rest-api`), the HTTP/HTTPS backend the cyanheads MCP rides on
 - `references/plugins/obsidian-local-rest-api/data-model.md` — `data.json` config surface, the `OBSIDIAN_API_KEY`/`OBSIDIAN_BASE_URL`/`OBSIDIAN_VERIFY_SSL` env keys, and the two loopback endpoints
 - `references/plugins/obsidian-local-rest-api/workflows.md` — Enable the plugin, read the API key, wire the MCP, and the app-must-be-running boundary

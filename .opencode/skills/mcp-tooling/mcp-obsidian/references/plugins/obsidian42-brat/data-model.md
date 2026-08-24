@@ -133,7 +133,7 @@ The following is valid JSON. The moving plugin and frozen plugin demonstrate tha
 }
 ```
 
-For a populated example using the two sibling mode plugins, see [`../../../assets/brat-data-entry.example.json`](../../../assets/brat-data-entry.example.json).
+For a populated example using the sibling mode plugin, see [`../../../assets/brat-data-entry.example.json`](../../../assets/brat-data-entry.example.json).
 
 ---
 

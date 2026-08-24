@@ -35,7 +35,7 @@ For headless work, keep the stages explicit: stage release assets to disk, regis
 ## 2. DEEP REFERENCES
 
 - [`data-model.md`](data-model.md) — complete `data.json` keys, defaults, repository/theme records, schema version, and v2.0+ SecretStorage boundary.
-- [`workflows.md`](workflows.md) — stage→register→activate recipes for plugins, frozen tags, updates, themes, removal, and the two sibling mode plugins.
+- [`workflows.md`](workflows.md) — stage→register→activate recipes for plugins, frozen tags, updates, themes, removal, and the sibling mode plugin.
 - [`troubleshooting.md`](troubleshooting.md) — cause→detection→fix catalog for release, asset, compatibility, token, update, and path failures.
 
 ---

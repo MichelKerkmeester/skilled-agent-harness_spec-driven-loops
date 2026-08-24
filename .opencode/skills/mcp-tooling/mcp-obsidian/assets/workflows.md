@@ -1,10 +1,9 @@
 ---
 title: "mcp-obsidian Shared File-Layer Workflows"
-description: "Shared cross-plugin workflow index for editing the plain files that Obsidian plugins render, with the Beancount Ledger procedure and extension points for table and BRAT workflows."
+description: "Shared cross-plugin workflow index for editing the plain files that Obsidian plugins render, covering table and BRAT workflows."
 trigger_phrases:
   - "obsidian file-layer workflow"
   - "plugin data over ui"
-  - "beancount shared workflow"
   - "obsidian tables workflow"
   - "brat plugin workflow"
 importance_tier: "normal"
@@ -33,38 +32,7 @@ The mode operates vault files through its CLI and MCP surfaces. A plugin's UI re
 
 ---
 
-## 2. BEANCOUNT-FINANCE — BEANCOUNT LEDGER
-
-Beancount Ledger (`beancount-finance`) reads a structured Beancount ledger rooted at `<structuredFolderName>/ledger.beancount`, runs BQL through `bean-query`, and appends parsable price directives from `bean-price`. The agent edits the ledger component files and `data.json`, not the dashboard UI. ([Beancount Ledger index](../references/plugins/beancount-finance/beancount-finance.md))
-
-### File-layer dispatch
-
-| Goal | Canonical data | Validate |
-|---|---|---|
-| Add account | `<structuredFolderName>/accounts.beancount` with `open` | `bean-check`; `#accounts`; `.errors` |
-| Add transaction | Yearly or monthly `transactions/` file selected by `fileOrganization` | `bean-check`; `#entries`/`#postings` readback |
-| Add balance | `<structuredFolderName>/balances.beancount` | `bean-check`; `#balances` |
-| Add price | `<structuredFolderName>/prices.beancount` or filtered `bean-price` output | `bean-check`; `#prices` |
-| Add note/query | `notes.beancount` or `queries.beancount` | `bean-check`; focused BQL query |
-
-### Canonical procedure
-
-Read [`beancount-finance/workflows.md`](../references/plugins/beancount-finance/workflows.md) for exact commands and query shapes. The mandatory boundary is:
-
-```text
-resolve root → inspect includes and state → stage edit → bean-check → .errors → BQL readback → reload view
-```
-
-The plugin's `-q` query path can hide load errors, and a missing GUI `PATH` can make an empty lint result look clean. Read [`beancount-finance/troubleshooting.md`](../references/plugins/beancount-finance/troubleshooting.md) when either condition is possible.
-
-### Starter files
-
-- [`plugins/beancount-finance/example.beancount`](plugins/beancount-finance/example.beancount)
-- [`plugins/beancount-finance/example.data.json`](plugins/beancount-finance/example.data.json)
-
----
-
-## 3. OBSIDIAN-TABLES — TABLES
+## 2. OBSIDIAN-TABLES — TABLES
 
 Tables is the `tables` Obsidian plugin at `aztekgold/obsidian-tables`. It persists one table in one `.table.md` file: Markdown frontmatter with `json-table-plugin: true` plus a fenced `json-table` Agentable 1.0 payload. Agentable is the upstream schema standard, not a replacement plugin identity. ([Tables manifest](https://github.com/aztekgold/obsidian-tables/blob/main/manifest.json), [Tables types](https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts), [Agentable](https://github.com/aztekgold/agentable))
 
@@ -104,9 +72,9 @@ Rows use `cells[column.id]`, so headers can be renamed without moving data. Curr
 
 ---
 
-## 4. OBSIDIAN42-BRAT — FILE-LAYER INSTALLATION AND UPDATE
+## 3. OBSIDIAN42-BRAT — FILE-LAYER INSTALLATION AND UPDATE
 
-BRAT (`obsidian42-brat`) is the installer and updater for the two beta/community plugins covered by this mode. It selects a GitHub release, stages exact plugin assets, registers the repository in its own `data.json`, and can activate the manifest ID through `.obsidian/community-plugins.json`.
+BRAT (`obsidian42-brat`) is the installer and updater for beta/community plugins staged from GitHub releases in this mode. It selects a GitHub release, stages exact plugin assets, registers the repository in its own `data.json`, and can activate the manifest ID through `.obsidian/community-plugins.json`.
 
 Keep the three file-layer stages separate:
 
@@ -116,7 +84,6 @@ Keep the three file-layer stages separate:
 
 | Plugin | BRAT repository path | Manifest ID | Target directory |
 |---|---|---|---|
-| Beancount Finance | `mkshp-dev/obsidian-finance-plugin` | `beancount-finance` | `.obsidian/plugins/beancount-finance/` |
 | Obsidian Tables | `aztekgold/obsidian-tables` | `tables` | `.obsidian/plugins/tables/` |
 
 For a moving release, use `version: "latest"`; for a frozen install, use the exact GitHub release tag. BRAT update-all skips a policy record with a truthy version other than `latest`. Registration removal removes the repository from `pluginList` and its policy record; it does not delete staged plugin files unless that separate operation is requested.
@@ -125,22 +92,8 @@ Use the deep references for exact file operations and recovery: [`BRAT data mode
 
 ---
 
-## 5. SOURCES
-
-- [Beancount Ledger manifest](https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/manifest.json)
-- [Beancount Ledger settings](https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/settings.ts)
-- [Beancount Ledger startup and command boundary](https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/main.ts)
-- [Beancount Ledger structured layout](https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/utils/structuredLayout.ts)
-- [Beancount Ledger query runner](https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/utils/queryRunner.ts)
-- [Beancount Ledger price service](https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/services/price.service.ts)
-- [Beancount language syntax](https://beancount.github.io/docs/beancount_language_syntax/)
-
----
-
-## 6. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [`../references/plugins/plugin-operation-logic.md`](../references/plugins/plugin-operation-logic.md) — shared data-over-UI principle.
-- [`../references/plugins/beancount-finance/beancount-finance.md`](../references/plugins/beancount-finance/beancount-finance.md) — Beancount Ledger index.
-- [`../references/plugins/beancount-finance/workflows.md`](../references/plugins/beancount-finance/workflows.md) — detailed Beancount recipes.
 - [`../references/plugins/obsidian-tables/obsidian-tables.md`](../references/plugins/obsidian-tables/obsidian-tables.md) — existing sibling reference.
 - [`../references/plugins/obsidian42-brat/obsidian42-brat.md`](../references/plugins/obsidian42-brat/obsidian42-brat.md) — existing sibling reference.
