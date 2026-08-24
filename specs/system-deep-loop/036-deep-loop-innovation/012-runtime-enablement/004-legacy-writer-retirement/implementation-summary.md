@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-le
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement"
-    last_updated_at: "2026-08-23T04:00:00Z"
+    last_updated_at: "2026-08-24T08:00:07Z"
     last_updated_by: "claude"
-    recent_action: "Reconciled to Complete after the fleet flip made the gateway authoritative"
-    next_safe_action: "Proceed to 005-whole-system-gate; the retirement mechanisms are in place"
+    recent_action: "Guard widened to enforce under finalized authority; reader items discharged by gate"
+    next_safe_action: "None; phase complete and reconciled against the finalized runtime"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/check-direct-append.cjs"
@@ -27,7 +27,8 @@ _memory:
       - "Pinned shapes keep legacy addresses by design (legacy-compatibility.ts PINNED_LEGACY_EVENTS/TYPES)"
       - "009 projections cover 7 mode-owned surfaces; modeOwned.uncovered=0; 3 retain-legacy-input"
       - "The guard fires on a real out-of-band append (exit 2 DIRECT_APPEND_DETECTED); inert while legacy"
-      - "Per-mode end-to-end re-runs are deferred with the whole-system gate's reader-contracts deferral"
+      - "The guard was widened to enforce under new_authoritative_final, with a load-bearing regression test"
+      - "Per-mode end-to-end currency is discharged by the gate's passing reader-contracts check"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -60,9 +61,10 @@ mechanism; the other eight do not.
 compares it against the `output_digest` the gateway recorded in its watermark when it last published.
 A mismatch means something wrote the file outside the sanctioned path. It reports; it never repairs.
 
-The guard is gated on authority state and is inert unless the mode reads `new_authoritative_reversible`.
-While a mode is still on legacy authority the direct writer *is* the sanctioned one, and a guard that
-cried wolf then would train people to ignore it before it ever mattered.
+The guard is gated on authority state and is inert until the mode reaches a ledger authority state
+(`new_authoritative_reversible`, or `new_authoritative_final` after finalize). While a mode is still
+on legacy authority the direct writer *is* the sanctioned one, and a guard that cried wolf then would
+train people to ignore it before it ever mattered.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -152,17 +154,26 @@ and side-effect shapes retain a legacy address (`legacy-compatibility.ts` `PINNE
 `PINNED_LEGACY_TYPES`). Removing the directives would strand those pinned shapes. T-004 is superseded
 by this reasoning, not done-by-removal.
 
-**The guard is no longer inert for the flipped modes.** All eight modes now hold
-`new_authoritative_reversible` records (the fleet flip), so `check-direct-append.cjs` enforces for
-those modes rather than reporting `not-enforced`. It was exercised against a fixture in the legacy
-state before the flip, which remains the proof that it stays quiet when it should.
+**The guard enforces under the finalized authority state — after a forward-fix.** All eight modes now
+hold `new_authoritative_final` records (the reversible fleet flip was later finalized by `010`). The
+guard originally recognised only `new_authoritative_reversible` as a ledger state and fell inert on
+`final`, reporting `not-enforced` for a state where the legacy shadow writer has been dropped and
+nothing should be touching the file — the tier where detection matters most. That regression was
+fixed forward: the enforcement predicate now accepts both ledger states, with a regression test that
+performs a real out-of-band append under `new_authoritative_final`, proven load-bearing by a negative
+control (narrowing the predicate to reversible-only turns exactly that test red, `1 failed / 6
+passed`). Live check: the guard on a finalized mode went `not-enforced` → `violation`. It was also
+exercised against a fixture in the legacy state before the flip, which remains the proof that it
+stays quiet when it should.
 
-**Per-mode end-to-end currency is deferred, not satisfied.** T-002 (capture legacy files), T-009
-(confirm files current), T-010 (run consumers), and T-007 (tree-wide re-scan) each need a live
-per-mode run. The whole-system gate defers `reader-contracts` for the same reason and records it as
-not-run rather than passing vacuously. Consumer reachability is proven independently — the gate's
-`consumer-reachability` check passes 7/7 — so the deferral is about end-to-end currency, not about
-whether the path is wired.
+**Per-mode end-to-end currency is now satisfied by the gate's reader-contracts check.** T-002
+(capture legacy files), T-009 (confirm files current), T-010 (run consumers), and T-007 (tree-wide
+re-scan) each need a live per-mode run. The whole-system gate's `reader-contracts` check performs
+exactly that — fold the ledger through each mode's projection contract, materialize the legacy file,
+run the real consumer, assert a clean read — and passes for all eight modes, with a
+`READER_CONTRACT_CORRUPT_INJECT` negative control proving it load-bearing. Consumer reachability is
+additionally proven by the gate's `consumer-reachability` check (7/7). What this phase deferred to the
+gate is therefore discharged, not outstanding.
 
 **The full suite has since been run and reported as a delta.** Baseline 20 failed files and 24 failed
 tests; after, 17 and 15, with 4241 passing. The comparison was made as sets rather than counts, which

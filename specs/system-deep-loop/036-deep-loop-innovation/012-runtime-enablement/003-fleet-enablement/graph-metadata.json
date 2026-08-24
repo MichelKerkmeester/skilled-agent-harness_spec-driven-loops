@@ -22,7 +22,7 @@
       "fleet driver verification",
       "fleet enablement summary",
       "enablement driver built",
-      "improvement mode unroutable"
+      "fleet flip complete"
     ],
     "key_topics": [
       "fleet",
@@ -39,7 +39,7 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "scratch/negative-controls.md",
       "scratch/finding-improvement-mode-unroutable.md",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The mode registry names seven canonical modes",
     "created_at": "2026-08-19T06:57:08.040Z",
-    "last_save_at": "2026-08-23T04:00:00.000Z",
+    "last_save_at": "2026-08-24T08:00:07.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:91ec8979577b85b52ca1f705ee2cfae09dce7572e6d2604588ea77617251a015",
+    "source_fingerprint": "sha256:49250db39b16791cf770c70d9ebc6f6979aa01c3428a2822e530abee47d45567",
     "source_doc_hashes": {
-      "spec.md": "c693a5eb936a71c0526bdfb4c9d9368dbecebfa81ca6563e5aaa2c4e737616aa",
-      "plan.md": "70510ce9d66415a5b7ad4ba8a6ada086beb2beb026fa0ba393b9576943a39d65",
-      "tasks.md": "876a3a7c8d78e367c3134f1f16ef548b894dfcd8b29910d2e7efa20a501c61c9",
-      "checklist.md": "5e526f938fcac96d4b8467a98203db863165ce70ef3bc41c58e8d617e9042a08",
-      "implementation-summary.md": "8b9b014d90f04fd71f4e29f81d210e0026d0a11f456f6603c2274a814cd71318"
+      "spec.md": "87053dee8415c5884f05547e715ce1e9d9cf984582359c90d8fafe0f3eae5a77",
+      "plan.md": "af87fbeaaa1a9687a249f6cfc9f3c5f52dbd6047c77c956459dbc174aed3b9e9",
+      "tasks.md": "0378543e7db3f6812d3119fc9d68e8bde0fadaab175ffcdfd8c52d1ceae68e21",
+      "checklist.md": "94a0f09175d517a39263a388859de619193b9814dd42d04cdfa5e4d12b0a2885",
+      "implementation-summary.md": "8b0f96e0984d18e3a6e206a8ff211aac54135df803770f0ef9897c4f61c6fd3d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -36,7 +36,7 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "scratch/probe-reachability.mjs",
       "scratch/probe-pending-transition.mjs",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After enablement, the epic's documentation describes a system that no longer exists",
     "created_at": "2026-08-19T06:57:08.525Z",
-    "last_save_at": "2026-08-21T20:07:34.914Z",
+    "last_save_at": "2026-08-24T08:03:14.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d89d5c4f055609d5be13a414791355378ead0b1b5553de5c3a7d142fa4972ee5",
+    "source_fingerprint": "sha256:b43ed59d5083ea37c50db2e877d6a87a00e94f31e90cd1a3f2259bb8de523624",
     "source_doc_hashes": {
-      "spec.md": "5a04c695900000d19298e154df98e7794391310f8995fa43e4ede712525c96a8",
-      "plan.md": "580d1f46cee9dc9230b049bf4899d159cc172a6bc7cf17a8e5ebffb6ca412297",
-      "tasks.md": "fe4519df13cacd61ee704e7d11ebcdf5a22277a7f79611a6fbcfb850cde0bc40",
-      "checklist.md": "7de6b87e5b4d3551a6f3b940a443028f78ccaa3cef055513eec6460184d8a4f2",
-      "implementation-summary.md": "680b3c31f50b1e82a091868e9e42233ef4c8fba7add5c3ee7b22bd00808258d1"
+      "spec.md": "8d549f24060c2053f1a3061dec98f4b3e1cfe0f8f0abdcbf82336df9c102a92c",
+      "plan.md": "cbc2b7684b734029dc9d071ac965f61547897f48ce93efc873a407d32fdc69ff",
+      "tasks.md": "7936cd160ea74f9817fe34806e29603b861cd937252a7477085ee30909096f97",
+      "checklist.md": "428f83a1aeded4edf0370bc74ef151d2ff6c9feeadae24ce59a472594f92acd5",
+      "implementation-summary.md": "0545c9f2b6113a717557e4ce404ab55a90e427c4f8fedfecc7f56c2ff259a93c"
     },
     "last_active_child_id": null,
     "last_active_at": null

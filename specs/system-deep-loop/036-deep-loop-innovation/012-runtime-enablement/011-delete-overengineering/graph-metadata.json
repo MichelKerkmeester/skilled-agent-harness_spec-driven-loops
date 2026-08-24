@@ -181,7 +181,7 @@
     ],
     "causal_summary": "About a quarter of the runtime (~256k LOC) is one-time-use migration scaffolding and reversibility ceremony:",
     "created_at": "2026-08-23T19:32:08.669Z",
-    "last_save_at": "2026-08-24T06:19:13.461Z",
+    "last_save_at": "2026-08-24T08:00:15.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +191,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cfab6cd49595df76e82c3c521b2c47b17bc1a85f2c69b0b96ce71333b093a1ac",
+    "source_fingerprint": "sha256:cd2eceb6f20aff8f110a1cb619dba460eee376c92683ea4fdc10c20da2ee6e68",
     "source_doc_hashes": {
-      "spec.md": "3bd5bd2d426715c1c08a341b9de3236cb418cb50292436f251469e9c2b79ec4d",
-      "plan.md": "5e4e918fe2390fed5799e55693181d758010827b8edd11a4360d263ff4565d32",
-      "tasks.md": "e819161923331dcc57dfe9aae3f9feea7656e92ea8270c73d69cdb5beee6fb04",
-      "checklist.md": "895197298eac76e8f90544b37bde531263aafc1001e5f6f606dbb964d53849be",
-      "implementation-summary.md": "612bf396e6bac558bd9007924c3e989cd84ca5d2ca19bcffde2ce2737395b10f"
+      "spec.md": "575e48ae6f5028ebab554aef636fa14381434616756c617562c0fbb09f900b3d",
+      "plan.md": "2f528b518c6ca978de5b7dc4d0e178301de4103ef1ad4c5913fab43e3b6df8c2",
+      "tasks.md": "26cb509e1bc0460d3de3b475b971ad9f5e8a678091a0ffff9313d0532264acc2",
+      "checklist.md": "1361a354790a9c560e1608fc4d4461e05d5a3acffbc6696dd82341d8957c4c01",
+      "implementation-summary.md": "481a66a5ac00b47ae9bf37e0b631d3a0f0e6bab07de264c38e5b8144b5531de2"
     },
     "last_active_child_id": null,
     "last_active_at": null

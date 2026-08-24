@@ -11,7 +11,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fl
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement"
-    last_updated_at: "2026-08-23T04:00:00Z"
+    last_updated_at: "2026-08-24T08:00:07Z"
     last_updated_by: "claude"
     recent_action: "Reconciled to Complete after the registry-direct fleet flip"
     next_safe_action: "Proceed to 005-whole-system-gate; the fleet flip is done"
@@ -221,6 +221,15 @@ the failure cannot be a compile error, turns exactly its own test red. Both rest
 
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
+
+**Superseded by the finalize.** The reversible records this phase established were
+subsequently advanced to `new_authoritative_final` (epoch 3) by
+`010-full-enablement-finalize`, so the whole-system gate now reads all eight modes on
+`new_authoritative_final`. The per-mode reader-contract items deferred below (T-011,
+T-012) are discharged by the gate's real `reader-contracts` check, which reads all eight
+modes cleanly through their real consumers. The `new_authoritative_reversible`/epoch-2
+readings quoted below are the state this phase left the system in, retained as the
+historical record rather than the current live state.
 
 **The fleet flip is done, via the registry-direct path.** All eight modes of
 `AUTHORITY_FLIP_MODE_ORDER` (deep-research, deep-review, deep-ai-council, deep-improvement-common,

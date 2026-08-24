@@ -11,18 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-en
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout"
-    last_updated_at: "2026-08-21T12:05:00Z"
+    last_updated_at: "2026-08-24T08:03:13Z"
     last_updated_by: "claude"
-    recent_action: "Closed the writer-validation gap; refuted a suspected regression by repeat runs"
-    next_safe_action: "Operator decision on whether the per-mode step should call the flip"
-    blockers:
-      - "The per-mode step never calls prepareCutover or compareAndSwap, so no mode flips in production"
-      - "Catalog and playbook tasks require an enabled runtime that does not exist"
-      - "Catalog and playbook tasks cannot be closed from a runtime that has never flipped"
+    recent_action: "Operator chose registry-direct; the flip executed and finalized, closeout reconciled"
+    next_safe_action: "None; closeout complete against the finalized runtime, recursive validate clean"
+    blockers: []
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/claim-sweep.md"
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/probe-reachability.mjs"
-    completion_pct: 65
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Why every downstream phase blocked on the same root cause"
@@ -44,10 +41,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout |
-| **Status** | Blocked |
+| **Status** | Complete |
 | **Commit** | see `git log` on `worktrees/022-012-runtime-enablement-build` |
-| **Completed** | Partial — the sweep ran and produced a result; the catalog and playbook tasks are refused as unwritable |
-| **Lines** | 1 sweep document, 1 probe script, 0 runtime changes |
+| **Completed** | The `036` statuses, feature catalog and playbook are reconciled against the finalized runtime; the operator chose the registry-direct flip, it executed and was finalized by `010`, and the whole-system gate passes |
+| **Lines** | 1 sweep document, 1 probe script; closeout doc edits, 0 runtime code changes |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
@@ -114,8 +111,10 @@ in `authority-flip-prepare-<mode>.json`, the record stays `legacy_authoritative`
 and `compareAndSwap` is still refused after a prepare. The claim's wording was
 corrected; the claim stands. Recorded in `scratch/adversarial-refutation.md`.
 
-**Corroboration.** The gate receipt at `005-whole-system-gate/scratch/receipt.json`
-independently measured `read 8 modes; 8 on legacy_authoritative`.
+**Corroboration.** An early gate receipt independently measured `read 8 modes; 8 on
+legacy_authoritative`, corroborating the pre-flip census below. The current gate receipt at
+`005-whole-system-gate/scratch/receipt.json` reads all eight modes on `new_authoritative_final`
+from stored records — the flip has since been executed and finalized (see the resolution note in §6).
 
 **Why the green signals were green.** `sandbox-authority-store.ts:398` seeds
 `cutover_ready` directly inside a drill-owned root, so the drills start where
@@ -234,4 +233,16 @@ transition event and the mode-order constraint — the entire safety margin. Goi
 coordinator is the flip the plan describes, and it has never been composed in production, on top of
 a certificate that has no production producer. Which of those the enablement step should perform is
 an operator decision, not an implementation detail, because the transition is irreversible.
+
+**Resolution — the operator decision was made and executed.** The operator chose the registry-direct
+flip (`scripts/flip-authority.cjs --commit`), recorded in `003-fleet-enablement`'s key decisions. It
+ran for all eight modes, then `010-full-enablement-finalize` advanced every mode to
+`new_authoritative_final` and dropped the legacy shadow writer. The whole-system gate
+(`005-whole-system-gate`) now returns a literal PASS across all seven checks, including a real
+per-mode `reader-contracts` check. With the flip no longer unreachable, the second `036` sweep this
+phase deferred (CHK-007) returns empty: the one invalidated claim it would have found — the
+"structurally unreachable flip" recorded in §2 — is exactly the claim the executed finalize resolves.
+The feature catalog and playbook were corrected to describe the finalized authority state. This phase
+is therefore Complete; the §2–§6 narrative above is retained verbatim as the honest record of how the
+understanding evolved, not edited to read as though it always said this.
 <!-- /ANCHOR:limitations -->

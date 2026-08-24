@@ -11,7 +11,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-de
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
-    last_updated_at: "2026-08-24T06:19:12Z"
+    last_updated_at: "2026-08-24T08:00:07Z"
     last_updated_by: "claude"
     recent_action: "Deleted three orphaned modules in a follow-up wave; failing set unchanged by name"
     next_safe_action: "mode-contracts is newly orphaned by the closures removal — next follow-up deletion candidate"
@@ -28,7 +28,7 @@ _memory:
       - "The rollback/migration ceremony is deleted, not fabricated as satisfied"
       - "Every deletion is proven safe by the import graph; no commit leaves a dangling import"
       - "The live loop survived: all 8 modes remain on ledger authority"
-      - "U2 finalize is deferred; all 8 modes stay reversible"
+      - "U2 finalize was subsequently executed by 010; all 8 modes are now new_authoritative_final"
       - "The three modules orphaned by the scaffolding removal were deleted in a follow-up wave; the runtime suite's failing set is unchanged by name"
 ---
 
@@ -183,12 +183,14 @@ left in place as the next follow-up candidate rather than cascaded, since the op
 three named modules. Whether `mode-contracts` (and any speculative subtree that only its now-removed importer
 reached) should follow is the open next-wave question.
 
-**U2 finalize is deferred; the finalized gate PASS is 010's scope.** By operator decision, all eight modes
-remain on `new_authoritative_reversible`; none were flipped to `new_authoritative_final` and the legacy
-shadow is retained. The whole-system gate is re-simplified (the deleted checks are gone) and its two heavy
-checks are satisfied piecewise (authority-state via `verify-authority.cjs`; runtime-suite via the full-suite
-delta), but the end-to-end orchestrated gate PASS on a finalized system belongs to
-`010-full-enablement-finalize`, which stays Planned.
+**U2 finalize was subsequently executed by 010.** When this deletion phase completed, all eight modes
+remained on `new_authoritative_reversible` by operator decision, and the finalized gate PASS was scoped to
+`010-full-enablement-finalize`. The operator has since lifted that deferral: `010` finalized every mode to
+`new_authoritative_final`, dropped the legacy shadow writer, and the whole-system gate returns a literal
+PASS. This phase's `verify-authority.cjs` and full-suite readings above are its completion snapshot
+(reversible, epoch 2); the live records now read `new_authoritative_final`, epoch 3. The deletion is
+unaffected — it removed the rollback and migration scaffolding, and the retained window-free finalize CAS
+is exactly the machinery `010` used to finalize.
 
 **Category C (`legacy-projections`) is retained by design.** It is the consumer-facing projection surface,
 not scaffolding. Whether to migrate consumers off it and remove legacy entirely is a separate project,
