@@ -36,7 +36,7 @@
       "over-built"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "research/research.md",
       "spec.md"
@@ -129,19 +129,19 @@
     ],
     "causal_summary": "Phase parent for removing the migration, rollback, and over-built machinery left in the deep-loop runtime after all 8 modes were finalized to new_authoritative_final. A prior wave removed the rollback ceremony and one-time scaffolding (now in scratch/); this program removes the second-order residue an evidence-backed audit surfaced, as five dependency-ordered deletion waves.",
     "created_at": "2026-08-23T19:32:08.669Z",
-    "last_save_at": "2026-08-24T19:26:36.098Z",
+    "last_save_at": "2026-08-24T20:05:37.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0a1ebf23c1931cbad8a5966c6bc34dd93bfb39fceb05143636098c0a594fcd0a",
+    "source_fingerprint": "sha256:e2dd9c553bb907666db69112c7c7d2ed1d21aa642ca0177992468b968ac20b5f",
     "source_doc_hashes": {
-      "spec.md": "0da635470bd56ebda9db4d10122fc484b269a92c7dbd708d604a74a018355e90",
+      "spec.md": "8b15702c79c0e3b161f3bffb10a193a4033a40af6e32134d20f22d9da6d7e06a",
       "research/research.md": "bad0e564753f14bf24d083bcfe549497893e5c707cdd073ae331bda9ce778825"
     },
-    "last_active_child_id": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling",
-    "last_active_at": "2026-08-24T23:30:00.000Z"
+    "last_active_child_id": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction",
+    "last_active_at": "2026-08-25T00:30:00.000Z"
   }
 }
