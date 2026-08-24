@@ -45,7 +45,8 @@
       "spec.md",
       "plan.md",
       "checklist.md",
-      "scratch/suite-delta-minus-one.md",
+      "scratch/baseline-raw.txt",
+      "scratch/candidate-raw.txt",
       "scratch/fanout-real-run.md",
       "scratch/authority-check-never-ran.md",
       "scratch/run-gate.mjs",
@@ -89,9 +90,15 @@
         "source": "derived"
       },
       {
-        "name": "suite-delta-minus-one.md",
-        "kind": "doc",
-        "path": "scratch/suite-delta-minus-one.md",
+        "name": "baseline-raw.txt",
+        "kind": "file",
+        "path": "scratch/baseline-raw.txt",
+        "source": "derived"
+      },
+      {
+        "name": "candidate-raw.txt",
+        "kind": "file",
+        "path": "scratch/candidate-raw.txt",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Each preceding phase verified its own surface",
     "created_at": "2026-08-19T06:57:08.364Z",
-    "last_save_at": "2026-08-24T07:34:24.603Z",
+    "last_save_at": "2026-08-24T08:22:20.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:177dca65ea8a5744b48b8465fcb6c5248ae51982e4ccc8a882e5593362986861",
+    "source_fingerprint": "sha256:9636708689c716e4458c676d028bc8901607184cad05969bd29c520232ce8402",
     "source_doc_hashes": {
-      "spec.md": "44937864157ff9773ee77661b81ab58ca7e65fb645a9e5404930040165f39a90",
-      "plan.md": "a123eabee25b45637e5b5a2bd2bdbdc0288b74074be83c14f438d3563930ce1c",
-      "tasks.md": "2e46fa22e34298fa456bf039e7dc2b648bff4f44cc76bc87e3f8f0cc7fe1d712",
-      "checklist.md": "2d4d85290b5a4fa067353ee39125c27ad36ef7f73ee1b48dec6234c30dd4945f",
-      "implementation-summary.md": "b87d7c4a34cb63c64a411251bba48905fba7e2b110c3f8dba9050f2cd22bedac"
+      "spec.md": "dc6c0a4d0aeb7238b9916db2d57cbe43262af6f025416ff8afaa532fed3ca5be",
+      "plan.md": "3c52b3ae745c7648119fb2a16c775945b6896b2cf7935e7b9ec6605b73b847a3",
+      "tasks.md": "38aad202922b90c31650ef1256b1a832a7af2bebce73f0347eb7833a98ad0f65",
+      "checklist.md": "d00d903910241d4ba318537fd95656e484ef47c7353eb9d816a7dfac088104be",
+      "implementation-summary.md": "182c638703c51bdc9ed403b2331156fa975d6030f92c58e459229b8fec97c4a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

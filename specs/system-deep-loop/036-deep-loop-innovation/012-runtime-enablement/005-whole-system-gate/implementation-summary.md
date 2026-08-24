@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-24T07:34:24Z"
+    last_updated_at: "2026-08-24T08:22:20Z"
     last_updated_by: "claude"
     recent_action: "Re-measured the gate on the finalized tree; it returns a literal PASS, all forward-fixes closed"
-    next_safe_action: "Reconcile the 006 closeout narrative against the finalized runtime, then recursive-validate"
+    next_safe_action: "None; gate passes and the epic is reconciled, pending the operator ff-merge gate"
     blockers: []
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
@@ -49,7 +49,7 @@ _memory:
 ## 2. WHAT WAS BUILT
 
 A gate that measures a frozen commit and writes a receipt. It resolves both SHAs by executing git rather
-than accepting them as arguments, runs six enumerated checks, and writes `receipt.json` and `receipt.md`
+than accepting them as arguments, runs seven enumerated checks, and writes `receipt.json` and `receipt.md`
 whether it passes or fails. It changed no runtime code, no protocol document, and no authority record.
 
 A `--break <check>` flag forces one named check to fail by making its evaluation genuinely impossible
@@ -91,14 +91,14 @@ reports all 8 modes on `new_authoritative_final`, epoch 3, `source: stored`, `al
 each read from a stored record, not the absent-record default. This is the decisive check for a gate ordered to
 run after authority has moved, and it holds at the terminal tier.
 
-The gate's most recent full receipt (`scratch/receipt.md`) records the check set at candidate `46346369d2`,
-the finalized tree:
+The gate's most recent full receipt (`scratch/receipt.md`) records the check set at candidate `07c1bd5f22`,
+the finalized tree carrying the direct-append guard forward-fix and the closeout doc corrections:
 
 | Check | Status | What it found |
 |-------|--------|---------------|
 | `authority-state` | pass | 8 modes on `new_authoritative_final`; 8 from a stored record, 0 from the absent-record default |
 | `candidate-frozen` | pass | runtime tree identical to the measured tree |
-| `runtime-suite` | pass | failed 14 vs 19 (Δ−5); all failures pre-existing/env by name, zero `MODULE_NOT_FOUND` |
+| `runtime-suite` | pass | failed 13 vs 19; all failures pre-existing/env by name, zero `MODULE_NOT_FOUND` |
 | `consumer-reachability` | pass | all 7 scripts exist and spawned |
 | `reader-contracts` | pass | all 8 modes read cleanly via their real consumers |
 | `fanout-real-run` | pass | a real lineage; 1 total, 1 succeeded, artifact on disk |
@@ -138,9 +138,11 @@ receipt whose own contract forbids an advisory tier.
 
 It is now `consumer-reachability`, which is all it ever proved: it fails when a listed script is
 missing from disk or cannot be started, and reports those two counts separately so an operator can
-tell them apart. The end-to-end reader contract it was named for is now a real per-mode check; in the
-latest receipt it fails on deep-research (`delta_file_malformed`), which the successor closeout carries
-as a forward-fix.
+tell them apart. The end-to-end reader contract it was named for is now a real per-mode check that
+reads all eight modes cleanly in the latest PASS receipt — fold → materialize → real consumer → clean
+read — proven load-bearing by the `READER_CONTRACT_CORRUPT_INJECT` negative control. An earlier
+`delta_file_malformed` on deep-research came from a stale materialization and is gone once the check
+runs against the finalized ledger.
 
 | Stage | `consumer-reachability` |
 |-------|-------------------------|

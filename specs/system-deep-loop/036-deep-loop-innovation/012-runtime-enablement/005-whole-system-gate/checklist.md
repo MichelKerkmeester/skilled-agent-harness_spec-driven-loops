@@ -9,16 +9,14 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-24T07:34:24Z"
+    last_updated_at: "2026-08-24T08:22:20Z"
     last_updated_by: "claude"
-    recent_action: "Corrected the stale legacy-authority verdict; authority-state now passes on the current system"
-    next_safe_action: "Re-point the stale gate to HEAD and address the reader-contract finding in the closeout"
-    blockers:
-      - "The gate script is pinned to a pre-deletion tree (SUITE_TREE_REF 5511e4eac2, 10 commits behind HEAD); re-pointing is a forward-fix"
-      - "reader-contracts flags deep-research delta_file_malformed — a gate finding for the forward-fix closeout"
+    recent_action: "Re-measured the gate to a literal PASS at candidate 07c1bd5f22"
+    next_safe_action: "None; gate passes and the epic is reconciled, pending the operator ff-merge gate"
+    blockers: []
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,15 +36,15 @@ not an optional extra, and it comes before the verdict is trusted.
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Predecessor `004-legacy-writer-retirement` complete [EVIDENCE: `004`'s retirement mechanism (append-gateway + `009` projections + direct-append guard) is in place, and the finalize dropped the legacy shadow writer so the selector routes each mode to `dark` only; the gate's `reader-contracts` check reads all 8 modes' projected legacy files cleanly, discharging the per-mode retirement verification]
-- [x] CHK-002 [P0] Candidate and baseline SHAs resolved from the environment, not supplied (REQ-001) [EVIDENCE: both resolved by executing `git rev-parse` inside the gate; candidate `8cb16fba48`, baseline `8c9f0b6944`. A typed literal is never the source of truth — a receipt naming a commit nobody verified describes nothing]
+- [x] CHK-002 [P0] Candidate and baseline SHAs resolved from the environment, not supplied (REQ-001) [EVIDENCE: both resolved by executing `git rev-parse` inside the gate; candidate `07c1bd5f22`, baseline `8c9f0b6944`. A typed literal is never the source of truth — a receipt naming a commit nobody verified describes nothing]
 - [x] CHK-003 [P0] Working tree clean before measurement begins (SC-006) [EVIDENCE: `tree-clean` passes with the gate's own output directory excluded and that exclusion named in the detail; verified independently — `git status --porcelain` filtered of the gate's own path returns empty]
-- [x] CHK-004 [P1] Baseline runtime suite result captured at the baseline SHA (REQ-004) [EVIDENCE: `17 failed / 4111 passed / 39 skipped (4165)` captured at the baseline SHA before any phase-003 edit]
+- [x] CHK-004 [P1] Baseline runtime suite result captured at the baseline SHA (REQ-004) [EVIDENCE: `19 failed / 4395 passed / 39 skipped (4453)` captured at the baseline SHA `8c9f0b6944` before any enablement edit; read from `scratch/baseline-raw.txt`]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-005 [P0] The check set is enumerated rather than discovered at runtime (REQ-002) [EVIDENCE: six checks are declared as data in `run-gate.mjs` and every one appears in `receipt.json` with a status, including the one that did not run; nothing is discovered at runtime]
+- [x] CHK-005 [P0] The check set is enumerated rather than discovered at runtime (REQ-002) [EVIDENCE: seven checks are declared as data in `run-gate.mjs` and every one appears in `receipt.json` with a status; nothing is discovered at runtime]
 - [x] CHK-006 [P0] No advisory tier exists that lets a failing check produce a passing verdict (REQ-006) [EVIDENCE: `computeVerdict` returns FAIL if any check failed, INCOMPLETE if any did not run, and PASS only when neither holds — PASS is unreachable while a check is unrun; read at `run-gate.mjs:320`]
 - [x] CHK-007 [P1] The receipt is written on failure as well as success (REQ-003) [EVIDENCE: the run wrote `receipt.json` and `receipt.md` with verdict FAIL and exit 1; both falsifiability runs also wrote receipts]
 <!-- /ANCHOR:code-quality -->
@@ -55,7 +53,7 @@ not an optional extra, and it comes before the verdict is trusted.
 ## Testing
 
 - [x] CHK-008 [P0] The gate was run against a deliberately broken condition and reported failure (REQ-006) [EVIDENCE: `--break tree-clean` and `--break candidate-frozen` each turned a PASSING check red, set `forcedBreak`, kept exit 1, and still wrote the receipt. Breaking a check that already failed would prove nothing, so both controls target checks that were green]
-- [x] CHK-009 [P0] The runtime suite ran at the candidate and is reported as a delta (REQ-004, SC-003) [EVIDENCE: re-measured at the final candidate over 2h02m — `failed 14 vs 15`, `passed 4190 vs 4111`, `total 4243 vs 4165`, `files 188 vs 182`. The negative failure delta is NOT an improvement and must not be cited as one: exactly one test moved, and it moved on a 30s timeout rather than an assertion. Run alone it fails three times out of three, so its outcome is unstable across contexts and nothing here touches its subsystem. The claim that carries weight is by name — all 14 remaining failures match baseline failures and nothing that passed now fails. Evidence: `scratch/suite-delta-minus-one.md`]
+- [x] CHK-009 [P0] The runtime suite ran at the candidate and is reported as a delta (REQ-004, SC-003) [EVIDENCE: re-measured at the final candidate `07c1bd5f22` — `failed 13 vs 19`, `passed 2698 vs 4395`, `total 2718 vs 4453`, `files 161 vs 199`. The large positive passed/total/files deltas are NOT improvements: the baseline `8c9f0b6944` predates the `011` deletion wave, which removed ~38 test files, so the candidate legitimately runs fewer tests. The claim that carries weight is by name — all 13 candidate failures match the documented pre-existing/environmental set (render-command-contract, check-contract-drift, dependency-seams, authorized-ledger + model-benchmark timeouts, stress cli-devin/fanout), none reference a deleted module, and nothing that passed now fails; the direct-append guard forward-fix added one passing test. Evidence: `scratch/candidate-raw.txt`, `scratch/receipt.json`]
 - [x] CHK-010 [P0] A real fan-out run completed within the gate (REQ-007, SC-004) [EVIDENCE, and my earlier deferral was wrong. It argued the verdict was already determined, which is true and is not what the requirement asks: every other check reads a captured artifact, so the fan-out is the only one that exercises the runtime end to end. Ran one lineage, one iteration, cli-opencode with DeepSeek V4 Flash xhigh: status ok, fulfilled, 281s, exit 0, twelve non-empty artifacts including a 4,978-byte `iteration-001.md`. The gate's not-run stub is now a check requiring the summary counts to be consistent AND the iteration artifact to be non-empty — a summary is written by the thing being measured, so a self-declared success is refused. Both conditions proven red: hiding the summary fails it, and emptying the iteration while the summary still claims success fails it. Evidence: `scratch/fanout-real-run.md`]
 - [x] CHK-011 [P0] Every mode's reader contract ran at the candidate (REQ-002) [EVIDENCE: the real per-mode `reader-contracts` check reads all 8 modes cleanly in the latest PASS receipt — fold → materialize → real consumer → clean read — and is proven load-bearing by the `READER_CONTRACT_CORRUPT_INJECT` negative control turning it red then green. Its predecessor green (a spawn-status check) was renamed `consumer-reachability`, which is all it ever proved]
 - [x] CHK-012 [P0] Every check is confirmed to have run at the same frozen candidate SHA (REQ-002, SC-002) [EVIDENCE: `candidate-frozen` diffs the runtime tree between the candidate and the commit the suite was measured against and returns empty, so the suite result and the live checks describe one tree]
@@ -64,8 +62,8 @@ not an optional extra, and it comes before the verdict is trusted.
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-013 [P0] The receipt names both SHAs, every check, and the verdict (REQ-003, SC-001) [EVIDENCE: `receipt.json` carries both SHAs, all six checks with status and detail, the suite delta, `forcedBreak`, and the verdict; `receipt.md` renders the same for a reader who did not run it]
-- [x] CHK-014 [P0] All seven modes' authority states are recorded in the receipt (REQ-008, SC-005) [EVIDENCE: all 8 modes of the frozen order are read and recorded, each `new_authoritative_reversible`, each from a stored record (confirmed by `verify-authority.cjs` at the current HEAD; `authority-state: pass` in the latest receipt). The spec says seven; the frozen order contains eight, and the gate records the count it actually read rather than the count it expected. CORRECTION: this item was previously marked complete on a manual read. The gate's own check had never executed — it died resolving a TS-ESM `.js` specifier and its exception was written into the receipt as a measured `fail`. Fixed, negative-controlled, and re-run; the receipt now carries per-mode records and their provenance. Evidence: `scratch/authority-check-never-ran.md`]
+- [x] CHK-013 [P0] The receipt names both SHAs, every check, and the verdict (REQ-003, SC-001) [EVIDENCE: `receipt.json` carries both SHAs, all seven checks with status and detail, the suite delta, `forcedBreak`, and the verdict; `receipt.md` renders the same for a reader who did not run it]
+- [x] CHK-014 [P0] All seven modes' authority states are recorded in the receipt (REQ-008, SC-005) [EVIDENCE: all 8 modes of the frozen order are read and recorded, each `new_authoritative_final`, each from a stored record (confirmed by `verify-authority.cjs` at the current HEAD; `authority-state: pass` in the latest receipt). The spec says seven; the frozen order contains eight, and the gate records the count it actually read rather than the count it expected. CORRECTION: this item was previously marked complete on a manual read. The gate's own check had never executed — it died resolving a TS-ESM `.js` specifier and its exception was written into the receipt as a measured `fail`. Fixed, negative-controlled, and re-run; the receipt now carries per-mode records and their provenance. Evidence: `scratch/authority-check-never-ran.md`]
 - [x] CHK-015 [P1] No finding is repaired inside this phase; failures open a forward-fix phase instead [EVIDENCE: nothing was repaired here. The one defect fixed was in `run-gate.mjs` itself — its `tree-clean` check counted its own artifacts as tree dirt — and correcting the instrument is not repairing a finding]
 <!-- /ANCHOR:fix-completeness -->
 

@@ -54,7 +54,7 @@ const CANDIDATE_LOG = join(SCRIPT_DIR, 'candidate-raw.txt');
 // The commit whose tree the suite was measured against. The candidate must be
 // byte-identical to this tree on the runtime path, or the suite numbers are
 // numbers about a different commit than the one we are shipping.
-const SUITE_TREE_REF = '46346369d2';
+const SUITE_TREE_REF = '1169b3d5bc';
 const DEFAULT_BASELINE_REF = '8c9f0b6944';
 
 // A nonexistent path used to force git commands to fail for --break falsifiability.
