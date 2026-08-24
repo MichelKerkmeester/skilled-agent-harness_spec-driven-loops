@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-08-21T00:39:19.142Z",
-  "candidateSha": "b8cf7ab74e919760a8169496d66536896b08b937",
-  "baselineSha": "f5676ec691e8ae78b63040290ac442a8857abbbc",
+  "generatedAt": "2026-08-23T17:41:57.047Z",
+  "candidateSha": "f2d4d01d083f1df30d9d973d4e2c4ec65145c50b",
+  "baselineSha": "8c9f0b6944ac4e43e99d26f9cf61dab74b600640",
   "forcedBreak": null,
   "verdict": "FAIL",
   "checks": [
     {
       "id": "tree-clean",
       "description": "Working tree is clean",
-      "status": "pass",
-      "detail": "tree clean apart from the gate's own artifacts; excluded specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch (gate output directory); nothing remained after exclusion"
+      "status": "fail",
+      "detail": "excluded specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch (gate output directory); remaining after exclusion:\nM .opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.ts\n M .opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/types.ts\n M .opencode/skills/system-deep-loop/runtime/scripts/flip-authority.cjs\n?? .opencode/skills/system-deep-loop/runtime/tests/unit/authority-finalize.vitest.ts\n?? specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize/"
     },
     {
       "id": "candidate-frozen",
@@ -19,65 +19,65 @@
     },
     {
       "id": "authority-state",
-      "description": "Every mode authority has moved to new_authoritative_reversible",
-      "status": "fail",
-      "detail": "read 8 modes; 8 on legacy_authoritative; 0 from a stored record, 8 from the absent-record default",
+      "description": "Every mode authority is on new_authoritative_reversible or new_authoritative_final",
+      "status": "pass",
+      "detail": "read 8 modes; 8 on new_authoritative_reversible; 8 from a stored record, 0 from the absent-record default",
       "records": [
         {
           "mode": "deep-research",
-          "state": "legacy_authoritative",
-          "epoch": 1,
-          "selectedWriter": "legacy",
-          "source": "default"
+          "state": "new_authoritative_reversible",
+          "epoch": 2,
+          "selectedWriter": "dark",
+          "source": "stored"
         },
         {
           "mode": "deep-review",
-          "state": "legacy_authoritative",
-          "epoch": 1,
-          "selectedWriter": "legacy",
-          "source": "default"
+          "state": "new_authoritative_reversible",
+          "epoch": 2,
+          "selectedWriter": "dark",
+          "source": "stored"
         },
         {
           "mode": "deep-ai-council",
-          "state": "legacy_authoritative",
-          "epoch": 1,
-          "selectedWriter": "legacy",
-          "source": "default"
+          "state": "new_authoritative_reversible",
+          "epoch": 2,
+          "selectedWriter": "dark",
+          "source": "stored"
         },
         {
           "mode": "deep-improvement-common",
-          "state": "legacy_authoritative",
-          "epoch": 1,
-          "selectedWriter": "legacy",
-          "source": "default"
+          "state": "new_authoritative_reversible",
+          "epoch": 2,
+          "selectedWriter": "dark",
+          "source": "stored"
         },
         {
           "mode": "agent-improvement",
-          "state": "legacy_authoritative",
-          "epoch": 1,
-          "selectedWriter": "legacy",
-          "source": "default"
+          "state": "new_authoritative_reversible",
+          "epoch": 2,
+          "selectedWriter": "dark",
+          "source": "stored"
         },
         {
           "mode": "model-benchmark",
-          "state": "legacy_authoritative",
-          "epoch": 1,
-          "selectedWriter": "legacy",
-          "source": "default"
+          "state": "new_authoritative_reversible",
+          "epoch": 2,
+          "selectedWriter": "dark",
+          "source": "stored"
         },
         {
           "mode": "skill-benchmark",
-          "state": "legacy_authoritative",
-          "epoch": 1,
-          "selectedWriter": "legacy",
-          "source": "default"
+          "state": "new_authoritative_reversible",
+          "epoch": 2,
+          "selectedWriter": "dark",
+          "source": "stored"
         },
         {
           "mode": "deep-alignment",
-          "state": "legacy_authoritative",
-          "epoch": 1,
-          "selectedWriter": "legacy",
-          "source": "default"
+          "state": "new_authoritative_reversible",
+          "epoch": 2,
+          "selectedWriter": "dark",
+          "source": "stored"
         }
       ]
     },
@@ -85,7 +85,7 @@
       "id": "runtime-suite",
       "description": "Candidate suite failures <= baseline (read from captured logs)",
       "status": "pass",
-      "detail": "failed 15 vs 24 (Δ-9); passed 4241 vs 4218 (Δ+23); skipped 39 vs 39 (Δ+0); total 4295 vs 4281 (Δ+14); files 192 vs 192 (Δ+0)"
+      "detail": "failed 15 vs 19 (Δ-4); passed 4437 vs 4395 (Δ+42); skipped 39 vs 39 (Δ+0); total 4491 vs 4453 (Δ+38); files 209 vs 199 (Δ+10)"
     },
     {
       "id": "consumer-reachability",
@@ -95,9 +95,9 @@
     },
     {
       "id": "reader-contracts",
-      "description": "End-to-end reader contract (not run)",
-      "status": "not-run",
-      "detail": "An end-to-end reader contract requires files projected by an enabled mode. No mode is currently enabled, so running one now would pass vacuously. Recorded as not-run rather than skipped silently."
+      "description": "End-to-end reader contract per mode (real ledger-projected read)",
+      "status": "fail",
+      "detail": "1 of 8 mode(s) failed: deep-research (verify-iteration: iter1 ok=false reason=delta_file_malformed; iter2 ok=true reason=null)"
     },
     {
       "id": "fanout-real-run",
@@ -108,29 +108,29 @@
   ],
   "suite": {
     "baseline": {
-      "testsFailed": 24,
-      "testsPassed": 4218,
+      "testsFailed": 19,
+      "testsPassed": 4395,
       "testsSkipped": 39,
-      "testsTotal": 4281,
-      "filesFailed": 20,
-      "filesPassed": 172,
-      "filesTotal": 192
+      "testsTotal": 4453,
+      "filesFailed": 15,
+      "filesPassed": 184,
+      "filesTotal": 199
     },
     "candidate": {
       "testsFailed": 15,
-      "testsPassed": 4241,
+      "testsPassed": 4437,
       "testsSkipped": 39,
-      "testsTotal": 4295,
-      "filesFailed": 17,
-      "filesPassed": 175,
-      "filesTotal": 192
+      "testsTotal": 4491,
+      "filesFailed": 11,
+      "filesPassed": 198,
+      "filesTotal": 209
     },
     "delta": {
-      "failed": -9,
-      "passed": 23,
+      "failed": -4,
+      "passed": 42,
       "skipped": 0,
-      "total": 14,
-      "files": 0
+      "total": 38,
+      "files": 10
     }
   }
 }

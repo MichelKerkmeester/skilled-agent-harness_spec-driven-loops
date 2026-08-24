@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Whole-System Gate"
-description: "The gate is built and was run against the real system; the verdict is FAIL because all eight modes still read legacy authority, and the gate's ability to fail was proven twice against checks that were passing."
+description: "The gate is built and was run against the real system; its decisive authority-state check now passes — all eight modes read ledger authority from stored records — so the summary's earlier legacy-authority verdict is corrected. A clean whole-system PASS is still pending on forward-fix items (the gate script is pinned to a pre-deletion tree; one reader-contract flags a malformed delta), which belong to the successor closeout."
 trigger_phrases:
   - "whole system gate summary"
   - "gate verdict fail"
@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-21T00:40:33Z"
+    last_updated_at: "2026-08-24T05:59:15Z"
     last_updated_by: "claude"
-    recent_action: "Regenerated the receipt at the current candidate and negative-controlled four checks"
-    next_safe_action: "Operator decision on the flip; the gate cannot pass until a mode holds authority"
+    recent_action: "Corrected the stale legacy-authority verdict; authority-state now passes on the current system"
+    next_safe_action: "Re-point the stale gate to HEAD and address the reader-contract finding in the closeout"
     blockers:
-      - "8 of 8 modes read legacy_authoritative, so the gate cannot pass"
-      - "Predecessor 004 unbuilt; retiring legacy writers now would stop writes"
+      - "The gate script is pinned to a pre-deletion tree (SUITE_TREE_REF 5511e4eac2, 10 commits behind HEAD); re-pointing is a forward-fix"
+      - "reader-contracts flags deep-research delta_file_malformed — a gate finding for the forward-fix closeout"
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
     completion_pct: 80
@@ -25,7 +25,7 @@ _memory:
       - "Should the gate hardcode session-scoped tmp paths for the suite logs it reads?"
     answered_questions:
       - "The frozen authority order contains eight modes, not the seven this phase assumed"
-      - "prepareCutover builds the legacy-to-cutover-ready edge; the reader gate supplies its evidence"
+      - "All eight modes now read new_authoritative_reversible from stored records — the legacy-authority verdict is stale and corrected"
       - "The fan-out did run and passed; the receipt records a real lineage with an artifact on disk"
       - "The gate turns red on demand: tree-clean, candidate-frozen and runtime-suite were each proven"
 ---
@@ -43,7 +43,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate |
 | **Status** | Blocked |
 | **Commit** | see `git log` on `worktrees/022-012-runtime-enablement-build` |
-| **Completed** | Partial — the gate is built and ran; it reports FAIL, which is a real result |
+| **Completed** | Partial — the gate is built and ran; its authority-state check now passes (all 8 modes on ledger), and a clean whole-system PASS is pending the forward-fix items handed to the closeout |
 | **Lines** | 1 gate script, 2 receipts |
 <!-- /ANCHOR:metadata -->
 
@@ -76,10 +76,10 @@ it passes or fails and forbids an advisory tier, so a truthful failing receipt i
 rather than a violation — and it is the evidence the blocked decision actually needs. Running it proves
 more than deferring it would.
 
-**The fan-out was not run, and is recorded as not-run rather than skipped.** A real fan-out dispatches
-external CLI subprocesses and costs model budget. The authority check had already failed, so the verdict
-was determined. Recording it as `not-run` keeps the narrowing visible; the verdict logic refuses to
-return PASS while any check is unrun, so this can never be read as a quiet success.
+**The fan-out runs for real and passes.** A real fan-out dispatches external CLI subprocesses and costs model
+budget; the latest full receipt records `fanout-real-run: pass` with a real lineage (`1787198541887-w6k53d`),
+one iteration, and an artifact on disk. The verdict logic refuses PASS while any check is unrun, so a `not-run`
+result can never be read as a quiet success.
 
 **The falsifiability runs target checks that were passing.** Breaking a check that already failed proves
 nothing about the gate. Both controls were aimed at green checks.
@@ -88,16 +88,33 @@ nothing about the gate. Both controls were aimed at green checks.
 <!-- ANCHOR:verification -->
 ## 5. VERIFICATION
 
-**Verdict: FAIL, exit 1.** Candidate `81949212b7`, baseline `8c9f0b6944`.
+**Authority-state passes on the current system.** `node scripts/verify-authority.cjs` at the current HEAD
+reports all 8 modes on `new_authoritative_reversible`, epoch 2, `source: stored`, `allOnLedger: true`, exit 0 —
+each read from a stored record, not the absent-record default. This is the decisive check for a gate ordered to
+run after authority has moved, and it holds.
+
+The gate's most recent full receipt (`scratch/receipt.md`) records the check set at candidate `f2d4d01d08`:
 
 | Check | Status | What it found |
 |-------|--------|---------------|
-| `tree-clean` | pass | clean apart from the gate's own artifacts, which are named in the detail |
-| `candidate-frozen` | pass | runtime tree byte-identical to the tree the suite measured |
-| `authority-state` | **fail** | 8 of 8 modes read `legacy_authoritative` |
-| `runtime-suite` | pass | failed 15 vs 15, passed 4188 vs 4111, skipped 39 vs 39, total 4242 vs 4165, files 188 vs 182; the 21 failure lines are byte-identical between runs |
-| `reader-contracts` | pass | all 7 consumer scripts spawned; reachability only, stated as such |
-| `fanout-real-run` | not-run | recorded with its reason, never counted as a pass |
+| `authority-state` | pass | 8 modes on `new_authoritative_reversible`; 8 from a stored record, 0 from the absent-record default |
+| `candidate-frozen` | pass | runtime tree identical to the measured tree |
+| `runtime-suite` | pass | failed 15 vs 19 (Δ−4); passed 4437 vs 4395 (Δ+42); files 209 vs 199 |
+| `consumer-reachability` | pass | all 7 scripts exist and spawned |
+| `fanout-real-run` | pass | real lineage `1787198541887-w6k53d`; 1 total, 1 succeeded, artifact on disk |
+| `tree-clean` | fail | runtime-DB suite residue outside the gate's own scratch — a suite side-effect, not a system defect |
+| `reader-contracts` | fail | 1 of 8 modes: deep-research `verify-iteration` reports `delta_file_malformed` on iter1 |
+
+**Verdict: FAIL, and the two failing checks are forward-fix items, not authority regressions.** `tree-clean`
+fails on the graph databases and observability JSONL the suite itself writes; `reader-contracts` flags a malformed
+deep-research delta. This phase's Non-Goals hand fixing what the gate finds to the successor closeout, not to the
+gate run.
+
+**The gate script is pinned to a pre-deletion tree.** `SUITE_TREE_REF` is `5511e4eac2`, 10 commits and a
+303-file / 180k-line runtime-tree diff behind HEAD after the delete-overengineering waves. A fresh full run at
+HEAD would fail `candidate-frozen` and read stale suite logs from that pin alone, so re-pointing the gate to the
+current candidate — and regenerating its baseline/candidate suite logs — is the forward-fix a clean whole-system
+PASS now depends on.
 
 **The gate can fail, and was seen to.** `--break tree-clean` and `--break candidate-frozen` each turned a
 passing check red, kept exit 1, stamped `forcedBreak`, and still wrote the receipt. A clean re-run
@@ -122,8 +139,9 @@ receipt whose own contract forbids an advisory tier.
 
 It is now `consumer-reachability`, which is all it ever proved: it fails when a listed script is
 missing from disk or cannot be started, and reports those two counts separately so an operator can
-tell them apart. The end-to-end contract it was named for is recorded as its own `not-run` check
-beside the fan-out, so the receipt no longer implies a verification that never ran.
+tell them apart. The end-to-end reader contract it was named for is now a real per-mode check; in the
+latest receipt it fails on deep-research (`delta_file_malformed`), which the successor closeout carries
+as a forward-fix.
 
 | Stage | `consumer-reachability` |
 |-------|-------------------------|
@@ -149,11 +167,12 @@ now been shown to fail on a real event rather than only under a forced break.
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
-**The gate cannot pass until the flip exists.** Every mode reads `legacy_authoritative` because no code
-path reaches `cutover_ready` from it. This is the same blocker that stops the two preceding phases.
+**The authority precondition is met.** All eight modes read `new_authoritative_reversible` from stored records,
+so the ordering premise of this gate — that it runs after authority has moved — now holds. The original blocker,
+modes reading legacy authority, is resolved.
 
-**The real fan-out was never exercised.** The check set is therefore narrower than the phase specifies,
-which is why it is enumerated in the receipt rather than omitted from it.
+**The check set is enumerated in the receipt rather than implied.** Every check, including the real fan-out
+(now `pass`), is named in the receipt with its status, so the breadth of what ran is visible rather than assumed.
 
 **Reader contracts prove reachability, not correctness.** Spawning a consumer without its arguments shows
 it can be started, nothing more. A real contract needs files projected by an enabled mode.
@@ -161,18 +180,18 @@ it can be started, nothing more. A real contract needs files projected by an ena
 **The phase says seven modes; the frozen order contains eight.** The gate records the count it actually
 read. The discrepancy is in the specification, not the measurement.
 
-**The receipt has been regenerated at the current candidate.** Candidate `b8cf7ab74e`, baseline
-`f5676ec691`, verdict FAIL. The verdict is unchanged and the reason is unchanged: 8 of 8 modes read
-`legacy_authoritative`, and all 8 read it from the absent-record default rather than from a stored
-record. `runtime-suite` passes at 15 failures against 24, `consumer-reachability` and
-`fanout-real-run` pass, `reader-contracts` remains `not-run`.
+**A clean whole-system PASS is still pending, but not on authority.** The latest receipt's FAIL comes from
+`tree-clean` (runtime-DB suite residue) and `reader-contracts` (a malformed deep-research delta), and from the
+gate script being pinned to a pre-deletion tree (see §5). These are forward-fix items for the successor closeout,
+which this phase's Non-Goals assign there rather than to the gate run.
 
 **Four of the gate's checks have now been shown to turn red.** `tree-clean` and `candidate-frozen`
 were forced through the harness's own `--break`, which had never been used before — the field
 recorded `null` on every prior receipt. `runtime-suite` was proven separately by pointing it at a
 candidate log carrying more failures than its baseline: it reported `fail` at Δ+16 and returned to
 `pass` at Δ-9 when the real log was restored. `consumer-reachability` was proven earlier by hiding a
-consumer script. `authority-state` needs no control, since it is the check currently failing.
+consumer script. `authority-state` reads the live authority store directly and is confirmed independently by
+`verify-authority.cjs` at the current HEAD.
 
 **The gate reads its suite numbers from two hardcoded absolute paths under a session-scoped
 temporary directory.** Those files are not part of the repository and do not survive the session

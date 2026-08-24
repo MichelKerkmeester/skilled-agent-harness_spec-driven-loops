@@ -1,26 +1,26 @@
 # Whole-System Gate Receipt
 
-- Candidate SHA: `b8cf7ab74e919760a8169496d66536896b08b937`
-- Baseline SHA: `f5676ec691e8ae78b63040290ac442a8857abbbc`
-- Generated: 2026-08-21T00:39:19.142Z
+- Candidate SHA: `f2d4d01d083f1df30d9d973d4e2c4ec65145c50b`
+- Baseline SHA: `8c9f0b6944ac4e43e99d26f9cf61dab74b600640`
+- Generated: 2026-08-23T17:41:57.047Z
 
 | Check | Status | Detail |
 | --- | --- | --- |
-| tree-clean | pass | tree clean apart from the gate's own artifacts; excluded specs/system-deep-loop/036-deep-loop-innovation/012-runtime-en… |
+| tree-clean | fail | excluded specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch (gate out… |
 | candidate-frozen | pass | identical |
-| authority-state | fail | read 8 modes; 8 on legacy_authoritative; 0 from a stored record, 8 from the absent-record default |
-| runtime-suite | pass | failed 15 vs 24 (Δ-9); passed 4241 vs 4218 (Δ+23); skipped 39 vs 39 (Δ+0); total 4295 vs 4281 (Δ+14); files 192 vs 192 … |
+| authority-state | pass | read 8 modes; 8 on new_authoritative_reversible; 8 from a stored record, 0 from the absent-record default |
+| runtime-suite | pass | failed 15 vs 19 (Δ-4); passed 4437 vs 4395 (Δ+42); skipped 39 vs 39 (Δ+0); total 4491 vs 4453 (Δ+38); files 209 vs 199 … |
 | consumer-reachability | pass | all 7 scripts exist and spawned; non-zero exits are expected when required args are absent — this proves reachability o… |
-| reader-contracts | not-run | An end-to-end reader contract requires files projected by an enabled mode. No mode is currently enabled, so running one… |
+| reader-contracts | fail | 1 of 8 mode(s) failed: deep-research (verify-iteration: iter1 ok=false reason=delta_file_malformed; iter2 ok=true reaso… |
 | fanout-real-run | pass | run_id 1787198541887-w6k53d: total 1, succeeded 1, failed 0, all_failed false, orphaned 0; iteration artifact /Users/mi… |
 
 ## Suite delta (candidate − baseline)
 
-- failed: -9
-- passed: +23
+- failed: -4
+- passed: +42
 - skipped: +0
-- total: +14
-- files: +0
+- total: +38
+- files: +10
 
 ## Verdict: **FAIL**
 

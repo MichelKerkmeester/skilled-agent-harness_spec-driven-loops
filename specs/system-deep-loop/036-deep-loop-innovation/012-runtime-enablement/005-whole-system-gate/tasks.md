@@ -9,13 +9,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-wh
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-19T21:50:00Z"
+    last_updated_at: "2026-08-24T05:59:15Z"
     last_updated_by: "claude"
-    recent_action: "Ran the whole-system gate; verdict FAIL, falsifiability proven twice"
-    next_safe_action: "Operator decision on the missing flip transitions"
+    recent_action: "Corrected the stale legacy-authority verdict; authority-state now passes on the current system"
+    next_safe_action: "Re-point the stale gate to HEAD and address the reader-contract finding in the closeout"
     blockers:
-      - "8 of 8 modes read legacy_authoritative, so the gate cannot pass"
-      - "Predecessor 004 unbuilt; retiring legacy writers now would stop writes"
+      - "The gate script is pinned to a pre-deletion tree (SUITE_TREE_REF 5511e4eac2, 10 commits behind HEAD); re-pointing is a forward-fix"
+      - "reader-contracts flags deep-research delta_file_malformed — a gate finding for the forward-fix closeout"
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
     completion_pct: 70
@@ -51,7 +51,7 @@ _memory:
 
 - [x] **T-004** Run the runtime suite at the candidate. [EVIDENCE: `17 failed / 4152 passed / 39 skipped (4206)`; `candidate-frozen` proves the runtime tree is byte-identical to the one measured]
 - [ ] **T-005** [P] Run every mode's reader contract at the candidate. [PARTIAL: 7 consumer scripts spawned and exit codes recorded — reachability only. End-to-end contracts need files projected by an enabled mode]
-- [x] **T-006** [P] Read and record the authority state of all seven modes. [EVIDENCE: all 8 modes of the frozen order read; every one `legacy_authoritative`]
+- [x] **T-006** [P] Read and record the authority state of all seven modes. [EVIDENCE: all 8 modes of the frozen order read; every one `new_authoritative_reversible` from a stored record, confirmed by `verify-authority.cjs` at the current HEAD and by `authority-state: pass` in the latest receipt]
 - [x] **T-007** Run a real fan-out to completion. [DONE, and the earlier note was stale in the pessimistic direction. The receipt records `fanout-real-run` as `pass`, not `not-run`: run_id 1787198541887-w6k53d, total 1, succeeded 1, failed 0, orphaned 0, with a 4978-byte iteration artifact still on disk under `scratch/fanout-proof/`. The gate verdict is still determined by the authority check, which is a separate matter from whether this task ran]
 - [x] **T-008** Write the receipt naming both SHAs, every check, and the verdict. [EVIDENCE: `scratch/receipt.json` and `scratch/receipt.md` — both SHAs, six checks, suite delta, verdict FAIL]
 <!-- /ANCHOR:phase-2 -->

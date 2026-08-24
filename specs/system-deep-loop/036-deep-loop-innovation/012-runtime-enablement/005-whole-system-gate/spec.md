@@ -11,19 +11,20 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate"
-    last_updated_at: "2026-08-19T21:50:00Z"
+    last_updated_at: "2026-08-24T05:59:15Z"
     last_updated_by: "claude"
-    recent_action: "Ran the whole-system gate; verdict FAIL, falsifiability proven twice"
-    next_safe_action: "Operator decision on the missing flip transitions"
+    recent_action: "Corrected the stale legacy-authority verdict; authority-state now passes on the current system"
+    next_safe_action: "Re-point the stale gate to HEAD and address the reader-contract finding in the closeout"
     blockers:
-      - "8 of 8 modes read legacy_authoritative, so the gate cannot pass"
-      - "Predecessor 004 unbuilt; retiring legacy writers now would stop writes"
+      - "The gate script is pinned to a pre-deletion tree (SUITE_TREE_REF 5511e4eac2, 10 commits behind HEAD); re-pointing is a forward-fix"
+      - "reader-contracts flags deep-research delta_file_malformed — a gate finding for the forward-fix closeout"
     key_files:
       - "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs"
     completion_pct: 70
     open_questions: []
     answered_questions:
       - "Bindings resolve from the environment; no SHA is typed by hand"
+      - "All eight modes now read new_authoritative_reversible from stored records — the legacy-authority verdict is stale and corrected"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

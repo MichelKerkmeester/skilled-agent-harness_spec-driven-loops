@@ -39,8 +39,8 @@
     "importance_tier": "important",
     "status": "blocked",
     "key_files": [
-      "scratch/receipt.json",
       "scratch/receipt.md",
+      "scratch/receipt.json",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -53,15 +53,15 @@
     ],
     "entities": [
       {
-        "name": "receipt.json",
-        "kind": "config",
-        "path": "scratch/receipt.json",
-        "source": "derived"
-      },
-      {
         "name": "receipt.md",
         "kind": "doc",
         "path": "scratch/receipt.md",
+        "source": "derived"
+      },
+      {
+        "name": "receipt.json",
+        "kind": "config",
+        "path": "scratch/receipt.json",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Each preceding phase verified its own surface",
     "created_at": "2026-08-19T06:57:08.364Z",
-    "last_save_at": "2026-08-21T00:40:52.065Z",
+    "last_save_at": "2026-08-24T06:01:54.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f83a900978a6cc99d29161bff4c79f381935529f7e7a9beda56dd6684a962a6",
+    "source_fingerprint": "sha256:5468165d1caf272b8b4b44bdb477d7c61d8debe52c6bc90dcce6683ebde6f3a9",
     "source_doc_hashes": {
-      "spec.md": "cfd8faf5f83d35ce8e8c3e9a90157a94cbce0b891e28c6a9b3d715ede50f9e6b",
-      "plan.md": "90f39c8339ee692f2fe20881022d09a535f4b03a4f67df08bc55e2f2c6d8f29e",
-      "tasks.md": "de2a02317996617fe8dff79817c51453b9aeee6d31ae9a115989af79e6b6a98f",
-      "checklist.md": "a94b857f1183580f5c756e849ffda3fc2cedee8bc9c2c82a9c32a916be807927",
-      "implementation-summary.md": "3cbfaf72239107867479463b910c35f69bff4355a99f9302a55f6a6b5668c721"
+      "spec.md": "10d6b701f06da8265b1f122c597f2bd5e92bb8ba145a70a7193e8630349f5423",
+      "plan.md": "366ca2723de08a0652580e459af860c16b596603a3ff9258eca06df17f1a4190",
+      "tasks.md": "2ad874fadcaedbf13a489a3dcd0e8fa6da25fbb40383842455a85f5eb3336117",
+      "checklist.md": "898aa64f8bc4d10c694af9ada33f7d1bfafdc91719739dbe11e3df539e9ee2f0",
+      "implementation-summary.md": "c18c7b88525e59eec40da080579287000948e8f059a110b2bb4edfa6f1d8a9f2"
     },
     "last_active_child_id": null,
     "last_active_at": null
