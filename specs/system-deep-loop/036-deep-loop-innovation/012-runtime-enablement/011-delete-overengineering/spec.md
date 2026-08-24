@@ -13,10 +13,10 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
     last_updated_at: "2026-08-24T22:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Removed F3 fleet-enablement stack; F4 resequenced to phase 005; gates green"
-    next_safe_action: "Execute phase 005 combined F4 and F7 removal, then verify"
+    recent_action: "Completed phase 005 CAS reduction plus F4 removal; all 5 waves green"
+    next_safe_action: "Validate recursive strict then stop for operator ff-merge gate"
     blockers: []
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The removal set is proven by a 10-iteration audit plus a repo-wide zero-caller re-proof; findings live in research/research.md"
@@ -34,7 +34,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering |
 | **Mode** | Phase parent (lean trio) |
 | **Priority** | P0 |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Owner skill** | system-deep-loop |
 | **Authority posture** | No authority moves; removes dead machinery, keeps the live ledger loop and projections intact |
 
@@ -67,7 +67,7 @@ per-finding import-graph proof, KEEP list, and wave plan live in **`research/res
 | `002-legacy-compat-converters` | F1 | 7 per-mode `legacy-compatibility.ts` (keep deep-research) | ~4,306 | Low-Med | Complete |
 | `003-mode-contracts-value-layer` | F2 | conformance engine value files (keep `mode-contract-types.ts` + `substrate-ports.ts`) | ~2,988 | Low-Med | Complete |
 | `004-rollout-flip-tooling` | F3 | fleet-enablement stack (`enable-modes.cjs` + `lib/fleet-enablement/`) | ~869 | Low-Med | Complete |
-| `005-authority-registry-cas-reduction` | F4, F7 | `flip-authority.cjs` + CAS mutators (keep read path) | ~2,157 | High-adjacency | Planned |
+| `005-authority-registry-cas-reduction` | F4, F7 | `flip-authority.cjs` + CAS mutators (keep read path) | ~830 | High-adjacency | Complete |
 
 > **Phase 004 resequencing:** F4 (`flip-authority.cjs`) moved from phase 004 into phase 005. Its test
 > (`authority-finalize.vitest.ts`) also exercises the phase-005 CAS mutator `compareAndSwapFinalize`, so

@@ -14,9 +14,7 @@ export {
 
 export type {
   AuthorityCompareAndSwapInput,
-  AuthorityCompareAndSwapRollbackInput,
   AuthorityPendingTransition,
-  AuthorityPrepareCutoverInput,
 } from './authority-registry.js';
 export type {
   AuthorityFlipDenialReasonCode,

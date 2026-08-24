@@ -7,6 +7,7 @@ trigger_phrases:
   - "reduce authority-registry.ts"
 importance_tier: "critical"
 contextType: "implementation"
+status: complete
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
 ---
 
@@ -25,10 +26,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-de
 | **Packet** | .../011-delete-overengineering/005-authority-registry-cas-reduction |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Risk** | High-adjacency — sits next to the fail-closed authorization gateway |
-| **Findings** | F7 (see parent `research/research.md`) |
-| **Order** | Wave 5, LAST — blocked until Phase `004-rollout-flip-tooling` (F3, F4) is deleted and green |
+| **Findings** | F4, F7 (see parent `research/research.md`) — F4 (`flip-authority.cjs`) resequenced into this phase from 004; see §2 |
+| **Order** | Wave 5, LAST — ran after Phase `004-rollout-flip-tooling` (F3) landed and was green |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,6 +49,12 @@ This is a **reduction, not a whole-file delete**: ~330 LOC of mutator methods, t
 interfaces, and one lock-path helper come out; the read path, the lock-reclaim machinery, and the
 untouched pending-transition trio stay byte-for-byte unchanged. See §8 for the full KEEP list and §9 for
 investigation findings that correct and extend the parent audit's F7 write-up.
+
+**F4 resequenced into this phase.** Phase 004 originally owned F4 (`flip-authority.cjs`). It was moved here
+because `flip-authority.cjs` and the F7 CAS mutator `compareAndSwapFinalize` share the
+`authority-finalize.vitest.ts` test file; removing them together lets that file be deleted whole rather
+than split across two waves. So this phase also deletes `flip-authority.cjs` and
+`flip-authority-cli.vitest.ts` alongside the CAS reduction.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -62,7 +69,9 @@ investigation findings that correct and extend the parent audit's F7 write-up.
 | `runtime/lib/per-mode-authority-flip/authority-registry.ts` | Remove `prepareCutover()`, `compareAndSwap()`, `compareAndSwapRollback()` (+ its private `#writeRollbackFinalRecord` helper), `compareAndSwapFinalize()`; remove the now-orphaned `AuthorityPrepareCutoverInput`, `AuthorityCompareAndSwapRollbackInput`, `AuthorityCompareAndSwapFinalizeInput` interfaces; remove the per-mode lock-path helper `#lockPath()` (used only by the four removed methods) |
 | `runtime/lib/per-mode-authority-flip/index.ts` | Barrel: drop `AuthorityPrepareCutoverInput` and `AuthorityCompareAndSwapRollbackInput` from the `export type { ... }` list |
 | `runtime/tests/unit/per-mode-authority-flip.vitest.ts` | Remove the 7 `compareAndSwap` `it()` blocks (interleaved under the flat `describe('AuthorityRegistry', ...)`, not their own sub-describe), the `describe('prepareCutover', ...)` block, the `describe('compareAndSwapRollback', ...)` block, and the one per-mode-lock-reclaim `it()` inside `describe('stale-lock reclaim', ...)` |
-| `runtime/tests/unit/authority-finalize.vitest.ts` | Delete entire file — **conditional**, see §9.4 |
+| `runtime/tests/unit/authority-finalize.vitest.ts` | Deleted whole — dead after this phase + F4 (§9.4) |
+| `runtime/scripts/flip-authority.cjs` | Deleted (F4 — resequenced from phase 004; the one-time per-mode authority-flip runner) |
+| `runtime/tests/unit/flip-authority-cli.vitest.ts` | Deleted (F4 — resequenced from phase 004; tests the deleted runner) |
 | `runtime/tests/integration/deep-research-postflip-fanout.vitest.ts` | Rewrite the `flipAuthority()` helper to seed the target `AuthorityRecord` directly via `writeCanonicalJsonAtomic`, instead of calling `prepareCutover` + `compareAndSwap` — **blocking precondition, see §9.3** |
 
 ### Out of Scope
@@ -76,8 +85,9 @@ investigation findings that correct and extend the parent audit's F7 write-up.
   `AuthorityPendingTransition`, `AuthorityCompareAndSwapInput` (type), `isAdmittedAuthorityWriter()`,
   `isValidPendingTransition()` — not named by this wave. They currently have zero external callers
   either, but that is a separate future audit question, not this phase's scope. Do not touch.
-- `runtime/tests/unit/flip-authority-cli.vitest.ts`, `runtime/tests/unit/enable-modes-cli.vitest.ts` —
-  phase 004's concern (they test the scripts phase 004 deletes).
+- `runtime/tests/unit/enable-modes-cli.vitest.ts` — deleted by phase 004 with the `enable-modes.cjs` it
+  tests. (`flip-authority-cli.vitest.ts` moved into this phase's In Scope above, since F4 was resequenced
+  here.)
 - The `authorized-ledger`, `mode-append-gateway`, `event-envelope`, `legacy-projections`, replay-fingerprint,
   the 8 per-mode reducers, sealed-artifacts, `authority-root/`, `cutover-binding/`, `verify-authority.cjs` —
   the live ledger loop, untouched.

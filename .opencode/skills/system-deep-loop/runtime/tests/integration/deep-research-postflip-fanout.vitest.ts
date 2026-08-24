@@ -25,6 +25,7 @@ import {
   TransitionPolicyRegistry,
 } from '../../lib/authorized-ledger/index.js';
 import { canonicalBytes, sha256Bytes } from '../../lib/event-envelope/index.js';
+import { writeCanonicalJsonAtomic } from '../../lib/locks-and-fencing/durable-file.js';
 import {
   createDeepResearchEventRegistry,
   prepareDeepResearchEvent,
@@ -145,28 +146,27 @@ function temporaryRoot(label: string): string {
 }
 
 async function flipAuthority(authorityRoot: string): Promise<AuthorityRecord> {
+  // Seed the post-flip authority record directly. The forward-flip CAS mutators
+  // that once produced it are gone now that every mode is finalized, so this
+  // test writes the durable new_authoritative_reversible/dark record it needs
+  // before its fan-out assertions run — using the same integrity digest the
+  // registry itself computes over the record core — and reads it back.
   const registry = new AuthorityRegistry(authorityRoot, fixedNow);
-  return registry.withTransactionLock(async () => {
-    const prepared = registry.prepareCutover({
-      mode: MODE,
-      expectedEpoch: 1,
-      candidateSha: CANDIDATE_SHA,
-      policyVersion: 1,
-      at: TIMESTAMP,
-    });
-    registry.compareAndSwap({
-      mode: MODE,
-      expectedState: 'cutover_ready',
-      expectedEpoch: prepared.record.epoch,
-      nextSelectedWriter: 'dark',
-      candidateSha: CANDIDATE_SHA,
-      policyVersion: 1,
-      cutoverCertificateDigest: digest('postflip-certificate'),
-      lastTransitionDigest: digest('postflip-transition'),
-      at: TIMESTAMP,
-    });
-    return registry.read(MODE);
-  });
+  const core = {
+    schemaVersion: 1 as const,
+    mode: MODE,
+    state: 'new_authoritative_reversible' as const,
+    epoch: 2,
+    selectedWriter: 'dark' as const,
+    candidateSha: CANDIDATE_SHA,
+    policyVersion: 1,
+    cutoverCertificateDigest: digest('postflip-certificate'),
+    lastTransitionDigest: digest('postflip-transition'),
+    updatedAt: TIMESTAMP,
+  };
+  const record: AuthorityRecord = { ...core, recordDigest: sha256Bytes(canonicalBytes(core as never)) };
+  writeCanonicalJsonAtomic(join(authorityRoot, `authority-${MODE}.json`), record as never);
+  return registry.read(MODE);
 }
 
 function createPolicyRegistry(flippedRecord: AuthorityRecord): TransitionPolicyRegistry {
