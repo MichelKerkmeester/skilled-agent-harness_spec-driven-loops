@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/053-cline-ox-alpha-cli-pi-roster",
+  "spec_folder": "cli-external-orchestration/053-cline-ox-alpha-cli-pi-roster",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cline ox-alpha cli-pi",
+      "cline-pass ox-alpha roster",
+      "ox alpha cline provider pi",
+      "cli-pi cline ox-alpha fanout",
+      "cline ox-alpha plan",
+      "cline-pass ox-alpha cli-pi",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "cline",
+      "ox-alpha",
+      "cli-pi",
+      "cline-pass",
+      "roster",
+      "alpha",
+      "provider",
+      "fanout",
+      "plan",
+      "implementation",
+      "tasks",
+      "verification"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ox Alpha",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "So Ox Alpha",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Register Ox Alpha",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Register Ox Alpha",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Cline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Ox Alpha",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extra High",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Document Ox Alpha",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "pi's interactive Cline picker already discovers Ox Alpha as a free model (`Free — Try with limited usage, separate from ClinePass quota`) and can run it live — it is the operator's active model in the current session",
+    "created_at": "2026-08-24T10:16:38.355Z",
+    "last_save_at": "2026-08-24T10:24:18.215Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75a679e11d9c131d0253a43c413a8b3d44b3f525779bda4b4433f9aa6850317f",
+    "source_doc_hashes": {
+      "spec.md": "ab4ea2b8839f66f28460dbd8c6ad64bc285644ca1883f75c08e65db11c9f8951",
+      "plan.md": "6426652f024062bd3ed56c07b69d39d340aaf9adf3a03ba9c688170df6a1be5f",
+      "tasks.md": "60cac8336ad34b408008bb4a4ccbf14730388df06332def0e05b4e14493d1fd1",
+      "checklist.md": "95861f43aef4b3ce8004c9029c033f039223e70e5c4992fe9b29a75a5bd2d554",
+      "implementation-summary.md": "8cb2039b64300e4d0966674f891f5272b2e952d6b65dea7876a0a53b7208eed6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

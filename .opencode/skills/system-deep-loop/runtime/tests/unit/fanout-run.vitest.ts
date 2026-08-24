@@ -1427,6 +1427,9 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       // as openrouter/<upstream>/<id>; the -latest Flash stays on the max thinking pin.
       'deepseek/deepseek-v4-flash-latest': 'openrouter',
       'stealth/ox-alpha': 'openrouter',
+      // Cline (ClinePass) routes the free Ox Alpha tune; its id carries the x-ai/ vendor prefix,
+      // so the builder emits the three-segment cline-pass/x-ai/ox-alpha selector.
+      'x-ai/ox-alpha': 'cline-pass',
     };
     for (const [model, provider] of Object.entries(providerByModel)) {
       const command = buildLineageCommand(

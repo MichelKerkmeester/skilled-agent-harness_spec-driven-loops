@@ -1863,6 +1863,10 @@ const PI_ALLOWED_MODELS = new Set([
   // openrouter/<upstream>/<model> selector. No other model routes through OpenRouter.
   'deepseek/deepseek-v4-flash-latest',
   'stealth/ox-alpha',
+  // Cline (ClinePass) fronts the free Ox Alpha tune; its Cline id carries the vendor prefix
+  // `x-ai/ox-alpha` (not `cline-pass/`), so `${provider}/${model}` composes the three-segment
+  // cline-pass/x-ai/ox-alpha selector. Cline has no `max` tier — dispatch this id at `xhigh`.
+  'x-ai/ox-alpha',
 ]);
 const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
 
@@ -2073,6 +2077,9 @@ const PI_MODEL_PROVIDERS = new Map([
   // the 3-segment openrouter/<upstream>/<model> selector Pi's OpenRouter roster expects.
   ['deepseek/deepseek-v4-flash-latest', 'openrouter'],
   ['stealth/ox-alpha', 'openrouter'],
+  // Cline (ClinePass): the Ox Alpha id carries the vendor prefix `x-ai/ox-alpha`, so
+  // `${provider}/${model}` yields the three-segment cline-pass/x-ai/ox-alpha selector Pi's cline-pass roster expects.
+  ['x-ai/ox-alpha', 'cline-pass'],
 ]);
 // Map each shared reasoningEffort level to the name Pi's `--thinking` uses (from the
 // installed `pi --help`): the config's 'none' is Pi's 'off', and the config's 'ultra'
