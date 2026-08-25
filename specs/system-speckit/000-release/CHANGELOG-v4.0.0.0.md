@@ -16,6 +16,7 @@ None of this changes how you actually call the system. The commands you type eve
 - **Search that degrades honestly** — Memory recall falls back to keyword search when embeddings are unavailable and says so, and eight held-back retrieval features were benchmarked into a graduate/refine/cut verdict.
 - **Deep loops, one home** — Research, review, ai-council and improvement run as one `system-deep-loop` skill, joined by a new alignment (conformance-audit) mode — same `/deep:*` commands.
 - **Loops run on any model, in parallel** — A deep loop dispatches across every CLI — Codex, Devin, Cursor, Pi, OpenCode, Claude Code — and fans several out at once for independent perspectives.
+- **Every run replayable** — A typed evidence-ledger runtime became the authoritative record for all eight loop modes: runs replay from the ledger, every state transition is authorized and accountable, and the legacy files are now projections of it.
 - **Executors that only run when installed** — Codex, Devin, Cursor and Pi show up as routable only when their binary is actually present, so a missing tool never fails halfway through a run.
 - **Pi hosts the framework natively** — `cli-pi` gained native bridges for the repo's skills, commands, agents, MCP servers and hooks — the deepest runtime integration of the six, not just a dispatch target.
 - **Docs that make anything** — Diagrams across 27 types, a git-free before/after diff, and plain-English output join the terminal through new `/create:*` commands.
@@ -137,7 +138,7 @@ Benchmark authoring now has a single home in `create-benchmark`, and every run l
 
 ## The Deep Loops, Unified and Extended
 
-The deep loops finished collapsing into a single home this release, gained a new way to hold your work up against the standard it claims to follow, and learned to run on any model you name — several at a time. The hub and its backend are now one skill, a conformance-audit mode joins the family, and the loops now fan out across every CLI — with one name to watch, since two old skill identities go away. Underneath, a new evidence-ledger runtime began landing dark, so a much larger change is already underway without touching anything you run today.
+The deep loops finished collapsing into a single home this release, gained a new way to hold your work up against the standard it claims to follow, and learned to run on any model you name — several at a time. The hub and its backend are now one skill, a conformance-audit mode joins the family, and the loops now fan out across every CLI — with one name to watch, since two old skill identities go away. Underneath, a new evidence-ledger runtime landed and took over: it started dark, then — under an operator-ratified flip — became the authoritative record for all eight modes, with the legacy writers retired behind it.
 
 #### One Skill, Hub and Backend Together
 
@@ -163,16 +164,16 @@ Codex and Devin were revived and Cursor and Pi brought up new to make this real,
 
 &nbsp;
 
-#### A New Evidence Ledger, Running Dark
+#### A New Evidence Ledger, Now Authoritative
 
-The deep loops started growing a new spine this release — and you won't feel it yet, on purpose. A large research program (178 recommendations across the loop family) converged on a single architecture, an append-only ledger with a few load-bearing parts:
+The deep loops grew a new spine this release, and by the end of the cycle it became the record. A large research program (178 recommendations across the loop family) converged on a single architecture, an append-only ledger with a few load-bearing parts:
 
 - a **typed, append-only event ledger** as the single record of what happened;
 - a **fail-closed gateway** that authorizes every state transition;
 - **sealed reference artifacts**, versioned **replay fingerprints**, and **receipts**;
 - **blinded adjudication** for the judgments the loops make.
 
-Because the runtime holds live in-flight state, it can't be swapped in one move — so the new substrate lands additive and dark behind compatibility adapters, proves shadow-parity against the current behavior first, then takes over one mode at a time behind a rollback window, retiring the legacy writers only after telemetry shows nothing still uses them. It is non-authoritative today; the payoff, as authority moves, is that every run becomes replayable and every transition accountable.
+Because the runtime holds live in-flight state, it couldn't be swapped in one move — so the substrate landed the careful way: additive and dark behind compatibility adapters, proving shadow-parity against the existing behavior, then cutting over one mode at a time behind a rollback window. Under an operator-ratified flip, all eight modes — research, review, ai-council, agent-improvement, model-benchmark, skill-benchmark, alignment, and deep-improvement-common — are now on `new_authoritative_final`: the ledger is the record, the legacy files are produced by projection from it (a fail-closed guard rejects any out-of-band write to a projected file), and the legacy shadow writer is retired. A whole-system gate re-measured on the finalized tree returns a literal PASS across all seven checks, and the one-time migration and rollback scaffolding the flip made dead weight was removed. Every run is now replayable and every transition accountable.
 
 ---
 
