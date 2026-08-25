@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Design-System Verification Checklist
 
-Use this checklist BEFORE claiming any design-system change to `apps/pi-remote-web/` is complete, fixed,
+Use this checklist BEFORE claiming any design-system change to `app-mobile/` is complete, fixed,
 or working. See `references/verification.md` for why this gate is browser-free and the full method.
 
 ---
@@ -22,7 +22,7 @@ or working. See `references/verification.md` for why this gate is browser-free a
 
 ### Purpose
 
-This checklist gates any design-system change to `apps/pi-remote-web/` before it can be claimed
+This checklist gates any design-system change to `app-mobile/` before it can be claimed
 complete, fixed, or working. It exists because the app's strict CSP blocks Vite's injected styles under
 headless CDP, so screenshot-based verification is unreliable there — the checklist enforces the
 browser-free resolver method plus the command gate as the substitute evidence path.
@@ -40,10 +40,11 @@ resolver diff counts and command exit statuses as evidence.
 
 **Evidence from the resolver and the command gate before claims, always.** Screenshot/pixel diffing
 proves nothing about colour here: the app's strict CSP blocks Vite's injected styles under headless
-CDP, so the app renders unstyled in that path. The resolver method — resolving `src/style.css` directly
-to final values — is immune to that problem.
+CDP, so the app renders unstyled in that path. The resolver method — resolving `app-mobile/src/app.css`
+together with the changed component's scoped `<style>` block directly to final values — is immune to that
+problem.
 
-□ I resolved `style.css` to final values per theme, not just reviewed the diff
+□ I resolved `app-mobile/src/app.css` (with the changed component's scoped `<style>` block) to final values per theme, not just reviewed the diff
 □ I ran the command gate and read its actual output and exit status
 □ I can state the exact `CHANGED` / `VANISHED` / `ADDED` counts from the resolver diff
 □ I did not substitute "looks right in a screenshot" for either of the above
@@ -54,7 +55,7 @@ to final values — is immune to that problem.
 
 ## 3. RESOLVER PROOF (value preservation or intended change)
 
-□ Ran the resolver on a **scratch copy** of `style.css`, not the real file, for the experiment itself
+□ Ran the resolver on a **scratch copy** of `app-mobile/src/app.css` (and the changed component's scoped `<style>` block), not the real files, for the experiment itself
 □ Resolved BEFORE the change, per theme (light / dark / system)
 □ Resolved AFTER the change, per theme
 □ For a migration meant to preserve values (literal→token refactor, annotation-only pass):
@@ -88,10 +89,10 @@ this way — defer such physical refactors until a real-browser visual-diff harn
 □ `npm run typecheck` — `tsc -b`, exit 0
 □ `npm run build` — `tsc -b && vite build`, exit 0 (app + catalog entries)
 □ `npm run test:web` — vitest, exit 0
-□ `contrast.test.tsx` specifically green, in **both** themes (WCAG AA)
+□ `contrast.test.ts` specifically green, in **both** themes (WCAG AA)
 □ Reduced-motion, focus, and state suites pass (also part of `test:web`)
 
-**Known flake:** `tests/viewer-history.test.tsx` is timing-sensitive (an async `setTimeout(0)`
+**Known flake:** `app-mobile/tests/viewer-history.svelte.test.ts` is timing-sensitive (an async `setTimeout(0)`
 focus-restore raced by a synchronous assertion) — it is not a design-system signal. Re-run it in
 isolation before treating a failure there as a real regression.
 
@@ -109,7 +110,7 @@ isolation before treating a failure there as a real regression.
 ## 7. THE GATE (all must hold)
 
 A change is "done" only when: `typecheck`, `build`, and `test:web` all pass; the resolver shows the
-intended value delta and nothing more; `contrast.test.tsx` is green in both themes; the structural mount
+intended value delta and nothing more; `contrast.test.ts` is green in both themes; the structural mount
 checks pass; and no `--pi-*` value, security boundary, or guardrail fence changed.
 
 ---
@@ -118,9 +119,10 @@ checks pass; and no `--pi-*` value, security boundary, or guardrail fence change
 
 ### Correct
 ```
-Resolved style.css before/after: CHANGED=6 (all inside .model-sheet-overlay, matching the
-predicted blast radius), VANISHED=0, ADDED=0. npm run typecheck/build/test:web all exit 0;
-contrast.test.tsx green in light and dark. Mount check at 390px: #root and #catalog-root
+Resolved app-mobile/src/app.css (+ the changed component's scoped <style> block) before/after:
+CHANGED=6 (all inside .model-sheet-overlay, matching the predicted blast radius), VANISHED=0,
+ADDED=0. npm run typecheck/build/test:web all exit 0; contrast.test.ts green in light and dark.
+Mount check at 390px: #root and #catalog-root
 both populated, zero horizontal overflow, zero console errors.
 ```
 

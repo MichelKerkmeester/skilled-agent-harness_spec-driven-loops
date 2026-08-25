@@ -31,7 +31,7 @@ Pi Remote separates reproducible checks on this machine from evidence that only 
 
 - `release/thresholds.json`
 - `release/rollout.json`
-- `release/evidence/release-verify-v1-<timestamp>.json`
+- `release/evidence/` — holds the release-verify-v1-<timestamp>.json evidence records
 - `scripts/check-thresholds.mjs`
 - `scripts/check-rollout.mjs`
 
@@ -47,7 +47,7 @@ npm run release:verify
 
 The command runs the existing typecheck, the lint gate, the format-check gate, every Vitest suite, the explicit web build, the four-workspace build, the executable rollback drill, and the numeric threshold checker. The lint and format gates run the root `eslint .` and `prettier --check .` scripts, and the runner records their exit status like any other gate.
 
-Each run writes `release/evidence/release-verify-v1-<timestamp>.json`. The document records schema version, sanitized command output, output hash, exact command, tool versions, exit status, measured threshold results, rollback results, and rollout readiness. Its top-level `machineStatus` reports whether the executable machine gates passed. The separate `stageReadiness` summary lists ready and not-ready rollout stages, while `rollout.stages` retains the evidence details for each stage. Absolute app and home paths are replaced with placeholders.
+Each run writes a release-verify-v1-<timestamp>.json record into `release/evidence/`. The document records schema version, sanitized command output, output hash, exact command, tool versions, exit status, measured threshold results, rollback results, and rollout readiness. Its top-level `machineStatus` reports whether the executable machine gates passed. The separate `stageReadiness` summary lists ready and not-ready rollout stages, while `rollout.stages` retains the evidence details for each stage. Absolute app and home paths are replaced with placeholders.
 
 The command exits non-zero when a runnable gate fails. Pending operator evidence does not falsify a machine failure. It keeps the dependent stage `NOT-READY`.
 

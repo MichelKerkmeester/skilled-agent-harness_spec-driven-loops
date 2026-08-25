@@ -160,7 +160,7 @@ Run from the Pi Mobile app directory:
 npm ci
 ```
 
-`npm ci` installs from `package-lock.json` and sets up the four workspaces under `packages/`, `apps/` and `extensions/`.
+`npm ci` installs from `package-lock.json` and sets up the four workspaces under `packages/`, `app-mobile/`, `app-relay/` and `extensions/`.
 
 ### Step 2: Build All Workspaces
 
@@ -173,8 +173,8 @@ npm run build
 ### Step 3: Verify the Build Outputs
 
 ```bash
-ls apps/pi-remote-relay/dist/index.js
-ls apps/pi-remote-web/dist/index.html
+ls app-relay/dist/index.js
+ls app-mobile/dist/index.html
 ls extensions/pi-remote-approval/dist/index.js
 ```
 
@@ -183,9 +183,9 @@ Each path must exist.
 ### Validation: `phase_2_complete`
 
 ```bash
-ls apps/pi-remote-relay/dist/index.js           # → file exists
-ls apps/pi-remote-web/dist/index.html           # → file exists
-ls extensions/pi-remote-approval/dist/index.js  # → file exists
+ls app-relay/dist/index.js                       # → file exists
+ls app-mobile/dist/index.html                    # → file exists
+ls extensions/pi-remote-approval/dist/index.js   # → file exists
 ```
 
 **Checklist:**
@@ -444,10 +444,10 @@ The repository cannot run these itself. Verify them on the target environment be
 | `deploy/setup-tailscale-serve.sh` | Foreground deployment and Serve route setup      |
 | `deploy/containment/pi-remote.sb` | macOS sandbox profile for protected execution    |
 | `../ARCHITECTURE.md`              | Full system architecture                         |
-| `docs/security.md`                | Posture boundaries and approval contracts        |
-| `docs/operations.md`              | Runtime operations                               |
-| `docs/incident-playbooks.md`      | Recovery runbooks                                |
-| `docs/platform-support.md`        | PWA and notification limits                      |
+| `../standards/security.md`        | Posture boundaries and approval contracts        |
+| `../operations/operations.md`     | Runtime operations                               |
+| `../operations/incident-playbooks.md` | Recovery runbooks                            |
+| `../standards/platform-support.md`    | PWA and notification limits                  |
 
 ### CLI Command Reference
 

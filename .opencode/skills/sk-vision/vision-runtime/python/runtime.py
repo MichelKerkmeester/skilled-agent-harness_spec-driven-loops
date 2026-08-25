@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """sk-vision Vision Runtime.
 
 A line-delimited JSON (NDJSON) JSON-RPC service over stdio that wraps the

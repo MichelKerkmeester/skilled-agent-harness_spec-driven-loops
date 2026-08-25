@@ -94,7 +94,7 @@ assets/format-guide-yaml.md              - YAML format deep-dive
 | ----------- | ------------------------ | -------------------------------------------------------------------------- |
 | ALWAYS      | Every skill invocation   | SKILL.md (this file)                                                       |
 | CONDITIONAL | If intent signals match  | references/depth-framework.md, references/patterns-evaluation.md           |
-| CONDITIONAL | If design-generation signals match | references/design-generation-patterns.md                         |
+| CONDITIONAL | If design-generation signals match | references/patterns-evaluation.md                                 |
 | ON_DEMAND   | Only on explicit request | assets/format-guide-markdown.md, assets/format-guide-json.md, assets/format-guide-yaml.md |
 
 ### Smart Router Pseudocode
@@ -129,7 +129,7 @@ INTENT_MODEL = {
 RESOURCE_MAP = {
     "TEXT_ENHANCE": ["references/depth-framework.md", "references/patterns-evaluation.md"],
     "FRAMEWORK": ["references/patterns-evaluation.md"],
-    "DESIGN_GEN": ["references/design-generation-patterns.md", "references/patterns-evaluation.md"],
+    "DESIGN_GEN": ["references/patterns-evaluation.md"],
     "FORMAT_MARKDOWN": ["assets/format-guide-markdown.md", "references/patterns-evaluation.md"],
     "FORMAT_JSON": ["assets/format-guide-json.md", "references/patterns-evaluation.md"],
     "FORMAT_YAML": ["assets/format-guide-yaml.md", "references/patterns-evaluation.md"],
@@ -375,7 +375,6 @@ See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodol
 
 - [depth-framework.md](./references/depth-framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
 - [patterns-evaluation.md](./references/patterns-evaluation.md) - 7 framework definitions, CLEAR scoring
-- [design-generation-patterns.md](./references/design-generation-patterns.md) - Design-generation prompt patterns for open-design: grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer, sk-code handoff
 
 ### Asset Files
 
@@ -472,7 +471,7 @@ Key integrations:
 
 ## 9. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/depth-framework.md`, `references/patterns-evaluation.md`, `references/design-generation-patterns.md`, `assets/format-guide-json.md`, `assets/format-guide-markdown.md`, `assets/format-guide-yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/depth-framework.md`, `references/patterns-evaluation.md`, `assets/format-guide-json.md`, `assets/format-guide-markdown.md`, `assets/format-guide-yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 ## RELATED PLAYBOOK
 

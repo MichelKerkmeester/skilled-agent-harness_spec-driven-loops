@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Vision Provider Types
+// ───────────────────────────────────────────────────────────────────
+
 export type Modality = "image" | "audio" | "video" | "document";
 
 export type EvidenceType =

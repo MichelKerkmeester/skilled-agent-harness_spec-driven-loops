@@ -12,8 +12,10 @@ version: 1.2.0.3
 
 # Current UI → Target Component Map
 
+> Pre-SvelteKit design research, retained for context. It describes the earlier React app, not the shipped Svelte UI.
+
 Maps each existing component to the Claude-style target and the concrete change. Source files
-are in `apps/pi-remote-web/src/`. This is the working spec for the rebuild; the GPT-Luna
+are in `app-mobile/src/`. This is the working spec for the rebuild; the GPT-Luna
 research (`research-gpt-luna.md`) and GPT-SOL council (`council-gpt-sol.md`) enrich it.
 
 ---

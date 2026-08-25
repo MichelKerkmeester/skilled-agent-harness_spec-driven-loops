@@ -402,15 +402,22 @@ def check_shell(path: str, lines: List[str]) -> List[Finding]:
             )
         )
 
-    strict_line = find_line(lines[:80], r"^\s*set\s+-euo\s+pipefail\s*$")
-    if strict_line == 0:
+    # `-e` is deliberately optional: scripts that count or tolerate failures run
+    # `set -uo pipefail` (errexit omitted so a tolerated non-zero does not abort).
+    # Require nounset + pipefail; accept the errexit form too.
+    strict_line = find_line(lines[:80], r"^\s*set\s+-e?uo\s+pipefail\s*$")
+    # A sourced library inherits strict mode from its caller; declaring `set -e` in
+    # a sourced file leaks errexit into the caller and aborts it on a tolerated
+    # non-zero, so a git-hook lib / shared / hooks fragment is exempt.
+    sourced_lib = any(seg in path for seg in ("/lib/", "/shared/", "/hooks/"))
+    if strict_line == 0 and not sourced_lib:
         findings.append(
             Finding(
                 path=path,
                 line=1,
                 rule_id="SH-STRICT-MODE",
-                message="Missing `set -euo pipefail` strict mode declaration.",
-                fix_hint="Add `set -euo pipefail` near the top of the script.",
+                message="Missing `set -uo pipefail` strict mode declaration.",
+                fix_hint="Add `set -uo pipefail` (or `set -euo pipefail`) near the top of the script.",
             )
         )
     return findings
@@ -624,6 +631,11 @@ def check_router_paths(roots: Iterable[str]) -> List[Finding]:
                 continue
             skill_dir = os.path.dirname(skill_md)
             for rel in extract_router_resources(text):
+                # A dynamic f-string route key (e.g. `references/{routing_key}/`) is
+                # substituted with a real mode key at runtime; the literal brace form
+                # has no file and is not a dead route.
+                if "{" in rel:
+                    continue
                 if not os.path.exists(os.path.join(skill_dir, rel)):
                     findings.append(
                         Finding(

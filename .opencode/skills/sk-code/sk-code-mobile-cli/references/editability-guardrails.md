@@ -55,7 +55,7 @@ boundary — the moment an edit stops being paint, it is fenced as a guardrail.
 | The redaction affordance chip | its presence is a security signal that content is redacted |
 | Bounded-reading overflow / `unicode-bidi` / scroll-anchoring | safe rendering of untrusted text |
 
-Across the app these fences number 75 in `style.css` and 255 in the components.
+Across the app these fences number 75 in `app-mobile/src/app.css` and 255 in the components.
 
 ---
 

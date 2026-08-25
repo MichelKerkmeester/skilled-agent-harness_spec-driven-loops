@@ -14,6 +14,8 @@ version: 1.0.0.0
 
 # Pi Remote DQI Baseline
 
+This is a migration-era snapshot: the scores were measured before the SvelteKit migration, and the paths below have been updated to their current `app-mobile/` and `app-relay/` homes, with rows for files the migration removed dropped.
+
 The baseline records the last measured Document Quality Index for every markdown file that ships with Pi Remote. The scores come from the sk-doc structure extractor run with `python3 .opencode/skills/sk-doc/scripts/extract_structure.py <file>`. The sweep covered 43 files, 10 reference docs under docs/ and 33 README files across the app tree, on 2026-08-13. Build output under dist/ and node_modules were excluded from the sweep.
 
 ---
@@ -64,27 +66,26 @@ Every reference doc under docs/ clears the bar of 70 and the class target of 90 
 | File                                          | Type   | DQI | Band       |
 | --------------------------------------------- | ------ | --- | ---------- |
 | README.md                                     | readme | 91  | excellent  |
-| apps/pi-remote-relay/README.md                | readme | 79  | good       |
-| apps/pi-remote-relay/migrations/README.md     | readme | 79  | good       |
-| apps/pi-remote-relay/scripts/README.md        | readme | 70  | acceptable |
-| apps/pi-remote-relay/src/README.md            | readme | 79  | good       |
-| apps/pi-remote-relay/src/approval/README.md   | readme | 76  | good       |
-| apps/pi-remote-relay/src/auth/README.md       | readme | 76  | good       |
-| apps/pi-remote-relay/src/fixtures/README.md   | readme | 71  | acceptable |
-| apps/pi-remote-relay/src/http/README.md       | readme | 77  | good       |
-| apps/pi-remote-relay/src/policy/README.md     | readme | 75  | good       |
-| apps/pi-remote-relay/src/prompt/README.md     | readme | 75  | good       |
-| apps/pi-remote-relay/src/push/README.md       | readme | 70  | acceptable |
-| apps/pi-remote-relay/src/release/README.md    | readme | 70  | acceptable |
-| apps/pi-remote-relay/src/replay/README.md     | readme | 69  | acceptable |
-| apps/pi-remote-relay/src/rpc/README.md        | readme | 74  | acceptable |
-| apps/pi-remote-relay/src/sessions/README.md   | readme | 65  | acceptable |
-| apps/pi-remote-relay/src/store/README.md      | readme | 75  | good       |
-| apps/pi-remote-relay/tests/README.md          | readme | 73  | acceptable |
-| apps/pi-remote-web/README.md                  | readme | 74  | acceptable |
-| apps/pi-remote-web/public/README.md           | readme | 72  | acceptable |
-| apps/pi-remote-web/src/README.md              | readme | 76  | good       |
-| apps/pi-remote-web/tests/README.md            | readme | 66  | acceptable |
+| app-relay/README.md                | readme | 79  | good       |
+| app-relay/migrations/README.md     | readme | 79  | good       |
+| app-relay/scripts/README.md        | readme | 70  | acceptable |
+| app-relay/src/README.md            | readme | 79  | good       |
+| app-relay/src/approval/README.md   | readme | 76  | good       |
+| app-relay/src/auth/README.md       | readme | 76  | good       |
+| app-relay/src/fixtures/README.md   | readme | 71  | acceptable |
+| app-relay/src/http/README.md       | readme | 77  | good       |
+| app-relay/src/policy/README.md     | readme | 75  | good       |
+| app-relay/src/prompt/README.md     | readme | 75  | good       |
+| app-relay/src/push/README.md       | readme | 70  | acceptable |
+| app-relay/src/release/README.md    | readme | 70  | acceptable |
+| app-relay/src/replay/README.md     | readme | 69  | acceptable |
+| app-relay/src/rpc/README.md        | readme | 74  | acceptable |
+| app-relay/src/sessions/README.md   | readme | 65  | acceptable |
+| app-relay/src/store/README.md      | readme | 75  | good       |
+| app-relay/tests/README.md          | readme | 73  | acceptable |
+| app-mobile/README.md                          | readme | 74  | acceptable |
+| app-mobile/src/README.md                      | readme | 76  | good       |
+| app-mobile/tests/README.md                    | readme | 66  | acceptable |
 | deploy/README.md                              | readme | 79  | good       |
 | deploy/containment/README.md                  | readme | 77  | good       |
 | extensions/pi-remote-approval/README.md       | readme | 75  | good       |
@@ -105,9 +106,9 @@ Four README files score below the bar of 70. Each fails the same readme checklis
 
 | File                                          | DQI | Main gaps                                                                   |
 | --------------------------------------------- | --- | --------------------------------------------------------------------------- |
-| apps/pi-remote-relay/src/sessions/README.md   | 65  | No blockquote after H1, no TABLE OF CONTENTS, 194 words, no intro paragraph |
-| apps/pi-remote-relay/src/replay/README.md     | 69  | No blockquote after H1, no TABLE OF CONTENTS, 295 words, no intro paragraph |
-| apps/pi-remote-web/tests/README.md            | 66  | No blockquote after H1, no TABLE OF CONTENTS, 202 words, no intro paragraph |
+| app-relay/src/sessions/README.md   | 65  | No blockquote after H1, no TABLE OF CONTENTS, 194 words, no intro paragraph |
+| app-relay/src/replay/README.md     | 69  | No blockquote after H1, no TABLE OF CONTENTS, 295 words, no intro paragraph |
+| app-mobile/tests/README.md            | 66  | No blockquote after H1, no TABLE OF CONTENTS, 202 words, no intro paragraph |
 | extensions/pi-remote-approval/tests/README.md | 65  | No blockquote after H1, no TABLE OF CONTENTS, 179 words, no intro paragraph |
 
 The readme checklist requires a blockquote description after the H1 and a TABLE OF CONTENTS section. No module README in the app satisfies either, which caps the structure component at 24 of 40 for 32 of the 33 README files. The root README.md passes the blockquote item, which lifts its structure component to 32 of 40.

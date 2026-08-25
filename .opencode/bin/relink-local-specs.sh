@@ -11,7 +11,7 @@
 # Idempotent: an already-correct link is left untouched; a missing target is
 # reported, never invented.
 
-set -u
+set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"          # .opencode/bin -> repo root

@@ -16,7 +16,7 @@ version: 1.0.0.0
 # Pi Remote Component Tokens
 
 Layer 3 of the token model (`token-library.md`) is the per-surface component token — a thin alias to a
-semantic role, scoped to one surface's own CSS custom-property block instead of `:root`. `style.css`
+semantic role, scoped to one surface's own CSS custom-property block instead of `:root`. `app-mobile/src/app.css`
 carries exactly three such families; this reference lists each, what it resolves to, and the blast
 radius of retinting it.
 

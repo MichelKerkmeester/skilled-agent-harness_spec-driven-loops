@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Vision Runtime Client
+// ───────────────────────────────────────────────────────────────────
+
 import { spawn, execFile, type ChildProcess } from "node:child_process";
 import { once } from "node:events";
 import { statSync } from "node:fs";

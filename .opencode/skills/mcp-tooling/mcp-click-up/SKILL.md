@@ -72,7 +72,7 @@ ALWAYS:    SKILL.md (this file)
 ON_DEMAND: references/cupt-commands.md    (when cupt command details needed)
            references/mcp-tools.md         (when MCP tool details needed)
            references/troubleshooting.md   (when error or auth issue detected)
-           references/INSTALL-GUIDE.md     (when setup or authentication details needed)
+           INSTALL-GUIDE.md                (when setup or authentication details needed)
 ```
 
 ### Operation-to-Tool Routing Table
@@ -170,7 +170,7 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "CUPT_DAILY":    ["references/cupt-commands.md"],
     "MCP_ADVANCED":  ["references/mcp-tools.md"],
-    "INSTALL":       ["references/INSTALL-GUIDE.md", "references/troubleshooting.md"],
+    "INSTALL":       ["INSTALL-GUIDE.md", "references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
 }
 

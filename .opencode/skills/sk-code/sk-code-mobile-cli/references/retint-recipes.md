@@ -59,7 +59,7 @@ component token for a surface-scoped move.
 **When:** you want every surface that plays a role to move together (e.g. every place reading the AA
 text-accent role should shift).
 
-**Worked example:** retint `--accent-ink`. It is read directly by declarations throughout `style.css`
+**Worked example:** retint `--accent-ink`. It is read directly by declarations throughout `app-mobile/src/app.css`
 and it is also the source every `-accent` component token in both component families aliases
 (`--model-sheet-accent`, `--slash-accent` — see `component-tokens.md` §2–3), so a role-level edit here
 moves the component surfaces too, without touching their own blocks.
@@ -68,7 +68,7 @@ moves the component surfaces too, without touching their own blocks.
    `#8a452f`; `:root[data-theme='dark']`, dark value `#f0b19a`; and the `prefers-color-scheme: dark`
    `:root[data-theme='system']` block, same dark value. All three currently read
    `var(--pi-accent-txt)` (`theme-remap.md` §2).
-2. **Copy `style.css` to a scratch copy.** Never experiment on the real file — `verification.md` §3.
+2. **Copy `app-mobile/src/app.css` to a scratch copy.** Never experiment on the real file — `verification.md` §3.
 3. **Resolve BEFORE.** Resolve every custom property and declaration to its final value, per theme
    (light / dark / system), following `var()` chains from the copy.
 4. **Apply the edit** to all three blocks (or to the value each aliases, if you are re-pointing the role
@@ -80,7 +80,7 @@ moves the component surfaces too, without touching their own blocks.
    directly, plus `--model-sheet-accent` and `--slash-accent` (which alias it) in both themes — nothing
    in `--warning` (a sibling role that happens to share the same primitive source, but is a separate
    declaration; see `theme-remap.md` §2) should appear in the diff unless you also edited it.
-7. **Run the command gate.** `npm run typecheck && npm run build && npm run test:web` — `contrast.test.tsx`
+7. **Run the command gate.** `npm run typecheck && npm run build && npm run test:web` — `app-mobile/tests/contrast.test.ts`
    must stay green in both themes.
 
 ---
@@ -98,7 +98,7 @@ composer (`token-library.md` §3, `component-tokens.md` §2).
    times: the default (light) block, `:root[data-theme='dark'] .model-sheet-overlay`, and the
    `prefers-color-scheme: dark` `:root[data-theme='system'] .model-sheet-overlay` block
    (`component-tokens.md` §2).
-2. **Copy `style.css` to a scratch copy**, same as recipe A.
+2. **Copy `app-mobile/src/app.css` to a scratch copy**, same as recipe A.
 3. **Resolve BEFORE**, per theme.
 4. **Apply the edit** to the token inside `.model-sheet-overlay` in each of the three blocks you intend
    to change (edit all three if the retint should hold in every theme; edit one if it is theme-specific

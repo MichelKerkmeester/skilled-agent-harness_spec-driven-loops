@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 `@ds theme:` marks a light/dark semantic-remap block — the point where the app decides, per theme, what
 each Layer-2 role (`--canvas`, `--ink`, `--accent`, …) resolves to. There are three such blocks in
-`style.css` — `:root` (light), `:root[data-theme='dark']` (dark), and the system-dark media query — and
+`app-mobile/src/app.css` — `:root` (light), `:root[data-theme='dark']` (dark), and the system-dark media query — and
 the dark and system-dark blocks carry identical values today.
 
 ---
@@ -41,7 +41,7 @@ literal per theme block, and the two roles that behave asymmetrically between li
 - `token-library.md` — frozen `--pi-*` primitive definitions
 - `component-tokens.md` §2-4 — component tokens consuming these semantic roles
 - `verification.md` — resolver method for proving a theme-remap edit per theme
-- `style.css` — the three `@ds theme:` semantic-remap blocks (`:root`, `:root[data-theme='dark']`,
+- `app-mobile/src/app.css` — the three `@ds theme:` semantic-remap blocks (`:root`, `:root[data-theme='dark']`,
   system-dark media query)
 
 ---
@@ -105,7 +105,7 @@ points at `--accent-strong` in light but at `--accent-ink` in dark/system (`comp
 
 The code/terminal well is a fixed dark literal in light mode (so code stays legible against the light
 canvas) but aliases `--pi-bone` in dark mode — "the deep code surface aliases the dark-page tone", per
-the inline comment in `style.css`.
+the inline comment in `app-mobile/src/app.css`.
 
 ---
 

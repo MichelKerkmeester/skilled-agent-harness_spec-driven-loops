@@ -106,7 +106,7 @@
       "packet": "sk-code-mobile-cli",
       "packetSkillName": "sk-code-mobile-cli",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["pi remote mobile ui", "pi-remote-web design system", "mobile cli design tokens", "ink-on-parchment tokens", "ds grammar editability"],
+      "aliases": ["pi remote mobile ui", "svelte design system", "mobile cli design tokens", "ink-on-parchment tokens", "ds grammar editability"],
       "advisorRouting": {
         "routingClass": "metadata"
       }

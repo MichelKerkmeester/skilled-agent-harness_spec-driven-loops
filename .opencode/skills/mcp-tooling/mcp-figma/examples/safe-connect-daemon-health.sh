@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # safe-connect-daemon-health.sh
 #
 # Worked example for the mcp-figma skill: verify the canonical binary, connect

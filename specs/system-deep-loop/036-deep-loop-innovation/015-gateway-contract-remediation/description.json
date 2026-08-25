@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
+  "description": "Ten confirmed findings, all cited to shipped source in `014`'s registry:",
+  "keywords": [
+    "ten",
+    "confirmed",
+    "findings",
+    "cited",
+    "shipped",
+    "source",
+    "registry"
+  ],
+  "lastUpdated": "2026-08-25T18:50:34.319Z",
+  "specId": "015",
+  "folderSlug": "gateway-contract-remediation",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

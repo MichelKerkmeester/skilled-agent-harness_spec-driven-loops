@@ -218,7 +218,6 @@ A: This skill owns the framework definitions, the DEPTH methodology, the CLEAR r
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router, the mode table, the agent contract and the full rule set |
 | [`references/patterns-evaluation.md`](./references/patterns-evaluation.md) | The seven framework definitions, the selection algorithm and the CLEAR rubric |
 | [`references/depth-framework.md`](./references/depth-framework.md) | The DEPTH five-phase methodology, energy levels, round configuration and RICCE integration |
-| [`references/design-generation-patterns.md`](./references/design-generation-patterns.md) | Design-generation prompt patterns for open-design: the grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer and the sk-code handoff |
 | [`assets/framework-registry.json`](./assets/framework-registry.json) | Machine-readable scaffold registry with code-oriented slot templates for a subset of five frameworks |
 | [`assets/format-guide-markdown.md`](./assets/format-guide-markdown.md) | Markdown delivery format deep-dive |
 | [`assets/format-guide-json.md`](./assets/format-guide-json.md) | JSON delivery format deep-dive |

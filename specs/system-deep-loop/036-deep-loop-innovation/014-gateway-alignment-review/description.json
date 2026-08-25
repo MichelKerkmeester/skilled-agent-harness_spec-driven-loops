@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review",
+  "description": "The `013-runtime-agent-gateway-alignment` packet migrated the four affected deep-loop leaf agent prompts (`deep-research`, `deep-review`,",
+  "keywords": [
+    "013-runtime-agent-gateway-alignment",
+    "packet",
+    "migrated",
+    "four",
+    "affected",
+    "deep-loop",
+    "leaf",
+    "agent",
+    "prompts",
+    "deep-research",
+    "deep-review"
+  ],
+  "lastUpdated": "2026-08-25T13:56:07.267Z",
+  "specId": "014",
+  "folderSlug": "gateway-alignment-review",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-08-26_14-56__fan-out-deep-review-cline-openrouter-cli-pi.md"
+  ]
+}

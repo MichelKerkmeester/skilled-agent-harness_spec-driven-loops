@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Photon Vision Provider
+// ───────────────────────────────────────────────────────────────────
+
 import { resolve as resolvePath, isAbsolute, join as joinPath } from "node:path";
 import { homedir } from "node:os";
 import { createHash } from "node:crypto";

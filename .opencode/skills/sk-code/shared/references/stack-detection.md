@@ -27,7 +27,7 @@ Detect **where the work is happening** before deciding which standards apply.
 | --- | --- | --- |
 | WEBFLOW | Webflow / vanilla HTML, CSS, JavaScript, animation libraries, CDN/minification, browser behavior | `.opencode/` system code |
 | OPENCODE | `.opencode/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
-| PI_REMOTE | The Pi Remote Mobile-CLI app family (`apps/pi-remote-web/` — React 19 + Vite + Tailwind 4 PWA — plus `apps/pi-remote-relay/` and `packages/pi-*` / `@pi-remote/*`) and its formalized design system (`--pi-*` tokens, `@ds` grammar, browser-free verification) | `.opencode/` system code; Webflow browser artifacts |
+| PI_REMOTE | The Pi Remote Mobile-CLI app family (`app-mobile/` — a SvelteKit + Svelte-runes PWA with component-scoped `<style>` blocks — plus `app-relay/` and `packages/pi-*` / `@pi-remote/*`) and its formalized design system (`--pi-*` tokens, `@ds` grammar, browser-free verification) | `.opencode/` system code; Webflow browser artifacts |
 | UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
 
 `motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses WEBFLOW, OPENCODE, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
@@ -43,9 +43,9 @@ Detect **where the work is happening** before deciding which standards apply.
 # CWD under .opencode/ OR any changed/target file under .opencode/
 
 # 2. PI_REMOTE (the Pi Remote Mobile-CLI app family)
-# CWD or any changed/target file under apps/pi-remote-web/, apps/pi-remote-relay/,
+# CWD or any changed/target file under app-mobile/, app-relay/,
 # or a packages/pi-* / @pi-remote/* workspace. The design-system evidence
-# (--pi-* tokens, @ds grammar, browser-free verification) lives in apps/pi-remote-web/.
+# (--pi-* tokens, @ds grammar, browser-free verification) lives in app-mobile/.
 
 # 3. WEBFLOW
 [ -d "src/2_javascript" ]
@@ -117,8 +117,8 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 | HTML/CSS/JS with GSAP or Lenis | WEBFLOW | Vanilla animation web signal |
 | CWD `.opencode/skills/sk-code` | OPENCODE | Skill/system code context |
 | Changed `.opencode/agents/code.md` | OPENCODE | Target file under `.opencode/` |
-| CWD or target under `apps/pi-remote-web/` (React + Vite + Tailwind) | PI_REMOTE | Pi Remote app workspace; the design-system evidence surface is bundled behind the workflow mode |
-| Changed `apps/pi-remote-web/src/style.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins even inside the Pi Remote repo |
+| CWD or target under `app-mobile/` (SvelteKit + Svelte runes + scoped styles) | PI_REMOTE | Pi Remote app workspace; the design-system evidence surface is bundled behind the workflow mode |
+| Changed `app-mobile/src/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins even inside the Pi Remote repo |
 | WEBFLOW marker (Lenis, GSAP) AND changed `.opencode/skills/sk-doc/scripts/preview-server.js` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
 | Prompt says `NOT Webflow no Webflow Designer` and asks for Motion.dev guidance | **UNKNOWN/N/A** | Explicit non-Webflow guard blocks WEBFLOW promotion |
 | Root `package.json` with no `.opencode/` target | UNKNOWN | Generic Node.js is not owned |

@@ -38,7 +38,7 @@ Routing is a two-stage decision: **surface-first, intent-second**. Surface narro
 
 ### Bundled Evidence Surfaces
 
-Beyond the two code surfaces this router maps by detection, the hub can bundle a read-only **evidence surface** alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. `PI_REMOTE` — the Pi Remote Mobile-CLI app (`apps/pi-remote-web/`) — is one such surface: its detection lives in [`stack-detection.md`](shared/references/stack-detection.md) and its design-system evidence (the `--pi-*` token library, the `@ds` grammar, the browser-free verification gate) in the `sk-code-mobile-cli` packet. Evidence surfaces are registered in `mode-registry.json`, typed in `leaf-manifest.json`, and — like the Webflow and OpenCode surfaces — folded into the machine `RESOURCE_MAP` projection in §11: each surface's packet-local map is re-prefixed and unioned under the shared intent keys, and a drift guard enforces that the parent projection equals the union of all surface maps plus the parent-owned universal/shared tier.
+Beyond the two code surfaces this router maps by detection, the hub can bundle a read-only **evidence surface** alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. `PI_REMOTE` — the Pi Remote Mobile-CLI app (`app-mobile/`) — is one such surface: its detection lives in [`stack-detection.md`](shared/references/stack-detection.md) and its design-system evidence (the `--pi-*` token library, the `@ds` grammar, the browser-free verification gate) in the `sk-code-mobile-cli` packet. Evidence surfaces are registered in `mode-registry.json`, typed in `leaf-manifest.json`, and — like the Webflow and OpenCode surfaces — folded into the machine `RESOURCE_MAP` projection in §11: each surface's packet-local map is re-prefixed and unioned under the shared intent keys, and a drift guard enforces that the parent projection equals the union of all surface maps plus the parent-owned universal/shared tier.
 
 ### Key Sources
 
@@ -388,6 +388,7 @@ RESOURCE_MAP = {
         "sk-code-mobile-cli/references/component-tokens.md",
         "sk-code-mobile-cli/references/retint-recipes.md",
         "sk-code-mobile-cli/references/theme-remap.md",
+        "sk-code-mobile-cli/references/scoped-style-ownership.md",
         "sk-code-mobile-cli/assets/token-retint-checklist.md",
     ],
     "CODE_QUALITY": [
@@ -406,7 +407,13 @@ RESOURCE_MAP = {
         "sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md",
         "sk-code-review/assets/code-quality-checklist.md",
         "sk-code-mobile-cli/references/editability-guardrails.md",
+        "sk-code-mobile-cli/references/css-class-naming-bem.md",
+        "sk-code-mobile-cli/references/comment-grammar.md",
+        "sk-code-mobile-cli/references/folder-docs.md",
+        "sk-code-mobile-cli/references/component-story-upkeep.md",
         "sk-code-mobile-cli/assets/guardrail-audit-checklist.md",
+        "sk-code-mobile-cli/assets/bem-rename-checklist.md",
+        "sk-code-mobile-cli/assets/story-coverage-checklist.md",
     ],
     "DEBUGGING": [
         "shared/references/universal/error-recovery.md",
@@ -421,6 +428,8 @@ RESOURCE_MAP = {
         "sk-code-webflow/assets/webflow-debugging-checklist.md",
         "sk-code-mobile-cli/references/verification.md",
         "sk-code-mobile-cli/references/component-tokens.md",
+        "sk-code-mobile-cli/references/svelte-runes-effects.md",
+        "sk-code-mobile-cli/assets/runes-effect-audit-checklist.md",
     ],
     "VERIFICATION": [
         "sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md",
@@ -430,6 +439,8 @@ RESOURCE_MAP = {
         "sk-code-webflow/assets/webflow-verification-checklist.md",
         "sk-code-opencode/assets/scripts/README.md",
         "sk-code-mobile-cli/references/verification.md",
+        "sk-code-mobile-cli/references/browser-free-verification-recipe.md",
+        "sk-code-mobile-cli/references/skill-reference-integrity.md",
         "sk-code-mobile-cli/assets/ds-verification-checklist.md",
     ],
     "TESTING": [
@@ -486,6 +497,8 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md",
         "sk-code-mobile-cli/references/editability-guardrails.md",
         "sk-code-mobile-cli/references/verification.md",
+        "sk-code-mobile-cli/references/a11y-parity.md",
+        "sk-code-mobile-cli/assets/a11y-parity-checklist.md",
     ],
     "FORMS": [
         "sk-code-webflow/references/implementation/form-upload-workflows/overview-architecture-and-filepond.md",
@@ -534,6 +547,11 @@ RESOURCE_MAP = {
         "sk-code-mobile-cli/references/token-library.md",
         "sk-code-mobile-cli/references/component-tokens.md",
         "sk-code-mobile-cli/references/theme-remap.md",
+        "sk-code-mobile-cli/references/scoped-style-ownership.md",
+        "sk-code-mobile-cli/references/css-class-naming-bem.md",
+        "sk-code-mobile-cli/references/svelte-runes-effects.md",
+        "sk-code-mobile-cli/references/comment-grammar.md",
+        "sk-code-mobile-cli/references/folder-docs.md",
     ],
     "JAVASCRIPT": [
         "sk-code-opencode/references/javascript/style-guide.md",

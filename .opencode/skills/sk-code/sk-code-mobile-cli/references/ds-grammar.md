@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 # The `@ds` Editability Grammar
 
-`@ds` is an inline-comment vocabulary across `apps/pi-remote-web/src/style.css` and its components that marks every editable seam and every frozen line. It changes no runtime behavior — it is documentation embedded at the edit site.
+`@ds` is an inline-comment vocabulary across `app-mobile/src/app.css` and the component scoped `<style>` blocks that marks every editable seam and every frozen line. It changes no runtime behavior — it is documentation embedded at the edit site.
 
 ---
 
@@ -29,16 +29,16 @@ version: 1.0.0.0
 
 ### When to Use
 
-- Editing `apps/pi-remote-web/src/style.css` or its components and needing to know which regions are safe to change
+- Editing `app-mobile/src/app.css` or a component scoped `<style>` block and needing to know which regions are safe to change
 - Determining whether a code seam is a token, slot, state, or layout edit versus a frozen guardrail
 - Verifying a resolved value moved only where intended after an edit
 - Consulting the designer walkthrough or catalog for worked examples
 
 ### Key Sources
 
-- `apps/pi-remote-web/src/style.css`
-- `apps/pi-remote-web/src/design-system/designer-guide.md`
-- `catalog.html`
+- `app-mobile/src/app.css`
+- `feature-catalog/design-system/designer-editability.md`
+- `app-mobile/catalog.html`
 
 ---
 
@@ -52,7 +52,7 @@ version: 1.0.0.0
 | `@ds variant:` | an alternative presentation of a surface | restyle a variant |
 | `@ds edit:` | an explicitly editable seam — `@ds edit: tokens` / `@ds edit: layout` | change tokens or spacing/grid/flow here |
 | `@ds guardrail: do-not-edit` | a frozen accessibility / security / logic seam | **never** cross it |
-| `@ds catalog:` | the read-only preview surface (`catalog.html`) | browse every surface × state × theme |
+| `@ds catalog:` | the read-only preview surface (`app-mobile/catalog.html`) | browse every surface × state × theme |
 | `@ds theme:` | a light / dark semantic remap block | read how a role remaps per theme |
 
 ---
@@ -75,8 +75,8 @@ At any edit site, find the nearest `@ds` comment. If it is an `@ds edit:` / `slo
 `variant:` seam, the presentation is yours to change; verify with the resolvers that the resolved value
 moved only where intended. If it is `@ds guardrail: do-not-edit`, stop — that region is an accessibility
 guarantee, a security boundary, or logic, and the reason is stated in the comment. The full designer
-walkthrough with worked examples is `apps/pi-remote-web/src/design-system/designer-guide.md`; the live
-index is `catalog.html`.
+walkthrough with worked examples is `feature-catalog/design-system/designer-editability.md`; the live
+index is `app-mobile/catalog.html`.
 
 ---
 

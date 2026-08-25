@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: OpenCode Attachment Injector
+// ───────────────────────────────────────────────────────────────────
+
 import { mkdirSync, statSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
