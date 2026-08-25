@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/010-mcp-mobbin/006-live-verification-capture",
-  "spec_folder": "mcp-tooling/010-mcp-mobbin/006-live-verification-capture",
+  "packet_id": "mcp-tooling/010-mcp-mobbin/007-code-mode-transport-leak",
+  "spec_folder": "mcp-tooling/010-mcp-mobbin/007-code-mode-transport-leak",
   "parent_id": "mcp-tooling/010-mcp-mobbin",
   "children_ids": [],
   "manual": {
@@ -11,47 +11,44 @@
   },
   "derived": {
     "trigger_phrases": [
-      "mobbin live verification",
-      "mobbin discovery fixture",
-      "mobbin three tools",
-      "mobbin deep mode resolved",
-      "mobbin discovery flip plan",
-      "mobbin fixture plan",
-      "mobbin live verification plan",
-      "mobbin discovery tasks",
-      "mobbin fixture tasks",
-      "mobbin live verification tasks",
-      "verification",
-      "checklist"
+      "mobbin browser window keeps opening",
+      "mcp-remote orphan processes",
+      "code mode transport leak",
+      "repeated oauth prompt mcp",
+      "code mode transport release plan",
+      "mcp child reaping plan",
+      "code mode transport release tasks",
+      "mcp child reaping tasks",
+      "code mode transport leak fixed",
+      "mobbin repeated browser prompt resolved"
     ],
     "key_topics": [
       "mobbin",
-      "live",
-      "verification",
-      "discovery",
-      "fixture",
-      "three",
-      "tools",
-      "deep",
+      "browser",
+      "window",
+      "keeps",
+      "opening",
+      "mcp-remote",
+      "orphan",
+      "processes",
+      "code",
       "mode",
-      "resolved",
-      "flip",
-      "plan"
+      "transport",
+      "leak"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "spec.md",
+      "implementation-summary.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -61,25 +58,31 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Code Mode",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -103,18 +106,6 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,37 +118,25 @@
         "source": "derived"
       },
       {
-        "name": "Overview This",
+        "name": "Overview Transports",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Evidence",
+        "name": "Pattern Bounded",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Probe",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -169,49 +148,65 @@
         "source": "derived"
       },
       {
-        "name": "three",
+        "name": "process",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "fixture",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "per-item",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The Code Mode",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Attribution",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The whole packet was built on the official one-public-tool record: `searchscreens` only, `searchflows` explicitly listed as a tool that must never be invented, the `deep` search question preserved as an unresolved conflict, and the callable name marked INFERRED",
-    "created_at": "2026-07-16T12:58:35Z",
-    "last_save_at": "2026-08-25T06:58:18.983Z",
+    "causal_summary": "A browser verification window for Mobbin reopened every few minutes with no user action",
+    "created_at": "2026-08-25T06:57:09.439Z",
+    "last_save_at": "2026-08-25T06:59:17.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb9b8cf6563cf8d0d01eac901bca5cc5ccdb12fd1572c89c364acf7cc7c891f3",
+    "source_fingerprint": "sha256:15f38b74f4f455ee5626bf36e9528f18167cf87436fe4640a00d16539e675a02",
     "source_doc_hashes": {
-      "spec.md": "d7995533c13f91fdfbc4430c5da32ba415b9da1ebdb216d2134973c33c686107",
-      "plan.md": "35482064b894731ad91c6ee8b427bb2c3fa2fc10a329d474288d57795b31bf87",
-      "tasks.md": "1c23f59dd2cc41934ca4cd4c9679fdc70afa5ebd22c330130007f8c31cc6102c",
-      "checklist.md": "501290ffbd8d0f7065c021753435944af2962e13ea807f84b5aa7e6a3abb171d",
-      "implementation-summary.md": "f136706e4c35ab2122e44874069a38bce22f99f65eeb584184d83ff7b0a6d36b"
+      "spec.md": "49838253c2cbe91495c51379598143d0d9b9fdafa59fd5e68e31ceaddf8ebd56",
+      "plan.md": "1a2f9d9f0c76af606bf36099adde657843f6a83be6a970072c00468d518a8d3f",
+      "tasks.md": "229377bcb4e7670fd83a2de86eeb102bea6aafdb900f7883de9ce4aea46da56f",
+      "implementation-summary.md": "d6f257f9bf18b6036da167848d1933baafc07b872b9ee153f71ba02deba0f06c"
     },
     "last_active_child_id": null,
     "last_active_at": null

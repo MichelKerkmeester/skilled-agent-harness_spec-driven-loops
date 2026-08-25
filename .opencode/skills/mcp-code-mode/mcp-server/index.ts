@@ -89,13 +89,61 @@ function getErrorCode(error: unknown): string | undefined {
     return undefined;
 }
 
+// Registration opens a transport per manual only to read its tool list, and
+// those transports then sit idle for the whole session. Most are never called,
+// yet each one holds a child process, and several sessions at once make those
+// children contend over shared credential state. Dropping them after discovery
+// keeps every tool searchable: the protocol reopens a transport on first real
+// use.
+async function releaseIdleTransports(client: CodeModeUtcpClient, timeoutMs = 5_000): Promise<void> {
+    try {
+        await Promise.race([
+            client.close(),
+            new Promise<void>(resolve => setTimeout(resolve, timeoutMs).unref())
+        ]);
+    } catch (error) {
+        console.error(`CodeMode-MCP idle transport release failed: ${getErrorMessage(error)}`);
+    }
+}
+
+// Closing the client cascades into each communication protocol, which ends the
+// child processes backing remote transports. Bounded so an unresponsive
+// transport delays exit instead of preventing it.
+async function releaseTransports(timeoutMs = 5_000): Promise<void> {
+    const client = utcpClient;
+    if (!client) {
+        return;
+    }
+    utcpClient = null;
+
+    try {
+        await Promise.race([
+            client.close(),
+            new Promise<void>(resolve => setTimeout(resolve, timeoutMs).unref())
+        ]);
+    } catch (error) {
+        console.error(`CodeMode-MCP transport cleanup failed: ${getErrorMessage(error)}`);
+    }
+}
+
 // A stdio MCP server's lifetime is its parent session. Without these exits the
 // process survives a hard session kill, reparents to PID 1, and orphans
 // accumulate until they exhaust shared infrastructure.
 function exitWhenSessionEnds(transport: StdioServerTransport) {
+    let shuttingDown = false;
+
     const shutdown = (reason: string) => {
+        if (shuttingDown) {
+            return;
+        }
+        shuttingDown = true;
         console.error(`CodeMode-MCP shutting down: ${reason}`);
-        process.exit(0);
+
+        // Remote transports are backed by long-lived child processes that this
+        // process spawned. Exiting without closing them leaves them running,
+        // reparented to PID 1, where they pile up across sessions and fight each
+        // other over shared OAuth token files until a browser prompt loops.
+        void releaseTransports().finally(() => process.exit(0));
     };
 
     process.stdin.once("end", () => shutdown("stdin closed"));
@@ -115,6 +163,7 @@ function exitWhenSessionEnds(transport: StdioServerTransport) {
 async function main() {
     setupMcpTools();
     utcpClient = await initializeUtcpClient();
+    await releaseIdleTransports(utcpClient);
     const transport = new StdioServerTransport();
     exitWhenSessionEnds(transport);
     await mcp.connect(transport);

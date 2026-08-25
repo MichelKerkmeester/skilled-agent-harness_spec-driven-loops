@@ -11,9 +11,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/010-mcp-mobbin/006-live-verification-capture"
-    last_updated_at: "2026-07-16T16:30:00Z"
+    last_updated_at: "2026-08-25T06:58:18Z"
     last_updated_by: "claude-agent"
-    recent_action: "Phase complete; three-tool supersession shipped, gates green"
+    recent_action: "Linked the successor phase after 007 landed"
     next_safe_action: "Operator handoff: browser OAuth and first authenticated smoke search"
     blockers: []
     key_files:
@@ -46,9 +46,9 @@ _memory:
 | **Created** | 2026-07-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 6 |
+| **Phase** | 6 of 7 |
 | **Predecessor** | 005-inventory-parity-and-doc-truth |
-| **Successor** | None |
+| **Successor** | 007-code-mode-transport-leak |
 | **Handoff Criteria** | Fixture recorded, three-tool supersession and deep-mode resolution flipped with fixture citations, `package_skill.py --check --strict` PASS, OAuth-gated live-call items documented as SKIP-valid operator work |
 <!-- /ANCHOR:metadata -->
 

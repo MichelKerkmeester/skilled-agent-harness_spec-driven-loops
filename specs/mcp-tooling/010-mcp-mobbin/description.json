@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "1",
   "specFolder": "mcp-tooling/010-mcp-mobbin",
   "description": "The `mcp-tooling` hub has two workflow bridges (`mcp-chrome-devtools`, `mcp-click-up`) and one transport (`mcp-figma`), but no app-design-research",
   "keywords": [
@@ -15,7 +15,7 @@
     "mcp-figma",
     "app-design-research"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.067Z",
+  "lastUpdated": "2026-08-25T06:56:55.715Z",
   "specId": "010",
   "folderSlug": "mcp-mobbin",
   "parentChain": [
