@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Guardrail Audit Checklist
 
-Use this checklist after any change to `apps/pi-remote-web/` presentation code, before claiming the change is complete.
+Use this checklist after any change to `app-mobile/` presentation code, before claiming the change is complete.
 
 ---
 
@@ -35,10 +35,13 @@ held (§5), and stop to escalate immediately if a red flag is true (§6).
 
 ## 2. BASELINE THE FENCE COUNT (before the change)
 
-□ Recorded the guardrail-fence count in `src/style.css` before editing:
-  `grep -o '@ds guardrail: do-not-edit' apps/pi-remote-web/src/style.css | wc -l`
-□ Recorded the guardrail-fence count across components before editing:
-  `grep -rlo '@ds guardrail: do-not-edit' apps/pi-remote-web/src --include='*.tsx' --include='*.ts' | wc -l`
+□ Recorded the guardrail-fence count in `app-mobile/src/app.css` before editing:
+  `grep -o '@ds guardrail: do-not-edit' app-mobile/src/app.css | wc -l`
+□ Recorded the guardrail-fence count across the component scoped `<style>` blocks before editing:
+  `grep -ro '@ds guardrail: do-not-edit' app-mobile/src --include='*.svelte' | wc -l`
+
+The app's own comment scanner, `node scripts/naming/scan-comments.mjs`, is the canonical counter across
+`app-mobile/src` (`.svelte` and `.ts`) and stays in sync with the gate.
 
 Do not hard-code a specific expected number in a completion claim — the codebase evolves; the checklist
 proof is that the count and the fenced regions are **unchanged** by this specific change, verified fresh
@@ -69,7 +72,7 @@ removed, or worked around by the change:
 ## 4. RE-COUNT AFTER THE CHANGE
 
 □ Re-ran the same two `grep` commands from §2 after the change
-□ Confirmed the fence count in `style.css` is unchanged (or, if a new guardrail-worthy region was
+□ Confirmed the fence count in `app-mobile/src/app.css` is unchanged (or, if a new guardrail-worthy region was
   legitimately added by a separate, explicitly-approved change, that the delta is documented and
   understood — not a silent regression)
 □ Confirmed the fence count across components is unchanged

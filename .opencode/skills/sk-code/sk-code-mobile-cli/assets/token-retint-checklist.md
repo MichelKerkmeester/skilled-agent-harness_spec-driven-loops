@@ -14,7 +14,7 @@ version: 1.0.0.0
 # Token Retint Checklist
 
 Use this checklist before, during, and before claiming completion of any `--pi-*`-derived color or
-component-token change in `apps/pi-remote-web/`. Pair with `references/retint-recipes.md` for the full
+component-token change in `app-mobile/`. Pair with `references/retint-recipes.md` for the full
 worked steps.
 
 ---
@@ -24,7 +24,7 @@ worked steps.
 ### Purpose
 
 Guards against unintended blast radius, primitive drift, and guardrail-fence violations when changing a
-`--pi-*`-derived semantic role or component token in `apps/pi-remote-web/`.
+`--pi-*`-derived semantic role or component token in `app-mobile/`.
 
 ### Usage
 
@@ -51,7 +51,7 @@ before claiming completion. Pair with `references/retint-recipes.md` for the ful
 
 ## 3. DURING THE EDIT
 
-□ Copied `style.css` to a scratch copy before running any resolver experiment (`verification.md` §3) —
+□ Copied `app-mobile/src/app.css` to a scratch copy before running any resolver experiment (`verification.md` §3) —
   the real file stays byte-identical until the edit itself is applied there directly
 □ Resolved every custom property and declaration to its final value per theme, **before** the edit
 □ Applied the edit to every theme block that should change (and left untouched every block that
@@ -71,7 +71,7 @@ before claiming completion. Pair with `references/retint-recipes.md` for the ful
   and nowhere else
 □ `npm run typecheck` — exit 0
 □ `npm run build` — exit 0 (app + catalog entries)
-□ `npm run test:web` — exit 0, including `contrast.test.tsx` green in both themes
+□ `npm run test:web` — exit 0, including `contrast.test.ts` green in both themes
 □ No `--pi-*` primitive value, security boundary, or `@ds guardrail: do-not-edit` fence changed
 
 ---
@@ -83,7 +83,7 @@ before claiming completion. Pair with `references/retint-recipes.md` for the ful
 Retinted --model-sheet-accent (component token, model-effort-sheet surface only) from
 #8a452f/#f0b19a to <new value> in both light and dark blocks. Resolver diff: CHANGED=6,
 VANISHED=0, ADDED=0, all six inside .model-sheet-overlay. typecheck/build/test:web pass;
-contrast.test.tsx green in both themes. Catalog + app reload confirm no leak into the
+contrast.test.ts green in both themes. Catalog + app reload confirm no leak into the
 slash panel or diff view.
 ```
 
@@ -103,7 +103,7 @@ Screenshots do not prove color here — the app's CSP renders it unstyled under 
   `theme-remap.md` and retarget
 □ A theme block you didn't intend to touch changed → check whether that block was aliasing the same
   primitive/role you edited (`theme-remap.md` §2) rather than holding its own literal
-□ `contrast.test.tsx` fails → the retint dropped a pair below WCAG AA in one theme; pick a value that
+□ `contrast.test.ts` fails → the retint dropped a pair below WCAG AA in one theme; pick a value that
   holds AA in both themes before proceeding
 
 ---

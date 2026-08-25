@@ -78,10 +78,10 @@
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
     },
     "code-mobile-cli-aliases": {
-      "keywords": ["pi remote mobile ui", "pi-remote-web design system", "mobile cli design tokens", "ink-on-parchment tokens", "ds grammar editability", "design-system tokens", "apps/pi-remote-web"]
+      "keywords": ["pi remote mobile ui", "svelte design system", "mobile cli design tokens", "ink-on-parchment tokens", "ds grammar editability", "design-system tokens", "app-mobile"]
     },
     "code-mobile-cli-runtime": {
-      "keywords": ["react", "vite", "tailwind", "style.css", "--pi-clay", "@ds", "design tokens", "wcag aa", "light dark theme", "css custom properties"]
+      "keywords": ["svelte", "sveltekit", "runes", "scoped style", "app.css", "--pi-clay", "@ds", "design tokens", "wcag aa", "light dark theme", "css custom properties"]
     }
   }
 }

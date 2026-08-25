@@ -200,8 +200,8 @@ To rebuild after a source change, stop the deployment, run `npm run boot` again,
 | `scripts/boot.mjs`                | One-command boot sequence                                    |
 | `deploy/setup-tailscale-serve.sh` | Foreground deployment and Serve route setup, invoked by boot |
 | `deploy/serve.env`                | Deployment configuration copied from the example             |
-| `docs/setup.md`                   | Detailed setup runbook                                       |
-| `docs/install-and-onboarding.md`  | Installation and onboarding guide                            |
+| `../setup/setup.md`               | Detailed setup runbook                                       |
+| `../setup/install-and-onboarding.md` | Installation and onboarding guide                         |
 
 Commands:
 

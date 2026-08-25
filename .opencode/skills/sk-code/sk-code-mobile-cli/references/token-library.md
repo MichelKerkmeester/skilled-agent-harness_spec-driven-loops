@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 # Pi Remote Token Library
 
-Every color, and most spacing and radius, in `apps/pi-remote-web/` travels through three layers in order — primitive, semantic, component. This reference documents the model and the rules; the full catalogue with resolved values per theme lives in `apps/pi-remote-web/src/design-system/tokens.md`.
+Every color, and most spacing and radius, in `app-mobile/` travels through three layers in order — primitive, semantic, component. This reference documents the model and the rules; the full catalogue with resolved values per theme lives in `feature-catalog/design-system/token-library.md`.
 
 ---
 
@@ -29,14 +29,14 @@ Which layer you edit decides the blast radius: primitive is frozen, semantic ret
 
 ### When to Use
 
-- Retinting a color, spacing, or radius token in `apps/pi-remote-web/`
+- Retinting a color, spacing, or radius token in `app-mobile/`
 - Deciding whether a change belongs at the semantic-role layer or the component layer
 - Proving a retint's propagation before/after with the browser-free resolvers
 - Checking that a retint keeps WCAG AA in both themes
 
 ### Key Sources
 
-- `apps/pi-remote-web/src/design-system/tokens.md` — full catalogue with resolved values per theme
+- `feature-catalog/design-system/token-library.md` — full catalogue with resolved values per theme
 - `verification.md` — the browser-free resolvers used to prove propagation
 
 ---
@@ -100,9 +100,10 @@ These two ends of the seam are the model: pick the layer whose blast radius matc
 
 - Retint at the **semantic** layer for a system-wide role change; at the **component** layer for one
   surface. Never edit a `--pi-*` primitive value.
-- Prove propagation with the browser-free resolvers (see `verification.md`): resolve `style.css` before
-  and after; every intended declaration changes and nothing else does.
-- Keep WCAG AA in both themes — the `contrast.test.tsx` suite enforces it; a retint that drops a pair
+- Prove propagation with the browser-free resolvers (see `verification.md`): resolve `app-mobile/src/app.css`
+  together with the changed component's scoped `<style>` block before and after; every intended declaration
+  changes and nothing else does.
+- Keep WCAG AA in both themes — the `contrast.test.ts` suite enforces it; a retint that drops a pair
   below AA fails the gate.
 
 ---

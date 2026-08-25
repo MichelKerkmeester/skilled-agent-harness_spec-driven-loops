@@ -85,10 +85,10 @@ New files must reach the target for their class. Existing files at or above the 
 The gate runs in review, before a docs change lands. The reviewer runs the extractor on every markdown file the change adds or edits and applies three checks in order:
 
 1. The DQI is 70 or higher. Below 70 blocks the change.
-2. The DQI is not lower than the score recorded for that file in `docs/quality/dqi-baseline.md`. A regression blocks the change.
+2. The DQI is not lower than the score recorded for that file in `dqi-baseline.md`. A regression blocks the change.
 3. A new file reaches the target for its class, or the change carries a documented plan that names the file and the score gap.
 
-When the checks pass, the reviewer updates `docs/quality/dqi-baseline.md` with the new score in the same change. The baseline table stays current because the gate writes to it on every pass.
+When the checks pass, the reviewer updates `dqi-baseline.md` with the new score in the same change. The baseline table stays current because the gate writes to it on every pass.
 
 ---
 
@@ -142,7 +142,7 @@ Body content for the second section, with a language-tagged code block.
 
 ## 7. BASELINE AND TRACKING
 
-`docs/quality/dqi-baseline.md` holds the last measured DQI for every doc and README in the app. The gate refreshes the table on every passing change. Re-run the full sweep before a release to confirm the table matches the tree.
+`dqi-baseline.md` holds the last measured DQI for every doc and README in the app. The gate refreshes the table on every passing change. Re-run the full sweep before a release to confirm the table matches the tree.
 
 ---
 

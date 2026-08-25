@@ -12,6 +12,8 @@ version: 1.2.0.3
 
 # Senior Mobile Product-Design Council: Pi Remote Chat UX
 
+> Pre-SvelteKit design research, retained for context. It describes the earlier React app, not the shipped Svelte UI.
+
 ## Decision
 
 Pi Remote should optimize first for Claude iOS-style composure: a quiet transcript, a dominant bottom composer, and compact controls that are available without sitting in the reading path. The current screen exposes the right capabilities but presents them as implementation rows: `RuntimeStrip`, `CommandPalette`, and `prompt-composer` stack above each other, creating chat clutter exactly where Claude keeps the UI calm.
@@ -32,7 +34,7 @@ The redesign should keep the fixed parchment/ink/clay system, existing security 
 Highest leverage. The composer is the main mobile product surface, and the current one looks like a web form rather than a native chat object.
 
 1. Create a single `SessionComposer` component that owns the current `prompt-composer`, `CommandPalette`, and visible runtime affordances.
-   - Source landing zone: split from `Session` in `apps/pi-remote-web/src/App.tsx`.
+   - Source landing zone: split from `Session` in the former React entry.
    - Preserve existing behavior from `sendPrompt`, `stopRun`, `useRuntime`, and `useCommands`.
    - Acceptance: the session screen has one bottom anchored composer object, not separate visible rows for model, effort, Build/Plan, command input, textarea, helper text, and buttons.
 

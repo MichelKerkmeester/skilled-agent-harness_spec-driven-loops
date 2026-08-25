@@ -2,7 +2,7 @@
 name: sk-code-mobile-cli
 description: "Read-only Svelte design-system and source-convention evidence for the Pi Remote Mobile-CLI app."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.5.0.0
+version: 1.6.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -55,10 +55,20 @@ primary and mutates nothing. It supplies evidence while the acting workflow appl
 | [`references/ds-grammar.md`](references/ds-grammar.md) | The `@ds` inline-comment grammar: `surface / slot / state / variant / edit / guardrail / catalog / theme`, and how to read each seam. |
 | [`references/editability-guardrails.md`](references/editability-guardrails.md) | The `@ds guardrail: do-not-edit` fences and the architectural reason a CSS/token edit cannot reach logic or the security boundary. |
 | [`references/verification.md`](references/verification.md) | The verification command set and the browser-free resolver method. The app's CSP renders it unstyled headless, so selector → value resolution, not screenshots, is the authoritative value-preservation gate. |
+| [`references/scoped-style-ownership.md`](references/scoped-style-ownership.md) | Where a CSS rule belongs: single-component → scoped `<style>`; shared → `app.css`; class-prop and cross-boundary state reached with `:global()`. |
+| [`references/css-class-naming-bem.md`](references/css-class-naming-bem.md) | The `block--element` class grammar, the `is-*` single-dash state prefix, the three dynamic-construction forms, and the ids/tokens/enums that stay data. |
+| [`references/svelte-runes-effects.md`](references/svelte-runes-effects.md) | The `$effect` self-invalidation trap and the `untrack` doctrine — trace called API methods, audit every effect in the file. |
+| [`references/comment-grammar.md`](references/comment-grammar.md) | The `MODULE:` banner, numbered box-drawing sections, durable-WHY brevity, and the preserved `@ds` seam markers. |
+| [`references/folder-docs.md`](references/folder-docs.md) | The `README.md` / `CODE.md` pairing threshold (3+ direct source files or child source folders) and its both-direction scan. |
+| [`references/a11y-parity.md`](references/a11y-parity.md) | The react-aria → bits-ui accessibility parity contract and the `use:hover`/`use:press`/`use:focusVisible` action pattern. |
+| [`references/browser-free-verification-recipe.md`](references/browser-free-verification-recipe.md) | The `token-identity` snapshot/diff/verify commands and the `*-cdp.mjs` render gates, and why the CSP forbids screenshot value checks. |
+| [`references/component-story-upkeep.md`](references/component-story-upkeep.md) | The `story:new` → `story:coverage` → `catalog-smoke-cdp.mjs` catalog contract for every renderable component change. |
+| [`references/skill-reference-integrity.md`](references/skill-reference-integrity.md) | The cross-repo `scan-skill-references.mjs` drift guard that resolves every app path this surface names (expects `broken : 0`). |
 | [`references/workflow-implement.md`](references/workflow-implement.md) · [`workflow-debug.md`](references/workflow-debug.md) · [`workflow-verify.md`](references/workflow-verify.md) | The shared implement → debug → verify doctrine (symlinked from `../../shared/references/`). |
 
-Checklists (`assets/`): `assets/token-retint-checklist.md`, `assets/guardrail-audit-checklist.md`,
-`assets/ds-verification-checklist.md` — see §4.
+Checklists (`assets/`) and the source-gates runner (`scripts/`) — token retint, guardrail audit, DS
+verification, BEM rename, runes-effect audit, story coverage, a11y parity, and `run-source-gates.sh`.
+See §4 for the full list.
 
 App documentation lives under `references/` in six purpose-named folders, each grouping one concern so
 the set reads by intent:
@@ -101,7 +111,7 @@ INTENT_SIGNALS = {
     "CODE_QUALITY":       {"weight": 1, "keywords": ["guardrail", "do-not-edit", "lint", "quality gate", "frozen value", "code smell", "naming", "folder docs", "comment grammar"]},
     "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "regression", "wrong theme", "unexpected color", "leaking retint", "orphaned reference", "self-invalidation", "effect loop"]},
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "resolver", "value-preservation", "contrast", "wcag", "type-check", "test:web", "completion claim", "browser-free", "scan-skill-references"]},
-    "LANGUAGE_STANDARDS": {"weight": 1, "keywords": ["Svelte", "SvelteKit", "runes", "$state", "$derived", "$effect", "untrack", "scoped style", "app.css", "kebab-case", "MODULE", "section divider", "folder docs", "contrast.test.tsx"]},
+    "LANGUAGE_STANDARDS": {"weight": 1, "keywords": ["Svelte", "SvelteKit", "runes", "$state", "$derived", "$effect", "untrack", "scoped style", "app.css", "kebab-case", "MODULE", "section divider", "folder docs", "contrast.test.ts"]},
     "ACCESSIBILITY":      {"weight": 1, "keywords": ["a11y", "accessibility", "reduced motion", "prefers-contrast", "forced-colors", "focus ring", "target size", "44px", "wcag aa"]},
 }
 
@@ -112,28 +122,46 @@ RESOURCE_MAP = {
         "references/component-tokens.md",
         "references/retint-recipes.md",
         "references/theme-remap.md",
+        "references/scoped-style-ownership.md",
         "assets/token-retint-checklist.md",
     ],
     "CODE_QUALITY": [
         "references/editability-guardrails.md",
+        "references/css-class-naming-bem.md",
+        "references/comment-grammar.md",
+        "references/folder-docs.md",
+        "references/component-story-upkeep.md",
         "assets/guardrail-audit-checklist.md",
+        "assets/bem-rename-checklist.md",
+        "assets/story-coverage-checklist.md",
     ],
     "DEBUGGING": [
         "references/verification.md",
         "references/component-tokens.md",
+        "references/svelte-runes-effects.md",
+        "assets/runes-effect-audit-checklist.md",
     ],
     "VERIFICATION": [
         "references/verification.md",
+        "references/browser-free-verification-recipe.md",
+        "references/skill-reference-integrity.md",
         "assets/ds-verification-checklist.md",
     ],
     "LANGUAGE_STANDARDS": [
         "references/token-library.md",
         "references/component-tokens.md",
         "references/theme-remap.md",
+        "references/scoped-style-ownership.md",
+        "references/css-class-naming-bem.md",
+        "references/svelte-runes-effects.md",
+        "references/comment-grammar.md",
+        "references/folder-docs.md",
     ],
     "ACCESSIBILITY": [
         "references/editability-guardrails.md",
         "references/verification.md",
+        "references/a11y-parity.md",
+        "assets/a11y-parity-checklist.md",
     ],
 }
 ```
@@ -167,14 +195,16 @@ surface MUST honor them:
   value-preservation is proven by resolving `app-mobile/src/app.css` together with the changed
   component's scoped `<style>` block to final values per theme, not by screenshots. Structural mount
   checks run against the built output. `npm run typecheck`, `build`, and `test:web` (including
-  `app-mobile/tests/contrast.test.tsx`) gate every change. See `references/verification.md`.
+  `app-mobile/tests/contrast.test.ts`) gate every change. See `references/verification.md`.
 
 ---
 
 ## 3b. SOURCE TREE CONVENTIONS (the shipped grammar)
 
 This is the current source authority for the Mobile CLI tree. Apply it together with the frozen design
-and security standards above.
+and security standards above. Each convention below has a detailed, executable-backed reference pulled on
+demand — `references/scoped-style-ownership.md`, `references/css-class-naming-bem.md`,
+`references/svelte-runes-effects.md`, `references/comment-grammar.md`, and `references/folder-docs.md`.
 
 ### Naming and routing
 
@@ -194,8 +224,9 @@ and security standards above.
   match, and renames are generated from a manifest rather than typed by hand.
 
 The package surface is the single `packages/pi-rpc-protocol/` package. Do not infer sibling packages
-from the workspace wildcard. The remaining `.tsx` filename is intentional:
-`app-mobile/tests/contrast.test.tsx` still exists and remains part of the web verification gate.
+from the workspace wildcard. No `.tsx` remains under `app-mobile/`: the contrast gate is
+`app-mobile/tests/contrast.test.ts`, and the `.test.tsx` glob was dropped when the last JSX-using test
+was renamed to `.test.ts`.
 
 ### Shared ownership
 
@@ -217,24 +248,23 @@ Keep feature-specific composition in `app-mobile/src/pages/`. A module belongs i
 whose reason to change matches the change. The grouping is an ownership boundary, not a claim that all
 shared code has the same runtime layer.
 
-### Styles: co-located CSS files
+### Styles: scoped `<style>` blocks
 
-Each component's styles live in a co-located `.css` file the component imports, not in a Svelte
-`<style>` block — `card-code.svelte` imports `./card-code.css`, so the CSS is a browsable file per
-component. The trade is deliberate: a plain imported `.css` is global, not Svelte-scoped. The class
-names are unique semantic names that were global before the migration, so global scope is safe, and the
-token-identity gate is the standing proof that no name collides.
+Each component's styles live in a component-scoped `<style>` block inside its `.svelte` file — Svelte
+scopes those rules to the component, so a class name is local unless deliberately widened with
+`:global()`. `app.css` holds only the global foundation: tokens, theme remaps, resets, the genuinely
+shared classes (2+ renderers), and the cross-component a11y guardrail blocks (44px targets,
+reduced-motion, contrast, forced-colors) that several tests assert there. The ownership routing decides
+where a rule belongs — see `references/scoped-style-ownership.md`:
 
-- `app.css` keeps only the global foundation: tokens, theme remaps, resets, the genuinely shared classes
-  (2+ renderers), and the cross-component a11y guardrail blocks (44px targets, reduced-motion, contrast,
-  forced-colors) that several tests assert there.
-- A class used in one component's markup lives in that component's `.css`. A class passed as a `class`
-  prop to a child primitive is a plain global rule in the owner's `.css` — there is no `<style>` to
-  scope, so no `:global()` wrapper is needed.
-- Do not use CSS Modules. They scope, but by rewriting markup to `class={styles.x}`, which breaks the
-  tests, token identity, and CDP — all of which assert the real class names.
-- `app-mobile/tests/support/css-corpus.ts` assembles `app.css` plus every component `.css`; a test that
-  needs a component's rules reads its `.css`, never a `<style>` block.
+- A class used in one component's markup lives in that component's `<style>`. A class a parent sets on a
+  child through a `class` prop, or a cross-boundary state a parent writes on a descendant
+  (`.parent[state] .child`), is reached with `:global()` from inside the owner's scoped block.
+- Do not use CSS Modules or co-located `.css` files. Both were tried and reverted — they scope by
+  rewriting markup to `class={styles.x}` or by globalising names, and both break the tests, token
+  identity, and CDP gates that assert the real class names.
+- `app-mobile/tests/support/css-corpus.ts` assembles `app.css` plus every component's scoped `<style>`
+  body; a test that needs a component's rules reads that corpus, never a separate `.css` file.
 
 ### CSS class names
 
@@ -259,25 +289,20 @@ reachable from a scoped `<style>` through `:global()`.
 
 ### CSS comment structure
 
-Every component `.css` opens with a file-header banner and groups its rules under numbered section
-banners, in the same box-drawing style the source files use, keeping the `@ds` seam comments as the
-per-rule reason:
+A component's scoped `<style>` groups its rules under numbered box-drawing section banners, in the same
+style the source files use, keeping the `@ds` seam comments as the per-rule reason:
 
 ```css
-/* ───────────────────────────────────────────────────────────────────
-   CODE CARD
-─────────────────────────────────────────────────────────────────── */
-
 /* ───────────────────────────────────────────────────────────────────
    1. CODE PREVIEW
 ─────────────────────────────────────────────────────────────────── */
 /* @ds slot: code-preview — horizontally panning code viewport. */
-.rich-code-preview { ... }
+.rich--code-preview { ... }
 ```
 
-The file header names the component in upper case; section titles are short upper-case noun phrases,
-numbered from 1, grouping rules by purpose. The `@ds` comments are preserved verbatim — they are the
-searchable design-system contract, and `scan-comments.mjs` counts the guardrail fences across `.css` too.
+Section titles are short upper-case noun phrases, numbered from 1, grouping rules by purpose. The `@ds`
+comments are preserved verbatim — they are the searchable design-system contract, and `scan-comments.mjs`
+counts the guardrail fences across the `<style>` blocks too.
 
 ### Module and comment grammar
 
@@ -312,7 +337,7 @@ present — `1. IMPORTS`, `2. FIXTURES` (data builders, mock DTOs, shims), `3. H
 (beforeEach/afterEach), `5. TESTS` once before the first `describe(`; the describe/it titles self-label
 the individual suites. A test filename mirrors its source in kebab-case — `card-code.svelte.test.ts`
 tests `card-code.svelte`; a collision takes a qualifier (`sheet-model-effort.switcher.svelte.test.ts`);
-`.test.ts` for logic and component suites, `.test.tsx` only where a test actually uses JSX.
+every suite is `.test.ts` — no `.test.tsx` remains, since the last JSX-using test was renamed.
 
 ### Folder documentation
 
@@ -370,6 +395,13 @@ part of the source contract because the failure is otherwise silent until a life
 - Retint pre-flight and proof checklist — `assets/token-retint-checklist.md`
 - Guardrail-fence audit checklist — `assets/guardrail-audit-checklist.md`
 - Verification-gate checklist — `assets/ds-verification-checklist.md`
+- BEM class-rename verification checklist — `assets/bem-rename-checklist.md`
+- Runes `$effect` self-invalidation audit checklist — `assets/runes-effect-audit-checklist.md`
+- Story-coverage upkeep checklist — `assets/story-coverage-checklist.md`
+- Accessibility-parity checklist — `assets/a11y-parity-checklist.md`
+- Source-gates runner — `run-source-gates.sh` in this packet's `scripts/` directory runs the five source
+  scans (naming, comments, folder-docs, skill-references, token-identity) as one PASS/FAIL gate; run it
+  from the app repo root.
 
 Assets are pulled on demand by the active workflow phase. They are not part of the initial evidence
 slice.

@@ -1,7 +1,7 @@
 {
   "name": "sk-code",
-  "description": "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack motion.dev animation guidance, OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills), and the Pi Remote Mobile-CLI app surface (React/Vite design system for apps/pi-remote-web: the --pi-* ink-on-parchment token library, the @ds editability grammar, guardrails, and browser-free value-preservation verification). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation.",
-  "version": "4.2.1.0",
+  "description": "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack motion.dev animation guidance, OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills), and the Pi Remote Mobile-CLI app surface (SvelteKit design system for app-mobile: the --pi-* ink-on-parchment token library, the @ds editability grammar, guardrails, and browser-free value-preservation verification). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation.",
+  "version": "4.2.2.0",
   "importance_tier": "high",
   "keywords": [
     "sk-code",
@@ -47,12 +47,12 @@
     "sk-code-opencode",
     "sk-code-mobile-cli",
     "pi-remote",
-    "pi-remote-web",
+    "app-mobile",
     "design-tokens",
     "ds-grammar",
     "ink-on-parchment",
-    "react",
-    "vite"
+    "svelte",
+    "sveltekit"
   ],
   "lastUpdated": "2026-08-19T00:00:00Z"
 }
