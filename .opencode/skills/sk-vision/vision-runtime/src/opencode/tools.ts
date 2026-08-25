@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: OpenCode Vision Tools
+// ───────────────────────────────────────────────────────────────────
+
 import { tool } from "@opencode-ai/plugin";
 import type { PhotonProvider } from "../providers/photon.js";
 import type { VisionHealth, ImageSource, BBox } from "../providers/types.js";

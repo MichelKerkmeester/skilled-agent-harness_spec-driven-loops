@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Authority Root Barrel
+// ───────────────────────────────────────────────────────────────────
+
 export {
   resolveAuthorityRoot,
 } from './resolve-authority-root.js';

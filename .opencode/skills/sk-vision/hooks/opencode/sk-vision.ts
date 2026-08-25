@@ -7,6 +7,7 @@
 // ║          lives in vision-runtime. OpenCode loads a bundled .js, so the    ║
 // ║          build emits the sibling sk-vision.js the plugin path links to.   ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
+// MODULE: sk-vision OpenCode Plugin
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS

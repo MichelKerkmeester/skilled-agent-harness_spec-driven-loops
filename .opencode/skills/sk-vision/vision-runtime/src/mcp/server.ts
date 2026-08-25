@@ -8,6 +8,7 @@
 // ║          shared tool definitions the OpenCode/Pi adapters use; kept in    ║
 // ║          the runtime package because it needs the MCP SDK dependency.     ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
+// MODULE: sk-vision MCP Server
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS

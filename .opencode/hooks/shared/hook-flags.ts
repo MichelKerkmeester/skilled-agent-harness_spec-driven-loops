@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Hook Flags ESM Facade
+// ───────────────────────────────────────────────────────────────────
+
 // Typed ESM facade over the canonical CommonJS resolver, for the .ts adapters
 // (Pi and Claude runtime hooks). It re-exports the single implementation in
 // hook-flags.cjs via createRequire so kill-switch semantics never drift between

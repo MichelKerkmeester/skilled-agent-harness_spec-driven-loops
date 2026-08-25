@@ -1,4 +1,6 @@
 /**
+ * MODULE: Model Modality
+ *
  * Classifies whether the active host model is text-only — i.e. cannot natively see an
  * attached image. sk-vision GUARANTEES an image analysis for these models: a blind model
  * has no other way to learn what an image contains, so the cheap best-effort auto-inspect

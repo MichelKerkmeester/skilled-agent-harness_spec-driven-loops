@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # inspect-export-readonly.sh
 #
 # Worked example for the mcp-figma skill: a strictly READ-ONLY inspect and

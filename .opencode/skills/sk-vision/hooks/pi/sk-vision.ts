@@ -6,6 +6,7 @@
 // ║          Pi loads this TypeScript source directly, so it imports the      ║
 // ║          runtime from src/ (no build step, unlike the OpenCode adapter).  ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
+// MODULE: sk-vision Pi Extension
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS

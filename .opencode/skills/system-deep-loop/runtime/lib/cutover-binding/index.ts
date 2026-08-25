@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Cutover Binding Barrel
+// ───────────────────────────────────────────────────────────────────
+
 export {
   CutoverBindingError,
   CutoverBindingErrorCodes,

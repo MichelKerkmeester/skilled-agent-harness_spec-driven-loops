@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Vision Plugin
+// ───────────────────────────────────────────────────────────────────
+
 import type { Plugin } from "@opencode-ai/plugin";
 import type { SkVisionMessage } from "./runtime/client.js";
 import { RuntimeClient } from "./runtime/client.js";
