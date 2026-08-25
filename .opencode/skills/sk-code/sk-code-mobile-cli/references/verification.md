@@ -101,7 +101,7 @@ focus-restore raced by a synchronous assertion) — it is not a design-system si
 
 A change is "done" only when: `typecheck`, `build`, and `test:web` pass; the resolver shows the intended
 value delta and nothing more; `contrast.test.ts` is green in both themes; and no `--pi-*` value,
-security boundary, or `@ds guardrail: do-not-edit` fence changed.
+security boundary, or `Do not edit — <why>` guardrail fence changed.
 
 ---
 

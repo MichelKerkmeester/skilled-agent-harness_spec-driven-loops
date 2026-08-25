@@ -56,13 +56,22 @@ You MUST produce THREE artifacts per iteration. The YAML-owned post_dispatch_val
 
 1. **Iteration narrative markdown** at `{state_paths_iteration_pattern}` (path is pre-substituted for the current iteration number). Structure: headings for Focus, Actions Taken, Findings, Questions Answered, Questions Remaining, Next Focus.
 
-2. **Canonical JSONL iteration record** APPENDED to `{state_paths_state_log}`. The record MUST use `"type":"iteration"` EXACTLY — NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored (the iteration will look incomplete and the reducer may re-run it). Required schema:
+2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `{state_paths_state_log}` directly, which is now a read-only projection the gateway refreshes from the ledger. The record MUST use `"type":"iteration"` EXACTLY — NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored (the iteration will look incomplete and the reducer may re-run it). Required schema:
 
 ```json
 {"type":"iteration","iteration":<n>,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":<0..1>,"status":"<string>","focus":"<string>","graphEvents":[/* optional */],"executor":{/* workflow-owned for non-native runs */}}
 ```
 
-Append via single-line JSON with newline terminator — for example: `echo '<single-line-json>' >> {state_paths_state_log}`. Do NOT pretty-print. Do NOT print the JSON to stdout only; it MUST land in the state log file.
+Record this single JSON object through the append gateway — do NOT `echo`/`>>` it into `{state_paths_state_log}` (a read-only projection the gateway refreshes from the ledger). Write the one-line record to a temp file, then run:
+
+```bash
+node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+  --mode research \
+  --run-directory "$(dirname '{state_paths_state_log}')" \
+  --event-json <that temp file>
+```
+
+`--event-json` must name the SINGLE-record file (the gateway `JSON.parse`s it whole), never the multi-line `{state_paths_delta_pattern}`. Exit `0` = the record is durable in the ledger and the projection is refreshed; exit `2` = refused → STOP and name the failed check. Never fall back to a direct write.
 
 For non-native CLI executors, the workflow owns executor provenance. It writes a pre-dispatch sentinel, then patches the first canonical `"type":"iteration"` record with the `executor` block before `post_dispatch_validate` runs. Do NOT append your own `dispatch_failure` event or a partial fallback record when the executor itself crashes or times out; the workflow emits the typed failure event on that path.
 

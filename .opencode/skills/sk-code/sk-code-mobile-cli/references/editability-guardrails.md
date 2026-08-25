@@ -1,23 +1,24 @@
 ---
 title: Editability Guardrails
-description: The @ds guardrail do-not-edit fences and the architectural reason a presentation edit cannot reach logic or the security boundary.
+description: The natural Do not edit — guardrail notes and the architectural reason a presentation edit cannot reach logic or the security boundary.
 trigger_phrases:
-  - "do-not-edit fences"
+  - "do not edit notes"
   - "design system guardrails"
   - "editable seams and frozen lines"
   - "presentation only edits"
   - "frozen security posture"
   - "guardrail audit checklist"
+  - "guardrail fence counter"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.7.0.0
 ---
 
 # Editability Guardrails
 
-The design system is safe to edit because the editable seams and the frozen lines are both marked, and
-because CSS/token edits are structurally unable to reach behavior. This reference is the fence list and
-the reason each fence matters.
+The design system is safe to edit because editable presentation and frozen behavior are both explained
+at the edit site. Presentation comments describe the intended seam in human language; every protected
+line carries a same-line note beginning exactly `Do not edit — <why>`.
 
 ---
 
@@ -26,23 +27,36 @@ the reason each fence matters.
 ### Core Principle
 
 CSS and token edits are presentation-only and structurally cannot reach state, logic, or the security
-boundary — the moment an edit stops being paint, it is fenced as a guardrail.
+boundary — the moment an edit stops being paint, it is fenced with a `Do not edit —` note.
 
 ### When to Use
 
 - Confirming which design-system elements are fenced from edits before making a change
 - Auditing a proposed CSS/token change against the guardrail list
 - Verifying no design-system edit crosses into logic or security enforcement
-- Understanding why an editable seam (tokens, slots, state presentation, layout) is safe to touch
+- Reading whether a nearby purpose comment describes a token, slot, state presentation, variant, theme,
+  or layout seam
 
 ### Key Sources
 
 - `assets/guardrail-audit-checklist.md` — a checklist to confirm no fence in §2 moved after a
   design-system change.
+- `comment-grammar.md` — the full natural comment convention and the four edit classes.
 
 ---
 
-## 2. THE FENCES (`@ds guardrail: do-not-edit`)
+## 2. THE FENCES (`Do not edit — <why>`)
+
+Every frozen line or region carries a one-line comment whose first words are exactly `Do not edit —`.
+The reason stays on that line and names the durable contract, for example:
+
+~~~css
+/* Do not edit — security seam */
+~~~
+
+The app's `scripts/naming/scan-comments.mjs` gate re-anchors its guardrail-fence counter onto the
+`Do not edit —` marker, so retiring the old marker syntax preserves the fence count. Baseline the count
+and the fenced line contents before a change, then prove both are unchanged afterward.
 
 | Fenced | Why it is frozen |
 | --- | --- |
@@ -55,7 +69,9 @@ boundary — the moment an edit stops being paint, it is fenced as a guardrail.
 | The redaction affordance chip | its presence is a security signal that content is redacted |
 | Bounded-reading overflow / `unicode-bidi` / scroll-anchoring | safe rendering of untrusted text |
 
-Across the app these fences number 75 in `app-mobile/src/app.css` and 255 in the components.
+Across the app these fences number 75 in `app-mobile/src/app.css` and 255 in the components. The
+authoritative count is the scanner's current output; do not hard-code those historical baselines into a
+completion claim.
 
 ---
 
@@ -63,10 +79,19 @@ Across the app these fences number 75 in `app-mobile/src/app.css` and 255 in the
 
 CSS and token edits are **presentation-only**. They change what a surface looks like; they cannot reach
 state computation, the mutation/ticket path, redaction, or plan-mode enforcement, because all of that
-lives in TypeScript, never in the stylesheet. A designer changing tokens, slots, state presentation, or
-layout is changing paint, not behavior. The moment an edit stops being paint — a state machine, status
-text, security or redaction code — it is fenced as a guardrail. This is what the guardrail audit proved:
-no in-seam edit path crosses into logic or the security boundary.
+lives in TypeScript, never in the stylesheet. The safe edit classes are:
+
+1. **Token** — retint a semantic role for a shared blast radius or a component token for one surface;
+   never change a `--pi-*` primitive.
+2. **Slot** — reorder or relabel a markup region while leaving the logic that fills it alone.
+3. **State presentation** — restyle a visible state while leaving the state machine and status text
+   behind their `Do not edit —` notes.
+4. **Layout** — adjust spacing, grid, and flow inside the owned presentation boundary.
+
+Read the nearest purpose comment and section label to identify the seam. If it describes presentation,
+the corresponding presentation is safe to change; if it begins `Do not edit —`, stop and preserve the
+protected contract. Prove an allowed token or CSS change with the browser-free resolver so its resolved
+value delta matches the intended blast radius.
 
 ---
 
@@ -81,5 +106,6 @@ this — but a workflow bundling this surface must never let a presentation chan
 
 ## 5. RELATED REFERENCES
 
+- `comment-grammar.md` — the natural comment convention, edit classes, seam reading, and purpose lines.
 - `assets/guardrail-audit-checklist.md` — a checklist to confirm no fence in §2 moved after a
   design-system change.

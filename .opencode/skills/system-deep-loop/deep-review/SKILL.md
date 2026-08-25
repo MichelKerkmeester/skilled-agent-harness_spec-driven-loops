@@ -57,7 +57,8 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 **ALWAYS:**
 - Invoke via `/deep:review :auto` or `/deep:review :confirm`
 - Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep-review-auto.yaml`)
-- Let `scripts/reduce-state.cjs` be the SINGLE state writer
+- Record each leaf iteration through the append gateway (`runtime/scripts/append-mode-event.cjs --mode review --run-directory <spec folder> --event-json <file>`) — the gateway is the SINGLE state-log writer: it authorizes, fences, and receipts the write, then refreshes `{state_paths.state_log}` from the ledger
+- Treat `scripts/reduce-state.cjs` as the reducer for DERIVED artifacts only (finding registry, dashboard metrics, strategy updates); it never writes the state log
 - Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
 - Use `resolveArtifactRoot(specFolder, 'review')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical review root
 

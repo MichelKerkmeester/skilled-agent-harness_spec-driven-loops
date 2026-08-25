@@ -120,5 +120,5 @@ process's exit code.
 ## 6. RELATED REFERENCES
 
 - `a11y-parity.md` — the accessibility contract these gates cannot see, and how it is preserved.
-- `ds-grammar.md` — the `@ds edit:` seams a token change targets and the resolvers that verify them.
+- `comment-grammar.md` — the natural purpose comments that identify the token seam a change targets.
 - `component-story-upkeep.md` — how `catalog-smoke-cdp.mjs` fits the Storybook coverage contract.

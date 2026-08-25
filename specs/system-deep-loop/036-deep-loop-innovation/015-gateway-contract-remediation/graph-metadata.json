@@ -35,13 +35,14 @@
       "refresh"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "plan.md",
       "tasks.md",
       "decision-record.md",
       "checklist.md",
-      "spec.md"
+      "spec.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,6 +73,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -165,7 +172,7 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Protocol Mark",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -181,17 +188,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Ten confirmed findings, all cited to shipped source in `014`'s registry:",
     "created_at": "2026-08-25T17:42:50.623Z",
-    "last_save_at": "2026-08-25T18:50:47.200Z",
+    "last_save_at": "2026-08-25T20:24:29.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,15 +200,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30965032ef1a98ad109faed4502d21202f0b94799456df686d1ed4b1dc0d1fba",
+    "source_fingerprint": "sha256:3b40f239afbe71eba68b857906c3aaafb780fccf4efd5a65628e8d470f68fa54",
     "source_doc_hashes": {
-      "spec.md": "aa852c9a023193b3e87de1631ed60c41f353333a3725d9a9bd2248447466634b",
+      "spec.md": "90d6bf205fd884139e1974d70e286272fb1213c7468465c0204722c70c2231cf",
       "plan.md": "72730d3c794fa95ab432e825b9f22cb69c6eeface9327764b7f6c50a0ebf651a",
       "tasks.md": "43017d79c939c6789b9299230e0a55a22504fdb4fa3ae5e945e3ffdd3a262b60",
-      "checklist.md": "a9ddf4d6626545e74b2a52184fea6f110474f9d706cad64795b8cbf1b430287c",
-      "decision-record.md": "498a119dfbbe9a2c425060ca04d1875a768999d1ff3d68ccf9b75a4cea79d593"
+      "checklist.md": "ce6d1a1b75c31a446d1973fbd49db66953d97ba0612fe6d1147dbfba0f1919a8",
+      "decision-record.md": "498a119dfbbe9a2c425060ca04d1875a768999d1ff3d68ccf9b75a4cea79d593",
+      "implementation-summary.md": "c2885912eb8ba0305e31d4b9266af005458929a1473445dfe88a58d1795cdd7a"
     },
     "last_active_child_id": null,
     "last_active_at": null

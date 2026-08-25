@@ -756,7 +756,10 @@ function mergeReviewRegistries(lineageData, options = {}) {
     }
     if (!registry || !Array.isArray(registry.openFindings)) continue;
     for (const finding of registry.openFindings) {
-      if (finding.status !== 'active') continue;
+      // Lineage registries emit the active-state under `disposition`; older reduced
+      // shapes used `status`. Accept either so a live finding is never silently dropped
+      // (a status-only filter merged an empty PASS over active P0s).
+      if ((finding.disposition ?? finding.status) !== 'active') continue;
       const id = finding.findingId || finding.title;
       if (!id) continue;
       if (mergeOptions.enableNearDuplicateDedup) {
@@ -793,9 +796,9 @@ function mergeReviewRegistries(lineageData, options = {}) {
   const mergedFindings = mergeOptions.enableNearDuplicateDedup
     ? flattenFindingBucketIndex(findingById, 'findingId', ['findingId', 'title'])
     : flattenFindingBuckets(findingById, 'findingId', ['findingId', 'title']);
-  const activeP0 = mergedFindings.filter((f) => f.severity === 'P0' && f.status === 'active').length;
-  const activeP1 = mergedFindings.filter((f) => f.severity === 'P1' && f.status === 'active').length;
-  const activeP2 = mergedFindings.filter((f) => f.severity === 'P2' && f.status === 'active').length;
+  const activeP0 = mergedFindings.filter((f) => f.severity === 'P0' && (f.disposition ?? f.status) === 'active').length;
+  const activeP1 = mergedFindings.filter((f) => f.severity === 'P1' && (f.disposition ?? f.status) === 'active').length;
+  const activeP2 = mergedFindings.filter((f) => f.severity === 'P2' && (f.disposition ?? f.status) === 'active').length;
 
   // Strongest-restriction verdict
   let mergedVerdict;

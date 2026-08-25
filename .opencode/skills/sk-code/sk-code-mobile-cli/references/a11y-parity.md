@@ -122,5 +122,5 @@ Two visual guarantees survive the swap only if the surface owns them:
 
 - `browser-free-verification-recipe.md` — why screenshots cannot prove color values, and the token
   and CDP gates that verify what a11y styling still cannot.
-- `ds-grammar.md` — the `@ds guardrail: do-not-edit` seams that mark these frozen accessibility lines.
+- `comment-grammar.md` — the nearby `Do not edit — <why>` notes that mark these frozen accessibility lines.
 - `component-story-upkeep.md` — the Storybook catalog whose a11y panel checks each surface in isolation.

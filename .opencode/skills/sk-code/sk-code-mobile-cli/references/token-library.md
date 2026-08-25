@@ -49,9 +49,10 @@ Which layer you edit decides the blast radius: primitive is frozen, semantic ret
 | **Semantic role** | `--canvas`, `--ink`, `--accent`, … | Names a role, reads a primitive | Yes — retint a role here |
 | **Component** | `--model-sheet-*`, `--slash-*`, `--diff-*` | Per-surface alias that reads a role | Yes — retint one surface |
 
-### Layer 1 — primitives (FROZEN, `@ds guardrail: do-not-edit — frozen source`)
+### Layer 1 — primitives (FROZEN)
 
-Eight names, re-declared per theme. Light → dark:
+Eight names, re-declared per theme. Each declaration carries a same-line `Do not edit — frozen source`
+note. Light → dark:
 
 ```
 --pi-bone       #f8f8f6 → #24221f   (canvas / dark page)

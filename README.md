@@ -673,6 +673,15 @@ The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispa
 ```
 
 &nbsp;
+#### Convergence and stopping
+
+A loop decides for itself when the work is actually finished, instead of trusting an agent that says so.
+- **Evidence, not vibes:** after each pass the runtime reduces the new state, scores how much fresh signal the pass added, and checks coverage against the loop's own model
+- **A stop must be earned:** the loop ends only when the convergence score clears its threshold and every quality gate passes. An open blocker, an active P0 in a review or an uncovered dimension in research, forces another pass
+- **Or run to depth on purpose:** set `--stop-policy max-iterations` to keep going for a fixed budget when you want breadth over an early stop
+- **Then synthesize:** once a stop is legal the loop writes its report and saves continuity, so the run leaves a durable artifact instead of a chat transcript
+
+&nbsp;
 #### Deep Loop Runtime (the shared foundation)
 
 One engine under every loop, so they all work the same way and you learn the workflow once.
@@ -682,6 +691,24 @@ One engine under every loop, so they all work the same way and you learn the wor
 - **Hands-off or step-by-step:** run fully autonomous with `:auto` or pause at each step with `:confirm`, and start fresh, resume or restart at will
 - **Bounded autonomy:** cross-AI fan-out lineages can run with elevated CLI permissions in their own sandboxed workdir; a stall watchdog, a per-lineage cost cap and a lag-ceiling guard bound and observe those subprocesses so autonomy stays supervised, not unattended
 - **Self-contained and MCP-free:** the runtime declares its own dependency manifest and resolves `zod`, `better-sqlite3` and the `tsx` loader from its own `node_modules`, with no reach-ins into a sibling skill. It carries executor config, atomic state, scoring, fallback routing and the coverage / council graph scripts
+
+&nbsp;
+#### State, the ledger and the append gateway
+
+Every loop keeps its progress in files, not in the chat, and those files are the single source of truth. A typed, append-only event ledger records each iteration, and the `deep-*-state.jsonl` you read is a projection the runtime rebuilds from that ledger.
+- **One way in:** a leaf records its iteration through the append gateway, which authorizes the write, fences it behind the ledger, returns a receipt, then refreshes the state projection. Nothing writes the state file directly, so the log never drifts from the ledger
+- **Durable or refused, never half-written:** the gateway either commits the record and hands back a receipt, or refuses it and names the failed check so the leaf halts. There is no partial append and no silent fallback to a direct write
+- **Replayable:** convergence scores and verdicts recompute from the stored events, so a run can be audited, resumed or rebuilt after a crash from the ledger alone
+- **Deltas feed the reducer:** each iteration also writes a structured delta file that the reducer folds into the registry, dashboard and strategy. The reducer owns those derived artifacts; the gateway owns the state log
+
+&nbsp;
+#### Cross-AI fan-out
+
+A loop can spread its iterations across several AI models at once, then merge what they find. Bind executors on the command and each one becomes its own lineage.
+- **Many models, one loop:** run the same review or research across native agents and CLI bridges (Codex, Claude Code, OpenCode, Cursor, Devin, Pi) in parallel, each lineage on its own state, with a pool that caps how many run at once
+- **Strongest-restriction merge:** for a review, any lineage that reports an active P0 pulls the merged verdict to FAIL, so the safest reading wins rather than the average one
+- **Supervised, not unattended:** a stall watchdog aborts a lineage that stops emitting progress, a per-lineage cost cap bounds spend, and a dead or rate-limited lineage is tolerated without failing the whole run
+- **One adapter:** every executor kind dispatches through the same shared runner, selected per lineage, so adding a model is a config choice rather than new plumbing
 
 &nbsp;
 #### Deep Research
@@ -700,6 +727,15 @@ Audits your code in passes and never edits it. `/deep:review` runs `@deep-review
 - **Fewer false alarms:** each critical finding gets re-challenged before it sticks
 - **Won't sign off on hidden problems:** an open P0 forces another pass, and the audit must clear its quality checks before it can stop
 - **Clear verdict:** a `review-report.md` that ends in PASS, CONDITIONAL or FAIL
+
+&nbsp;
+#### Deep Alignment
+
+Audits your artifacts against a named authority's own rules, one lane at a time, and never edits what it audits. `/deep:alignment` runs `@deep-alignment`.
+- **Conformance, not taste:** it checks each artifact against the standard it is meant to follow, not against generic correctness
+- **Verify first:** every finding is re-probed against the live artifact before it counts, so a stale or assumed problem never lands
+- **Reads the target as data:** audited files are treated as untrusted input and stay strictly read-only
+- **Lane by lane:** work is partitioned into lanes with per-artifact evidence, and the audit stops only once coverage is complete
 
 &nbsp;
 #### Context Retrieval

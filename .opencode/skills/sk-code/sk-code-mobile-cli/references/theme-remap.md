@@ -1,6 +1,6 @@
 ---
 title: Pi Remote Theme Remap
-description: The @ds theme light / dark / system-dark semantic remap — which role reads which primitive per theme, and which roles stay literal.
+description: The light / dark / system-dark semantic remap — which role reads which primitive per theme, and which roles stay literal.
 trigger_phrases:
   - "theme remap roles"
   - "primitive derived roles"
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 # Pi Remote Theme Remap
 
-`@ds theme:` marks a light/dark semantic-remap block — the point where the app decides, per theme, what
+The theme-remap purpose comment marks a light/dark semantic-remap block — the point where the app decides, per theme, what
 each Layer-2 role (`--canvas`, `--ink`, `--accent`, …) resolves to. There are three such blocks in
 `app-mobile/src/app.css` — `:root` (light), `:root[data-theme='dark']` (dark), and the system-dark media query — and
 the dark and system-dark blocks carry identical values today.
@@ -41,7 +41,7 @@ literal per theme block, and the two roles that behave asymmetrically between li
 - `token-library.md` — frozen `--pi-*` primitive definitions
 - `component-tokens.md` §2-4 — component tokens consuming these semantic roles
 - `verification.md` — resolver method for proving a theme-remap edit per theme
-- `app-mobile/src/app.css` — the three `@ds theme:` semantic-remap blocks (`:root`, `:root[data-theme='dark']`,
+- `app-mobile/src/app.css` — the three theme-remap blocks (`:root`, `:root[data-theme='dark']`,
   system-dark media query)
 
 ---
@@ -148,7 +148,7 @@ is "which surfaces consume it and what breaks if you retint it".
   the primitive instead (frozen, off-limits to a designer) is the only lever that moves every role
   sharing that primitive at once.
 - Never introduce a new asymmetry silently — if a role should diverge by theme the way `--accent-strong`
-  or `--surface-code` do, say so in the `@ds edit: tokens` comment at the edit site, the way the source
+  or `--surface-code` do, say so in the natural purpose comment at the edit site, the way the source
   already documents both cases.
 - Prove a theme-remap edit with the resolver method per theme (`verification.md`); a remap change that
   is correct in light and wrong in dark (or vice versa) is a common, easy-to-miss failure mode.

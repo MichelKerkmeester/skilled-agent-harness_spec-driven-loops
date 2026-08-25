@@ -542,6 +542,19 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect(result.activeP1).toBe(0);
   });
 
+  it('collects a finding whose active state is under `disposition` (real lineage shape), not `status`', () => {
+    // Live lineage registries emit the active flag as `disposition`; a status-only filter
+    // dropped every such finding and merged an empty PASS over an active P0.
+    const data = [
+      { label: 'clean', registry: { openFindings: [] } },
+      { label: 'disp-lineage', registry: { openFindings: [{ findingId: 'F1', severity: 'P0', disposition: 'active', title: 'Active P0 flagged via disposition' }] } },
+    ];
+
+    const result = mergeReviewRegistries(data);
+    expect(result.mergedVerdict).toBe('FAIL');
+    expect(result.activeP0).toBe(1);
+  });
+
   it('merges PASS when all lineages have no active P0 or P1', () => {
     const data = [
       { label: 'a', registry: { openFindings: [{ findingId: 'F1', severity: 'P2', status: 'active', title: 'Advisory' }] } },

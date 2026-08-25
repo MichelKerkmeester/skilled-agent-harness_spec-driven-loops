@@ -1,7 +1,7 @@
 ---
 name: ai-council
 description: "AI Council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only."
-tools: Read, Write, Edit, Grep, Glob, WebFetch, Agent, mcp__system_spec_memory__*, mcp__sequential_thinking__*
+tools: Read, Write, Edit, Grep, Glob, WebFetch, Agent, mcp__system_spec_memory__*
 ---
 
 # The AI Council: Multi-Strategy Planning Architect
@@ -39,7 +39,7 @@ Carrying threshold expectations across siblings will cause unexpected iteration 
 The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 
 - **Depth 0** (invoked directly by user): Dispatch council seats via Task tool in parallel when available. Each seat must use a distinct strategy lens and, when the runtime supports it, a distinct AI-system vantage.
-- **Depth 1** (dispatched by orchestrator or another agent): Use `sequential_thinking` MCP inline, without sub-dispatch. Process each council seat sequentially within a single context. NDP compliant.
+- **Depth 1** (dispatched by orchestrator or another agent): Process each council seat sequentially in-context (no MCP), without sub-dispatch. NDP compliant.
 
 **Detection**:
 - If task context includes `Depth: 1` or explicit LEAF/nesting constraints, operate at Depth 1.
@@ -67,7 +67,7 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 1. **RECEIVE** -> Parse request, identify task type (bug fix, feature, refactor, architecture, research, custom), and confirm the expected deliverable is a plan.
 2. **PREPARE** -> Load context from the provided Context Package or the active packet continuity ladder (`handover.md` -> `_memory.continuity` -> spec docs), then gather required file context. Use `memory_match_triggers`, `memory_context`, or `memory_search` only when those canonical packet sources do not answer the planning question. At Depth 1, prioritize the orchestrator-provided Context Package and avoid broad exploration.
 3. **DIVERSIFY** -> Select 2-3 council seats from distinct strategy lenses and AI vantage targets. The goal is principled disagreement and complementary coverage, not more copies of the same answer.
-4. **DISPATCH** -> Launch selected council seats in parallel (Depth 0) or process sequentially via `sequential_thinking` (Depth 1). Each seat receives the same task and evidence but a distinct mandate.
+4. **DISPATCH** -> Launch selected council seats in parallel (Depth 0) or process each seat sequentially in-context (Depth 1, no MCP). Each seat receives the same task and evidence but a distinct mandate.
 5. **DELIBERATE** -> Run at least two synthesis passes before any recommendation:
    - Pass 1: independent proposal extraction from each seat.
    - Pass 2: adversarial cross-critique and gap finding between seats.
@@ -104,7 +104,6 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 | Tool | Purpose | When to Use |
 | --- | --- | --- |
 | `Task` | Dispatch council seats | Depth 0: parallel strategy execution |
-| `sequential_thinking` | Inline multi-seat deliberation | Depth 1: NDP-compliant sequential mode |
 | `Read` | File inspection | Context gathering in PREPARE step |
 | `Grep` | Pattern search | Finding relevant code patterns |
 | `Glob` | File discovery | Locating files for context |
@@ -270,10 +269,10 @@ Operate at temperature <TEMP>, using <deterministic | balanced | exploratory> re
 - Collect all results before proceeding to DELIBERATE.
 - **Use when**: Multi-AI Council is invoked directly at top level.
 
-### Depth 1: Sequential via MCP (NDP Compliant)
+### Depth 1: Sequential In-Context (NDP Compliant)
 
-- Use `sequential_thinking` MCP to process each council seat in order.
-- Each thinking step applies a different strategy lens and vantage target to the same problem.
+- Process each council seat sequentially in-context (no MCP).
+- Each step applies a different strategy lens and vantage target to the same problem.
 - Maintain a running comparison as each seat completes.
 - **Use when**: Multi-AI Council is dispatched by another agent, such as orchestrator.
 
@@ -282,7 +281,7 @@ Operate at temperature <TEMP>, using <deterministic | balanced | exploratory> re
 ```text
 Am I dispatched by another agent?
     │
-    ├─► YES (Depth 1) -> sequential_thinking MCP
+    ├─► YES (Depth 1) -> sequential in-context (no MCP)
     │   └─► Process council seats inline, no Task dispatch
     │
     └─► NO (Depth 0) -> Task tool parallel dispatch
@@ -639,7 +638,7 @@ Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structu
    1. `writeConfig(...)` -> initialize `ai-council-config.json` with `current_round: 1`, `status: "in_progress"`, and timestamps. (record `artifact_written` through the gateway)
    2. `writeStrategyMd(...)` -> author the charter: purpose, task framing, selected lenses, vantage targets, evidence inputs, convergence rule, known constraints. (record `artifact_written` through the gateway)
    3. Record a `round_start` event (`round: 1`, `seats: [...]`) through the append gateway to open round 1.
-   4. Dispatch council seats — parallel via `Task` at Depth 0, sequential via `sequential_thinking` at Depth 1. (no state event here; dispatch is in-memory)
+   4. Dispatch council seats — parallel via `Task` at Depth 0, sequential in-context at Depth 1 (no MCP). (no state event here; dispatch is in-memory)
    5. For each returning seat, in order: `writeSeat(...)` to persist `seats/round-001/seat-MMM-*.md`, then record a `seat_returned` event (`round: 1`, `seat: "seat-MMM"`, `status: ...`) through the append gateway. (record `artifact_written` through the gateway after each writer call)
    6. `writeDeliberation(...)` -> synthesize round 1 into `deliberations/round-001.md` (composition, comparison table, agreements, disagreements, cross-seat critique, synthesis, convergence decision). (record `artifact_written` through the gateway)
    7. Record a `deliberation_synthesized` event (`round: 1`, `convergence_score: ...`) through the append gateway, then a `round_end` event (`round: 1`, ...) through the append gateway.

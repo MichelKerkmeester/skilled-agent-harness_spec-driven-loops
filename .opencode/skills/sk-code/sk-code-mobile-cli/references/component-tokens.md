@@ -123,7 +123,7 @@ directly, which is a component-CSS edit, not a token edit.
 
 **Frozen exception in the same family:** `.artifact-diff-line.is-find-match` (the find-match highlight on
 a diff row) uses the literal `#f3e4de` directly and is fenced
-`@ds guardrail: do-not-edit — theme-invariant light literal; stays fixed`. It is not a `--diff-*`
+The `Do not edit — theme-invariant light literal; stays fixed` note marks this boundary. It is not a `--diff-*`
 component token and must not be converted into one.
 
 ---

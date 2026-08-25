@@ -2,7 +2,7 @@
 
 The read-only evidence base a code workflow loads when it works on the **Pi Remote Mobile-CLI** app.
 It carries the app's formalized design system so implementation, quality, review, debug, and verify
-work honor the same token library, editability grammar, guardrails, and verification gate the app
+work honor the same token library, natural comment convention, guardrails, and verification gate the app
 actually ships under — instead of treating `apps/pi-remote-web/` as a generic, unowned frontend.
 
 ---
@@ -27,7 +27,7 @@ actually ships under — instead of treating `apps/pi-remote-web/` as a generic,
 
 Before this packet, code work on `apps/pi-remote-web/` detected as **UNKNOWN**: a Vite/React app with no
 Webflow markers and outside `.opencode/` fell through surface detection, so the hub could not
-auto-load the app's token library, `@ds` grammar, or editability guardrails. A designer or an agent
+auto-load the app's token library, comment convention, or editability guardrails. A designer or an agent
 editing the system had no surface telling them where the seams are and where the frozen lines sit. This
 surface closes that gap: PI_REMOTE now detects, and the design-system evidence loads with the workflow.
 
@@ -35,10 +35,10 @@ surface closes that gap: PI_REMOTE now detects, and the design-system evidence l
 
 - **The token library** — the primitive → semantic → component three-layer model, the 8 frozen
   `--pi-*` values in light and dark, and the propagation rules a retint follows.
-- **The `@ds` grammar** — the inline-comment editability vocabulary (`surface / slot / state / variant /
-  edit / guardrail / catalog / theme`) migrated across the app's stylesheet and components.
-- **The guardrails** — the `@ds guardrail: do-not-edit` fences and the architectural reason a
-  presentation edit cannot cross into logic or the security boundary.
+- **The comment convention** — kept MODULE and numbered section banners, module headers, markup section
+  labels, one-line purpose comments, four edit classes, and natural seam-reading rules.
+- **The guardrails** — the `Do not edit — <why>` notes and the architectural reason a presentation edit
+  cannot cross into logic or the security boundary.
 - **The verification gate** — the browser-free resolver method and the command set that prove a change
   preserved every frozen value in both themes.
 
@@ -67,8 +67,8 @@ A workflow bundling this surface should, in order:
 
 1. Read `references/token-library.md` to place any color/spacing/radius change in the right layer
    (semantic role for a system-wide retint; component token for one surface; never a `--pi-*` primitive).
-2. Read `references/ds-grammar.md` to find the `@ds` seam for the edit class (token / slot / state /
-   layout) and confirm it is not inside a `@ds guardrail: do-not-edit` fence.
+2. Read `references/comment-grammar.md` to find the nearby purpose comment for the edit class (token /
+   slot / state / layout) and confirm it is not inside a `Do not edit — <why>` fence.
 3. Make the change, then run `references/verification.md` — the browser-free resolvers plus
    `npm run typecheck` / `build` / `test:web` — to prove no frozen value moved and both themes still
    pass WCAG AA.
@@ -141,7 +141,8 @@ the single `sk-code` identity and the hub bundles this surface.
 ## 8. RELATED DOCUMENTS
 
 - `SKILL.md` — the surface contract, reference map, machine-readable routing, and standards.
-- `references/` — the token library, `@ds` grammar, guardrails, verification, and the workflow doctrine.
+- `references/` — the token library, natural comment convention, guardrails, verification, and the
+  workflow doctrine.
 - `changelog/` — release notes for this packet.
 - `../../ROUTER.md`, `../../mode-registry.json`, `../../hub-router.json` — the parent hub's routing.
 - The **Mobile CLI app repo** — the app source, its `specs/` (including the design-system spec

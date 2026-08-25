@@ -1,6 +1,6 @@
 ---
 title: Guardrail Audit Checklist
-description: Checklist to confirm every @ds guardrail do-not-edit fence in the Pi Remote app is untouched after a design-system change.
+description: Checklist to confirm every Do not edit — guardrail fence in the Pi Remote app is untouched after a design-system change.
 trigger_phrases:
   - "guardrail audit checklist"
   - "confirm no do-not-edit fence changed"
@@ -21,7 +21,7 @@ Use this checklist after any change to `app-mobile/` presentation code, before c
 
 ### Purpose
 
-This checklist confirms every `@ds guardrail: do-not-edit` fence in the Pi Remote app is untouched
+This checklist confirms every `Do not edit — <why>` fence in the Pi Remote app is untouched
 after a design-system change. Each fence marks something that is not a styling concern — see
 `references/editability-guardrails.md` §2 for the full reason each one is frozen.
 
@@ -36,9 +36,9 @@ held (§5), and stop to escalate immediately if a red flag is true (§6).
 ## 2. BASELINE THE FENCE COUNT (before the change)
 
 □ Recorded the guardrail-fence count in `app-mobile/src/app.css` before editing:
-  `grep -o '@ds guardrail: do-not-edit' app-mobile/src/app.css | wc -l`
+  `grep -o 'Do not edit —' app-mobile/src/app.css | wc -l`
 □ Recorded the guardrail-fence count across the component scoped `<style>` blocks before editing:
-  `grep -ro '@ds guardrail: do-not-edit' app-mobile/src --include='*.svelte' | wc -l`
+  `grep -ro 'Do not edit —' app-mobile/src --include='*.svelte' | wc -l`
 
 The app's own comment scanner, `node scripts/naming/scan-comments.mjs`, is the canonical counter across
 `app-mobile/src` (`.svelte` and `.ts`) and stays in sync with the gate.
@@ -51,7 +51,7 @@ each time.
 
 ## 3. THE FENCE CATEGORIES TO VERIFY (untouched)
 
-For each category below, confirm none of the lines fenced `@ds guardrail: do-not-edit` were edited,
+For each category below, confirm none of the lines fenced `Do not edit —` were edited,
 removed, or worked around by the change:
 
 □ The 8 `--pi-*` primitive source values (light, dark, and system-dark blocks — three declarations each)
@@ -64,7 +64,7 @@ removed, or worked around by the change:
 □ The redaction affordance chip
 □ Bounded-reading overflow / `unicode-bidi` / scroll-anchoring rules
 □ Any theme-invariant literal explicitly fenced as such (e.g. `.artifact-diff-line.is-find-match`,
-  fenced `@ds guardrail: do-not-edit — theme-invariant light literal; stays fixed` —
+  fenced `Do not edit — theme-invariant light literal; stays fixed` —
   `references/component-tokens.md` §4)
 
 ---
@@ -93,7 +93,7 @@ removed, or worked around by the change:
 
 ## 6. RED FLAGS — STOP AND ESCALATE
 
-□ A requested change cannot be made through a `@ds edit:` / `slot:` / `state:` / `variant:` seam without
+□ A requested change cannot be made through a token / slot / state / variant presentation seam without
   touching a guardrail-fenced region
 □ A change would alter a resolved token value, a security boundary, or an accessibility guarantee
 □ A guardrail comment itself needed editing to make the change "work"
@@ -106,5 +106,5 @@ comment to make the diff pass.
 ## 7. RELATED RESOURCES
 
 - [editability-guardrails.md](../references/editability-guardrails.md) — the fence list and why each matters
-- [ds-grammar.md](../references/ds-grammar.md) — how to read a `@ds` seam at the edit site
+- [comment-grammar.md](../references/comment-grammar.md) — how to read a natural seam at the edit site
 - [ds-verification-checklist.md](ds-verification-checklist.md) — the full command-gate checklist
