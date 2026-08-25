@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gateway contract remediation",
+      "state-write contract contradiction fix",
+      "prompt-pack direct append fix",
+      "review alignment projection refresh",
+      "check-agent-gateway fail closed",
+      "gateway contract remediation adr",
+      "single canonical state-write path decision",
+      "projection refresh vs gateway receipt decision"
+    ],
+    "key_topics": [
+      "gateway",
+      "contract",
+      "remediation",
+      "state-write",
+      "contradiction",
+      "prompt-pack",
+      "direct",
+      "append",
+      "review",
+      "alignment",
+      "projection",
+      "refresh"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gateway State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Contract Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Ten",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Reporting Format Report",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ten confirmed findings, all cited to shipped source in `014`'s registry:",
+    "created_at": "2026-08-25T17:42:50.623Z",
+    "last_save_at": "2026-08-25T18:50:47.200Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:30965032ef1a98ad109faed4502d21202f0b94799456df686d1ed4b1dc0d1fba",
+    "source_doc_hashes": {
+      "spec.md": "aa852c9a023193b3e87de1631ed60c41f353333a3725d9a9bd2248447466634b",
+      "plan.md": "72730d3c794fa95ab432e825b9f22cb69c6eeface9327764b7f6c50a0ebf651a",
+      "tasks.md": "43017d79c939c6789b9299230e0a55a22504fdb4fa3ae5e945e3ffdd3a262b60",
+      "checklist.md": "a9ddf4d6626545e74b2a52184fea6f110474f9d706cad64795b8cbf1b430287c",
+      "decision-record.md": "498a119dfbbe9a2c425060ca04d1875a768999d1ff3d68ccf9b75a4cea79d593"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
