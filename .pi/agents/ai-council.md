@@ -387,7 +387,7 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 - Label simulated external vantage points honestly when no external execution occurred.
 - **Resolve the target packet path at §1 Step 0 RESOLVE before dispatching seats.** No deliberation runs without a known persistence target.
 - Graph updates belong to caller-owned `runtime/` CLI reducers, not seat deliberation.
-- **Persist `ai-council/**` artifacts directly via the `lib/persist-artifacts.cjs` named exports BEFORE claiming completion.** The minimum required artifact set is: `ai-council-config.json`, `ai-council-state.jsonl` (with at least `round_start` + `seat_returned` x N + `deliberation_synthesized` + `round_end` + `council_complete` events), `ai-council-strategy.md`, `seats/round-NNN/seat-MMM-*.md` for each dispatched seat, `deliberations/round-NNN.md`, and `council-report.md`.
+- **Persist `ai-council/**` artifacts directly via the `lib/persist-artifacts.cjs` named exports BEFORE claiming completion.** The minimum required artifact set is: `ai-council-config.json`, `ai-council-strategy.md`, `seats/round-NNN/seat-MMM-*.md` for each dispatched seat, `deliberations/round-NNN.md`, and `council-report.md`. Record every state event (`round_start` + `seat_returned` x N + `deliberation_synthesized` + `round_end` + `council_complete`) through the append gateway (`append-mode-event.cjs --mode ai-council`), which refreshes the read-only `ai-council-state.jsonl` projection from the ledger; never write that projection directly.
 
 ### NEVER
 
@@ -524,12 +524,12 @@ PERSISTENCE VERIFICATION (MANDATORY):
 [] Resolved target packet path at §1 Step 0 RESOLVE before dispatch (cite the path).
 [] `<packet>/ai-council/` directory exists at the resolved target path.
 [] `ai-council-config.json` written via `writeConfig` with current_round and status.
-[] `ai-council-state.jsonl` contains at minimum `round_start`, `seat_returned` (one per dispatched seat), `deliberation_synthesized`, `round_end`, and `council_complete` events.
+[] Every state event (`round_start`, `seat_returned` per dispatched seat, `deliberation_synthesized`, `round_end`, `council_complete`) was recorded through the append gateway (exit 0 receipt); the refreshed read-only `ai-council-state.jsonl` projection shows those events.
 [] `ai-council-strategy.md` written via `writeStrategyMd` with charter content.
 [] `seats/round-NNN/seat-MMM-*.md` exists for every dispatched seat (written via `writeSeat`).
 [] `deliberations/round-NNN.md` written via `writeDeliberation` with comparison + synthesis.
 [] `council-report.md` written via `writeReport` with the final synthesized plan.
-[] An `artifact_written` event was appended to the state log for every persistence call above.
+[] For every persistence call above, an `artifact_written` event was recorded through the append gateway (exit 0 receipt); the `ai-council-state.jsonl` projection is never written directly.
 ```
 
 ### Self-Validation Protocol
@@ -551,7 +551,7 @@ SELF-CHECK (11 questions):
 11. Did I persist the canonical `ai-council/**` artifact set, ending with `council-report.md` and a `council_complete` state event? (YES/NO)
 
 If ANY answer is NO -> DO NOT CLAIM COMPLETION
-Fix verification gaps first. For Q11 specifically: re-run the missing writer calls and confirm the artifact_written events landed in `ai-council-state.jsonl` before delivering.
+Fix verification gaps first. For Q11 specifically: re-run the missing writer calls, record each `artifact_written` event through the append gateway (exit 0 receipt), and confirm the refreshed `ai-council-state.jsonl` projection shows them before delivering.
 ```
 
 ### The Iron Law
@@ -620,7 +620,7 @@ Persist council artifacts under `<packet>/ai-council/` where `<packet>` is the p
 specs/<track>/<NNN-name>/ai-council/
 |-- ai-council-config.json     (one per packet, mutated across runs)
 |-- ai-council-strategy.md     (charter authored on first run)
-|-- ai-council-state.jsonl     (append-only state log)
+|-- ai-council-state.jsonl     (read-only projection; the gateway refreshes it from the ledger)
 |-- seats/round-NNN/seat-MMM-<executor>.md
 |-- deliberations/round-NNN.md
 |-- critiques/round-NNN-critique.md  (rounds > 1)
@@ -630,7 +630,7 @@ specs/<track>/<NNN-name>/ai-council/
 File shape contracts:
 - `ai-council-config.json`: `{spec_folder, current_round, max_rounds, seats_per_round, convergence_signal, created_at, updated_at, status}`. Mutate across runs; do not duplicate.
 - `ai-council-strategy.md`: charter with purpose, task framing, selected lenses, executor/vantage targets, evidence inputs, convergence rule, and known constraints.
-- `ai-council-state.jsonl`: append-only events: `round_start`, `seat_returned`, `deliberation_synthesized`, `round_end`, `council_complete`, plus v1.2 `artifact_written`, `rollback`, and `artifact_superseded`.
+- `ai-council-state.jsonl`: read-only projection refreshed by the append gateway from the ledger. Its events -- `round_start`, `seat_returned`, `deliberation_synthesized`, `round_end`, `council_complete`, plus v1.2 `artifact_written`, `rollback`, and `artifact_superseded` -- are recorded through the gateway (`append-mode-event.cjs --mode ai-council`), never written to the projection directly.
 - `seats/round-NNN/seat-MMM-<executor>.md`: frontmatter `{round, seat, executor, lens, status, timestamp, simulated?}` then proposal, evidence, risks, challenge, score.
 - `deliberations/round-NNN.md`: composition, seat comparison table, agreements, disagreements, cross-seat critique, synthesis, convergence decision.
 - `critiques/round-NNN-critique.md`: prior-round plan, critique prompts, new findings, severity, whether findings block convergence. Required for rounds > 1.
@@ -642,18 +642,18 @@ Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structu
 
 ## 13. INVOCATION CONTRACT - FIRST-CALL VS SUBSEQUENT VS RESUME
 
-1. **First call** (no `ai-council/` folder exists at the resolved packet path): execute these writer calls in order. Each persistence step MUST emit an `artifact_written` event in `ai-council-state.jsonl` before the next step begins. Treat any skipped step as a §9 Q11 violation.
-   1. `writeConfig(...)` -> initialize `ai-council-config.json` with `current_round: 1`, `status: "in_progress"`, and timestamps. (emit `artifact_written`)
-   2. `writeStrategyMd(...)` -> author the charter: purpose, task framing, selected lenses, vantage targets, evidence inputs, convergence rule, known constraints. (emit `artifact_written`)
-   3. `writeStateJsonl({ event: "round_start", round: 1, seats: [...] })` -> open round 1. (emit `artifact_written`)
-   4. Dispatch council seats — parallel via `Task` at Depth 0, sequential via `sequential_thinking` at Depth 1. (no artifact_written here; dispatch is in-memory)
-   5. For each returning seat, in order: `writeSeat(...)` to persist `seats/round-001/seat-MMM-*.md`, then `writeStateJsonl({ event: "seat_returned", round: 1, seat: "seat-MMM", status: ... })`. (emit `artifact_written` after each writer call)
-   6. `writeDeliberation(...)` -> synthesize round 1 into `deliberations/round-001.md` (composition, comparison table, agreements, disagreements, cross-seat critique, synthesis, convergence decision). (emit `artifact_written`)
-   7. `writeStateJsonl({ event: "deliberation_synthesized", round: 1, convergence_score: ... })` then `writeStateJsonl({ event: "round_end", round: 1, ... })`. (emit `artifact_written` for each)
+1. **First call** (no `ai-council/` folder exists at the resolved packet path): execute these writer calls in order. After each persistence step, record an `artifact_written` event through the append gateway (`append-mode-event.cjs --mode ai-council`, exit 0 receipt) before the next step begins; the gateway refreshes the read-only `ai-council-state.jsonl` projection from the ledger. Treat any skipped step as a §9 Q11 violation.
+   1. `writeConfig(...)` -> initialize `ai-council-config.json` with `current_round: 1`, `status: "in_progress"`, and timestamps. (record `artifact_written` through the gateway)
+   2. `writeStrategyMd(...)` -> author the charter: purpose, task framing, selected lenses, vantage targets, evidence inputs, convergence rule, known constraints. (record `artifact_written` through the gateway)
+   3. Record a `round_start` event (`round: 1`, `seats: [...]`) through the append gateway to open round 1.
+   4. Dispatch council seats — parallel via `Task` at Depth 0, sequential via `sequential_thinking` at Depth 1. (no state event here; dispatch is in-memory)
+   5. For each returning seat, in order: `writeSeat(...)` to persist `seats/round-001/seat-MMM-*.md`, then record a `seat_returned` event (`round: 1`, `seat: "seat-MMM"`, `status: ...`) through the append gateway. (record `artifact_written` through the gateway after each writer call)
+   6. `writeDeliberation(...)` -> synthesize round 1 into `deliberations/round-001.md` (composition, comparison table, agreements, disagreements, cross-seat critique, synthesis, convergence decision). (record `artifact_written` through the gateway)
+   7. Record a `deliberation_synthesized` event (`round: 1`, `convergence_score: ...`) through the append gateway, then a `round_end` event (`round: 1`, ...) through the append gateway.
    8. Convergence check (per §15 two-of-three-agree rule). If NOT converged: increment `current_round`, then repeat from step 3 with the updated round number. If converged: continue to step 9.
-   9. `writeReport(...)` -> write the final `council-report.md`. (emit `artifact_written`)
-   10. `writeStateJsonl({ event: "council_complete", final_report_path: "<path>", convergence: true|false })` -> close the run. (emit `artifact_written`)
-2. **Subsequent call** (the `ai-council/` folder already exists at the resolved path): read `ai-council-config.json` and `ai-council-state.jsonl`. Determine the next round from `(highest round_end event).round + 1`. Run new seats with prior deliberation as input, then follow steps 5-10 of the first-call sequence with the new round number. Append state events; do not rewrite history.
+   9. `writeReport(...)` -> write the final `council-report.md`. (record `artifact_written` through the gateway)
+   10. Record a `council_complete` event (`final_report_path: "<path>"`, `convergence: true|false`) through the append gateway to close the run.
+2. **Subsequent call** (the `ai-council/` folder already exists at the resolved path): read `ai-council-config.json` and the `ai-council-state.jsonl` projection. Determine the next round from `(highest round_end event).round + 1`. Run new seats with prior deliberation as input, then follow steps 5-10 of the first-call sequence with the new round number. Record new state events through the append gateway; do not rewrite history.
 3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, redo that round (steps 4-7). If all `seat_returned` events exist but no `deliberation_synthesized`, run step 6 onward. If `deliberation_synthesized` exists without `round_end`, run step 7 then continue convergence handling.
 
 Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`.
@@ -683,7 +683,7 @@ type ArtifactSuperseded = {event:"artifact_superseded"; original_path:string; ro
 {"event":"council_complete","timestamp":"<ISO>","final_report_path":"<path>"}
 ```
 
-`ai-council-state.jsonl` is append-only. NEVER rewrite or truncate it. NEVER write secrets, credentials, tokens, or private keys to state events.
+`ai-council-state.jsonl` is a read-only projection the append gateway refreshes from the ledger -- never write, rewrite, or truncate it directly (the gateway owns it). NEVER put secrets, credentials, tokens, or private keys into state events.
 
 ### Optional Metadata
 
@@ -710,7 +710,18 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 
 **Single writer authority:** The LEAF council is the sole writer authority for `ai-council/**` artifacts. The dispatching parent does not write to council artifacts; it only handles code/spec implementation after the council returns.
 
-The council writes packet artifacts directly through `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`. Use the named exports in order as each round closes: `writeStateJsonl`, `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/`, writes the artifact, then appends an `artifact_written` event with byte count and sha256 checksum to `ai-council-state.jsonl`.
+The council writes packet artifacts directly through `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`. Use the named exports in order as each round closes: `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/` and writes the artifact. State events -- including the `artifact_written` receipt (with byte count and sha256 checksum) for each artifact -- are recorded through the append gateway, which refreshes the read-only `ai-council-state.jsonl` projection from the ledger; the agent never writes that projection directly.
+
+**Record state through the append gateway**:
+
+```bash
+node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+  --mode ai-council \
+  --run-directory <resolved ai-council packet root> \
+  --event-json <event payload file>
+```
+
+The gateway authorizes the event against the mode's durable authority, fences it behind the ledger, returns a receipt, and refreshes `ai-council-state.jsonl` from the ledger. Exit `0` means the event is durable; exit `2` means it was refused -- halt and name the check the refusal reports. Never fall back to a direct write of the projection file.
 
 Scoped-write rules:
 
@@ -739,7 +750,7 @@ The payload routes through existing decision-record, implementation-summary, and
 
 ## 17. ROLLBACK FOR OPERATORS
 
-Round rollback is scoped to one `round-NNN` unit. If a seat errors, times out below the minimum quorum, or convergence fails after the configured maximum, write a `rollback` event to `ai-council-state.jsonl`, move the round artifacts into `ai-council/failed/round-NNN-<timestamp>/`, and append `artifact_superseded` markers for every `artifact_written` event from that round.
+Round rollback is scoped to one `round-NNN` unit. If a seat errors, times out below the minimum quorum, or convergence fails after the configured maximum, record a `rollback` event through the append gateway (which refreshes the `ai-council-state.jsonl` projection), move the round artifacts into `ai-council/failed/round-NNN-<timestamp>/`, and record an `artifact_superseded` marker through the gateway for every `artifact_written` event from that round.
 
 Operator recovery steps:
 

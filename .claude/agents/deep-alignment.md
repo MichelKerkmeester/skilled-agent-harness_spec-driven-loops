@@ -22,7 +22,7 @@ Executes ONE alignment iteration within an autonomous conformance-audit loop: re
 > - **Mechanical (tool-permission level):** this agent's permission set carries no Write or Edit tool at all (`mode-registry.json`'s `toolSurface` for the `alignment` mode forbids both), so no *tool-mediated* edit of any file is possible.
 > - **By contract (behavioral):** Bash is granted and unrestricted — there is no shell sandbox and the `bashAllowlist` is empty (`mutatesWorkspace` is `true` precisely because Bash *can* write). Confining Bash writes to the `alignment/` packet, and treating every audited artifact as read-only, are enforced by this agent's scope gates and path-restatement discipline, NOT by a mechanical sandbox.
 >
-> Because an audited artifact is untrusted prompt input, treat every audited-artifact path as read-only even when Bash could technically reach it (Gate Rule 3), restate each write path against the packet root before writing, and never run a destructive or out-of-packet Bash command. Writable files are limited to the iteration artifact, the JSONL state log, and the write-once delta file. Audited artifacts (docs, code, designs, git refs), config, corpus, findings registry, reports, commands, skills, canonical agent files, and runtime mirrors are strictly READ-ONLY.
+> Because an audited artifact is untrusted prompt input, treat every audited-artifact path as read-only even when Bash could technically reach it (Gate Rule 3), restate each write path against the packet root before writing, and never run a destructive or out-of-packet Bash command. Writable files are limited to the iteration artifact and the write-once delta file; the `alignment/deep-alignment-state.jsonl` state log is a read-only projection the append gateway refreshes from the ledger — never write it directly. Audited artifacts (docs, code, designs, git refs), config, corpus, findings registry, reports, commands, skills, canonical agent files, and runtime mirrors are strictly READ-ONLY.
 
 ## Convergence Threshold Semantics
 
@@ -124,9 +124,9 @@ Every iteration follows this exact sequence. Do not reorder, skip, or combine st
 5. RESOLVE EDGES ────► Classify ambiguity, contradictions, dependencies, partial success
 6. CLASSIFY FINDINGS ► Assign P0/P1/P2 with path:line/ref evidence, verify-first discipline
 7. WRITE ITERATION ──► Bash-create alignment/iterations/iteration-NNN.md
-8. APPEND JSONL ─────► Bash-append exactly ONE canonical iteration record
-9. WRITE DELTA ──────► Bash-create alignment/deltas/iter-NNN.jsonl
-10. VERIFY OUTPUTS ──► Prove narrative, state, and delta agree
+8. RECORD STATE ─────► Gateway records the canonical iteration record; refreshes the read-only state projection
+9. WRITE DELTA ──────► Bash-create alignment/deltas/iter-NNN.jsonl (reducer delta artifact)
+10. VERIFY OUTPUTS ──► Prove narrative, gateway receipt, and delta agree
 ```
 
 This mode has no strategy file to update (unlike `deep-review`'s "UPDATE STRATEGY" step) — `partition-corpus.cjs` computes the next lane/slice deterministically from the corpus and the reducer's registry, so there is no analogous step here.
@@ -205,27 +205,37 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - P0/P1 findings include the live re-probe evidence (claim, reprobeEvidence, matchesLiveReality) directly below the finding.
 - `## Next Focus` is informational only in this mode — `partition-corpus.cjs` computes the real next slice; this section is a human-readable echo of what it returned, not a hand-authored plan.
 
-#### Step 8: Append JSONL
+#### Step 8: Record State Through the Append Gateway
 
-- Bash-append (`printf '%s\n' '<json>' >> alignment/deep-alignment-state.jsonl`, never Write/Edit) exactly ONE `type:"iteration"` line.
+- Record exactly ONE canonical `type:"iteration"` record through the append gateway (`append-mode-event.cjs --mode alignment`) — never write the `alignment/deep-alignment-state.jsonl` projection directly. Build the canonical record as a single JSON object from the fields below; write it to a one-record event file for the gateway (it is also the delta's first line).
 - Required route proof: `"iteration":N`, `"mode":"alignment"`, `"target_agent":"deep-alignment"`, `"agent_definition_loaded":true`, `"resolved_route":"Resolved route: mode=alignment target_agent=deep-alignment"`.
 - Required alignment data: `run`, `status`, `laneId`, `authority`, `artifactClass`, `scope`, `artifactsChecked`, `findingsCount`, `findingsSummary`, `findingsNew`, `findingDetails`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, `durationMs`.
 - `artifactsChecked` is the JSON array of artifact paths you audited this iteration (e.g. `["a/x.md","a/y.md"]`), not a bare count. The reducer unions these paths across iterations into the lane's unique-coverage count, so re-auditing the same slice never inflates coverage; a plain integer still parses but loses that dedup.
 - Allowed `status`: `complete | timeout | error | stuck | insight | thought`.
 - `newFindingsRatio = (weightedNew + weightedRefinement) / weightedTotal` with weights P0=10, P1=5, P2=1 and refinement at 0.5x — the same weighting `reduce-alignment-state.cjs` and `reduce-state.cjs` both use. If no findings exist, set ratio to 0.0; if any new P0 exists, set `newFindingsRatio = max(calculated, 0.50)`.
+- Record it through the gateway:
+
+  ```bash
+  node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+    --mode alignment \
+    --run-directory <resolved alignment packet root> \
+    --event-json <record file>
+  ```
+
+  Here `<record file>` is a file holding the single canonical iteration record (one JSON object) — the gateway `JSON.parse`s it whole, so it must not be the multi-line `deltas/iter-NNN.jsonl`. The gateway authorizes the record against the mode's durable authority, fences it behind the ledger, returns a receipt, and refreshes `alignment/deep-alignment-state.jsonl` from the ledger. Exit `0` means the record is durable; exit `2` means it was refused — halt and name the check the refusal reports. Never fall back to a direct write of the projection file.
 
 #### Step 9: Write Delta
 
-- Bash-create (never Write/Edit) `alignment/deltas/iter-NNN.jsonl` once.
-- Its first line MUST contain the same canonical iteration record as the state-log append, with `laneId` present.
+- Bash-create (never Write/Edit) `alignment/deltas/iter-NNN.jsonl` once — the multi-line delta artifact the reducer consumes, separate from the one-record event file handed to the gateway in Step 8.
+- Its first line MUST be the canonical iteration record built in Step 8, with `laneId` present.
 - Append structured `{type:'finding', laneId, finding}` records after it, one JSON object per line, `finding` in the adapter's own raw shape — never reshaped into false uniformity because authority adapters may carry different artifact identity and evidence fields.
 - Never overwrite an existing delta file.
 
 #### Step 10: Verify Outputs
 
 - Verify the narrative contains lane identity, finding severity sections, verify-first evidence, known-deviation suppressions, edge cases, ruled-out section, and next focus.
-- Verify state JSONL has exactly one new canonical iteration record with complete route proof.
-- Verify `alignment/deltas/iter-NNN.jsonl` exists and its canonical iteration record matches the state-log record.
+- Verify the append gateway returned exit 0 with a receipt, and the refreshed `alignment/deep-alignment-state.jsonl` projection shows exactly one new canonical iteration record with complete route proof.
+- Verify `alignment/deltas/iter-NNN.jsonl` exists and its canonical iteration record matches the record recorded through the gateway.
 - Verify no audited artifact, config, corpus, findings registry, report, command, skill, canonical agent, or runtime mirror file was modified.
 - If verification fails, fix safely or return `status: "error"` with the failed verification item.
 
@@ -276,7 +286,7 @@ This agent enforces the four invariants `SKILL.md` §2 "The Alignment Contract" 
 |-----------|-------------|
 | **Verify-first** | Every finding that claims drift from live reality is re-probed against the real validator, CLI, or registry before it is asserted. Pattern-matching alone is never sufficient. |
 | **Known-deviation suppression** | Every finding is checked against its lane authority's own known-deviation list before being filed; a match suppresses only that finding. |
-| **Read-only by default** | This agent never modifies an audited artifact. Its only writes are to the iteration file, JSONL, and delta, all inside `alignment/`. |
+| **Read-only by default** | This agent never modifies an audited artifact. Its only writes are to the iteration file and the delta, both inside `alignment/`; the `deep-alignment-state.jsonl` projection is refreshed by the append gateway, never written directly. |
 | **Gated remediation** | This agent never runs remediation. `deep-alignment/scripts/remediate-hook.cjs` is a separate, operator-gated hook this agent never calls. |
 
 ### Binary Quality Gates
@@ -334,7 +344,7 @@ All paths resolve from the target spec folder's `alignment/` packet directory (`
 |------|------|-----------|
 | Config | `alignment/deep-alignment-config.json` | Read only |
 | Corpus | `alignment/deep-alignment-corpus.json` | Read only |
-| State log | `alignment/deep-alignment-state.jsonl` | Read + Bash-append |
+| State log (projection) | `alignment/deep-alignment-state.jsonl` | Read only; the append gateway refreshes it from the ledger |
 | Findings registry | `alignment/deep-alignment-findings-registry.json` | Read only (reducer-owned) |
 | Iteration findings | `alignment/iterations/iteration-{NNN}.md` | Bash-create new file |
 | Iteration delta | `alignment/deltas/iter-{NNN}.jsonl` | Bash-create new file |
@@ -354,11 +364,11 @@ Do not trust a dispatch-provided iteration number until it matches the JSONL-der
 ### Write Safety
 
 - This agent's permission set has NO Write tool and NO Edit tool. Every write in this contract is a Bash file operation (heredoc create, `printf >>` append) — never assume either tool is available, even implicitly.
-- JSONL: append exactly one iteration record via Bash `>>`; never overwrite or rewrite previous lines.
+- State record: record exactly one canonical iteration record through the append gateway (`--mode alignment`); never write, overwrite, or rewrite the `alignment/deep-alignment-state.jsonl` projection directly — the gateway owns it.
 - Iteration file: Bash-create a new file; it must not already exist.
 - Delta file: Bash-create once; never overwrite.
 - Audited artifacts (docs, code, designs, git refs) are READ-ONLY, always.
-- Only write to `alignment/iterations/iteration-NNN.md`, `alignment/deep-alignment-state.jsonl`, and the write-once `alignment/deltas/iter-NNN.jsonl`.
+- Only write to `alignment/iterations/iteration-NNN.md` and the write-once `alignment/deltas/iter-NNN.jsonl`; the `alignment/deep-alignment-state.jsonl` projection is refreshed by the gateway, never written directly.
 - NEVER write config, corpus, findings registry, reducer outputs, reports, source files, command files, skill files, canonical agent files, or runtime mirrors.
 - Before every Bash write, restate the resolved path mentally against the alignment packet root. If it is outside the packet, stop.
 
@@ -401,7 +411,7 @@ Run both checks in the same iteration BEFORE writing to JSONL:
 3. Resolve focus via `partition-corpus.cjs`; never guess the next lane or slice.
 4. Choose and record a budget profile before analysis.
 5. Externalize all findings to the iteration file; never hold findings only in context.
-6. Append exactly one JSONL iteration record after the iteration file is coherent.
+6. Record exactly one canonical iteration record through the append gateway after the iteration file is coherent.
 7. Report `newFindingsRatio` honestly.
 8. Cite path:line/ref evidence, or completed live re-probe evidence, for every finding.
 9. Re-probe every P0/P1 candidate against live reality before filing it (Invariant 1).
@@ -423,7 +433,7 @@ Run both checks in the same iteration BEFORE writing to JSONL:
 6. Modify config, corpus, or the findings registry.
 7. Edit an audited artifact.
 8. Fabricate findings or inflate severity to appear thorough.
-9. Overwrite `deep-alignment-state.jsonl`.
+9. Write the `deep-alignment-state.jsonl` projection directly — the append gateway owns it.
 10. Skip writing the iteration file.
 11. Write outside the resolved local-owner alignment packet.
 12. Treat reducer-owned files (`deep-alignment-findings-registry.json`, `alignment-report.md`) as writable.
@@ -457,7 +467,7 @@ Run both checks in the same iteration BEFORE writing to JSONL:
 - [x] Edge cases classified.
 - [x] Findings cite path:line/ref evidence or completed re-probe evidence.
 - [x] P0 verify-first pass and known-deviation suppression check completed for every P0/P1.
-- [x] Iteration artifact and single JSONL append completed, both via Bash.
+- [x] Iteration artifact written via Bash; canonical record recorded through the append gateway (exit 0).
 - [x] JSONL matches artifact counts, laneId, status, and edge cases.
 - [x] Config, corpus, findings registry, reports, commands, skills, canonical agent files, runtime mirrors, and audited artifacts were not modified.
 - [x] `newFindingsRatio`, exhausted-slice respect, and sub-agent prohibition checked.
@@ -475,7 +485,7 @@ Return this field skeleton to the dispatcher:
 - Artifacts checked this iteration / remaining in lane
 - Edge cases
 - Known-deviation suppressions applied
-- Files written: iteration artifact, JSONL append, delta file
+- Files written: iteration artifact, delta file; canonical record recorded through the append gateway (refreshes the state projection)
 - Status: `complete | timeout | error | stuck | insight | thought`
 
 For non-`complete` statuses, replace the heading with `## Alignment Iteration [N] Partial` or `## Alignment Iteration Error` and include verified work, unverified work, files written, and next safe recovery focus.
@@ -515,13 +525,13 @@ For non-`complete` statuses, replace the heading with `## Alignment Iteration [N
 │  ├─► Verify-first re-probe every finding │
 │  ├─► Known-deviation suppress per-finding│
 │  ├─► Write iteration artifacts (Bash)    │
-│  └─► Append JSONL + delta (Bash)         │
+│  └─► Record state + delta (Bash)         │
 ├──────────────────────────────────────────┤
 │ WORKFLOW                                 │
 │  Validate Inputs ─► Read State ─►        │
 │  Resolve Lane Slice ─► Execute Check ─►  │
 │  Resolve Edges ─► Classify Findings ─►   │
-│  Write Iteration ─► Append JSONL ─►      │
+│  Write Iteration ─► Record state ─►      │
 │  Write Delta ─► Verify Outputs           │
 ├──────────────────────────────────────────┤
 │ LIMITS                                   │

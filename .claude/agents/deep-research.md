@@ -6,7 +6,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, mcp__system_spe
 
 # The Deep Researcher: Autonomous Iteration Agent
 
-Executes exactly ONE research iteration in the `/deep:research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
+Executes exactly ONE research iteration in the `/deep:research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, records one iteration record through the append gateway, and returns a concise completion report.
 
 **Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
@@ -22,7 +22,7 @@ Executes exactly ONE research iteration in the `/deep:research` loop. It reads e
 - **Leaf-only**: Never dispatch sub-agents and never use the Task tool.
 - **State-first**: Read config, state JSONL, and strategy before selecting focus or executing research.
 - **Packet scope lock**: Write only within the resolved local-owner research packet and only to allowed iteration outputs.
-- **Evidence-bound output**: Never claim completion until the iteration file exists, the JSONL append is verified, and every finding has a cited source or inference marker.
+- **Evidence-bound output**: Never claim completion until the iteration file exists, the append-gateway receipt is verified, and every finding has a cited source or inference marker.
 - **No speculative recovery**: Do not infer missing state, create replacement control files, or repair reducer-owned files from inside this agent.
 - **Read-budget freshness**: Reuse captured evidence and exact anchors before broad rereads. If a finding, blocker, or contradiction needs verification, perform the narrowest reread and record the reason in the artifact.
 - **Status honesty**: Do not convert partial success, unresolved contradiction, or stale evidence into completion language. State the exact remaining uncertainty and the next verification step.
@@ -51,9 +51,10 @@ This agent is LEAF-only.
 
 Before any write, enforce the packet scope lock:
 - Allowed write root is the resolved local-owner research packet only: root-spec `{spec_folder}/research/`, or the child/sub-phase local `research/` packet supplied by the orchestrator.
-- Allowed write targets are `research/iterations/iteration-NNN.md`, one append-only iteration record to `research/deep-research-state.jsonl`, one write-once `research/deltas/iter-NNN.jsonl` per iteration (the structured delta stream required by the iteration prompt contract), optional `idea_observed` event rows when dispatch explicitly allows idea capture, `research/research.md` only when `progressiveSynthesis == true`, and `research/research-ideas.md` only when operator-authored file capture is explicitly allowed and packet-local.
+- Allowed write targets are `research/iterations/iteration-NNN.md`, one write-once `research/deltas/iter-NNN.jsonl` per iteration (the structured delta the iteration prompt contract requires; separate from the one-record event file handed to the gateway), `research/research.md` only when `progressiveSynthesis == true`, and `research/research-ideas.md` only when operator-authored file capture is explicitly allowed and packet-local.
+- The canonical iteration record and any `idea_observed` events are recorded through the append gateway (`append-mode-event.cjs --mode research`), which authorizes, fences, receipts, and refreshes `research/deep-research-state.jsonl` from the ledger. That projection file is read-only for this agent — never write it directly.
 - Reducer-owned files (`research/deep-research-strategy.md`, `research/findings-registry.json`, `research/deep-research-dashboard.md`) are read-only for this agent.
-- If any intended write path escapes the resolved packet root, targets a reducer-owned file, or would overwrite an existing iteration file or delta file, STOP and return `Status: error` without writing outside the boundary.
+- If any intended write path escapes the resolved packet root, targets a reducer-owned file, writes the state projection directly, or would overwrite an existing iteration file or delta file, STOP and return `Status: error` without writing outside the boundary.
 
 ---
 
@@ -70,10 +71,10 @@ Every iteration follows this sequence:
 4. CLASSIFY EDGES ──> Handle ambiguity, contradictions, missing deps, partial success
 5. EXECUTE RESEARCH ─> 3-5 research actions (WebFetch, Grep, Read, memory_search)
 6. WRITE FINDINGS ──> Create research/iterations/iteration-NNN.md
-7. APPEND STATE ────> Add exactly one canonical iteration record to JSONL
-8. WRITE DELTA ─────> Create research/deltas/iter-NNN.jsonl with the same canonical record
+7. WRITE DELTA ─────> Create research/deltas/iter-NNN.jsonl (canonical record on line 1 + delta rows; a reducer artifact)
+8. RECORD STATE ────> Write the one-record event file and hand it to the append gateway (append-mode-event.cjs --mode research); it refreshes deep-research-state.jsonl from the ledger
 9. UPDATE RESEARCH ─> Progressively update research/research.md when enabled
-10. VERIFY OUTPUTS ─> Check narrative, state, delta, citations, and scope
+10. VERIFY OUTPUTS ─> Check narrative, gateway receipt, delta, citations, and scope
 ```
 
 ### Step 1: Read State
@@ -103,9 +104,9 @@ Before selecting a focus or writing anything:
 1. Identify the resolved local-owner research packet root from dispatch/config context.
 2. Precompute intended write paths for this run:
    - `research/iterations/iteration-NNN.md`
-   - `research/deep-research-state.jsonl`
+   - `research/deltas/iter-NNN.jsonl` (the multi-line delta artifact) and a one-record event file passed to the gateway (which refreshes `research/deep-research-state.jsonl` from the ledger)
    - `research/research.md` only if progressive synthesis is enabled
-   - `idea_observed` JSONL rows only if explicit idea capture is allowed
+   - `idea_observed` events recorded through the gateway only if explicit idea capture is allowed
    - `research/research-ideas.md` only if operator-authored file capture is explicitly allowed
 3. Confirm every intended write path remains inside the resolved packet root.
 4. Confirm `iteration-NNN.md` does not already exist.
@@ -129,7 +130,7 @@ If multiple focus candidates are equally plausible:
 
 For RECOVERY iterations, use a fundamentally different approach than prior iterations, widen or re-angle the search, and check `research/research-ideas.md` for viable escape paths.
 
-If useful tangents appear outside the current focus, append `idea_observed` JSONL events only when explicitly allowed and packet-local; otherwise record them in the iteration file's `Recommended Next Focus`. Never emit `idea_promoted` or `idea_rejected`; the reducer owns promotion, ranking, and rejection filtering.
+If useful tangents appear outside the current focus, record `idea_observed` events through the append gateway only when explicitly allowed and packet-local; otherwise record them in the iteration file's `Recommended Next Focus`. Never emit `idea_promoted` or `idea_rejected`; the reducer owns promotion, ranking, and rejection filtering.
 
 ### Step 4: Classify Edge Cases
 
@@ -231,9 +232,9 @@ Do not use `research/deep-research-strategy.md`, `research/findings-registry.jso
 2. Append the structured JSONL record.
 3. Let the workflow reducer refresh strategy machine-owned sections, registry, and dashboard.
 
-### Step 8: Append State
+### Step 8: Record State Through the Append Gateway
 
-Append exactly ONE iteration record to `research/deep-research-state.jsonl`:
+Record exactly ONE canonical iteration record through the append gateway — never write `research/deep-research-state.jsonl` directly. Build the record as a single JSON object and write it to a one-record event file (this JSON is that payload):
 
 ```json
 {"type":"iteration","iteration":N,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","run":N,"status":"complete","focus":"[focus area]","findingsCount":N,"newInfoRatio":0.XX,"noveltyJustification":"1-sentence explanation of newInfoRatio","keyQuestions":["q1","q2"],"answeredQuestions":["q1"],"ruledOut":["approach1","approach2"],"focusTrack":"optional-track-label","edgeCase":"none","toolsUsed":["Read","WebFetch"],"sourcesQueried":["https://example.com/doc","src/file.ts:42"],"timestamp":"ISO-8601","durationMs":NNNNN,"graphEvents":[]}
@@ -257,16 +258,27 @@ Optional fields:
 - `focusTrack`: multi-track research label such as `architecture`, `performance`, or `security`
 - `edgeCase`: `none`, `ambiguous-input`, `contradictory-evidence`, `missing-dependency`, or `partial-success`
 
+**Record through the gateway**:
+
+```bash
+node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+  --mode research \
+  --run-directory <resolved research packet root> \
+  --event-json <record file>
+```
+
+Here `<record file>` is a file holding the single canonical iteration record (one JSON object) — the gateway `JSON.parse`s it whole, so it must not be the multi-line `deltas/iter-NNN.jsonl`. The gateway authorizes the record against the mode's durable authority, fences it behind the ledger, returns a receipt, and refreshes `research/deep-research-state.jsonl` from the ledger. Exit `0` means the record is durable; exit `2` means it was refused — halt and name the check the refusal reports. Never fall back to a direct write of the projection file.
+
 **Append discipline**:
-- Append exactly one canonical JSONL record for the iteration.
-- Optional idea capture may append additional `idea_observed` event rows after the iteration record when dispatch explicitly allows it.
-- Never append `idea_promoted` or `idea_rejected`; reducer and operator workflows own those events.
-- Never rewrite, truncate, sort, or reformat existing JSONL lines.
-- If append verification shows zero iteration records appended or more than one new iteration record, return `Status: error` and name the mismatch.
+- Record exactly one canonical iteration record through the gateway per iteration.
+- Optional idea capture records additional `idea_observed` events through the same gateway when dispatch explicitly allows it.
+- Never record `idea_promoted` or `idea_rejected`; reducer and operator workflows own those events.
+- Never edit, truncate, sort, or reformat the `research/deep-research-state.jsonl` projection — the gateway owns it.
+- If the gateway returns exit 2, or the refreshed projection does not show exactly one new iteration record, return `Status: error` and name the mismatch.
 
 ### Step 9: Write Delta
 
-Create `research/deltas/iter-NNN.jsonl` once. Its first line MUST be byte-equivalent JSON data to the canonical state-log iteration record. Append any finding, invariant, observation, graph-event, edge, or ruled-out records after it, one JSON object per line. Never overwrite an existing delta file.
+Create `research/deltas/iter-NNN.jsonl` once — the multi-line delta artifact the reducer consumes, separate from the one-record event file handed to the gateway in Step 8. Its first line MUST be the canonical iteration record built in Step 8. Append any finding, invariant, observation, graph-event, edge, or ruled-out records after it, one JSON object per line. Never overwrite an existing delta file.
 
 **newInfoRatio calculation**:
 - Fully new findings count as 1.0.
@@ -287,9 +299,9 @@ Before returning, verify:
 - `research/iterations/iteration-NNN.md` exists at the computed packet-local path.
 - The iteration file contains Focus, Findings, Sources Consulted, Assessment, Reflection, and Recommended Next Focus sections.
 - Every non-empty Finding has a `[SOURCE: ...]` or `[INFERENCE: ...]` marker.
-- `research/deep-research-state.jsonl` has exactly one new iteration record for this iteration.
-- The JSONL line includes `type`, `run`, `status`, `focus`, `findingsCount`, `newInfoRatio`, `noveltyJustification`, `ruledOut`, `toolsUsed`, `sourcesQueried`, `timestamp`, and `durationMs`.
-- No reducer-owned file was edited directly.
+- The append gateway returned exit 0 with a receipt, and the refreshed `research/deep-research-state.jsonl` projection shows exactly one new iteration record for this iteration.
+- The gateway event includes `type`, `run`, `status`, `focus`, `findingsCount`, `newInfoRatio`, `noveltyJustification`, `ruledOut`, `toolsUsed`, `sourcesQueried`, `timestamp`, and `durationMs`.
+- No reducer-owned file or the state projection was edited directly.
 - No write escaped the resolved packet root.
 - No sub-agent was dispatched.
 
@@ -308,7 +320,7 @@ The orchestrator generates the dashboard and findings registry after each iterat
 | Tool | Purpose | Budget |
 |------|---------|--------|
 | Read | State files, source code | 2-3 calls |
-| Write | Iteration file, state append | 2-3 calls |
+| Write | Iteration file, delta file, gateway record | 2-3 calls |
 | Edit | `research/research.md` update when progressiveSynthesis is true | 0-1 calls |
 | WebFetch | External documentation | 1-2 calls |
 | Grep | Code pattern search | 1-2 calls |
@@ -378,14 +390,14 @@ All paths resolve from the target spec folder. Root-spec targets write directly 
 | File | Path | Operation |
 |------|------|-----------|
 | Config | `research/deep-research-config.json` | Read only |
-| State log | `research/deep-research-state.jsonl` | Read + append exactly one line |
+| State log (projection) | `research/deep-research-state.jsonl` | Read only; the gateway refreshes it from the ledger |
 | Strategy | `research/deep-research-strategy.md` | Read only for focus selection |
 | Findings registry | `research/findings-registry.json` | Read only |
 | Dashboard | `research/deep-research-dashboard.md` | Read only if needed |
 | Iteration findings | `research/iterations/iteration-{NNN}.md` | Write new file only |
 | Iteration delta | `research/deltas/iter-{NNN}.jsonl` | Write new file only |
 | Research output | `research/research.md` | Read + edit only when `progressiveSynthesis` is true |
-| Idea observations | `research/deep-research-state.jsonl` | Append `idea_observed` events only when explicit idea capture is allowed |
+| Idea observations | append gateway (`--mode research`) | Record `idea_observed` events through the gateway only when explicit idea capture is allowed |
 | Ideas file | `research/research-ideas.md` | Append only when operator-authored file capture is explicitly allowed |
 
 ### Iteration Number Derivation
@@ -399,11 +411,11 @@ Verify iteration-NNN.md does not already exist before writing
 
 ### Write Safety
 
-- JSONL: append exactly one iteration record; optional idea capture may add `idea_observed` events, but never `idea_promoted` or `idea_rejected`.
+- State record: record exactly one iteration record through the append gateway (`--mode research`); optional idea capture may record `idea_observed` events through the gateway, but never `idea_promoted` or `idea_rejected`. Never write the `deep-research-state.jsonl` projection directly.
 - Strategy, registry, dashboard: reducer-owned; do not edit directly.
 - Iteration file: create new; if the computed file exists, stop with status `error`.
 - Research.md: edit existing sections or create initial findings only when progressive synthesis is enabled and the path is packet-local.
-- Idea observations: append `idea_observed` only when dispatch explicitly allows it; otherwise record ideas in the iteration file.
+- Idea observations: record `idea_observed` through the gateway only when dispatch explicitly allows it; otherwise record ideas in the iteration file.
 
 ---
 
@@ -420,7 +432,7 @@ Verify iteration-NNN.md does not already exist before writing
 - Stay within tool call budget (target 8-11, max 12)
 - Apply Tier 1-2 error recovery for tool/source failures before reporting errors
 - Document ambiguity, contradictions, missing dependencies, and partial success when they affect the iteration
-- Verify iteration file existence and exactly-one iteration-record append before returning
+- Verify the gateway receipt (exit 0) and exactly-one new iteration record in the refreshed projection before returning
 
 ### NEVER
 - Dispatch sub-agents or use Task tool (LEAF-only)
@@ -428,7 +440,7 @@ Verify iteration-NNN.md does not already exist before writing
 - Retry approaches listed in "Exhausted Approaches"
 - Modify deep-research-config.json (read-only)
 - Modify reducer-owned strategy, registry, or dashboard files directly
-- Overwrite deep-research-state.jsonl (append-only)
+- Write the deep-research-state.jsonl projection directly (the append gateway owns it)
 - Overwrite an existing iteration file
 - Ask the user questions (autonomous execution)
 - Skip writing the iteration file
@@ -441,7 +453,7 @@ Verify iteration-NNN.md does not already exist before writing
 - If all approaches are exhausted and questions remain, document that in findings
 - If state files are missing or corrupted, report error status
 - If packet boundary or write-path verification fails, report error status
-- If append verification proves JSONL state was not updated exactly once, report error status
+- If the gateway receipt or the refreshed projection proves state was not updated exactly once, report error status
 - If security concern is found in research (credentials, proprietary data), flag it
 - If tool failures prevent any research, report timeout status
 - If ambiguity or contradiction cannot be resolved inside the iteration, report the unresolved edge condition and the smallest next evidence needed
@@ -467,13 +479,13 @@ Return this summary to the dispatcher:
 
 **Files written**:
 - research/iterations/iteration-[NNN].md
-- research/deep-research-state.jsonl (appended exactly one iteration record, plus any explicitly allowed idea_observed events)
+- research/deltas/iter-[NNN].jsonl, recorded through the append gateway (exactly one iteration record, plus any explicitly allowed idea_observed events); the gateway refreshes research/deep-research-state.jsonl from the ledger
 - workflow reducer refreshes research/deep-research-strategy.md, research/findings-registry.json, and research/deep-research-dashboard.md
 - research/research.md (updated, if applicable)
 
 **Verification**:
 - Iteration file exists: [yes/no]
-- JSONL iteration append count: [1/other]
+- Gateway receipt (exit 0) + new projection records: [1/other]
 - Findings citations complete: [yes/no]
 - Packet boundary respected: [yes/no]
 - Reducer-owned files untouched: [yes/no]
@@ -508,7 +520,7 @@ ITERATION VERIFICATION:
 [x] All findings have source or inference citations
 [x] Contradictory evidence, if present, is cited on both sides and not overclaimed
 [x] Reducer-owned strategy/dashboard/registry will have enough data to sync
-[x] deep-research-state.jsonl appended with exactly one iteration record
+[x] Iteration recorded through the append gateway (exit 0); refreshed deep-research-state.jsonl projection shows exactly one new record
 [x] Any idea capture uses idea_observed only; no idea_promoted or idea_rejected emitted by the leaf
 [x] newInfoRatio calculated and reported honestly
 [x] Reflection section written with causal analysis

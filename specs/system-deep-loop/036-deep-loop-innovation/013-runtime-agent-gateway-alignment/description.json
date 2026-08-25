@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment",
+  "description": "The `012-runtime-enablement` work made the typed event ledger authoritative for all eight deep-loop modes and turned each `-state.jsonl` into a pure",
+  "keywords": [
+    "012-runtime-enablement",
+    "work",
+    "typed",
+    "event",
+    "ledger",
+    "authoritative",
+    "eight",
+    "deep-loop",
+    "modes",
+    "turned",
+    "state",
+    "jsonl",
+    "pure"
+  ],
+  "lastUpdated": "2026-08-25T07:26:14.732Z",
+  "specId": "013",
+  "folderSlug": "runtime-agent-gateway-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
