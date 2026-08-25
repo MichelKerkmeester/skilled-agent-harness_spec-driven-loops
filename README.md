@@ -642,7 +642,7 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 
 ### 🔄 Deep Loop
 
-The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Four loop families (research, review, AI council, improvement) live as nested mode packets inside one parent skill, `system-deep-loop`, and all run on one shared runtime, `runtime/`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries three co-equal lanes (agent improvement, model benchmark, skill benchmark), giving six `/deep:*` loop commands in total.
+The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Five loop families (research, review, AI council, improvement, and a named-standard alignment audit) live as nested mode packets inside one parent skill, `system-deep-loop`, and all run on one shared runtime, `runtime/`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries three co-equal lanes (agent improvement, model benchmark, skill benchmark), giving seven `/deep:*` loop commands in total.
 
 #### How It Works
 
@@ -676,7 +676,7 @@ The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispa
 #### Deep Loop Runtime (the shared foundation)
 
 One engine under every loop, so they all work the same way and you learn the workflow once.
-- **Consistent across loops:** research, review, council and improvement all dispatch, track and stop the same way
+- **Consistent across loops:** research, review, council, improvement and alignment all dispatch, track and stop the same way
 - **Pause and resume anytime:** progress is saved outside the chat, so a loop survives crashes, new sessions and long runs
 - **Trustworthy stops:** a loop ends only when the work has actually converged and passed its quality checks, never because an agent says it is done
 - **Hands-off or step-by-step:** run fully autonomous with `:auto` or pause at each step with `:confirm`, and start fresh, resume or restart at will
@@ -770,7 +770,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loo
 &nbsp;
 #### DEEP LOOP
 
-Two skills power the autonomous loops described in [Deep Loop](#deep-loop) above: **`runtime/`**, the shared MCP-free execution engine every active loop runs on, and **`system-deep-loop`**, the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`). Use `@context` separately for one-shot retrieval. This parent-nested-skill pattern is the reusable standard behind `/create:sk-skill-parent`.
+Two skills power the autonomous loops described in [Deep Loop](#deep-loop) above: **`runtime/`**, the shared MCP-free execution engine every active loop runs on, and **`system-deep-loop`**, the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`, `deep-alignment`). Use `@context` separately for one-shot retrieval. This parent-nested-skill pattern is the reusable standard behind `/create:sk-skill-parent`.
 
 &nbsp;
 #### CROSS-AI CLI
@@ -1149,7 +1149,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-design-md-generator`                  | ✅ Codebase-agnostic                        | Standalone design-reference extraction: crawls a live URL and emits a v3 Style Reference `DESIGN.md` (named tokens, type scale, components, Quick Start CSS/Tailwind), every value measured and validated against `tokens.json`. Pairs with `sk-code` for the build. Works for any project. |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
-| `system-deep-loop` | ✅ Codebase-agnostic                        | Parent hub for the unified deep-loop skill (research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking) over nested `runtime/` infrastructure. Work for any topic / target.     |
+| `system-deep-loop` | ✅ Codebase-agnostic                        | Parent hub for the unified deep-loop skill (research, review, ai-council, improvement and alignment modes, including agent improvement and model/skill benchmarking) over nested `runtime/` infrastructure. Work for any topic / target.     |
 | `sk-prompt`                                         | ✅ Codebase-agnostic                        | Prompt-engineering framework. Works for any project.                                                                                                                                                     |
 | `cli-external-orchestration` | ✅ Codebase-agnostic                        | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, and `cli-pi`. Stack-independent.                                                                                                                                                           |
 | `mcp-tooling`                                       | ✅ Codebase-agnostic                        | Parent hub for MCP tool bridges: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI, and cyanheads obsidian-mcp-server), and `mcp-figma` (Figma Desktop transport via the silships `figma-ds-cli`, requires Figma Desktop open). Stack-independent.   |
