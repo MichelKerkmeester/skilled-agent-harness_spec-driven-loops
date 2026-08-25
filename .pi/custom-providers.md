@@ -54,12 +54,20 @@ The model `id` MUST be the exact `modelType/model` Cline expects — never bare.
 
 ## 3. SUPPLYING THE API KEY
 
-No secret is stored in this repo. The provider's `apiKey` is `"{env:CLINE_API_KEY}"`, so the key comes from the environment at runtime. Two ways to provide it:
+No secret is stored in this repo. The provider's `apiKey` is `"${CLINE_API_KEY}"`, so the key comes from the environment at runtime. Two ways to provide it:
 
-1. **Environment variable**: export `CLINE_API_KEY=<your Cline key>` in the shell or profile pi runs under.
+1. **Environment variable**: export `CLINE_API_KEY=<your Cline key>` in `~/.zshenv`, so non-interactive and dispatched shells inherit it too, not only interactive logins.
 2. **pi login**: run `pi /login cline-pass` and paste the key into the api-key dialog. pi stores it in its own auth store (`~/.pi/agent/auth.json`), separate from opencode's.
 
+The stored credential wins over the config value, and it is the more fragile of the two: it lives under the resolved pi agent directory, so any session running with a different `PI_CODING_AGENT_DIR` or `HOME` cannot see it. The environment route is the portable one; prefer it and treat `/login` as the interactive convenience.
+
 Until a key is present the provider reports as unattached at stream time. It does not break pi startup, `/login` or the other models.
+
+### The Placeholder Syntax Is pi's, Not Opencode's
+
+pi resolves config values with `$ENV_VAR`, `${ENV_VAR}`, `!command`, `$$` and `$!` — documented under "config value syntax" in pi's own `docs/custom-provider.md`. It has **no** `{env:VAR}` form; that is opencode's syntax, and opencode's `cline-pass` block is where it is easy to copy from.
+
+Writing `{env:CLINE_API_KEY}` does not fail loudly. pi accepts it as a **literal** API key and sends that exact string to Cline, which answers `401 "Unauthorized: Please make sure you're using the latest version of Cline and re-authenticate your Cline account."` on the first real dispatch. A `/login`-stored credential masks the whole thing, so the provider looks healthy in an interactive session while every session with its own agent directory fails. Verified by A/B: identical isolated agent dir, empty `auth.json`, `CLINE_API_KEY` exported, `{env:...}` returned the 401 and `${...}` returned a real model reply.
 
 pi keeps its own auth store. Opencode's existing `cline-pass` credential (`~/.local/share/opencode/auth.json`) is not shared or auto-imported into pi. You give the key to pi once.
 
@@ -75,7 +83,9 @@ pi -p "reply OK" --provider cline-pass --model cline-pass/cline-pass/deepseek-v4
 pi -p "reply OK" --provider cline-pass --model cline-pass/x-ai/ox-alpha --thinking xhigh --mode text
 ```
 
-Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash`, `…/deepseek-v4-pro`, and `…/ox-alpha` rows, `pi auth check` returns `{"status":"ready"}`, and each dispatch returns a model reply rather than a `400 invalid model format`.
+Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash`, `…/deepseek-v4-pro`, and `…/ox-alpha` rows, and each dispatch returns a model reply rather than a `400 invalid model format` or a `401 Unauthorized`.
+
+`pi auth check` is **not** a credential test here. It never sends a completion, so it reports `{"status":"ready"}` whenever the provider block carries any non-empty `apiKey` value — including an unresolved placeholder that Cline will reject. Only the round-trip lines prove the credential. Its one honest signal is the opposite direction: `{"status":"invalid","reason":"invalid_state"}` means the provider block itself did not load.
 
 ---
 

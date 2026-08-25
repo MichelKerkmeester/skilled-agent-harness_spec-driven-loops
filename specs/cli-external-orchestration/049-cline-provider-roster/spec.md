@@ -112,6 +112,10 @@ Aggregate scope; per-phase detail lives in each child plan.
 | `.pi/custom-providers.md`, cli-pi roster | Modify | 006 | Corrected forms + the slashed-id gotcha |
 | `.opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/cline-provider-id-format-dispatch.md` | Create | 007 | The PI-023 cline model-dispatch scenario |
 | `.opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md` | Modify | 007 | Index count, Model Dispatch group, cross-reference |
+| `.pi/models.json` | Modify | 008 | `thinkingLevelMap` (high + xhigh) on the cline-pass models |
+| `.pi/settings.json` | Modify | 008 | `defaultThinkingLevel` restored to `xhigh` |
+| `.pi/models.json` | Modify | 009 | cline-pass `apiKey` in pi's own `${VAR}` syntax |
+| `.pi/custom-providers.md`, cli-pi roster | Modify | 009 | Credential syntax, precedence, and the `pi auth check` blind spot |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -130,6 +134,8 @@ Aggregate scope; per-phase detail lives in each child plan.
 | 5 | 005-cline-pro-and-pi-default/ | Add DeepSeek V4 Pro through the Cline provider across `.pi` config and both cli rosters (xhigh-only), and set pi's default provider to `cline-pass` with `deepseek-v4-flash`. | Complete |
 | 6 | 006-cline-pi-model-id-format-fix/ | Fix the cline-pass model id format: the ids were bare, so pi sent a bare `model` and the Cline API returned `400 invalid model format`. Restore the slashed `cline-pass/<model>` id across `.pi` config and both pi doc surfaces, and document the slashed-id gotcha. | Complete |
 | 7 | 007-cline-model-dispatch-playbook-scenario/ | Add PI-023 to the cli-pi manual testing playbook: a Model Dispatch scenario for the config-wired cline-pass provider's slashed model-id contract, plus its index wiring. | Complete |
+| 8 | 008-cli-pi-cline-xhigh-thinking-tiers/ | Declare a `thinkingLevelMap` (high + xhigh) on the cline-pass models so pi's interactive picker can reach `xhigh`, matching opencode, and restore the `xhigh` default. | Complete |
+| 9 | 009-cline-pi-apikey-env-syntax-fix/ | Fix the cline-pass `apiKey` placeholder: it used opencode's `{env:VAR}` form, which pi sends to Cline as a literal key for a `401`, masked by a `/login` credential so only sessions with their own agent directory failed. Switch to pi's `${VAR}` syntax and source the key from the environment. | Complete |
 
 ### Phase Transition Rules
 
@@ -149,6 +155,8 @@ Aggregate scope; per-phase detail lives in each child plan.
 | 004-cline-cli-pi-roster | 005-cline-pro-and-pi-default | DeepSeek V4 Pro is live on every cline-pass surface at xhigh-only, and pi's default provider is cline-pass | `pi --list-models` shows both cline models; `pi auth check` on pro returns `status: ready`; both rosters show the pro row; `validate.sh --strict` exit 0 |
 | 005-cline-pro-and-pi-default | 006-cline-pi-model-id-format-fix | A live pi dispatch to both cline models returns a model reply with no `400 invalid model format`; every cline-pass surface shows the slashed id | Live `pi --provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash` returns a reply; `.pi/models.json` ids are slashed; `validate.sh --strict` exit 0 |
 | 006-cline-pi-model-id-format-fix | 007-cline-model-dispatch-playbook-scenario | The cli-pi testing playbook has a cline Model Dispatch scenario (PI-023), indexed and sk-doc VALID | `model-dispatch/cline-provider-id-format-dispatch.md` exists; the index lists PI-023; `validate.sh --strict` exit 0 |
+| 007-cline-model-dispatch-playbook-scenario | 008-cli-pi-cline-xhigh-thinking-tiers | Both cline-pass models expose `xhigh` to the picker and a live `--thinking xhigh` dispatch completes | `thinkingLevelMap` present on both models; live xhigh turn at exit 0; `validate.sh --strict` exit 0 |
+| 008-cli-pi-cline-xhigh-thinking-tiers | 009-cline-pi-apikey-env-syntax-fix | A cline dispatch authenticates from the environment alone, against an agent directory with an empty auth store | `apiKey` is `${CLINE_API_KEY}`; live dispatch through a fresh non-interactive shell returns a model reply; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---
