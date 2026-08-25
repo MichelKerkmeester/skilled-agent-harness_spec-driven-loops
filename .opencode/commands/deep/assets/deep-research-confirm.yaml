@@ -1058,25 +1058,82 @@ workflow:
             - "claude-code supports --effort for reasoning depth"
         if_cli_opencode:
           command: |
-            opencode run \
-              --model "{config.executor.model}" \
-              --format json \
-              --dangerously-skip-permissions \
-              --pure \
-              --dir "{repo_root}" \
-              {optional_variant_flag} \
-              "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
-              </dev/null
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+
+            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import {
+              snapshotOutOfScopeDirtyPaths,
+              enforceWriteContainment,
+            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
+
+            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const executor = {
+              kind: 'cli-opencode',
+              model: '{config.executor.model}',
+              configDir: null,
+              reasoningEffort,
+              serviceTier: null,
+              sandboxMode: null,
+              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+              governor: null,
+            };
+            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const message = 'Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true'
+              + '\n\n'
+              + promptBody;
+            const args = ['run', '--model', executor.model, '--format', 'json', '--dangerously-skip-permissions', '--pure', '--dir', '{repo_root}'];
+            if (executor.reasoningEffort) {
+              args.push('--variant', executor.reasoningEffort);
+            }
+            args.push(message);
+
+            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
+            const repoRoot = '{repo_root}';
+            const artifactDir = '{state_paths.packet_dir}';
+            // A --dangerously-skip-permissions opencode leaf can write anywhere in the
+            // repo, and the prompt-level allowed-write contract is its only other guard.
+            // Snapshot out-of-scope dirty paths before dispatch so any NEW write the leaf
+            // makes outside its artifact dir is reverted after, fail-closed. The leaf's own
+            // writes under the artifact dir are never flagged.
+            const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
+            const dispatchExit = runAuditedExecutorCommand({
+              command: 'opencode',
+              args,
+              cwd: repoRoot,
+              timeoutSeconds: executor.timeoutSeconds,
+              stateLogPath: '{state_paths.state_log}',
+              executor,
+              iteration: Number('{current_iteration}'),
+              input: '',
+              receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+              dispatchId,
+            });
+            const containment = enforceWriteContainment({
+              repoRoot,
+              artifactDir,
+              preDispatchDirtyPaths,
+              stateLogPath: '{state_paths.state_log}',
+              iteration: Number('{current_iteration}'),
+              label: dispatchId,
+            });
+            if (containment.violations.length > 0) {
+              console.error(
+                'write-containment violation: reverted ' + containment.violations.length
+                  + ' out-of-scope path(s): '
+                  + containment.violations.map((v) => v.path).join(', '),
+              );
+              process.exit(1);
+            }
+            process.exit(dispatchExit);
+            EOF
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
-          render_hint:
-            optional_variant_flag: |
-              If config.executor.reasoningEffort is set and non-null, expand to: --variant {config.executor.reasoningEffort}
-              Otherwise expand to empty string.
           notes:
-            - "opencode run takes a positional message; prompt is fed via command substitution"
-            - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
+            - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
+            - "Structural write-containment: snapshot out-of-scope dirty paths pre-dispatch, revert any NEW out-of-artifact-dir change post-dispatch, fail closed on violation; the leaf's own artifact-dir writes are never flagged. The confirm branch previously relied on the prompt contract plus post-dispatch validation alone"
+            - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode reads stdin at startup and hangs without it"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."

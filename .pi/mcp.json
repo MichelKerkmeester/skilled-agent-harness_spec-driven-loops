@@ -1,11 +1,5 @@
 {
   "mcpServers": {
-    "sequential_thinking": {
-      "command": "npx",
-      "args": ["@modelcontextprotocol/server-sequential-thinking@2025.12.18"],
-      "transport": "stdio",
-      "lifecycle": "eager"
-    },
     "system-spec-memory": {
       "command": "node",
       "args": [".opencode/bin/system-spec-memory-launcher.cjs"],

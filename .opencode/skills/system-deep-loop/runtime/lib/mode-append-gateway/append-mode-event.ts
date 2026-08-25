@@ -34,7 +34,9 @@ import {
 import {
   LEGACY_PROJECTION_MANIFEST,
   LegacyProjectionEngine,
+  createDeepAlignmentStateDeltasProjectionContract,
   createDeepResearchProjectionContract,
+  createDeepReviewStateProjectionContract,
   foldLegacyProjection,
   requireProjectableManifestEntry,
 } from '../legacy-projections/index.js';
@@ -47,6 +49,12 @@ import {
 import {
   createDeepResearchEventRegistry,
 } from '../deep-research-ledger-schema/index.js';
+import {
+  createDeepReviewEventRegistry,
+} from '../deep-review-ledger-schema/index.js';
+import {
+  createDeepAlignmentEventRegistry,
+} from '../deep-alignment-ledger-schema/index.js';
 import {
   canonicalBytes,
   sha256Bytes,
@@ -194,6 +202,18 @@ function resolveDefaultProjectionContract(
       streamIds: Object.freeze([ledgerId]),
     }) as unknown as LegacyProjectionContract<JsonObject>;
   }
+  if (mode === 'deep-review' || mode === 'review') {
+    return createDeepReviewStateProjectionContract({
+      ledgerId,
+      streamIds: Object.freeze([ledgerId]),
+    }) as unknown as LegacyProjectionContract<JsonObject>;
+  }
+  if (mode === 'deep-alignment' || mode === 'alignment') {
+    return createDeepAlignmentStateDeltasProjectionContract({
+      ledgerId,
+      streamIds: Object.freeze([ledgerId]),
+    }) as unknown as LegacyProjectionContract<JsonObject>;
+  }
   return null;
 }
 
@@ -204,6 +224,12 @@ function resolveModeEventRegistry(
   if (providedRegistry) return providedRegistry;
   if (mode === 'deep-research' || mode === 'research') {
     return createDeepResearchEventRegistry();
+  }
+  if (mode === 'deep-review' || mode === 'review') {
+    return createDeepReviewEventRegistry();
+  }
+  if (mode === 'deep-alignment' || mode === 'alignment') {
+    return createDeepAlignmentEventRegistry();
   }
   return null;
 }
