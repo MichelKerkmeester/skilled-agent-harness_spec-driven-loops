@@ -51,7 +51,7 @@ Consumers import domain behavior from `lib/` or invoke a documented script from 
 
 ## 4. SPINE ROLE
 
-The runtime is the implementation spine beneath the deep-loop mode workflows. Event envelopes enter the ledger schema, reducers derive projections, sealed artifacts bind durable evidence, and a per-mode authority registry flips each mode's write authority under compare-and-swap.
+The runtime is the implementation spine beneath the deep-loop mode workflows. Event envelopes enter the ledger schema, reducers derive projections, sealed artifacts bind durable evidence, and a per-mode authority registry resolves each mode's finalized write authority from the append-only ledger.
 
 Database storage, lock ownership and append authorization remain infrastructure boundaries. Mode workflows decide when to call the runtime and how to present its results.
 

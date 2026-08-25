@@ -35,7 +35,7 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `hierarchical-budgets/` | Reserves, settles and replays token, cost, iteration and wall-time budgets across a four-level scope hierarchy. |
 | `legacy-projections/` | Folds verified ledger events into disposable legacy JSON or JSONL bytes so existing readers keep working during migration. |
 | `locks-and-fencing/` | Grants leases with monotonic fence tokens and gates ledger and state writes behind them to prevent split-brain writers. |
-| `mode-contracts/` | Defines the contract shape, required substrate ports, conformance runner and version compatibility policy for a workflow mode. |
+| `mode-contracts/` | Defines the contract shape and required substrate port types for a workflow mode (a pure type surface). |
 | `next-focus/` | Derives, scores and durably records the next research or review focus region as a replayable ledger decision. |
 | `partial-failure-policy/` | Decides whether a fan-out orchestration should abort, wait, proceed or proceed degraded when some branches fail. |
 | `path-coverage-termination/` | Evaluates whether a workflow mode has covered its required region universe well enough to terminate. |
