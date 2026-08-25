@@ -132,7 +132,7 @@ Every iteration follows this exact sequence. Do not reorder, skip, or combine st
 6. CLASSIFY FINDINGS ► Assign P0/P1/P2 with file:line evidence
 7. WRITE FINDINGS ───► Create review/iterations/iteration-NNN.md
 8. UPDATE STRATEGY ─► Edit review/deep-review-strategy.md sections
-9. APPEND JSONL ─────► Add exactly ONE canonical iteration record
+9. RECORD STATE ─────► Hand record to append gateway (--mode review); refreshes deep-review-state.jsonl
 10. WRITE DELTA ─────► Create review/deltas/iter-NNN.jsonl
 11. VERIFY OUTPUTS ──► Prove narrative, strategy, state, and delta agree
 ```
@@ -228,9 +228,9 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - Set "Next Focus" for the next iteration.
 - Do not rewrite unrelated strategy sections or erase prior iteration notes.
 
-#### Step 9: Append JSONL
+#### Step 9: Record State Through the Append Gateway
 
-- Append exactly ONE `type:"iteration"` line to `review/deep-review-state.jsonl`.
+- Record exactly ONE canonical `type:"iteration"` record through the append gateway — never write `review/deep-review-state.jsonl` directly. The gateway authorizes, fences, receipts, and refreshes that projection from the ledger.
 - Required route proof is `"iteration":N`, `"mode":"review"`, `"target_agent":"deep-review"`, `"agent_definition_loaded":true`, and `"resolved_route":"Resolved route: mode=review target_agent=deep-review"`.
 - Required review data includes `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `findingDetails`, `traceabilityChecks`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, and `durationMs`.
 - Allowed `status`: `complete | timeout | error | stuck | insight | thought`.
@@ -238,10 +238,21 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - `newFindingsRatio = (weightedNew + weightedRefinement) / weightedTotal` with weights P0=10, P1=5, P2=1 and refinement at 0.5x.
 - If no findings exist, set ratio to 0.0; if any new P0 exists, set `newFindingsRatio = max(calculated, 0.50)`.
 
+**Record through the gateway**:
+
+```bash
+node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+  --mode review \
+  --run-directory <resolved review packet root> \
+  --event-json <record file>
+```
+
+Here `<record file>` is a file holding the single canonical iteration record (one JSON object) — the gateway `JSON.parse`s it whole, so it must not be the multi-line `deltas/iter-NNN.jsonl`. The gateway authorizes the record against the mode's durable authority, fences it behind the ledger, returns a receipt, and refreshes `review/deep-review-state.jsonl` from the ledger. Exit `0` means the record is durable; exit `2` means it was refused — halt and name the check the refusal reports. Never fall back to a direct write of the projection file.
+
 #### Step 10: Write Delta
 
-- Create `review/deltas/iter-NNN.jsonl` once.
-- Its first line MUST contain the same canonical iteration record as the state-log append.
+- Create `review/deltas/iter-NNN.jsonl` once — the multi-line delta artifact the reducer consumes, separate from the one-record event file handed to the gateway in Step 9.
+- Its first line MUST contain the canonical iteration record built in Step 9.
 - Append structured finding, classification, traceability-check, graph-event, and ruled-out records after it, one JSON object per line.
 - Never overwrite an existing delta file.
 
@@ -249,7 +260,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 - Verify the narrative contains focus, finding severity sections, traceability checks, edge cases, ruled-out section, and next focus.
 - Verify strategy contains updated dimension status, running counts, edge-case carry-forward when applicable, and next focus.
-- Verify state JSONL has exactly one new canonical iteration record with complete route proof.
+- Verify the append gateway returned exit 0 with a receipt, and the refreshed `review/deep-review-state.jsonl` projection shows exactly one new canonical iteration record with complete route proof.
 - Verify `review/deltas/iter-NNN.jsonl` exists and its canonical iteration record matches the state-log record.
 - Verify `integrationEvidence` appears only when exact integration surfaces were reviewed.
 - Verify no review target, config, registry, reducer output, dashboard, report, command, skill, canonical agent, or runtime mirror file was modified.
@@ -367,7 +378,7 @@ All paths resolve from the target spec folder. Root-spec targets write directly 
 | File | Path | Operation |
 |------|------|-----------|
 | Config | `review/deep-review-config.json` | Read only |
-| State log | `review/deep-review-state.jsonl` | Read + append |
+| State log (projection) | `review/deep-review-state.jsonl` | Read only; the gateway refreshes it from the ledger |
 | Findings registry | `review/deep-review-findings-registry.json` | Read only |
 | Strategy | `review/deep-review-strategy.md` | Read + edit specific sections |
 | Iteration findings | `review/iterations/iteration-{NNN}.md` | Write new file |
@@ -386,11 +397,11 @@ Do not trust a dispatch-provided iteration number until it matches the JSONL-der
 
 ### Write Safety
 
-- JSONL: append exactly one iteration record; never overwrite or rewrite previous lines.
+- State record: record exactly one iteration record through the append gateway (`--mode review`); never write the `review/deep-review-state.jsonl` projection directly.
 - Strategy: use Edit tool to modify specific sections; never use Write to replace the whole file.
 - Iteration file: create a new file; it must not already exist.
 - Review target files are READ-ONLY.
-- Only write to `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, `review/deep-review-state.jsonl`, and the write-once `review/deltas/iter-NNN.jsonl`.
+- Only write to `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, and the write-once `review/deltas/iter-NNN.jsonl`; the `review/deep-review-state.jsonl` projection is refreshed by the gateway, never written directly.
 - NEVER write config, findings registry, reducer outputs, dashboards, reports, source files, command files, skill files, canonical agent files, or runtime mirrors.
 - Before every write, restate the resolved path mentally against the review packet root. If it is outside the packet, stop.
 
@@ -436,7 +447,7 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 4. Choose and record a budget profile before analysis.
 5. Externalize all findings to the iteration file; never hold findings only in context.
 6. Update strategy after review.
-7. Append exactly one JSONL iteration record after the iteration file and strategy are coherent.
+7. Record exactly one iteration record through the append gateway (`--mode review`) after the iteration file and strategy are coherent; never write the state projection directly.
 8. Report newFindingsRatio + noveltyJustification honestly.
 9. Cite file:line evidence for every finding.
 10. Run Hunter/Skeptic/Referee for P0 candidates and emit typed claim-adjudication packets for every new P0/P1.
@@ -456,7 +467,7 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 6. Modify config after init.
 7. Edit review target files.
 8. Fabricate findings or inflate severity.
-9. Overwrite `deep-review-state.jsonl`.
+9. Write the `deep-review-state.jsonl` projection directly (the append gateway owns it).
 10. Skip writing the iteration file.
 11. Write outside the resolved local-owner review packet.
 12. Treat reducer-owned files as writable.
@@ -489,7 +500,7 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 - [x] Edge cases classified.
 - [x] Findings cite file:line evidence.
 - [x] P0 Hunter/Skeptic/Referee and P0/P1 claim-adjudication packets completed when applicable.
-- [x] Iteration artifact, strategy update, and single JSONL append completed.
+- [x] Iteration artifact, strategy update, and gateway record (exit 0 receipt; refreshed `deep-review-state.jsonl` projection shows exactly one new record) completed.
 - [x] JSONL matches artifact counts, focus, status, ruledOut, budgetProfile, and edgeCases.
 - [x] Config, registry, reducer outputs, dashboards, reports, commands, skills, canonical agent files, runtime mirrors, and review target files were not modified.
 - [x] Traceability, integration evidence, newFindingsRatio, exhausted approaches, and sub-agent prohibition checked.
@@ -508,7 +519,7 @@ Return this field skeleton to the dispatcher:
 - Edge cases
 - Integration evidence
 - Recommended next focus
-- Files written: iteration artifact, JSONL append, strategy update
+- Files written: iteration artifact, delta recorded through the append gateway (refreshes deep-review-state.jsonl), strategy update
 - Status: `complete | timeout | error | stuck | insight | thought`
 
 For non-`complete` statuses, replace the heading with `## Review Iteration [N] Partial` or `## Review Iteration Error` and include verified work, unverified work, files written, and next safe recovery focus.
@@ -556,7 +567,7 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 │  Focus Dimension ─► Execute Review ─►    │
 │  Resolve Edges ─► Classify Findings ─►   │
 │  Write Iteration ─► Update Strategy ─►   │
-│  Append JSONL ─► Verify Outputs          │
+│  Record State ─► Verify Outputs          │
 ├──────────────────────────────────────────┤
 │ LIMITS                                   │
 │  ├─► LEAF-only (no sub-agents)           │
