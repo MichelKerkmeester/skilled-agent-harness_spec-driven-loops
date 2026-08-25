@@ -2,7 +2,7 @@
 name: sk-code-mobile-cli
 description: "Read-only Svelte design-system and source-convention evidence for the Pi Remote Mobile-CLI app."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.4.0.0
+version: 1.5.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -236,6 +236,27 @@ token-identity gate is the standing proof that no name collides.
 - `app-mobile/tests/support/css-corpus.ts` assembles `app.css` plus every component `.css`; a test that
   needs a component's rules reads its `.css`, never a `<style>` block.
 
+### CSS class names
+
+Class names use a BEM `block--element` form. A block keeps its name; an element or modifier of it is
+`block--part` with a `--` delimiter (`agent-state--icon`, `slash--option`), and a single `-` stays inside
+a compound block or part. State-modifier classes keep the `is-` prefix and stay single-dash (`is-plan`,
+`is-diff-add`, `is-wrapped`) — `is-` is a state prefix, not a block, so a dynamic `is-${kind}` matches a
+single-dash `.is-kind` rule. A state compound a parent sets on a child (`.block--part.is-state`) stays
+reachable from a scoped `<style>` through `:global()`.
+
+- **Dynamic class construction realigns the boundary before the interpolation** so the runtime class
+  matches its rule — the template `` `block--${kind}` ``, the concat `'block--' + kind`, and the ternary
+  form all emit the renamed class. Every interpolated kind, including underscore or compound kinds
+  (`file_diff`, `needs_input`), must resolve to a class that has a matching rule; a missing one renders
+  unstyled.
+- **DOM ids, CSS custom-property (token) names, and wire enums that share a class's string are data, not
+  classes.** They keep their own form (`slash-option-${name}` the id, `--diff-add` the token,
+  `reason: 'approval-pending'` the enum) even when a class of the same stem is renamed.
+- A rename is proven behaviour-preserving by the token-identity value oracle, a scan that no old class
+  token remains in a class context, and `test:web`; a before/after catalog screenshot diff is the gate
+  that catches a dynamic class rendered against a rule that no longer exists.
+
 ### CSS comment structure
 
 Every component `.css` opens with a file-header banner and groups its rules under numbered section
@@ -275,6 +296,9 @@ rule, as in `app-mobile/src/shared/state/turns.ts`:
 
 Apply the comment grammar actually present in the tree:
 
+- Keep a comment to the durable WHY a reader cannot infer from the code. Do not narrate the next line,
+  restate a name, or open a file with a multi-line prose essay; a section banner plus a one-line reason
+  is the density the tree carries.
 - Start prose comments in sentence case. Continuation lines may continue the sentence, but a new
   comment starts with a capital letter unless it is a directive, identifier, or code-shaped marker.
 - Leave no commented-out code behind. Delete obsolete code instead of preserving a second, inert copy.
