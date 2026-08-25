@@ -122,6 +122,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | 5 | 005-inventory-parity-and-doc-truth/ | [Phase 5 scope] | Pending |
 | 6 | 006-live-verification-capture/ | [Phase 6 scope] | Pending |
+| 7 | 007-code-mode-transport-leak/ | Release Code Mode transports at both lifecycle points so remote MCP child processes stop accumulating across sessions and contending over shared credential state | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
