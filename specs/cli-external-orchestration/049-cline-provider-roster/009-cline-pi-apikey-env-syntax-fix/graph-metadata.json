@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
-  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
+  "packet_id": "cli-external-orchestration/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix",
+  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix",
   "parent_id": "cli-external-orchestration/049-cline-provider-roster",
   "children_ids": [],
   "manual": {
@@ -11,30 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cline pi testing playbook scenario",
-      "PI-023 cline model dispatch",
-      "cli-pi playbook cline coverage",
-      "cline slashed id playbook",
-      "cline playbook scenario plan",
-      "PI-023 plan",
-      "cline playbook scenario tasks",
-      "PI-023 tasks",
-      "PI-023 cline scenario done",
-      "cli-pi cline playbook coverage added"
+      "pi cline 401 unauthorized",
+      "cline-pass api key not found pi",
+      "pi env placeholder apiKey syntax",
+      "ox-alpha not available in dispatched pi session",
+      "cline apiKey syntax plan",
+      "pi env placeholder plan",
+      "cline apiKey syntax tasks",
+      "pi env placeholder tasks",
+      "cline apiKey syntax fixed",
+      "pi dispatched session 401 resolved"
     ],
     "key_topics": [
       "cline",
-      "testing",
-      "playbook",
-      "scenario",
-      "pi-023",
-      "model",
-      "dispatch",
-      "cli-pi",
-      "coverage",
-      "slashed",
-      "plan",
-      "tasks"
+      "unauthorized",
+      "cline-pass",
+      "api",
+      "key",
+      "found",
+      "env",
+      "placeholder",
+      "apikey",
+      "syntax",
+      "ox-alpha",
+      "available"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -88,12 +88,6 @@
         "source": "derived"
       },
       {
-        "name": "Model Dispatch",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -101,6 +95,12 @@
       },
       {
         "name": "Cline Provider Roster",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -118,19 +118,25 @@
         "source": "derived"
       },
       {
-        "name": "Overview Mirror",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Additive",
+        "name": "Pattern Credential",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -154,13 +160,19 @@
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -176,23 +188,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "cli-pi's manual testing playbook has a Model Dispatch group (PI-017, PI-018), but neither scenario mentions the cline provider — the only cli-pi file that referenced cline was the provider roster",
-    "created_at": "2026-08-18T18:42:01.971Z",
-    "last_save_at": "2026-08-25T05:06:16.018Z",
+    "causal_summary": "Dispatched and non-interactive pi sessions could not reach the cline-pass models",
+    "created_at": "2026-08-25T05:01:45.637Z",
+    "last_save_at": "2026-08-25T05:03:47.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2a5020be5d8026590afdd7c045d69f0ae99b5c22f0093629155ef84ab7c9d33",
+    "source_fingerprint": "sha256:dd0edd8ed087d538e55d9a82ac37200617315c3028ccbb255092f7fe572520b1",
     "source_doc_hashes": {
-      "spec.md": "8e5de8ec700d591c72649e7822afee6a14755c5e68af3138c18b7e284fd0f69a",
-      "plan.md": "38f9278539e24537db5f623e5c68eecc8fd874f7a3d5879e8ac871d619c29d2c",
-      "tasks.md": "311e48563d9cba74b1f64f0db3d4a7cf7978b83a802ffe7ec068f222c728525f",
-      "implementation-summary.md": "8ab712b447153173eeb81c220cbc8bd0773244dc5e1f604699b013bde296c211"
+      "spec.md": "9ba1fd38b37b599e6c5d9711c74dd0960559b849e66b6a997955ff1a315141f2",
+      "plan.md": "57bb1e531307181a63657b43b1e4f2d930a6258965e2ccd1474f17646e83e298",
+      "tasks.md": "2c5465889cb21b59bff6976afb3e8f28bfbe1889454540f569cb4f2a99c5e214",
+      "implementation-summary.md": "9e6ca83f013d19925543eb426e8fec1241d73ca749f110c65228df71be01d1dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

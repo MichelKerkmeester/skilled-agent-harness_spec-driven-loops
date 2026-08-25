@@ -4,7 +4,7 @@
       "name": "Cline (cline.bot)",
       "api": "openai-completions",
       "baseUrl": "https://api.cline.bot/api/v1",
-      "apiKey": "{env:CLINE_API_KEY}",
+      "apiKey": "${CLINE_API_KEY}",
       "compat": {
         "thinkingFormat": "deepseek"
       },

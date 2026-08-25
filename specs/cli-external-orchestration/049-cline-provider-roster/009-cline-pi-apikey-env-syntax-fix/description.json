@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix",
+  "description": "Dispatched and non-interactive pi sessions could not reach the cline-pass models",
+  "keywords": [
+    "dispatched",
+    "non-interactive",
+    "sessions",
+    "reach",
+    "cline-pass",
+    "models"
+  ],
+  "lastUpdated": "2026-08-25T05:03:28.912Z",
+  "specId": "009",
+  "folderSlug": "cline-pi-apikey-env-syntax-fix",
+  "parentChain": [
+    "cli-external-orchestration",
+    "049-cline-provider-roster"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

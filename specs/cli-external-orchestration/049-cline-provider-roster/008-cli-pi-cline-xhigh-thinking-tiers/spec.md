@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers"
-    last_updated_at: "2026-08-22T11:40:00Z"
+    last_updated_at: "2026-08-25T05:06:09Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored spec for the pi cline-pass xhigh thinkingLevelMap fix"
+    recent_action: "Linked the successor phase after 009 landed"
     next_safe_action: "Commit and push to v4 and main"
     blockers: []
     key_files:
@@ -46,9 +46,9 @@ _memory:
 | **Created** | 2026-08-22 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 8 |
+| **Phase** | 8 of 9 |
 | **Predecessor** | 007-cline-model-dispatch-playbook-scenario |
-| **Successor** | none |
+| **Successor** | 009-cline-pi-apikey-env-syntax-fix |
 | **Handoff Criteria** | `.pi/models.json` cline-pass models declare a `thinkingLevelMap` exposing `xhigh`; both JSON parse; a live `pi --thinking xhigh` cline dispatch completes; `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:metadata -->
 
