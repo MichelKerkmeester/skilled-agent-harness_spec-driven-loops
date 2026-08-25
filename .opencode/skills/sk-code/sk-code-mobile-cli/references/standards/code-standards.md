@@ -57,8 +57,9 @@ ephemeral identifiers — no spec, packet, phase, task, or ticket ids. The app's
 ## 5. STYLES AND CSS OWNERSHIP
 
 Each component owns its presentation in a scoped `<style>` block; the primitive, semantic, and component
-token layers plus shared rules live in `app-mobile/src/app.css`. The `@ds` editability seams annotate
-both. No component ships a separate `.css` file.
+token layers plus shared rules live in `app-mobile/src/app.css`. Nearby purpose comments explain the
+presentation seam and `Do not edit — <why>` notes protect frozen lines. No component ships a separate
+`.css` file.
 
 ---
 

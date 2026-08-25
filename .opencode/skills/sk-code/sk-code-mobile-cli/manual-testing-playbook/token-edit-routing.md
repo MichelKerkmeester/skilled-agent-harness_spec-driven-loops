@@ -6,7 +6,7 @@ expected_surface: PI_REMOTE
 expected_intent: IMPLEMENTATION
 expected_resources:
   - references/token-library.md
-  - references/ds-grammar.md
+  - references/comment-grammar.md
   - references/component-tokens.md
   - references/retint-recipes.md
   - references/theme-remap.md

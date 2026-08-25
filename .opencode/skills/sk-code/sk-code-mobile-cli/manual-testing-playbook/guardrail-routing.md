@@ -14,11 +14,11 @@ version: 1.0.0.0
 
 ## 2. SCENARIO CONTRACT
 
-- Prompt: `Run a quality gate confirming no @ds guardrail: do-not-edit fence was touched by this design-system change.`
+- Prompt: `Run a quality gate confirming no Do not edit — guardrail fence was touched by this design-system change.`
 - Expected surface: `PI_REMOTE`
 - Expected intent: `CODE_QUALITY`
 
 **Exact prompt**:
 ```text
-Run a quality gate confirming no @ds guardrail: do-not-edit fence was touched by this design-system change.
+Run a quality gate confirming no Do not edit — guardrail fence was touched by this design-system change.
 ```

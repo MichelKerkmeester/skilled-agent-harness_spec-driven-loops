@@ -84,7 +84,7 @@ must emit a class that has a matching rule:
 
 Every interpolated `kind` must resolve, including compound and underscore kinds. `attention--${item.attentionClass}`
 produces `attention--needs_input`, which `screen-attention-inbox.svelte` styles as
-`:global(.attention--needs_input)`; the `file_diff` kind resolves to the `@ds state: file_diff` rule
+`:global(.attention--needs_input)`; the `file_diff` kind resolves to the loading-state presentation rule
 in `app.css`. A kind that reaches an element but has no rule renders dead — the failure mode a
 mechanical BEM rename produced when a map missed an underscore kind.
 
@@ -108,4 +108,4 @@ Some strings share a class's spelling but are not classes and must not be rename
 - Check: `node scripts/naming/scan-naming.mjs` lists any source basename off the naming grammar; dead
   dynamic classes surface through the `css-corpus.ts` and Storybook story assertions under `test:web`.
 - `scoped-style-ownership.md` — which file the matching rule for a class belongs in.
-- `comment-grammar.md` — the `@ds` seam markers that annotate a class's surface and state.
+- `comment-grammar.md` — the natural purpose comments that annotate a class's surface and state.

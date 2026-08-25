@@ -2,22 +2,22 @@
 name: sk-code-mobile-cli
 description: "Read-only Svelte design-system and source-convention evidence for the Pi Remote Mobile-CLI app."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.6.0.0
+version: 1.7.0.0
 metadata:
   author: OpenCode
   family: sk-code
   packetKind: surface
 ---
 
-<!-- Keywords: pi-remote, mobile-cli, app-mobile, app-relay, packages/pi-rpc-protocol, svelte, sveltekit, runes, scoped-styles, app.css, design-system, token-library, component-tokens, retint-recipes, theme-remap, ds-grammar, designer-editability, folder-docs, module-banners, browser-free-resolver -->
-<!-- Owns: Pi Remote app / mobile cli app / app-mobile / app-relay / packages/pi-rpc-protocol / design system code / @ds grammar / Svelte source conventions / token library edit / component-token retint / theme remap / designer-editable frontend / source-folder README and CODE guidance. Does NOT own: routing (parent sk-code hub), code implementation lifecycle (workflow modes), app source values (frozen). -->
+<!-- Keywords: pi-remote, mobile-cli, app-mobile, app-relay, packages/pi-rpc-protocol, svelte, sveltekit, runes, scoped-styles, app.css, design-system, token-library, component-tokens, retint-recipes, theme-remap, comment-grammar, designer-editability, folder-docs, module-banners, browser-free-resolver -->
+<!-- Owns: Pi Remote app / mobile cli app / app-mobile / app-relay / packages/pi-rpc-protocol / design system code / natural source comment convention / Svelte source conventions / token library edit / component-token retint / theme remap / designer-editable frontend / source-folder README and CODE guidance. Does NOT own: routing (parent sk-code hub), code implementation lifecycle (workflow modes), app source values (frozen). -->
 
 # mobile-cli Surface — Pi Remote Design-System and Svelte Evidence
 
 Read-only evidence for code work on the **Pi Remote Mobile-CLI** app (`app-mobile/` and its relay
 peer `app-relay/`, with the shared protocol in `packages/pi-rpc-protocol/`). The shipped web surface is
 a SvelteKit app with Svelte runes and component-scoped styles. When the hub bundles this surface, a
-code workflow gains the app's formalized design system, source-tree conventions, `@ds` inline-comment
+code workflow gains the app's formalized design system, source-tree conventions, natural inline-comment
 grammar, guardrails that keep designer edits out of logic and the security boundary, and the
 browser-free verification gate this codebase actually uses.
 
@@ -29,8 +29,8 @@ browser-free verification gate this codebase actually uses.
   `packages/pi-rpc-protocol/` in the Mobile CLI app repository. The hub's surface detection resolves
   **PI_REMOTE**.
 - The active workflow phase needs the app's design-system evidence: the primitive → semantic →
-  component token model, the `@ds` inline-comment editability grammar, the `@ds guardrail: do-not-edit`
-  fences, or the browser-free verification gate.
+  component token model, the natural inline-comment editability convention, the `Do not edit — <why>`
+  guardrail notes, or the browser-free verification gate.
 - The active workflow needs the shipped Svelte source grammar: kebab-case names, SvelteKit route
   exemptions, runes lifecycle rules, shared-folder ownership, section banners, or paired source-folder
   documentation.
@@ -51,14 +51,14 @@ primary and mutates nothing. It supplies evidence while the acting workflow appl
 | [`references/token-library.md`](references/token-library.md) | The three-layer model — primitive (`--pi-*`, 8 frozen values) → semantic role → component token — with the frozen ink-on-parchment values and how a retint propagates. |
 | [`references/component-tokens.md`](references/component-tokens.md) | The Layer-3 per-surface component token families (`--model-sheet-*`, `--slash-*`, `--diff-*`): what each alias resolves to, per theme, and the blast radius of retinting one. |
 | [`references/retint-recipes.md`](references/retint-recipes.md) | Two worked, step-by-step retint recipes — a semantic-role retint (system-wide) and a component-token retint (one surface) — each with the browser-free resolver proof steps. |
-| [`references/theme-remap.md`](references/theme-remap.md) | The light / dark / system-dark `@ds theme:` semantic remap: which role reads which primitive per theme, and which roles stay literal. |
-| [`references/ds-grammar.md`](references/ds-grammar.md) | The `@ds` inline-comment grammar: `surface / slot / state / variant / edit / guardrail / catalog / theme`, and how to read each seam. |
-| [`references/editability-guardrails.md`](references/editability-guardrails.md) | The `@ds guardrail: do-not-edit` fences and the architectural reason a CSS/token edit cannot reach logic or the security boundary. |
+| [`references/theme-remap.md`](references/theme-remap.md) | The light / dark / system-dark semantic remap: which role reads which primitive per theme, and which roles stay literal. |
+| [`references/comment-grammar.md`](references/comment-grammar.md) | The natural comment convention: kept banners, module headers, markup labels, one-line purpose comments, four edit classes, seam reading, and the retired marker migration. |
+| [`references/editability-guardrails.md`](references/editability-guardrails.md) | The `Do not edit — <why>` frozen-seam notes, scanner counter, and architectural reason a CSS/token edit cannot reach logic or the security boundary. |
 | [`references/verification.md`](references/verification.md) | The verification command set and the browser-free resolver method. The app's CSP renders it unstyled headless, so selector → value resolution, not screenshots, is the authoritative value-preservation gate. |
 | [`references/scoped-style-ownership.md`](references/scoped-style-ownership.md) | Where a CSS rule belongs: single-component → scoped `<style>`; shared → `app.css`; class-prop and cross-boundary state reached with `:global()`. |
 | [`references/css-class-naming-bem.md`](references/css-class-naming-bem.md) | The `block--element` class grammar, the `is-*` single-dash state prefix, the three dynamic-construction forms, and the ids/tokens/enums that stay data. |
 | [`references/svelte-runes-effects.md`](references/svelte-runes-effects.md) | The `$effect` self-invalidation trap and the `untrack` doctrine — trace called API methods, audit every effect in the file. |
-| [`references/comment-grammar.md`](references/comment-grammar.md) | The `MODULE:` banner, numbered box-drawing sections, durable-WHY brevity, and the preserved `@ds` seam markers. |
+| [`references/comment-grammar.md`](references/comment-grammar.md) | The `MODULE:` banner, numbered box-drawing sections, module headers, markup labels, one-line purpose comments, four edit classes, and natural frozen-seam notes. |
 | [`references/folder-docs.md`](references/folder-docs.md) | The `README.md` / `CODE.md` pairing threshold (3+ direct source files or child source folders) and its both-direction scan. |
 | [`references/a11y-parity.md`](references/a11y-parity.md) | The react-aria → bits-ui accessibility parity contract and the `use:hover`/`use:press`/`use:focusVisible` action pattern. |
 | [`references/browser-free-verification-recipe.md`](references/browser-free-verification-recipe.md) | The `token-identity` snapshot/diff/verify commands and the `*-cdp.mjs` render gates, and why the CSP forbids screenshot value checks. |
@@ -103,11 +103,11 @@ consumed by the skill-benchmark router-replay. Keep it in sync with the parent h
 # parent-owned universal/shared tier. A drift guard enforces that equality.
 DEFAULT_RESOURCE = [
     "references/token-library.md",
-    "references/ds-grammar.md",
+    "references/comment-grammar.md",
 ]
 
 INTENT_SIGNALS = {
-    "IMPLEMENTATION":     {"weight": 1, "keywords": ["retint", "token edit", "component token", "semantic role", "@ds edit", "css custom property", "implement", "build", "primitive", "theme remap"]},
+    "IMPLEMENTATION":     {"weight": 1, "keywords": ["retint", "token edit", "component token", "semantic role", "presentation seam", "css custom property", "implement", "build", "primitive", "theme remap"]},
     "CODE_QUALITY":       {"weight": 1, "keywords": ["guardrail", "do-not-edit", "lint", "quality gate", "frozen value", "code smell", "naming", "folder docs", "comment grammar"]},
     "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "regression", "wrong theme", "unexpected color", "leaking retint", "orphaned reference", "self-invalidation", "effect loop"]},
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "resolver", "value-preservation", "contrast", "wcag", "type-check", "test:web", "completion claim", "browser-free", "scan-skill-references"]},
@@ -118,7 +118,7 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "IMPLEMENTATION": [
         "references/token-library.md",
-        "references/ds-grammar.md",
+        "references/comment-grammar.md",
         "references/component-tokens.md",
         "references/retint-recipes.md",
         "references/theme-remap.md",
@@ -175,10 +175,11 @@ surface MUST honor them:
 
 - **Token values are frozen.** The 8 `--pi-*` primitives (ink-on-parchment, Inter + Source Serif 4)
   are the palette contract. Retint a **semantic role** or a **component token**, never a `--pi-*` value.
-- **The `@ds` grammar marks the seams.** A designer edits presentation through `@ds edit:` / `slot:` /
-  `state:` seams. The `@ds guardrail: do-not-edit` fences (frozen primitives, focus ring,
-  reduced-motion/contrast/forced-colors, ≥44px targets, per-surface state machines + status text,
-  plan-mode overlay + atomic execute path, redaction chip, bounded-reading overflow) are off-limits.
+- **Natural comments mark the seams.** A nearby purpose comment identifies the surface, slot, state,
+  variant, token, theme, catalog, or layout presentation that may change. A frozen line or region begins
+  with `Do not edit — <why>` (frozen primitives, focus ring, reduced-motion/contrast/forced-colors,
+  ≥44px targets, per-surface state machines + status text, plan-mode overlay + atomic execute path,
+  redaction chip, bounded-reading overflow) and is off-limits.
 - **CSS/token edits are presentation-only.** They cannot reach state computation, the mutation/ticket
   path, redaction, or plan-mode enforcement. That logic lives in TypeScript and Svelte modules, never
   in a component's style block.
@@ -290,19 +291,19 @@ reachable from a scoped `<style>` through `:global()`.
 ### CSS comment structure
 
 A component's scoped `<style>` groups its rules under numbered box-drawing section banners, in the same
-style the source files use, keeping the `@ds` seam comments as the per-rule reason:
+style the source files use. Give each CSS rule a one-line human-voice purpose comment:
 
 ```css
 /* ───────────────────────────────────────────────────────────────────
    1. CODE PREVIEW
 ─────────────────────────────────────────────────────────────────── */
-/* @ds slot: code-preview — horizontally panning code viewport. */
+/* Keeps the code viewport readable when its content is wider than the card. */
 .rich--code-preview { ... }
 ```
 
-Section titles are short upper-case noun phrases, numbered from 1, grouping rules by purpose. The `@ds`
-comments are preserved verbatim — they are the searchable design-system contract, and `scan-comments.mjs`
-counts the guardrail fences across the `<style>` blocks too.
+Section titles are short upper-case noun phrases, numbered from 1, grouping rules by purpose. Keep the
+purpose comment beside the rule; frozen rules use the same-line `Do not edit — <why>` note, which
+`scan-comments.mjs` counts across the `<style>` blocks too.
 
 ### Module and comment grammar
 
@@ -327,10 +328,10 @@ Apply the comment grammar actually present in the tree:
 - Start prose comments in sentence case. Continuation lines may continue the sentence, but a new
   comment starts with a capital letter unless it is a directive, identifier, or code-shaped marker.
 - Leave no commented-out code behind. Delete obsolete code instead of preserving a second, inert copy.
-- Preserve the `@ds` seam markers where the design system exposes them: `surface`, `slot`, `state`,
-  `variant`, `edit`, `guardrail`, `catalog`, and `theme`. They are searchable contract annotations.
+- Write natural, durable-WHY comments at every design-system seam. Use markup section labels, one-line
+  purpose comments for functions, effects, and CSS rules, and `Do not edit — <why>` for frozen seams.
 - `scripts/naming/scan-comments.mjs` is the executable check for banners, sentence starts, commented-out
-  code, `@ds guardrail:` shape, and section-rule coverage.
+  code, purpose-note shape, `Do not edit —` fence counts, and section-rule coverage.
 
 Test files carry the same structure as source: a `MODULE:` header and numbered sections for the parts
 present — `1. IMPORTS`, `2. FIXTURES` (data builders, mock DTOs, shims), `3. HELPERS`, `4. SETUP`
@@ -424,7 +425,7 @@ slice.
 ### ❌ NEVER
 
 - Never act as a separate advisor identity or route as a primary.
-- Never change a `--pi-*` primitive value, a security boundary, or an `@ds guardrail: do-not-edit` fence.
+- Never change a `--pi-*` primitive value, a security boundary, or a `Do not edit —` guardrail fence.
 - Never rename SvelteKit-reserved route files or parameter segments.
 - Never place a component-only rule in `app-mobile/src/app.css`.
 - Never load resources outside this packet directory.

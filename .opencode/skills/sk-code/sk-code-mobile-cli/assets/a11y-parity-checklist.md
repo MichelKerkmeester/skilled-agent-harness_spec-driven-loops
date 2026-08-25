@@ -55,7 +55,7 @@ accessibility. Prove parity explicitly.
 
 - [ ] Radio/toggle mutual exclusivity holds — exactly one option carries the checked state.
   Covered by `app-mobile/tests/effort-sheet-a11y.svelte.test.ts` (the effort radio group)
-- [ ] Interactive targets >=44px — the `@ds guardrail: do-not-edit` >=44px floor in
+- [ ] Interactive targets >=44px — the `Do not edit — WCAG target size` floor in
   `app-mobile/src/app.css` (`min-block-size` / `min-inline-size` of 44px) is unbroken; measure
   the swapped control in the rendered catalog
 

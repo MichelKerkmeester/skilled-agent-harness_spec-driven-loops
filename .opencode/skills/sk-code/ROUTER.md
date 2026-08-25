@@ -38,7 +38,7 @@ Routing is a two-stage decision: **surface-first, intent-second**. Surface narro
 
 ### Bundled Evidence Surfaces
 
-Beyond the two code surfaces this router maps by detection, the hub can bundle a read-only **evidence surface** alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. `PI_REMOTE` — the Pi Remote Mobile-CLI app (`app-mobile/`) — is one such surface: its detection lives in [`stack-detection.md`](shared/references/stack-detection.md) and its design-system evidence (the `--pi-*` token library, the `@ds` grammar, the browser-free verification gate) in the `sk-code-mobile-cli` packet. Evidence surfaces are registered in `mode-registry.json`, typed in `leaf-manifest.json`, and — like the Webflow and OpenCode surfaces — folded into the machine `RESOURCE_MAP` projection in §11: each surface's packet-local map is re-prefixed and unioned under the shared intent keys, and a drift guard enforces that the parent projection equals the union of all surface maps plus the parent-owned universal/shared tier.
+Beyond the two code surfaces this router maps by detection, the hub can bundle a read-only **evidence surface** alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. `PI_REMOTE` — the Pi Remote Mobile-CLI app (`app-mobile/`) — is one such surface: its detection lives in [`stack-detection.md`](shared/references/stack-detection.md) and its design-system evidence (the `--pi-*` token library, the natural comment convention, the browser-free verification gate) in the `sk-code-mobile-cli` packet. Evidence surfaces are registered in `mode-registry.json`, typed in `leaf-manifest.json`, and — like the Webflow and OpenCode surfaces — folded into the machine `RESOURCE_MAP` projection in §11: each surface's packet-local map is re-prefixed and unioned under the shared intent keys, and a drift guard enforces that the parent projection equals the union of all surface maps plus the parent-owned universal/shared tier.
 
 ### Key Sources
 
@@ -384,7 +384,7 @@ RESOURCE_MAP = {
         "sk-code-webflow/assets/patterns/README.md",
         "sk-code-webflow/assets/templates/README.md",
         "sk-code-mobile-cli/references/token-library.md",
-        "sk-code-mobile-cli/references/ds-grammar.md",
+        "sk-code-mobile-cli/references/comment-grammar.md",
         "sk-code-mobile-cli/references/component-tokens.md",
         "sk-code-mobile-cli/references/retint-recipes.md",
         "sk-code-mobile-cli/references/theme-remap.md",

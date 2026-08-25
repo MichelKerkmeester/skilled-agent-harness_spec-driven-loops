@@ -100,4 +100,4 @@ of them together through the surface-gates entry point rather than one at a time
 
 - `component-story-upkeep.md` — a doc whose story and script paths this guard keeps honest.
 - `browser-free-verification-recipe.md` — the script paths this guard verifies still resolve.
-- `ds-grammar.md` — the design-system reference whose `app.css` and component paths must also resolve.
+- `comment-grammar.md` — the design-system reference whose `app.css` and component paths must also resolve.

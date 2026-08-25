@@ -102,7 +102,7 @@ isolation before treating a failure there as a real regression.
 
 □ No `--pi-*` primitive value changed
 □ No security boundary changed
-□ No `@ds guardrail: do-not-edit` fence changed (see `assets/guardrail-audit-checklist.md` for the full
+□ No `Do not edit — <why>` guardrail fence changed (see `assets/guardrail-audit-checklist.md` for the full
   fence-by-fence audit)
 
 ---

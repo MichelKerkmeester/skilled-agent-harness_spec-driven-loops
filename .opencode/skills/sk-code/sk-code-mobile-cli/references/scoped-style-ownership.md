@@ -112,5 +112,5 @@ after moving any rule between homes.
 ## 6. RELATED REFERENCES
 
 - `css-class-naming-bem.md` — the `block--element` grammar the owned classes follow.
-- `comment-grammar.md` — the `@ds surface/slot/state` seam markers that annotate each rule's owner.
+- `comment-grammar.md` — the natural purpose comments that annotate each rule's owner and presentation seam.
 - `folder-docs.md` — the `CODE.md` map that records which folder owns which surface.

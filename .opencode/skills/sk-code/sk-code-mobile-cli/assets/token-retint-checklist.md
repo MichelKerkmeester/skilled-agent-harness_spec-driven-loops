@@ -56,7 +56,7 @@ before claiming completion. Pair with `references/retint-recipes.md` for the ful
 □ Resolved every custom property and declaration to its final value per theme, **before** the edit
 □ Applied the edit to every theme block that should change (and left untouched every block that
   shouldn't)
-□ Did not touch any `@ds guardrail: do-not-edit` fence while making the change
+□ Did not touch any `Do not edit — <why>` guardrail fence while making the change
   (`assets/guardrail-audit-checklist.md`)
 
 ---
@@ -72,7 +72,7 @@ before claiming completion. Pair with `references/retint-recipes.md` for the ful
 □ `npm run typecheck` — exit 0
 □ `npm run build` — exit 0 (app + catalog entries)
 □ `npm run test:web` — exit 0, including `contrast.test.ts` green in both themes
-□ No `--pi-*` primitive value, security boundary, or `@ds guardrail: do-not-edit` fence changed
+□ No `--pi-*` primitive value, security boundary, or `Do not edit — <why>` guardrail fence changed
 
 ---
 
