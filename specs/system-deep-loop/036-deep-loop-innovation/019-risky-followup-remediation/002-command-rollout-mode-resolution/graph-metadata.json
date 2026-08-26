@@ -13,7 +13,10 @@
     "trigger_phrases": [
       "command rollout mode resolution",
       "stale source digest deep review",
-      "resolveMode fix fallback"
+      "resolveMode fix fallback",
+      "command rollout mode resolution summary",
+      "deep review rollout fix decision",
+      "stale contract recompile evidence"
     ],
     "key_topics": [
       "command",
@@ -27,27 +30,34 @@
       "review",
       "resolvemode",
       "fallback",
-      "compiled"
+      "summary"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "plan.md",
+      "implementation-summary.md",
       "spec.md",
+      "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -163,25 +173,39 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The compiled command contracts for `deep/review`, `deep/research`, and `deep/ai-council` are stale — their source digest no longer matches the compiled artifact (`STALESOURCEDIGEST`), so `check-contract-drift` and `render-command-contract` fail",
     "created_at": "2026-08-26T11:00:43.034Z",
-    "last_save_at": "2026-08-26T11:05:02.512Z",
+    "last_save_at": "2026-08-26T11:55:05.003Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7e99c79904f38e746156d8a8f8c9dbb0c3e1b25ecf04aab0527c6116f45b894",
+    "source_fingerprint": "sha256:bed42c633af8b3136f5fd698bd519108490e646970208defa50594cf3583f9a5",
     "source_doc_hashes": {
-      "spec.md": "bcdec1c19a64daf8c7df9d3b698bd263b4cf469f3258dfdc969123ce21123c1d",
-      "plan.md": "e90b186d7837c5ce22e9f0e8a376fbb705c663dbf4b81dbebd6b876a71f30cc5",
-      "tasks.md": "11e2b03dd599603c34d388e8f012eba0a73d788cf974aaba05087df3eede06ee",
-      "checklist.md": "f5e024ce6e5ac1d056632ef40a84cefcbb4992bee2fdb079a9f6f7fa0921189c"
+      "spec.md": "996c9404172effcb7e6874aa7dda643d26a30a25a68b0aec3e3c4a445068fec5",
+      "plan.md": "dece62fc8b0c1241e68a5c65800e7bb524feb5c9bc431ecf84e626eee2e732ae",
+      "tasks.md": "8e037ab263b7e8a8e3b19cf8b2e6b6f38178d279801bd55d5c0415ec37a628ed",
+      "checklist.md": "21283713cef23599daa310453c9ed7e7b1b734e3566cb72191effcbd080e6e60",
+      "implementation-summary.md": "7690cbbfb56197033a7f53e1c4d740ce9e6588a0121addda69c25b5fb5d1dfd6"
     },
     "last_active_child_id": null,
     "last_active_at": null

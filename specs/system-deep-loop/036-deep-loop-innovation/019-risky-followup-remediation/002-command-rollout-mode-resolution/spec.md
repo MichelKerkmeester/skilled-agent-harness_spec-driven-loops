@@ -10,17 +10,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution"
-    last_updated_at: "2026-08-26T11:05:01.338Z"
+    last_updated_at: "2026-08-26T12:00:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Scaffolded the rollout-mode child"
-    next_safe_action: "Phase 1: determine the intended default rollout mode for deep/*"
+    recent_action: "Restored deep/* rollout mode to fix, recompiled contracts, whole-suite delta clean"
+    next_safe_action: "Proceed to child 001 (dependency & Node-ABI alignment)"
     blockers: []
     key_files:
-      - "plan.md"
-    completion_pct: 0
-    open_questions:
-      - "Is the intended default rollout mode for deep/review 'fix' or 'fallback'?"
-    answered_questions: []
+      - "implementation-summary.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Intended default rollout mode for deep/* is 'fix' (restored; accidentally demoted in bce47507b6d)."
 ---
 # Feature Specification: Command Rollout-Mode Resolution
 
@@ -36,9 +36,10 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-26 |
-| **Failing tests** | `render-command-contract.vitest.ts`, `check-contract-drift.vitest.ts` |
+| **Decision** | Intended default mode = `fix` (restored; accidentally demoted in `bce47507b6d`) |
+| **Failing tests** | `render-command-contract.vitest.ts`, `check-contract-drift.vitest.ts` — both now pass |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 001-dependency-and-node-abi-alignment |
 
@@ -131,6 +132,6 @@ Determine the intended default rollout mode for the deep commands, make the comp
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- `fix` vs `fallback` default — resolved in Phase 1 from the rollout config and the renderer's documented intent.
+- `fix` vs `fallback` default — **RESOLVED: `fix`.** Git history shows `1904d343ea9` deliberately set these to `fix` and `bce47507b6d` (a bookkeeping "reconcile 013 evidence" commit) accidentally demoted them to `fallback`. The config was restored to `fix` and the contracts recompiled.
 
 <!-- /ANCHOR:questions -->

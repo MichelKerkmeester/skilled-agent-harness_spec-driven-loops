@@ -6,7 +6,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution"
-    last_updated_at: "2026-08-26T11:05:01.338Z"
+    last_updated_at: "2026-08-26T12:00:00.000Z"
     last_updated_by: "claude"
     recent_action: "Authored the rollout-mode task list"
     next_safe_action: "Execute Phase 1"
@@ -33,11 +33,11 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read `resolveMode` + `COMMANDS` in `scripts/render-command-contract.cjs`
-- [ ] T002 Find what selects `fix` vs `fallback` (env, manifest, constant)
-- [ ] T003 Check git history / rollout config for the intended deep/* default
-- [ ] T004 Confirm the stale source docs are the current intended content
-- [ ] T005 Decide `fix` or `fallback` with the cited source of truth
+- [x] T001 Read `resolveMode` + `COMMANDS` in `scripts/render-command-contract.cjs`
+- [x] T002 Find what selects `fix` vs `fallback` (env, manifest, constant)
+- [x] T003 Check git history / rollout config for the intended deep/* default (`1904d343ea9`, `bce47507b6d`)
+- [x] T004 Confirm the stale source docs are the current intended content (`compile-command-contracts.cjs`)
+- [x] T005 Decide `fix` or `fallback` with the cited source of truth
 
 <!-- /ANCHOR:phase-1 -->
 ---
@@ -45,10 +45,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T006 If `fix`: correct the compiler/config so recompile keeps `fix`
-- [ ] T007 If `fallback`: update the `resolveMode` expectation in the test
-- [ ] T008 Recompile all deep/* contracts (`compile-command-contracts.cjs --command … --write`)
-- [ ] T009 Confirm the compiled body matches the decided mode
+- [x] T006 If `fix`: correct the compiler/config so recompile keeps `fix`
+- [x] T007 If `fallback`: update the `resolveMode` expectation in the test
+- [x] T008 Recompile all deep/* contracts (`compile-command-contracts.cjs --command … --write`)
+- [x] T009 Confirm the compiled body matches the decided mode (`deep-review.contract.md`)
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -56,11 +56,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 `check-contract-drift.vitest.ts` passes (no `STALE_SOURCE_DIGEST`)
-- [ ] T011 `render-command-contract.vitest.ts` passes; `resolveMode` = decided mode
-- [ ] T012 `legacy-projections.test.ts` still passes
-- [ ] T013 Whole runtime suite vs 017 baseline: no new failures
-- [ ] T014 `validate.sh --strict` clean; reconcile docs
+- [x] T010 `check-contract-drift.vitest.ts` passes (no `STALE_SOURCE_DIGEST`)
+- [x] T011 `render-command-contract.vitest.ts` passes; `resolveMode` = decided mode
+- [x] T012 `legacy-projections.test.ts` still passes
+- [x] T013 Whole runtime suite vs 017 baseline: no new failures (`vitest run`, 2612 tests)
+- [x] T014 `validate.sh --strict` clean; reconcile docs
 
 <!-- /ANCHOR:phase-3 -->
 ---
@@ -68,10 +68,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Intended mode decided + recorded
-- [ ] Tests + config agree on the mode
-- [ ] Stale contracts cleared
-- [ ] No new whole-suite regression
+- [x] Intended mode decided + recorded
+- [x] Tests + config agree on the mode
+- [x] Stale contracts cleared
+- [x] No new whole-suite regression
 
 <!-- /ANCHOR:completion -->
 ---

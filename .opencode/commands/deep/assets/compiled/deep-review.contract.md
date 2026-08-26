@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/review.md",
-      "sha256": "f2d5c62a86b012f7f3b1a76617fe5828136305fce7d85f6d18995ceef17958fc",
+      "sha256": "d7d56e538cf5e344351a60693b026edfa3b16561e4aa301ef4d515b3d28424e1",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "c35ff4fef9389edaef88b2b7633af99a4dee469c8e3a3e8f6e30f6774aba89aa",
+      "sha256": "6afc151a0050ce5bcd1548384b2962ff3aba4a94f33853b6cec3f2037f26f12f",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "5eed6bc832e28d1dcb780022d0c37aa43b1f0788d82a63dfe8c94e58bafcbbc3",
+      "sha256": "bfbb2b58aac87a3c6ef9c3d8516d8e183e08467a8ac94eb038c607367dc4d929",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "dc4a50f8b78bc24008b1676f4a4e47521d42194a5b418ebb9a1e57e8b0aa30d9",
+      "sha256": "292b60eeae5e037b1af1c487ad666ece0331f922a5ffc1297369fd7c0ae8f43f",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "61838a0222754d880b95d52bbca1c02f27d14adde9dbc73af1c0a0ade4b049bf",
+      "sha256": "4096a414758b094a5bdc35aaf7fde736a02998bf8e09644512577882bd0e953b",
       "section": "full"
     },
     {
@@ -72,12 +72,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "e1557a615ca23c76fa62d1f679b2be73f93b5b4723ea3119fb2b72d1909d3d92",
+      "sha256": "3568a3b061b5abacf02469ffdd796a242d3606c5c01cc7b39e5cf9b215713991",
       "section": "full"
     },
     {
       "path": ".opencode/agents/deep-review.md",
-      "sha256": "afb4065d944aaff58decfdb37ba05434d2ceb81df0cea085214ad04479b3e1ad",
+      "sha256": "3b9da87d60f055b2929e52a4cac8d46cde7ce6ea9c68702d5b8c334cd63c206b",
       "section": "full"
     },
     {
