@@ -4,15 +4,15 @@ import { ACTIVE_POPULATION_SQL, ACTIVE_ROW_SQL, isActiveRow } from '../lib/searc
 import { getSearchableTiersFilter, IMPORTANCE_TIERS, VALID_TIERS } from '../lib/scoring/importance-tiers.js';
 
 describe('active row predicate', () => {
-  it('builds the hard ranked SQL predicate with NULL guard and constitutional exclusion', () => {
+  it('builds the hard ranked SQL predicate with NULL guard and cold-tier exclusion', () => {
     expect(ACTIVE_ROW_SQL('m', { includeCold: false })).toBe(
-      "m.deleted_at IS NULL AND (m.importance_tier IS NULL OR lower(m.importance_tier) NOT IN ('deprecated','archived','constitutional'))",
+      "m.deleted_at IS NULL AND (m.importance_tier IS NULL OR lower(m.importance_tier) NOT IN ('deprecated','archived'))",
     );
   });
 
-  it('keeps cold-tier inclusion graduated without admitting constitutional ranked rows', () => {
+  it('drops all tier exclusions when cold tiers are admitted', () => {
     expect(ACTIVE_ROW_SQL('m', { includeCold: true })).toBe(
-      "m.deleted_at IS NULL AND (m.importance_tier IS NULL OR lower(m.importance_tier) NOT IN ('constitutional'))",
+      "m.deleted_at IS NULL AND 1=1",
     );
   });
 
@@ -20,9 +20,9 @@ describe('active row predicate', () => {
     expect(isActiveRow({ deleted_at: null, importance_tier: null }, { includeCold: false })).toBe(true);
     expect(isActiveRow({ deleted_at: null, importance_tier: 'Deprecated' }, { includeCold: false })).toBe(false);
     expect(isActiveRow({ deleted_at: null, importance_tier: 'archived' }, { includeCold: false })).toBe(false);
+    // Legacy 'constitutional'-tier strays stay excluded defensively even though the tier is retired.
     expect(isActiveRow({ deleted_at: null, importance_tier: 'constitutional' }, { includeCold: true })).toBe(false);
     expect(isActiveRow({ deleted_at: '2026-07-03T00:00:00Z', importance_tier: 'normal' }, { includeCold: true })).toBe(false);
-    expect(isActiveRow({ deleted_at: null, importance_tier: 'constitutional' }, { lane: 'constitutional' })).toBe(true);
   });
 
   it('reports active population without excluding constitutional rows', () => {
@@ -45,7 +45,7 @@ describe('archived tier configuration', () => {
 
   it('uses the canonical searchable tier SQL helper', () => {
     expect(getSearchableTiersFilter({ alias: 'm', includeCold: false })).toBe(
-      "(m.importance_tier IS NULL OR lower(m.importance_tier) NOT IN ('deprecated','archived','constitutional'))",
+      "(m.importance_tier IS NULL OR lower(m.importance_tier) NOT IN ('deprecated','archived'))",
     );
   });
 });

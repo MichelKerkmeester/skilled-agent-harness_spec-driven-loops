@@ -1,7 +1,8 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Importance Tiers
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Classification-based decay
+// Classifies memory rows into importance tiers that drive search boost,
+// decay, and auto-expiration.
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
 
@@ -12,13 +13,11 @@ export interface TierConfig {
   decay: boolean;
   autoExpireDays: number | null;
   excludeFromSearch?: boolean;
-  alwaysSurface?: boolean;
   maxTokens?: number;
   description: string;
 }
 
 export type ImportanceTier =
-  | 'constitutional'
   | 'critical'
   | 'important'
   | 'normal'
@@ -31,15 +30,6 @@ export type ImportanceTier =
 
 // ───────────────────────────────────────────────────────────────
 export const IMPORTANCE_TIERS: Readonly<Record<ImportanceTier, TierConfig>> = {
-  constitutional: {
-    value: 1.0,
-    searchBoost: 3.0,
-    decay: false,
-    autoExpireDays: null,
-    alwaysSurface: true,
-    maxTokens: 2000,
-    description: 'Core rules and constraints - always surface at top of results',
-  },
   critical: {
     value: 1.0,
     searchBoost: 2.0,
@@ -157,7 +147,6 @@ interface SearchableTiersFilterOptions {
   alias?: string;
   includeArchived?: boolean;
   includeCold?: boolean;
-  includeConstitutional?: boolean;
 }
 
 function qualifyTierColumn(alias?: string): string {
@@ -178,9 +167,6 @@ export function getSearchableTiersFilter(options: SearchableTiersFilterOptions =
       excluded.add('archived');
     }
   }
-  if (!options.includeConstitutional) {
-    excluded.add('constitutional');
-  }
 
   if (excluded.size === 0) {
     return '1=1';
@@ -190,21 +176,10 @@ export function getSearchableTiersFilter(options: SearchableTiersFilterOptions =
   return `(${tierColumn} IS NULL OR lower(${tierColumn}) NOT IN (${literals}))`;
 }
 
-// Check if tier should always surface in search (constitutional)
-export function shouldAlwaysSurface(tier: string): boolean {
-  const config = getTierConfig(tier);
-  return config.alwaysSurface === true;
-}
-
 // Get maximum token budget for tier (null = unlimited)
 export function getMaxTokens(tier: string): number | null {
   const config = getTierConfig(tier);
   return config.maxTokens || null;
-}
-
-// SQL WHERE clause for constitutional tier
-export function getConstitutionalFilter(): string {
-  return "importance_tier = 'constitutional'";
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -256,7 +231,6 @@ export function getDefaultTierForDocumentType(documentType: string): ImportanceT
     spec: 'important',
     plan: 'important',
     decision_record: 'important',
-    constitutional: 'constitutional',
     tasks: 'normal',
     checklist: 'normal',
     implementation_summary: 'normal',

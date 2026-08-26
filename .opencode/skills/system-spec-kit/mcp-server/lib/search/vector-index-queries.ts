@@ -12,7 +12,7 @@ import { formatAgeString as format_age_string } from '../utils/format-helpers.js
 import { createLogger } from '../utils/logger.js';
 import { recordHistory } from '../storage/history.js';
 import { isArchivedVectorInclusionEnabled } from './search-flags.js';
-import { ACTIVE_ROW_SQL, isActiveRow } from './active-row-predicate.js';
+import { ACTIVE_ROW_SQL } from './active-row-predicate.js';
 import { fts5Bm25Search, isFts5Available } from './sqlite-fts.js';
 import * as embeddingsProvider from '../providers/embeddings.js';
 import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings';
@@ -406,7 +406,6 @@ export function vector_search(
     useDecay = true,
     tier = null,
     contextType = null,
-    includeConstitutional = false,
     includeArchived = false
   } = options;
 
@@ -434,13 +433,6 @@ export function vector_search(
        END`
     : 'm.importance_weight';
 
-  let constitutional_results: MemoryRow[] = [];
-
-  if (includeConstitutional && tier !== 'constitutional') {
-    constitutional_results = get_constitutional_memories(database, specFolder, includeArchived)
-      .filter((row) => isActiveRow(row, { lane: 'constitutional' }));
-  }
-
   const where_clauses = ['m.embedding_status = \'success\''];
   const params: unknown[] = [query_buffer];
 
@@ -450,10 +442,6 @@ export function vector_search(
     where_clauses.push('m.importance_tier = ?');
     where_clauses.push('m.deleted_at IS NULL');
     params.push('deprecated');
-  } else if (tier === 'constitutional') {
-    where_clauses.push('m.importance_tier = ?');
-    where_clauses.push(ACTIVE_ROW_SQL('m', { lane: 'constitutional' }));
-    params.push('constitutional');
   } else if (tier) {
     where_clauses.push('m.importance_tier = ?');
     where_clauses.push('m.deleted_at IS NULL');
@@ -473,12 +461,7 @@ export function vector_search(
     params.push(contextType);
   }
 
-  // If constitutional results already satisfy limit, return them directly.
-  if (constitutional_results.length >= limit) {
-    return constitutional_results.slice(0, limit);
-  }
-  const adjusted_limit = Math.max(1, limit - constitutional_results.length);
-  params.push(max_distance, adjusted_limit);
+  params.push(max_distance, limit);
 
   const sql = `
     SELECT sub.*,
@@ -505,7 +488,7 @@ export function vector_search(
     return row;
   });
 
-  return [...constitutional_results, ...regular_results];
+  return regular_results;
 }
 
 /**

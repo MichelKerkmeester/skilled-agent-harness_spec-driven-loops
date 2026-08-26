@@ -58,8 +58,7 @@ import type {
 } from './types.js';
 import type { ChannelSkipDetail } from '../channel-exceptions.js';
 
-// Feature catalog: 4-stage pipeline architecture
-// Feature catalog: 4-stage pipeline refactor
+// Orchestrates the 4-stage search pipeline (candidate-gen, fusion, rerank, filter).
 
 
 /** Per-stage timeout in milliseconds. */
@@ -390,7 +389,6 @@ async function executePipelineUnlocked(config: PipelineConfig): Promise<Pipeline
       executeStage4({
         results: stage3Result.reranked as Stage4ReadonlyRow[],
         config,
-        stage1Metadata: { constitutionalInjected: stage1Result.metadata.constitutionalInjected },
       }),
       STAGE_TIMEOUT_MS,
       'Stage 4: Filter',
@@ -404,7 +402,6 @@ async function executePipelineUnlocked(config: PipelineConfig): Promise<Pipeline
       final: stage3Result.reranked as Stage4ReadonlyRow[],
       metadata: {
         stateFiltered: 0,
-        constitutionalInjected: stage1Result.metadata.constitutionalInjected,
         evidenceGapDetected: false,
         durationMs: 0,
       },

@@ -41,8 +41,8 @@ import { detectEvidenceGap, formatEvidenceGapWarning } from '../evidence-gap-det
 import { resolveCalibrationScore } from '../confidence-scoring.js';
 import { addTraceEntry } from '@spec-kit/shared/contracts/retrieval-trace';
 
-// Feature catalog: 4-stage pipeline architecture
-// Feature catalog: Confidence-based result truncation
+// Stage 4 of the search pipeline: state filtering, annotation, and
+// confidence-based result truncation without mutating scores.
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -352,8 +352,6 @@ export async function executeStage4(input: Stage4Input): Promise<Stage4Output> {
     metadata: {
       stateFiltered,
       // sessionDeduped removed; dedup is post-cache in main handler
-      // constitutionalInjected passed from Stage 1 metadata
-      constitutionalInjected: input.stage1Metadata?.constitutionalInjected ?? 0,
       evidenceGapDetected,
       durationMs,
     },
