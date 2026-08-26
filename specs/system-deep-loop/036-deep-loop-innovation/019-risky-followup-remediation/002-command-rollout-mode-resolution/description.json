@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution",
+  "description": "The compiled command contracts for `deep/review`, `deep/research`, and `deep/ai-council` are stale — their source digest no longer matches the",
+  "keywords": [
+    "compiled",
+    "command",
+    "contracts",
+    "deep",
+    "review",
+    "research",
+    "ai-council",
+    "stale",
+    "source",
+    "digest",
+    "longer",
+    "matches"
+  ],
+  "lastUpdated": "2026-08-26T11:05:01.812Z",
+  "specId": "002",
+  "folderSlug": "command-rollout-mode-resolution",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "019-risky-followup-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
