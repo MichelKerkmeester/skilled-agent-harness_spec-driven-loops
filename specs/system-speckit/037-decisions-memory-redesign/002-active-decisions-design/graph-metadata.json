@@ -11,10 +11,10 @@
   },
   "derived": {
     "trigger_phrases": [
-      "active decisions surface",
-      "DECISIONS.md",
-      "always-loaded memory",
-      "decisions notes system",
+      "active decisions decision",
+      "no replacement surface",
+      "constitutional layer deprecation",
+      "keep rules as docs",
       "spec core",
       "implementation",
       "plan",
@@ -27,16 +27,16 @@
     "key_topics": [
       "active",
       "decisions",
+      "decision",
+      "replacement",
       "surface",
-      "always-loaded",
-      "memory",
-      "notes",
-      "system",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "name"
+      "constitutional",
+      "layer",
+      "deprecation",
+      "keep",
+      "rules",
+      "docs",
+      "spec"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -102,7 +102,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Decisions",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Decisions live in four disconnected stores — 20 constitutional files, 616 per-spec `decision-record.md` ADRs, per-packet `memory.continuity` blocks, and native goal files — with no single surface that answers \"what did we decide about X\" and loads on every turn without a `memorysearch` MCP round-trip",
+    "causal_summary": "The constitutional DB tier is decorative: its rules are already inlined in the root instruction files, it surfaces only when the model chooses to call `memorysearch`, and its cold-start injection is dead code",
     "created_at": "2026-08-26T05:34:11Z",
-    "last_save_at": "2026-08-26T07:38:26.938Z",
+    "last_save_at": "2026-08-26T15:20:06.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,9 +203,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80a17540746361099d3c51e3901d942d0d11d9aef6c5ad4f69cb82214d31aaec",
+    "source_fingerprint": "sha256:3330834bc4a2001678979f9caa53382b8803fd998a949632896ec609e4072669",
     "source_doc_hashes": {
-      "spec.md": "1bac9e2b43b00927548f73ccda02d1ebcba762a9da573fe4b7958a023efa8960",
+      "spec.md": "15c7e1c6577e4813fdf398fd64a9a62dd3c86924b637a15d93aca37d3711d423",
       "plan.md": "143deeb373a820a32ac07f915eebd925ebba4a75532cd9d21fee347c14d58de8",
       "tasks.md": "eee49b638e0666d73a6582e36ac8dc464fac27073d313dfecfcd517fb68b8093",
       "implementation-summary.md": "b84f66446240ef46ee2a2d137450776cb4907bec2f0f9c61e7b0afe60a654e15"

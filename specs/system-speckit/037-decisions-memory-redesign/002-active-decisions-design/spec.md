@@ -1,35 +1,34 @@
 ---
 title: "Feature Specification: Phase 2: active-decisions-design [template:level-1/spec.md]"
-description: "Decisions are fragmented across four stores (constitutional files, 616 per-spec ADRs, continuity blocks, native goal files) with no single active surface that loads every turn without an MCP round-trip. Design a lightweight, git-tracked DECISIONS.md surface auto-loaded by each runtime — the active replacement the constitutional deprecation hands off to."
+description: "Evaluated an always-loaded DECISIONS.md surface as the constitutional-memory replacement and DECIDED against it. Deprecate the constitutional DB layer and keep the 20 rule files as plain docs (their content already lives inlined in the root instruction files). No new always-loaded surface, no CLAUDE.md import, no Cursor rule."
 trigger_phrases:
-  - "active decisions surface"
-  - "DECISIONS.md"
-  - "always-loaded memory"
-  - "decisions notes system"
+  - "active decisions decision"
+  - "no replacement surface"
+  - "constitutional layer deprecation"
+  - "keep rules as docs"
   - "spec core"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "037-decisions-memory-redesign/002-active-decisions-design"
-    last_updated_at: "2026-08-26T06:50:00Z"
+    last_updated_at: "2026-08-26T08:10:00Z"
     last_updated_by: "design-author"
-    recent_action: "Authored active-decisions design from 001-analysis research (Grok 4.6 xhigh R2)"
-    next_safe_action: "Confirm per-runtime auto-load mechanics and size budgets before creating the surface"
+    recent_action: "Reversed: DECISIONS.md surface dropped; keep the rules as plain docs"
+    next_safe_action: "Proceed to 003 tier deprecation; there is no replacement surface to build"
     blockers: []
     key_files:
-      - ".opencode/DECISIONS.md"
-      - ".cursor/rules/decisions.mdc"
       - "CLAUDE.md"
+      - "AGENTS.md"
+      - ".opencode/skills/system-spec-kit/constitutional/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "design-037-002-active-decisions-design"
       parent_session_id: null
     completion_pct: 0
-    open_questions:
-      - "Exact per-runtime auto-load mechanics and byte budgets (Claude line budget, Cursor alwaysApply)"
+    open_questions: []
     answered_questions:
-      - "Should the surface be a new DB or a new required spec-doc? (No to both — verified)"
+      - "Build a new always-loaded DECISIONS.md surface? (No — owner reversed; keep rules as plain docs)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 2: active-decisions-design
@@ -52,7 +51,7 @@ _memory:
 | **Phase** | 2 of 6 |
 | **Predecessor** | 001-analysis |
 | **Successor** | 003-deprecation-mechanics |
-| **Handoff Criteria** | A DECISIONS.md surface + per-runtime auto-load wiring is designed, budget-bounded, and proven to surface every turn without an MCP call; the deprecation phase (003) can retire the constitutional tier against a live replacement. |
+| **Handoff Criteria** | The direction decision is recorded: no replacement surface is built; the constitutional layer is deprecated with rule content kept in the existing root docs. Phase 003 proceeds directly to retiring the DB tier. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -60,18 +59,16 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the decisions-memory-redesign packet. It designs the ACTIVE replacement surface that the constitutional-memory deprecation (phase 003) hands off to. Grounded in the 001-analysis research (Grok 4.6 xhigh lineage, recommendation R2), and the owner intent to deprecate constitutional memory completely while building a more-active, spec/skill-integrated decisions system.
+This is **Phase 2**. It originally designed an always-loaded `.opencode/DECISIONS.md` replacement surface. The owner reversed that mid-flight: **do not build a new surface.** This phase now records that decision so the packet stays honest and phase 003 knows there is no replacement to hand off to.
 
-**Scope Boundary**: The new decisions surface and its per-runtime auto-load wiring only. It does NOT deprecate the constitutional tier or rehome rule content (those are phases 003/004).
+**Scope Boundary**: A recorded decision only. No runtime files change in this phase.
 
 **Dependencies**:
-- Confirmed research findings: constitutional DB tier is decorative; `includeConstitutional` (not `alwaysSurface`) is the real lever; learned-triggers verified 0 rows; 616 `decision-record.md` files / 1,623 ADR headings.
-- The every-turn injection surfaces already in use (root docs loaded each turn; the hardcoded advisor `render.ts` directives).
+- Confirmed research findings: the constitutional DB tier is decorative; `includeConstitutional` (not `alwaysSurface`) is the real lever; learned-triggers verified 0 rows.
+- The rule content already lives inlined in `CLAUDE.md`/`AGENTS.md`/`BARTER.md`, which load every turn — so deprecating the tier loses no steering without any new surface.
 
 **Deliverables**:
-- A designed `.opencode/DECISIONS.md` with a Standing section (global rules) + a Recent section (pointers to packet ADRs), under a strict size budget.
-- Per-runtime auto-load wiring design (Cursor `alwaysApply` rule; a CLAUDE.md `@`-import line).
-- A supersession + freshness model, and an optional cheap query path.
+- The recorded decision: deprecate the layer, keep rules as plain docs, add nothing.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -83,10 +80,10 @@ This is **Phase 2** of the decisions-memory-redesign packet. It designs the ACTI
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Decisions live in four disconnected stores — 20 constitutional files, 616 per-spec `decision-record.md` ADRs, per-packet `_memory.continuity` blocks, and native goal files — with no single surface that answers "what did we decide about X" and loads on every turn without a `memory_search` MCP round-trip. The constitutional DB tier that was supposed to be that surface is decorative: its rules are already inlined in the root docs, it surfaces only when the model chooses to call `memory_search`, and its cold-start injection is dead code.
+The constitutional DB tier is decorative: its rules are already inlined in the root instruction files, it surfaces only when the model chooses to call `memory_search`, and its cold-start injection is dead code. A first design proposed replacing it with an always-loaded `DECISIONS.md` surface, but that would introduce a `CLAUDE.md` `@`-import pattern not used here, a Cursor-side duplicate to keep in sync, and a file that decays if untended.
 
 ### Purpose
-Provide one lightweight, git-tracked, always-loaded decisions surface — the active home the constitutional deprecation replaces the dead tier with.
+Deprecate the decorative tier and keep the rules as ordinary docs — the leanest path, adding no new surface — because the steering never came from the tier in the first place.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -95,25 +92,19 @@ Provide one lightweight, git-tracked, always-loaded decisions surface — the ac
 ## 3. SCOPE
 
 ### In Scope
-- Design `.opencode/DECISIONS.md`: a **Standing** section (durable global rules — native-memory ban, comment-hygiene pointer, recorded-failure-must-route, main-branch-push) + a **Recent** section (pointers to packet ADRs, not copies).
-- Per-runtime auto-load wiring: a Cursor `alwaysApply` rule and a single CLAUDE.md `@`-import line.
-- A size budget (Claude line budget / Cursor alwaysApply ceiling) and a supersession/freshness model.
-- An optional cheap query path: `/memory:decisions` as a `memory_search` scoped to `decision-record.md` with constitutional off.
+- Record the decision: **no** new always-loaded decisions surface (`DECISIONS.md`), **no** `CLAUDE.md` import, **no** Cursor rule.
+- Confirm the rules' durable content already lives in the root instruction files (so nothing is lost when the tier is retired).
 
 ### Out of Scope
-- Deprecating the constitutional tier / `includeConstitutional` / `/memory:learn` / indexer path — phase 003.
-- Rehoming the 20 rule files' unique content + retargeting root-doc links — phase 004.
-- Advisor `render.ts` integration — phase 005.
-- Any new SQLite table or new required per-packet spec-doc (both eliminated by research).
+- Building any new decisions surface, DB, or required spec-doc.
+- Deprecating the `memory-system-spec-kit-only` rule (owner kept it — native-memory ban stays).
+- The tier/plumbing removal itself (phase 003) and rule-content rehoming (phase 004).
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/DECISIONS.md | Create | The active decisions surface (Standing + Recent pointers) |
-| .cursor/rules/decisions.mdc | Create | Cursor `alwaysApply` rule that loads the surface every turn |
-| CLAUDE.md | Modify | One `@`-import / pointer line so the surface loads in Claude runtime |
-| .opencode/commands/memory/decisions.md | Create (optional) | `/memory:decisions` scoped query over `decision-record.md` |
+| (none) | Decision only | This phase records a direction decision; no runtime file changes |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,17 +116,14 @@ Provide one lightweight, git-tracked, always-loaded decisions surface — the ac
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The decisions surface loads on every turn WITHOUT an MCP round-trip | **Given** a fresh session in each supported runtime, the DECISIONS.md content is present in context with no `memory_search` call required |
-| REQ-002 | The surface stays within per-runtime size budgets | **Given** the Claude line budget and Cursor alwaysApply ceiling, DECISIONS.md never exceeds them; Recent entries are pointers, not ADR copies |
-| REQ-003 | No new DB and no new required per-packet spec-doc | **Given** the design, there is no new SQLite table and no addition to the required-doc manifest (avoids versioned-contract regression) |
-| REQ-004 | Standing vs Recent separation with supersession | **Given** a superseded decision, its `supersedes:` id resolves to a real packet ADR and the stale entry is demoted, not silently overwritten |
+| REQ-001 | The no-replacement decision is recorded | **Given** this packet, the decision to deprecate the layer without a new surface is documented and consistent across phases 003-006 |
+| REQ-002 | No steering is lost by adding nothing | **Given** the rules already inlined in the root docs, retiring the tier changes no every-turn steering |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | A cheap "what did we decide about X" query exists | **Given** `/memory:decisions`, a `memory_search` scoped to `decision-record.md` (constitutional off) returns relevant ADRs without the deprecated tier |
-| REQ-006 | The design hands off cleanly to deprecation (phase 003) | **Given** the live replacement surface, phase 003 can retire the constitutional tier without losing every-turn steering |
+| REQ-003 | Downstream phases match the decision | **Given** phases 003/004/005, none reference a `DECISIONS.md` surface as a dependency |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -143,9 +131,8 @@ Provide one lightweight, git-tracked, always-loaded decisions surface — the ac
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A single `.opencode/DECISIONS.md` surface exists with Standing + Recent-pointer structure, budget-bounded.
-- **SC-002**: Auto-load wiring is designed for each runtime (Cursor alwaysApply + CLAUDE.md import) and verified to surface content every turn with zero MCP calls.
-- **SC-003**: The design carries no new DB and no new required spec-doc, and defines a supersession/freshness model — clearing the way for phase 003 deprecation.
+- **SC-001**: The decision — deprecate the tier, keep rules as plain docs, build no new surface — is recorded and consistent packet-wide.
+- **SC-002**: No `DECISIONS.md`, `@`-import, Cursor rule, new DB, or new required spec-doc is introduced anywhere in the packet.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -155,10 +142,8 @@ Provide one lightweight, git-tracked, always-loaded decisions surface — the ac
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Auto-rolling all 1,623 ADRs into DECISIONS.md | High — blows the Claude/Cursor budget | Recent section holds pointers only; Standing holds a curated few |
-| Risk | `@`-imports assumed to save tokens | Medium — imported files still load at launch | Treat the import as an always-load, not a lazy fetch; keep the file tiny |
-| Risk | Reviving native `MEMORY.md` as the store | High — violates the owner's 2026-05-31 native-memory ban and re-splits the store | Use `.opencode/DECISIONS.md`, not native memory |
-| Dependency | Phase 003 deprecation | The surface must be live before the tier is retired | Land + verify this surface first; 003 depends on it |
+| Risk | Downstream phases still assume a replacement surface | Medium — inconsistent packet | Re-scope 005 (advisor) alongside this decision; 003/004 already surface-agnostic |
+| Dependency | Rule content in the root docs | Low — steering stays | Verify content is inlined before phase 004 deletes/retargets the files |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -166,8 +151,7 @@ Provide one lightweight, git-tracked, always-loaded decisions surface — the ac
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What are the exact per-runtime auto-load mechanics and byte budgets (Claude line budget vs Cursor alwaysApply ceiling)? Confirm before creating the surface.
-- Should the optional `/memory:decisions` query ship in this phase or defer to after deprecation?
+- Should the `constitutional/` folder be deleted after the tier is retired, or kept as plain unindexed reference docs? (Decided in phase 004.)
 <!-- /ANCHOR:questions -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: deprecation-mechanics [template:level-1/spec.md]"
-description: "Retire the constitutional memory system now that the DECISIONS.md replacement is live: default includeConstitutional to false (the real lever), stop the MCP prime SQL and the indexer's constitutional scan, freeze /memory:learn, and flag-off the confirmed-empty learned-triggers — updating the ~6 memory tests that assume the old defaults."
+description: "Retire the constitutional memory layer: default includeConstitutional to false (the real lever), stop the MCP prime SQL and the indexer's constitutional scan, freeze /memory:learn, and flag-off the confirmed-empty learned-triggers — updating the ~6 memory tests that assume the old defaults. No replacement surface; steering already lives inlined in the root docs."
 trigger_phrases:
   - "constitutional deprecation"
   - "includeConstitutional false"
@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-08-26T07:20:00Z"
     last_updated_by: "design-author"
     recent_action: "Authored deprecation-mechanics design from 001-analysis research (R1/R3/R5/R7/R9)"
-    next_safe_action: "Default includeConstitutional to false once DECISIONS.md is live"
+    next_safe_action: "Default includeConstitutional to false across the search handlers"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts"
@@ -61,12 +61,12 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** — the actual retirement of the constitutional memory *system*, gated on the phase-2 DECISIONS.md surface being live so no every-turn steering is lost. Grounded in 001-analysis research recommendations R1, R3, R5, R7, R9.
+This is **Phase 3** — the actual retirement of the constitutional memory *layer*. No every-turn steering is lost because the rules are already inlined in the root instruction docs; there is no replacement surface to wait on. Grounded in 001-analysis research recommendations R1, R3, R5, R7, R9.
 
 **Scope Boundary**: The search/prime/index plumbing, the tier config, `/memory:learn`, and learned-triggers. NOT the rule-file content (phase 004) or the advisor render.ts capsules (phase 005).
 
 **Dependencies**:
-- Phase 2 (DECISIONS.md) is live and verified.
+- Phase 2 recorded the decision: no replacement surface; rules stay as plain docs.
 - `includeConstitutional` is the real lever (default currently true); `shouldAlwaysSurface` has no production callers.
 - Learned-triggers verified 0 rows.
 
@@ -88,7 +88,7 @@ This is **Phase 3** — the actual retirement of the constitutional memory *syst
 The constitutional DB tier is decorative but not inert: `includeConstitutional` defaults true, so ADR-shaped `memory_search` calls still pull constitutional files, and the indexer keeps scanning `constitutional/`. The learned-triggers column is confirmed 0 rows yet still wired. Meanwhile the rules it surfaces are already inlined in the root docs. The system needs to be turned off deliberately, behind its tests, once a live replacement exists.
 
 ### Purpose
-Make the constitutional tier inert and retire its plumbing, so search stops returning it and the indexer stops maintaining it — without losing any steering, because DECISIONS.md now carries the standing rules.
+Make the constitutional tier inert and retire its plumbing, so search stops returning it and the indexer stops maintaining it — without losing any steering, because the rules are already inlined in the root instruction docs.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -158,9 +158,9 @@ Make the constitutional tier inert and retire its plumbing, so search stops retu
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Deprecating before DECISIONS.md is live | High — loses every-turn steering | Gate this phase on phase 2 being verified live |
+| Risk | Assuming the tier carried the steering | Low — it did not; rules are inlined in the root docs | Confirm root-doc inlining before retiring the tier |
 | Risk | Missing a dependent test | Medium — CI breaks | Enumerate the ~6 memory tests up front; run the full mcp-server suite |
-| Dependency | Root-doc inlined rules | Low — steering stays | Rules already inlined in CLAUDE.md/AGENTS.md/BARTER.md; DECISIONS.md adds the active surface |
+| Dependency | Root-doc inlined rules | Low — steering stays | Rules already inlined in CLAUDE.md/AGENTS.md/BARTER.md; no new surface needed |
 <!-- /ANCHOR:risks -->
 
 ---

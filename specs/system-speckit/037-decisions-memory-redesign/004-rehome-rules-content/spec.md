@@ -53,7 +53,7 @@ _memory:
 | **Phase** | 4 of 6 |
 | **Predecessor** | 003-deprecation-mechanics |
 | **Successor** | 005-advisor-integration |
-| **Handoff Criteria** | A full citation census is complete; unique rule content is rehomed (root docs + DECISIONS.md Standing); all load-bearing links retargeted; the folder deleted only after no live reference remains. |
+| **Handoff Criteria** | A full citation census is complete; unique rule content is rehomed into the root docs (or kept as unindexed reference docs); all load-bearing links retargeted; the folder deleted only after no live reference remains. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -70,7 +70,7 @@ This is **Phase 4**, moving the rule *content* off the constitutional folder now
 - A full citation census — the "~16 links" estimate was wrong; a real enumeration must precede deletion.
 
 **Deliverables**:
-- Unique rule content rehomed (root docs for the long-forms AGENTS.md cites; DECISIONS.md Standing for the global rules).
+- Unique rule content rehomed into the root docs (the long-forms AGENTS.md cites), or a small number kept as unindexed reference docs.
 - All load-bearing citations retargeted; the folder deleted.
 
 **Changelog**:
@@ -96,7 +96,7 @@ Rehome the genuinely unique rule content, retarget only the load-bearing citatio
 
 ### In Scope
 - A full citation census separating load-bearing references (root docs, skill READMEs, install-guides, feature-catalog) from non-load-bearing spec history.
-- Rehome unique long-form rule content into the root docs (or keep a small number as unindexed docs) and the global standing rules into DECISIONS.md.
+- Rehome unique long-form rule content into the root docs, or keep a small number as unindexed reference docs. (No new surface — the DECISIONS.md approach was dropped.)
 - Retarget the load-bearing links; delete the `constitutional/` folder.
 
 ### Out of Scope
@@ -109,7 +109,7 @@ Rehome the genuinely unique rule content, retarget only the load-bearing citatio
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | CLAUDE.md / AGENTS.md / BARTER.md | Modify | Retarget the load-bearing `See …md` links; inline any missing long-form content |
-| .opencode/DECISIONS.md | Modify | Absorb the global standing rules |
+| AGENTS.md | Modify | Inline any unique long-form rule content it cites but does not yet carry |
 | .opencode/skills/system-spec-kit/constitutional/ | Delete | Removed after all live citations move |
 | skill READMEs / install-guides citing rules | Modify | Retarget authority pointers |
 <!-- /ANCHOR:scope -->
@@ -124,7 +124,7 @@ Rehome the genuinely unique rule content, retarget only the load-bearing citatio
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Full citation census complete before any move | **Given** a repo-wide scan, every load-bearing reference is enumerated and separated from spec-history references |
-| REQ-002 | Unique rule content preserved | **Given** the folder deletion, no rule's unique guidance is lost — it lives in a root doc or DECISIONS.md |
+| REQ-002 | Unique rule content preserved | **Given** the folder deletion, no rule's unique guidance is lost — it lives in a root doc or a kept reference doc |
 | REQ-003 | No dangling links after deletion | **Given** the retargeted docs, a link check finds zero references to the deleted `constitutional/*.md` paths in load-bearing docs |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -140,7 +140,7 @@ Rehome the genuinely unique rule content, retarget only the load-bearing citatio
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Citation census complete; load-bearing vs history separated.
-- **SC-002**: Unique rule content rehomed; global standing rules in DECISIONS.md.
+- **SC-002**: Unique rule content rehomed into the root docs (or kept as unindexed reference docs).
 - **SC-003**: Folder deleted; zero dangling load-bearing links (verified by a link check).
 <!-- /ANCHOR:success-criteria -->
 

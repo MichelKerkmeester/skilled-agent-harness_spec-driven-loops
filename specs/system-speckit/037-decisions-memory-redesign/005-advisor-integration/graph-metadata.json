@@ -11,10 +11,10 @@
   },
   "derived": {
     "trigger_phrases": [
-      "advisor integration",
+      "advisor cleanup",
       "render.ts directives",
       "every-turn injection",
-      "decisions pointer",
+      "injection contract stale claim",
       "spec core",
       "implementation",
       "plan",
@@ -26,17 +26,17 @@
     ],
     "key_topics": [
       "advisor",
-      "integration",
+      "cleanup",
       "render",
       "directives",
       "every-turn",
       "injection",
-      "decisions",
-      "pointer",
+      "contract",
+      "stale",
+      "claim",
       "spec",
       "core",
-      "implementation",
-      "plan"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The advisor injects three hardcoded directives every turn, independent of the (now-deprecated) constitutional files",
+    "causal_summary": "The advisor injects three hardcoded directives every turn",
     "created_at": "2026-08-26T05:34:14Z",
-    "last_save_at": "2026-08-26T08:01:38.097Z",
+    "last_save_at": "2026-08-26T15:20:08.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,9 +203,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44e525559c1ddf9f08c6191ac2cad82eb425fde2e3ece96c4f3a86aad0091c74",
+    "source_fingerprint": "sha256:10bc1b2dc8f6269b6518971b6184e9234a9640e8249e15a1e6ead38451675a48",
     "source_doc_hashes": {
-      "spec.md": "84f9754fd40a38b7f8f7c3cddc166cc4b91748bcb313f2c58af8ffdf11306d8a",
+      "spec.md": "09c926c2d93607a786407b87f3d86f18237cb6729a99687eb88e66e505f91597",
       "plan.md": "2d2106ef26b14a404f248cb10cf37da057832335ac465b4040e25b41df2ac086",
       "tasks.md": "03c8e8001c717ef8f221c24211e3330dc27036e910cb60f879436371b0b13d3b",
       "implementation-summary.md": "90c4fd65c7c757ec7c3eb0182c6b40ea3735c12683d8a710334dc81c3772b1b3"
