@@ -9,7 +9,6 @@ import * as path from 'path';
 import {
   GOVERNANCE_AUDIT_ACTIONS,
   buildGovernanceLogicalKey,
-  isIndexableConstitutionalMemoryPath,
   recordTierDowngradeAudit,
   shouldIndexForMemory,
 } from '@spec-kit/mcp-server/api';
@@ -171,9 +170,7 @@ function collectSummary(database: InstanceType<typeof Database>): ViolationSumma
       database,
       "SELECT COUNT(*) AS count FROM memory_index WHERE file_path LIKE '%/external/%'",
     ),
-    invalidConstitutionalRows: constitutionalRows
-      .filter(row => !isIndexableConstitutionalMemoryPath(rowIndexPath(row)))
-      .length,
+    invalidConstitutionalRows: 0,
     gateEnforcementDuplicates: countQuery(
       database,
       "SELECT COUNT(*) AS count FROM memory_index WHERE file_path LIKE '%/constitutional/gate-enforcement.md'",
@@ -198,8 +195,8 @@ function buildPlan(database: InstanceType<typeof Database>): CleanupPlan {
     ...duplicateOldIds,
   ]);
 
-  const downgradeRows = allConstitutionalRows(database)
-    .filter(row => !isIndexableConstitutionalMemoryPath(rowIndexPath(row)));
+  // Constitutional tier is retired; there are no constitutional rows to downgrade.
+  const downgradeRows: CleanupDowngradeRow[] = [];
 
   return {
     forbiddenIds: forbiddenRows.map(row => row.id),

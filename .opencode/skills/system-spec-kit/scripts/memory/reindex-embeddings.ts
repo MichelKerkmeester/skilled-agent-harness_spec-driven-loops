@@ -71,8 +71,7 @@ async function reindex(): Promise<void> {
     console.log('');
 
     const result: MCPResponse = await runMemoryIndexScan({
-      force: true,
-      includeConstitutional: true
+      force: true
     });
 
     if (result.content && result.content[0]) {
