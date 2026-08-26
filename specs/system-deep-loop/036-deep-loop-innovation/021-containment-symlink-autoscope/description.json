@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
+  "description": "Packet 020 fixed the tsx-loader crash and added a `DEEPLOOPREPOROOT` override, but left the containment half of the operator's catch-22 unconfirmed",
+  "keywords": [
+    "packet",
+    "tsx-loader",
+    "crash",
+    "deeploopreporoot",
+    "override",
+    "left",
+    "containment",
+    "half",
+    "operator",
+    "catch-22",
+    "unconfirmed"
+  ],
+  "lastUpdated": "2026-08-26T16:10:31.155Z",
+  "specId": "021",
+  "folderSlug": "containment-symlink-autoscope",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

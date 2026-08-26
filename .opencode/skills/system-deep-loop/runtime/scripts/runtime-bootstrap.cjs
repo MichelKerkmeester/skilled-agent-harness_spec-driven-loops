@@ -1,6 +1,20 @@
 'use strict';
 
 const path = require('node:path');
+const fs = require('node:fs');
+
+function realpathSafe(p) {
+  try {
+    return fs.realpathSync(p);
+  } catch {
+    return path.resolve(p);
+  }
+}
+
+function isSubpath(childAbs, parentAbs) {
+  const rel = path.relative(parentAbs, childAbs);
+  return rel === '' || (!path.isAbsolute(rel) && !rel.startsWith('..'));
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Process-boot helpers shared by every deep-loop .cjs entrypoint.
@@ -26,16 +40,36 @@ function tsxChildEnv(extra) {
   return env;
 }
 
-// Repo root used for write-containment. Defaults to the working directory.
-// DEEP_LOOP_REPO_ROOT lets an operator pin it explicitly -- e.g. to the canonical
-// space-free checkout -- when the loop is launched from a mirror whose path the
-// git-toplevel and realpath resolution would otherwise reject. An empty or
-// whitespace-only value is ignored so a blank export cannot silently break scope.
-function resolveContainmentRepoRoot(env, cwd) {
+// Repo root used for write-containment. Precedence:
+//   1. DEEP_LOOP_REPO_ROOT, when an operator pins it explicitly (a blank or
+//      whitespace-only value is ignored so a stray export cannot break scope).
+//   2. Auto-detection: when the artifact tree resolves (through symlinks) outside
+//      the working directory's git worktree -- e.g. a checkout whose .opencode is
+//      a symlink into a shared canonical checkout -- containment must run against
+//      the worktree that PHYSICALLY holds the writes, or git cannot see them and
+//      every artifact is (wrongly) rejected as unscopable. Only this otherwise-
+//      broken case is redirected; when the artifact is inside cwd's worktree the
+//      result is cwd, unchanged. gitToplevel is injected so this stays testable.
+//   3. The working directory.
+function resolveContainmentRepoRoot(env, cwd, opts) {
   const override = env && typeof env.DEEP_LOOP_REPO_ROOT === 'string'
     ? env.DEEP_LOOP_REPO_ROOT.trim()
     : '';
-  return override ? path.resolve(override) : cwd;
+  if (override) return path.resolve(override);
+
+  const artifactDir = opts && opts.artifactDir;
+  const gitToplevel = opts && typeof opts.gitToplevel === 'function' ? opts.gitToplevel : null;
+  if (artifactDir && gitToplevel) {
+    const artifactReal = realpathSafe(artifactDir);
+    const cwdTop = gitToplevel(cwd);
+    if (cwdTop && !isSubpath(artifactReal, realpathSafe(cwdTop))) {
+      const artifactTop = gitToplevel(artifactReal);
+      if (artifactTop && isSubpath(artifactReal, realpathSafe(artifactTop))) {
+        return artifactTop;
+      }
+    }
+  }
+  return cwd;
 }
 
-module.exports = { tsxChildEnv, resolveContainmentRepoRoot };
+module.exports = { tsxChildEnv, resolveContainmentRepoRoot, realpathSafe, isSubpath };
