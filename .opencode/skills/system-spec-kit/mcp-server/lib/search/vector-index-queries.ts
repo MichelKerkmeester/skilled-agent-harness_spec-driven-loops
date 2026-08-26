@@ -36,7 +36,6 @@ import {
 import {
   initialize_db,
   get_embedding_dim,
-  get_constitutional_memories,
   init_prepared_statements,
   validate_file_path_local,
   safe_read_file_async,
@@ -489,28 +488,6 @@ export function vector_search(
   });
 
   return regular_results;
-}
-
-/**
- * Gets constitutional memories for prompt assembly.
- * @param options - Retrieval options.
- * @returns The constitutional memory rows.
- */
-export function get_constitutional_memories_public(
-  options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {},
-  database: Database.Database = initialize_db(),
-): MemoryRow[] {
-  const { specFolder = null, maxTokens = 2000, includeArchived = false } = options;
-
-  let results = get_constitutional_memories(database, specFolder, includeArchived);
-
-  const TOKENS_PER_MEMORY = 100;
-  const max_count = Math.floor(maxTokens / TOKENS_PER_MEMORY);
-  if (results.length > max_count) {
-    results = results.slice(0, max_count);
-  }
-
-  return results;
 }
 
 /**
@@ -1787,7 +1764,6 @@ export { get_memory_count as getMemoryCount };
 export { get_status_counts as getStatusCounts };
 export { get_stats as getStats };
 export { vector_search as vectorSearch };
-export { get_constitutional_memories_public as getConstitutionalMemories };
 export { multi_concept_search as multiConceptSearch };
 export { extract_title as extractTitle };
 export { extract_snippet as extractSnippet };

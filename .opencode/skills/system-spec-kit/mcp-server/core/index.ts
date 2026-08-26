@@ -53,10 +53,4 @@ export {
   // Persistent rate limiting
   getLastScanTime,
   setLastScanTime,
-
-  // Constitutional cache
-  getConstitutionalCache,
-  setConstitutionalCache,
-  getConstitutionalCacheTime,
-  clearConstitutionalCache,
 } from './db-state.js';

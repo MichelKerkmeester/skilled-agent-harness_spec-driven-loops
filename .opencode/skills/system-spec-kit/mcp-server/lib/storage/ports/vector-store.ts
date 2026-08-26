@@ -372,15 +372,6 @@ export class BetterSqliteVectorStore<TMetadata extends VectorMetadata = VectorMe
     return enhanced_search(embedding, undefined, options, database);
   }
 
-  async getConstitutionalMemories(
-    options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {},
-  ): Promise<MemoryRow[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { get_constitutional_memories_public } = await getQueriesModule();
-    return get_constitutional_memories_public(options, database);
-  }
-
   async verifyIntegrity(
     options: { autoClean?: boolean; cleanFiles?: boolean } = {},
   ): Promise<{

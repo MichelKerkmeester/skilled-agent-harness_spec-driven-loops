@@ -1,8 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Vector Index
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Hybrid search pipeline
-// Backward-compatible export surface across split modules.
+// Backward-compatible export surface across the split vector-index modules.
 
 export {
   BetterSqliteVectorStore,
@@ -67,7 +66,6 @@ export {
   get_status_counts,
   get_stats,
   vector_search,
-  get_constitutional_memories_public,
   multi_concept_search,
   extract_title,
   extract_snippet,
@@ -92,7 +90,6 @@ export {
   getStatusCounts,
   getStats,
   vectorSearch,
-  getConstitutionalMemories,
   multiConceptSearch,
   extractTitle,
   extractSnippet,
@@ -145,7 +142,6 @@ export {
   getDbPath,
   get_db_path,
   get_needs_rebuild_sentinel_path,
-  clearConstitutionalCache,
   validateFilePath,
   isVectorSearchAvailable,
   getConfirmedEmbeddingDimension,
@@ -161,8 +157,6 @@ export {
   get_confirmed_embedding_dimension,
   validate_embedding_dimension,
   is_vector_search_available,
-  clear_constitutional_cache,
-  get_constitutional_memories,
   init_prepared_statements,
   clear_prepared_statements,
   refresh_interference_scores_for_folder,

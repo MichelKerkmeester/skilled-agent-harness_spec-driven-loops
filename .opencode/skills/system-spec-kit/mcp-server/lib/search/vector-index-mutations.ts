@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Vector Index Mutations
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Hybrid search pipeline
 // Split from vector-index-store.ts — contains ALL mutation functions:
 // Index, update, delete, and status/confidence updates.
 
@@ -33,7 +32,6 @@ import {
   VectorIndexErrorCode,
 } from './vector-index-types.js';
 import {
-  clear_constitutional_cache,
   get_embedding_dim,
   initialize_db,
   init_prepared_statements,
@@ -620,7 +618,6 @@ export function update_memory(
       }
       updates.push('importance_tier = ?');
       values.push(nextImportanceTier);
-      clear_constitutional_cache();
     }
     if (canonicalFilePath !== undefined) {
       updates.push('canonical_file_path = ?');
@@ -774,7 +771,6 @@ export function delete_memory_from_database(database: Database.Database, id: num
     const result = database.prepare('DELETE FROM memory_index WHERE id = ?').run(id);
 
     clear_search_cache();
-    clear_constitutional_cache();
 
     return result.changes > 0;
   });
@@ -937,7 +933,6 @@ export function delete_memories(
     deleted = outcome.deleted;
     failed = outcome.failed;
     if (deleted > 0) {
-      clear_constitutional_cache();
       clear_search_cache();
       // Invalidate entity-density cache so deleted memories' tokens are evicted
       // immediately rather than persisting for up to the 60s TTL. Best-effort.
