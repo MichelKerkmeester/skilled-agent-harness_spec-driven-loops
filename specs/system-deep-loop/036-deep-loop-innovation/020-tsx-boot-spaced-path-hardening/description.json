@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
+  "description": "The deep-loop runtime is 19 `.ts` files with zero `.js` files; each `.cjs` entrypoint re-execs itself under the tsx loader (`--import <tsx>`), which",
+  "keywords": [
+    "deep-loop",
+    "runtime",
+    "files",
+    "zero",
+    "cjs",
+    "entrypoint",
+    "re-execs",
+    "itself",
+    "tsx",
+    "loader",
+    "import"
+  ],
+  "lastUpdated": "2026-08-26T14:47:59.200Z",
+  "specId": "020",
+  "folderSlug": "tsx-boot-spaced-path-hardening",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
