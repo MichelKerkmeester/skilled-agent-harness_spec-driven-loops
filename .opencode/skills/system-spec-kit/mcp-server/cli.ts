@@ -486,7 +486,6 @@ async function runReindex(): Promise<void> {
   console.log(`  Scanning...`);
   const result = await handleMemoryIndexScan({
     force,
-    includeConstitutional: true,
     includeSpecDocs: true,
   });
 

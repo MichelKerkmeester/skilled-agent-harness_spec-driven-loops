@@ -89,8 +89,8 @@ import {
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { StatediffAction } from '../lib/storage/statediff.js';
 
-// Feature catalog: Workspace scanning and indexing (memory_index_scan)
-// Feature catalog: Async ingestion job lifecycle
+// This handler scans the workspace for new/changed spec-doc files and indexes
+// them, and manages the async ingestion job lifecycle behind memory_index_scan.
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -584,7 +584,7 @@ function redactScanArgs(args: ScanArgs): Record<string, unknown> {
   return {
     specFolder: args.specFolder ?? null,
     force: !!args.force,
-    includeConstitutional: args.includeConstitutional !== false,
+    includeConstitutional: args.includeConstitutional === true,
     includeSpecDocs: args.includeSpecDocs !== false,
     incremental: args.incremental !== false,
     background: true,
@@ -621,7 +621,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   const {
     specFolder: spec_folder = null,
     force = false,
-    includeConstitutional: include_constitutional = true,
+    includeConstitutional: include_constitutional = false,
     includeSpecDocs: include_spec_docs = true,
     incremental = true,
     scopedPaths = [],

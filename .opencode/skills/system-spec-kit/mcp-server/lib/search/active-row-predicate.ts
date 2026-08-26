@@ -58,7 +58,7 @@ export function ACTIVE_POPULATION_SQL(alias: string): string {
   return `${safeAlias}.deleted_at IS NULL AND ${getSearchableTiersFilter({
     alias: safeAlias,
     includeCold: false,
-    includeConstitutional: true,
+    includeConstitutional: false,
   })}`;
 }
 
