@@ -16,7 +16,8 @@
     "system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence",
     "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution",
     "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
-    "system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review"
+    "system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review",
+    "system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review"
   ],
   "manual": {
     "depends_on": [],
@@ -96,7 +97,7 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-25T13:56:09.188Z",
+    "last_save_at": "2026-08-26T05:04:41.600Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -106,7 +107,7 @@
     "source_doc_hashes": {
       "spec.md": "8fa06d3a0b2da5f26bfbbfad2b22ef54fa5f847cca8079f1c011c549562c0c2b"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review",
-    "last_active_at": "2026-08-25T13:56:09.188Z"
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review",
+    "last_active_at": "2026-08-26T05:04:41.600Z"
   }
 }

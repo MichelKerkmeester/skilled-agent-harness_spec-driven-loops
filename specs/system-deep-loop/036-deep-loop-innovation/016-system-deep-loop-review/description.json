@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review",
+  "description": "The 014 review was scoped narrowly to the gateway-alignment surface and surfaced ten real findings; the 015 remediation just landed a P0 fix plus five",
+  "keywords": [
+    "review",
+    "scoped",
+    "narrowly",
+    "gateway-alignment",
+    "surface",
+    "surfaced",
+    "ten",
+    "real",
+    "findings",
+    "remediation",
+    "just",
+    "landed",
+    "plus",
+    "five"
+  ],
+  "lastUpdated": "2026-08-26T05:17:12.627Z",
+  "specId": "016",
+  "folderSlug": "system-deep-loop-review",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-08-26_06-04__fan-out-deep-research-run-completed-alongside-the.md"
+  ]
+}
