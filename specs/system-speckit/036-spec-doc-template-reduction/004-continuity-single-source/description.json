@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/036-spec-doc-template-reduction/004-continuity-single-source",
+  "description": "The ~20-line `memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary — ~227 near-identical lines per L2",
+  "keywords": [
+    "20-line",
+    "memory",
+    "continuity",
+    "yaml",
+    "block",
+    "re-emitted",
+    "spec",
+    "plan",
+    "tasks",
+    "checklist",
+    "implementation-summary",
+    "near-identical",
+    "lines",
+    "per"
+  ],
+  "lastUpdated": "2026-08-26T07:57:14.709Z",
+  "specId": "004",
+  "folderSlug": "continuity-single-source",
+  "parentChain": [
+    "system-speckit",
+    "036-spec-doc-template-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

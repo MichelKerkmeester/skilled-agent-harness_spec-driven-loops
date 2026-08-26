@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge",
+  "description": "`tasks.md` and `checklist.md` are two separately required documents whose completion signals overlap: research confirmed task rows duplicate checklist",
+  "keywords": [
+    "tasks",
+    "checklist",
+    "two",
+    "separately",
+    "required",
+    "documents",
+    "whose",
+    "completion",
+    "signals",
+    "overlap",
+    "research",
+    "confirmed",
+    "task",
+    "rows",
+    "duplicate"
+  ],
+  "lastUpdated": "2026-08-26T07:35:18.788Z",
+  "specId": "002",
+  "folderSlug": "tasks-checklist-merge",
+  "parentChain": [
+    "system-speckit",
+    "036-spec-doc-template-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/037-decisions-memory-redesign/001-analysis",
+  "description": "Phase 1: analysis",
+  "keywords": [
+    "phase",
+    "analysis"
+  ],
+  "lastUpdated": "2026-08-26T05:34:11.835Z",
+  "specId": "001",
+  "folderSlug": "analysis",
+  "parentChain": [
+    "system-speckit",
+    "037-decisions-memory-redesign"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

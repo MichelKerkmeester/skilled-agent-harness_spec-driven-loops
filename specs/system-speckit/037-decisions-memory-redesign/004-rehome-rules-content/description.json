@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/037-decisions-memory-redesign/004-rehome-rules-content",
+  "description": "Deleting the constitutional folder naively breaks dangling `See …md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its",
+  "keywords": [
+    "deleting",
+    "constitutional",
+    "folder",
+    "naively",
+    "breaks",
+    "dangling",
+    "see",
+    "links",
+    "claude",
+    "agents",
+    "barter",
+    "skill",
+    "doc",
+    "cites",
+    "rule"
+  ],
+  "lastUpdated": "2026-08-26T07:59:59.391Z",
+  "specId": "004",
+  "folderSlug": "rehome-rules-content",
+  "parentChain": [
+    "system-speckit",
+    "037-decisions-memory-redesign"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge",
+  "spec_folder": "system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge",
+  "parent_id": "system-speckit/036-spec-doc-template-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "tasks checklist merge",
+      "unified verification doc",
+      "deriveStatus checklist",
+      "template merge",
+      "spec core",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "tasks",
+      "checklist",
+      "merge",
+      "unified",
+      "verification",
+      "doc",
+      "derivestatus",
+      "template",
+      "spec",
+      "core",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "tasks.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Checklist",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ox Alpha",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`tasks.md` and `checklist.md` are two separately required documents whose completion signals overlap: research confirmed task rows duplicate checklist item intent, and `deriveStatus` ranks `implementation-summary > checklist > tasks`, so whenever `checklist.md` exists its checkboxes are counted and the `tasks.md` checkboxes are ignored",
+    "created_at": "2026-08-26T05:33:56Z",
+    "last_save_at": "2026-08-26T07:36:41.389Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:041e53c937f985ae1cfce6abdc085e611bd573b9a6957022342cfce04a351bca",
+    "source_doc_hashes": {
+      "spec.md": "b62e1525346ec4d0fb5b637bf1595ca9ade88d9b4c3f48b676638e217bed3dd4",
+      "plan.md": "a6f287913238dc39ce8271a54b5f2997d7e6a790b6e744927b13a23b51e039ae",
+      "tasks.md": "b3eb88f2162971eb74ec1d5db0f14fdb94a05b7a721e1b844216830b053e0d42",
+      "implementation-summary.md": "b5a3fa45c8fe122aa19362228dc07258fbc2d0db70a0a8ece37af3ef0ecfdae5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

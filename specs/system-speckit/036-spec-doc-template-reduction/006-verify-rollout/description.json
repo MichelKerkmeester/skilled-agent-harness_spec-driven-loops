@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/036-spec-doc-template-reduction/006-verify-rollout",
+  "description": "Each prior phase edits shipped, load-bearing templates and validators where a mis-sequenced change regresses the whole packet fleet",
+  "keywords": [
+    "prior",
+    "phase",
+    "edits",
+    "shipped",
+    "load-bearing",
+    "templates",
+    "validators",
+    "mis-sequenced",
+    "change",
+    "regresses",
+    "whole",
+    "packet",
+    "fleet"
+  ],
+  "lastUpdated": "2026-08-26T07:58:31.654Z",
+  "specId": "006",
+  "folderSlug": "verify-rollout",
+  "parentChain": [
+    "system-speckit",
+    "036-spec-doc-template-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

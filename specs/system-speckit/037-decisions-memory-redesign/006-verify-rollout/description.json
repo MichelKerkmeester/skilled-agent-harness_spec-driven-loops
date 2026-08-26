@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/037-decisions-memory-redesign/006-verify-rollout",
+  "description": "The deprecation touches search plumbing, tier config, learned-triggers, a command, root docs, and the advisor — a wide blast radius",
+  "keywords": [
+    "deprecation",
+    "touches",
+    "search",
+    "plumbing",
+    "tier",
+    "config",
+    "learned-triggers",
+    "command",
+    "root",
+    "docs",
+    "advisor",
+    "wide",
+    "blast",
+    "radius"
+  ],
+  "lastUpdated": "2026-08-26T08:01:12.088Z",
+  "specId": "006",
+  "folderSlug": "verify-rollout",
+  "parentChain": [
+    "system-speckit",
+    "037-decisions-memory-redesign"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

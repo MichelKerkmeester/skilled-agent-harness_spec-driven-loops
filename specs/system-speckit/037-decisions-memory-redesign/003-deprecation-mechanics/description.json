@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/037-decisions-memory-redesign/003-deprecation-mechanics",
+  "description": "The constitutional DB tier is decorative but not inert: `includeConstitutional` defaults true, so ADR-shaped `memorysearch` calls still pull",
+  "keywords": [
+    "constitutional",
+    "tier",
+    "decorative",
+    "inert",
+    "includeconstitutional",
+    "defaults",
+    "true",
+    "adr-shaped",
+    "memorysearch",
+    "calls",
+    "still",
+    "pull"
+  ],
+  "lastUpdated": "2026-08-26T08:04:16.303Z",
+  "specId": "003",
+  "folderSlug": "deprecation-mechanics",
+  "parentChain": [
+    "system-speckit",
+    "037-decisions-memory-redesign"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

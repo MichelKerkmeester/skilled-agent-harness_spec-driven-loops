@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/037-decisions-memory-redesign/005-advisor-integration",
+  "description": "The advisor injects three hardcoded directives every turn, independent of the (now-deprecated) constitutional files",
+  "keywords": [
+    "advisor",
+    "injects",
+    "three",
+    "hardcoded",
+    "directives",
+    "every",
+    "turn",
+    "independent",
+    "now-deprecated",
+    "constitutional",
+    "files"
+  ],
+  "lastUpdated": "2026-08-26T08:00:37.996Z",
+  "specId": "005",
+  "folderSlug": "advisor-integration",
+  "parentChain": [
+    "system-speckit",
+    "037-decisions-memory-redesign"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

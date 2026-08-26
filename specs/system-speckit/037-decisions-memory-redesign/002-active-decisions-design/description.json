@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/037-decisions-memory-redesign/002-active-decisions-design",
+  "description": "Decisions live in four disconnected stores — 20 constitutional files, 616 per-spec `decision-record.md` ADRs, per-packet `memory.continuity` blocks,",
+  "keywords": [
+    "decisions",
+    "live",
+    "four",
+    "disconnected",
+    "stores",
+    "constitutional",
+    "files",
+    "per-spec",
+    "decision-record",
+    "adrs",
+    "per-packet",
+    "memory",
+    "continuity",
+    "blocks"
+  ],
+  "lastUpdated": "2026-08-26T07:38:16.143Z",
+  "specId": "002",
+  "folderSlug": "active-decisions-design",
+  "parentChain": [
+    "system-speckit",
+    "037-decisions-memory-redesign"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
