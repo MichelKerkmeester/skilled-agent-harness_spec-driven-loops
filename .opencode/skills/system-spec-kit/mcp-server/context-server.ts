@@ -1280,17 +1280,6 @@ function getPendingRecoveryLocations(basePath: string): string[] {
       scanLocations.push(path.join(root, 'specs'));
       scanLocations.push(path.join(root, '.opencode', 'specs'));
     }
-    const skillDir = path.join(root, '.opencode', 'skills');
-    try {
-      if (!fs.existsSync(skillDir)) continue;
-      for (const entry of fs.readdirSync(skillDir, { withFileTypes: true })) {
-        if (!entry.isDirectory() || entry.name.startsWith('.')) continue;
-        const constDir = path.join(skillDir, entry.name, 'constitutional');
-        if (fs.existsSync(constDir)) scanLocations.push(constDir);
-      }
-    } catch (_error: unknown) {
-      // Non-fatal: constitutional directory discovery failed
-    }
   }
   return Array.from(new Set(scanLocations.filter((location) => fs.existsSync(location))));
 }
@@ -1361,7 +1350,7 @@ async function startupScan(basePath: string): Promise<void> {
     // Recover any pending files from previous failed index operations
     await recoverPendingFiles(basePath);
 
-    console.error('[context-server] Starting background scan for spec documents and constitutional memories...');
+    console.error('[context-server] Starting background scan for spec documents...');
     const scanRoots = Array.from(
       new Set(
         [basePath, ...ALLOWED_BASE_PATHS]
@@ -1391,7 +1380,7 @@ async function startupScan(basePath: string): Promise<void> {
     }
 
     if (allFiles.length === 0) {
-      console.error('[context-server] No spec documents or constitutional memories found in workspace');
+      console.error('[context-server] No spec documents found in workspace');
       return;
     }
 

@@ -827,13 +827,10 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
   const savedBasename = filePath ? path.basename(filePath) : '';
   const isPacketMetadataTarget = savedBasename === 'description.json'
     || savedBasename === 'graph-metadata.json';
-  const isConstitutionalTarget = typeof filePath === 'string'
-    && filePath.includes('/constitutional/');
   if (
     shouldEmitPostMutationFeedback
     && filePath
     && !isPacketMetadataTarget
-    && !isConstitutionalTarget
   ) {
     response.metadataRefresh = {
       refreshed: false,
