@@ -134,10 +134,7 @@ import type { IntentType, IntentWeights as IntentClassifierWeights } from '../li
 import type { RawSearchResult } from '../formatters/index.js';
 // RoutingResult, WeightedResult — now used internally by lib/search/search-utils.ts
 
-// Feature catalog: Semantic and lexical search (memory_search)
-// Feature catalog: Hybrid search pipeline
-// Feature catalog: 4-stage pipeline architecture
-// Feature catalog: Quality-aware 3-tier search fallback
+// Semantic and lexical search (memory_search): a hybrid 4-stage pipeline with a quality-aware 3-tier fallback.
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -1321,7 +1318,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     contextType,
     useDecay: useDecay = true,
     includeContiguity: includeContiguity = false,
-    includeConstitutional: includeConstitutional = true,
+    includeConstitutional: includeConstitutional = false,
     includeContent: includeContent = false,
     anchors,
     bypassCache: bypassCache = false,

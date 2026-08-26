@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Vector Index Queries
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Hybrid search pipeline
+// Query and search half of the hybrid search pipeline.
 // Split from vector-index-store.ts — contains ALL query/search functions,
 // Content extraction, ranking, stats, cleanup, and integrity checks.
 
@@ -406,7 +406,7 @@ export function vector_search(
     useDecay = true,
     tier = null,
     contextType = null,
-    includeConstitutional = true,
+    includeConstitutional = false,
     includeArchived = false
   } = options;
 
