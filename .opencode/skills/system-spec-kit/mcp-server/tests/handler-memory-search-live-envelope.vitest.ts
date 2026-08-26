@@ -89,7 +89,6 @@ function pipelineFixture(overrides: Partial<PipelineResult> = {}): PipelineResul
         channelCount: 2,
         activeChannels: 2,
         candidateCount: 2,
-        constitutionalInjected: 0,
         durationMs: 3,
       },
       stage2: {
@@ -114,7 +113,6 @@ function pipelineFixture(overrides: Partial<PipelineResult> = {}): PipelineResul
       },
       stage4: {
         stateFiltered: 0,
-        constitutionalInjected: 0,
         evidenceGapDetected: false,
         durationMs: 1,
       },
@@ -182,7 +180,6 @@ async function callHandler(query = 'audit source requirement decision envelope')
     agentId: 'agent-live-envelope',
     bypassCache: true,
     includeContent: true,
-    includeConstitutional: false,
     retrievalLevel: 'local',
     enableSessionBoost: false,
     enableCausalBoost: false,

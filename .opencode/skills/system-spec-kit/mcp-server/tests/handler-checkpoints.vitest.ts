@@ -786,7 +786,6 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
     });
 
     it('T102-3: vectorIndex cache clear functions exist', () => {
-      expect(typeof vectorIndexMod.clearConstitutionalCache).toBe('function');
       expect(typeof vectorIndexMod.clearSearchCache).toBe('function');
     });
 
@@ -807,11 +806,6 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
       const calls: string[] = [];
 
       // Use vi.spyOn instead of direct property assignment to avoid ESM readonly errors
-      const spyClearConstitutional = vi
-        .spyOn(vectorIndexMod, 'clearConstitutionalCache')
-        .mockImplementation((_specFolder: string | null = null) => {
-          calls.push('clearConstitutionalCache');
-        });
       const spyClearSearch = vi
         .spyOn(vectorIndexMod, 'clearSearchCache')
         .mockImplementation((_specFolder: string | null = null) => {
@@ -829,7 +823,6 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
 
         expect(calls.length).not.toBe(1);
         if (calls.length >= 2) {
-          expect(calls).toContain('clearConstitutionalCache');
           expect(calls).toContain('clearSearchCache');
           expect(calls).toContain('refreshTriggerCache');
         } else {
@@ -838,7 +831,6 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
         }
       } finally {
         // Restore originals via vitest
-        spyClearConstitutional.mockRestore();
         spyClearSearch.mockRestore();
         spyRefreshTrigger.mockRestore();
       }
@@ -849,7 +841,6 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
       const handlerSource = fs.readFileSync(path.join(HANDLERS_PATH, 'checkpoints.ts'), 'utf-8');
 
       expect(handlerSource).toContain('T102');
-      expect(handlerSource).toContain('clearConstitutionalCache');
       expect(handlerSource).toContain('clearSearchCache');
       expect(handlerSource).toContain('refreshTriggerCache');
       expect(handlerSource).toContain('rebuildFromDatabase');

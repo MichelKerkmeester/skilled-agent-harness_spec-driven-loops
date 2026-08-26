@@ -28,7 +28,7 @@ const EXTENDED_LIMITS: Record<string, number> = {
   'handlers/memory-save.js': 3490,  // Actual:3482 — Save logic with parsing, validation, indexing + quality gate + reconsolidation + Wave A save_lineage option forwarding
   'handlers/memory-index.js': 810,  // actual: 795 — Index operations with scanning + spec document discovery
   'handlers/checkpoints.js': 860,   // Actual:853 — Checkpoint operations plus scoped metadata guards, restore/delete safety checks, SEC-002 scope enforcement, and follow-up fixes
-  'hooks/memory-surface.js': 520,   // Actual:503 — Memory surface hooks with constitutional cache, auto-surface, attention-enriched hints, priming, session snapshots, and bootstrap telemetry
+  'hooks/memory-surface.js': 520,   // Actual:503 — Memory surface hooks with auto-surface, attention-enriched hints, priming, session snapshots, and bootstrap telemetry
 };
 
 type CoreIndexModule = typeof import('../core/index');
@@ -235,7 +235,7 @@ describe('Handler Module Exports', () => {
     'handleMemoryDelete', 'handleMemoryUpdate',
     'handleMemoryList', 'handleMemoryStats', 'handleMemoryHealth',
     'handleMemorySave', 'indexMemoryFile',
-    'handleMemoryIndexScan', 'findConstitutionalFiles',
+    'handleMemoryIndexScan',
     'handleCheckpointCreate', 'handleCheckpointList',
     'handleCheckpointRestore', 'handleCheckpointDelete',
     'handleMemoryValidate',
@@ -298,7 +298,6 @@ describe('Hooks Module Exports (mocked DB)', () => {
   // The barrel exports the live camelCase API surface from hooks/index.ts.
   const required = [
     'extractContextHint',
-    'getConstitutionalMemories',
     'autoSurfaceMemories',
     'MEMORY_AWARE_TOOLS',
   ];

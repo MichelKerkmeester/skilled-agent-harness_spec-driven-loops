@@ -190,7 +190,6 @@ describe('Gate D regression embedding semantic search', () => {
     expect(sourceContract.countsBySourceKind).toEqual({
       spec_doc: 1,
       continuity: 1,
-      constitutional: 0,
     });
   });
 

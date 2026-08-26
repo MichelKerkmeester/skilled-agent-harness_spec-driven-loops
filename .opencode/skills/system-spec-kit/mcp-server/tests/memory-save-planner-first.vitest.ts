@@ -232,7 +232,6 @@ describe('memory-save planner-first response contract', () => {
     expect(payload.data.postMutationHooks).toEqual(expect.objectContaining({
       operation: 'save',
       triggerCacheCleared: true,
-      constitutionalCacheCleared: true,
       graphSignalsCacheCleared: true,
       coactivationCacheCleared: true,
       toolCacheInvalidated: expect.any(Number),
@@ -240,7 +239,6 @@ describe('memory-save planner-first response contract', () => {
     }));
     expect(payload.data.postMutationHooks.subscribers).toEqual(expect.arrayContaining([
       expect.objectContaining({ name: 'trigger-cache', ok: true }),
-      expect.objectContaining({ name: 'constitutional-cache', ok: true }),
       expect.objectContaining({ name: 'graph-cache', ok: true }),
       expect.objectContaining({ name: 'coactivation-cache', ok: true }),
     ]));

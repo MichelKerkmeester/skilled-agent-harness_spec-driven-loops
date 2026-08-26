@@ -11,26 +11,25 @@ describe('Importance Tiers (T504)', () => {
 
   // 4.1 TIER RECOGNITION
   describe('Tier Recognition (T504-01)', () => {
-    it('T504-01: All 7 tiers recognized', () => {
-      const expectedTiers: ImportanceTier[] = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'archived', 'deprecated'];
+    it('T504-01: All 6 tiers recognized', () => {
+      const expectedTiers: ImportanceTier[] = ['critical', 'important', 'normal', 'temporary', 'archived', 'deprecated'];
       const allPresent = expectedTiers.every(t => mod.IMPORTANCE_TIERS[t] !== undefined);
       const tierCount = Object.keys(mod.IMPORTANCE_TIERS).length;
 
       expect(allPresent).toBe(true);
-      expect(tierCount).toBe(7);
+      expect(tierCount).toBe(6);
     });
 
-    it('T504-01b: VALID_TIERS array has 7 entries', () => {
+    it('T504-01b: VALID_TIERS array has 6 entries', () => {
       expect(Array.isArray(mod.VALID_TIERS)).toBe(true);
-      expect(mod.VALID_TIERS.length).toBe(7);
+      expect(mod.VALID_TIERS.length).toBe(6);
     });
   });
 
   // 4.2 TIER ORDERING
   describe('Tier Ordering (T504-02)', () => {
-    it('T504-02: Tier ordering is correct (constitutional > ... > deprecated)', () => {
+    it('T504-02: Tier ordering is correct (critical > ... > deprecated)', () => {
       const values = {
-        constitutional: mod.getTierValue('constitutional'),
         critical: mod.getTierValue('critical'),
         important: mod.getTierValue('important'),
         normal: mod.getTierValue('normal'),
@@ -38,7 +37,6 @@ describe('Importance Tiers (T504)', () => {
         deprecated: mod.getTierValue('deprecated'),
       };
 
-      expect(values.constitutional).toBeGreaterThanOrEqual(values.critical);
       expect(values.critical).toBeGreaterThanOrEqual(values.important);
       expect(values.important).toBeGreaterThanOrEqual(values.normal);
       expect(values.normal).toBeGreaterThanOrEqual(values.temporary);
@@ -50,7 +48,6 @@ describe('Importance Tiers (T504)', () => {
   describe('Tier Boost Values (T504-03)', () => {
     it('T504-03: Tier boost values are correct', () => {
       const expectedBoosts: Record<ImportanceTier, number> = {
-        constitutional: 3.0,
         critical: 2.0,
         important: 1.5,
         normal: 1.0,
@@ -102,7 +99,6 @@ describe('Importance Tiers (T504)', () => {
         { input: 'CRITICAL', expected: 'critical' },
         { input: 'Critical', expected: 'critical' },
         { input: 'NORMAL', expected: 'normal' },
-        { input: 'Constitutional', expected: 'constitutional' },
         { input: null, expected: 'normal' },
         { input: undefined, expected: 'normal' },
         { input: '', expected: 'normal' },
@@ -119,7 +115,6 @@ describe('Importance Tiers (T504)', () => {
   describe('Tier Transitions (T504-06)', () => {
     it('T504-06: Tier decay transitions work correctly', () => {
       const decayExpectations: Record<ImportanceTier, boolean> = {
-        constitutional: false,
         critical: false,
         important: false,
         normal: true,
@@ -155,7 +150,6 @@ describe('Importance Tiers (T504)', () => {
   describe('Tier Values (T504-08)', () => {
     it('T504-08: Tier value/multiplier values', () => {
       const expectedValues: Record<ImportanceTier, number> = {
-        constitutional: 1.0,
         critical: 1.0,
         important: 0.8,
         normal: 0.5,
@@ -185,8 +179,8 @@ describe('Importance Tiers (T504)', () => {
         const sorted = mod.getTiersByImportance();
 
         expect(Array.isArray(sorted)).toBe(true);
-        expect(sorted.length).toBe(7);
-        expect(['constitutional', 'critical']).toContain(sorted[0]);
+        expect(sorted.length).toBe(6);
+        expect(['critical']).toContain(sorted[0]);
       }
     });
   });
@@ -201,7 +195,6 @@ describe('Importance Tiers (T504)', () => {
 
     it('T504-09b: Normalization is case-insensitive and trims whitespace', () => {
       expect(mod.getDefaultTierForDocumentType('  SPEC  ')).toBe('important');
-      expect(mod.getDefaultTierForDocumentType('Constitutional')).toBe('constitutional');
     });
   });
 });

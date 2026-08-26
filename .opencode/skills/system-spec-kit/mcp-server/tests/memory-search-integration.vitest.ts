@@ -437,7 +437,6 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
       const response = await memorySearchHandler.handleMemorySearch({
         concepts: ['alpha', 'beta'],
         limit: 5,
-        includeConstitutional: false,
         bypassCache: true,
         rerank: false,
       });

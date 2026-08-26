@@ -39,43 +39,6 @@ afterEach(() => {
 });
 
 describe('checkpoint_restore invariant enforcement', () => {
-  it('downgrades poisoned constitutional rows outside /constitutional/ and records governance_audit', () => {
-    insertCheckpoint('poisoned-constitutional', [
-      {
-        id: 4001,
-        spec_folder: 'system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants',
-        file_path: '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants/plan.md',
-        canonical_file_path: '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants/plan.md',
-        title: 'Poisoned snapshot row',
-        importance_weight: 0.6,
-        created_at: '2026-04-24T00:00:00Z',
-        updated_at: '2026-04-24T00:00:00Z',
-        importance_tier: 'constitutional',
-      },
-    ]);
-
-    const result = checkpointStorage.restoreCheckpoint('poisoned-constitutional', true);
-
-    expect(result.errors).toEqual([]);
-    expect(result.restored).toBe(1);
-
-    const restored = database.prepare(`
-      SELECT importance_tier
-      FROM memory_index
-      WHERE id = 4001
-    `).get() as { importance_tier: string };
-    expect(restored.importance_tier).toBe('important');
-
-    const audits = database.prepare(`
-      SELECT action
-      FROM governance_audit
-      ORDER BY id ASC
-    `).all() as Array<{ action: string }>;
-    expect(audits).toEqual([
-      { action: 'tier_downgrade_non_constitutional_path' },
-    ]);
-  });
-
   it('aborts the restore for walker-excluded paths and preserves the pre-restore state', () => {
     database.prepare(`
       INSERT INTO memory_index (
@@ -129,8 +92,8 @@ describe('checkpoint_restore invariant enforcement', () => {
     ]);
   });
 
-  it('restores clean constitutional rows unchanged without emitting governance_audit', () => {
-    insertCheckpoint('clean-constitutional', [
+  it('restores clean rows unchanged without emitting governance_audit', () => {
+    insertCheckpoint('clean-row', [
       {
         id: 6001,
         spec_folder: 'system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants',
@@ -140,11 +103,11 @@ describe('checkpoint_restore invariant enforcement', () => {
         importance_weight: 0.9,
         created_at: '2026-04-24T00:00:00Z',
         updated_at: '2026-04-24T00:00:00Z',
-        importance_tier: 'constitutional',
+        importance_tier: 'important',
       },
     ]);
 
-    const result = checkpointStorage.restoreCheckpoint('clean-constitutional', true);
+    const result = checkpointStorage.restoreCheckpoint('clean-row', true);
 
     expect(result.errors).toEqual([]);
     const restored = database.prepare(`
@@ -152,7 +115,7 @@ describe('checkpoint_restore invariant enforcement', () => {
       FROM memory_index
       WHERE id = 6001
     `).get() as { importance_tier: string };
-    expect(restored.importance_tier).toBe('constitutional');
+    expect(restored.importance_tier).toBe('important');
 
     const auditCount = database.prepare(`
       SELECT COUNT(*) AS count

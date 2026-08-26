@@ -206,7 +206,6 @@ function createStage2Input(
       searchType: overrides.searchType ?? 'vector',
       channelCount: 1,
       candidateCount: candidates.length,
-      constitutionalInjected: 0,
       durationMs: 1,
     },
     config: {
@@ -214,7 +213,6 @@ function createStage2Input(
       searchType: 'vector',
       limit: candidates.length,
       includeArchived: false,
-      includeConstitutional: false,
       includeContent: false,
       minState: 'hot',
       applyStateLimits: false,
@@ -388,7 +386,6 @@ describe('T028: provenance envelope', () => {
         title: 'Graph provenance result',
         similarity: 91,
         importance_tier: 'important',
-        isConstitutional: false,
         graphEvidence: {
           edges: [{ sourceId: 1, targetId: 2, relation: 'caused', strength: 0.9 }],
           communities: [{ communityId: 42, summary: 'Auth cluster' }],

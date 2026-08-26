@@ -321,10 +321,6 @@ describe('MEMORY PARSER EXTENDED TESTS', () => {
       expect(mod.isMemoryFile('/project/.opencode/specs/003-auth/spec.md')).toBe(true);
     });
 
-    it('T18: recognizes constitutional memory file', () => {
-      expect(mod.isMemoryFile('/project/.opencode/skills/my-skill/constitutional/rules.md')).toBe(true);
-    });
-
     it('T19: rejects legacy memory/ path (retired surface)', () => {
       expect(mod.isMemoryFile('/project/specs/003-auth/memory/session.md')).toBe(false);
     });

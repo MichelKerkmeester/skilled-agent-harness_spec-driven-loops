@@ -53,16 +53,6 @@ describe('T206 - keyword_search archival compatibility [deferred - DB dependency
   });
 });
 
-describe('T206 - getConstitutionalMemories accepts includeArchived [deferred - DB dependency]', () => {
-  it('T206-CM1: getConstitutionalMemories is exported', () => {
-    expect(VECTOR_INDEX_QUERIES_SOURCE).toContain('export { get_constitutional_memories_public as getConstitutionalMemories };');
-  });
-
-  it('T206-CM2: getConstitutionalMemories accepts includeArchived', () => {
-    expect(VECTOR_INDEX_QUERIES_SOURCE).toMatch(/export function get_constitutional_memories_public\([\s\S]*?includeArchived = false/);
-  });
-});
-
 /* ───────────────────────────────────────────────────────────────
    Source code static analysis — these tests read source files directly
    and can run without DB dependencies.
@@ -145,7 +135,7 @@ describe('T235 - archive-behavior runtime semantics (beyond signature checks)', 
     // functions. Count total references to verify it is not dead code.
     const totalRefs = (VECTOR_INDEX_QUERIES_SOURCE.match(/includeArchived/g) || []).length;
     // At least 4: vector_search param, multi_concept_search param,
-    // get_constitutional_memories param, and at least one usage.
+    // and at least one usage in each.
     expect(totalRefs).toBeGreaterThanOrEqual(4);
   });
 

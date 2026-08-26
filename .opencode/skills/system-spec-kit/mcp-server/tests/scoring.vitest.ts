@@ -3,8 +3,8 @@
  * Scoring.vitest.ts — Decay & Recency Scoring Tests
  *
  * Tests the decay/recency/boost behavior of composite-scoring.ts.
- * Focuses on temporal decay curves, recency scoring, constitutional
- * exemptions, edge cases, and batch ordering — complementing the
+ * Focuses on temporal decay curves, recency scoring, tier
+ * multipliers, edge cases, and batch ordering — complementing the
  * broader API coverage in composite-scoring.vitest.ts.
  *
  * Original intent: 19 tests for legacy scoring.js (calculateDecayBoost,
@@ -54,11 +54,6 @@ describe('T505-01: Recency Scoring (calculateRecencyScore)', () => {
     expect(recent).toBeGreaterThan(older);
   });
 
-  it('should return 1.0 for constitutional tier regardless of age', () => {
-    const score = calculateRecencyScore(daysAgo(365), 'constitutional');
-    expect(score).toBe(1.0);
-  });
-
   it('should return 0.5 for invalid/missing timestamp', () => {
     const invalid = calculateRecencyScore('not-a-date');
     expect(invalid).toBe(0.5);
@@ -80,12 +75,12 @@ describe('T505-02: Retrievability Decay (calculateRetrievabilityScore)', () => {
     expect(recentScore).toBeGreaterThan(olderScore);
   });
 
-  it('should give constitutional memory full composite score boost', () => {
-    // Constitutional tier gets high importance multiplier and recency exemption
-    const constitutionalRow = {
+  it('should give critical memory a higher composite score than normal', () => {
+    // Critical tier gets the highest importance-tier multiplier
+    const criticalRow = {
       similarity: 80,
       importance_weight: 1.0,
-      importance_tier: 'constitutional',
+      importance_tier: 'critical',
       updated_at: daysAgo(60), // old timestamp
       access_count: 5,
       stability: 5.0,
@@ -102,11 +97,11 @@ describe('T505-02: Retrievability Decay (calculateRetrievabilityScore)', () => {
       lastReview: daysAgo(60),
     };
 
-    const constitutionalScore = calculateCompositeScore(constitutionalRow);
+    const criticalScore = calculateCompositeScore(criticalRow);
     const normalScore = calculateCompositeScore(normalRow);
 
-    // Constitutional should score higher due to tier boost and recency exemption
-    expect(constitutionalScore).toBeGreaterThan(normalScore);
+    // Critical should score higher due to its importance-tier multiplier
+    expect(criticalScore).toBeGreaterThan(normalScore);
   });
 });
 
@@ -217,7 +212,7 @@ describe('T505-07: Batch Scoring (applyCompositeScoring)', () => {
     expect(ranked[1].composite_score).toBeGreaterThanOrEqual(ranked[2].composite_score);
   });
 
-  it('should give constitutional memory priority in batch', () => {
+  it('should give critical memory priority in batch', () => {
     const memories = [
       {
         id: 1,
@@ -232,7 +227,7 @@ describe('T505-07: Batch Scoring (applyCompositeScoring)', () => {
       {
         id: 2,
         similarity: 80,
-        importance_tier: 'constitutional',
+        importance_tier: 'critical',
         importance_weight: 1.0,
         updated_at: daysAgo(30),
         lastReview: daysAgo(30),
@@ -242,7 +237,7 @@ describe('T505-07: Batch Scoring (applyCompositeScoring)', () => {
     ];
 
     const ranked = applyCompositeScoring(memories);
-    // Constitutional should rank higher despite being older, due to tier boost and recency exemption
+    // Critical should rank higher despite being older, due to its tier boost and higher weight
     expect(ranked[0].id).toBe(2);
   });
 });
@@ -264,8 +259,8 @@ describe('T505-08: Decay Configuration & Constants', () => {
     expect(FSRS_DECAY).toBeCloseTo(-0.5, 4);
   });
 
-  it('should have IMPORTANCE_MULTIPLIERS for all six tiers', () => {
-    const expectedTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
+  it('should have IMPORTANCE_MULTIPLIERS for all five tiers', () => {
+    const expectedTiers = ['critical', 'important', 'normal', 'temporary', 'deprecated'];
     for (const tier of expectedTiers) {
       expect(IMPORTANCE_MULTIPLIERS[tier]).toBeDefined();
       expect(typeof IMPORTANCE_MULTIPLIERS[tier]).toBe('number');

@@ -33,31 +33,15 @@ function withFlag(value: string | undefined, fn: () => void): void {
   }
 }
 
-// Constitutional / critical importance tier — no decay
-describe('T020-1: Constitutional and critical tiers never decay', () => {
-  it('constitutional importance_tier multiplier is Infinity', () => {
-    expect(IMPORTANCE_TIER_STABILITY_MULTIPLIER['constitutional']).toBe(Infinity);
-  });
-
+// Critical importance tier — no decay
+describe('T020-1: Critical tier never decays', () => {
   it('critical importance_tier multiplier is Infinity', () => {
     expect(IMPORTANCE_TIER_STABILITY_MULTIPLIER['critical']).toBe(Infinity);
-  });
-
-  it('getClassificationDecayMultiplier returns Infinity for constitutional + general', () => {
-    const mult = getClassificationDecayMultiplier('general', 'constitutional');
-    expect(mult).toBe(Infinity);
   });
 
   it('getClassificationDecayMultiplier returns Infinity for critical + implementation', () => {
     const mult = getClassificationDecayMultiplier('implementation', 'critical');
     expect(mult).toBe(Infinity);
-  });
-
-  it('applyClassificationDecay returns Infinity for constitutional tier (flag=true)', () => {
-    withFlag('true', () => {
-      const result = applyClassificationDecay(10, 'implementation', 'constitutional');
-      expect(result).toBe(Infinity);
-    });
   });
 
   it('calculateRetrievability with Infinity stability returns 1.0 regardless of elapsed days', () => {
@@ -152,8 +136,8 @@ describe('T020-4: Combined context_type and importance_tier multipliers', () => 
     });
   });
 
-  it('decision + constitutional = Infinity (both are no-decay; Infinity wins)', () => {
-    const mult = getClassificationDecayMultiplier('decision', 'constitutional');
+  it('decision + critical = Infinity (both are no-decay; Infinity wins)', () => {
+    const mult = getClassificationDecayMultiplier('decision', 'critical');
     expect(mult).toBe(Infinity);
   });
 });
@@ -187,8 +171,8 @@ describe('T020-5: Unknown context_type and importance_tier default to 1.0', () =
 describe('T020-6: SPECKIT_CLASSIFICATION_DECAY feature flag gating', () => {
   it('flag unset → applyClassificationDecay applies multiplier (graduated: default ON)', () => {
     withFlag(undefined, () => {
-      const result = applyClassificationDecay(10, 'decision', 'constitutional');
-      // Graduated flag: unset means enabled. decision+constitutional → Infinity
+      const result = applyClassificationDecay(10, 'decision', 'critical');
+      // Graduated flag: unset means enabled. decision+critical → Infinity
       expect(result).toBe(Infinity);
     });
   });
@@ -198,7 +182,7 @@ describe('T020-6: SPECKIT_CLASSIFICATION_DECAY feature flag gating', () => {
     process.env.SPECKIT_HYBRID_DECAY_POLICY = 'false';
     try {
       withFlag('false', () => {
-        const result = applyClassificationDecay(10, 'decision', 'constitutional');
+        const result = applyClassificationDecay(10, 'decision', 'critical');
         expect(result).toBe(10);
       });
     } finally {

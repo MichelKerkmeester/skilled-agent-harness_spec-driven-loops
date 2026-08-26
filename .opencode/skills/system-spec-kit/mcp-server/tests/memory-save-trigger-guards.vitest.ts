@@ -25,9 +25,4 @@ describe('memory save trigger guards', () => {
     expect(merged.filter((phrase) => phrase.toLowerCase() === 'user authored')).toHaveLength(1);
     expect(merged).not.toContain('generated nine');
   });
-
-  it('identifies temporary and sandbox constitutional source paths', () => {
-    expect(__memorySaveTestables.isSandboxConstitutionalSource('/tmp/speckit-manual-playbook-sandbox/rule.md')).toBe(true);
-    expect(__memorySaveTestables.isSandboxConstitutionalSource('/workspace/.opencode/skills/system-spec-kit/constitutional/rule.md')).toBe(false);
-  });
 });

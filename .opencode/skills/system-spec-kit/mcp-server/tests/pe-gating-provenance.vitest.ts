@@ -190,7 +190,7 @@ describe('PE mutation provenance', () => {
     // The retire helper surfaces a human predecessor's tier + source-kind so the
     // append-version successor keeps its overwrite protection instead of being
     // relabelled to the automated default. Old behavior re-stamped 'agent'.
-    const { updateExistingMemory } = await loadPeGating({ importanceTier: 'constitutional', sourceKind: 'human' });
+    const { updateExistingMemory } = await loadPeGating({ importanceTier: 'important', sourceKind: 'human' });
 
     const result = updateExistingMemory(
       101,
@@ -206,7 +206,7 @@ describe('PE mutation provenance', () => {
       FROM memory_index
       WHERE id = ?
     `).get(result.id) as { source_kind: string; importance_tier: string };
-    expect(row).toEqual({ source_kind: 'human', importance_tier: 'constitutional' });
+    expect(row).toEqual({ source_kind: 'human', importance_tier: 'important' });
   });
 
   it('preserves protected source_kind when PE reinforce records automated provenance', async () => {

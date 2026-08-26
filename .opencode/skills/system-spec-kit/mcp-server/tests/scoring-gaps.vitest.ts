@@ -125,15 +125,6 @@ describe('Scoring Gaps', () => {
       db.close();
     });
 
-    it('T-CT11 returns false for constitutional memory', () => {
-      const db = createTestDb();
-      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'constitutional' });
-
-      const result = confMod.promoteToCritical(db, 1);
-      expect(result).toBe(false);
-      db.close();
-    });
-
     it('T-CT12 returns false for ineligible memory', () => {
       const db = createTestDb();
       insertMemory(db, 1, { confidence: 0.3, validation_count: 1, importance_tier: 'normal' });
@@ -198,23 +189,6 @@ describe('Scoring Gaps', () => {
      IMPORTANCE-TIERS TESTS
   ──────────────────────────────────────────────────────────────── */
 
-  describe('getConstitutionalFilter', () => {
-    it('T-IT01 returns a string', () => {
-      const sql = tierMod.getConstitutionalFilter();
-      expect(typeof sql).toBe('string');
-    });
-
-    it('T-IT02 contains "constitutional"', () => {
-      const sql = tierMod.getConstitutionalFilter();
-      expect(sql).toContain('constitutional');
-    });
-
-    it('T-IT03 references importance_tier column', () => {
-      const sql = tierMod.getConstitutionalFilter();
-      expect(sql).toContain('importance_tier');
-    });
-  });
-
   describe('getSearchableTiersFilter', () => {
     it('T-IT04 returns a string', () => {
       const sql = tierMod.getSearchableTiersFilter();
@@ -233,39 +207,7 @@ describe('Scoring Gaps', () => {
     });
   });
 
-  describe('shouldAlwaysSurface', () => {
-    it('T-IT07 constitutional returns true', () => {
-      expect(tierMod.shouldAlwaysSurface('constitutional')).toBe(true);
-    });
-
-    it('T-IT08 normal returns false', () => {
-      expect(tierMod.shouldAlwaysSurface('normal')).toBe(false);
-    });
-
-    it('T-IT09 critical returns false', () => {
-      expect(tierMod.shouldAlwaysSurface('critical')).toBe(false);
-    });
-
-    it('T-IT10 deprecated returns false', () => {
-      expect(tierMod.shouldAlwaysSurface('deprecated')).toBe(false);
-    });
-
-    it('T-IT11 unknown tier returns false', () => {
-      expect(tierMod.shouldAlwaysSurface('nonexistent')).toBe(false);
-    });
-  });
-
   describe('getMaxTokens', () => {
-    it('T-IT12 constitutional returns positive number', () => {
-      const val = tierMod.getMaxTokens('constitutional');
-      expect(typeof val).toBe('number');
-      expect(val).toBeGreaterThan(0);
-    });
-
-    it('T-IT13 constitutional equals 2000', () => {
-      expect(tierMod.getMaxTokens('constitutional')).toBe(2000);
-    });
-
     it('T-IT14 normal returns null', () => {
       expect(tierMod.getMaxTokens('normal')).toBeNull();
     });

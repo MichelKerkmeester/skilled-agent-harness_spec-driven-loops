@@ -152,10 +152,10 @@ describe('Factor 3: Importance Score (Tier Multipliers)', () => {
     expect(IMPORTANCE_MULTIPLIERS.temporary).toBe(0.6);
   });
 
-  it('T032-22: Constitutional tier gets highest score', () => {
-    const constScore = calculateImportanceScore('constitutional', 0.5);
+  it('T032-22: Critical tier gets highest score', () => {
+    const critScore = calculateImportanceScore('critical', 0.5);
     const normalScore = calculateImportanceScore('normal', 0.5);
-    expect(constScore).toBeGreaterThan(normalScore);
+    expect(critScore).toBeGreaterThan(normalScore);
   });
 });
 
@@ -273,7 +273,7 @@ describe('Five-Factor Composite Score (T032)', () => {
       lastReview: now.toISOString(),
       stability: 1.0,
       access_count: 20,
-      importance_tier: 'constitutional',
+      importance_tier: 'critical',
       importance_weight: 1.0,
       similarity: 100,
       title: 'test query',
@@ -622,9 +622,8 @@ describe('Edge Cases: Usage Factor', () => {
 
 describe('Edge Cases: Importance Factor', () => {
   it('EDGE-I01: All tier multipliers verified', () => {
-    // Aligned with IMPORTANCE_TIERS from importance-tiers.js (6 valid tiers)
+    // Aligned with IMPORTANCE_TIERS from importance-tiers.js (5 valid tiers)
     const expected = {
-      constitutional: 2.0,
       critical: 1.5,
       important: 1.3,
       normal: 1.0,
@@ -664,9 +663,9 @@ describe('Edge Cases: Importance Factor', () => {
     expect(Math.abs(score - 0.75)).toBeLessThan(0.001);
   });
 
-  it('EDGE-I06: Constitutional with high base weight capped at 1.0', () => {
-    // Normalized = min(1, (1.0 * 2.0) / 2.0) = min(1, 1.0) = 1.0
-    const score = calculateImportanceScore('constitutional', 1.0);
+  it('EDGE-I06: High base weight capped at 1.0', () => {
+    // Normalized = min(1, (2.0 * 1.5) / 2.0) = min(1, 1.5) = 1.0
+    const score = calculateImportanceScore('critical', 2.0);
     expect(score).toBe(1.0);
   });
 
@@ -836,7 +835,7 @@ describe('Edge Cases: Composite Score', () => {
       lastReview: now.toISOString(),
       stability: 100.0,
       access_count: 100,
-      importance_tier: 'constitutional',
+      importance_tier: 'critical',
       importance_weight: 1.0,
       similarity: 100,
       title: 'test query exact match',

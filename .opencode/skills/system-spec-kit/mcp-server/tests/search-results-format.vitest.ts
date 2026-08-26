@@ -25,7 +25,6 @@ import path from 'path';
 interface SearchResultsResponseData {
   count: number;
   results: MemoryResultEnvelope[];
-  constitutionalCount?: number;
   searchType?: string;
   evidenceGapWarning?: string;
   retrievalTrace?: unknown;
@@ -196,7 +195,6 @@ describe('formatSearchResults', () => {
       file_path: '/test/file.md',
       title: 'Test Memory',
       similarity: 85.5,
-      isConstitutional: false,
       importance_tier: 'normal',
       triggerPhrases: '["hello","world"]',
       created_at: '2025-01-01T00:00:00Z'
@@ -208,7 +206,6 @@ describe('formatSearchResults', () => {
     expect(envelope.data.results[0].specFolder).toBe('specs/001-test');
     expect(envelope.data.results[0].title).toBe('Test Memory');
     expect(envelope.data.results[0].similarity).toBe(85.5);
-    expect(envelope.data.results[0].isConstitutional).toBe(false);
   });
 
   it('C4: triggerPhrases parsed from JSON string', async () => {
@@ -235,19 +232,6 @@ describe('formatSearchResults', () => {
     const res = await formatSearchResults(mockResults, 'semantic');
     const envelope = parseEnvelope(res);
     expect(envelope.data.results[0].triggerPhrases).toEqual(['already', 'an', 'array']);
-  });
-
-  it('C6: Constitutional results counted in summary', async () => {
-    const mockResults = [
-      { id: 10, spec_folder: 's1', file_path: '/f1.md', title: 'A', isConstitutional: true },
-      { id: 11, spec_folder: 's2', file_path: '/f2.md', title: 'B', isConstitutional: false },
-      { id: 12, spec_folder: 's3', file_path: '/f3.md', title: 'C', isConstitutional: true },
-    ];
-    const res = await formatSearchResults(mockResults, 'semantic');
-    const envelope = parseEnvelope(res);
-    expect(envelope.data.constitutionalCount).toBe(2);
-    expect(envelope.data.count).toBe(3);
-    expect(envelope.summary).toContain('2 constitutional');
   });
 
   it('C7: averageSimilarity used as fallback similarity', async () => {

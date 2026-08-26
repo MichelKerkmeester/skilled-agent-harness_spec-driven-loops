@@ -77,7 +77,6 @@ describe('extractValidationMetadata — quality score signals', () => {
 
   it('T5: maps all known importance tiers to expected quality scores', () => {
     const expected: Record<string, number> = {
-      constitutional: 1.0,
       critical: 0.9,
       important: 0.75,
       normal: 0.5,
@@ -373,8 +372,8 @@ describe('enrichResultsWithValidationMetadata — score immutability', () => {
    ──────────────────────────────────────────────────────────────── */
 
 describe('TIER_QUALITY_SCORES and VALIDATION_COMPLETE_MARKERS exports', () => {
-  it('TIER_QUALITY_SCORES covers all six standard tiers', () => {
-    const expectedTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
+  it('TIER_QUALITY_SCORES covers all five standard tiers', () => {
+    const expectedTiers = ['critical', 'important', 'normal', 'temporary', 'deprecated'];
     for (const tier of expectedTiers) {
       expect(TIER_QUALITY_SCORES[tier]).toBeDefined();
       expect(TIER_QUALITY_SCORES[tier]).toBeGreaterThanOrEqual(0);
@@ -382,8 +381,7 @@ describe('TIER_QUALITY_SCORES and VALIDATION_COMPLETE_MARKERS exports', () => {
     }
   });
 
-  it('TIER_QUALITY_SCORES values are ordered correctly (constitutional > deprecated)', () => {
-    expect(TIER_QUALITY_SCORES['constitutional']).toBeGreaterThan(TIER_QUALITY_SCORES['critical']);
+  it('TIER_QUALITY_SCORES values are ordered correctly (critical > deprecated)', () => {
     expect(TIER_QUALITY_SCORES['critical']).toBeGreaterThan(TIER_QUALITY_SCORES['important']);
     expect(TIER_QUALITY_SCORES['important']).toBeGreaterThan(TIER_QUALITY_SCORES['normal']);
     expect(TIER_QUALITY_SCORES['normal']).toBeGreaterThan(TIER_QUALITY_SCORES['temporary']);

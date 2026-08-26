@@ -336,7 +336,6 @@ describe.sequential('Gate D intent routing regression', () => {
           query: CANONICAL_QUERY,
           specFolder: GATE_D_SPEC_FOLDER,
           anchors: CANONICAL_ANCHORS,
-          includeConstitutional: true,
           useDecay: true,
         });
         expect(searchArgs.autoDetectIntent).toBe(false);
@@ -425,10 +424,8 @@ describe.sequential('Gate D intent routing regression', () => {
     //    global archived-row default downstream.
     // 2. autoDetectIntent must be false to prevent the handler from
     //    overriding the already-classified intent.
-    // 3. includeConstitutional must be true for canonical context.
     expect(searchArgs.includeArchived).toBeUndefined();
     expect(searchArgs.autoDetectIntent).toBe(false);
-    expect(searchArgs.includeConstitutional).toBe(true);
   });
 
   // drift: verified against shipped behavior during Unit H
@@ -525,7 +522,6 @@ describe.sequential('Gate D canonical-filtering contract assertions', () => {
         {
           limit: 10,
           specFolder: active.specFolder,
-          includeConstitutional: false,
         },
         db,
       );
@@ -583,7 +579,6 @@ describe.sequential('Gate D canonical-filtering contract assertions', () => {
       const response = await memorySearch.handleMemorySearch({
         query: 'gate d canonical',
         limit: 10,
-        includeConstitutional: false,
         bypassCache: true,
         rerank: false,
       });
@@ -624,7 +619,6 @@ describe.sequential('Gate D canonical-filtering contract assertions', () => {
       const response = await memorySearch.handleMemorySearch({
         query: 'gate d count',
         limit: 10,
-        includeConstitutional: false,
         bypassCache: true,
         rerank: false,
       });

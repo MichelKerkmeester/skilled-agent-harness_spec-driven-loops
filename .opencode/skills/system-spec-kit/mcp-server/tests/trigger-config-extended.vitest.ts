@@ -846,12 +846,12 @@ describe('EXTENDED TESTS: trigger-matcher + memory-types + type-inference', () =
   // ---------- 5.1 TIER_TO_TYPE_MAP ----------
 
   describe('TIER_TO_TYPE_MAP', () => {
-    it('5.1.1 has all 6 tiers', () => {
+    it('5.1.1 has all 5 tiers', () => {
       const map = typeInference.TIER_TO_TYPE_MAP;
       if (!map) return;
       const tiers = Object.keys(map);
-      const expected = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
-      expect(tiers.length).toBe(6);
+      const expected = ['critical', 'important', 'normal', 'temporary', 'deprecated'];
+      expect(tiers.length).toBe(5);
       for (const t of expected) {
         expect(tiers).toContain(t);
       }
@@ -860,7 +860,6 @@ describe('EXTENDED TESTS: trigger-matcher + memory-types + type-inference', () =
     it('5.1.2 correct mappings', () => {
       const map = typeInference.TIER_TO_TYPE_MAP;
       if (!map) return;
-      expect(map.constitutional).toBe('meta-cognitive');
       expect(map.critical).toBe('semantic');
       expect(map.temporary).toBe('working');
       expect(map.deprecated).toBe('episodic');
@@ -906,11 +905,11 @@ describe('EXTENDED TESTS: trigger-matcher + memory-types + type-inference', () =
     it('5.2.4 uses importance_tier fallback', () => {
       const fn = typeInference.inferMemoryTypesBatch;
       if (!fn) return;
-      const items = [{ file_path: '/todo-list.md', importance_tier: 'constitutional' }];
+      const items = [{ file_path: '/todo-list.md', importance_tier: 'critical' }];
       const result = fn(items);
       const entry = result.get('/todo-list.md');
       expect(entry).toBeDefined();
-      expect(entry!.type).toBe('meta-cognitive');
+      expect(entry!.type).toBe('semantic');
       expect(entry!.source).toBe('importance_tier');
     });
   });

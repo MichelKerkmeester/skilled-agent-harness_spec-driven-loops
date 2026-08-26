@@ -106,7 +106,6 @@ describe('explicit follow-up indexing APIs', () => {
     expect(handleMemoryIndexScan).toHaveBeenCalledWith({
       specFolder: 'system-spec-kit/015-save-flow-planner-first-trim',
       includeSpecDocs: true,
-      includeConstitutional: false,
       incremental: true,
       force: false,
     });
@@ -137,7 +136,6 @@ describe('explicit follow-up indexing APIs', () => {
     expect(handleMemoryIndexScan).toHaveBeenCalledWith({
       specFolder: 'system-spec-kit/015-save-flow-planner-first-trim',
       includeSpecDocs: true,
-      includeConstitutional: false,
       incremental: true,
       force: false,
     });

@@ -158,7 +158,6 @@ describe('Gate D regression reconsolidation', () => {
         limit: 3,
         specFolder: 'specs/025-gate-d',
         minSimilarity: 88,
-        includeConstitutional: false,
       }),
     );
     expect(warnSpy).toHaveBeenCalledWith(

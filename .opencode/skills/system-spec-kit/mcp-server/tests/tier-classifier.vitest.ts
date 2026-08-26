@@ -132,12 +132,6 @@ describe('Tier Classifier (5-State Model)', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('classifyTier() (T221-T225)', () => {
-    it('T221: Constitutional => HOT with R=1.0', () => {
-      const r = tierClassifier.classifyTier({ id: 1, importance_tier: 'constitutional', stability: 1.0 });
-      expect(r.state).toBe('HOT');
-      expect(r.retrievability).toBe(1.0);
-    });
-
     it('T222: Pinned memory => HOT', () => {
       const r = tierClassifier.classifyTier({ id: 2, is_pinned: 1, stability: 1.0 });
       expect(r.state).toBe('HOT');
@@ -168,10 +162,6 @@ describe('Tier Classifier (5-State Model)', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('shouldArchive() (T226-T230)', () => {
-    it('T226: Constitutional => never archive', () => {
-      expect(tierClassifier.shouldArchive({ id: 1, importance_tier: 'constitutional', stability: 0.01, created_at: new Date(Date.now() - 200 * 86400000).toISOString() })).toBe(false);
-    });
-
     it('T227: Critical => never archive', () => {
       expect(tierClassifier.shouldArchive({ id: 2, importance_tier: 'critical', stability: 0.01, created_at: new Date(Date.now() - 200 * 86400000).toISOString() })).toBe(false);
     });
@@ -207,7 +197,7 @@ describe('Tier Classifier (5-State Model)', () => {
 
     it('T237: Stats count memories correctly', () => {
       const memories = [
-        { id: 1, importance_tier: 'constitutional', stability: 1.0 },
+        { id: 1, importance_tier: 'critical', stability: 1.0 },
         { id: 2, importance_tier: 'critical', stability: 1.0 },
         { id: 3, importance_tier: 'normal', stability: 100, created_at: new Date().toISOString() },
       ];
@@ -218,7 +208,7 @@ describe('Tier Classifier (5-State Model)', () => {
 
     it('T238: Stats has uppercase keys', () => {
       const memories = [
-        { id: 1, importance_tier: 'constitutional', stability: 1.0 },
+        { id: 1, importance_tier: 'critical', stability: 1.0 },
         { id: 2, importance_tier: 'critical', stability: 1.0 },
         { id: 3, importance_tier: 'normal', stability: 100, created_at: new Date().toISOString() },
       ];
@@ -232,7 +222,7 @@ describe('Tier Classifier (5-State Model)', () => {
 
     it('T239: total = sum of all states', () => {
       const memories = [
-        { id: 1, importance_tier: 'constitutional', stability: 1.0 },
+        { id: 1, importance_tier: 'critical', stability: 1.0 },
         { id: 2, importance_tier: 'critical', stability: 1.0 },
         { id: 3, importance_tier: 'normal', stability: 100, created_at: new Date().toISOString() },
       ];
@@ -249,7 +239,7 @@ describe('Tier Classifier (5-State Model)', () => {
 
   describe('getStateContent() (T241-T245)', () => {
     const memories = [
-      { id: 1, importance_tier: 'constitutional', stability: 1.0 },
+      { id: 1, importance_tier: 'critical', stability: 1.0 },
       { id: 2, importance_tier: 'critical', stability: 1.0 },
       { id: 3, importance_tier: 'normal', stability: 100, created_at: new Date().toISOString() },
     ];
@@ -289,7 +279,7 @@ describe('Tier Classifier (5-State Model)', () => {
 
   describe('formatStateResponse() (T246-T250)', () => {
     const memories = [
-      { id: 1, title: 'Test Memory', spec_folder: 'specs/001', file_path: '/test.md', importance_tier: 'constitutional', stability: 1.0 },
+      { id: 1, title: 'Test Memory', spec_folder: 'specs/001', file_path: '/test.md', importance_tier: 'critical', stability: 1.0 },
       { id: 2, title: 'Another', spec_folder: 'specs/002', file_path: '/other.md', importance_tier: 'normal', stability: 100, created_at: new Date().toISOString() },
     ];
 
@@ -324,7 +314,7 @@ describe('Tier Classifier (5-State Model)', () => {
     });
 
     it('T250: Missing title => "Untitled"', () => {
-      const r = tierClassifier.formatStateResponse([{ id: 99, importance_tier: 'constitutional', stability: 1.0 }]);
+      const r = tierClassifier.formatStateResponse([{ id: 99, importance_tier: 'critical', stability: 1.0 }]);
       expect(r[0].title).toBe('Untitled');
     });
   });
@@ -336,7 +326,7 @@ describe('Tier Classifier (5-State Model)', () => {
 
   describe('filterAndLimitByState() (T251-T255)', () => {
     const memories = [
-      { id: 1, importance_tier: 'constitutional', stability: 1.0 },
+      { id: 1, importance_tier: 'critical', stability: 1.0 },
       { id: 2, importance_tier: 'critical', stability: 1.0 },
       { id: 3, importance_tier: 'normal', stability: 100, created_at: new Date().toISOString() },
     ];
@@ -374,10 +364,6 @@ describe('Tier Classifier (5-State Model)', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('getEffectiveHalfLife() (T256-T260)', () => {
-    it('T256: Constitutional => null (no decay)', () => {
-      expect(tierClassifier.getEffectiveHalfLife({ id: 1, importance_tier: 'constitutional' })).toBeNull();
-    });
-
     it('T257: Critical => null (no decay)', () => {
       expect(tierClassifier.getEffectiveHalfLife({ id: 2, importance_tier: 'critical' })).toBeNull();
     });

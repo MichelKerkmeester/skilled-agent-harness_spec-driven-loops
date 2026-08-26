@@ -6,7 +6,6 @@ const vectorIndexMocks = vi.hoisted(() => ({
   vectorSearch: vi.fn(() => []),
   multiConceptSearch: vi.fn(() => []),
   getDb: vi.fn(() => ({}) as unknown),
-  get_constitutional_memories: vi.fn(() => [] as unknown[]),
 }));
 
 vi.mock('../lib/search/vector-index.js', () => vectorIndexMocks);
@@ -70,7 +69,6 @@ function makeConfig(overrides: Partial<PipelineConfig> = {}): PipelineConfig {
     searchType: 'hybrid',
     limit: 5,
     includeArchived: false,
-    includeConstitutional: false,
     includeContent: false,
     minState: 'active',
     applyStateLimits: false,
@@ -96,8 +94,6 @@ describe('Stage 1 embedder degradation', () => {
     vectorIndexMocks.vectorSearch.mockClear();
     vectorIndexMocks.multiConceptSearch.mockClear();
     vectorIndexMocks.getDb.mockClear();
-    vectorIndexMocks.get_constitutional_memories.mockReset();
-    vectorIndexMocks.get_constitutional_memories.mockReturnValue([]);
     vectorSearchSpy = vi.fn(() => [
       { id: 701, title: 'Semantic happy path', similarity: 91 },
     ]);
@@ -138,29 +134,6 @@ describe('Stage 1 embedder degradation', () => {
     });
     expect(vectorSearchSpy).not.toHaveBeenCalled();
     expect(graphSearchSpy).not.toHaveBeenCalled();
-  });
-
-  it('still surfaces constitutional memories on the lexical fallback when the embedder is unavailable', async () => {
-    vectorIndexMocks.generateQueryEmbedding.mockResolvedValue(null);
-    vectorIndexMocks.get_constitutional_memories.mockReturnValue([
-      { id: 901, importance_tier: 'constitutional', title: 'Constitutional rule', spec_folder: null },
-    ]);
-
-    const result = await executeStage1({
-      config: makeConfig({ includeConstitutional: true }),
-    });
-
-    // Constitutional rows must still surface even though the vector lane was
-    // skipped — the always-include guarantee is independent of vector availability.
-    expect(result.candidates.map((candidate) => Number(candidate.id))).toContain(901);
-    expect(result.metadata.constitutionalInjected).toBe(1);
-    expect(result.metadata).toMatchObject({
-      embedderAvailable: false,
-      vectorSearchSkipped: true,
-    });
-    // Fetched via the no-embedding tier lookup, not the vector-search injection path.
-    expect(vectorIndexMocks.get_constitutional_memories).toHaveBeenCalled();
-    expect(vectorIndexMocks.vectorSearch).not.toHaveBeenCalled();
   });
 
   it('still throws genuine multi-concept input errors', async () => {

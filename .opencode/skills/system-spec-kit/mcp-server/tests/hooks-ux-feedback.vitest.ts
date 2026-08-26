@@ -8,8 +8,7 @@ describe('Hooks UX feedback', () => {
     const feedback = buildMutationHookFeedback('save', {
       latencyMs: 9,
       triggerCacheCleared: true,
-      constitutionalCacheCleared: false,
-      graphSignalsCacheCleared: true,
+      graphSignalsCacheCleared: false,
       coactivationCacheCleared: true,
       toolCacheInvalidated: 3,
       errors: [],
@@ -19,15 +18,14 @@ describe('Hooks UX feedback', () => {
       operation: 'save',
       latencyMs: 9,
       triggerCacheCleared: true,
-      constitutionalCacheCleared: false,
-      graphSignalsCacheCleared: true,
+      graphSignalsCacheCleared: false,
       coactivationCacheCleared: true,
       toolCacheInvalidated: 3,
       errors: [],
     });
 
     expect(feedback.hints.some((hint) => hint.includes('Post-mutation subscribers'))).toBe(true);
-    expect(feedback.hints.some((hint) => hint.includes('constitutional=failed'))).toBe(true);
+    expect(feedback.hints.some((hint) => hint.includes('graphSignals=failed'))).toBe(true);
     expect(feedback.hints.some((hint) => hint.includes('Tool cache invalidation'))).toBe(true);
     expect(feedback.hints.some((hint) => hint.includes('non-fatal'))).toBe(true);
   });
@@ -36,7 +34,6 @@ describe('Hooks UX feedback', () => {
     const feedback = buildMutationHookFeedback('save', {
       latencyMs: 5,
       triggerCacheCleared: true,
-      constitutionalCacheCleared: true,
       graphSignalsCacheCleared: true,
       coactivationCacheCleared: true,
       toolCacheInvalidated: 1,
@@ -50,7 +47,6 @@ describe('Hooks UX feedback', () => {
     const feedback = buildMutationHookFeedback('update', {
       latencyMs: 2,
       triggerCacheCleared: true,
-      constitutionalCacheCleared: true,
       graphSignalsCacheCleared: true,
       coactivationCacheCleared: true,
       toolCacheInvalidated: 0,
@@ -83,7 +79,6 @@ describe('Hooks UX feedback', () => {
     };
 
     appendAutoSurfaceHints(result, {
-      constitutional: [{ id: 1 }, { id: 2 }],
       triggered: [{ id: 3 }],
       surfaced_at: '2026-03-05T10:00:00.000Z',
       latencyMs: 6,
@@ -91,9 +86,8 @@ describe('Hooks UX feedback', () => {
 
     const finalText = result.content[0].text;
     const parsed = JSON.parse(finalText);
-    expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 2 constitutional and 1 triggered memories (6ms)'))).toBe(true);
+    expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 1 triggered memories (6ms)'))).toBe(true);
     expect(parsed.meta.autoSurface).toEqual({
-      constitutionalCount: 2,
       triggeredCount: 1,
       surfaced_at: '2026-03-05T10:00:00.000Z',
       latencyMs: 6,
@@ -109,14 +103,14 @@ describe('Hooks UX feedback', () => {
       content: [{ type: 'text', text: '{not-json' }],
     };
 
-    expect(() => appendAutoSurfaceHints(malformedResult, { constitutional: [], triggered: [] })).not.toThrow();
+    expect(() => appendAutoSurfaceHints(malformedResult, { triggered: [] })).not.toThrow();
     expect(malformedResult.content[0].text).toBe('{not-json');
 
     const noTextResult = { content: [{ type: 'text' }] };
-    expect(() => appendAutoSurfaceHints(noTextResult, { constitutional: [], triggered: [] })).not.toThrow();
+    expect(() => appendAutoSurfaceHints(noTextResult, { triggered: [] })).not.toThrow();
   });
 
-  it('appendAutoSurfaceHints skips hint injection when constitutional and triggered are empty', () => {
+  it('appendAutoSurfaceHints skips hint injection when triggered is empty', () => {
     const result = {
       content: [
         {
@@ -131,7 +125,7 @@ describe('Hooks UX feedback', () => {
       ],
     };
 
-    appendAutoSurfaceHints(result, { constitutional: [], triggered: [] });
+    appendAutoSurfaceHints(result, { triggered: [] });
 
     const parsed = JSON.parse(result.content[0].text);
     expect(parsed.hints).not.toContainEqual(expect.stringContaining('Auto-surface hook'));

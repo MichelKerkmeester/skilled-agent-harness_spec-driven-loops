@@ -432,12 +432,10 @@ describe('Access Tracker Extended', () => {
       expect(recency).toBeLessThan(0.01);
     });
 
-    it('Tier boundary edges: constitutional stays max and critical outranks important', () => {
+    it('Tier boundary edges: recency decays and critical outranks important', () => {
       const oldTimestamp = new Date(Date.now() - (365 * DAY_MS)).toISOString();
-      const constitutionalRecency = compositeScoring.calculateRecencyScore(oldTimestamp, 'constitutional');
       const criticalRecency = compositeScoring.calculateRecencyScore(oldTimestamp, 'critical');
 
-      expect(constitutionalRecency).toBe(1);
       expect(criticalRecency).toBeLessThan(1);
 
       const nowIso = new Date().toISOString();

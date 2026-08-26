@@ -11,7 +11,6 @@ import {
   computeRecall,
   computeHitRate,
   computeInversionRate,
-  computeConstitutionalSurfacingRate,
   computeImportanceWeightedRecall,
   computeColdStartDetectionRate,
   computeIntentWeightedNDCG,
@@ -340,59 +339,26 @@ describe('corpus diagnostic lanes', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   DIAGNOSTIC: Constitutional Surfacing Rate
-──────────────────────────────────────────────────────────────── */
-
-describe('T006b: Constitutional Surfacing Rate', () => {
-  it('T006-D07: Constitutional memory in top-5 → rate = 1.0', () => {
-    const results = [makeResult(1, 1), makeResult(2, 2), makeResult(100, 3)];
-    const constitutionalIds = [100];
-    expect(computeConstitutionalSurfacingRate(results, constitutionalIds)).toBe(1);
-  });
-
-  it('T006-D08: Constitutional memory not in results → rate = 0.0', () => {
-    const results = [makeResult(1, 1), makeResult(2, 2)];
-    const constitutionalIds = [99, 100];
-    expect(computeConstitutionalSurfacingRate(results, constitutionalIds)).toBe(0);
-  });
-
-  it('T006-D09: Constitutional memory present but beyond top-k=2 → rate = 0', () => {
-    const results = [makeResult(1, 1), makeResult(2, 2), makeResult(100, 3)];
-    const constitutionalIds = [100];
-    expect(computeConstitutionalSurfacingRate(results, constitutionalIds, 2)).toBe(0);
-  });
-
-  it('T006-D10: Empty constitutionalIds → rate = 0', () => {
-    const results = [makeResult(1, 1)];
-    expect(computeConstitutionalSurfacingRate(results, [])).toBe(0);
-  });
-
-  it('T006-D11: Empty results → rate = 0', () => {
-    expect(computeConstitutionalSurfacingRate([], [1, 2])).toBe(0);
-  });
-});
-
-/* ───────────────────────────────────────────────────────────────
    DIAGNOSTIC: Importance-Weighted Recall
 ──────────────────────────────────────────────────────────────── */
 
 describe('T006c: Importance-Weighted Recall', () => {
-  it('T006-D12: All relevant found — constitutional weighted 3x → higher than unweighted', () => {
+  it('T006-D12: All relevant found — critical weighted higher than unweighted', () => {
     const results = [makeResult(1, 1), makeResult(2, 2)];
-    // Id=1 is constitutional (weight 3), id=2 is normal (weight 1)
-    const gt = [makeGT(1, 2, 'constitutional'), makeGT(2, 2, 'normal'), makeGT(3, 2, 'normal')];
-    // Found: id1 (weight=3) + id2 (weight=1) = 4 out of total 3+1+1=5 → 4/5 = 0.8
-    expect(computeImportanceWeightedRecall(results, gt)).toBeCloseTo(0.8, 4);
+    // Id=1 is critical (weight 2), id=2 is normal (weight 1)
+    const gt = [makeGT(1, 2, 'critical'), makeGT(2, 2, 'normal'), makeGT(3, 2, 'normal')];
+    // Found: id1 (weight=2) + id2 (weight=1) = 3 out of total 2+1+1=4 → 3/4 = 0.75
+    expect(computeImportanceWeightedRecall(results, gt)).toBeCloseTo(0.75, 4);
   });
 
   it('T006-D13: Weighted recall ≠ unweighted recall when tiers differ', () => {
     const results = [makeResult(1, 1)];
-    // Id=1 is constitutional, id=2 is normal — only id=1 found
-    const gt = [makeGT(1, 2, 'constitutional'), makeGT(2, 2, 'normal')];
+    // Id=1 is critical, id=2 is normal — only id=1 found
+    const gt = [makeGT(1, 2, 'critical'), makeGT(2, 2, 'normal')];
     const unweighted = computeRecall(results, gt);      // 1/2 = 0.5
-    const weighted = computeImportanceWeightedRecall(results, gt); // 3/(3+1) = 0.75
+    const weighted = computeImportanceWeightedRecall(results, gt); // 2/(2+1) = 0.6667
     expect(weighted).toBeGreaterThan(unweighted);
-    expect(weighted).toBeCloseTo(0.75, 4);
+    expect(weighted).toBeCloseTo(0.6667, 4);
   });
 
   it('T006-D14: All relevant found → weighted recall = 1.0', () => {
@@ -418,9 +384,9 @@ describe('T006c: Importance-Weighted Recall', () => {
   it('T006-D17: Duplicate memoryIds in results do not inflate weighted recall', () => {
     // Id=1 appears 3 times in results but should count only once
     const results = [makeResult(1, 1), makeResult(1, 2), makeResult(1, 3), makeResult(2, 4)];
-    const gt = [makeGT(1, 2, 'constitutional'), makeGT(2, 2, 'normal'), makeGT(3, 2, 'normal')];
-    // Found: id1 (weight=3) + id2 (weight=1) = 4 out of total 3+1+1=5 → 4/5 = 0.8
-    expect(computeImportanceWeightedRecall(results, gt)).toBeCloseTo(0.8, 4);
+    const gt = [makeGT(1, 2, 'critical'), makeGT(2, 2, 'normal'), makeGT(3, 2, 'normal')];
+    // Found: id1 (weight=2) + id2 (weight=1) = 3 out of total 2+1+1=4 → 3/4 = 0.75
+    expect(computeImportanceWeightedRecall(results, gt)).toBeCloseTo(0.75, 4);
   });
 });
 
@@ -541,7 +507,7 @@ describe('T006e: Intent-Weighted NDCG', () => {
 ──────────────────────────────────────────────────────────────── */
 
 describe('computeAllMetrics (convenience wrapper)', () => {
-  it('T006-E01: Returns all 12 metric keys', () => {
+  it('T006-E01: Returns all 11 metric keys', () => {
     const results = [makeResult(1, 1), makeResult(2, 2)];
     const gt = [makeGT(1, 3), makeGT(2, 1)];
     const metrics = computeAllMetrics({ results, groundTruth: gt });
@@ -555,7 +521,6 @@ describe('computeAllMetrics (convenience wrapper)', () => {
       'map',
       'hitRate',
       'inversionRate',
-      'constitutionalSurfacingRate',
       'importanceWeightedRecall',
       'coldStartDetectionRate',
       'intentWeightedNdcg',
@@ -564,12 +529,11 @@ describe('computeAllMetrics (convenience wrapper)', () => {
 
   it('T006-E02: All metric values are in [0, 1]', () => {
     const results = [makeResult(1, 1), makeResult(2, 2), makeResult(3, 3)];
-    const gt = [makeGT(1, 3, 'constitutional'), makeGT(2, 2, 'important'), makeGT(3, 1)];
+    const gt = [makeGT(1, 3, 'critical'), makeGT(2, 2, 'important'), makeGT(3, 1)];
     const recentDate = new Date(Date.now() - 5 * 60 * 60 * 1000);
     const metrics = computeAllMetrics({
       results,
       groundTruth: gt,
-      constitutionalIds: [1],
       memoryTimestamps: { 1: recentDate },
       intentType: 'add_feature',
     });
@@ -589,7 +553,7 @@ describe('computeAllMetrics (convenience wrapper)', () => {
     }
   });
 
-  it('T006-E04: constitutionalIds and memoryTimestamps default gracefully', () => {
+  it('T006-E04: optional params default gracefully', () => {
     const results = [makeResult(1, 1)];
     const gt = [makeGT(1, 2)];
     // No optional params — should not throw
@@ -605,7 +569,7 @@ describe('Edge Cases', () => {
   it('T006-F01: Single item — all metrics handle without error', () => {
     const results = [makeResult(1, 1)];
     const gt = [makeGT(1, 2)];
-    expect(() => computeAllMetrics({ results, groundTruth: gt, constitutionalIds: [1] })).not.toThrow();
+    expect(() => computeAllMetrics({ results, groundTruth: gt })).not.toThrow();
   });
 
   it('T006-F02: All items have relevance 0 — recall and MRR = 0', () => {

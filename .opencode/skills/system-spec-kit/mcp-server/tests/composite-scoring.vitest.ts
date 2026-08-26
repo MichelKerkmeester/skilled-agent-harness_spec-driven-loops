@@ -165,10 +165,10 @@ describe('Composite Scoring', () => {
       const now = Date.now()
       const elapsed = new Date(now - 1000 * 60 * 60 * 24 * 14).toISOString() // 14 days ago
 
-      const constitutional = calcR({
+      const critical = calcR({
         stability: 5.0,
         lastReview: elapsed,
-        importance_tier: 'constitutional',
+        importance_tier: 'critical',
       })
       const normal = calcR({
         stability: 5.0,
@@ -181,7 +181,7 @@ describe('Composite Scoring', () => {
         importance_tier: 'scratch',
       })
 
-      expect(constitutional).toBeGreaterThan(normal)
+      expect(critical).toBeGreaterThan(normal)
       expect(normal).toBeGreaterThan(scratch)
     })
 
@@ -257,7 +257,7 @@ describe('Composite Scoring', () => {
       const perfectRow = {
         similarity: 100,
         importance_weight: 1.0,
-        importance_tier: 'constitutional',
+        importance_tier: 'critical',
         updated_at: new Date(now).toISOString(),
         access_count: 1000,
         stability: 100.0,
@@ -722,7 +722,6 @@ describe('Composite Scoring', () => {
 
     // Note: 'deprecated' is handled separately below due to || operator behavior
     const expectedBoosts: Array<[string, number]> = [
-      ['constitutional', 1.0],
       ['critical', 1.0],
       ['important', 0.8],
       ['normal', 0.5],
@@ -941,7 +940,7 @@ describe('Composite Scoring', () => {
         stability: 1000.0,
         lastReview: new Date(now).toISOString(),
         access_count: 1000,
-        importance_tier: 'constitutional',
+        importance_tier: 'critical',
         importance_weight: 1.0,
         similarity: 100,
         title: 'exact match test query',

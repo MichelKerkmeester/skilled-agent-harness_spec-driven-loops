@@ -8,7 +8,6 @@ import { __testables as rescueTestables } from '../lib/search/rerank/retrieval-r
 import { __testables as graphSignalTestables, applyGraphSignals, clearGraphSignalsCache, markGraphSignalsDirty } from '../lib/graph/graph-signals.js';
 import { __testables as communityTestables, applyCommunityBoost } from '../lib/graph/community-detection.js';
 import { __testables as intentTestables, classifyIntent } from '../lib/search/intent-classifier.js';
-import { __testables as directiveTestables, enrichWithRetrievalDirectives } from '../lib/search/retrieval-directives.js';
 import { __testables as vectorQueryTestables, keyword_search } from '../lib/search/vector-index-queries.js';
 import { __testables as hybridTestables, hybridSearchEnhanced, init as initHybridSearch } from '../lib/search/hybrid-search.js';
 import { __testables as memorySearchTestables } from '../handlers/memory-search.js';
@@ -98,8 +97,6 @@ afterEach(() => {
   clearGraphSignalsCache();
   graphSignalTestables.resetAdjacencyDiagnostics();
   communityTestables.resetCommunityLookupDiagnostics();
-  directiveTestables.clearDirectiveContentCache();
-  directiveTestables.resetDirectiveDiagnostics();
   intentTestables.resetEmbeddingDiagnostics();
   memorySearchTestables.resetResponseEnvelopeSerializationDiagnostics();
   resetPathExistenceDiagnostics();
@@ -288,30 +285,6 @@ describe('search hot path performance invariants', () => {
 
     expect(first.intent).toBe(second.intent);
     expect(intentTestables.embeddingDiagnostics.deterministicEmbeddingCalls).toBeLessThanOrEqual(1);
-  });
-
-  it('caches directive file content by mtime and refreshes after an mtime change', () => {
-    const tmpDir = fs.mkdtempSync(path.join(process.cwd(), 'tmp-directive-cache-'));
-      const filePath = path.join(tmpDir, 'rule.md');
-      try {
-        fs.writeFileSync(filePath, 'Always read files when editing code.');
-        const result = { id: 1, specFolder: 'specs/demo', filePath, title: 'Read First', importanceTier: 'constitutional' };
-        directiveTestables.resetDirectiveDiagnostics();
-
-        const first = enrichWithRetrievalDirectives([result, result]);
-        expect(directiveTestables.directiveContentCache.size).toBe(1);
-        expect(directiveTestables.directiveDiagnostics.readFileSyncCalls).toBe(1);
-        expect(first[0]?.retrieval_directive).toContain('editing code');
-
-        fs.writeFileSync(filePath, 'Always verify files when finishing tests.');
-        fs.utimesSync(filePath, new Date(), new Date(Date.now() + 2000));
-        const second = enrichWithRetrievalDirectives([result]);
-        expect(directiveTestables.directiveContentCache.size).toBe(2);
-        expect(directiveTestables.directiveDiagnostics.readFileSyncCalls).toBe(2);
-        expect(second[0]?.retrieval_directive).toContain('finishing tests');
-    } finally {
-      fs.rmSync(tmpDir, { recursive: true, force: true });
-    }
   });
 
   it('applies handler emission envelope mutations by reference and serializes once', () => {

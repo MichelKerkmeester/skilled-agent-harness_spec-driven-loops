@@ -36,24 +36,24 @@ afterEach(() => {
   database.close();
 });
 
-describe('checkpoint_restore constitutional README poisoning guard', () => {
-  it('downgrades constitutional README rows from poisoned checkpoints and records governance_audit', () => {
-    const readmePath = '/workspace/.opencode/skills/system-spec-kit/constitutional/README.md';
-    insertCheckpoint('poisoned-readme', [
+describe('checkpoint_restore README row round-trip', () => {
+  it('restores README rows unchanged without emitting governance_audit', () => {
+    const readmePath = '/workspace/.opencode/skills/system-spec-kit/mcp-server/README.md';
+    insertCheckpoint('clean-readme', [
       {
         id: 7001,
-        spec_folder: 'system-spec-kit/constitutional',
+        spec_folder: 'system-spec-kit/mcp-server',
         file_path: readmePath,
         canonical_file_path: readmePath,
-        title: 'Constitutional README',
+        title: 'Repo README',
         importance_weight: 0.9,
         created_at: '2026-04-24T00:00:00Z',
         updated_at: '2026-04-24T00:00:00Z',
-        importance_tier: 'constitutional',
+        importance_tier: 'important',
       },
     ]);
 
-    const result = checkpointStorage.restoreCheckpoint('poisoned-readme', true);
+    const result = checkpointStorage.restoreCheckpoint('clean-readme', true);
 
     expect(result.errors).toEqual([]);
     expect(result.restored).toBe(1);
@@ -65,13 +65,10 @@ describe('checkpoint_restore constitutional README poisoning guard', () => {
     `).get() as { importance_tier: string };
     expect(restored.importance_tier).toBe('important');
 
-    const audits = database.prepare(`
-      SELECT action
+    const auditCount = database.prepare(`
+      SELECT COUNT(*) AS count
       FROM governance_audit
-      ORDER BY id ASC
-    `).all() as Array<{ action: string }>;
-    expect(audits).toEqual([
-      { action: 'tier_downgrade_non_constitutional_path' },
-    ]);
+    `).get() as { count: number };
+    expect(auditCount.count).toBe(0);
   });
 });

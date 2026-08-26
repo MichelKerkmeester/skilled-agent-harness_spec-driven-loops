@@ -18,16 +18,6 @@ describe('T201 + T208: Tiered Injection + Turn Decay [deferred - requires DB tes
   });
 
   describe('T201: classifyTier produces mixed tiers', () => {
-    it('T201-1: Constitutional memory is HOT', () => {
-      const constitutional = tierClassifier.classifyTier({
-        id: 1,
-        importance_tier: 'constitutional',
-        stability: 0.1,
-        last_review: '2020-01-01T00:00:00Z',
-      });
-      expect(constitutional.state).toBe('HOT');
-    });
-
     it('T201-2: Recent normal memory is HOT or WARM', () => {
       const recent = tierClassifier.classifyTier({
         id: 2,
@@ -52,7 +42,7 @@ describe('T201 + T208: Tiered Injection + Turn Decay [deferred - requires DB tes
 
     it('T201-4: Mixed memory set produces mixed tiers (not all HOT)', () => {
       const memories = [
-        { id: 10, importance_tier: 'constitutional', stability: 1.0 },
+        { id: 10, importance_tier: 'critical', stability: 1.0 },
         { id: 11, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
         { id: 12, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
         { id: 13, importance_tier: 'temporary', stability: 0.01, last_review: '2022-06-01T00:00:00Z', created_at: '2022-06-01T00:00:00Z' },
@@ -72,9 +62,9 @@ describe('T201 + T208: Tiered Injection + Turn Decay [deferred - requires DB tes
   });
 
   describe('T201: getStateStats reflects actual distribution', () => {
-    it('T201-6: HOT count includes constitutional+critical', () => {
+    it('T201-6: HOT count includes critical', () => {
       const memories = [
-        { id: 30, importance_tier: 'constitutional', stability: 1.0 },
+        { id: 30, importance_tier: 'critical', stability: 1.0 },
         { id: 31, importance_tier: 'critical', stability: 1.0 },
         { id: 32, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
         { id: 33, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
@@ -87,7 +77,7 @@ describe('T201 + T208: Tiered Injection + Turn Decay [deferred - requires DB tes
 
     it('T201-7: Stats total matches input count', () => {
       const memories = [
-        { id: 30, importance_tier: 'constitutional', stability: 1.0 },
+        { id: 30, importance_tier: 'critical', stability: 1.0 },
         { id: 31, importance_tier: 'critical', stability: 1.0 },
         { id: 32, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
         { id: 33, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
@@ -100,7 +90,7 @@ describe('T201 + T208: Tiered Injection + Turn Decay [deferred - requires DB tes
 
     it('T201-8: Distribution includes non-HOT tiers', () => {
       const memories = [
-        { id: 30, importance_tier: 'constitutional', stability: 1.0 },
+        { id: 30, importance_tier: 'critical', stability: 1.0 },
         { id: 31, importance_tier: 'critical', stability: 1.0 },
         { id: 32, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
         { id: 33, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
@@ -153,17 +143,6 @@ describe('T201 + T208: Tiered Injection + Turn Decay [deferred - requires DB tes
       expect(tierT10).not.toBe('HOT');
     });
 
-    it('T208-4: Constitutional classifyTier always returns R=1.0', () => {
-      const classification = tierClassifier.classifyTier({
-        id: 99,
-        importance_tier: 'constitutional',
-        stability: 1.0,
-      });
-
-      expect(classification.state).toBe('HOT');
-      expect(classification.retrievability).toBe(1.0);
-    });
-
     it('T208-5: turnNumber=0 and turnNumber=1 produce factor=1.0', () => {
       const factorT0 = Math.pow(TURN_DECAY_RATE, Math.max(0, 0 - 1));
       const factorT1 = Math.pow(TURN_DECAY_RATE, Math.max(0, 1 - 1));
@@ -187,7 +166,7 @@ describe('T201 + T208: Tiered Injection + Turn Decay [deferred - requires DB tes
   describe('T201: filterAndLimitByState tier limits', () => {
     it('T201-9: filterAndLimitByState returns array', () => {
       const enriched = [
-        { memoryId: 40, attentionScore: 0.95, tier: 'HOT', importance_tier: 'constitutional', stability: 1.0, id: 40 },
+        { memoryId: 40, attentionScore: 0.95, tier: 'HOT', importance_tier: 'critical', stability: 1.0, id: 40 },
         { memoryId: 41, attentionScore: 0.50, tier: 'WARM', importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString(), id: 41 },
         { memoryId: 42, attentionScore: 0.10, tier: 'COLD', importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01', created_at: '2023-01-01', id: 42 },
       ];

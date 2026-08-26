@@ -77,14 +77,6 @@ vi.mock('../lib/cache/tool-cache', async (importOriginal) => {
   };
 });
 
-vi.mock('../hooks/memory-surface', async (importOriginal) => {
-  const actual = await importOriginal() as any;
-  return {
-    ...actual,
-    clearConstitutionalCache: vi.fn((...args: any[]) => actual.clearConstitutionalCache?.(...args)),
-  };
-});
-
 vi.mock('../lib/storage/mutation-ledger', async () => {
   return {
     initLedger: vi.fn(),
@@ -125,7 +117,6 @@ let embeddingsSourceMod: any = null;
 let triggerMatcherMod: any = null;
 let toolCacheMod: any = null;
 let causalEdgesMod: any = null;
-let memorySurfaceMod: any = null;
 let folderScoringMod: any = null;
 let folderScoringSourceMod: any = null;
 let dbStateMod: any = null;
@@ -146,7 +137,6 @@ beforeAll(async () => {
   triggerMatcherMod = await import('../lib/parsing/trigger-matcher');
   toolCacheMod = await import('../lib/cache/tool-cache');
   causalEdgesMod = await import('../lib/storage/causal-edges');
-  memorySurfaceMod = await import('../hooks/memory-surface');
   folderScoringMod = await import('../lib/scoring/folder-scoring');
   folderScoringSourceMod = await import('../lib/scoring/folder-scoring');
   dbStateMod = await import('../core/db-state');
@@ -179,7 +169,6 @@ function installDeleteMocks(opts: {
     causalDeleteEdges: [],
     clearCache: [],
     invalidateOnWrite: [],
-    clearConstitutionalCache: [],
   };
 
   const fakeDb = dbAvailable ? { transaction: (fn: Function) => fn } : null;
@@ -204,9 +193,6 @@ function installDeleteMocks(opts: {
     vi.mocked(toolCacheMod.invalidateOnWrite).mockImplementation((...args: any[]) => { calls.invalidateOnWrite.push(args); });
   }
 
-  if (memorySurfaceMod) {
-    vi.mocked(memorySurfaceMod.clearConstitutionalCache).mockImplementation(() => { calls.clearConstitutionalCache.push(true); });
-  }
 
   return calls;
 }
@@ -231,7 +217,6 @@ function installBulkDeleteMocks(opts: {
     causalDeleteEdges: [],
     clearCache: [],
     invalidateOnWrite: [],
-    clearConstitutionalCache: [],
   };
 
   const fakeDb = dbAvailable ? {
@@ -269,9 +254,6 @@ function installBulkDeleteMocks(opts: {
     vi.mocked(toolCacheMod.invalidateOnWrite).mockImplementation((...args: any[]) => { calls.invalidateOnWrite.push(args); });
   }
 
-  if (memorySurfaceMod) {
-    vi.mocked(memorySurfaceMod.clearConstitutionalCache).mockImplementation(() => { calls.clearConstitutionalCache.push(true); });
-  }
 
   return calls;
 }
@@ -290,7 +272,6 @@ function installUpdateMocks(opts: {
     updateEmbeddingStatus: [],
     clearCache: [],
     invalidateOnWrite: [],
-    clearConstitutionalCache: [],
   };
 
   const fakeDb = {
@@ -332,9 +313,6 @@ function installUpdateMocks(opts: {
     vi.mocked(toolCacheMod.invalidateOnWrite).mockImplementation((...args: any[]) => { calls.invalidateOnWrite.push(args); });
   }
 
-  if (memorySurfaceMod) {
-    vi.mocked(memorySurfaceMod.clearConstitutionalCache).mockImplementation(() => { calls.clearConstitutionalCache.push(true); });
-  }
 
   return calls;
 }
@@ -553,7 +531,6 @@ describe('handleMemoryDelete - Happy Path', () => {
     const cacheCleared = calls.clearCache.length > 0;
     const cacheInvalidated = calls.invalidateOnWrite.length > 0;
     expect(cacheCleared || cacheInvalidated).toBe(true);
-    expect(calls.clearConstitutionalCache.length).toBeGreaterThan(0);
   });
 
   // drift: verified against shipped behavior during Unit H
@@ -644,7 +621,6 @@ describe('handleMemoryDelete - Bulk Delete Transaction', () => {
     const result = await handler.handleMemoryDelete({ specFolder: 'specs/test-folder', confirm: true });
     const parsed = parseResponse(result);
     expect(parsed?.data?.deleted).toBe(3);
-    expect(calls.clearConstitutionalCache.length).toBeGreaterThan(0);
   });
 
   it('EXT-BD2: Bulk delete creates checkpoint', async (ctx) => {
@@ -787,7 +763,6 @@ describe('handleMemoryUpdate - Happy Path', () => {
     await handler.handleMemoryUpdate({ id: 3, importanceWeight: 0.5 });
     const cachesCleared = calls.clearCache.length > 0 || calls.invalidateOnWrite.length > 0;
     expect(cachesCleared).toBe(true);
-    expect(calls.clearConstitutionalCache.length).toBeGreaterThan(0);
   });
 
   it('EXT-U5: Update non-existent memory throws', async () => {

@@ -193,13 +193,6 @@ describe('Tool Input Schema Validation', () => {
     });
   });
 
-  it('accepts memory_context includeConstitutional in public and runtime schemas', () => {
-    expectPublicAndRuntimeAccept('memory_context', {
-      input: 'context without constitutional rules',
-      includeConstitutional: false,
-    });
-  });
-
   it('advertises embedder_set dryRun implemented by the runtime schema', () => {
     expectPublicAndRuntimeAccept('embedder_set', {
       name: 'test-embedder',

@@ -56,7 +56,6 @@ describe('memory-tools dispatch', () => {
       autoDetectIntent: true,
       enableDedup: true,
       includeContent: true,
-      includeConstitutional: true,
       rerank: true,
     }));
 

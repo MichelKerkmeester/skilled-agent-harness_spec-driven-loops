@@ -25,12 +25,10 @@ import {
   TOOL_DISPATCH_TOKEN_BUDGET,
   COMPACTION_TOKEN_BUDGET,
   MEMORY_AWARE_TOOLS,
-  CONSTITUTIONAL_CACHE_TTL,
   extractContextHint,
   autoSurfaceMemories,
   autoSurfaceAtToolDispatch,
   autoSurfaceAtCompaction,
-  clearConstitutionalCache,
 } from '../hooks/memory-surface';
 
 import * as triggerMatcher from '../lib/parsing/trigger-matcher';
@@ -80,7 +78,6 @@ describe('TM-05: Token Budget Constants', () => {
 
 describe('TM-05: autoSurfaceAtToolDispatch — basic behavior', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
     vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
@@ -117,7 +114,6 @@ describe('TM-05: autoSurfaceAtToolDispatch — basic behavior', () => {
 
 describe('TM-05: autoSurfaceAtToolDispatch — skips memory-aware tools', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
     vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
@@ -173,9 +169,9 @@ describe('TM-05: autoSurfaceAtToolDispatch — skips memory-aware tools', () => 
 
   it('does NOT skip non-memory-aware tools', async () => {
     // With a trigger match present, a non-memory-aware tool should proceed
-    // (result may still be null if DB is null + constitutional empty, but
-    // The mock for matchTriggerPhrases returns a match, so if the function
-    // Proceeds past the skip gate it will call matchTriggerPhrases)
+    // (result may still be null if DB is null, but the mock for
+    // matchTriggerPhrases returns a match, so if the function proceeds past
+    // the skip gate it will call matchTriggerPhrases)
     vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
     const matchSpy = vi.mocked(triggerMatcher.matchTriggerPhrases);
     matchSpy.mockClear();
@@ -193,7 +189,6 @@ describe('TM-05: autoSurfaceAtToolDispatch — skips memory-aware tools', () => 
 
 describe('TM-05: autoSurfaceAtToolDispatch — config flag disabling', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
     vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
@@ -237,7 +232,6 @@ describe('TM-05: autoSurfaceAtToolDispatch — config flag disabling', () => {
 
 describe('TM-05: autoSurfaceAtToolDispatch — context hint extraction from args', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
     vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
@@ -290,7 +284,6 @@ describe('TM-05: autoSurfaceAtToolDispatch — context hint extraction from args
 
 describe('TM-05: hook lifecycle points', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
     vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
@@ -315,7 +308,6 @@ describe('TM-05: hook lifecycle points', () => {
 
 describe('TM-05: autoSurfaceAtToolDispatch — result structure', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
   });
@@ -326,17 +318,9 @@ describe('TM-05: autoSurfaceAtToolDispatch — result structure', () => {
     const result = await autoSurfaceAtToolDispatch('bash', { query: 'some context query' });
 
     expect(result).not.toBeNull();
-    expect(result).toHaveProperty('constitutional');
     expect(result).toHaveProperty('triggered');
     expect(result).toHaveProperty('surfaced_at');
     expect(result).toHaveProperty('latencyMs');
-  });
-
-  it('result.constitutional is an array', async () => {
-    vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
-
-    const result = await autoSurfaceAtToolDispatch('bash', { query: 'some context query' });
-    expect(Array.isArray(result?.constitutional)).toBe(true);
   });
 
   it('result.triggered is an array', async () => {
@@ -381,7 +365,6 @@ describe('TM-05: autoSurfaceAtToolDispatch — result structure', () => {
 
 describe('TM-05: autoSurfaceAtCompaction — basic behavior', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
     vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
@@ -433,7 +416,6 @@ describe('TM-05: autoSurfaceAtCompaction — basic behavior', () => {
 
 describe('TM-05: autoSurfaceAtCompaction — config flag disabling', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
     vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
@@ -475,7 +457,6 @@ describe('TM-05: autoSurfaceAtCompaction — config flag disabling', () => {
 
 describe('TM-05: autoSurfaceAtCompaction — whitespace trimming', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
     vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([]);
@@ -498,7 +479,6 @@ describe('TM-05: autoSurfaceAtCompaction — whitespace trimming', () => {
 
 describe('TM-05: autoSurfaceAtCompaction — result structure', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
   });
@@ -509,7 +489,6 @@ describe('TM-05: autoSurfaceAtCompaction — result structure', () => {
     const result = await autoSurfaceAtCompaction('Session context about memory search and spec kit');
 
     expect(result).not.toBeNull();
-    expect(result).toHaveProperty('constitutional');
     expect(result).toHaveProperty('triggered');
     expect(result).toHaveProperty('surfaced_at');
     expect(result).toHaveProperty('latencyMs');
@@ -548,7 +527,6 @@ describe('TM-05: Token budget enforcement (4000 max per point)', () => {
   });
 
   it('trigger-matcher is limited to 5 results per surface call (per-budget control)', async () => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
 
@@ -566,7 +544,6 @@ describe('TM-05: Token budget enforcement (4000 max per point)', () => {
   });
 
   it('compaction hook also enforces result limit via matchTriggerPhrases', async () => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
 
@@ -583,7 +560,6 @@ describe('TM-05: Token budget enforcement (4000 max per point)', () => {
   });
 
   it('tool-dispatch output boundary enforces estimated token budget', async () => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
     const oversized = 'x'.repeat(6000);
@@ -606,7 +582,6 @@ describe('TM-05: Token budget enforcement (4000 max per point)', () => {
   });
 
   it('compaction output boundary enforces estimated token budget', async () => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
     const oversized = 'y'.repeat(6000);
@@ -635,7 +610,6 @@ describe('TM-05: Token budget enforcement (4000 max per point)', () => {
 
 describe('TM-05: No regression in existing autoSurfaceMemories', () => {
   beforeEach(() => {
-    clearConstitutionalCache();
     // @ts-expect-error Testing invalid input shape
     vi.mocked(vectorIndex.getDb).mockReturnValue(null);
   });
@@ -654,7 +628,6 @@ describe('TM-05: No regression in existing autoSurfaceMemories', () => {
     vi.mocked(triggerMatcher.matchTriggerPhrases).mockReturnValue([makeTriggerMatch()]);
     const result = await autoSurfaceMemories('some context hint');
     expect(result).not.toBeNull();
-    expect(result).toHaveProperty('constitutional');
     expect(result).toHaveProperty('triggered');
     expect(result).toHaveProperty('surfaced_at');
     expect(result).toHaveProperty('latencyMs');
@@ -675,8 +648,6 @@ describe('TM-05: No regression in existing autoSurfaceMemories', () => {
   it('existing constants still exported correctly', () => {
     expect(MEMORY_AWARE_TOOLS).toBeInstanceOf(Set);
     expect(MEMORY_AWARE_TOOLS.size).toBeGreaterThan(0);
-    expect(typeof CONSTITUTIONAL_CACHE_TTL).toBe('number');
-    expect(CONSTITUTIONAL_CACHE_TTL).toBeGreaterThan(0);
   });
 
   it('extractContextHint still works correctly', () => {
@@ -726,12 +697,10 @@ describe('TM-05: Module exports verification', () => {
   it('all pre-existing exports are still present', () => {
     // Constants
     expect(MEMORY_AWARE_TOOLS).toBeDefined();
-    expect(CONSTITUTIONAL_CACHE_TTL).toBeDefined();
 
     // Functions
     expect(typeof extractContextHint).toBe('function');
     expect(typeof autoSurfaceMemories).toBe('function');
-    expect(typeof clearConstitutionalCache).toBe('function');
   });
 });
 
@@ -742,7 +711,6 @@ describe('TM-05: Module exports verification', () => {
 describe('compaction pipeline integration', () => {
   it('mergeCompactBrief produces valid brief with sections', () => {
     const input: MergeInput = {
-      constitutional: '## Rules\nAlways cite sources.',
       codeGraph: '## Structure\nauth.ts → middleware.ts',
       triggered: '## Triggered\nRecent auth memory surfaced.',
       sessionState: '## Session\nWorking on auth refactor.',
@@ -765,7 +733,6 @@ describe('compaction pipeline integration', () => {
 
   it('3-source merge produces valid brief and only includes non-empty sources', () => {
     const input: MergeInput = {
-      constitutional: 'Rules text',
       codeGraph: 'Graph text',
       triggered: '',
       sessionState: 'Session text',
@@ -788,7 +755,6 @@ describe('compaction pipeline integration', () => {
   it('pipeline timeout enforcement — mergeCompactBrief completes within 2s under large input', () => {
     const repeat = (text: string, n: number) => Array(n).fill(text).join('\n');
     const largeInput: MergeInput = {
-      constitutional: repeat('## Rules\nAlways cite sources. Follow the spec.', 100),
       codeGraph: repeat('## Structure\nauth.ts → middleware.ts → session.ts', 100),
       triggered: repeat('## Triggered\nRecent auth memory surfaced from specs/007.', 100),
       sessionState: repeat('## Session\nWorking on auth refactor. Next: update tests.', 100),
