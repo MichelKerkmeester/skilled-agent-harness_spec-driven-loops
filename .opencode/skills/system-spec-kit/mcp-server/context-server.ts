@@ -445,11 +445,6 @@ function isAppendExemptRow(row: unknown): boolean {
   return isObjectRow(row) && row.appendExempt === true;
 }
 
-/** An always-surface / constitutional pinned row. */
-function isConstitutionalRow(row: unknown): boolean {
-  return isObjectRow(row) && row.isConstitutional === true;
-}
-
 /**
  * Pick which result row the token-budget truncation should drop next, by a fixed
  * drop-priority that protects the rows worth keeping:
@@ -459,14 +454,11 @@ function isConstitutionalRow(row: unknown): boolean {
  *      only additive backfill rows and evict the top-scored requested result.
  *   2. `appendExempt` additive backfill rows (deterministic multi-hop / lane-champion)
  *      go only once they are the only thing left to give besides the reserved primary.
- *   3. Constitutional / always-surface pinned rows are at least as protected as a
- *      backfill row — a squeeze never drops a pinned rule before an additive backfill.
- *   4. Only when every remaining row is pinned/exempt does it sacrifice the tail so
- *      the trim loop still converges.
+ *   3. Only when every remaining row is exempt does it sacrifice the tail so the trim
+ *      loop still converges.
  *
- * When no row is `appendExempt` and no row is constitutional (both append flags off →
- * no backfill rows, and a result set with no pinned rules), this returns the last
- * index every pass, byte-identical to a plain pop() from the end.
+ * When no row is `appendExempt` (append flags off → no backfill rows), this returns
+ * the last index every pass, byte-identical to a plain pop() from the end.
  *
  * Pure and side-effect free so the selection invariant is unit-testable without the
  * server envelope.
@@ -474,32 +466,31 @@ function isConstitutionalRow(row: unknown): boolean {
 export function selectBudgetTrimIndex(rows: readonly unknown[]): number {
   if (rows.length === 0) return -1;
 
-  // A "primary" row is any non-backfill row — an ordinary requested result OR a
-  // constitutional pin. Reserve at least one so the squeeze can never return a
-  // backfill-only answer and evict the top-scored requested result.
+  // A "primary" row is any non-backfill row — an ordinary requested result.
+  // Reserve at least one so the squeeze can never return a backfill-only answer
+  // and evict the top-scored requested result.
   let primaryCount = 0;
   for (const row of rows) {
     if (!isAppendExemptRow(row)) primaryCount += 1;
   }
 
-  // Tier 1: drop the last ORDINARY row (neither backfill nor constitutional). Hold
-  // back the final primary: when only one non-backfill row remains, an ordinary
-  // primary is reserved here and the loop falls through to trim a backfill instead.
+  // Tier 1: drop the last ordinary (non-backfill) row. Hold back the final primary:
+  // when only one non-backfill row remains, it is reserved here and the loop falls
+  // through to trim a backfill instead.
   for (let i = rows.length - 1; i >= 0; i -= 1) {
     const row = rows[i];
-    if (isAppendExemptRow(row) || isConstitutionalRow(row)) continue;
+    if (isAppendExemptRow(row)) continue;
     if (primaryCount <= 1) break; // this ordinary row is the sole reserved primary
     return i;
   }
 
-  // Tier 2: drop the last additive backfill row. Sacrificed before any constitutional
-  // pin so a pinned always-surface rule always outlives an additive backfill.
+  // Tier 2: drop the last additive backfill row.
   for (let i = rows.length - 1; i >= 0; i -= 1) {
     if (isAppendExemptRow(rows[i])) return i;
   }
 
-  // Tier 3: everything left is constitutional (or the single reserved primary).
-  // Sacrifice the tail so the trim loop still terminates rather than spinning.
+  // Tier 3: only the single reserved primary remains. Sacrifice the tail so the
+  // trim loop still terminates rather than spinning.
   return rows.length - 1;
 }
 
@@ -507,7 +498,7 @@ export function selectBudgetTrimIndex(rows: readonly unknown[]): number {
  * Display floor for token-budget enforcement: a populated result set is never
  * collapsed below this many rows. Overflow beyond what fits at full detail is
  * rendered compact (metadata-only) rather than deleted, so fixed envelope overhead
- * (constitutional injection, decision envelopes) cannot starve result visibility.
+ * (decision envelopes) cannot starve result visibility.
  */
 const ENVELOPE_RESULT_DISPLAY_FLOOR = 10;
 
@@ -545,8 +536,8 @@ function compactEnvelopeResultRow(row: unknown): unknown {
  * selectBudgetTrimIndex), and if the envelope is still over budget the remaining
  * overflow rows are rendered compact (identity + ranking only) instead of deleted —
  * so fixed envelope overhead can no longer starve result visibility. Reconciles
- * data.count / constitutionalCount / summary with the survivors and stamps the
- * truncation telemetry. Returns true when any trim or compaction was applied.
+ * data.count / summary with the survivors and stamps the truncation telemetry.
+ * Returns true when any trim or compaction was applied.
  *
  * Parameterized on the token-count sync so it is unit-testable without the live
  * dispatch wrapper; mutates only the passed envelope.
@@ -573,12 +564,11 @@ export function enforceEnvelopeResultBudget(
   }
 
   // Phase 2: still over budget at the floor → render overflow rows compact (drop the
-  // heavy payload) instead of deleting, keeping them visible. The top row and any
-  // constitutional pin stay full.
+  // heavy payload) instead of deleting, keeping them visible. The top row stays full.
   if (typeof meta.tokenCount === 'number' && meta.tokenCount > budget) {
     for (let i = innerResults.length - 1; i >= 1; i -= 1) {
       const row = innerResults[i];
-      if (isConstitutionalRow(row) || (isObjectRow(row) && row.compact === true)) continue;
+      if (isObjectRow(row) && row.compact === true) continue;
       innerResults[i] = compactEnvelopeResultRow(row);
       syncTokenCount(envelope);
       if (typeof meta.tokenCount === 'number' && meta.tokenCount <= budget) break;
@@ -590,16 +580,8 @@ export function enforceEnvelopeResultBudget(
   if (data && data.count !== undefined) {
     data.count = innerResults.length;
   }
-  if (data) {
-    const survivingConstitutionalCount = innerResults.filter(
-      (r) => isObjectRow(r) && r.isConstitutional === true,
-    ).length;
-    data.constitutionalCount = survivingConstitutionalCount;
-    if (typeof envelope.summary === 'string') {
-      envelope.summary = survivingConstitutionalCount > 0
-        ? `Found ${innerResults.length} memories (${survivingConstitutionalCount} constitutional)`
-        : `Found ${innerResults.length} memories`;
-    }
+  if (data && typeof envelope.summary === 'string') {
+    envelope.summary = `Found ${innerResults.length} memories`;
   }
   if (Array.isArray(envelope.hints)) {
     const trimmed = originalCount - innerResults.length;

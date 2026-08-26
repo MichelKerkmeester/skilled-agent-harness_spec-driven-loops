@@ -289,9 +289,7 @@ export function get_memory(id: number, database: Database.Database = initialize_
   const row = stmts.get_by_id.get(id);
 
   if (row) {
-    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-    row.isConstitutional = row.importance_tier === 'constitutional';
-  }
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);  }
 
   return row || null;
 }
@@ -315,9 +313,7 @@ export function get_memories_by_folder(
   `).all(spec_folder, specFolderLikePattern(spec_folder)) as MemoryRow[];
 
   return rows.map((row: MemoryRow) => {
-    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-    row.isConstitutional = row.importance_tier === 'constitutional';
-    return row;
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);    return row;
   });
 }
 
@@ -482,9 +478,7 @@ export function vector_search(
   const rows = database.prepare(sql).all(...params);
 
   const regular_results = (rows as MemoryRow[]).map((row: MemoryRow) => {
-    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-    row.isConstitutional = row.importance_tier === 'constitutional';
-    return row;
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);    return row;
   });
 
   return regular_results;
@@ -595,7 +589,6 @@ function hydrateMultiConceptRow(row: MemoryRow, conceptCount: number): MemoryRow
   row.avg_similarity = (row.concept_similarities as number[]).reduce((a, b) => a + b, 0) / conceptCount;
   row.similarity = row.avg_similarity;
   row.score = Math.max(0, Math.min(1, row.avg_similarity / 100));
-  row.isConstitutional = row.importance_tier === 'constitutional';
   return row;
 }
 
@@ -889,9 +882,7 @@ export function keyword_search(
     .slice(0, limit);
 
   return filtered.map((row: MemoryRow) => {
-    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-    row.isConstitutional = row.importance_tier === 'constitutional';
-    return row;
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);    return row;
   });
 }
 
@@ -1027,8 +1018,7 @@ export async function vector_search_enriched(
       snippet,
       id: row.id,
       importanceWeight: row.importance_weight ?? 0.5,
-      searchMethod: search_method,
-      isConstitutional: row.isConstitutional || row.importance_tier === 'constitutional'
+      searchMethod: search_method
     };
   });
 
@@ -1113,8 +1103,7 @@ export async function multi_concept_search_enriched(
       tags,
       snippet,
       id: row.id,
-      importanceWeight: row.importance_weight ?? 0.5,
-      isConstitutional: row.isConstitutional || row.importance_tier === 'constitutional'
+      importanceWeight: row.importance_weight ?? 0.5
     };
   });
 
@@ -1195,8 +1184,7 @@ export async function multi_concept_keyword_search(
       snippet,
       id: row.id,
       importanceWeight: row.importance_weight ?? 0.5,
-      searchMethod: 'keyword',
-      isConstitutional: row.importance_tier === 'constitutional'
+      searchMethod: 'keyword'
     };
   });
 

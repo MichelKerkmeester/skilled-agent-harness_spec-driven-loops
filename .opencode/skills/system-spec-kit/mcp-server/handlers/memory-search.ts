@@ -202,7 +202,7 @@ type SessionAwareResult = Record<string, unknown> & {
   content?: string;
 };
 
-type CanonicalSourceKind = 'spec_doc' | 'continuity' | 'constitutional';
+type CanonicalSourceKind = 'spec_doc' | 'continuity';
 
 interface CanonicalSourceStats {
   retained: number;
@@ -345,10 +345,6 @@ function resolveCanonicalSourceKind(row: Record<string, unknown>): CanonicalSour
   const importanceTier = normalizeDocumentType(row.importance_tier ?? row.importanceTier);
   const anchorId = resolveAnchorId(row);
 
-  if (importanceTier === 'constitutional' || documentType === 'constitutional') {
-    return 'constitutional';
-  }
-
   if (anchorId === CONTINUITY_ANCHOR_ID || documentType === 'continuity') {
     return 'continuity';
   }
@@ -388,7 +384,6 @@ function filterCanonicalSourceRows<T extends SessionAwareResult>(
     bySourceKind: {
       spec_doc: 0,
       continuity: 0,
-      constitutional: 0,
     },
   };
 

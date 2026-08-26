@@ -1093,7 +1093,6 @@ function toMetadataOnlyContextRow(r: Record<string, unknown>): Record<string, un
     filePath: r.filePath ?? r.file_path,
     confidence: r.confidence,
     importanceTier: r.importanceTier,
-    isConstitutional: r.isConstitutional,
     metadataOnly: true,
   };
 }
