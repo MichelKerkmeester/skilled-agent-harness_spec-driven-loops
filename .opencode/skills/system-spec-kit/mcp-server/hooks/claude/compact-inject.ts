@@ -381,7 +381,6 @@ export async function buildMergedCompactResult(
   });
 
   const mergeInput: MergeInput = {
-    constitutional: '',
     codeGraph,
     triggered: '',
     sessionState,

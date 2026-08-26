@@ -24,7 +24,6 @@ type HookSubscriberName =
   | 'trigger-cache'
   | 'semantic-trigger-cache'
   | 'tool-cache'
-  | 'constitutional-cache'
   | 'graph-cache'
   | 'coactivation-cache'
   | 'entity-density-cache';

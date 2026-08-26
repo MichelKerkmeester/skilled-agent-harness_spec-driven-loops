@@ -167,10 +167,6 @@ export const ALLOWED_BASE_PATHS: string[] = [
 // 7. CACHE CONFIGURATION 
 
 // ────────────────────────────────────────────────────────────────
-
-export const CONSTITUTIONAL_CACHE_TTL: number = 60000;
-
-// ────────────────────────────────────────────────────────────────
 // 8. COGNITIVE CONFIGURATION 
 
 // ────────────────────────────────────────────────────────────────
