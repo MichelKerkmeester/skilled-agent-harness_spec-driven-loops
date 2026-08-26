@@ -13,7 +13,10 @@
     "trigger_phrases": [
       "better-sqlite3 version alignment",
       "dependency-seams abi safety",
-      "node abi rebuild strategy"
+      "node abi rebuild strategy",
+      "dependency seams worktree symlink fix",
+      "realpath node_modules resolution test",
+      "better-sqlite3 drift deferred"
     ],
     "key_topics": [
       "better-sqlite3",
@@ -25,29 +28,36 @@
       "node",
       "rebuild",
       "strategy",
-      "asserts",
-      "deep-loop",
-      "runtime"
+      "dependency",
+      "seams",
+      "worktree"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "plan.md",
+      "implementation-summary.md",
       "spec.md",
+      "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -81,7 +91,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Pick",
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -93,7 +103,7 @@
         "source": "derived"
       },
       {
-        "name": "Upgrading Node",
+        "name": "Any Node",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -105,19 +115,25 @@
         "source": "derived"
       },
       {
+        "name": "Symlink Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview Two",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Single",
+        "name": "Pattern Compare",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -126,18 +142,6 @@
         "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -153,12 +157,6 @@
         "source": "derived"
       },
       {
-        "name": "rationale",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -166,6 +164,12 @@
       },
       {
         "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -183,23 +187,25 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`dependency-seams` asserts the deep-loop runtime installs the SAME native-dependency versions system-spec-kit pins, so that a single Node process loading both skills' `better-sqlite3` bindings stays ABI-safe",
+    "causal_summary": "`dependency-seams` had two assertions failing — that `better-sqlite3`/`zod`/`tsx` resolve from the runtime's own `nodemodules`, and that the `tsx` loader bare-resolves there",
     "created_at": "2026-08-26T11:00:42.689Z",
-    "last_save_at": "2026-08-26T11:05:02.185Z",
+    "last_save_at": "2026-08-26T12:23:42.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a1906e13c298a56d5548953aa8b667d997fae53fa64d5f0f3e745660f773662",
+    "source_fingerprint": "sha256:247aedfa414ca1e50c5e66eed2eeb7ad685ec2a3e59098d9226c7d80c34af3e2",
     "source_doc_hashes": {
-      "spec.md": "f87b1bbe2972c3b4a9578fca4d71077e77b33471e7a01fc5564fc9699e40da88",
-      "plan.md": "975244375dd71ceed50059eacb564cd9959b6e01c8aaa0e82f854d7e1789c977",
-      "tasks.md": "d58b68fc638b8cf15476fb01a46a0224023aecee03aa81ab5d56d37286c4b350",
-      "checklist.md": "ad5bb34b847fa1449c41a563ff6a0506d8ca105b3f344a07486cce8fca374825"
+      "spec.md": "f272d08bca2d1ecfbbab418787abced0b03f6abf06d42c416fdf81b2823e97f5",
+      "plan.md": "1bec79787485c9dc9609cf4127f84464c339dba063f459a252d1ccfc37a8305d",
+      "tasks.md": "cc361db177dddc7ed9e97c850767c42c9943233bf82d3de503e35d70c3347bbb",
+      "checklist.md": "448ef3acf40d8c46c7932d3754a05afa17c7c5a86830b7be3afca299b66dfde7",
+      "implementation-summary.md": "ddf127663beeafd825fcd9504fcd6df121208847b7742912bb0df89494ea18f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

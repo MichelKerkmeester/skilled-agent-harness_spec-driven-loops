@@ -1,17 +1,17 @@
 ---
-title: "Verification Checklist: better-sqlite3 Version + Node-ABI Alignment"
-description: "Verification evidence for the dependency alignment + Node-ABI self-healing guard."
+title: "Verification Checklist: dependency-seams Worktree-Symlink Fix"
+description: "Verification evidence for realpath-ing the dependency-seams comparison base."
 importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment"
-    last_updated_at: "2026-08-26T11:05:01.015Z"
+    last_updated_at: "2026-08-26T12:20:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Authored the dependency/Node-ABI checklist"
-    next_safe_action: "Execute Phase 1"
+    recent_action: "Verified dependency-seams 6/6 after the realpath fix"
+    next_safe_action: "Commit 001; push both 019 children"
 ---
-# Verification Checklist: better-sqlite3 Version + Node-ABI Alignment
+# Verification Checklist: dependency-seams Worktree-Symlink Fix
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -33,12 +33,12 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Both skills' better-sqlite3 versions captured
-  - **Evidence**: runtime + system-spec-kit `package.json` versions recorded
-- [ ] CHK-002 [P0] Running Node ABI captured
-  - **Evidence**: `process.versions.modules` recorded
-- [ ] CHK-003 [P1] Canonical-version direction decided with rationale
-  - **Evidence**: `decision` note in `plan.md` Phase 1
+- [x] CHK-001 [P0] The exact failing assertions captured
+  - **Evidence**: `dependency-seams.vitest.ts:42` and `:63`, both `expected false to be true`
+- [x] CHK-002 [P0] The symlink root cause confirmed
+  - **Evidence**: `runtime/node_modules` is a symlink; `require.resolve()` returns the main-checkout realpath
+- [x] CHK-003 [P1] The fix direction decided with rationale
+  - **Evidence**: operator chose realpath; version bump deferred (`plan.md` §Overview)
 
 <!-- /ANCHOR:pre-impl -->
 ---
@@ -46,10 +46,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The ABI guard is minimal and clearly-commented
-  - **Evidence**: guard module reviewed; comment states the WHY, not ids
-- [ ] CHK-011 [P1] Warn-and-continue when the toolchain is absent
-  - **Evidence**: a missing `node-gyp` path logs a clear message, no crash
+- [x] CHK-010 [P0] The change is minimal and clearly-commented
+  - **Evidence**: a durable WHY comment on the symlink reason; no ephemeral ids in `dependency-seams.vitest.ts`
+- [x] CHK-011 [P1] The self-containment intent is preserved
+  - **Evidence**: only the runtime's own `node_modules` base is realpath'd; the sibling negative assertion is unchanged
 
 <!-- /ANCHOR:code-quality -->
 ---
@@ -57,12 +57,12 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] `dependency-seams.vitest.ts` passes
-  - **Evidence**: `vitest run` green on the file
-- [ ] CHK-021 [P0] Forced ABI mismatch is auto-repaired
-  - **Evidence**: a stale build is rebuilt by the guard; the SQLite test then passes
-- [ ] CHK-022 [P1] No new whole-suite regression
-  - **Evidence**: whole-suite delta vs the 017 baseline is clean
+- [x] CHK-020 [P0] `dependency-seams.vitest.ts` passes
+  - **Evidence**: `vitest run` green — 6/6
+- [x] CHK-021 [P0] The fix was watched failing first
+  - **Evidence**: a `node` repro showed `startsWith raw: false` / `startsWith realpath: true`
+- [x] CHK-022 [P1] No new whole-suite regression
+  - **Evidence**: whole-suite delta vs the 017 baseline is clean (`vitest run`)
 
 <!-- /ANCHOR:testing -->
 ---
@@ -70,10 +70,10 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-024 [P0] Both skills resolve the same version
-  - **Evidence**: `require.resolve` version check equal across skills
-- [ ] CHK-025 [P1] The pin is self-healing, not one-shot
-  - **Evidence**: the guard triggers on a Node `NODE_MODULE_VERSION` change
+- [x] CHK-024 [P0] Passes in both worktree and main checkout
+  - **Evidence**: realpath makes the base match `require.resolve()` regardless of the symlink
+- [x] CHK-025 [P1] The real version drift is not silently dropped
+  - **Evidence**: `12.10.0`/`12.11.1` documented as separately scoped (`spec.md` §Out of Scope)
 
 <!-- /ANCHOR:fix-completeness -->
 ---
@@ -81,8 +81,8 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P1] No secrets or lockfile drift beyond the intended dep
-  - **Evidence**: the staged diff is the `better-sqlite3` pin + the guard only
+- [x] CHK-030 [P1] No dependency, lockfile, or native drift
+  - **Evidence**: the staged diff is `tests/unit/dependency-seams.vitest.ts` only
 
 <!-- /ANCHOR:security -->
 ---
@@ -90,8 +90,8 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] The ABI strategy is documented for operators
-  - **Evidence**: `plan.md` §Architecture describes the self-healing guard
+- [x] CHK-040 [P1] The corrected diagnosis is documented
+  - **Evidence**: `spec.md` §Problem and `plan.md` §Overview record the worktree-symlink root cause
 
 <!-- /ANCHOR:docs -->
 ---
@@ -99,8 +99,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Scoped diff — dependency metadata + one guard module
-  - **Evidence**: `git status` shows no unrelated change
+- [x] CHK-050 [P1] Scoped diff — one test file
+  - **Evidence**: `git status` shows only `dependency-seams.vitest.ts` changed
 
 <!-- /ANCHOR:file-org -->
 ---
@@ -110,11 +110,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 6 | 0/6 |
-| P1 Items | 6 | 0/6 |
+| P0 Items | 6 | 6/6 |
+| P1 Items | 6 | 6/6 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: TBD
-**Verified By**: TBD
+**Verification Date**: 2026-08-26
+**Verified By**: claude (conductor)
 
 <!-- /ANCHOR:summary -->

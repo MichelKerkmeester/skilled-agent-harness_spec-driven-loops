@@ -10,18 +10,18 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment"
-    last_updated_at: "2026-08-26T11:05:01.015Z"
+    last_updated_at: "2026-08-26T12:20:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Scaffolded the dependency/Node-ABI child"
-    next_safe_action: "Phase 1: audit both skills' better-sqlite3 + Node ABI and decide the canonical version"
+    recent_action: "Realpath'd dependency-seams base; passes 6/6"
+    next_safe_action: "Commit 001; push both 019 children to v4 + main"
     blockers: []
     key_files:
-      - "plan.md"
-    completion_pct: 0
-    open_questions:
-      - "Canonical better-sqlite3 version: bump runtime to 12.11.1, or system-spec-kit to 12.10.0?"
-      - "Node-ABI strategy: pin Node, postinstall rebuild, or boot-time ABI check + rebuild?"
-    answered_questions: []
+      - "implementation-summary.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Root cause is a git-worktree symlink artifact, not version drift; fixed by realpath-ing the comparison base."
+      - "better-sqlite3 12.10.0/12.11.1 drift is deferred as a separately-scoped main-checkout-wide native change."
 ---
 # Feature Specification: better-sqlite3 Version + Node-ABI Alignment
 
@@ -37,9 +37,10 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-26 |
-| **Failing test** | `tests/unit/dependency-seams.vitest.ts` |
+| **Decision** | Root cause is a git-worktree symlink artifact, not version drift; fix = realpath the comparison base (no dependency change) |
+| **Failing test** | `tests/unit/dependency-seams.vitest.ts` — now passes 6/6 |
 | **Parent Spec** | ../spec.md |
 | **Successor** | 002-command-rollout-mode-resolution |
 
@@ -51,11 +52,11 @@ _memory:
 
 ### Problem Statement
 
-`dependency-seams` asserts the deep-loop runtime installs the SAME native-dependency versions system-spec-kit pins, so that a single Node process loading both skills' `better-sqlite3` bindings stays ABI-safe. Today they disagree: the runtime resolves `better-sqlite3@12.10.0`, system-spec-kit resolves `12.11.1`. Two different builds of the same C++ addon in one process is not a clean failure — it can corrupt data or crash the process. Compounding this, the Node runtime shifted `25.6.1 → 26.7.0` during the same session, which already forced one `better-sqlite3` rebuild; a static version pin alone does not survive Node bumps because the compiled ABI is what actually has to match, not just the semver.
+`dependency-seams` had two assertions failing — that `better-sqlite3`/`zod`/`tsx` resolve from the runtime's own `node_modules`, and that the `tsx` loader bare-resolves there. The original hypothesis (packet 018 triage) was a native-dependency version drift: the runtime resolves `better-sqlite3@12.10.0` while system-spec-kit ships `12.11.1`, an ABI hazard when both load in one process. Investigation falsified that hypothesis. The failing assertions compare `require.resolve()` output (which **follows symlinks** and returns a realpath) against a raw path built from `import.meta.url`. When the tree is a **git worktree**, `runtime/node_modules` is a symlink to the main checkout, so the resolved realpath (main checkout) never starts with the raw worktree path — the assertion fails *only inside a worktree* and passes in the main checkout. The version-parity assertion (test #3) passes throughout, because `PINNED` (12.10.0) equals the runtime's installed version. The `12.10.0` vs `12.11.1` drift is real but is **not** what this test measures, and — because `node_modules` is a symlink — bumping it here would mutate the main checkout's tree for every worktree and the live MCP-adjacent runtime. That change is deliberately out of scope; it is tracked separately.
 
 ### Purpose
 
-Pick one canonical `better-sqlite3` version across both skills, align it, and establish a Node-ABI strategy (so the compiled binding is valid for whatever Node is running) such that `dependency-seams` passes and the SQLite-backed tests stay green across Node bumps.
+Make `dependency-seams` correct under git worktrees by comparing realpath against realpath, so it passes in both a worktree and the main checkout while still catching a genuine sibling-skill reach-in. No dependency or native-binding change.
 
 <!-- /ANCHOR:problem -->
 ---
@@ -65,23 +66,22 @@ Pick one canonical `better-sqlite3` version across both skills, align it, and es
 
 ### In Scope
 
-- Audit the actual installed + pinned `better-sqlite3` (and zod, tsx) in both the runtime and system-spec-kit.
-- Decide the canonical version and align both skills to it (npm).
-- Define and implement a Node-ABI strategy: a boot-time / test-setup check that rebuilds `better-sqlite3` when the compiled ABI does not match the running Node, so the pin is self-healing.
-- Verify `dependency-seams` + every SQLite-backed test pass.
+- Diagnose the actual `dependency-seams` failure (done: git-worktree symlink artifact, not version drift).
+- Harden the two failing assertions to realpath the runtime-`node_modules` comparison base, so the prefix check is apples-to-apples with the symlink-followed `require.resolve()` output.
+- Verify `dependency-seams` passes 6/6 with no production or dependency change.
 
 ### Out of Scope
 
 - The rollout-mode failure (child 002).
-- Upgrading Node or changing the repo's Node version policy (only reacting to whatever Node is running).
+- Bumping `better-sqlite3` 12.10.0 → 12.11.1 / `PINNED` — the real but separately-scoped ABI-drift item. Not done here because the symlinked `node_modules` makes it a main-checkout-wide native change, not a worktree-local one.
+- Any Node-ABI auto-rebuild guard — unneeded, since there is no version change to keep in sync.
+- The pre-existing quirk that the sibling-reach-in assertion targets a non-existent path (`system-deep-loop/system-spec-kit`); left untouched under scope lock.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| runtime + system-spec-kit `package.json` / lockfiles | Modify | Align `better-sqlite3` to the canonical version |
-| runtime boot / test-setup | Add | ABI-mismatch detection + rebuild hook |
-| `tests/unit/dependency-seams.vitest.ts` | Modify (only if the pin constant moves) | Reflect the canonical version |
+| `tests/unit/dependency-seams.vitest.ts` | Modify | Realpath the runtime-`node_modules` base in the two failing assertions; import `realpathSync` |
 
 <!-- /ANCHOR:scope -->
 ---
@@ -93,16 +93,16 @@ Pick one canonical `better-sqlite3` version across both skills, align it, and es
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Both skills resolve the SAME better-sqlite3 version | `dependency-seams` version assertion passes; the pinned constant matches both installs. |
-| REQ-002 | The compiled binding is valid for the running Node | Loading `better-sqlite3` from each skill succeeds under the current Node; no `NODE_MODULE_VERSION` mismatch. |
+| REQ-001 | `dependency-seams` passes in a git worktree | All 6 assertions green when the suite runs from a worktree (the environment that exposed the failure). |
+| REQ-002 | The self-containment intent is preserved | The realpath'd prefix check still fails a genuine sibling-skill reach-in; it only tolerates the runtime's own symlinked `node_modules`. |
 
 ### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | The pin is self-healing across Node bumps | An ABI-mismatch check rebuilds the binding automatically (documented, tested trigger). |
-| REQ-004 | No regression in SQLite-backed suites | coverage-graph, db-lifecycle, and the DB `*-script` tests pass after alignment. |
-| REQ-005 | The change is scoped to dependency metadata + one guard | The scoped diff is the version pin, lockfiles, and the ABI-guard module; no unrelated code changes. |
+| REQ-003 | No production or dependency change | The scoped diff is confined to `tests/unit/dependency-seams.vitest.ts`; no lib, script, `package.json`, or lockfile change. |
+| REQ-004 | No whole-suite regression | The runtime suite vs the 017 baseline shows no new code-caused failures. |
+| REQ-005 | The real version drift is recorded, not silently dropped | The `12.10.0` vs `12.11.1` drift is documented as a separately-scoped item with its blast-radius rationale. |
 
 <!-- /ANCHOR:requirements -->
 ---
@@ -110,10 +110,9 @@ Pick one canonical `better-sqlite3` version across both skills, align it, and es
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `dependency-seams.vitest.ts` passes.
-- **SC-002**: `better-sqlite3` loads from both skills under the current Node.
-- **SC-003**: A forced Node-ABI mismatch is auto-repaired by the strategy (verified).
-- **SC-004**: Whole-suite delta vs the 017 baseline shows no new failures.
+- **SC-001**: `dependency-seams.vitest.ts` passes 6/6 in the worktree.
+- **SC-002**: The change touches only the one test file (no dependency/native change).
+- **SC-003**: Whole-suite delta vs the 017 baseline shows no new code-caused failures.
 
 <!-- /ANCHOR:success-criteria -->
 ---
@@ -123,9 +122,8 @@ Pick one canonical `better-sqlite3` version across both skills, align it, and es
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Bumping better-sqlite3 in system-spec-kit | Could disturb the memory MCP | Prefer aligning the runtime up to system-spec-kit's version; verify the MCP loads + a memory op works |
-| Risk | Auto-rebuild needs a toolchain | Rebuild fails on a machine without node-gyp | Detect + warn clearly; fall back to a documented manual step |
-| Dependency | npm + native toolchain | Required for the version change + rebuild | Confirm availability before the change |
+| Risk | Realpath masks a genuine reach-in | A sibling-skill reach-in slips past | Realpath only the runtime's own `node_modules` base; the negative sibling assertion is unchanged |
+| Risk (deferred) | `better-sqlite3` 12.10.0 vs 12.11.1 drift | ABI hazard if both load in one process | Tracked as a separate item; not fixed here because the symlink makes it a main-checkout-wide native change |
 
 <!-- /ANCHOR:risks -->
 ---
@@ -133,7 +131,7 @@ Pick one canonical `better-sqlite3` version across both skills, align it, and es
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Direction of alignment (runtime → 12.11.1 vs system-spec-kit → 12.10.0) — decided in Phase 1 from which version each skill's other consumers require.
-- Where the ABI-mismatch check lives (a shared boot module vs each test-setup) — decided in Phase 1.
+- Root cause — **RESOLVED**: not a version drift but a git-worktree symlink artifact in the test's prefix check. Fixed by realpath-ing the comparison base.
+- The `12.10.0`/`12.11.1` drift — **DEFERRED** to a separately-scoped item; the symlinked `node_modules` makes a bump a main-checkout-wide native change, not a worktree-local one.
 
 <!-- /ANCHOR:questions -->
