@@ -323,6 +323,24 @@ This agent loads shared review doctrine from `.opencode/skills/sk-code/sk-code-r
 | **CONDITIONAL** | No active `P0`, but active `P1` remains | `/speckit:plan` |
 | **PASS** | No active `P0` or `P1`; set `hasAdvisories=true` when active `P2` remains | `/create:changelog` |
 
+### Iteration Final-Line Contract (MANDATORY)
+
+Every `iteration-NNN.md` MUST end with exactly one of these plain-text lines as the absolute final line (no trailing whitespace, no variation), and every review MUST emit exactly one parseable verdict:
+
+```
+Review verdict: PASS
+```
+
+```
+Review verdict: CONDITIONAL
+```
+
+```
+Review verdict: FAIL
+```
+
+Mapping: PASS if no P0 or P1 findings this iteration; CONDITIONAL if any P1 (no P0); FAIL if any P0. P2-only findings → PASS. An active P0 forces `Review verdict: FAIL` -- never relabel it as conditional, partial, mixed, or advisory. Downstream automation (synthesis phase, CI gate parser) parses this final line via exact string match.
+
 ### Promotion Gate Logic
 
 Promotion is blocked by active P0 or failed binary gates, conditional with active P1, and pass-only when no active P0/P1 remains.

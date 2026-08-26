@@ -143,6 +143,14 @@ export interface AppendModeEventError {
   readonly phase: 'binding' | 'authority' | 'envelope' | 'authorization' | 'append' | 'projection';
   readonly reason: string;
   readonly code: string;
+  /**
+   * Durable append receipt. Present only when `phase` is 'projection': the
+   * event already committed to the ledger before the projection refresh
+   * failed, so callers must not treat this outcome as a rejected write.
+   */
+  readonly receipt?: ModeAppendReceipt;
+  /** Present only when `phase` is 'projection'; mirrors the refresh failure reason. */
+  readonly projectionError?: string | null;
 }
 
 export type AppendModeEventOutcome = AppendModeEventResult | AppendModeEventError;
@@ -420,6 +428,12 @@ export async function appendModeEvent(
   // Phase 5: Refresh the legacy projection
   let projectionRefreshed = false;
   let projectionError: string | null = null;
+  // Distinguishes "the projection engine ran and did not succeed" (a real
+  // ledger-vs-shadow divergence we must fail closed on) from "no refresh was
+  // even attempted" (no declared boundary, or a pre-flight config gap such as an
+  // unregistered contract/registry). The latter is not a runtime divergence and
+  // must not turn an otherwise-durable append into a refusal.
+  let projectionAttempted = false;
 
   try {
     const surfaceId = resolveModeSurfaceId(options.mode);
@@ -500,6 +514,7 @@ export async function appendModeEvent(
             now,
           });
 
+          projectionAttempted = true;
           const result = await engine.project({
             contract,
             ledger: options.ledger,
@@ -535,6 +550,21 @@ export async function appendModeEvent(
     streamSequence: receipt.stream_sequence,
     committedAt: receipt.committed_at,
   });
+
+  // The ledger append is already durable at this point, but a caller that
+  // only checks `ok` must not learn that the legacy shadow state consumers
+  // read is now stale relative to the ledger. Fail closed instead of
+  // reporting success with a buried error field.
+  if (projectionAttempted && !projectionRefreshed) {
+    return {
+      ok: false,
+      phase: 'projection',
+      reason: projectionError ?? 'Legacy projection refresh failed',
+      code: ModeAppendGatewayErrorCodes.PROJECTION_FAILED,
+      receipt: modeReceipt,
+      projectionError,
+    };
+  }
 
   return {
     ok: true,

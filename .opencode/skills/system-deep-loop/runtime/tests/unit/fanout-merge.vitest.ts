@@ -655,6 +655,35 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect(r1._lineages).toContain('b');
   });
 
+  it('excludes a finding from resolvedFindings when it is still active in another lineage', () => {
+    // Lineage a resolved F1; lineage b still reports it active. The finding is not
+    // closed overall, so it must not also appear in the merged resolved list.
+    const data = [
+      {
+        label: 'a',
+        registry: {
+          openFindings: [],
+          resolvedFindings: [{ findingId: 'F1', severity: 'P2', status: 'resolved_fixed', title: 'Shared finding' }],
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          openFindings: [{ findingId: 'F1', severity: 'P1', status: 'active', title: 'Shared finding' }],
+          resolvedFindings: [],
+        },
+      },
+    ];
+
+    const result = mergeReviewRegistries(data);
+    const openIds = (result.openFindings as Array<{ findingId: string }>).map((f) => f.findingId);
+    const resolvedIds = (result.resolvedFindings as Array<{ findingId: string }>).map((f) => f.findingId);
+
+    expect(openIds).toEqual(['F1']);
+    expect(resolvedIds).toEqual([]);
+    expect(result.mergedVerdict).toBe('CONDITIONAL');
+  });
+
   it('keeps resolvedFindings empty when lineages report none', () => {
     const data = [
       { label: 'a', registry: { openFindings: [{ findingId: 'F1', severity: 'P2', status: 'active', title: 'Advisory' }] } },
@@ -814,6 +843,30 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
   });
 });
 
+describe('buildAttributionMd — active-disposition verdict', () => {
+  it('derives the per-lineage verdict from active openFindings, not a stale findingsBySeverity count', () => {
+    const lineageData = [
+      {
+        label: 'stale-counts',
+        registry: {
+          openFindings: [
+            { findingId: 'F1', severity: 'P0', status: 'resolved_fixed', title: 'Already fixed' },
+          ],
+          // Stale/divergent raw count that still reports the resolved P0 as active.
+          findingsBySeverity: { P0: 1, P1: 0, P2: 0 },
+        },
+        stateRecords: [],
+        kind: 'cli',
+        model: 'test-model',
+      },
+    ];
+
+    const md = buildAttributionMd(lineageData, 'review');
+    expect(md).toContain('| stale-counts | cli | test-model | 0 | n/a | 0 | PASS |');
+    expect(md).not.toContain('FAIL');
+  });
+});
+
 // ─── fanout-merge.cjs script tests ────────────────────────────────────────
 
 describe('reconstructReviewRegistryFromState — leaf-only lineage fallback', () => {
@@ -839,6 +892,24 @@ describe('reconstructReviewRegistryFromState — leaf-only lineage fallback', ()
       'glm',
     );
     expect(registry).toBeNull();
+  });
+
+  it('defaults a missing severity to P1 (not P2) so it cannot be masked as PASS', () => {
+    const stateRecords = [
+      { type: 'iteration', findingDetails: [
+        { id: 'NO-SEV-1', title: 'lost its severity field', disposition: 'active' },
+      ] },
+    ];
+    const registry = reconstructReviewRegistryFromState(stateRecords as never, 'glm');
+    expect(registry).not.toBeNull();
+    expect(registry!.openFindings[0]).toMatchObject({ findingId: 'NO-SEV-1', severity: 'P1', status: 'active' });
+
+    // The severity-less finding must still clear the merged verdict past PASS — a
+    // silent P2 default would let a P0/P1-shaped finding pass review undetected.
+    const merged = mergeReviewRegistries([{ label: 'glm', registry }]);
+    expect(merged.mergedVerdict).not.toBe('PASS');
+    expect(merged.mergedVerdict).toBe('CONDITIONAL');
+    expect(merged.activeP2).toBe(0);
   });
 });
 
@@ -1134,6 +1205,44 @@ describe('fanout-merge.cjs — script', () => {
     expect(merged.keyFindings.map((finding) => finding.title)).toEqual([
       'Compatibility boundary',
       'Topology decision',
+    ]);
+  });
+
+  it('isolates a single lineage reconstruction failure instead of aborting the whole merge', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-isolated-failure-');
+    const goodDir = join(baseDir, 'lineages', 'good');
+    mkdirSync(goodDir, { recursive: true });
+    writeFileSync(
+      join(goodDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 1, findingsCount: 1, findings: ['good lineage finding'] })}\n`,
+      'utf8',
+    );
+
+    // findingsCount contradicts the structured evidence — reconstruction throws for
+    // this lineage only.
+    const badDir = join(baseDir, 'lineages', 'bad');
+    mkdirSync(badDir, { recursive: true });
+    writeFileSync(
+      join(badDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 1, findingsCount: 5, findings: ['bad lineage finding'] })}\n`,
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const merged = JSON.parse(readFileSync(join(baseDir, 'findings-registry.json'), 'utf8')) as {
+      keyFindings: Array<{ title: string }>;
+    };
+    expect(merged.keyFindings.map((finding) => finding.title)).toEqual(['good lineage finding']);
+
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
+    expect(payload.skipped_no_registry).toBe(1);
+    expect(payload.reconstruction_warnings).toEqual([
+      expect.objectContaining({ lineage: 'bad', type: 'lineage_reconstruction_failed' }),
     ]);
   });
 

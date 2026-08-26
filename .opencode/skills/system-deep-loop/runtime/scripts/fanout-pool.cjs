@@ -265,7 +265,15 @@ function readLedgerRecords(ledgerPath) {
 function readRetryCountsFromLedger(ledgerPath) {
   const counts = {};
   for (const record of readLedgerRecords(ledgerPath)) {
-    if (record.event !== 'retry_scheduled' || typeof record.label !== 'string') {
+    if (typeof record.label !== 'string') {
+      continue;
+    }
+    // orphan_requeued consumes an attempt exactly like retry_scheduled does: the
+    // lineage started, never reached a terminal event before the process died, and
+    // is being requeued for another try. Ignoring it here used to hand a resumed
+    // orphan a fresh maxRetries budget on top of the attempt it already spent,
+    // letting it exceed the intended total-attempts cap across a crash/resume.
+    if (record.event !== 'retry_scheduled' && record.event !== 'orphan_requeued') {
       continue;
     }
     counts[record.label] = (counts[record.label] || 0) + 1;

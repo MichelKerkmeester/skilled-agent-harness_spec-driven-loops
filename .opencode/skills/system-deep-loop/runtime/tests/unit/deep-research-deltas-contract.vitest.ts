@@ -129,6 +129,7 @@ afterEach(() => {
     const dir = scratchDirs.pop();
     if (dir) rmSync(dir, { recursive: true, force: true });
   }
+  delete process.env.DEEP_LOOP_LEDGER_BACKING_GATE;
 });
 
 // ───────────────────────────────────────────────────────────────────
@@ -238,6 +239,9 @@ describe('deep-research-deltas projection surface — real-consumer proof', () =
       `${JSON.stringify(stateRecord1)}\n${JSON.stringify(stateRecord2)}\n`,
     );
 
+    // This proves delta-file consumption, not ledger backing: the fixture writes the
+    // projection directly without a mode ledger, so disable the ledger-backing gate.
+    process.env.DEEP_LOOP_LEDGER_BACKING_GATE = '0';
     // Run the REAL consumer against both iterations.
     const result1 = verify('research', researchDir, 1);
     const result2 = verify('research', researchDir, 2);

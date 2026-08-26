@@ -414,9 +414,15 @@ function resolveConfigLanesIntegrityFault(config, configPath) {
 /**
  * A finding's dedup key: content_hash when the adapter/loop supplied one,
  * else a fallback over the fields every adapter's finding shape carries in
- * common (severity + type + message) -- adapter shapes are heterogeneous
- * beyond that (for example artifactRef, artifactPath, or artifactTarget), so
- * the fallback deliberately does not reach for an adapter-specific field.
+ * common (type + message) -- adapter shapes are heterogeneous beyond that
+ * (for example artifactRef, artifactPath, or artifactTarget), so the
+ * fallback deliberately does not reach for an adapter-specific field.
+ * Severity is deliberately excluded from the identity: it is triage state,
+ * not content, and keying on it would treat a finding that gets its
+ * severity retriaged across iterations (e.g. escalated P1 -> P0) as a brand
+ * new finding rather than the same one, matching the sibling deep-review
+ * reducer's dedup key (findingDedupKey in reduce-state.cjs), which also
+ * excludes severity.
  * @param {Object} finding
  * @returns {string}
  */
@@ -424,13 +430,12 @@ function findingDedupKey(finding) {
   if (finding && typeof finding.contentHash === 'string' && finding.contentHash) {
     return `ch:${finding.contentHash}`;
   }
-  const severity = normalizeText(finding && finding.severity);
   const type = normalizeText(finding && finding.type);
   const message = normalizeText(finding && (finding.message || finding.summary)).slice(0, 120);
   const artifact = normalizeText(
     (finding && (finding.artifactPath || finding.artifactTarget || finding.artifactRef || finding.artifactId)) || '',
   );
-  return `fl:${severity}|${type}|${artifact}|${message}`;
+  return `fl:${type}|${artifact}|${message}`;
 }
 
 /**
@@ -557,7 +562,8 @@ function buildLaneEntry(
       .map((id) => checkedValues.get(id) ?? id)
     : [];
   // Dedup across iterations (a re-checked artifact that still fails re-emits
-  // the same finding; only the first occurrence counts as "open").
+  // the same finding; only one occurrence per content identity counts as
+  // "open" -- see the severity tie-break below for which occurrence wins).
   const byKey = new Map();
   let invalidSeverityCount = 0;
   for (const finding of [...laneDeltaFindings, ...laneEmbeddedFindings]) {
@@ -571,7 +577,12 @@ function buildLaneEntry(
       continue;
     }
     const key = findingDedupKey(finding);
-    if (!byKey.has(key)) {
+    const existing = byKey.get(key);
+    // Severity is excluded from the dedup key so a retriaged finding still
+    // collapses to one open finding instead of double-counting; keep the
+    // most severe occurrence seen so a later, less-severe re-emission of the
+    // same finding cannot mask an earlier P0/P1 from the release gate.
+    if (!existing || (SEVERITY_WEIGHTS[severity] || 0) > (SEVERITY_WEIGHTS[existing.severity] || 0)) {
       byKey.set(key, { ...finding, severity });
     }
   }

@@ -3,6 +3,7 @@ import { afterEach, describe, it, expect, vi } from 'vitest';
 import {
   EXECUTOR_KINDS,
   EXECUTOR_KIND_FLAG_SUPPORT,
+  EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY,
   EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX,
   ExecutorConfigError,
   WEB_SEARCH_POLICIES,
@@ -349,6 +350,34 @@ describe('executor web-search policy', () => {
       'cli-devin': { inherit: true, disabled: false, cached: false, live: false },
       'cli-pi': { inherit: true, disabled: false, cached: false, live: false },
     });
+  });
+
+  // Regression guard: sandboxMode being in EXECUTOR_KIND_FLAG_SUPPORT only means the
+  // field is accepted -- it must not be read as a preventive OS-level sandbox
+  // guarantee. This capability matrix makes that distinction explicit and
+  // machine-checkable instead of leaving it implicit in scattered prose comments.
+  it('declares which executor kinds provide a real preventive OS-level sandbox', () => {
+    expect(Object.keys(EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY)).toEqual([...EXECUTOR_KINDS]);
+    expect(EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY).toEqual({
+      native: false,
+      'cli-codex': true,
+      'cli-claude-code': true,
+      'cli-opencode': false,
+      'cli-cursor': true,
+      'cli-devin': false,
+      'cli-pi': false,
+    });
+    // devin, pi, and opencode are the three CLI kinds with no preventive OS sandbox.
+    expect(['cli-devin', 'cli-pi', 'cli-opencode'].every(
+      (kind) => EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY[kind as keyof typeof EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY] === false,
+    )).toBe(true);
+    // Every kind that accepts sandboxMode as a supported field but has no preventive
+    // OS-level enforcement must be declared false, not simply absent from the matrix.
+    for (const kind of EXECUTOR_KINDS) {
+      if (EXECUTOR_KIND_FLAG_SUPPORT[kind].includes('sandboxMode')) {
+        expect(typeof EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY[kind]).toBe('boolean');
+      }
+    }
   });
 
   it('keeps cached typed but rejects it through capability preflight', () => {

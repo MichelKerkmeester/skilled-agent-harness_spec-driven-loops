@@ -10,7 +10,6 @@ import {
   readFileSync,
   renameSync,
   rmSync,
-  truncateSync,
   writeFileSync,
 } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -37,52 +36,79 @@ function byteLength(value: string): number {
   return Buffer.byteLength(value, 'utf8');
 }
 
-function newlineLengthAt(content: string, index: number): number {
-  if (content[index] === '\r' && content[index + 1] === '\n') {
-    return 2;
-  }
-  return 1;
-}
+type JsonlLineSpan = {
+  raw: string;
+  terminator: string;
+};
 
-function validPrefixByteLength(content: string): number {
+/**
+ * Split content into line spans (raw text + its original terminator). A
+ * trailing chunk with no terminator (partial write) is included as a final
+ * span with terminator ''.
+ */
+function splitJsonlLines(content: string): JsonlLineSpan[] {
+  const spans: JsonlLineSpan[] = [];
+  const newlineMatch = /\r?\n/g;
   let cursor = 0;
-  let validEnd = 0;
 
   while (cursor < content.length) {
-    const newlineMatch = /\r?\n/g;
     newlineMatch.lastIndex = cursor;
     const match = newlineMatch.exec(content);
     if (!match) {
       break;
     }
-
-    const lineEnd = match.index;
-    const rawLine = content.slice(cursor, lineEnd);
-    const nextCursor = lineEnd + newlineLengthAt(content, lineEnd);
-
-    if (rawLine.trim() !== '') {
-      try {
-        JSON.parse(rawLine);
-      } catch {
-        break;
-      }
-    }
-
-    validEnd = nextCursor;
-    cursor = nextCursor;
+    spans.push({ raw: content.slice(cursor, match.index), terminator: match[0] });
+    cursor = match.index + match[0].length;
   }
 
-  const trailing = content.slice(cursor);
-  if (trailing.trim() === '') {
-    return byteLength(content);
+  if (cursor < content.length) {
+    spans.push({ raw: content.slice(cursor), terminator: '' });
   }
 
+  return spans;
+}
+
+function isValidJsonlLine(raw: string): boolean {
+  if (raw.trim() === '') {
+    return true;
+  }
   try {
-    JSON.parse(trailing);
-    return byteLength(content);
+    JSON.parse(raw);
+    return true;
   } catch {
-    return byteLength(content.slice(0, validEnd));
+    return false;
   }
+}
+
+/**
+ * Quarantine only the malformed line spans and keep every valid one,
+ * including valid records that appear after a corrupt line. Returns null
+ * when nothing needs repair.
+ */
+function repairedJsonlContent(content: string): { content: string; droppedBytes: number } | null {
+  const spans = splitJsonlLines(content);
+  const keptSpans: JsonlLineSpan[] = [];
+  let droppedAny = false;
+
+  for (const span of spans) {
+    if (isValidJsonlLine(span.raw)) {
+      keptSpans.push(span);
+    } else {
+      droppedAny = true;
+    }
+  }
+
+  if (!droppedAny) {
+    return null;
+  }
+
+  const repairedText = keptSpans.map((span) => `${span.raw}${span.terminator}`).join('');
+  const droppedBytes = byteLength(content) - byteLength(repairedText);
+  if (droppedBytes <= 0) {
+    return null;
+  }
+
+  return { content: repairedText, droppedBytes };
 }
 
 function readJsonlRecords(path: string): JsonlRecord[] {
@@ -154,12 +180,9 @@ function fsyncPath(path: string): void {
   }
 }
 
-function writeJsonlRecordsAtomic(path: string, records: JsonlRecord[]): void {
+function writeRawContentAtomic(path: string, content: string): void {
   mkdirSync(dirname(path), { recursive: true });
   const tempPath = `${path}.tmp.${process.pid}.${Date.now()}.${randomUUID()}`;
-  const content = records.length > 0
-    ? `${records.map((record) => JSON.stringify(record)).join('\n')}\n`
-    : '';
 
   try {
     writeFileSync(tempPath, content, 'utf8');
@@ -175,13 +198,21 @@ function writeJsonlRecordsAtomic(path: string, records: JsonlRecord[]): void {
   }
 }
 
+function writeJsonlRecordsAtomic(path: string, records: JsonlRecord[]): void {
+  const content = records.length > 0
+    ? `${records.map((record) => JSON.stringify(record)).join('\n')}\n`
+    : '';
+  writeRawContentAtomic(path, content);
+}
+
 // ───── EXPORTS ─────
 
 /**
- * Repair a JSONL file by truncating any trailing malformed content.
+ * Repair a JSONL file by quarantining malformed lines.
  *
- * Scans from the beginning, keeps all complete valid JSON lines,
- * and truncates anything after the last valid record.
+ * Scans every line (not just the tail): a blank or parseable line is kept
+ * as-is, a malformed line is dropped, and the scan continues past it so a
+ * single corrupt line never discards the valid records that follow it.
  *
  * @param path - Path to the JSONL file.
  * @returns Repair result with whether repair occurred and bytes dropped.
@@ -196,26 +227,32 @@ export function repairJsonlTail(path: string): JsonlRepairResult {
     return { repaired: false, droppedBytes: 0 };
   }
 
-  const originalBytes = byteLength(content);
-  const keepBytes = validPrefixByteLength(content);
-  const droppedBytes = originalBytes - keepBytes;
-
-  if (droppedBytes <= 0) {
+  const repair = repairedJsonlContent(content);
+  if (!repair) {
     return { repaired: false, droppedBytes: 0 };
   }
 
-  truncateSync(path, keepBytes);
-  return { repaired: true, droppedBytes };
+  writeRawContentAtomic(path, repair.content);
+  return { repaired: true, droppedBytes: repair.droppedBytes };
 }
 
 /**
  * Append a JSON record as a new JSONL line.
  *
+ * Takes the same writer lock `mergeJsonlUnderLock` uses so a plain append
+ * can never land in the window between a merge's read and its atomic
+ * rewrite, where it would otherwise be silently discarded.
+ *
  * @param path - Path to the JSONL file.
  * @param record - Object to serialize and append.
  */
 export function appendJsonlRecord(path: string, record: Record<string, unknown>): void {
-  appendFileSync(path, `${JSON.stringify(record)}\n`, { encoding: 'utf8', flag: 'a' });
+  const releaseWriterLock = acquireWriterLock(`${path}.lock`);
+  try {
+    appendFileSync(path, `${JSON.stringify(record)}\n`, { encoding: 'utf8', flag: 'a' });
+  } finally {
+    releaseWriterLock();
+  }
 }
 
 /**

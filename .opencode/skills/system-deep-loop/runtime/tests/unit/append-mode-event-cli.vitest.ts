@@ -286,6 +286,37 @@ describe('append-mode-event CLI subprocess execution', () => {
     expect(existsSync(join(runDir, 'ledger'))).toBe(false);
   });
 
+  it('refuses rather than fabricating a synthetic identity when the cutover binding cannot be resolved', () => {
+    // A binding that cannot be resolved must never degrade to a synthetic
+    // all-zero-SHA identity: that would let the ledger carry a transition
+    // nobody can be held to. Starve the CLI of git entirely so both the
+    // run-directory and working-directory resolution attempts fail, and
+    // assert the CLI refuses rather than appending under a fabricated actor.
+    const runDir = createTempDir('binding-unresolvable');
+    const authorityRoot = createTempDir('binding-unresolvable-authority-root');
+    const eventJsonPath = join(runDir, 'event.json');
+    writeFileSync(eventJsonPath, JSON.stringify(sampleRunInitializedEvent()), 'utf8');
+
+    const result = runCli([
+      '--mode',
+      'deep-research',
+      '--run-directory',
+      runDir,
+      '--event-json',
+      eventJsonPath,
+    ], {
+      DEEP_LOOP_AUTHORITY_ROOT: authorityRoot,
+      PATH: '/nonexistent-bin-append-mode-event-test',
+    });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.json.ok).toBe(false);
+    expect(result.json.phase).toBe('binding');
+    expect(result.json.code).toBe('BINDING_FAILED');
+    // The refusal must precede the write, not follow it.
+    expect(existsSync(join(runDir, 'ledger'))).toBe(false);
+  });
+
   it('rejects an unrecognized mode by name, rather than blaming a malformed record', () => {
     // The mode adapter runs before the authority-order check, and the adapter's
     // mode set is identical to the frozen authority order. Any mode the adapter

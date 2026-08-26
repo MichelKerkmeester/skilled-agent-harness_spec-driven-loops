@@ -19,6 +19,7 @@ const { mergeJsonlUnderLock } = require('../lib/deep-loop/jsonl-repair.ts');
 const STATE_LOG_BY_LOOP_TYPE = {
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
+  alignment: 'deep-alignment-state.jsonl',
 };
 
 /**
@@ -68,13 +69,20 @@ function extractTextFromOpencodeJson(stdout) {
  *     see a file and can apply their own stuck-recovery logic.
  *
  * @param {string} lineageDir - Absolute path to the lineage artifact dir.
- * @param {'research'|'review'} loopType - Loop type for state log naming.
+ * @param {'research'|'review'|'alignment'} loopType - Loop type for state log naming.
  * @param {string} savedStdout - Captured subprocess stdout.
  * @returns {{ salvaged: number, failed: number }}
  */
 function runSalvageSweep(lineageDir, loopType, savedStdout) {
   const stateLogName = STATE_LOG_BY_LOOP_TYPE[loopType];
-  if (!stateLogName) return { salvaged: 0, failed: 0 };
+  if (!stateLogName) {
+    // An unrecognized loop type is a caller/config bug, not a benign
+    // nothing-to-salvage state -- surface it instead of returning the same
+    // zero counts a legitimate no-op sweep would return.
+    throw new Error(
+      `fanout-salvage: unrecognized loop type "${loopType}" -- add it to STATE_LOG_BY_LOOP_TYPE instead of silently skipping salvage`,
+    );
+  }
 
   const stateLogPath = path.join(lineageDir, stateLogName);
   const iterDir = path.join(lineageDir, 'iterations');
@@ -104,10 +112,12 @@ function runSalvageSweep(lineageDir, loopType, savedStdout) {
 
   if (iterationNumbers.size === 0) return { salvaged: 0, failed: 0 };
 
-  let salvaged = 0;
-  let failed = 0;
-  const recoveredText = extractTextFromOpencodeJson(savedStdout);
-
+  // savedStdout is one undifferentiated capture from a single subprocess
+  // invocation, so it can only plausibly belong to one iteration -- the
+  // highest-numbered gap, i.e. the one this invocation most recently
+  // reached. Stamping it into every gap would make recovered files
+  // indistinguishable and misattribute one iteration's content to another.
+  const missingIterations = [];
   for (const iterNum of iterationNumbers) {
     const iterFile = path.join(iterDir, `iteration-${String(iterNum).padStart(3, '0')}.md`);
 
@@ -120,9 +130,22 @@ function runSalvageSweep(lineageDir, loopType, savedStdout) {
       }
     }
 
-    fs.mkdirSync(iterDir, { recursive: true });
+    missingIterations.push(iterNum);
+  }
 
-    if (recoveredText) {
+  if (missingIterations.length === 0) return { salvaged: 0, failed: 0 };
+
+  fs.mkdirSync(iterDir, { recursive: true });
+
+  let salvaged = 0;
+  let failed = 0;
+  const recoveredText = extractTextFromOpencodeJson(savedStdout);
+  const recoverableIteration = recoveredText ? Math.max(...missingIterations) : null;
+
+  for (const iterNum of missingIterations) {
+    const iterFile = path.join(iterDir, `iteration-${String(iterNum).padStart(3, '0')}.md`);
+
+    if (iterNum === recoverableIteration) {
       fs.writeFileSync(iterFile, recoveredText, 'utf8');
       const eventRecord = {
         type: 'event',

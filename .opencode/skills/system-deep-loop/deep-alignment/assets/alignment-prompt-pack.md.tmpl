@@ -72,6 +72,7 @@ All paths are relative to the repo root.
   - `{state_paths_delta_pattern}`, this iteration's write-once delta JSONL (Bash-create once)
 - **BANNED OPERATIONS (NEVER execute against any path):** `rm`, `rm -rf`, `git rm`, `mv`, `sed -i` (including `sed -i ''`), `rmdir`, `find ... -delete`, shell output-redirect truncate `>` against any file not in the allowed-write list, and any tool call whose effect is to delete, rename, or replace a file outside the allowed-write list. Reading is unrestricted; writing, renaming, and deleting are scoped.
 - **SCOPE VIOLATION PROTOCOL:** if your plan would require writing any path NOT in the allowed-write list, STOP that action and record it as an edge case in the iteration narrative instead. NEVER execute the out-of-scope mutation.
+- **GATEWAY CALLS ARE REQUIRED AND IN-SCOPE — NEVER A CONTAINMENT VIOLATION**: running `append-mode-event.cjs` against your own run directory is REQUIRED every iteration, not optional. Its writes land inside the run directory, which is your own write authority — that is never the "out-of-scope write" any containment warning means. "Don't run the repo's tooling" guidance targets builds, tests, and repo-wide scripts (e.g. `generate-context.js`, `validate.sh --recursive`, git writes); it does NOT exempt this state-recording gateway. Skipping the gateway call, or writing `{state_paths_state_log}` directly instead, fails the iteration.
 
 ## OUTPUT CONTRACT
 

@@ -91,11 +91,6 @@ function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
 
-function shortDigest(value) {
-  const crypto = require('node:crypto');
-  return crypto.createHash('sha256').update(value, 'utf8').digest('hex').slice(0, 16);
-}
-
 function normalizeMode(mode) {
   if (!mode || typeof mode !== 'string') return '';
   const trimmed = mode.trim();
@@ -194,7 +189,6 @@ async function resolveModeAdapter(mode) {
 
 async function main() {
   const fs = require('node:fs');
-  const os = require('node:os');
   const crypto = require('node:crypto');
 
   const args = parseArgs();
@@ -319,34 +313,31 @@ async function main() {
     }),
   }, ledger, policyRegistry);
 
-  let binding = undefined;
+  let binding;
   try {
     binding = resolveCutoverBinding({
       mode: normalizedMode,
       repositoryRoot: runDirectory,
     });
-  } catch {
+  } catch (primaryError) {
     try {
       binding = resolveCutoverBinding({
         mode: normalizedMode,
         repositoryRoot: process.cwd(),
       });
-    } catch {
-      const user = (() => {
-        try { return os.userInfo().username || 'operator'; } catch { return 'operator'; }
-      })();
-      const host = os.hostname() || 'localhost';
-      const actorId = `operator:${user}`;
-      binding = Object.freeze({
-        actorId,
-        capabilityId: `capability:authority-flip:${shortDigest(`${actorId}@${host}`)}`,
-        candidateSha: '0'.repeat(40),
-        baseSha: '0'.repeat(40),
-        requestId: crypto.randomUUID(),
-        correlationId: crypto.randomUUID(),
-        streamId: `authority-flip:${normalizedMode}`,
-        decidedAt: new Date().toISOString(),
+    } catch (fallbackError) {
+      // An unattributable flip is worse than a blocked one: fabricating a
+      // zero-SHA identity here would let the ledger carry a transition
+      // nobody can be held to. Refuse instead of defaulting.
+      const primaryMessage = primaryError instanceof Error ? primaryError.message : String(primaryError);
+      const fallbackMessage = fallbackError instanceof Error ? fallbackError.message : String(fallbackError);
+      jsonOut({
+        ok: false,
+        phase: 'binding',
+        reason: `Cannot bind an authority flip: cutover binding could not be resolved from the run directory (${primaryMessage}) or the working directory (${fallbackMessage}).`,
+        code: 'BINDING_FAILED',
       });
+      process.exit(2);
     }
   }
 

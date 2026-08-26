@@ -813,8 +813,15 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
     const claimAdjudication = claimAdjudicationByFinding.get(finding.findingId);
     const canonicalSeverity = claimAdjudication?.finalSeverity || finding.severity;
     const existing = findingById.get(finding.findingId);
-    if (!existing) {
-      findingById.set(finding.findingId, {
+    // findingId is only unique per source (per-iteration counters, parallel
+    // dispatch) -- two genuinely distinct findings can reuse the same id.
+    // Merging on id alone would silently discard the second finding's own
+    // content, so only fold into `existing` when the content itself matches;
+    // otherwise keep it under a disambiguated key so both survive.
+    const isSameFinding = !existing || findingDedupKey(existing) === findingDedupKey(finding);
+    if (!isSameFinding || !existing) {
+      const storageKey = isSameFinding ? finding.findingId : `${finding.findingId}#${findingById.size}`;
+      findingById.set(storageKey, {
         ...finding,
         severity: canonicalSeverity,
         dimension: deriveDimension(
@@ -1661,17 +1668,31 @@ function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
     `<!-- /ANCHOR:${anchorId} -->`,
   ].join('\n');
 
-  if (!pattern.test(content)) {
-    if (options.createMissing) {
-      const suffix = content.endsWith('\n') ? '' : '\n';
-      return `${content}${suffix}\n${replacement}\n`;
-    }
-    throw new Error(
-      `Missing machine-owned anchor "${anchorId}" in deep-review strategy file. `
-      + 'Pass createMissing:true (or the reducer CLI flag --create-missing-anchors) to bootstrap.',
-    );
+  if (pattern.test(content)) {
+    return content.replace(pattern, replacement);
   }
-  return content.replace(pattern, replacement);
+
+  // The strategy template wraps machine-managed sections in a different
+  // comment dialect (`MACHINE-OWNED: START/END`) keyed by heading text, not
+  // by anchor id. Fall back to matching the heading itself so a freshly
+  // templated file is normalized in place instead of leaving the original
+  // section untouched and appending a duplicate one alongside it.
+  const numberedPrefix = '(?:\\d+[A-Za-z]?\\.\\s+)?';
+  const headingPattern = new RegExp(`(?:^|\\n)##\\s+${numberedPrefix}${headingCore(heading)}\\s*\\n[\\s\\S]*?(?=\\n##\\s|$)`, 'i');
+  if (headingPattern.test(content)) {
+    return content.replace(headingPattern, `\n${replacement}`);
+  }
+
+  if (options.createMissing) {
+    const suffix = content.endsWith('\n') ? '' : '\n';
+    return `${content}${suffix}\n${replacement}\n`;
+  }
+  const error = new Error(
+    `Missing machine-owned anchor "${anchorId}" in deep-review strategy file. `
+    + 'Pass createMissing:true (or the reducer CLI flag --create-missing-anchors) to bootstrap.',
+  );
+  error.code = 'MISSING_ANCHOR';
+  throw error;
 }
 
 // Strip a leading "N." / "NA." ordinal from a heading so a section authored in the
@@ -1699,7 +1720,9 @@ function upsertHeadingSectionBefore(content, heading, body, beforeHeading, optio
       const suffix = content.endsWith('\n') ? '' : '\n';
       return `${content}${suffix}${replacement}`;
     }
-    throw new Error(`Missing insertion heading "${beforeHeading}" in deep-review strategy file.`);
+    const error = new Error(`Missing insertion heading "${beforeHeading}" in deep-review strategy file.`);
+    error.code = 'MISSING_ANCHOR';
+    throw error;
   }
   // Insert before the existing heading, preserving its authored text verbatim.
   return content.replace(beforePattern, (match) => `${replacement}${match}`);
@@ -2114,15 +2137,25 @@ function reduceReviewState(specFolder, options = {}) {
     flattenedDeltaRecords,
     records.concat(pivotEvents),
   );
-  const strategy = updateStrategyContent(strategyContent, registry, iterationFiles, { createMissingAnchors }, records);
+  let strategy = strategyContent;
+  let strategyWarning = null;
+  try {
+    strategy = updateStrategyContent(strategyContent, registry, iterationFiles, { createMissingAnchors }, records);
+  } catch (error) {
+    if (error && error.code === 'MISSING_ANCHOR') {
+      // A missing machine-owned anchor is a warning-class input problem, not
+      // a reason to withhold the registry/dashboard the reducer already
+      // computed successfully. Leave the strategy file as-is and surface the
+      // gap instead of aborting before anything is written.
+      strategyWarning = error.message;
+    } else {
+      throw error;
+    }
+  }
   const dashboard = renderDashboard(config, registry, records, iterationFiles);
   let resourceMap = null;
   let resourceMapSkipped = true;
   let resourceMapSkipReason = null;
-
-  if (allCorruptionWarnings.length > 0 && !lenient) {
-    throw createCorruptionError(path.join(reviewDir, 'deep-review-state-and-deltas'), allCorruptionWarnings);
-  }
 
   if (emitResourceMapOutput) {
     if (getResourceMapEmitSetting(config) === false) {
@@ -2158,6 +2191,14 @@ function reduceReviewState(specFolder, options = {}) {
     }
   }
 
+  // Corruption is still reported loudly (thrown here, non-zero CLI exit) but
+  // only after the registry/dashboard/strategy the reducer successfully
+  // derived from the valid records have been written -- corrupted input must
+  // not withhold output that was already computed.
+  if (allCorruptionWarnings.length > 0 && !lenient) {
+    throw createCorruptionError(path.join(reviewDir, 'deep-review-state-and-deltas'), allCorruptionWarnings);
+  }
+
   return {
     configPath,
     stateLogPath,
@@ -2167,6 +2208,7 @@ function reduceReviewState(specFolder, options = {}) {
     resourceMapPath,
     registry,
     strategy,
+    strategyWarning,
     dashboard,
     resourceMap,
     resourceMapSkipped,
@@ -2228,6 +2270,9 @@ if (require.main === module) {
       emitResourceMap: emitResourceMapOutput,
       artifactDir: parsedArgs.artifactDir,
     });
+    if (result.strategyWarning) {
+      process.stderr.write(`[deep-review] warning: ${result.strategyWarning}\n`);
+    }
     process.stdout.write(
       `${JSON.stringify(
         {
@@ -2240,6 +2285,7 @@ if (require.main === module) {
           graphConvergenceScore: result.registry.graphConvergenceScore,
           searchDebtCount: Array.isArray(result.registry.searchDebt) ? result.registry.searchDebt.length : 0,
           corruptionCount: result.corruptionWarnings.length,
+          strategyWarning: result.strategyWarning,
           resourceMapPath: emitResourceMapOutput ? result.resourceMapPath : null,
           resourceMapSkipped: emitResourceMapOutput ? result.resourceMapSkipped : null,
           resourceMapSkipReason: emitResourceMapOutput ? result.resourceMapSkipReason : null,

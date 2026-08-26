@@ -37,7 +37,14 @@ interface ObservationThreshold {
   }>;
 }
 
+interface NoveltyCorroboration {
+  readonly shouldBlock: boolean;
+  readonly traceEntry: Record<string, unknown>;
+  readonly blocker: Record<string, unknown>;
+}
+
 const {
+  applyNoveltyCorroborationGuard,
   applyObservationThresholdGuard,
   buildImprovementEffect,
   computeScoreDelta,
@@ -45,6 +52,16 @@ const {
   readObservationThresholdConfig,
   shouldTraceImprovementEffect,
 } = requireCjs('../../scripts/convergence.cjs') as {
+  applyNoveltyCorroborationGuard: (
+    decision: string,
+    blockers: Array<Record<string, unknown>>,
+    trace: Array<Record<string, unknown>>,
+    noveltyCorroboration: NoveltyCorroboration | null,
+  ) => {
+    decision: string;
+    blockers: Array<Record<string, unknown>>;
+    trace: Array<Record<string, unknown>>;
+  };
   applyObservationThresholdGuard: (
     decision: string,
     blockers: Array<Record<string, unknown>>,
@@ -140,6 +157,48 @@ describe('convergence score delta helpers', () => {
 
     expect(singleObservation.decision).toBe('STOP_ALLOWED');
     expect(singleObservation.blockers).toEqual([]);
+  });
+
+  it('reports the novelty-corroboration signal as failed even when the overall decision is already CONTINUE for other reasons', () => {
+    // shouldBlock=true means the self-reported novelty disagreed with the graph;
+    // the trace entry's own `passed` must reflect that regardless of what already
+    // put the decision at CONTINUE (e.g. an unrelated signal below threshold).
+    const noveltyCorroboration = {
+      shouldBlock: true,
+      traceEntry: { signal: 'noveltyCorroboration', value: 0.02, threshold: 0.05, passed: false, role: 'blocking_guard' },
+      blocker: { type: 'novelty_self_report_unverified', severity: 'blocking' },
+    };
+
+    const result = applyNoveltyCorroborationGuard('CONTINUE', [], [], noveltyCorroboration);
+
+    expect(result.decision).toBe('CONTINUE');
+    expect(result.blockers).toEqual([]);
+    expect(result.trace).toEqual([
+      expect.objectContaining({ signal: 'noveltyCorroboration', passed: false }),
+    ]);
+  });
+
+  it('escalates STOP_ALLOWED to STOP_BLOCKED when novelty corroboration fails', () => {
+    const noveltyCorroboration = {
+      shouldBlock: true,
+      traceEntry: { signal: 'noveltyCorroboration', value: 0.02, threshold: 0.05, passed: false, role: 'blocking_guard' },
+      blocker: { type: 'novelty_self_report_unverified', severity: 'blocking' },
+    };
+
+    const result = applyNoveltyCorroborationGuard('STOP_ALLOWED', [], [], noveltyCorroboration);
+
+    expect(result.decision).toBe('STOP_BLOCKED');
+    expect(result.blockers).toEqual([
+      expect.objectContaining({ type: 'novelty_self_report_unverified' }),
+    ]);
+    expect(result.trace).toEqual([
+      expect.objectContaining({ signal: 'noveltyCorroboration', passed: false }),
+    ]);
+  });
+
+  it('leaves decision and blockers untouched when there is no novelty corroboration to apply', () => {
+    const result = applyNoveltyCorroborationGuard('STOP_ALLOWED', [], [], null);
+    expect(result).toEqual({ decision: 'STOP_ALLOWED', blockers: [], trace: [] });
   });
 
   it('summarizes helped, hurt, and flat score movement when tracing is enabled', () => {

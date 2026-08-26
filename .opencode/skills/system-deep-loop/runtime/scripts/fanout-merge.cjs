@@ -743,6 +743,9 @@ function mergeReviewRegistries(lineageData, options = {}) {
   const mergeOptions = resolveMergeOptions(options);
   const findingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
   const schemaWarnings = [];
+  // A finding still active in at least one lineage must not also surface as resolved —
+  // some other lineage having closed it doesn't mean the finding is closed overall.
+  const activeFindingIds = new Set();
 
   for (const { label, registry: rawRegistry } of lineageData) {
     const { registry, warnings } = normalizeRegistrySchema(rawRegistry, {
@@ -762,6 +765,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
       if ((finding.disposition ?? finding.status) !== 'active') continue;
       const id = finding.findingId || finding.title;
       if (!id) continue;
+      activeFindingIds.add(id);
       if (mergeOptions.enableNearDuplicateDedup) {
         addReviewFinding(getFindingBucket(findingById, id, finding, true).records, finding, label, mergeOptions);
       } else {
@@ -780,6 +784,9 @@ function mergeReviewRegistries(lineageData, options = {}) {
     for (const finding of registry.resolvedFindings) {
       const id = finding.findingId || finding.title;
       if (!id) continue;
+      // Still active elsewhere — keep it out of the resolved list so it can't appear
+      // in both merged lists at once.
+      if (activeFindingIds.has(id)) continue;
       if (mergeOptions.enableNearDuplicateDedup) {
         addReviewFinding(getFindingBucket(resolvedFindingById, id, finding, true).records, finding, label, mergeOptions);
       } else if (resolvedFindingById.has(id)) {
@@ -829,6 +836,19 @@ function mergeReviewRegistries(lineageData, options = {}) {
 // 5. ATTRIBUTION
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Per-lineage attribution verdict must apply the same active-disposition guard
+// mergeReviewRegistries uses, not the registry's raw findingsBySeverity — a raw
+// per-lineage count can include findings that were since resolved, which would
+// let the attribution table's verdict diverge from the merged verdict it reports on.
+function activeReviewSeverityCounts(registry) {
+  const openFindings = Array.isArray(registry?.openFindings) ? registry.openFindings : [];
+  const active = openFindings.filter((finding) => (finding?.disposition ?? finding?.status) === 'active');
+  return {
+    P0: active.filter((finding) => finding.severity === 'P0').length,
+    P1: active.filter((finding) => finding.severity === 'P1').length,
+  };
+}
+
 /**
  * Build fanout-attribution.md summarizing per-lineage convergence, iters, salvage, model.
  */
@@ -846,11 +866,12 @@ function buildAttributionMd(lineageData, loopType) {
     const iters = stateRecords.filter((r) => r.type === 'iteration').length;
     const salvage = stateRecords.filter((r) => r.type === 'event' && r.event === 'salvaged_from_stdout').length;
     const convergenceScore = registry?.metrics?.convergenceScore ?? registry?.convergenceScore ?? 'n/a';
+    const severityCounts = loopType === 'review' ? activeReviewSeverityCounts(registry) : null;
     const verdict =
       loopType === 'review'
-        ? registry?.findingsBySeverity?.P0 > 0
+        ? severityCounts.P0 > 0
           ? 'FAIL'
-          : registry?.findingsBySeverity?.P1 > 0
+          : severityCounts.P1 > 0
           ? 'CONDITIONAL'
           : 'PASS'
         : 'n/a';
@@ -891,7 +912,11 @@ function reconstructReviewRegistryFromState(stateRecords, label) {
       const mapped = {
         findingId: id,
         title: detail.title || id,
-        severity: detail.severity || 'P2',
+        // A finding that lost its severity field must not fall into P2: P2 alone never
+        // lifts mergedVerdict past PASS, so an unlabeled active P0/P1 would silently
+        // pass review. P1 is the minimum default that keeps the verdict at CONDITIONAL
+        // until the real severity is known.
+        severity: detail.severity || 'P1',
         status: isActive ? 'active' : 'resolved',
         ...(detail.dimension ? { dimension: detail.dimension } : {}),
         ...(detail.file ? { file: detail.file } : {}),
@@ -1103,6 +1128,7 @@ async function main() {
   const summaryPath = path.join(artifactDir, 'orchestration-summary.json');
   const orchestrationSummary = readJsonFile(artifactRoot, summaryPath, 'orchestration summary') ?? {};
 
+  const reconstructionWarnings = [];
   const lineageData = labelDirs.map((label) => {
     const lineageDir = path.join(lineagesDir, label);
     requireRealDirectory(artifactRoot, lineageDir, `lineage ${label} directory`);
@@ -1121,7 +1147,23 @@ async function main() {
       registry = reconstructReviewRegistryFromState(stateRecords, label);
     }
     if (loopType === 'research' && !hasUsableResearchFindings(registry)) {
-      const reconstructed = reconstructResearchRegistryFromState(stateRecords, label, iterationFindingsByRun);
+      // Reconstruction can throw when one iteration's findingsCount contradicts its
+      // structured/markdown/graph evidence. That must degrade only this lineage — left
+      // uncaught, the throw unwinds out of this per-lineage loop and aborts the merge
+      // for every other lineage along with it, dropping their findings too.
+      let reconstructed = null;
+      try {
+        reconstructed = reconstructResearchRegistryFromState(stateRecords, label, iterationFindingsByRun);
+      } catch (error) {
+        const warning = {
+          type: 'lineage_reconstruction_failed',
+          severity: 'warn',
+          lineage: label,
+          message: error instanceof Error ? error.message : String(error),
+        };
+        reconstructionWarnings.push(warning);
+        process.stderr.write(JSON.stringify(warning) + '\n');
+      }
       if (reconstructed) {
         reconstructed.metrics.sourceFindings = reconstructed.keyFindings.length;
         reconstructed.metrics.reconstructionGaps = 0;
@@ -1179,6 +1221,7 @@ async function main() {
     merged_registry_path: mergedRegistryPath,
     ...(compatibilityRegistryPath ? { compatibility_registry_path: compatibilityRegistryPath } : {}),
     attribution_path: attributionPath,
+    ...(reconstructionWarnings.length > 0 ? { reconstruction_warnings: reconstructionWarnings } : {}),
     ...(loopType === 'review'
       ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1 }
       : { key_findings: mergedRegistry.keyFindings?.length ?? 0 }),

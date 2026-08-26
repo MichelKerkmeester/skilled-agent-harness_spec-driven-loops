@@ -9,7 +9,7 @@ import { uniqueNamespace, cleanupNamespace } from '../helpers/spawn-cjs';
 
 const require = createRequire(import.meta.url);
 const { runSalvageSweep, extractTextFromOpencodeJson } = require('../../scripts/fanout-salvage.cjs') as {
-  runSalvageSweep: (lineageDir: string, loopType: 'research' | 'review', savedStdout: string) => { salvaged: number; failed: number };
+  runSalvageSweep: (lineageDir: string, loopType: 'research' | 'review' | 'alignment', savedStdout: string) => { salvaged: number; failed: number };
   extractTextFromOpencodeJson: (stdout: string | null) => string | null;
 };
 
@@ -25,13 +25,19 @@ function makeTempDir(prefix: string): string {
  * Creates a minimal lineage dir with a state log containing N iteration records.
  * Optionally creates the iteration .md files.
  */
+const STATE_LOG_NAME_BY_LOOP_TYPE: Record<'research' | 'review' | 'alignment', string> = {
+  research: 'deep-research-state.jsonl',
+  review: 'deep-review-state.jsonl',
+  alignment: 'deep-alignment-state.jsonl',
+};
+
 function makeLineageDir(
   base: string,
-  loopType: 'research' | 'review',
+  loopType: 'research' | 'review' | 'alignment',
   iterationsInLog: number[],
   writtenIterations: number[] = [],
 ): string {
-  const stateLogName = loopType === 'review' ? 'deep-review-state.jsonl' : 'deep-research-state.jsonl';
+  const stateLogName = STATE_LOG_NAME_BY_LOOP_TYPE[loopType];
   const stateLogPath = join(base, stateLogName);
   const iterDir = join(base, 'iterations');
   mkdirSync(iterDir, { recursive: true });
@@ -151,6 +157,47 @@ describe('runSalvageSweep — unit', () => {
     expect(existsSync(paddedFile)).toBe(true);
     expect(existsSync(unpaddedFile)).toBe(false);
     expect(readFileSync(paddedFile, 'utf8')).toContain('fanout_salvage_failed');
+  });
+
+  it('salvages an alignment lineage against deep-alignment-state.jsonl', () => {
+    const dir = makeTempDir('salvage-alignment-');
+    makeLineageDir(dir, 'alignment', [1], []); // iteration-001 is missing
+
+    const stdout = 'a reasonably long raw stdout capture for alignment recovery here';
+    const result = runSalvageSweep(dir, 'alignment', stdout);
+
+    expect(result.salvaged).toBe(1);
+    expect(result.failed).toBe(0);
+    const stateLog = readFileSync(join(dir, 'deep-alignment-state.jsonl'), 'utf8');
+    expect(stateLog).toContain('salvaged_from_stdout');
+  });
+
+  it('throws instead of silently skipping salvage for an unrecognized loop type', () => {
+    const dir = makeTempDir('salvage-unknown-loop-type-');
+    makeLineageDir(dir, 'research', [1], []);
+
+    expect(() => runSalvageSweep(dir, 'bogus-loop-type' as never, 'some stdout')).toThrow(
+      /unrecognized loop type/,
+    );
+  });
+
+  it('does not stamp the same recovered stdout into every missing iteration', () => {
+    const dir = makeTempDir('salvage-distinct-per-gap-');
+    makeLineageDir(dir, 'research', [1, 2], []); // both iteration-001 and iteration-002 are missing
+
+    const stdout = JSON.stringify({ type: 'text', part: { text: 'recovered content for one iteration only' } });
+    const result = runSalvageSweep(dir, 'research', stdout);
+
+    // Only the most recent gap can plausibly own this single stdout capture;
+    // the other gap must not receive a fabricated copy of the same content.
+    expect(result.salvaged).toBe(1);
+    expect(result.failed).toBe(1);
+
+    const iter1 = readFileSync(join(dir, 'iterations', 'iteration-001.md'), 'utf8');
+    const iter2 = readFileSync(join(dir, 'iterations', 'iteration-002.md'), 'utf8');
+    expect(iter2).toContain('recovered content for one iteration only');
+    expect(iter1).not.toBe(iter2);
+    expect(iter1).toContain('fanout_salvage_failed');
   });
 
   it('salvages missing iteration and leaves present ones untouched (mixed case)', () => {
