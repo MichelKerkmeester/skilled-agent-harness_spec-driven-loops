@@ -33,10 +33,10 @@
       "resolution"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      "001-dependency-and-node-abi-alignment/spec.md",
-      "002-command-rollout-mode-resolution/spec.md",
+      "001-dependency-and-node-abi-alignment/implementation-summary.md",
+      "002-command-rollout-mode-resolution/implementation-summary.md",
       "spec.md"
     ],
     "entities": [
@@ -71,13 +71,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Problem Statement Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Packet",
+        "name": "Purpose Remediate",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -85,15 +85,15 @@
     ],
     "causal_summary": "Packet 018 triaged the ten pre-existing runtime test failures and fixed the one that was cleanly correct",
     "created_at": "2026-08-26T11:00:43.389Z",
-    "last_save_at": "2026-08-26T11:06:07.142Z",
+    "last_save_at": "2026-08-26T12:37:31.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:185acd428127fdee4b1c5bd9728029a1bb9ce9c499efd751f69a771fa4ee72c9",
+    "source_fingerprint": "sha256:bcd0d4edb2dc000a7a5a214af1ca0eeaa9848fdae237783bd8a47ac827f55204",
     "source_doc_hashes": {
-      "spec.md": "c3c5744f9a70c0b3573589f7a24753368d99af8462825632a786f214729cfca9"
+      "spec.md": "6d32af2710af3994942a3bfd19dc173d46f10cd1413293a55e71ca7799a10089"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution",
     "last_active_at": null

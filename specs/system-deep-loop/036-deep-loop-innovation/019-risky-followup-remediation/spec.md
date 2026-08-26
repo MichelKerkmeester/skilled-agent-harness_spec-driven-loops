@@ -10,19 +10,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation"
-    last_updated_at: "2026-08-26T11:05:02.826Z"
+    last_updated_at: "2026-08-26T12:35:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Scaffolded the phase parent for the two risky remediations"
-    next_safe_action: "Execute child 001 (dependency/Node ABI) and child 002 (rollout mode) in order"
+    recent_action: "Both children complete: 002 rollout mode restored to fix; 001 dependency-seams realpath fix"
+    next_safe_action: "Push both 019 children to v4 + main"
     blockers: []
     key_files:
-      - "001-dependency-and-node-abi-alignment/spec.md"
-      - "002-command-rollout-mode-resolution/spec.md"
-    completion_pct: 0
-    open_questions:
-      - "Canonical better-sqlite3 version + Node-ABI strategy (child 001)."
-      - "Intended default rollout mode for deep/* — fix or fallback (child 002)."
-    answered_questions: []
+      - "001-dependency-and-node-abi-alignment/implementation-summary.md"
+      - "002-command-rollout-mode-resolution/implementation-summary.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Child 001: dependency-seams failure was a worktree symlink artifact; realpath fix, version bump deferred."
+      - "Child 002: intended deep/* rollout mode is fix (restored; accidentally demoted in bce47507b6d)."
 ---
 # Feature Specification: Risky Pre-Existing Failure Remediation (phase parent)
 
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Type** | Phase Parent |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-08-26 |
 | **Source** | `018-pre-existing-test-triage` (the two risky-unrelated failures it deferred) |
 
