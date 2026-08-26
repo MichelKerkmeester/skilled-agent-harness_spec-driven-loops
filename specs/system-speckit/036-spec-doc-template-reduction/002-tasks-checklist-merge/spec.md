@@ -14,13 +14,14 @@ _memory:
     packet_pointer: "036-spec-doc-template-reduction/002-tasks-checklist-merge"
     last_updated_at: "2026-08-26T06:45:00Z"
     last_updated_by: "design-author"
-    recent_action: "Authored merge design from 001-analysis research (Ox Alpha R3)"
-    next_safe_action: "Plan detailed tasks and confirm the legacy checklist read-path before editing shipped templates"
-    blockers: []
+    recent_action: "Merge attempt reverted: check-anchors flags 9 while compare reports clean"
+    next_safe_action: "Isolate the check-anchors vs compare divergence before re-attempting the merge"
+    blockers:
+      - "check-anchors ANCHORS_VALID flags 9 base verification anchors on shipped L2+ packets while compare reports them optional at every level"
     key_files:
       - ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl"
-      - ".opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl"
-      - ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh"
+      - ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js"
       - ".opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -28,6 +29,7 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
+      - "Why does ANCHORS_VALID flag 9 verification anchors while compare reports them optional at every level?"
       - "Does a full generate-context.js save rewrite _memory blocks in multiple docs or only implementation-summary?"
     answered_questions:
       - "Which validator surfaces read checklist.md? (5 confirmed in research)"
@@ -169,6 +171,8 @@ Fold both into one unified verification-and-task document so an author (includin
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
+- **BLOCKER (must solve first): `check-anchors.sh` (ANCHORS_VALID) vs `compare` divergence.** A first implementation attempt merged the verification sections into `tasks.md.tmpl` with `L2:`/`L3+:`-prefixed headers so the derivation marks them optional. Result on a shipped L2+ packet: L1 renders byte-identically, `TEMPLATE_HEADERS` passes, and `template-structure.js compare <level> tasks.md <file> anchors` reports all 15 verification anchors as `optional_anchor` with **zero** `missing_anchor`/`out_of_order_anchor` at levels 2, 3, and 3+ — yet `ANCHORS_VALID` still fails with **9** issues (the 9 base verification anchors), A/B-proven to be caused solely by the `tasks.md.tmpl` change. The `compare`-clean-but-`ANCHORS_VALID`-9 divergence is the thread to pull: `check-anchors.sh` has a second code path beyond `compare_required_anchors` (pairing/order block, lines ~100-172) and its standalone run needs the `is_phase_parent` shared function loaded to behave correctly. Isolate why `check-anchors` diverges from `compare` before re-attempting the template merge.
+- The header-prefix approach (`L2:` on base verification sections) makes them optional-in-contract but changes rendered titles to `## L2: Verification Protocol`; if that reads poorly, the alternative is a folder-aware `check-anchors`/`check-template-headers` change (require the verification anchors in `tasks.md` only when the folder has no legacy `checklist.md`).
 - Does a full `generate-context.js` save rewrite `_memory` blocks across multiple docs, or only `implementation-summary.md`? (Confirm before phase 004; does not block this phase.)
 - Should the retired `checklist.md.tmpl` be deleted outright or retained as a documented legacy read-path artifact for old packets? (Decide during planning.)
 <!-- /ANCHOR:questions -->
