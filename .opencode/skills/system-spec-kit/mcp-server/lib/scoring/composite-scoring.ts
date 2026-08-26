@@ -244,7 +244,6 @@ export const DOCUMENT_TYPE_MULTIPLIERS: Readonly<Record<string, number>> = {
   checklist: 1.0,
   handover: 1.0,
   memory: 1.0,
-  constitutional: 2.0,
   scratch: 0.6,
 };
 

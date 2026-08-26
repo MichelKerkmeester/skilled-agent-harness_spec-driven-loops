@@ -13,7 +13,7 @@ export { SPEC_DOCUMENT_FILENAMES } from './spec-doc-paths.js';
 // ───────────────────────────────────────────────────────────────
 // MODULE: Memory Types
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Classification-based decay
+// Memory/document-type classification and the tier/type config that drives decay.
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
 
@@ -259,7 +259,6 @@ export const KEYWORD_TYPE_MAP: Readonly<Record<string, MemoryTypeName>> = {
   'project history': 'autobiographical',
 
   // Meta-cognitive
-  'constitutional': 'meta-cognitive',
   'rule': 'meta-cognitive',
   'standard': 'meta-cognitive',
   'invariant': 'meta-cognitive',
@@ -381,8 +380,7 @@ export type DocumentType =
   | 'review_report'
   | 'description_metadata'
   | 'graph_metadata'
-  | 'memory'
-  | 'constitutional';
+  | 'memory';
 
 /**
  * Describes the SpecDocumentConfig shape.
@@ -449,10 +447,6 @@ export function inferDocumentTypeFromPath(filePath: string): DocumentType {
     return 'graph_metadata';
   }
 
-  // Constitutional files
-  if (normalizedPath.includes('/constitutional/') && normalizedPath.endsWith('.md')) {
-    return 'constitutional';
-  }
 
   // Default: memory
   return 'memory';
