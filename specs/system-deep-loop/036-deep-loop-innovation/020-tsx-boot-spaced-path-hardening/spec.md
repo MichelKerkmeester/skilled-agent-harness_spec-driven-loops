@@ -44,6 +44,7 @@ _memory:
 | **Source** | Cross-session bug report: deep-loop crashes on `loop-lock.js` from a spaced-path checkout |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 019-risky-followup-remediation |
+| **Successor** | 021-containment-symlink-autoscope |
 
 <!-- /ANCHOR:metadata -->
 ---

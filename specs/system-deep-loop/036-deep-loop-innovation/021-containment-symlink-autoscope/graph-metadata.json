@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
-  "spec_folder": "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
   "parent_id": "system-deep-loop/036-deep-loop-innovation",
   "children_ids": [],
   "manual": {
@@ -11,27 +11,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "tsx boot spaced path hardening",
-      "loop-lock.js ERR_MODULE_NOT_FOUND deep-loop",
-      "NODE_PRESERVE_SYMLINKS tsx loader",
-      "DEEP_LOOP_REPO_ROOT containment override",
-      "tsx boot spaced path hardening summary",
-      "runtime-bootstrap tsxChildEnv",
-      "DEEP_LOOP_REPO_ROOT override"
+      "containment symlink autoscope",
+      "resolveArtifactScope null symlinked spec tree",
+      "containment repo root auto detection",
+      "containment symlink autoscope summary",
+      "resolveContainmentRepoRoot artifact worktree",
+      "containment catch-22 closed"
     ],
     "key_topics": [
-      "tsx",
-      "boot",
-      "spaced",
-      "path",
-      "hardening",
-      "loop-lock",
-      "deep-loop",
-      "loader",
       "containment",
-      "override",
-      "summary",
-      "runtime-bootstrap"
+      "symlink",
+      "autoscope",
+      "resolveartifactscope",
+      "null",
+      "symlinked",
+      "spec",
+      "tree",
+      "repo",
+      "root",
+      "auto",
+      "detection"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -80,13 +79,13 @@
         "source": "derived"
       },
       {
-        "name": "Root Hardening",
+        "name": "Containment Auto",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Spaced Paths",
+        "name": "Symlinked Spec Trees",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -98,13 +97,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
+        "name": "Purpose Resolve",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -128,13 +127,7 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
+        "name": "Pattern Resolve",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -152,19 +145,13 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -186,11 +173,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The deep-loop runtime is 19 `.ts` files with zero `.js` files; each `.cjs` entrypoint re-execs itself under the tsx loader (`--import <tsx>`), which remaps `.js` import specifiers to their `.ts` source",
-    "created_at": "2026-08-26T14:47:30.655Z",
-    "last_save_at": "2026-08-26T16:11:04.901Z",
+    "causal_summary": "Packet 020 fixed the tsx-loader crash and added a `DEEPLOOPREPOROOT` override, but left the containment half of the operator's catch-22 unconfirmed",
+    "created_at": "2026-08-26T16:09:53.781Z",
+    "last_save_at": "2026-08-26T16:10:31.494Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b52f9108ec84cf3f2c32b062ba0f6856361423834dfed45d1786a3bc04849c16",
+    "source_fingerprint": "sha256:add161df632d8cfe08433c771ce7c38a5c30491a82befd859e4248832a37f590",
     "source_doc_hashes": {
-      "spec.md": "54e5bff7370b5a9ae10787eed741f1e08f2a1c0453cee07cdaa7e17952e5f9b3",
-      "plan.md": "a220021f51cc01aed706cff600d1e33a1879b87b127499a8663309b0b700b9ec",
-      "tasks.md": "64ddf314ae8b5f82f4bce1a732ddfb87632c493e22996bad4178db0c4fb83037",
-      "checklist.md": "5eb03ae4aefdaf744fb48768c3654da13f304f1949ac396b2bb1ff7b928b90b2",
-      "implementation-summary.md": "306bd7684595e3106337367cae11853e17f42987cf266cef7b4b3b0341a4b008"
+      "spec.md": "ce47a4294c20adbcef1985a6dc89784da6e17a5e2bfde38946dc1bfe4e55ce07",
+      "plan.md": "0fc310bd780a03f3a029aa066af668646fb1cb647a414c8c271856398337edf6",
+      "tasks.md": "bfb8d2aa2194de4b3ae17136c62b42d68e534be1fc9658435a2c2717aee7ce7f",
+      "checklist.md": "1c2eeb3686c8a6556bc3b6cb4202bd62c5f9f260509511eb97b449d3c780f760",
+      "implementation-summary.md": "1b54bec2f348e6eeb24b78651d1c945f0681b2ecf67f6bd1d51fba93de36bbb3"
     },
     "last_active_child_id": null,
     "last_active_at": null

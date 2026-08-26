@@ -23,7 +23,8 @@
     "system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment",
     "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
     "system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation",
-    "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening"
+    "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
+    "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope"
   ],
   "manual": {
     "depends_on": [],
@@ -103,7 +104,7 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-26T14:48:17.040Z",
+    "last_save_at": "2026-08-26T16:11:05.099Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

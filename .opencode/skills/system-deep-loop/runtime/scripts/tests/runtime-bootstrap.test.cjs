@@ -10,6 +10,8 @@ const test = require('node:test');
 const fs = require('node:fs');
 const path = require('node:path');
 
+const os = require('node:os');
+
 const { tsxChildEnv, resolveContainmentRepoRoot } = require('../runtime-bootstrap.cjs');
 
 const SCRIPTS_DIR = path.join(__dirname, '..');
@@ -70,6 +72,69 @@ test('resolveContainmentRepoRoot ignores a blank or whitespace override', () => 
   assert.equal(resolveContainmentRepoRoot({ DEEP_LOOP_REPO_ROOT: '' }, '/work/dir'), '/work/dir');
   assert.equal(resolveContainmentRepoRoot({ DEEP_LOOP_REPO_ROOT: '   ' }, '/work/dir'), '/work/dir');
   assert.equal(resolveContainmentRepoRoot(undefined, '/work/dir'), '/work/dir');
+});
+
+// Auto-detection: when the artifact tree symlinks into a different worktree,
+// containment must scope against the worktree that physically holds the writes.
+// A fake gitToplevel maps a realpath'd dir to whichever fixture root contains it.
+function withSymlinkFixture(run) {
+  const base = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'bootstrap-scope-')));
+  const cwd = path.join(base, 'cwd-worktree');
+  const realRepo = path.join(base, 'real-worktree');
+  const realLineage = path.join(realRepo, 'specs', 'foo', 'lineage');
+  fs.mkdirSync(cwd, { recursive: true });
+  fs.mkdirSync(realLineage, { recursive: true });
+  // cwd/link-lineage -> realRepo/specs/foo/lineage (the symlinked spec tree).
+  const linkLineage = path.join(cwd, 'link-lineage');
+  fs.symlinkSync(realLineage, linkLineage);
+  const gitToplevel = (dir) => {
+    const real = fs.realpathSync(dir);
+    if (real === realRepo || real.startsWith(realRepo + path.sep)) return realRepo;
+    if (real === cwd || real.startsWith(cwd + path.sep)) return cwd;
+    return '';
+  };
+  try {
+    run({ cwd, realRepo, realLineage, linkLineage, gitToplevel });
+  } finally {
+    fs.rmSync(base, { recursive: true, force: true });
+  }
+}
+
+test('resolveContainmentRepoRoot redirects to the worktree that physically holds a symlinked artifact', () => {
+  withSymlinkFixture(({ cwd, realRepo, linkLineage, gitToplevel }) => {
+    const root = resolveContainmentRepoRoot({}, cwd, { artifactDir: linkLineage, gitToplevel });
+    assert.equal(root, realRepo, 'must scope against the artifact\'s real worktree, not cwd');
+  });
+});
+
+test('resolveContainmentRepoRoot stays at cwd when the artifact is inside cwd\'s worktree', () => {
+  withSymlinkFixture(({ cwd, gitToplevel }) => {
+    const localArtifact = path.join(cwd, 'local-lineage');
+    fs.mkdirSync(localArtifact, { recursive: true });
+    const root = resolveContainmentRepoRoot({}, cwd, { artifactDir: localArtifact, gitToplevel });
+    assert.equal(root, cwd, 'the normal in-worktree case must be unchanged');
+  });
+});
+
+test('resolveContainmentRepoRoot stays at cwd when the symlinked artifact is in no worktree', () => {
+  withSymlinkFixture(({ cwd }) => {
+    // A gitToplevel that never finds a worktree for the artifact side.
+    const gitToplevel = (dir) => (fs.realpathSync(dir) === cwd ? cwd : '');
+    const orphan = path.join(cwd, 'link-lineage');
+    const root = resolveContainmentRepoRoot({}, cwd, { artifactDir: orphan, gitToplevel });
+    assert.equal(root, cwd, 'never widen scope to a non-worktree location');
+  });
+});
+
+test('the explicit override wins over auto-detection', () => {
+  withSymlinkFixture(({ cwd, linkLineage, gitToplevel }) => {
+    const root = resolveContainmentRepoRoot(
+      { DEEP_LOOP_REPO_ROOT: '/pinned/root' },
+      cwd,
+      { artifactDir: linkLineage, gitToplevel },
+    );
+    assert.equal(root, path.resolve('/pinned/root'));
+  });
 });
 
 test('every tsx re-exec entrypoint routes its child env through tsxChildEnv', () => {
