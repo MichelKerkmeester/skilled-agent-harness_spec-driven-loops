@@ -8,10 +8,7 @@
 
 /** Arguments for the memory_delete handler. */
 
-// Feature catalog: Memory indexing (memory_save)
-// Feature catalog: Memory metadata update (memory_update)
-// Feature catalog: Single and folder delete (memory_delete)
-// Feature catalog: Tier-based bulk deletion (memory_bulk_delete)
+// Shared types for the memory CRUD handlers (save, update, delete, bulk-delete).
 
 interface DeleteArgs {
   id?: number | string;
@@ -96,7 +93,6 @@ interface MutationHookResult {
   latencyMs: number;
   actionCount?: number;
   triggerCacheCleared: boolean;
-  constitutionalCacheCleared: boolean;
   toolCacheInvalidated: number;
   graphSignalsCacheCleared: boolean;
   coactivationCacheCleared: boolean;

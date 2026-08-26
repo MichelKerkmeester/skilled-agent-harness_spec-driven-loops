@@ -202,7 +202,6 @@ interface ApiKeyValidation {
 }
 
 interface AutoSurfaceResult {
-  constitutional: unknown[];
   triggered: unknown[];
   sessionPrimed?: boolean;
   primedTool?: string;
@@ -822,13 +821,6 @@ function injectSessionPrimeHints(
     : [];
   envelope.hints = hints;
 
-  const constitutionalCount = Array.isArray(sessionPrimeContext.constitutional)
-    ? sessionPrimeContext.constitutional.length
-    : 0;
-  hints.push(
-    `Session priming: loaded ${constitutionalCount} constitutional memories`
-  );
-
   // Include Prime Package hints for non-hook CLIs
   const pkg = sessionPrimeContext.primePackage;
   if (pkg) {
@@ -1215,17 +1207,13 @@ function registerContextServerHandlers(targetServer: Server): void {
               const priming = meta.sessionPriming as Record<string, unknown>;
               const alreadyTrimmed = priming.trimmed === true;
               if (!alreadyTrimmed) {
-                const constitutionalCount = Array.isArray(priming.constitutional)
-                  ? priming.constitutional.length
-                  : 0;
                 meta.sessionPriming = {
                   trimmed: true,
-                  constitutionalCount,
                   ...(isRecord(priming.primePackage) ? { primePackage: priming.primePackage } : {}),
                 };
                 syncEnvelopeTokenCount(envelope);
                 if (Array.isArray(envelope.hints)) {
-                  envelope.hints.push(`Session priming trimmed to fit the ${budget} token budget; full constitutional content remains retrievable via memory_search`);
+                  envelope.hints.push(`Session priming trimmed to fit the ${budget} token budget; full priming content remains retrievable via memory_search`);
                 }
                 meta.sessionPrimingTrimmed = true;
               }

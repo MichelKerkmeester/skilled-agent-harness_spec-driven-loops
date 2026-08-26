@@ -4,7 +4,6 @@
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
 import { clearSemanticTriggerCache } from '../lib/triggers/semantic-trigger-matcher.js';
 import * as toolCache from '../lib/cache/tool-cache.js';
-import { clearConstitutionalCache } from '../hooks/memory-surface.js';
 import { clearGraphSignalsCache } from '../lib/graph/graph-signals.js';
 import { clearRelatedCache } from '../lib/cognitive/co-activation.js';
 import { clearDegreeCache } from '../lib/search/graph-search-fn.js';
@@ -16,9 +15,7 @@ import type Database from 'better-sqlite3';
 import type { MutationHookResult } from './memory-crud-types.js';
 import type { StatediffAction, StatediffTargetType } from '../lib/storage/statediff.js';
 
-// Feature catalog: Transaction wrappers on mutation handlers
-// Feature catalog: Shared post-mutation hook wiring
-// Feature catalog: Mutation hook result contract expansion
+// Shared post-mutation hook wiring and the transaction wrappers around mutation handlers.
 
 
 export type { MutationHookResult };
@@ -144,13 +141,6 @@ const hookSubscribers: HookSubscriber[] = [
     shouldRun: (actions) => actions.length > 0,
     run: (operation, context) => toolCache.invalidateOnWrite(operation, context),
   },
-  {
-    name: 'constitutional-cache',
-    shouldRun: (actions) => actions.length > 0,
-    run: () => {
-      clearConstitutionalCache();
-    },
-  },
   // Graph and co-activation clears stay unconditional (fail-safe): action
   // batches are an advisory subscriber aid and may under-report graph effects
   // (e.g. memory deletes cascade causal-edge deletes that arrive as
@@ -231,7 +221,6 @@ function runPostMutationHooks(
     latencyMs: Date.now() - startTime,
     actionCount: actions.length,
     triggerCacheCleared: subscriberSucceeded(subscriberReports, 'trigger-cache') && !subscriberFailed(subscriberReports, 'trigger-cache'),
-    constitutionalCacheCleared: subscriberSucceeded(subscriberReports, 'constitutional-cache') && !subscriberFailed(subscriberReports, 'constitutional-cache'),
     toolCacheInvalidated,
     graphSignalsCacheCleared: subscriberSucceeded(subscriberReports, 'graph-cache') && !subscriberFailed(subscriberReports, 'graph-cache'),
     coactivationCacheCleared: subscriberSucceeded(subscriberReports, 'coactivation-cache') && !subscriberFailed(subscriberReports, 'coactivation-cache'),

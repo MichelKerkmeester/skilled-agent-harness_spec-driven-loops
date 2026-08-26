@@ -9,7 +9,6 @@ interface HookResult {
 }
 
 interface AutoSurfacedContext {
-  constitutional?: unknown[];
   triggered?: unknown[];
   surfaced_at?: string;
   latencyMs?: number;
@@ -102,25 +101,21 @@ function appendAutoSurfaceHints(result: HookResult, autoSurfacedContext: AutoSur
 
     const meta = ensureEnvelopeMeta(envelope);
 
-    const constitutionalCount = Array.isArray(autoSurfacedContext?.constitutional)
-      ? autoSurfacedContext.constitutional.length
-      : 0;
     const triggeredCount = Array.isArray(autoSurfacedContext?.triggered)
       ? autoSurfacedContext.triggered.length
       : 0;
     const surfacedTokenCount = extractSurfacedTokenCount(result, meta);
 
-    if (constitutionalCount > 0 || triggeredCount > 0) {
+    if (triggeredCount > 0) {
       const latency = typeof autoSurfacedContext?.latencyMs === 'number'
         ? autoSurfacedContext.latencyMs
         : 0;
       hints.push(
-        `Auto-surface hook: injected ${constitutionalCount} constitutional and ${triggeredCount} triggered memories (${latency}ms)`
+        `Auto-surface hook: injected ${triggeredCount} triggered memories (${latency}ms)`
       );
     }
 
     meta.autoSurface = {
-      constitutionalCount,
       triggeredCount,
       surfaced_at: autoSurfacedContext?.surfaced_at ?? null,
       latencyMs: typeof autoSurfacedContext?.latencyMs === 'number' ? autoSurfacedContext.latencyMs : 0,

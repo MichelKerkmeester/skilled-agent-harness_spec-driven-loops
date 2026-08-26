@@ -209,10 +209,8 @@ import { markMemorySuperseded } from './pe-gating.js';
 import { resolveMemoryReference } from './causal-links-processor.js';
 import { refreshAutoEntitiesForMemory } from '../lib/extraction/entity-extractor.js';
 
-// Feature catalog: Memory indexing (memory_save)
-// Feature catalog: Verify-fix-verify memory quality loop
-// Feature catalog: Dry-run preflight for memory_save
-// Feature catalog: Prediction-error save arbitration
+// memory_save: indexing, the verify-fix-verify quality loop, dry-run preflight,
+// and prediction-error save arbitration.
 
 
 // Create local path validator
@@ -4091,7 +4089,7 @@ async function atomicSaveMemory(params: AtomicSaveParams, options: AtomicSaveOpt
           const msg = hookError instanceof Error ? hookError.message : String(hookError);
           postMutationHooks = {
             latencyMs: 0, triggerCacheCleared: false,
-            constitutionalCacheCleared: false, toolCacheInvalidated: 0,
+            toolCacheInvalidated: 0,
             graphSignalsCacheCleared: false, coactivationCacheCleared: false,
             errors: [msg],
           };

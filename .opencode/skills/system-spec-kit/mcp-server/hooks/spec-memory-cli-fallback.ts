@@ -71,7 +71,6 @@ export function buildWarmMemoryContextArgs(input: string): Record<string, unknow
     mode: 'quick',
     limit: 5,
     includeContent: false,
-    includeConstitutional: false,
   };
 }
 

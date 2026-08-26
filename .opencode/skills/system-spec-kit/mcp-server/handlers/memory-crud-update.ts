@@ -47,10 +47,8 @@ import {
 import type { MCPResponse } from './types.js';
 import type { UpdateArgs } from './memory-crud-types.js';
 
-// Feature catalog: Memory metadata update (memory_update)
-// Feature catalog: Validation feedback (memory_validate)
-// Feature catalog: Transaction wrappers on mutation handlers
-// Feature catalog: Per-memory history log
+// memory_update / memory_validate: metadata updates with transaction wrappers
+// and a per-memory history log.
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -537,7 +535,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
     const msg = hookError instanceof Error ? hookError.message : String(hookError);
     postMutationHooks = {
       latencyMs: 0, triggerCacheCleared: false,
-      constitutionalCacheCleared: false, toolCacheInvalidated: 0,
+      toolCacheInvalidated: 0,
       graphSignalsCacheCleared: false, coactivationCacheCleared: false,
       errors: [msg],
     };

@@ -22,8 +22,7 @@ import { buildMutationHookFeedback } from '../hooks/mutation-feedback.js';
 
 import type { MCPResponse } from './types.js';
 
-// Feature catalog: Tier-based bulk deletion (memory_bulk_delete)
-// Feature catalog: Per-memory history log
+// memory_bulk_delete: tier-based bulk deletion with a per-memory history log.
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -318,7 +317,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
       const msg = hookError instanceof Error ? hookError.message : String(hookError);
       postMutationHooks = {
         latencyMs: 0, triggerCacheCleared: false,
-        constitutionalCacheCleared: false, toolCacheInvalidated: 0,
+        toolCacheInvalidated: 0,
         graphSignalsCacheCleared: false, coactivationCacheCleared: false,
         errors: [msg],
       };
