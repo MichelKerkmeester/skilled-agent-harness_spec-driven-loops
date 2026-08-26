@@ -609,6 +609,27 @@ function applyObservationThresholdGuard(decision, blockers, trace, observationTh
   };
 }
 
+// The novelty-corroboration trace entry's own `passed` field (built alongside
+// its blocker in buildNoveltyCorroboration) already reflects whether the
+// signal itself cleared the graph-novelty floor -- it must be carried through
+// unchanged so the trace stays an honest per-signal record, independent of
+// whatever else already pushed the overall decision to CONTINUE or
+// STOP_BLOCKED. Only STOP_ALLOWED is escalated when the guard disagrees.
+function applyNoveltyCorroborationGuard(decision, blockers, trace, noveltyCorroboration) {
+  if (!noveltyCorroboration) {
+    return { decision, blockers, trace };
+  }
+  const nextTrace = [...trace, noveltyCorroboration.traceEntry];
+  if (decision === 'STOP_ALLOWED' && noveltyCorroboration.shouldBlock) {
+    return {
+      decision: 'STOP_BLOCKED',
+      blockers: [...blockers, noveltyCorroboration.blocker],
+      trace: nextTrace,
+    };
+  }
+  return { decision, blockers, trace: nextTrace };
+}
+
 function buildImprovementEffect(snapshots, scoreDelta) {
   const historicalDeltas = [];
   for (let i = 1; i < snapshots.length; i += 1) {
@@ -781,16 +802,10 @@ async function main() {
     let decision = initialBlockingBlockers.length > 0
       ? 'STOP_BLOCKED'
       : trace.every((entry) => entry.passed) ? 'STOP_ALLOWED' : 'CONTINUE';
-    if (noveltyCorroboration) {
-      trace = [...trace, {
-        ...noveltyCorroboration.traceEntry,
-        passed: decision !== 'STOP_ALLOWED' || !noveltyCorroboration.shouldBlock,
-      }];
-      if (decision === 'STOP_ALLOWED' && noveltyCorroboration.shouldBlock) {
-        blockers = [...blockers, noveltyCorroboration.blocker];
-        decision = 'STOP_BLOCKED';
-      }
-    }
+    const noveltyGuarded = applyNoveltyCorroborationGuard(decision, blockers, trace, noveltyCorroboration);
+    decision = noveltyGuarded.decision;
+    blockers = noveltyGuarded.blockers;
+    trace = noveltyGuarded.trace;
     const observationGuarded = applyObservationThresholdGuard(decision, blockers, trace, observationThreshold);
     decision = observationGuarded.decision;
     blockers = observationGuarded.blockers;
@@ -872,6 +887,7 @@ async function main() {
 
 module.exports = {
   CONVERGENCE_PROFILE_SCHEMA,
+  applyNoveltyCorroborationGuard,
   applyObservationThresholdGuard,
   buildImprovementEffect,
   computeScoreDelta,

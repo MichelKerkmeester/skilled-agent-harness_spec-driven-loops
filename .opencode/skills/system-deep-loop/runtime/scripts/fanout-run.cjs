@@ -788,11 +788,19 @@ function computeLineageBudgetUpperBound(lineage, guardsInput = {}, maxRetries = 
     ? Math.floor(Number(maxRetries))
     : 0;
   const totalAttempts = normalizedRetries + 1;
+  // base_cost_units is the GUARANTEED spend: one attempt, no retries. Retries only
+  // fire on failure, so they are contingency, not a certainty -- the pre-dispatch
+  // cap gates on base_cost_units below. estimated_cost_units keeps the old
+  // worst-case-if-every-attempt-fails total for logging/visibility only; treating
+  // it as guaranteed spend used to block legitimate long configs (e.g. a
+  // 20-iteration lineage with the default 5 retries) before a single attempt ran.
+  const baseCostUnits = iterations * guards.cost_units_per_iteration;
   return {
     ...guards,
     iterations,
     total_attempts: totalAttempts,
-    estimated_cost_units: iterations * guards.cost_units_per_iteration * totalAttempts,
+    base_cost_units: baseCostUnits,
+    estimated_cost_units: baseCostUnits * totalAttempts,
   };
 }
 
@@ -803,7 +811,7 @@ function evaluateLineageBudgetCap(input = {}) {
     input.maxRetries,
   );
   const exceeded = upperBound.max_cost_units_per_lineage > 0
-    && upperBound.estimated_cost_units > upperBound.max_cost_units_per_lineage;
+    && upperBound.base_cost_units > upperBound.max_cost_units_per_lineage;
   return {
     continue_allowed: !exceeded,
     stop_reasons: exceeded ? ['max_cost_units_per_lineage'] : [],
@@ -833,9 +841,16 @@ function computeAggregateBudgetUpperBound(lineages, guardsInput = {}, maxRetries
   const lineageGuards = normalizeLineageBudgetGuards(guardsInput);
   const perLineage = (lineages || []).map((lineage) => {
     const upperBound = computeLineageBudgetUpperBound(lineage, lineageGuards, maxRetries);
-    return { label: lineage && lineage.label, estimated_cost_units: upperBound.estimated_cost_units };
+    return {
+      label: lineage && lineage.label,
+      base_cost_units: upperBound.base_cost_units,
+      estimated_cost_units: upperBound.estimated_cost_units,
+    };
   });
-  const estimatedCostUnits = perLineage.reduce((sum, entry) => sum + entry.estimated_cost_units, 0);
+  // Sum guaranteed (base) spend across lineages, matching the per-lineage cap's
+  // guaranteed-vs-contingency split above -- the worst-case retry ladder for every
+  // lineage failing and exhausting retries simultaneously is not guaranteed spend.
+  const estimatedCostUnits = perLineage.reduce((sum, entry) => sum + entry.base_cost_units, 0);
   return {
     max_aggregate_cost_units: aggregateGuards.max_aggregate_cost_units,
     estimated_cost_units: estimatedCostUnits,

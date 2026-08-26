@@ -763,6 +763,30 @@ describe('runCappedPool', () => {
     expect(readRetryCountsFromLedger(ledger)).toEqual({ a: 2, b: 1 });
   });
 
+  it('counts orphan_requeued rows toward retry credit so a resumed orphan does not get a fresh budget', () => {
+    // Regression guard: a lineage that was 'started' but never reached a terminal
+    // event (the process died mid-attempt) is requeued via markOrphanedLineages on
+    // resume. That requeue must consume one attempt of retry credit exactly like an
+    // ordinary retry_scheduled row -- otherwise the resumed lineage starts back at
+    // retry count 0 and can exceed the configured maxRetries across a crash/resume.
+    const dir = freshTmpDir();
+    const ledger = join(dir, 'orchestration-status.log');
+    appendStatusLedger(ledger, { event: 'started', label: 'crashed', index: 0, at: '2026-06-19T00:00:00.000Z' });
+    markOrphanedLineages(ledger, { now: () => '2026-06-19T00:00:05.000Z' });
+
+    expect(readRetryCountsFromLedger(ledger)).toEqual({ crashed: 1 });
+  });
+
+  it('sums retry_scheduled and orphan_requeued rows for the same label', () => {
+    const dir = freshTmpDir();
+    const ledger = join(dir, 'orchestration-status.log');
+    appendStatusLedger(ledger, { event: 'retry_scheduled', label: 'a' });
+    appendStatusLedger(ledger, { event: 'orphan_requeued', label: 'a' });
+    appendStatusLedger(ledger, { event: 'orphan_requeued', label: 'a' });
+
+    expect(readRetryCountsFromLedger(ledger)).toEqual({ a: 3 });
+  });
+
   it('detects and marks started lineages without terminal ledger events', () => {
     const dir = freshTmpDir();
     const ledger = join(dir, 'orchestration-status.log');

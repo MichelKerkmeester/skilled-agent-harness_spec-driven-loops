@@ -626,38 +626,73 @@ describe('fanout-run.cjs — per-lineage budget guard helpers', () => {
     });
   });
 
-  it('reserves cumulative cost for the initial attempt and every retry', () => {
+  it('reports the worst-case retry ladder as estimated_cost_units but gates only on base_cost_units', () => {
+    // Guaranteed (base) spend is 5 iterations x 1 unit = 5, well under the 29-unit
+    // cap -- the retry ladder (6 total attempts if every attempt fails) is
+    // contingency, not guaranteed spend, so it must not block dispatch.
     expect(evaluateLineageBudgetCap({
       lineage: { iterations: 5 },
       maxRetries: 5,
       guards: { maxCostUnitsPerLineage: 29, costUnitsPerIteration: 1 },
     })).toMatchObject({
-      continue_allowed: false,
-      stop_reasons: ['max_cost_units_per_lineage'],
+      continue_allowed: true,
+      stop_reasons: [],
       upper_bound: {
         iterations: 5,
         total_attempts: 6,
+        base_cost_units: 5,
         estimated_cost_units: 30,
         max_cost_units_per_lineage: 29,
       },
     });
   });
 
-  // Regression guard: DEFAULT_MAX_COST_UNITS_PER_LINEAGE must stay 72 and keep working
-  // exactly as before, independent of the new aggregate cap added alongside it.
-  it('keeps the unconfigured default at exactly 72 cost units (12 iterations x 1 unit x 6 attempts)', () => {
-    expect(evaluateLineageBudgetCap({ lineage: {}, guards: {}, maxRetries: 5 })).toMatchObject({
-      continue_allowed: true,
-      stop_reasons: [],
-      upper_bound: { iterations: 12, total_attempts: 6, estimated_cost_units: 72, max_cost_units_per_lineage: 72 },
+  it('still gates on base_cost_units alone when even the guaranteed single attempt exceeds the cap', () => {
+    expect(evaluateLineageBudgetCap({
+      lineage: { iterations: 30 },
+      maxRetries: 5,
+      guards: { maxCostUnitsPerLineage: 29, costUnitsPerIteration: 1 },
+    })).toMatchObject({
+      continue_allowed: false,
+      stop_reasons: ['max_cost_units_per_lineage'],
+      upper_bound: { iterations: 30, total_attempts: 6, base_cost_units: 30, max_cost_units_per_lineage: 29 },
     });
   });
 
-  it('rejects the unconfigured default cap by exactly 1 unit over (13 iterations x 1 x 6 = 78 > 72)', () => {
-    expect(evaluateLineageBudgetCap({ lineage: { iterations: 13 }, guards: {}, maxRetries: 5 })).toMatchObject({
+  // Regression guard: counting the full retry ladder as GUARANTEED
+  // spend made a legitimate long-running config unlaunchable pre-dispatch (a
+  // 20-iteration lineage at the default 5 retries -> 6 attempts -> 120 estimated
+  // units -- over the 72-unit default cap -- even though nothing had run yet).
+  // The pre-dispatch guard must gate on base_cost_units (guaranteed, single
+  // attempt) so retries stay contingency instead of blocking a config that was
+  // never actually over its guaranteed budget.
+  it('does not block a 20-iteration lineage at the default cap and default retries (base spend 20 < 72)', () => {
+    expect(evaluateLineageBudgetCap({ lineage: { iterations: 20 }, guards: {}, maxRetries: 5 })).toMatchObject({
+      continue_allowed: true,
+      stop_reasons: [],
+      upper_bound: {
+        iterations: 20,
+        total_attempts: 6,
+        base_cost_units: 20,
+        estimated_cost_units: 120,
+        max_cost_units_per_lineage: 72,
+      },
+    });
+  });
+
+  it('keeps the unconfigured default within budget at 12 base cost units (well under the 72-unit cap)', () => {
+    expect(evaluateLineageBudgetCap({ lineage: {}, guards: {}, maxRetries: 5 })).toMatchObject({
+      continue_allowed: true,
+      stop_reasons: [],
+      upper_bound: { iterations: 12, total_attempts: 6, base_cost_units: 12, max_cost_units_per_lineage: 72 },
+    });
+  });
+
+  it('rejects only once the GUARANTEED spend itself exceeds the default cap (73 iterations x 1 = 73 > 72)', () => {
+    expect(evaluateLineageBudgetCap({ lineage: { iterations: 73 }, guards: {}, maxRetries: 5 })).toMatchObject({
       continue_allowed: false,
       stop_reasons: ['max_cost_units_per_lineage'],
-      upper_bound: { iterations: 13, total_attempts: 6, estimated_cost_units: 78, max_cost_units_per_lineage: 72 },
+      upper_bound: { iterations: 73, total_attempts: 6, base_cost_units: 73, max_cost_units_per_lineage: 72 },
     });
   });
 });
@@ -686,6 +721,19 @@ describe('fanout-run.cjs — aggregate budget guard helpers', () => {
       continue_allowed: true,
       stop_reasons: [],
       upper_bound: { max_aggregate_cost_units: 288, estimated_cost_units: 20, lineage_count: 2 },
+    });
+  });
+
+  // Regression guard at the aggregate layer: 4 lineages x 20
+  // iterations x 1 unit x 1 attempt (base, guaranteed) = 80 units, under the
+  // 288-unit default -- but at the default 5 retries the worst-case retry
+  // ladder would be 4 x 20 x 6 = 480, which must NOT be what gates dispatch.
+  it('sums guaranteed base spend across lineages, not the worst-case retry ladder, at the default retry count', () => {
+    const lineages = Array.from({ length: 4 }, (_, index) => ({ label: `seat-${index}`, iterations: 20 }));
+    expect(evaluateAggregateBudgetCap({ lineages, guards: {}, maxRetries: 5 })).toMatchObject({
+      continue_allowed: true,
+      stop_reasons: [],
+      upper_bound: { max_aggregate_cost_units: 288, estimated_cost_units: 80, lineage_count: 4 },
     });
   });
 
@@ -3044,6 +3092,10 @@ describe('fanout-run.cjs — per-lineage budget cap', () => {
         upper_bound: expect.objectContaining({
           iterations: 5,
           total_attempts: 6,
+          // Guaranteed (base) spend alone -- 5 iterations x 1 unit, no retries --
+          // already exceeds the 3-unit cap, so this halts on real over-budget spend,
+          // not on the worst-case retry ladder.
+          base_cost_units: 5,
           estimated_cost_units: 30,
           max_cost_units_per_lineage: 3,
         }),
@@ -3070,11 +3122,12 @@ describe('fanout-run.cjs — aggregate budget cap', () => {
     writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
 
     const fanoutConfig = JSON.stringify({
-      // 5 replicas x 12 default iterations x 1 unit x 6 attempts (fan-out default
-      // maxRetries: 5) = 72 units each -- AT, not over, the per-lineage default cap --
-      // but 360 units in aggregate, over the new 288 aggregate cap. Proves the aggregate
-      // check is independent of (and fires ahead of) the unrelated per-lineage cap.
-      executors: [{ label: 'expensive', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 5 }],
+      // 5 replicas x 60 iterations x 1 unit (guaranteed, base) = 60 units each --
+      // under the 72-unit per-lineage default cap -- but 300 units in aggregate,
+      // over the 288 aggregate cap. Proves the aggregate check is independent of
+      // (and fires ahead of) the unrelated per-lineage cap, and that it gates on
+      // guaranteed base spend rather than the worst-case retry ladder.
+      executors: [{ label: 'expensive', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 5, iterations: 60 }],
       concurrency: 1,
     });
 
@@ -3110,7 +3163,7 @@ describe('fanout-run.cjs — aggregate budget cap', () => {
         stop_reasons: ['max_aggregate_cost_units'],
         upper_bound: expect.objectContaining({
           max_aggregate_cost_units: 288,
-          estimated_cost_units: 360,
+          estimated_cost_units: 300,
           lineage_count: 5,
         }),
       }),

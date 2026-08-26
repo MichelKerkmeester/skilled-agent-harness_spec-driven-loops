@@ -27,7 +27,7 @@ const require_ = createRequire(import.meta.url);
 // laneKey is required to compute the canonical laneId the reducer resolves
 // from the config, so the folded rows carry the laneId the reducer filters
 // by.
-const { reduceAlignmentState, laneKey } = require_('../../scripts/reduce-alignment-state.cjs') as {
+const { reduceAlignmentState, laneKey, buildLaneEntry, findingDedupKey } = require_('../../scripts/reduce-alignment-state.cjs') as {
   reduceAlignmentState: (
     specFolder: string,
     options?: Record<string, unknown>,
@@ -54,6 +54,22 @@ const { reduceAlignmentState, laneKey } = require_('../../scripts/reduce-alignme
     adapter?: string;
     scope: Record<string, unknown>;
   }) => string;
+  buildLaneEntry: (
+    requiredLane: {
+      laneId: string;
+      authority: string;
+      adapter?: string;
+      artifactClass: string;
+      scope: Record<string, unknown>;
+      canonicalScope?: Record<string, unknown>;
+    },
+    deltaRecords: Record<string, unknown>[],
+    iterationRecords: Record<string, unknown>[],
+  ) => {
+    openFindings: { severity: string; [key: string]: unknown }[];
+    findingsBySeverity: { P0: number; P1: number; P2: number };
+  };
+  findingDedupKey: (finding: Record<string, unknown>) => string;
 };
 
 const FIXED_TS = '2026-08-23T00:00:00.000Z';
@@ -331,5 +347,44 @@ describe('deep-alignment-state-deltas projection surface', () => {
     expect(result.registry.overall.findingsBySeverity.P0).toBe(1);
     expect(result.registry.overall.findingsBySeverity.P1).toBe(1);
     expect(result.registry.overall.findingsBySeverity.P2).toBe(0);
+  });
+});
+
+// Regression coverage for findingDedupKey excluding severity from a finding's
+// identity. A re-check that still fails re-emits the same finding, and a
+// retriage can change its severity between iterations (e.g. P1 escalated to
+// P0). Keying dedup on severity would treat that as two distinct findings
+// instead of one finding whose severity was updated, double-counting it in
+// the release gate.
+describe('reduce-alignment-state findingDedupKey — severity excluded from finding identity', () => {
+  const requiredLane = Object.freeze({
+    laneId: PROOF_LANE_ID,
+    authority: PROOF_LANE.authority,
+    adapter: PROOF_LANE.adapter,
+    artifactClass: PROOF_LANE.artifactClass,
+    scope: PROOF_LANE.scope,
+    canonicalScope: PROOF_LANE.scope,
+  });
+
+  it('findingDedupKey ignores severity in its fallback (non-contentHash) key shape', () => {
+    const base = { type: 'missing-test', message: 'Endpoint X lacks integration coverage', artifactPath: 'src/x.ts' };
+    expect(findingDedupKey({ ...base, severity: 'P1' })).toBe(findingDedupKey({ ...base, severity: 'P0' }));
+  });
+
+  it('collapses a retriaged finding into one open finding at the more severe of the two occurrences', () => {
+    const iterationRecords = [{ type: 'iteration', laneId: PROOF_LANE_ID, iteration: 1, status: 'complete' }];
+    const deltaRecords = [
+      { type: 'finding', laneId: PROOF_LANE_ID, finding: { type: 'missing-test', message: 'Endpoint X lacks integration coverage', artifactPath: 'src/x.ts', severity: 'P1' } },
+      { type: 'finding', laneId: PROOF_LANE_ID, finding: { type: 'missing-test', message: 'Endpoint X lacks integration coverage', artifactPath: 'src/x.ts', severity: 'P0' } },
+    ];
+
+    const entry = buildLaneEntry(requiredLane, deltaRecords, iterationRecords);
+
+    // Before the fix, severity was part of the dedup key, so the P0
+    // re-emission of the exact same finding produced a second open finding
+    // instead of being recognized as the same finding retriaged.
+    expect(entry.openFindings).toHaveLength(1);
+    expect(entry.openFindings[0].severity).toBe('P0');
+    expect(entry.findingsBySeverity).toEqual({ P0: 1, P1: 0, P2: 0 });
   });
 });

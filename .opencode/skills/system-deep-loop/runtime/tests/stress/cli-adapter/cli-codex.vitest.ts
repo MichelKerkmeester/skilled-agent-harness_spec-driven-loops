@@ -307,15 +307,20 @@ describe.sequential('cli-codex adapter contracts', () => {
 
   it(EDGE_CASE_ROWS[8].codexTest, () => {
     const fixture = useShim('success');
+    // Over-budget by GUARANTEED (base) spend: 8 iterations * 1 unit = 8 > cap 7,
+    // so the lineage is rejected before spawning even without counting retries.
+    // (The pre-dispatch cap gates on base spend, not the worst-case retry ladder;
+    // a lineage that only exceeds the cap once every retry fails is allowed.)
     const decision = fanoutRun.evaluateLineageBudgetCap({
-      lineage: { kind: 'cli-codex', label: 'budgeted', iterations: 4 },
+      lineage: { kind: 'cli-codex', label: 'budgeted', iterations: 8 },
       maxRetries: 1,
       maxCostUnitsPerLineage: 7,
       costUnitsPerIteration: 1,
     });
     expect(decision.continue_allowed).toBe(false);
     expect(decision.upper_bound).toMatchObject({
-      estimated_cost_units: 8,
+      base_cost_units: 8,
+      estimated_cost_units: 16,
       max_cost_units_per_lineage: 7,
     });
     expect(existsSync(fixture.capturePath)).toBe(false);

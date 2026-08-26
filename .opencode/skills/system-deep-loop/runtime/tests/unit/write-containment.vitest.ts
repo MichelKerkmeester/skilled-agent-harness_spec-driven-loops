@@ -59,6 +59,10 @@ function makeRepo(): string {
   git(root, ['init', '-q']);
   git(root, ['config', 'user.email', 'test@local']);
   git(root, ['config', 'user.name', 'test']);
+  // Isolate from the developer's global gitignore: a personal excludes file (e.g. a
+  // global `/specs` rule) would otherwise hide the fixture's out-of-scope paths from
+  // git status, making containment detection non-deterministic across machines.
+  git(root, ['config', 'core.excludesFile', '/dev/null']);
   return root;
 }
 
@@ -274,14 +278,17 @@ describe('write-containment — regression case (c): pre-existing dirty file is 
 // Regression: on a dirty, multi-actor working tree, files created during the dispatch
 // window by the parent orchestrator or a concurrent session are indistinguishable from
 // the leaf's own untracked writes. The old guard `rmSync`-deleted them (irreversible data
-// loss). A not-in-HEAD out-of-scope path is now preserved and reported as a non-fatal
-// advisory; only in-HEAD (recoverable) modifications remain fatal.
+// loss). A not-in-HEAD out-of-scope path is now ALWAYS preserved on disk, breach or not.
+// Whether it also fails the iteration depends on where it lives: a write inside the
+// packet's own directory tree (an ancestor of this leaf's artifact dir) stays a non-fatal
+// advisory, since it may be a concurrent write to the packet's own docs; a write with no
+// such relationship is a genuine out-of-scope breach and fails the iteration too.
 describe('write-containment — concurrent-writer safety (never delete unattributable files)', () => {
-  it('preserves a not-in-HEAD out-of-scope file as a non-fatal advisory, never deleting it', () => {
+  it('preserves a not-in-HEAD file with no relation to the packet on disk, but still fails the iteration', () => {
     const { root, artifactDir } = baselineRepo();
     const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
 
-    // A concurrent actor writes an untracked file outside the leaf's artifact dir.
+    // A concurrent actor writes an untracked file with no relation to this leaf's packet.
     writeFileSync(join(root, 'concurrent.json'), '{"parallel":true}\n');
 
     const result = enforceWriteContainment({
@@ -291,10 +298,10 @@ describe('write-containment — concurrent-writer safety (never delete unattribu
       label: 'sol',
     });
 
-    // Non-fatal: no fatal violations, so the caller does not fail the iteration.
-    expect(result.violations).toEqual([]);
-    // Recorded as an advisory, and the file survives on disk untouched.
-    expect(result.advisories.map((v) => v.path)).toEqual(['concurrent.json']);
+    // Fatal: it cannot be tied to this leaf's own packet, so the caller fails the iteration.
+    expect(result.violations.map((v) => v.path)).toEqual(['concurrent.json']);
+    expect(result.advisories).toEqual([]);
+    // Still never deleted, fatal or not.
     expect(existsSync(join(root, 'concurrent.json'))).toBe(true);
     expect(readFileSync(join(root, 'concurrent.json'), 'utf8')).toBe('{"parallel":true}\n');
     // The event still logs it for visibility.
@@ -302,7 +309,7 @@ describe('write-containment — concurrent-writer safety (never delete unattribu
     expect(result.event!.violations.map((v) => v.path)).toContain('concurrent.json');
   });
 
-  it('keeps a real tracked-source breach fatal while preserving a concurrent untracked file', () => {
+  it('keeps a real tracked-source breach fatal, and also fails on an unrelated concurrent untracked write — neither is deleted', () => {
     const { root, artifactDir } = baselineRepo();
     const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
 
@@ -317,12 +324,140 @@ describe('write-containment — concurrent-writer safety (never delete unattribu
       label: 'sol',
     });
 
-    // The tracked breach is fatal and reverted from HEAD...
-    expect(result.violations.map((v) => v.path)).toEqual(['tracked-outside.txt']);
+    // Both are fatal now — the tracked breach and the unrelated untracked write.
+    expect(result.violations.map((v) => v.path).sort()).toEqual(['concurrent.txt', 'tracked-outside.txt']);
+    expect(result.advisories).toEqual([]);
+    // The tracked breach is reverted from HEAD...
     expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
-    // ...while the concurrent untracked file is a preserved advisory, not deleted.
-    expect(result.advisories.map((v) => v.path)).toEqual(['concurrent.txt']);
+    // ...while the untracked write is fatal but still never deleted.
     expect(existsSync(join(root, 'concurrent.txt'))).toBe(true);
+    expect(readFileSync(join(root, 'concurrent.txt'), 'utf8')).toBe('parallel\n');
+  });
+});
+
+// Regression: a not-in-HEAD out-of-scope write was ALWAYS a non-fatal advisory regardless
+// of where it landed, so a genuinely out-of-scope write could never fail an iteration. A
+// write inside the packet's own directory tree — e.g. a spec doc a concurrent process
+// writes alongside this lineage — is legitimate and stays a non-fatal advisory; a write
+// with no relation to the packet at all is now a fatal breach.
+describe('write-containment — untracked breach fatality is scoped to the packet, not blanket-exempt', () => {
+  function packetRepo(): { root: string; artifactDir: string; packetDir: string } {
+    const root = makeRepo();
+    writeFileSync(join(root, 'tracked-outside.txt'), 'ORIGINAL_OUTSIDE\n');
+    const packetDir = join(root, 'specs', 'track', '012-packet');
+    const artifactDir = join(packetDir, 'review', 'run', 'lineages', 'sol');
+    mkdirSync(artifactDir, { recursive: true });
+    writeFileSync(join(artifactDir, 'seed.md'), 'seed\n');
+    commitAll(root, 'fix(containment): packet baseline');
+    return { root, artifactDir, packetDir };
+  }
+
+  it('fails the iteration on a write unrelated to the packet, while a concurrent packet-doc write stays a preserved advisory', () => {
+    const { root, artifactDir, packetDir } = packetRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    // A legitimate concurrent write to this run's OWN packet docs, alongside the lineage.
+    const packetDoc = join(packetDir, 'implementation-summary.md');
+    writeFileSync(packetDoc, '# summary\n');
+    // A genuinely out-of-scope write with no relation to the packet at all.
+    const strayFile = join(root, 'random-elsewhere.txt');
+    writeFileSync(strayFile, 'stray\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    expect(result.violations.map((v) => v.path)).toEqual(['random-elsewhere.txt']);
+    expect(result.advisories.map((v) => v.path)).toEqual([
+      'specs/track/012-packet/implementation-summary.md',
+    ]);
+    // Neither is ever deleted — fatal or advisory, both survive on disk.
+    expect(existsSync(packetDoc)).toBe(true);
+    expect(existsSync(strayFile)).toBe(true);
+    expect(readFileSync(strayFile, 'utf8')).toBe('stray\n');
+  });
+});
+
+// Regression: the regenerable-state exemption suffix-matched ANY description.json or
+// descriptions.json in the whole repo, so a leaf writing into an unrelated packet's own
+// index would be silently downgraded to a non-fatal advisory.
+describe('write-containment — regenerable-state exemption is scoped to the packet tree', () => {
+  function packetRepo(): { root: string; artifactDir: string; packetDir: string } {
+    const root = makeRepo();
+    writeFileSync(join(root, 'tracked-outside.txt'), 'ORIGINAL_OUTSIDE\n');
+    const packetDir = join(root, 'specs', 'track', '012-packet');
+    const artifactDir = join(packetDir, 'review', 'run', 'lineages', 'sol');
+    mkdirSync(artifactDir, { recursive: true });
+    writeFileSync(join(artifactDir, 'seed.md'), 'seed\n');
+    commitAll(root, 'fix(containment): packet baseline');
+    return { root, artifactDir, packetDir };
+  }
+
+  it("exempts the packet's own description.json but fails on an unrelated packet's description.json", () => {
+    const { root, artifactDir, packetDir } = packetRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    // The runtime regenerates THIS packet's own index alongside the lineage — legitimate.
+    writeFileSync(join(packetDir, 'description.json'), '{"packet":"012"}\n');
+    // A leaf that reaches into an unrelated packet's index is a genuine breach.
+    const otherPacketDir = join(root, 'specs', 'track', '999-other-packet');
+    mkdirSync(otherPacketDir, { recursive: true });
+    writeFileSync(join(otherPacketDir, 'description.json'), '{"packet":"999"}\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    expect(result.advisories.map((v) => v.path)).toEqual([
+      'specs/track/012-packet/description.json',
+    ]);
+    expect(result.violations.map((v) => v.path)).toEqual([
+      'specs/track/999-other-packet/description.json',
+    ]);
+    // Neither is ever deleted, exempted or not.
+    expect(existsSync(join(packetDir, 'description.json'))).toBe(true);
+    expect(existsSync(join(otherPacketDir, 'description.json'))).toBe(true);
+  });
+});
+
+// Regression: an untracked baseline entry was never hashed, so the post-dispatch
+// comparison unconditionally skipped it regardless of content — a leaf that overwrote the
+// SAME out-of-scope path in a later iteration went undetected forever behind
+// the first iteration's now-stale advisory.
+describe('write-containment — untracked baseline entries are compared by content, not skipped unconditionally', () => {
+  it('re-detects a baseline-tracked untracked file whose content changed since the snapshot', () => {
+    const { root, artifactDir } = baselineRepo();
+    writeFileSync(join(root, 'concurrent.txt'), 'ORIGINAL_CONCURRENT\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    const entry = preDispatch.find((e) => e.path === 'concurrent.txt');
+    expect(entry?.hash).toBeTruthy();
+
+    // The leaf overwrites the SAME untracked path with new content.
+    writeFileSync(join(root, 'concurrent.txt'), 'TAMPERED\n');
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+    expect(violations.map((v) => v.path)).toEqual(['concurrent.txt']);
+  });
+
+  it('does not re-report a baseline-tracked untracked file whose content is unchanged', () => {
+    const { root, artifactDir } = baselineRepo();
+    writeFileSync(join(root, 'concurrent.txt'), 'UNCHANGED\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+    expect(violations).toEqual([]);
   });
 });
 
@@ -338,6 +473,20 @@ describe('write-containment — regenerable runtime state', () => {
     )).toBe(false);
     expect(__internals.isRegenerableRuntimeState('specs/example/description.json.bak')).toBe(false);
     expect(__internals.isRegenerableRuntimeState('other/database/graph.sqlite')).toBe(false);
+  });
+
+  it('scopes description.json/descriptions.json exemption to the given artifact-dir tree when a scope is passed', () => {
+    const artifactRelPosix = 'specs/track/012-packet/review/run/lineages/sol';
+    // Same packet, at or above the lineage dir — exempt.
+    expect(__internals.isRegenerableRuntimeState('specs/track/012-packet/description.json', artifactRelPosix)).toBe(true);
+    expect(__internals.isRegenerableRuntimeState('specs/descriptions.json', artifactRelPosix)).toBe(true);
+    // An unrelated packet sharing only the basename — not exempt once scoped.
+    expect(__internals.isRegenerableRuntimeState('specs/track/999-other/description.json', artifactRelPosix)).toBe(false);
+    // Runtime database exemption is unaffected by scoping (it's a fixed, global path).
+    expect(__internals.isRegenerableRuntimeState(
+      '.opencode/skills/system-deep-loop/runtime/database/graph.sqlite',
+      artifactRelPosix,
+    )).toBe(true);
   });
 
   it('preserves tracked runtime database state as a non-fatal advisory', () => {

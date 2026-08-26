@@ -153,6 +153,79 @@ function runAppendWriter(
   });
 }
 
+/**
+ * Writes a child-process writer that, after a control-dir barrier releases
+ * it, either appends one record via the plain `appendJsonlRecord` path or
+ * merges one record via `mergeJsonlUnderLock`, so both entry points can be
+ * raced against each other on the same file.
+ */
+function writeMixedWriter(tempDir: string): string {
+  const writerPath = join(tempDir, 'mixed-writer.cjs');
+  writeFileSync(
+    writerPath,
+    [
+      "const fs = require('node:fs');",
+      "const { appendJsonlRecord, mergeJsonlUnderLock } = require(process.argv[2]);",
+      'const [, , , statePath, controlDir, writer, mode, recordJson] = process.argv;',
+      'const record = JSON.parse(recordJson);',
+      'const waitView = new Int32Array(new SharedArrayBuffer(4));',
+      'function waitForFile(path) {',
+      '  const deadline = Date.now() + 5000;',
+      '  while (!fs.existsSync(path)) {',
+      '    if (Date.now() > deadline) throw new Error(`Timed out waiting for ${path}`);',
+      '    Atomics.wait(waitView, 0, 0, 10);',
+      '  }',
+      '}',
+      "fs.writeFileSync(`${controlDir}/${writer}.ready`, 'ready', 'utf8');",
+      "waitForFile(`${controlDir}/start`);",
+      "if (mode === 'append') {",
+      '  appendJsonlRecord(statePath, record);',
+      '} else {',
+      '  mergeJsonlUnderLock(statePath, [record]);',
+      '}',
+    ].join('\n'),
+    'utf8',
+  );
+  return writerPath;
+}
+
+function runMixedWriter(
+  writerPath: string,
+  statePath: string,
+  controlDir: string,
+  writer: string,
+  mode: 'append' | 'merge',
+  record: Record<string, unknown>,
+): Promise<{ exitCode: number | null; stdout: string; stderr: string }> {
+  return new Promise((resolvePromise, reject) => {
+    const child = spawn(
+      process.execPath,
+      [
+        '--import',
+        'tsx',
+        writerPath,
+        join(runtimeRoot, 'lib', 'deep-loop', 'jsonl-repair.ts'),
+        statePath,
+        controlDir,
+        writer,
+        mode,
+        JSON.stringify(record),
+      ],
+      { cwd: runtimeRoot, env: process.env, stdio: ['ignore', 'pipe', 'pipe'] },
+    );
+    let stdout = '';
+    let stderr = '';
+    child.stdout?.setEncoding('utf8');
+    child.stderr?.setEncoding('utf8');
+    child.stdout?.on('data', (chunk) => { stdout += chunk; });
+    child.stderr?.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (exitCode) => {
+      resolvePromise({ exitCode, stdout: stdout.trim(), stderr: stderr.trim() });
+    });
+  });
+}
+
 describe('jsonl-repair', () => {
   it('repairs a corrupt trailing line and preserves prior valid records', () => {
     withTempJsonl((statePath) => {
@@ -189,6 +262,30 @@ describe('jsonl-repair', () => {
       expect(result.repaired).toBe(true);
       expect(result.droppedBytes).toBeGreaterThan(0);
       expect(readFileSync(statePath, 'utf8')).toBe('{"type":"iteration","iteration":1}\n');
+    });
+  });
+
+  it('quarantines a corrupt mid-log line without dropping later valid records', () => {
+    withTempJsonl((statePath) => {
+      writeFileSync(
+        statePath,
+        [
+          '{"type":"iteration","iteration":1}',
+          '{"broken":',
+          '{"type":"iteration","iteration":3}',
+          '',
+        ].join('\n'),
+        'utf8',
+      );
+
+      const result = repairJsonlTail(statePath);
+
+      expect(result.repaired).toBe(true);
+      expect(result.droppedBytes).toBeGreaterThan(0);
+      expect(readJsonlRecords(statePath)).toEqual([
+        { type: 'iteration', iteration: 1 },
+        { type: 'iteration', iteration: 3 },
+      ]);
     });
   });
 
@@ -307,6 +404,64 @@ describe('jsonl-repair', () => {
         expect(identities).toContain(`event:${index}:salvage:salvage-${index}`);
       }
       expect(identities).toContain('event:99:salvage:shared-salvage');
+    } finally {
+      hermetic.cleanup();
+    }
+  });
+
+  it('does not drop a plain appendJsonlRecord write racing a concurrent mergeJsonlUnderLock', async () => {
+    const hermetic = createHermeticEnv('jsonl-append-vs-merge-race');
+    try {
+      const statePath = join(hermetic.tmpDir, 'state.jsonl');
+      const controlDir = join(hermetic.tmpDir, 'control');
+      mkdirSync(controlDir, { recursive: true });
+      const writerPath = writeMixedWriter(hermetic.tmpDir);
+      appendJsonlRecord(statePath, { type: 'iteration', iteration: 0, focus: 'seed', id: 'seed' });
+
+      const appendWriters = Array.from({ length: 4 }, (_, index) => ({
+        name: `append-${index}`,
+        mode: 'append' as const,
+        record: { type: 'event', iteration: index, focus: 'plain-append', id: `append-${index}` },
+      }));
+      const mergeWriters = Array.from({ length: 4 }, (_, index) => ({
+        name: `merge-${index}`,
+        mode: 'merge' as const,
+        record: { type: 'event', iteration: index, focus: 'merge-write', id: `merge-${index}` },
+      }));
+      const writers = [...appendWriters, ...mergeWriters];
+
+      const runs = writers.map((entry) =>
+        runMixedWriter(writerPath, statePath, controlDir, entry.name, entry.mode, entry.record),
+      );
+
+      const deadline = Date.now() + 5000;
+      while (!writers.every((entry) => existsSync(join(controlDir, `${entry.name}.ready`)))) {
+        if (Date.now() > deadline) throw new Error('mixed writers did not signal ready');
+        await sleep(10);
+      }
+      writeFileSync(join(controlDir, 'start'), 'start', 'utf8');
+
+      const results = await Promise.all(runs);
+      for (const result of results) {
+        expect(result).toEqual(expect.objectContaining({ exitCode: 0, stderr: '' }));
+      }
+
+      const records = readJsonlRecords(statePath);
+      const identities = new Set(
+        records.map((record) => `${record['type']}:${record['iteration']}:${record['focus']}:${record['id']}`),
+      );
+
+      // Every plain-append record must survive the race intact -- this is
+      // the exact write a non-lock-respecting appender could lose to a
+      // concurrent merge's atomic rewrite.
+      expect(records).toHaveLength(1 + appendWriters.length + mergeWriters.length);
+      for (const entry of appendWriters) {
+        expect(identities.has(`event:${entry.record.iteration}:plain-append:${entry.record.id}`)).toBe(true);
+      }
+      for (const entry of mergeWriters) {
+        expect(identities.has(`event:${entry.record.iteration}:merge-write:${entry.record.id}`)).toBe(true);
+      }
+      expect(repairJsonlTail(statePath)).toEqual({ repaired: false, droppedBytes: 0 });
     } finally {
       hermetic.cleanup();
     }

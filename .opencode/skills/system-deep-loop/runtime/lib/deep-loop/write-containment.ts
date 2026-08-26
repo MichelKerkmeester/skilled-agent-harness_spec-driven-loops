@@ -125,6 +125,12 @@ function toPosix(p: string): string {
   return sep === '\\' ? p.split(sep).join('/') : p;
 }
 
+/** POSIX dirname of a repo-relative path; '' when the path has no directory (a repo-root file). */
+function dirnameRelPosix(p: string): string {
+  const idx = p.lastIndexOf('/');
+  return idx === -1 ? '' : p.slice(0, idx);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. GIT HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -190,7 +196,7 @@ function readStatusEntries(opts: GitCallOptions): StatusEntry[] {
   return parseStatusPorcelain(stdout);
 }
 
-/** Compute the git blob hash of a tracked file for content-identity comparison. */
+/** Compute the git blob hash of an on-disk file (tracked or not) for content-identity comparison. */
 function gitHashObject(repoRoot: string, filePath: string, env?: NodeJS.ProcessEnv): string {
   const { ok, stdout } = gitOutput(['hash-object', '--', filePath], { repoRoot, env });
   if (!ok) return '';
@@ -292,16 +298,25 @@ function isUnattributable(repoRelativePath: string, unattributableRelPosix: stri
   return unattributableRelPosix.some((dir) => p === dir || p.startsWith(`${dir}/`));
 }
 
-/** True for runtime-owned regenerable telemetry and memory-index state. */
-function isRegenerableRuntimeState(repoRelativePath: string): boolean {
+/**
+ * True for runtime-owned regenerable telemetry and memory-index state. When `artifactRelPosix`
+ * is given, a description.json/descriptions.json write is exempted only when its own directory
+ * is an ancestor of (or equal to) that artifact dir -- this leaf's own packet index -- never an
+ * unrelated packet's metadata living elsewhere in the repo, which merely shares the basename. A
+ * caller that omits the scope (a direct probe) keeps the unscoped basename match.
+ */
+function isRegenerableRuntimeState(repoRelativePath: string, artifactRelPosix?: string): boolean {
   const p = toPosix(repoRelativePath);
   const runtimeDatabase = '.opencode/skills/system-deep-loop/runtime/database';
   const isRuntimeDatabasePath = p.startsWith(`${runtimeDatabase}/`);
-  const isMemoryIndexMetadata =
+  const isMemoryIndexBasename =
     p === 'description.json' ||
     p.endsWith('/description.json') ||
     p === 'descriptions.json' ||
     p.endsWith('/descriptions.json');
+  const isMemoryIndexMetadata =
+    isMemoryIndexBasename &&
+    (artifactRelPosix === undefined || isInsideArtifact(artifactRelPosix, dirnameRelPosix(p)));
   // These files are written by the runtime itself, not by a lineage as source output.
   // Reverting regenerable telemetry or index state must not fail a contained lineage.
   return isRuntimeDatabasePath || isMemoryIndexMetadata;
@@ -328,9 +343,11 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPat
     if (isUnattributable(entry.path, scope.unattributableRelPosix)) continue;
     if (!isInsideArtifact(entry.path, scope.artifactRelPosix)) {
       const entryPath = toPosix(entry.path);
-      const hash = pathInHead(opts.repoRoot, entryPath, opts.env)
-        ? gitHashObject(opts.repoRoot, entryPath, opts.env)
-        : '';
+      // Hash every dirty path on disk, tracked or not: an untracked baseline entry left
+      // unhashed always short-circuits the later comparison as "unknown, skip" regardless of
+      // its content, so a leaf that overwrites the SAME out-of-scope path in a later iteration
+      // would go undetected forever behind the first iteration's now-stale advisory.
+      const hash = gitHashObject(opts.repoRoot, entryPath, opts.env);
       out.push({ path: entryPath, hash });
     }
   }
@@ -381,7 +398,8 @@ export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentV
  * a dirty, multi-actor tree such a path may be a concurrent write by the orchestrator or a
  * parallel session, indistinguishable from the leaf's own. Deleting it would be irreversible
  * data loss, so it is PRESERVED and reported instead. NEVER a blanket `git clean`, NEVER a
- * delete -- the caller treats preserved paths as non-fatal advisories.
+ * delete -- the caller decides fatal-ness separately, by whether the path belongs to the
+ * packet's own directory tree.
  */
 export function revertOutOfScopeViolations(opts: {
   repoRoot: string;
@@ -402,8 +420,8 @@ export function revertOutOfScopeViolations(opts: {
       // A not-in-HEAD path can't be attributed to this leaf under concurrent fan-out --
       // a parent orchestrator or a sibling session may have created it during the same
       // window -- so treating it as this leaf's own and deleting it is unsound and
-      // irreversible. Preserve it on disk and report it; the caller downgrades this to
-      // a non-fatal advisory rather than failing the iteration on it.
+      // irreversible. Preserve it on disk and report it; the caller decides whether it
+      // stays a non-fatal advisory or fails the iteration based on packet scope.
       reverted.push({ path: violation.path, action: 'preserved_untracked', ok: true });
     }
   }
@@ -449,21 +467,42 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   if (detected.length === 0) {
     return { violations: [], advisories: [], revertResult: { reverted: [] }, event: null };
   }
-  const exempted = detected.filter((violation) => isRegenerableRuntimeState(violation.path));
-  const guarded = detected.filter((violation) => !isRegenerableRuntimeState(violation.path));
+  // detectNewOutOfScopeViolations above only returns non-empty once it has already resolved
+  // this same scope from this same input (it throws or returns [] otherwise), so this
+  // recomputes the identical artifact-dir boundary. Falls open to '' (root) on the
+  // practically-unreachable case where it diverges, consistent with this module's fail-open
+  // design when it cannot reason about the tree.
+  const scope = resolveArtifactScope(input);
+  const artifactRelPosix = scope ? scope.artifactRelPosix : '';
+  const exempted = detected.filter((violation) => isRegenerableRuntimeState(violation.path, artifactRelPosix));
+  const guarded = detected.filter((violation) => !isRegenerableRuntimeState(violation.path, artifactRelPosix));
   const revertResult = revertOutOfScopeViolations({
     repoRoot: input.repoRoot,
     violations: guarded,
     env: input.env,
   });
   // Partition by what the revert actually did: HEAD-restored paths are recoverable breaches
-  // (fatal), while preserved not-in-HEAD paths are unattributable and non-fatal advisories.
-  // The caller fails the iteration only on fatal violations; advisories are logged, not failed.
+  // and always fatal. A preserved not-in-HEAD path is a non-fatal advisory only when it sits
+  // inside the packet's own directory tree -- an ancestor of (or equal to) this leaf's
+  // artifact dir, e.g. a spec doc some other process in the same packet wrote alongside this
+  // lineage. A preserved path with no such relationship is a genuine out-of-scope breach: it
+  // still cannot be safely deleted (it may be an unregistered concurrent writer), but it must
+  // fail the iteration rather than silently becoming a permanent, unattributed pass.
   const preservedPaths = new Set(
     revertResult.reverted.filter((a) => a.action === 'preserved_untracked').map((a) => a.path),
   );
-  const violations = guarded.filter((v) => !preservedPaths.has(v.path));
-  const advisories = [...exempted, ...guarded.filter((v) => preservedPaths.has(v.path))];
+  const isPacketScopedPath = (path: string): boolean => {
+    const dir = dirnameRelPosix(path);
+    // A bare repo-root file has no real relationship to any specific packet -- excluding it
+    // keeps a genuinely unrelated stray write from qualifying merely because every path is
+    // trivially "under" the repo root.
+    return dir !== '' && isInsideArtifact(artifactRelPosix, dir);
+  };
+  const violations = guarded.filter((v) => !preservedPaths.has(v.path) || !isPacketScopedPath(v.path));
+  const advisories = [
+    ...exempted,
+    ...guarded.filter((v) => preservedPaths.has(v.path) && isPacketScopedPath(v.path)),
+  ];
   // The logged event carries every detected path (fatal + advisory) for visibility -- an
   // operator reading the state log needs to see preserved advisories too, not just the
   // fatal subset -- while the RETURNED `violations`/`advisories` partition is what the

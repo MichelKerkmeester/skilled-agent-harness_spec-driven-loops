@@ -99,6 +99,31 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   'cli-pi': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools'],
 };
 
+/**
+ * Whether an executor kind's `sandboxMode` maps to a real PREVENTIVE OS-level
+ * boundary -- a confinement flag the executor's own CLI enforces before a
+ * forbidden read/write/exec runs -- as opposed to an approval mode, a
+ * post-hoc containment guard, or no enforcement at all. `sandboxMode` being
+ * present in `EXECUTOR_KIND_FLAG_SUPPORT` above only means the field is
+ * accepted; it does NOT mean the kind can actually confine the process. A
+ * `false` entry here does not mean the kind is unconfined in practice --
+ * fanout-run.cjs applies its own compensating control per kind (a fail-loud
+ * reject for cli-opencode, --permission-mode plus the fan-out's post-hoc
+ * write-containment guard for cli-devin, a restricted tool allowlist for
+ * cli-pi) -- it means none of those controls is an OS-level boundary the way
+ * `--sandbox` is for codex and cursor. Callers must not infer preventive OS
+ * confinement from `sandboxMode` alone on a `false` entry.
+ */
+export const EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY: Record<ExecutorKind, boolean> = {
+  native: false, // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind
+  'cli-codex': true, // --sandbox is forwarded straight to codex's own OS-level confinement
+  'cli-claude-code': true, // --permission-mode is enforced by Claude Code's own tool gate before a write/exec runs
+  'cli-opencode': false, // no confinement flag exists; the builder fails loud for anything but danger-full-access
+  'cli-cursor': true, // --sandbox enabled/disabled is a real OS confinement flag, independent of the approval mode
+  'cli-devin': false, // --sandbox is deliberately never passed (conflicts with non-interactive auto-approval); confinement is the fan-out's post-hoc write-containment guard, not an OS boundary
+  'cli-pi': false, // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind; read-only is a tool-allowlist restriction only
+};
+
 /** Proven web-search policies for every shipped executor kind. */
 export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
   native: {

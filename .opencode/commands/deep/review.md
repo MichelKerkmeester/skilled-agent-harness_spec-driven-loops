@@ -110,7 +110,7 @@ Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop ov
 
 ### Lineage Timeout Flag
 
-`--lineage-timeout-hours <N>` raises the per-lineage wall-clock timeout ceiling above the default 4 hours for long, high-effort, forced-depth fan-out runs; omit it to keep the 4h default.
+`--lineage-timeout-hours <N>` may only narrow the per-lineage wall-clock timeout ceiling below the 4-hour hard maximum; a value above 4 is rejected outright. Full-lineage lifetime is non-disableable -- omit the flag to keep the 4h ceiling, or pass a lower `<N>` to cap a lineage more tightly.
 
 ### Stop Policy Flag
 

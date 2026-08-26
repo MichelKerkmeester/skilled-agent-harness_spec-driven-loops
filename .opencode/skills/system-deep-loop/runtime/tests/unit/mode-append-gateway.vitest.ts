@@ -28,6 +28,7 @@ import {
 import type { EventWritePreflight } from '../../lib/event-envelope/index.js';
 import type { EventTypeRegistry } from '../../lib/event-envelope/index.js';
 import type { ResolvedCutoverBinding } from '../../lib/cutover-binding/index.js';
+import type { LegacyProjectionEngine } from '../../lib/legacy-projections/index.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. FIXTURE HELPERS
@@ -346,9 +347,9 @@ describe('mode append gateway', () => {
     }
   });
 
-  it('projection failure: succeeds with stale projection marker and explicit error', async () => {
-    const rootDirectory = temporaryRoot('projection-failure');
-    const authorityRoot = temporaryRoot('proj-failure-auth');
+  it('projection not attempted (pre-flight config gap): append succeeds with the reason surfaced', async () => {
+    const rootDirectory = temporaryRoot('projection-config-gap');
+    const authorityRoot = temporaryRoot('proj-config-gap-auth');
     const { ledger, gateway, policies, registry } = createTestHarness(rootDirectory);
 
     const event = createTestEvent(registry, 1);
@@ -368,20 +369,137 @@ describe('mode append gateway', () => {
       binding: createTestBinding(),
     });
 
+    // The fixture registry digest cannot match the default projection registry,
+    // so the refresh is never attempted at the engine. That is a config gap, not
+    // a runtime ledger-vs-shadow divergence: the append stays durable and the
+    // reason is surfaced on the success outcome rather than silently lost.
     expect(result.ok).toBe(true);
     if (result.ok) {
-      // The event is durable even if projection is not refreshed
-      expect(result.receipt.ledgerId).toBe(FIXTURE_LEDGER_ID);
-      expect(result.receipt.sequence).toBe(1);
-
-      // Projection status reflects unrefreshed state with explicit named reason
       expect(result.projectionRefreshed).toBe(false);
       expect(result.projectionError).toBe('Event registry digest mismatch for mode deep-research');
-
-      // Verify the event is actually in the ledger
-      const events = await ledger.readVerifiedEvents();
-      expect(events).toHaveLength(1);
+      expect(result.receipt.ledgerId).toBe(FIXTURE_LEDGER_ID);
+      expect(result.receipt.sequence).toBe(1);
     }
+
+    const events = await ledger.readVerifiedEvents();
+    expect(events).toHaveLength(1);
+  });
+
+  it('projection engine failure: an explicit ok:false from the engine fails the outcome closed', async () => {
+    const rootDirectory = temporaryRoot('projection-engine-failure');
+    const authorityRoot = temporaryRoot('proj-engine-failure-auth');
+    const registry = createDeepResearchEventRegistry();
+    const authorityProvider = () => FIXTURE_AUTHORITY;
+
+    const ledger = new AppendOnlyLedger(
+      {
+        rootDirectory,
+        ledgerId: 'deep-research-ledger',
+        auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+        authorityProvider,
+      },
+      registry,
+    );
+
+    const policies = new TransitionPolicyRegistry([{
+      policyId: 'deep-research-policy',
+      policyVersion: 1,
+      evaluatorVersion: '1',
+      ruleIds: ['allow-all'],
+      capturedAuthorizationState: { state: FIXTURE_AUTHORITY.state, epoch: FIXTURE_AUTHORITY.epoch },
+      evaluate: () => ({
+        verdict: AuthorizationVerdicts.ALLOW,
+        reasonCode: AuthorizationReasonCodes.ALLOWED,
+        matchedRuleIds: ['allow-all'],
+      }),
+    }]);
+
+    const gateway = new TransitionAuthorizationGateway(
+      {
+        rootDirectory,
+        auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+        authorityProvider,
+        identityResolver: (context) => ({
+          actorId: context.evaluationInput.actorId,
+          capabilityId: 'write',
+          evidenceDigest: context.evaluationInput.evidenceDigest,
+        }),
+      },
+      ledger,
+      policies,
+    );
+
+    const eventInput = {
+      stem: 'deep_research.run_initialized' as const,
+      scope: { runId: 'test-run-002', lineageId: 'test-lineage-002' },
+      prevEventHash: '0'.repeat(64),
+      replay: {
+        fingerprint_version: 1,
+        final_digest: '0'.repeat(64),
+        replay_input_digests: {},
+      },
+      data: {
+        generation: 1,
+        charterDigest: '0'.repeat(64),
+        configDigest: '0'.repeat(64),
+        executorFingerprint: '0'.repeat(64),
+        replayFingerprint: '0'.repeat(64),
+        maxIterations: 5,
+        convergencePolicyVersion: '1.0.0',
+      },
+      eventId: 'event-002',
+      streamId: 'deep-research-ledger',
+      streamSequence: 1,
+      occurredAt: '2026-08-19T00:00:00.000Z',
+      recordedAt: '2026-08-19T00:00:00.000Z',
+      producer: { name: 'test', version: '1' },
+      authorityEpoch: 1,
+      correlationId: 'test-correlation-2',
+      causationId: null,
+      idempotencyKey: 'test-key-002',
+    };
+
+    const eventRecord = prepareDeepResearchEvent(eventInput, registry);
+
+    // A test double for the engine seam: the contract and registry match, so
+    // the refresh reaches the engine call, and only the engine's own result
+    // decides the outcome.
+    const failingProjectionEngine = {
+      project: async () => Object.freeze({
+        ok: false,
+        error: { message: 'synthetic projection engine failure' },
+      }),
+    } as unknown as LegacyProjectionEngine;
+
+    const result = await appendModeEvent({
+      mode: 'deep-research',
+      runDirectory: rootDirectory,
+      eventRecord,
+      authorityRoot,
+      policy: {
+        policyId: 'deep-research-policy',
+        policyVersion: 1,
+        policyDigest: policies.resolve('deep-research-policy', 1).digest,
+      },
+      policyRegistry: policies,
+      authorizationGateway: gateway,
+      ledger,
+      eventRegistry: registry,
+      binding: createTestBinding(),
+      projectionEngine: failingProjectionEngine,
+    });
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.phase).toBe('projection');
+      expect(result.code).toBe(ModeAppendGatewayErrorCodes.PROJECTION_FAILED);
+      expect(result.projectionError).toBe('synthetic projection engine failure');
+      expect(result.receipt?.sequence).toBe(1);
+    }
+
+    // The append itself is durable even though the outcome fails closed.
+    const events = await ledger.readVerifiedEvents();
+    expect(events).toHaveLength(1);
   });
 
   it('projection success: projects legacy JSONL state file when appending deep-research event', async () => {
