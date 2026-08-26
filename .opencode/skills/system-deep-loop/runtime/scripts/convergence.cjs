@@ -86,7 +86,7 @@ if (require.main === module && process.env.DEEP_LOOP_TSX_LOADED !== '1') {
     ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)],
     {
       cwd: process.cwd(),
-      env: { ...process.env, DEEP_LOOP_TSX_LOADED: '1' },
+      env: require('./runtime-bootstrap.cjs').tsxChildEnv({ DEEP_LOOP_TSX_LOADED: '1' }),
       input: process.stdin.isTTY ? undefined : fs.readFileSync(0),
       encoding: 'utf8',
     },

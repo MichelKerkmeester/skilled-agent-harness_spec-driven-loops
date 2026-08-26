@@ -58,7 +58,7 @@ function runTsxBootstrap() {
     ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)],
     {
       cwd: process.cwd(),
-      env: { ...process.env, DEEP_LOOP_TSX_LOADED: '1' },
+      env: require('./runtime-bootstrap.cjs').tsxChildEnv({ DEEP_LOOP_TSX_LOADED: '1' }),
       stdio: [process.stdin.isTTY ? 'ignore' : 'pipe', 'pipe', 'pipe'],
     },
   );
@@ -2623,6 +2623,10 @@ async function main() {
       // legitimately write outside lineageDir -- the guard can no longer destroy such a
       // write, only flag it.
       const containmentEnabled = true;
+      // Repo root for write containment: the working directory unless an operator
+      // pins DEEP_LOOP_REPO_ROOT (see runtime-bootstrap for the why).
+      const containmentRepoRoot = require('./runtime-bootstrap.cjs')
+        .resolveContainmentRepoRoot(process.env, process.cwd());
       // Sibling lineages run concurrently and write their own artifacts after this
       // leaf's baseline is captured. Those writes are indistinguishable from this
       // leaf's, so treating them as its violations reverts a sibling's legitimate
@@ -2639,7 +2643,7 @@ async function main() {
       const containmentUnattributableDirs = [...siblingLineageDirs, ...kindLegitimateDirs];
       const preDispatchDirtyPaths = containmentEnabled
         ? snapshotOutOfScopeDirtyPaths({
-          repoRoot: process.cwd(),
+          repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
           unattributableDirs: containmentUnattributableDirs,
         })
@@ -2707,7 +2711,7 @@ async function main() {
       // (hermetic test lineages).
       if (containmentEnabled) {
         const containment = enforceWriteContainment({
-          repoRoot: process.cwd(),
+          repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
           unattributableDirs: containmentUnattributableDirs,
           preDispatchDirtyPaths,

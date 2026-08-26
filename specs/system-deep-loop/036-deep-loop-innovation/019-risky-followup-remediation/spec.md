@@ -41,6 +41,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-08-26 |
 | **Source** | `018-pre-existing-test-triage` (the two risky-unrelated failures it deferred) |
+| **Successor** | 020-tsx-boot-spaced-path-hardening |
 
 <!-- /ANCHOR:metadata -->
 ---
