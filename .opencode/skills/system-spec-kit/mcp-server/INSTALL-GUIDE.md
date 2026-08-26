@@ -2,7 +2,7 @@
 
 > MCP Server v1.8.0 | 2026-03-15 (verification steps refreshed on 2026-04-25)
 
-Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides memory, trigger, context, evaluation, retention, and compatibility tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp-server/tool-schemas.ts`). Skill Advisor tools are served by the standalone `system_skill_advisor` MCP server, registered separately in your runtime config. See `.opencode/skills/system-skill-advisor/INSTALL-GUIDE.md`.
+Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders to surface relevant information during AI interactions. It provides memory, trigger, context, evaluation, retention, and compatibility tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp-server/tool-schemas.ts`). Skill Advisor tools are served by the standalone `system_skill_advisor` MCP server, registered separately in your runtime config. See `.opencode/skills/system-skill-advisor/INSTALL-GUIDE.md`.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 
@@ -73,8 +73,8 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 │ Docs         │ │ (memory lineage) │ │ code-graph.sqlite          │
 │ specs/**     │ │ Decision-chain   │ │ Tree-sitter AST indexing   │
 │ memory       │ │ relationships    │ │ Graph-first routing        │
-│ Constitutional│ │ Graph-aware     │ │ Callers, imports, hierarchy│
-│ Spec docs    │ │ reranking       │ │ web-tree-sitter (WASM)     │
+│ context      │ │ Graph-aware      │ │ Callers, imports, hierarchy│
+│ Spec docs    │ │ reranking        │ │ web-tree-sitter (WASM)     │
 └──────────────┘ └──────────────────┘ └────────────────────────────┘
 ```
 
@@ -702,7 +702,6 @@ Query expansion activates automatically when you use `mode="deep"`.
 **Options:**
 - `force`: Re-index all files, ignoring content hash
 - `specFolder`: Limit scan to a specific folder
-- `includeConstitutional`: Include `.opencode/skills/*/constitutional/`
 - `includeSpecDocs`: Include spec folder documents (spec.md, plan.md, etc.)
 
 **Self-maintaining behaviors (026):**
@@ -851,7 +850,7 @@ I need to add a new feature for user profiles
 
 **Behind the scenes:**
 1. AI calls `memory_index_scan({ force: false })`
-2. Server scans canonical spec documents plus `.opencode/skills/**/constitutional/` content
+2. Server scans canonical spec documents
 3. Indexes changed or new files, skipping unchanged ones based on content hash
 
 ### Example 6: Enabling Adaptive Fusion for a Debug Session

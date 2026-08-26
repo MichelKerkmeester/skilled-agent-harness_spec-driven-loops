@@ -9,6 +9,8 @@ expected_leaf_resources: []
 
 # 147 -- Constitutional memory manager command
 
+> **DEPRECATED — the constitutional memory layer was removed; this scenario no longer applies.**
+
 ## 1. OVERVIEW
 
 This scenario validates Constitutional memory manager command for `147`. It focuses on Verify `/memory:learn` flows and active docs all reflect the constitutional-only workflow.

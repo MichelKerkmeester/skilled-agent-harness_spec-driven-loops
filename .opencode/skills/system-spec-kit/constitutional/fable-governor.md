@@ -1,6 +1,5 @@
 ---
 title: "Fable-5 Governor — Reason Outward, Act, Commit, Qualify Minimally"
-importanceTier: constitutional
 contextType: decision
 last_confirmed: "2026-06-15"
 last_confirmed_source: "git-log-last-touch"

@@ -357,17 +357,16 @@ Content here...
 
 **Categories**: `implementation`, `decision`, `guide`, `architecture`, `files`, `discovery`, `integration`
 
-### All Indexed Content Sources (3)
+### All Indexed Content Sources (2)
 
-The canonical save path updates packet docs first. During `memory_index_scan()`, the indexed-continuity store indexes three active source families:
+The canonical save path updates packet docs first. During `memory_index_scan()`, the indexed-continuity store indexes two active source families:
 
 | Content Type | Location | Weight | Indexed By |
 |-------------|----------|--------|------------|
 | Spec documents | `<active-spec-folder>/**/*.md` and `specs/**/*.md` | Per-type multiplier | `findSpecDocuments()` |
-| Constitutional rules | `.opencode/skills/*/constitutional/*.md` | 1.0 | `findConstitutionalFiles()` |
 | Graph metadata | `graph-metadata.json` adjacent to spec docs | Packet metadata weighting | Graph metadata parser + scan pipeline |
 
-Spec documents are controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents use per-document scoring multipliers (e.g., spec: 1.4x, plan: 1.3x, constitutional: 2.0x) on the current vector index schema v41 fields (`document_type`, `spec_level`).
+Spec documents are controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents use per-document scoring multipliers (e.g., spec: 1.4x, plan: 1.3x) on the current vector index schema v41 fields (`document_type`, `spec_level`).
 
 For retrieval, `memory_context()` routes queries across 7 intents (including `find_spec` and `find_decision`) and applies intent-aware weighting.
 
@@ -556,7 +555,7 @@ After `generate-context.js` completes, it emits a **POST-SAVE QUALITY REVIEW** b
 
 - Generic or missing `title` in frontmatter (degrades search ranking)
 - Overly broad `trigger_phrases` that cause false-positive surfacing
-- Incorrect `importance_tier` assignment (e.g., normal when constitutional is warranted)
+- Incorrect `importance_tier` assignment (e.g., normal when critical is warranted)
 
 ### 026 Heuristic Calibration
 

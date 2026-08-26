@@ -1,6 +1,5 @@
 ---
 title: "Automated Writers Never Overwrite Manual Memory"
-importanceTier: constitutional
 contextType: decision
 last_confirmed: "2026-06-10"
 last_confirmed_source: "implementation-verification"

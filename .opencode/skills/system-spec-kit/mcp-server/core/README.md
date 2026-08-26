@@ -21,7 +21,6 @@ Current responsibilities:
 - Export server path constants, batch settings, input limits, and cache timing values.
 - Initialize and rebind database-backed consumers when the vector index connection changes.
 - Coordinate the index-scan lease lifecycle (acquire, refresh, complete) and persist last-scan timing.
-- Track constitutional cache state.
 
 ---
 
@@ -68,7 +67,7 @@ core/
 | File | Responsibility |
 |---|---|
 | `config.ts` | Resolves database paths, validates allowed filesystem boundaries, and exports runtime constants. |
-| `db-state.ts` | Coordinates vector index initialization, database consumer rebinding, the index-scan lease lifecycle, persistent scan timing, and constitutional cache access. |
+| `db-state.ts` | Coordinates vector index initialization, database consumer rebinding, the index-scan lease lifecycle, and persistent scan timing. |
 | `index.ts` | Re-exports the public core surface for server modules. |
 
 ---

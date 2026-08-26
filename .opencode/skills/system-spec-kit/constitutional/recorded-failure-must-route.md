@@ -1,6 +1,5 @@
 ---
 title: "Recorded Failure Must Route to a Follow-up"
-importanceTier: constitutional
 contextType: decision
 last_confirmed: "2026-07-05"
 last_confirmed_source: "008-speckit-surface-alignment/014-recorded-failure-closure"

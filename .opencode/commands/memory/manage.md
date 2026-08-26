@@ -100,4 +100,4 @@ The router resolves one recognized mode (defaulting to `stats`), applies the mod
 
 Embedding-status repair is intentionally NOT a `/memory:manage` mode: it is the direct `memory_ln` MCP maintenance tool (`memory_ln({ mode: "apply" })`), which reconciles stored embeddings against the active embedder shard inside one guarded transaction and runs dry-run by default. Run it directly when `memory_health` reports `degraded_needs_repair` — this command manages the continuity-DB lifecycle, not embedding reconciliation.
 
-Related commands: `/memory:search` (intent-aware context retrieval and analysis tools); `/memory:save` (save conversation context); `/memory:learn` (constitutional rules); `/speckit:resume` (session recovery and continuation).
+Related commands: `/memory:search` (intent-aware context retrieval and analysis tools); `/memory:save` (save conversation context); `/speckit:resume` (session recovery and continuation). (`/memory:learn` is deprecated — the constitutional-memory layer was retired.)

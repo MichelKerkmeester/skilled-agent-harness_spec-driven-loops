@@ -692,7 +692,6 @@ readme_workflow:
       rationale: "README creation is standard documentation task"
       promotion_note: "Use memory_update() to promote to 'important' if README becomes a key reference"
       tier_reference: |
-        constitutional: Core project rules (auto-surface always)
         critical: Foundational decisions (high priority in search)
         important: Significant work like implementations
         normal: Standard context like documentation tasks (this workflow)
@@ -1147,7 +1146,6 @@ install_guide_workflow:
       rationale: "Installation guides capture valuable setup knowledge for future reference"
       promotion_note: "Use memory_update() to promote to 'critical' if this becomes a frequently referenced guide"
       tier_reference: |
-        constitutional: Core project rules (auto-surface always)
         critical: Foundational decisions (high priority in search)
         important: Significant work like installation guides (this workflow)
         normal: Standard context (default)

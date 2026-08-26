@@ -116,12 +116,12 @@ mcp-server/handlers/
 | `memory-crud.ts` | Provides the stable CRUD facade for list, delete, update, stats, and health. |
 | `memory-crud-health.ts` | `memory_health` handler. Exposes auto-repair, FTS rebuild stats, orphan cleanup, and a `data.routing` telemetry block with `graphChannelInvocationRate`, `channelInvocationCounts`, `channelInvocationRates`, graph contribution counters, degree contribution counters, `totalRecorded`, and `windowSize`. The `backgroundEnrichment` block also surfaces `pending` and `failed` enrichment gauges derived from the at-rest `post_insert_enrichment_status` distribution so a stuck enrichment backlog is visible. |
 | `memory-bulk-delete.ts` | Bulk delete by importance tier. Invalidates entity-density cache after successful bulk commit (also fires on partial-failure bulk paths to be safe). |
-| `mutation-hooks.ts` | Clears trigger, constitutional, graph, co-activation, tool, and degree caches after mutations. |
+| `mutation-hooks.ts` | Clears trigger, graph, co-activation, tool, and degree caches after mutations. |
 | `memory-index.ts` | Runs `memory_index_scan` work. Coalesces concurrent scans onto an in-flight or recent scan, re-indexes changed spec docs, and runs a global orphan sweep over stale index rows. A suspect-confirmation phase (`runSuspectConfirmation`) also resolves the drift-suspect queue each scan, tombstoning rows whose backing path is still missing and clearing ones that reappeared (`suspectTombstoned`/`suspectCleared`/`suspectFailed` result counters). |
 | `memory-index-scan-jobs.ts` | Implements `memory_index_scan_status` and `memory_index_scan_cancel` for background scan jobs created with `memory_index_scan({ background: true })`. |
 | `memory-index-discovery.ts` | Discovers spec documents under a workspace and detects spec level through `findSpecDocuments` and `detectSpecLevel`. |
 | `memory-index-alias.ts` | Builds alias-conflict and divergence-reconcile summaries used by index scan. |
-| `memory-crud-*.ts` | Focused CRUD submodules (`memory-crud-list`, `memory-crud-delete`, `memory-crud-update`, `memory-crud-stats`, `memory-crud-utils`, `memory-crud-types`) behind the `memory-crud.ts` facade. `memory-crud-update.ts` rejects edits that remove a constitutional row's own protection (`E_CONSTITUTIONAL_SELF_EDIT`) and honors an optional `expectedHash` compare-and-swap that rejects a stale-read constitutional overwrite (`E_STALE_CONSTITUTIONAL_UPDATE`); the non-constitutional update path is unchanged and `expectedHash` is an additive optional tool param. |
+| `memory-crud-*.ts` | Focused CRUD submodules (`memory-crud-list`, `memory-crud-delete`, `memory-crud-update`, `memory-crud-stats`, `memory-crud-utils`, `memory-crud-types`) behind the `memory-crud.ts` facade. |
 | `memory-embedding-reconcile.ts` | `memory_embedding_reconcile` tool handler. Reconciles stored embeddings against the active embedder shard. |
 | `embedder-list.ts`, `embedder-set.ts`, `embedder-status.ts` | `embedder_list`, `embedder_set`, and `embedder_status` tool handlers for embedder selection and health. |
 | `session-bootstrap.ts`, `session-health.ts`, `session-resume.ts` | `session_bootstrap`, `session_health`, and `session_resume` tool handlers for session context and continuity recovery. |
@@ -185,7 +185,7 @@ Main flow:
 | `handleMemoryContext` | Function | Builds unified memory context responses. |
 | `handleMemorySearch` | Function | Runs indexed continuity search. |
 | `handleMemoryMatchTriggers` | Function | Runs fast trigger phrase matching. |
-| `handleMemorySave` | Function | Saves and indexes spec or constitutional documents. |
+| `handleMemorySave` | Function | Saves and indexes spec documents. |
 | `runPostMutationHooks` | Function | Clears affected caches after mutation handlers. |
 
 ---

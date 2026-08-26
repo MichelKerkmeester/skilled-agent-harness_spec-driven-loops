@@ -10,6 +10,8 @@ expected_leaf_resources: []
 
 # 056 -- Constitutional memory as expert knowledge injection (PI-A4)
 
+> **DEPRECATED — the constitutional memory layer was removed; this scenario no longer applies.**
+
 ## 1. OVERVIEW
 
 This scenario validates Constitutional memory as expert knowledge injection (PI-A4) for `056`. It focuses on Confirm directive enrichment.

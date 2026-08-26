@@ -10,6 +10,8 @@ expected_leaf_resources: []
 
 # 417 -- Constitutional sufficiency-gate exemption
 
+> **DEPRECATED — the constitutional memory layer was removed; this scenario no longer applies.**
+
 ## 1. OVERVIEW
 
 This scenario validates the 5-line patch to the scan batch loop that OR-s `isConstitutional` into the `useWarnOnly` exemption. Constitutional markdown files are policy text and lack the `<!-- ANCHOR:* -->` tags plus primary-evidence sections that the strict sufficiency gate demands. The exemption lets them pass through warn-only sufficiency mode while keeping the strict gate intact for non-classified content.

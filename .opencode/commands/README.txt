@@ -110,7 +110,7 @@ command/
 │   └── assets/                # Auto/confirm/presentation workflow assets
 ├── memory/                   # Memory system commands
 │   ├── search.md             # Unified retrieval + analysis (intent-aware search, epistemic, causal, eval)
-│   ├── learn.md              # Constitutional memory manager
+│   ├── learn.md              # DEPRECATED (constitutional-memory layer retired)
 │   ├── manage.md             # Database management, ingest, and shared lifecycle
 │   ├── save.md               # Save conversation context
 │   └── README.txt            # Memory command index
@@ -198,7 +198,7 @@ Manage the Spec Kit Memory system for context preservation across sessions.
 | Command | Invocation | Purpose |
 |---------|------------|---------|
 | Search | `/memory:search <query>` or `/memory:search <subcommand>` | Unified retrieval + analysis (intent-aware search, epistemic, causal, eval) |
-| Learn | `/memory:learn [rule] \| list \| edit \| remove \| budget` | Create and manage constitutional memories |
+| Learn | `/memory:learn` | DEPRECATED — the constitutional-memory layer was retired; no active routes |
 | Manage | `/memory:manage <subcommand>` | Database operations (`scan`, `cleanup`, `tier`, `health`, `checkpoint`, `ingest`) |
 | Save | `/memory:save <spec-folder>` | Update packet continuity with semantic indexing |
 

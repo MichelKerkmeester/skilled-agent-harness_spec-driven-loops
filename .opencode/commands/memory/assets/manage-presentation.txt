@@ -19,7 +19,6 @@ Size        <size>
 Indexed     <date>
 
 Tier distribution
-constitutional <count>
 critical       <count>
 important      <count>
 normal         <count>
@@ -45,7 +44,6 @@ Size        42.6 MB
 Indexed     2026-06-12
 
 Tier distribution
-constitutional 18
 critical       42
 important      311
 normal         846
@@ -68,7 +66,6 @@ Field mapping:
 | `memory_stats.totalMemories` or total indexed record count | `Total <count>` |
 | `memory_stats.dbSize`, `dbFileSize`, or formatted store size | `Size <size>` |
 | `memory_stats.lastIndexed`, `lastScanAt`, or latest indexed timestamp | `Indexed <date>` |
-| `memory_stats.byTier.constitutional` | `constitutional <count>` |
 | `memory_stats.byTier.critical` | `critical <count>` |
 | `memory_stats.byTier.important` | `important <count>` |
 | `memory_stats.byTier.normal` | `normal <count>` |
@@ -112,7 +109,7 @@ Candidates  <count>
 ID    Tier          Title                  Age       Accesses
 <id>  <tier>        <title>                <age>     <count>
 
-Protected: constitutional <count> | critical <count> | important <count>
+Protected: critical <count> | important <count>
 Actions: [a] remove all | [r] review each | [n] keep all | [b] back
 STATUS=AWAITING_INPUT ACTION=cleanup
 ```

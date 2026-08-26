@@ -98,13 +98,13 @@ This is the main search tool. You type what you are looking for in plain languag
 
 This is the primary search tool, and it does a lot. You give it a natural language query (or a multi-concept array of 2-5 strings where all concepts must match), and it runs the full hybrid retrieval pipeline.
 
-The search path is the 4-stage pipeline architecture, which is the sole runtime path. The pipeline starts with Stage 1 candidate generation, which selects search channels based on query type: multi-concept queries run per-concept embeddings, deep mode expands into up to 3 query variants, and when embedding expansion is active a baseline plus expanded-query search run in parallel. Constitutional memories are injected if none appear in the initial candidate set. Stage 2 applies all scoring signals in a single pass: session boost, causal boost, co-activation spreading, community co-retrieval from precomputed `community_assignments`, graph signals (N2a+N2b), FSRS testing effect, intent weights (for non-hybrid only, preventing G2 double-weighting), artifact routing, feedback signals (learned trigger boosts and negative feedback demotions), artifact result limiting, anchor metadata annotation and validation metadata enrichment. Adaptive fusion also keeps an internal continuity profile (`semantic 0.52`, `keyword 0.18`, `recency 0.07`, `graph 0.23`) for resume-oriented retrieval. Stage 3 handles MMR diversity reranking and MPAB chunk-to-memory aggregation with document-order reassembly, using a continuity-specific MMR lambda of `0.65` when that internal intent is active. The retained `applyLengthPenalty` option is now a compatibility no-op (`1.0` multiplier for every document). Stage 4 filters by memory state, runs TRM evidence gap detection and enforces a score immutability invariant that prevents any score modifications after Stage 3.
+The search path is the 4-stage pipeline architecture, which is the sole runtime path. The pipeline starts with Stage 1 candidate generation, which selects search channels based on query type: multi-concept queries run per-concept embeddings, deep mode expands into up to 3 query variants, and when embedding expansion is active a baseline plus expanded-query search run in parallel. Stage 2 applies all scoring signals in a single pass: session boost, causal boost, co-activation spreading, community co-retrieval from precomputed `community_assignments`, graph signals (N2a+N2b), FSRS testing effect, intent weights (for non-hybrid only, preventing G2 double-weighting), artifact routing, feedback signals (learned trigger boosts and negative feedback demotions), artifact result limiting, anchor metadata annotation and validation metadata enrichment. Adaptive fusion also keeps an internal continuity profile (`semantic 0.52`, `keyword 0.18`, `recency 0.07`, `graph 0.23`) for resume-oriented retrieval. Stage 3 handles MMR diversity reranking and MPAB chunk-to-memory aggregation with document-order reassembly, using a continuity-specific MMR lambda of `0.65` when that internal intent is active. The retained `applyLengthPenalty` option is now a compatibility no-op (`1.0` multiplier for every document). Stage 4 filters by memory state, runs TRM evidence gap detection and enforces a score immutability invariant that prevents any score modifications after Stage 3.
 
 A deep mode expands the query into up to 3 variants using `expandQuery()`, runs hybrid search for each variant in parallel and merges results with deduplication. Results are cached per parameter combination via `toolCache.withCache()`, and session deduplication runs after cache so that cache hits still respect session state.
 
-The parameter surface is wide. You control result count (`limit`, 1-100), spec folder scoping, tier and context type filtering, intent (explicit or auto-detected), reranking toggle, the compatibility `applyLengthPenalty` flag (retained on the API surface but currently a no-op), temporal decay, minimum memory state (`minState`, default `"WARM"`, range HOT through ARCHIVED), constitutional inclusion, content inclusion, anchor filtering, session dedup, session boosting, causal boosting, minimum quality threshold, cache bypass and access tracking. Most defaults are sensible. You typically send a query and a session ID and let everything else run at defaults.
+The parameter surface is wide. You control result count (`limit`, 1-100), spec folder scoping, tier and context type filtering, intent (explicit or auto-detected), reranking toggle, the compatibility `applyLengthPenalty` flag (retained on the API surface but currently a no-op), temporal decay, minimum memory state (`minState`, default `"WARM"`, range HOT through ARCHIVED), content inclusion, anchor filtering, session dedup, session boosting, causal boosting, minimum quality threshold, cache bypass and access tracking. Most defaults are sensible. You typically send a query and a session ID and let everything else run at defaults.
 
-Recent vector-query hardening closed three correctness gaps in the retrieval path. `multi_concept_search()` now applies the same expiry filter used by single-query search (`m.expires_at IS NULL OR m.expires_at > datetime('now')`), so expired memories no longer leak through the AND-match path. `vector_search()` validates embedding length before buffer conversion and throws `VectorIndexError(EMBEDDING_VALIDATION)` instead of surfacing raw sqlite-vec failures when callers pass malformed embeddings. It also returns early with `constitutional_results.slice(0, limit)` when constitutional injection already satisfies the requested limit, which keeps result counts deterministic and prevents the retrieval layer from returning more rows than the caller asked for.
+Recent vector-query hardening closed two correctness gaps in the retrieval path. `multi_concept_search()` now applies the same expiry filter used by single-query search (`m.expires_at IS NULL OR m.expires_at > datetime('now')`), so expired memories no longer leak through the AND-match path. `vector_search()` validates embedding length before buffer conversion and throws `VectorIndexError(EMBEDDING_VALIDATION)` instead of surfacing raw sqlite-vec failures when callers pass malformed embeddings.
 
 #### Source Files
 
@@ -120,7 +120,7 @@ This is the lightweight search entry point for callers that want the main semant
 
 #### How It Works
 
-`memory_quick_search` is a live MCP tool, not just a README alias. The dispatcher in `tools/memory-tools.ts` validates the tool's narrowed input schema and forwards the call to `memory_search` with a fixed profile: `autoDetectIntent=true`, `enableDedup=true`, `includeContent=true`, `includeConstitutional=true`, and `rerank=true`. The public arguments are intentionally narrow: `query`, `limit`, `specFolder`, `tenantId`, `userId`, and `agentId`. That makes it useful for fast governed retrieval while keeping the heavyweight search configuration surface on `memory_search`.
+`memory_quick_search` is a live MCP tool, not just a README alias. The dispatcher in `tools/memory-tools.ts` validates the tool's narrowed input schema and forwards the call to `memory_search` with a fixed profile: `autoDetectIntent=true`, `enableDedup=true`, `includeContent=true`, and `rerank=true`. The public arguments are intentionally narrow: `query`, `limit`, `specFolder`, `tenantId`, `userId`, and `agentId`. That makes it useful for fast governed retrieval while keeping the heavyweight search configuration surface on `memory_search`.
 
 #### Source Files
 
@@ -220,7 +220,7 @@ Every search goes through four steps, like an assembly line. First, gather candi
 
 The pipeline refactor (R6) restructures the retrieval flow into four bounded stages with clear responsibilities and a strict score-immutability invariant in the final stage.
 
-Stage 1 (Candidate Generation) executes search channels based on query type. Multi-concept queries generate one embedding per concept. Deep mode expands into up to 3 query variants via `expandQuery()`. When embedding expansion is active and R15 does not classify the query as "simple", a baseline and expanded-query search run in parallel with deduplication. Constitutional memory injection appends up to 5 constitutional rows when none appear in the initial candidate set, and that injection path now keys scope checks off `shouldApplyScopeFiltering` so global scope enforcement is honored even without caller-supplied governance scope. Deep-mode reformulation and HyDE branches re-enter the same post-search guardrails as primary candidates before merge, so scope, tier, `contextType` and `qualityThreshold` filters are applied uniformly across expansion channels.
+Stage 1 (Candidate Generation) executes search channels based on query type. Multi-concept queries generate one embedding per concept. Deep mode expands into up to 3 query variants via `expandQuery()`. When embedding expansion is active and R15 does not classify the query as "simple", a baseline and expanded-query search run in parallel with deduplication. Deep-mode reformulation and HyDE branches re-enter the same post-search guardrails as primary candidates before merge, so scope, tier, `contextType` and `qualityThreshold` filters are applied uniformly across expansion channels.
 
 Stage 2 (Fusion and Signal Integration) is the single authoritative scoring point. The current runtime order is: session boost, causal boost, co-activation spreading, community co-retrieval from precomputed `community_assignments`, graph signals (N2a momentum + N2b depth), FSRS testing effect (when `trackAccess=true`), intent weights (non-hybrid only, preventing G2 double-weighting), artifact routing weight boosts, feedback signals (learned trigger boosts and negative feedback demotions), artifact result limiting, anchor metadata annotation (S2) and validation metadata enrichment with a bounded multiplier clamped to 0.8-1.2 (S3). Session boost now preserves the original working-memory `attentionScore` signal and stores the boosted ranking value separately in `sessionBoostScore`, while co-activation spreading writes its boost back to all score aliases before the reranked set is resorted. The G2 prevention is structural: an `isHybrid` boolean computed once at the top of Stage 2 gates the intent weight step, so the code path for intent weights is absent when hybrid search already applied them during RRF fusion.
 
@@ -376,11 +376,11 @@ After every successful save, a consolidation cycle hook fires when `SPECKIT_CONS
 
 The `asyncEmbedding` parameter (boolean, default `false`) enables non-blocking saves. When set to `true`, embedding generation is deferred: the spec-doc record is written immediately with a `pending` embedding status, and an async background attempt generates the embedding afterward. The spec-doc record is immediately searchable via BM25 and FTS5 while the embedding processes. When `false` (the default), the save blocks until embedding generation completes before returning. Watcher- and ingest-driven reindex paths no longer force deferred embeddings on ordinary cache misses. They follow this normal synchronous path unless `asyncEmbedding: true` was explicitly requested or embedding generation actually fails.
 
-Safety mechanisms run deep. Path security validation checks the file against an allowlist of base paths. File type validation accepts only `.md` and `.txt` in approved directories. Pre-flight validation checks anchor format, detects duplicates and estimates token budget before investing in embedding generation. A per-spec-folder mutex lock prevents TOCTOU race conditions when multiple saves target the same folder. SHA-256 content hashing skips same-path saves only when the existing row is in a healthy state (`success`, `pending`, or valid chunked-parent `partial`), so unhealthy rows still re-enter indexing. Cross-path hash dedup also accepts chunked parents in `partial` state and ignores invalid parent rows marked `complete`. A mutation ledger records every create, update, reinforce and supersede action for audit. The trigger matcher cache, tool cache, constitutional cache and entity-density cache are all invalidated on write, and `memory_index_scan` now routes scan-triggered invalidation through the broader mutation-hook behavior used by other mutation paths. If embedding generation fails, the spec-doc record is still stored and searchable via BM25/FTS5 with the embedding marked as pending for later re-indexing.
+Safety mechanisms run deep. Path security validation checks the file against an allowlist of base paths. File type validation accepts only `.md` and `.txt` in approved directories. Pre-flight validation checks anchor format, detects duplicates and estimates token budget before investing in embedding generation. A per-spec-folder mutex lock prevents TOCTOU race conditions when multiple saves target the same folder. SHA-256 content hashing skips same-path saves only when the existing row is in a healthy state (`success`, `pending`, or valid chunked-parent `partial`), so unhealthy rows still re-enter indexing. Cross-path hash dedup also accepts chunked parents in `partial` state and ignores invalid parent rows marked `complete`. A mutation ledger records every create, update, reinforce and supersede action for audit. The trigger matcher cache, tool cache and entity-density cache are all invalidated on write, and `memory_index_scan` now routes scan-triggered invalidation through the broader mutation-hook behavior used by other mutation paths. If embedding generation fails, the spec-doc record is still stored and searchable via BM25/FTS5 with the embedding marked as pending for later re-indexing.
 
 Successful insertions now clear the search cache immediately instead of waiting for delete-time invalidation or TTL expiry. `index_memory()` calls `clear_search_cache()` after the transactional insert, active-projection update and optional `vec_memories` write succeed, so a brand-new spec-doc record becomes visible to repeated `memory_search` calls right away. The fix closes a stale-results gap where the save path could report success while cached searches still replayed a pre-insert snapshot.
 
-Document type affects importance weighting automatically: constitutional files get 1.0, spec documents 0.8, plans 0.7, memory files 0.5 and scratch files 0.25.
+Document type affects importance weighting automatically: spec documents 0.8, plans 0.7, memory files 0.5 and scratch files 0.25.
 
 #### Source Files
 
@@ -392,7 +392,7 @@ See [`mutation/memory-indexing-memorysave.md`](../feature-catalog/mutation/memor
 
 #### Description
 
-Memory writes now carry server-derived provenance instead of trusting caller-authored provenance fields. The write path persists `source_kind`, blocks automated overwrites of protected manual or constitutional fields, and records deduplicated mutation-audit events without making audit append failures roll back the successful write.
+Memory writes now carry server-derived provenance instead of trusting caller-authored provenance fields. The write path persists `source_kind`, blocks automated overwrites of protected manual fields, and records deduplicated mutation-audit events without making audit append failures roll back the successful write.
 
 #### How It Works
 
@@ -492,7 +492,7 @@ This is the cleanup tool for large-scale housekeeping. You can delete all outdat
 
 For large-scale cleanup operations. Instead of targeting a folder, you target an importance tier: delete all deprecated spec-doc records, or all temporary memories older than 30 days. The tool counts affected memories first (so the response tells you exactly how many were deleted), creates a safety checkpoint, then deletes within a database transaction.
 
-Constitutional and critical tier memories receive extra protection. Unscoped deletion of these tiers is refused outright. You must provide a `specFolder` to delete constitutional or critical memories in bulk. The `skipCheckpoint` speed optimization, which skips the safety checkpoint for faster execution, is also rejected for these tiers. If the checkpoint creation itself fails for constitutional/critical, the entire operation aborts. For lower tiers, a checkpoint failure triggers a warning but the deletion proceeds because the risk of losing deprecated or temporary memories is low.
+Critical tier memories receive extra protection. Unscoped deletion of this tier is refused outright. You must provide a `specFolder` to delete critical memories in bulk. The `skipCheckpoint` speed optimization, which skips the safety checkpoint for faster execution, is also rejected for this tier. If the checkpoint creation itself fails for critical, the entire operation aborts. For lower tiers, a checkpoint failure triggers a warning but the deletion proceeds because the risk of losing deprecated or temporary memories is low.
 
 Each deleted memory gets its causal graph edges removed. A single consolidated mutation ledger entry (capped at 50 linked memory IDs to avoid ledger bloat) records the bulk operation. All caches are invalidated after deletion.
 
@@ -516,7 +516,7 @@ Every search result is either helpful or not. This tool lets you record that jud
 
 Positive feedback adds 0.1 to the spec-doc record's confidence score (capped at 1.0). Negative feedback subtracts 0.05 (floored at 0.0). The base confidence for any memory starts at 0.5. The asymmetry between positive (+0.1) and negative (-0.05) increments is intentional. It takes one good validation to raise confidence by 0.1 but two bad validations to cancel that out. This bias toward preservation reflects the assumption that a spec-doc record might be unhelpful for one query but still valuable for another.
 
-Auto-promotion fires unconditionally on every positive validation. When a normal-tier memory accumulates 5 positive validations, it is promoted to important. When an important-tier memory reaches 10, it is promoted to critical. A throttle safeguard limits promotions to 3 per 8-hour rolling window. Constitutional, critical, temporary and deprecated tiers are non-promotable. The response includes `autoPromotion` metadata showing whether promotion was attempted, the previous and new tier and the reason.
+Auto-promotion fires unconditionally on every positive validation. When a normal-tier memory accumulates 5 positive validations, it is promoted to important. When an important-tier memory reaches 10, it is promoted to critical. A throttle safeguard limits promotions to 3 per 8-hour rolling window. Critical, temporary and deprecated tiers are non-promotable. The response includes `autoPromotion` metadata showing whether promotion was attempted, the previous and new tier and the reason.
 
 Negative feedback persistence fires unconditionally on every negative validation. A `recordNegativeFeedbackEvent()` call stores the event in the `negative_feedback_events` table. The search handler reads these events and applies a confidence multiplier that starts at 1.0, decreases by 0.1 per negative validation and floors at 0.3. Time-based recovery with a 30-day half-life gradually restores the multiplier. Demotion scoring runs behind the `SPECKIT_NEGATIVE_FEEDBACK` flag (default ON).
 
@@ -554,7 +554,7 @@ When you save new information, the system checks whether it already knows someth
 
 #### How It Works
 
-5-action decision engine during the save path. Examines semantic similarity of new content against existing spec-doc records: REINFORCE (>=0.95, boost FSRS stability), UPDATE (0.85-0.94 no contradiction, in-place update), SUPERSEDE (0.85-0.94 with contradiction, deprecate old + create new), CREATE_LINKED (0.70-0.84, new spec-doc record + causal edge), CREATE (<0.70, standalone). Contradiction detection via regex patterns. All decisions are logged to the `memory_conflicts` table with similarity, action, contradiction flag, reason and spec_folder. Document-type-aware weighting (constitutional=1.0 down to scratch=0.25). The arbitration path runs only when `force` is false and an embedding is available, and when `sessionId` is present it filters candidates from other sessions so one session cannot trigger false duplicate, update, or supersede decisions in another.
+5-action decision engine during the save path. Examines semantic similarity of new content against existing spec-doc records: REINFORCE (>=0.95, boost FSRS stability), UPDATE (0.85-0.94 no contradiction, in-place update), SUPERSEDE (0.85-0.94 with contradiction, deprecate old + create new), CREATE_LINKED (0.70-0.84, new spec-doc record + causal edge), CREATE (<0.70, standalone). Contradiction detection via regex patterns. All decisions are logged to the `memory_conflicts` table with similarity, action, contradiction flag, reason and spec_folder. Document-type-aware weighting (spec=0.8 down to scratch=0.25). The arbitration path runs only when `force` is false and an embedding is available, and when `sessionId` is present it filters candidates from other sessions so one session cannot trigger false duplicate, update, or supersede decisions in another.
 
 #### Source Files
 
@@ -702,7 +702,7 @@ This is the tool that keeps the spec-doc record database synchronized with the f
 
 Spec documents are still indexed by default. During scan they flow through `memory_save` with `qualityGateMode: 'warn-only'`, so template, sufficiency, and quality issues surface as warnings instead of silently bypassing retrieval.
 
-The scanner discovers files from three sources: constitutional files (`.opencode/skills/*/constitutional/*.md`), canonical spec documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `research/research.md`, `resource-map.md`, `handover.md`, root-level `review-report.md`, `<packet>/review/review-report.md`, and `description.json`), and graph metadata files (`graph-metadata.json`). Metadata files backfilled under `<packet>/iterations/` are discoverable, while `research/iterations/` and `review/iterations/` markdown remain working artifacts. The retired `specs/**/memory/*.md` surface is no longer discovered and the runtime rejects saves into it. Canonical path deduplication prevents the same file from being indexed twice under different paths (the `specs/` vs `.opencode/specs/` symlink problem).
+The scanner discovers files from two sources: canonical spec documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `research/research.md`, `resource-map.md`, `handover.md`, root-level `review-report.md`, `<packet>/review/review-report.md`, and `description.json`), and graph metadata files (`graph-metadata.json`). Metadata files backfilled under `<packet>/iterations/` are discoverable, while `research/iterations/` and `review/iterations/` markdown remain working artifacts. The retired `specs/**/memory/*.md` surface is no longer discovered and the runtime rejects saves into it. Canonical path deduplication prevents the same file from being indexed twice under different paths (the `specs/` vs `.opencode/specs/` symlink problem).
 
 In incremental mode (the default), the scanner categorizes every discovered file into one of four buckets: to-index (new files), to-update (changed mtime or content hash), to-skip (unchanged mtime and matching content hash) and to-delete (files that disappeared from disk). The content-hash secondary check catches timestamp-preserving rewrites that would otherwise look unchanged from mtime alone. Batch processing with a configurable `BATCH_SIZE` handles large workspaces, but oversized requests are clamped to the hard runtime maximum with a warning instead of exploding fan-out. Scan throttling uses an atomic lease: `acquireIndexScanLease()` reads `last_index_scan` and `scan_started_at` in one transaction, expires stale leases left behind by crashed scans, reserves a fresh run by writing `scan_started_at`, coalesces overlapping fresh scans with `reason: 'lease_active'`, and still enforces `INDEX_SCAN_COOLDOWN` after completed runs with `reason: 'cooldown'`. Lease-active and cooldown guards now return a success envelope with `coalesced: true`, `status: 'coalesced'`, the computed wait time, and polling hints instead of a raw E429. `completeIndexScanLease()` runs after the scan response is assembled, converts the active lease into `last_index_scan`, and clears the active lease row so the cooldown clock ties to completed scans instead of request start time. The public scan schema also exposes `background: true`; queued scans can be observed with `memory_index_scan_status` and cancelled with `memory_index_scan_cancel`.
 
@@ -712,7 +712,7 @@ After indexing, the tool does more than store data. It creates causal chain edge
 
 A safety invariant protects against silent failures: post-indexing mtime updates happen only for successfully indexed files. If embedding generation fails for a specific file, that file retains its old mtime so the next scan automatically retries it. You do not have to track which files failed. The system tracks it for you.
 
-The result breakdown is detailed: indexed count, updated count, unchanged count, failed count, skipped-by-mtime count, constitutional stats, dedup stats and incremental stats. Debug mode (`SPECKIT_DEBUG_INDEX_SCAN=true`) exposes additional file count diagnostics.
+The result breakdown is detailed: indexed count, updated count, unchanged count, failed count, skipped-by-mtime count, dedup stats and incremental stats. Debug mode (`SPECKIT_DEBUG_INDEX_SCAN=true`) exposes additional file count diagnostics.
 
 **Phase 013 self-maintaining additions (026):** Overlapping scan requests no longer surface a raw E429 error. The handler detects an active lease and returns a `coalesced: true` success envelope with the computed wait time, so callers can treat concurrent scans as success. Lexical-first async commit means a newly indexed row is BM25/FTS5-searchable immediately with `embedding_status: 'pending'` while its vector drains in the background. The response envelope reports `status: 'complete_with_pending_vectors'` alongside a `pendingVectors` count. Move reconciliation heals renamed spec folders by matching on packet identity (`specId` / folder slug) without re-embedding any content. A bounded global orphan sweep runs once per scan to remove stale `memory_index` rows whose source files are no longer present on disk.
 
@@ -813,7 +813,7 @@ The `clearExisting` mode deserves explanation. When true, the entire restore run
 
 When merging (the default), the system checks for duplicates using a logical key of `spec_folder + file_path + anchor_id`. Existing spec-doc records that match the logical key are skipped rather than duplicated.
 
-After restore, vectors are restored from the checkpoint snapshot when vector payloads are present. The restore handler then clears in-memory search/constitutional caches, rebuilds BM25 from live DB content when BM25 is enabled and refreshes the trigger cache. This keeps restored memories immediately discoverable without forcing a full re-embedding pass.
+After restore, vectors are restored from the checkpoint snapshot when vector payloads are present. The restore handler then clears in-memory search caches, rebuilds BM25 from live DB content when BM25 is enabled and refreshes the trigger cache. This keeps restored memories immediately discoverable without forcing a full re-embedding pass.
 
 **v2 full-DB path:** When the row carries `snapshot_format='v2'`, `restoreCheckpointV2` makes the snapshot the live database by a whole-file swap through a `reopenActiveDatabase` coordinator (wal_checkpoint, detach `active_vec`, close, swap, reopen via `initialize_db`), guarded by a two-phase `.restore-journal.json` (`swap-pending` → `swap-done`) so boot crash-recovery rolls back from `.bak` only while pending, with manifest downgrade/embedder guards, `runPostRestoreRebuilds`, and a `.needs-rebuild` sentinel for post-swap derived staleness.
 
@@ -883,7 +883,7 @@ If the system crashed or lost power while saving a file, it might leave behind a
 
 On server startup, the transaction manager scans for leftover `_pending` files created by interrupted atomic-write operations. If a previous `memory_save` wrote the pending file and committed the DB row but crashed before renaming, the pending file is the only surviving copy of the content. The recovery routine finds these orphans via `findPendingFiles()`, renames each to its final path and increments `totalRecoveries` in the transaction metrics.
 
-Scan roots are derived from allowed memory base paths, then constrained to known memory locations (`specs/`, `.opencode/specs/` and constitutional directories) to balance coverage with startup safety.
+Scan roots are derived from allowed memory base paths, then constrained to known memory locations (`specs/` and `.opencode/specs/`) to balance coverage with startup safety.
 
 Recovery is automatic and requires no user intervention. If the pending file is stale (the DB row was never committed), it is logged and left for manual review rather than silently deleted.
 
@@ -1407,7 +1407,7 @@ Think of this like a report card for search quality, but with twelve different g
 
 Twelve metrics run against logged retrieval data. The four primary ones are MRR@5 (how high does the right answer rank?), NDCG@10 (are results ordered well?), Recall@20 (do we find everything relevant?) and Hit Rate@1 (is the top result correct?).
 
-Eight diagnostic metrics add depth. Inversion rate counts pairwise ranking mistakes. Constitutional surfacing rate tracks whether high-priority memories appear in top results. Importance-weighted recall favors recall of critical content. Cold-start detection rate measures whether fresh memories surface when relevant. Precision@K and F1@K expose precision/recall balance. MAP captures ranking quality across the full relevant set. Intent-weighted NDCG adjusts ranking quality by query type.
+Seven diagnostic metrics add depth. Inversion rate counts pairwise ranking mistakes. Importance-weighted recall favors recall of critical content. Cold-start detection rate measures whether fresh memories surface when relevant. Precision@K and F1@K expose precision/recall balance. MAP captures ranking quality across the full relevant set. Intent-weighted NDCG adjusts ranking quality by query type.
 
 IR rank-based metrics now use contiguous 1-based positions within the evaluated top-K slice via `getRankAtIndex() = index + 1`, not external sparse rank labels carried through filtering or reranking. That keeps MRR, NDCG, and MAP aligned with standard IR definitions instead of understating them when rank numbers have gaps.
 
@@ -1689,7 +1689,7 @@ This gives a search bonus to memories that are well-connected to other memories,
 
 A fifth RRF channel scores memories by their graph connectivity. Edge type weights range from caused at 1.0 down to supports at 0.5, with logarithmic normalization and a hub cap (`MAX_TYPED_DEGREE=15`, `MAX_TOTAL_DEGREE=50`, `DEGREE_BOOST_CAP=0.15`) to prevent any single memory from dominating results through connections alone.
 
-Constitutional memories are excluded from degree boosting because they already receive top-tier visibility. The channel runs behind the `SPECKIT_DEGREE_BOOST` feature flag with a degree cache that invalidates only on graph mutations, not per query. That cache is now scoped per database instance via `WeakMap<Database.Database, Map<string, number>>`, with `getDegreeCacheForDb(database)` for lookup and `clearDegreeCacheForDb(database)` for explicit invalidation, so scores from one DB can no longer leak into another. When a spec-doc record has zero edges, the channel returns 0 rather than failing.
+The channel runs behind the `SPECKIT_DEGREE_BOOST` feature flag with a degree cache that invalidates only on graph mutations, not per query. That cache is now scoped per database instance via `WeakMap<Database.Database, Map<string, number>>`, with `getDegreeCacheForDb(database)` for lookup and `clearDegreeCacheForDb(database)` for explicit invalidation, so scores from one DB can no longer leak into another. When a spec-doc record has zero edges, the channel returns 0 rather than failing.
 
 #### Source Files
 
@@ -2051,7 +2051,7 @@ Not all memories should fade at the same speed. A key decision made months ago i
 
 Not all memories should decay at the same rate. A decision record from six months ago is still relevant. A scratch note from last Tuesday probably is not.
 
-FSRS decay rates now vary by a two-dimensional multiplier matrix. On the context axis: decisions never decay (stability set to Infinity), research memories get 2x stability and implementation/discovery/general memories follow the standard rate. On the tier axis: constitutional and critical memories never decay, important memories get 1.5x stability, normal memories follow the standard, temporary memories decay at 0.5x and deprecated at 0.25x.
+FSRS decay rates now vary by a two-dimensional multiplier matrix. On the context axis: decisions never decay (stability set to Infinity), research memories get 2x stability and implementation/discovery/general memories follow the standard rate. On the tier axis: critical memories never decay, important memories get 1.5x stability, normal memories follow the standard, temporary memories decay at 0.5x and deprecated at 0.25x.
 
 The combined multiplier uses `Infinity` for never-decay cases, which produces `R(t) = 1.0` for all t without special-case logic. The spec-doc record-type config validator now rejects `halfLifeDays: 0` in addition to negative values, matching the `positive number or null` contract and blocking undefined zero-half-life schedules from entering classification-backed decay configuration. Runs behind the `SPECKIT_CLASSIFICATION_DECAY` flag.
 
@@ -2167,7 +2167,7 @@ When a spec-doc record keeps proving useful over and over, it earns a promotion.
 
 Positive validations now trigger automatic tier promotion. When a normal-tier memory accumulates 5 positive validations, it is promoted to important. When an important-tier memory reaches 10, it is promoted to critical. A throttle safeguard limits promotions to 3 per 8-hour rolling window to prevent runaway promotion during bulk validation sessions.
 
-Constitutional, critical, temporary and deprecated tiers are non-promotable. Each promotion is logged to a `memory_promotion_audit` table for traceability. The `memory_validate` response includes `autoPromotion` metadata showing whether promotion was attempted, the previous and new tier, validation count and the reason.
+Critical, temporary and deprecated tiers are non-promotable. Each promotion is logged to a `memory_promotion_audit` table for traceability. The `memory_validate` response includes `autoPromotion` metadata showing whether promotion was attempted, the previous and new tier, validation count and the reason.
 
 #### Source Files
 
@@ -3013,11 +3013,11 @@ Enabled by default (graduated). Set `SPECKIT_IMPLICIT_FEEDBACK_LOG=false` to dis
 
 #### Description
 
-Hybrid decay policy applies type-aware no-decay rules to permanent artifacts (decision, constitutional, critical context types) while all other types follow the standard FSRS schedule.
+Hybrid decay policy applies type-aware no-decay rules to permanent artifacts (decision, critical context types) while all other types follow the standard FSRS schedule.
 
 #### How It Works
 
-Enabled by default (graduated). Set `SPECKIT_HYBRID_DECAY_POLICY=false` to disable. When enabled, `classifyHybridDecay()` maps decision, constitutional, and critical context types to no_decay class with Infinity stability (no decay). All other context types follow the standard FSRS v4 power-law decay: `R(t) = (1 + 19/81 * t/S)^(-0.5)`. Separate from TM-03 classification-based decay.
+Enabled by default (graduated). Set `SPECKIT_HYBRID_DECAY_POLICY=false` to disable. When enabled, `classifyHybridDecay()` maps decision and critical context types to no_decay class with Infinity stability (no decay). All other context types follow the standard FSRS v4 power-law decay: `R(t) = (1 + 19/81 * t/S)^(-0.5)`. Separate from TM-03 classification-based decay.
 
 #### Source Files
 
@@ -3086,22 +3086,6 @@ See [`memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md
 
 ---
 
-### Constitutional sufficiency-gate exemption
-
-#### Description
-
-Constitutional markdown files now pass through `memory_index_scan` in warn-only sufficiency mode rather than hard-rejecting with `INSUFFICIENT_CONTEXT_ABORT`. Policy text under `.opencode/skills/*/constitutional/` is exempt from the requirement of three support items plus one anchor when primary evidence is absent.
-
-#### How It Works
-
-`handleMemoryIndexScan` in `handlers/memory-index.ts` widens the existing `useWarnOnly` exemption with `force || isSpecDoc || isConstitutional`. The downstream sufficiency evaluator still runs against constitutional content but advisories no longer halt the save. The strict gate stays intact for any file that is neither spec doc nor constitutional.
-
-#### Source Files
-
-See [`memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md`](../feature-catalog/memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md) for full implementation and test file listings.
-
----
-
 ### Graph-metadata and lineage repair runner
 
 #### Description
@@ -3162,9 +3146,7 @@ When you ask the system a question, your search goes through four clear steps: g
 
 The retrieval pipeline was restructured into four bounded stages with clear responsibilities, a single authoritative scoring point and a strict score-immutability invariant in the final stage.
 
-Stage 1 (Candidate Generation) executes search channels based on query type: multi-concept, deep mode with query expansion, embedding expansion with R15 mutual exclusion, or standard hybrid search. The R8 memory summary channel runs in parallel when the scale gate is met (>5K memories), merging and deduplicating results by memory ID. Summary candidates now pass through the same `minQualityScore` filter as other candidates (Sprint 8 fix). Constitutional memory injection and quality/tier filtering run at the end of Stage 1.
-
-**Current update:** The query embedding is now cached at function scope for reuse in the constitutional injection path, saving one API call per search. The constitutional injection count is tracked and passed through the orchestrator to Stage 4 output metadata (previously hardcoded to 0).
+Stage 1 (Candidate Generation) executes search channels based on query type: multi-concept, deep mode with query expansion, embedding expansion with R15 mutual exclusion, or standard hybrid search. The R8 memory summary channel runs in parallel when the scale gate is met (>5K memories), merging and deduplicating results by memory ID. Summary candidates now pass through the same `minQualityScore` filter as other candidates (Sprint 8 fix). Quality/tier filtering runs at the end of Stage 1.
 
 Stage 2 (Fusion and Signal Integration) applies scoring/enrichment in a fixed order: session boost, causal boost, co-activation spreading, community co-retrieval (N2c from precomputed `community_assignments`), graph signals (N2a+N2b: additive momentum/depth bonuses), FSRS testing effect (when `trackAccess=true`), intent weights (non-hybrid only, G2 prevention), artifact routing, feedback signals (learned trigger boosts and negative feedback demotions), artifact result limiting, anchor metadata annotation (S2) and validation metadata enrichment with a bounded multiplier clamped to 0.8-1.2 (S3). Community injection (N2c) runs before graph signals (N2a+N2b) so injected rows also receive momentum/depth adjustments. The G2 prevention is structural: an `isHybrid` boolean gates the intent weight step so the code path is absent for hybrid search.
 
@@ -3242,7 +3224,7 @@ Well-maintained documents should rank slightly higher than neglected ones when b
 
 #### How It Works
 
-Spec document validation metadata integrates into the scoring layer as an additional ranking dimension in Stage 2. Four signal sources contribute: importance tier mapped to a numeric quality score (constitutional=1.0 through deprecated=0.1), the direct `quality_score` database column, `<!-- SPECKIT_LEVEL: N -->` content marker extraction and validation completion markers (`<!-- VALIDATED -->`, `<!-- VALIDATION: PASS -->`).
+Spec document validation metadata integrates into the scoring layer as an additional ranking dimension in Stage 2. Four signal sources contribute: importance tier mapped to a numeric quality score (critical=1.0 through deprecated=0.1), the direct `quality_score` database column, `<!-- SPECKIT_LEVEL: N -->` content marker extraction and validation completion markers (`<!-- VALIDATED -->`, `<!-- VALIDATION: PASS -->`).
 
 The combined multiplier is bounded to 0.8-1.2 via a clamping function, composed of quality factor (0.9-1.1), spec level bonus (0-0.06), completion bonus (0-0.04) and checklist bonus (0-0.01). Well-maintained documentation ranks slightly above neglected documentation when both are relevant. No feature flag. Always active.
 
@@ -3467,7 +3449,7 @@ When another process changes the database while the server is running, the serve
 
 #### How It Works
 
-Process-lifetime DB connection manager via marker file (`DB_UPDATED_FILE`). When an external process mutates the database, it writes a timestamp to the marker file. On next `checkDatabaseUpdated()` call, if timestamp > lastDbCheck, triggers `reinitializeDatabase()`: closes the old DB handle, calls `vectorIndex.initializeDb()`, and rebinds 6 modules (vectorIndex, checkpoints, accessTracker, hybridSearch, sessionManager, incrementalIndex). Concurrency-safe via mutex with race-condition fix (P4-13). Also manages embedding model readiness (polling with timeout) and constitutional cache lifecycle.
+Process-lifetime DB connection manager via marker file (`DB_UPDATED_FILE`). When an external process mutates the database, it writes a timestamp to the marker file. On next `checkDatabaseUpdated()` call, if timestamp > lastDbCheck, triggers `reinitializeDatabase()`: closes the old DB handle, calls `vectorIndex.initializeDb()`, and rebinds 6 modules (vectorIndex, checkpoints, accessTracker, hybridSearch, sessionManager, incrementalIndex). Concurrency-safe via mutex with race-condition fix (P4-13). Also manages embedding model readiness (polling with timeout).
 
 #### Source Files
 
@@ -3687,29 +3669,11 @@ When you are working on something, this feature automatically brings up importan
 
 Memory auto-surface hooks fire at two lifecycle points beyond explicit search: tool dispatch for non-memory-aware tools (using extracted context hints), and session compaction (when context is compressed, critical memories are re-injected).
 
-Each hook point has a per-point token budget of 4,000 tokens maximum. The tool dispatch hook checks incoming tool arguments for context hints (input, query, prompt, specFolder, filePath or concepts) and surfaces constitutional-tier and trigger-matched spec-doc records, but skips memory-aware tools to avoid recursive surfacing loops. Memory-aware tools are handled in-band by the context-server pre-dispatch branch (`autoSurfaceMemories` / `autoSurfaceAtCompaction`). Constitutional memories are cached for 1 minute via an in-memory cache.
+Each hook point has a per-point token budget of 4,000 tokens maximum. The tool dispatch hook checks incoming tool arguments for context hints (input, query, prompt, specFolder, filePath or concepts) and surfaces trigger-matched spec-doc records, but skips memory-aware tools to avoid recursive surfacing loops. Memory-aware tools are handled in-band by the context-server pre-dispatch branch (`autoSurfaceMemories` / `autoSurfaceAtCompaction`).
 
 #### Source Files
 
 See [`retrieval-enhancements/dual-scope-memory-auto-surface.md`](../feature-catalog/retrieval-enhancements/dual-scope-memory-auto-surface.md) for full implementation and test file listings.
-
----
-
-### Constitutional memory as expert knowledge injection
-
-#### Description
-
-Some memories are fundamental rules that should always come up when relevant, like "never delete production data." This feature tags those high-priority memories with instructions about when to surface them. It works like sticky notes on a filing cabinet that say "pull this file whenever someone asks about X."
-
-#### How It Works
-
-Constitutional-tier memories receive a `retrieval_directive` metadata field formatted as explicit instruction prefixes for LLM consumption. Examples: "Always surface when: user asks about memory save rules" or "Prioritize when: debugging search quality."
-
-Rule patterns are extracted from content using a ranked list of imperative verbs (must, always, never, should, require) and condition-introducing words (when, if, for, during). Scanning is capped at 2,000 characters from the start of content, and each directive component is capped at 120 characters. The `enrichWithRetrievalDirectives()` function maps over results without filtering or reordering. The enrichment is wired into `hooks/memory-surface.ts` before returning results. In the Stage 1 injection path, constitutional rows now use `shouldApplyScopeFiltering` rather than `hasGovernanceScope` alone before merge, so global scope enforcement and caller-provided governance scope are applied consistently.
-
-#### Source Files
-
-See [`retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md`](../feature-catalog/retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md) for full implementation and test file listings.
 
 ---
 
@@ -4006,12 +3970,12 @@ This is a command-line maintenance tool for the spec-doc record database that yo
 
 #### How It Works
 
-Non-MCP `spec-kit-cli` entry point (`cli.ts`) for database maintenance. Four commands: `stats` (tier distribution, top folders, schema version), `bulk-delete` (with --tier, --folder, --older-than, --dry-run, --skip-checkpoint, where constitutional/critical tiers require folder scope), `reindex` (--force, --eager-warmup), `schema-downgrade` (--to 15, --confirm). Transaction-wrapped deletions, checkpoint creation before bulk-delete, mutation ledger recording. Invoked as `node cli.js <command>` from any directory.
+Non-MCP `spec-kit-cli` entry point (`cli.ts`) for database maintenance. Four commands: `stats` (tier distribution, top folders, schema version), `bulk-delete` (with --tier, --folder, --older-than, --dry-run, --skip-checkpoint, where the critical tier requires folder scope), `reindex` (--force, --eager-warmup), `schema-downgrade` (--to 15, --confirm). Transaction-wrapped deletions, checkpoint creation before bulk-delete, mutation ledger recording. Invoked as `node cli.js <command>` from any directory.
 
 #### Checkpoint-before-delete contract (`bulk-delete`)
 
 - `bulk-delete` attempts to create a pre-delete checkpoint before destructive deletion whenever `--skip-checkpoint` is **not** set.
-- `--skip-checkpoint` is allowed for non-critical tiers, but blocked for `constitutional` and `critical`.
+- `--skip-checkpoint` is allowed for non-critical tiers, but blocked for `critical`.
 - Checkpoint creation is **best-effort** (not mandatory): if `createCheckpoint` fails, the CLI logs a warning and proceeds with deletion.
 
 **Failure behavior:** checkpoint creation failure does **not** halt delete operations.
@@ -4096,11 +4060,11 @@ See [`tooling-and-scripts/cli-runtime-warm-only-fallbacks.md`](../feature-catalo
 
 #### Description
 
-This is the operator-facing slash command for creating and managing constitutional memories: the durable rules that always surface at the top of search results. Think of it as the system's rulebook editor rather than a generic note-taking command.
+This is the operator-facing slash command for creating and managing constitutional rules: the durable reference rule docs under `constitutional/`. Think of it as the system's rulebook editor rather than a generic note-taking command.
 
 #### How It Works
 
-`/memory:learn` is now a constitutional-only workflow. The no-argument form shows an overview dashboard; natural-language input enters guided create mode; and `list`, `edit`, `remove`, and `budget` provide the rest of the lifecycle. New and edited files are written to `.opencode/skills/system-spec-kit/constitutional/`, indexed with `memory_save`, and checked against the shared `~2000` token budget for the constitutional tier.
+`/memory:learn` is a constitutional-rule workflow. The no-argument form shows an overview dashboard; natural-language input enters guided create mode; and `list`, `edit`, `remove`, and `budget` provide the rest of the lifecycle. New and edited files are written to `.opencode/skills/system-spec-kit/constitutional/` as plain reference docs and checked against the shared `~2000` token budget. They are no longer indexed as a searchable memory tier or auto-surfaced.
 
 Verification also closed active documentation drift outside the original spec file list. Global command indexes, related-command references, workflow docs, workspace READMEs, and speckit agent summaries now all describe `/memory:learn` as the constitutional memory manager instead of the retired "explicit learning / corrections / patterns" workflow.
 
@@ -4545,11 +4509,11 @@ See [`governance/hierarchical-scope-governance-governed-ingest-retention-and-aud
 
 #### Description
 
-The constitutional memory pack includes an advisory rule that automated writers must not overwrite protected manual or constitutional material. It pairs with the write-ingress guard so generated or automated updates skip protected fields instead of silently replacing human-authored truth.
+The constitutional rule docs include an advisory rule that automated writers must not overwrite protected manual material. It pairs with the write-ingress guard so generated or automated updates skip protected fields instead of silently replacing human-authored truth.
 
 #### How It Works
 
-The rule is stored as a constitutional memory and indexed through the existing always-surface constitutional loader. The write path derives provenance server-side and applies the protected-field guard before mutation, so the advisory rule is backed by executable write-ingress behavior.
+The rule lives as a plain reference doc under `constitutional/`. The write path derives provenance server-side and applies the protected-field guard before mutation, so the advisory rule is backed by executable write-ingress behavior.
 
 #### Source Files
 
@@ -4557,31 +4521,15 @@ See [`governance/automated-writers-never-overwrite-manual-constitutional-rule.md
 
 ---
 
-### Constitutional self-edit and compare-and-swap guard
-
-#### Description
-
-A constitutional memory cannot quietly strip its own protection or be overwritten from a stale read. If an update would downgrade a constitutional row out of constitutional tier, the system refuses it. If a caller passes the hash it expects the row to have and that hash no longer matches, the update is rejected so two callers cannot clobber each other. Non-constitutional updates are unaffected. Think of it like a safety latch on a load-bearing rule: you cannot remove its own protection in the same edit, and you cannot save over a copy that has already changed under you.
-
-#### How It Works
-
-`validateConstitutionalEditPreconditions` runs on the `memory_update` path when the existing row is constitutional (by tier or by constitutional path). An unconditional assertion rejects any edit that sets `importanceTier` to a non-constitutional value on that row and returns `E_CONSTITUTIONAL_SELF_EDIT`. The optional `expectedHash` tool parameter adds a compare-and-swap precondition: when supplied, it must match the row's current `content_hash` or the update is rejected with `E_STALE_CONSTITUTIONAL_UPDATE`. The non-constitutional update path stays byte-identical and `expectedHash` is an additive optional schema field, so existing callers are unchanged. Both refusals carry a recovery hint pointing at a reviewed source row or an explicit repair workflow.
-
-#### Source Files
-
-See [`governance/constitutional-self-edit-and-cas-guard.md`](../feature-catalog/governance/constitutional-self-edit-and-cas-guard.md) for full implementation and test file listings.
-
----
-
 ### Entity co-occurrence is not causal constitutional rule
 
 #### Description
 
-The constitutional memory pack includes an advisory rule that entity co-occurrence and similarity evidence must not be promoted as causal truth. It keeps recall signals separate from causal lineage unless an explicit causal relationship is authored or generated by a validated causal promoter.
+The constitutional rule docs include an advisory rule that entity co-occurrence and similarity evidence must not be promoted as causal truth. It keeps recall signals separate from causal lineage unless an explicit causal relationship is authored or generated by a validated causal promoter.
 
 #### How It Works
 
-The rule is stored as a constitutional memory and loaded with the other always-surface governance rules. It complements the tombstone and metadata-edge work by requiring causal graph writers to preserve provenance and avoid treating entity overlap as proof of causation.
+The rule lives as a plain reference doc under `constitutional/`. It complements the tombstone and metadata-edge work by requiring causal graph writers to preserve provenance and avoid treating entity overlap as proof of causation.
 
 #### Source Files
 
@@ -5090,7 +5038,7 @@ These flags are the main control panel for how search works. They turn major ret
 | `SPECKIT_MEMORY_LINEAGE_STATE` | `true` | boolean | `lib/config/capability-flags.ts` | Default-on lineage roadmap flag surfaced in metadata snapshots. |
 | `SPECKIT_MEMORY_GRAPH_UNIFIED` | `true` | boolean | `lib/config/capability-flags.ts` | Default-on unified-graph roadmap flag. It remains intentionally separate from the runtime `SPECKIT_GRAPH_UNIFIED` retrieval gate so roadmap metadata cannot misreport live graph-channel defaults. |
 | `SPECKIT_MEMORY_ADAPTIVE_RANKING` | `false` | boolean | `lib/config/capability-flags.ts` | Default-off adaptive-ranking roadmap flag. Phase 4 adaptive ranking remains dormant in production, so roadmap metadata keeps this flag off unless explicitly enabled with `true` or `1`. |
-| `SPECKIT_HYBRID_DECAY_POLICY` | `true` | boolean | `lib/cognitive/fsrs-scheduler.ts` | **Default ON (graduated).** Type-aware no-decay FSRS policy. Decision/constitutional/critical context types receive Infinity stability (never decay). Separate from TM-03. |
+| `SPECKIT_HYBRID_DECAY_POLICY` | `true` | boolean | `lib/cognitive/fsrs-scheduler.ts` | **Default ON (graduated).** Type-aware no-decay FSRS policy. Decision/critical context types receive Infinity stability (never decay). Separate from TM-03. |
 | `SPECKIT_HYDE` | `true` | boolean | `lib/search/hyde.ts` | **Default ON (graduated).** HyDE (Hypothetical Document Embeddings). Generates a pseudo-document (~200 tokens, markdown-memory format) for deep low-confidence queries (top score < 0.45), embeds it, and uses the embedding as an additional retrieval channel. HyDE is active in the query pipeline by default and merges results into the candidate set unless `SPECKIT_HYDE_ACTIVE=false` forces shadow-only logging. Budget: 1 LLM call per cache miss. |
 | `SPECKIT_IMPLICIT_FEEDBACK_LOG` | `true` | boolean | `lib/feedback/feedback-ledger.ts` | **Default ON (graduated).** Shadow-only implicit feedback event ledger. Records 5 event types with confidence tiers (strong/medium/weak). No ranking side effects. |
 | `SPECKIT_INDEX_SPEC_DOCS` | `true` | boolean | `handlers/memory-index-discovery.ts` | Controls whether `memory_index_scan` indexes spec folder documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research/research.md`, `handover.md`). Set to `'false'` to skip spec docs. |

@@ -1,82 +1,51 @@
 ---
-description: Create and manage constitutional rules — always-surface entries that appear at the top of every search result.
-argument-hint: "[rule-description] | list | edit <filename> | remove <filename> | budget"
-allowed-tools: Read, Write, Edit, Glob, Bash, mcp__system_spec_memory__memory_save, mcp__system_spec_memory__memory_search, mcp__system_spec_memory__memory_stats, mcp__system_spec_memory__memory_list, mcp__system_spec_memory__memory_delete, mcp__system_spec_memory__memory_index_scan
+description: DEPRECATED — the constitutional-memory layer has been retired; this command no longer manages a searchable rule tier.
+argument-hint: "(deprecated — no active routes)"
+allowed-tools: Read, Glob
 ---
 
-# /memory:learn
+# /memory:learn — DEPRECATED
 
-Thin router for constitutional rule management.
+> **DEPRECATED.** The constitutional-memory layer has been retired and removed from the code.
+> This command previously authored and managed "constitutional rules": rule files pinned to a
+> special always-surface, search-boosted database tier and injected at session start. **That tier
+> no longer exists.** `/memory:learn` no longer creates, edits, indexes, or budgets any
+> constitutional tier, and it should not be used to do so.
 
-## 1. ROUTER CONTRACT
-
-Destination: `.opencode/skills/system-spec-kit/constitutional/`.
-
-Outputs:
-- `STATUS=OK ACTION=<overview|created|listed|edited|removed|budget>`
-- `STATUS=CANCELLED ACTION=<action>`
-- `STATUS=FAIL ERROR="<message>"`
-
-Guardrails:
-- Do not infer rule content from screenshots, open files, or prior conversation context.
-- Show generated constitutional rule content and wait for approval before writing a new rule.
-- For removal, validate filename is basename-only and wait for explicit confirmation.
-- This is a direct-dispatch command with no workflow YAML by design; do not create or modify workflow YAML from this command.
+The file is retained only because command routing may still reference it. Do not restore
+constitutional-tier authoring behavior from it.
 
 ---
 
-## 2. OWNED ASSETS
+## 1. WHAT CHANGED
 
-| Purpose | Asset |
-|---------|-------|
-| Presentation | `.opencode/commands/memory/assets/learn-presentation.txt` |
-
-This is a direct-dispatch command: it routes straight to the memory MCP tools and constitutional-rule filesystem writes and owns no workflow YAML by design.
-
-Before rendering any dashboard, approval prompt, or result block, read the presentation asset and use it as the display source of truth.
-
----
-
-## 3. MODE ROUTING
-
-Inputs:
-- Empty arguments route to overview.
-- `list` routes to constitutional rule list.
-- `budget` routes to token budget dashboard.
-- `edit <filename>` edits an existing constitutional rule.
-- `remove <filename>` removes an existing constitutional rule after confirmation.
-- Any other text is treated as a proposed new constitutional rule.
+- The special always-surface / search-boosted "constitutional" tier was removed from the memory
+  database. There is no longer a tier that pins rules to the top of memory search or injects them
+  at session start.
+- The former rule files under `.opencode/skills/system-spec-kit/constitutional/` **remain as plain,
+  unindexed reference docs**. They are ordinary Markdown references now, not a searchable or
+  auto-surfacing memory tier. Read them directly when needed.
+- There is no token budget, qualification prompt, or approval flow to run — those governed the
+  retired tier.
 
 ---
 
-## 4. EXECUTION TARGETS
+## 2. STILL IN FORCE
 
-This command dispatches to the constitutional-rule directory and the memory MCP tools declared in `allowed-tools` (`memory_save`, `memory_search`, `memory_stats`, `memory_list`, `memory_delete`, `memory_index_scan`). Routing procedure:
-
-1. Parse `$ARGUMENTS` and choose one route.
-2. For `edit` or `remove` without a filename, list available files and ask one targeted selection question.
-3. For create, verify the rule qualifies as constitutional; suggest `/memory:save` for scoped/session context.
-4. For create/edit/remove, preserve ANCHOR tags and frontmatter shape.
-5. Index changes through `memory_save` or `memory_index_scan` as appropriate.
-6. Verify constitutional visibility with `memory_search` when a new rule is created.
-7. Render all displays from the presentation asset.
+- The `memory-system-spec-kit-only` rule still applies: general topic/knowledge memory routes
+  through the system-spec-kit continuity system, not ad-hoc stores. This is plain operating
+  guidance now, not a constitutional-tier entry.
+- Spec-folder continuity and the spec-kit Memory MCP are unchanged.
 
 ---
 
-## 5. PRESENTATION BOUNDARY
+## 3. WHERE TO GO INSTEAD
 
-The following content lives only in `.opencode/commands/memory/assets/learn-presentation.txt`:
+- To save conversation or scoped session context: `/memory:save`.
+- To search continuity / spec-doc memory: `/memory:search`.
+- To manage the indexed-continuity database (stats, retention, learned triggers, health):
+  `/memory:manage`.
+- To resume prior work: `/speckit:resume`.
 
-- Overview, list, budget, create, edit, remove, confirmation, and result displays.
-- Constitutional-rule qualification prompts, approval wording, cancellation wording, and error displays.
-- Visibility verification, token-budget, and next-step text.
-
-The router must not invent visible wording for those surfaces; it only resolves the operation and required safety gates.
-
----
-
-## 6. WORKFLOW SUMMARY
-
-The router parses `$ARGUMENTS` into one route (overview, list, budget, create, edit, or remove), applies the constitutional-rule safety gates, dispatches to the memory MCP tools and constitutional-directory writes, indexes the change, verifies visibility, and renders every user-facing string through the presentation asset. It is a direct-dispatch command with no workflow YAML by design.
-
-Related commands: `/memory:search` (intent-aware context retrieval and analysis tools); `/memory:save` (save conversation context); `/memory:manage` (database management, checkpoints, ingest, retention, and health); `/speckit:resume` (session recovery and continuation).
+If you need a durable project rule, record it through the spec-kit continuity surfaces rather than a
+constitutional tier.

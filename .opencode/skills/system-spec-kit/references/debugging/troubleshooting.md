@@ -62,7 +62,6 @@ Issue Detected
 | Wrong script path | `File not found` | Use `.opencode/skills/system-spec-kit/` |
 | Arg format error | Invalid parameter | Use full folder name: `122-skill-standardization` |
 | Decay not applying | Old spec-doc records ranked high | Check `useDecay: true` in search params |
-| Constitutional not surfacing | Critical memories missing | Verify tier is `constitutional` via `memory_list()` |
 
 ### Before/After: Common Mistakes
 
@@ -139,10 +138,9 @@ memory_search({ query: "test" })
 | Old spec-doc records ranked too high | Decay not enabled | Set `useDecay: true` in search params |
 | Recent spec-doc records not prioritized | Decay rate too high | Check tier-specific rates (normal=0.80, temporary=0.60) |
 | Score calculations seem wrong | Missing FSRS fields | Verify `stability` and `last_review` fields populated |
-| Decay too aggressive | Low decay rate | Adjust tier or use a no-decay tier (constitutional/critical) |
+| Decay too aggressive | Low decay rate | Adjust tier or use a no-decay tier (critical) |
 
-**Note:** Under FSRS classification decay (`IMPORTANCE_TIER_STABILITY_MULTIPLIER`, gated by `SPECKIT_CLASSIFICATION_DECAY`), only two tiers have `Infinity` stability and therefore never decay:
-- constitutional
+**Note:** Under FSRS classification decay (`IMPORTANCE_TIER_STABILITY_MULTIPLIER`, gated by `SPECKIT_CLASSIFICATION_DECAY`), only the critical tier has `Infinity` stability and therefore never decays:
 - critical
 
 All other tiers decay, scaled by a stability multiplier:
@@ -361,19 +359,6 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
 That explicit target is authoritative. Session-learning hints and auto-detect logging do not reroute the save.
 
 Phase-folder targets are valid explicit save destinations. If a save lands in the wrong folder, re-run it with the exact phase-folder CLI target you intended to use.
-
-**"Constitutional memories not appearing"**
-
-Root Cause: Tier not set correctly
-
-✅ Solution:
-```javascript
-// Search constitutional tier directly
-memory_search({ query: "<rule keyword>", tier: "constitutional", limit: 3 })
-
-// Update tier if needed
-memory_update({ id: 123, importanceTier: "constitutional" })
-```
 
 ---
 

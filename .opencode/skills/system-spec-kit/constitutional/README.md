@@ -1,29 +1,30 @@
 ---
-title: "Constitutional Rules: Always-Surface Memory Files"
-description: "Markdown rule files that define always-surfaced Spec Kit Memory constraints."
+title: "Constitutional Rules: Reference Documents"
+description: "Markdown reference docs for the durable operating rules. No longer a searchable memory tier."
 trigger_phrases:
-  - "constitutional memory"
-  - "always-surface rules"
-  - "constitutional tier"
+  - "constitutional rules"
+  - "operating rules reference"
+  - "rule reference docs"
 ---
 
-# Constitutional Rules: Always-Surface Memory Files
+# Constitutional Rules: Reference Documents
 
-> Markdown rule files for global Spec Kit Memory constraints that must surface ahead of ordinary search results.
+> Markdown reference docs holding the long-form text of the durable operating rules. These are plain documents, not a searchable memory tier.
 
 ---
 
 ## 1. OVERVIEW
 
-`constitutional/` contains Markdown rule files indexed as the constitutional tier in Spec Kit Memory. Constitutional records are intended for global rules that must surface before ordinary search results, such as gate enforcement and search-tool routing.
+`constitutional/` holds the long-form text of the project's durable operating rules — gate enforcement, tool routing, CLI dispatch, comment hygiene, completion verification, and the rest.
+
+These files were formerly indexed as a special "constitutional" always-surface memory tier that pinned them to the top of Spec Kit Memory search results. **That tier has been retired.** The rules themselves remain fully in force: their operative text is inlined into the root operating docs (`CLAUDE.md`, `AGENTS.md`, `BARTER.md`) and enforced by hooks and classifiers. This folder is the canonical long-form home for each rule and a stable link target for those root docs.
 
 Current state:
 
-- The folder contains 20 active rule files spanning gate enforcement, tool routing, CLI dispatch, deep-skill workflow adoption, comment hygiene, memory-system and DB-topology rules, completion verification, deep-review, naming conventions, fable governor constraints, automated-writer safety, regression-baseline discipline, finding verification, recursion control, recorded-failure routing, and causal-graph semantics (see §2 Package Topology). It originated with just `gate-enforcement.md` and `gate-tool-routing.md`.
-- Rule files use frontmatter with `importanceTier: constitutional` and trigger phrases.
-- Constitutional rules are fixed-visibility records: `searchBoost: 3.0`, `alwaysSurface: true`, `decay: false`, `autoExpireDays: null`, and `maxTokens: 2000`.
-- Constitutional rules are permanent until edited or removed from this folder. They are not temporary memories and must not age out through decay.
-- Constitutional rules support agent safety and retrieval routing. They do not replace packet recovery from `handover.md`, `_memory.continuity` and canonical spec docs.
+- The folder contains 20 rule files (see §2 Package Topology) plus this README.
+- The files are **plain, unindexed reference docs**. They are not indexed into Spec Kit Memory, carry no importance tier, and are not auto-surfaced or injected at session start.
+- `memory-system-spec-kit-only.md` stays authoritative: use Spec Kit Memory for saves; never write native agent memory unprompted.
+- These docs support agent guidance and are stable link targets. They do not replace packet recovery from `handover.md`, `_memory.continuity` and canonical spec docs.
 
 ---
 
@@ -59,10 +60,7 @@ Rule-file shape:
 ```markdown
 ---
 title: "RULE TITLE"
-importanceTier: constitutional
 contextType: decision
-triggerPhrases:
-  - relevant phrase
 ---
 
 # Rule Title
@@ -71,22 +69,6 @@ triggerPhrases:
 
 Rule content.
 
-```
-
-Allowed dependency direction:
-
-```text
-constitutional/*.md -> memory indexing metadata
-memory_search() -> constitutional records first, then query results
-memory_match_triggers() -> trigger phrase matches
-```
-
-Disallowed dependency direction:
-
-```text
-constitutional rules -> packet-specific status or mutable packet history
-constitutional rules -> runtime code behavior not enforced elsewhere
-README.md -> replacement for the rule files themselves
 ```
 
 ---
@@ -154,39 +136,25 @@ Do not document `.DS_Store` or other local machine artifacts as part of the pack
 
 | Boundary | Rule |
 |---|---|
-| Imports | Rule files are Markdown inputs for memory indexing. They do not import code. |
-| Exports | Indexed records surface through memory search and trigger matching. |
-| Ownership | This folder owns global always-surface rules only. Packet-specific decisions stay in spec folders. |
+| Imports | Rule files are standalone Markdown reference docs. They do not import code. |
+| Exports | None. These are documents, not indexed records; nothing reads them at runtime. |
+| Ownership | This folder owns the long-form text of the durable operating rules only. Packet-specific decisions stay in spec folders. |
 | Rule language | Use direct MUST, STOP and REQUIRED language only when the rule is an actual hard constraint. |
-| Visibility budget | Keep each constitutional rule lean enough for the `maxTokens: 2000` budget in `importance-tiers.ts`. |
-| Verification | After rule edits, validate the README and re-index the changed rule file so fixed-priority surfacing is refreshed. |
+| Enforcement | The rules are enforced by hooks and classifiers and inlined into the root operating docs. This folder is documentation, not the enforcement path. |
+| Verification | After a rule edit, validate the README structure. No re-indexing is needed — the folder is not indexed. |
 
 Main flow:
 
 ```text
 ╭──────────────────────────────────────────╮
-│ constitutional/*.md                      │
+│ constitutional/*.md (reference docs)     │
 ╰──────────────────────────────────────────╯
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ frontmatter and ANCHOR sections          │
+│ inlined into CLAUDE.md / AGENTS.md /      │
+│ BARTER.md; enforced by hooks + classifiers │
 └──────────────────────────────────────────┘
-                  │
-                  ▼
-┌──────────────────────────────────────────┐
-│ memory_save or memory_index_scan         │
-└──────────────────────────────────────────┘
-                  │
-                  ▼
-┌──────────────────────────────────────────┐
-│ constitutional-tier memory records       │
-└──────────────────────────────────────────┘
-                  │
-                  ▼
-╭──────────────────────────────────────────╮
-│ surfaced in search and trigger results   │
-╰──────────────────────────────────────────╯
 ```
 
 ---
@@ -195,11 +163,8 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `*.md` rule files (20) | Rule document | Always-surfaced constitutional guidance; see §4 Key Files for the full list. |
-| `memory_search({ includeConstitutional: true })` | MCP tool behavior | Returns constitutional records before query-relevant records by default. |
-| `memory_match_triggers({ prompt })` | MCP tool behavior | Surfaces matching rules from trigger phrases. |
-| `memory_save({ filePath })` | MCP tool behavior | Indexes a single constitutional rule file. |
-| `memory_index_scan({ includeConstitutional: true })` | MCP tool behavior | Scans constitutional rule files with other indexed docs. |
+| `*.md` rule files (20) | Reference document | Long-form text of a durable operating rule; see §4 Key Files for the full list. |
+| Root operating docs | Inlined text | `CLAUDE.md`, `AGENTS.md`, `BARTER.md` carry the operative rule text and link here for the long form. |
 
 ---
 
@@ -219,12 +184,6 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/sy
 
 Expected result: structure extraction reports no critical README issues.
 
-When a rule file changes, index it after validation:
-
-```typescript
-memory_save({ filePath: ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md", force: true })
-```
-
 ---
 
 ## 8. RELATED
@@ -233,5 +192,4 @@ memory_save({ filePath: ".opencode/skills/system-spec-kit/constitutional/gate-en
 - [`../SKILL.md`](../SKILL.md)
 - [`./gate-enforcement.md`](./gate-enforcement.md)
 - [`./gate-tool-routing.md`](./gate-tool-routing.md)
-- The full set of 19 rule files is listed in §4 Key Files.
-- [`../mcp-server/lib/scoring/importance-tiers.ts`](../mcp-server/lib/scoring/importance-tiers.ts)
+- The full set of 20 rule files is listed in §4 Key Files.

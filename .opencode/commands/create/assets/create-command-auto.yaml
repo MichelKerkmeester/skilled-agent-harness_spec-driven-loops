@@ -587,7 +587,6 @@ workflow:
       rationale: "Command creation captures reusable workflow and routing decisions"
       promotion_note: "Use memory_update() to promote to 'critical' if this command becomes foundational"
       tier_reference: |
-        constitutional: Core project rules (auto-surface always)
         critical: Foundational decisions (high priority in search)
         important: Significant work like command creation (this workflow)
         normal: Standard context (default)

@@ -629,7 +629,7 @@ workflow:
     importance_tier:
       assign: important
       rationale: "Implementation sessions contain significant code decisions"
-      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
+      tier_reference: "critical > important > normal > temporary > deprecated"
 
   step_9_session_handover_check:
     purpose: Final workflow closeout after implementation
