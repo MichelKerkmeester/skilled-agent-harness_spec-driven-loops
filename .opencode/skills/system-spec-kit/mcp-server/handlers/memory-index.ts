@@ -48,7 +48,6 @@ import { repairIncompleteMarkers } from './save/enrichment-state.js';
 import { isMemoryIdempotencyEnabled } from '../lib/storage/idempotency-receipts.js';
 import { recordNearDuplicateCheck } from '../lib/storage/near-duplicate.js';
 import {
-  findConstitutionalFiles,
   findGraphMetadataFiles,
   findSpecDocuments,
   detectSpecLevel,
@@ -757,7 +756,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
   const workspacePath: string = DEFAULT_BASE_PATH;
 
-  const constitutionalFiles: string[] = scopedScanPaths.length === 0 && include_constitutional ? findConstitutionalFiles(workspacePath) : [];
+  const constitutionalFiles: string[] = [];
   const specDocFiles = scopedScanPaths.length > 0
     ? Object.assign(scopedScanPaths.filter((filePath) => isEligibleScopedSpecDocumentPath(filePath)), { warnings: [], capExceeded: emptyDiscoveryCapExceeded() }) as DiscoveryFileList
     : include_spec_docs
@@ -2160,7 +2159,6 @@ export {
   // job-queue/maintenance-marker plumbing handleMemoryIndexScan's background path uses.
   runIndexScan,
   indexSingleFile,
-  findConstitutionalFiles,
   findSpecDocuments,
   detectSpecLevel,
   summarizeAliasConflicts,
@@ -2172,7 +2170,6 @@ export {
 // Backward-compatible aliases (snake_case)
 const handle_memory_index_scan = handleMemoryIndexScan;
 const index_single_file = indexSingleFile;
-const find_constitutional_files = findConstitutionalFiles;
 const find_spec_documents = findSpecDocuments;
 const detect_spec_level = detectSpecLevel;
 const summarize_alias_conflicts = summarizeAliasConflicts;
@@ -2181,7 +2178,6 @@ const run_divergence_reconcile_hooks = runDivergenceReconcileHooks;
 export {
   handle_memory_index_scan,
   index_single_file,
-  find_constitutional_files,
   find_spec_documents,
   detect_spec_level,
   summarize_alias_conflicts,

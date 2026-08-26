@@ -91,7 +91,6 @@ export {
 } from '../lib/governance/scope-governance.js';
 
 export {
-  isIndexableConstitutionalMemoryPath,
   shouldIndexForMemory,
   isExcludedFromGeneratedMetadata,
 } from '../lib/utils/index-scope.js';

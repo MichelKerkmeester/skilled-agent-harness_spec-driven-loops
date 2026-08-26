@@ -14,7 +14,6 @@ import { clearGraphSignalsCache } from '../graph/graph-signals.js';
 import { recordHistory } from '../storage/history.js';
 import { buildMemoryLogicalKey } from '../storage/lineage-state.js';
 import { getCanonicalPathKey } from '../utils/canonical-path.js';
-import { isIndexableConstitutionalMemoryPath } from '../utils/index-scope.js';
 import { createLogger } from '../utils/logger.js';
 import { deleteByContentHash } from '../cache/embedding-cache.js';
 import { clearDegreeCacheForDb } from './graph-search-fn.js';
@@ -585,39 +584,8 @@ export function update_memory(
       values.push(importanceWeight);
     }
     if (importanceTier !== undefined) {
-      let nextImportanceTier = importanceTier;
-      const previousTier = existingRow?.importance_tier ?? null;
-      if (
-        existingRow
-      ) {
-        const guardPath = existingRow.canonical_file_path || existingRow.file_path;
-        const hasNonConstitutionalPath = guardPath && !isIndexableConstitutionalMemoryPath(guardPath);
-        if (hasNonConstitutionalPath && importanceTier === 'constitutional') {
-          // Non-constitutional paths cannot be promoted to constitutional tier.
-          nextImportanceTier = 'important';
-        }
-        if (
-          hasNonConstitutionalPath
-          && (
-            importanceTier === 'constitutional'
-            || (previousTier === 'constitutional' && nextImportanceTier !== 'constitutional')
-          )
-        ) {
-          tryRecordTierDowngradeAudit(database, {
-            memoryId: id,
-            specFolder: existingRow.spec_folder,
-            anchorId: existingRow.anchor_id,
-            filePath: existingRow.file_path,
-            canonicalFilePath: existingRow.canonical_file_path,
-            requestedTier: importanceTier,
-            previousTier,
-            nextTier: nextImportanceTier,
-            source: 'update_memory',
-          });
-        }
-      }
       updates.push('importance_tier = ?');
-      values.push(nextImportanceTier);
+      values.push(importanceTier);
     }
     if (canonicalFilePath !== undefined) {
       updates.push('canonical_file_path = ?');

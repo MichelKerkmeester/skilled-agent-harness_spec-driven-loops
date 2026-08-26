@@ -17,7 +17,7 @@ import {
   shouldDescendSpecDiscoveryDirectory,
 } from '../lib/config/spec-doc-paths.js';
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
-import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../lib/utils/index-scope.js';
+import { shouldIndexForMemory } from '../lib/utils/index-scope.js';
 
 /* ------- 2. CONSTANTS ------- */
 
@@ -265,41 +265,6 @@ export function detectSpecLevel(specPath: string): number | null {
   }
 }
 
-/** Discover constitutional memory files from skill constitutional directories. */
-export function findConstitutionalFiles(workspacePath: string): string[] {
-  const results: string[] = [];
-  const skillDir = path.join(workspacePath, '.opencode', 'skills');
-
-  if (!fs.existsSync(skillDir)) return results;
-
-  try {
-    const skillEntries = fs.readdirSync(skillDir, { withFileTypes: true });
-    for (const entry of skillEntries) {
-      if (!entry.isDirectory() || entry.name.startsWith('.')) continue;
-      const constitutionalDir = path.join(skillDir, entry.name, 'constitutional');
-      if (!fs.existsSync(constitutionalDir)) continue;
-      try {
-        const files = fs.readdirSync(constitutionalDir, { withFileTypes: true });
-        for (const file of files) {
-          const normalizedName = file.name.toLowerCase();
-          if (file.isFile() && normalizedName.endsWith('.md')) {
-            const fullPath = path.join(constitutionalDir, file.name);
-            if (!shouldIndexForMemory(fullPath)) continue;
-            if (!isIndexableConstitutionalMemoryPath(fullPath)) continue;
-            results.push(fullPath);
-          }
-        }
-      } catch (err: unknown) {
-        const message = toErrorMessage(err);
-        console.warn(`Warning: Could not read constitutional dir ${constitutionalDir}:`, message);
-      }
-    }
-  } catch (err: unknown) {
-    const message = toErrorMessage(err);
-    console.warn(`Warning: Could not read skill directory:`, message);
-  }
-  return results;
-}
 
 /** Discover graph-metadata.json files from spec folder roots. */
 export function findGraphMetadataFiles(workspacePath: string, options: SpecDiscoveryOptions = {}): DiscoveryFileList {

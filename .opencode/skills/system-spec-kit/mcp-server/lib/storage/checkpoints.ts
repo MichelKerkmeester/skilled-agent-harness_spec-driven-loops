@@ -1,8 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Checkpoints
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Checkpoint creation (checkpoint_create)
-// Feature catalog: Checkpoint restore (checkpoint_restore)
+// Checkpoint create / restore storage operations.
 // Gzip-compressed database checkpoints with embedding preservation
 // Node stdlib
 import * as fs from 'fs';
@@ -29,7 +28,7 @@ import { generateCommunitySummaries } from '../graph/community-summaries.js';
 import { storeCommunities } from '../graph/community-storage.js';
 import { snapshotDegrees } from '../graph/graph-signals.js';
 import { runLineageBackfill } from './lineage-state.js';
-import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../utils/index-scope.js';
+import { shouldIndexForMemory } from '../utils/index-scope.js';
 import { reopenActiveDatabase } from '../search/vector-index-store.js';
 import { NEEDS_REBUILD_SENTINEL_SOURCE } from '../search/vector-index-types.js';
 import { SCHEMA_VERSION } from '../search/vector-index-schema.js';
@@ -2286,28 +2285,6 @@ function validateMemoryRow(
     throw new Error(`Checkpoint row ${index}: path excluded from memory indexing (${resolvedPath as string})`);
   }
 
-  if (r.importance_tier === 'constitutional' && !isIndexableConstitutionalMemoryPath(resolvedPath as string)) {
-    tierDowngradeAudits.push({
-      memoryId: r.id as number,
-      logicalKey: buildGovernanceLogicalKey(
-        typeof r.spec_folder === 'string' ? r.spec_folder : null,
-        resolvedPath as string,
-        typeof r.anchor_id === 'string' ? r.anchor_id : null,
-      ),
-      action: GOVERNANCE_AUDIT_ACTIONS.TIER_DOWNGRADE_NON_CONSTITUTIONAL_PATH,
-      reason: 'non_constitutional_path',
-      requestedTier: 'constitutional',
-      nextTier: 'important',
-      source: 'checkpoint_restore',
-      filePath: typeof r.file_path === 'string' ? r.file_path : null,
-      canonicalFilePath: typeof r.canonical_file_path === 'string' ? r.canonical_file_path : null,
-      metadata: {
-        rowIndex: index,
-        importanceTier: r.importance_tier ?? null,
-      },
-    });
-    r.importance_tier = 'important';
-  }
 }
 
 /* ───────────────────────────────────────────────────────────────

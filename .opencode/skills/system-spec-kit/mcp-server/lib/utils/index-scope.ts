@@ -243,18 +243,3 @@ export function shouldIndexForCodeGraph(
   return true;
 }
 
-export function isConstitutionalPath(absolutePath: string): boolean {
-  return compileSegmentPattern('constitutional').test(normalizeIndexScopePath(absolutePath));
-}
-
-export function isIndexableConstitutionalMemoryPath(absolutePath: string): boolean {
-  const normalizedPath = normalizeIndexScopePath(absolutePath);
-  if (!isConstitutionalPath(normalizedPath)) {
-    return false;
-  }
-
-  const segments = normalizedPath.split('/').filter(Boolean);
-  const constitutionalIndex = segments.findIndex(segment => segment.toLowerCase() === 'constitutional');
-  const basename = segments[segments.length - 1]?.toLowerCase() ?? '';
-  return constitutionalIndex >= 0 && basename !== 'readme.md';
-}

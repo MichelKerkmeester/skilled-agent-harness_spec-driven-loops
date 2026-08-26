@@ -9,7 +9,6 @@ import {
   buildGovernanceLogicalKey,
   recordTierDowngradeAudit,
 } from '../governance/scope-governance.js';
-import { isIndexableConstitutionalMemoryPath } from '../utils/index-scope.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -88,39 +87,6 @@ export function applyPostInsertMetadata(
   fields: PostInsertMetadataFields,
 ): void {
   const normalizedFields: PostInsertMetadataFields = { ...fields };
-  if (normalizedFields.importance_tier === 'constitutional') {
-    const row = db.prepare(`
-      SELECT spec_folder, anchor_id, file_path, canonical_file_path
-      FROM memory_index
-      WHERE id = ?
-    `).get(memoryId) as {
-      spec_folder: string | null;
-      anchor_id: string | null;
-      file_path: string | null;
-      canonical_file_path: string | null;
-    } | undefined;
-
-    const guardPath = row?.canonical_file_path || row?.file_path || null;
-    if (guardPath && !isIndexableConstitutionalMemoryPath(guardPath)) {
-      normalizedFields.importance_tier = 'important';
-      try {
-        recordTierDowngradeAudit(db, {
-          memoryId,
-          logicalKey: buildGovernanceLogicalKey(row?.spec_folder, guardPath, row?.anchor_id),
-          requestedTier: 'constitutional',
-          nextTier: 'important',
-          source: 'applyPostInsertMetadata',
-          filePath: row?.file_path ?? null,
-          canonicalFilePath: row?.canonical_file_path ?? null,
-        });
-      } catch (error: unknown) {
-        console.warn(
-          '[post-insert-metadata] governance_audit insert failed for tier downgrade:',
-          error instanceof Error ? error.message : String(error),
-        );
-      }
-    }
-  }
 
   const setClauses: string[] = [];
   const values: unknown[] = [];

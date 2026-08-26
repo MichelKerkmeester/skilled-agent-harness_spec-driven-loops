@@ -1375,7 +1375,6 @@ async function startupScan(basePath: string): Promise<void> {
     for (const root of scanRoots) {
       try {
         const rootFiles = [
-          ...memoryIndexDiscovery.findConstitutionalFiles(root),
           ...memoryIndexDiscovery.findSpecDocuments(root),
         ];
 
