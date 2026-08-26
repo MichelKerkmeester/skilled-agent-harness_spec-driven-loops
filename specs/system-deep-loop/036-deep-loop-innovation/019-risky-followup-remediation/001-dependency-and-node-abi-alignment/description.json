@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment",
+  "description": "`dependency-seams` asserts the deep-loop runtime installs the SAME native-dependency versions system-spec-kit pins, so that a single Node process",
+  "keywords": [
+    "dependency-seams",
+    "asserts",
+    "deep-loop",
+    "runtime",
+    "installs",
+    "same",
+    "native-dependency",
+    "versions",
+    "system-spec-kit",
+    "pins",
+    "single",
+    "node",
+    "process"
+  ],
+  "lastUpdated": "2026-08-26T11:05:01.756Z",
+  "specId": "001",
+  "folderSlug": "dependency-and-node-abi-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "019-risky-followup-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
