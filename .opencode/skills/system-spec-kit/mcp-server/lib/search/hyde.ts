@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: HyDE (Hypothetical Document Embeddings)
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: HyDE (Hypothetical Document Embeddings)
+// HyDE: hypothetical-document-embedding query expansion.
 //
 // Gate: SPECKIT_HYDE — deep + low-confidence queries only.
 //
@@ -372,7 +372,6 @@ export function vectorOnly(
   return vectorIndex.vectorSearch(embedding, {
     limit,
     specFolder,
-    includeConstitutional: false,
   }) as PipelineRow[];
 }
 

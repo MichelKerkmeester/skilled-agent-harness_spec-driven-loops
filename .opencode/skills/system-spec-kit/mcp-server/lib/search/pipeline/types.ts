@@ -222,7 +222,6 @@ export interface PipelineConfig {
   tier?: string;
   contextType?: string;
   includeArchived: boolean;
-  includeConstitutional: boolean;
   includeContent: boolean;
   anchors?: string[];
   qualityThreshold?: number;

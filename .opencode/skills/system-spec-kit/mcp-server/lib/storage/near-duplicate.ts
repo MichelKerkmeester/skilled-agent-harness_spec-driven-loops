@@ -110,7 +110,6 @@ export function recordNearDuplicateCheck(args: {
     limit: 8,
     specFolder: args.specFolder,
     minSimilarity: Math.round(NEAR_DUPLICATE_SIMILARITY_THRESHOLD * 100),
-    includeConstitutional: false,
   }) as Array<Record<string, unknown>>;
   const ids = candidates
     .map((candidate) => candidate.id)

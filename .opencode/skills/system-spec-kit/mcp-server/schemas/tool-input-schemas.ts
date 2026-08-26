@@ -12,7 +12,7 @@ import { z, ZodError } from 'zod';
 
 import type { ZodType } from 'zod';
 
-// Feature catalog: Strict Zod schema validation
+// Strict Zod schema validation for MCP tool inputs.
 
 /* ───────────────────────────────────────────────────────────────
    2. TYPES
@@ -176,7 +176,6 @@ const memoryContextSchema = getSchema({
   sessionId: z.string().optional(),
   enableDedup: z.boolean().optional(),
   includeContent: z.boolean().optional(),
-  includeConstitutional: z.boolean().optional(),
   includeTrace: z.boolean().optional(), // Forward to internal memory_search
   tokenBudget: positiveIntMax(100000).optional(),
   tokenUsage: boundedNumber(0, 1).optional(),
@@ -199,7 +198,6 @@ const memorySearchSchema = getSchema({
   contextType: z.string().optional(),
   useDecay: z.boolean().optional(),
   includeContiguity: z.boolean().optional(),
-  includeConstitutional: z.boolean().optional(),
   enableSessionBoost: z.boolean().optional(),
   enableCausalBoost: z.boolean().optional(),
   includeContent: z.boolean().optional(),
@@ -510,7 +508,6 @@ const evalReportingDashboardSchema = getSchema({
 const memoryIndexScanSchema = getSchema({
   specFolder: optionalPathString(),
   force: z.boolean().optional(),
-  includeConstitutional: z.boolean().optional(),
   includeSpecDocs: z.boolean().optional(),
   incremental: z.boolean().optional(),
   background: z.boolean().optional(),
@@ -635,8 +632,8 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
 };
 
 const ALLOWED_PARAMETERS: Record<string, string[]> = {
-  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeConstitutional', 'includeTrace', 'tokenBudget', 'tokenUsage', 'anchors', 'profile'],
-  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'retrievalLevel', 'includeTrace', 'profile', 'debug'],
+  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenBudget', 'tokenUsage', 'anchors', 'profile'],
+  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'retrievalLevel', 'includeTrace', 'profile', 'debug'],
   memory_quick_search: ['query', 'limit', 'specFolder', 'tenantId', 'userId', 'agentId'],
   memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
   memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'routeAs', 'mergeModeHint', 'plannerMode', 'targetAnchorId', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
@@ -663,7 +660,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_causal_unlink: ['edgeId'],
   eval_run_ablation: ['mode', 'dataset', 'dryRun', 'channels', 'queries', 'groundTruthQueryIds', 'recallK', 'storeResults', 'includeFormattedReport'],
   eval_reporting_dashboard: ['sprintFilter', 'channelFilter', 'metricFilter', 'limit', 'format'],
-  memory_index_scan: ['specFolder', 'force', 'includeConstitutional', 'includeSpecDocs', 'incremental', 'background', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+  memory_index_scan: ['specFolder', 'force', 'includeSpecDocs', 'incremental', 'background', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_index_scan_status: ['jobId'],
   memory_index_scan_cancel: ['jobId'],
   memory_get_learning_history: ['specFolder', 'sessionId', 'limit', 'onlyComplete', 'includeSummary'],

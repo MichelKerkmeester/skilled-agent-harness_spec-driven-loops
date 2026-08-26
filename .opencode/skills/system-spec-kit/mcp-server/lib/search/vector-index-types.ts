@@ -172,7 +172,6 @@ export interface VectorSearchOptions {
   useDecay?: boolean;
   tier?: string | null;
   contextType?: string | null;
-  includeConstitutional?: boolean;
   includeArchived?: boolean;
 }
 

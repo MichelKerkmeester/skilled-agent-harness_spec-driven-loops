@@ -1942,7 +1942,6 @@ async function main(): Promise<void> {
       workspacePath: DEFAULT_BASE_PATH,
       runScopedScan: async (scopedPaths) => {
         const response = await handleMemoryIndexScan({
-          includeConstitutional: false,
           includeSpecDocs: true,
           incremental: true,
           force: false,

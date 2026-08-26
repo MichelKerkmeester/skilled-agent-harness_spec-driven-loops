@@ -678,7 +678,6 @@ interface SearchArgs {
   contextType?: string;
   useDecay?: boolean;
   includeContiguity?: boolean;
-  includeConstitutional?: boolean;
   includeContent?: boolean;
   anchors?: string[];
   bypassCache?: boolean;
@@ -1313,7 +1312,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     contextType,
     useDecay: useDecay = true,
     includeContiguity: includeContiguity = false,
-    includeConstitutional: includeConstitutional = false,
     includeContent: includeContent = false,
     anchors,
     bypassCache: bypassCache = false,
@@ -1651,7 +1649,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     qualityThreshold,
     applyStateLimits,
     includeContiguity,
-    includeConstitutional,
     includeContent,
     anchors,
     detectedIntent,
@@ -1707,7 +1704,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       tier,
       contextType,
       includeArchived,
-      includeConstitutional,
       includeContent,
       anchors,
       qualityThreshold,

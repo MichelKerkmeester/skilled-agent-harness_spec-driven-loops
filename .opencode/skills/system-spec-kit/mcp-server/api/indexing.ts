@@ -26,7 +26,6 @@ import { initAccessTracker, initCheckpoints } from './storage.js';
 export interface MemoryIndexScanArgs {
   specFolder?: string | null;
   force?: boolean;
-  includeConstitutional?: boolean;
   includeSpecDocs?: boolean;
   incremental?: boolean;
 }
@@ -114,7 +113,6 @@ export async function reindexSpecDocs(specFolder: string): Promise<MCPResponse> 
   return runMemoryIndexScan({
     specFolder,
     includeSpecDocs: true,
-    includeConstitutional: false,
     incremental: true,
     force: false,
   });
@@ -128,7 +126,6 @@ export async function runEnrichmentBackfill(specFolder: string): Promise<MCPResp
     return await runMemoryIndexScan({
       specFolder,
       includeSpecDocs: true,
-      includeConstitutional: false,
       incremental: true,
       force: false,
     });

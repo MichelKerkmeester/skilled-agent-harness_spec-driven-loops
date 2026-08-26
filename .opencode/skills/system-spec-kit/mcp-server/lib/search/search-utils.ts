@@ -43,7 +43,6 @@ interface CacheArgsInput {
   qualityThreshold?: number;
   applyStateLimits: boolean | undefined;
   includeContiguity: boolean;
-  includeConstitutional: boolean;
   includeContent: boolean;
   anchors?: string[] | string;
   detectedIntent: string | null;
@@ -169,7 +168,6 @@ function buildCacheArgs({
   qualityThreshold,
   applyStateLimits,
   includeContiguity,
-  includeConstitutional,
   includeContent,
   anchors,
   detectedIntent,
@@ -217,7 +215,6 @@ function buildCacheArgs({
     qualityThreshold,
     applyStateLimits,
     includeContiguity,
-    includeConstitutional,
     includeContent,
     anchors,
     intent: resolvedFusionIntent ?? detectedIntent,

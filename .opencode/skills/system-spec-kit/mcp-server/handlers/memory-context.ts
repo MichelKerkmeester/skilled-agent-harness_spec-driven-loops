@@ -93,7 +93,6 @@ interface ContextOptions {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
-  includeConstitutional?: boolean;
   includeTrace?: boolean; // Forward to internal memory_search calls
   tokenBudget?: number;
   anchors?: string[];
@@ -131,7 +130,6 @@ interface ContextArgs {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
-  includeConstitutional?: boolean;
   includeTrace?: boolean; // Forward to internal memory_search calls
   tokenBudget?: number;
   tokenUsage?: number;
@@ -1188,7 +1186,6 @@ async function executeDeepStrategy(input: string, intent: string | null, options
     userId: options.userId,
     agentId: options.agentId,
     limit: options.limit || 10,
-    includeConstitutional: options.includeConstitutional === true,
     includeContent: options.includeContent || false,
     includeTrace: options.includeTrace || false, // Forward to internal memory_search calls
     anchors: options.anchors,
@@ -1218,7 +1215,6 @@ async function executeFocusedStrategy(input: string, intent: string | null, opti
     userId: options.userId,
     agentId: options.agentId,
     limit: options.limit || 8,
-    includeConstitutional: options.includeConstitutional === true,
     includeContent: options.includeContent || false,
     includeTrace: options.includeTrace || false, // Forward to internal memory_search calls
     anchors: options.anchors,
@@ -1775,7 +1771,6 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       limit,
       enableDedup: enableDedup,
       includeContent: include_content,
-      includeConstitutional: args.includeConstitutional,
       includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true || debugProfileRequested,
       tokenBudget: requestedTokenBudget,
       anchors,

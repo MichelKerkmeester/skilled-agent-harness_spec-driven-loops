@@ -25,8 +25,7 @@ import {
   type WriteProvenanceContext,
 } from '../lib/storage/write-provenance.js';
 
-// Feature catalog: Prediction-error save arbitration
-// Feature catalog: Memory indexing (memory_save)
+// Prediction-error save arbitration gating for memory_save.
 
 export { calculateDocumentWeight, isSpecDocumentType } from '../lib/storage/document-helpers.js';
 
@@ -151,7 +150,6 @@ function findSimilarMemories(
         limit: fetchLimit,
         specFolder: specFolder,
         minSimilarity: 50,
-        includeConstitutional: false
       });
 
       for (const r of results) {

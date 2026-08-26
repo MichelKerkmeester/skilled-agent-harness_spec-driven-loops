@@ -494,7 +494,6 @@ function createScanKey(options: ScanKeyOptions): string {
 interface ScanArgs {
   specFolder?: string | null;
   force?: boolean;
-  includeConstitutional?: boolean;
   includeSpecDocs?: boolean;
   incremental?: boolean;
   // Opt-in: run the scan as a background job and return a jobId immediately.
@@ -584,7 +583,6 @@ function redactScanArgs(args: ScanArgs): Record<string, unknown> {
   return {
     specFolder: args.specFolder ?? null,
     force: !!args.force,
-    includeConstitutional: args.includeConstitutional === true,
     includeSpecDocs: args.includeSpecDocs !== false,
     incremental: args.incremental !== false,
     background: true,
@@ -621,11 +619,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   const {
     specFolder: spec_folder = null,
     force = false,
-    includeConstitutional: include_constitutional = false,
     includeSpecDocs: include_spec_docs = true,
     incremental = true,
     scopedPaths = [],
   } = args;
+  // Constitutional-tier indexing is retired; the indexer no longer takes this
+  // flag from the tool input. The internal discovery guard stays wired but is
+  // now always disabled.
+  const include_constitutional = false;
   const scopedScanPaths = Array.isArray(scopedPaths)
     ? Array.from(new Set(scopedPaths.filter((filePath) => typeof filePath === 'string' && filePath.length > 0).map((filePath) => path.resolve(filePath))))
     : [];

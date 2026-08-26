@@ -53,8 +53,7 @@ import type { RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
 
 import type { MCPResponse } from './types.js';
 
-// Feature catalog: Reporting dashboard (eval_reporting_dashboard)
-// Feature catalog: Ablation studies (eval_run_ablation)
+// Handlers for the eval reporting dashboard and ablation studies.
 
 
 interface RunAblationArgs {
@@ -150,7 +149,6 @@ function buildEvalPipelineConfig(
     searchType: 'hybrid',
     limit: recallK,
     includeArchived: false,
-    includeConstitutional: false,
     includeContent: true,
     minState: '',
     applyStateLimits: false,
@@ -269,7 +267,6 @@ function buildRawFusionLists(
     const vectorResults = vectorIndex.vectorSearch(embedding, {
       limit,
       minSimilarity: 0,
-      includeConstitutional: false,
       includeArchived: false,
     });
     if (vectorResults.length > 0) {
