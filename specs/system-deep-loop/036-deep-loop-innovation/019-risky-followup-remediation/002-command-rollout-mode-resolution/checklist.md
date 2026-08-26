@@ -6,7 +6,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution"
-    last_updated_at: "2026-08-26T12:00:00.000Z"
+    last_updated_at: "2026-08-26T15:40:00.000Z"
     last_updated_by: "claude"
     recent_action: "Authored the rollout-mode checklist"
     next_safe_action: "Execute Phase 1"
@@ -61,7 +61,7 @@ _memory:
   - **Evidence**: `vitest run` green; no `STALE_SOURCE_DIGEST`
 - [x] CHK-021 [P0] `render-command-contract` passes
   - **Evidence**: `resolveMode('deep/review')` equals the decided mode
-- [x] CHK-022 [P1] `legacy-projections` still passes; whole-suite delta clean
+- [x] CHK-022 [P1] `legacy-projections` still passes; whole-suite delta clean (vitest AND `run-node-tests.mjs`)
   - **Evidence**: whole-suite run vs the 017 baseline
 
 <!-- /ANCHOR:testing -->
@@ -71,7 +71,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-024 [P0] No unintended behavior change
-  - **Evidence**: the rendered body matches the decided mode; any change is approved — `resolveMode('deep/review')` = `fix`
+  - **Evidence**: `fallback` is the already-shipped mode, so no runtime behavior change — `resolveMode('deep/review')` = `fallback`; `validate-rollout` green
 - [x] CHK-025 [P1] All three deep/* contracts fresh
   - **Evidence**: review, research, ai-council digests match after recompile — `check-contract-drift` green
 

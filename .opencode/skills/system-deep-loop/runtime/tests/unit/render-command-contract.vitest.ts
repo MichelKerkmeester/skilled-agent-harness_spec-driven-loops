@@ -157,8 +157,8 @@ describe('render-command-contract', () => {
       manifestPath: tempManifestPath(),
     }));
 
-    expect(renderer.resolveMode('deep/review')).toBe('fix');
-    expect(result.mode).toBe('fix');
+    expect(renderer.resolveMode('deep/review')).toBe('fallback');
+    expect(result.mode).toBe('fallback');
   });
 
   it.each(commands)('exposes a zero-diff compare CLI for %s', (command) => {
