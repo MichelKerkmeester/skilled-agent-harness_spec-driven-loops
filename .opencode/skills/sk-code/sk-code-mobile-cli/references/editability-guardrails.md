@@ -11,7 +11,7 @@ trigger_phrases:
   - "guardrail fence counter"
 importance_tier: normal
 contextType: implementation
-version: 1.7.0.0
+version: 0.1.7.0
 ---
 
 # Editability Guardrails
