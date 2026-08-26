@@ -6,7 +6,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution"
-    last_updated_at: "2026-08-26T12:00:00.000Z"
+    last_updated_at: "2026-08-26T15:40:00.000Z"
     last_updated_by: "claude"
     recent_action: "Authored the rollout-mode phased plan"
     next_safe_action: "Phase 1: determine the intended default mode"
@@ -26,12 +26,12 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Symptom** | `check-contract-drift` + `render-command-contract` fail: `STALE_SOURCE_DIGEST` for deep/review, deep/research, deep/ai-council |
-| **Trap** | Recompiling clears staleness but flips deep/review rollout mode `fix`→`fallback` |
+| **Trap** | Promoting to `fix` needs an evidence object (`validate-rollout.cjs`); a bare `fix` string is invalid and breaks a node:test the vitest gate misses |
 | **Renderer** | `scripts/render-command-contract.cjs` exposes `resolveMode` + `COMMANDS` |
-| **Verification** | `render-command-contract` + `check-contract-drift` + whole suite |
+| **Verification** | `render-command-contract` + `check-contract-drift` + `validate-rollout` (node:test) + whole suite |
 
 ### Overview
-The failing tests are two entangled things: stale compiled contracts (a mechanical recompile) and a rollout-mode default that the recompile changes. The plan decides the intended mode first — from the rollout config, the renderer's `resolveMode` logic, and git history — then makes the config/compiler and the `resolveMode` test agree on that decision, and only then recompiles all deep/* contracts so the staleness clears with the mode intentionally set.
+The failing tests are two separable things: stale compiled contracts (a mechanical recompile) and a `resolveMode` expectation that disagreed with the shipped rollout mode. The intended mode is `fallback` — `fix` requires an evidence object that does not exist, enforced by `validate-rollout.cjs`. So the plan keeps `fallback`, recompiles the contracts to clear staleness, and corrects the stale `render-command-contract` expectation to `fallback`. Verification runs BOTH the vitest suite and `run-node-tests.mjs` so a rollout-evidence regression cannot pass a vitest-only gate.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -40,13 +40,13 @@ The failing tests are two entangled things: stale compiled contracts (a mechanic
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `resolveMode` traced; what sets `fix` vs `fallback` understood
-- [ ] The intended default decided with a cited source of truth
+- [x] `resolveMode` traced; what sets `fix` vs `fallback` understood
+- [x] The intended default decided with a cited source of truth (`fallback`)
 
 ### Definition of Done
-- [ ] `check-contract-drift` + `render-command-contract` pass
-- [ ] `resolveMode` and the compiled contracts agree
-- [ ] No unintended runtime behavior change; whole-suite delta clean
+- [x] `check-contract-drift` + `render-command-contract` pass
+- [x] `resolveMode('deep/review')` = `fallback`; `validate-rollout` green
+- [x] No unintended runtime behavior change; whole-suite delta clean (vitest + node:test)
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -69,22 +69,22 @@ Decide-then-regenerate. The rollout mode is a deliberate config, not an accident
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Investigate & decide
-- [ ] Read `resolveMode` + the `COMMANDS` map in `render-command-contract.cjs`; find what selects `fix` vs `fallback`
-- [ ] Check git history / the rollout config for the intended default of the deep commands
-- [ ] Confirm whether the stale source docs are the current intended content (not a half-applied edit)
-- [ ] **Decide** the default: `fix` (compiled contract body) or `fallback` (legacy body), with the cited source of truth
+- [x] Read `resolveMode` + the `COMMANDS` map in `render-command-contract.cjs`; find what selects `fix` vs `fallback`
+- [x] Check git history / the rollout config + `validate-rollout.cjs` for the intended default
+- [x] Confirm the demotion in `bce47507b6d` was deliberate (evidence for `fix` never existed)
+- [x] **Decide**: `fallback` (legacy body), sourced to the evidence-governance rule
 
 ### Phase 2: Implement
-- [ ] If `fix` is intended: correct the compiler/config so a recompile keeps `fix`
-- [ ] If `fallback` is intended: update the `resolveMode` expectation in the test
-- [ ] Recompile all deep/* contracts (`compile-command-contracts.cjs --command … --write`)
-- [ ] Confirm the compiled body matches the decided mode
+- [x] `fix` path NOT taken — it needs a genuine evidence object, out of scope
+- [x] `fallback` path: updated the stale `resolveMode('deep/review')` expectation to `fallback`
+- [x] Recompile all deep/* contracts (`compile-command-contracts.cjs --command … --write`)
+- [x] Confirm `validate-rollout` stays green with the config at `fallback`
 
 ### Phase 3: Verify
-- [ ] `check-contract-drift` passes (no `STALE_SOURCE_DIGEST`)
-- [ ] `render-command-contract` passes; `resolveMode('deep/review')` = decided mode
-- [ ] `legacy-projections` still passes (compiled-contract census unaffected)
-- [ ] Whole runtime suite vs the 017 baseline: no new failures
+- [x] `check-contract-drift` passes (no `STALE_SOURCE_DIGEST`)
+- [x] `render-command-contract` passes; `resolveMode('deep/review')` = `fallback`
+- [x] `legacy-projections` still passes (compiled-contract census unaffected)
+- [x] `validate-rollout.test.cjs` (node:test) passes; whole runtime suite vs baseline: no new failures
 
 <!-- /ANCHOR:phases -->
 ---

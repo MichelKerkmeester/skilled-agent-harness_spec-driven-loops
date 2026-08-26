@@ -6,7 +6,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution"
-    last_updated_at: "2026-08-26T12:00:00.000Z"
+    last_updated_at: "2026-08-26T15:40:00.000Z"
     last_updated_by: "claude"
     recent_action: "Authored the rollout-mode task list"
     next_safe_action: "Execute Phase 1"
@@ -37,7 +37,7 @@ _memory:
 - [x] T002 Find what selects `fix` vs `fallback` (env, manifest, constant)
 - [x] T003 Check git history / rollout config for the intended deep/* default (`1904d343ea9`, `bce47507b6d`)
 - [x] T004 Confirm the stale source docs are the current intended content (`compile-command-contracts.cjs`)
-- [x] T005 Decide `fix` or `fallback` with the cited source of truth
+- [x] T005 Decide `fix` or `fallback` with the cited source of truth (`fallback`; `validate-rollout.cjs` governance)
 
 <!-- /ANCHOR:phase-1 -->
 ---
@@ -45,8 +45,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T006 If `fix`: correct the compiler/config so recompile keeps `fix`
-- [x] T007 If `fallback`: update the `resolveMode` expectation in the test
+- [x] T006 (not taken) `fix` path would need a genuine evidence object per `validate-rollout.cjs` — out of scope
+- [x] T007 `fallback` path taken: updated the stale `resolveMode('deep/review')` expectation to `fallback`
 - [x] T008 Recompile all deep/* contracts (`compile-command-contracts.cjs --command … --write`)
 - [x] T009 Confirm the compiled body matches the decided mode (`deep-review.contract.md`)
 
@@ -57,10 +57,11 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T010 `check-contract-drift.vitest.ts` passes (no `STALE_SOURCE_DIGEST`)
-- [x] T011 `render-command-contract.vitest.ts` passes; `resolveMode` = decided mode
+- [x] T011 `render-command-contract.vitest.ts` passes; `resolveMode('deep/review')` = `fallback`
 - [x] T012 `legacy-projections.test.ts` still passes
-- [x] T013 Whole runtime suite vs 017 baseline: no new failures (`vitest run`, 2612 tests)
-- [x] T014 `validate.sh --strict` clean; reconcile docs
+- [x] T013 `validate-rollout.test.cjs` (node:test) passes — the gate the first attempt missed (`run-node-tests.mjs`)
+- [x] T014 Whole runtime suite vs 017 baseline: no new failures (`vitest run`, 2612 tests)
+- [x] T015 `validate.sh --strict` clean; reconcile docs
 
 <!-- /ANCHOR:phase-3 -->
 ---
