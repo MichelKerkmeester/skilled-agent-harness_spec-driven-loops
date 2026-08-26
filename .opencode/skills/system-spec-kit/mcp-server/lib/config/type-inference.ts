@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Type Inference
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Content-aware memory filename generation
+// Content-aware inference of document/memory type.
 import {
   MEMORY_TYPES,
   PATH_TYPE_PATTERNS,
@@ -57,7 +57,6 @@ interface MemoryForBatchInference {
 
 // ───────────────────────────────────────────────────────────────
 const TIER_TO_TYPE_MAP: Readonly<Record<string, MemoryTypeName>> = {
-  constitutional: 'meta-cognitive',  // Rules that never decay
   critical: 'semantic',              // Core concepts, high persistence
   important: 'declarative',          // Important facts
   normal: 'declarative',             // Standard content

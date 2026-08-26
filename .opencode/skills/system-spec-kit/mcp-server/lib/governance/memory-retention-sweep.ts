@@ -206,7 +206,7 @@ function selectExpiredRows(database: Database.Database, useSoftDeleteTombstones:
 }
 
 /** Importance tiers that must never be deleted on TTL expiry alone. */
-const PROTECTED_RETENTION_TIERS = new Set(['constitutional', 'critical']);
+const PROTECTED_RETENTION_TIERS = new Set(['critical']);
 const RETENTION_LIVE_INCOMING_RELATIONS = [
   'derived_from',
   'supports',
@@ -218,7 +218,7 @@ const RETENTION_LIVE_INCOMING_RELATIONS = [
 
 /**
  * Tier-aware deletion decision evaluated BEFORE the destructive delete path.
- * Constitutional/critical tiers and pinned rows are protected from TTL-only
+ * Critical tier and pinned rows are protected from TTL-only
  * deletion; a null or unknown tier falls back to the pre-existing behavior
  * (unprotected rows keep deleting) so legacy rows are handled without crashes.
  */
@@ -268,7 +268,7 @@ function hasLiveIncomingRetentionEdge(database: Database.Database, memoryId: num
 /**
  * Tier protection can only be evaluated when importance_tier is readable. On a
  * legacy memory_index that predates the tier migration the column aliases to
- * NULL, making a constitutional/critical row indistinguishable from a genuinely
+ * NULL, making a critical row indistinguishable from a genuinely
  * unprotected one, so the sweep must fail closed (treat the row as protected)
  * rather than delete a row whose tier is unknown. is_pinned is intentionally not
  * required here: when that column is absent no row can ever have carried a pin,

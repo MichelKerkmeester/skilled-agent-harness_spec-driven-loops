@@ -172,7 +172,6 @@ interface ScanFileEntry {
   specFolder?: string;
   id?: number;
   isSpecDoc?: boolean;
-  isConstitutional?: boolean;
   error?: string;
   errorDetail?: string;
 }
@@ -212,11 +211,6 @@ interface ScanResults {
   suspectRetainedUnknown: number;
   moveReconciled?: number;
   files: ScanFileEntry[];
-  constitutional: {
-    found: number;
-    indexed: number;
-    alreadyIndexed: number;
-  };
   incremental: {
     enabled: boolean;
     fast_path_skips: number;
@@ -255,7 +249,6 @@ interface ScanKeyOptions {
   spec_folder: string | null;
   force: boolean;
   incremental: boolean;
-  include_constitutional: boolean;
   include_spec_docs: boolean;
   scoped_paths?: readonly string[];
 }
@@ -477,7 +470,6 @@ function createScanKey(options: ScanKeyOptions): string {
     spec_folder: options.spec_folder ?? null,
     force: !!options.force,
     incremental: !!options.incremental,
-    include_constitutional: !!options.include_constitutional,
     include_spec_docs: !!options.include_spec_docs,
     scoped_paths: Array.isArray(options.scoped_paths)
       ? [...options.scoped_paths].sort()
@@ -622,10 +614,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     incremental = true,
     scopedPaths = [],
   } = args;
-  // Constitutional-tier indexing is retired; the indexer no longer takes this
-  // flag from the tool input. The internal discovery guard stays wired but is
-  // now always disabled.
-  const include_constitutional = false;
   const scopedScanPaths = Array.isArray(scopedPaths)
     ? Array.from(new Set(scopedPaths.filter((filePath) => typeof filePath === 'string' && filePath.length > 0).map((filePath) => path.resolve(filePath))))
     : [];
@@ -634,7 +622,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     spec_folder,
     force,
     incremental,
-    include_constitutional,
     include_spec_docs,
     scoped_paths: scopedScanPaths,
   });
@@ -756,7 +743,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
   const workspacePath: string = DEFAULT_BASE_PATH;
 
-  const constitutionalFiles: string[] = [];
   const specDocFiles = scopedScanPaths.length > 0
     ? Object.assign(scopedScanPaths.filter((filePath) => isEligibleScopedSpecDocumentPath(filePath)), { warnings: [], capExceeded: emptyDiscoveryCapExceeded() }) as DiscoveryFileList
     : include_spec_docs
@@ -788,7 +774,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     return canonicalKey;
   };
 
-  const mergedFiles = [...constitutionalFiles, ...specDocFiles, ...graphMetadataFiles];
+  const mergedFiles = [...specDocFiles, ...graphMetadataFiles];
   const specDocKeySet = new Set(
     [...specDocFiles, ...graphMetadataFiles].map((f) => getCachedKey(f)),
   );
@@ -1365,13 +1351,10 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         ...(checkpointRepair.cleared ? [`Cleared checkpoint derived rebuild sentinel after repairing ${checkpointRepair.completed} step(s)`] : []),
         ...(checkpointRepair.attempted && !checkpointRepair.cleared ? ['Checkpoint derived rebuild repair did not complete; sentinel retained'] : []),
         ...(checkpointRepair.error ? [`Checkpoint derived rebuild repair error: ${checkpointRepair.error}`] : []),
-        'Indexable files are canonical spec documents under specs/**/ (spec.md, plan.md, decision-record.md, implementation-summary.md, handover.md, etc.)',
-        'Constitutional files go in .opencode/skills/*/constitutional/'
+        'Indexable files are canonical spec documents under specs/**/ (spec.md, plan.md, decision-record.md, implementation-summary.md, handover.md, etc.)'
       ]
     });
   }
-
-  const constitutionalSet = new Set(constitutionalFiles.map((filePath) => getCachedKey(filePath)));
 
   const results: ScanResults = {
     scanned: files.length,
@@ -1397,11 +1380,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     suspectFailed: 0,
     suspectRetainedUnknown: 0,
     files: [],
-    constitutional: {
-      found: constitutionalFiles.length,
-      indexed: 0,
-      alreadyIndexed: 0
-    },
     incremental: {
       enabled: incremental && !force,
       fast_path_skips: 0,
@@ -1455,9 +1433,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
           status: 'unchanged',
           isSpecDoc: true,
         });
-      }
-      if (constitutionalSet.has(getCachedKey(unchangedPath))) {
-        results.constitutional.alreadyIndexed++;
       }
     }
 
@@ -1521,16 +1496,10 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         return { status: 'cancelled' } as IndexResult;
       }
       const isSpecDoc = specDocKeySet.has(getCachedKey(filePath));
-      // Constitutional markdown is policy text, not evidence-bearing memory.
-      // It does not carry primary-evidence sections or ANCHOR tags by design, so the
-      // strict sufficiency gate would always reject it. Treat constitutional files like
-      // spec docs and pass them through warn-only mode so they index against the same
-      // pipeline without the document-evidence requirements.
-      const isConstitutional = constitutionalSet.has(getCachedKey(filePath));
       // During force reindex, use warn-only for all files — the goal is to index
       // everything that has valid frontmatter, not to enforce template contracts on
       // older files created before current templates were established.
-      const useWarnOnly = force || isSpecDoc || isConstitutional;
+      const useWarnOnly = force || isSpecDoc;
       const indexResult = await indexSingleFile(filePath, force, {
         ...(useWarnOnly ? { qualityGateMode: 'warn-only' as const } : {}),
         fromScan: true,
@@ -1546,7 +1515,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       const result = batchResults[i];
       const filePath = filesToIndex[i];
       const isSpecDoc = specDocKeySet.has(getCachedKey(filePath));
-      const isConstitutional = constitutionalSet.has(getCachedKey(filePath));
 
       if (result.error) {
         results.failed++;
@@ -1602,7 +1570,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
               status: result.status,
               id: result.id,
               isSpecDoc,
-              isConstitutional,
             });
           }
         } else if (result.status === 'reinforced') {
@@ -1632,14 +1599,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
           results.deferred++;
         }
 
-        if (isConstitutional) {
-          if (result.status === 'indexed') {
-            results.constitutional.indexed++;
-          } else if (result.status === 'unchanged') {
-            results.constitutional.alreadyIndexed++;
-          }
-        }
-
         if (result.status !== 'unchanged') {
           const rejectionDetail = !isSuccessfulStatus
             ? {
@@ -1664,7 +1623,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
             status: result.status,
             id: result.id,
             isSpecDoc,
-            isConstitutional,
             ...rejectionDetail,
           });
         }
@@ -1824,10 +1782,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         }
 
         const docType = memoryParser.extractDocumentType(fileResult.filePath);
-        if (
-          docType !== 'memory' &&
-          docType !== 'constitutional'
-        ) {
+        if (docType !== 'memory') {
           affectedSpecFolders.add(fileResult.specFolder);
         }
       }
@@ -2051,7 +2006,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       ...(process.env.SPECKIT_DEBUG_INDEX_SCAN === 'true'
         ? {
             _debug_fileCounts: {
-              constitutionalFiles: constitutionalFiles.length,
               specDocFiles: specDocFiles.length,
               totalFiles: files.length,
               mergedFiles: mergedFiles.length,

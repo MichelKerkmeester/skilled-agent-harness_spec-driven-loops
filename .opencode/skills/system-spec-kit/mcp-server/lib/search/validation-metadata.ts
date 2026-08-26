@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Validation Metadata
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Validation signals as retrieval metadata
+// Surfaces validation signals as retrieval metadata.
 // PURPOSE: Extract validation signals from spec document metadata
 // And surface them as retrieval metadata on PipelineRow results.
 // This allows the scoring layer to incorporate spec quality information.
@@ -22,11 +22,10 @@ import type { PipelineRow } from './pipeline/types.js';
 
 /**
  * Importance tier → quality score mapping.
- * Higher tiers (constitutional, critical) map to higher quality signals.
+ * Higher tiers (critical) map to higher quality signals.
  * Used when quality_score is absent or zero.
  */
 const TIER_QUALITY_SCORES: Record<string, number> = {
-  constitutional: 1.0,
   critical: 0.9,
   important: 0.75,
   normal: 0.5,

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Confidence Tracker
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Score normalization
+// Tracks and normalizes memory confidence scores.
 import type { DatabaseExtended as Database } from '@spec-kit/shared/types';
 
 // ───────────────────────────────────────────────────────────────
@@ -68,7 +68,7 @@ function isPromotionEligible(
   confidence: number,
   positiveValidationCount: number
 ): boolean {
-  if (importanceTier === 'critical' || importanceTier === 'constitutional') {
+  if (importanceTier === 'critical') {
     return false;
   }
 
@@ -214,7 +214,7 @@ export function checkPromotionEligible(db: Database, memoryId: number): boolean 
     }
 
     // Top-tier memories should not be re-promoted.
-    if (memory.importance_tier === 'critical' || memory.importance_tier === 'constitutional') {
+    if (memory.importance_tier === 'critical') {
       return false;
     }
 
@@ -244,7 +244,7 @@ export function promoteToCritical(db: Database, memoryId: number): boolean {
         throw new Error(`Memory not found: ${memoryId}`);
       }
 
-      if (memory.importance_tier === 'critical' || memory.importance_tier === 'constitutional') {
+      if (memory.importance_tier === 'critical') {
         return false;
       }
 

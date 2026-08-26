@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Fsrs Scheduler
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Classification-based decay
+// FSRS spaced-repetition decay scheduling, tier-aware.
 // CANONICAL FSRS CONSTANTS & ALGORITHM
 // Free Spaced Repetition Scheduler v4 algorithm implementation
 //
@@ -240,7 +240,7 @@ const FSRS_CONSTANTS = {
 /**
  * C138: Tier-based decay multipliers for long-term memory stability.
  * Each tier modifies how quickly memories decay relative to the base FSRS schedule.
- * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
+ * critical = slowest decay (most persistent), scratch = fastest decay (ephemeral).
  *
  * NOTE This multiplier operates on elapsed-time in composite-scoring.ts
  * (lower value = slower perceived time = slower decay). It is a SEPARATE system from
@@ -251,7 +251,6 @@ const FSRS_CONSTANTS = {
  *     (stability adjustment, activated via SPECKIT_CLASSIFICATION_DECAY env var)
  */
 const TIER_MULTIPLIER: Readonly<Record<string, number>> = {
-  constitutional: 0.1,
   critical: 0.3,
   important: 0.5,
   normal: 1.0,
@@ -291,14 +290,13 @@ const CONTEXT_TYPE_STABILITY_MULTIPLIER: Record<string, number> = {
  * Parallel to TIER_MULTIPLIER but operates on stability (not elapsed time).
  * Used exclusively by getClassificationDecayMultiplier() when
  * SPECKIT_CLASSIFICATION_DECAY is enabled. Do NOT combine with TIER_MULTIPLIER.
- * constitutional/critical: Infinity = never decays.
+ * critical: Infinity = never decays.
  * important: 1.5x stability → slower decay.
  * normal: 1.0 → standard.
  * temporary: 0.5x → faster decay (2x relative speed).
  * deprecated: 0.25x → fastest decay (4x relative speed).
  */
 const IMPORTANCE_TIER_STABILITY_MULTIPLIER: Record<string, number> = {
-  constitutional: Infinity, // never decays
   critical: Infinity,       // never decays
   important: 1.5,           // slower decay
   normal: 1.0,              // standard
@@ -319,7 +317,7 @@ const IMPORTANCE_TIER_STABILITY_MULTIPLIER: Record<string, number> = {
  * which makes R(t) = (1 + factor * t / Infinity)^decay = 1.0 for all t.
  *
  * @param contextType    Continuity-row context_type field (e.g. "decision", "research")
- * @param importanceTier Continuity-row importance_tier field (e.g. "constitutional", "normal")
+ * @param importanceTier Continuity-row importance_tier field (e.g. "critical", "normal")
  * @returns Combined stability multiplier (may be Infinity)
  */
 function getClassificationDecayMultiplier(contextType: string, importanceTier: string): number {

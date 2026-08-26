@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Tier Classifier
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Classification-based decay
+// Classifies memory rows into importance tiers.
 // Fs and path removed — unused in this module
 
 // Import FSRS constants and canonical retrievability function.
@@ -184,8 +184,8 @@ function getEffectiveHalfLife(memory: TierInput | null | undefined): number | nu
 
   // Priority 3: Default based on importance tier
   const tier = memory.importance_tier;
-  if (tier === 'constitutional' || tier === 'critical') {
-    return null; // No decay for constitutional/critical
+  if (tier === 'critical') {
+    return null; // No decay for critical
   }
 
   return 60; // Default declarative half-life
@@ -297,7 +297,7 @@ function classifyTier(memory: TierInput): {
   const lastReview = memory.last_review || memory.created_at;
   const effectiveHalfLife = getEffectiveHalfLife(memory);
 
-  // If no decay (constitutional/critical), always HOT
+  // If no decay (critical), always HOT
   if (effectiveHalfLife === null) {
     return { state: 'HOT', retrievability: 1.0, effectiveHalfLife: null };
   }
@@ -496,8 +496,8 @@ function getStateStats(memories: readonly TierInput[]): StateStats {
 function shouldArchive(memory: TierInput): boolean {
   const { state } = classifyTier(memory);
 
-  // Never archive constitutional or critical
-  if (memory.importance_tier === 'constitutional' || memory.importance_tier === 'critical') {
+  // Never archive critical
+  if (memory.importance_tier === 'critical') {
     return false;
   }
 

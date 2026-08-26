@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Graph Search Fn
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Unified graph retrieval, deterministic ranking, explainability, and rollback
+// Unified graph retrieval: deterministic ranking, explainability, and rollback.
 // Causal graph search channel — uses FTS5 for node matching
 
 import { sanitizeFTS5Query, sanitizeFTS5QueryOr } from './bm25-index.js';
@@ -605,7 +605,6 @@ function computeLinkedNodeCountsBatch(
 /**
  * Batch compute degree boost scores for multiple memory IDs.
  *
- * - Excludes constitutional memories (returns 0 to prevent artificial inflation)
  * - Uses in-memory cache for repeated lookups
  * - Computes global max once per batch for normalization
  *
@@ -620,25 +619,6 @@ function computeDegreeScores(
   const results = new Map<string, number>();
   if (memoryIds.length === 0) return results;
 
-  // Identify constitutional memories (excluded from degree boosting)
-  const constitutionalIds = new Set<string>();
-  try {
-    const placeholders = memoryIds.map(() => '?').join(',');
-    const constitutionalRows = (database.prepare(
-      `SELECT id FROM memory_index WHERE id IN (${placeholders}) AND importance_tier = 'constitutional'`
-    ) as Database.Statement).all(...memoryIds.map(String)) as Array<{ id: number | string }>;
-    for (const row of constitutionalRows) {
-      constitutionalIds.add(String(row.id));
-    }
-  } catch (_err: unknown) {
-    // Fail closed — if we can't identify constitutional IDs, zero all scores
-    console.warn('[graph-search-fn] Constitutional exclusion lookup failed; returning zero scores for safety');
-    for (const id of memoryIds) {
-      results.set(String(id), 0);
-    }
-    return results;
-  }
-
   const cacheState = getDegreeCacheState(database);
   const nodeBoostCache = cacheState.perNodeBoost;
 
@@ -648,7 +628,7 @@ function computeDegreeScores(
   const uncachedCandidateIds: string[] = [];
   for (const id of memoryIds) {
     const key = String(id);
-    if (!constitutionalIds.has(key) && !nodeBoostCache.has(key)) {
+    if (!nodeBoostCache.has(key)) {
       uncachedCandidateIds.push(key);
     }
   }
@@ -670,12 +650,6 @@ function computeDegreeScores(
 
   for (const id of memoryIds) {
     const key = String(id);
-
-    if (constitutionalIds.has(key)) {
-      results.set(key, 0);
-      continue;
-    }
-
     results.set(key, nodeBoostCache.get(key) ?? 0);
   }
 
