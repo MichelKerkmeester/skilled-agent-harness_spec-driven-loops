@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/018-pre-existing-test-triage",
+  "description": "The 017 remediation established a clean whole-suite gate but left 10 pre-existing test failures untouched — they were failing before any of that work",
+  "keywords": [
+    "remediation",
+    "established",
+    "clean",
+    "whole-suite",
+    "gate",
+    "left",
+    "pre-existing",
+    "test",
+    "failures",
+    "untouched",
+    "failing",
+    "work"
+  ],
+  "lastUpdated": "2026-08-26T10:03:53.057Z",
+  "specId": "018",
+  "folderSlug": "pre-existing-test-triage",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

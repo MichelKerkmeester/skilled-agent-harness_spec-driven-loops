@@ -383,7 +383,7 @@
       "id": "model-benchmark-hub-output",
       "surface": "directory and JSON/Markdown outputs",
       "mutability": "write-once",
-      "resolvedPath": ".opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/",
+      "resolvedPath": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/{run_label}/",
       "owner": "model-benchmark lane",
       "lifecycle": "create one immutable run directory",
       "recovery": "re-run from profile and fixture manifest",
