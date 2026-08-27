@@ -1,0 +1,54 @@
+{
+  "topic": "GOAL: Constitutional-memory DEPRECATION-COMPLETENESS audit across the ENTIRE repo. Find EVERY touchpoint of the constitutional-memory system (code, commands, tests, READMEs, SKILL.md, hooks, root docs, the folder, the DB) and produce one deduped inventory + a per-touchpoint action, so NOTHING is missed.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content",
+  "createdAt": "2026-08-26T18:50:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-flash-audit-1787763040724-qklgls",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": false,
+    "version": "detached-fanout",
+    "note": "Detached fan-out lineage: agent owns strategy/state writes directly; parent harness owns ledger gateways."
+  },
+  "fanoutLineageArtifactDir": "specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content/research/lineages/deepseek-flash-audit",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "iterations/iteration-*.md": "write-once",
+    "research.md": "workflow-owned"
+  },
+  "_optimizerManaged": {
+    "description": "Detached fan-out lineage; optimizer not involved.",
+    "tunableFields": [],
+    "lockedFields": ["lineage", "maxIterations", "convergenceThreshold"]
+  }
+}

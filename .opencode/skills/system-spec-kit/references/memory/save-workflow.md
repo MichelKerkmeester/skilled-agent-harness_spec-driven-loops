@@ -308,7 +308,7 @@ specs/###-parent-feature/
 └── 002-phase/
 ```
 
-The parent has NO `implementation-summary.md`, NO `plan.md`, NO `tasks.md`, NO `checklist.md`, NO `decision-record.md`. Continuity for a phase parent is the pointer in `graph-metadata.json`, refreshed every save by the generator. The lean phase-parent template at `templates/manifest/phase-parent.spec.md.tmpl` is the canonical scaffold.
+The parent has NO `implementation-summary.md`, NO `plan.md`, NO `tasks.md`, NO `checklist.md`, NO `decision-record.md`. Continuity for a phase parent is the pointer in `graph-metadata.json`, refreshed every save by the generator. The lean phase-parent template at `templates/packet-types/phase-parent.spec.md.tmpl` is the canonical scaffold.
 
 ---
 

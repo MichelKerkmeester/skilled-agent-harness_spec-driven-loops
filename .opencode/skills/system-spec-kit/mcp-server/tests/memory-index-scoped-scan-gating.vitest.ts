@@ -251,7 +251,6 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
 
     const result = await scanHandler.handleMemoryIndexScan({
       scopedPaths,
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -272,7 +271,6 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
 
     const result = await scanHandler.handleMemoryIndexScan({
       scopedPaths: [graphMetadataPath],
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -292,7 +290,6 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
 
     const result = await scanHandler.handleMemoryIndexScan({
       scopedPaths: [nonSpecPath],
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -313,7 +310,6 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
 
     const result = await scanHandler.runIndexScan({
       scopedPaths: [specDocPath],
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -388,7 +384,6 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
 
       const result = await scanHandler.runIndexScan({
         scopedPaths: [scopedStalePath],
-        includeConstitutional: false,
         includeSpecDocs: true,
         incremental: true,
         force: false,
@@ -418,7 +413,6 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
 
     const result = await scanHandler.handleMemoryIndexScan({
       scopedPaths: [outsidePath],
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -434,7 +428,6 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
     // full-tree walker path (findSpecDocuments/findGraphMetadataFiles, unmodified by
     // this fix) is exercised instead, matching this handler's existing test coverage.
     const result = await scanHandler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,

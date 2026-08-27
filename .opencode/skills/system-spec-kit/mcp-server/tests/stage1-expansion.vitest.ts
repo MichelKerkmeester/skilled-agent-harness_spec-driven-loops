@@ -175,7 +175,6 @@ function makeConfig(overrides: Partial<PipelineConfig> = {}): PipelineConfig {
     searchType: 'hybrid',
     limit: 20,
     includeArchived: false,
-    includeConstitutional: false,
     includeContent: false,
     minState: 'active',
     applyStateLimits: false,
@@ -492,7 +491,8 @@ describe.skip('Stage-1: Expansion & Dedup', () => {
     expect(result.candidates[0]?.title).toBe('allowed-summary');
   });
 
-  it('T9: constitutional injection re-applies governance scope after vector fetch', async () => {
+  // constitutional tier removed
+  it.skip('T9: constitutional injection re-applies governance scope after vector fetch', async () => {
     const mockSearch = searchWithFallback as ReturnType<typeof vi.fn>;
     const mockVectorSearch = vectorIndex.vectorSearch as ReturnType<typeof vi.fn>;
 
@@ -521,7 +521,6 @@ describe.skip('Stage-1: Expansion & Dedup', () => {
 
     const result = await executeStage1({
       config: makeConfig({
-        includeConstitutional: true,
         tenantId: 'tenant-a',
       }),
     });

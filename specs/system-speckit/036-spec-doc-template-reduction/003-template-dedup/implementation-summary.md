@@ -1,35 +1,18 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Decision Record Template Deduplication"
+description: "Consolidated decision-record metadata for L3 and L3+ and corrected the malformed description while preserving the shared ADR body."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/003-template-dedup"
-    last_updated_at: "2026-08-26T05:33:57Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-template-dedup"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+  - "decision-record frontmatter dedup"
+  - "template dedup"
+  - "shared ADR body"
+  - "research taxonomy deferral"
+importance_tier: "important"
+contextType: "implementation"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 ---
 
@@ -39,7 +22,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-template-dedup |
-| **Completed** | 2026-08-26 |
+| **Completed** | Not stated in the reviewed evidence |
+| **Authored** | 2026-08-27 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,28 +32,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The decision-record template now uses one gated L3/L3+ frontmatter block instead of repeating the metadata structure. The malformed L3+ description is corrected, and the ADR body remains shared. The research-template taxonomy was not changed because its widgets couple to routing anchors.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Decision-record correction
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The source diff combines the L3 and L3+ metadata gates, removes the duplicate frontmatter block, and keeps the ADR sections in one shared body. The focused golden result covers the corrected metadata without changing the decision content.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl` | Modified | Consolidates L3/L3+ frontmatter and fixes the malformed L3+ description while preserving the ADR body. |
+| `.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | Modified | Records the reviewed template output baseline. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +51,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The phase applied the metadata-only decision-record correction, reviewed the L3 and L3+ rendered output, and recorded the routing-coupling rationale for the deferred research taxonomy change.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +59,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Consolidate only the decision-record frontmatter | The ADR body was already shared, so changing it would add risk without reducing duplication. |
+| Keep one gated block for L3 and L3+ | The levels need different titles and continuity pointers, but they share the same metadata shape. |
+| Defer research-taxonomy neutralization | Changing the widget taxonomy can alter `research_finding` routing and needs a separate route review. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +71,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Decision-record frontmatter diff | PASS, the L3/L3+ metadata is consolidated and the garbled description is corrected. |
+| Shared ADR body | PASS, the ADR body content remains unchanged; unrelated instructional-comment removal is recorded in the later comment-extraction phase. |
+| Golden snapshots | PASS, all six snapshot cases are green. |
+| Research taxonomy and routing | DEFERRED, no research-template taxonomy change appears in the diff and the coupling rationale is recorded. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +84,5 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Research taxonomy remains domain-specific.** Neutralization needs a dedicated content-router review and a separately reviewed snapshot change.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-

@@ -7,7 +7,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { renderInlineGates } from '../templates/inline-gate-renderer';
 
-const tmpl = fs.readFileSync(path.resolve(__dirname, '../../templates/manifest/research.md.tmpl'), 'utf8');
+const tmpl = fs.readFileSync(path.resolve(__dirname, '../../templates/addons/research.md.tmpl'), 'utf8');
 
 type RenderLevel = '1' | '2' | '3' | '3+' | 'phase';
 

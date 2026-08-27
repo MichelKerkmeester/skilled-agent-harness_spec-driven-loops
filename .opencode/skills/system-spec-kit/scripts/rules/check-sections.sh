@@ -12,7 +12,7 @@ set -euo pipefail
 #   Spec.md: Problem Statement, Requirements, Scope
 #   Plan.md: Technical Context, Architecture, Implementation
 #   Checklist.md (L2+): Verification Protocol, Code Quality
-#   Decision-record.md (L3): Context, Decision, Consequences
+#   Decision-record.md: Context, Decision, Consequences when present
 
 # ───────────────────────────────────────────────────────────────
 # 1. INITIALIZATION

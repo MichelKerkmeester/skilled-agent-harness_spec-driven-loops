@@ -87,10 +87,10 @@ function isLegacyPhaseCleanupDebt(filePath: string): boolean {
 function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): boolean {
   const rel = relative(filePath);
   if (rel.includes('.opencode/specs/')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/manifest/README.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/manifest/EXTENSION-GUIDE.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/manifest/MIGRATION.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/CONTRACT.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/MIGRATION.md')) return true;
+  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/spec-kit-docs.json')) return true;
   if (rel.endsWith('.opencode/skills/system-spec-kit/templates/README.md')) return true;
   if (/mcp-server\/lib\/config\/capability-flags\.ts|lib\/config\/capability-flags\.ts|\bcapability-flags\.ts\b|from ['"][^'"]*capability-flags['"]|require\(['"][^'"]*capability-flags(?:\.js)?['"]\)/iu.test(hit.text)) return true;
   if (!isExtra && isLegacyPhaseCleanupDebt(filePath)) return true;
@@ -116,7 +116,7 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md')) return true;
   // Feature-catalog / playbook docs that legitimately describe real "manifest" artifacts in prose:
   // the CLI-manifest modules (code-index / skill-advisor / spec-memory), the checkpoint manifest,
-  // the embedder registry manifest, the `templates/manifest/` source-template dir, per-document
+  // the embedder registry manifest, the `templates/` source-template dirs (core/addons/packet-types), per-document
   // "manifest anchors" (validator output), and cross-reference links to the doctor-router doc.
   if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md')) return true;
   if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/lifecycle/checkpoint-restore-checkpointrestore.md')) return true;

@@ -6,6 +6,24 @@
 # Sourced by validate.sh and compatible with strict mode.
 set -euo pipefail
 
+if ! declare -F is_phase_parent >/dev/null 2>&1; then
+    shell_common_path="$(dirname "${BASH_SOURCE[0]}")/../lib/shell-common.sh"
+    if [[ ! -f "$shell_common_path" ]]; then
+        echo "Error: required helper not found: $shell_common_path" >&2
+        exit 1
+    fi
+    # shellcheck source=../lib/shell-common.sh
+    if ! source "$shell_common_path"; then
+        echo "Error: failed to load required helper: $shell_common_path" >&2
+        exit 1
+    fi
+    if ! declare -F is_phase_parent >/dev/null 2>&1; then
+        echo "Error: required helper is_phase_parent is unavailable: $shell_common_path" >&2
+        exit 1
+    fi
+    unset shell_common_path
+fi
+
 # Rule: ANCHORS_VALID
 # Severity: error
 # Description: Checks that anchor pairs in memory files and spec documents are properly matched
@@ -59,8 +77,8 @@ run_check() {
         done < <(find "$memory_dir" -maxdepth 1 -name "*.md" -type f -print0 2>/dev/null)
     fi
 
-    # Collect spec document files (spec 129: anchor tags in spec docs)
-    local -a spec_doc_names=("spec.md" "plan.md" "tasks.md" "checklist.md" "decision-record.md" "implementation-summary.md")
+    # Collect spec document files for structured anchor validation.
+    local -a spec_doc_names=("spec.md" "plan.md" "tasks.md" "checklist.md" "decision-record.md" "implementation-summary.md" "before-after.md" "timeline.md" "roadmap.md")
     for doc_name in "${spec_doc_names[@]-}"; do
         local doc_path="$folder/$doc_name"
         if [[ -f "$doc_path" ]]; then
@@ -80,6 +98,7 @@ run_check() {
 
     local -a errors=()
     local -a warnings=()
+    local -a comparison_skips=()
     local -a missing_anchors=()
     local file_count=0
 
@@ -89,7 +108,7 @@ run_check() {
     tmp_closes=$(mktemp)
 
     # Check that major spec docs have at least 1 ANCHOR tag.
-    local -a major_docs=("spec.md" "plan.md" "tasks.md" "checklist.md" "decision-record.md")
+    local -a major_docs=("spec.md" "plan.md" "tasks.md" "checklist.md" "decision-record.md" "before-after.md" "timeline.md" "roadmap.md")
     for doc_name in "${major_docs[@]-}"; do
         local doc_path="$folder/$doc_name"
         if [[ -f "$doc_path" ]]; then
@@ -189,6 +208,7 @@ run_check() {
         local compare_output
         compare_output=$(node "$helper_script" compare "$level" "$(basename "$file")" "$file" anchors 2>/dev/null || true)
         if ! grep -q $'^supported\ttrue$' <<< "$compare_output"; then
+            comparison_skips+=("$display_name: Anchor validation skipped because the compare helper reported unsupported")
             return
         fi
 
@@ -213,12 +233,18 @@ run_check() {
     compare_required_anchors "$folder/checklist.md" "checklist.md"
     compare_required_anchors "$folder/decision-record.md" "decision-record.md"
     compare_required_anchors "$folder/implementation-summary.md" "implementation-summary.md"
+    compare_required_anchors "$folder/before-after.md" "before-after.md"
+    compare_required_anchors "$folder/timeline.md" "timeline.md"
+    compare_required_anchors "$folder/roadmap.md" "roadmap.md"
 
 # ───────────────────────────────────────────────────────────────
 # 5. RESULTS
 # ───────────────────────────────────────────────────────────────
 
     local has_errors=false
+    if [[ ${#comparison_skips[@]} -gt 0 ]]; then
+        RULE_DETAILS+=("${comparison_skips[@]}")
+    fi
 
     if [[ ${#missing_anchors[@]} -gt 0 ]]; then
         RULE_STATUS="fail"
@@ -261,7 +287,14 @@ run_check() {
     fi
 
     if [[ "$has_errors" == false ]]; then
-        if [[ ${#warnings[@]} -gt 0 ]]; then
+        if [[ ${#comparison_skips[@]} -gt 0 ]]; then
+            RULE_STATUS="warn"
+            RULE_MESSAGE="${#comparison_skips[@]} required-anchor comparison(s) skipped because the compare helper reported unsupported"
+            if [[ ${#warnings[@]} -gt 0 ]]; then
+                RULE_MESSAGE="$RULE_MESSAGE; ${#warnings[@]} non-blocking anchor deviation(s) in $file_count file(s)"
+                RULE_DETAILS+=("${warnings[@]}")
+            fi
+        elif [[ ${#warnings[@]} -gt 0 ]]; then
             RULE_STATUS="warn"
             RULE_MESSAGE="${#warnings[@]} non-blocking anchor deviation(s) in $file_count file(s)"
             RULE_DETAILS+=("${warnings[@]}")

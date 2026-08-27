@@ -1,42 +1,18 @@
 ---
-title: "Implementation Plan: Phase 1: analysis [template:level-1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 1: analysis"
+description: "Turn the template-reduction research into an implementation-ready contract for recommendations R1 through R6, with exact surfaces, ordering, compatibility requirements, and proof gates."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
+  - "template reduction analysis"
+  - "spec-kit recommendations"
+  - "template contract map"
+  - "byte budget"
+importance_tier: "important"
 contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/001-analysis"
-    last_updated_at: "2026-08-26T05:33:56Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-analysis"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 1: analysis
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 ---
 
@@ -47,13 +23,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown, YAML, Bash, TypeScript, and Node.js |
+| **Framework** | system-spec-kit templates, manifest contracts, validators, and content routing |
+| **Storage** | Versioned specification documents, template sources, and golden snapshots |
+| **Testing** | Evidence traceability in the research report, followed by golden snapshots and strict validation in child phases |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Review `001-analysis/research/research.md` and convert recommendations R1 through R6 into implementation-ready scopes. Tie each recommendation to the phase requirements, exact contract surfaces, dependency order, rollback trigger, and objective verification gate without changing production templates or code in this analysis phase.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +38,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] `spec.md` states the problem, six requirements, success criteria, and dependencies.
+- [x] `research/research.md` records measured findings, exact source surfaces, and ranked recommendations.
+- [x] The downstream phase boundaries and handoff order are identified.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Each recommendation maps to exactly one requirement and a concrete child-phase scope.
+- [ ] The sequence R1, R6, R2, R3, R4, then R5 names its contract update and verification gate.
+- [ ] No unresolved analysis gap prevents a child phase from identifying its files, compatibility path, and rollback condition.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,34 +54,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Evidence-to-contract analysis: findings become ranked recommendations, recommendations become requirements, and requirements become sequenced implementation packets.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Research report**: `specs/system-speckit/036-spec-doc-template-reduction/001-analysis/research/research.md` contains the measured findings and recommendation evidence.
+- **Phase specification**: `specs/system-speckit/036-spec-doc-template-reduction/001-analysis/spec.md` defines the six requirements and acceptance criteria.
+- **Contract surfaces**: `.opencode/skills/system-spec-kit/templates/manifest/`, `.opencode/skills/system-spec-kit/mcp-server/lib/`, `.opencode/skills/system-spec-kit/scripts/`, and the golden snapshot suite receive the child-phase work.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Research evidence flows into the six requirement mappings, then into the ordered child phases. Each child phase receives named files, compatibility constraints, and a pass-or-fail verification gate.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
 
 ---
 
@@ -113,19 +71,18 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Reconcile the Findings, Recommendations, and Quality sections in `research/research.md` with REQ-001 through REQ-006 in `spec.md`.
+- [ ] Record the exact renderer, manifest, validator, status, routing, snapshot, and byte-budget surfaces named by the research.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Define the R1 and R6 child scopes for byte-preserving deduplication and measured budget assertions.
+- [ ] Define the R2, R3, R4, and R5 child scopes with their sidecar, merge, validator-first, and routing-preservation constraints.
+- [ ] Preserve the sequence R1, R6, R2, R3, R4, then R5 and carry each research unknown into the phase where it can be resolved.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Cross-check every REQ id against the phase map and remove phantom or unmapped requirements.
+- [ ] Confirm each child phase has a concrete acceptance check, a compatibility boundary, and a rollback trigger before implementation begins.
+- [ ] Confirm the handoff references `research/research.md`, `spec.md`, and the downstream phase specifications.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +92,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Evidence review | Recommendation claims, cited files, and measured baselines | `rg` and direct document review |
+| Contract review | REQ-to-scope mapping, phase order, compatibility paths, and rollback gates | Requirements matrix in `spec.md` and this plan |
+| Downstream verification | Render identity, status compatibility, anchor routing, byte budgets, and strict validation | Golden snapshots, `validate.sh --strict`, and targeted rule checks in child phases |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +104,11 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `001-analysis/research/research.md` | Internal evidence | Green | Recommendation scopes cannot be traced to findings |
+| `001-analysis/spec.md` | Internal contract | Green | Child plans cannot map acceptance criteria |
+| Inline gate renderer and manifest | Internal implementation | Green | Template changes cannot preserve level-specific output |
+| Validator, status, and content-router surfaces | Internal consumers | Green | Compatibility boundaries remain undefined |
+| Golden snapshots and measured byte baselines | Internal verification | Green | Output identity and budget claims cannot be proven |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +116,9 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A recommendation cannot map cleanly to its requirement, contract surface, compatibility boundary, or objective gate.
+- **Procedure**:
+  1. Restore the last reviewed analysis and requirements mapping in the phase documents.
+  2. Remove the affected child-phase scope rather than carrying an unsupported assumption forward.
+  3. Recheck the remaining sequence against `research/research.md` before reopening the child phase.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

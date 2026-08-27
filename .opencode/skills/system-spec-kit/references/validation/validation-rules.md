@@ -243,7 +243,7 @@ reorganization
 
 The scanner skips matches inside fenced code blocks (triple-backtick) and inside HTML comment blocks (`<!-- -->`), so legitimate examples in templates and reference docs do not trigger the rule.
 
-**Required content (mirrored from `templates/manifest/phase-parent.spec.md.tmpl`):** root purpose, sub-phase control file, what needs done. Migration history goes in an optional `context-index.md` rendered from `templates/manifest/context-index.md.tmpl`.
+**Required content (mirrored from `templates/packet-types/phase-parent.spec.md.tmpl`):** root purpose, sub-phase control file, what needs done. Migration history goes in an optional `context-index.md` rendered from `templates/packet-types/context-index.md.tmpl`.
 
 **Implementation:** `.opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh`. Registered as `PHASE_PARENT_CONTENT` in `scripts/lib/validator-registry.json` (severity: warn, category: authored_template).
 
@@ -889,7 +889,7 @@ Add the AI Execution Protocol section to plan.md or tasks.md. Reference the Leve
 
 ```bash
 # See protocol examples in templates
-cat .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl
+cat .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
 ```
 
 ---

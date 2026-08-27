@@ -16,13 +16,13 @@
       "golden snapshot suite",
       "regression baseline",
       "spec core",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "verify rollout plan",
+      "template reduction close-out",
+      "deriveStatus fleet delta",
+      "recursive strict validation",
+      "verify rollout tasks",
+      "recursive validation gate",
+      "zero deriveStatus delta"
     ],
     "key_topics": [
       "verify",
@@ -36,9 +36,9 @@
       "baseline",
       "spec",
       "core",
-      "implementation"
+      "plan"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "spec.md",
@@ -120,7 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,21 +138,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Record",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -156,8 +150,20 @@
         "source": "derived"
       },
       {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rebuilt",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -174,19 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "Template Reduction Verification",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,8 +194,8 @@
     ],
     "causal_summary": "Each prior phase edits shipped, load-bearing templates and validators where a mis-sequenced change regresses the whole packet fleet",
     "created_at": "2026-08-26T05:33:59Z",
-    "last_save_at": "2026-08-26T08:01:33.484Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-27T17:51:18.282Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60f5328df15e5051d3b3f9cee6796f3f8a6f98149d78daee2786c045071be29a",
+    "source_fingerprint": "sha256:5039c70ec7e293aac9ae6b03ef56c73a3b9def5d7d7ac34360ff88b77fbb65c6",
     "source_doc_hashes": {
-      "spec.md": "cbf34ec218fa0bf20b3b10b884870b8f41308f34c0da8f385d0dec88c6a556dc",
-      "plan.md": "a595c73be0524fbe6d7d589d555f05261c69e15d0f8cdf359cb735b1170e2a9a",
-      "tasks.md": "c149144a8c6cd9383a83921747e90e8a477d2bc4bbddb5580b06c9fb864db1e1",
-      "implementation-summary.md": "8b59108f25ff0b83024c9f44583d4d1d2551a6bd218b34a158f7d70e1b1a376f"
+      "spec.md": "788854ecf3a2a652b24cfe123abef2b7e5080493f2d67f6dda624e5e1f7abf2a",
+      "plan.md": "8b386ad561352080ae0d8b944aa391e94db9ea18578135acdb350d535fa9caf2",
+      "tasks.md": "425190dd5f1af8671e8a3299c90363567ea9a1ea7d35a5640b5e49450d47187e",
+      "implementation-summary.md": "8a98fce1c60c3b2b3121ed415cb920cde8a4181885681fa956d263bf4e955e42"
     },
     "last_active_child_id": null,
     "last_active_at": null

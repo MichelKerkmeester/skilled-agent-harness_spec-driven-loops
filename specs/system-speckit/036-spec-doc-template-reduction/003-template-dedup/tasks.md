@@ -1,34 +1,18 @@
 ---
-title: "Tasks: Phase 3: template-dedup [template:level-1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 3: template-dedup"
+description: "Correct decision-record frontmatter duplication, preserve the shared ADR body and research routes, and verify the focused output changes."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
+  - "decision-record dedup tasks"
+  - "frontmatter correction"
+  - "research anchor preservation"
+  - "template snapshot review"
+importance_tier: "important"
 contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/003-template-dedup"
-    last_updated_at: "2026-08-26T05:33:57Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-template-dedup"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 3: template-dedup
 
 <!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 ---
 
@@ -42,7 +26,7 @@ _memory:
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+**Task Format**: `T### [P?] Description (file path); done when ...`
 <!-- /ANCHOR:notation -->
 
 ---
@@ -50,9 +34,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 [REQ-001] Isolate the roughly 24 duplicated frontmatter lines from the shared ADR body (`.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl`); done when the intended metadata-only diff and unchanged body boundary are explicit.
+- [ ] T002 [REQ-002, REQ-004] Inventory the research_finding anchor set and taxonomy decision (`.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl`, `.opencode/skills/system-spec-kit/mcp-server/lib/content-router.ts`); done when every route has a preserved destination or a documented deferral rationale.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +43,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T003 [REQ-001] Consolidate the L3/L3+ decision-record frontmatter and correct the malformed description (`.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl`); done when one combined metadata block serves both levels and the ADR body remains one shared block.
+- [ ] T004 [REQ-002, REQ-004] Neutralize the research widget taxonomy or record the explicit deferral (`.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl`, `003-template-dedup/implementation-summary.md`); done when the research_finding anchor contract remains intact and the chosen outcome has rationale.
+- [ ] T005 [REQ-003] Prepare the rebuilt runtime surfaces (`.opencode/skills/system-spec-kit/scripts/dist/`, `.opencode/skills/system-spec-kit/mcp-server/dist/`); done when both distributions are regenerated from the corrected template sources before validation.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +53,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T006 [REQ-001] Review the decision-record snapshot diff (`.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap`); done when L3 and L3+ retain the same ADR body and only intended frontmatter lines differ.
+- [ ] T007 [REQ-002] Review the research snapshot and routes (`.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap`, `.opencode/skills/system-spec-kit/mcp-server/lib/content-router.ts`); done when every research_finding target resolves without an unintended route change.
+- [ ] T008 [REQ-003] Validate representative fresh L3 and L3+ scaffolds (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`); done when strict validation exits successfully against rebuilt distributions.
+- [ ] T009 [REQ-001, REQ-002, REQ-003, REQ-004] Confirm the phase acceptance record (`003-template-dedup/spec.md`); done when all four requirements have evidence or the permitted research deferral is explicitly recorded.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -83,7 +66,7 @@ _memory:
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] REQ-001 through REQ-004 each have a completed mapped task and evidence
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,14 +76,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Analysis**: See `../001-analysis/research/research.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

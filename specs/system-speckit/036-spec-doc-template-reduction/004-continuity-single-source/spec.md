@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Phase 4: continuity-single-source [template:level-1/spec.md]"
-description: "The _memory.continuity block is duplicated across five docs (~227 near-identical lines per L2 packet) but only implementation-summary.md is read by the resume ladder. Consolidate to one canonical block — validator-first, so strict validation does not fail fleet-wide."
+title: "Feature Specification: Phase 4: continuity-single-source"
+description: "The _memory.continuity block repeats at roughly 16 lines across five docs, about 80 near-identical lines per L2 packet, but only implementation-summary.md is read by the resume ladder. Consolidate to one canonical block, validator-first, so strict validation does not fail fleet-wide."
 trigger_phrases:
   - "memory continuity consolidation"
   - "single-source continuity"
@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts"
-      - ".opencode/skills/system-spec-kit/mcp-server/lib/graph/resume-ladder.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts"
       - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -83,7 +83,7 @@ This is **Phase 4**, consolidating the most-duplicated structure in the kit. Gro
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The ~20-line `_memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary — ~227 near-identical lines per L2 packet. Only `implementation-summary.md` is read by the resume ladder and by status derivation, so four of the five copies are dead weight. But two validators (`FRONTMATTER_MEMORY_BLOCK`, `SESSION_LINEAGE`) consume the copies, so a naive template edit fails strict validation across the whole fleet.
+The ~16-line `_memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary, about 80 near-identical lines across five docs in an L2 packet. Only `implementation-summary.md` is read by the resume ladder and by status derivation, so four of the five copies are dead weight. But two validators (`FRONTMATTER_MEMORY_BLOCK`, `SESSION_LINEAGE`) consume the copies, so a naive template edit fails strict validation across the whole fleet.
 
 ### Purpose
 Author continuity once (in implementation-summary) and relax the validators first, so the redundant copies can be removed without breaking any existing packet.

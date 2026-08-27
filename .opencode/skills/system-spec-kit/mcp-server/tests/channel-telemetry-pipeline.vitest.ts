@@ -35,7 +35,6 @@ function config(): PipelineConfig {
     evaluationMode: true,
     limit: 5,
     includeArchived: false,
-    includeConstitutional: false,
     includeContent: false,
     minState: '',
     applyStateLimits: false,

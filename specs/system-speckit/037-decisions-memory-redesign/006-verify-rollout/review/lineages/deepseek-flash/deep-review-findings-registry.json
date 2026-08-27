@@ -1,0 +1,316 @@
+{
+  "sessionId": "fanout-deepseek-flash-1787807016319-a8sfw4",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Learned-triggers path not disabled despite 003 REQ-003 flag-off claim",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/stage2-fusion.ts",
+      "line": 794,
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "26 test/stress files pass removed includeConstitutional option; typecheck-excluded",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/tests/integration-search-pipeline.vitest.ts",
+      "line": 218,
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Residual live constitutional literals in runtime modules",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/config/type-inference.ts",
+      "line": 343,
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "excludePatterns raw regex + specFolder canonical-discipline only",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts",
+      "line": 420,
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "004 folder deletion not executed; 8 rule files remain; 006 REQ-003 unsatisfiable as written",
+      "file": ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md",
+      "line": 1,
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Advisor keyword map retains retired tier keyword",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      "line": 2001,
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "006 REQ-005 references DECISIONS.md surface that 002 reversed",
+      "file": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/spec.md",
+      "line": 60,
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        },
+        {
+          "iteration": 6,
+          "from": "P2",
+          "to": "P1",
+          "reason": "6 DECISIONS.md refs in 006 spec (lines 22,66,86,130,140,150); acceptance criteria unsatisfiable"
+        }
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Feature catalog describes removed constitutional machinery as current",
+      "file": ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      "line": 1248,
+      "firstSeen": 6,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Manual-testing playbooks still exercise removed constitutional behavior",
+      "file": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection-pi-a4.md",
+      "line": 1,
+      "firstSeen": 6,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "006 packet docs are template scaffolds; changelog deliverable absent",
+      "file": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/tasks.md",
+      "line": 1,
+      "firstSeen": 6,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "goal-file-manifest.txt omits files where deprecation findings live",
+      "file": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/goal-file-manifest.txt",
+      "line": 1,
+      "firstSeen": 6,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F012",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Live-but-inert constitutional branches in ranking/normalization paths",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts",
+      "line": 2652,
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F013",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "render.ts:457 docstring still says constitutional context (census F1 named TODO)",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+      "line": 457,
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F014",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Packet metadata stale vs executed deprecation (graph draft, pre-execution last_save)",
+      "file": "specs/system-speckit/037-decisions-memory-redesign/006-verify-rollout/graph-metadata.json",
+      "line": 42,
+      "firstSeen": 9,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 9
+  },
+  "openFindingsCount": 13,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.46,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-speckit/036-spec-doc-template-reduction/007-lazy-addon-docs",
+  "description": "Spec Kit currently lacks manifest-registered templates for structured before-and-after comparisons, chronological timelines, and forward-looking",
+  "keywords": [
+    "spec",
+    "kit",
+    "currently",
+    "lacks",
+    "manifest-registered",
+    "templates",
+    "structured",
+    "before-and-after",
+    "comparisons",
+    "chronological",
+    "timelines",
+    "forward-looking"
+  ],
+  "lastUpdated": "2026-08-27T18:20:00.189Z",
+  "specId": "007",
+  "folderSlug": "lazy-addon-docs",
+  "parentChain": [
+    "system-speckit",
+    "036-spec-doc-template-reduction"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "27-08-26_18-51__scaffold-smoke-proves-the-generator-fix.md",
+    "27-08-26_19-19__scaffold-smoke-proves-the-generator-fix.md"
+  ]
+}

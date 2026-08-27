@@ -185,6 +185,20 @@ function normalizeSpecKitLevel(raw: string): SpecKitLevel {
 // anchor-sufficiency gates. No numbered level references these, so the exclusion
 // is inert for Levels 1-3+ and phase parents.
 const FREEFORM_WORKFLOW_DOCS = new Set(['review/review-report.md']);
+const CANONICAL_CONTINUITY_DOC = 'implementation-summary.md';
+const OPTIONAL_CONTINUITY_DOCS = new Set([
+  'spec.md',
+  'plan.md',
+  'tasks.md',
+  'checklist.md',
+  'handover.md',
+  'debug-delegation.md',
+  'research/research.md',
+  'before-after.md',
+  'timeline.md',
+  'roadmap.md',
+]);
+const LAZY_DOCS_WITH_STATIC_ANCHORS = new Set(['before-after.md', 'timeline.md', 'roadmap.md']);
 
 function collectDocuments(folder: string, level: string): DocumentRecord[] {
   const documents: DocumentRecord[] = [];
@@ -192,10 +206,14 @@ function collectDocuments(folder: string, level: string): DocumentRecord[] {
   const contractDocs = new Set([
     ...contract.requiredCoreDocs,
     ...contract.requiredAddonDocs,
+    ...contract.lifecycleRequiredDocs.afterImplementationStarts,
     ...contract.lazyAddonDocs,
     'resource-map.md',
     'context-index.md',
   ]);
+  if (fs.existsSync(path.join(folder, 'checklist.md'))) {
+    contractDocs.add('checklist.md');
+  }
 
   for (const basename of contractDocs) {
     if (FREEFORM_WORKFLOW_DOCS.has(basename)) {
@@ -616,6 +634,8 @@ function validateFrontmatterMemoryBlock(folder: string, level: string): RuleResu
   const parentSessionRefs: Array<{ basename: string; parentSessionId: string }> = [];
 
   for (const document of collectDocuments(folder, level)) {
+    const continuityRequired = document.basename === CANONICAL_CONTINUITY_DOC
+      || !OPTIONAL_CONTINUITY_DOCS.has(document.basename);
     const parsed = extractFrontmatter(document.content);
 
     if (parsed.error) {
@@ -632,11 +652,13 @@ function validateFrontmatterMemoryBlock(folder: string, level: string): RuleResu
     }
 
     if (!parsed.memoryBlock) {
-      diagnostics.push({
-        code: 'SPECDOC_FRONTMATTER_002',
-        severity: 'warning',
-        detail: `${document.basename}: missing _memory block`,
-      });
+      if (continuityRequired) {
+        diagnostics.push({
+          code: 'SPECDOC_FRONTMATTER_002',
+          severity: 'warning',
+          detail: `${document.basename}: missing _memory block`,
+        });
+      }
       continue;
     }
 
@@ -658,11 +680,13 @@ function validateFrontmatterMemoryBlock(folder: string, level: string): RuleResu
     }
 
     if (!parsed.continuityBlock) {
-      diagnostics.push({
-        code: 'SPECDOC_FRONTMATTER_006',
-        severity: 'warning',
-        detail: `${document.basename}: _memory.continuity is missing`,
-      });
+      if (continuityRequired) {
+        diagnostics.push({
+          code: 'SPECDOC_FRONTMATTER_006',
+          severity: 'warning',
+          detail: `${document.basename}: _memory.continuity is missing`,
+        });
+      }
       continue;
     }
 
@@ -930,6 +954,7 @@ function looksLikeCitation(text: string): boolean {
 
 function validateSpecDocSufficiency(folder: string, level: string): RuleResult {
   const diagnostics: RuleDiagnostic[] = [];
+  const contract = resolveLevelContract(normalizeSpecKitLevel(level));
 
   for (const document of collectDocuments(folder, level)) {
     const parsed = parseAnchors(document.content);
@@ -949,6 +974,19 @@ function validateSpecDocSufficiency(folder: string, level: string): RuleResult {
     }
 
     const anchorMap = new Map(parsed.anchors.map((anchor) => [anchor.id, anchor]));
+
+    if (LAZY_DOCS_WITH_STATIC_ANCHORS.has(document.basename)) {
+      const expectedAnchors = contract.sectionGatesByDocument.get(document.basename);
+      for (const anchorId of expectedAnchors?.keys() ?? []) {
+        if (!anchorMap.has(anchorId)) {
+          diagnostics.push({
+            code: 'SPECDOC_SUFFICIENCY_001',
+            severity: 'error',
+            detail: `${document.basename}: missing required anchor '${anchorId}'`,
+          });
+        }
+      }
+    }
 
     for (const anchor of parsed.anchors) {
       if (anchor.body.trim().length === 0) {

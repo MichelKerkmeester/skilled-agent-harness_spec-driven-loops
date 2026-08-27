@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Batch Feedback Learning
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Weekly batch feedback learning
 // Aggregates implicit feedback events from the ledger (see
 // feedback-ledger.ts), computes confidence-weighted signal scores
 // per memory, enforces min-support and boost-cap guards, and
@@ -60,6 +59,7 @@ export const FUTURE_REDUCER_DAMPING_CONTRACT = Object.freeze({
   negativeSignalDamping: 0.1,
 });
 
+// Retain the legacy tier as protected when feedback evaluates archived rows.
 const PROTECTED_FEEDBACK_TIERS = new Set(['constitutional', 'critical', 'important']);
 
 export interface FutureFeedbackReducerTarget {

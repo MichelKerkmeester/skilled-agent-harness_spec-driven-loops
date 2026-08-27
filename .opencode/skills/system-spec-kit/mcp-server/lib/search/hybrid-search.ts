@@ -2648,6 +2648,7 @@ function structuralSearch(
       FROM memory_index m
       WHERE ${whereClause}
       ORDER BY
+        -- Preserve legacy constitutional ordering for archived-row compatibility.
         CASE importance_tier
           WHEN 'constitutional' THEN 1
           WHEN 'critical' THEN 2

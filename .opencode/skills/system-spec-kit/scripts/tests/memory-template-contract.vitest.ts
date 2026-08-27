@@ -5,10 +5,18 @@ import { describe, expect, it } from 'vitest';
 import { validateMemoryTemplateContract } from '../../shared/parsing/memory-template-contract';
 import { renderInlineGates } from '../templates/inline-gate-renderer';
 
-const MANIFEST_DIR = path.resolve(__dirname, '../../templates/manifest');
+const TEMPLATES_ROOT = path.resolve(__dirname, '../../templates');
 
 function readRenderedManifestSourceComment(templateName: string): string {
-  const templatePath = path.join(MANIFEST_DIR, templateName);
+  // Templates live in role-based folders (core/addons/packet-types); resolve by search.
+  let templatePath = path.join(TEMPLATES_ROOT, templateName);
+  for (const sub of ['core', 'addons', 'packet-types']) {
+    const candidate = path.join(TEMPLATES_ROOT, sub, templateName);
+    if (fs.existsSync(candidate)) {
+      templatePath = candidate;
+      break;
+    }
+  }
   const rendered = renderInlineGates(fs.readFileSync(templatePath, 'utf8'), '1');
   return rendered.match(/<!-- SPECKIT_TEMPLATE_SOURCE: [^\n]+ -->/)?.[0] ?? '';
 }

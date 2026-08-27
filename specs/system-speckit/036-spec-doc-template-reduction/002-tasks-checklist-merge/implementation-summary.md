@@ -1,35 +1,18 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Unified Tasks and Verification Document"
+description: "Merged tasks and verification content into one level-gated document while preserving legacy checklist reads and status compatibility."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/002-tasks-checklist-merge"
-    last_updated_at: "2026-08-26T05:33:56Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-tasks-checklist-merge"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+  - "tasks checklist merge"
+  - "unified verification document"
+  - "legacy checklist read path"
+  - "status compatibility"
+importance_tier: "important"
+contextType: "implementation"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 ---
 
@@ -39,7 +22,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-tasks-checklist-merge |
-| **Completed** | 2026-08-26 |
+| **Completed** | Not stated in the reviewed evidence |
+| **Authored** | 2026-08-27 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,28 +32,27 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+New packets now use one `tasks.md` document for task tracking, verification, and testing. The template gates verification and testing at L2 and above, while the manifest makes standalone `checklist.md` optional. The reader surfaces prefer the merged sections and retain legacy checklist support so existing packets keep their status and validation behavior.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Contract migration
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The change updated the unified template, manifest, scaffold and validation level detection, status derivation, priority-tag checks, acceptance-coverage bindings, anchor validation, and template-structure comparison. The golden snapshot baseline was reworked for the merged document, while legacy checklist files remain readable during rollout.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl` | Modified | Carries Tasks plus L2+ Verification Checklist and Testing Checklist sections. |
+| `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` | Modified | Makes `checklist.md` optional and gates merged verification anchors on L2+. |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Modified | Scaffolds the unified tasks document for new packets. |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modified | Detects the merged tasks document while accepting legacy checklist packets. |
+| `.opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts` | Modified | Derives status from merged verification content and retains legacy checklist reads. |
+| `.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts` | Modified | Resolves merged verification, priority tags, legacy documents, and continuity-aware validation. |
+| `.opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts` | Modified | Includes legacy checklist documents in structural validation. |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh` | Modified | Prefers merged verification traceability and falls back to standalone checklists. |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh` | Modified | Loads the shared phase-parent helper and validates the merged anchor contract. |
+| `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` | Modified | Compares merged and legacy task structures with optional verification rules. |
+| `.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | Modified | Rebaselines the merged task renders. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +60,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The phase moved the verification and testing sections into the level-gated tasks template, updated each named producer and reader, rebuilt the runtime distributions, and rebaselined the generated snapshots. Fresh L2 scaffolding and a legacy L2 packet then exercised the new and compatibility paths.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +68,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep `checklist.md` optional rather than remove legacy reads | Existing L2+ packets still depend on their standalone checklist for status and validation. |
+| Gate verification and testing sections at L2+ | L1 keeps its original task-only shape while higher levels retain their verification contract. |
+| Prefer merged verification and fall back to legacy checklist content | New packets use one source while shipped packets remain compatible. |
+| Repair the anchor helper path and compare behavior together | The prior blocker came from disagreement between the two structural checks. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +81,14 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Fresh L2 scaffold | PASS, it contains a unified `tasks.md` and no `checklist.md`. |
+| Legacy L2 packet validation | PASS, a standalone `checklist.md` remains accepted. |
+| Legacy L2 status derivation | PASS, the derived status matches the pre-merge result. |
+| Golden snapshots | PASS, the merged output was rebaselined and the suite is green. |
+| `check-anchors` and template-structure comparison | PASS, both checks agree after the prior blocker was resolved. |
+| Runtime distributions | PASS, both distribution trees were rebuilt before compatibility checks. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +96,5 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Legacy checklist files remain supported.** New scaffolds no longer create them, but shipped packets continue to require the compatibility read path until they are migrated or retired.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-

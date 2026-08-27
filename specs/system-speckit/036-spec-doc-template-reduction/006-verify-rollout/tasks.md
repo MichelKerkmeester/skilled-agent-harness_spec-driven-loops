@@ -1,34 +1,18 @@
 ---
-title: "Tasks: Phase 6: verify-rollout [template:level-1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 6: verify-rollout"
+description: "Verify the landed template reductions across snapshots, derived status, fresh scaffolds, strict validation, dist freshness, byte reduction, and final packet hygiene before rollout."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
+  - "verify rollout tasks"
+  - "template reduction close-out"
+  - "recursive validation gate"
+  - "zero deriveStatus delta"
+importance_tier: "important"
 contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/006-verify-rollout"
-    last_updated_at: "2026-08-26T05:33:59Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-verify-rollout"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 6: verify-rollout
 
 <!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 ---
 
@@ -42,7 +26,7 @@ _memory:
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+**Task Format**: `T### [P?] Description (file path); done when ...`
 <!-- /ANCHOR:notation -->
 
 ---
@@ -50,9 +34,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 [REQ-001, REQ-002, REQ-005] Capture the before baseline for snapshots, derived status, and rendered bytes (`.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap`, `.opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts`); done when the comparison inputs and representative shipped L2+ fleet are recorded.
+- [ ] T002 [REQ-003] Confirm predecessor outputs and validation targets (`specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/`, `003-template-dedup/`, `004-continuity-single-source/`, `005-comment-extraction/`); done when phases 002 through 005 are landed and fresh L1/L2/L3/L3+ plus legacy targets are selected.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +43,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T003 [REQ-001] Run and review the whole golden-snapshot suite (`.opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts`, `.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap`); done when all renders pass and only intended reviewed re-baselines differ.
+- [ ] T004 [REQ-003] Rebuild both runtime distributions and check freshness (`.opencode/skills/system-spec-kit/scripts/dist/`, `.opencode/skills/system-spec-kit/mcp-server/dist/`); done when both trees are regenerated from current sources and the freshness gate passes.
+- [ ] T005 [REQ-003] Scaffold fresh packets at L1, L2, L3, and L3+ (`.opencode/skills/system-spec-kit/scripts/spec/create.sh`); done when each scaffold contains the expected documents and is ready for strict validation alongside a shipped legacy packet.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +53,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T006 [REQ-002] Compare `deriveStatus` before and after for the representative fleet (`.opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts`); done when every derived status is identical and the fleet delta is zero.
+- [ ] T007 [REQ-003] Run strict validation on fresh levels and the shipped legacy packet (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`); done when every target exits 0 with rebuilt distributions.
+- [ ] T008 [REQ-003, REQ-004] Run the parent recursive strict gate (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `specs/system-speckit/036-spec-doc-template-reduction/`); done when recursive validation is clean, no unrelated file changed, and no stray output remains.
+- [ ] T009 [REQ-005] Measure and report rendered-byte reduction (`.opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts`); done when before/after byte totals and the achieved reduction are recorded against the phase baseline.
+- [ ] T010 [REQ-004] Inspect completion claims before rollout (`specs/system-speckit/036-spec-doc-template-reduction/`); done when no phase or packet document claims completion without verification evidence, and the phase implementation summary remains deferred until the gates pass.
+- [ ] T011 [REQ-001, REQ-002, REQ-003, REQ-004, REQ-005] Write the rollout changelog and acceptance evidence (`specs/system-speckit/036-spec-doc-template-reduction/changelog/`, `006-verify-rollout/spec.md`); done when all five requirements have evidence, the changelog reflects the verified result, and no false-completion artifact remains.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -83,7 +68,7 @@ _memory:
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] REQ-001 through REQ-005 each have a completed mapped task and evidence
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,14 +78,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Predecessor**: See `../005-comment-extraction/`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

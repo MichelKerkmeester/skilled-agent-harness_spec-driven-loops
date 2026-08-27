@@ -22,8 +22,7 @@ constitutional-tier authoring behavior from it.
 - The special always-surface / search-boosted "constitutional" tier was removed from the memory
   database. There is no longer a tier that pins rules to the top of memory search or injects them
   at session start.
-- The former rule files under `.opencode/skills/system-spec-kit/constitutional/` **remain as plain,
-  unindexed reference docs**. They are ordinary Markdown references now, not a searchable or
+- The former rule files under `.opencode/skills/system-spec-kit/constitutional/` **were deleted**. They are gone from the repository, not a searchable or
   auto-surfacing memory tier. Read them directly when needed.
 - There is no token budget, qualification prompt, or approval flow to run — those governed the
   retired tier.

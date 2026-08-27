@@ -210,7 +210,6 @@ describe('handler-memory-index cooldown behavior', () => {
     });
 
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
     });
 
@@ -234,7 +233,6 @@ describe('handler-memory-index cooldown behavior', () => {
     });
 
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
     });
 
@@ -246,7 +244,6 @@ describe('handler-memory-index cooldown behavior', () => {
 
   it('sets cooldown timestamp after successful scan response', async () => {
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
     });
 
@@ -261,7 +258,6 @@ describe('handler-memory-index cooldown behavior', () => {
     mocks.mockRepairIncompleteMarkers.mockResolvedValue({ scanned: 1, repaired: 1, failed: 0 });
 
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
     });
 
@@ -289,7 +285,6 @@ describe('handler-memory-index cooldown behavior', () => {
     mocks.mockDeleteMemory.mockReturnValue(true);
 
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
     });
 
@@ -320,7 +315,6 @@ describe('handler-memory-index cooldown behavior', () => {
     mocks.mockDeleteMemory.mockReturnValue(true);
 
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
     });
 
@@ -356,7 +350,6 @@ describe('handler-memory-index cooldown behavior', () => {
       });
 
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
     });
 
@@ -390,7 +383,6 @@ describe('handler-memory-index cooldown behavior', () => {
     ]);
 
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
     });
 
@@ -423,7 +415,6 @@ describe('handler-memory-index cooldown behavior', () => {
     ]);
 
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
     });
 
@@ -463,7 +454,6 @@ describe('handler-memory-index cooldown behavior', () => {
       mocks.mockProcessBatches.mockReturnValue(batchGate);
 
       const scanPromise = handler.handleMemoryIndexScan({
-        includeConstitutional: false,
         includeSpecDocs: true,
       });
 

@@ -51,16 +51,28 @@ _ac_lifecycle_active() {
     local folder="$1"
     local level_num="$2"
     local summary_file="$folder/implementation-summary.md"
-    local checklist_file="$folder/checklist.md"
 
     [[ "$level_num" -lt 2 ]] && return 1
-    [[ -f "$checklist_file" ]] || return 1
+    _ac_traceability_file "$folder" >/dev/null || return 1
     [[ -f "$summary_file" ]] || return 1
 
     local status_line status
     status_line="$(awk 'BEGIN { IGNORECASE = 1 } /\|[[:space:]]*\*\*Status\*\*[[:space:]]*\|/ { print; exit }' "$summary_file")"
     status="$(_ac_lower "$status_line")"
     [[ "$status" == *"in-progress"* || "$status" == *"in progress"* || "$status" == *"implemented"* || "$status" == *"complete"* || "$status" == *"completed"* || "$status" == *"done"* || "$status" == *"shipped"* || "$status" == *"delivered"* ]]
+}
+
+_ac_traceability_file() {
+    local folder="$1"
+    if [[ -f "$folder/checklist.md" ]]; then
+        printf '%s\n' "$folder/checklist.md"
+        return 0
+    fi
+    if [[ -f "$folder/tasks.md" ]] && grep -q '<!-- ANCHOR:protocol -->' "$folder/tasks.md" 2>/dev/null; then
+        printf '%s\n' "$folder/tasks.md"
+        return 0
+    fi
+    return 1
 }
 
 _ac_count_story_criteria() {
@@ -124,11 +136,15 @@ _ac_count_total() {
 
 _ac_analyze_traceability() {
     local checklist_file="$1"
-    awk -F'|' '
+    local merged_tasks="${2:-false}"
+    awk -F'|' -v merged_tasks="$merged_tasks" '
         function trim(value) { gsub(/^[[:space:]]+|[[:space:]]+$/, "", value); return value }
         function lower(value) { return tolower(value) }
         function has_file_line(value) { return value ~ /(^|[[:space:](])[^[:space:]|()]+:[0-9]+([[:space:]).,;]|$)/ }
-        BEGIN { rows = 0; covered = 0; malformed = 0 }
+        BEGIN { rows = 0; covered = 0; malformed = 0; in_verification = (merged_tasks != "true") }
+        merged_tasks == "true" && /<!-- ANCHOR:protocol -->/ { in_verification = 1; next }
+        merged_tasks == "true" && /<!-- \/ANCHOR:(summary|sign-off) -->/ { in_verification = 0; next }
+        merged_tasks == "true" && !in_verification { next }
         /^[[:space:]]*(```|~~~)/ { in_fence = !in_fence; next }
         in_fence { next }
         /^\|/ {
@@ -195,9 +211,17 @@ run_check() {
         return 0
     fi
 
-    local checklist_file="$folder/checklist.md"
+    local checklist_file
+    local merged_tasks=false
+    if ! checklist_file="$(_ac_traceability_file "$folder")"; then
+        RULE_MESSAGE="Acceptance coverage gate not active: no verification checklist source found"
+        return 0
+    fi
+    if [[ "$checklist_file" == "$folder/tasks.md" ]]; then
+        merged_tasks=true
+    fi
     local analysis rows covered malformed malformed_ids
-    analysis="$(_ac_analyze_traceability "$checklist_file")"
+    analysis="$(_ac_analyze_traceability "$checklist_file" "$merged_tasks")"
     IFS=$'\t' read -r rows covered malformed malformed_ids <<< "$analysis"
 
     if [[ "$rows" -gt "$total" ]]; then

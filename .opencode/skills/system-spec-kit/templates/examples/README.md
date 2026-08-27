@@ -50,7 +50,7 @@ examples/
 `-- level_3+/     # Governance and coordination example
 ```
 
-Example folders mirror level contracts, but they are not source templates. Source templates live under `templates/manifest/*.md.tmpl`, and the manifest maps public levels to those templates.
+Example folders mirror level contracts, but they are not source templates. Source templates live under `templates/*.md.tmpl`, and the manifest maps public levels to those templates.
 
 ---
 

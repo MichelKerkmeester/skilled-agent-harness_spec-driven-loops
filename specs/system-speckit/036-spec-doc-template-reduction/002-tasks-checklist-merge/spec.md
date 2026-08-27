@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: tasks-checklist-merge [template:level-1/spec.md]"
+title: "Feature Specification: Phase 2: tasks-checklist-merge"
 description: "tasks.md and checklist.md are two required docs with overlapping completion signals; deriveStatus silently ignores tasks checkboxes whenever checklist.md exists. Merge them into one unified doc (Tasks + Verification Checklist + Testing Checklist) without regressing status derivation for the shipped fleet."
 trigger_phrases:
   - "tasks checklist merge"

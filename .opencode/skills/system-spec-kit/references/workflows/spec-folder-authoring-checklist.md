@@ -33,7 +33,7 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 ## 2. PRE-CHECKS
 
 - [ ] Read the Level 1 contract files in an existing packet such as `<spec-folder>`.
-- [ ] Read templates from `.opencode/skills/system-spec-kit/templates/` and the manifest entries under `.opencode/skills/system-spec-kit/templates/manifest/`.
+- [ ] Read templates from `.opencode/skills/system-spec-kit/templates/` and the manifest entries under `.opencode/skills/system-spec-kit/templates/`.
 - [ ] Verify the required Level 1 docs: `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md`.
 - [ ] Confirm required anchor counts for the selected level before writing.
 - [ ] Confirm `_memory.continuity.packet_pointer` is slash-separated and relative to the specs track.
@@ -69,6 +69,6 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 
 ## 5. RELATED RESOURCES
 
-- sk-doc templates and system-spec-kit/templates/manifest/ (source-of-truth for document contract rules)
+- sk-doc templates and system-spec-kit/templates/ (source-of-truth for document contract rules)
 - Prior example: `<spec-folder>`
 - Verification recipes: `spec-folder-write-recipe.md`

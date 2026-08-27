@@ -9,6 +9,8 @@ expected_leaf_resources: []
 
 # 451 -- Constitutional Self-Edit and Compare-and-Swap Guard
 
+> **DEPRECATED (constitutional-layer removal):** this feature was removed; the 20 rule files were deleted as well. Retained here for historical record.
+
 ## 1. OVERVIEW
 
 This scenario validates the constitutional edit guard on the `memory_update` path. An edit that would downgrade a constitutional row out of constitutional tier must be rejected with `E_CONSTITUTIONAL_SELF_EDIT`. When the caller supplies `expectedHash`, it must match the row's current `content_hash` or the update is rejected with `E_STALE_CONSTITUTIONAL_UPDATE`. The non-constitutional update path must remain byte-identical.

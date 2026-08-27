@@ -1,0 +1,229 @@
+
+
+
+
+
+
+
+
+I have the workflow contract. Setting up phase_init now — first a bounded context discovery pass to seed the strategy file.
+
+
+
+
+
+I have enough context for phase_init. Writing the init state files now.
+
+
+
+
+
+
+
+Phase_init complete. Starting **Iteration 1: CODE sweep** — focused greps across the mcp-server source.
+
+No matches — my glob exclusion likely misfired. Checking file layout and where the 215 hits live.
+
+94 files hit `includeConstitutional` (mostly tests — Iter 3). Now finding the production-code constitutional tier config and remaining sites.
+
+Glob exclusions aren't behaving as expected; targeting specific source directories instead.
+
+
+
+
+
+
+
+Rich map acquired. Now reading the load-bearing code sites — starting with the tier config and the search sites.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Critical discovery: the **tool schemas still default `includeConstitutional: true`** while handler defaults flipped false. Verifying how schema defaults get applied, plus the remaining handler sites.
+
+
+
+
+
+
+
+
+
+
+
+Iter 1 evidence is complete. Writing the iteration artifact and state, then updating the strategy.
+
+
+
+
+
+
+
+Iter 1 complete. Starting **Iteration 2: COMMANDS sweep**.
+
+
+
+
+
+
+
+
+
+Iteration 2 evidence complete. Writing artifacts and moving to the TESTS sweep.
+
+
+
+
+
+Iter 2 complete. Starting **Iteration 3: TESTS sweep**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iter 3 complete. Starting **Iteration 4: docs/SKILL/hooks/advisor sweep**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iter 4 complete. Starting **Iteration 5: ROOT DOCS sweep**.
+
+My lineage files polluted the glob — targeting the root docs individually.
+
+
+
+
+
+
+
+
+
+Iter 5 complete. Starting **Iteration 6: THE FOLDER — 20 rule files analysis**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iter 6 complete. Starting **Iteration 7: DB verification**.
+
+
+
+
+
+
+
+
+
+
+
+Iter 7 complete. Starting **Iteration 8: master inventory reconciliation**.
+
+
+
+Iter 8 complete. Starting **Iteration 9: consumers/breakage + checklist**.
+
+
+
+
+
+
+
+
+
+Iter 9 complete. Starting **Iteration 10: final verification sweep**.
+
+
+
+
+
+
+
+
+
+
+
+All 10 iterations complete. Running **phase_synthesis** — writing the final research.md.
+
+
+
+
+
+
+
+
+
+
+
+Lineage complete. All phases executed within the bound artifact directory:
+
+- **phase_init**: `deep-research-config.json`, `deep-research-strategy.md`, `deep-research-state.jsonl` (config record)
+- **phase_main_loop**: 10 iterations (`iterations/iteration-001..010.md`), 10 JSONL iteration records, strategy updated each round — 10/10 audit questions answered
+- **phase_synthesis**: `research.md` — 61-row deduped inventory (DONE/TODO/KEEP-AS-DOC/DELETE), 14-step ranked checklist, exact 18-link retarget set, per-test post-deprecation assertions, full consumer/breakage map, and the dist-rebuild + daemon-restart evidence for the committed flip
+
+Headline findings: 4 production `includeConstitutional: true` sites and 3 schema defaults escaped commit a1d2b84a1e; the indexer still defaults true (must flip before DB deletion); dist is mixed and `spec-memory.cjs` exits 69 when stale; compaction auto-surface is live while session-prime cold-start is dead; enforcement stays entirely in render.ts's hardcoded directive capsule.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-flash-audit

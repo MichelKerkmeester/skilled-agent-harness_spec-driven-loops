@@ -46,7 +46,7 @@ templates/
 └── scratch/                # Local ignored render workspace
 ```
 
-> **IMPORTANT:** Always scaffold new specs from the manifest-backed Level contract. `create.sh` and the Level contract resolver share `templates/manifest/spec-kit-docs.json`.
+> **IMPORTANT:** Always scaffold new specs from the manifest-backed Level contract. `create.sh` and the Level contract resolver share `templates/spec-kit-docs.json`.
 
 ---
 

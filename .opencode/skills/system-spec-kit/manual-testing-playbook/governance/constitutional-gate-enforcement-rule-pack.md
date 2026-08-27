@@ -10,6 +10,8 @@ expected_leaf_resources: []
 
 # 220 -- Constitutional Gate-Enforcement Rule Pack
 
+> **DEPRECATED (constitutional-layer removal):** this feature was removed; the 20 rule files were deleted as well. Retained here for historical record.
+
 ## 1. OVERVIEW
 
 This scenario validates Constitutional Gate-Enforcement Rule Pack for `220`. It focuses on verifying the always-surface constitutional memory preserves gate triggers, cross-references, and continuation or compaction recovery behavior.

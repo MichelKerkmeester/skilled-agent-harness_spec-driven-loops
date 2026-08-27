@@ -18,8 +18,8 @@ trigger_phrases:
 
 Current state:
 
-- `manifest/spec-kit-docs.json` maps public Levels to required docs, add-on docs, lazy docs and section gates.
-- `manifest/*.md.tmpl` files contain gated markdown blocks rendered by the inline-gate renderer.
+- `spec-kit-docs.json` maps public Levels to required docs, add-on docs, lazy docs and section gates.
+- `core/`, `addons/` and `packet-types/` `*.md.tmpl` files contain gated markdown blocks rendered by the inline-gate renderer.
 - `examples/` stores rendered reference packets for each supported Level.
 
 ---
@@ -59,7 +59,11 @@ templates do not call scripts or import runtime modules
 
 ```text
 templates/
-├── manifest/              │ Templates, manifest and maintainer guides
+├── core/                  │ The required documents every packet carries
+├── addons/                │ Optional and on-demand documents
+├── packet-types/          │ Templates for special packet shapes
+├── spec-kit-docs.json     │ The level contract
+├── CONTRACT.md            │ Maintainer guide for the contract
 ├── examples/              │ Pre-rendered reference packets
 ├── changelog/             │ Template change records
 ├── stress-test/           │ Deep-review grading materials
@@ -69,10 +73,10 @@ templates/
 Allowed dependency direction:
 
 ```text
-scripts/spec/create.sh → templates/manifest/spec-kit-docs.json
+scripts/spec/create.sh → templates/spec-kit-docs.json
 scripts/templates/inline-gate-renderer.* → templates/manifest/*.md.tmpl
-scripts/spec/validate.sh → manifest contract data
-docs → examples and manifest guides
+scripts/spec/validate.sh → the level contract at templates/spec-kit-docs.json
+docs → examples and maintainer guides
 ```
 
 Disallowed dependency direction:
@@ -90,24 +94,26 @@ examples/ → scaffolder input
 ```text
 templates/
 ├── README.md
-├── manifest/
-│   ├── spec-kit-docs.json
+├── spec-kit-docs.json
+├── core/
 │   ├── spec.md.tmpl
-│   ├── phase-parent.spec.md.tmpl
-│   ├── review.spec.md.tmpl
 │   ├── plan.md.tmpl
 │   ├── tasks.md.tmpl
-│   ├── implementation-summary.md.tmpl
+│   └── implementation-summary.md.tmpl
+├── addons/
 │   ├── checklist.md.tmpl
 │   ├── decision-record.md.tmpl
 │   ├── handover.md.tmpl
 │   ├── debug-delegation.md.tmpl
 │   ├── research.md.tmpl
 │   ├── resource-map.md.tmpl
-│   ├── context-index.md.tmpl
-│   ├── README.md
-│   ├── EXTENSION-GUIDE.md
-│   └── MIGRATION.md
+│   ├── before-after.md.tmpl
+│   ├── timeline.md.tmpl
+│   └── roadmap.md.tmpl
+├── packet-types/
+│   ├── phase-parent.spec.md.tmpl
+│   ├── review.spec.md.tmpl
+│   └── context-index.md.tmpl
 ├── examples/
 │   ├── level-1/
 │   ├── level-2/
@@ -124,17 +130,17 @@ templates/
 
 | File                                      | Responsibility                                                                   |
 | ----------------------------------------- | -------------------------------------------------------------------------------- |
-| `manifest/spec-kit-docs.json`             | Defines Level contracts, document registry, template versions and section gates. |
-| `manifest/spec.md.tmpl`                   | Renders feature specification documents.                                         |
-| `manifest/review.spec.md.tmpl`            | Renders review-record specifications for the `review` packet type.               |
-| `manifest/plan.md.tmpl`                   | Renders implementation plan documents.                                           |
-| `manifest/tasks.md.tmpl`                  | Renders task breakdown documents.                                                |
-| `manifest/implementation-summary.md.tmpl` | Renders delivery summaries and continuity anchors.                               |
-| `manifest/checklist.md.tmpl`              | Renders verification checklists.                                                 |
-| `manifest/decision-record.md.tmpl`        | Renders architecture decision records.                                           |
-| `manifest/handover.md.tmpl`               | Renders handover documents for memory-save workflows.                            |
-| `manifest/resource-map.md.tmpl`           | Renders optional path ledgers for larger packets.                                |
-| `manifest/EXTENSION-GUIDE.md`             | Explains how maintainers add a new document type.                                |
+| `spec-kit-docs.json`             | Defines Level contracts, document registry, template versions and section gates. |
+| `core/spec.md.tmpl`                   | Renders feature specification documents.                                         |
+| `packet-types/review.spec.md.tmpl`            | Renders review-record specifications for the `review` packet type.               |
+| `core/plan.md.tmpl`                   | Renders implementation plan documents.                                           |
+| `core/tasks.md.tmpl`                  | Renders task breakdown documents.                                                |
+| `core/implementation-summary.md.tmpl` | Renders delivery summaries and continuity anchors.                               |
+| `addons/checklist.md.tmpl`              | Renders verification checklists.                                                 |
+| `addons/decision-record.md.tmpl`        | Renders architecture decision records.                                           |
+| `addons/handover.md.tmpl`               | Renders handover documents for memory-save workflows.                            |
+| `addons/resource-map.md.tmpl`           | Renders optional path ledgers for larger packets.                                |
+| `EXTENSION-GUIDE.md`                      | Explains how maintainers add a new document type.                                |
 | `examples/`                               | Shows rendered output for Levels 1, 2, 3 and 3+. Phase-parent scaffolding is defined by the manifest template contract. |
 
 ---
@@ -181,8 +187,8 @@ Render flow:
 
 | Entrypoint                                  | Type              | Purpose                                                  |
 | ------------------------------------------- | ----------------- | -------------------------------------------------------- |
-| `manifest/spec-kit-docs.json`               | Data file         | Primary Level and document contract consumed by scripts. |
-| `manifest/*.md.tmpl`                        | Template files    | Rendered into packet markdown files.                     |
+| `spec-kit-docs.json`               | Data file         | Primary Level and document contract consumed by scripts. |
+| `core/`, `addons/` and `packet-types/` `*.md.tmpl`                        | Template files    | Rendered into packet markdown files.                     |
 | `examples/level_*`                          | Reference folders | Show expected rendered output by Level.                  |
 | `scripts/spec/create.sh`                    | Script caller     | Reads this folder to scaffold packets.                   |
 | `scripts/spec/validate.sh`                  | Script caller     | Reads the same contract to validate packets.             |
@@ -206,9 +212,9 @@ For template changes, also run the template and resolver test suite used by the 
 
 ## 9. RELATED
 
-- [Manifest README](./manifest/README.md)
-- [Extension Guide](./manifest/EXTENSION-GUIDE.md)
-- [Migration Guide](./manifest/MIGRATION.md)
+- [Contract Guide](./CONTRACT.md)
+- [Extension Guide](./EXTENSION-GUIDE.md)
+- [Migration Guide](./MIGRATION.md)
 - [System Spec Kit Skill](../SKILL.md)
 - [Template Resolver](../mcp-server/lib/templates/level-contract-resolver.ts)
 - [Spec Scaffolder](../scripts/spec/create.sh)

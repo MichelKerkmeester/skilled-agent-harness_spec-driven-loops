@@ -1,0 +1,105 @@
+{
+  "topic": "Deep review of spec folder 036-spec-doc-template-reduction (template-reduction phased packet: parent + 6 child phases, scaffold + authored draft specs, template corpus)",
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/036-spec-doc-template-reduction",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "sessionId": "fanout-deepseek-flash-1787805958244-hkfwxl",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "converged",
+  "specFolder": "specs/system-speckit/036-spec-doc-template-reduction",
+  "createdAt": "2026-08-27T04:46:30Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-flash-max",
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits"
+  },
+  "reviewScopeFiles": [
+    "specs/system-speckit/036-spec-doc-template-reduction/spec.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/description.json",
+    "specs/system-speckit/036-spec-doc-template-reduction/graph-metadata.json",
+    "specs/system-speckit/036-spec-doc-template-reduction/goal-file-manifest.txt",
+    "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/spec.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/plan.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/tasks.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/implementation-summary.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/spec.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/plan.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/003-template-dedup/spec.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/003-template-dedup/plan.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/004-continuity-single-source/spec.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/004-continuity-single-source/plan.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/005-comment-extraction/spec.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/005-comment-extraction/plan.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/006-verify-rollout/spec.md",
+    "specs/system-speckit/036-spec-doc-template-reduction/006-verify-rollout/plan.md",
+    ".opencode/skills/system-spec-kit/templates/examples/level-1/spec.md",
+    ".opencode/skills/system-spec-kit/templates/examples/level-1/plan.md",
+    ".opencode/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+    ".opencode/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md",
+    ".opencode/skills/system-spec-kit/templates/examples/level-2/spec.md",
+    ".opencode/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+    ".opencode/skills/system-spec-kit/templates/examples/level-2/checklist.md",
+    ".opencode/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md",
+    ".opencode/skills/system-spec-kit/references/templates/level-specifications.md",
+    ".opencode/skills/system-spec-kit/references/templates/level-selection-guide.md"
+  ],
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

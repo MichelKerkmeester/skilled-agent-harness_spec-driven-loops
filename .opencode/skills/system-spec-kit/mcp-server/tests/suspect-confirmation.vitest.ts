@@ -207,7 +207,7 @@ function parseEnvelope(response: MCPResponseType): ScanEnvelope {
   return JSON.parse((response as unknown as { content: Array<{ text: string }> }).content[0].text) as ScanEnvelope;
 }
 
-const scanArgs = { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false } as const;
+const scanArgs = { includeSpecDocs: false, incremental: false, force: false } as const;
 
 // A suspect must clear the confirmation phase's minimum-quarantine window (real
 // wall-clock age, default 60s) before it is eligible for tombstoning. Tests that

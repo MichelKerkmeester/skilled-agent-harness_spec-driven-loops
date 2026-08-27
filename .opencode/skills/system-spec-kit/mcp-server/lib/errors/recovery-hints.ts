@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Recovery Hints
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Guards and edge cases
 // Error catalog with recovery hints
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -229,10 +228,9 @@ export const RECOVERY_HINTS: RecoveryHintMap = {
     severity: 'low'
   },
   [ERROR_CODES.FILE_INVALID_PATH]: {
-    hint: 'Invalid file path. Indexable files must be spec documents under specs/**/ or constitutional memories.',
+    hint: 'Invalid file path. Indexable files must be spec documents under specs/**/.',
     actions: [
       'Point at a canonical spec document (spec.md, plan.md, tasks.md, decision-record.md, implementation-summary.md, handover.md)',
-      'Or use .opencode/skills/*/constitutional/ for constitutional memories',
       'Check path format (must be absolute)'
     ],
     severity: 'medium'

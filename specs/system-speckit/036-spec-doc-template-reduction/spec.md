@@ -8,18 +8,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/036-spec-doc-template-reduction"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize phase-parent continuity block"
-    next_safe_action: "Plan or resume a child phase folder"
+    packet_pointer: "system-speckit/036-spec-doc-template-reduction"
+    last_updated_at: "2026-08-27T10:22:45Z"
+    last_updated_by: "codex"
+    recent_action: "Executed and verified all nine template phases"
+    next_safe_action: "Review the scoped diff and close out the packet"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "template-session"
+      session_id: "2026-08-27-036-spec-doc-template-reduction"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +50,7 @@ _memory:
 | **Created** | 2026-08-26 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | scaffold/036-spec-doc-template-reduction |
+| **Parent Packet** | system-speckit/036-spec-doc-template-reduction |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Validator + template + generator changes ship so parent validates under tolerant policy |
@@ -99,12 +99,15 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-analysis/ | [Phase 1 scope] | Pending |
-| 2 | 002-tasks-checklist-merge/ | [Phase 2 scope] | Pending |
-| 3 | 003-template-dedup/ | [Phase 3 scope] | Pending |
-| 4 | 004-continuity-single-source/ | [Phase 4 scope] | Pending |
-| 5 | 005-comment-extraction/ | [Phase 5 scope] | Pending |
-| 6 | 006-verify-rollout/ | [Phase 6 scope] | Pending |
+| 1 | 001-analysis/ | Analysis and recommendations for template reduction | Complete |
+| 2 | 002-tasks-checklist-merge/ | Merge tasks.md and checklist.md into one level-gated document | Complete |
+| 3 | 003-template-dedup/ | Deduplicate decision-record frontmatter across levels | Complete |
+| 4 | 004-continuity-single-source/ | Establish single-source continuity and remove template duplication | Complete |
+| 5 | 005-comment-extraction/ | Strip instructional template comments from authored documents | Complete |
+| 6 | 006-verify-rollout/ | Verify the rollout and close out the packet | Complete |
+| 7 | 007-lazy-addon-docs/ | Add on-demand before/after, timeline and roadmap docs; decouple the decision record | Complete |
+| 8 | 008-plan-and-contract-optimization/ | Make the summary lifecycle-required and trim duplicated plan checkboxes | Complete |
+| 9 | 009-template-folder-restructure/ | Split templates into core, addons and packet-types folders | Complete |
 
 ### Phase Transition Rules
 
@@ -117,11 +120,14 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-analysis | 002-tasks-checklist-merge | [Criteria TBD] | [Verification TBD] |
-| 002-tasks-checklist-merge | 003-template-dedup | [Criteria TBD] | [Verification TBD] |
-| 003-template-dedup | 004-continuity-single-source | [Criteria TBD] | [Verification TBD] |
-| 004-continuity-single-source | 005-comment-extraction | [Criteria TBD] | [Verification TBD] |
-| 005-comment-extraction | 006-verify-rollout | [Criteria TBD] | [Verification TBD] |
+| 001-analysis | 002-tasks-checklist-merge | Recommendations recorded as requirements | Spec carries research-backed requirements |
+| 002-tasks-checklist-merge | 003-template-dedup | Merged document validates for old and new packets | Legacy checklist packets still derive status |
+| 003-template-dedup | 004-continuity-single-source | Shared frontmatter renders per level | Golden snapshots pass |
+| 004-continuity-single-source | 005-comment-extraction | Continuity reads from the canonical host | Legacy packets still validate |
+| 005-comment-extraction | 006-verify-rollout | Templates render with markers intact | Golden snapshots pass |
+| 006-verify-rollout | 007-lazy-addon-docs | Reductions verified against a real scaffold | validate.sh passes on a fresh packet |
+| 007-lazy-addon-docs | 008-plan-and-contract-optimization | On-demand docs scaffold behind the opt-in flag | Opt-in scaffold carries all four docs |
+| 008-plan-and-contract-optimization | 009-template-folder-restructure | Lifecycle contract holds in all three states | Planned, started and restored packets validate |
 <!-- /ANCHOR:phase-map -->
 
 ---

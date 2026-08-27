@@ -52,7 +52,7 @@ All intake surfaces return the same `start_state`, `repair_mode`, relationship d
 - `--supersedes=PACKET_ID[,PACKET_ID...]` — seed supersedes
 - `--intake-only` — (plan.md only) halt after Emit phase
 
-> **Phase parent note.** When the invoking workflow targets a folder that already qualifies as a phase parent (≥1 NNN-named populated child), level selection and Level extension composition do not apply at the parent level. The intake publishes only the lean trio (`spec.md` + `description.json` + `graph-metadata.json`) using `templates/manifest/phase-parent.spec.md.tmpl` as the parent scaffold. Heavy docs live in the children. Phase children created alongside the parent still go through the full Level 1–3+ contract for their assigned level.
+> **Phase parent note.** When the invoking workflow targets a folder that already qualifies as a phase parent (≥1 NNN-named populated child), level selection and Level extension composition do not apply at the parent level. The intake publishes only the lean trio (`spec.md` + `description.json` + `graph-metadata.json`) using `templates/packet-types/phase-parent.spec.md.tmpl` as the parent scaffold. Heavy docs live in the children. Phase children created alongside the parent still go through the full Level 1–3+ contract for their assigned level.
 
 **Outputs** (returned to caller, or surfaced alongside caller-local preflight state when the invoking workflow emits both):
 - `feature_description` — free-text description
@@ -281,8 +281,8 @@ Reads `handover.md` and `_memory.continuity` for `reentry_reason` and `resume_qu
 | Category | Paths |
 |----------|-------|
 | Spec-kit templates | `.opencode/skills/system-spec-kit/templates/` (Level 1 / 2 / 3 / 3+) |
-| Phase-parent template | `templates/manifest/phase-parent.spec.md.tmpl` (lean trio template) |
-| Migration-bridge template | `templates/manifest/context-index.md.tmpl` (optional; for reorganized phase parents) |
+| Phase-parent template | `templates/packet-types/phase-parent.spec.md.tmpl` (lean trio template) |
+| Migration-bridge template | `templates/packet-types/context-index.md.tmpl` (optional; for reorganized phase parents) |
 | Recommend-level helper | `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` |
 | Create helper | `.opencode/skills/system-spec-kit/scripts/spec/create.sh` |
 | Description generator | `.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js` |

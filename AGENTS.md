@@ -38,7 +38,7 @@ When an approved plan names a specific workflow, command, agent or skill (e.g., 
 
 #### Comment Hygiene — HARD BLOCK (cannot be overridden)
 
-Never embed ephemeral artifact labels (spec paths, packet/phase numbers, ADR/REQ/task/finding ids) in code comments; keep the durable WHY. See `.opencode/skills/system-spec-kit/constitutional/comment-hygiene.md`.
+Never embed ephemeral artifact labels (spec paths, packet/phase numbers, ADR/REQ/task/finding ids) in code comments; keep the durable WHY.
 
 #### Halt Conditions — Stop and Report
 
@@ -68,8 +68,8 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 | Standard                             | Rule                                                                                                                                                 |
 | --------------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Confirmed vs inferred**            | For load-bearing claims, prose must distinguish confirmed (with evidence: file:line, command, artifact) from inferred (state what would confirm it). |
-| **Baseline before "no regressions"** | Capture real starting numbers, re-run the WHOLE gate, report the delta. See `.opencode/skills/system-spec-kit/constitutional/regression-baseline-and-delta.md`.                       |
-| **Finding = hypothesis**             | A sub-agent's "COMPLETE" or reviewer's "P0" — confirm against real symptom before acting. See `.opencode/skills/system-spec-kit/constitutional/finding-is-a-hypothesis.md`.           |
+| **Baseline before "no regressions"** | Capture real starting numbers, re-run the WHOLE gate, report the delta.                       |
+| **Finding = hypothesis**             | A sub-agent's "COMPLETE" or reviewer's "P0" — confirm against real symptom before acting.           |
 | **Objective proof plan**              | For machine-state tasks, translate acceptance criteria into 1-5 observable pass/fail checks before changing files. Include exact paths, formats, and exposed boundary cases. |
 | **Observed command evidence**         | A command counts as evidence only after its output and exit status are read. Run focused checks during repair, then rerun the authoritative whole gate. |
 | **Safe negative control**             | When practical and non-destructive, reproduce the exact failing symptom before the fix so the same check proves the change.                         |
@@ -87,7 +87,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 ##### Blast-Radius Management
 
 - **Match effort to blast-radius.** Open non-trivial work with stakes read ("low-blast, reversible" / "high-blast: touches auth + data").
-- **Name the rollback, stop for yes** — Before delete/overwrite/migrate/deploy/send, write how to undo and wait for confirmation. For commit/push, see `.opencode/skills/system-spec-kit/constitutional/main-branch-direct-push.md`.
+- **Name the rollback, stop for yes** — Before delete/overwrite/migrate/deploy/send, write how to undo and wait for confirmation.
 - **Name what still speaks the old contract** — Confirm deployed servers, installed clients, caches, and API consumers won't break.
 - **Sanitize by persistence boundary** — Distinguish working-tree removal from sensitive-data eradication. Inventory every persistence location, but keep ordinary removal scoped to the requested surface and do not rewrite history, branches, or reflogs until the rollback is named and the operator approves the destructive action.
 - **Acquire dependencies deliberately** — Prefer tools already available in the project. Installation is a scoped mutation and must pass the same scope, approval, and verification rules as other changes.
@@ -113,7 +113,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 
 | Rule | Requirement |
 |------|-------------|
-| **CLI dispatch** | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first. See `.opencode/skills/system-spec-kit/constitutional/cli-dispatch-skill-preload.md`. |
+| **CLI dispatch** | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first. |
 | **Small-model dispatch** | Before dispatching to small models (MiniMax, Kimi, Qwen, etc.), MUST consult `sk-prompt/sk-prompt-models`. |
 | **Agent I/O pointer** | Optional dispatch headers documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`. |
 
@@ -196,7 +196,7 @@ Trigger: Claiming "done", "complete", "finished", "works"
    - `handover.md` or `_memory.continuity` fields when present.
    - `implementation-summary.md` final state, validation evidence, and continuation notes.
 4. When `SPECKIT_COMPLETION_FRESHNESS=true`, completion claims must also pass `CONTINUITY_FRESHNESS`: the stored `session_dedup.fingerprint` matches recomputed content and packet-scoped paths are clean. Under `--strict` a stale result blocks completion (exit 2) for non-grandfathered packets regardless of `SPECKIT_COMPLETION_FRESHNESS_ENFORCE`; that flag only reclassifies the inner result label `warn`→`error`, it does not make the warn tier non-blocking under `--strict`.
-- Skip: Level 1 tasks (no checklist.md required).
+- Skip: Level 1 tasks (checklist.md is optional at every level).
 
 #### MEMORY SAVE RULE [HARD] BLOCK
 Trigger: "save context", "save memory", `/memory:save`
@@ -231,13 +231,13 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 #### Documentation Levels
 
-| Level            | LOC            | Required Files                                                         | Use When                                       |
-| ------------------| ----------------| ------------------------------------------------------------------------| ------------------------------------------------|
-| **1**            | <100           | spec.md, plan.md, tasks.md, implementation-summary.md                  | All features (minimum)                         |
-| **2**            | 100-499        | Level 1 + checklist.md                                                 | QA validation needed                           |
-| **3**            | ≥500           | Level 2 + decision-record.md (+ optional research.md, resource-map.md) | Complex/architecture changes                   |
-| **3+**           | Complexity 80+ | Level 3 + AI protocols, extended checklist, sign-offs                  | Multi-agent, enterprise governance             |
-| **Phase Parent** | n/a            | spec.md, description.json, graph-metadata.json                         | Folder contains phase children with spec files |
+| Level            | LOC            | Required Files | Optional Files | Lazy Add-ons | Use When |
+| ---------------- | -------------- | -------------- | -------------- | ------------ | -------- |
+| **1**            | <100           | spec.md, plan.md, tasks.md (+ implementation-summary.md once work starts) | — | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | All features (minimum) |
+| **2**            | 100-499        | spec.md, plan.md, tasks.md (+ implementation-summary.md once work starts) | checklist.md | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | QA validation needed |
+| **3**            | ≥500           | spec.md, plan.md, tasks.md (+ implementation-summary.md once work starts) | checklist.md | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | Complex/architecture changes |
+| **3+**           | Complexity 80+ | spec.md, plan.md, tasks.md (+ implementation-summary.md once work starts) | checklist.md | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | Multi-agent, enterprise governance |
+| **Phase Parent** | n/a            | spec.md, description.json, graph-metadata.json | — | handover.md, before-after.md, timeline.md, roadmap.md, decision-record.md | Folder contains phase children with spec files |
 
 #### Phase Parent Mode
 
@@ -360,7 +360,7 @@ Every spec folder (Level 1+) MUST contain:
 
 #### Code Search Decision Tree
 
-Full routing + FTS fallback chain: `.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md`
+Full routing and FTS fallback chain are described in the decision tree below
 
 | Need | Use |
 | ------| -----|

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 5: comment-extraction [template:level-1/spec.md]"
+title: "Feature Specification: Phase 5: comment-extraction"
 description: "Instructional HTML comments (SELF-CHECK, voice guides, footer size notes) are not stripped by the renderer and leak into rendered bytes — measured 15.5% of packet bytes (implementation-summary 43.6%) with zero code consumers. Move them out-of-band to sidecar guidance and add per-doc byte budgets."
 trigger_phrases:
   - "comment extraction"
@@ -94,7 +94,7 @@ Move that guidance out-of-band into sidecar files so scaffolded docs carry only 
 
 ### In Scope
 - Relocate instructional HTML comments from all authoring templates into sidecar guidance files.
-- Add per-doc rendered-byte budget assertions (draft budgets: spec ≤3.5KB, plan ≤5KB, merged tasks ≤5KB, implementation-summary ≤2.5KB).
+- Add per-doc rendered-byte budget assertions using measured baselines: Level 1 spec.md at 4,280 B, Level 1 implementation-summary.md at 3,365 B, and Level 2 spec.md at 6,627 B, with targets no higher than 90% of each baseline, or integer upper limits of 3,852 B, 3,028 B, and 5,964 B.
 - A reviewed golden-snapshot re-baseline capturing the reduced bytes.
 
 ### Out of Scope
@@ -122,7 +122,7 @@ Move that guidance out-of-band into sidecar files so scaffolded docs carry only 
 |----|-------------|---------------------|
 | REQ-001 | Instructional comments removed from rendered output | **Given** a fresh scaffold of each level, no SELF-CHECK / FAILURE-MODES / voice-guide comment appears in the rendered bytes |
 | REQ-002 | Markers preserved | **Given** detectLevel and the snapshot test, `SPECKIT_LEVEL` and `SPECKIT_TEMPLATE_SOURCE` still resolve and pass |
-| REQ-003 | Per-doc byte budgets enforced | **Given** the snapshot suite, each rendered doc is asserted under its budget; a regression fails the test |
+| REQ-003 | Per-doc byte budgets enforced against measured baselines | **Given** the snapshot suite, each rendered doc is asserted at no more than 90% of its measured baseline: 3,852 B for Level 1 spec.md, 3,028 B for Level 1 implementation-summary.md, and 5,964 B for Level 2 spec.md; a regression fails the test |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -149,7 +149,7 @@ Move that guidance out-of-band into sidecar files so scaffolded docs carry only 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Removing a marker mistaken for a comment | High — detectLevel/snapshot break | Preserve `SPECKIT_LEVEL` / `SPECKIT_TEMPLATE_SOURCE`; only strip SELF-CHECK/voice/footer |
-| Risk | Byte budgets set too tight | Low-Medium | Recompute real rendered totals before fixing budget numbers |
+| Risk | Byte budgets set too tight | Low-Medium | Compare real renderer output with the measured baselines before ratifying the 10% reduction target |
 | Dependency | Golden snapshots | Reviewed re-baseline required | Diff review is the gate; only intended byte reductions may appear |
 <!-- /ANCHOR:risks -->
 
@@ -158,7 +158,7 @@ Move that guidance out-of-band into sidecar files so scaffolded docs carry only 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What are the exact rendered-byte totals with the real renderer (not a simulator) at change time? (Fixes the budget numbers.)
+- What reduction does the real renderer achieve against the measured baselines, and do the renders meet the 10% target?
 <!-- /ANCHOR:questions -->
 
 ---

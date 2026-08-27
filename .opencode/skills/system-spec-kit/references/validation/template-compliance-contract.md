@@ -233,9 +233,9 @@ Agents MUST meet these thresholds to avoid warnings:
 
 Phase **children** (e.g., `specs/NNN-name/001-phase/`) inherit the base contract for their level plus phase-specific addenda. These are enforced automatically by `validate.sh` via `inferPhaseSpecAddenda()` in `template-structure.js`. No additional agent knowledge is needed for children — follow the base contract and validate after writing.
 
-Phase **parents** are NOT subject to Level 1–3+ structural contracts. When a folder qualifies as a phase parent (≥1 direct child matching `^[0-9]{3}-[a-z0-9-]+$` AND ≥1 such child has `spec.md` OR `description.json`), the parent uses the lean phase-parent template at `templates/manifest/phase-parent.spec.md.tmpl` exclusively and only requires the lean trio: `spec.md` + `description.json` + `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live in the children, not at the parent. The validator's phase-parent branch in `check-files.sh`, `check-level-match.sh`, `check-anchors.sh`, `check-section-counts.sh`, and `check-template-headers.sh` automatically skips Level-N expectations when `is_phase_parent($folder)` returns true.
+Phase **parents** are NOT subject to Level 1–3+ structural contracts. When a folder qualifies as a phase parent (≥1 direct child matching `^[0-9]{3}-[a-z0-9-]+$` AND ≥1 such child has `spec.md` OR `description.json`), the parent uses the lean phase-parent template at `templates/packet-types/phase-parent.spec.md.tmpl` exclusively and only requires the lean trio: `spec.md` + `description.json` + `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live in the children, not at the parent. The validator's phase-parent branch in `check-files.sh`, `check-level-match.sh`, `check-anchors.sh`, `check-section-counts.sh`, and `check-template-headers.sh` automatically skips Level-N expectations when `is_phase_parent($folder)` returns true.
 
-Phase-parent `spec.md` content discipline is enforced by the advisory `PHASE_PARENT_CONTENT` rule (severity: warn): the parent must avoid consolidation/merge/migration narratives. Required content is root purpose + sub-phase control file + what-needs-done. Migration history goes into an optional `context-index.md` rendered from `templates/manifest/context-index.md.tmpl` if needed. Tolerant policy preserves legacy phase parents that retain heavy docs.
+Phase-parent `spec.md` content discipline is enforced by the advisory `PHASE_PARENT_CONTENT` rule (severity: warn): the parent must avoid consolidation/merge/migration narratives. Required content is root purpose + sub-phase control file + what-needs-done. Migration history goes into an optional `context-index.md` rendered from `templates/packet-types/context-index.md.tmpl` if needed. Tolerant policy preserves legacy phase parents that retain heavy docs.
 
 ---
 
@@ -257,7 +257,7 @@ node template-structure.js compare 3 spec.md <abs-path-to>/spec.md all
 ```
 
 Notes that bite if ignored:
-- **Two sources, both must pass.** Required anchors come from `templates/manifest/spec-kit-docs.json` (`levels.<N>.sectionGates`); required-header *order* comes from `template-structure.js` against `templates/manifest/<doc>.md.tmpl`. They are checked separately.
+- **Two sources, both must pass.** Required anchors come from `templates/spec-kit-docs.json` (`levels.<N>.sectionGates`); required-header *order* comes from `template-structure.js` against `templates/<doc>.md.tmpl`. They are checked separately.
 - **Section numbering is cosmetic** — the checker strips a leading `N. ` before matching, so renumbering headers never fixes (or breaks) order; only the relative sequence matters.
 - **Level-3 spec.md ordering gotcha:** `OPEN QUESTIONS` comes LAST (after `RISK MATRIX` and `USER STORIES`), even though the `questions` anchor is listed earlier in the gate set.
 - **decision-record.md** needs an `adr-001` wrapper anchor enclosing the per-ADR sub-anchors (`adr-001-context/-decision/-alternatives/-consequences/-five-checks/-impl`).
@@ -268,7 +268,7 @@ Notes that bite if ignored:
 
 ## 9. SYNC PROTOCOL
 
-When templates in `templates/manifest/` change:
+When templates in `templates/` change:
 
 1. Run the relevant template and validation tests for the changed doc type
 2. Update this file with the new headers/anchors

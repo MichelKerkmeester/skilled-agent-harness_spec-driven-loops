@@ -16,13 +16,13 @@
       "deriveStatus checklist",
       "template merge",
       "spec core",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "unified verification document",
+      "legacy checklist read path",
+      "level contract migration",
+      "tasks checklist merge tasks",
+      "unified verification template",
+      "status compatibility",
+      "legacy packet validation"
     ],
     "key_topics": [
       "tasks",
@@ -35,10 +35,10 @@
       "template",
       "spec",
       "core",
-      "implementation",
-      "plan"
+      "document",
+      "legacy"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "tasks.md",
@@ -120,7 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Versioned",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,25 +138,19 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,19 +162,19 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "standalone",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -186,7 +186,7 @@
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "Unified Tasks",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,8 +194,8 @@
     ],
     "causal_summary": "`tasks.md` and `checklist.md` are two separately required documents whose completion signals overlap: research confirmed task rows duplicate checklist item intent, and `deriveStatus` ranks `implementation-summary > checklist > tasks`, so whenever `checklist.md` exists its checkboxes are counted and the `tasks.md` checkboxes are ignored",
     "created_at": "2026-08-26T05:33:56Z",
-    "last_save_at": "2026-08-26T11:13:57.126Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-27T17:50:56.153Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79be90d305c99cb54d7404a2c53cdfd86a0d3442164ffa647b1d0493677fdcc8",
+    "source_fingerprint": "sha256:70ad07229d7fd9ca9daacefddd45440b4d9a9a371b2daab507aa07eeede0674f",
     "source_doc_hashes": {
-      "spec.md": "a209fd71d7cead5fc1b1322fe8a2623aaf0dbc8f68c4ee3977c84e1ff6a617a4",
-      "plan.md": "a6f287913238dc39ce8271a54b5f2997d7e6a790b6e744927b13a23b51e039ae",
-      "tasks.md": "b3eb88f2162971eb74ec1d5db0f14fdb94a05b7a721e1b844216830b053e0d42",
-      "implementation-summary.md": "b5a3fa45c8fe122aa19362228dc07258fbc2d0db70a0a8ece37af3ef0ecfdae5"
+      "spec.md": "1b7b83ed6a82c99c89a9f06141697dbec983a88320d266f1d2e7af113ae4b223",
+      "plan.md": "dc43e41adc25587afa50445f65d0f80133a3355bec0afc3c817ae3c64630fb26",
+      "tasks.md": "e605773c25ae143bd29948dc5d47b11f82235b8b8f25d0a431fd2cd943c5cd3d",
+      "implementation-summary.md": "ec4d279178d30d2b3cd2add395c1e59e1bf4714a32de5af45f204654c9694d0e"
     },
     "last_active_child_id": null,
     "last_active_at": null

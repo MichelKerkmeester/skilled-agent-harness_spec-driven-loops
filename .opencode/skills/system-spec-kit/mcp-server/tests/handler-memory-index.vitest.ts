@@ -957,7 +957,6 @@ dbFixtureDescribe('Handler Memory Index (T520) [deferred - requires DB test fixt
         const isolatedHandler = await import('../handlers/memory-index');
         const response = await isolatedHandler.handleMemoryIndexScan({
           specFolder: 'system-spec-kit/026-graph-and-context-optimization/009-hook-package',
-          includeConstitutional: false,
           includeSpecDocs: true,
           incremental: false,
         });
@@ -1586,7 +1585,6 @@ describe('memory_index_scan provenance validation', () => {
       const isolatedHandler = await import('../handlers/memory-index');
       const response = await isolatedHandler.handleMemoryIndexScan({
         specFolder: 'system-spec-kit/999-governance-scan',
-        includeConstitutional: false,
         includeSpecDocs: true,
         incremental: false,
       });

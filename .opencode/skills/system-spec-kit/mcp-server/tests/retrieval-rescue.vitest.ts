@@ -222,7 +222,6 @@ describe('retrieval rescue layer', () => {
         limit: 10,
         rerank: false,
         includeContent: false,
-        includeConstitutional: false,
         bypassCache: true,
       });
       const ids = extractSearchRows(result).map((row) => row.id);

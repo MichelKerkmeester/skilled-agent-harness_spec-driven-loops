@@ -1,34 +1,18 @@
 ---
-title: "Tasks: Phase 1: analysis [template:level-1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 1: analysis"
+description: "Map the research-backed template-reduction recommendations to concrete requirements, contract surfaces, and child-phase gates."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
+  - "analysis tasks"
+  - "template reduction requirements"
+  - "recommendation mapping"
+  - "spec-kit contract"
+importance_tier: "important"
 contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/001-analysis"
-    last_updated_at: "2026-08-26T05:33:56Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-analysis"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 1: analysis
 
 <!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 ---
 
@@ -42,7 +26,7 @@ _memory:
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
+**Task Format**: `T### [P?] Description (file path); done when ...`
 <!-- /ANCHOR:notation -->
 
 ---
@@ -50,9 +34,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 [REQ-001] Map R1 to checklist and decision-record deduplication evidence (`001-analysis/research/research.md`); done when the child scope preserves byte identity and the shared ADR body.
+- [ ] T002 [REQ-002] Map R2 to guidance sidecars and marker preservation (`001-analysis/research/research.md`); done when the scope names removable instructional comments, retained markers, and the snapshot gate.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +43,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T003 [REQ-003] Map R3 to the merged document and all reader surfaces (`001-analysis/spec.md`); done when the scope includes level gates, anchors, priority tags, AC coverage, and the legacy checklist read path.
+- [ ] T004 [REQ-004] Map R4 to validator-first continuity consolidation (`001-analysis/research/research.md`); done when the scope identifies implementation-summary as canonical and names validator and fleet compatibility gates.
+- [ ] T005 [REQ-005] Map R5 to research taxonomy neutralization or deferral (`001-analysis/research/research.md`); done when the scope preserves the research_finding anchor contract and states the coupling decision.
+- [ ] T006 [REQ-006] Map R6 to measured rendered-byte budgets (`001-analysis/spec.md`); done when the three baselines and integer upper limits are carried into an additive verification task.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +54,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T007 [REQ-001, REQ-002, REQ-003, REQ-004, REQ-005, REQ-006] Cross-check the recommendation matrix (`001-analysis/spec.md`); done when every requirement has one concrete scope, one dependency path, and one objective gate.
+- [ ] T008 [REQ-001, REQ-002, REQ-003, REQ-004, REQ-005, REQ-006] Confirm the ordered child-phase handoff (`001-analysis/research/research.md`); done when R1, R6, R2, R3, R4, then R5 is recorded with no phantom requirement ids or unresolved blocking assumptions.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -83,7 +65,7 @@ _memory:
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] Every REQ-001 through REQ-006 is mapped to a task with a done-condition
 <!-- /ANCHOR:completion -->
 
 ---
@@ -92,15 +74,6 @@ _memory:
 ## Cross-References
 
 - **Specification**: See `spec.md`
+- **Research**: See `research/research.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

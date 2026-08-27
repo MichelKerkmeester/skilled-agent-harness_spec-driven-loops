@@ -363,6 +363,25 @@ describe('graph metadata schema and parser', () => {
     expect(metadata.derived.status).toBe('complete');
   });
 
+  it('flags review when a complete checklist has open tasks without changing status', () => {
+    const specFolder = createSpecFolder({
+      specStatus: null,
+      planStatus: null,
+      implementationSummaryStatus: null,
+      includeChecklist: true,
+      checklistItems: [
+        '- [x] P0 parser change applied',
+        '- [x] P1 verification recorded',
+      ],
+      tasksItems: ['- [x] Done item', '- [ ] Still open item'],
+    });
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.status).toBe('complete');
+    expect(metadata.status_review_required).toBe(true);
+  });
+
   it('derives in_progress status when implementation-summary exists and checklist items remain unchecked', () => {
     const specFolder = createSpecFolder({
       specStatus: null,

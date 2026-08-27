@@ -1,0 +1,194 @@
+I'm dispatched as a deep-review fan-out leaf agent. First, let me read the workflow contract and survey the review target.
+
+
+
+Now let me load the protocol references and the review target's contents.
+
+
+
+Let me read the JSONL schema, review contract, and strategy/dashboard templates, plus the target spec contents.
+
+Now let me read the review target contents and the existing lineage scaffolding.
+
+
+
+The lineage scaffolding is in place with no prior state — this is a fresh init. Let me read the dashboard template, the graph metadata, and check the deprecation artifacts referenced by the spec.
+
+Two red flags already: `.opencode/DECISIONS.md` missing, and the manifest's `mcp-server/tests/` path absent. Let me verify before drawing conclusions.
+
+
+
+
+
+
+
+
+
+The packet's 002 phase reversed the DECISIONS.md idea — the phase-6 spec's REQ-005 may be stale. Let me read the deprecation and rehome phase specs to establish the expected end-state.
+
+The packet's expected end-state is now clear. Time to initialize the review state packet (phase_init) in my lineage directory.
+
+
+
+
+
+
+
+
+
+**phase_init complete.** Starting iteration 1 — D1 Correctness: search plumbing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 1 evidence gathered. Writing the iteration file and state updates.
+
+
+
+
+
+
+
+
+
+Iteration 2 — D1 Correctness (handlers/hooks).
+
+
+
+Handler/hook surface is clean — no new findings. Writing iteration 2 state.
+
+
+
+
+
+
+
+
+
+Iteration 3 — D1 Correctness (server/CLI/API layer).
+
+
+
+
+
+Iteration 3 clean. Writing its state, then iteration 4 — D2 Security.
+
+
+
+
+
+Iteration 4 — D2 Security.
+
+
+
+
+
+
+
+
+
+
+
+Iteration 5 — D3 Traceability: spec_code census. Running the repo-wide constitutional reference sweep.
+
+
+
+The 004 research contains the full 61-touchpoint census — now I can verify execution against it. Checking the remaining census items.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 6 — D3: checklist_evidence + packet hygiene + overlay protocols.
+
+
+
+
+
+
+
+
+
+Iteration 7 — D4 Maintainability (tests + eval + literals).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iterations 9-10 — broadening sweep and final replay. Running remaining checks.
+
+
+
+
+
+
+
+All 10 iterations complete. Running phase_synthesis — final report, state finalization, and dashboard.
+
+
+
+Final verification of the iteration verdict lines and write-surface discipline.
+
+Deep-review lineage complete: phase_init → phase_main_loop (10/10 iterations, max-iterations stop policy, convergence as telemetry) → phase_synthesis. All state files written inside the lineage directory; nothing touched outside it; no repo tooling or git commands run.
+
+**Result summary:**
+- **Verdict: CONDITIONAL** — 0 P0, 4 P1 (F001 learned-triggers spec-vs-code, F005 folder deletion not executed, F007 stale DECISIONS.md refs, F008 false feature-catalog claims), 9 P2, `hasAdvisories: true`
+- **Confirmed healthy:** tier removed from type/schema surface, search default + indexer/prime scans off, active-row predicate excludes the tier, strict schema posture, path allow-list + bulk-delete gates, tenant filters, census F2/F4/F6/F11 docs rewritten
+- **Artifacts:** `deep-review-config.json`, `deep-review-state.jsonl` (12 records, parses cleanly), `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, `review-report.md`, `iterations/iteration-001..010.md` (all with valid final-line verdicts)
+
+FANOUT_LINEAGE_COMPLETE:deepseek-flash

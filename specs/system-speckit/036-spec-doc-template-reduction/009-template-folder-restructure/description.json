@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
+  "description": "The former `templates/manifest/` directory mixed required core templates, optional add-ons, packet-type templates, the contract manifest, and",
+  "keywords": [
+    "former",
+    "templates",
+    "manifest",
+    "directory",
+    "mixed",
+    "required",
+    "core",
+    "optional",
+    "add-ons",
+    "packet-type",
+    "contract"
+  ],
+  "lastUpdated": "2026-08-27T18:58:16.052Z",
+  "specId": "009",
+  "folderSlug": "template-folder-restructure",
+  "parentChain": [
+    "system-speckit",
+    "036-spec-doc-template-reduction"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "27-08-26_18-51__scaffold-smoke-proves-the-generator-fix.md",
+    "27-08-26_19-58__scaffold-smoke-proves-the-generator-fix.md"
+  ]
+}

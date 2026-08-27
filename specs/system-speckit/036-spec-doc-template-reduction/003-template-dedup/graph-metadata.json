@@ -16,13 +16,13 @@
       "research template neutralization",
       "byte-identical render gate",
       "spec core",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "decision-record frontmatter dedup",
+      "research taxonomy neutralization",
+      "shared ADR body",
+      "decision-record dedup tasks",
+      "frontmatter correction",
+      "research anchor preservation",
+      "template snapshot review"
     ],
     "key_topics": [
       "template",
@@ -36,9 +36,9 @@
       "gate",
       "spec",
       "core",
-      "implementation"
+      "frontmatter"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "spec.md",
@@ -120,7 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,25 +138,19 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -186,16 +186,16 @@
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "Decision Record Template Deduplication",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "`decision-record.md.tmpl` duplicates its whole ADR skeleton across the L3 and L3+ blocks — 138 byte-identical lines differing only in frontmatter",
+    "causal_summary": "`decision-record.md.tmpl` already shares its ADR skeleton across the L3 and L3+ blocks",
     "created_at": "2026-08-26T05:33:57Z",
-    "last_save_at": "2026-08-26T08:01:27.416Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-27T17:51:01.833Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:070935f06f27d2ae34104c8c46d6f57a64fa0a5b4010a6172a403418ad7c89df",
+    "source_fingerprint": "sha256:52804e04e8d170092bb0c1f577db42f6cc9b80ef43bcc757917b2ef36c8ea7d6",
     "source_doc_hashes": {
-      "spec.md": "286bdaf9e3c53ba09b87d3395d05fe1a98413472867c76aa6173974fdb40541a",
-      "plan.md": "3ed5540122f529a0c77eb50cf00eb0160b8974f0408fc55c01c1912aae5aec09",
-      "tasks.md": "8b4e7ad0b13ade816544bf9f65f17b49f2b241e5ef42efe6631bba7c31bab2e6",
-      "implementation-summary.md": "e5f48013a21db347239823a3135ea0c05130d591216055d08af916d38e2a3c43"
+      "spec.md": "7bc5b9c1f569e67e6f20669eb7cddc760141749224ed8782142c3848b0fea4f9",
+      "plan.md": "793fab22a93284bf7a03f10f6245f73b8f02bdb8bb646d8788a6d5bce742b11d",
+      "tasks.md": "3db435ccb65bfa96a51c45cb281ca6a175dee6f4c4592777aba19525f05d5a24",
+      "implementation-summary.md": "ba30101cf0752310b847d99e03a8cc49261b90d09da147753d13d96261fd7748"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -33,7 +33,7 @@ Level 3+ (Extended):    Level 3 + governance/AI protocol content
 
 ### Core Principles
 
-1. **Never create from scratch** - Always scaffold through `create.sh` or render from `.opencode/skills/system-spec-kit/templates/manifest/`
+1. **Never create from scratch** - Always scaffold through `create.sh` or render from `.opencode/skills/system-spec-kit/templates/`
 2. **Always adapt to feature** - Templates are starting points, not final documents
 3. **Preserve structure** - Preserve section structure and numbering; emojis are optional
 4. **Remove placeholders** - Replace ALL `[PLACEHOLDER]` text with actual content
@@ -61,8 +61,8 @@ Templates are rendered from manifest-backed `*.md.tmpl` files. The same Level co
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir /tmp/spec-kit-render \
-  .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl \
-  .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl
+  .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl \
+  .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
 ```
 
 **Composition Rules:**
@@ -190,12 +190,12 @@ mkdir -p specs/###-name/research
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name/research \
-  .opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
 
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
 ```
 
 **When to use:**
@@ -413,7 +413,7 @@ mkdir -p specs/###-name/research
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name/research \
-  .opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
 ```
 
 **Sections to fill:**
@@ -453,7 +453,7 @@ bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh 
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 1 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl
+  .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
 # Or render with --level 3 when the packet is Level 3
 ```
 
@@ -483,7 +483,7 @@ bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh 
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 2 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/checklist.md.tmpl
 # Or render with --level 3+ when the packet is Level 3+
 ```
 
@@ -514,7 +514,7 @@ bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh 
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
 ```
 
 **Required filename:** `decision-record.md` (topic-specific ADR files are supplemental)
@@ -561,7 +561,7 @@ These templates support session continuity, temporary workspaces, and context pr
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/manifest/handover.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/handover.md.tmpl
 ```
 
 **Sections to fill:**
@@ -730,7 +730,7 @@ Task tool -> @debug for specs/007-feature/
 
 **Non-negotiable:**
 
-1. **Always scaffold or render from `.opencode/skills/system-spec-kit/templates/manifest/`** - Never freehand
+1. **Always scaffold or render from `.opencode/skills/system-spec-kit/templates/`** - Never freehand
 2. **Preserve numbering and emojis** - Maintain visual scanning pattern
 3. **Fill every placeholder** - Replace `[PLACEHOLDER]` with actual content
 4. **Remove instructional comments** - Delete `<!-- SAMPLE -->` blocks
@@ -1164,28 +1164,28 @@ Templates are stored as `*.md.tmpl` files and rendered by Level:
 
 | Level | Folder | Contents |
 |-------|--------|----------|
-| Level 1 | `templates/manifest/spec-kit-docs.json` | spec.md, plan.md, tasks.md, implementation-summary.md |
-| Level 2 | `templates/manifest/spec-kit-docs.json` | Level 1 + checklist.md |
-| Level 3 | `templates/manifest/spec-kit-docs.json` | Level 2 + decision-record.md and lazy research |
-| Level 3+ | `templates/manifest/spec-kit-docs.json` | Level 3 + governance sections |
-| Phase Parent | `templates/manifest/phase-parent.spec.md.tmpl` | lean parent spec.md |
+| Level 1 | `templates/spec-kit-docs.json` | spec.md, plan.md, tasks.md, implementation-summary.md |
+| Level 2 | `templates/spec-kit-docs.json` | Level 1 + checklist.md |
+| Level 3 | `templates/spec-kit-docs.json` | Level 2 + decision-record.md and lazy research |
+| Level 3+ | `templates/spec-kit-docs.json` | Level 3 + governance sections |
+| Phase Parent | `templates/packet-types/phase-parent.spec.md.tmpl` | lean parent spec.md |
 
 **Level 1 Templates:**
-- [spec template](../../templates/manifest/spec.md.tmpl) - Requirements and user stories template
-- [plan.md](../../templates/manifest/plan.md.tmpl) - Technical implementation plan template
-- [tasks.md](../../templates/manifest/tasks.md.tmpl) - Task breakdown template
-- [implementation-summary.md](../../templates/manifest/implementation-summary.md.tmpl) - Post-implementation summary
+- [spec template](../../templates/core/spec.md.tmpl) - Requirements and user stories template
+- [plan.md](../../templates/core/plan.md.tmpl) - Technical implementation plan template
+- [tasks.md](../../templates/core/tasks.md.tmpl) - Task breakdown template
+- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Post-implementation summary
 
 **Level 2 Templates (includes Level 1 content):**
-- [checklist.md](../../templates/manifest/checklist.md.tmpl) - Validation checklist template
+- [checklist.md](../../templates/addons/checklist.md.tmpl) - Validation checklist template
 
 **Level 3 Templates (includes Level 2 content):**
-- [decision-record.md](../../templates/manifest/decision-record.md.tmpl) - Architecture Decision Records template
-- [research.md.tmpl](../../templates/manifest/research.md.tmpl) - Render to `research/research.md` when Level 3 research is needed
+- [decision-record.md](../../templates/addons/decision-record.md.tmpl) - Architecture Decision Records template
+- [research.md.tmpl](../../templates/addons/research.md.tmpl) - Render to `research/research.md` when Level 3 research is needed
 
 **Cross-Level Templates (at templates root):**
-- [handover.md.tmpl](../../templates/manifest/handover.md.tmpl) - Full session handover document (~100-150 lines)
-- [debug-delegation.md.tmpl](../../templates/manifest/debug-delegation.md.tmpl) - Debug task delegation for sub-agents
+- [handover.md.tmpl](../../templates/addons/handover.md.tmpl) - Full session handover document (~100-150 lines)
+- [debug-delegation.md.tmpl](../../templates/addons/debug-delegation.md.tmpl) - Debug task delegation for sub-agents
 
 **Non-Template Folders (for reference):**
 - `scratch/` - Temporary workspace folder (create ad-hoc files as needed, no template)

@@ -191,7 +191,6 @@ describe('memory_index_scan checkpoint needs-rebuild repair reporting', () => {
 
   it('reports repair counts in the scan response under the scan lease', async () => {
     const response = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
     });
 

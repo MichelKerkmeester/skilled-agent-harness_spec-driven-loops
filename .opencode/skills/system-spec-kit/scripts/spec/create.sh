@@ -12,9 +12,9 @@
 #   └── level_3+/       # All addendums (~640 LOC)
 #
 # LEVEL SCALING (Value-based, not just length):
-#   L1: Essential what/why/how - spec, plan, tasks, impl-summary
-#   L2: +Quality gates, verification - checklist.md
-#   L3: +Architecture decisions - decision-record.md
+#   L1: Essential what/why/how - spec, plan, tasks; summary follows lifecycle
+#   L2: +Quality gates, verification - merged into tasks.md
+#   L3: +Architecture guidance - decision-record.md is on-demand
 #   L3+: +Enterprise governance - extended content
 #
 # Also creates scratch/ directories.
@@ -31,6 +31,7 @@ JSON_MODE=false
 SHORT_NAME=""
 BRANCH_NUMBER=""
 DOC_LEVEL=1  # Default to Level 1 (Baseline)
+WITH_LAZY_ADDONS=false  # Opt in to the level-agnostic add-on documents
 SKIP_BRANCH=true   # Default: stay on the current branch (opt in with --branch). The owner's workflow commits directly to main; auto-branching is unwanted friction.
 TRACK=""           # Optional track segment: places the folder under .opencode/specs/<track>/ with per-track numbering
 SHARDED=false  # Enable sharded spec sections for Level 3
@@ -129,6 +130,9 @@ while [[ $i -le $# ]]; do
             ;;
         --sharded)
             SHARDED=true
+            ;;
+        --with-lazy-addons)
+            WITH_LAZY_ADDONS=true
             ;;
         --subfolder)
             SUBFOLDER_MODE=true
@@ -256,6 +260,8 @@ while [[ $i -le $# ]]; do
             echo "                      Default: 1"
             echo "  --sharded           Create sharded spec sections (Level 3 only)"
             echo "                      Creates spec-sections/ with modular documentation"
+            echo "  --with-lazy-addons  Add before-after.md, timeline.md, roadmap.md, and decision-record.md"
+            echo "                      (off by default; all are valid at every level)"
             echo "  --subfolder <path>  Create versioned sub-folder in existing spec folder"
             echo "                      Auto-increments version (001, 002, etc.)"
             echo "  --topic <name>      Topic name for sub-folder (used with --subfolder)"
@@ -275,13 +281,14 @@ while [[ $i -le $# ]]; do
             echo "Documentation Levels (CORE + ADDENDUM architecture v2.0):"
             echo ""
             echo "  Level 1 (Core ~270 LOC):     Essential what/why/how"
-            echo "    Files: spec.md, plan.md, tasks.md, implementation-summary.md"
+            echo "    Files: spec.md, plan.md, tasks.md"
+            echo "    Lifecycle: implementation-summary.md after implementation starts"
             echo ""
             echo "  Level 2 (Core + Verify):     +Quality gates, verification"
-            echo "    Adds: checklist.md, NFRs, edge cases, effort estimation"
+            echo "    Adds: verification/testing sections in tasks.md, NFRs, edge cases, effort estimation"
             echo ""
-            echo "  Level 3 (Core + Verify + Arch): +Architecture decisions"
-            echo "    Adds: decision-record.md, executive summary, risk matrix, ADRs"
+            echo "  Level 3 (Core + Verify + Arch): +Architecture guidance"
+            echo "    Adds: executive summary, risk matrix, ADR guidance"
             echo ""
             echo "  Level 3+ (All addendums):    +Enterprise governance"
             echo "    Adds: approval workflow, compliance, stakeholder matrix, AI protocols"
@@ -351,6 +358,57 @@ fi
 slugify_token() {
     local input="$1"
     echo "$input" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//'
+}
+
+escape_template_value() {
+    local value="$1"
+    value="${value//\\/\\\\}"
+    value="${value//\"/\\\"}"
+    printf '%s' "$value"
+}
+
+requested_lazy_addon_docs() {
+    local contract_json="$1"
+    node - "$contract_json" <<'NODE'
+const contract = JSON.parse(process.argv[2]);
+const requested = ['before-after.md', 'timeline.md', 'roadmap.md', 'decision-record.md'];
+const lazyDocs = contract.lazyAddonDocs || [];
+const invalid = requested.filter((doc) => !lazyDocs.includes(doc));
+if (invalid.length > 0) {
+  console.error(`Internal template contract omitted lazy documents: ${invalid.join(', ')}`);
+  process.exit(3);
+}
+process.stdout.write(`${requested.join('\n')}\n`);
+NODE
+}
+
+scaffold_lifecycle_required_docs() {
+    local contract_json="$1"
+    node - "$contract_json" <<'NODE'
+const contract = JSON.parse(process.argv[2]);
+const docs = contract.lifecycleRequiredDocs?.afterImplementationStarts || [];
+const docRe = /^(?:[A-Za-z0-9][A-Za-z0-9_-]*\/)?[A-Za-z0-9][A-Za-z0-9_-]*\.md$/u;
+for (const doc of docs) {
+  if (typeof doc !== 'string' || !docRe.test(doc) || doc.includes('..')) {
+    console.error('Internal template contract included an invalid lifecycle document name');
+    process.exit(3);
+  }
+  process.stdout.write(`${doc}\n`);
+}
+NODE
+}
+
+scaffold_contract_docs() {
+    local contract_json="$1"
+    local required_docs
+    if ! required_docs="$(level_contract_docs_from_json "$contract_json")"; then
+        return 1
+    fi
+    printf '%s\n' "$required_docs"
+    scaffold_lifecycle_required_docs "$contract_json"
+    if $WITH_LAZY_ADDONS; then
+        requested_lazy_addon_docs "$contract_json"
+    fi
 }
 
 create_versioned_subfolder() {
@@ -519,6 +577,8 @@ finalize_scaffold_templates() {
     local safe_packet_pointer
     safe_packet_pointer="$(slugify_token "$packet_pointer")"
     [[ -n "$safe_packet_pointer" ]] || safe_packet_pointer="$packet_pointer"
+    local escaped_feature_name
+    escaped_feature_name="$(escape_template_value "$feature_name")"
     local today now_iso
     today="$(date -u +"%Y-%m-%d")"
     now_iso="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
@@ -526,11 +586,10 @@ finalize_scaffold_templates() {
     local md_file
     for md_file in "$folder_path"/*.md; do
         [[ -f "$md_file" ]] || continue
-        PACKET_POINTER="scaffold/$safe_packet_pointer" RAW_PACKET_POINTER="$packet_pointer" FEATURE_NAME="$feature_name" TODAY="$today" NOW_ISO="$now_iso" DOC_LEVEL="$doc_level" perl -0pi -e '
-            s/\[NAME\]/$ENV{FEATURE_NAME}/g;
-            s/\[YOUR_VALUE_HERE: feature-name\]/$ENV{FEATURE_NAME}/g;
-            s/\[YOUR_VALUE_HERE: YYYY-MM-DD\]/$ENV{TODAY}/g;
-            s/\[YOUR_VALUE_HERE: [^\]]+\]/$ENV{FEATURE_NAME}/g;
+        PACKET_POINTER="scaffold/$safe_packet_pointer" RAW_PACKET_POINTER="$packet_pointer" FEATURE_NAME="$escaped_feature_name" TODAY="$today" NOW_ISO="$now_iso" DOC_LEVEL="$doc_level" perl -0pi -e '
+            s{\[NAME\]}{$ENV{FEATURE_NAME}}g;
+            s{\[YOUR_VALUE_HERE: feature-name\]}{$ENV{FEATURE_NAME}}g;
+            s{\[YOUR_VALUE_HERE: YYYY-MM-DD\]}{$ENV{TODAY}}g;
             s/\[###-feature-name\]/$ENV{PACKET_POINTER}/g;
             s/000-feature-name/$ENV{PACKET_POINTER}/g;
             s/packet_pointer: "[^"]+"/packet_pointer: "$ENV{PACKET_POINTER}"/g;
@@ -542,7 +601,8 @@ finalize_scaffold_templates() {
             s/\| \*\*Level\*\* \| \[1\/2\/3\/3\+\] \|/| **Level** | $ENV{DOC_LEVEL} |/g;
             s/\[YYYY-MM-DD\]/$ENV{TODAY}/g;
             s/last_updated_at: "[^"]+"/last_updated_at: "$ENV{NOW_ISO}"/g;
-            s/session_id: "template-session"/"session_id: \"scaffold-$ENV{PACKET_POINTER}\""/eg;
+            s{\[YOUR_VALUE_HERE: [^\]]+\]}{$ENV{FEATURE_NAME}}g;
+            s/session_id: "template-session"/"session_id: \"scaffold-$ENV{RAW_PACKET_POINTER}\""/eg;
         ' "$md_file"
         ensure_template_source_near_top "$md_file"
     done
@@ -551,12 +611,12 @@ finalize_scaffold_templates() {
         cat >> "$folder_path/spec.md" <<'EOF'
 
 <!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
+REQUIREMENT_PLACEHOLDER
+REQUIREMENT_PLACEHOLDER
+REQUIREMENT_PLACEHOLDER
+REQUIREMENT_PLACEHOLDER
+REQUIREMENT_PLACEHOLDER
+REQUIREMENT_PLACEHOLDER
 **Given**
 **Given**
 **Given**
@@ -596,7 +656,7 @@ scaffold_phase_parent_validation_child() {
         parent_base="$(basename "$parent_path")"
         now_iso="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
         parent_tmp="$(mktemp "${parent_spec}.tmp.XXXXXX")"
-        awk -v pointer="scaffold/${parent_base}" -v now="$now_iso" '
+        awk -v pointer="scaffold/${parent_base}" -v session_pointer="$parent_base" -v now="$now_iso" '
             BEGIN { fence = 0 }
             $0 == "---" {
                 fence++
@@ -612,7 +672,7 @@ scaffold_phase_parent_validation_child() {
                     print "    key_files: []"
                     print "    session_dedup:"
                     print "      fingerprint: \"sha256:0000000000000000000000000000000000000000000000000000000000000000\""
-                    print "      session_id: \"scaffold-" pointer "\""
+                    print "      session_id: \"scaffold-" session_pointer "\""
                     print "      parent_session_id: null"
                     print "    completion_pct: 0"
                     print "    open_questions: []"
@@ -642,7 +702,7 @@ EOF
     touch "$child_path/scratch/.gitkeep"
 
     child_contract="$(resolve_level_contract "1")"
-    if ! child_contract_docs="$(level_contract_docs_from_json "$child_contract")"; then
+    if ! child_contract_docs="$(scaffold_contract_docs "$child_contract")"; then
         echo "Error: failed to resolve Level 1 template documents" >&2
         exit 1
     fi
@@ -843,7 +903,7 @@ if [[ "$SUBFOLDER_MODE" = true ]]; then
     LEVEL_CONTRACT="$(resolve_level_contract "$DOC_LEVEL")"
     CREATED_FILES=()
 
-    if ! level_contract_docs="$(level_contract_docs_from_json "$LEVEL_CONTRACT")"; then
+    if ! level_contract_docs="$(scaffold_contract_docs "$LEVEL_CONTRACT")"; then
         echo "Error: failed to resolve Level $DOC_LEVEL template documents" >&2
         exit 1
     fi
@@ -977,7 +1037,7 @@ if [[ "$PHASE_MODE" = true ]]; then
     # Each child gets level 1 templates + parent back-reference injection
 
     TEMPLATES_BASE="${SPECKIT_TEMPLATES_BASE:-$REPO_ROOT/.opencode/skills/system-spec-kit/templates}"
-    readonly LEAN_PHASE_PARENT_TEMPLATE="$TEMPLATES_BASE/manifest/phase-parent.spec.md.tmpl"
+    readonly LEAN_PHASE_PARENT_TEMPLATE="$TEMPLATES_BASE/packet-types/phase-parent.spec.md.tmpl"
     readonly INLINE_GATE_RENDERER="$REPO_ROOT/.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh"
 
     # Trap for temp file cleanup on error exit
@@ -1148,9 +1208,10 @@ if [[ "$PHASE_MODE" = true ]]; then
         _phase_parent_packet_pointer="scaffold/$(slugify_token "$_feature_slug")"
         _today="$(date -u +"%Y-%m-%d")"
         _phase_parent_problem="This phased decomposition tracks ${FEATURE_DESCRIPTION} across independently executable child phase folders."
-        _phase_parent_purpose="Keep parent documentation lean while child phases own detailed plans, tasks, checklists, and continuity."
+        _phase_parent_purpose="Keep parent documentation lean while child phases own detailed plans, tasks, verification, and continuity."
         _scope_rows="- Root purpose and child phase manifest for ${FEATURE_DESCRIPTION}"$'\n'"- Per-phase implementation details in child folders"
         _file_row="| [Per-child files] | Modify/Create | Child phases | Detailed file scope lives in each child phase |"
+        _feature_description_escaped="$(escape_template_value "$FEATURE_DESCRIPTION")"
 
         while IFS= read -r _line; do
             case "$_line" in
@@ -1165,8 +1226,8 @@ if [[ "$PHASE_MODE" = true ]]; then
                     fi
                     ;;
                 *)
-                    _line="${_line//\[YOUR_VALUE_HERE: feature-name\]/$FEATURE_DESCRIPTION}"
-                    _line="${_line//\[YOUR_VALUE_HERE: one-line description\]/Phase parent for ${FEATURE_DESCRIPTION}}"
+                    _line="${_line//\[YOUR_VALUE_HERE: feature-name\]/$_feature_description_escaped}"
+                    _line="${_line//\[YOUR_VALUE_HERE: one-line description\]/Phase parent for ${_feature_description_escaped}}"
                     _line="${_line//\[YOUR_VALUE_HERE: trigger phrase 1\]/$_feature_slug}"
                     _line="${_line//\[YOUR_VALUE_HERE: trigger phrase 2\]/phase parent}"
                     _line="${_line//\[YOUR_VALUE_HERE: YYYY-MM-DD\]/$_today}"
@@ -1268,7 +1329,7 @@ if [[ "$PHASE_MODE" = true ]]; then
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, verification, decisions, continuity) live inside the phase children.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
@@ -1335,7 +1396,7 @@ EOF
         create_graph_metadata_file "$_child_path" "Phase ${_i}: ${_child_folder#*-}" "planned"
 
         # Copy Level 1 templates to child folder
-        if ! child_level_contract_docs="$(level_contract_docs_from_json "$CHILD_LEVEL_CONTRACT")"; then
+        if ! child_level_contract_docs="$(scaffold_contract_docs "$CHILD_LEVEL_CONTRACT")"; then
             echo "Error: failed to resolve Level 1 template documents" >&2
             exit 1
         fi
@@ -1553,7 +1614,7 @@ touch "$FEATURE_DIR/scratch/.gitkeep"
 # ───────────────────────────────────────────────────────────────
 
 # Copy all templates from the resolver contract (using library copy_template)
-if ! level_contract_docs="$(level_contract_docs_from_json "$LEVEL_CONTRACT")"; then
+if ! level_contract_docs="$(scaffold_contract_docs "$LEVEL_CONTRACT")"; then
     echo "Error: failed to resolve Level $DOC_LEVEL template documents" >&2
     exit 1
 fi
@@ -1694,14 +1755,17 @@ else
     echo ""
     echo "  Level $DOC_LEVEL Documentation (manifest-backed Level contract):"
     case $DOC_LEVEL in
-        1) echo "    ✓ Core: spec.md + plan.md + tasks.md + implementation-summary.md"
+        1) echo "    ✓ Core: spec.md + plan.md + tasks.md"
+           echo "    ✓ Lifecycle: implementation-summary.md (scaffolded; required after implementation starts)"
            echo "      (Essential what/why/how - ~270 LOC)" ;;
-        2) echo "    ✓ Core: spec.md + plan.md + tasks.md + implementation-summary.md"
-           echo "    ✓ +Verify: checklist.md, NFRs, edge cases, effort estimation"
+        2) echo "    ✓ Core: spec.md + plan.md + tasks.md"
+           echo "    ✓ Lifecycle: implementation-summary.md (scaffolded; required after implementation starts)"
+           echo "    ✓ +Verify: merged verification/testing in tasks.md, NFRs, edge cases, effort estimation"
            echo "      (Quality gates - adds ~120 LOC)" ;;
-        3|"3+") echo "    ✓ Core: spec.md + plan.md + tasks.md + implementation-summary.md"
-           echo "    ✓ +Verify: checklist.md, NFRs, edge cases"
-           echo "    ✓ +Arch: decision-record.md, executive summary, risk matrix"
+        3|"3+") echo "    ✓ Core: spec.md + plan.md + tasks.md"
+           echo "    ✓ Lifecycle: implementation-summary.md (scaffolded; required after implementation starts)"
+           echo "    ✓ +Verify: merged verification/testing in tasks.md, NFRs, edge cases"
+           echo "    ✓ +Arch: executive summary, risk matrix, decision guidance"
            if [[ "$DOC_LEVEL" = "3+" ]]; then
                echo "    ✓ +Govern: approval workflow, compliance, AI protocols"
                echo "      (Full governance - adds ~100 LOC)"
@@ -1719,10 +1783,12 @@ else
     echo "    3. Break down tasks in tasks.md"
     DOC_LEVEL_NUM_FOR_OUTPUT="${DOC_LEVEL/+/}"
     if [[ "$DOC_LEVEL_NUM_FOR_OUTPUT" =~ ^[0-9]+$ ]] && [[ "$DOC_LEVEL_NUM_FOR_OUTPUT" -ge 2 ]]; then
-        echo "    4. Add verification items to checklist.md"
+        echo "    4. Add verification items to tasks.md"
     fi
-    if [[ "$DOC_LEVEL_NUM_FOR_OUTPUT" =~ ^[0-9]+$ ]] && [[ "$DOC_LEVEL_NUM_FOR_OUTPUT" -ge 3 ]]; then
-        echo "    5. Document decisions in decision-record.md"
+    if $WITH_LAZY_ADDONS; then
+        echo "    5. Lazy add-ons: before-after.md, timeline.md, roadmap.md, decision-record.md"
+    else
+        echo "    5. Add on-demand docs with --with-lazy-addons when needed"
     fi
     echo ""
     echo "───────────────────────────────────────────────────────────────────"

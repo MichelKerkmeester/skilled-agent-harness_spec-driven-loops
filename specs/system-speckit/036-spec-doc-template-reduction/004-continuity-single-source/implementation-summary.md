@@ -1,35 +1,18 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Single-Source Continuity"
+description: "Made implementation-summary.md the canonical continuity document and removed redundant continuity emission from the four non-canonical templates."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/004-continuity-single-source"
-    last_updated_at: "2026-08-26T05:33:58Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-continuity-single-source"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+  - "continuity single source"
+  - "canonical implementation-summary"
+  - "FRONTMATTER_MEMORY_BLOCK"
+  - "SESSION_LINEAGE"
+importance_tier: "important"
+contextType: "implementation"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 ---
 
@@ -39,7 +22,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-continuity-single-source |
-| **Completed** | 2026-08-26 |
+| **Completed** | Not stated in the reviewed evidence |
+| **Authored** | 2026-08-27 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,28 +32,22 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+Continuity now has one canonical document: `implementation-summary.md`. The validator accepts missing continuity in `spec.md`, `plan.md`, `tasks.md`, and legacy `checklist.md`, while the canonical summary remains required. The four non-canonical manifest templates no longer emit `_memory.continuity`, and the implementation-summary template retains it.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Validator-first consolidation
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The continuity validator and session-lineage scan were updated before the template emissions were removed. The runtime save path was already single-source, so the resume ladder, status derivation, and freshness path remain unchanged. Legacy five-copy packets remain valid under the relaxed expectations.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts` | Modified | Makes continuity optional in non-canonical contract documents while preserving the canonical requirement. |
+| `.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts` | Modified | Limits session-lineage continuity inspection to the canonical summary and preserves legacy document handling. |
+| `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl` | Modified | Removes redundant continuity emission. |
+| `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl` | Modified | Removes redundant continuity emission. |
+| `.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl` | Modified | Removes redundant continuity emission. |
+| `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl` | Modified | Removes redundant continuity emission from the legacy template. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +55,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The phase relaxed the validator contract first, checked the canonical save and consumer paths, removed the four non-canonical template blocks, and rebaselined the generated snapshots while retaining compatibility for legacy five-copy packets.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +63,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep `implementation-summary.md` canonical | The resume ladder, status derivation, and freshness gate already read that document. |
+| Relax validators before editing templates | Existing packets still contain five continuity copies and must continue to validate. |
+| Leave runtime arbitration unchanged | The save and consumer paths already use the canonical source, so template cleanup did not require runtime behavior changes. |
+| Keep legacy copies readable | Compatibility matters while shipped packets retain their original frontmatter shape. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +76,13 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Canonical continuity validation | PASS, `implementation-summary.md` remains the required continuity host. |
+| Optional continuity validation | PASS, `spec.md`, `plan.md`, `tasks.md`, and legacy `checklist.md` may omit the block. |
+| Legacy five-copy packet | PASS, the old packet shape remains valid after the validator relaxation. |
+| Runtime consumers | PASS, the resume ladder, status derivation, and freshness path remain keyed to implementation-summary. |
+| Golden snapshots | PASS, the continuity consolidation output was rebaselined. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +90,5 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Legacy packets can still contain duplicate continuity blocks.** The validators accept them for compatibility, but new scaffolds emit continuity only in implementation-summary.md.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-

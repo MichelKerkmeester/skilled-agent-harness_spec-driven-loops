@@ -28,7 +28,9 @@ export interface EdgeTierBasementDecision {
   reason: string;
 }
 
+// Preserve legacy constitutional tiers when evaluating archived edge paths.
 const HIGH_TIERS = new Set(['constitutional', 'critical', 'important']);
+// Keep the legacy top-tier marker so archived edge rows retain their HOT floor.
 const TOP_TIERS = new Set(['constitutional', 'critical']);
 const AUTHOR_PROVENANCE = new Set(['manual', 'authored']);
 const AUTO_PROVENANCE = new Set(['auto', 'auto_derived', 'inferred', 'llm', 'batch']);
@@ -49,6 +51,7 @@ function hasAuthoredProvenance(input: EdgeTierBasementInput): boolean {
 }
 
 function hasConstitutionalChain(input: EdgeTierBasementInput): boolean {
+  // Preserve legacy constitutional-chain evidence for archived graph rows.
   return input.constitutionalChain === true || normalize(input.evidence) === 'constitutional_chain';
 }
 

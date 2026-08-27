@@ -192,7 +192,7 @@ describe('orphan-sweep confirmation timing', () => {
         title: 'Orphan queued before confirmation',
       });
       const first = await handler.runIndexScan(
-        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        { includeSpecDocs: false, incremental: false, force: false },
         {},
       );
       const firstData = JSON.parse((first as { content: Array<{ text: string }> }).content[0].text).data as Record<string, number>;
@@ -204,7 +204,7 @@ describe('orphan-sweep confirmation timing', () => {
       expect(readMemoryDriftSuspects(vectorIndex.getDb()!).map((suspect) => suspect.id)).toEqual([id]);
 
       const second = await handler.runIndexScan(
-        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        { includeSpecDocs: false, incremental: false, force: false },
         {},
       );
       const secondData = JSON.parse((second as { content: Array<{ text: string }> }).content[0].text).data as Record<string, number>;
@@ -269,7 +269,6 @@ describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
     });
     const response = await handler.runIndexScan(
       {
-        includeConstitutional: false,
         includeSpecDocs: false,
         incremental: false,
         force: false,
@@ -298,7 +297,6 @@ describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
     const onPhase = vi.fn();
     const response = await handler.runIndexScan(
       {
-        includeConstitutional: false,
         includeSpecDocs: false,
         incremental: false,
         force: false,
@@ -333,7 +331,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       const onPhase = vi.fn();
 
       const response = await handler.runIndexScan(
-        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        { includeSpecDocs: false, incremental: false, force: false },
         { onPhase },
       );
       const envelope = parseScanEnvelope(response);
@@ -380,7 +378,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       `);
 
       const response = await handler.runIndexScan(
-        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        { includeSpecDocs: false, incremental: false, force: false },
         {},
       );
       const envelope = parseScanEnvelope(response);
@@ -418,7 +416,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '999999999';
       process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '999999999';
       await handler.runIndexScan(
-        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        { includeSpecDocs: false, incremental: false, force: false },
         {},
       );
 
@@ -432,7 +430,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '0';
       process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '0';
       await handler.runIndexScan(
-        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        { includeSpecDocs: false, incremental: false, force: false },
         {},
       );
       expect(warnSpy).toHaveBeenCalledWith(
@@ -472,7 +470,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       seedOrphanBacklog(vectorIndex, workspace, TOTAL_ROWS, 'budget-exit');
 
       const first = await handler.runIndexScan(
-        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        { includeSpecDocs: false, incremental: false, force: false },
         {},
       );
       expect(first.isError).not.toBe(true);
@@ -493,7 +491,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       let finalResponse = first;
       for (let attempt = 0; attempt < 10 && cursorNow > 0; attempt += 1) {
         finalResponse = await handler.runIndexScan(
-          { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+          { includeSpecDocs: false, incremental: false, force: false },
           {},
         );
         const row = db?.prepare(
@@ -503,7 +501,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       }
       expect(cursorNow).toBe(0);
       finalResponse = await handler.runIndexScan(
-        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        { includeSpecDocs: false, incremental: false, force: false },
         {},
       );
 
@@ -558,7 +556,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
 
         for (let attempt = 0; attempt < Math.ceil(ROWS / 25) + 2; attempt += 1) {
           await handler.runIndexScan(
-            { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+            { includeSpecDocs: false, incremental: false, force: false },
             {},
           );
           const cursorRow = db?.prepare(
@@ -569,7 +567,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
         }
 
         await handler.runIndexScan(
-          { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+          { includeSpecDocs: false, incremental: false, force: false },
           {},
         );
 

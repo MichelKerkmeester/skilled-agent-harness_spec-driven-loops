@@ -1,26 +1,219 @@
 {
   "schema_version": 1,
-  "packet_id": "036-spec-doc-template-reduction/001-analysis",
-  "spec_folder": "036-spec-doc-template-reduction/001-analysis",
-  "parent_id": null,
+  "packet_id": "system-speckit/036-spec-doc-template-reduction/001-analysis",
+  "spec_folder": "system-speckit/036-spec-doc-template-reduction/001-analysis",
+  "parent_id": "system-speckit/036-spec-doc-template-reduction",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "spec-kit template reduction",
+      "template optimization",
+      "tasks checklist merge",
+      "continuity single source",
+      "small-model legibility",
+      "spec core",
+      "template reduction analysis",
+      "spec-kit recommendations",
+      "template contract map",
+      "byte budget",
+      "analysis tasks",
+      "template reduction requirements"
+    ],
+    "key_topics": [
+      "spec-kit",
+      "template",
+      "reduction",
+      "optimization",
+      "tasks",
+      "checklist",
+      "merge",
+      "continuity",
+      "single",
+      "source",
+      "small-model",
+      "legibility"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: analysis",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 13 spec-kit manifest templates contain measured duplication and context waste",
     "created_at": "2026-08-26T05:33:55Z",
-    "last_save_at": "2026-08-26T05:33:55Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-27T17:50:36.163Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:02fb151abf2ade1c0a48c4685f92baf608faef38fb26ced420d63e8c0b581cbe",
+    "source_doc_hashes": {
+      "spec.md": "7facf7aed219b145c64ac7bd73bb69523348a54e6e86fd87bf641f3464915c8b",
+      "plan.md": "274c36cbb86871b02377e6ec17fbbcf47c7224b32609c1a5093f6e32e4d2483d",
+      "tasks.md": "0b225855d7687c5e66d6e57a8fd42b2bf15bcf57ca9ec568b24a7984f3760f0e",
+      "implementation-summary.md": "871a37673d78a56c69049c6cc06b1bbaca917eaed530888cadc2df9a896ea21c",
+      "research/research.md": "07577d4a3ecc53b19a7a383800c10227a4691e3882cab61051b34fe5a00c2366"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

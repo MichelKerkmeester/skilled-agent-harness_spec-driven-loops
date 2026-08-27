@@ -16,10 +16,16 @@ import { fileURLToPath } from 'node:url';
 
 export type SpecKitLevel = '1' | '2' | '3' | '3+' | 'phase' | 'review';
 
+export interface LifecycleRequiredDocs {
+  afterImplementationStarts: string[];
+}
+
 export interface LevelContract {
   requiredCoreDocs: string[];
   requiredAddonDocs: string[];
+  optionalAddonDocs: string[];
   lazyAddonDocs: string[];
+  lifecycleRequiredDocs: LifecycleRequiredDocs;
   sectionGates: Map<string, string[]>;
   sectionGatesByDocument: Map<string, Map<string, string[]>>;
   templateVersions: Record<string, string>;
@@ -29,7 +35,11 @@ export interface LevelContract {
 interface ManifestLevelRow {
   requiredCoreDocs: string[];
   requiredAddonDocs: string[];
+  optionalAddonDocs: string[];
   lazyAddonDocs: string[];
+  lifecycleRequiredDocs?: {
+    afterImplementationStarts?: string[];
+  };
   sectionGates: Record<string, string[] | Record<string, string[]>>;
   frontmatterMarkerLevel: number;
 }
@@ -43,7 +53,9 @@ interface SpecKitDocsManifest {
 export interface SerializedLevelContract {
   requiredCoreDocs: string[];
   requiredAddonDocs: string[];
+  optionalAddonDocs: string[];
   lazyAddonDocs: string[];
+  lifecycleRequiredDocs: LifecycleRequiredDocs;
   sectionGates: Record<string, string[]>;
   sectionGatesByDocument: Record<string, Record<string, string[]>>;
   templateVersions: Record<string, string>;
@@ -55,8 +67,8 @@ export interface SerializedLevelContract {
 // -------------------------------------------------------------------
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
-const DEFAULT_MANIFEST_PATH = path.resolve(MODULE_DIR, '../../../templates/manifest/spec-kit-docs.json');
-const DIST_MANIFEST_PATH = path.resolve(MODULE_DIR, '../../../../templates/manifest/spec-kit-docs.json');
+const DEFAULT_MANIFEST_PATH = path.resolve(MODULE_DIR, '../../../templates/spec-kit-docs.json');
+const DIST_MANIFEST_PATH = path.resolve(MODULE_DIR, '../../../../templates/spec-kit-docs.json');
 const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review']);
 const DOCUMENT_NAME_RE = /^(?:[A-Za-z0-9][A-Za-z0-9_-]*\/)?[A-Za-z0-9][A-Za-z0-9_-]*\.md$/u;
 let cachedManifest: SpecKitDocsManifest | null = null;
@@ -110,6 +122,10 @@ function assertDocumentList(level: SpecKitLevel, row: ManifestLevelRow, field: k
     throw levelContractError(level);
   }
 
+  return assertDocumentNames(level, docs);
+}
+
+function assertDocumentNames(level: SpecKitLevel, docs: unknown[]): string[] {
   for (const doc of docs) {
     if (typeof doc !== 'string' || !DOCUMENT_NAME_RE.test(doc) || doc.includes('..')) {
       throw levelContractError(level);
@@ -117,6 +133,22 @@ function assertDocumentList(level: SpecKitLevel, row: ManifestLevelRow, field: k
   }
 
   return docs as string[];
+}
+
+function assertLifecycleRequiredDocs(level: SpecKitLevel, row: ManifestLevelRow): LifecycleRequiredDocs {
+  const lifecycle = row.lifecycleRequiredDocs;
+  if (lifecycle === undefined) {
+    return { afterImplementationStarts: [] };
+  }
+  if (!lifecycle || typeof lifecycle !== 'object' || Array.isArray(lifecycle)) {
+    throw levelContractError(level);
+  }
+
+  const docs = lifecycle.afterImplementationStarts ?? [];
+  if (!Array.isArray(docs)) {
+    throw levelContractError(level);
+  }
+  return { afterImplementationStarts: [...assertDocumentNames(level, docs)] };
 }
 
 function assertLevelList(level: SpecKitLevel, sectionId: string, levels: unknown): string[] {
@@ -180,7 +212,9 @@ function assertLevelRow(level: SpecKitLevel, row: ManifestLevelRow | undefined):
 
   assertDocumentList(level, row, 'requiredCoreDocs');
   assertDocumentList(level, row, 'requiredAddonDocs');
+  assertDocumentList(level, row, 'optionalAddonDocs');
   assertDocumentList(level, row, 'lazyAddonDocs');
+  assertLifecycleRequiredDocs(level, row);
   assertSectionGates(level, row);
   if (typeof row.frontmatterMarkerLevel !== 'number') {
     throw levelContractError(level);
@@ -195,14 +229,20 @@ export function resolveLevelContract(level: SpecKitLevel): LevelContract {
   const row = assertLevelRow(level, manifest.levels?.[level]);
   const requiredCoreDocs = assertDocumentList(level, row, 'requiredCoreDocs');
   const requiredAddonDocs = assertDocumentList(level, row, 'requiredAddonDocs');
+  const optionalAddonDocs = assertDocumentList(level, row, 'optionalAddonDocs');
   const lazyAddonDocs = assertDocumentList(level, row, 'lazyAddonDocs');
+  const lifecycleRequiredDocs = assertLifecycleRequiredDocs(level, row);
   const sectionGates = assertSectionGates(level, row);
   const sectionGatesByDocument = assertSectionGatesByDocument(level, row);
 
   return {
     requiredCoreDocs: [...requiredCoreDocs],
     requiredAddonDocs: [...requiredAddonDocs],
+    optionalAddonDocs: [...optionalAddonDocs],
     lazyAddonDocs: [...lazyAddonDocs],
+    lifecycleRequiredDocs: {
+      afterImplementationStarts: [...lifecycleRequiredDocs.afterImplementationStarts],
+    },
     sectionGates: new Map(Object.entries(sectionGates).map(([sectionId, levels]) => [sectionId, [...levels]])),
     sectionGatesByDocument: new Map(
       Object.entries(sectionGatesByDocument).map(([docName, gates]) => [
@@ -219,7 +259,11 @@ export function serializeLevelContract(contract: LevelContract): SerializedLevel
   return {
     requiredCoreDocs: [...contract.requiredCoreDocs],
     requiredAddonDocs: [...contract.requiredAddonDocs],
+    optionalAddonDocs: [...contract.optionalAddonDocs],
     lazyAddonDocs: [...contract.lazyAddonDocs],
+    lifecycleRequiredDocs: {
+      afterImplementationStarts: [...contract.lifecycleRequiredDocs.afterImplementationStarts],
+    },
     sectionGates: Object.fromEntries(
       [...contract.sectionGates.entries()].map(([sectionId, levels]) => [sectionId, [...levels]]),
     ),

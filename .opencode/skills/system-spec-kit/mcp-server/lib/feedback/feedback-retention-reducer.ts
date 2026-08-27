@@ -12,6 +12,7 @@ export type RetentionDecision = 'delete' | 'extend' | 'protect';
 export type FeedbackRetentionMode = 'shadow' | 'active';
 
 const TRUE_VALUES = new Set(['true', '1', 'yes', 'on', 'enabled']);
+// Keep legacy constitutional rows protected during retention evaluation.
 const PROTECTED_TIERS = new Set(['constitutional', 'critical']);
 const LEGACY_EXTENDABLE_TIERS = new Set(['important']);
 const SPARE_ONLY_EXTENDABLE_TIERS = new Set(['important', 'normal', 'temporary']);

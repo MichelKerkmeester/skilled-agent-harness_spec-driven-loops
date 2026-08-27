@@ -89,7 +89,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3+ --path s
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name/research \
-  .opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
 ```
 
 ---
@@ -142,8 +142,8 @@ mkdir -p specs/###-short-name/
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir /tmp/spec-kit-render \
-  .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl \
-  .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl
+  .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl \
+  .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
 ```
 
 `create.sh --path` validates the resolved target before writing and rejects traversal outside the repository. Post-create validation is opt-in: set `SPECKIT_POST_VALIDATE=1` when CI or a strict local workflow should run `validate.sh --quiet` immediately after scaffolding.
@@ -697,39 +697,39 @@ When in doubt:
 ### Templates (Organized by Level)
 
 **Level 1 Templates (Baseline):**
-- [spec template](../../templates/manifest/spec.md.tmpl) - Requirements and user stories template
-- [plan.md](../../templates/manifest/plan.md.tmpl) - Technical implementation plan template
-- [tasks.md](../../templates/manifest/tasks.md.tmpl) - Task breakdown template
-- [implementation-summary.md](../../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
+- [spec template](../../templates/core/spec.md.tmpl) - Requirements and user stories template
+- [plan.md](../../templates/core/plan.md.tmpl) - Technical implementation plan template
+- [tasks.md](../../templates/core/tasks.md.tmpl) - Task breakdown template
+- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Completion summary template
 
 **Level 2 Templates (Verification):**
-- [spec template](../../templates/manifest/spec.md.tmpl) - Requirements template with extended sections
-- [plan.md](../../templates/manifest/plan.md.tmpl) - Implementation plan with verification
-- [tasks.md](../../templates/manifest/tasks.md.tmpl) - Task breakdown template
-- [implementation-summary.md](../../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
-- [checklist.md](../../templates/manifest/checklist.md.tmpl) - Validation checklist template
+- [spec template](../../templates/core/spec.md.tmpl) - Requirements template with extended sections
+- [plan.md](../../templates/core/plan.md.tmpl) - Implementation plan with verification
+- [tasks.md](../../templates/core/tasks.md.tmpl) - Task breakdown template
+- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Completion summary template
+- [checklist.md](../../templates/addons/checklist.md.tmpl) - Validation checklist template
 
 **Level 3 Templates (Full Documentation):**
-- [spec template](../../templates/manifest/spec.md.tmpl) - Comprehensive requirements template
-- [plan.md](../../templates/manifest/plan.md.tmpl) - Full implementation plan template
-- [tasks.md](../../templates/manifest/tasks.md.tmpl) - Detailed task breakdown template
-- [implementation-summary.md](../../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
-- [checklist.md](../../templates/manifest/checklist.md.tmpl) - Full validation checklist template
-- [decision-record.md](../../templates/manifest/decision-record.md.tmpl) - Architecture Decision Records template
+- [spec template](../../templates/core/spec.md.tmpl) - Comprehensive requirements template
+- [plan.md](../../templates/core/plan.md.tmpl) - Full implementation plan template
+- [tasks.md](../../templates/core/tasks.md.tmpl) - Detailed task breakdown template
+- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Completion summary template
+- [checklist.md](../../templates/addons/checklist.md.tmpl) - Full validation checklist template
+- [decision-record.md](../../templates/addons/decision-record.md.tmpl) - Architecture Decision Records template
 
 **Research Templates (Level 3 optional):**
-- [research.md.tmpl](../../templates/manifest/research.md.tmpl) - Copy to `research/research.md` for Level 3 research packets
+- [research.md.tmpl](../../templates/addons/research.md.tmpl) - Copy to `research/research.md` for Level 3 research packets
 
 **Session Management Templates:**
-- [handover.md.tmpl](../../templates/manifest/handover.md.tmpl) - Full session handover document
-- [debug-delegation.md.tmpl](../../templates/manifest/debug-delegation.md.tmpl) - Debug task delegation template
-- [resource-map.md.tmpl](../../templates/manifest/resource-map.md.tmpl) - Optional lean path catalog (any level)
+- [handover.md.tmpl](../../templates/addons/handover.md.tmpl) - Full session handover document
+- [debug-delegation.md.tmpl](../../templates/addons/debug-delegation.md.tmpl) - Debug task delegation template
+- [resource-map.md.tmpl](../../templates/addons/resource-map.md.tmpl) - Optional lean path catalog (any level)
 
 **Summary Templates:**
-- [implementation-summary.md](../../templates/manifest/implementation-summary.md.tmpl) - Required completion summary (Level 1 baseline)
-- [implementation-summary.md](../../templates/manifest/implementation-summary.md.tmpl) - Required completion summary (Level 2)
-- [implementation-summary.md](../../templates/manifest/implementation-summary.md.tmpl) - Required completion summary (Level 3)
-- [implementation-summary.md](../../templates/manifest/implementation-summary.md.tmpl) - Required completion summary (Level 3+)
+- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Required completion summary (Level 1 baseline)
+- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Required completion summary (Level 2)
+- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Required completion summary (Level 3)
+- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Required completion summary (Level 3+)
 
 ### Related Skills
 - `sk-code` - Implementation, debugging, and verification lifecycle

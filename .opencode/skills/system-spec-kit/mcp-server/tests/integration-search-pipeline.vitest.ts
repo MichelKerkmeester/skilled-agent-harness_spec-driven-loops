@@ -216,25 +216,7 @@ describe('Integration Search Pipeline (T525) [deferred - requires DB test fixtur
       }
     });
 
-    it('T525-10: includeConstitutional parameter accepted', async () => {
-      try {
-        await withTimeout(
-          searchHandler.handleMemorySearch({
-            query: 'test',
-            includeConstitutional: false,
-          }),
-          5000,
-          'T525-10'
-        );
-      } catch (error: unknown) {
-        const message = getErrorMessage(error);
-        if (message.includes('Timeout')) {
-          return; // skip on timeout
-        }
-        // IncludeConstitutional rejection is a failure; other errors are acceptable
-        expect(message.includes('includeConstitutional')).not.toBe(true);
-      }
-    });
+    // constitutional tier removed
   });
 });
 

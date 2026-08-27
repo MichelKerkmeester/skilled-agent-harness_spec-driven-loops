@@ -71,7 +71,6 @@ function createPipelineConfig(overrides: Partial<PipelineConfig> = {}): Pipeline
     searchType: 'hybrid',
     limit: 10,
     includeArchived: false,
-    includeConstitutional: false,
     includeContent: true,
     minState: 'ARCHIVED',
     applyStateLimits: false,

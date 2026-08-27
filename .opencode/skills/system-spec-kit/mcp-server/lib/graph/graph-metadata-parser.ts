@@ -1226,12 +1226,23 @@ function deriveStatus(
 
   const checklistDoc = docs.find((doc) => doc.relativePath === 'checklist.md');
   if (!checklistDoc) {
+    const tasksDoc = docs.find((doc) => doc.relativePath === 'tasks.md');
+    const mergedVerification = tasksDoc ? extractMergedVerification(tasksDoc.content) : null;
+    if (mergedVerification !== null) {
+      const checklistComplete = evaluateChecklistCompletion(mergedVerification) === 'COMPLETE';
+      const openTasks = tasksDoc ? hasOpenTaskItems(tasksDoc.content) : false;
+      return {
+        status: checklistComplete ? 'complete' : 'in_progress',
+        // Open tasks make a complete verification section inconsistent, so flag it for review.
+        reviewRequired: checklistComplete && openTasks,
+      };
+    }
+
     // Folders without a checklist.md (the common Level-1 case) used to derive 'complete'
     // from implementation-summary.md's mere presence, so a freshly scaffolded but never
     // authored template read the same as a finished one. Gate on real completion evidence
     // instead: the doc's own completion_pct plus whether tasks.md still has open items.
     const completionPct = parseCompletionPct(implementationSummaryDoc.content);
-    const tasksDoc = docs.find((doc) => doc.relativePath === 'tasks.md');
     const openTasks = tasksDoc ? hasOpenTaskItems(tasksDoc.content) : false;
 
     if (completionPct === null) {
@@ -1251,10 +1262,27 @@ function deriveStatus(
     };
   }
 
+  const checklistComplete = evaluateChecklistCompletion(checklistDoc.content) === 'COMPLETE';
+  const tasksDoc = docs.find((doc) => doc.relativePath === 'tasks.md');
+  const openTasks = tasksDoc ? hasOpenTaskItems(tasksDoc.content) : false;
+
   return {
-    status: evaluateChecklistCompletion(checklistDoc.content) === 'COMPLETE' ? 'complete' : 'in_progress',
-    reviewRequired: false,
+    status: checklistComplete ? 'complete' : 'in_progress',
+    // Open tasks make a complete checklist inconsistent, so flag it for review.
+    reviewRequired: checklistComplete && openTasks,
   };
+}
+
+function extractMergedVerification(content: string): string | null {
+  const startMarker = '<!-- ANCHOR:protocol -->';
+  const start = content.indexOf(startMarker);
+  if (start === -1) return null;
+  const signOffEndMarker = '<!-- /ANCHOR:sign-off -->';
+  const summaryEndMarker = '<!-- /ANCHOR:summary -->';
+  const endMarker = content.indexOf(signOffEndMarker, start) !== -1 ? signOffEndMarker : summaryEndMarker;
+  const end = content.indexOf(endMarker, start);
+  if (end === -1) return null;
+  return content.slice(start, end + endMarker.length);
 }
 
 function evaluateChecklistCompletion(content: string): 'COMPLETE' | 'INCOMPLETE' {
@@ -1812,6 +1840,7 @@ export const __testables = {
   normalizeDerivedStatus,
   keepKeyFile,
   evaluateChecklistCompletion,
+  extractMergedVerification,
   parseCompletionPct,
   hasOpenTaskItems,
   resolveKeyFileCandidate,

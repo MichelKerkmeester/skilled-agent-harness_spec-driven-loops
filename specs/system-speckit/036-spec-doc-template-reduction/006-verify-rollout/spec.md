@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 6: verify-rollout [template:level-1/spec.md]"
+title: "Feature Specification: Phase 6: verify-rollout"
 description: "Final verification and rollout for the template-reduction packet: whole-suite golden snapshots, a before/after deriveStatus fleet comparison, dist rebuild, strict validation across representative levels, and a no-stray-files sweep before any completion claim."
 trigger_phrases:
   - "verify rollout"

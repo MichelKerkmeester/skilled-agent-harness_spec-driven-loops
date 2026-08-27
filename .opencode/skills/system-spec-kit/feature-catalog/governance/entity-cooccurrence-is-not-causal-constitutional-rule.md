@@ -1,6 +1,6 @@
 ---
 title: "Entity co-occurrence is not causal constitutional rule"
-description: "Advisory constitutional memory that separates entity/co-occurrence recall evidence from causal truth in generated graph behavior."
+description: "Kept unindexed reference doc that separates entity/co-occurrence recall evidence from causal truth in generated graph behavior."
 trigger_phrases:
   - "entity co-occurrence is not causal constitutional rule"
   - "entity-cooccurrence-is-not-causal"
@@ -15,7 +15,7 @@ version: 3.6.0.1
 
 ## 1. OVERVIEW
 
-This constitutional rule states that entity overlap and co-occurrence are recall evidence, not causal truth.
+This kept reference rule states that entity overlap and co-occurrence are recall evidence, not causal truth.
 
 It protects the causal graph from promoting similarity or entity co-location into causation unless the edge comes from explicit authored lineage or a validated causal promoter.
 
@@ -23,7 +23,7 @@ It protects the causal graph from promoting similarity or entity co-location int
 
 ## 2. HOW IT WORKS
 
-The rule file lives in the constitutional memory pack and surfaces with the rest of the always-surface governance rules. It tells agents to treat entity and co-occurrence signals as evidence for retrieval, triage, or candidate generation only.
+The rule file is kept as a plain unindexed reference doc in the constitutional reference directory. It tells agents to treat entity and co-occurrence signals as evidence for retrieval, triage, or candidate generation only.
 
 The rule complements generated-edge provenance: frontmatter-derived edges carry explicit extraction method and confidence, while similarity-derived support edges remain opt-in and should not be reported as causal lineage without that provenance.
 
@@ -35,7 +35,7 @@ The rule complements generated-edge provenance: frontmatter-derived edges carry 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/constitutional/entity-cooccurrence-is-not-causal.md` | Constitutional memory | Advisory rule file |
+| (rule file removed) | Retired with the constitutional layer | Guidance now lives in the root instruction docs |
 | `mcp-server/lib/causal/frontmatter-promoter.ts` | Shared | Validated metadata-derived edge promoter |
 | `mcp-server/lib/storage/causal-edges.ts` | Shared | Generated-edge provenance storage |
 | `mcp-server/lib/causal/sweep.ts` | Shared | Tombstone restore metadata with provenance |
@@ -57,5 +57,5 @@ The rule complements generated-edge provenance: frontmatter-derived edges carry 
 - Feature file path: `governance/entity-cooccurrence-is-not-causal-constitutional-rule.md`
 
 Related references:
-- [automated-writers-never-overwrite-manual-constitutional-rule.md](../../feature-catalog/governance/automated-writers-never-overwrite-manual-constitutional-rule.md) - Companion constitutional rule
-- [constitutional-gate-enforcement-rule-pack.md](../../feature-catalog/governance/constitutional-gate-enforcement-rule-pack.md) - Constitutional memory rule pack
+- [automated-writers-never-overwrite-manual-constitutional-rule.md](../../feature-catalog/governance/automated-writers-never-overwrite-manual-constitutional-rule.md) - Companion retained reference rule
+- [constitutional-gate-enforcement-rule-pack.md](../../feature-catalog/governance/constitutional-gate-enforcement-rule-pack.md) - Retained rule-pack history

@@ -33,7 +33,6 @@ When a save mutates indexed state, the runtime also updates the `DB_UPDATED_FILE
 | MCP Server | `mcp-server/context-server.ts` | Spec Kit Memory MCP with vector search |
 | CLI Shim | `.opencode/bin/spec-memory.cjs` | Daemon-backed CLI over the same tool surface; additive warm-only fallback when runtime MCP transport is unavailable (exit `75` = retryable daemon/IPC unavailability) |
 | Database | `mcp-server/database/context-index__*.sqlite` | SQLite with FTS5 + vector embeddings; active profile filename resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
-| Reference rules | `constitutional/` | Plain, unindexed reference rule docs (e.g. Gate 3); not auto-surfaced |
 | Scripts | runtime `scripts/dist/memory/generate-context.js` (source: `scripts/memory/generate-context.ts`) | Canonical continuity save entrypoint for packet docs |
 
 ### Core Support
@@ -438,49 +437,15 @@ The `memory_index_scan` operation is self-maintaining. Overlapping scans coalesc
 
 ---
 
-## 8. CONSTITUTIONAL RULES
+## 8. CONSTITUTIONAL RULES (RETIRED)
 
-### Purpose
+The constitutional rule layer is retired. The searchable tier, the auto-surfacing injection, the
+indexer scan, and the rule folder itself were all removed. The steering those rules carried now
+lives inline in the root instruction docs, and the advisor renders the hygiene, governor and proof
+directives directly.
 
-Constitutional rules are critical project context kept as plain reference docs. They are no longer indexed as a memory tier or auto-surfaced in search — read them directly when relevant. Examples:
-
-- Gate 3 enforcement ("always ask spec folder question")
-- Project-specific constraints
-- Security policies
-
-### Location
-
-Constitutional files are stored in:
-```
-.opencode/skills/system-spec-kit/constitutional/
-```
-
-These are ordinary Markdown reference docs; links pointing to them stay valid.
-
-### Review Cadence
-
-Because these are fixed reference docs, operators should review them on a calendar cadence. Each active rule file should carry `last_confirmed` and `last_confirmed_source` frontmatter fields. Use the standalone staleness diagnostic to list active rules by age:
-
-```bash
-node .opencode/skills/system-spec-kit/scripts/constitutional-rule-staleness.cjs
-```
-
-Default cadence: review any rule older than 180 days. The diagnostic computes `review_by` at report time and performs no writes. A stale result is a human review signal only; it must not auto-delete or auto-demote.
-
-### Creating Constitutional Rules
-
-1. Create file in `constitutional/` folder
-2. Add YAML frontmatter with review metadata:
-    ```yaml
-    ---
-    title: Gate 3 Enforcement
-    contextType: decision
-    last_confirmed: "2026-06-10"
-    last_confirmed_source: "human-review"
-    ---
-    ```
-
----
+Nothing writes, reads or reviews a rule file any more. Treat any older reference to a rule path as
+historical record.
 
 ## 9. SESSION DEDUPLICATION
 

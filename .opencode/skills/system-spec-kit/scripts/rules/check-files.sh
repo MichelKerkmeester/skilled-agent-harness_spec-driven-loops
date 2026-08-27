@@ -12,7 +12,7 @@ set -euo pipefail
 #   Level 1: spec.md, plan.md, tasks.md
 #   Level 2: Level 1 + checklist.md
 #   Level 3: Level 2 + decision-record.md
-#   Implementation-summary.md: Required after implementation (detected by completed items)
+#   Lifecycle-required documents: Required after implementation starts (detected by completed items)
 
 # ───────────────────────────────────────────────────────────────
 # 1. INITIALIZATION
@@ -32,15 +32,13 @@ run_check() {
     local rule_dir
     rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     local helper_script="$rule_dir/../utils/template-structure.js"
-    local numeric_level="${level//[^0-9]/}"
 
 # ───────────────────────────────────────────────────────────────
 # 2. VALIDATION LOGIC
 # ───────────────────────────────────────────────────────────────
 
     # Phase-parent early branch: lean parents require the control trio.
-    # Plan, tasks, checklist, decision-record, and implementation-summary
-    # live in child phase folders.
+    # Detailed planning and lifecycle documents live in child phase folders.
     if is_phase_parent "$folder"; then
         local phase_doc
         while IFS= read -r phase_doc; do
@@ -62,37 +60,29 @@ run_check() {
         return 0
     fi
 
-    # Implementation-summary.md required after implementation starts.
+    # Lifecycle-required documents are gated after implementation starts.
     # Anchored to list items so the task-notation legend table (a literal
     # backticked [x] explaining the symbol) cannot read as started work.
     local has_implementation=false
-    if [[ -f "$folder/checklist.md" ]]; then
-        if grep -qE '^\s*[-*] \[[xX]\]' "$folder/checklist.md" 2>/dev/null; then
+    local started_file
+    for started_file in checklist.md tasks.md; do
+        if [[ -f "$folder/$started_file" ]] && grep -qE '^\s*[-*] \[[xX]\]' "$folder/$started_file" 2>/dev/null; then
             has_implementation=true
+            break
         fi
-    fi
-    
+    done
+
     if [[ "$has_implementation" == "true" ]]; then
-        [[ ! -f "$folder/implementation-summary.md" ]] && missing+=("implementation-summary.md (required after implementation)")
-    fi
-    
-    # Level 1: check tasks.md for completion if no checklist.
-    # Non-numeric levels (e.g. review) have an empty numeric_level and skip this
-    # implementation-completion heuristic, which only applies to numbered levels.
-    if [[ "$numeric_level" == "1" ]] && [[ ! -f "$folder/implementation-summary.md" ]]; then
-        if [[ -f "$folder/tasks.md" ]]; then
-            if grep -qE '^\s*[-*] \[[xX]\]' "$folder/tasks.md" 2>/dev/null; then
-                missing+=("implementation-summary.md (required: tasks show completion)")
-            fi
-        fi
+        local lifecycle_doc
+        while IFS= read -r lifecycle_doc; do
+            [[ -z "$lifecycle_doc" ]] && continue
+            [[ ! -f "$folder/$lifecycle_doc" ]] && missing+=("$lifecycle_doc (required after implementation)")
+        done < <(node "$helper_script" lifecycle-docs "$level")
     fi
 
     local doc_name
     while IFS= read -r doc_name; do
         [[ -z "$doc_name" ]] && continue
-        if [[ "$doc_name" == "implementation-summary.md" ]]; then
-            continue
-        fi
         [[ ! -f "$folder/$doc_name" ]] && missing+=("$doc_name")
     done < <(node "$helper_script" docs "$level")
 

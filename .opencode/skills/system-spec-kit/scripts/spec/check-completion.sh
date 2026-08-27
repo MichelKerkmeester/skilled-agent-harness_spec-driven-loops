@@ -126,8 +126,26 @@ count_checklist_items() {
     local current_priority=""
     local pending_completed_priority=""
     local pending_has_evidence=false
+    local merged_tasks=false
+    local in_verification=false
+    local verification_end_marker='<!-- /ANCHOR:summary -->'
+    [[ "$checklist_file" == "$FOLDER_PATH/tasks.md" ]] && merged_tasks=true
+    if [[ "$merged_tasks" == "true" ]] && grep -q '<!-- /ANCHOR:sign-off -->' "$checklist_file" 2>/dev/null; then
+        verification_end_marker='<!-- /ANCHOR:sign-off -->'
+    fi
 
     while IFS= read -r line; do
+        if [[ "$merged_tasks" == "true" ]]; then
+            if [[ "$line" == *"<!-- ANCHOR:protocol -->"* ]]; then
+                in_verification=true
+            elif [[ "$line" == *"$verification_end_marker"* ]]; then
+                in_verification=false
+                continue
+            elif [[ "$in_verification" != "true" ]]; then
+                continue
+            fi
+        fi
+
         if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[([[:space:]]|x|X)\][[:space:]] ]]; then
             if [[ -n "$pending_completed_priority" ]]; then
                 record_missing_evidence_if_needed "$pending_completed_priority" "$pending_has_evidence"
@@ -423,14 +441,18 @@ main() {
     local checklist_file="$FOLDER_PATH/checklist.md"
 
     if [[ ! -f "$checklist_file" ]]; then
-        if $JSON_MODE; then
-            echo '{"error": "checklist.md not found", "folder": "'"$FOLDER_PATH"'"}'
+        if [[ -f "$FOLDER_PATH/tasks.md" ]] && grep -q '<!-- ANCHOR:protocol -->' "$FOLDER_PATH/tasks.md" 2>/dev/null; then
+            checklist_file="$FOLDER_PATH/tasks.md"
         else
-            echo -e "${YELLOW}⚠${NC} No checklist.md found in $FOLDER_PATH"
-            echo "  This may be a Level 1 spec (checklist not required)."
-            echo "  Create checklist.md for Level 2+ enforcement."
+            if $JSON_MODE; then
+                echo '{"error": "verification checklist not found", "folder": "'"$FOLDER_PATH"'"}'
+            else
+                echo -e "${YELLOW}⚠${NC} No verification checklist found in $FOLDER_PATH"
+                echo "  This may be a Level 1 spec (verification checklist not required)."
+                echo "  Add the merged verification section to tasks.md for Level 2+ enforcement."
+            fi
+            exit 0
         fi
-        exit 0
     fi
 
     count_checklist_items "$checklist_file"
