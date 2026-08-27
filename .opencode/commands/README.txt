@@ -42,7 +42,7 @@ Commands are organized into six groups plus root-level utilities:
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 11 | Scaffold OpenCode components, documentation packages, and changelogs |
-| **deep** | `commands/deep/` | 8 | Deep research, review, alignment, AI council, improvement and benchmark loops |
+| **deep** | `commands/deep/` | 6 | Deep research, review, AI council and improvement loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **design** | `commands/design/` | 1 | Measured Style Reference DESIGN.md extraction |
 | **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
@@ -92,7 +92,6 @@ command/
 ├── deep/                     # Deep-loop commands
 │   ├── agent-improvement.md  # Evaluator-first agent improvement loop
 │   ├── ai-council.md         # Multi-seat AI council planning
-│   ├── alignment.md          # Conformance audit against named authorities
 │   ├── model-benchmark.md    # Model/prompt-framework benchmark loop
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow

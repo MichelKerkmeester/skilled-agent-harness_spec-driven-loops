@@ -1,7 +1,7 @@
 ---
 name: system-deep-loop
 version: 2.2.4.0
-description: "Routes research, review, AI Council, improvement, and named-standard alignment modes through registry-selected packets."
+description: "Routes research, review, AI Council, and improvement modes through registry-selected packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
 
@@ -9,7 +9,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 
 # System Deep Loop
 
-One skill, five active workflow families, one nested runtime layer. `system-deep-loop` is the public, advisor-routable home for active deep-loop personas; `runtime/` is the frozen, MCP-free infrastructure layer it consumes (formerly the separate `deep-loop-runtime` skill, merged into this hub 2026-07-08). This hub holds NO per-mode convergence, state, or synthesis logic — each active mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
+One skill, four active workflow families, one nested runtime layer. `system-deep-loop` is the public, advisor-routable home for active deep-loop personas; `runtime/` is the frozen, MCP-free infrastructure layer it consumes (formerly the separate `deep-loop-runtime` skill, merged into this hub 2026-07-08). This hub holds NO per-mode convergence, state, or synthesis logic — each active mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
 
 Use `@context` for one-shot retrieval, `/deep:research` for iterative investigation with a bounded context snapshot, `/deep:review` for iterative audit with a bounded review snapshot, or `/speckit:plan` for implementation planning.
 
@@ -17,7 +17,7 @@ Use `@context` for one-shot retrieval, `/deep:research` for iterative investigat
 
 ## 1. WHEN TO USE
 
-Use this skill (through the hub) for any active deep-loop workflow. Invoke it as `Skill(system-deep-loop)` (optionally with a mode hint such as `research: <request>` or `alignment: <request>`); the hub classifies the request, resolves a `workflowMode`, and loads the matching nested mode packet. Active `/deep:*` commands and native agent types remain as complementary surfaces over the same packets.
+Use this skill (through the hub) for any active deep-loop workflow. Invoke it as `Skill(system-deep-loop)` (optionally with a mode hint such as `research: <request>`); the hub classifies the request, resolves a `workflowMode`, and loads the matching nested mode packet. Active `/deep:*` commands and native agent types remain as complementary surfaces over the same packets.
 
 | Mode | Use it for | Packet | Command | Agent |
 |------|-----------|--------|---------|-------|
@@ -55,17 +55,17 @@ This hub is an intent/registry router, not a keyed resource-discovery router: at
 The hub's own routing logic is read-only (classify, guard a path, load a packet). The frontmatter `allowed-tools` list is nonetheless broad because, per the two-axis hub canon contract, a hub's tool grant MUST equal the exact union of every registered mode's `toolSurface.allowed` in `mode-registry.json` — not the tool set the hub's own logic uses. This is a hard invariant enforced by `parent-skill-check.cjs` (check 3j: "hub allowed-tools equals the union of mode tool surfaces"); narrowing the frontmatter grant to only what routing-only logic needs would fail that check and break every mode whose `toolSurface` isn't a subset of the narrowed list. Treat the breadth of `allowed-tools` as evidence of the child modes' combined needs, not of mutating logic living in the hub.
 
 ### The three-tier discriminator
-- **`workflowMode`** — the public active mode key: `research`, `review`, `ai-council`, `alignment`, and the three improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`.
-- **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for custom and improvement backends; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`, while alignment uses its named `convergenceBackend`.
-- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review/ai-council), `alignment-convergence` (the alignment packet's `check-convergence.cjs`), or `improvement-host` (`deep-improvement/scripts/shared/loop-host.cjs --mode`).
+- **`workflowMode`** — the public active mode key: `research`, `review`, `ai-council`, and the three improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`.
+- **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for custom and improvement backends; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`.
+- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review/ai-council) or `improvement-host` (`deep-improvement/scripts/shared/loop-host.cjs --mode`).
 
 ### Routing rule
 ```
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is research, review, ai-council, alignment, or one improvement lane (agent-improvement, model-benchmark, skill-benchmark) work",
-    "Confirm the target artifact: research.md, a review verdict, ai-council deliberation artifacts, alignment findings, or an improvement candidate",
+    "Confirm whether this is research, review, ai-council, or one improvement lane (agent-improvement, model-benchmark, skill-benchmark) work",
+    "Confirm the target artifact: research.md, a review verdict, ai-council deliberation artifacts, or an improvement candidate",
     "Confirm the matching /deep:* command or agent type when one is already known",
-    "Confirm the backend expectations: runtimeLoopType (research/review/council), the alignment convergence backend, or the improvement-host lane",
+    "Confirm the backend expectations: runtimeLoopType (research/review/council) or the improvement-host lane",
 ]
 
 classify the request to a workflowMode (dominant deep-loop intent; mode hint like "research: ..." overrides)
@@ -79,15 +79,14 @@ else:
        e.g. registry["research"].packet → system-deep-loop/deep-research/SKILL.md
        (the 3 improvement modes all share the system-deep-loop/deep-improvement/ packet)
   → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
-     else if registry[mode].backendKind == "alignment-convergence": backend = registry[mode].convergenceBackend
      else: backend = improvement loop-host (--mode), per backendKind
 ```
 
 Router-driven loads MUST use `_guard_in_skill(relative_path)` before `load()`, reject paths that escape this skill or do not end in `.md`, and check `if packet_base.exists()` plus `if packet_skill.exists()` before loading. The fallback must name the unresolved `workflowMode` when known, avoid loading any guessed packet, and ask the operator to provide one of the registered modes or the matching `/deep:*` command.
 
-Intent classification favors the single dominant active deep-loop mode; a mode hint (`research: ...`, `review: ...`, `ai-council: ...`, `alignment: ...`, or an improvement lane) overrides the classifier. The legacy advisor projection maps stay hardcoded and drift-guarded against the registry, and the command files remain static routers with hardcoded asset/mode routing; neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
+Intent classification favors the single dominant active deep-loop mode; a mode hint (`research: ...`, `review: ...`, `ai-council: ...`, or an improvement lane) overrides the classifier. The legacy advisor projection maps stay hardcoded and drift-guarded against the registry, and the command files remain static routers with hardcoded asset/mode routing; neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
 
-Per-mode behavior is **not flattened**: each active packet keeps its own convergence math, state shape, artifacts, and tool-permission guards (research has WebFetch; review/ai-council are code/inward-only; alignment is a named-standard, read-only-by-default conformance audit; improvement is the only direct mutation family). Exactly one `graph-metadata.json` — this hub's — is preserved, so the advisor discovers exactly one skill identity regardless of which surface (hub `Skill()`, `/deep:*` command, or agent) reaches a mode.
+Per-mode behavior is **not flattened**: each active packet keeps its own convergence math, state shape, artifacts, and tool-permission guards (research has WebFetch; review/ai-council are code/inward-only; improvement is the only direct mutation family). Exactly one `graph-metadata.json` — this hub's — is preserved, so the advisor discovers exactly one skill identity regardless of which surface (hub `Skill()`, `/deep:*` command, or agent) reaches a mode.
 
 ---
 
@@ -124,11 +123,11 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 ### ⛔ NEVER
 - **NEVER** add an `improvement` `loopType` to `runtime/convergence.cjs` (improvement is host-driven; `runtimeLoopType` stays `null`).
 - **NEVER** infer `runtimeLoopType` from `workflowMode` — read it from the registry (explicit `null` is load-bearing).
-- **NEVER** let a read-only mode (research/review/ai-council/alignment) reach the improvement mutation scripts (`promote-candidate.cjs`/`rollback-candidate.cjs`).
+- **NEVER** let a read-only mode (research/review/ai-council) reach the improvement mutation scripts (`promote-candidate.cjs`/`rollback-candidate.cjs`).
 - **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or `shared/`.
 
 ### ⚠️ ESCALATE IF
-- A new mode is needed beyond the seven registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
+- A new mode is needed beyond the six registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
 - A change would require the runtime to gain MCP tools or an improvement loopType — that contradicts the architecture; escalate.
 
 ---
@@ -159,12 +158,11 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 - `review` — iterative review loop, P0/P1/P2 findings + verdict.
 - `ai-council` — multi-seat planning deliberation (`ai-council/**` artifacts).
 - `improvement` (3 lanes) — evaluator-first agent/model/skill improvement.
-- `alignment` — read-only-by-default conformance audit against a named standard authority (`alignment/` artifacts).
 
 ### Surfaces and Consumers
 - `Skill(system-deep-loop)` is the invokable hub; active `/deep:*` commands and the agent types (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`) are complementary surfaces over the same packets.
 - `runtime/` is the frozen, MCP-free backend every mode consumes (nested infrastructure, not a separate skill).
-- `/speckit:plan` consumes `@context` packages plus research/review/alignment outputs; spec-folder docs consume research/review/alignment output.
+- `/speckit:plan` consumes `@context` packages plus research/review outputs; spec-folder docs consume research/review output.
 
 ---
 

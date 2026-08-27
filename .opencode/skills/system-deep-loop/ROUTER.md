@@ -20,7 +20,7 @@ skill_pointer: SKILL.md
 This is system-deep-loop's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub selects a
 workflow mode in [`hub-router.json`](hub-router.json) (`research`,
-`review`, `ai-council`, the three improvement lanes, or `alignment`); this doc
+`review`, `ai-council`, or the three improvement lanes); this doc
 maps a request's deep-loop intent to the exact packet-local leaf resources that
 mode should load. Every path is packet-qualified (`<packet>/references|assets/…`,
 where `<packet>` is the mode's `mode-registry.json` `packet` field) and converts
@@ -48,8 +48,6 @@ emits leaf paths, and this router never re-decides the mode.
   each route remains the typed pair `(workflowMode, leafResourceId)`. A shared
   packet path is storage context, not an identity substitute, so model- and
   skill-benchmark observations retain their own workflow modes.
-- **alignment leaves** — the scoping protocol, discover contract, and lane-config
-  schema a read-only conformance audit loads.
 
 A bare deep-loop identity term (e.g. "deep loop") names no mode, so it fires no
 intent and falls back to the hub default (disambiguation).

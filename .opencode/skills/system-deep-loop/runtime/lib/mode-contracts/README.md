@@ -9,7 +9,7 @@ description: "Defines the contract shape and the required substrate-port types e
 
 ## 1. OVERVIEW
 
-The shared plug-in interface that every `system-deep-loop` workflow mode (research, review, council, alignment and the improvement lanes) must satisfy to run on the common runtime. `mode-contract-types.ts` fixes the contract shape (resume snapshot, certificate, convergence hooks); `substrate-ports.ts` declares the runtime-service port types a mode is given (ledger, budget authority, lease coordinator, health projector, sealed artifact store, gauge registry). The module is now a pure type surface — the earlier conformance runner, strict gate validators, and version-compatibility policy have been removed as dead scaffolding.
+The shared plug-in interface that every `system-deep-loop` workflow mode (research, review, council and the improvement lanes) must satisfy to run on the common runtime. `mode-contract-types.ts` fixes the contract shape (resume snapshot, certificate, convergence hooks); `substrate-ports.ts` declares the runtime-service port types a mode is given (ledger, budget authority, lease coordinator, health projector, sealed artifact store, gauge registry). The module is now a pure type surface — the earlier conformance runner, strict gate validators, and version-compatibility policy have been removed as dead scaffolding.
 
 ---
 
