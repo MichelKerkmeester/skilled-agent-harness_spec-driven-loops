@@ -30,11 +30,6 @@ export const LEGACY_DARK_BOUNDARIES = Object.freeze([
     legacyBehavior: 'JSONL events and reducer projections remain authoritative',
   },
   {
-    boundaryId: 'alignment-state-jsonl',
-    source: 'runtime/scripts/reduce-alignment-state.cjs',
-    legacyBehavior: 'JSONL events and reducer projections remain authoritative',
-  },
-  {
     boundaryId: 'improvement-state-jsonl',
     source: 'deep-improvement/scripts/shared/reduce-state.cjs',
     legacyBehavior: 'JSONL events and reducer projections remain authoritative',

@@ -22,7 +22,6 @@ export type PathCoverageMode =
   | 'research'
   | 'review'
   | 'context'
-  | 'alignment'
   | 'council'
   | 'improvement'
   | 'benchmark';

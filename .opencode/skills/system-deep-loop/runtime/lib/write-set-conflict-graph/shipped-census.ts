@@ -34,9 +34,7 @@ function resource(
   scope = 'packet',
 ): ResourceInput {
   const canonicalAliases: Readonly<Record<string, string>> = {
-    'backend:deep-alignment-review-loop': 'backend:review-loop',
     'backend:deep-review-loop': 'backend:review-loop',
-    'lock:deep-alignment-review-loop': 'lock:review-loop',
     'lock:deep-review-loop': 'lock:review-loop',
   };
   return {
@@ -109,12 +107,6 @@ const skillRunner =
   '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs';
 const skillAblation =
   '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs';
-const alignmentWiring =
-  '.opencode/skills/system-deep-loop/deep-alignment/references/state-machine-wiring.md';
-const alignmentConvergence =
-  '.opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs';
-const alignmentReducer =
-  '.opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs';
 
 export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
   declaration(
@@ -584,91 +576,6 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     ],
     [commonLoopHost, commonJournal, skillRunner, skillAblation],
     ['004-deep-improvement-common'],
-  ),
-  declaration(
-    '008-deep-alignment',
-    [
-      resource(
-        'file:.opencode/skills/system-deep-loop/runtime/lib/deep-loop',
-        ResourceKinds.FILE,
-        'read',
-        'mutable',
-        'runtime:deep-loop',
-        alignmentConvergence,
-        'import-census',
-        'Alignment resolves packet artifacts through the shared deep-loop runtime.',
-        'repository',
-      ),
-    ],
-    [
-      resource(
-        'file:.opencode/skills/system-deep-loop/deep-alignment',
-        ResourceKinds.FILE,
-        'write',
-        'mutable',
-        'mode:deep-alignment',
-        alignmentWiring,
-        'contract-declaration',
-        'The migration owns the shipped alignment packet surface.',
-        'repository',
-      ),
-      resource(
-        'file:.opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs',
-        ResourceKinds.FILE,
-        'write',
-        'mutable',
-        'mode:deep-alignment',
-        alignmentReducer,
-        'write-census',
-        'The alignment migration owns its shared-runtime reducer entry point.',
-        'repository',
-      ),
-      resource(
-        'state:{packet}/alignment/deep-alignment-state.jsonl',
-        ResourceKinds.STATE,
-        'write',
-        'append-only',
-        'mode:deep-alignment',
-        alignmentWiring,
-        'contract-declaration',
-        'The state machine appends alignment iteration state.',
-      ),
-      resource(
-        'artifact:{packet}/alignment/alignment-report.md',
-        ResourceKinds.ARTIFACT,
-        'write',
-        'mutable',
-        'mode:deep-alignment',
-        alignmentWiring,
-        'contract-declaration',
-        'The shared-runtime reducer emits the alignment report.',
-      ),
-    ],
-    [
-      resource(
-        'backend:deep-alignment-review-loop',
-        ResourceKinds.BACKEND,
-        'write',
-        'mutable',
-        'runtime:review-loop',
-        alignmentWiring,
-        'contract-declaration',
-        'Alignment reuses the iterative review convergence and coverage substrate.',
-        'repository',
-      ),
-      resource(
-        'lock:deep-alignment-review-loop',
-        ResourceKinds.LOCK,
-        'write',
-        'mutable',
-        'runtime:review-loop',
-        alignmentWiring,
-        'contract-declaration',
-        'Alignment uses the shared single-writer loop coordination path.',
-        'repository',
-      ),
-    ],
-    [alignmentWiring, alignmentConvergence, alignmentReducer],
   ),
 ] as const;
 

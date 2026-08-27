@@ -16,7 +16,7 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`.opencode/commands/deep/assets/legacy/` stores four fallback command bodies: `deep/ai-council`, `deep/alignment`, `deep/research` and `deep/review`.
+`.opencode/commands/deep/assets/legacy/` stores three fallback command bodies: `deep/ai-council`, `deep/research` and `deep/review`.
 
 Each body acts as a thin router. It resolves command setup and selects workflow YAML while leaving iteration dispatch, artifact writes and convergence handling to the selected workflow.
 
@@ -29,7 +29,6 @@ Each body has a matching compiled contract in `../compiled/`. There is no fifth 
 ```text
 legacy/
 +-- deep-ai-council.body.md
-+-- deep-alignment.body.md
 +-- deep-research.body.md
 +-- deep-review.body.md
 `-- README.md
@@ -44,7 +43,6 @@ legacy/
 | `deep-research.body.md` | Fallback router for the deep-research loop. |
 | `deep-review.body.md` | Fallback router for the deep-review loop. |
 | `deep-ai-council.body.md` | Fallback router for bounded AI Council sessions. |
-| `deep-alignment.body.md` | Fallback router for structured alignment audits. |
 
 ---
 
@@ -98,7 +96,6 @@ Confirm the expected files exist from the repository root:
 
 ```bash
 test -f .opencode/commands/deep/assets/legacy/deep-ai-council.body.md
-test -f .opencode/commands/deep/assets/legacy/deep-alignment.body.md
 test -f .opencode/commands/deep/assets/legacy/deep-research.body.md
 test -f .opencode/commands/deep/assets/legacy/deep-review.body.md
 ```

@@ -74,7 +74,7 @@ emits leaf paths, and this router never re-decides the mode.
   / version notes loads. Fired by "changelog / release notes / what shipped /
   since the last version" requests.
 - **benchmark leaves** — the benchmark shared README, worked example, and report
-  template a request to author a behavior / conformance / model / skill benchmark
+  template a request to author a behavior / model / skill benchmark
   loads. Fired by "create a benchmark / benchmark suite / behavior benchmark /
   skill benchmark" requests.
 - **diff leaves** — the diff README, workflow, and worked example a request to
@@ -112,7 +112,7 @@ INTENT_SIGNALS = {
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog of features", "features overview", "capabilities"]},
     "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme", "front-page overview", "project overview", "getting started doc", "intro doc", "overview doc", "landing doc"]},
     "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version"]},
-    "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "conformance benchmark", "model benchmark", "skill benchmark"]},
+    "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "model benchmark", "skill benchmark"]},
     "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff"]},
     "FULL_INVENTORY": {"weight": 4, "keywords": ["full sk-doc toolkit", "all templates", "show the full", "entire toolkit", "everything sk-doc offers"]},
 }
@@ -183,10 +183,6 @@ RESOURCE_MAP = {
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md",
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md",
-        "sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md",
-        "sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-fixture-manifest-template.md",
-        "sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-lane-config-template.md",
-        "sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-readme-template.md",
         "sk-create-benchmark/assets/model-benchmark/model-benchmark-code-task-fixture-template.md",
         "sk-create-benchmark/assets/model-benchmark/model-benchmark-pattern-fixture-template.md",
         "sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md",
@@ -195,11 +191,9 @@ RESOURCE_MAP = {
         "sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md",
         "sk-create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md",
         "sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md",
-        "sk-create-benchmark/references/conformance-benchmark/conformance-benchmark-authoring-guide.md",
         "sk-create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md",
         "sk-create-benchmark/references/shared/README.md",
         "sk-create-benchmark/references/shared/case-studies.md",
-        "sk-create-benchmark/references/shared/command-benchmark-composition.md",
         "sk-create-benchmark/references/shared/pitfalls.md",
         "sk-create-benchmark/references/shared/worked-example.md",
         "sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",

@@ -439,10 +439,10 @@ describe('legacy projection census and byte contracts', () => {
     const censusRows = new Map(census.rows.map((row) => [row.id, row]));
 
     expect(censusIds).toEqual(manifestIds);
-    expect(LEGACY_PROJECTION_MANIFEST).toHaveLength(28);
-    expect(LEGACY_PROJECTION_MANIFEST.filter((row) => row.disposition === 'project')).toHaveLength(21);
+    expect(LEGACY_PROJECTION_MANIFEST).toHaveLength(25);
+    expect(LEGACY_PROJECTION_MANIFEST.filter((row) => row.disposition === 'project')).toHaveLength(19);
     expect(LEGACY_PROJECTION_MANIFEST.filter((row) => row.disposition === 'retain-legacy-input'))
-      .toHaveLength(7);
+      .toHaveLength(6);
     expect(LEGACY_PROJECTION_MANIFEST_DIGEST).toMatch(/^[a-f0-9]{64}$/u);
     for (const entry of LEGACY_PROJECTION_MANIFEST) {
       const censusRow = censusRows.get(entry.surfaceId);

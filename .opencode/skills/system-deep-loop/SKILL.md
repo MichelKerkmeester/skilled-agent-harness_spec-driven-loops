@@ -5,13 +5,13 @@ description: "Routes research, review, AI Council, improvement, and named-standa
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
 
-<!-- Keywords: system-deep-loop, deep-loop, deep-research, deep-review, deep-ai-council, deep-improvement, deep-alignment, alignment, conformance, standard-authority, alignment-lane, conformance-review, read-only-default, context-gathering, reuse-catalog, autoresearch, iterative-research, review-loop, deep-review-wave, release-readiness, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, agent-improvement, benchmark-harness, model-benchmark, skill-benchmark, convergence-detection, externalized-state, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
+<!-- Keywords: system-deep-loop, deep-loop, deep-research, deep-review, deep-ai-council, deep-improvement, conformance, standard-authority, conformance-review, read-only-default, context-gathering, reuse-catalog, autoresearch, iterative-research, review-loop, deep-review-wave, release-readiness, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, agent-improvement, benchmark-harness, model-benchmark, skill-benchmark, convergence-detection, externalized-state, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
 
 # System Deep Loop
 
 One skill, five active workflow families, one nested runtime layer. `system-deep-loop` is the public, advisor-routable home for active deep-loop personas; `runtime/` is the frozen, MCP-free infrastructure layer it consumes (formerly the separate `deep-loop-runtime` skill, merged into this hub 2026-07-08). This hub holds NO per-mode convergence, state, or synthesis logic — each active mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
 
-Use `@context` for one-shot retrieval, `/deep:research` for iterative investigation with a bounded context snapshot, `/deep:review` for iterative audit with a bounded review snapshot, `/deep:alignment` for read-only-by-default conformance against a named standard authority, or `/speckit:plan` for implementation planning.
+Use `@context` for one-shot retrieval, `/deep:research` for iterative investigation with a bounded context snapshot, `/deep:review` for iterative audit with a bounded review snapshot, or `/speckit:plan` for implementation planning.
 
 ---
 
@@ -25,7 +25,6 @@ Use this skill (through the hub) for any active deep-loop workflow. Invoke it as
 | **review** | Iterative review loop → P0/P1/P2 findings + verdict | `system-deep-loop/deep-review/` | `/deep:review` | `deep-review` |
 | **ai-council** | Multi-seat planning deliberation → `ai-council/**` artifacts | `system-deep-loop/deep-ai-council/` | `/deep:ai-council` | `ai-council` |
 | **improvement** (3 lanes) | Evaluator-first improvement: `agent-improvement`, `model-benchmark`, `skill-benchmark` | `system-deep-loop/deep-improvement/` | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` | `deep-improvement` |
-| **alignment** | Read-only-by-default conformance audit against a named standard authority | `system-deep-loop/deep-alignment/` | `/deep:alignment` | `deep-alignment` |
 
 ### When NOT to Use
 - A single quick read/edit (no loop) — use the relevant code or doc skill directly.
@@ -45,7 +44,7 @@ Routing is **registry-driven** (invokable-hub, Option E) in two stages. Stage 1 
 
 ### Surface Router — per-mode leaf sets
 
-Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (the research loop protocol/state/convergence leaves, the review loop protocol/completion/convergence leaves, the ai-council loop protocol/scoring/output-schema leaves, the agent-improvement candidate/score/promotion-gate leaves, the model- and skill-benchmark evaluator leaves, and the alignment scoping/discover/lane-config leaves), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub `defer`, never a silent default to a mode). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (the research loop protocol/state/convergence leaves, the review loop protocol/completion/convergence leaves, the ai-council loop protocol/scoring/output-schema leaves, the agent-improvement candidate/score/promotion-gate leaves, and the model- and skill-benchmark evaluator leaves), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub `defer`, never a silent default to a mode). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
 `ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule).
 
@@ -78,7 +77,6 @@ else:
   → find registry[mode]; if missing, return UNKNOWN_FALLBACK instead of loading a guessed path
   → guard registry[mode].packet/SKILL.md inside SKILL_ROOT and load it only if the packet directory and SKILL.md both exist
        e.g. registry["research"].packet → system-deep-loop/deep-research/SKILL.md
-       e.g. registry["alignment"].packet → system-deep-loop/deep-alignment/SKILL.md
        (the 3 improvement modes all share the system-deep-loop/deep-improvement/ packet)
   → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
      else if registry[mode].backendKind == "alignment-convergence": backend = registry[mode].convergenceBackend
@@ -102,7 +100,7 @@ system-deep-loop/
   ROUTER.md              # stage-two surface router (deep-loop intent -> leaf sets)
   mode-registry.json     # the three-tier discriminator + advisorRouting (single source of truth)
   graph-metadata.json    # the ONE advisor identity for the whole skill
-  deep-research/   deep-review/   deep-ai-council/   deep-improvement/   deep-alignment/   # active mode packets
+  deep-research/   deep-review/   deep-ai-council/   deep-improvement/   # active mode packets
   shared/synthesis/      # workflows-shared synthesis (e.g. emitResourceMap)
 ```
 
@@ -138,7 +136,7 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 ## 5. REFERENCES
 
 - Backend: `.opencode/skills/system-deep-loop/runtime/` (frozen, consumed by every mode; nested infrastructure, not a separate skill).
-- Mode packets: `deep-research/SKILL.md`, `deep-review/SKILL.md`, `deep-ai-council/SKILL.md`, `deep-improvement/SKILL.md`, `deep-alignment/SKILL.md` (per-mode detail).
+- Mode packets: `deep-research/SKILL.md`, `deep-review/SKILL.md`, `deep-ai-council/SKILL.md`, `deep-improvement/SKILL.md` (per-mode detail).
 - Commands: the active `/deep:*` commands under `.opencode/commands/deep/` (complementary surface).
 - Registry: `mode-registry.json` (the routing contract — the authoritative `packet` paths).
 - Surface router: `ROUTER.md` (deep-loop intent to packet-local leaf sets).
@@ -164,7 +162,7 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 - `alignment` — read-only-by-default conformance audit against a named standard authority (`alignment/` artifacts).
 
 ### Surfaces and Consumers
-- `Skill(system-deep-loop)` is the invokable hub; active `/deep:*` commands and the agent types (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`, `deep-alignment`) are complementary surfaces over the same packets.
+- `Skill(system-deep-loop)` is the invokable hub; active `/deep:*` commands and the agent types (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`) are complementary surfaces over the same packets.
 - `runtime/` is the frozen, MCP-free backend every mode consumes (nested infrastructure, not a separate skill).
 - `/speckit:plan` consumes `@context` packages plus research/review/alignment outputs; spec-folder docs consume research/review/alignment output.
 

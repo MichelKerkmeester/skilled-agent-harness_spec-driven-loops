@@ -9,7 +9,7 @@ import { uniqueNamespace, cleanupNamespace } from '../helpers/spawn-cjs';
 
 const require = createRequire(import.meta.url);
 const { runSalvageSweep, extractTextFromOpencodeJson } = require('../../scripts/fanout-salvage.cjs') as {
-  runSalvageSweep: (lineageDir: string, loopType: 'research' | 'review' | 'alignment', savedStdout: string) => { salvaged: number; failed: number };
+  runSalvageSweep: (lineageDir: string, loopType: 'research' | 'review', savedStdout: string) => { salvaged: number; failed: number };
   extractTextFromOpencodeJson: (stdout: string | null) => string | null;
 };
 
@@ -25,15 +25,14 @@ function makeTempDir(prefix: string): string {
  * Creates a minimal lineage dir with a state log containing N iteration records.
  * Optionally creates the iteration .md files.
  */
-const STATE_LOG_NAME_BY_LOOP_TYPE: Record<'research' | 'review' | 'alignment', string> = {
+const STATE_LOG_NAME_BY_LOOP_TYPE: Record<'research' | 'review', string> = {
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
-  alignment: 'deep-alignment-state.jsonl',
 };
 
 function makeLineageDir(
   base: string,
-  loopType: 'research' | 'review' | 'alignment',
+  loopType: 'research' | 'review',
   iterationsInLog: number[],
   writtenIterations: number[] = [],
 ): string {
@@ -157,19 +156,6 @@ describe('runSalvageSweep — unit', () => {
     expect(existsSync(paddedFile)).toBe(true);
     expect(existsSync(unpaddedFile)).toBe(false);
     expect(readFileSync(paddedFile, 'utf8')).toContain('fanout_salvage_failed');
-  });
-
-  it('salvages an alignment lineage against deep-alignment-state.jsonl', () => {
-    const dir = makeTempDir('salvage-alignment-');
-    makeLineageDir(dir, 'alignment', [1], []); // iteration-001 is missing
-
-    const stdout = 'a reasonably long raw stdout capture for alignment recovery here';
-    const result = runSalvageSweep(dir, 'alignment', stdout);
-
-    expect(result.salvaged).toBe(1);
-    expect(result.failed).toBe(0);
-    const stateLog = readFileSync(join(dir, 'deep-alignment-state.jsonl'), 'utf8');
-    expect(stateLog).toContain('salvaged_from_stdout');
   });
 
   it('throws instead of silently skipping salvage for an unrecognized loop type', () => {

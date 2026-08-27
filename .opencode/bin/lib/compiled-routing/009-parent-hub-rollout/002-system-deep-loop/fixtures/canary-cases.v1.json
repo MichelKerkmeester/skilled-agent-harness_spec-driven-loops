@@ -115,36 +115,6 @@
       }
     },
     {
-      "id": "single-alignment",
-      "prompt": "alignment lane",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "alignment"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "alignment"
-        ],
-        "expectedResources": [
-          "deep-alignment/references/scoping-protocol.md",
-          "deep-alignment/references/discover-contract.md",
-          "deep-alignment/references/lane-config-schema.md"
-        ]
-      }
-    },
-    {
-      "id": "one-turn-clarify",
-      "prompt": "deep review of this alignment lane",
-      "expectedAction": "clarify",
-      "gold": {
-        "expectedIntents": [
-          "defer"
-        ],
-        "expectedResources": []
-      }
-    },
-    {
       "id": "zero-signal-defer",
       "prompt": "unrelated orchard inventory",
       "expectedAction": "defer",
@@ -219,8 +189,7 @@
       "skill-benchmark"
     ],
     "sharedRuntimeModes": [
-      "review",
-      "alignment"
+      "review"
     ]
   }
 }

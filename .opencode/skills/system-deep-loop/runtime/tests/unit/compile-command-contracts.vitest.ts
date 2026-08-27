@@ -18,7 +18,7 @@ const compiler = require('../../scripts/compile-command-contracts.cjs') as {
   sha256: (input: string | Buffer) => string;
 };
 
-const commands = ['deep/ai-council', 'deep/alignment', 'deep/review', 'deep/research'] as const;
+const commands = ['deep/ai-council', 'deep/review', 'deep/research'] as const;
 const schemaBlocks = [
   '## gate3Precedence',
   '## renderBlocks.auto',
@@ -39,7 +39,6 @@ function sourceSha(sourcePath: string): string {
 describe('compile-command-contracts', () => {
   it.each([
     ['deep/ai-council', 'deep-ai-council.contract.md'],
-    ['deep/alignment', 'deep-alignment.contract.md'],
     ['deep/review', 'deep-review.contract.md'],
     ['deep/research', 'deep-research.contract.md'],
   ])('writes %s to its tracked renderer path', (command, fileName) => {

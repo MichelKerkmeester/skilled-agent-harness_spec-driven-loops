@@ -16,9 +16,6 @@ export {
   createDeepResearchProjectionsProjectionContract,
 } from './deep-research-projections-contract.js';
 export {
-  createDeepAlignmentStateDeltasProjectionContract,
-} from './deep-alignment-state-deltas-contract.js';
-export {
   createDeepAiCouncilConfigStateProjectionContract,
 } from './deep-ai-council-config-state-contract.js';
 export {
@@ -70,10 +67,6 @@ export type {
   CreateDeepResearchProjectionsProjectionContractOptions,
   DeepResearchProjectionsProjectionState,
 } from './deep-research-projections-contract.js';
-export type {
-  CreateDeepAlignmentStateDeltasProjectionContractOptions,
-  DeepAlignmentStateDeltasProjectionState,
-} from './deep-alignment-state-deltas-contract.js';
 export type {
   CreateDeepAiCouncilConfigStateProjectionContractOptions,
   CouncilStateProjectionState,

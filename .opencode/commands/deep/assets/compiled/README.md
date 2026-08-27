@@ -20,7 +20,7 @@ importance_tier: "important"
 
 The generated contracts combine maintained command, workflow, skill, reference and agent sources into grep-checkable executor instructions. Maintained source files remain authoritative.
 
-The compiled inventory is intentionally limited to the four commands registered with the contract compiler and renderer: `deep/ai-council`, `deep/alignment`, `deep/research` and `deep/review`. Each has one matching legacy body in `../legacy/`; no legacy body in that directory lacks a compiled counterpart. The rollout entries for `deep/agent-improvement`, `deep/model-benchmark` and `deep/skill-benchmark` are fallback-only and are not compiler-managed asset pairs.
+The compiled inventory is intentionally limited to the three commands registered with the contract compiler and renderer: `deep/ai-council`, `deep/research` and `deep/review`. Each has one matching legacy body in `../legacy/`; no legacy body in that directory lacks a compiled counterpart. The rollout entries for `deep/agent-improvement`, `deep/model-benchmark` and `deep/skill-benchmark` are fallback-only and are not compiler-managed asset pairs.
 
 ---
 
@@ -29,7 +29,6 @@ The compiled inventory is intentionally limited to the four commands registered 
 ```text
 compiled/
 +-- deep-ai-council.contract.md
-+-- deep-alignment.contract.md
 +-- deep-research.contract.md
 +-- deep-review.contract.md
 +-- manifest.jsonl
@@ -45,7 +44,6 @@ compiled/
 | `deep-research.contract.md` | Generated executor contract for `/deep:research`. |
 | `deep-review.contract.md` | Generated executor contract for `/deep:review`. |
 | `deep-ai-council.contract.md` | Generated executor contract for `/deep:ai-council`. |
-| `deep-alignment.contract.md` | Generated executor contract for `/deep:alignment`; loaded by the renderer in `fix` mode ahead of the matching legacy body and freshness-checked against maintained sources. |
 | `manifest.jsonl` | Append-only render records with command, mode and content digests. |
 
 ---

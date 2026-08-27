@@ -90,14 +90,6 @@ export const MODE_COVERAGE_PROFILES: readonly ModeCoverageProfile[] = Object.fre
     region('context-reuse-candidate', ['reuse-candidate'], ['independent-evidence'], 2),
     region('context-dependency', ['dependency'], ['projection-row'], 4),
   ]),
-  profile('alignment', [
-    { dimensionId: 'changed-surface', source: 'declared' },
-    { dimensionId: 'alignment-dimension', source: 'declared' },
-    { dimensionId: 'critical-refutation', source: 'declared' },
-  ], [
-    region('alignment-surface-dimension', ['changed-surface', 'alignment-dimension'], ['projection-row'], 3),
-    region('alignment-critical-refutation', ['critical-refutation'], ['refutation'], 5),
-  ]),
   profile('council', [
     { dimensionId: 'agenda-branch', source: 'declared' },
     { dimensionId: 'independent-evidence-region', source: 'declared' },

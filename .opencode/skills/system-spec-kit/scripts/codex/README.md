@@ -25,7 +25,6 @@ description: "Generators that keep .codex/agents, .codex/prompts and command rou
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-doc-command-adapter.md` runs `sync-prompts.cjs --check` as its canonical-source/generated-mirror parity gate.
 - `.opencode/skills/sk-doc/sk-create-command/SKILL.md` documents `generate-command-routers.cjs` as the router drift check for new commands.
 
 ---

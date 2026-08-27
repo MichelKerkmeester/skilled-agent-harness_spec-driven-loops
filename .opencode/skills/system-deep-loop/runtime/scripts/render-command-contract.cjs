@@ -30,11 +30,6 @@ const COMMANDS = {
     legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep-research.body.md',
     compiledContractPath: '.opencode/commands/deep/assets/compiled/deep-research.contract.md',
   },
-  'deep/alignment': {
-    slug: 'deep_alignment',
-    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep-alignment.body.md',
-    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep-alignment.contract.md',
-  },
 };
 
 function absolutePath(sourcePath) {

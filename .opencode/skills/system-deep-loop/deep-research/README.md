@@ -116,7 +116,6 @@ Skip it for a single-question lookup, where a direct web search or the `@context
 | `deep-review` | Audits code for bugs, security gaps and quality issues. Run it after implementation. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Run `deep-research` first when the council needs an evidence base. |
 | `deep-improvement` | Runs evaluator-first improvement across agents, models, skills and packaged AI systems. |
-| `deep-alignment` | Audits artifacts against a named standard authority. See the [mode registry](../mode-registry.json) for the active roster. |
 
 `/speckit:plan` and `/speckit:implement` consume the research report. `system-spec-kit` owns the spec folder, validation and memory continuity. `runtime/` provides the shared executor, state layer and coverage graph.
 

@@ -65,13 +65,13 @@ const MS_PER_DAY = 24 * 60 * 60 * 1000;
 // Command-owned loop executors: dispatched only by their parent /deep:* command,
 // which owns iteration state and convergence. One bounded external hand-off is
 // tolerated, while repeated hand-offs re-implement the loop outside its owning
-// command. deep-alignment is one of these: its /deep:alignment command owns the
-// iteration state, and its LEAF agent forbids direct Task dispatch, so repeated
-// hand-offs are the same loop-outside-its-command smell the others guard against.
+// command. Each of these owns its iteration state, and its LEAF agent forbids
+// direct Task dispatch, so repeated hand-offs are the loop-outside-its-command
+// smell the guard counts.
 // Generic subagents (context/review/write/debug) and ai-council (also reachable
 // via /deep:ai-council for multi-turn planning) are intentionally excluded from
 // loop-repeat counting.
-const LOOP_EXECUTOR_AGENTS = new Set(['deep-research', 'deep-review', 'deep-improvement', 'deep-alignment']);
+const LOOP_EXECUTOR_AGENTS = new Set(['deep-research', 'deep-review', 'deep-improvement']);
 
 // The parent commands retain a readable iteration line. Anchoring it and
 // checking its bounds prevents incidental prose from gaining command authority.

@@ -293,7 +293,7 @@ This means root `CLAUDE.md`/`AGENTS.md` context is already surfaced by Devin. It
 
 #### Agent Roster Parity
 
-All 13 repo agents are dispatchable through `run_subagent`: `ai-council`, `code`, `context`, `debug`, `deep-alignment`, `deep-improvement`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, `review`. A live roster probe lists them alongside Devin's own `subagent_explore` and `subagent_general`.
+All 12 repo agents are dispatchable through `run_subagent`: `ai-council`, `code`, `context`, `debug`, `deep-improvement`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, `review`. A live roster probe lists them alongside Devin's own `subagent_explore` and `subagent_general`.
 
 Each `.devin/agents/<name>/AGENT.md` is a **symlink** to the canonical `.claude/agents/<name>.md`, matching the discovery-mirror precedent already used for `.claude/hooks/` and `.codex/hooks/`. One source of truth, so a mirror can never drift from the agent it mirrors.
 

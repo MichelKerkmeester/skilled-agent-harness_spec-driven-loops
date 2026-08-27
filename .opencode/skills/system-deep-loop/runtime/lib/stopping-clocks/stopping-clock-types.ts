@@ -64,7 +64,6 @@ export type StoppingClockMode =
   | 'research'
   | 'review'
   | 'context'
-  | 'alignment'
   | 'council'
   | 'improvement'
   | 'benchmark';

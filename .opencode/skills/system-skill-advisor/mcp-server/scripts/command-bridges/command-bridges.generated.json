@@ -309,36 +309,6 @@
       }
     },
     {
-      "id": "command-deep-alignment",
-      "command": "/deep:alignment",
-      "skillId": "system-deep-loop",
-      "ownerMode": "alignment",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
-      "id": "command-deep-command-benchmark",
-      "command": "/deep:command-benchmark",
-      "skillId": "system-deep-loop",
-      "ownerMode": "alignment",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
       "id": "command-deep-model-benchmark",
       "command": "/deep:model-benchmark",
       "skillId": "system-deep-loop",

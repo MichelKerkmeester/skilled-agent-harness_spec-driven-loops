@@ -26,13 +26,11 @@ const { spawnSync } = require('node:child_process');
 const LEAF_BY_LOOP = {
   review: 'deep-review',
   research: 'deep-research',
-  alignment: 'deep-alignment',
 };
 
 const STATE_LOG_BY_LOOP = {
   review: 'deep-review-state.jsonl',
   research: 'deep-research-state.jsonl',
-  alignment: 'deep-alignment-state.jsonl',
 };
 
 // Matches each mode's `artifactId` in its legacy projection contract
@@ -41,7 +39,6 @@ const STATE_LOG_BY_LOOP = {
 const ARTIFACT_ID_BY_LOOP = {
   review: 'review-state',
   research: 'research-state',
-  alignment: 'alignment-state',
 };
 
 const CHECK_DIRECT_APPEND_CLI = path.join(__dirname, 'check-direct-append.cjs');

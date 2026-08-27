@@ -8,21 +8,17 @@ const SKILL_ROOT = path.resolve(__dirname, '..');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..');
 const REGISTRY_PATH = path.join(SKILL_ROOT, 'mode-registry.json');
 const HUB_README = path.join(SKILL_ROOT, 'README.md');
-const ALIGNMENT_README = path.join(SKILL_ROOT, 'deep-alignment', 'README.md');
 const COUNCIL_PLAYBOOK = path.join(SKILL_ROOT, 'deep-ai-council', 'manual-testing-playbook');
-const ALIGNMENT_PLAYBOOK = path.join(SKILL_ROOT, 'deep-alignment', 'manual-testing-playbook');
 const REPORT_ROOT = path.join(SKILL_ROOT, 'benchmark', 'reports');
 const REPORT_INDEX = path.join(REPORT_ROOT, 'README.md');
 const LINK_DOCS = [
   HUB_README,
   path.join(SKILL_ROOT, 'deep-research', 'README.md'),
   path.join(SKILL_ROOT, 'deep-ai-council', 'README.md'),
-  ALIGNMENT_README,
   path.join(SKILL_ROOT, 'deep-improvement', 'README.md'),
   path.join(SKILL_ROOT, 'runtime', 'README.md'),
   path.join(SKILL_ROOT, 'runtime', 'scripts', 'README.md'),
   path.join(SKILL_ROOT, 'deep-review', 'SKILL.md'),
-  path.join(SKILL_ROOT, 'deep-alignment', 'assets', 'conformance-benchmark', 'command-surface', 'conformance-benchmark.md'),
   REPORT_INDEX,
 ];
 
@@ -46,14 +42,10 @@ function unique(values) {
 function registryCounts(registry) {
   const packets = unique(registry.modes.map((mode) => mode.packet));
   const improvementLanes = registry.modes.filter((mode) => mode.packet === 'deep-improvement');
-  const scoping = require(path.join(SKILL_ROOT, 'deep-alignment', 'scripts', 'scoping.cjs'));
-  const adapters = unique(Object.values(scoping.AUTHORITY_ADAPTERS).flat());
   return {
     families: packets.length,
     lanes: improvementLanes.length,
-    adapters: adapters.length,
     packets,
-    adapterNames: adapters,
   };
 }
 
@@ -120,12 +112,10 @@ function runChecks(args) {
     if (!fs.existsSync(path.join(SKILL_ROOT, packet))) errors.push(`registry packet missing: ${packet}`);
     if (!read(HUB_README).includes(`${packet}/`)) errors.push(`registry packet absent from hub index: ${packet}`);
   }
-  if (counts.families !== 5) errors.push(`family count mismatch: ${counts.families}`);
+  if (counts.families !== 4) errors.push(`family count mismatch: ${counts.families}`);
   if (counts.lanes !== 3) errors.push(`lane count mismatch: ${counts.lanes}`);
-  if (counts.adapters !== 6) errors.push(`adapter count mismatch: ${counts.adapters}`);
-  if (!read(ALIGNMENT_README).includes('six registered adapter variants')) errors.push('alignment adapter count is not registry-derived');
   if (!args.linksOnly && !args.reportsOnly) {
-    for (const [root, prefix] of [[COUNCIL_PLAYBOOK, 'DAC'], [ALIGNMENT_PLAYBOOK, 'DAL']]) {
+    for (const [root, prefix] of [[COUNCIL_PLAYBOOK, 'DAC']]) {
       const scenarios = scenarioIndex(root, prefix);
       if (scenarios.declared !== scenarios.files) errors.push(`${prefix} scenario index mismatch: declared=${scenarios.declared} files=${scenarios.files}`);
     }

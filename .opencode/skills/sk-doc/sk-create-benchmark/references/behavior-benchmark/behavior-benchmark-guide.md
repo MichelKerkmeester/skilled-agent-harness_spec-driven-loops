@@ -88,14 +88,14 @@ the run evidence. The package is the contract; the packet is the proof.
 ## 3. NAMING CONVENTIONS
 
 New packages follow the sk-doc filesystem convention. The shipped legacy
-`deep-alignment/behavior-benchmark/` package remains a current underscore-path
+`deep-review/behavior-benchmark/` package remains a current underscore-path
 reference until its owning rename phase.
 
 - **Package directory**: `behavior-benchmark`, directly under the mode-packet.
 - **Index file**: `behavior-benchmark.md`, matching the directory.
 - **Scenario files**: `<PREFIX>-NNN-<slug>.md` — an uppercase three-letter ID
   prefix, a zero-padded three-digit number, then a lowercase-hyphen slug, for
-  example `DAB-001-auto-run-lane-config.md`. The `NNN` is contiguous from `001`.
+  example `RVB-001-auto-run-specified.md`. The `NNN` is contiguous from `001`.
 - **Baseline file**: `baselines/claude-baseline.md`.
 - **ID prefix**: three uppercase letters, unique per package. The framework fixes
   `ACB` (ai-council), `DAB` (alignment), `IMB` (improvement), `RSB` (research), and
@@ -133,7 +133,7 @@ Complete these steps in order.
    research/review/ai-council/improvement/context packages, or the schema-v2 block
    (`"schema_version": 2` with `command_topology`, direct-dispatch targets,
    `postconditions`, and `boundary`) for command, direct-tool/plugin, and
-   conformance families. Delete the block you are not using. The remaining fenced
+   the block you are not using. The remaining fenced
    json block is the machine contract the runner parses; keep its field order. Fill
    Rationale, Pass shape, and Failure modes as scoring context. Keep every row in
    the index table and its scenario file in exact sync.
@@ -206,44 +206,7 @@ isolates, and any axis intentionally left out with its reason.
 
 ---
 
-## 7. WORKED MAPPING: PACKET 066 COMMAND SURFACE
-
-Packet `system-deep-loop/066-command-surface-benchmark` is the first consumer of
-this family. Its behavior package — the behavioral half of a two-axis command
-benchmark — maps as follows:
-
-| Package field | Packet 066 value |
-| --- | --- |
-| Owning mode | `system-deep-loop/deep-alignment` |
-| Package location | `deep-alignment/behavior-benchmark/` |
-| ID prefix | `DAB` (deep-alignment behavior) |
-| Command-surface scenarios | `DAB-012` through `DAB-027` — the schema-v2 command-behavior suite (16 cells); `DAB-001` through `DAB-011` benchmark the `/deep:alignment` loop itself and stay schema v1 |
-| Index | `deep-alignment/behavior-benchmark/behavior-benchmark.md` |
-| Baseline | `baselines/claude-baseline.md` |
-| Entry surfaces exercised | E1 command-plus-suffix, E2 bare-command halt, E3 natural-language ask — per the index AXIS COVERAGE |
-| Router-class coverage | Workflow router, subaction router, direct-tool router, and monolithic command, isolated as distinct cell clusters |
-| Runner | `shared/behavior-benchmark/behavior-bench-run.cjs` (frozen; extracts checkpoints, scores, and classifies each cell) |
-| Matrix scheduler | `deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs` |
-| Matrix manifest | `deep-alignment/assets/command-benchmark/command-benchmark-matrix.json` |
-| Driver legs | A Claude reference leg plus the OpenCode `gpt-5.5-fast` high and medium legs, as declared in the manifest |
-| Launcher | [`/deep:command-benchmark`](../../../../../commands/deep/command-benchmark.md) — composes both axes and reports them separately |
-| Run evidence | `<executing-spec-phase>/evidence/command-benchmark/<run-id>/`, as bound by the launcher |
-| Source packet | `.opencode/specs/system-deep-loop/066-command-surface-benchmark/` |
-
-The command-surface benchmark is deliberately **two-axis**: this behavior package
-measures how an executor model handles each command at its invocation surface,
-while the deterministic **conformance** axis checks the command documents against
-the sk-doc authority through the `sk-doc-command` peer adapter. The conformance
-half is documented in
-[`../conformance-benchmark/conformance-benchmark-authoring-guide.md`](../conformance-benchmark/conformance-benchmark-authoring-guide.md)
-section 8, "WORKED MAPPING: PACKET 066 COMMAND SURFACE". One launcher composes both
-and reports them side by side; the two subject axes are never averaged into a
-single score. The package here is the behavioral contract; the executing spec
-phase provisions fixtures and files the run evidence.
-
----
-
-## 8. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Templates
 
@@ -260,7 +223,7 @@ phase provisions fixtures and files the run evidence.
 
 ### Worked reference package
 
-- `.opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/` — the shipped `DAB` package: read its `behavior-benchmark.md`, a `scenarios/DAB-*.md` file, and `baselines/claude-baseline.md` to see the templates filled in against a real mode.
+- `.opencode/skills/system-deep-loop/deep-review/behavior-benchmark/` — the shipped `RVB` package: read its `behavior-benchmark.md`, a `scenarios/RVB-*.md` file, and `baselines/claude-baseline.md` to see the templates filled in against a real mode.
 
 ---
 

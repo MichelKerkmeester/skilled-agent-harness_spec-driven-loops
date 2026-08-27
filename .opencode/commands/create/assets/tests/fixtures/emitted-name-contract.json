@@ -44,12 +44,10 @@
       "[agent_path]/[agent_name].md"
     ],
     "create_benchmark_auto.yaml": [
-      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md",
-      "assets/conformance-benchmark/BENCHMARK-ID/conformance-benchmark.md"
+      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md"
     ],
     "create_benchmark_confirm.yaml": [
-      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md",
-      "assets/conformance-benchmark/BENCHMARK-ID/conformance-benchmark.md"
+      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md"
     ],
     "create_changelog_auto.yaml": [
       ".opencode/changelog/{primary_component}/v{next_version}.md"
@@ -127,12 +125,10 @@
   },
   "forbiddenTokens": {
     "create_benchmark_auto.yaml": [
-      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md",
-      "assets/conformance-benchmark/README.md"
+      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md"
     ],
     "create_benchmark_confirm.yaml": [
-      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md",
-      "assets/conformance-benchmark/README.md"
+      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md"
     ],
     "create_command_auto.yaml": [
       "Creates router .md plus _auto.yaml"
@@ -191,10 +187,6 @@
     "sample-skill/mcp-server/benchmarks/benchmark-2026-07-18/benchmark-report.md",
     "sample-skill/mcp-server/benchmarks/benchmark-2026-07-18/SOURCE.md",
     "sample-skill/mcp-server/benchmarks/benchmark-2026-07-18/results.csv",
-    "sample-skill/assets/conformance-benchmark/README.md",
-    "sample-skill/assets/conformance-benchmark/search-conformance/conformance-benchmark.md",
-    "sample-skill/assets/conformance-benchmark/search-conformance/lane-config.json",
-    "sample-skill/assets/conformance-benchmark/search-conformance/fixtures/fixture-manifest.json",
     "install-guides/mcp-semantic-search.md",
     "docs/workflows/example-flowchart.md",
     "agents/quality-gate.md"

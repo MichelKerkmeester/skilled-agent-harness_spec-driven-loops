@@ -15,15 +15,6 @@ from pathlib import Path
 
 GUIDE_ONLY_FAMILIES = frozenset({"agent_improvement"})
 RESOURCE_KEY_ALIASES = {"mcp_promotion": "shared"}
-CONFORMANCE_ASSETS = frozenset(
-    {
-        "conformance-benchmark-contract-template.md",
-        "conformance-benchmark-fixture-manifest-template.md",
-        "conformance-benchmark-lane-config-template.md",
-        "conformance-benchmark-readme-template.md",
-    }
-)
-CONFORMANCE_GUIDE = "conformance-benchmark-authoring-guide.md"
 LANE_OWNED_TEMPLATE_PATTERN = re.compile(
     r"(?:^|[_-])(runner|rubric|scorer|adapter|reducer)(?:[_-]|$)",
     re.IGNORECASE,
@@ -97,17 +88,6 @@ def validate_registry() -> None:
         assert token in readme_text, (
             f"resource key '{resource_key}' is missing from create-benchmark README.md"
         )
-
-    conformance_asset_dir = assets_root / "conformance-benchmark"
-    conformance_assets = {
-        path.name for path in conformance_asset_dir.iterdir() if path.is_file()
-    }
-    assert CONFORMANCE_ASSETS <= conformance_assets, (
-        "conformance_benchmark is missing one or more required templates: "
-        f"{sorted(CONFORMANCE_ASSETS - conformance_assets)}"
-    )
-    guide_path = references_root / "conformance-benchmark" / CONFORMANCE_GUIDE
-    assert guide_path.is_file(), f"conformance_benchmark guide missing: {guide_path}"
 
     for template_path in assets_root.rglob("*template*"):
         if not template_path.is_file():

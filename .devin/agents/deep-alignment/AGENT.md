@@ -1,1 +1,0 @@
-../../../.claude/agents/deep-alignment.md

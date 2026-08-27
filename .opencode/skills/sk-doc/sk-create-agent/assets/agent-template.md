@@ -754,11 +754,11 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 
 **Deep-Loop Iteration Agents (sanctioned section-vocabulary dialect)**
 
-The `@deep-alignment` / `@deep-review` / `@deep-research` family (both `.opencode/agents/` and `.claude/agents/` mirrors) is a blessed alternate section vocabulary for per-iteration loop workers — same responsibilities as the generic skeleton, lane-named headings.
+The `@deep-review` / `@deep-research` family (both `.opencode/agents/` and `.claude/agents/` mirrors) is a blessed alternate section vocabulary for per-iteration loop workers — same responsibilities as the generic skeleton, lane-named headings.
 
-- **Full shape** (`deep-alignment`, `deep-review`): `## 0. ILLEGAL NESTING (HARD BLOCK)` → `## 0b. INPUT + SCOPE GATES (HARD BLOCK)` → `## 1. CORE WORKFLOW -- Single <lane> Iteration` → `## 2. ROUTING SCAN` → `## 3. <lane> CONTRACT` (`ALIGNMENT CONTRACT` / `REVIEW CONTRACT`) → `## 4. STATE MANAGEMENT + WRITE SAFETY` → `## 5. <lane> ADVERSARIAL CHECK (Tiered)` (`VERIFY-FIRST ADVERSARIAL CHECK` / `ADVERSARIAL SELF-CHECK`) → `## 6. RULES` → `## 7. OUTPUT VERIFICATION` → `## 8. ANTI-PATTERNS` → `## 9. SUMMARY`.
+- **Full shape** (`deep-review`): `## 0. ILLEGAL NESTING (HARD BLOCK)` → `## 0b. INPUT + SCOPE GATES (HARD BLOCK)` → `## 1. CORE WORKFLOW -- Single <lane> Iteration` → `## 2. ROUTING SCAN` → `## 3. <lane> CONTRACT` (`REVIEW CONTRACT`) → `## 4. STATE MANAGEMENT + WRITE SAFETY` → `## 5. <lane> ADVERSARIAL CHECK (Tiered)` (`ADVERSARIAL SELF-CHECK`) → `## 6. RULES` → `## 7. OUTPUT VERIFICATION` → `## 8. ANTI-PATTERNS` → `## 9. SUMMARY`.
 - **Lean variant** (`deep-research`): no `§0b`; `## 3. ITERATION PROTOCOL` replaces the CONTRACT; `## 4. STATE MANAGEMENT` drops the `+ WRITE SAFETY` suffix; `RULES` moves to `## 5`; adds `## 6. OUTPUT FORMAT`; then OUTPUT VERIFICATION / ANTI-PATTERNS / SUMMARY.
-- Only `## 1. CORE WORKFLOW` is validator-required; the dialect keeps every boundary, capability, verification, and anti-pattern responsibility of the generic skeleton. Reference files: `.opencode/agents/{deep-alignment,deep-review,deep-research}.md` and their `.claude/agents/` mirrors.
+- Only `## 1. CORE WORKFLOW` is validator-required; the dialect keeps every boundary, capability, verification, and anti-pattern responsibility of the generic skeleton. Reference files: `.opencode/agents/{deep-review,deep-research}.md` and their `.claude/agents/` mirrors.
 
 ---
 

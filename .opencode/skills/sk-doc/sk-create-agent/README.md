@@ -72,7 +72,7 @@ Start by choosing the component. A skill answers how the work should be done, a 
 
 From there, add a capability scan of relevant skills and tools, explicit output verification, anti-patterns and related resources. Together with the H1, the hard boundary and the core workflow already written, that's the full required shape, seven sections beyond frontmatter, each earning its place. Remove every placeholder from the template and run the validation gate before delivery.
 
-One family of agents uses a different section vocabulary on purpose. The deep-loop leaf-iteration agents (`@deep-alignment`, `@deep-review` and `@deep-research`) read more clearly under lane-named headings like `ROUTING SCAN` and `ADVERSARIAL CHECK` instead of the default skeleton. That's a documented, sanctioned dialect, not drift. It still carries every boundary and verification responsibility the default shape requires. Reach for it only when authoring another member of that specific family.
+One family of agents uses a different section vocabulary on purpose. The deep-loop leaf-iteration agents (`@deep-review` and `@deep-research`) read more clearly under lane-named headings like `ROUTING SCAN` and `ADVERSARIAL CHECK` instead of the default skeleton. That's a documented, sanctioned dialect, not drift. It still carries every boundary and verification responsibility the default shape requires. Reach for it only when authoring another member of that specific family.
 
 ### Key Concept: Runtime-Correct Frontmatter Is Not Optional
 

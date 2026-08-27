@@ -291,13 +291,6 @@ SKILL_ALIAS_GROUPS = {
         "deep-council",
         "sk-ai-council",
     },
-    "deep-alignment": {
-        "command-spec-kit-deep-alignment",
-        "/deep:alignment",
-        "deep:alignment",
-        "deep-alignment",
-        "sk-deep-alignment",
-    },
 }
 SKILL_ALIAS_TO_CANONICAL = {
     alias: canonical
@@ -305,7 +298,7 @@ SKILL_ALIAS_TO_CANONICAL = {
     for alias in {canonical, *aliases}
 }
 # BEGIN GENERATED DEEP ROUTING PROJECTION HASH
-DEEP_ROUTING_PROJECTION_HASH = "sha256:56e8cceee4c9c7a1eadcdb024e9ac48c9215323bafa96e851abc610dc5a583f0"
+DEEP_ROUTING_PROJECTION_HASH = "sha256:3247c68909c8f2510ca34af7ce0e02d2a91654f175b583469b225dca6cd6a6a3"
 # END GENERATED DEEP ROUTING PROJECTION HASH
 STRICT_TOPOLOGY_HEADERS = (
     ("DEPENDENCY CYCLE ERRORS", "dependency cycles"),
@@ -2444,42 +2437,6 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-create-diff",
         "routing_enabled": False,
     },
-    "command-create-skill-parent": {
-        "description": "",
-        "slash_markers": ["/create:skill-parent"],
-        "inventory_id": "command-create-skill-parent",
-        "command": "/create:skill-parent",
-        "skill_id": "sk-doc",
-        "owner_mode": "sk-create-skill-parent",
-        "routing_enabled": False,
-    },
-    "command-deep-ai-council": {
-        "description": "",
-        "slash_markers": ["/deep:ai-council"],
-        "inventory_id": "command-deep-ai-council",
-        "command": "/deep:ai-council",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "ai-council",
-        "routing_enabled": False,
-    },
-    "command-deep-alignment": {
-        "description": "",
-        "slash_markers": ["/deep:alignment"],
-        "inventory_id": "command-deep-alignment",
-        "command": "/deep:alignment",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "alignment",
-        "routing_enabled": False,
-    },
-    "command-deep-command-benchmark": {
-        "description": "",
-        "slash_markers": ["/deep:command-benchmark"],
-        "inventory_id": "command-deep-command-benchmark",
-        "command": "/deep:command-benchmark",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "alignment",
-        "routing_enabled": False,
-    },
     "command-deep-model-benchmark": {
         "description": "",
         "slash_markers": ["/deep:model-benchmark"],
@@ -2973,12 +2930,11 @@ DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
 # re-derives this tuple from that registry; it is never hand-edited independently.
 MERGED_DEEP_SKILL_ID = "system-deep-loop"
 # BEGIN GENERATED DEEP ROUTING LEXICAL PROJECTION
-DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council", "deep-alignment")
+DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
 DEEP_ROUTING_MODE_BY_KEY = {
     "deep-review": "review",
     "deep-research": "research",
     "deep-ai-council": "ai-council",
-    "deep-alignment": "alignment",
 }
 # END GENERATED DEEP ROUTING LEXICAL PROJECTION
 

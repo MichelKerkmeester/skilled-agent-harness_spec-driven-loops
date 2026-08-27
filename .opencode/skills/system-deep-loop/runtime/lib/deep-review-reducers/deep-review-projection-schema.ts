@@ -125,7 +125,7 @@ const CONVERGENCE_SIGNALS_RULE = objectRule({
 });
 
 const CONFIGURATION_RULE = objectRule({
-  mode: enumRule(['review', 'alignment']),
+  mode: enumRule(['review']),
   requiredCoveragePolicy: enumRule(['all-required-cells']),
   hardVetoClasses: arrayRule(codeRule),
   terminalDecisionPolicy: enumRule(['typed-transition-only']),

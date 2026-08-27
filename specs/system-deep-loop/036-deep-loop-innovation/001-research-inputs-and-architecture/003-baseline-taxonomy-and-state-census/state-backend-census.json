@@ -185,45 +185,6 @@
       "evidence": ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
     },
     {
-      "id": "alignment-config-corpus",
-      "surface": "JSON",
-      "mutability": "write-once",
-      "resolvedPath": "{spec_folder}/alignment/{deep-alignment-config.json,deep-alignment-corpus.json}",
-      "owner": "deep-alignment",
-      "lifecycle": "config frozen; corpus generated once per scope",
-      "recovery": "recreate corpus from frozen config and discovery",
-      "archivalReader": "alignment reducer and partitioner",
-      "authority": "input contract and resolved corpus",
-      "fixture": "fixtures/control-surfaces.json",
-      "evidence": ".opencode/skills/system-deep-loop/deep-alignment/references/state-machine-wiring.md"
-    },
-    {
-      "id": "alignment-state-deltas",
-      "surface": "JSONL",
-      "mutability": "append-only",
-      "resolvedPath": "{spec_folder}/alignment/{deep-alignment-state.jsonl,deltas/iter-NNN.jsonl}",
-      "owner": "deep-alignment",
-      "lifecycle": "append per lane iteration",
-      "recovery": "valid-prefix replay",
-      "archivalReader": "alignment reducer and convergence checker",
-      "authority": "event and finding history",
-      "fixture": "fixtures/event-streams.json",
-      "evidence": ".opencode/skills/system-deep-loop/deep-alignment/references/state-machine-wiring.md"
-    },
-    {
-      "id": "alignment-projections",
-      "surface": "JSON and Markdown",
-      "mutability": "atomic-replace",
-      "resolvedPath": "{spec_folder}/alignment/{deep-alignment-findings-registry.json,alignment-report.md}",
-      "owner": "alignment reducer",
-      "lifecycle": "atomic regenerate",
-      "recovery": "recreate from config, corpus, state, and deltas",
-      "archivalReader": "operators and resume",
-      "authority": "derived projection",
-      "fixture": "fixtures/expected-projections.json",
-      "evidence": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs"
-    },
-    {
       "id": "alignment-control",
       "surface": "lock",
       "mutability": "ephemeral-control",

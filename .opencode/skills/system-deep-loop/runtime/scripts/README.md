@@ -46,7 +46,6 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `fanout-salvage.cjs` | Recovers missing iteration artifacts from captured subprocess output. |
 | `loop-lock.cjs` | Adapts shared loop-lock acquisition, heartbeat, reclaim and release to the CLI. |
 | `query.cjs` | Queries coverage gaps, contradictions and stored graph state. |
-| `reduce-alignment-state.cjs` | Reduces alignment state records into the mode projection. |
 | `reduce-state.cjs` | Reduces durable state records into a current runtime projection. |
 | `render-command-contract.cjs` | Renders the command contract used by validation and dispatch. |
 | `status.cjs` | Reports session-scoped graph health and stored row counts. |

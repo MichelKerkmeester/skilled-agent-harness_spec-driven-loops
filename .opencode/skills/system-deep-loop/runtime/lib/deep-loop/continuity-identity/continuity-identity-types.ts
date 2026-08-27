@@ -33,7 +33,6 @@ export const ContinuityModes = {
   REVIEW: 'review',
   COUNCIL: 'council',
   IMPROVEMENT: 'improvement',
-  ALIGNMENT: 'alignment',
   BENCHMARK: 'benchmark',
 } as const;
 

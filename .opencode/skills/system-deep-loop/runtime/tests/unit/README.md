@@ -50,9 +50,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `deep-ai-council-ledger-schema.vitest.ts` | Executable checks for the deep ai council ledger schema runtime contract. |
 | `deep-ai-council-reducers.vitest.ts` | Executable checks for the deep ai council reducers runtime contract. |
 | `deep-ai-council-sealed-artifacts.vitest.ts` | Executable checks for the deep ai council sealed artifacts runtime contract. |
-| `deep-alignment-ledger-schema.vitest.ts` | Executable checks for the deep alignment ledger schema runtime contract. |
-| `deep-alignment-reducers.vitest.ts` | Executable checks for the deep alignment reducers runtime contract. |
-| `deep-alignment-sealed-artifacts.vitest.ts` | Executable checks for the deep alignment sealed artifacts runtime contract. |
 | `deep-improvement-common-ledger-schema.vitest.ts` | Executable checks for the deep improvement common ledger schema runtime contract. |
 | `deep-improvement-common-reducers.vitest.ts` | Executable checks for the deep improvement common reducers runtime contract. |
 | `deep-improvement-common-sealed-artifacts.vitest.ts` | Executable checks for the deep improvement common sealed artifacts runtime contract. |
@@ -84,7 +81,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `health-degeneration-harness.vitest.ts` | Executable checks for the health degeneration harness runtime contract. |
 | `host-driven-improvement.vitest.ts` | Executable checks for the host driven improvement runtime contract. |
 | `jsonl-repair.vitest.ts` | Executable checks for the jsonl repair runtime contract. |
-| `leaf-artifact-writer.vitest.ts` | Executable checks for the leaf artifact writer runtime contract. |
 | `legacy-projections.test.ts` | Executable checks for the legacy projections runtime contract. |
 | `lifecycle-taxonomy-guards.vitest.ts` | Executable checks for the lifecycle taxonomy guards runtime contract. |
 | `lifecycle-taxonomy-yaml-parity.vitest.ts` | Executable checks for the lifecycle taxonomy yaml parity runtime contract. |

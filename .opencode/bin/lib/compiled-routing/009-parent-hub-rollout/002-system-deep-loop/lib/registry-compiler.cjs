@@ -192,15 +192,10 @@ function assertNoCollapse(rows, registry) {
   }
 
   const review = rowByMode.get('review');
-  const alignment = rowByMode.get('alignment');
-  if (!review || !alignment
+  if (!review
     || review.runtimeLoopType !== 'review'
-    || review.packetRef !== 'deep-review'
-    || alignment.runtimeLoopType !== null
-    || alignment.backendKind !== 'alignment-convergence'
-    || alignment.packetRef !== 'deep-alignment'
-    || review.packetRef === alignment.packetRef) {
-    fail('RUNTIME_KEY_COLLAPSE', 'review and alignment no longer preserve their distinct runtime/backend contracts');
+    || review.packetRef !== 'deep-review') {
+    fail('RUNTIME_KEY_COLLAPSE', 'review no longer preserves its runtime/backend contract');
   }
 }
 

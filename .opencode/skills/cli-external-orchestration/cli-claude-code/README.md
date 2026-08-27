@@ -54,7 +54,6 @@ The skill routes to a roster of specialized `.claude/agents/*.md` definitions wi
 | **code** | application-code implementation via `sk-code`, orchestrator-only |
 | **context** | codebase exploration and architecture mapping |
 | **debug** | systematic debugging and root-cause analysis |
-| **deep-alignment** | per-lane conformance audits against a named authority standard |
 | **deep-improvement** | proposal-only deep-improvement candidate generation, command-owned |
 | **deep-research** | single-iteration deep research execution, command-owned |
 | **deep-review** | single-iteration deep review execution, command-owned |

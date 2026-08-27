@@ -34,7 +34,6 @@ import {
 import {
   LEGACY_PROJECTION_MANIFEST,
   LegacyProjectionEngine,
-  createDeepAlignmentStateDeltasProjectionContract,
   createDeepResearchProjectionContract,
   createDeepReviewStateProjectionContract,
   foldLegacyProjection,
@@ -52,9 +51,6 @@ import {
 import {
   createDeepReviewEventRegistry,
 } from '../deep-review-ledger-schema/index.js';
-import {
-  createDeepAlignmentEventRegistry,
-} from '../deep-alignment-ledger-schema/index.js';
 import {
   canonicalBytes,
   sha256Bytes,
@@ -184,7 +180,6 @@ export type ModeAppendGatewayErrorCode =
 function resolveModeSurfaceId(mode: string): string {
   if (mode === 'deep-research' || mode === 'research') return 'research-state';
   if (mode === 'deep-review' || mode === 'review') return 'review-state';
-  if (mode === 'deep-alignment' || mode === 'alignment') return 'alignment-state-deltas';
   if (mode === 'deep-ai-council' || mode === 'ai-council') return 'council-config-state';
   if (mode === 'deep-improvement' || mode === 'improvement' || mode === 'deep-improvement-common') return 'improvement-ledgers';
   const directMatch = LEGACY_PROJECTION_MANIFEST.find((entry) => (
@@ -216,12 +211,6 @@ function resolveDefaultProjectionContract(
       streamIds: Object.freeze([ledgerId]),
     }) as unknown as LegacyProjectionContract<JsonObject>;
   }
-  if (mode === 'deep-alignment' || mode === 'alignment') {
-    return createDeepAlignmentStateDeltasProjectionContract({
-      ledgerId,
-      streamIds: Object.freeze([ledgerId]),
-    }) as unknown as LegacyProjectionContract<JsonObject>;
-  }
   return null;
 }
 
@@ -235,9 +224,6 @@ function resolveModeEventRegistry(
   }
   if (mode === 'deep-review' || mode === 'review') {
     return createDeepReviewEventRegistry();
-  }
-  if (mode === 'deep-alignment' || mode === 'alignment') {
-    return createDeepAlignmentEventRegistry();
   }
   return null;
 }

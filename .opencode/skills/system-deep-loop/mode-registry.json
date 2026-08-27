@@ -6,7 +6,7 @@
   "discriminator": {
     "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
     "runtimeLoopType": "The graph-backed convergence loop key consumed by runtime/scripts/convergence.cjs. Validated against exactly research|review|council. Explicit null for improvement-host modes; NEVER inferred from workflowMode.",
-    "backendKind": "Which backend actually runs the mode: runtime-loop-type (runtime/ convergence), alignment-convergence (deep-alignment/scripts/check-convergence.cjs), or improvement-host (deep-improvement/scripts/shared/loop-host.cjs --mode)."
+    "backendKind": "Which backend actually runs the mode: runtime-loop-type (runtime/ convergence) or improvement-host (deep-improvement/scripts/shared/loop-host.cjs --mode)."
   },
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. 'lexical' = weighted-regex scoring in skill_advisor.py AND present in both projection maps. 'alias-fold' = TS DEEP_MODE_BY_CANONICAL only (alias projection, not lexically scored). 'metadata' = resolved by skill membership; no advisor map entry. 'command-bridge' = routed by its /deep:* command, not an advisor map entry.",
@@ -170,31 +170,6 @@
       "aliases": ["skill benchmark", "benchmark a skill", "skill routing benchmark"],
       "advisorRouting": {
         "routingClass": "command-bridge"
-      }
-    },
-    {
-      "workflowMode": "alignment",
-      "runtimeLoopType": null,
-      "backendKind": "alignment-convergence",
-      "convergenceBackend": "deep-alignment/scripts/check-convergence.cjs",
-      "packetKind": "workflow",
-      "grandfatheredFolderMismatch": false,
-      "toolSurface": {
-        "allowed": ["Read", "Grep", "Glob", "Task", "Bash"],
-        "forbidden": ["Write", "Edit"],
-        "mutatesWorkspace": true,
-        "bashAllowlist": []
-      },
-      "packet": "deep-alignment",
-      "packetSkillName": "deep-alignment",
-      "command": "/deep:alignment",
-      "agent": "deep-alignment",
-      "artifactRoot": "alignment/",
-      "aliases": ["deep-alignment", "alignment lane", "conformance review", "standard authority check", "alignment conformance audit"],
-      "advisorRouting": {
-        "routingClass": "lexical",
-        "legacyAdvisorId": "deep-alignment",
-        "legacyAliases": ["command-spec-kit-deep-alignment", "/deep:alignment", "spec_kit:deep-alignment", "deep-alignment", "sk-deep-alignment"]
       }
     }
   ]

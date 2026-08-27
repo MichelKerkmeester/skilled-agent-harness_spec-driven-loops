@@ -178,8 +178,8 @@ describe('write-set conflict graph', () => {
     expect(graph.schedule.graph_state).toBe('fallback');
     expect(graph.schedule.phase_gate_complete).toBe(false);
     expect(graph.schedule.missing_evidence.some((issue) => issue.code === 'UNCLASSIFIED_RESOURCE')).toBe(true);
-    expect(graph.edges.filter((edge) => edge.edge_origin === 'unknown-widening')).toHaveLength(7);
-    expect(affectedPairs).toHaveLength(7);
+    expect(graph.edges.filter((edge) => edge.edge_origin === 'unknown-widening')).toHaveLength(6);
+    expect(affectedPairs).toHaveLength(6);
     expect(affectedPairs.every((pair) => pair.classification === 'must-serialize'
       && pair.failure?.issue_codes.includes('UNCLASSIFIED_RESOURCE'))).toBe(true);
   });
@@ -738,37 +738,6 @@ describe('write-set conflict graph', () => {
     }));
   });
 
-  it('normalizes both review-loop access paths into the required fence', () => {
-    const graph = buildGraph();
-    const fence = graph.edges.find((edge) => edge.edge_type === 'fence'
-      && edge.from === '002-deep-review'
-      && edge.to === '008-deep-alignment');
-
-    expect(fence?.edge_origin).toBe('required-constraint');
-    expect(fence?.resources).toEqual(['backend:review-loop', 'lock:review-loop']);
-    expect(graph.schedule.lanes.some((lane) => lane.node_ids.includes('002-deep-review')
-      && lane.node_ids.includes('008-deep-alignment'))).toBe(false);
-  });
-
-  it('retains the review fence and falls back when an alias becomes ambiguous', () => {
-    const graph = deriveWriteSetConflictGraph({
-      ...buildInput(),
-      aliasGroups: [{
-        canonical_id: 'backend:competing-review-loop',
-        aliases: ['backend:deep-review-loop'],
-      }],
-    });
-    const fence = graph.edges.find((edge) => edge.edge_type === 'fence'
-      && edge.from === '002-deep-review'
-      && edge.to === '008-deep-alignment');
-
-    expect(graph.schedule.schedule_class).toBe('serial-single-writer');
-    expect(graph.schedule.missing_evidence.some(
-      (issue) => issue.code === 'UNRESOLVED_RESOURCE_ALIAS',
-    )).toBe(true);
-    expect(fence?.resources).toContain('unknown:review-loop-fence');
-  });
-
   it('refuses stale source digests during construction and graph reuse', () => {
     const freshInput = buildInput();
     const stalePath = freshInput.sourceDigests[0]?.path as string;
@@ -887,7 +856,7 @@ describe('write-set conflict graph', () => {
     const pair = artifact.pair_classifications.find((entry) =>
       entry.left === '001-deep-research' && entry.right === '003-deep-ai-council');
 
-    expect(artifact.pair_classifications).toHaveLength(28);
+    expect(artifact.pair_classifications).toHaveLength(21);
     expect(pair).toEqual(expect.objectContaining({
       classification: 'must-serialize',
       failure: expect.objectContaining({
@@ -946,7 +915,7 @@ describe('write-set conflict graph', () => {
       sourceDigests: input.sourceDigests.slice(1),
     });
 
-    expect(artifact.pair_classifications).toHaveLength(28);
+    expect(artifact.pair_classifications).toHaveLength(21);
     expect(artifact.pair_classifications.every((pair) =>
       pair.classification === 'must-serialize'
       && pair.failure?.code === 'GRAPH_NOT_READY'

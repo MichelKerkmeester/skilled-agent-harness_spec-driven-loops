@@ -41,7 +41,6 @@ deep-loop/
 | `executor-config.ts` | Parses executor configuration, kinds and sandbox mappings. |
 | `fallback-router.ts` | Routes execution to the configured fallback executor. |
 | `jsonl-repair.ts` | Repairs recoverable trailing corruption in state logs. |
-| `leaf-artifact-writer.ts` | Publishes leaf artifacts within the allowed artifact boundary. |
 | `lifecycle-taxonomy.cjs` | Defines terminal lifecycle and session outcome values. |
 | `lineage-timestamp-window.ts` | Checks timestamp windows for lineage records. |
 | `loop-lock.ts` | Acquires, heartbeats, reclaims and releases the single-writer loop lock. |

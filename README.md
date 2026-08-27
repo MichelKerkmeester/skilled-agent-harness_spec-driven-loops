@@ -728,15 +728,6 @@ Audits your code in passes and never edits it. `/deep:review` runs `@deep-review
 - **Clear verdict:** a `review-report.md` that ends in PASS, CONDITIONAL or FAIL
 
 &nbsp;
-#### Deep Alignment
-
-Audits your artifacts against a named authority's own rules, one lane at a time, and never edits what it audits. `/deep:alignment` runs `@deep-alignment`.
-- **Conformance, not taste:** it checks each artifact against the standard it is meant to follow, not against generic correctness
-- **Verify first:** every finding is re-probed against the live artifact before it counts, so a stale or assumed problem never lands
-- **Reads the target as data:** audited files are treated as untrusted input and stay strictly read-only
-- **Lane by lane:** work is partitioned into lanes with per-artifact evidence, and the audit stops only once coverage is complete
-
-&nbsp;
 #### Context Retrieval
 
 Maps the existing codebase before you plan, so you extend what's already there instead of rewriting it. Use `@context` for one-shot lookup and continuity recovery. Use `/deep:research` or `/deep:review` when iterative work needs a bounded context snapshot.
@@ -805,7 +796,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loo
 &nbsp;
 #### DEEP LOOP
 
-Two skills power the autonomous loops described in [Deep Loop](#deep-loop) above: **`runtime/`**, the shared MCP-free execution engine every active loop runs on, and **`system-deep-loop`**, the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`, `deep-alignment`). Use `@context` separately for one-shot retrieval. This parent-nested-skill pattern is the reusable standard behind `/create:sk-skill-parent`.
+Two skills power the autonomous loops described in [Deep Loop](#deep-loop) above: **`runtime/`**, the shared MCP-free execution engine every active loop runs on, and **`system-deep-loop`**, the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`). Use `@context` separately for one-shot retrieval. This parent-nested-skill pattern is the reusable standard behind `/create:sk-skill-parent`.
 
 &nbsp;
 #### CROSS-AI CLI

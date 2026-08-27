@@ -12,7 +12,6 @@ export const PHASE_013_WORKSTREAMS = [
   '005-agent-improvement',
   '006-model-benchmark',
   '007-skill-benchmark',
-  '008-deep-alignment',
 ] as const;
 
 export type Phase013Workstream = typeof PHASE_013_WORKSTREAMS[number];

@@ -76,8 +76,7 @@ INTENT_SIGNALS = {
     "AI_COUNCIL":        {"weight": 4, "keywords": ["ai council", "council deliberation", "multi-seat", "planning council", "council convergence", "seat diversity"]},
     "AGENT_IMPROVEMENT": {"weight": 4, "keywords": ["improve agent", "evaluate agent", "score agent", "agent candidate", "promote or roll back the agent", "agent-improvement"]},
     "MODEL_BENCHMARK":   {"weight": 4, "keywords": ["/deep:model-benchmark"]},
-    "SKILL_BENCHMARK":   {"weight": 4, "keywords": ["/deep:skill-benchmark"]},
-    "ALIGNMENT":         {"weight": 4, "keywords": ["conformance audit", "alignment lane", "standard authority", "conformance review", "align against the standard", "named standard"]},
+    "SKILL_BENCHMARK":   {"weight": 4, "keywords": ["/deep:skill-benchmark"]}
 }
 
 RESOURCE_MAP = {
@@ -108,11 +107,6 @@ RESOURCE_MAP = {
     "SKILL_BENCHMARK": [
         "deep-improvement/references/skill-benchmark/scoring-contract.md",
         "deep-improvement/references/skill-benchmark/routing-optimization.md"
-    ],
-    "ALIGNMENT": [
-        "deep-alignment/references/scoping-protocol.md",
-        "deep-alignment/references/discover-contract.md",
-        "deep-alignment/references/lane-config-schema.md"
     ],
 }
 ```

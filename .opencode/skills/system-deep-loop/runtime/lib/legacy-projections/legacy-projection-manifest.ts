@@ -130,28 +130,6 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
     refreshBoundary: 'lifecycle', nonProjectableReason: null, laterOwner: null,
   },
   {
-    surfaceId: 'alignment-config-corpus', format: 'json',
-    pathTemplate: '{spec_folder}/alignment/{deep-alignment-config.json,deep-alignment-corpus.json}',
-    legacyWriter: 'deep-alignment', readers: ['alignment reducer and partitioner'],
-    fixture: CONTROL_FIXTURE, disposition: 'retain-legacy-input', serializerId: null,
-    refreshBoundary: null, nonProjectableReason: 'Write-once corpus inputs are not ledger-derived',
-    laterOwner: 'in-flight state classification',
-  },
-  {
-    surfaceId: 'alignment-state-deltas', format: 'jsonl',
-    pathTemplate: '{spec_folder}/alignment/{deep-alignment-state.jsonl,deltas/iter-NNN.jsonl}',
-    legacyWriter: 'deep-alignment', readers: ['alignment reducer and convergence checker'],
-    fixture: EVENT_FIXTURE, disposition: 'project', serializerId: 'legacy-jsonl-row-v1',
-    refreshBoundary: 'event', nonProjectableReason: null, laterOwner: null,
-  },
-  {
-    surfaceId: 'alignment-projections', format: 'mixed',
-    pathTemplate: '{spec_folder}/alignment/{deep-alignment-findings-registry.json,alignment-report.md}',
-    legacyWriter: 'alignment reducer', readers: ['operators and resume'],
-    fixture: PROJECTION_FIXTURE, disposition: 'project', serializerId: 'legacy-pretty-json-v1',
-    refreshBoundary: 'lifecycle', nonProjectableReason: null, laterOwner: null,
-  },
-  {
     surfaceId: 'council-config-state', format: 'mixed',
     pathTemplate: '{spec_folder}/ai-council/{ai-council-config.json,ai-council-state.jsonl,session-state.jsonl}',
     legacyWriter: 'deep-ai-council', readers: ['council orchestrator'],

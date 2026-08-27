@@ -79,12 +79,12 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
 | `SKILL.md` | The routing hub, with no per-mode logic. |
 | `mode-registry.json` | The single source of truth for the three-tier discriminator. |
 | `graph-metadata.json` | The one advisor identity for the whole skill. |
-| `deep-research/`, `deep-review/`, `deep-ai-council/`, `deep-improvement/`, `deep-alignment/` | The active mode packets, each with its own `SKILL.md`, references, scripts, assets and governance. |
+| `deep-research/`, `deep-review/`, `deep-ai-council/`, `deep-improvement/` | The active mode packets, each with its own `SKILL.md`, references, scripts, assets and governance. |
 | `shared/synthesis/` | Synthesis helpers shared across modes, such as resource-map emission. |
 
 ### Commands and agents
 
-Active `/deep:*` commands and deep agents (`deep-research`, `deep-review`, `deep-improvement`, `ai-council` and `deep-alignment`) dispatch into the matching mode packet. `@context` remains the one-shot retrieval agent.
+Active `/deep:*` commands and deep agents (`deep-research`, `deep-review`, `deep-improvement` and `ai-council`) dispatch into the matching mode packet. `@context` remains the one-shot retrieval agent.
 
 ### Related Skills
 
@@ -104,13 +104,12 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review`, `deep
 | [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: deep-loop intent to the exact leaf resources the selected mode loads. |
 | [`mode-registry.json`](./mode-registry.json) | The three-tier discriminator for every mode. |
 | [`deep-ai-council/SKILL.md`](./deep-ai-council/SKILL.md) | An example mode packet. |
-| [`deep-alignment/SKILL.md`](./deep-alignment/SKILL.md) | Named-standard conformance mode packet. |
 
 ---
 
 ## 7. ADDING A WORKFLOW MODE
 
-Adding another active mode (a new packet beyond `deep-research`, `deep-review`, `deep-ai-council`, `deep-improvement`, `deep-alignment`) touches every one of these surfaces — miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
+Adding another active mode (a new packet beyond `deep-research`, `deep-review`, `deep-ai-council`, `deep-improvement`) touches every one of these surfaces — miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
 
 - [ ] **`mode-registry.json`** — add the mode's registry entry: `workflowMode`, `runtimeLoopType` (or explicit `null`), `backendKind`, `packet`, `packetKind`, `toolSurface`, `advisorRouting`, and `aliases`.
 - [ ] **`hub-router.json`** — add a `routerSignals` entry for the new mode's vocabulary classes, and add it to `routerPolicy.tieBreak`.

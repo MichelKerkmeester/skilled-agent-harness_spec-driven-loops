@@ -271,7 +271,7 @@
         "lineage_timeout_hours_default": 4,
         "executor_timeout": "bounded per-invocation by --executor-timeout=SECONDS"
       },
-      "invocation_aliases": ["/deep:research", "/deep:review", "/deep:alignment", "/deep:ai-council", "/deep:agent-improvement", "/deep:model-benchmark", "/deep:skill-benchmark", "/deep:command-benchmark", "attached suffix (e.g. /deep:research:auto)", "--dry-run flag"],
+      "invocation_aliases": ["/deep:research", "/deep:review", "/deep:ai-council", "/deep:agent-improvement", "/deep:model-benchmark", "/deep:skill-benchmark", "attached suffix (e.g. /deep:research:auto)", "--dry-run flag"],
       "workflow_schema_ref": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md"
     }
   }

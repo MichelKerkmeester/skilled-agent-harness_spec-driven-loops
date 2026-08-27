@@ -76,7 +76,6 @@ request_analysis_framework:
       - "source_packet_path is present"
       - "operation is create or update"
       - "mcp_promotion has source_strategy and benchmark_date"
-      - "conformance_benchmark has benchmark_id and a derived benchmark_package"
       - "execution_mode is :auto"
     stop_conditions:
       - "Any required input missing"
@@ -84,7 +83,6 @@ request_analysis_framework:
       - "Operation does not match the selected target's real existence"
       - "MCP source packet lacks accepted decision, stable fixture, replay commands, or benchmark evidence"
       - "MCP target skill lacks mcp-server/ or a measurable MCP surface"
-      - "Conformance target mode or one of the four source templates is missing"
     stop_action: "STOP and correct setup before generation"
 
 input_contract:
@@ -99,20 +97,15 @@ input_contract:
     mcp_promotion:
       - source_strategy
       - benchmark_date
-    conformance_benchmark:
-      - benchmark_id
   optional:
     - skill_path
     - benchmarks_root
     - benchmark_folder
-    - target_mode_path
-    - conformance_package_root
-    - benchmark_package
     - memory_choice
 
 field_handling:
   benchmark_family:
-    validation: "must be a create-benchmark FAMILIES key; command branches exist for mcp_promotion and conformance_benchmark"
+    validation: "must be a create-benchmark FAMILIES key; command branches exist for mcp_promotion"
     required: true
   skill_name:
     validation: "hyphen-case folder name"
@@ -129,9 +122,6 @@ field_handling:
   benchmark_date:
     validation: "ISO execution date used for benchmark-YYYY-MM-DD"
     required_when: "benchmark_family is mcp_promotion"
-  benchmark_id:
-    validation: "stable lowercase-hyphen identifier describing the conformance corpus"
-    required_when: "benchmark_family is conformance_benchmark"
   execution_mode:
     validation: "must be :auto"
     required: true
@@ -156,15 +146,11 @@ family_router:
     target: "[skill_path]/[skill_name]/mcp-server/benchmarks/benchmark-[benchmark_date]"
     workflow: "existing MCP promotion path"
     terminal_boundary: "validated report, SOURCE.md, copied evidence, and README index"
-  conformance_benchmark:
-    target: "[skill_path]/[skill_name]/assets/conformance-benchmark/[benchmark_id]"
-    workflow: "copy and fill the four conformance templates"
-    terminal_boundary: "authored Markdown and JSON validated; no adapter or deep-alignment invocation"
   unsupported_family:
     action: "STOP and route to the live create-benchmark SKILL until a command branch is registered"
 
 operation_router:
-  applies_to: "mcp_promotion; conformance_benchmark applies the same create/update existence semantics to benchmark_package"
+  applies_to: "mcp_promotion"
   create:
     requires_existing_benchmark_folder: false
     output_scope:
@@ -173,11 +159,6 @@ operation_router:
       - mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md
       - mcp-server/benchmarks/benchmark-YYYY-MM-DD/SOURCE.md
       - mcp-server/benchmarks/benchmark-YYYY-MM-DD/results.csv
-    conformance_output_scope:
-      - assets/conformance-benchmark/README.md
-      - assets/conformance-benchmark/BENCHMARK-ID/conformance-benchmark.md
-      - assets/conformance-benchmark/BENCHMARK-ID/lane-config.json
-      - assets/conformance-benchmark/BENCHMARK-ID/fixtures/fixture-manifest.json
   update:
     requires_existing_benchmark_folder: true
     output_scope:
@@ -186,29 +167,18 @@ operation_router:
       - mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md
       - mcp-server/benchmarks/benchmark-YYYY-MM-DD/SOURCE.md
       - mcp-server/benchmarks/benchmark-YYYY-MM-DD/results.csv
-    conformance_output_scope:
-      - assets/conformance-benchmark/README.md
-      - assets/conformance-benchmark/BENCHMARK-ID/conformance-benchmark.md
-      - assets/conformance-benchmark/BENCHMARK-ID/lane-config.json
-      - assets/conformance-benchmark/BENCHMARK-ID/fixtures/fixture-manifest.json
-
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/sk-create-benchmark/SKILL.md
   reference_map: .opencode/skills/sk-doc/sk-create-benchmark/references/shared/README.md
   case_studies: .opencode/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md
   pitfalls: .opencode/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md
   worked_example: .opencode/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md
-  conformance_guide: .opencode/skills/sk-doc/sk-create-benchmark/references/conformance-benchmark/conformance-benchmark-authoring-guide.md
   core_standards: .opencode/skills/sk-doc/shared/references/core-standards.md
   validation: .opencode/skills/sk-doc/shared/references/validation.md
 
 template_sources:
   benchmark_report: .opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md
   source_file: .opencode/skills/sk-doc/sk-create-benchmark/assets/shared/source-template.md
-  conformance_readme: .opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-readme-template.md
-  conformance_contract: .opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md
-  conformance_lane_config: .opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-lane-config-template.md
-  conformance_fixture_manifest: .opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-fixture-manifest-template.md
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/shared/scripts/validate_document.py
@@ -231,12 +201,6 @@ quality_standards:
   validation_pipeline:
     - "python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py [benchmark_folder]/benchmark-report.md --type readme"
     - "python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py [benchmarks_root]/README.md --type readme"
-  conformance_requirements:
-    - "family README and per-benchmark contract are filled from their templates and pass markdown validation"
-    - "lane-config.json and fixtures/fixture-manifest.json contain only the filled fenced JSON values and parse as JSON"
-    - "family index, benchmark ID, package paths, and evidence pointers agree"
-    - "validation stops before scoping.cjs, the peer adapter, or any deep-alignment command"
-
 gate_logic:
   hard:
     H0_write_verified:
@@ -257,9 +221,6 @@ gate_logic:
     H4_validation_gate:
       description: "Selected-family Markdown, JSON, artifact, and index checks must pass"
       fail_action: "Run fix-and-revalidate loop"
-    H5_authoring_boundary:
-      description: "The conformance branch must terminate after authoring and validation"
-      fail_action: "STOP before any adapter, scoping, or deep-alignment invocation"
   soft:
     S1_source_strategy:
       description: "Prefer true promotion only when an accepted decision and replayable evidence exist"
@@ -303,7 +264,6 @@ workflow:
       - Normalize skill_path to default when omitted
       - Validate benchmark_family against the create-benchmark FAMILIES list and registered command branches
       - For mcp_promotion, derive benchmarks_root and benchmark_folder from skill path, skill name, and benchmark date
-      - For conformance_benchmark, derive target_mode_path, conformance_package_root, and benchmark_package from skill path, skill name, and benchmark ID
       - Validate operation token to supported value
       - Validate execution_mode is :auto
       - Check whether the selected family target exists
@@ -317,8 +277,6 @@ workflow:
     activities:
       - For mcp_promotion, read decision-record.md, implementation-summary.md, and benchmark evidence; verify the existing promotion gate
       - For mcp_promotion, verify the target skill MCP surface and identify copied artifacts plus README index needs
-      - For conformance_benchmark, read the source packet and collect the corpus, lane, fixture, oracle-provenance, validity-gate, and evidence-pointer values needed by the templates
-      - For conformance_benchmark, verify the owning mode exists without loading or invoking its peer adapter
     outputs:
       - source_gate_state
       - family_artifact_plan
@@ -329,7 +287,6 @@ workflow:
     activities:
       - Read create-benchmark/SKILL.md
       - For mcp_promotion, read the shared references plus benchmark-report-template.md and source-template.md
-      - For conformance_benchmark, read conformance-benchmark-authoring-guide.md and all four conformance templates
       - Extract only the selected family's output contracts
     outputs:
       - template_contract_loaded
@@ -338,12 +295,6 @@ workflow:
     purpose: Generate or update the selected family package
     activities:
       - For mcp_promotion, preserve the existing benchmark folder, report, SOURCE.md, copied-artifact, and README-index workflow
-      - For conformance_benchmark, ensure conformance_package_root, benchmark_package, fixtures/public, and fixtures/held-out exist
-      - For conformance_benchmark, copy and fill the README index template to conformance_package_root/README.md
-      - For conformance_benchmark, copy and fill the contract template to benchmark_package/conformance-benchmark.md
-      - For conformance_benchmark, extract and fill only the fenced JSON array into benchmark_package/lane-config.json
-      - For conformance_benchmark, extract and fill only the fenced JSON object into benchmark_package/fixtures/fixture-manifest.json
-      - Remove template guidance, template-only version fields, and all placeholders from shipped conformance artifacts
     outputs:
       - generated_family_artifacts
       - updated_family_index
@@ -353,10 +304,6 @@ workflow:
     purpose: Verify the selected family package
     activities:
       - For mcp_promotion, preserve report, README index, SOURCE.md, artifact, and ten-section validation
-      - For conformance_benchmark, run validate_document.py --type readme on the family README and benchmark contract
-      - For conformance_benchmark, parse lane-config.json and fixtures/fixture-manifest.json as JSON
-      - For conformance_benchmark, check the four outputs, benchmark ID, paths, index row, and evidence pointer agree with no placeholders
-      - For conformance_benchmark, do not run scoping.cjs, load the adapter, or invoke deep-alignment
     outputs:
       - markdown_validation_passed
       - json_artifact_validation_passed
@@ -369,7 +316,6 @@ workflow:
       - Summarize benchmark family, operation, and generated paths
       - Report validation results
       - Return STATUS=OK PATH=[benchmark_folder or benchmark_package]
-      - Terminate the conformance branch immediately after the completion report
     outputs:
       - completion_report
 
@@ -384,9 +330,6 @@ error_recovery:
     action: "Enter fix-and-revalidate loop"
   unsupported_family_branch:
     action: "Stop and route to the live create-benchmark skill contract"
-  conformance_boundary_violation:
-    action: "Stop before adapter or deep-alignment execution"
-
 circuit_breaker:
   trigger_threshold: 3
   reset_condition: "Selected-family validation passes and all required paths resolve"
@@ -427,16 +370,14 @@ completion_report_template: |
 termination:
   success_signal: "STATUS=OK PATH=[benchmark_folder or benchmark_package]"
   failure_signal: "STATUS=FAIL PATH=[benchmark_folder or benchmark_package]"
-  rule: "Do not claim completion until validation output is included; conformance_benchmark stops here"
+  rule: "Do not claim completion until validation output is included"
 
 rules:
   must:
     - "Load the create-benchmark SKILL, selected family guide, and selected templates before writing"
     - "Keep SOURCE.md as navigation, not a duplicate audit trail"
     - "Use the benchmark execution date for benchmark-YYYY-MM-DD"
-    - "Keep the conformance branch authoring-only and terminate after validation"
   must_not:
     - "Promote in-flight or unreplayable benchmark evidence"
     - "Compare numeric results across different MCP stacks as if equivalent"
     - "Leave template placeholders in shipped benchmark files"
-    - "Invoke a peer adapter, scoping.cjs, or deep-alignment from the conformance branch"

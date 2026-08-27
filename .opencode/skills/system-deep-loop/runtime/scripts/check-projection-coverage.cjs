@@ -38,7 +38,6 @@ const RESEARCH_PROJECTIONS_CONTRACT_REL = path.join('lib', 'legacy-projections',
 const REVIEW_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-review-state-contract.ts');
 const REVIEW_DELTAS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-review-deltas-contract.ts');
 const REVIEW_PROJECTIONS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-review-projections-contract.ts');
-const ALIGNMENT_STATE_DELTAS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-alignment-state-deltas-contract.ts');
 const IMPROVEMENT_LEDGERS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-improvement-ledgers-contract.ts');
 const COUNCIL_CONFIG_STATE_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-ai-council-config-state-contract.ts');
 
@@ -72,10 +71,6 @@ const COVERED = Object.freeze({
     module: REVIEW_PROJECTIONS_CONTRACT_REL,
     factory: 'createDeepReviewProjectionsProjectionContract',
   },
-  'alignment-state-deltas': {
-    module: ALIGNMENT_STATE_DELTAS_CONTRACT_REL,
-    factory: 'createDeepAlignmentStateDeltasProjectionContract',
-  },
   'improvement-ledgers': {
     module: IMPROVEMENT_LEDGERS_CONTRACT_REL,
     factory: 'createDeepImprovementLedgersProjectionContract',
@@ -91,7 +86,6 @@ const COVERED = Object.freeze({
 // projectable, not covered, and absent from this list, so it surfaces as
 // UNDECLARED_UNCOVERED_SURFACE rather than passing quietly.
 const UNCOVERED_DECLARED = Object.freeze([
-  'alignment-projections',
   'council-round-ledgers',
   'improvement-derived-state',
   'model-grader-cache',
@@ -110,7 +104,7 @@ const UNCOVERED_DECLARED = Object.freeze([
 // looks consistent. The count is stated independently and checked against the
 // derived uncovered total, so a dropped or added surface surfaces as a
 // mismatch rather than passing quietly.
-const UNCOVERED_DECLARED_COUNT = 12;
+const UNCOVERED_DECLARED_COUNT = 11;
 
 // Legacy-writer retirement is scoped to mode-owned surfaces — those whose
 // legacyWriter is owned by one of the deep-loop modes. Surfaces written by
@@ -130,7 +124,6 @@ const UNCOVERED_DECLARED_COUNT = 12;
 const MODE_OWNER_PREFIXES = Object.freeze([
   'deep-research',
   'deep-review',
-  'deep-alignment',
   'deep-ai-council',
   'deep-improvement',
 ]);
@@ -141,7 +134,7 @@ const MODE_OWNER_PREFIXES = Object.freeze([
 // appearing would shift the derived mode-owned total off this declared
 // constant, surfacing as MODE_OWNED_COUNT_MISMATCH rather than being absorbed
 // into a single uncovered number that still happens to add up.
-const MODE_OWNED_EXPECTED_COUNT = 9;
+const MODE_OWNED_EXPECTED_COUNT = 8;
 
 function isModeOwned(legacyWriter) {
   return MODE_OWNER_PREFIXES.some((prefix) => legacyWriter.startsWith(prefix));
