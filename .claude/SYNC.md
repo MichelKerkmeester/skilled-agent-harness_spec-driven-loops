@@ -23,7 +23,7 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
-| `commands/**/*.md` (34) | filtered per-file symlinks | `.opencode/commands/**/*.md` | Yes — guarded by the mirror generator; OpenCode-only entries are excluded |
+| `commands/**/*.md` (33) | filtered per-file symlinks | `.opencode/commands/**/*.md` | Yes — guarded by the mirror generator; OpenCode-only entries are excluded |
 | `skills` | whole-dir symlink | `../.opencode/skills` | No |
 | `specs` | whole-dir symlink | `../.opencode/specs` | No |
 | `changelog` | whole-dir symlink | `../.opencode/changelog` | No |
