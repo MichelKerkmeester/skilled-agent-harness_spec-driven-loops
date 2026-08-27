@@ -121,7 +121,6 @@ const intentEnum = z.enum([
 ]);
 
 const importanceTierEnum = z.enum([
-  'constitutional',
   'critical',
   'important',
   'normal',

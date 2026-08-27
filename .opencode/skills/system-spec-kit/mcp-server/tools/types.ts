@@ -55,7 +55,7 @@ export interface SearchArgs {
   userId?: string;
   agentId?: string;
   limit?: number;
-  tier?: 'constitutional' | 'critical' | 'important' | 'normal' | 'temporary' | 'archived' | 'deprecated';
+  tier?: 'critical' | 'important' | 'normal' | 'temporary' | 'archived' | 'deprecated';
   contextType?: string;
   useDecay?: boolean;
   includeContiguity?: boolean;

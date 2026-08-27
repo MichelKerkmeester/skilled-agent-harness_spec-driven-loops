@@ -120,7 +120,7 @@ Commands:
     [--folder <spec-folder>]       Optional: scope to a spec folder
     [--older-than <days>]          Optional: only delete older than N days
     [--dry-run]                    Preview without deleting
-    [--skip-checkpoint]            Optional: skip pre-delete checkpoint (blocked for constitutional/critical)
+    [--skip-checkpoint]            Optional: skip pre-delete checkpoint (blocked for critical)
   reindex [--force] [--eager-warmup]
                                  Re-index memory files (lazy model load by default)
   schema-downgrade --to 15 --confirm
@@ -255,7 +255,7 @@ async function runBulkDelete(): Promise<void> {
     process.exit(1);
   }
 
-  const validTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'archived', 'deprecated'];
+  const validTiers = ['critical', 'important', 'normal', 'temporary', 'archived', 'deprecated'];
   if (!validTiers.includes(tier)) {
     console.error(`ERROR: Invalid tier "${tier}". Must be one of: ${validTiers.join(', ')}`);
     process.exit(1);
@@ -275,12 +275,12 @@ async function runBulkDelete(): Promise<void> {
     }
   }
 
-  // Safety: refuse constitutional/critical without folder scope
-  if ((tier === 'constitutional' || tier === 'critical') && !specFolder) {
+  // Safety: refuse critical without folder scope
+  if ((tier === 'critical') && !specFolder) {
     console.error(`ERROR: Bulk delete of "${tier}" tier requires --folder scope for safety.`);
     process.exit(1);
   }
-  if ((tier === 'constitutional' || tier === 'critical') && skipCheckpoint) {
+  if ((tier === 'critical') && skipCheckpoint) {
     console.error(`ERROR: --skip-checkpoint is not allowed for "${tier}" tier.`);
     process.exit(1);
   }
