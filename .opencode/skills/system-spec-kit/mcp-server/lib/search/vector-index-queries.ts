@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Vector Index Queries
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Hybrid search pipeline
+// Query and search half of the hybrid search pipeline.
 // Split from vector-index-store.ts — contains ALL query/search functions,
 // Content extraction, ranking, stats, cleanup, and integrity checks.
 
@@ -12,7 +12,7 @@ import { formatAgeString as format_age_string } from '../utils/format-helpers.js
 import { createLogger } from '../utils/logger.js';
 import { recordHistory } from '../storage/history.js';
 import { isArchivedVectorInclusionEnabled } from './search-flags.js';
-import { ACTIVE_ROW_SQL, isActiveRow } from './active-row-predicate.js';
+import { ACTIVE_ROW_SQL } from './active-row-predicate.js';
 import { fts5Bm25Search, isFts5Available } from './sqlite-fts.js';
 import * as embeddingsProvider from '../providers/embeddings.js';
 import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings';
@@ -36,7 +36,6 @@ import {
 import {
   initialize_db,
   get_embedding_dim,
-  get_constitutional_memories,
   init_prepared_statements,
   validate_file_path_local,
   safe_read_file_async,
@@ -290,9 +289,7 @@ export function get_memory(id: number, database: Database.Database = initialize_
   const row = stmts.get_by_id.get(id);
 
   if (row) {
-    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-    row.isConstitutional = row.importance_tier === 'constitutional';
-  }
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);  }
 
   return row || null;
 }
@@ -316,9 +313,7 @@ export function get_memories_by_folder(
   `).all(spec_folder, specFolderLikePattern(spec_folder)) as MemoryRow[];
 
   return rows.map((row: MemoryRow) => {
-    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-    row.isConstitutional = row.importance_tier === 'constitutional';
-    return row;
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);    return row;
   });
 }
 
@@ -406,7 +401,6 @@ export function vector_search(
     useDecay = true,
     tier = null,
     contextType = null,
-    includeConstitutional = true,
     includeArchived = false
   } = options;
 
@@ -434,13 +428,6 @@ export function vector_search(
        END`
     : 'm.importance_weight';
 
-  let constitutional_results: MemoryRow[] = [];
-
-  if (includeConstitutional && tier !== 'constitutional') {
-    constitutional_results = get_constitutional_memories(database, specFolder, includeArchived)
-      .filter((row) => isActiveRow(row, { lane: 'constitutional' }));
-  }
-
   const where_clauses = ['m.embedding_status = \'success\''];
   const params: unknown[] = [query_buffer];
 
@@ -450,10 +437,6 @@ export function vector_search(
     where_clauses.push('m.importance_tier = ?');
     where_clauses.push('m.deleted_at IS NULL');
     params.push('deprecated');
-  } else if (tier === 'constitutional') {
-    where_clauses.push('m.importance_tier = ?');
-    where_clauses.push(ACTIVE_ROW_SQL('m', { lane: 'constitutional' }));
-    params.push('constitutional');
   } else if (tier) {
     where_clauses.push('m.importance_tier = ?');
     where_clauses.push('m.deleted_at IS NULL');
@@ -473,12 +456,7 @@ export function vector_search(
     params.push(contextType);
   }
 
-  // If constitutional results already satisfy limit, return them directly.
-  if (constitutional_results.length >= limit) {
-    return constitutional_results.slice(0, limit);
-  }
-  const adjusted_limit = Math.max(1, limit - constitutional_results.length);
-  params.push(max_distance, adjusted_limit);
+  params.push(max_distance, limit);
 
   const sql = `
     SELECT sub.*,
@@ -500,34 +478,10 @@ export function vector_search(
   const rows = database.prepare(sql).all(...params);
 
   const regular_results = (rows as MemoryRow[]).map((row: MemoryRow) => {
-    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-    row.isConstitutional = row.importance_tier === 'constitutional';
-    return row;
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);    return row;
   });
 
-  return [...constitutional_results, ...regular_results];
-}
-
-/**
- * Gets constitutional memories for prompt assembly.
- * @param options - Retrieval options.
- * @returns The constitutional memory rows.
- */
-export function get_constitutional_memories_public(
-  options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {},
-  database: Database.Database = initialize_db(),
-): MemoryRow[] {
-  const { specFolder = null, maxTokens = 2000, includeArchived = false } = options;
-
-  let results = get_constitutional_memories(database, specFolder, includeArchived);
-
-  const TOKENS_PER_MEMORY = 100;
-  const max_count = Math.floor(maxTokens / TOKENS_PER_MEMORY);
-  if (results.length > max_count) {
-    results = results.slice(0, max_count);
-  }
-
-  return results;
+  return regular_results;
 }
 
 /**
@@ -635,7 +589,6 @@ function hydrateMultiConceptRow(row: MemoryRow, conceptCount: number): MemoryRow
   row.avg_similarity = (row.concept_similarities as number[]).reduce((a, b) => a + b, 0) / conceptCount;
   row.similarity = row.avg_similarity;
   row.score = Math.max(0, Math.min(1, row.avg_similarity / 100));
-  row.isConstitutional = row.importance_tier === 'constitutional';
   return row;
 }
 
@@ -929,9 +882,7 @@ export function keyword_search(
     .slice(0, limit);
 
   return filtered.map((row: MemoryRow) => {
-    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-    row.isConstitutional = row.importance_tier === 'constitutional';
-    return row;
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);    return row;
   });
 }
 
@@ -1067,8 +1018,7 @@ export async function vector_search_enriched(
       snippet,
       id: row.id,
       importanceWeight: row.importance_weight ?? 0.5,
-      searchMethod: search_method,
-      isConstitutional: row.isConstitutional || row.importance_tier === 'constitutional'
+      searchMethod: search_method
     };
   });
 
@@ -1153,8 +1103,7 @@ export async function multi_concept_search_enriched(
       tags,
       snippet,
       id: row.id,
-      importanceWeight: row.importance_weight ?? 0.5,
-      isConstitutional: row.isConstitutional || row.importance_tier === 'constitutional'
+      importanceWeight: row.importance_weight ?? 0.5
     };
   });
 
@@ -1235,8 +1184,7 @@ export async function multi_concept_keyword_search(
       snippet,
       id: row.id,
       importanceWeight: row.importance_weight ?? 0.5,
-      searchMethod: 'keyword',
-      isConstitutional: row.importance_tier === 'constitutional'
+      searchMethod: 'keyword'
     };
   });
 
@@ -1804,7 +1752,6 @@ export { get_memory_count as getMemoryCount };
 export { get_status_counts as getStatusCounts };
 export { get_stats as getStats };
 export { vector_search as vectorSearch };
-export { get_constitutional_memories_public as getConstitutionalMemories };
 export { multi_concept_search as multiConceptSearch };
 export { extract_title as extractTitle };
 export { extract_snippet as extractSnippet };

@@ -14,7 +14,6 @@ import { applyPostInsertMetadata } from '../lib/storage/post-insert-metadata.js'
 import { detectSpecLevelFromParsed } from '../lib/spec/spec-level.js';
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
 import { requireDb, toErrorMessage } from '../utils/index.js';
-import { isConstitutionalPath } from '../lib/utils/index-scope.js';
 import {
   applyWriteProvenance,
   deriveSourceKindFromContext,
@@ -25,8 +24,7 @@ import {
   type WriteProvenanceContext,
 } from '../lib/storage/write-provenance.js';
 
-// Feature catalog: Prediction-error save arbitration
-// Feature catalog: Memory indexing (memory_save)
+// Prediction-error save arbitration gating for memory_save.
 
 export { calculateDocumentWeight, isSpecDocumentType } from '../lib/storage/document-helpers.js';
 
@@ -58,15 +56,8 @@ interface SimilarMemory {
 
 function isProtectedForReinforcement(memory: Record<string, unknown>): boolean {
   const sourceKind = normalizeSourceKind(memory.source_kind);
-  const importanceTier = typeof memory.importance_tier === 'string' ? memory.importance_tier : null;
-  const pathCandidate = [memory.canonical_file_path, memory.file_path]
-    .find((value) => typeof value === 'string' && value.length > 0);
-  const rowPath = typeof pathCandidate === 'string' ? pathCandidate : null;
-
   return sourceKind === null
-    || sourceKind === 'human'
-    || importanceTier === 'constitutional'
-    || (rowPath !== null && isConstitutionalPath(rowPath));
+    || sourceKind === 'human';
 }
 
 function applyReinforcementProvenance(
@@ -151,7 +142,6 @@ function findSimilarMemories(
         limit: fetchLimit,
         specFolder: specFolder,
         minSimilarity: 50,
-        includeConstitutional: false
       });
 
       for (const r of results) {

@@ -84,8 +84,6 @@ type DatabaseRebindListener = (database: DatabaseLike) => void;
 let lastDbCheck: number = 0;
 let reinitializeMutex: Promise<void> | null = null;
 let lastReinitializeSucceeded: boolean = true;
-let constitutionalCache: unknown = null;
-let constitutionalCacheTime: number = 0;
 let configTableCreated: boolean = false;
 const CONFIG_KEY_LAST_INDEX_SCAN = 'last_index_scan';
 const CONFIG_KEY_SCAN_STARTED_AT = 'scan_started_at';
@@ -341,8 +339,6 @@ export async function reinitializeDatabase(updatedMarkerTime?: number): Promise<
   });
 
   try {
-    constitutionalCache = null;
-    constitutionalCacheTime = 0;
     configTableCreated = false;
 
     suppressVectorIndexListener = true;
@@ -725,32 +721,6 @@ export async function setLastScanTime(time: number): Promise<void> {
   await completeIndexScanLease(time);
 }
 
-// ────────────────────────────────────────────────────────────────
-// 7. CONSTITUTIONAL CACHE ACCESSORS 
-
-// ────────────────────────────────────────────────────────────────
-
-/** Return the cached constitutional memory entries, or null if not cached. */
-export function getConstitutionalCache(): unknown {
-  return constitutionalCache;
-}
-
-/** Update the constitutional memory cache and record the current timestamp. */
-export function setConstitutionalCache(cache: unknown): void {
-  constitutionalCache = cache;
-  constitutionalCacheTime = Date.now();
-}
-
-/** Return the timestamp when the constitutional cache was last populated. */
-export function getConstitutionalCacheTime(): number {
-  return constitutionalCacheTime;
-}
-
-/** Invalidate the constitutional cache, forcing a fresh fetch on next access. */
-export function clearConstitutionalCache(): void {
-  constitutionalCache = null;
-  constitutionalCacheTime = 0;
-}
 
 /* ───────────────────────────────────────────────────────────────
    8. (ESM exports above — no CommonJS module.exports needed)

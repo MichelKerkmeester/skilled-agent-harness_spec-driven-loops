@@ -95,7 +95,6 @@ export interface MemoryIndexRow {
   spec_level?: number | null;
   quality_score?: number;
   quality_flags?: string | string[] | null;
-  isConstitutional?: boolean;
   similarity?: number;
   keywordScore?: number;
   [key: string]: unknown;
@@ -120,7 +119,6 @@ export interface MemoryRow {
   concept_similarities?: number[];
   smartScore?: number;
   relationSimilarity?: number;
-  isConstitutional?: boolean;
   [key: string]: unknown;
 }
 
@@ -174,7 +172,6 @@ export interface VectorSearchOptions {
   useDecay?: boolean;
   tier?: string | null;
   contextType?: string | null;
-  includeConstitutional?: boolean;
   includeArchived?: boolean;
 }
 
@@ -197,7 +194,6 @@ export interface EnrichedSearchResult {
   smartScore?: number;
   spec_folder?: string;
   searchMethod?: string;
-  isConstitutional: boolean;
   [key: string]: unknown;
 }
 

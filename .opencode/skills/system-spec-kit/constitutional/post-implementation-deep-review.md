@@ -1,6 +1,5 @@
 ---
 title: "POST-IMPLEMENTATION DEEP-REVIEW — Mandatory after substantive ship"
-importanceTier: constitutional
 contextType: decision
 last_confirmed: "2026-06-08"
 last_confirmed_source: "git-log-last-touch"

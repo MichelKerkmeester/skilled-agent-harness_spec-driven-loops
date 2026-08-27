@@ -134,10 +134,7 @@ import type { IntentType, IntentWeights as IntentClassifierWeights } from '../li
 import type { RawSearchResult } from '../formatters/index.js';
 // RoutingResult, WeightedResult — now used internally by lib/search/search-utils.ts
 
-// Feature catalog: Semantic and lexical search (memory_search)
-// Feature catalog: Hybrid search pipeline
-// Feature catalog: 4-stage pipeline architecture
-// Feature catalog: Quality-aware 3-tier search fallback
+// Semantic and lexical search (memory_search): a hybrid 4-stage pipeline with a quality-aware 3-tier fallback.
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -205,7 +202,7 @@ type SessionAwareResult = Record<string, unknown> & {
   content?: string;
 };
 
-type CanonicalSourceKind = 'spec_doc' | 'continuity' | 'constitutional';
+type CanonicalSourceKind = 'spec_doc' | 'continuity';
 
 interface CanonicalSourceStats {
   retained: number;
@@ -348,10 +345,6 @@ function resolveCanonicalSourceKind(row: Record<string, unknown>): CanonicalSour
   const importanceTier = normalizeDocumentType(row.importance_tier ?? row.importanceTier);
   const anchorId = resolveAnchorId(row);
 
-  if (importanceTier === 'constitutional' || documentType === 'constitutional') {
-    return 'constitutional';
-  }
-
   if (anchorId === CONTINUITY_ANCHOR_ID || documentType === 'continuity') {
     return 'continuity';
   }
@@ -391,7 +384,6 @@ function filterCanonicalSourceRows<T extends SessionAwareResult>(
     bySourceKind: {
       spec_doc: 0,
       continuity: 0,
-      constitutional: 0,
     },
   };
 
@@ -686,7 +678,6 @@ interface SearchArgs {
   contextType?: string;
   useDecay?: boolean;
   includeContiguity?: boolean;
-  includeConstitutional?: boolean;
   includeContent?: boolean;
   anchors?: string[];
   bypassCache?: boolean;
@@ -1321,7 +1312,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     contextType,
     useDecay: useDecay = true,
     includeContiguity: includeContiguity = false,
-    includeConstitutional: includeConstitutional = true,
     includeContent: includeContent = false,
     anchors,
     bypassCache: bypassCache = false,
@@ -1659,7 +1649,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     qualityThreshold,
     applyStateLimits,
     includeContiguity,
-    includeConstitutional,
     includeContent,
     anchors,
     detectedIntent,
@@ -1715,7 +1704,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       tier,
       contextType,
       includeArchived,
-      includeConstitutional,
       includeContent,
       anchors,
       qualityThreshold,

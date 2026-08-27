@@ -68,7 +68,7 @@ mcp-server/hooks/
 ├── lib/                           # Runtime-neutral spec-gate core and helpers
 ├── code-index-cli-fallback.ts      # Warm-only code-index CLI fallback helper
 ├── index.ts                       # Public helper exports
-├── memory-surface.ts              # Context extraction and constitutional cache helpers
+├── memory-surface.ts              # Context extraction and auto-surface helpers
 ├── mutation-feedback.ts           # Post-mutation feedback payloads
 ├── response-hints.ts              # Auto-surface hints and token count sync
 ├── shared-provenance.ts           # Provenance-wrapped transport helpers
@@ -90,7 +90,7 @@ mcp-server/hooks/
 | `lib/` | Runtime-neutral spec-gate policy core and helpers the adapters call. |
 | `code-index-cli-fallback.ts` | Bounded warm-only CLI recovery for code-index hook contexts. |
 | `index.ts` | Public export barrel for in-process helper modules. |
-| `memory-surface.ts` | Extracts context hints and surfaces constitutional or triggered memory. |
+| `memory-surface.ts` | Extracts context hints and surfaces triggered memory. |
 | `mutation-feedback.ts` | Maps `MutationHookResult` values into public `postMutationHooks` response payloads. |
 | `response-hints.ts` | Adds auto-surface hints and token counts to MCP JSON envelopes. |
 | `shared-provenance.ts` | Wraps hook transport with provenance metadata. |
@@ -149,7 +149,7 @@ Main flow:
 | `*/user-prompt-submit.ts` | Hook script | Prompt-time skill advisor delivery for supported runtimes. |
 | `index.ts` | Module | Public exports for in-process helper functions. |
 
-Main helper exports include `extractContextHint`, `getConstitutionalMemories`, `clearConstitutionalCache`, `autoSurfaceMemories`, `autoSurfaceAtToolDispatch`, `autoSurfaceAtCompaction`, `MEMORY_AWARE_TOOLS`, `buildMutationHookFeedback`, `appendAutoSurfaceHints`, `syncEnvelopeTokenCount`, and `serializeEnvelopeWithTokenCount`.
+Main helper exports include `extractContextHint`, `autoSurfaceMemories`, `autoSurfaceAtToolDispatch`, `autoSurfaceAtCompaction`, `MEMORY_AWARE_TOOLS`, `buildMutationHookFeedback`, `appendAutoSurfaceHints`, `syncEnvelopeTokenCount`, and `serializeEnvelopeWithTokenCount`.
 
 ---
 

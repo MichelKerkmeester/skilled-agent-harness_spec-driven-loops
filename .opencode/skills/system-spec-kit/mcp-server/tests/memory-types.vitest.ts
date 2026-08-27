@@ -146,7 +146,6 @@ describe('Memory Types Tests (T068-T082)', () => {
 
     it('T080: Type inference from importance_tier mapping', () => {
       const tierTests: readonly ContentInferenceCase[] = [
-        { content: '---\nimportance_tier: constitutional\n---', expected: 'meta-cognitive' },
         { content: '---\nimportanceTier: critical\n---', expected: 'semantic' },
         { content: '---\nimportance_tier: important\n---', expected: 'declarative' },
         { content: '---\nimportance_tier: normal\n---', expected: 'declarative' },

@@ -4,14 +4,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 const {
   mockClearCache,
   mockInvalidateOnWrite,
-  mockClearConstitutionalCache,
   mockClearGraphSignalsCache,
   mockClearDegreeCache,
   mockClearRelatedCache,
 } = vi.hoisted(() => ({
   mockClearCache: vi.fn(),
   mockInvalidateOnWrite: vi.fn(),
-  mockClearConstitutionalCache: vi.fn(),
   mockClearGraphSignalsCache: vi.fn(),
   mockClearDegreeCache: vi.fn(),
   mockClearRelatedCache: vi.fn(),
@@ -23,10 +21,6 @@ vi.mock('../lib/parsing/trigger-matcher', () => ({
 
 vi.mock('../lib/cache/tool-cache', () => ({
   invalidateOnWrite: mockInvalidateOnWrite,
-}));
-
-vi.mock('../hooks/memory-surface', () => ({
-  clearConstitutionalCache: mockClearConstitutionalCache,
 }));
 
 vi.mock('../lib/graph/graph-signals', () => ({
@@ -47,7 +41,6 @@ describe('Mutation hooks', () => {
   beforeEach(() => {
     mockClearCache.mockReset().mockReturnValue(undefined);
     mockInvalidateOnWrite.mockReset().mockReturnValue(3);
-    mockClearConstitutionalCache.mockReset().mockReturnValue(undefined);
     mockClearGraphSignalsCache.mockReset().mockReturnValue(undefined);
     mockClearDegreeCache.mockReset().mockReturnValue(undefined);
     mockClearRelatedCache.mockReset().mockReturnValue(undefined);
@@ -63,14 +56,12 @@ describe('Mutation hooks', () => {
     expect(result.latencyMs).toBeGreaterThanOrEqual(0);
     expect(result.triggerCacheCleared).toBe(true);
     expect(result.toolCacheInvalidated).toBe(3);
-    expect(result.constitutionalCacheCleared).toBe(true);
     expect(result.graphSignalsCacheCleared).toBe(true);
     expect(result.coactivationCacheCleared).toBe(true);
     expect(result.errors).toEqual([]);
 
     expect(mockClearCache).toHaveBeenCalledTimes(1);
     expect(mockInvalidateOnWrite).toHaveBeenCalledWith('save', { memoryId: 42 });
-    expect(mockClearConstitutionalCache).toHaveBeenCalledTimes(1);
     expect(mockClearGraphSignalsCache).toHaveBeenCalledTimes(1);
     expect(mockClearDegreeCache).toHaveBeenCalledTimes(1);
     expect(mockClearRelatedCache).toHaveBeenCalledTimes(1);
@@ -87,7 +78,6 @@ describe('Mutation hooks', () => {
 
     expect(result.triggerCacheCleared).toBe(false);
     expect(result.toolCacheInvalidated).toBe(1);
-    expect(result.constitutionalCacheCleared).toBe(true);
     expect(result.graphSignalsCacheCleared).toBe(true);
     expect(result.coactivationCacheCleared).toBe(true);
     expect(result.errors).toEqual(['trigger-cache: trigger cache failure']);
@@ -98,7 +88,6 @@ describe('Mutation hooks', () => {
     );
 
     expect(mockInvalidateOnWrite).toHaveBeenCalledTimes(1);
-    expect(mockClearConstitutionalCache).toHaveBeenCalledTimes(1);
     expect(mockClearGraphSignalsCache).toHaveBeenCalledTimes(1);
     expect(mockClearDegreeCache).toHaveBeenCalledTimes(1);
     expect(mockClearRelatedCache).toHaveBeenCalledTimes(1);

@@ -588,18 +588,12 @@ describe('PE Gate Module Exports', () => {
 
 describe('C138: Tier Decay Modulation', () => {
 
-  it('C138-T1: constitutional tier has minimal decay multiplier', () => {
-    expect(TIER_MULTIPLIER.constitutional).toBe(0.1);
-    expect(TIER_MULTIPLIER.constitutional).toBeLessThan(TIER_MULTIPLIER.normal);
-  });
-
   it('C138-T2: scratch tier has maximum decay multiplier', () => {
     expect(TIER_MULTIPLIER.scratch).toBe(3.0);
     expect(TIER_MULTIPLIER.scratch).toBeGreaterThan(TIER_MULTIPLIER.normal);
   });
 
   it('C138-T3: tier multipliers are ordered correctly', () => {
-    expect(TIER_MULTIPLIER.constitutional).toBeLessThan(TIER_MULTIPLIER.critical);
     expect(TIER_MULTIPLIER.critical).toBeLessThan(TIER_MULTIPLIER.important);
     expect(TIER_MULTIPLIER.important).toBeLessThan(TIER_MULTIPLIER.normal);
     expect(TIER_MULTIPLIER.normal).toBeLessThan(TIER_MULTIPLIER.temporary);
@@ -610,18 +604,18 @@ describe('C138: Tier Decay Modulation', () => {
     const oldStability = 10.0;
     const decayRate = 0.5;
 
-    // Constitutional: barely decays
-    const constStab = oldStability * (1.0 - (decayRate * TIER_MULTIPLIER.constitutional));
-    expect(constStab).toBeCloseTo(9.5, 1);
+    // Critical: barely decays
+    const critStab = oldStability * (1.0 - (decayRate * TIER_MULTIPLIER.critical));
+    expect(critStab).toBeCloseTo(8.5, 1);
 
     // Scratch: rapid decay
     const scratchStab = oldStability * (1.0 - (decayRate * TIER_MULTIPLIER.scratch));
     expect(scratchStab).toBeLessThan(0); // negative → clamped to min in production
 
-    expect(constStab).toBeGreaterThan(scratchStab);
+    expect(critStab).toBeGreaterThan(scratchStab);
   });
 
-  it('C138-T5: constitutional memory retains stability over 30 days', () => {
+  it('C138-T5: memory retains stability over 30 days', () => {
     if (!fsrsScheduler) return;
     // If calculateRetrievability is available, test it
     if (typeof fsrsScheduler.calculateRetrievability === 'function') {

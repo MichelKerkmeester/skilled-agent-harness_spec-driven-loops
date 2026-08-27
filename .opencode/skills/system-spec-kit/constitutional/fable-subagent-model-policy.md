@@ -1,6 +1,5 @@
 ---
 title: "Fable Main Loop — Subagents Must Be Opus or Sonnet"
-importanceTier: constitutional
 contextType: decision
 last_confirmed: "2026-07-28"
 last_confirmed_source: "operator-directive"

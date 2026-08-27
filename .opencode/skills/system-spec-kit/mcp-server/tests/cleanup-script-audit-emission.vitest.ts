@@ -20,7 +20,7 @@ afterEach(() => {
 });
 
 describe('cleanup script governance audit emission', () => {
-  it('retains historical governance_audit rows for deleted memories and emits cleanup downgrade audits', () => {
+  it('retains historical governance_audit rows for deleted memories', () => {
     database.prepare(`
       INSERT INTO memory_index (
         id, spec_folder, file_path, canonical_file_path, anchor_id, content_hash, importance_tier
@@ -46,7 +46,7 @@ describe('cleanup script governance audit emission', () => {
       '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants/plan.md',
       null,
       'hash:plan',
-      'constitutional',
+      'important',
     );
 
     database.prepare(`
@@ -60,7 +60,7 @@ describe('cleanup script governance audit emission', () => {
       '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants/tasks.md',
       'anchor-3',
       'hash:tasks',
-      'constitutional',
+      'important',
     );
 
     database.prepare(`
@@ -73,7 +73,7 @@ describe('cleanup script governance audit emission', () => {
     const summary = applyTx();
 
     expect(summary.deletedMemoryRows).toBe(1);
-    expect(summary.downgradedRows).toBe(2);
+    expect(summary.downgradedRows).toBe(0);
 
     const remainingMemoryIds = database.prepare(`
       SELECT id, importance_tier
@@ -101,18 +101,6 @@ describe('cleanup script governance audit emission', () => {
         decision: 'allow',
         memory_id: 1,
         reason: 'preexisting_forensic_row',
-      },
-      {
-        action: 'tier_downgrade_non_constitutional_path_cleanup',
-        decision: 'conflict',
-        memory_id: 2,
-        reason: 'cleanup-script bulk normalization',
-      },
-      {
-        action: 'tier_downgrade_non_constitutional_path_cleanup',
-        decision: 'conflict',
-        memory_id: 3,
-        reason: 'cleanup-script bulk normalization',
       },
     ]);
   });

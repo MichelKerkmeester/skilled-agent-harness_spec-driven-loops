@@ -185,7 +185,7 @@ function rewriteStartupMemoryLine(
   );
 }
 
-/** Handle source=startup: prime new session with constitutional memories + overview */
+/** Handle source=startup: prime new session with the spec-folder overview */
 export function handleStartup(
   input: Pick<HookInput, 'session_id'> & { specFolder?: string } = {},
 ): OutputSection[] {

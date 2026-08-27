@@ -12,7 +12,7 @@ subfolders).
 | # | ID | Intent | File |
 | --- | --- | --- | --- |
 | 1 | PR-001 | IMPLEMENTATION | `token-edit-routing.md` |
-| 2 | PR-002 | IMPLEMENTATION | `ds-grammar-routing.md` |
+| 2 | PR-002 | IMPLEMENTATION | `comment-convention-routing.md` |
 | 3 | PR-003 | CODE_QUALITY | `guardrail-routing.md` |
 | 4 | PR-004 | DEBUGGING | `debugging-routing.md` |
 | 5 | PR-005 | VERIFICATION | `verification-routing.md` |

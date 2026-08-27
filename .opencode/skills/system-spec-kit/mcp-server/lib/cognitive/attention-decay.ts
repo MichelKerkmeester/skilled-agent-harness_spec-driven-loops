@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Attention Decay
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Classification-based decay
+// Attention-weighted, tier-aware memory decay.
 // DECAY STRATEGY: This module is the FACADE for all long-term
 // Memory decay. It exposes FSRS-based decay as the canonical path
 // (via composite-scoring.ts and fsrs-scheduler.ts).
@@ -36,7 +36,6 @@ import type { FiveFactorWeights } from '../scoring/composite-scoring.js';
 /* --- 2. CONFIGURATION --- */
 
 interface DecayRateByTier {
-  constitutional: number;
   critical: number;
   important: number;
   normal: number;
@@ -55,7 +54,6 @@ interface DecayConfigType {
 const DECAY_CONFIG: DecayConfigType = {
   defaultDecayRate: 0.80,
   decayRateByTier: {
-    constitutional: 1.0,
     critical: 1.0,
     important: 1.0,
     normal: 0.80,

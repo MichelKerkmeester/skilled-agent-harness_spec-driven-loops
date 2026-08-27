@@ -22,8 +22,7 @@ import { buildMutationHookFeedback } from '../hooks/mutation-feedback.js';
 
 import type { MCPResponse } from './types.js';
 
-// Feature catalog: Tier-based bulk deletion (memory_bulk_delete)
-// Feature catalog: Per-memory history log
+// memory_bulk_delete: tier-based bulk deletion with a per-memory history log.
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -108,7 +107,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
     throw new Error('tier is required and must be a string');
   }
 
-  const validTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'archived', 'deprecated'];
+  const validTiers = ['critical', 'important', 'normal', 'temporary', 'archived', 'deprecated'];
   if (!validTiers.includes(tier)) {
     throw new Error(`Invalid tier: "${tier}". Must be one of: ${validTiers.join(', ')}`);
   }
@@ -117,12 +116,12 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
     throw new Error('Bulk delete requires confirm: true as a safety gate');
   }
 
-  // Safety: refuse to bulk-delete constitutional or critical tiers without explicit specFolder scope
-  if ((tier === 'constitutional' || tier === 'critical') && !specFolder) {
+  // Safety: refuse to bulk-delete the critical tier without explicit specFolder scope
+  if ((tier === 'critical') && !specFolder) {
     throw new Error(`Bulk delete of "${tier}" tier requires specFolder scope for safety. Use memory_delete for individual deletions.`);
   }
 
-  if ((tier === 'constitutional' || tier === 'critical') && skipCheckpoint) {
+  if ((tier === 'critical') && skipCheckpoint) {
     throw new Error(`skipCheckpoint is not allowed for "${tier}" tier. Checkpoint is mandatory for high-safety tiers.`);
   }
 
@@ -198,7 +197,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
 
       if (!checkpoint) {
         const checkpointError = `Checkpoint creation failed before deleting ${tier} memories`;
-        if (tier === 'constitutional' || tier === 'critical') {
+        if (tier === 'critical') {
           throw new Error(`${checkpointError}. Aborting high-safety bulk delete.`);
         }
         console.warn(`[memory-bulk-delete] ${checkpointError}. Proceeding without rollback.`);
@@ -210,7 +209,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
       const message = toErrorMessage(cpErr);
       console.error(`[memory-bulk-delete] Failed to create checkpoint: ${message}`);
       // High-safety tiers require a valid checkpoint.
-      if (tier === 'constitutional' || tier === 'critical') {
+      if (tier === 'critical') {
         throw new Error(`Failed to create mandatory checkpoint for "${tier}" tier: ${message}`);
       }
       // Lower tiers can proceed with explicit no-rollback notice.
@@ -318,7 +317,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
       const msg = hookError instanceof Error ? hookError.message : String(hookError);
       postMutationHooks = {
         latencyMs: 0, triggerCacheCleared: false,
-        constitutionalCacheCleared: false, toolCacheInvalidated: 0,
+        toolCacheInvalidated: 0,
         graphSignalsCacheCleared: false, coactivationCacheCleared: false,
         errors: [msg],
       };

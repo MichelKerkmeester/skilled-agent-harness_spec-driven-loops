@@ -1,0 +1,74 @@
+{
+  "topic": "Workstream A (templates): Reduce/optimize system-spec-kit doc templates (.md.tmpl) - less bloat while preserving historic context, decisions, task/verification tracking, and small-model (7-30B) legibility for plan->implement->verify. Owner directive: merge tasks.md + checklist.md into ONE doc. Angles: unified tasks+checklist design; dedup 033 left behind (checklist triple-copy, decision-record dup, research.md widget taxonomy -> shared-core+gated-addenda); _memory.continuity 5x duplication; instructional HTML comment leakage; small-model legibility; acceptance-criteria single-source vs duplication. Workstream B (constitutional memory deprecation) is cross-context only and MUST NOT be written to this lineage's findings.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/036-spec-doc-template-reduction/001-analysis",
+  "artifactDir": "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/research/lineages/ox-alpha-a",
+  "fanoutLineageArtifactDirOverride": true,
+  "createdAt": "2026-08-26T07:50:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "x-ai/ox-alpha",
+    "reasoningEffort": "xhigh",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-ox-alpha-a-1787723389999-m6mva1",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "stopPolicy": "max-iterations",
+  "scopeExclusion": "Workstream B (constitutional memory) findings are excluded from this lineage by dispatch directive; B observations are recorded only as cross-context pointers.",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "completedAt": "2026-08-26T09:05:00Z"
+}

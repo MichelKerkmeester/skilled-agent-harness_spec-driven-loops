@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Embedding Expansion
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Encoding-intent capture at index time
+// Captures encoding intent at index time.
 // Semantic query expansion using embedding similarity.
 //
 // Mutual Exclusion
@@ -19,7 +19,7 @@ import { isEmbeddingExpansionEnabled } from './search-flags.js';
 import { classifyQueryComplexity } from './query-classifier.js';
 import * as vectorIndex from './vector-index.js';
 
-// Feature catalog: Query expansion
+// Embedding-based query expansion.
 
 
 // ───────────────────────────────────────────────────────────────
@@ -239,11 +239,9 @@ export async function expandQueryWithEmbeddings(
   try {
     // -- Step a: Vector similarity search --------------------------------------
     // Use the query embedding to find semantically similar memories.
-    // IncludeConstitutional=false keeps expansion focused on regular content;
     // Constitutional memories are injected separately in Stage 1.
     const similarMemories = vectorIndex.vectorSearch(embedding, {
       limit,
-      includeConstitutional: false,
     }) as Array<Record<string, unknown>>;
 
     // -- Guard 4: No candidates -------------------------------------------------

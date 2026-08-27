@@ -364,7 +364,7 @@ afterEach(() => {
   vi.resetModules();
 });
 
-describe('memory-save index scope and constitutional tier invariants', () => {
+describe('memory-save index scope', () => {
   it('returns a stable error code and canonical path for excluded memory paths', async () => {
     const filePath = '/workspace/.opencode/specs/system-spec-kit/z-future/011/spec.md';
     const harness = await loadMemorySaveHarness(buildParsedMemory(filePath));
@@ -381,77 +381,4 @@ describe('memory-save index scope and constitutional tier invariants', () => {
     });
   });
 
-  it('downgrades invalid constitutional tier during direct memory_save and logs a warning', async () => {
-    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const filePath = '/workspace/.opencode/specs/system-spec-kit/011-index-scope-and-constitutional-tier-invariants/plan.md';
-    const harness = await loadMemorySaveHarness(buildParsedMemory(filePath));
-
-    const response = await harness.module.handleMemorySave({ filePath });
-
-    expect(response).toMatchObject({
-      status: 'ok',
-      data: {
-        importanceTier: 'important',
-      },
-    });
-    expect(harness.createMemoryRecordMock).toHaveBeenCalledTimes(1);
-    expect(harness.createMemoryRecordMock.mock.calls[0][1].importanceTier).toBe('important');
-    expect(harness.recordGovernanceAuditMock).toHaveBeenCalledWith(
-      expect.anything(),
-      expect.objectContaining({
-        action: 'tier_downgrade_non_constitutional_path',
-        decision: 'conflict',
-        reason: 'non_constitutional_path',
-      }),
-    );
-    expect(
-      warnSpy.mock.calls.some(([message]) => String(message).includes('importance_tier=constitutional rejected for non-constitutional path'))
-    ).toBe(true);
-  });
-
-  it('downgrades invalid constitutional tier for scan-originated saves too', async () => {
-    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const filePath = '/workspace/.opencode/specs/system-spec-kit/011-index-scope-and-constitutional-tier-invariants/tasks.md';
-    const harness = await loadMemorySaveHarness(buildParsedMemory(filePath));
-
-    const result = await harness.module.indexMemoryFileFromScan(filePath);
-
-    expect(result.importanceTier).toBe('important');
-    expect(harness.createMemoryRecordMock).toHaveBeenCalledTimes(1);
-    expect(harness.createMemoryRecordMock.mock.calls[0][1].importanceTier).toBe('important');
-    expect(harness.recordGovernanceAuditMock).toHaveBeenCalledWith(
-      expect.anything(),
-      expect.objectContaining({
-        action: 'tier_downgrade_non_constitutional_path',
-        decision: 'conflict',
-        reason: 'non_constitutional_path',
-      }),
-    );
-    expect(
-      warnSpy.mock.calls.some(([message]) => String(message).includes('importance_tier=constitutional rejected for non-constitutional path'))
-    ).toBe(true);
-  });
-
-  it('preserves constitutional tier for files inside /constitutional/', async () => {
-    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const filePath = '/workspace/.opencode/skills/system-spec-kit/constitutional/gate-foo.md';
-    const harness = await loadMemorySaveHarness(buildParsedMemory(filePath));
-
-    const response = await harness.module.handleMemorySave({ filePath });
-
-    expect(response).toMatchObject({
-      status: 'ok',
-      data: {
-        importanceTier: 'constitutional',
-      },
-    });
-    expect(harness.createMemoryRecordMock.mock.calls[0][1].importanceTier).toBe('constitutional');
-    expect(
-      harness.recordGovernanceAuditMock.mock.calls.some(([, entry]) =>
-        (entry as { action?: string }).action === 'tier_downgrade_non_constitutional_path')
-    ).toBe(false);
-    expect(
-      warnSpy.mock.calls.some(([message]) => String(message).includes('importance_tier=constitutional rejected for non-constitutional path'))
-    ).toBe(false);
-  });
 });

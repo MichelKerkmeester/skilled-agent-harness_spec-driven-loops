@@ -7,7 +7,6 @@ const RAW_MUSTACHE_RE = /\{\{[^}]+\}\}/;
 // Deprecated legacy generated-memory banner detection retained for historical saves
 // created before the v3.4.0.0 template retirement.
 const LEGACY_TEMPLATE_BANNER_RE = /^\s*<!-- TEMPLATE:\s*[^\n]+ - DO NOT EDIT GENERATED FILES -->/m;
-const CONSTITUTIONAL_GUIDANCE_RE = /<!-- Constitutional Tier Promotion:/m;
 const FRONTMATTER_KEY_RE = /^([A-Za-z_][A-Za-z0-9_-]*)\s*:\s*(.*)$/;
 
 export type MemoryTemplateViolationCode =
@@ -18,7 +17,6 @@ export type MemoryTemplateViolationCode =
   | 'invalid_trigger_phrases'
   | 'raw_mustache_literal'
   | 'legacy_template_banner'
-  | 'constitutional_guidance_comment'
   | 'missing_section'
   | 'missing_anchor_comment';
 
@@ -296,14 +294,6 @@ export function validateMemoryTemplateContract(content: string): MemoryTemplateC
     violations.push({
       code: 'legacy_template_banner',
       message: 'Rendered memory still contains the legacy template banner comment.',
-    });
-  }
-
-  if (CONSTITUTIONAL_GUIDANCE_RE.test(content)) {
-    unexpectedTemplateArtifacts.push('constitutional_guidance_comment');
-    violations.push({
-      code: 'constitutional_guidance_comment',
-      message: 'Rendered memory still contains constitutional guidance comments.',
     });
   }
 

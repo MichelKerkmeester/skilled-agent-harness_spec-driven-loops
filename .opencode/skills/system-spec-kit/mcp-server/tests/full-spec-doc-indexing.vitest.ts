@@ -94,8 +94,8 @@ describe('Spec 126 Phase 2: Type Configuration', () => {
       });
     }
 
-    it('Returns "constitutional" for constitutional files', () => {
-      expect(inferDocumentTypeFromPath('/project/.opencode/skills/system-spec-kit/constitutional/rules.md')).toBe('constitutional');
+    it('Returns "memory" for files in a constitutional folder', () => {
+      expect(inferDocumentTypeFromPath('/project/.opencode/skills/system-spec-kit/constitutional/rules.md')).toBe('memory');
     });
 
     it('Returns "memory" for README files', () => {
@@ -229,8 +229,8 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
       });
     }
 
-    it('Returns "constitutional" for files in /constitutional/', () => {
-      expect(extractDocumentType('/p/.opencode/skills/kit/constitutional/rules.md')).toBe('constitutional');
+    it('Returns "memory" for files in /constitutional/', () => {
+      expect(extractDocumentType('/p/.opencode/skills/kit/constitutional/rules.md')).toBe('memory');
     });
 
     it('Returns "memory" for readme.md', () => {
@@ -297,10 +297,6 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
 
     it('Rejects non-.md files', () => {
       expect(isMemoryFile('/p/.opencode/specs/003/100/spec.txt')).toBe(false);
-    });
-
-    it('Accepts constitutional files', () => {
-      expect(isMemoryFile('/p/.opencode/skills/kit/constitutional/rules.md')).toBe(true);
     });
 
     it('Rejects constitutional README.md files', () => {
@@ -390,10 +386,6 @@ describe('Spec 126 Phase 5: Indexing Pipeline', () => {
       expect(calculateDocumentWeight('/p/specs/x/handover.md', 'handover')).toBe(0.5);
     });
 
-    it('constitutional -> 1.0', () => {
-      expect(calculateDocumentWeight('/p/constitutional/rules.md', 'constitutional')).toBe(1.0);
-    });
-
     it('README paths with explicit memory type use baseline memory weight', () => {
       expect(calculateDocumentWeight('/p/.opencode/skills/kit/README.md', 'memory')).toBe(0.5);
       expect(calculateDocumentWeight('/p/src/README.md', 'memory')).toBe(0.5);
@@ -418,11 +410,11 @@ describe('Spec 126 Phase 5: Indexing Pipeline', () => {
 describe('Spec 126 Phase 6: Scoring & Priority', () => {
 
   describe('T065: DOCUMENT_TYPE_MULTIPLIERS values', () => {
-    it('Has all 10 document types', () => {
+    it('Has all 9 document types', () => {
       const expectedTypes = [
         'spec', 'decision_record', 'plan', 'tasks',
         'implementation_summary', 'checklist', 'handover',
-        'memory', 'constitutional', 'scratch',
+        'memory', 'scratch',
       ];
       for (const type of expectedTypes) {
         expect(DOCUMENT_TYPE_MULTIPLIERS[type]).toBeDefined();
@@ -437,7 +429,6 @@ describe('Spec 126 Phase 6: Scoring & Priority', () => {
     it('checklist: 1.0', () => expect(DOCUMENT_TYPE_MULTIPLIERS.checklist).toBe(1.0));
     it('handover: 1.0', () => expect(DOCUMENT_TYPE_MULTIPLIERS.handover).toBe(1.0));
     it('memory: 1.0 (unchanged)', () => expect(DOCUMENT_TYPE_MULTIPLIERS.memory).toBe(1.0));
-    it('constitutional: 2.0', () => expect(DOCUMENT_TYPE_MULTIPLIERS.constitutional).toBe(2.0));
     it('scratch: 0.6', () => expect(DOCUMENT_TYPE_MULTIPLIERS.scratch).toBe(0.6));
   });
 
@@ -487,26 +478,6 @@ describe('Spec 126 Phase 6: Scoring & Priority', () => {
       expect(ratio).toBeLessThan(1.5);
     });
 
-    it('Constitutional doc has highest multiplier (scores higher than spec)', () => {
-      // Use low base values to avoid clamping to 1.0
-      const lowRow = {
-        stability: 1.0,
-        lastReview: new Date(now - 1000 * 60 * 60 * 24 * 20).toISOString(),
-        access_count: 1,
-        importance_tier: 'normal',
-        importance_weight: 0.3,
-        similarity: 30,
-        title: 'Test',
-      };
-      const specRow = { ...lowRow, document_type: 'spec' };
-      const constRow = { ...lowRow, document_type: 'constitutional' };
-
-      const specScore = calculateFiveFactorScore(specRow, { query: 'test' });
-      const constScore = calculateFiveFactorScore(constRow, { query: 'test' });
-
-      // Constitutional (2.0) > spec (1.4) with low enough base to avoid clamping
-      expect(constScore).toBeGreaterThan(specScore);
-    });
   });
 
   describe('T065c: Multiplier applied in calculateCompositeScore() (legacy)', () => {
@@ -741,10 +712,6 @@ describe('Spec 126 Peripheral: getDefaultTierForDocumentType()', () => {
 
     it('decision_record -> important', () => {
       expect(getDefaultTierForDocumentType('decision_record')).toBe('important');
-    });
-
-    it('constitutional -> constitutional', () => {
-      expect(getDefaultTierForDocumentType('constitutional')).toBe('constitutional');
     });
 
     it('tasks -> normal', () => {

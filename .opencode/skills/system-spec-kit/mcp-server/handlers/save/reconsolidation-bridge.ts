@@ -98,9 +98,7 @@ export interface ReconsolidationResultCandidate extends Record<string, unknown> 
   session_id?: string | null;
 }
 
-// Feature catalog: Reconsolidation-on-save
-// Feature catalog: Memory indexing (memory_save)
-// Feature catalog: Assistive reconsolidation
+// Assistive reconsolidation-on-save bridge for memory_save.
 
 // ───────────────────────────────────────────────────────────────
 // ASSISTIVE RECONSOLIDATION CONSTANTS
@@ -357,7 +355,6 @@ export function findScopeFilteredCandidates(args: {
     limit: args.limit * (args.overfetchMultiplier ?? 1),
     specFolder: args.parsed.specFolder,
     minSimilarity: args.minSimilarity,
-    includeConstitutional: false,
   });
 
   const candidateIds = rawCandidates

@@ -38,7 +38,6 @@ export interface ContextArgs {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
-  includeConstitutional?: boolean;
   includeTrace?: boolean;
   tokenBudget?: number;
   tokenUsage?: number;
@@ -56,11 +55,10 @@ export interface SearchArgs {
   userId?: string;
   agentId?: string;
   limit?: number;
-  tier?: 'constitutional' | 'critical' | 'important' | 'normal' | 'temporary' | 'archived' | 'deprecated';
+  tier?: 'critical' | 'important' | 'normal' | 'temporary' | 'archived' | 'deprecated';
   contextType?: string;
   useDecay?: boolean;
   includeContiguity?: boolean;
-  includeConstitutional?: boolean;
   includeContent?: boolean;
   anchors?: string[];
   bypassCache?: boolean;
@@ -234,7 +232,6 @@ export interface SaveArgs {
 export interface ScanArgs {
   specFolder?: string | null;
   force?: boolean;
-  includeConstitutional?: boolean;
   includeSpecDocs?: boolean;
   incremental?: boolean;
   // Opt-in: run the scan as a background job and return a jobId immediately.

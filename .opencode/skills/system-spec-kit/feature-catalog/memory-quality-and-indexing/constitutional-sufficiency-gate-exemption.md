@@ -12,6 +12,8 @@ version: 3.6.0.3
 
 # Constitutional sufficiency-gate exemption
 
+> **DEPRECATED — the constitutional memory layer was removed; this scenario no longer applies.**
+
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW

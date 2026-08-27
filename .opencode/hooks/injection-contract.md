@@ -192,7 +192,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ### Session Start Context
 
-**Injects:** a startup or resume brief: constitutional-memory reminders on cold start, or a cached compaction/resume payload.
+**Injects:** a startup or resume brief: a session-context surface on cold start (constitutional-memory reminders are no longer injected — that layer was removed), or a cached compaction/resume payload.
 
 - **Trigger:** `session_start` (Pi) / `SessionStart` (Claude/Cursor/Devin/Codex).
 - **Owning module:** `system-spec-kit/mcp-server/hooks/claude/session-prime.ts`. Emits **plain text**, not a JSON envelope. Every proxy that wraps it (`emitDevinContext`, Pi's `session-start-context.ts`) constructs the envelope on the way out. `session-prime.js` itself does not.

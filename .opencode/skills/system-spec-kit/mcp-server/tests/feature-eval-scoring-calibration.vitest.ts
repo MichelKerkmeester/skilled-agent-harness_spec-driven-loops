@@ -203,14 +203,6 @@ describe('T006: Classification-based Decay (TM-03)', () => {
     }
   });
 
-  // Constitutional tier has Infinity multiplier (no decay)
-  it('T041-14: constitutional tier → Infinity multiplier (never decays)', () => {
-    expect(IMPORTANCE_TIER_STABILITY_MULTIPLIER['constitutional']).toBe(Infinity);
-
-    const multiplier = getClassificationDecayMultiplier('general', 'constitutional');
-    expect(multiplier).toBe(Infinity);
-  });
-
   // Temporary tier decays faster than normal
   it('T041-15: temporary tier decays faster than normal', () => {
     const tempMult = IMPORTANCE_TIER_STABILITY_MULTIPLIER['temporary'];
@@ -237,15 +229,6 @@ describe('T006: Classification-based Decay (TM-03)', () => {
     const baseStability = 2.0;
     const result = applyClassificationDecay(baseStability, 'research', 'temporary');
     expect(result).toBe(baseStability);
-  });
-
-  // Constitutional with any context → Infinity (no decay wins)
-  it('T041-18: constitutional tier with any context type → Infinity', () => {
-    const contexts = ['decision', 'research', 'implementation', 'general', 'unknown'];
-    for (const ctx of contexts) {
-      const mult = getClassificationDecayMultiplier(ctx, 'constitutional');
-      expect(mult).toBe(Infinity);
-    }
   });
 
   // Decision context_type → Infinity regardless of tier

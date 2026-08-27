@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Vector Index Mutations
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Hybrid search pipeline
 // Split from vector-index-store.ts — contains ALL mutation functions:
 // Index, update, delete, and status/confidence updates.
 
@@ -15,7 +14,6 @@ import { clearGraphSignalsCache } from '../graph/graph-signals.js';
 import { recordHistory } from '../storage/history.js';
 import { buildMemoryLogicalKey } from '../storage/lineage-state.js';
 import { getCanonicalPathKey } from '../utils/canonical-path.js';
-import { isIndexableConstitutionalMemoryPath } from '../utils/index-scope.js';
 import { createLogger } from '../utils/logger.js';
 import { deleteByContentHash } from '../cache/embedding-cache.js';
 import { clearDegreeCacheForDb } from './graph-search-fn.js';
@@ -33,7 +31,6 @@ import {
   VectorIndexErrorCode,
 } from './vector-index-types.js';
 import {
-  clear_constitutional_cache,
   get_embedding_dim,
   initialize_db,
   init_prepared_statements,
@@ -587,40 +584,8 @@ export function update_memory(
       values.push(importanceWeight);
     }
     if (importanceTier !== undefined) {
-      let nextImportanceTier = importanceTier;
-      const previousTier = existingRow?.importance_tier ?? null;
-      if (
-        existingRow
-      ) {
-        const guardPath = existingRow.canonical_file_path || existingRow.file_path;
-        const hasNonConstitutionalPath = guardPath && !isIndexableConstitutionalMemoryPath(guardPath);
-        if (hasNonConstitutionalPath && importanceTier === 'constitutional') {
-          // Non-constitutional paths cannot be promoted to constitutional tier.
-          nextImportanceTier = 'important';
-        }
-        if (
-          hasNonConstitutionalPath
-          && (
-            importanceTier === 'constitutional'
-            || (previousTier === 'constitutional' && nextImportanceTier !== 'constitutional')
-          )
-        ) {
-          tryRecordTierDowngradeAudit(database, {
-            memoryId: id,
-            specFolder: existingRow.spec_folder,
-            anchorId: existingRow.anchor_id,
-            filePath: existingRow.file_path,
-            canonicalFilePath: existingRow.canonical_file_path,
-            requestedTier: importanceTier,
-            previousTier,
-            nextTier: nextImportanceTier,
-            source: 'update_memory',
-          });
-        }
-      }
       updates.push('importance_tier = ?');
-      values.push(nextImportanceTier);
-      clear_constitutional_cache();
+      values.push(importanceTier);
     }
     if (canonicalFilePath !== undefined) {
       updates.push('canonical_file_path = ?');
@@ -774,7 +739,6 @@ export function delete_memory_from_database(database: Database.Database, id: num
     const result = database.prepare('DELETE FROM memory_index WHERE id = ?').run(id);
 
     clear_search_cache();
-    clear_constitutional_cache();
 
     return result.changes > 0;
   });
@@ -937,7 +901,6 @@ export function delete_memories(
     deleted = outcome.deleted;
     failed = outcome.failed;
     if (deleted > 0) {
-      clear_constitutional_cache();
       clear_search_cache();
       // Invalidate entity-density cache so deleted memories' tokens are evicted
       // immediately rather than persisting for up to the 60s TTL. Best-effort.

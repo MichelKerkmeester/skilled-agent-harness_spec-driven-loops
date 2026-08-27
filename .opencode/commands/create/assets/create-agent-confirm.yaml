@@ -723,7 +723,6 @@ workflow:
       rationale: "Agent creation captures significant patterns and decisions for future reference"
       promotion_note: "Use memory_update() to promote to 'critical' if this agent becomes widely used"
       tier_reference: |
-        constitutional: Core project rules (auto-surface always)
         critical: Foundational decisions (high priority in search)
         important: Significant work like agent creation (this workflow)
         normal: Standard context (default)

@@ -41,14 +41,6 @@ describe('Gate D regression 7 — memory tiers', () => {
   it('preserves canonical tier priority with anchor-level overrides and no legacy fallback surfaces', () => {
     const sameTopicRows: SearchableRow[] = [
       buildCanonicalRow({
-        id: 701,
-        title: 'Constitutional reader-ready contract',
-        file_path: '/tmp/.opencode/skills/system-spec-kit/constitutional/reader-ready-rules.md',
-        document_type: 'constitutional',
-        importance_tier: 'constitutional',
-        importance_weight: 1,
-      }),
-      buildCanonicalRow({
         id: 702,
         title: 'Critical anchor override for resume contract',
         anchor_id: 'DECISION-reader-ready-priority',
@@ -79,16 +71,15 @@ describe('Gate D regression 7 — memory tiers', () => {
     });
 
     expect(isExcludedFromSearch('deprecated')).toBe(true);
-    expect(searchableRows).toHaveLength(3);
+    expect(searchableRows).toHaveLength(2);
     expect(searchableRows.every((row) => row.document_type !== 'memory')).toBe(true);
     expect(searchableRows.every((row) => !row.file_path.includes('/memory/'))).toBe(true);
 
-    expect(ranked.map((row) => row.id)).toEqual([701, 702, 703]);
-    expect(ranked[0].importance_tier).toBe('constitutional');
-    expect(ranked[1].anchor_id).toBe('DECISION-reader-ready-priority');
-    expect(ranked[2].anchor_id).toBe('notes-reader-ready-follow-up');
-    expect(ranked[1].file_path).toBe(ranked[2].file_path);
-    expect(ranked[1].composite_score).toBeGreaterThan(ranked[2].composite_score);
+    expect(ranked.map((row) => row.id)).toEqual([702, 703]);
+    expect(ranked[0].anchor_id).toBe('DECISION-reader-ready-priority');
+    expect(ranked[1].anchor_id).toBe('notes-reader-ready-follow-up');
+    expect(ranked[0].file_path).toBe(ranked[1].file_path);
+    expect(ranked[0].composite_score).toBeGreaterThan(ranked[1].composite_score);
   });
 
   it('shows that composite scoring alone does not replace the deprecated-tier pre-filter', () => {

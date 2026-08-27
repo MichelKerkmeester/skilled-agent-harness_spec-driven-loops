@@ -1,6 +1,5 @@
 ---
 title: "Recursion Control — Reason About the Problem, Audit Once, Don't Narrate the Self"
-importanceTier: constitutional
 contextType: decision
 last_confirmed: "2026-06-15"
 last_confirmed_source: "git-log-last-touch"

@@ -20,7 +20,6 @@ interface CommunityMemberRow {
 }
 
 const IMPORTANCE_ORDER: Record<string, number> = {
-  constitutional: 0,
   critical: 1,
   important: 2,
   normal: 3,

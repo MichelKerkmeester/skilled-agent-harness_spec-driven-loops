@@ -14,7 +14,7 @@ import {
   type WriteProvenanceContext,
 } from '../storage/write-provenance.js';
 
-// Feature catalog: Auto-promotion on validation
+// Auto-promotes a memory's tier on repeated validation.
 
 
 // ───────────────────────────────────────────────────────────────
@@ -79,7 +79,6 @@ export const PROMOTION_WINDOW_MS = PROMOTION_WINDOW_HOURS * 60 * 60 * 1000;
 
 /** Special-purpose tiers that are outside automatic tier changes. */
 export const NON_PROMOTABLE_TIERS: ReadonlySet<string> = new Set([
-  'constitutional',
   'temporary',
   'deprecated',
 ]);

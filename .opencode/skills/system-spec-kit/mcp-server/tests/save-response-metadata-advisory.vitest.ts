@@ -56,16 +56,4 @@ describe('memory_save metadata-refresh advisory', () => {
     const data = (response.data ?? response) as Record<string, unknown>;
     expect(data.metadataRefresh).toBeUndefined();
   });
-
-  it('omits the advisory for constitutional memories', () => {
-    const response = parseResponse(buildSaveResponse({
-      result: savedResult(),
-      filePath: '/repo/.opencode/skills/system-spec-kit/constitutional/rule.md',
-      asyncEmbedding: false,
-      requestId: 'req-advisory-3',
-    }));
-
-    const data = (response.data ?? response) as Record<string, unknown>;
-    expect(data.metadataRefresh).toBeUndefined();
-  });
 });

@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Vector Index Store
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Hybrid search pipeline
 // SEARCH: VECTOR INDEX
 // TypeScript port of the vector index implementation.
 // DECAY STRATEGY: Search-time temporal decay uses an
@@ -1063,8 +1062,6 @@ function set_active_database_connection(
   sqlite_vec_available_flag = vec_available;
 
   if (previousDb !== connection || previousPath !== target_path) {
-    clear_constitutional_cache();
-
     const listenerErrors: string[] = [];
     for (const listener of database_connection_listeners) {
       try {
@@ -1767,70 +1764,6 @@ export function on_database_connection_change(listener: DatabaseConnectionListen
   };
 }
 
-const constitutional_cache = new Map<string, { data: MemoryRow[]; timestamp: number }>();
-const CONSTITUTIONAL_CACHE_TTL = 300000;
-const CONSTITUTIONAL_CACHE_MAX_KEYS = 50;
-
-// Track which cache keys are currently being loaded
-const constitutional_cache_loading = new Map<string, boolean>();
-
-let last_db_mod_time = 0;
-let last_constitutional_cache_db_path: string | null = null;
-
-function get_constitutional_cache_db_scope(): string {
-  if (db_path === ':memory:') {
-    return db_path;
-  }
-
-  return path.resolve(db_path);
-}
-
-function build_constitutional_cache_key(
-  spec_folder: string | null,
-  includeArchived: boolean,
-): string {
-  const db_scope = get_constitutional_cache_db_scope();
-  return `${db_scope}::${spec_folder || 'global'}:${includeArchived ? 'arch' : 'noarch'}`;
-}
-
-function refresh_constitutional_cache_db_state(): void {
-  const current_db_path = get_constitutional_cache_db_scope();
-  last_constitutional_cache_db_path = current_db_path;
-
-  if (current_db_path === ':memory:' || !fs.existsSync(current_db_path)) {
-    last_db_mod_time = 0;
-    return;
-  }
-
-  last_db_mod_time = fs.statSync(current_db_path).mtimeMs;
-}
-
-function is_constitutional_cache_valid() {
-  if (constitutional_cache.size === 0) return false;
-
-  try {
-    const current_db_path = get_constitutional_cache_db_scope();
-    if (
-      last_constitutional_cache_db_path &&
-      last_constitutional_cache_db_path !== current_db_path
-    ) {
-      return false;
-    }
-
-    if (current_db_path !== ':memory:' && fs.existsSync(current_db_path)) {
-      const stats = fs.statSync(current_db_path);
-      if (stats.mtimeMs > last_db_mod_time) {
-        last_db_mod_time = stats.mtimeMs;
-        return false;
-      }
-    }
-  } catch (e: unknown) {
-    console.warn('[vector-index] Cache validation error:', get_error_message(e));
-  }
-
-  return true;
-}
-
 /* ───────────────────────────────────────────────────────────────
    4. PREPARED STATEMENT CACHING
 ----------------------------------------------------------------*/
@@ -1945,108 +1878,6 @@ export function clear_prepared_statements(database?: Database.Database): void {
     prepared_statements_cache.delete(database);
   }
   // WeakMap entries are automatically cleared when the Database key is GC'd.
-}
-
-/* ───────────────────────────────────────────────────────────────
-   5. CONSTITUTIONAL MEMORIES CACHE
-----------------------------------------------------------------*/
-
-// Checks external DB modifications before using cache
-// Prevent thundering herd when cache expires
-/**
- * Gets cached constitutional memories from the index.
- * @param database - The database connection to query.
- * @param spec_folder - The optional spec folder filter.
- * @param includeArchived - Whether archived memories should be included.
- * @returns The constitutional memory rows.
- */
-export function get_constitutional_memories(
-  database: Database.Database,
-  spec_folder: string | null = null,
-  includeArchived = false
-): MemoryRow[] {
-  // Scope cache entries to the active DB path as well as the archived filter.
-  const cache_key = build_constitutional_cache_key(spec_folder, includeArchived);
-  const now = Date.now();
-  const cached = constitutional_cache.get(cache_key);
-
-  if (cached && (now - cached.timestamp) < CONSTITUTIONAL_CACHE_TTL && is_constitutional_cache_valid()) {
-    return cached.data;
-  }
-
-  if (constitutional_cache_loading.get(cache_key) && cached) {
-    return cached.data;
-  }
-
-  constitutional_cache_loading.set(cache_key, true);
-
-  try {
-    const constitutional_sql = `
-      SELECT m.*, 100.0 as similarity, 1.0 as effective_importance,
-             'constitutional' as source_type
-      FROM memory_index m
-      JOIN active_memory_projection p ON p.active_memory_id = m.id
-      WHERE m.importance_tier = 'constitutional'
-        AND m.embedding_status = 'success'
-        ${spec_folder ? "AND (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')" : ''}
-      ORDER BY m.importance_weight DESC, m.created_at DESC
-    `;
-
-    const params = spec_folder ? [spec_folder, specFolderLikePattern(spec_folder)] : [];
-    let results = database.prepare(constitutional_sql).all(...params) as MemoryRow[];
-
-    const MAX_CONSTITUTIONAL_TOKENS = 2000;
-    const TOKENS_PER_MEMORY = 100;
-    const max_constitutional_count = Math.floor(MAX_CONSTITUTIONAL_TOKENS / TOKENS_PER_MEMORY);
-    results = results.slice(0, max_constitutional_count);
-
-    results = results.map((row: MemoryRow) => {
-      row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-      row.isConstitutional = true;
-      return row;
-    });
-
-    if (constitutional_cache.size >= CONSTITUTIONAL_CACHE_MAX_KEYS) {
-      const oldestKey = constitutional_cache.keys().next().value;
-      if (oldestKey !== undefined) {
-        constitutional_cache.delete(oldestKey);
-      }
-    }
-
-    refresh_constitutional_cache_db_state();
-    constitutional_cache.set(cache_key, { data: results, timestamp: now });
-
-    return results;
-  } finally {
-    constitutional_cache_loading.delete(cache_key);
-  }
-}
-
-/**
- * Clears cached constitutional memories.
- * @param spec_folder - The optional spec folder cache key to clear.
- * @returns Nothing.
- */
-export function clear_constitutional_cache(spec_folder: string | null = null): void {
-  if (spec_folder) {
-    const scoped_suffix_archived = `::${spec_folder}:arch`;
-    const scoped_suffix_live = `::${spec_folder}:noarch`;
-    for (const key of [...constitutional_cache.keys()]) {
-      if (key.endsWith(scoped_suffix_archived) || key.endsWith(scoped_suffix_live)) {
-        constitutional_cache.delete(key);
-      }
-    }
-    for (const key of [...constitutional_cache_loading.keys()]) {
-      if (key.endsWith(scoped_suffix_archived) || key.endsWith(scoped_suffix_live)) {
-        constitutional_cache_loading.delete(key);
-      }
-    }
-  } else {
-    constitutional_cache.clear();
-    constitutional_cache_loading.clear();
-    last_db_mod_time = 0;
-    last_constitutional_cache_db_path = null;
-  }
 }
 
 /**
@@ -2408,7 +2239,6 @@ export { get_confirmed_embedding_dimension as getConfirmedEmbeddingDimension };
 export { get_embedding_dim as getEmbeddingDim };
 export { validate_embedding_dimension as validateEmbeddingDimension };
 export { validate_file_path_local as validateFilePath };
-export { clear_constitutional_cache as clearConstitutionalCache };
 export { is_vector_search_available as isVectorSearchAvailable };
 export { on_database_connection_change as onDatabaseConnectionChange };
 export { activeVectorSource as active_vector_source };

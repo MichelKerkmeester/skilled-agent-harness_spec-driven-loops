@@ -9,7 +9,7 @@ Register (COSTAR): these contracts are written objective-first for an automated-
 Start with the matching render contract before drafting any response:
 
 - Retrieval results: Section 2, `MEMORY:SEARCH "<query>" ... STATUS=OK RESULTS=<count>`.
-- Empty results: Section 3, trigger fallback and constitutional rows.
+- Empty results: Section 3, trigger fallback rows.
 - Analysis overview: Section 5.
 - Analysis subcommands: Section 6.
 - Errors: Section 7.
@@ -132,9 +132,6 @@ Truncation-resilient rendering:
   omitted under the output budget, render `<shown> of <total>` for `results=<count>` (shown =
   `meta.returnedResultCount`, total = `meta.originalResultCount`) so the footer never claims more rows
   than are visible.
-- Constitutional rows are context, not ranked hits: exclude any result whose `isConstitutional` is
-  true (or `importanceTier` is `constitutional`) from the ranked block. List them, if relevant, under
-  a separate `Constitutional rules` heading — never as scored result lines.
 
 ## 3. Empty Result Fallback
 
@@ -147,24 +144,20 @@ Trigger-matched spec-doc records
   <specFolder>/
     #<id>  <title>
 
-Constitutional rules
-  #<id>  <title>
-
-STATUS=OK RESULTS=0 TRIGGERED=<n> CONSTITUTIONAL=<n>
+STATUS=OK RESULTS=0 TRIGGERED=<n>
 ```
 
 After the block, ask at most one clarifying follow-up if the query was broad.
 
 ## 4. Forbidden Vocabulary
 
-Never emit legacy labels that combine trigger wording with the generic noun `memory` or `memories`, and never label constitutional rows with the generic noun `memory` or `memories`.
+Never emit legacy labels that combine trigger wording with the generic noun `memory` or `memories`.
 
 Required labels:
 - Trigger fallback rows: `Trigger-matched spec-doc records` or `Trigger-matched spec-doc record`.
-- Constitutional rows: `Constitutional rules` or `Constitutional rule`.
 - Generic result-class label: `Spec-doc record`.
 
-Pre-render gate: scan the candidate output case-insensitively for legacy trigger labels and legacy constitutional-result labels, then rewrite them before emitting.
+Pre-render gate: scan the candidate output case-insensitively for legacy trigger labels, then rewrite them before emitting.
 
 ## 5. Analysis Overview
 

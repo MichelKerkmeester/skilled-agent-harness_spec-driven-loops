@@ -10,6 +10,8 @@ expected_leaf_resources: []
 
 # 055 -- Dual-scope memory auto-surface (TM-05)
 
+> **DEPRECATED — the constitutional (dual-scope) memory layer was removed; this scenario no longer applies.**
+
 ## 1. OVERVIEW
 
 This scenario validates Dual-scope memory auto-surface (TM-05) for `055`. It focuses on Confirm auto-surface hooks.

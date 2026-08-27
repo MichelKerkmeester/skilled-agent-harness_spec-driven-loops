@@ -1,6 +1,5 @@
 ---
 title: "GOAL PROMPTING — Runtime-Specific Native and Session-Bound Surfaces"
-importanceTier: constitutional
 contextType: decision
 last_confirmed: "2026-08-10"
 last_confirmed_source: "session-isolation source, registration, and test reconciliation"

@@ -98,7 +98,6 @@ export interface RawSearchResult {
   similarity?: number;
   /** Average similarity across multi-concept queries (0-100 scale). */
   averageSimilarity?: number;
-  isConstitutional?: boolean;
   importance_tier?: string;
   triggerPhrases?: string | string[];
   created_at?: string;
@@ -116,7 +115,6 @@ export interface FormattedSearchResult {
   similarity?: number;
   /** Resolved composite score for display (0-1 scale), present for graph and degree rows that carry no similarity. */
   score?: number | null;
-  isConstitutional: boolean;
   importanceTier?: string;
   triggerPhrases: string[];
   createdAt?: string;
@@ -994,7 +992,6 @@ export async function formatSearchResults(
       summary: 'No matching memories found',
       data: {
         searchType: searchType,
-        constitutionalCount: 0,
         ...(requestQualityData ?? {}),
         // Preserve caller metadata, but keep trace-only fields opt-in.
         ...safeExtraData,
@@ -1012,8 +1009,6 @@ export async function formatSearchResults(
     });
   }
 
-  // Count constitutional results
-  const constitutionalCount = results.filter(rawResult => rawResult.isConstitutional).length;
   const trustBadgeFetch = fetchTrustBadgeSnapshots(results);
 
   const formatted: MemoryResultEnvelope[] = await Promise.all(results.map(async (rawResult: RawSearchResult, index: number) => {
@@ -1025,7 +1020,6 @@ export async function formatSearchResults(
       title: rawResult.title ?? null,
       similarity: rawResult.similarity ?? rawResult.averageSimilarity,
       score: resolveCompositeScore(rawResult),
-      isConstitutional: rawResult.isConstitutional || false,
       importanceTier: rawResult.importance_tier,
       sourceKind: normalizeRecallSourceKind(rawResult.source_kind ?? rawResult.sourceKind),
       // Use typed validator instead of safeJsonParse cast.
@@ -1298,9 +1292,7 @@ export async function formatSearchResults(
   }
 
   // Build summary based on result characteristics
-  const summary = constitutionalCount > 0
-    ? `Found ${formatted.length} memories (${constitutionalCount} constitutional)`
-    : `Found ${formatted.length} memories`;
+  const summary = `Found ${formatted.length} memories`;
 
   // Build hints based on context
   const hints: string[] = [];
@@ -1361,7 +1353,6 @@ export async function formatSearchResults(
   const responseData: Record<string, unknown> = {
     searchType: searchType,
     count: formatted.length,
-    constitutionalCount: constitutionalCount,
     results: resultsWithConfidence,
     // Request-level quality assessment (additive)
     ...(requestQualityData !== null ? requestQualityData : {}),
@@ -1378,7 +1369,6 @@ export async function formatSearchResults(
     const {
       searchType: _s,
       count: _c,
-      constitutionalCount: _cc,
       results: _r,
       citationPolicy: _cp,
       envelopeRender: _er,

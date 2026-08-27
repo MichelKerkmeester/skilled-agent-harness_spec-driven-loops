@@ -12,9 +12,8 @@ import { shouldSample, logScoringObservation } from '../telemetry/scoring-observ
 
 import type { MemoryDbRow } from '@spec-kit/shared/types';
 
-// Feature catalog: Score normalization
-// Feature catalog: Interference scoring
-// Feature catalog: Negative feedback confidence signal
+// Composite retrieval scoring: normalization, interference, and the
+// negative-feedback confidence signal.
 
 
 /**
@@ -185,7 +184,6 @@ export const FSRS_FACTOR: number = 19 / 81;
 export const FSRS_DECAY: number = -0.5;
 
 const RETRIEVABILITY_TIER_MULTIPLIER: Readonly<Record<string, number>> = {
-  constitutional: 0.1,
   critical: 0.3,
   important: 0.5,
   normal: 1.0,
@@ -202,7 +200,6 @@ const CLASSIFICATION_CONTEXT_STABILITY_MULTIPLIER: Readonly<Record<string, numbe
 };
 
 const CLASSIFICATION_TIER_STABILITY_MULTIPLIER: Readonly<Record<string, number>> = {
-  constitutional: Infinity,
   critical: Infinity,
   important: 1.5,
   normal: 1.0,
@@ -224,7 +221,6 @@ function applyClassificationDecayFallback(stability: number, contextType: string
 
 // Importance weight multipliers
 export const IMPORTANCE_MULTIPLIERS: Readonly<Record<string, number>> = {
-  constitutional: 2.0,
   critical: 1.5,
   important: 1.3,
   normal: 1.0,
@@ -248,7 +244,6 @@ export const DOCUMENT_TYPE_MULTIPLIERS: Readonly<Record<string, number>> = {
   checklist: 1.0,
   handover: 1.0,
   memory: 1.0,
-  constitutional: 2.0,
   scratch: 0.6,
 };
 
@@ -663,7 +658,6 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
   const importance = row.importance_weight || 0.5;
   const timestamp = row.updated_at || row.created_at;
   const tier = row.importance_tier || 'normal';
-  // HIGH-003 FIX: Pass tier for constitutional exemption
   const recencyScore = calculateRecencyScore(timestamp, tier);
   const popularityScore = calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null);
   const tierBoost = getTierBoost(tier);

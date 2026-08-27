@@ -228,32 +228,6 @@ export function buildCompactContext(transcriptLines: string[]): string {
 
 type AutoSurfaceAtCompactionResult = Awaited<ReturnType<typeof autoSurfaceAtCompaction>>;
 
-function renderConstitutionalMemories(
-  autoSurfaced: AutoSurfaceAtCompactionResult,
-): string {
-  const constitutional = autoSurfaced?.constitutional ?? [];
-  if (constitutional.length === 0) {
-    return '';
-  }
-
-  const lines = constitutional.map((memory) => {
-    const details: string[] = [`- ${memory.title}`];
-
-    if (memory.retrieval_directive) {
-      details.push(`  ${memory.retrieval_directive}`);
-    }
-
-    const provenance = [memory.specFolder, memory.filePath].filter(Boolean).join(' | ');
-    if (provenance) {
-      details.push(`  ${provenance}`);
-    }
-
-    return details.join('\n');
-  });
-
-  return lines.join('\n');
-}
-
 function renderTriggeredMemories(
   autoSurfaced: AutoSurfaceAtCompactionResult,
 ): string {
@@ -407,7 +381,6 @@ export async function buildMergedCompactResult(
   });
 
   const mergeInput: MergeInput = {
-    constitutional: '',
     codeGraph,
     triggered: '',
     sessionState,
@@ -419,12 +392,11 @@ export async function buildMergedCompactResult(
     ? await withTimeout(autoSurfaceAtCompaction(sessionState), surfaceBudget, null)
     : null;
   if (autoSurfaced) {
-    mergeInput.constitutional = renderConstitutionalMemories(autoSurfaced);
     mergeInput.triggered = renderTriggeredMemories(autoSurfaced);
     hookLog(
       'info',
       'compact-inject',
-      `Compaction auto-surface returned ${autoSurfaced.constitutional.length} constitutional and ${autoSurfaced.triggered.length} triggered memories (${autoSurfaced.latencyMs}ms)`,
+      `Compaction auto-surface returned ${autoSurfaced.triggered.length} triggered memories (${autoSurfaced.latencyMs}ms)`,
     );
   } else {
     const fallbackBudget = remainingMs(deadline, PERSISTENCE_MARGIN_MS);

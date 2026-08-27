@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Vector Index Aliases
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Semantic and lexical search (memory_search)
 // Split from vector-index-store.ts — contains LRUCache, query caching,
 // Learning from selections, and enhanced search with ranking+diversity.
 
@@ -41,7 +40,6 @@ type EnrichedSearchResult = {
   smartScore?: number;
   spec_folder?: string;
   searchMethod?: string;
-  isConstitutional: boolean;
   [key: string]: unknown;
 };
 type EnhancedSearchOptions = {

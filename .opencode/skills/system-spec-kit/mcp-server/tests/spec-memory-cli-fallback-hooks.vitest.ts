@@ -10,7 +10,6 @@ describe('spec memory CLI fallback hook lane', () => {
       mode: 'quick',
       limit: 5,
       includeContent: false,
-      includeConstitutional: false,
     });
   });
 

@@ -51,7 +51,7 @@ import {
 } from '../lib/search/search-flags.js';
 
 import { getCanonicalPathKey, resolveCanonicalPath } from '../lib/utils/canonical-path.js';
-import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../lib/utils/index-scope.js';
+import { shouldIndexForMemory } from '../lib/utils/index-scope.js';
 import { findSimilarMemories } from './pe-gating.js';
 import { runPostMutationHooks } from './mutation-hooks.js';
 import { buildMutationHookFeedback } from '../hooks/mutation-feedback.js';
@@ -209,10 +209,8 @@ import { markMemorySuperseded } from './pe-gating.js';
 import { resolveMemoryReference } from './causal-links-processor.js';
 import { refreshAutoEntitiesForMemory } from '../lib/extraction/entity-extractor.js';
 
-// Feature catalog: Memory indexing (memory_save)
-// Feature catalog: Verify-fix-verify memory quality loop
-// Feature catalog: Dry-run preflight for memory_save
-// Feature catalog: Prediction-error save arbitration
+// memory_save: indexing, the verify-fix-verify quality loop, dry-run preflight,
+// and prediction-error save arbitration.
 
 
 // Create local path validator
@@ -280,7 +278,7 @@ function createIndexScopeExcludedResponse(
       filePath: originalPath,
     },
     recovery: {
-      hint: 'Move the file into an indexable spec folder or constitutional rule path before retrying.',
+      hint: 'Move the file into an indexable spec folder before retrying.',
       actions: ['Verify the path is not under z-future/ or external/'],
       severity: 'warning',
     },
@@ -457,15 +455,6 @@ function mergeTriggerPhrases(
   return merged;
 }
 
-function isSandboxConstitutionalSource(filePath: string): boolean {
-  const normalized = path.resolve(filePath).replace(/\\/g, '/').toLowerCase();
-  return normalized.startsWith('/tmp/')
-    || normalized.startsWith('/private/tmp/')
-    || normalized.includes('/tmp/')
-    || normalized.includes('/sandbox/')
-    || normalized.includes('sandbox');
-}
-
 function prepareParsedMemoryForIndexing(
   parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
   database: ReturnType<typeof requireDb>,
@@ -479,31 +468,6 @@ function prepareParsedMemoryForIndexing(
   if (!shouldIndexForMemory(canonicalFilePath)) {
     throw new Error(`Memory indexing excluded for path: ${parsed.filePath}`);
   }
-  if (parsed.importanceTier === 'constitutional' && isSandboxConstitutionalSource(canonicalFilePath)) {
-    throw new Error(`Constitutional memory saves from temporary or sandbox paths are rejected: ${parsed.filePath}`);
-  }
-  if (parsed.importanceTier === 'constitutional' && !isIndexableConstitutionalMemoryPath(canonicalFilePath)) {
-    console.warn('[memory-save] importance_tier=constitutional rejected for non-constitutional path; downgrading to important', {
-      file_path: parsed.filePath,
-    });
-    try {
-      recordTierDowngradeAudit(database, {
-        logicalKey: buildGovernanceLogicalKey(parsed.specFolder, canonicalFilePath, null),
-        requestedTier: 'constitutional',
-        nextTier: 'important',
-        source: 'memory_save',
-        filePath: parsed.filePath,
-        canonicalFilePath,
-      });
-    } catch (error: unknown) {
-      console.warn(
-        '[memory-save] governance_audit insert failed for tier downgrade:',
-        error instanceof Error ? error.message : String(error),
-      );
-    }
-    parsed.importanceTier = 'important';
-  }
-
   const validation = memoryParser.validateParsedMemory(parsed);
   if (validation.warnings && validation.warnings.length > 0) {
     console.warn(`[memory] Warning for ${path.basename(parsed.filePath)}:`);
@@ -3247,7 +3211,7 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
       code: 'E089',
       details: { requestId },
       recovery: {
-        hint: 'Pass an absolute path to a canonical spec document or constitutional memory.',
+        hint: 'Pass an absolute path to a canonical spec document.',
         actions: ['Provide a non-empty filePath string', 'Retry memory_save'],
         severity: 'warning',
       },
@@ -3288,11 +3252,11 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   if (!memoryParser.isMemoryFile(validatedPath)) {
     return createMCPErrorResponse({
       tool: 'memory_save',
-      error: 'File must be a canonical spec document under specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, review-report.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/',
+      error: 'File must be a canonical spec document under specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, review-report.md, description.json, graph-metadata.json)',
       code: 'E089',
       details: { requestId, filePath: validatedPath },
       recovery: {
-        hint: 'Save a canonical spec document or constitutional memory; scratch files outside specs/** are not indexable.',
+        hint: 'Save a canonical spec document; scratch files outside specs/** are not indexable.',
         actions: ['Move the content into a spec folder under specs/** or .opencode/specs/**', 'Retry memory_save with the canonical path'],
         severity: 'warning',
       },
@@ -3302,8 +3266,7 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   // Fail fast with a clear message when a spec doc's folder lacks both structural
   // metadata files, instead of the generic save "unexpected error" (E081).
   if (path.basename(canonicalValidatedPath) !== 'description.json'
-    && path.basename(canonicalValidatedPath) !== 'graph-metadata.json'
-    && !canonicalValidatedPath.includes('/constitutional/')) {
+    && path.basename(canonicalValidatedPath) !== 'graph-metadata.json') {
     const specFolderDir = path.dirname(canonicalValidatedPath);
     const missingMetadata = ['description.json', 'graph-metadata.json']
       .filter((name) => !fs.existsSync(path.join(specFolderDir, name)));
@@ -4091,7 +4054,7 @@ async function atomicSaveMemory(params: AtomicSaveParams, options: AtomicSaveOpt
           const msg = hookError instanceof Error ? hookError.message : String(hookError);
           postMutationHooks = {
             latencyMs: 0, triggerCacheCleared: false,
-            constitutionalCacheCleared: false, toolCacheInvalidated: 0,
+            toolCacheInvalidated: 0,
             graphSignalsCacheCleared: false, coactivationCacheCleared: false,
             errors: [msg],
           };
@@ -4158,7 +4121,6 @@ export {
 
 export const __memorySaveTestables = {
   applyInjectionMarkerCapturePolicy,
-  isSandboxConstitutionalSource,
   mergeTriggerPhrases,
 };
 

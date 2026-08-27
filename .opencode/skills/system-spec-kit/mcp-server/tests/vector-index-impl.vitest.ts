@@ -84,8 +84,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
         'getMemory', 'getMemoriesByFolder', 'getMemoryCount',
         'getStatusCounts', 'getStats', 'verifyIntegrity',
         // Search - Basic
-        'vectorSearch', 'getConstitutionalMemories',
-        'clearConstitutionalCache', 'multiConceptSearch',
+        'vectorSearch', 'multiConceptSearch',
         'isVectorSearchAvailable',
         // Search - Enriched
         'vectorSearchEnriched', 'multiConceptSearchEnriched',
@@ -912,14 +911,6 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       const cleared = mod.clearSearchCache('specs/test-001');
       expect(typeof cleared).toBe('number');
     });
-
-    it('clearConstitutionalCache clears without error', () => {
-      expect(() => mod.clearConstitutionalCache()).not.toThrow();
-    });
-
-    it('clearConstitutionalCache clears by folder without error', () => {
-      expect(() => mod.clearConstitutionalCache('specs/test-001')).not.toThrow();
-    });
   });
 
   // ───────────────────────────────────────────────────────────────
@@ -1078,16 +1069,6 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     it('handles invalid sortBy gracefully', () => {
       const stats = mod.getUsageStats({ sortBy: 'invalid_field' });
       expect(Array.isArray(stats)).toBe(true);
-    });
-  });
-
-  // ───────────────────────────────────────────────────────────────
-  // 24. GROUP 24: GETCONSTITUTIONALMEMORIES
-  // ───────────────────────────────────────────────────────────────
-  describe('getConstitutionalMemories', () => {
-    it('returns array (expected 0 in test DB)', () => {
-      const constitutional = mod.getConstitutionalMemories({});
-      expect(Array.isArray(constitutional)).toBe(true);
     });
   });
 
@@ -1587,7 +1568,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     it('vectorSearch filters by specFolder', () => {
       const query = makeEmbedding(1);
       const filtered = vectorMod.vectorSearch(query, { limit: 10, specFolder: 'specs/test-vec' });
-      expect(filtered.every(r => r.spec_folder === 'specs/test-vec' || r.isConstitutional)).toBe(true);
+      expect(filtered.every(r => r.spec_folder === 'specs/test-vec')).toBe(true);
     });
 
     it('vectorSearch respects minSimilarity', () => {

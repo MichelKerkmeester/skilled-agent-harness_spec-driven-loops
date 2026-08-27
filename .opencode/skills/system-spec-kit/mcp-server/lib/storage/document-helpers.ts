@@ -32,7 +32,6 @@ export function calculateDocumentWeight(filePath: string, documentType?: string)
         handover: 0.5,
         description_metadata: 0.55,
         graph_metadata: 0.75,
-        constitutional: 1.0,
         memory: 0.5,
         scratch: 0.25,
       };
@@ -51,5 +50,5 @@ export function calculateDocumentWeight(filePath: string, documentType?: string)
  * @returns True when the document participates in spec-level semantics.
  */
 export function isSpecDocumentType(documentType?: string): boolean {
-  return !!documentType && documentType !== 'memory' && documentType !== 'constitutional';
+  return !!documentType && documentType !== 'memory';
 }

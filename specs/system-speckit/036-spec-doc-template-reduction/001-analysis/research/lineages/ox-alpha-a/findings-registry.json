@@ -1,0 +1,160 @@
+{
+  "sessionId": "fanout-ox-alpha-a-1787723389999-m6mva1",
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "Q-A1",
+      "status": "answered-with-draft-recommendation"
+    },
+    {
+      "id": "Q-A2",
+      "status": "answered"
+    },
+    {
+      "id": "Q-A4",
+      "status": "answered"
+    },
+    {
+      "id": "Q-A6",
+      "status": "answered"
+    },
+    {
+      "id": "Q-A3",
+      "status": "answered"
+    },
+    {
+      "id": "Q-A5",
+      "status": "answered"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F-A1.1",
+      "finding": "deriveStatus ranks impl-summary>checklist>tasks; checklist presence disables tasks checkbox evaluation; L1 branch combines completion_pct+open tasks",
+      "source": "mcp-server/lib/graph/graph-metadata-parser.ts:1178-1266"
+    },
+    {
+      "id": "F-A1.2",
+      "finding": "detectLevel infers level from decision-record.md/checklist.md file presence fallback",
+      "source": "mcp-server/lib/validation/orchestrator.ts:157-171"
+    },
+    {
+      "id": "F-A1.3",
+      "finding": "manifest models checklist.md as addon at L2/3/3+ only; merge maps to sectionGates inside tasks.md",
+      "source": "templates/manifest/spec-kit-docs.json; mcp-server/lib/templates/level-contract-resolver.ts:192"
+    },
+    {
+      "id": "F-A1.4",
+      "finding": "PRIORITY_TAGS validator scans checklist.md only; CHK format enforced there",
+      "source": "mcp-server/lib/validation/orchestrator.ts:550-561"
+    },
+    {
+      "id": "F-A1.6",
+      "finding": "recommendation draft: merged doc gates verification section at L2+ via IF levels; legacy checklist.md read-path required to avoid shipped-packet regressions",
+      "source": "iterations/iteration-001.md"
+    },
+    {
+      "id": "F-B1.1",
+      "finding": "renderer supports only inline IF-level gates, no cross-file includes; shared-core must be in-file ungated core",
+      "source": "scripts/templates/inline-gate-renderer.ts:33-182"
+    },
+    {
+      "id": "F-B1.2",
+      "finding": "ADR-004 byte-identical gate = scaffold-golden-snapshots vitest toMatchSnapshot per level x doc + no residual IF markers",
+      "source": "scripts/tests/scaffold-golden-snapshots.vitest.ts:31-52"
+    },
+    {
+      "id": "F-B1.3",
+      "finding": "checklist.md.tmpl MEASURED: 585 body lines, 80 unique union; L3 vs L3+ differ by 5 lines; ~505 dup lines removable byte-identically",
+      "source": "templates/manifest/checklist.md.tmpl measured"
+    },
+    {
+      "id": "F-B1.4",
+      "finding": "decision-record.md.tmpl L3/L3+ bodies 138/142 identical; L3+ block is near-pure copy",
+      "source": "templates/manifest/decision-record.md.tmpl measured"
+    },
+    {
+      "id": "F-B1.5",
+      "finding": "research.md.tmpl 948 lines 40 anchors already level-gated by 033 T010 (L1 renders 175 lines); remaining cost is the fixed widget taxonomy itself",
+      "source": "templates/manifest/research.md.tmpl:22-936; 033 tasks.md:55"
+    },
+    {
+      "id": "F-C1.1",
+      "finding": "8 templates carry _memory frontmatter; L2 packet ~227 duplicated lines, L3 ~261",
+      "source": "templates/manifest/*.md.tmpl measured"
+    },
+    {
+      "id": "F-C1.2",
+      "finding": "resume ladder reads _memory.continuity from implementation-summary.md ONLY (docstring + parseContinuitySignal call)",
+      "source": "mcp-server/lib/resume/resume-ladder.ts:961-1019"
+    },
+    {
+      "id": "F-C1.3",
+      "finding": "FRONTMATTER_MEMORY_BLOCK validates all contract docs; SESSION_LINEAGE scans all level docs - both require co-change when dropping copies",
+      "source": "mcp-server/lib/validation/spec-doc-structure.ts:189; orchestrator.ts:625-634"
+    },
+    {
+      "id": "F-C1.4",
+      "finding": "deriveStatus reads completion_pct only from implementation-summary",
+      "source": "graph-metadata-parser.ts:1237-1239"
+    },
+    {
+      "id": "F-D1.1",
+      "finding": "instructional comments = ~15.5% of L2 rendered doc bytes (8299B/53660B); impl-summary 43.6%",
+      "source": "measured renders; iterations/iteration-004.md"
+    },
+    {
+      "id": "F-D1.2",
+      "finding": "renderer strips only IF gates; other comments pass verbatim into packets",
+      "source": "scripts/templates/inline-gate-renderer.ts:182+"
+    },
+    {
+      "id": "F-D1.3",
+      "finding": "no validator/runtime consumes SELF-CHECK/FAILURE-MODES prose; anchors are the contract",
+      "source": "negative grep across mcp-server/lib + scripts"
+    },
+    {
+      "id": "F-E1.2",
+      "finding": "context growth alone degrades performance even with perfect retrieval; comment bytes are a quality tax, not neutral filler",
+      "source": "EMNLP 2025 findings 1264"
+    },
+    {
+      "id": "F-E1.4",
+      "finding": "github/spec-kit tasks template ~230-250 lines; agent instructions consumed by filling command, not shipped in artifact",
+      "source": "github/spec-kit/blob/main/templates/tasks-template.md"
+    },
+    {
+      "id": "F-E1.5",
+      "finding": "ADR industry norm: short 1-2 page docs with status+supersession; decision-record.tmpl exceeds norms with L3/L3+ near-copy",
+      "source": "martinfowler.com/bliki/ArchitectureDecisionRecord.html"
+    },
+    {
+      "id": "F-F1.1",
+      "finding": "AC criteria machine-consumed from exactly 2 homes (spec.md tables + checklist traceability matrix); plan/tasks/impl-summary copies are decorative",
+      "source": "scripts/rules/check-ac-coverage.sh:100-166"
+    },
+    {
+      "id": "F-F1.3",
+      "finding": "AC_COVERAGE hard-binds checklist.md+impl-summary filenames and level>=2; advisory severity limits regression blast radius",
+      "source": "check-ac-coverage.sh:53-58,198-200"
+    },
+    {
+      "id": "F-G1.1",
+      "finding": "content-router hardcodes default anchors adr-NNN/what-built/how-delivered; tasks anchors untouched by merge = zero routing impact",
+      "source": "content-router.ts:48-50,1080-1105"
+    },
+    {
+      "id": "F-G1.2",
+      "finding": "all golden renders in ONE snapshot file (3955 lines); refactor=empty diff, shape change=reviewed re-baseline",
+      "source": "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap"
+    },
+    {
+      "id": "F-G1.3",
+      "finding": "continuity freshness gate parses implementation-summary.md frontmatter only",
+      "source": "scripts/validation/continuity-freshness.ts:356-371"
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "promotedIdeas": []
+}

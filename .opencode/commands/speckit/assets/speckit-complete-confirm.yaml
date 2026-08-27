@@ -1138,7 +1138,7 @@ workflow:
     importance_tier:
       assign: important
       rationale: "Complete workflow represents significant implementation work"
-      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
+      tier_reference: "critical > important > normal > temporary > deprecated"
 
   step_14_handover_check:
     purpose: Final workflow closeout before completion

@@ -9,7 +9,7 @@ describe('vector index query helpers', () => {
       id: 1,
       spec_folder: 'specs/query',
       file_path: '/repo/specs/query/spec.md',
-      importance_tier: 'constitutional',
+      importance_tier: 'normal',
       trigger_phrases: '["query expansion"]',
       similarity_0: 80,
       similarity_1: 60,
@@ -19,7 +19,6 @@ describe('vector index query helpers', () => {
     expect(row.avg_similarity).toBe(70);
     expect(row.similarity).toBe(70);
     expect(row.score).toBe(0.7);
-    expect(row.isConstitutional).toBe(true);
     expect(row.trigger_phrases).toEqual(['query expansion']);
   });
 });

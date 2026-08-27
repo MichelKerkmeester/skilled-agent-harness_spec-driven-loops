@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Memory Parser
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Content-aware memory filename generation
+// Content-aware parsing of memory/spec-doc files (doc-type, filename, frontmatter).
 // Node stdlib
 import fs from 'fs';
 import path from 'path';
@@ -23,7 +23,7 @@ import {
   matchesSpecDocumentPath,
   SPEC_DOCUMENT_FILENAMES,
 } from '../config/spec-doc-paths.js';
-import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../utils/index-scope.js';
+import { shouldIndexForMemory } from '../utils/index-scope.js';
 import {
   graphMetadataToIndexableText,
   packetReferencesToCausalLinks,
@@ -445,10 +445,6 @@ export function extractDocumentType(filePath: string): string {
     return 'graph_metadata';
   }
 
-  // Constitutional files
-  if (normalizedPath.includes('/constitutional/') && normalizedPath.endsWith('.md')) {
-    return 'constitutional';
-  }
 
   return 'memory';
 }
@@ -937,9 +933,6 @@ export function extractImportanceTier(content: string, options: ExtractImportanc
 
   const markerScope = frontmatter ?? '';
 
-  if (markerScope.includes('[CONSTITUTIONAL]') || /importance:\s*constitutional/i.test(markerScope)) {
-    return 'constitutional';
-  }
   if (markerScope.includes('[CRITICAL]') || /importance:\s*critical/i.test(markerScope)) {
     return 'critical';
   }
@@ -1201,7 +1194,7 @@ export function hasCausalLinks(causalLinks: CausalLinks | null | undefined): boo
 // 4. VALIDATION FUNCTIONS
 // ───────────────────────────────────────────────────────────────
 
-/** Check if a file path is indexable by the memory system (spec document or constitutional memory) */
+/** Check if a file path is indexable by the memory system (a canonical spec document) */
 export function isMemoryFile(filePath: string): boolean {
   const normalizedPath = filePath.replace(/\\/g, '/');
   const basename = path.basename(normalizedPath).toLowerCase();
@@ -1218,14 +1211,7 @@ export function isMemoryFile(filePath: string): boolean {
     matchesSpecDocumentPath(normalizedPath, basename)
   );
 
-  // Constitutional memories in skill folder
-  const isConstitutional = (
-    normalizedPath.endsWith('.md') &&
-    normalizedPath.includes('/.opencode/skills/') &&
-    isIndexableConstitutionalMemoryPath(normalizedPath)
-  );
-
-  return isSpecDocument || isConstitutional;
+  return isSpecDocument;
 }
 
 /** Set of recognized spec folder document filenames (lowercase) */

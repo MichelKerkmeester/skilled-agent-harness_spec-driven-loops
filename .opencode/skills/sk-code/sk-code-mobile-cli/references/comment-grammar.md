@@ -13,7 +13,7 @@ trigger_phrases:
   - "comment only diff verifier"
 importance_tier: normal
 contextType: implementation
-version: 1.7.0.0
+version: 0.1.7.0
 ---
 
 # Source Comment Grammar

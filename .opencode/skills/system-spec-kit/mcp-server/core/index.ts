@@ -29,9 +29,6 @@ export {
   // Path validation
   DEFAULT_BASE_PATH,
   ALLOWED_BASE_PATHS,
-
-  // Cache
-  CONSTITUTIONAL_CACHE_TTL,
 } from './config.js';
 
 export {
@@ -53,10 +50,4 @@ export {
   // Persistent rate limiting
   getLastScanTime,
   setLastScanTime,
-
-  // Constitutional cache
-  getConstitutionalCache,
-  setConstitutionalCache,
-  getConstitutionalCacheTime,
-  clearConstitutionalCache,
 } from './db-state.js';

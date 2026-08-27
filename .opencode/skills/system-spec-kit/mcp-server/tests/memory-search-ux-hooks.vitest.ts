@@ -25,7 +25,7 @@ vi.mock('../lib/search/pipeline', () => ({
   executePipeline: vi.fn(async () => ({
     results: PIPELINE_RESULTS,
     metadata: {
-      stage1: { searchType: 'hybrid', channelCount: 2, candidateCount: 7, constitutionalInjected: 0, durationMs: 1 },
+      stage1: { searchType: 'hybrid', channelCount: 2, candidateCount: 7, durationMs: 1 },
       stage2: {
         sessionBoostApplied: 'off',
         causalBoostApplied: 'off',
@@ -40,7 +40,7 @@ vi.mock('../lib/search/pipeline', () => ({
         chunkReassemblyStats: { collapsedChunkHits: 0, chunkParents: 0, reassembled: 0, fallback: 0 },
         durationMs: 1,
       },
-      stage4: { stateFiltered: 0, constitutionalInjected: 0, evidenceGapDetected: false, durationMs: 1 },
+      stage4: { stateFiltered: 0, evidenceGapDetected: false, durationMs: 1 },
     },
     annotations: { stateStats: {}, featureFlags: {} },
     trace: undefined,
@@ -196,7 +196,7 @@ describe('memory_search UX hook integration', () => {
     vi.mocked(pipeline.executePipeline).mockResolvedValueOnce({
       results: PIPELINE_RESULTS.slice(0, 5),
       metadata: {
-        stage1: { searchType: 'hybrid', channelCount: 2, candidateCount: 5, constitutionalInjected: 0, durationMs: 1 },
+        stage1: { searchType: 'hybrid', channelCount: 2, candidateCount: 5, durationMs: 1 },
         stage2: {
           sessionBoostApplied: 'off',
           causalBoostApplied: 'off',
@@ -211,7 +211,7 @@ describe('memory_search UX hook integration', () => {
           chunkReassemblyStats: { collapsedChunkHits: 0, chunkParents: 0, reassembled: 0, fallback: 0 },
           durationMs: 1,
         },
-        stage4: { stateFiltered: 0, constitutionalInjected: 0, evidenceGapDetected: false, durationMs: 1 },
+        stage4: { stateFiltered: 0, evidenceGapDetected: false, durationMs: 1 },
       },
       annotations: { stateStats: {}, featureFlags: {} },
       trace: undefined,
@@ -289,17 +289,9 @@ describe('memory_search UX hook integration', () => {
           file_path: '/tmp/specs/026-feature/004-gate-d/memory/legacy.md',
           document_type: 'memory',
         },
-        {
-          id: 104,
-          score: 0.82,
-          title: 'Constitutional rule',
-          file_path: '/tmp/.opencode/skills/system-spec-kit/constitutional/rules.md',
-          document_type: 'constitutional',
-          importance_tier: 'constitutional',
-        },
       ],
       metadata: {
-        stage1: { searchType: 'hybrid', channelCount: 2, candidateCount: 4, constitutionalInjected: 0, durationMs: 1 },
+        stage1: { searchType: 'hybrid', channelCount: 2, candidateCount: 3, durationMs: 1 },
         stage2: {
           sessionBoostApplied: 'off',
           causalBoostApplied: 'off',
@@ -314,7 +306,7 @@ describe('memory_search UX hook integration', () => {
           chunkReassemblyStats: { collapsedChunkHits: 0, chunkParents: 0, reassembled: 0, fallback: 0 },
           durationMs: 1,
         },
-        stage4: { stateFiltered: 0, constitutionalInjected: 0, evidenceGapDetected: false, durationMs: 1 },
+        stage4: { stateFiltered: 0, evidenceGapDetected: false, durationMs: 1 },
       },
       annotations: { stateStats: {}, featureFlags: {} },
       trace: undefined,
@@ -330,19 +322,18 @@ describe('memory_search UX hook integration', () => {
     const results = data.results as Array<Record<string, unknown>>;
     const sourceContract = data.sourceContract as Record<string, unknown>;
 
-    expect(results.map((row) => row.id)).toEqual([101, 102, 104]);
+    expect(results.map((row) => row.id)).toEqual([101, 102]);
     expect(results.some((row) => row.id === 103)).toBe(false);
     expect(sourceContract).toMatchObject({
       archivedTierEnabled: true,
       legacyFallbackEnabled: false,
       includeArchivedCompatibility: 'honored',
-      retainedResults: 3,
+      retainedResults: 2,
       droppedNonCanonicalResults: 1,
     });
     expect(sourceContract.countsBySourceKind).toEqual({
       spec_doc: 1,
       continuity: 1,
-      constitutional: 1,
     });
   });
 });

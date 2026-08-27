@@ -517,7 +517,7 @@ describe('Context Server', () => {
 
       const handlers = new Map<unknown, (request: unknown, extra: unknown) => Promise<unknown>>()
       const dispatchToolMock = vi.fn()
-      const autoSurfaceMemoriesMock = vi.fn(async () => ({ constitutional: [], triggered: [] }))
+      const autoSurfaceMemoriesMock = vi.fn(async () => ({ triggered: [] }))
       const autoSurfaceAtToolDispatchMock = vi.fn(async () => null)
       const autoSurfaceAtCompactionMock = vi.fn(async () => null)
       const appendAutoSurfaceHintsMock = vi.fn(actualAppendAutoSurfaceHints)
@@ -1424,12 +1424,10 @@ describe('Context Server', () => {
       expect(sourceCode).toContain('autoSurfacedContext = await autoSurfaceAtToolDispatch(name, validatedArgs)')
 
       const autoSurfaceAtToolDispatchMock = vi.fn(async () => ({
-        constitutional: [{ id: 1, title: 'Gate rule' }],
         triggered: [{ memory_id: 2, matched_phrases: ['hook'] }],
       }))
       const autoSurfaceMemoriesMock = vi.fn()
       const surfaced = {
-        constitutional: [{ id: 1, title: 'Gate rule' }],
         triggered: [{ memory_id: 2, matched_phrases: ['hook'] }],
       }
 
@@ -1520,13 +1518,11 @@ describe('Context Server', () => {
 
       const dispatchToolMock = vi.fn(async () => ({ content: [{ type: 'text', text: '{}' }] }))
       const autoSurfaceMemoriesMock = vi.fn(async () => ({
-        constitutional: [],
         triggered: [{ memory_id: 3, matched_phrases: ['query'] }],
       }))
       const autoSurfaceAtToolDispatchMock = vi.fn(async () => null)
       const memoryAwareTools = new Set<string>(['memory_search'])
       const surfaced = {
-        constitutional: [],
         triggered: [{ memory_id: 3, matched_phrases: ['query'] }],
       }
 
@@ -1568,14 +1564,12 @@ describe('Context Server', () => {
       const dispatchToolMock = vi.fn(async () => ({ content: [{ type: 'text', text: '{}' }] }))
       const autoSurfaceAtToolDispatchMock = vi.fn(async () => null)
       const autoSurfaceAtCompactionMock = vi.fn(async () => ({
-        constitutional: [{ id: 9, title: 'Compaction directive' }],
         triggered: [{ memory_id: 11, matched_phrases: ['resume'] }],
       }))
       const autoSurfaceMemoriesMock = vi.fn(async () => null)
       const memoryAwareTools = new Set<string>(['memory_context'])
 
       const surfaced = {
-        constitutional: [{ id: 9, title: 'Compaction directive' }],
         triggered: [{ memory_id: 11, matched_phrases: ['resume'] }],
       }
 
@@ -1626,13 +1620,11 @@ describe('Context Server', () => {
       const dispatchToolMock = vi.fn(async () => ({ content: [{ type: 'text', text: '{}' }] }))
       const autoSurfaceAtCompactionMock = vi.fn(async () => null)
       const autoSurfaceMemoriesMock = vi.fn(async () => ({
-        constitutional: [],
         triggered: [{ memory_id: 12, matched_phrases: ['focused'] }],
       }))
       const memoryAwareTools = new Set<string>(['memory_context'])
 
       const surfaced = {
-        constitutional: [],
         triggered: [{ memory_id: 12, matched_phrases: ['focused'] }],
       }
 
@@ -1674,7 +1666,6 @@ describe('Context Server', () => {
 
     it('T000i: successful responses append auto-surface hints and keep autoSurfacedContext inside the envelope', async () => {
       const surfaced = {
-        constitutional: [{ id: 1, title: 'Gate rule' }],
         triggered: [{ memory_id: 2, matched_phrases: ['hook'] }],
         surfaced_at: '2026-03-06T12:00:00.000Z',
         latencyMs: 7,
@@ -1697,9 +1688,8 @@ describe('Context Server', () => {
       expect(response.autoSurfacedContext).toBeUndefined()
 
       const parsed = JSON.parse(response.content[0].text)
-      expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 1 constitutional and 1 triggered memories'))).toBe(true)
+      expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 1 triggered memories'))).toBe(true)
       expect(parsed.meta.autoSurface).toEqual({
-        constitutionalCount: 1,
         triggeredCount: 1,
         surfaced_at: '2026-03-06T12:00:00.000Z',
         latencyMs: 7,
@@ -1711,7 +1701,6 @@ describe('Context Server', () => {
 
     it('T000j: final tokenCount matches the serialized envelope after hints and tokenBudget injection', async () => {
       const surfaced = {
-        constitutional: [{ id: 1, title: 'Gate rule' }],
         triggered: [{ memory_id: 2, matched_phrases: ['budget'] }],
         surfaced_at: '2026-03-06T12:34:56.000Z',
         latencyMs: 11,
@@ -1736,7 +1725,7 @@ describe('Context Server', () => {
 
       expect(finalText).toContain('"tokenBudget": 1000')
       expect(parsed.hints).toContain('Initial hint')
-      expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 1 constitutional and 1 triggered memories (11ms)'))).toBe(true)
+      expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 1 triggered memories (11ms)'))).toBe(true)
       expect(parsed.meta.tokenCount).toBe(estimateTokenCount(finalText))
     })
 
@@ -1746,7 +1735,7 @@ describe('Context Server', () => {
         content: [{ type: 'text', text: '{not-json' }],
       }
 
-      actualAppendAutoSurfaceHints(result, { constitutional: [], triggered: [] })
+      actualAppendAutoSurfaceHints(result, { triggered: [] })
 
       expect(warnSpy).toHaveBeenCalledTimes(1)
       expect(String(warnSpy.mock.calls[0]?.[0] ?? '')).toContain('[response-hints] appendAutoSurfaceHints failed:')
@@ -1763,8 +1752,8 @@ describe('Context Server', () => {
         content: [{ type: 'text', text: 'null' }],
       }
 
-      actualAppendAutoSurfaceHints(arrayResult, { constitutional: [{ id: 1 }], triggered: [{ id: 2 }] })
-      actualAppendAutoSurfaceHints(nullResult, { constitutional: [{ id: 1 }], triggered: [{ id: 2 }] })
+      actualAppendAutoSurfaceHints(arrayResult, { triggered: [{ id: 2 }] })
+      actualAppendAutoSurfaceHints(nullResult, { triggered: [{ id: 2 }] })
 
       expect(warnSpy).not.toHaveBeenCalled()
       expect(arrayResult.content[0].text).toBe('[]')
@@ -1793,7 +1782,6 @@ describe('Context Server', () => {
       }
 
       actualAppendAutoSurfaceHints(result, {
-        constitutional: [{ id: 1 }],
         triggered: [{ id: 2 }],
         surfaced_at: '2026-03-11T00:00:00.000Z',
         latencyMs: 5,
@@ -2778,9 +2766,8 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/const\s+scanRoots\s*=\s*Array\.from\(\s*new\s+Set\(\s*\[basePath,\s*\.\.\.ALLOWED_BASE_PATHS\]/)
     })
 
-    it('T64c: startupScan includes constitutional and spec document discovery for each root', () => {
+    it('T64c: startupScan includes spec document discovery for each root', () => {
       expect(sourceCode).toMatch(/for\s*\(const\s+root\s+of\s+scanRoots\)/)
-      expect(sourceCode).toMatch(/memoryIndexDiscovery\.findConstitutionalFiles\(root\)/)
       expect(sourceCode).toMatch(/memoryIndexDiscovery\.findSpecDocuments\(root\)/)
     })
 

@@ -107,7 +107,7 @@ const result = await mcp__system_spec_memory__memory_match_triggers({
 
 ### Gate 3 Enforcement Triggers
 
-The constitutional memory for Gate 3 enforcement uses 33 trigger phrases to detect file modification intent:
+The Gate 3 enforcement trigger set uses 33 trigger phrases to detect file modification intent:
 
 | Category | Trigger Phrases |
 |----------|-----------------|
@@ -123,7 +123,7 @@ The constitutional memory for Gate 3 enforcement uses 33 trigger phrases to dete
 **How Gate 3 Trigger Matching Works:**
 
 1. AI calls `memory_match_triggers({ prompt: "user message" })`
-2. If prompt matches any Gate 3 trigger, constitutional memory surfaces
+2. If the prompt matches any Gate 3 trigger, the Gate 3 spec-folder check is signaled
 3. AI sees reminder to ask spec folder question before file modifications
 
 **Example:**
@@ -133,12 +133,12 @@ The constitutional memory for Gate 3 enforcement uses 33 trigger phrases to dete
 const matches = await memory_match_triggers({
   prompt: "refactor the authentication module"
 });
-// Returns: Gate 3 enforcement constitutional memory 
+// Returns: Gate 3 file-modification trigger match
 // matchedPhrases: ["refactor"]
 // AI then asks: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Skip"
 ```
 
-**Trigger Design Guidelines for Constitutional Memories:**
+**Trigger Design Guidelines for Enforcement Trigger Sets:**
 
 | Guideline | Description |
 |-----------|-------------|
@@ -146,7 +146,7 @@ const matches = await memory_match_triggers({
 | **Include scale words** | Words like "comprehensive", "all", "entire" suggest large changes |
 | **Add domain terms** | Include project-specific terms for your enforcement use case |
 | **Test coverage** | Verify triggers match common user phrases |
-| **Limit count** | 20-40 triggers recommended for constitutional memories |
+| **Limit count** | 20-40 triggers recommended for an enforcement trigger set |
 
 ---
 
@@ -169,7 +169,7 @@ Save-time trigger validation now applies sanitization rules to prevent low-quali
 | Rule | Behavior |
 |------|----------|
 | **Single-word filter** | Overly generic single-word triggers (e.g., "code", "fix", "error") are stripped during save-time validation to reduce false-positive surfacing |
-| **Duplicate detection** | Triggers that duplicate existing constitutional or high-importance memory triggers are flagged and removed |
+| **Duplicate detection** | Triggers that duplicate existing high-importance memory triggers are flagged and removed |
 | **Length minimum** | Trigger phrases shorter than 3 characters are rejected |
 | **Stopword filter** | Common stopwords used alone as triggers are rejected |
 
@@ -177,7 +177,7 @@ Save-time trigger validation now applies sanitization rules to prevent low-quali
 
 **Filter behavior changes (026):**
 - `memory_match_triggers()` now applies a relevance threshold before returning matches, reducing noise from weak partial matches
-- Trigger matching respects importance tier: constitutional triggers always match, while normal-tier triggers require higher confidence scores
+- Trigger matching respects importance tier: higher-tier triggers match more readily, while normal-tier triggers require higher confidence scores
 - When multiple memories match the same trigger, results are deduplicated by content similarity (>=0.88 threshold)
 
 ---

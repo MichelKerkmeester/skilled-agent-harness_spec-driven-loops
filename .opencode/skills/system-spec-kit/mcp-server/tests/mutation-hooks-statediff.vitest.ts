@@ -11,7 +11,6 @@ describe('mutation hooks statediff subscribers', () => {
   async function loadHarness() {
     const triggerClear = vi.fn();
     const invalidateOnWrite = vi.fn(() => 3);
-    const clearConstitutional = vi.fn();
     const clearGraphSignals = vi.fn();
     const clearRelated = vi.fn();
     const clearDegree = vi.fn();
@@ -19,7 +18,6 @@ describe('mutation hooks statediff subscribers', () => {
 
     vi.doMock('../lib/parsing/trigger-matcher.js', () => ({ clearCache: triggerClear }));
     vi.doMock('../lib/cache/tool-cache.js', () => ({ invalidateOnWrite }));
-    vi.doMock('../hooks/memory-surface.js', () => ({ clearConstitutionalCache: clearConstitutional }));
     vi.doMock('../lib/graph/graph-signals.js', () => ({ clearGraphSignalsCache: clearGraphSignals }));
     vi.doMock('../lib/cognitive/co-activation.js', () => ({ clearRelatedCache: clearRelated }));
     vi.doMock('../lib/search/graph-search-fn.js', () => ({ clearDegreeCache: clearDegree }));
@@ -30,7 +28,6 @@ describe('mutation hooks statediff subscribers', () => {
       runPostMutationHooks: module.runPostMutationHooks,
       triggerClear,
       invalidateOnWrite,
-      clearConstitutional,
       clearGraphSignals,
       clearRelated,
       clearDegree,
@@ -61,7 +58,6 @@ describe('mutation hooks statediff subscribers', () => {
     expect(harness.clearRelated).toHaveBeenCalledTimes(1);
     expect(harness.triggerClear).toHaveBeenCalledTimes(1);
     expect(harness.invalidateOnWrite).toHaveBeenCalledTimes(1);
-    expect(harness.clearConstitutional).toHaveBeenCalledTimes(1);
   });
 
   it('runs graph subscribers for graph and causal-edge actions', async () => {
@@ -84,7 +80,6 @@ describe('mutation hooks statediff subscribers', () => {
       'trigger-cache',
       'semantic-trigger-cache',
       'tool-cache',
-      'constitutional-cache',
       'graph-cache',
       'coactivation-cache',
       'entity-density-cache',

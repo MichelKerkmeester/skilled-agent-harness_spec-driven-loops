@@ -1,6 +1,5 @@
 ---
 title: "Entity Co-occurrence Is Not Causal Truth"
-importanceTier: constitutional
 contextType: decision
 last_confirmed: "2026-06-10"
 last_confirmed_source: "implementation-verification"

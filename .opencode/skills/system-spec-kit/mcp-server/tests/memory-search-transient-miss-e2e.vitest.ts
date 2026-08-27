@@ -77,10 +77,10 @@ function pipelineResult(row: Record<string, unknown>) {
   return {
     results: [row],
     metadata: {
-      stage1: { searchType: 'hybrid', channelCount: 1, candidateCount: 1, constitutionalInjected: 0, durationMs: 1 },
+      stage1: { searchType: 'hybrid', channelCount: 1, candidateCount: 1, durationMs: 1 },
       stage2: { sessionBoostApplied: 'off', causalBoostApplied: 'off', intentWeightsApplied: 'off', artifactRoutingApplied: 'off', feedbackSignalsApplied: 'off', qualityFiltered: 0, durationMs: 1 },
       stage3: { rerankApplied: false, chunkReassemblyStats: { collapsedChunkHits: 0, chunkParents: 0, reassembled: 0, fallback: 0 }, durationMs: 1 },
-      stage4: { stateFiltered: 0, constitutionalInjected: 0, evidenceGapDetected: false, durationMs: 1 },
+      stage4: { stateFiltered: 0, evidenceGapDetected: false, durationMs: 1 },
     },
     annotations: { stateStats: {}, featureFlags: {} },
     trace: undefined,
@@ -155,7 +155,7 @@ describe('memory_search to memory_index_scan transient-miss flow', () => {
       excluded: aggregateBefore.excluded + 1,
     });
 
-    const scan = await indexHandler.handleMemoryIndexScan({ includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false });
+    const scan = await indexHandler.handleMemoryIndexScan({ includeSpecDocs: false, incremental: false, force: false });
     const scanData = parseData(scan);
     expect(scan.isError).not.toBe(true);
     expect(scanData.suspectCleared).toBe(1);

@@ -126,7 +126,6 @@ describe('vector KNN query-shape benchmark', () => {
         limit: 2,
         specFolder: 'specs/tied-vector',
         useDecay: false,
-        includeConstitutional: false,
       }, db).map(row => row.id)
     );
 
@@ -140,7 +139,6 @@ describe('vector KNN query-shape benchmark', () => {
       limit: 2,
       specFolder: 'specs/non-tied-vector',
       useDecay: false,
-      includeConstitutional: false,
     }, db).map(row => row.id);
 
     expect(primaryOrder).toEqual([400, 50]);

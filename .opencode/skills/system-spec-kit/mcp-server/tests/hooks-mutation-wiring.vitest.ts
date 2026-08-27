@@ -8,14 +8,12 @@ import type { MutationHookResult } from '../hooks';
 const {
   mockClearCache,
   mockInvalidateOnWrite,
-  mockClearConstitutionalCache,
   mockClearGraphSignalsCache,
   mockClearDegreeCache,
   mockClearRelatedCache,
 } = vi.hoisted(() => ({
   mockClearCache: vi.fn(),
   mockInvalidateOnWrite: vi.fn(),
-  mockClearConstitutionalCache: vi.fn(),
   mockClearGraphSignalsCache: vi.fn(),
   mockClearDegreeCache: vi.fn(),
   mockClearRelatedCache: vi.fn(),
@@ -27,10 +25,6 @@ vi.mock('../lib/parsing/trigger-matcher', () => ({
 
 vi.mock('../lib/cache/tool-cache', () => ({
   invalidateOnWrite: mockInvalidateOnWrite,
-}));
-
-vi.mock('../hooks/memory-surface', () => ({
-  clearConstitutionalCache: mockClearConstitutionalCache,
 }));
 
 vi.mock('../lib/graph/graph-signals', () => ({
@@ -53,7 +47,6 @@ function assertMutationHookResultShape(result: MutationHookResult): void {
   expect(typeof result.latencyMs).toBe('number');
   expect(result.latencyMs).toBeGreaterThanOrEqual(0);
   expect(typeof result.triggerCacheCleared).toBe('boolean');
-  expect(typeof result.constitutionalCacheCleared).toBe('boolean');
   expect(typeof result.graphSignalsCacheCleared).toBe('boolean');
   expect(typeof result.coactivationCacheCleared).toBe('boolean');
   expect(typeof result.toolCacheInvalidated).toBe('number');
@@ -64,7 +57,6 @@ describe('Hooks mutation wiring', () => {
   beforeEach(() => {
     mockClearCache.mockReset().mockReturnValue(undefined);
     mockInvalidateOnWrite.mockReset().mockReturnValue(2);
-    mockClearConstitutionalCache.mockReset().mockReturnValue(undefined);
     mockClearGraphSignalsCache.mockReset().mockReturnValue(undefined);
     mockClearDegreeCache.mockReset().mockReturnValue(undefined);
     mockClearRelatedCache.mockReset().mockReturnValue(undefined);
@@ -83,7 +75,6 @@ describe('Hooks mutation wiring', () => {
 
     expect(mockClearCache).toHaveBeenCalledTimes(MUTATION_OPERATIONS.length);
     expect(mockInvalidateOnWrite).toHaveBeenCalledTimes(MUTATION_OPERATIONS.length);
-    expect(mockClearConstitutionalCache).toHaveBeenCalledTimes(MUTATION_OPERATIONS.length);
     expect(mockClearGraphSignalsCache).toHaveBeenCalledTimes(MUTATION_OPERATIONS.length);
     expect(mockClearDegreeCache).toHaveBeenCalledTimes(MUTATION_OPERATIONS.length);
     expect(mockClearRelatedCache).toHaveBeenCalledTimes(MUTATION_OPERATIONS.length);

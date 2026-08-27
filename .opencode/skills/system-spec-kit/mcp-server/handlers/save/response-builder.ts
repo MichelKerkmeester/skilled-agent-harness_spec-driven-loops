@@ -36,9 +36,8 @@ import type {
 } from './types.js';
 import type { EnrichmentStatus, PostInsertExecutionStatus } from './post-insert.js';
 
-// Feature catalog: Mutation response UX payload exposure
-// Feature catalog: Duplicate-save no-op feedback hardening
-// Feature catalog: Atomic-save parity and partial-indexing hints
+// Builds the mutation response payload, including duplicate-save no-op feedback
+// and atomic-save / partial-indexing hints.
 
 
 interface ValidationResult {
@@ -660,7 +659,7 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
       const msg = hookError instanceof Error ? hookError.message : String(hookError);
       postMutationHooks = {
         latencyMs: 0, triggerCacheCleared: false,
-        constitutionalCacheCleared: false, toolCacheInvalidated: 0,
+        toolCacheInvalidated: 0,
         graphSignalsCacheCleared: false, coactivationCacheCleared: false,
         errors: [msg],
       };
@@ -828,13 +827,10 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
   const savedBasename = filePath ? path.basename(filePath) : '';
   const isPacketMetadataTarget = savedBasename === 'description.json'
     || savedBasename === 'graph-metadata.json';
-  const isConstitutionalTarget = typeof filePath === 'string'
-    && filePath.includes('/constitutional/');
   if (
     shouldEmitPostMutationFeedback
     && filePath
     && !isPacketMetadataTarget
-    && !isConstitutionalTarget
   ) {
     response.metadataRefresh = {
       refreshed: false,

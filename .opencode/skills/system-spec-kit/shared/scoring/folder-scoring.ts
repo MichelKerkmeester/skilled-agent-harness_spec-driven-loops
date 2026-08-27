@@ -13,7 +13,7 @@ import type {
   TierWeights,
 } from '../types.js';
 
-// Feature catalog: Folder-level relevance scoring
+// Folder-level relevance scoring for spec-folder memories.
 
 
 /**
@@ -46,7 +46,6 @@ export const ARCHIVE_PATTERNS: readonly RegExp[] = [
  * Aligned with importance-tiers.js authoritative values
  */
 export const TIER_WEIGHTS: TierWeights = {
-  constitutional: 1.0,
   critical: 1.0,
   important: 0.8,
   normal: 0.5,
@@ -85,7 +84,7 @@ const DEFAULT_VALIDATION_SCORE: number = 0.5;
 /**
  * Tier priority order (highest to lowest)
  */
-export const TIER_ORDER: readonly string[] = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
+export const TIER_ORDER: readonly string[] = ['critical', 'important', 'normal', 'temporary', 'deprecated'];
 
 /**
  * Archive pattern to multiplier mapping (Decision D2)
@@ -129,18 +128,12 @@ export function getArchiveMultiplier(folderPath: string): number {
 // ---------------------------------------------------------------
 
 /**
- * Compute recency score with inverse decay (Decision D4, D8)
- * Constitutional tier is exempt from decay (always returns 1.0)
+ * Compute recency score with inverse decay (Decision D4)
  *
  * Formula: score = 1 / (1 + days * decayRate)
  * At rate 0.10: 7 days = 0.59, 10 days = 0.50, 30 days = 0.25
  */
 export function computeRecencyScore(timestamp: string, tier: string = 'normal', decayRate: number = DECAY_RATE): number {
-  // Decision D8: Constitutional tier exempt from decay
-  if (tier === 'constitutional') {
-    return 1.0;
-  }
-
   const now = Date.now();
   const updated = new Date(timestamp).getTime();
 

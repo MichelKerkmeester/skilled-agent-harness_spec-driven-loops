@@ -197,7 +197,6 @@ function buildReplayPipelineConfig(query: string, searchLimit: number): Pipeline
     searchType: 'hybrid',
     limit: searchLimit,
     includeArchived: false,
-    includeConstitutional: true,
     includeContent: false,
     minState: 'ARCHIVED',
     applyStateLimits: false,

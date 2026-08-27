@@ -189,7 +189,6 @@ describe('PI-A2: structuralSearch', () => {
   beforeEach(() => {
     testDb = createTestDb();
     seedTestDb(testDb, [
-      { title: 'Auth Config', file_path: '/specs/auth/memory/auth.md', importance_tier: 'constitutional', importance_weight: 1.0, spec_folder: 'specs/auth' },
       { title: 'DB Setup', file_path: '/specs/db/memory/db.md', importance_tier: 'critical', importance_weight: 0.8, spec_folder: 'specs/db' },
       { title: 'Logging', file_path: '/specs/log/memory/log.md', importance_tier: 'important', importance_weight: 0.6, spec_folder: 'specs/log' },
       { title: 'Temp Note', file_path: '/specs/tmp/memory/tmp.md', importance_tier: 'temporary', importance_weight: 0.3, spec_folder: 'specs/auth' },
@@ -208,7 +207,6 @@ describe('PI-A2: structuralSearch', () => {
     const results = structuralSearch({ limit: 10 });
 
     expect(results.length).toBe(4);
-    // Active searchable rows exclude constitutional docs by default.
     expect(results[0].title).toBe('DB Setup');
     expect(results[1].title).toBe('Logging');
     expect(results[2].title).toBe('Normal Item');

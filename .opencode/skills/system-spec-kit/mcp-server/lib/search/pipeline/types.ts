@@ -7,7 +7,7 @@ import type { QueryPlan } from '../../query/query-plan.js';
 import type { GraphContextResult } from '../causal-boost.js';
 import type { ChannelException, ChannelSkipDetail } from '../channel-exceptions.js';
 
-// Feature catalog: 4-stage pipeline architecture
+// Shared type contracts for the 4-stage search pipeline.
 
 
 /**
@@ -222,7 +222,6 @@ export interface PipelineConfig {
   tier?: string;
   contextType?: string;
   includeArchived: boolean;
-  includeConstitutional: boolean;
   includeContent: boolean;
   anchors?: string[];
   qualityThreshold?: number;
@@ -317,7 +316,6 @@ export interface Stage1Output {
     /** Runtime retrieval-channel skips and fail-open exceptions. */
     channelTelemetry?: Omit<PipelineChannelTelemetry, 'graphContext'>;
     candidateCount: number;
-    constitutionalInjected: number;
     durationMs: number;
   };
 }
@@ -399,7 +397,7 @@ export interface Stage3Output {
 
 /**
  * Stage 4: Filter + Annotate
- * State filtering, session dedup, constitutional injection, channel attribution.
+ * State filtering, session dedup, channel attribution.
  * Score changes: **NO** — Architectural invariant.
  *
  * Runtime assertion: scores at entry must equal scores at exit.
@@ -409,8 +407,6 @@ export interface Stage4Input {
   /** Results with read-only score fields — Stage 4 cannot modify scores */
   results: Stage4ReadonlyRow[];
   config: PipelineConfig;
-  /** Stage 1 metadata passed through for constitutional count */
-  stage1Metadata?: { constitutionalInjected?: number };
   /**
    * Active embedder identifier, threaded into the relevance-aware evidence-gap
    * path so its per-embedder noise floor resolves the same way the request-quality
@@ -427,7 +423,6 @@ export interface Stage4Output {
   final: Stage4ReadonlyRow[];
   metadata: {
     stateFiltered: number;
-    constitutionalInjected: number;
     evidenceGapDetected: boolean;
     durationMs: number;
   };

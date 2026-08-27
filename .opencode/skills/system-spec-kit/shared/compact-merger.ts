@@ -48,7 +48,6 @@ function createCompactPayloadEnvelope(input: SharedPayloadEnvelope): SharedPaylo
 }
 
 export interface MergeInput {
-  constitutional: string;
   codeGraph: string;
   triggered: string;
   sessionState: string;
@@ -144,7 +143,6 @@ export function mergeCompactBrief(
 ): MergedBrief {
   const startTime = performance.now();
   const sources = createDefaultSources(
-    estimateTokens(input.constitutional),
     estimateTokens(input.codeGraph),
     estimateTokens(input.triggered),
     estimateTokens(input.sessionState),
@@ -173,7 +171,6 @@ export function mergeCompactBrief(
     });
   };
 
-  pushSection(input.constitutional, 'constitutional', 'Constitutional Rules', 'memory');
   pushSection(input.codeGraph, 'codeGraph', 'Active Files & Structural Context', 'code-graph');
   pushSection(input.sessionState, 'sessionState', 'Session State / Next Steps', 'session');
   pushSection(input.triggered, 'triggered', 'Triggered Memories', 'memory');
@@ -216,7 +213,6 @@ export function mergeCompactBrief(
       mergeDurationMs: Math.round(performance.now() - startTime),
       deduplicatedFiles,
       freshness: freshness ?? [
-        { source: 'constitutional', lastUpdated: null, staleness: 'unknown' },
         { source: 'codeGraph', lastUpdated: null, staleness: 'unknown' },
         { source: 'triggered', lastUpdated: null, staleness: 'unknown' },
       ],

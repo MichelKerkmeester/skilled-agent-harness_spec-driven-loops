@@ -96,7 +96,7 @@ import type { GraphSearchFn } from './search-types.js';
 
 export type { GraphSearchFn } from './search-types.js';
 
-// Feature catalog: Hybrid search pipeline
+// Hybrid (lexical + vector) search pipeline.
 
 // 2. INTERFACES
 
@@ -1376,7 +1376,6 @@ async function hybridSearch(
         limit,
         specFolder,
         minSimilarity,
-        includeConstitutional: false, // Handler manages constitutional separately
         includeArchived,
       });
       for (const r of vectorResults) {
@@ -1607,7 +1606,6 @@ async function collectAndFuseHybridResults(
           limit: options.limit || DEFAULT_LIMIT,
           specFolder: options.specFolder,
           minSimilarity: options.minSimilarity || 0,
-          includeConstitutional: false,
           includeArchived: options.includeArchived || false,
           includeEmbeddings: true,
         });

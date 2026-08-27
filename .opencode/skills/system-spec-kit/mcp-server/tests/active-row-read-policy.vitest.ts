@@ -44,13 +44,13 @@ describe('active row read policy', () => {
       }
 
       expect(ACTIVE_ROW_SQL('m')).toBe(
-        "m.deleted_at IS NULL AND (m.importance_tier IS NULL OR lower(m.importance_tier) NOT IN ('deprecated','archived','constitutional'))",
+        "m.deleted_at IS NULL AND (m.importance_tier IS NULL OR lower(m.importance_tier) NOT IN ('deprecated','archived'))",
       );
       expect(ACTIVE_ROW_SQL('m', { includeArchived: false })).toBe(
-        "m.deleted_at IS NULL AND (m.importance_tier IS NULL OR lower(m.importance_tier) NOT IN ('deprecated','archived','constitutional'))",
+        "m.deleted_at IS NULL AND (m.importance_tier IS NULL OR lower(m.importance_tier) NOT IN ('deprecated','archived'))",
       );
       expect(ACTIVE_ROW_SQL('m', { includeArchived: true })).toBe(
-        "m.deleted_at IS NULL AND (m.importance_tier IS NULL OR lower(m.importance_tier) NOT IN ('constitutional'))",
+        "m.deleted_at IS NULL AND 1=1",
       );
 
       for (const importanceTier of ['archived', 'deprecated']) {

@@ -205,18 +205,9 @@ describe('Folder Scoring Tests (T506)', () => {
       expect(weights.recency).toBe(maxWeight);
     });
 
-    it('T506-06c: Constitutional tier exempt from recency decay', () => {
-      const oldTimestamp = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-      const constRecency = mod.computeRecencyScore(oldTimestamp, 'constitutional');
-      const normalRecency = mod.computeRecencyScore(oldTimestamp, 'normal');
-
-      expect(constRecency).toBe(1.0);
-      expect(normalRecency).toBeLessThan(1.0);
-    });
-
     it('T506-06d: Tier weights configured correctly', () => {
       const tw = mod.TIER_WEIGHTS;
-      expect(tw.constitutional).toBe(1.0);
+      expect(tw.critical).toBe(1.0);
       expect(tw.normal).toBe(0.5);
       expect(tw.deprecated).toBe(0.1);
     });

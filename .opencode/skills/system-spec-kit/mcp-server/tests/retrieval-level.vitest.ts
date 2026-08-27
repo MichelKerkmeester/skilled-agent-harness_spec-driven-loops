@@ -31,10 +31,10 @@ const queryCommunityMembersAsRankedListMock = vi.hoisted(() => vi.fn(() => [
 const executePipelineMock = vi.hoisted(() => vi.fn(async () => ({
   results: [],
   metadata: {
-    stage1: { searchType: 'hybrid', channelCount: 1, activeChannels: 1, candidateCount: 0, constitutionalInjected: 0, durationMs: 1 },
+    stage1: { searchType: 'hybrid', channelCount: 1, activeChannels: 1, candidateCount: 0, durationMs: 1 },
     stage2: { sessionBoostApplied: 'off', causalBoostApplied: 'off', intentWeightsApplied: 'off', artifactRoutingApplied: 'off', feedbackSignalsApplied: 'off', qualityFiltered: 0, durationMs: 1 },
     stage3: { rerankApplied: false, chunkReassemblyStats: { collapsedChunkHits: 0, chunkParents: 0, reassembled: 0, fallback: 0 }, durationMs: 1 },
-    stage4: { stateFiltered: 0, constitutionalInjected: 0, evidenceGapDetected: false, durationMs: 1 },
+    stage4: { stateFiltered: 0, evidenceGapDetected: false, durationMs: 1 },
     timing: { stage1: 1, stage2: 1, stage3: 1, stage4: 1, total: 4 },
   },
   annotations: { stateStats: {}, featureFlags: {} },
@@ -49,13 +49,10 @@ vi.mock('../lib/search/hybrid-search', () => ({
   searchWithFallback: collectRawCandidatesMock,
 }));
 
-const getConstitutionalMemoriesMock = vi.hoisted(() => vi.fn(() => [] as unknown[]));
-
 vi.mock('../lib/search/vector-index', () => ({
   generateQueryEmbedding: vi.fn(async () => new Float32Array([0.1, 0.2, 0.3])),
   vectorSearch: vi.fn(() => []),
   multiConceptSearch: vi.fn(() => []),
-  get_constitutional_memories: getConstitutionalMemoriesMock,
 }));
 
 vi.mock('../lib/search/community-search', () => ({
@@ -96,7 +93,6 @@ function makeConfig(overrides: Partial<PipelineConfig> = {}): PipelineConfig {
     searchType: 'hybrid',
     limit: 5,
     includeArchived: false,
-    includeConstitutional: false,
     includeContent: false,
     minState: '',
     applyStateLimits: false,
@@ -243,25 +239,11 @@ describe('memory_search retrievalLevel', () => {
     expect(result.candidates.map((row) => row.id)).toEqual([2]);
   });
 
-  it('injects constitutional rows in the global branch when includeConstitutional is set', async () => {
-    getConstitutionalMemoriesMock.mockReturnValueOnce([
-      { id: 99, title: 'pinned rule', spec_folder: 'system', file_path: 'system/rule.md', source: 'constitutional', score: 1, similarity: 1, quality_score: 1, importance_tier: 'constitutional' },
-    ]);
-
-    const result = await executeStage1({ config: makeConfig({ retrievalLevel: 'global', includeConstitutional: true }) });
-    const ids = result.candidates.map((row) => row.id);
-    // The community result survives AND the always-surface constitutional row is injected.
-    expect(ids).toContain(2);
-    expect(ids).toContain(99);
-    expect(result.metadata.constitutionalInjected).toBe(1);
-  });
-
   it('defaults omitted handler retrievalLevel to auto in pipeline and cache args', async () => {
     await handleMemorySearch({
       query: 'omitted retrieval level query',
       bypassCache: false,
       autoDetectIntent: false,
-      includeConstitutional: false,
     });
 
     expect(executePipelineMock).toHaveBeenCalledTimes(1);

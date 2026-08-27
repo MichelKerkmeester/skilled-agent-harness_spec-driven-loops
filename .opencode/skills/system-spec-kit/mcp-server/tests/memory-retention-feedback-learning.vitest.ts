@@ -102,7 +102,7 @@ describe('memory retention sweep feedback learning', () => {
     vi.stubEnv('SPECKIT_FEEDBACK_RETENTION_MODE', 'active');
     const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
     insertMemory(db, 1, 'normal');
-    insertMemory(db, 2, 'constitutional');
+    insertMemory(db, 2, 'critical');
 
     const result = runMemoryRetentionSweep(db, {
       feedbackRetention: { shadowEvaluationPassed: true, signals: [signal(1)] },

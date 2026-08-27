@@ -617,7 +617,7 @@ describe('Trigger Matcher (T501)', () => {
       const loaderSql = getTriggerCacheLoaderSqlForTests();
 
       expect(loaderSql).toContain('deleted_at IS NULL');
-      expect(loaderSql).toContain("'deprecated','archived','constitutional'");
+      expect(loaderSql).toContain("'deprecated','archived'");
     });
   });
 });

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-08-21T08:56:00.245Z",
+  "generated": "2026-08-26T16:01:08.830Z",
   "folders": [
     {
       "specFolder": "agents/001-terminal-proof-discipline",
@@ -2168,7 +2168,7 @@
         "cline-pass",
         "exposes"
       ],
-      "lastUpdated": "2026-08-18T18:42:01.634Z"
+      "lastUpdated": "2026-08-25T05:02:32.534Z"
     },
     {
       "specFolder": "cli-external-orchestration/049-cline-provider-roster/001-cline-deepseek-flash-cli-opencode",
@@ -2295,7 +2295,41 @@
         "only",
         "file"
       ],
-      "lastUpdated": "2026-08-18T18:42:01.634Z"
+      "lastUpdated": "2026-08-25T05:06:09.035Z"
+    },
+    {
+      "specFolder": "cli-external-orchestration/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers",
+      "description": "In pi's interactive model picker, the cline-pass DeepSeek V4 Flash (and Pro) effort could not be cycled past `high` — `xhigh` was unreachable — while",
+      "keywords": [
+        "interactive",
+        "model",
+        "picker",
+        "cline-pass",
+        "deepseek",
+        "flash",
+        "pro",
+        "effort",
+        "cycled",
+        "past",
+        "high",
+        "xhigh",
+        "unreachable",
+        "while"
+      ],
+      "lastUpdated": "2026-08-25T05:06:09.036Z"
+    },
+    {
+      "specFolder": "cli-external-orchestration/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix",
+      "description": "Dispatched and non-interactive pi sessions could not reach the cline-pass models",
+      "keywords": [
+        "dispatched",
+        "non-interactive",
+        "sessions",
+        "reach",
+        "cline-pass",
+        "models"
+      ],
+      "lastUpdated": "2026-08-25T05:03:28.912Z"
     },
     {
       "specFolder": "cli-external-orchestration/050-persona-injection-enforcement",
@@ -2421,6 +2455,60 @@
         "gap"
       ],
       "lastUpdated": "2026-08-20T05:54:12.856Z"
+    },
+    {
+      "specFolder": "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster",
+      "description": "The Ox Alpha model needed to be dispatchable from cli-pi and cli-opencode",
+      "keywords": [
+        "alpha",
+        "model",
+        "needed",
+        "dispatchable",
+        "cli-pi",
+        "cli-opencode"
+      ],
+      "lastUpdated": "2026-08-22T11:22:43.024Z"
+    },
+    {
+      "specFolder": "cli-external-orchestration/053-cline-ox-alpha-cli-pi-roster",
+      "description": "pi's interactive Cline picker already discovers Ox Alpha as a free model (`Free — Try with limited usage, separate from ClinePass quota`) and can run",
+      "keywords": [
+        "interactive",
+        "cline",
+        "picker",
+        "already",
+        "discovers",
+        "alpha",
+        "free",
+        "model",
+        "try",
+        "limited",
+        "usage",
+        "separate",
+        "clinepass",
+        "quota",
+        "run"
+      ],
+      "lastUpdated": "2026-08-24T10:24:07.923Z"
+    },
+    {
+      "specFolder": "cli-external-orchestration/054-combo-matrix-devin-arg-conformance",
+      "description": "`fanout-run.cjs` unconditionally appends `--respect-workspace-trust false` to the `cli-devin` dispatch command (the packet-046 devin-CLI repair:",
+      "keywords": [
+        "fanout-run",
+        "cjs",
+        "unconditionally",
+        "appends",
+        "respect-workspace-trust",
+        "false",
+        "cli-devin",
+        "dispatch",
+        "command",
+        "packet-046",
+        "devin-cli",
+        "repair"
+      ],
+      "lastUpdated": "2026-08-24T13:40:15.059Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/001-cli-gemini-creation",
@@ -4467,7 +4555,7 @@
         "named",
         "concern"
       ],
-      "lastUpdated": "2026-08-21T06:40:39.802Z"
+      "lastUpdated": "2026-08-21T09:18:37.683Z"
     },
     {
       "specFolder": "hooks/008-pi-caching-like-reasonix",
@@ -5758,7 +5846,7 @@
         "mcp-figma",
         "app-design-research"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.067Z"
+      "lastUpdated": "2026-08-25T06:56:55.715Z"
     },
     {
       "specFolder": "mcp-tooling/010-mcp-mobbin/001-research",
@@ -5881,7 +5969,23 @@
         "must",
         "never"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.066Z"
+      "lastUpdated": "2026-08-25T06:58:18.657Z"
+    },
+    {
+      "specFolder": "mcp-tooling/010-mcp-mobbin/007-code-mode-transport-leak",
+      "description": "A browser verification window for Mobbin reopened every few minutes with no user action",
+      "keywords": [
+        "browser",
+        "verification",
+        "window",
+        "mobbin",
+        "reopened",
+        "every",
+        "minutes",
+        "user",
+        "action"
+      ],
+      "lastUpdated": "2026-08-25T06:59:17.201Z"
     },
     {
       "specFolder": "mcp-tooling/011-routing-remediation",
@@ -6563,6 +6667,515 @@
         "integration"
       ],
       "lastUpdated": "2026-08-15T14:40:56.539Z"
+    },
+    {
+      "specFolder": "mcp-tooling/014-mcp-notion",
+      "description": "Phase parent for adding Notion support to the mcp-tooling hub: first validate whether the official Notion MCP (@notionhq/notion-mcp-server, 24 tools)",
+      "keywords": [
+        "phase",
+        "parent",
+        "notion",
+        "support",
+        "mcp-tooling",
+        "hub",
+        "first",
+        "validate",
+        "whether",
+        "official",
+        "mcp",
+        "notionhq",
+        "notion-mcp-server",
+        "tools"
+      ],
+      "lastUpdated": "2026-08-21T15:58:07.333Z"
+    },
+    {
+      "specFolder": "mcp-tooling/014-mcp-notion/001-deep-research",
+      "description": "The `mcp-tooling` hub covers ClickUp, Chrome DevTools, Obsidian, and several design transports, but has no Notion support",
+      "keywords": [
+        "mcp-tooling",
+        "hub",
+        "covers",
+        "clickup",
+        "chrome",
+        "devtools",
+        "obsidian",
+        "several",
+        "design",
+        "transports",
+        "notion",
+        "support"
+      ],
+      "lastUpdated": "2026-08-21T15:51:38.545Z"
+    },
+    {
+      "specFolder": "mcp-tooling/014-mcp-notion/002-skill-authoring",
+      "description": "After Phase 1, the research verdict exists but nothing tells an agent how to reach Notion: which backend to use (headless stdio vs interactive OAuth),",
+      "keywords": [
+        "phase",
+        "research",
+        "verdict",
+        "exists",
+        "nothing",
+        "tells",
+        "agent",
+        "reach",
+        "notion",
+        "backend",
+        "headless",
+        "stdio",
+        "interactive",
+        "oauth"
+      ],
+      "lastUpdated": "2026-08-21T15:51:28.347Z"
+    },
+    {
+      "specFolder": "mcp-tooling/014-mcp-notion/003-knowledge-references",
+      "description": "After Phase 2 the `mcp-notion` mode has a routing contract but no knowledge layer, so it is a thin transport",
+      "keywords": [
+        "phase",
+        "mcp-notion",
+        "mode",
+        "routing",
+        "contract",
+        "knowledge",
+        "layer",
+        "thin",
+        "transport"
+      ],
+      "lastUpdated": "2026-08-21T15:53:59.799Z"
+    },
+    {
+      "specFolder": "mcp-tooling/014-mcp-notion/004-hub-registration-and-advisor",
+      "description": "The `mcp-notion` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for Notion prompts (its hub",
+      "keywords": [
+        "mcp-notion",
+        "package",
+        "exists",
+        "disk",
+        "invisible",
+        "skill-advisor",
+        "surface",
+        "mcp-tooling",
+        "notion",
+        "prompts",
+        "hub"
+      ],
+      "lastUpdated": "2026-08-21T15:51:53.978Z"
+    },
+    {
+      "specFolder": "mcp-tooling/014-mcp-notion/005-verification-and-closeout",
+      "description": "After Phase 4 the mode is registered but unproven end-to-end: nothing has confirmed that every mode doc validates, that a fresh operator can install",
+      "keywords": [
+        "phase",
+        "mode",
+        "registered",
+        "unproven",
+        "end-to-end",
+        "nothing",
+        "confirmed",
+        "every",
+        "doc",
+        "validates",
+        "fresh",
+        "operator",
+        "install"
+      ],
+      "lastUpdated": "2026-08-21T15:49:49.495Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration",
+      "description": "Phase parent for a flawless complex-Notion→Obsidian migration capability: research first (20 iterations, GLM-5.2 via cli-devin + DeepSeek V4 Flash",
+      "keywords": [
+        "phase",
+        "parent",
+        "flawless",
+        "complex-notion",
+        "obsidian",
+        "migration",
+        "capability",
+        "research",
+        "first",
+        "iterations",
+        "glm-5",
+        "via",
+        "cli-devin",
+        "deepseek",
+        "flash"
+      ],
+      "lastUpdated": "2026-08-23T05:55:00.899Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
+      "description": "We need to flawlessly migrate a COMPLEX Notion environment — databases, relations, rollups, formulas, nested pages, files, comments, views — fully",
+      "keywords": [
+        "need",
+        "flawlessly",
+        "migrate",
+        "complex",
+        "notion",
+        "environment",
+        "databases",
+        "relations",
+        "rollups",
+        "formulas",
+        "nested",
+        "pages",
+        "files",
+        "comments",
+        "views",
+        "fully"
+      ],
+      "lastUpdated": "2026-08-23T03:33:37.821Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/002-migration-playbook",
+      "description": "The 001 research verdict decided the flawless-migration method, but nothing in `mcp-obsidian` or `mcp-notion` carries it",
+      "keywords": [
+        "research",
+        "verdict",
+        "decided",
+        "flawless-migration",
+        "method",
+        "nothing",
+        "mcp-obsidian",
+        "mcp-notion",
+        "carries"
+      ],
+      "lastUpdated": "2026-08-22T03:41:25.258Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in",
+      "description": "`mcp-obsidian` already knows Core Bases and Dataview in full, but research §8 confirms it has no knowledge of the Notion Bases community plugin — the",
+      "keywords": [
+        "mcp-obsidian",
+        "already",
+        "knows",
+        "core",
+        "bases",
+        "dataview",
+        "full",
+        "research",
+        "confirms",
+        "knowledge",
+        "notion",
+        "community",
+        "plugin"
+      ],
+      "lastUpdated": "2026-08-22T11:40:15.697Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+      "description": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation",
+      "keywords": [
+        "phase",
+        "plans",
+        "notion",
+        "bases",
+        "knowledge",
+        "layer",
+        "without",
+        "plugin",
+        "installed",
+        "inert",
+        "agent",
+        "describe",
+        "two-way",
+        "relation"
+      ],
+      "lastUpdated": "2026-08-22T11:40:15.698Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+      "description": "The `mcp-obsidian` skill documented thirteen plugins (twelve community plugins plus the Minimal theme), but the operator's vault stack was growing",
+      "keywords": [
+        "mcp-obsidian",
+        "skill",
+        "documented",
+        "thirteen",
+        "plugins",
+        "twelve",
+        "community",
+        "plus",
+        "minimal",
+        "theme",
+        "operator",
+        "vault",
+        "stack",
+        "growing"
+      ],
+      "lastUpdated": "2026-08-23T03:54:06.801Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+      "description": "Phase parent for seven per-plugin deep-research legs (GLM-5.2 via cli-devin for the first five, ox-alpha via cli-opencode/OpenRouter for the last two)",
+      "keywords": [
+        "phase",
+        "parent",
+        "seven",
+        "per-plugin",
+        "deep-research",
+        "legs",
+        "glm-5",
+        "via",
+        "cli-devin",
+        "first",
+        "five",
+        "ox-alpha",
+        "cli-opencode",
+        "openrouter",
+        "last",
+        "two"
+      ],
+      "lastUpdated": "2026-08-23T03:49:16.597Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
+      "description": "The shipped mcp-obsidian Advanced Canvas file-layer reference docs (`references/plugins/advanced-canvas/`) carried a `VERIFY`-flagged unknown for the",
+      "keywords": [
+        "shipped",
+        "mcp-obsidian",
+        "advanced",
+        "canvas",
+        "file-layer",
+        "reference",
+        "docs",
+        "references",
+        "plugins",
+        "advanced-canvas",
+        "carried",
+        "verify",
+        "flagged",
+        "unknown"
+      ],
+      "lastUpdated": "2026-08-23T03:39:13.924Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
+      "description": "The shipped mcp-obsidian Claudian reference docs contained two load-bearing factual errors: they instruct operators to author/merge `.claude/mcp.json`",
+      "keywords": [
+        "shipped",
+        "mcp-obsidian",
+        "claudian",
+        "reference",
+        "docs",
+        "contained",
+        "two",
+        "load-bearing",
+        "factual",
+        "errors",
+        "instruct",
+        "operators",
+        "author",
+        "merge",
+        "claude",
+        "mcp",
+        "json"
+      ],
+      "lastUpdated": "2026-08-23T03:59:25.482Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
+      "description": "This leg was originally scoped to optimize `references/plugins/project-manager/` — the pm-task frontmatter schema, `customFields` non-scalar encoding,",
+      "keywords": [
+        "leg",
+        "originally",
+        "scoped",
+        "optimize",
+        "references",
+        "plugins",
+        "project-manager",
+        "pm-task",
+        "frontmatter",
+        "schema",
+        "customfields",
+        "non-scalar",
+        "encoding"
+      ],
+      "lastUpdated": "2026-08-23T05:51:01.023Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+      "description": "The shipped mcp-obsidian Dataview reference docs are a disciplined file-layer contract but are materially thin on the query language itself: the",
+      "keywords": [
+        "shipped",
+        "mcp-obsidian",
+        "dataview",
+        "reference",
+        "docs",
+        "disciplined",
+        "file-layer",
+        "contract",
+        "materially",
+        "thin",
+        "query",
+        "language",
+        "itself"
+      ],
+      "lastUpdated": "2026-08-23T03:42:57.984Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+      "description": "The mcp-obsidian Notion Bases file-layer reference tree omitted exact plugin syntax needed for reliable AI-authored files",
+      "keywords": [
+        "mcp-obsidian",
+        "notion",
+        "bases",
+        "file-layer",
+        "reference",
+        "tree",
+        "omitted",
+        "exact",
+        "plugin",
+        "syntax",
+        "needed",
+        "reliable",
+        "ai-authored",
+        "files"
+      ],
+      "lastUpdated": "2026-08-23T03:44:35.229Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
+      "description": "The shipped Meta Bind docs teach a correctness bug: they stamp a button-written timestamp with `value: \"=now()\"`, citing it as \"the documented",
+      "keywords": [
+        "shipped",
+        "meta",
+        "bind",
+        "docs",
+        "teach",
+        "correctness",
+        "bug",
+        "stamp",
+        "button-written",
+        "timestamp",
+        "value",
+        "now",
+        "citing",
+        "documented"
+      ],
+      "lastUpdated": "2026-08-23T03:45:53.154Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine",
+      "description": "The mcp-obsidian reference docs depend on the JS Engine plugin for Meta Bind `js` button actions, but the engine API, execution context, and",
+      "keywords": [
+        "mcp-obsidian",
+        "reference",
+        "docs",
+        "depend",
+        "engine",
+        "plugin",
+        "meta",
+        "bind",
+        "button",
+        "actions",
+        "api",
+        "execution",
+        "context"
+      ],
+      "lastUpdated": "2026-08-23T03:47:22.125Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
+      "description": "The `mcp-obsidian` skill carried a full Excalidraw integration (a four-file reference tree, a feature-catalog card, two assets, a manual-testing",
+      "keywords": [
+        "mcp-obsidian",
+        "skill",
+        "carried",
+        "full",
+        "excalidraw",
+        "integration",
+        "four-file",
+        "reference",
+        "tree",
+        "feature-catalog",
+        "card",
+        "two",
+        "assets",
+        "manual-testing"
+      ],
+      "lastUpdated": "2026-08-23T05:57:08.859Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout",
+      "description": "Phase 007 deferred four consolidation items to `008-notion-bases-closeout`, but that folder was never built, so 007's prose pointed at a phantom",
+      "keywords": [
+        "phase",
+        "deferred",
+        "four",
+        "consolidation",
+        "items",
+        "008-notion-bases-closeout",
+        "folder",
+        "never",
+        "prose",
+        "pointed",
+        "phantom"
+      ],
+      "lastUpdated": "2026-08-23T05:55:22.975Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+      "description": "The shipped `mcp-obsidian` plugin docs carried real correctness defects the 006 research surfaced: advanced-canvas told the AI to never author",
+      "keywords": [
+        "shipped",
+        "mcp-obsidian",
+        "plugin",
+        "docs",
+        "carried",
+        "real",
+        "correctness",
+        "defects",
+        "research",
+        "surfaced",
+        "advanced-canvas",
+        "told",
+        "never",
+        "author"
+      ],
+      "lastUpdated": "2026-08-23T05:57:12.791Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+      "description": "Phase 009 left five documentation items and one sibling-packet error unresolved",
+      "keywords": [
+        "phase",
+        "left",
+        "five",
+        "documentation",
+        "items",
+        "one",
+        "sibling-packet",
+        "error",
+        "unresolved"
+      ],
+      "lastUpdated": "2026-08-23T05:04:45.493Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+      "description": "The migration playbook lagged the 006 plugin research",
+      "keywords": [
+        "migration",
+        "playbook",
+        "lagged",
+        "plugin",
+        "research"
+      ],
+      "lastUpdated": "2026-08-23T04:52:02.627Z"
+    },
+    {
+      "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+      "description": "Retire the beancount-finance plugin from the mcp-obsidian skill and add first-class Make.md (make-md) support mirroring notion-bases.",
+      "keywords": [
+        "mcp-obsidian",
+        "make-md",
+        "make.md",
+        "beancount",
+        "plugin-support",
+        "notion-bases"
+      ],
+      "lastUpdated": "2026-08-23T17:57:38.254Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/001-mcp-coco-integration",
@@ -15473,24 +16086,6 @@
       "lastUpdated": "2026-08-16T18:06:00.680Z"
     },
     {
-      "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/006-sk-design",
-      "description": "`sk-design` has six public design-axis modes, one authored named bundle, a null default, and a",
-      "keywords": [
-        "sk-design",
-        "six",
-        "public",
-        "design-axis",
-        "modes",
-        "one",
-        "authored",
-        "named",
-        "bundle",
-        "null",
-        "default"
-      ],
-      "lastUpdated": "2026-08-16T18:06:00.683Z"
-    },
-    {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc",
       "description": "Compile the authored sk-doc documentation hub into the frozen router contract, exercise its exact ordered bundle and negative outcomes through the",
       "keywords": [
@@ -16165,6 +16760,26 @@
         "manifests"
       ],
       "lastUpdated": "2026-08-18T03:31:01.446Z"
+    },
+    {
+      "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/023-sk-design-dissolution-routing-reactivation",
+      "description": "The sk-design hub was dissolved from the skill tree, leaving the compiled-routing engine encoding a stale 7-hub topology; migrate the engine to the 6",
+      "keywords": [
+        "sk-design",
+        "hub",
+        "dissolved",
+        "skill",
+        "tree",
+        "leaving",
+        "compiled-routing",
+        "engine",
+        "encoding",
+        "stale",
+        "7-hub",
+        "topology",
+        "migrate"
+      ],
+      "lastUpdated": "2026-08-22T10:41:33.694Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
@@ -23714,6 +24329,21 @@
       "lastUpdated": "2026-08-21T08:55:50.739Z"
     },
     {
+      "specFolder": "sk-git/026-worktree-hygiene-and-relocation",
+      "description": "The repo carried 24 git worktrees nested inside the primary checkout at",
+      "keywords": [
+        "repo",
+        "carried",
+        "git",
+        "worktrees",
+        "nested",
+        "inside",
+        "primary",
+        "checkout"
+      ],
+      "lastUpdated": "2026-08-21T14:16:44.595Z"
+    },
+    {
       "specFolder": "sk-git/z_archive/001-sk-git-github-mcp-integration",
       "description": "The sk-git skill documented GitHub MCP usage with incorrect call syntax, incomplete tool coverage, and weak guidance on when to use GitHub MCP instead",
       "keywords": [
@@ -25456,6 +26086,18 @@
       "lastUpdated": "2026-08-18T13:57:53.810Z"
     },
     {
+      "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown",
+      "description": "In OpenCode, sk-vision is \"always on\" in two ways",
+      "keywords": [
+        "opencode",
+        "sk-vision",
+        "always",
+        "two",
+        "ways"
+      ],
+      "lastUpdated": "2026-08-22T13:56:39.193Z"
+    },
+    {
       "specFolder": "system-deep-loop/030-deep-loop-unification",
       "description": "`deep-loop-workflows` (the public, advisor-routable parent hub — 4 mode packets, ~1.1.0.0) and `deep-loop-runtime` (its \"frozen, MCP-free backend\" —",
       "keywords": [
@@ -27100,7 +27742,7 @@
         "solves",
         "hard"
       ],
-      "lastUpdated": "2026-08-14T12:49:19.553Z"
+      "lastUpdated": "2026-08-26T08:43:15.631Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture",
@@ -30770,7 +31412,7 @@
         "onto",
         "flip"
       ],
-      "lastUpdated": "2026-08-21T08:53:03.390Z"
+      "lastUpdated": "2026-08-24T14:33:24.515Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
@@ -30787,7 +31429,7 @@
         "consult",
         "canonical"
       ],
-      "lastUpdated": "2026-08-19T19:25:36.659Z"
+      "lastUpdated": "2026-08-20T01:26:51.008Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement",
@@ -30800,7 +31442,7 @@
         "following",
         "prose"
       ],
-      "lastUpdated": "2026-08-20T13:42:51.316Z"
+      "lastUpdated": "2026-08-24T14:33:24.484Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement",
@@ -30813,7 +31455,7 @@
         "canonical",
         "modes"
       ],
-      "lastUpdated": "2026-08-19T19:25:36.669Z"
+      "lastUpdated": "2026-08-24T14:33:24.488Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement",
@@ -30830,7 +31472,7 @@
         "paths",
         "still"
       ],
-      "lastUpdated": "2026-08-19T06:52:58.863Z"
+      "lastUpdated": "2026-08-24T14:33:24.492Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate",
@@ -30842,7 +31484,7 @@
         "own",
         "surface"
       ],
-      "lastUpdated": "2026-08-19T19:25:36.670Z"
+      "lastUpdated": "2026-08-24T14:33:24.499Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
@@ -30856,7 +31498,281 @@
         "longer",
         "exists"
       ],
-      "lastUpdated": "2026-08-19T19:25:36.671Z"
+      "lastUpdated": "2026-08-24T14:33:24.502Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement",
+      "description": "A cutover certificate attests that a run's external effects were recorded and confirmed, deriving that from an effect",
+      "keywords": [
+        "cutover",
+        "certificate",
+        "attests",
+        "run",
+        "external",
+        "effects",
+        "recorded",
+        "confirmed",
+        "deriving",
+        "effect"
+      ],
+      "lastUpdated": "2026-08-24T14:33:24.503Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache",
+      "description": "Routing the live fan-out executor spawn through the shipped effect gateway (phase `007`) records a fail-closed intent",
+      "keywords": [
+        "routing",
+        "live",
+        "fan-out",
+        "executor",
+        "spawn",
+        "shipped",
+        "effect",
+        "gateway",
+        "phase",
+        "records",
+        "fail-closed",
+        "intent"
+      ],
+      "lastUpdated": "2026-08-24T14:33:24.505Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
+      "description": "The fleet flip moved all eight modes to ledger authority, but the projection library ships exactly one",
+      "keywords": [
+        "fleet",
+        "flip",
+        "moved",
+        "eight",
+        "modes",
+        "ledger",
+        "authority",
+        "projection",
+        "library",
+        "ships",
+        "exactly",
+        "one"
+      ],
+      "lastUpdated": "2026-08-24T14:33:24.508Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize",
+      "description": "The reversible flip moved all eight modes to `newauthoritativereversible`, which already routes every",
+      "keywords": [
+        "reversible",
+        "flip",
+        "moved",
+        "eight",
+        "modes",
+        "newauthoritativereversible",
+        "already",
+        "routes",
+        "every"
+      ],
+      "lastUpdated": "2026-08-24T14:33:24.510Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
+      "description": "Phase parent for removing the migration, rollback, and over-built machinery left in the deep-loop runtime after all 8 modes were finalized to",
+      "keywords": [
+        "phase",
+        "parent",
+        "removing",
+        "migration",
+        "rollback",
+        "over-built",
+        "machinery",
+        "left",
+        "deep-loop",
+        "runtime",
+        "modes",
+        "finalized"
+      ],
+      "lastUpdated": "2026-08-24T20:21:50.490Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals",
+      "description": "Wave 1 of the over-engineering removal program: delete the three lowest-risk, zero-caller leaves (F5 hierarchical-budgets shadow-adapters, F6 receipts",
+      "keywords": [
+        "wave",
+        "over-engineering",
+        "removal",
+        "program",
+        "delete",
+        "three",
+        "lowest-risk",
+        "zero-caller",
+        "leaves",
+        "hierarchical-budgets",
+        "shadow-adapters",
+        "receipts"
+      ],
+      "lastUpdated": "2026-08-24T19:07:02.561Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters",
+      "description": "Wave 2 of the over-engineering removal program: delete the seven per-mode legacy-format converters (F1) — decide<Mode>Compatibility +",
+      "keywords": [
+        "wave",
+        "over-engineering",
+        "removal",
+        "program",
+        "delete",
+        "seven",
+        "per-mode",
+        "legacy-format",
+        "converters",
+        "decide",
+        "mode",
+        "compatibility"
+      ],
+      "lastUpdated": "2026-08-24T19:07:02.562Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer",
+      "description": "Wave 3 of the over-engineering removal program: delete the F2 mode-contracts VALUE engine (conformance.ts, strict-gate-validator.ts,",
+      "keywords": [
+        "wave",
+        "over-engineering",
+        "removal",
+        "program",
+        "delete",
+        "mode-contracts",
+        "value",
+        "engine",
+        "conformance",
+        "strict-gate-validator"
+      ],
+      "lastUpdated": "2026-08-24T19:07:02.563Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling",
+      "description": "Wave 4 of the over-engineering removal program: delete the one-time fleet-enablement stack (F3) — enable-modes.cjs plus lib/fleet-enablement/ — and",
+      "keywords": [
+        "wave",
+        "over-engineering",
+        "removal",
+        "program",
+        "delete",
+        "one-time",
+        "fleet-enablement",
+        "stack",
+        "enable-modes",
+        "cjs",
+        "plus",
+        "lib"
+      ],
+      "lastUpdated": "2026-08-24T19:45:46.152Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction",
+      "description": "Wave 5 (final) of the over-engineering removal program: remove the CAS-mutator methods (prepareCutover, compareAndSwap, compareAndSwapRollback,",
+      "keywords": [
+        "wave",
+        "final",
+        "over-engineering",
+        "removal",
+        "program",
+        "remove",
+        "cas-mutator",
+        "methods",
+        "preparecutover",
+        "compareandswap",
+        "compareandswaprollback"
+      ],
+      "lastUpdated": "2026-08-24T20:21:50.490Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment",
+      "description": "The `012-runtime-enablement` work made the typed event ledger authoritative for all eight deep-loop modes and turned each `-state.jsonl` into a pure",
+      "keywords": [
+        "012-runtime-enablement",
+        "work",
+        "typed",
+        "event",
+        "ledger",
+        "authoritative",
+        "eight",
+        "deep-loop",
+        "modes",
+        "turned",
+        "state",
+        "jsonl",
+        "pure"
+      ],
+      "lastUpdated": "2026-08-25T07:32:12.987Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review",
+      "description": "The `013-runtime-agent-gateway-alignment` packet migrated the four affected deep-loop leaf agent prompts (`deep-research`, `deep-review`,",
+      "keywords": [
+        "013-runtime-agent-gateway-alignment",
+        "packet",
+        "migrated",
+        "four",
+        "affected",
+        "deep-loop",
+        "leaf",
+        "agent",
+        "prompts",
+        "deep-research",
+        "deep-review"
+      ],
+      "lastUpdated": "2026-08-25T18:52:22.572Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
+      "description": "Ten confirmed findings, all cited to shipped source in `014`'s registry:",
+      "keywords": [
+        "ten",
+        "confirmed",
+        "findings",
+        "cited",
+        "shipped",
+        "source",
+        "registry"
+      ],
+      "lastUpdated": "2026-08-25T20:28:54.174Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review",
+      "description": "The 014 review was scoped narrowly to the gateway-alignment surface and surfaced ten real findings; the 015 remediation just landed a P0 fix plus five",
+      "keywords": [
+        "review",
+        "scoped",
+        "narrowly",
+        "gateway-alignment",
+        "surface",
+        "surfaced",
+        "ten",
+        "real",
+        "findings",
+        "remediation",
+        "just",
+        "landed",
+        "plus",
+        "five"
+      ],
+      "lastUpdated": "2026-08-26T05:20:47.711Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation",
+      "description": "The 016 broad audit surfaced one confirmed P0 and roughly nineteen P1 findings across the shipped system-deep-loop runtime",
+      "keywords": [
+        "broad",
+        "audit",
+        "surfaced",
+        "one",
+        "confirmed",
+        "roughly",
+        "nineteen",
+        "findings",
+        "across",
+        "shipped",
+        "system-deep-loop",
+        "runtime"
+      ],
+      "lastUpdated": "2026-08-26T09:26:48.558Z"
     },
     {
       "specFolder": "system-deep-loop/037-graph-engineering",
@@ -58154,6 +59070,296 @@
         "common"
       ],
       "lastUpdated": "2026-08-15T14:50:25.071Z"
+    },
+    {
+      "specFolder": "system-speckit/035-process-reaper-classification-fix",
+      "description": "The daemon-reaper (`process-memory-harness.ts`) classifies each running process before deciding whether it is a termination candidate",
+      "keywords": [
+        "daemon-reaper",
+        "process-memory-harness",
+        "classifies",
+        "running",
+        "process",
+        "deciding",
+        "whether",
+        "termination",
+        "candidate"
+      ],
+      "lastUpdated": "2026-08-22T19:35:01.687Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction",
+      "description": "Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility",
+      "keywords": [
+        "reduce",
+        "optimize",
+        "spec-kit",
+        "doc",
+        "templates",
+        "merge",
+        "tasks",
+        "checklist",
+        "less",
+        "bloat",
+        "better",
+        "historic",
+        "context",
+        "small-model",
+        "legibility"
+      ],
+      "lastUpdated": "2026-08-26T05:33:55.479Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/001-analysis",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-08-26T06:37:20.709Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge",
+      "description": "`tasks.md` and `checklist.md` are two separately required documents whose completion signals overlap: research confirmed task rows duplicate checklist",
+      "keywords": [
+        "tasks",
+        "checklist",
+        "two",
+        "separately",
+        "required",
+        "documents",
+        "whose",
+        "completion",
+        "signals",
+        "overlap",
+        "research",
+        "confirmed",
+        "task",
+        "rows",
+        "duplicate"
+      ],
+      "lastUpdated": "2026-08-26T11:13:46.453Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/003-template-dedup",
+      "description": "`decision-record.md.tmpl` duplicates its whole ADR skeleton across the L3 and L3+ blocks — 138 byte-identical lines differing only in frontmatter",
+      "keywords": [
+        "decision-record",
+        "tmpl",
+        "duplicates",
+        "whole",
+        "adr",
+        "skeleton",
+        "across",
+        "blocks",
+        "byte-identical",
+        "lines",
+        "differing",
+        "only",
+        "frontmatter"
+      ],
+      "lastUpdated": "2026-08-26T07:56:35.034Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/004-continuity-single-source",
+      "description": "The ~20-line `memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary — ~227 near-identical lines per L2",
+      "keywords": [
+        "20-line",
+        "memory",
+        "continuity",
+        "yaml",
+        "block",
+        "re-emitted",
+        "spec",
+        "plan",
+        "tasks",
+        "checklist",
+        "implementation-summary",
+        "near-identical",
+        "lines",
+        "per"
+      ],
+      "lastUpdated": "2026-08-26T07:57:14.709Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/005-comment-extraction",
+      "description": "The inline-gate renderer strips only IF gates, not plain HTML comments, so SELF-CHECK blocks, per-field voice guides, and footer size notes survive",
+      "keywords": [
+        "inline-gate",
+        "renderer",
+        "strips",
+        "only",
+        "gates",
+        "plain",
+        "html",
+        "comments",
+        "self-check",
+        "blocks",
+        "per-field",
+        "voice",
+        "guides",
+        "footer",
+        "size",
+        "notes",
+        "survive"
+      ],
+      "lastUpdated": "2026-08-26T07:57:55.762Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/006-verify-rollout",
+      "description": "Each prior phase edits shipped, load-bearing templates and validators where a mis-sequenced change regresses the whole packet fleet",
+      "keywords": [
+        "prior",
+        "phase",
+        "edits",
+        "shipped",
+        "load-bearing",
+        "templates",
+        "validators",
+        "mis-sequenced",
+        "change",
+        "regresses",
+        "whole",
+        "packet",
+        "fleet"
+      ],
+      "lastUpdated": "2026-08-26T07:58:31.654Z"
+    },
+    {
+      "specFolder": "system-speckit/037-decisions-memory-redesign",
+      "description": "Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill",
+      "keywords": [
+        "deprecate",
+        "constitutional",
+        "memory",
+        "separate",
+        "actively-used",
+        "decisions",
+        "notes",
+        "system",
+        "integrated",
+        "spec",
+        "skill"
+      ],
+      "lastUpdated": "2026-08-26T05:34:11.096Z"
+    },
+    {
+      "specFolder": "system-speckit/037-decisions-memory-redesign/001-analysis",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-08-26T06:37:20.721Z"
+    },
+    {
+      "specFolder": "system-speckit/037-decisions-memory-redesign/002-active-decisions-design",
+      "description": "The constitutional DB tier is decorative: its rules are already inlined in the root instruction files, it surfaces only when the model chooses to call",
+      "keywords": [
+        "constitutional",
+        "tier",
+        "decorative",
+        "rules",
+        "already",
+        "inlined",
+        "root",
+        "instruction",
+        "files",
+        "surfaces",
+        "only",
+        "model",
+        "chooses",
+        "call"
+      ],
+      "lastUpdated": "2026-08-26T15:19:15.752Z"
+    },
+    {
+      "specFolder": "system-speckit/037-decisions-memory-redesign/003-deprecation-mechanics",
+      "description": "The constitutional DB tier is decorative but not inert: `includeConstitutional` defaults true, so ADR-shaped `memorysearch` calls still pull",
+      "keywords": [
+        "constitutional",
+        "tier",
+        "decorative",
+        "inert",
+        "includeconstitutional",
+        "defaults",
+        "true",
+        "adr-shaped",
+        "memorysearch",
+        "calls",
+        "still",
+        "pull"
+      ],
+      "lastUpdated": "2026-08-26T15:22:18.342Z"
+    },
+    {
+      "specFolder": "system-speckit/037-decisions-memory-redesign/004-rehome-rules-content",
+      "description": "Deleting the constitutional folder naively breaks dangling `See …md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its",
+      "keywords": [
+        "deleting",
+        "constitutional",
+        "folder",
+        "naively",
+        "breaks",
+        "dangling",
+        "see",
+        "links",
+        "claude",
+        "agents",
+        "barter",
+        "skill",
+        "doc",
+        "cites",
+        "rule"
+      ],
+      "lastUpdated": "2026-08-26T15:20:49.416Z"
+    },
+    {
+      "specFolder": "system-speckit/037-decisions-memory-redesign/005-advisor-integration",
+      "description": "The advisor injects three hardcoded directives every turn",
+      "keywords": [
+        "advisor",
+        "injects",
+        "three",
+        "hardcoded",
+        "directives",
+        "every",
+        "turn"
+      ],
+      "lastUpdated": "2026-08-26T15:19:53.054Z"
+    },
+    {
+      "specFolder": "system-speckit/037-decisions-memory-redesign/006-verify-rollout",
+      "description": "The deprecation touches search plumbing, tier config, learned-triggers, a command, root docs, and the advisor — a wide blast radius",
+      "keywords": [
+        "deprecation",
+        "touches",
+        "search",
+        "plumbing",
+        "tier",
+        "config",
+        "learned-triggers",
+        "command",
+        "root",
+        "docs",
+        "advisor",
+        "wide",
+        "blast",
+        "radius"
+      ],
+      "lastUpdated": "2026-08-26T08:01:12.088Z"
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch",

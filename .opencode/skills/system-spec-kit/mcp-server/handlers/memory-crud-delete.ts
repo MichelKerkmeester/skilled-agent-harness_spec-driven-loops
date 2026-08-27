@@ -24,10 +24,8 @@ import { clearDegreeCacheForDb } from '../lib/search/graph-search-fn.js';
 import type { MCPResponse } from './types.js';
 import type { DeleteArgs, MemoryHashSnapshot } from './memory-crud-types.js';
 
-// Feature catalog: Single and folder delete (memory_delete)
-// Feature catalog: Validation feedback (memory_validate)
-// Feature catalog: Transaction wrappers on mutation handlers
-// Feature catalog: Per-memory history log
+// memory_delete / memory_validate: single and folder deletes with transaction
+// wrappers and a per-memory history log.
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -312,7 +310,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
       const msg = hookError instanceof Error ? hookError.message : String(hookError);
       postMutationHooks = {
         latencyMs: 0, triggerCacheCleared: false,
-        constitutionalCacheCleared: false, toolCacheInvalidated: 0,
+        toolCacheInvalidated: 0,
         graphSignalsCacheCleared: false, coactivationCacheCleared: false,
         errors: [msg],
       };

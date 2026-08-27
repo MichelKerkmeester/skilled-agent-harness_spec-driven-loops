@@ -71,7 +71,7 @@ function seedTestData(db: InstanceType<typeof Database>) {
   insertMem.run(1, 'test-spec', '/mem/1.md', 'Memory 1', 'normal');
   insertMem.run(2, 'test-spec', '/mem/2.md', 'Memory 2', 'normal');
   insertMem.run(3, 'test-spec', '/mem/3.md', 'Memory 3', 'normal');
-  insertMem.run(4, 'test-spec', '/mem/4.md', 'Memory 4', 'constitutional');
+  insertMem.run(4, 'test-spec', '/mem/4.md', 'Memory 4', 'normal');
   insertMem.run(5, 'test-spec', '/mem/5.md', 'Memory 5', 'normal');
 
   // Insert causal edges:
@@ -79,7 +79,7 @@ function seedTestData(db: InstanceType<typeof Database>) {
   // Mem 1 -> 3 (derived_from, strength 0.8) => weight 0.9 * 0.8 = 0.72
   // Mem 2 -> 3 (enabled, strength 0.5)  => weight 0.8 * 0.5 = 0.4
   // Mem 3 -> 5 (supports, strength 1.0) => weight 0.5 * 1.0 = 0.5
-  // Mem 4 -> 1 (caused, strength 1.0)   => constitutional source
+  // Mem 4 -> 1 (caused, strength 1.0)
   const insertEdge = db.prepare(
     `INSERT INTO causal_edges (source_id, target_id, relation, strength) VALUES (?, ?, ?, ?)`
   );
@@ -183,45 +183,6 @@ describe('Typed-Weighted Degree Computation', () => {
 
     it('aligns the degree channel weight with the advertised boost cap', () => {
       expect(DEGREE_CHANNEL_WEIGHT).toBe(DEGREE_BOOST_CAP);
-    });
-  });
-
-  // 3. Constitutional memories always return 0
-  describe('constitutional memory exclusion', () => {
-    it('returns 0 for constitutional memories in computeDegreeScores', () => {
-      // Memory 4 is constitutional and has edges (4->1 caused)
-      const scores = computeDegreeScores(testDb, [4]);
-      expect(scores.get('4')).toBe(0);
-    });
-
-    it('excludes constitutional but scores normal memories in same batch', () => {
-      const scores = computeDegreeScores(testDb, [1, 4]);
-      expect(scores.get('4')).toBe(0);
-      expect(scores.get('1')).toBeGreaterThan(0);
-      expect(scores.get('1')).toBeLessThanOrEqual(DEGREE_BOOST_CAP);
-    });
-
-    it('fails closed when constitutional lookup throws', () => {
-      const originalPrepare = testDb.prepare.bind(testDb);
-      const prepareSpy = vi.spyOn(testDb, 'prepare').mockImplementation((sql: string) => {
-        if (sql.includes("importance_tier = 'constitutional'")) {
-          throw new Error('lookup failed');
-        }
-        return originalPrepare(sql);
-      });
-      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-
-      const scores = computeDegreeScores(testDb, [1, 4, 999]);
-
-      expect(scores.get('1')).toBe(0);
-      expect(scores.get('4')).toBe(0);
-      expect(scores.get('999')).toBe(0);
-      expect(warnSpy).toHaveBeenCalledWith(
-        '[graph-search-fn] Constitutional exclusion lookup failed; returning zero scores for safety'
-      );
-
-      prepareSpy.mockRestore();
-      warnSpy.mockRestore();
     });
   });
 

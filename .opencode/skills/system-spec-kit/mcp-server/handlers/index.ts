@@ -321,10 +321,8 @@ export const handle_memory_health = lazyFunction(getMemoryCrudModule, 'handle_me
 // Memory index handlers
 export const handleMemoryIndexScan = lazyFunction(getMemoryIndexModule, 'handleMemoryIndexScan');
 export const indexSingleFile = lazyFunction(getMemoryIndexModule, 'indexSingleFile');
-export const findConstitutionalFiles = lazyFunction(getMemoryIndexModule, 'findConstitutionalFiles');
 export const handle_memory_index_scan = lazyFunction(getMemoryIndexModule, 'handle_memory_index_scan');
 export const index_single_file = lazyFunction(getMemoryIndexModule, 'index_single_file');
-export const find_constitutional_files = lazyFunction(getMemoryIndexModule, 'find_constitutional_files');
 
 // Memory index scan job handlers (status/cancel)
 export const handleMemoryIndexScanStatus = lazyFunction(getMemoryIndexScanJobsModule, 'handleMemoryIndexScanStatus');

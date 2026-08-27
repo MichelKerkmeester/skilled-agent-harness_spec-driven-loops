@@ -27,7 +27,7 @@ describe('Attention Decay Module', () => {
 
     it('All importance tiers defined', () => {
       const tiers = attentionDecay.DECAY_CONFIG.decayRateByTier;
-      const expectedTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
+      const expectedTiers = ['critical', 'important', 'normal', 'temporary', 'deprecated'];
       const missingTiers = expectedTiers.filter(t => (tiers as Record<string, unknown>)[t] === undefined);
       expect(missingTiers).toHaveLength(0);
     });
@@ -73,10 +73,6 @@ describe('Attention Decay Module', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('getDecayRate()', () => {
-    it('constitutional tier returns 1.0', () => {
-      expect(attentionDecay.getDecayRate('constitutional')).toBe(1.0);
-    });
-
     it('critical tier returns 1.0', () => {
       expect(attentionDecay.getDecayRate('critical')).toBe(1.0);
     });
@@ -215,12 +211,12 @@ describe('Attention Decay Module', () => {
       expect(score).toBeLessThanOrEqual(1);
     });
 
-    it('Constitutional >= normal score', () => {
-      const constMemory = { importance_tier: 'constitutional', importance_weight: 1.0 };
+    it('Critical >= normal score', () => {
+      const criticalMemory = { importance_tier: 'critical', importance_weight: 1.0 };
       const normalMemory = { importance_tier: 'normal', importance_weight: 0.5 };
-      const constScore = attentionDecay.calculateCompositeAttention(constMemory);
+      const criticalScore = attentionDecay.calculateCompositeAttention(criticalMemory);
       const normalScore = attentionDecay.calculateCompositeAttention(normalMemory);
-      expect(constScore).toBeGreaterThanOrEqual(normalScore);
+      expect(criticalScore).toBeGreaterThanOrEqual(normalScore);
     });
   });
 
@@ -269,7 +265,7 @@ describe('Attention Decay Module', () => {
     it('Returns array of same length', () => {
       const memories = [
         { importance_tier: 'normal', importance_weight: 0.5 },
-        { importance_tier: 'constitutional', importance_weight: 1.0 },
+        { importance_tier: 'critical', importance_weight: 1.0 },
       ];
       const result = attentionDecay.applyCompositeDecay(memories);
       expect(Array.isArray(result)).toBe(true);
@@ -279,7 +275,7 @@ describe('Attention Decay Module', () => {
     it('Each item has attentionScore', () => {
       const memories = [
         { importance_tier: 'normal', importance_weight: 0.5 },
-        { importance_tier: 'constitutional', importance_weight: 1.0 },
+        { importance_tier: 'critical', importance_weight: 1.0 },
       ];
       const result = attentionDecay.applyCompositeDecay(memories);
       expect(result.every((m) => typeof m.attentionScore === 'number')).toBe(true);
@@ -288,7 +284,7 @@ describe('Attention Decay Module', () => {
     it('Sorted descending by attentionScore', () => {
       const memories = [
         { importance_tier: 'normal', importance_weight: 0.5 },
-        { importance_tier: 'constitutional', importance_weight: 1.0 },
+        { importance_tier: 'critical', importance_weight: 1.0 },
       ];
       const result = attentionDecay.applyCompositeDecay(memories);
       expect(result[0].attentionScore).toBeGreaterThanOrEqual(result[1].attentionScore);
@@ -413,11 +409,11 @@ describe('Attention Decay Module', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('Edge Cases', () => {
-    // Constitutional tier = infinite half-life (rate 1.0, no decay)
+    // High stability = near-infinite half-life (rate ~1.0, no meaningful decay)
     // REC-017: Use FSRS retrievability — high stability + any elapsed = ~1.0
     it('High stability = minimal decay after 1000 days', () => {
-      const constRetrievability = attentionDecay.calculateRetrievabilityDecay(1000.0, 1000);
-      expect(constRetrievability).toBeGreaterThanOrEqual(0.9);
+      const highStabilityRetrievability = attentionDecay.calculateRetrievabilityDecay(1000.0, 1000);
+      expect(highStabilityRetrievability).toBeGreaterThanOrEqual(0.9);
     });
 
     // Deprecated tier also frozen — use applyFsrsDecay with no last_review to get baseScore back

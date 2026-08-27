@@ -196,7 +196,7 @@ describe('Gate D regression 13 — 4-stage search pipeline / RRF fusion', () => 
     const stage3 = pipelineMetadata.stage3 as Record<string, unknown>;
     const stage4 = pipelineMetadata.stage4 as Record<string, unknown>;
 
-    expect(results.map((row) => row.id)).toEqual([1301, 1302, 1304]);
+    expect(results.map((row) => row.id)).toEqual([1301, 1302]);
     expect(results.every((row) => row.document_type !== 'memory')).toBe(true);
     expect(results.every((row) => !String(row.file_path ?? '').includes('/memory/'))).toBe(true);
 
@@ -211,19 +211,18 @@ describe('Gate D regression 13 — 4-stage search pipeline / RRF fusion', () => 
       legacyFallbackEnabled: false,
       includeArchivedCompatibility: 'ignored',
       preferredDocumentTypes: ['spec_doc', 'continuity'],
-      retainedResults: 3,
-      droppedNonCanonicalResults: 2,
+      retainedResults: 2,
+      droppedNonCanonicalResults: 3,
     });
     expect(sourceContract.countsBySourceKind).toEqual({
       spec_doc: 1,
       continuity: 1,
-      constitutional: 1,
     });
 
     expect(mocks.logFinalResult).toHaveBeenCalledWith(expect.objectContaining({
       fusionMethod: 'rrf',
-      resultMemoryIds: [1301, 1302, 1304],
-      scores: [0.96, 0.91, 0.87],
+      resultMemoryIds: [1301, 1302],
+      scores: [0.96, 0.91],
     }));
   });
 });

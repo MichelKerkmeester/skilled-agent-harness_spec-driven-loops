@@ -400,7 +400,7 @@ Every search checks five core channels at once:
 
 Every search passes through 4 stages:
 
-- **Candidate generation** - Parallel retrieval from the active channels plus constitutional injection where applicable.
+- **Candidate generation** - Parallel retrieval from the active channels.
 - **Fusion** - RRF-based scoring with post-fusion signals such as co-activation, FSRS decay, interference control, intent weights and graph/session boosts when enabled.
 - **Rerank** - MMR diversity reranking (algorithmic, gated by `SPECKIT_MMR`) with MPAB chunk reassembly.
 - **Filtering** - State/quality filtering, confidence annotation, token-budget enforcement and final response shaping without mutating post-rerank scores.
@@ -472,7 +472,7 @@ Additional save-time processing:
 - **Verify-fix-verify** - Auto-fixes quality issues before storing
 - **Content normalization** - Strips formatting clutter for cleaner embeddings
 - **Secret scrubbing** - Pre-index redaction with typed `[REDACTED:<kind>]` markers across 13 credential pattern kinds (API keys, tokens, JWTs, private keys, credential assignments). Fail-closed: a scrubber error aborts the save rather than persisting raw text. The scrubber is shared between the MCP save path and the standalone CLI save lane, and `memory_health` surfaces redaction counters
-- **Write provenance** - Automated reducer and feedback writers tag their writes with source-kind provenance, so the write-ingress guard enforces the constitutional rule that automated writers never overwrite manual or constitutional memory
+- **Write provenance** - Automated reducer and feedback writers tag their writes with source-kind provenance, so the write-ingress guard prevents automated writers from overwriting protected manual content
 - **Idempotency receipts** (flag-gated, `SPECKIT_MEMORY_IDEMPOTENCY`) - Replayed saves return the original response verbatim from immutable first-write receipts; concurrent first-write losers replay the winner with a visible conflict envelope, and expired receipts are swept on a TTL
 - **Auto-entity extraction** - Spots tool/project/concept names for cross-linking
 - **SHA-256 deduplication** - Skips unchanged files instantly
@@ -499,7 +499,6 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 &nbsp;
 #### Retrieval Enhancements
 
-- **Constitutional injection** - Always-surfaced rules appear without asking
 - **Hierarchy awareness** - Searches parent and sibling spec folders
 - **Entity linking** - Connects memories referencing the same concepts
 - **ANCHOR retrieval** - Per-section indexing (~93% token savings)
@@ -778,7 +777,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loo
 **system-spec-kit**
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
-- Integrates the 41-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
+- Integrates the 41-tool memory surface with session bootstrap and hybrid 5-channel retrieval
 - Manages the manifest template source, 38 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 - Owns AST indexing, SQLite graph storage, readiness contracts and `detect_changes` impact checks
@@ -975,8 +974,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - Routes by intent: `add_feature`, `fix_bug`, `refactor`, `security_audit`, `understand`, `find_spec`, `find_decision`
 
 **Learn**
-- `/memory:learn` constitutional memory manager for always-surface rules
-- Constitutional memories carry a 3.0x boost and never decay
+- `/memory:learn` constitutional rule manager for the reference rule docs under `constitutional/`
 - Lifecycle operations: create, list, edit, remove, budget
 
 **Manage**

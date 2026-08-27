@@ -17,7 +17,6 @@
 //   - vector: Direct vectorSearch
 //
 // Post-channel operations:
-//   - Constitutional memory injection (if not already present)
 //   - Quality score filtering
 //   - Tier and contextType filtering
 //
@@ -27,7 +26,6 @@
 // Key invariants:
 //     - candidates contains raw channel scores; vector hits may include an
 //       optional temporal-contiguity boost applied before downstream fusion
-//     - Constitutional rows are always present when includeConstitutional=true and no tier filter
 //     - All rows pass qualityThreshold (if set) and tier/contextType filters
 // Side effects:
 //     - Generates query embeddings via the embeddings provider (external call)
@@ -83,8 +81,8 @@ import { loadSurrogatesBatch } from '../surrogate-storage.js';
 import { queryCommunityMembersAsRankedList } from '../community-search.js';
 import { isActiveRow } from '../active-row-predicate.js';
 
-// Feature catalog: 4-stage pipeline architecture
-// Feature catalog: Hybrid search pipeline
+// Stage 1 of the search pipeline: generates raw candidates via the hybrid and
+// vector channels before downstream fusion and reranking.
 
 
 // -- Constants --
@@ -97,9 +95,6 @@ const DEEP_EXPANSION_TIMEOUT_MS = 5000;
 
 /** Minimum cosine similarity for multi-concept search. */
 const MULTI_CONCEPT_MIN_SIMILARITY = 0.5;
-
-/** Number of constitutional results to fetch when none appear in hybrid/vector results. */
-const CONSTITUTIONAL_INJECT_LIMIT = 5;
 
 /** Number of similar memories to mine for embedding-based query expansion terms. */
 const DEFAULT_EXPANSION_CANDIDATE_LIMIT = 5;
@@ -627,7 +622,7 @@ function mergeQueryFacetCoverage(resultSets: PipelineRow[][]): PipelineRow[] {
  *
  * Selects and runs the appropriate search channel(s) based on `config.searchType`
  * and `config.mode`, then applies vector-channel temporal contiguity when
- * enabled, followed by constitutional injection, quality filtering, and
+ * enabled, followed by quality filtering, and
  * tier/contextType filtering.
  *
  * This stage does not apply Stage 2 fusion/reranking signals. Vector-channel
@@ -653,7 +648,6 @@ export async function executeStage1(input: Stage1Input): Promise<Stage1Output> {
         channelCount: 0,
         activeChannels: 0,
         candidateCount: 0,
-        constitutionalInjected: 0,
         durationMs: Date.now() - startTime,
       },
     };
@@ -662,9 +656,8 @@ export async function executeStage1(input: Stage1Input): Promise<Stage1Output> {
 
 async function executeStage1Core(input: Stage1Input, startTime: number): Promise<Stage1Output> {
   const { config } = input;
-  // Cache embedding at function scope for reuse in constitutional injection
+  // Cache embedding at function scope for reuse across channels.
   let cachedEmbedding: Float32Array | number[] | null = null;
-  let constitutionalInjectedCount = 0;
 
   const {
     query,
@@ -680,7 +673,6 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     tier,
     contextType,
     includeArchived,
-    includeConstitutional,
     qualityThreshold,
     retrievalLevel = 'auto',
     trace,
@@ -838,38 +830,6 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       globalCandidates = backfillMissingQualityScores(globalCandidates);
       globalCandidates = filterByMinQualityScore(globalCandidates, qualityThreshold);
 
-      // Constitutional always-surface guarantee is independent of the retrieval level:
-      // the global branch returns before the main injection block, so it must inject the
-      // pinned rows itself (fetched by tier — no embedding needed), scope/context-filtered
-      // and deduped, or 'global' would silently drop constitutional memories that 'local'
-      // always surfaces.
-      let globalConstitutionalInjected = 0;
-      if (includeConstitutional && !tier) {
-        try {
-          const constitutionalResults = vectorIndex.get_constitutional_memories(
-            db,
-            specFolder ?? null,
-            includeArchived ?? false,
-          ) as PipelineRow[];
-          const existingIds = new Set(globalCandidates.map((r) => r.id));
-          let uniqueConstitutional = constitutionalResults.filter((r) => !existingIds.has(r.id));
-          if (contextType) {
-            uniqueConstitutional = uniqueConstitutional.filter(
-              (r) => resolveRowContextType(r) === contextType,
-            );
-          }
-          if (tenantId || userId || agentId) {
-            uniqueConstitutional = filterRowsByScope(uniqueConstitutional, { tenantId, userId, agentId });
-          }
-          globalCandidates = [...globalCandidates, ...uniqueConstitutional];
-          globalConstitutionalInjected = uniqueConstitutional.length;
-        } catch (constitutionalErr: unknown) {
-          const constitutionalMsg =
-            constitutionalErr instanceof Error ? constitutionalErr.message : String(constitutionalErr);
-          console.warn(`[stage1-candidate-gen] global constitutional injection failed (fail-open): ${constitutionalMsg}`);
-        }
-      }
-
       const durationMs = Date.now() - startTime;
       if (trace) {
         addTraceEntry(trace, 'candidate', 1, globalCandidates.length, durationMs, {
@@ -885,7 +845,6 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           channelCount: 1,
           activeChannels: 1,
           candidateCount: globalCandidates.length,
-          constitutionalInjected: globalConstitutionalInjected,
           durationMs,
         },
       };
@@ -900,7 +859,6 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           channelCount: 1,
           activeChannels: 1,
           candidateCount: 0,
-          constitutionalInjected: 0,
           durationMs,
         },
       };
@@ -952,7 +910,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   //
   else if (searchType === 'hybrid') {
     // Resolve the query embedding — either pre-computed in config or generate now
-    // Cache this embedding for reuse in constitutional injection path
+    // Cache this embedding for reuse across channels
     // To avoid a duplicate generateQueryEmbedding() call.
     const effectiveEmbedding: Float32Array | number[] | null =
       queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
@@ -1253,7 +1211,6 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
             specFolder,
             tier,
             contextType,
-            includeConstitutional: false, // Constitutional managed separately below
             includeArchived,
           }) as PipelineRow[];
           if (isTemporalContiguityEnabled()) {
@@ -1297,7 +1254,6 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
         specFolder,
         tier,
         contextType,
-        includeConstitutional: false, // Constitutional managed separately below
         includeArchived,
       }) as PipelineRow[];
       if (isTemporalContiguityEnabled()) {
@@ -1328,8 +1284,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
   // -- Tier and contextType filtering -----------------------------------------
   //
-  // Applied after candidate collection but before constitutional injection so
-  // Injected constitutional rows are evaluated by the same filters.
+  // Applied after candidate collection.
   // Exception: for hybrid search, tier/contextType are applied here because
   // SearchWithFallback does not accept these parameters directly.
   // For vector search, tier/contextType were already passed to vectorSearch,
@@ -1368,108 +1323,6 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     } catch (_error: unknown) {
       candidates = filterRowsByScope(candidates, scopeFilter);
     }
-  }
-
-  // -- Constitutional Memory Injection ----------------------------------------
-  //
-  // If includeConstitutional is requested and no constitutional results exist
-  // In the current candidate set, fetch them separately via vector search.
-  // They enter the pipeline here so all subsequent stages (scoring, reranking)
-  // Treat them uniformly. Constitutional tier boost is applied in Stage 2.
-  //
-  // Injection is skipped when:
-  //   - includeConstitutional is false
-  //   - A tier filter is active (caller explicitly requested a specific tier)
-  //   - Constitutional results already exist in the candidate set
-
-  if (includeConstitutional && !tier && !vectorSearchSkipped) {
-    const existingConstitutional = candidates.filter(
-      (r) => r.importance_tier === 'constitutional'
-    );
-
-    if (existingConstitutional.length === 0) {
-      // Reuse cached embedding instead of generating a new one
-      const constitutionalEmbedding: Float32Array | number[] | null =
-        cachedEmbedding ?? queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
-
-      if (constitutionalEmbedding) {
-        const constitutionalResults = vectorIndex.vectorSearch(
-          constitutionalEmbedding,
-          {
-            limit: CONSTITUTIONAL_INJECT_LIMIT,
-            specFolder,
-            tier: 'constitutional',
-            useDecay: false,
-          }
-        ) as PipelineRow[];
-
-        // Only inject rows not already present
-        const existingIds = new Set(candidates.map((r) => r.id));
-        const uniqueConstitutional = constitutionalResults.filter(
-          (r) => !existingIds.has(r.id)
-        );
-
-        // Re-apply filters after injection because constitutional rows fetched
-        // via vector search bypass the earlier governance/context gate.
-        const contextFilteredConstitutional = contextType
-          ? uniqueConstitutional.filter((r) => resolveRowContextType(r) === contextType)
-          : uniqueConstitutional;
-        // Re-apply any explicit governance scope after the injection query.
-        const filteredConstitutional = shouldApplyScopeFiltering
-          ? filterRowsByScope(contextFilteredConstitutional, scopeFilter)
-          : contextFilteredConstitutional;
-        candidates = [...candidates, ...filteredConstitutional];
-        constitutionalInjectedCount = filteredConstitutional.length;
-      }
-    }
-  } else if (includeConstitutional && !tier && vectorSearchSkipped) {
-    // Lexical-fallback path: the live embedder is unavailable, so the
-    // vector-based injection above cannot run (it requires a query embedding).
-    // The constitutional-always-surface guarantee is independent of vector
-    // availability, so fetch constitutional rows directly by tier from the
-    // index (no embedding required) and inject them the same way.
-    const existingConstitutional = candidates.filter(
-      (r) => r.importance_tier === 'constitutional'
-    );
-
-    if (existingConstitutional.length === 0) {
-      try {
-        const constitutionalDb = requireDb();
-        const constitutionalResults = vectorIndex.get_constitutional_memories(
-          constitutionalDb,
-          specFolder ?? null,
-          includeArchived ?? false,
-        ) as PipelineRow[];
-
-        // Only inject rows not already present.
-        const existingIds = new Set(candidates.map((r) => r.id));
-        const uniqueConstitutional = constitutionalResults.filter(
-          (r) => !existingIds.has(r.id)
-        );
-
-        // Re-apply the same context/governance filters the vector path applies,
-        // because the tier-only fetch bypasses the earlier candidate gates.
-        const contextFilteredConstitutional = contextType
-          ? uniqueConstitutional.filter((r) => resolveRowContextType(r) === contextType)
-          : uniqueConstitutional;
-        const filteredConstitutional = shouldApplyScopeFiltering
-          ? filterRowsByScope(contextFilteredConstitutional, scopeFilter)
-          : contextFilteredConstitutional;
-        candidates = [...candidates, ...filteredConstitutional];
-        constitutionalInjectedCount = filteredConstitutional.length;
-      } catch (constitutionalErr: unknown) {
-        const constitutionalMsg =
-          constitutionalErr instanceof Error ? constitutionalErr.message : String(constitutionalErr);
-        console.warn(
-          `[stage1-candidate-gen] lexical constitutional injection failed (fail-open): ${constitutionalMsg}`
-        );
-      }
-    }
-  } else if (!includeConstitutional) {
-    // Explicitly exclude constitutional results if flag is off
-    candidates = candidates.filter(
-      (r) => r.importance_tier !== 'constitutional'
-    );
   }
 
   // -- Quality Score Filtering ------------------------------------------------
@@ -1886,7 +1739,6 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       } : {}),
       ...(capturedChannelTelemetry ? { channelTelemetry: capturedChannelTelemetry } : {}),
       candidateCount: candidates.length,
-      constitutionalInjected: constitutionalInjectedCount,
       durationMs,
     },
   };

@@ -3,8 +3,6 @@
 // ───────────────────────────────────────────────────────────────
 export {
   extractContextHint,
-  getConstitutionalMemories,
-  clearConstitutionalCache,
   autoSurfaceMemories,
   autoSurfaceAtToolDispatch,
   autoSurfaceAtCompaction,

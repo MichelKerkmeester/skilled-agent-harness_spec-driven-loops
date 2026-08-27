@@ -69,9 +69,7 @@ import { createEmptyQueryPlan } from '../lib/query/query-plan.js';
 import { buildSearchDecisionEnvelope } from '../lib/search/search-decision-envelope.js';
 import { recordSearchDecision } from '../lib/search/decision-audit.js';
 
-// Feature catalog: Unified context retrieval (memory_context)
-// Feature catalog: Dual-scope memory auto-surface
-// Feature catalog: Provenance-rich response envelopes
+// Unified context retrieval (memory_context): dual-scope memory auto-surface with provenance-rich response envelopes.
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -95,7 +93,6 @@ interface ContextOptions {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
-  includeConstitutional?: boolean;
   includeTrace?: boolean; // Forward to internal memory_search calls
   tokenBudget?: number;
   anchors?: string[];
@@ -133,7 +130,6 @@ interface ContextArgs {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
-  includeConstitutional?: boolean;
   includeTrace?: boolean; // Forward to internal memory_search calls
   tokenBudget?: number;
   tokenUsage?: number;
@@ -1095,7 +1091,6 @@ function toMetadataOnlyContextRow(r: Record<string, unknown>): Record<string, un
     filePath: r.filePath ?? r.file_path,
     confidence: r.confidence,
     importanceTier: r.importanceTier,
-    isConstitutional: r.isConstitutional,
     metadataOnly: true,
   };
 }
@@ -1191,7 +1186,6 @@ async function executeDeepStrategy(input: string, intent: string | null, options
     userId: options.userId,
     agentId: options.agentId,
     limit: options.limit || 10,
-    includeConstitutional: options.includeConstitutional !== false,
     includeContent: options.includeContent || false,
     includeTrace: options.includeTrace || false, // Forward to internal memory_search calls
     anchors: options.anchors,
@@ -1221,7 +1215,6 @@ async function executeFocusedStrategy(input: string, intent: string | null, opti
     userId: options.userId,
     agentId: options.agentId,
     limit: options.limit || 8,
-    includeConstitutional: options.includeConstitutional !== false,
     includeContent: options.includeContent || false,
     includeTrace: options.includeTrace || false, // Forward to internal memory_search calls
     anchors: options.anchors,
@@ -1778,7 +1771,6 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       limit,
       enableDedup: enableDedup,
       includeContent: include_content,
-      includeConstitutional: args.includeConstitutional,
       includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true || debugProfileRequested,
       tokenBudget: requestedTokenBudget,
       anchors,

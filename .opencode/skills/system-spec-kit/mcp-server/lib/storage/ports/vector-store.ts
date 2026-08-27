@@ -148,11 +148,8 @@ export class BetterSqliteVectorStore<TMetadata extends VectorMetadata = VectorMe
   }
 
   /**
-   * Port-shaped overload: forces `includeConstitutional: false`, unlike
-   * the legacy 3-arg path which defaults it to true. Port callers get
-   * pure similarity ranking without constitutional memories pinned into
-   * the results; legacy callers keep the constitutional-inclusive
-   * behavior they were built on.
+   * Port-shaped overload: returns similarity-ranked VectorSearchResult rows.
+   * The legacy 3-arg overload returns raw MemoryRow records.
    */
   search(
     embedding: readonly number[] | Float32Array,
@@ -171,7 +168,6 @@ export class BetterSqliteVectorStore<TMetadata extends VectorMetadata = VectorMe
     if (typeof optionsOrTopK !== 'number') {
       const rows = await this.search(embedding, optionsOrTopK.limit, {
         minSimilarity: optionsOrTopK.minScore === undefined ? 0 : optionsOrTopK.minScore * 100,
-        includeConstitutional: false,
       });
       return rows.map((row) => ({
         id: String(row.id),
@@ -198,7 +194,6 @@ export class BetterSqliteVectorStore<TMetadata extends VectorMetadata = VectorMe
       useDecay: options.useDecay !== false,
       tier: options.tier,
       contextType: options.contextType,
-      includeConstitutional: options.includeConstitutional !== false,
       includeArchived: options.includeArchived === true
     };
 
@@ -370,15 +365,6 @@ export class BetterSqliteVectorStore<TMetadata extends VectorMetadata = VectorMe
     const database = this._getDatabase();
     const { enhanced_search } = await getAliasesModule();
     return enhanced_search(embedding, undefined, options, database);
-  }
-
-  async getConstitutionalMemories(
-    options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {},
-  ): Promise<MemoryRow[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { get_constitutional_memories_public } = await getQueriesModule();
-    return get_constitutional_memories_public(options, database);
   }
 
   async verifyIntegrity(

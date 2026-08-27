@@ -20,7 +20,7 @@ Spec Kit Memory MCP tools, behavior notes, and configuration options.
 
 ## 1. OVERVIEW
 
-Current baseline: schema v41 (`document_type`, `spec_level`, trigger embeddings, provenance `source_kind`, idempotency receipts, near-duplicate hints, tombstone partitions, retention-forgetting, and semantic-edge substrate support), 3 active indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
+Current baseline: schema v41 (`document_type`, `spec_level`, trigger embeddings, provenance `source_kind`, idempotency receipts, near-duplicate hints, tombstone partitions, retention-forgetting, and semantic-edge substrate support), 2 active indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
 
 The Spec Kit Memory system provides context preservation across sessions through vector-based semantic search and packet-first continuity. Phase 018 makes `handover.md -> _memory.continuity -> spec docs` the canonical recovery chain; retired `[spec]/memory/*.md` artifacts are no longer produced at save time and only matter when older packets still contain them. This reference covers MCP tool behavior, importance tiers, decay scoring, and configuration.
 
@@ -33,7 +33,7 @@ When a save mutates indexed state, the runtime also updates the `DB_UPDATED_FILE
 | MCP Server | `mcp-server/context-server.ts` | Spec Kit Memory MCP with vector search |
 | CLI Shim | `.opencode/bin/spec-memory.cjs` | Daemon-backed CLI over the same tool surface; additive warm-only fallback when runtime MCP transport is unavailable (exit `75` = retryable daemon/IPC unavailability) |
 | Database | `mcp-server/database/context-index__*.sqlite` | SQLite with FTS5 + vector embeddings; active profile filename resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
-| Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
+| Reference rules | `constitutional/` | Plain, unindexed reference rule docs (e.g. Gate 3); not auto-surfaced |
 | Scripts | runtime `scripts/dist/memory/generate-context.js` (source: `scripts/memory/generate-context.ts`) | Canonical continuity save entrypoint for packet docs |
 
 ### Core Support
@@ -42,23 +42,20 @@ When a save mutates indexed state, the runtime also updates the `DB_UPDATED_FILE
 - **Importance tiers** - Six-level system for prioritizing context
 - **Decay scoring** - Recent indexed spec-doc records rank higher than older ones
 - **Checkpoints** - Save/restore indexed-continuity state snapshots
-- **Constitutional tier** - Critical rules that always surface
 
 ### Indexable Content Sources
 
-The indexed-continuity store indexes content from three active source families, plus a retired-compatibility row preserved for read-side retrieval against historical packets:
+The indexed-continuity store indexes content from two active source families, plus a retired-compatibility row preserved for read-side retrieval against historical packets:
 
 | Source | Location Pattern | Memory Type | Default Tier | Discovery |
 |--------|-----------------|-------------|--------------|-----------|
 | **Spec Documents** | `specs/**/*.md` and `<active-spec-folder>/**/*.md` | Per-type (spec, plan, tasks, etc.) | `normal` | `findSpecDocuments()` |
-| **Constitutional Rules** | `.opencode/skills/*/constitutional/*.md` | `meta-cognitive` | `constitutional` | `findConstitutionalFiles()` |
 | **Graph Metadata** | `graph-metadata.json` adjacent to spec docs | `graph_metadata` | `important` | `findGraphMetadataFiles()` |
 | **Retired Compatibility Artifacts** | Older `specs/*/memory/*.{md,txt}` files already present in historical packets | Varies (episodic, procedural, etc.) | `normal` | Historical compatibility only |
 
 **Content Source Behavior:**
 
 - **Spec Documents** — Canonical packet continuity source. Recovery should read `handover.md`, then `_memory.continuity`, then the rest of the packet docs before widening into search.
-- **Constitutional Rules** — Always-surface critical rules. Injected at top of every search result. No decay.
 - **Graph Metadata** — Packet metadata source discovered alongside spec documents and indexed with the `graph_metadata` document type.
 - **Retired Compatibility Artifacts** — Older session notes may still exist in historical packets, but save workflows no longer produce them and operators should not treat them as an active surface.
 
@@ -66,7 +63,7 @@ The indexed-continuity store indexes content from three active source families, 
 1. `findSpecDocuments()` walks both supported specs roots and discovers supported doc filenames
 2. `isMemoryFile()` validates each document as an indexable file
 3. `extractDocumentType()` infers `document_type` (spec/plan/tasks/etc.) for scoring
-4. Spec documents, constitutional files, and `graph-metadata.json` files are merged and indexed together
+4. Spec documents and `graph-metadata.json` files are merged and indexed together
 5. `createSpecDocumentChain()` links lifecycle docs for causal traversal
 
 ---
@@ -77,27 +74,18 @@ Six-tier system for prioritizing memory relevance:
 
 | Tier | Weight | searchBoost | Purpose | Auto-Surface |
 |------|--------|-------------|---------|--------------|
-| **Constitutional** | 1.0 | 3.0 | Critical rules that ALWAYS apply | Yes (top of every search) |
 | **Critical** | 1.0 | 2.0 | High-importance context | Yes (high relevance) |
 | **Important** | 0.8 | 1.5 | Significant decisions/context | Relevance-based |
 | **Normal** | 0.5 | 1.0 | Standard session context | Relevance-based |
 | **Temporary** | 0.3 | 0.5 | Short-term notes | Relevance-based |
+| **Archived** | 0.2 | 0.0 | Archived context (kept, hidden from ranked search) | Never (excluded from search by default) |
 | **Deprecated** | 0.1 | 0.0 | Outdated (kept for history) | Never (excluded from search) |
 
 **searchBoost Multipliers:** Applied to search scores to prioritize higher tiers:
-- Constitutional memories get 3x boost in search ranking
 - Critical memories get 2x boost
 - Important memories get 1.5x boost
 - Normal memories have no boost (1.0x)
-- Temporary and Deprecated get reduced visibility (0.5x and 0x respectively)
-
-### Constitutional Tier Behavior
-
-- Stored in `constitutional/` folder
-- Auto-indexed on MCP server startup
-- **ALWAYS** surface at top of search results, regardless of query
-- Used for gate enforcement (e.g., "always ask spec folder question")
-- EXEMPT from decay scoring (always max relevance)
+- Temporary gets reduced visibility (0.5x); Archived and Deprecated are excluded from ranked search (0x)
 
 ---
 
@@ -143,7 +131,7 @@ Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, n
 | L6: Analysis | `memory_causal_unlink()` | Remove a causal relationship | Correct bad causal edges |
 | L6: Analysis | `eval_run_ablation()` | Run ablation study on memory scoring components | Compare scoring strategies |
 | L6: Analysis | `eval_reporting_dashboard()` | Generate evaluation and reporting dashboard data | Review system metrics |
-| L7: Maintenance | `memory_index_scan()` | Bulk scan and index packet docs, constitutional files, and graph metadata | After continuity or spec-doc updates |
+| L7: Maintenance | `memory_index_scan()` | Bulk scan and index packet docs and graph metadata | After continuity or spec-doc updates |
 | L7: Maintenance | `memory_index_scan_status()` | Get progress for a background index scan | Poll a `background:true` scan job |
 | L7: Maintenance | `memory_index_scan_cancel()` | Cancel a running background index scan | Stop a runaway scan job |
 | L7: Maintenance | `memory_get_learning_history()` | Return preflight/postflight learning history | Analyze learning patterns |
@@ -160,7 +148,6 @@ Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, n
 |-----------|------|---------|-------------|
 | `specFolder` | string | - | Limit scan to specific spec folder |
 | `force` | boolean | false | Force re-index all files (ignore content hash) |
-| `includeConstitutional` | boolean | true | Scan `.opencode/skills/*/constitutional/` directories |
 | `includeSpecDocs` | boolean | true | Scan for spec folder documents in `.opencode/specs/`. When true, discovers and indexes specs, plans, tasks, decision records, etc. with document-type scoring multipliers (11 types). Also controllable via `SPECKIT_INDEX_SPEC_DOCS` env var. |
 | `incremental` | boolean | true | Skip files whose mtime and content hash are unchanged since last index |
 | `background` | boolean | false | Queue a background scan job; poll with `memory_index_scan_status` and stop with `memory_index_scan_cancel` |
@@ -186,7 +173,6 @@ Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, n
 - `userId` (string, optional): User boundary for governed retrieval
 - `agentId` (string, optional): Agent boundary for governed retrieval
 - `includeContent`: Include full file content in results
-- `includeConstitutional`: Include constitutional tier memories
 - `anchors`: Array of anchor IDs for targeted section retrieval (token-efficient)
 - `tier`: Filter by importance tier
 - `limit`: Maximum results to return
@@ -204,7 +190,6 @@ When operating in shared or multi-actor deployments, always provide scope parame
 | `tenantId` | string | No | - | Tenant boundary for governed retrieval |
 | `userId` | string | No | - | User boundary for governed retrieval |
 | `agentId` | string | No | - | Agent boundary for governed retrieval |
-| `includeConstitutional` | boolean | No | true | Include constitutional memories |
 | `includeContent` | boolean | No | false | Embed full file content in results |
 | `includeContiguity` | boolean | No | false | Include adjacent memories |
 | `anchors` | string[] | No | - | Anchor IDs to extract (e.g., `['summary', 'decisions']`) |
@@ -226,16 +211,6 @@ The system detects query intent and applies task-specific search weights. Seven 
 | `find_spec` | +spec documents, +plans, +decision records |
 | `find_decision` | +decision records, +architectural context |
 
-### Constitutional Memory Behavior
-
-> **Important:** Constitutional memories ALWAYS appear at the top of search results, even when a `specFolder` filter is applied. This is BY DESIGN to ensure critical context (e.g., Gate enforcement rules) is never accidentally filtered out.
-
-| Parameter | Behavior |
-|-----------|----------|
-| `specFolder: "007-auth"` | Filters results to that folder, but constitutional memories still appear first |
-| `includeConstitutional: false` | Explicitly excludes constitutional memories from results |
-| `includeContent: true` | Embeds full indexed document content in results (eliminates separate load calls) |
-
 ### Usage Examples
 
 ```javascript
@@ -253,12 +228,6 @@ memory_search({
 memory_search({
   concepts: ["authentication", "session management"],
   specFolder: "007-auth"
-})
-
-// Exclude constitutional tier
-memory_search({
-  query: "login flow",
-  includeConstitutional: false
 })
 
 // WRONG: specFolder alone is NOT sufficient
@@ -390,14 +359,13 @@ Where `elapsedDays` = calendar days since the spec-doc record's `updated_at` (or
 
 | Tier | Decay Rate | Behavior |
 |------|------------|----------|
-| `constitutional` | 1.0 | Never decays (exempt) |
 | `critical` | 1.0 | Never decays (exempt) |
 | `important` | 1.0 | Never decays (exempt) |
 | `normal` | 0.80 | Standard decay (~20% loss per 30 days) |
 | `temporary` | 0.60 | Fast decay (~40% loss per 30 days) |
 | `deprecated` | 1.0 | Never decays (but excluded from search results) |
 
-**Protected Tiers:** Constitutional, critical, important, and deprecated tiers have rate = 1.0, so `decayRate^(elapsedDays/30)` = 1.0 always.
+**Protected Tiers:** Critical, important, and deprecated tiers have rate = 1.0, so `decayRate^(elapsedDays/30)` = 1.0 always.
 
 #### Decay Examples (Normal Tier, decay_rate = 0.80)
 
@@ -474,7 +442,7 @@ The `memory_index_scan` operation is self-maintaining. Overlapping scans coalesc
 
 ### Purpose
 
-Constitutional rules are critical context that should surface in every relevant interaction. Examples:
+Constitutional rules are critical project context kept as plain reference docs. They are no longer indexed as a memory tier or auto-surfaced in search — read them directly when relevant. Examples:
 
 - Gate 3 enforcement ("always ask spec folder question")
 - Project-specific constraints
@@ -487,41 +455,30 @@ Constitutional files are stored in:
 .opencode/skills/system-spec-kit/constitutional/
 ```
 
-### Auto-Surfacing
-
-- Indexed automatically on MCP server startup
-- Always appear at TOP of search results
-- Matched via trigger phrases for fast keyword matching
-- Not affected by decay scoring
+These are ordinary Markdown reference docs; links pointing to them stay valid.
 
 ### Review Cadence
 
-Constitutional rules are fixed-visibility records, so operators should review them on a calendar cadence instead of relying on decay. Each active rule file should carry `last_confirmed` and `last_confirmed_source` frontmatter fields. Use the standalone staleness diagnostic to list active rules by age:
+Because these are fixed reference docs, operators should review them on a calendar cadence. Each active rule file should carry `last_confirmed` and `last_confirmed_source` frontmatter fields. Use the standalone staleness diagnostic to list active rules by age:
 
 ```bash
 node .opencode/skills/system-spec-kit/scripts/constitutional-rule-staleness.cjs
 ```
 
-Default cadence: review any rule older than 180 days. The diagnostic computes `review_by` at report time and performs no writes. A stale result is a human review signal only; it must not auto-delete, auto-demote, or change the always-surface behavior.
+Default cadence: review any rule older than 180 days. The diagnostic computes `review_by` at report time and performs no writes. A stale result is a human review signal only; it must not auto-delete or auto-demote.
 
 ### Creating Constitutional Rules
 
 1. Create file in `constitutional/` folder
-2. Add YAML frontmatter with triggers and review metadata:
+2. Add YAML frontmatter with review metadata:
     ```yaml
     ---
     title: Gate 3 Enforcement
-    importanceTier: constitutional
     contextType: decision
     last_confirmed: "2026-06-10"
     last_confirmed_source: "human-review"
-    triggerPhrases:
-      - "file modification"
-      - "gate 3"
-      - "spec folder"
     ---
     ```
-3. Restart MCP server or use `memory_index_scan()`
 
 ---
 
@@ -615,7 +572,7 @@ Indexed rows are classified into five states based on their **retrievability sco
 │  R ≥ 0.25    →  WARM      (moderate recall)                    │
 │  R ≥ 0.05    →  COLD      (low recall)                         │
 │  R < 0.05    →  DORMANT   (very low recall)                    │
-│  Constitutional/Critical tiers → always HOT (R = 1.0)           │
+│  Critical tier → always HOT (R = 1.0)                           │
 │  Pinned spec-doc records (is_pinned=1) → always HOT (R = 1.0)          │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
@@ -642,7 +599,7 @@ function classifyState(
 }
 ```
 
-The richer `classifyTier()` function wraps this with half-life support, pinned-memory handling, and constitutional/critical exemptions. It computes retrievability using the FSRS formula (see Section 6, Model B) with an effective stability derived from the spec-doc record's type-specific half-life.
+The richer `classifyTier()` function wraps this with half-life support, pinned-memory handling, and critical-tier exemptions. It computes retrievability using the FSRS formula (see Section 6, Model B) with an effective stability derived from the spec-doc record's type-specific half-life.
 
 ### State Behaviors
 
@@ -673,7 +630,7 @@ The effective stability is `max(fsrs_stability, type_stability)`, ensuring new s
 | Time passes without access | R decays via FSRS formula → may demote state |
 | User validates as useful | Increases confidence score (does not directly change state) |
 | Memory marked deprecated | Excluded from search (tier-level exclusion, not state) |
-| Constitutional/critical tier | Always classified as HOT regardless of R |
+| Critical tier | Always classified as HOT regardless of R |
 | Pinned (`is_pinned=1`) | Always classified as HOT regardless of R |
 
 ---

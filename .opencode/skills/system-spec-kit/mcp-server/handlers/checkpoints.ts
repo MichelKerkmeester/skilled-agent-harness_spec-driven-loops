@@ -27,11 +27,8 @@ import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/respons
 // Shared handler types
 import type { MCPResponse } from './types.js';
 
-// Feature catalog: Checkpoint creation (checkpoint_create)
-// Feature catalog: Checkpoint listing (checkpoint_list)
-// Feature catalog: Checkpoint restore (checkpoint_restore)
-// Feature catalog: Checkpoint deletion (checkpoint_delete)
-// Feature catalog: Checkpoint delete confirmName safety
+// Handlers for checkpoint create / list / restore / delete, including the
+// confirmName safety check on delete.
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -568,7 +565,6 @@ async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCP
   // runtime would never query.
   if (result.restored > 0 || result.workingMemoryRestored > 0) {
     try {
-      vectorIndex.clearConstitutionalCache(null);
       vectorIndex.clearSearchCache(null);
 
       const database = vectorIndex.getDb();

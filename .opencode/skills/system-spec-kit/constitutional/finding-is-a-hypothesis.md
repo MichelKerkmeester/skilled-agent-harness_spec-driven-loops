@@ -1,6 +1,5 @@
 ---
 title: "A Finding Is a Hypothesis Until You Open the Cited Code"
-importanceTier: constitutional
 contextType: decision
 last_confirmed: "2026-06-14"
 last_confirmed_source: "manual"

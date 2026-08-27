@@ -299,7 +299,7 @@ describe('canonical metadata DB + active vector shard split', () => {
       .get(id) as { count: number };
     expect(dimCount.count).toBe(1);
     db.prepare('UPDATE memory_index SET embedding_model = ? WHERE id = ?').run(profile.model, id);
-    expect(vector_search(makeEmbedding(), { limit: 5, includeConstitutional: false }, db).map((row) => row.id))
+    expect(vector_search(makeEmbedding(), { limit: 5 }, db).map((row) => row.id))
       .toContain(id);
     expect(tableExists(db, 'main', 'vec_memories')).toBe(false);
 
@@ -371,7 +371,7 @@ describe('canonical metadata DB + active vector shard split', () => {
       contentText: 'query should join through active_vec vec_memories',
     }, db);
 
-    const results = vector_search(makeEmbedding(), { limit: 5, includeConstitutional: false }, db);
+    const results = vector_search(makeEmbedding(), { limit: 5 }, db);
 
     expect(results.map((row) => row.id)).toContain(id);
     detachActiveVectorShard(db);
@@ -442,7 +442,7 @@ describe('canonical metadata DB + active vector shard split', () => {
     db.prepare('UPDATE memory_index SET embedding_model = ? WHERE id = ?').run('other-model', mismatchedId);
     db.prepare('UPDATE memory_index SET embedding_model = ? WHERE id = ?').run('', legacyId);
 
-    const ids = vector_search(makeEmbedding(), { limit: 5, includeConstitutional: false }, db).map((row) => row.id);
+    const ids = vector_search(makeEmbedding(), { limit: 5 }, db).map((row) => row.id);
 
     expect(ids).toContain(activeId);
     expect(ids).toContain(legacyId);

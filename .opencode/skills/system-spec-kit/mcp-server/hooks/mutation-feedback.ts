@@ -8,7 +8,6 @@ function buildMutationHookFeedback(operation: string, hookResult: MutationHookRe
     operation: string;
     latencyMs: number;
     triggerCacheCleared: boolean;
-    constitutionalCacheCleared: boolean;
     graphSignalsCacheCleared: boolean;
     coactivationCacheCleared: boolean;
     entityDensityCacheCleared?: boolean;
@@ -27,7 +26,6 @@ function buildMutationHookFeedback(operation: string, hookResult: MutationHookRe
       .join(', ')
     : [
         `trigger=${hookResult.triggerCacheCleared ? 'ok' : 'failed'}`,
-        `constitutional=${hookResult.constitutionalCacheCleared ? 'ok' : 'failed'}`,
         `graphSignals=${hookResult.graphSignalsCacheCleared ? 'ok' : 'failed'}`,
         `coactivation=${hookResult.coactivationCacheCleared ? 'ok' : 'failed'}`,
       ].join(', ');
@@ -39,7 +37,6 @@ function buildMutationHookFeedback(operation: string, hookResult: MutationHookRe
   const anyCacheClearFailed =
     hookResult.subscribers?.some((subscriber) => !subscriber.ok) ?? (
       !hookResult.triggerCacheCleared ||
-      !hookResult.constitutionalCacheCleared ||
       !hookResult.graphSignalsCacheCleared ||
       !hookResult.coactivationCacheCleared
     );
@@ -57,7 +54,6 @@ function buildMutationHookFeedback(operation: string, hookResult: MutationHookRe
       operation,
       latencyMs: hookResult.latencyMs,
       triggerCacheCleared: hookResult.triggerCacheCleared,
-      constitutionalCacheCleared: hookResult.constitutionalCacheCleared,
       graphSignalsCacheCleared: hookResult.graphSignalsCacheCleared,
       coactivationCacheCleared: hookResult.coactivationCacheCleared,
       entityDensityCacheCleared: hookResult.entityDensityCacheCleared,

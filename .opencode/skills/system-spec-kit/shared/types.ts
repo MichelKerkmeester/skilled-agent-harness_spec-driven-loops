@@ -243,8 +243,6 @@ export interface SearchResult {
   filePath?: string;
   /** Trigger phrases */
   triggerPhrases?: string[];
-  /** Whether this is a constitutional memory */
-  isConstitutional?: boolean;
   /** Additional metadata for extensibility */
   metadata?: Record<string, unknown>;
 }

@@ -1,6 +1,6 @@
 ---
 title: "Memory Commands"
-description: "Slash commands for managing the Spec Kit Memory system including search, session recovery, constitutional memory management, database operations, and async ingestion."
+description: "Slash commands for managing the Spec Kit Memory system including search, session recovery, database operations, and async ingestion. (The constitutional-memory command /memory:learn is deprecated — that layer was retired.)"
 trigger_phrases:
   - "memory command"
   - "memory save"
@@ -35,7 +35,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The `memory` command group provides operations for the Spec Kit Memory MCP system. These 4 commands cover context preservation, unified knowledge retrieval and analysis, constitutional memory management, and database maintenance plus async ingest. Session recovery now lives under `/speckit:resume`.
+The `memory` command group provides operations for the Spec Kit Memory MCP system. These commands cover context preservation, unified knowledge retrieval and analysis, and database maintenance plus async ingest. Session recovery now lives under `/speckit:resume`. `/memory:learn` is deprecated — the constitutional-memory layer (an always-surface, search-boosted rule tier) was retired; the former rule files remain as plain, unindexed reference docs.
 
 All commands interact with the memory MCP server tools (`system_spec_memory_*`). They follow a gate-based argument validation pattern: if required arguments are missing, the command prompts the user before proceeding.
 
@@ -57,7 +57,7 @@ Visible dashboards, prompts, examples, and errors live in each command's present
 | Command | Invocation | Description |
 |---------|------------|-------------|
 | **search** | `/memory:search <query> [--intent <type>\|--intent=<type>]` or `/memory:search <subcommand>` | Unified retrieval and analysis: intent-aware search, epistemic baselines, causal graph, ablation, dashboard |
-| **learn** | `/memory:learn [rule] \| list \| edit \| remove \| budget` | Create and manage constitutional memories (always-surface rules) |
+| **learn** | `/memory:learn` | DEPRECATED — the constitutional-memory layer was retired; no active routes |
 | **manage** | `/memory:manage <subcommand>` | Database operations (scan, cleanup, tier, health, checkpoint, ingest) |
 | **save** | `/memory:save <spec-folder>` | Update packet continuity with semantic indexing |
 
@@ -73,15 +73,12 @@ Visible dashboards, prompts, examples, and errors live in each command's present
 | `find_spec` | spec, specification, find spec | Spec docs, architecture, overview |
 | `find_decision` | decision, rationale, why did we | Decisions, rationale, context |
 
-### Learn Subcommands
+### Learn Subcommands (DEPRECATED)
 
-| Subcommand | Invocation | Description |
-|------------|------------|-------------|
-| (default) | `/memory:learn [rule]` | Create new constitutional memory (guided) |
-| list | `/memory:learn list` | Show all constitutional memories and budget |
-| edit | `/memory:learn edit <filename>` | Edit existing constitutional memory |
-| remove | `/memory:learn remove <filename>` | Remove constitutional memory |
-| budget | `/memory:learn budget` | Token budget status (~2000 max) |
+`/memory:learn` is deprecated. The constitutional-memory layer (the always-surface, search-boosted
+rule tier it managed) was retired and removed from the code, so its create/list/edit/remove/budget
+routes no longer exist. The former rule files remain as plain, unindexed reference docs. Use
+`/memory:save` to preserve scoped context instead.
 
 ### Search Subcommands
 
@@ -108,7 +105,7 @@ Visible dashboards, prompts, examples, and errors live in each command's present
 memory/
 ├── README.txt      # This file, 4-command index and coverage matrix
 ├── search.md       # /memory:search - Unified retrieval + analysis (intent-aware search, epistemic, causal, eval)
-├── learn.md        # /memory:learn - Constitutional memory manager
+├── learn.md        # /memory:learn - DEPRECATED (constitutional-memory layer retired)
 ├── manage.md       # /memory:manage - Database management and ingest
 └── save.md         # /memory:save - Context saving
 ```
@@ -137,15 +134,6 @@ The `assets/` folder contains the presentation contracts for memory commands. Wo
 
 # Auto-recovery mode
 /speckit:resume :auto
-
-# Create a constitutional memory (always-surface rule)
-/memory:learn "Never commit API keys or secrets to git"
-
-# List all constitutional memories and budget
-/memory:learn list
-
-# Check token budget status
-/memory:learn budget
 
 # View database stats
 /memory:manage stats
@@ -280,7 +268,7 @@ Primary MCP tools mapped to their command home:
 | `/memory:search` | 15 | (none) | L1, L2, L6, L7 |
 | `/memory:save` | 1 | 3 (index_scan, stats, update) | L2 |
 | `/memory:manage` | 23 | 1 (search) | L3, L4, L5, L7 |
-| `/memory:learn` | 0 | uses manage/save tools | (none) |
+| `/memory:learn` (deprecated) | 0 | (none) | (none) |
 | `/doctor embeddings` | 1 | (none) | L7 |
 | MCP direct maintenance | 5 | (none) | L4, L7 |
 | `/speckit:resume` | 1 | uses search/manage tools | L1 |
@@ -300,9 +288,9 @@ Primary MCP tools mapped to their command home:
 
 `/memory:search` retrieves and searches indexed knowledge using a query or subcommand. `/speckit:resume` handles session continuation and interrupted-session recovery: it reconstructs packet context from `handover.md`, then `_memory.continuity`, then canonical spec docs before deeper memory tools engage. Use `search` for knowledge lookup and `resume` when you need to continue prior work.
 
-**Q: When should I use `/memory:learn` vs `/memory:save`?**
+**Q: Can I still use `/memory:learn` to create constitutional memories?**
 
-Use `/memory:learn` to create constitutional memories: short, always-surface rules that appear at the top of every search result (e.g., coding standards, project constraints). Use `/memory:save` to preserve session context, implementation decisions, and research findings tied to a specific spec folder. Constitutional memories apply globally. Saved context is scoped to a spec folder.
+No. `/memory:learn` is deprecated. The constitutional-memory layer — an always-surface, search-boosted rule tier — was retired and removed from the code, so there are no constitutional memories to create, list, or budget. The former rule files remain as plain, unindexed reference docs. Use `/memory:save` to preserve session context, implementation decisions, and research findings tied to a specific spec folder.
 
 **Q: What happens if I run `/memory:manage scan --force` on a large workspace?**
 
@@ -320,8 +308,7 @@ The scan re-indexes all previously indexed continuity artifacts and canonical sp
 | "No results" from knowledge | Query too narrow or no matching memories | Broaden query or try different intent |
 | Save fails | Spec folder path invalid or missing | Verify path exists under `specs/` |
 | Resume finds no session | No saved context from prior session | Use `/speckit:plan` to start fresh or `/memory:search` with a manual query |
-| Manage scan finds 0 files | No continuity sources found in expected directories | Check canonical spec docs under `specs/` and constitutional rules under `.opencode/skills/*/constitutional/` |
-| Learn file not found | Wrong filename for edit/remove | Run `/memory:learn list` to see available files |
+| Manage scan finds 0 files | No continuity sources found in expected directories | Check canonical spec docs under `specs/` |
 | Search ablation fails | `SPECKIT_ABLATION=true` not set | Set environment variable and retry |
 | Ablation warns about missing IDs | `groundTruthQueryIds` do not exist in the active static dataset | Fix the requested IDs or rerun `scripts/evals/map-ground-truth-ids.ts` after DB rebuild/swap |
 | Ablation shows `Token budget overflow` with fewer than `recallK` candidates | Candidate truncation made Recall@K unreliable | Treat the run as investigation-only until truncation is fixed |

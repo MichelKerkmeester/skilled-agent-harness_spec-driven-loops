@@ -116,7 +116,7 @@ If the runtime does not surface command menus clearly, use this compact command 
 - `/memory:save` - preserve the current session context into spec memory and refresh packet continuity
 - `/memory:search` - retrieve prior context, decisions, and analysis
 - `/memory:manage` - run maintenance, checkpoint, cleanup, and ingest operations
-- `/memory:learn` - create or manage constitutional always-surface rules
+- `/memory:learn` - create or manage constitutional reference rules
 
 **Nested changelog generator**
 - `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js <spec-folder> --write` - publish a packet-local changelog for a root spec or phase child

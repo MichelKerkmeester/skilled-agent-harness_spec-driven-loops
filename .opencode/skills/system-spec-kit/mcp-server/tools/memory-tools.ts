@@ -78,7 +78,6 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
         autoDetectIntent: true,
         enableDedup: true,
         includeContent: true,
-        includeConstitutional: true,
         rerank: true,
       }));
       if (response.content?.[0]?.text) {

@@ -1,0 +1,203 @@
+{
+  "sessionId": "fanout-grok-46-xhigh-b-1787723787313-4bzy0g",
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "Q-B1",
+      "question": "Always-loaded memory patterns (CC native memory + @-imports, Cursor rules) — what makes them active vs static constitutional files?",
+      "origin": "analyst-strategy",
+      "status": "answered",
+      "iteration": 2
+    },
+    {
+      "id": "Q-B2",
+      "question": "Best home to surface decisions EVERY turn without an MCP round-trip: git-tracked auto-loaded file vs render.ts injection vs hybrid?",
+      "origin": "analyst-strategy",
+      "status": "answered",
+      "iteration": 3
+    },
+    {
+      "id": "Q-B3",
+      "question": "Consolidate 4 decision stores; per-spec ADR -> global roll-up; cheap prior-decision query",
+      "origin": "analyst-strategy",
+      "status": "answered",
+      "iteration": 4
+    },
+    {
+      "id": "Q-B4",
+      "question": "Safe deprecation sequence + blast radius; rehome 20 rules; what steering is lost?",
+      "origin": "analyst-strategy",
+      "status": "answered",
+      "iteration": 6
+    },
+    {
+      "id": "Q-B5",
+      "question": "Freshness/decay + supersession for an active decisions store",
+      "origin": "analyst-strategy",
+      "status": "answered",
+      "iteration": 7
+    },
+    {
+      "id": "Q-B6",
+      "question": "Advisor brief reads decisions from new store vs hardcoded render.ts",
+      "origin": "analyst-strategy",
+      "status": "answered",
+      "iteration": 8
+    },
+    {
+      "id": "Q-B7",
+      "question": "Separate yet integrated — where it lives, how it binds to specs + skills",
+      "origin": "analyst-strategy",
+      "status": "answered",
+      "iteration": 9
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F-B1.2",
+      "finding": "Enforcement is not in the 20 constitutional markdown files (Gate 3 classifier, comment-hygiene checker, root docs).",
+      "source": "gate-3-classifier.ts; constitutional/README.md:86-88",
+      "iteration": 1
+    },
+    {
+      "id": "F-B1.3",
+      "finding": "Three every-turn advisor directives are hardcoded in render.ts, not read from constitutional/*.md.",
+      "source": "system-skill-advisor/mcp-server/lib/render.ts:93-121,441-461",
+      "iteration": 1
+    },
+    {
+      "id": "F-B1.4",
+      "finding": "alwaysSurface has no production search-pipeline callers; includeConstitutional SQL is the real injection path.",
+      "source": "importance-tiers.ts:194-196; vector-index-queries.ts:409-441",
+      "iteration": 1
+    },
+    {
+      "id": "F-B2.1",
+      "finding": "Active = runtime prompt injection with no tool call (CLAUDE.md, MEMORY.md first 200/25KB, Cursor alwaysApply / root AGENTS.md).",
+      "source": "https://code.claude.com/docs/en/memory.md; https://cursor.com/docs/context/rules",
+      "iteration": 2
+    },
+    {
+      "id": "F-B3.1",
+      "finding": "Hybrid every-turn home: small git-tracked digest on the always-on bus; render.ts stays disposition-only.",
+      "source": "iterations/iteration-003.md",
+      "iteration": 3
+    },
+    {
+      "id": "F-B4.1",
+      "finding": "Minimal set after redesign: always-on digest + per-spec ADR/continuity + on-demand spec-doc search. Drop constitutional tier and learned-triggers as decisions stores.",
+      "source": "content-router.ts:23-32; resume-ladder.ts:957-1027",
+      "iteration": 4
+    },
+    {
+      "id": "F-B5.2",
+      "finding": "Safe deprecation sequence: observe, default includeConstitutional false, stop indexing, kill prime SQL, retarget /memory:learn, drop tier, learned-triggers independently, delete files last.",
+      "source": "iterations/iteration-005.md",
+      "iteration": 5
+    },
+    {
+      "id": "F-B6.2",
+      "finding": "Unique steering not in AGENTS.md body: native-memory ban, bash-truncation trap, recorded-failure-must-route, plus skill-scoped Fable/goal/co-occurrence rules.",
+      "source": "iterations/iteration-006.md",
+      "iteration": 6
+    },
+    {
+      "id": "F-B7.2",
+      "finding": "Replacement needs Standing (no decay, git supersession) vs Recent (explicit supersedes); do not FSRS-decay in-force ADRs.",
+      "source": "importance-tiers.ts:33-70; iterations/iteration-007.md",
+      "iteration": 7
+    },
+    {
+      "id": "F-B8.2",
+      "finding": "Advisor must not MCP-read the decisions store; keep hardcoded capsules; optional hash-free pointer line.",
+      "source": "render.ts:103-117; skill-advisor-hook.md:21-45",
+      "iteration": 8
+    },
+    {
+      "id": "F-B9.1",
+      "finding": "Placement: .opencode/DECISIONS.md + Cursor alwaysApply; packets keep ADR; skills cite; no new spec-doc; no new DB.",
+      "source": "iterations/iteration-009.md",
+      "iteration": 9
+    },
+    {
+      "id": "F-B10.1",
+      "finding": "Deprecate the constitutional retrieval/indexing/learn-command system completely. Keep-rules-as-docs is leftover markdown during rehome, not a live tier.",
+      "source": "iterations/iteration-010.md",
+      "iteration": 10
+    }
+  ],
+  "ruledOutDirections": [
+    "Constitutional markdown as enforcement plane",
+    "Unsetting alwaysSurface as deprecation lever",
+    "Claude @-imports to save tokens",
+    "Revive Claude native MEMORY.md",
+    "MCP round-trip as every-turn decisions path",
+    "render.ts as the decisions store",
+    "New required spec-doc for global decisions",
+    "New SQLite decisions table",
+    "Auto-roll every ADR into DECISIONS.md",
+    "learned_triggers as a decisions log",
+    "Big-bang delete of constitutional/ on day one",
+    "Dump all 20 files into AGENTS.md",
+    "FSRS decay on in-force ADRs",
+    "30-day TTL on standing rules",
+    "Silent overwrite of old ADRs",
+    "Advisor hook memory_search every prompt",
+    "Inline DECISIONS.md into advisor additionalContext",
+    "Reuse constitutional/ as an indexed digest",
+    "Keep-the-tier-but-fix-alwaysSurface"
+  ],
+  "rejectedPatterns": [
+    "alwaysSurface-as-always-on",
+    "search-index-as-every-turn-bus",
+    "native-claude-MEMORY-md-split-brain"
+  ],
+  "promotedIdeas": [
+    "hybrid-always-on-digest-plus-render.ts-capsules",
+    "includeConstitutional-default-false",
+    "Standing-vs-Recent-digest-sections",
+    "deprecate-tier-keep-optional-unindexed-docs-during-rehome"
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 7,
+    "keyFindings": 12,
+    "convergenceScore": 0.28,
+    "coverageBySources": {
+      "constitutional": 1,
+      "advisor-render": 1,
+      "vendor-docs": 1,
+      "content-router": 1,
+      "memory-mcp": 1,
+      "root-docs": 1
+    }
+  },
+  "divergence": {
+    "saturatedDirections": [
+      "inventory",
+      "active-vs-static",
+      "every-turn-home",
+      "store-consolidation",
+      "plumbing-sequence",
+      "rehome-table",
+      "freshness",
+      "advisor",
+      "placement",
+      "verdict"
+    ],
+    "pivots": [],
+    "failures": [],
+    "overrides": [],
+    "remainingFrontier": [
+      "live-db-row-counts",
+      "barter-catalog-link-census",
+      "unique-adr-id-count"
+    ]
+  },
+  "terminalStop": {
+    "stopReason": "max_iterations",
+    "reason": "max_iterations",
+    "iteration": 10
+  }
+}

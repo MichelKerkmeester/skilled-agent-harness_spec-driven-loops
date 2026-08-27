@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Eval Metrics
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Core metric computation
+// Core retrieval-quality metric computation.
 // Pure computation functions for 12 evaluation metrics
 // (7 core + 5 diagnostic). No DB access, no side effects.
 /* ───────────────────────────────────────────────────────────────
@@ -39,7 +39,7 @@ export interface GroundTruthEntry {
    *   3 = highly relevant
    */
   relevance: number;
-  /** Optional importance tier (e.g. 'constitutional', 'critical', 'important', 'normal'). */
+  /** Optional importance tier (e.g. 'critical', 'important', 'normal'). */
   tier?: string;
   /** Optional creation timestamp for cold-start detection. */
   createdAt?: Date;
@@ -170,7 +170,6 @@ export interface AllMetrics {
   recall: number;
   hitRate: number;
   inversionRate: number;
-  constitutionalSurfacingRate: number;
   importanceWeightedRecall: number;
   coldStartDetectionRate: number;
   precision: number;
@@ -574,41 +573,10 @@ export function computeInversionRate(
 }
 
 /**
- * Constitutional Surfacing Rate.
- *
- * Percentage of queries where constitutional-tier memories appear
- * in the top-K results.
- *
- * Since this function operates on a single query's results, it returns
- * 1 if ANY constitutional memory appears in top-K, 0 otherwise.
- *
- * @param results          Retrieved results for the query.
- * @param constitutionalIds Memory IDs that are constitutional tier.
- * @param k                Top-K cutoff (default 5).
- * @returns 0 or 1. Returns 0 when constitutionalIds is empty.
- */
-export function computeConstitutionalSurfacingRate(
-  results: EvalResult[],
-  constitutionalIds: number[],
-  k: number = 5,
-): number {
-  if (results.length === 0 || constitutionalIds.length === 0) return 0;
-
-  const constitutionalSet = new Set(constitutionalIds);
-  const topResults = topK(results, k);
-
-  for (const r of topResults) {
-    if (constitutionalSet.has(r.memoryId)) return 1;
-  }
-
-  return 0;
-}
-
-/**
  * Importance-Weighted Recall.
  *
  * Recall@K but each relevant item is weighted by its tier:
- *   constitutional = 3x, critical = 2x, important = 1.5x, normal = 1x
+ *   critical = 2x, important = 1.5x, normal = 1x
  *
  * @param results      Retrieved results.
  * @param groundTruth  Ground truth with optional tier field.
@@ -626,7 +594,6 @@ export function computeImportanceWeightedRecall(
   if (groundTruth.every(entry => entry.relevance <= 0)) return 0;
 
   const defaultWeights: Record<string, number> = {
-    constitutional: 3,
     critical: 2,
     important: 1.5,
     normal: 1,
@@ -1065,7 +1032,6 @@ export function computeIntentWeightedNDCG(
  *
  * @param params.results             Retrieved results for the query.
  * @param params.groundTruth         Ground truth relevance judgments.
- * @param params.constitutionalIds   Memory IDs that are constitutional tier.
  * @param params.memoryTimestamps    Map from memoryId → creation Date.
  * @param params.intentType          Intent type for intent-weighted NDCG.
  * @param params.evaluatedAt         Optional query-time timestamp for cold-start checks.
@@ -1074,7 +1040,6 @@ export function computeIntentWeightedNDCG(
 export function computeAllMetrics(params: {
   results: EvalResult[];
   groundTruth: GroundTruthEntry[];
-  constitutionalIds?: number[];
   memoryTimestamps?: Record<number, Date>;
   intentType?: string;
   evaluatedAt?: number;
@@ -1082,7 +1047,6 @@ export function computeAllMetrics(params: {
   const {
     results,
     groundTruth,
-    constitutionalIds = [],
     memoryTimestamps = {},
     intentType = 'understand',
     evaluatedAt,
@@ -1097,7 +1061,6 @@ export function computeAllMetrics(params: {
     map: computeMAP(results, groundTruth),
     hitRate: computeHitRate(results, groundTruth),
     inversionRate: computeInversionRate(results, groundTruth),
-    constitutionalSurfacingRate: computeConstitutionalSurfacingRate(results, constitutionalIds),
     importanceWeightedRecall: computeImportanceWeightedRecall(results, groundTruth),
     coldStartDetectionRate: computeColdStartDetectionRate(results, groundTruth, memoryTimestamps, 48, 10, evaluatedAt),
     intentWeightedNdcg: computeIntentWeightedNDCG(results, groundTruth, intentType),

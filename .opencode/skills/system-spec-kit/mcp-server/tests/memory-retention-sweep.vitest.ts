@@ -505,22 +505,6 @@ describe('memory retention sweep', () => {
       `).all() as Array<{ memory_id: number; decision: string; reason: string }>;
     }
 
-    it('does not delete an expired constitutional row on TTL expiry alone', () => {
-      const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
-      insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'constitutional' });
-
-      const result = runMemoryRetentionSweep(db);
-
-      expect(result.swept).toBe(0);
-      expect(result.deletedIds).toEqual([]);
-      expect(result.protectedCount).toBe(1);
-      expect(result.protectedIds).toEqual([1]);
-      expect(memoryIds(db)).toEqual([1]);
-      expect(protectedAuditRows(db)).toEqual([
-        { memory_id: 1, decision: 'deny', reason: 'retention_tier_protected' },
-      ]);
-    });
-
     it('does not delete an expired critical row on TTL expiry alone', () => {
       const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
       insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'critical' });
@@ -545,7 +529,7 @@ describe('memory retention sweep', () => {
 
     it('still deletes unprotected expired rows alongside protected ones', () => {
       const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
-      insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'constitutional' });
+      insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'critical' });
       insertTieredMemory(db, 2, isoOffset(-3_600_000), { tier: 'normal' });
       insertTieredMemory(db, 3, isoOffset(-3_600_000), { tier: 'temporary' });
       insertTieredMemory(db, 4, isoOffset(3_600_000), { tier: 'normal' });
@@ -571,10 +555,10 @@ describe('memory retention sweep', () => {
       expect(memoryIds(db)).toEqual([]);
     });
 
-    it('protects constitutional rows on a legacy schema without pin/decay columns', () => {
+    it('protects critical rows on a legacy schema without pin/decay columns', () => {
       const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
-      insertMemory(db, 1, isoOffset(-3_600_000), 'legacy constitutional');
-      db.prepare('UPDATE memory_index SET importance_tier = ? WHERE id = 1').run('constitutional');
+      insertMemory(db, 1, isoOffset(-3_600_000), 'legacy critical');
+      db.prepare('UPDATE memory_index SET importance_tier = ? WHERE id = 1').run('critical');
 
       const result = runMemoryRetentionSweep(db);
 

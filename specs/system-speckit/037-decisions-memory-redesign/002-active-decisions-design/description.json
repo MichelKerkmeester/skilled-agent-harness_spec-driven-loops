@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/037-decisions-memory-redesign/002-active-decisions-design",
+  "description": "The constitutional DB tier is decorative: its rules are already inlined in the root instruction files, it surfaces only when the model chooses to call",
+  "keywords": [
+    "constitutional",
+    "tier",
+    "decorative",
+    "rules",
+    "already",
+    "inlined",
+    "root",
+    "instruction",
+    "files",
+    "surfaces",
+    "only",
+    "model",
+    "chooses",
+    "call"
+  ],
+  "lastUpdated": "2026-08-26T15:19:15.752Z",
+  "specId": "002",
+  "folderSlug": "active-decisions-design",
+  "parentChain": [
+    "system-speckit",
+    "037-decisions-memory-redesign"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

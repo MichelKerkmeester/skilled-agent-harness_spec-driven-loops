@@ -18,7 +18,7 @@ trigger_phrases:
 Current state:
 
 - Composite scoring combines similarity, age, access, tier, feedback and pattern signals.
-- Tier helpers keep constitutional, critical, important, normal, temporary and deprecated behavior consistent.
+- Tier helpers keep critical, important, normal, temporary and deprecated behavior consistent.
 - Folder scoring is re-exported from `@spec-kit/shared/scoring/folder-scoring` for one shared implementation.
 
 ---
