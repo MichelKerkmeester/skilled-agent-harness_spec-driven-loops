@@ -11,9 +11,8 @@ Load the presentation contract before showing startup questions, dashboards, che
 >
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
-> **YOUR FIRST ACTION (two HARD-BLOCK gates — do them in order, skip neither):**
-> 1. Run Phase 0: dispatch-context check (below)
-> 2. Run the Unified Setup Phase (BLOCKED gate) through the presentation contract and resolve:
+> **YOUR FIRST ACTION (HARD-BLOCK gate — do not skip):**
+> 1. Run the Unified Setup Phase (BLOCKED gate) through the presentation contract and resolve:
 >    - `research_topic`
 >    - `spec_folder`
 >    - `execution_mode`
@@ -21,66 +20,12 @@ Load the presentation contract before showing startup questions, dashboards, che
 >    - `convergenceThreshold`
 >    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)
 >    - `dry_run` (default false unless `--dry-run` is present)
-> 3. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
+> 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
 >    - Auto: `deep-research-auto.yaml`
 >    - Confirm: `deep-research-confirm.yaml`
-> 4. Execute the YAML workflow step by step using those resolved values
+> 3. Execute the YAML workflow step by step using those resolved values
 >
-> This command is **general-agent based** — it orchestrates the deep-research loop. Gate 1 (dispatch-context check) and Gate 2 (the BLOCKED Unified Setup Phase) are HARD BLOCKS; neither may be skipped.
-
-### PHASE 0: DISPATCH-CONTEXT CHECK
-
-**STATUS: ☐ CHECKED**
-
-```
-This gate checks actual dispatch context, not self-reported capability -- the prior
-self-assessment version of this check produced a confirmed false-positive block (a
-capable agent judged itself "uncertain" on an abstract question and hard-stopped).
-
-OBJECTIVE OVERRIDE — evaluate this BEFORE the CHECK below; it is decisive: look in the
-prompt ABOVE this command body for the marker `<!-- INVOCATION MESSAGE -->` with
-`ARGS_PRESENT=true`. That block is emitted only by the real command runner and never
-by a pasted-inline paste. If it is PRESENT, general_agent_verified = TRUE — PROCEED to
-setup now, do NOT emit any "DIRECT INVOCATION REQUIRED" block, and do NOT run the CHECK
-below. Seeing this file's own content in your prompt is NOT evidence of pasting; a real
-invocation always contains it. Only if the marker is genuinely ABSENT do you evaluate
-the CHECK below.
-
-CHECK: was this file invoked directly as /deep:research (typed by the user, or an
-explicit Task delegation naming this exact command) -- as opposed to another agent
-pasting this file's raw content into a Task-dispatch prompt as inline ad hoc
-instructions for a worker to follow (that worker should follow its own dispatch
-prompt, not re-run this command's full setup contract)?
-
-├─ YES, or no concrete evidence of the pasted-inline case:
-│   └─ general_agent_verified = TRUE → Continue to the Unified Setup Phase (also a HARD BLOCK)
-│
-└─ NO, with concrete evidence this file's content was pasted inline rather than
-   invoked as the command itself:
-    │
-    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-    │
-    ├─ DISPLAY to user:
-    │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ DIRECT INVOCATION REQUIRED                              │
-    │   │                                                            │
-    │   │ This command orchestrates the deep-research loop and runs  │
-    │   │ general-agent based.                                       │
-    │   │                                                            │
-    │   │ To proceed, restart with:                                  │
-    │   │   /deep:research [arguments]                               │
-    │   └────────────────────────────────────────────────────────────┘
-    │
-    └─ RETURN: STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"
-
-Default on ambiguity: PROCEED. Do not block on an inability to introspect abstract
-capability (e.g. "can I orchestrate a workflow") -- that question is unanswerable
-from the inside and is what caused the original false-positive block. Block only on
-concrete evidence of the pasted-inline case above.
-```
-
-**Phase Output:**
-- `general_agent_verified = ________________`
+> This command is **general-agent based** — it orchestrates the deep-research loop. The Unified Setup Phase (the BLOCKED gate) is a HARD BLOCK; it may not be skipped.
 
 ### MANDATORY INPUT GATE
 

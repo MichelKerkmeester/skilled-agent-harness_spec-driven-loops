@@ -19,67 +19,21 @@ Load the presentation contract before showing startup questions, dashboards, che
 > This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
 >
 > **YOUR FIRST ACTION:**
-> 1. Run Phase 0: dispatch-context check (below)
-> 2. Run the Unified Setup Phase through the presentation contract
-> 3. Determine execution mode from user input (`:auto` or `:confirm`)
-> 4. Load matching YAML workflow and execute
+> 1. Run the Unified Setup Phase through the presentation contract
+> 2. Determine execution mode from user input (`:auto` or `:confirm`)
+> 3. Load matching YAML workflow and execute
 >
 > This command is **general-agent based** — orchestrates deep-improvement skill invocation.
-
-### PHASE 0: DISPATCH-CONTEXT CHECK
-
-**STATUS: ☐ CHECKED**
-
-```
-This gate checks actual dispatch context, not self-reported capability -- the prior
-self-assessment version of this check produced a confirmed false-positive block (a
-capable agent judged itself "uncertain" on an abstract question and hard-stopped).
-
-CHECK: was this file invoked directly as /deep:agent-improvement (typed by the user,
-or an explicit Task delegation naming this exact command) -- as opposed to another
-agent pasting this file's raw content into a Task-dispatch prompt as inline ad hoc
-instructions for a worker to follow (that worker should follow its own dispatch
-prompt, not re-run this command's full setup contract)?
-
-├─ YES, or no concrete evidence of the pasted-inline case:
-│   └─ general_agent_verified = TRUE → Continue to Setup Phase
-│
-└─ NO, with concrete evidence this file's content was pasted inline rather than
-   invoked as the command itself:
-    │
-    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-    │
-    ├─ DISPLAY to user:
-    │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ DIRECT INVOCATION REQUIRED                              │
-    │   │                                                            │
-    │   │ This command orchestrates deep-improvement skill           │
-    │   │ invocation and runs general-agent based.                   │
-    │   │                                                            │
-    │   │ To proceed, restart with:                                  │
-    │   │   /deep:agent-improvement [arguments]                     │
-    │   └────────────────────────────────────────────────────────────┘
-    │
-    └─ RETURN: STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"
-
-Default on ambiguity: PROCEED. Do not block on an inability to introspect abstract
-capability (e.g. "can I orchestrate a workflow") -- that question is unanswerable
-from the inside and is what caused the original false-positive block. Block only on
-concrete evidence of the pasted-inline case above.
-```
-
-**Phase Output:**
-- `general_agent_verified = ________________`
 
 ### MANDATORY INPUT GATE
 
 - **DO NOT** dispatch any agent from this document.
 - **DO NOT** infer target agent from context, screenshots, or conversation history.
 - **DO NOT** start the loop without all setup values resolved.
-- **FIRST ACTION** is always: run Phase 0, run Setup, then load YAML workflow.
+- **FIRST ACTION** is always: run Setup, then load YAML workflow.
 - **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
-  - `general_agent_verified`, `lane`, `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
+  - `lane`, `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 
 For `:confirm` or no suffix, the consolidated setup prompt in the presentation contract MUST be the first visible response. For `:auto`, do not emit the consolidated setup prompt by default; use the auto setup resolution rules in the presentation contract and fail fast when required fields cannot be resolved.
 
@@ -89,7 +43,6 @@ For `:confirm` or no suffix, the consolidated setup prompt in the presentation c
 
 | FIELD                  | REQUIRED      | YOUR VALUE | SOURCE                  |
 | ---------------------- | ------------- | ---------- | ----------------------- |
-| general_agent_verified | ✅ Yes         | ______     | Automatic check         |
 | lane                   | ✅ Yes         | ______     | Step 1B / Q(lane)       |
 | target_path            | ✅ Yes         | ______     | Q0 or $ARGUMENTS        |
 | target_profile         | ✅ Yes         | ______     | Derived from target rules |
@@ -111,7 +64,7 @@ VERIFICATION CHECK:
 - **DO NOT** infer the target agent from context, screenshots, or conversation history
 - **DO NOT** start the loop without all setup values resolved
 - **RESOLVE `lane` FIRST** - an explicit `lane=model-benchmark` (via `--lane`, marker, `--profile`, or Q(lane)) hands off to `/deep:model-benchmark`; never ask the Lane A questions in that case
-- **FIRST ACTION** is always: run Phase 0, run Setup, then load the YAML workflow
+- **FIRST ACTION** is always: run Setup, then load the YAML workflow
 
 ---
 

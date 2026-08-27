@@ -11,13 +11,9 @@ Workflow router for the deterministic command-conformance lane and the bounded b
 
 ## 1. ROUTER CONTRACT
 
-This Markdown owns dispatch-context verification, the blocking input gate, input binding, mode and axis selection, and execution-target selection. Workflow execution and evidence writes belong to the YAML assets. Subject checks, verdict reduction, and matrix execution remain with their existing owners.
+This Markdown owns the blocking input gate, input binding, mode and axis selection, and execution-target selection. Workflow execution and evidence writes belong to the YAML assets. Subject checks, verdict reduction, and matrix execution remain with their existing owners.
 
 Load `.opencode/commands/deep/assets/deep-command-benchmark-presentation.txt` before displaying setup questions, resolved-input confirmations, checkpoints, terminal output, errors, or next steps.
-
-### PHASE 0: DISPATCH-CONTEXT CHECK
-
-Proceed when this file was invoked directly as the command, or by an explicit delegation naming this exact command. Stop only when there is concrete evidence that its raw contents were pasted into an unrelated worker prompt. Ambiguity is not evidence of a bad dispatch context.
 
 ### MANDATORY INPUT GATE
 
@@ -31,7 +27,6 @@ Proceed when this file was invoked directly as the command, or by an explicit de
 
 | Field | Required | Source |
 |---|---:|---|
-| `dispatch_context_verified` | yes | Phase 0 |
 | `spec_folder` | yes | explicit positional input or explicit reply |
 | `run_id` | yes | `--run-id` or UTC identifier |
 | `axis` | yes | `--axis` or `all` |

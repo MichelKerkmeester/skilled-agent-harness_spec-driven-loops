@@ -17,63 +17,17 @@ Load the presentation contract before showing startup questions, resolved-input 
 
 > **EXECUTION PROTOCOL - READ FIRST**
 >
-> **YOUR FIRST ACTION (two HARD-BLOCK gates - do them in order, skip neither):**
-> 1. Run Phase 0: dispatch-context check (below)
-> 2. Run the Mandatory Input Gate (below) - resolve ALL inputs (in :confirm/no-suffix, present them and wait for confirmation; in :auto, resolve confidently or fail fast naming the missing inputs)
-> 3. Load the matching workflow YAML and execute it only after both gates pass
+> **YOUR FIRST ACTION (HARD-BLOCK gate - do not skip):**
+> 1. Run the Mandatory Input Gate (below) - resolve ALL inputs (in :confirm/no-suffix, present them and wait for confirmation; in :auto, resolve confidently or fail fast naming the missing inputs)
+> 2. Load the matching workflow YAML and execute it only after the gate passes
 >
-> This command is **general-agent based** - it orchestrates the deep-improvement skill in skill-benchmark mode (Lane C). Gate 1 (dispatch-context check) and Gate 2 (the BLOCKED input gate) are HARD BLOCKS; neither may be skipped. Benchmark execution itself is owned by the workflow YAML.
-
-### PHASE 0: DISPATCH-CONTEXT CHECK
-
-**STATUS: ☐ CHECKED**
-
-```
-This gate checks actual dispatch context, not self-reported capability -- the prior
-self-assessment version of this check produced a confirmed false-positive block (a
-capable agent judged itself "uncertain" on an abstract question and hard-stopped).
-
-CHECK: was this file invoked directly as /deep:skill-benchmark (typed by the user,
-or an explicit Task delegation naming this exact command) -- as opposed to another
-agent pasting this file's raw content into a Task-dispatch prompt as inline ad hoc
-instructions for a worker to follow (that worker should follow its own dispatch
-prompt, not re-run this command's full setup contract)?
-
-├─ YES, or no concrete evidence of the pasted-inline case:
-│   └─ general_agent_verified = TRUE → Read `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` and `references/skill-benchmark/operator-guide.md`, then continue to the Mandatory Input Gate (also a HARD BLOCK)
-│
-└─ NO, with concrete evidence this file's content was pasted inline rather than
-   invoked as the command itself:
-    │
-    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-    │
-    ├─ DISPLAY to user:
-    │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ DIRECT INVOCATION REQUIRED                              │
-    │   │                                                            │
-    │   │ This command orchestrates the deep-improvement skill in    │
-    │   │ skill-benchmark mode and runs general-agent based.         │
-    │   │                                                            │
-    │   │ To proceed, restart with:                                  │
-    │   │   /deep:skill-benchmark [arguments]                        │
-    │   └────────────────────────────────────────────────────────────┘
-    │
-    └─ RETURN: STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"
-
-Default on ambiguity: PROCEED. Do not block on an inability to introspect abstract
-capability (e.g. "can I orchestrate a workflow") -- that question is unanswerable
-from the inside and is what caused the original false-positive block. Block only on
-concrete evidence of the pasted-inline case above.
-```
-
-**Phase Output:**
-- `general_agent_verified = ________________`
+> This command is **general-agent based** - it orchestrates the deep-improvement skill in skill-benchmark mode (Lane C). The Mandatory Input Gate (the BLOCKED input gate) is a HARD BLOCK; it may not be skipped. Benchmark execution itself is owned by the workflow YAML.
 
 ### MANDATORY INPUT GATE
 
 **STATUS: ☐ BLOCKED** — resolve ALL inputs below before loading the workflow YAML. In `:confirm`/no-suffix, present the resolved inputs and wait for confirmation; in `:auto`, resolve confidently from arguments/defaults or fail fast naming the missing inputs. Do NOT load the YAML until inputs are resolved.
 
-**YAML START CONDITION**: do not load the workflow YAML until `general_agent_verified`, `skill`, `outputs_dir`, `trace_mode`, and `execution_mode` are bound (`fixtures_dir` and `advisor_mode` are optional and stay unset when absent). Markdown owns setup; the YAML owns dispatch.
+**YAML START CONDITION**: do not load the workflow YAML until `skill`, `outputs_dir`, `trace_mode`, and `execution_mode` are bound (`fixtures_dir` and `advisor_mode` are optional and stay unset when absent). Markdown owns setup; the YAML owns dispatch.
 
 Resolve:
 - **target skill** — the skill id or root to benchmark (must have an `INTENT_SIGNALS` + `RESOURCE_MAP` smart router for Mode A; e.g. the `cli-*` skills).
@@ -102,7 +56,7 @@ Resolve:
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
 2. Treat the skill id/root, `--outputs-dir`, `--fixtures-dir`, `--trace-mode`, and `--advisor-mode` as workflow inputs, not execution modes.
 3. Resolve the Mandatory Input Gate values from `$ARGUMENTS` and defaults. For `:auto`, resolve confidently or fail fast naming the missing inputs; for `:confirm`/no suffix, present the resolved inputs and wait for confirmation.
-4. After Phase 0 and the input gate pass, read the target skill's SKILL.md + the operator guide, then load the matching workflow YAML in §4 and execute it step by step using the resolved setup values.
+4. After the input gate passes, read the target skill's SKILL.md + the operator guide, then load the matching workflow YAML in §4 and execute it step by step using the resolved setup values.
 
 ---
 
@@ -138,7 +92,6 @@ The following content lives only in `.opencode/commands/deep/assets/deep-skill-b
 
 The following router-owned display must still render verbatim from this document when triggered:
 
-- Phase 0 general-agent-required failure block and `STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"`.
 - Mandatory Input Gate blocked-state wording, resolved-input confirmation, and missing-input failure summary.
 
 The following content must not come from this router: loop-host progress, benchmark scores, verdicts, ranked bottlenecks, scenario rows, report wording, remediation details, and any skill-owned fixture, playbook, live-routing, advisor, or browser-scenario description beyond the setup fields named here.
