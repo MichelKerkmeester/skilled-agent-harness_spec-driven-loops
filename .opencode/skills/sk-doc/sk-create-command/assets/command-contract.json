@@ -256,7 +256,7 @@
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
-        "Two ordered hard-block gates: the Phase 0 dispatch-context check, then the BLOCKED unified setup phase (do not load YAML until all required inputs are bound)",
+        "One hard-block gate: the BLOCKED unified setup phase (do not load YAML until all required inputs are bound)",
         ":auto honors a PRE-BOUND SETUP ANSWERS: marker block and persists a config json before loading YAML",
         "Acquire the research/review lock before folder-state classification",
         "--dry-run is a first-class flag on the confirm flow, not a third execution mode"

@@ -25,7 +25,9 @@
     "system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation",
     "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
     "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
-    "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor"
+    "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor",
+    "system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch",
+    "system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing"
   ],
   "manual": {
     "depends_on": [],
@@ -105,7 +107,7 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-27T03:19:09.295Z",
+    "last_save_at": "2026-08-27T08:34:39.425Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -115,7 +117,7 @@
     "source_doc_hashes": {
       "spec.md": "8fa06d3a0b2da5f26bfbbfad2b22ef54fa5f847cca8079f1c011c549562c0c2b"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review",
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing",
     "last_active_at": "2026-08-26T05:04:41.600Z"
   }
 }
